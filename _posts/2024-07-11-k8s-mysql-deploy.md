@@ -2,8 +2,8 @@
 title: Kubernetes을 사용해 MySQL서버 구축 & 배포하기
 date: 2024-07-11 19:43:16 +0900
 author: kkamji
-categories: [AWS]
-tags: [aws, public-sector-day, bedrock, party-rock, lambda, gameday]     # TAG names should always be lowercase
+categories: [Kubernetes]
+tags: [mysql, kubernetes, pv, pvc, configMap, local]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
