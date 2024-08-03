@@ -253,8 +253,8 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">대내외 활동</span>
 
-- **AWS 클라우드 부트캠프 & 멘토링 프로그램에 보조강사로 참여**
-- **AWS PS GenAI GameDay에 4인 팀을 이뤄 참여**
+- **AWS 클라우드 부트캠프 & 멘토링 프로그램에 보조강사로 참여** [2024.07]
+- **AWS PS GenAI GameDay에 4인 팀을 이뤄 참여** [2024.07]
 - **AWS 온라인 세미나 세선 진행 (MicroK8s를 사용하여 EC2기반 경량 클러스터 구축)** [2024.06]
 - **AWS Summit Seoul 2024 참여** [2024.05]
 - **AWS Student Community Day 2024 참여** [2024.04]
