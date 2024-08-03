@@ -245,11 +245,11 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">자격사항</span>
 
-- **Certified Kubernetes Administrator** [2024.07.23]
-- **AWS Certified Solutions Architect - Associate** [2024.02.02]
-- **정보처리기사** [2023.09.30]
-- **AWS Certified Cloud Practitioner** [2023.05.31]
-- **CertifiedAIExpert** [2020.12.31]
+- Certified Kubernetes Administrator [2024.07.23]
+- AWS Certified Solutions Architect - Associate [2024.02.02]
+- 정보처리기사 [2023.09.30]
+- AWS Certified Cloud Practitioner [2023.05.31]
+- CertifiedAIExpert [2020.12.31]
 
 > ## <span style="color:#BF8C79">대내외 활동</span>
 
