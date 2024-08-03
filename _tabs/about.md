@@ -18,7 +18,7 @@ order: 4
   <div style="flex: 2; margin-left: 10px;">
     <!-- <h3 style="color: #D49A7B;">Introduce</h3> -->
     <h4> "안녕하세요! 호기심 많은 트러블 슈터 김태지입니다." </h4>
-    <p>학부 시절 AWS를 사용한 웹사이트 배포를 통해 클라우드에 대해 접하게 되었고, 졸업 후 AWS와 RAPA에서 주관한 AWS Cloud School 1기에 참여하며 인프라 역량을 쌓아왔습니다.</p>
+    <p>학부 시절 AWS를 사용한 웹사이트 배포를 통해 DevOps 및 클라우드에 대해 접하게 되었고, 졸업 후 AWS와 RAPA에서 주관한 AWS Cloud School 1기에 참여하며 기술 역량을 쌓아왔습니다.</p>
     <p>
       - 주어진 기간 내 최고의 결과물을 만들어내기 위해 항상 최선을 다합니다.
       <br> - 사소한 문제라도 지나치지 않고 해결하는 것을 즐깁니다.
@@ -245,6 +245,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">자격사항</span>
 
+- **Certified Kubernetes Administrator** [2024.07.23]
 - **AWS Certified Solutions Architect - Associate** [2024.02.02]
 - **정보처리기사** [2023.09.30]
 - **AWS Certified Cloud Practitioner** [2023.05.31]
@@ -252,6 +253,8 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">대내외 활동</span>
 
+- **AWS 클라우드 부트캠프 & 멘토링 프로그램에 보조강사로 참여**
+- **AWS PS GenAI GameDay에 4인 팀을 이뤄 참여**
 - **AWS 온라인 세미나 세선 진행 (MicroK8s를 사용하여 EC2기반 경량 클러스터 구축)** [2024.06]
 - **AWS Summit Seoul 2024 참여** [2024.05]
 - **AWS Student Community Day 2024 참여** [2024.04]
