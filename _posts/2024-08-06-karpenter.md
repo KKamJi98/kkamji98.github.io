@@ -277,12 +277,9 @@ LAUNCH_TEMPLATE=$(aws eks describe-nodegroup --cluster-name "${CLUSTER_NAME}" \
     --nodegroup-name "${NODEGROUP}" --query 'nodegroup.launchTemplate.{id:id,version:version}' \
     --output text | tr -s "\t" ",")
 
-# If your EKS setup is configured to use only Cluster security group, then please execute -
-
 SECURITY_GROUPS=$(aws eks describe-cluster \
     --name "${CLUSTER_NAME}" --query "cluster.resourcesVpcConfig.clusterSecurityGroupId" --output text)
 
-# If your setup uses the security groups in the Launch template of a managed node group, then :
 
 SECURITY_GROUPS="$(aws ec2 describe-launch-template-versions \
     --launch-template-id "${LAUNCH_TEMPLATE%,*}" --versions "${LAUNCH_TEMPLATE#*,}" \
@@ -310,9 +307,6 @@ kubectl edit configmap aws-auth -n kube-system
 - groups:
   - system:bootstrappers
   - system:nodes
-  ## If you intend to run Windows workloads, the kube-proxy group should be specified.
-  # For more information, see https://github.com/aws/karpenter/issues/5099.
-  # - eks:kube-proxy-windows
   rolearn: arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/KarpenterNodeRole-${CLUSTER_NAME}
   username: system:node:{{EC2PrivateDNSName}}
 ```
@@ -425,13 +419,13 @@ metadata:
   name: default
 spec:
   amiFamily: AL2 # Amazon Linux 2
-  role: "KarpenterNodeRole-weasel-eks" # replace with your cluster name
+  role: "KarpenterNodeRole-weasel-eks"
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "weasel-eks" # replace with your cluster name
+        karpenter.sh/discovery: "weasel-eks"
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "weasel-eks" # replace with your cluster name
+        karpenter.sh/discovery: "weasel-eks"
   amiSelectorTerms:
     - id: "ami-09c00c2e93ce7bd23"
 ```
