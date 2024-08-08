@@ -3,7 +3,7 @@ title: Priority queue 개념, 사용방법
 date: 2024-06-12 20:31:44 +0900
 author: kkamji
 categories: [CS, Data Structure]
-tags: [priority queue, python, heap, heapq]     # TAG names should always be lowercase
+tags: [priority-queue, python, heap, heapq]     # TAG names should always be lowercase
 comments: true
 # image:
 #   path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c39504c6-3de4-4b41-919b-5ef1b132106c

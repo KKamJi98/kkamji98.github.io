@@ -3,7 +3,7 @@ title: Network Policy 개념, 실습
 date: 2024-06-11 22:31:44 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, network policy, 3-tier-architecture, web, was, db]     # TAG names should always be lowercase
+tags: [kubernetes, network-policy, 3-tier-architecture, web, was, db]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
