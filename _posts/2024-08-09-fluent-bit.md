@@ -145,7 +145,7 @@ Forwarding from [::1]:2020 -> 2020
 
 ## Reference
 
-<https://docs.fluentbit.io/manual> - Fluent Bit 공식문서
+<https://docs.fluentbit.io/manual> - Fluent Bit 공식문서  
 <https://github.com/fluent/helm-charts> - Fluent Helm Chart
 
 ---
