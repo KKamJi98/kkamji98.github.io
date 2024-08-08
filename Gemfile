@@ -13,3 +13,4 @@ gem "jekyll-sitemap"
 # gem "jekyll-archives"
 # gem "jekyll-feed"
 # gem "jekyll-assets"
+gem 'jekyll-target-blank'
