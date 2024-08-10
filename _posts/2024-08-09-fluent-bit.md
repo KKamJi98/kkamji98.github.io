@@ -3,7 +3,7 @@ title: EFK Stack 구축하기 (1) - Fluent Bit
 date: 2024-08-09 06:48:43 +0900
 author: kkamji
 categories: [Monitoring, Logging]
-tags: [kubernetes, aws, eks, elasticsearch, fluent-bit, fluentd, logstash, elk, kibana]     # TAG names should always be lowercase
+tags: [kubernetes, aws, eks, elasticsearch, fluent-bit, fluentd, logstash, elk, efk, kibana]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/monitoring/efk.png
