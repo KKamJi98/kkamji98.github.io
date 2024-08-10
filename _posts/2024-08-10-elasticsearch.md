@@ -125,7 +125,7 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 3. Init container가 실행 (3s~13s)
 4. elasitcsearch pod 초기화 후 동작 (14s~)
 
-## 참고 문헌
+## Reference
 
 <https://www.elastic.co/docs> - [공식 문서]  
 <https://devocean.sk.com/blog/techBoardDetail.do?ID=165640&boardType=techBlog> - [로그분석에 활용할 수 있는 EFK 스택 간단하게 정리해보기]  
