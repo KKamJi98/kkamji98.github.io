@@ -130,8 +130,8 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 <https://www.elastic.co/docs> - [공식 문서]  
 <https://devocean.sk.com/blog/techBoardDetail.do?ID=165640&boardType=techBlog> - [로그분석에 활용할 수 있는 EFK 스택 간단하게 정리해보기]  
 <https://oliveyoung.tech/blog/2024-04-02/opensearch-efk/> - [AWS OpenSearch를 사용한 EFK Stack 구축하기 | 올리브영 테크블로그]  
-<https://techblog.gccompany.co.kr/eks-환경에서의-efk-도입기-e8a92695e991> - [EKS 환경에서의 EFK 도입기]  
-<https://medium.com/musinsa-tech/무신사의-엘라스틱서치-muse-musinsa-elasticsearch-e6355516186a> - [무신사의 엘라스틱서치 MusE (Musinsa Elasticsearch)]  
+<<https://techblog.gccompany.co.kr/eks-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-efk-%EB%8F%84%EC%9E%85%EA%B8%B0-e8a92695e991>> - [EKS 환경에서의 EFK 도입기]  
+<https://medium.com/musinsa-tech/%EB%AC%B4%EC%8B%A0%EC%82%AC%EC%9D%98-%EC%97%98%EB%9D%BC%EC%8A%A4%ED%8B%B1%EC%84%9C%EC%B9%98-muse-musinsa-elasticsearch-e6355516186a> - [무신사의 엘라스틱서치 MusE (Musinsa Elasticsearch)]  
 
 ---
 > **궁금하신점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
