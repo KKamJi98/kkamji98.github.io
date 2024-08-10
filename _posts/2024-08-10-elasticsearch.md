@@ -13,7 +13,7 @@ image:
 
 ## Elastic Cloud on Kubernetes(ECK)란?
 
-Elastic Cloud on Kubernetes(ECK)란 Elasticsearch와 같은 Elastic 제품을 Kubernetes 클러스터에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 Elasticsearch 클러스터를 운영할 수 있습니다.
+**Elastic Cloud on Kubernetes(ECK)**란 **Elasticsearch**와 같은 Elastic 제품을 Kubernetes 클러스터에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 **Elasticsearch** 클러스터를 운영할 수 있습니다.
 
 ## ECK 배포
 
@@ -38,7 +38,7 @@ customresourcedefinition.apiextensions.k8s.io/stackconfigpolicies.stackconfigpol
 
 ### 2. Operator 설치
 
-> Kubernetes Operator는 Kubernetes 클러스터에서 Application의 배포, 관리, 확장 등을 자동화하는 소프트웨어 확장입니다. Operator는 쿠버네티스의 기본 개념인 “Controller”와 “CRD”를 결합하여 작동하며 Application과, Application의 구성 요소들을 관리하는 역할을 합니다.  
+> Kubernetes Operator는 Kubernetes 클러스터에서 Application의 배포, 관리, 확장 등을 자동화하는 소프트웨어 확장입니다. Operator는 쿠버네티스의 기본 개념인 "Controller"와 "CRD"를 결합하여 작동하며 Application과, Application의 구성 요소들을 관리하는 역할을 합니다.  
 {: .prompt-info}
 
 ```bash
@@ -58,7 +58,7 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.
 
 ## Elasticsearch 클러스터 배포
 
-> 하나의 Elasticsearch 노드를 가진 Elasticsearch 클러스터를 배포해보도록 하겠습니다. 추가적으로 AWS-EBS Volume을 사용하기 위해서는 `volumeClaimTemplates`를 생성 후 어떤 PVC를 생성할지 설정해주어야합니다.  
+> 하나의 **Elasticsearch** 노드를 가진 **Elasticsearch** 클러스터를 배포해보도록 하겠습니다. 추가적으로 AWS-EBS Volume을 사용하기 위해서는 `volumeClaimTemplates`를 생성 후 어떤 PVC를 생성할지 설정해주어야합니다.  
 {: .prompt-info}
 
 1. 정의 파일 (`elasticsearch.yaml`)
@@ -120,10 +120,10 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 
 확인 결과는 다음과 같습니다.
 
-1. elasticsearch statefulSet이 생성되고 elasticsearch pod 생성
-2. elasticsearch pod의 PVC가 요구하는 PV가 아직 생성되지 않아 Pending (1s~3s)
+1. **elasticsearch** statefulSet이 생성되고 elasticsearch pod 생성
+2. **elasticsearch** pod의 PVC가 요구하는 PV가 아직 생성되지 않아 Pending (1s~3s)
 3. Init container가 실행 (3s~13s)
-4. elasitcsearch pod 초기화 후 동작 (14s~)
+4. **elasitcsearch** pod 초기화 후 동작 (14s~)
 
 ## Reference
 
