@@ -63,7 +63,7 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.
 > 하나의 **Elasticsearch** 노드를 가진 **Elasticsearch** 클러스터를 배포해보도록 하겠습니다. 추가적으로 AWS-EBS Volume을 사용하기 위해서는 `volumeClaimTemplates`를 생성 후 어떤 PVC를 생성할지 설정해주어야합니다.  
 {: .prompt-info}
 
-1. 정의 파일 (`elasticsearch.yaml`)
+### 정의 파일 (`elasticsearch.yaml`)
 
 ```yaml
 apiVersion: elasticsearch.k8s.elastic.co/v1
@@ -88,7 +88,7 @@ spec:
         storageClassName: gp2
 ```
 
-1. 적용
+### 적용
 
 ```bash
 ❯ k apply -f elasticsearch.yaml

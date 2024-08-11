@@ -9,7 +9,9 @@ image:
   path: /assets/img/monitoring/efk.png
 ---
 
-로그 분석 기술에는 Splunk, DataDog, ELK, EFK 등의 기술들이 존재하지만, 가장 먼저 떠오르는 기술은 **ELK(Elasticsearch, Logstash, Fluentd)** 스택과 **EFK(Elasticsearch, Fluent Bit, Kibana)** 스택이 있습니다. 두 스택 모두 로그 데이터의 수집, 저장, 분석을 위한 도구입니다. 두 스택 모두 실시간 분산 검색 및 분석 엔진으로 **Elasticsearch**를 사용하고 **Kibana**를 사용해 **Elasticsearch**에서 저장된 데이터를 시각화합니다. 그렇다면 **Logstash**와 **Fluent Bit**는 무엇일까요? 정답은 바로 로그 데이터를 수집, 처리, 전송을 위한 오픈 소스 도구입니다. 개인적으로 로그 분석의 시작은 로그 데이터를 수집하는 작업부터라고 생각합니다. 해당 포스트에서는 로그 데이터를 수집하는 Fluent Bit에 대해 다뤄보도록 하겠습니다.
+로그 분석 기술에는 Splunk, DataDog, ELK, EFK 등의 기술들이 존재하지만, 가장 먼저 떠오르는 기술은 **ELK(Elasticsearch, Logstash, Fluentd)** 스택과 **EFK(Elasticsearch, Fluent Bit, Kibana)** 스택이 있습니다. 두 스택 모두 로그 데이터의 수집, 저장, 분석을 위한 도구입니다.  
+
+두 스택 모두 실시간 분산 검색 및 분석 엔진으로 **Elasticsearch**를 사용하고 **Kibana**를 사용해 **Elasticsearch**에서 저장된 데이터를 시각화합니다. 그렇다면 **Logstash**와 **Fluent Bit**는 무엇일까요? 정답은 바로 로그 데이터를 수집, 처리, 전송을 위한 오픈 소스 도구입니다. 개인적으로 로그 분석의 시작은 로그 데이터를 수집하는 작업부터라고 생각합니다. 해당 포스트에서는 로그 데이터를 수집하는 Fluent Bit에 대해 다뤄보도록 하겠습니다.
 
 ## Fluentd vs Fluent Bit
 
