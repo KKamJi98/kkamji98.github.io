@@ -16,58 +16,7 @@ image:
 
 쿠버네티스
 
-## 1. PV, PVC 생성
-
-### mysql-pv.yaml
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
-```
-
-### mysql-pvc.yaml
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-```
-
-## 2. ConfigMap 생성
-
-> 팀원들이 사용할 사용자 계정을 생성해야했고, ConfigMap의 데이터를 컨테이너의 `/docker-entrypoint-initdb.d` 디렉토리에 마운트하면 MySQL 컨테이너가 초기화 되면서 해당 파일이 같이 실행되는 것을 알게 되었습니다.
-{: .prompt-info}
-
-### mysql-configmap.yaml
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-initdb-config
-data:
-  init.sql: |
-    GRANT ALL PRIVILEGES ON *.* TO 's5t1'@'%' WITH GRANT OPTION;
-    FLUSH PRIVILEGES;
-```
-
-## 3. PV, PVC 생성
+## PV, PVC 생성
 
 > 기본적으로 Pod가 실행되면서 생긴 데이터는 Pod가 삭제되거나 재시작될 때 유지되지 않습니다. 따라서 데이터를 영구적으로 저장할 PV, PVC를 생성해주었습니다. 해당 방법과 더불어 Storage Class를 사용하는 방법도 추천드립니다.
 {: .prompt-info}
@@ -101,6 +50,24 @@ spec:
   resources:
     requests:
       storage: 5Gi
+```
+
+## ConfigMap 생성
+
+> 팀원들이 사용할 사용자 계정을 생성해야했고, ConfigMap의 데이터를 컨테이너의 `/docker-entrypoint-initdb.d` 디렉토리에 마운트하면 MySQL 컨테이너가 초기화 되면서 해당 파일이 같이 실행되는 것을 알게 되었습니다.
+{: .prompt-info}
+
+### mysql-configmap.yaml
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  init.sql: |
+    GRANT ALL PRIVILEGES ON *.* TO 's5t1'@'%' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
 ```
 
 ## secrets 생성
