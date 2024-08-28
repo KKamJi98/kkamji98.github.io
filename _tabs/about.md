@@ -38,7 +38,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 ### Amazon Photo Query - [ 2024.01 ~ 2024.03 ]
 
-> 기존 앨범 서비스에 AI 모델을 도입. 이미지 분류, 이미지 검색 편의성 제공  
+> 기존 앨범 서비스에 AI 모델을 도입. 자연머 검색, 얼굴 검색, 자동 태깅 등 이미지 검색 편의성 제공  
 > AWS 클라우드 상에서 MSA, 3-Tier-Architecture로 구축 및 배포  
 {: .prompt-tip}
 
