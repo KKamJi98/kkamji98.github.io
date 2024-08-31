@@ -47,6 +47,6 @@ comments: true
 [kt cloud 기술 블로그](https://tech.ktcloud.com/77)
 [Suyeon's Blog](https://suyeon96.tistory.com/53)
 
-> **궁금하신점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
 {: .prompt-tip}

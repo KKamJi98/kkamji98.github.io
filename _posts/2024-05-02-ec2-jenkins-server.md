@@ -113,6 +113,6 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/8392049c-02e8-4a77-baa0-98c404040780)
 
 > 다음 글에는 Kubernetes Pod를 Agent로 사용하는 방법을 올려보도록 하겠습니다.  
-> **궁금하신점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
 {: .prompt-tip}

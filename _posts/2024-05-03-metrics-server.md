@@ -138,6 +138,6 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 ### 마무리
 
 > Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 포트에 10250 포트를 열어주어야 합니다.
-> **궁금하신점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
 {: .prompt-tip}

@@ -22,6 +22,6 @@ image:
 3. 도메인을 얼마나 사용할 것인지, 선택해 주거나 자동으로 도메인을 갱신할 것인지 체크한 뒤, 개인정보를 입력후 결제를 진행합니다.
     ![image3](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/3b4b2fd8-cb26-4a78-9a98-c910962a710f)
 
-> **궁금하신점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
 {: .prompt-info}
