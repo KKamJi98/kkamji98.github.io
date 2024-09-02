@@ -238,7 +238,7 @@ secret/test-secret2 replaced
 ```
 
 > 기존의 Secret도 모두 암호화된 것을 확인할 수 있습니다.
-{: .prompt-info}
+{: .prompt-tip}
 
 ---
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
