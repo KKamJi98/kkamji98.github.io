@@ -80,7 +80,7 @@ IK2pXvujA7VdAyPI3w6mFulvy6ruouE1KkGHKQUZ/fs=
 
 ### 암호화 설정 파일 작성(encryption-configuration.yaml)
 
-> 아래의 파일을 Master Node의 /etc/kubernetes/enc/encryption-configuration.yaml 경로에 저장합니다.
+> 아래의 파일을 Master Node의 `/etc/kubernetes/enc/encryption-configuration.yaml` 경로에 저장합니다.
 {: .prompt-info}
 
 ```yaml
