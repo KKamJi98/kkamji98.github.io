@@ -1,5 +1,5 @@
 ---
-title: Secret 안전하게 관리하기 - etcd 암호화 적용
+title: Secret 안전하게 관리하기 - etcd 암호화
 date: 2024-09-01 22:51:41 +0900
 author: kkamji
 categories: [Kubernetes]
