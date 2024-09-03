@@ -142,7 +142,7 @@ kube-apiserver-master                      1/1     Running   0                5m
 > Secret에 대한 암호화를 설정해도 기존에 저장된 Secret은 암호화되지 않습니다. 새로운 Secret을 생성 후 기존 Secret과 비교해본 뒤, 기존에 저장된 Secret도 암호화되도록 하겠습니다.
 {: .prompt-info}
 
-### Secret 내용 Base64 인코딩
+### Secret 값 Base64 인코딩
 
 ```bash
 ❯ echo -n test-secrets2 | base64
