@@ -235,11 +235,11 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">기술스택</span>
 
-| 구분           | 기술                                                          |
+| 구분            | 기술                                                           |
 | -------------- | ------------------------------------------------------------- |
 | Programming    | Go, Python                                                    |
 | OS             | Windows, Ubuntu, CentOS, Amazon Linux                         |
-| Virtualization | Hyper-V, VMware Workstation, Docker, Kubernetes               |
+| Virtualization | Hyper-V, VMware, Docker, Kubernetes                           |
 | DevOps         | Jenkins, ArgoCD, Ansible, Terraform, Prometheus, Grafana      |
 | Cloud(AWS)     | EC2, EKS, ECS, ECR, RDS, VPC, Route53, CloudFront, CloudWatch |
 
@@ -253,7 +253,8 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">대내외 활동</span>
 
-- AWS 클라우드 부트캠프 & 멘토링 프로그램 참여(보조강사) [2024.07]
+- AWS 클라우드 부트캠프 & 멘토링 프로그램 참여(보조강사) [2024.07 ~ 2024.08]
+  - 부산일과학고등학교, 서울디지텍고등학교
 - AWS PS GenAI GameDay 참가 [2024.07]
 - AWS 온라인 세미나 세선 진행 (MicroK8s를 사용해 EC2기반 경량 클러스터 구축하기) [2024.06]
 - AWS Summit Seoul 2024 참여 [2024.05]
