@@ -1,6 +1,6 @@
 ---
 title: Kubernetes에서 Harbor 구축하기
-date: 2024-10-07 21:31:41 +0900
+date: 2024-09-27 21:31:41 +0900
 author: kkamji
 categories: [Harbor]
 tags: [kubernetes, harbor]     # TAG names should always be lowercase
@@ -15,12 +15,12 @@ image:
 
 ## 사전 조건
 
-> - Kubernetes cluster 1.10+
-> - Helm 2.8.0+
-> - High available Ingress Controller
-> - High available PostgreSQL database
-> - High available Redis
-> - PVC (Persistent Volume Claim) 또는 외부 오브젝트 스토리지
+- Kubernetes cluster 1.10+
+- Helm 2.8.0+
+- High available Ingress Controller
+- High available PostgreSQL database
+- High available Redis
+- PVC (Persistent Volume Claim) 또는 외부 오브젝트 스토리지
 
 ## 실습 환경
 
