@@ -1,7 +1,7 @@
 ---
 title: .gitignore 파일 설정 [gitignore.io]
 description: git을 사용하다보면 퍼블릭에 올라가서는 안될 자료들까지 올라가는 경우가 있습니다. 해당 문제는 .gitignore 파일을 편집해서 해결할 수 있습니다.
-date: 2023-07-09 07:24:00 +0900
+date: 2023-07-15 07:24:00 +0900
 author: kkamji
 categories: [Git & Github]
 tags: [git add, git commit, git push, git, github, linux, alias, gitignore, gitignore.io]     # TAG names should always be lowercase
