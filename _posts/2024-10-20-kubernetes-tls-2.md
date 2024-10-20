@@ -177,9 +177,11 @@ Events:
 ## TLS 인증서 적용 확인
 
 ### Before
+
 ![jenkins-no-tls](/assets/img/jenkins/no-tls.png)
 
 ### After
+
 ![jenkins-yes-tls](/assets/img/jenkins/yes-tls.png)
 
 ---

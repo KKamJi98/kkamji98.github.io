@@ -17,7 +17,7 @@ order: 4
   </div>
   <div style="flex: 2; margin-left: 10px;">
     <!-- <h3 style="color: #D49A7B;">Introduce</h3> -->
-    <h4> "안녕하세요! 호기심 많은 트러블 슈터 김태지입니다." </h4>
+    <h4> "DevOps와 Cloud를 좋아합니다." </h4>
     <p>학부 시절 AWS를 사용한 웹사이트 배포를 통해 DevOps 및 클라우드에 대해 접하게 되었고, 졸업 후 AWS와 RAPA에서 주관한 AWS Cloud School 1기에 참여하며 기술 역량을 쌓아왔습니다.</p>
     <p>
       - 주어진 기간 내 최고의 결과물을 만들어내기 위해 항상 최선을 다합니다.
@@ -35,6 +35,71 @@ Blog - [https://kkamji.net](https://kkamji.net)
 Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">주요 프로젝트</span>
+
+### Weasel - [ 2024.07 ~ 2024.08 ]
+
+> Bedrock 기반 문제풀이 서비스
+> Antrophic Claude Sonnet 3.5 Model 활용해 문제의 답과 해설 제공
+{: .prompt-tip}
+
+![banner](/assets/img/weasel/banner.webp)
+
+[Weasel Github Organizations](https://github.com/Team-S5T1)
+
+#### 주요 역할 및 담당
+
+- Team Lead
+- Cloud Infra 설계, 구축
+- EKS Cluster 운영
+- WEB, WAS, DB 배포
+- Secret 관리
+- IAM User, Group 관리
+- CI/CD 파이프라인 구축 (Jenkins, ArgoCD)
+
+#### 프로젝트 기술 스택
+
+| 구분     | 기술                                                            |
+| -------- | --------------------------------------------------------------- |
+| Develop  | Spring Boot, React                                              |
+| Deploy   | EKS, S3, Route53, CloudFront                                    |
+| Database | RDS(MySQL)                                                      |
+| IaC      | Terraform                                                       |
+| CI/CD    | Jenkins, ArgoCD                                                 |
+| 모니터링 | Prometheus, Grafana                                             |
+| AI       | Bedrock (Claude Sonnet 3.5)                                     |
+| ETC      | Notion, Slack, Postman, GitHub, Secrets Manager, Karpenter, HPA |
+
+#### 주요 성과
+
+- Terraform Remote State 적용
+- Terraform을 활용한 AWS Infra 구축
+- EKS Node Auto Scaling 및 HPA 적용
+- Spot Instance와 NAT Instance를 활용한 비용 절감
+- Jenkins CI Pipeline 최적화
+
+#### 아키텍처
+
+![Architecture](/assets/img/weasel/about/architecture.png)
+
+#### CI/CD 구성
+
+![ci-cd](/assets/img/weasel/about/ci-cd.png)
+
+#### CI - Jenkins
+
+![ci-jenkins](/assets/img/weasel/about/ci-jenkins.png)
+
+#### CD - ArgoCD
+
+![cd-argocd](/assets/img/weasel/about/cd-argocd.png)
+
+#### Workflow
+
+![workflow](/assets/img/weasel/about/workflow.png)
+
+#### 프로젝트 관리
+
+![project-management](/assets/img/weasel/about/project-management.png)
 
 ### Amazon Photo Query - [ 2024.01 ~ 2024.03 ]
 
@@ -83,15 +148,15 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 #### 프로젝트 기술 스택
 
-| 구분        | 기술                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------ |
-| Programming | Go, Python, Node.js, Flutter                                                         |
-| CI/CD       | Jenkins, ArgoCD, CodeSeries                                                          |
-| Container   | Docker, EKS, ECR                                                                     |
-| Database    | RDS(MySQL), DynamoDB, DocumentDB                                                     |
-| Monitoring  | Prometheus, Grafana, Container Insight, KubeCost                                     |
-| ETC         | S3, Cognito, Rekognition, Secret Manager, Terraform, SNS, SQS, Karpenter, Fluent-bit |
-| Tools       | Notion, Slack, Postman, GitHub                                                       |
+| 구분        | 기술                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------- |
+| Programming | Go, Python, Node.js, Flutter                                                          |
+| CI/CD       | Jenkins, ArgoCD, CodeSeries                                                           |
+| Container   | Docker, EKS, ECR                                                                      |
+| Database    | RDS(MySQL), DynamoDB, DocumentDB                                                      |
+| Monitoring  | Prometheus, Grafana, Container Insight, KubeCost                                      |
+| ETC         | S3, Cognito, Rekognition, Secrets Manager, Terraform, SNS, SQS, Karpenter, Fluent-bit |
+| Tools       | Notion, Slack, Postman, GitHub                                                        |
 
 #### 주요 기능
 
@@ -138,6 +203,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 > **AWS IRSA** 개념을 공식문서를 통해 습득 후, 팀원들에게 공유  
 {: .prompt-warning}
 ---
+
 > 성능 테스트 도중 다수(500MB 700장)의 이미지 업로드 시 **5분 이상의 시간과 상당한 리소스를 사용**한다는 문제를 발생  
 {: .prompt-warning}
 
@@ -145,61 +211,6 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 2. 버지니아 리전을 사용으로 생긴 네트워크 지연 해소를 위해 **Global Accelerator** 도입  
 3. 동시성 구현을 위해 **Goroutine**을 프로젝트에 도입  
 4. **이미지 업로드 API 응답시간을 5분에서 1분 미만으로 단축** (문제 해결)
-
----
-
-### ACS-Notice Board - [ 2023.11 ~ 2023.11 ]
-
-> 기존 AWS Cloud School 공지 시스템의 문제를 개선하기 위해 제작  
-> Docker Swarm을 사용해 3-Tier-Architecture를 구현  
-{: .prompt-tip}
-
-<https://github.com/kkamji98/ACS-1st-Notice-Board>
-
-#### 데모 사진
-
-![image](https://github.com/kkamji98/ACS-1st-Notice-Board/assets/72260110/17ca9374-7930-45fb-bff8-350f05598bef)
-
-#### 주요 역할 및 담당
-
-- 3-Tier-Architecture 설계 및 구축
-- Docker Swarm 세팅
-- Docker Private Repository 구축
-- 웹어플리케이션 개발 및 배포
-- DB 구축
-
-#### 프로젝트 기술 스택
-
-| 구분      | 기술                                              |
-| --------- | ------------------------------------------------- |
-| Infra     | VMware Workstation Player16, Ubuntu 22.04 - 64Bit |
-| Develop   | Go (Gin-Gonic, GORM), HTML, CSS, JavaScript       |
-| Container | Docker, Docker Private Repository, Docker Swarm   |
-| Database  | MySQL                                             |
-| Tools     | Notion, Postman, GitHub                           |
-| Server    | Nginx                                             |
-
-#### 주요기능
-
-- 게시글 생성
-- 게시글 삭제
-- 게시글 조회
-
-#### 아키텍처 구조
-
-![ACS Architecture](https://github.com/kkamji98/ACS-1st-Notice-Board/assets/72260110/9c10e239-64ea-4779-941e-9e078e3750b1)
-
-#### Load-Balancing 확인
-
-![ACS-Load-Balancing](https://github.com/kkamji98/ACS-1st-Notice-Board/assets/72260110/defc1d9d-7c1a-4b3a-99d6-52e0d93bf7fd)
-
-#### 트러블 슈팅
-
-> db -> was -> web의 순서로 컨테이너가 실행이 보장 되지 않아 생긴 컨테이너 재시작 문제 직면  
-{: .prompt-warning}
-
-1. docker-compose의 healthcheck, depends_on 기능을 프로젝트에 적용
-2. 컨테이너 재시작 문제 해결
 
 ---
 
@@ -235,7 +246,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">기술스택</span>
 
-| 구분            | 기술                                                           |
+| 구분           | 기술                                                          |
 | -------------- | ------------------------------------------------------------- |
 | Programming    | Go, Python                                                    |
 | OS             | Windows, Ubuntu, CentOS, Amazon Linux                         |
@@ -253,6 +264,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > ## <span style="color:#BF8C79">대내외 활동</span>
 
+- 충남대학교 커스텀 GPT 프롬프톤 참여(Staff) [2024.08]
 - AWS 클라우드 부트캠프 & 멘토링 프로그램 참여(보조강사) [2024.07 ~ 2024.08]
   - 부산일과학고등학교, 서울디지텍고등학교
 - AWS PS GenAI GameDay 참가 [2024.07]
