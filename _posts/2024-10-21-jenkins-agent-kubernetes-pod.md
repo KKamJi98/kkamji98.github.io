@@ -59,12 +59,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 {: .prompt-tip}
 > **주의사항**
 > Jenkins Agent는 Jenkins Master와 통신을 위해 `JNLP(Java Network Launching Protocol)` 포트인 **50000번 포트**가 열려 있어야 합니다.
-> 이 부분을 그냥 지나치신다면.. 저와 같이 많은 시간을 트러블 슈팅에 사용하시게 될수도 있습니다...
+> 이 부분을 그냥 지나치신다면.. 저와 같이 많은 시간을 트러블 슈팅에 사용하시게 될 수도 있습니다...
 {: .prompt-danger}
 
 ![Jenkins Test Connection](/assets/img/jenkins/test-connection.png)
 
-> Connection Timeout, Concurrency Limit 등의 다른 옵션은 목적과 요구사항에 맞는 정보를 채워넣고 Save 버튼을 클릭해 설정을 저장합니다.
+> Connection Timeout, Concurrency Limit 등의 다른 옵션은 목적과 요구사항에 맞는 정보를 채워 넣고 Save 버튼을 클릭해 설정을 저장합니다.
 {: .prompt-tip}
 
 ![Save](/assets/img/jenkins/kubernetes-cloud-save.png)
