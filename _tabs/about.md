@@ -44,7 +44,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 ![banner](/assets/img/weasel/banner.webp)
 
-[Weasel Github Organizations](https://github.com/Team-S5T1)
+[Weasel Github Organizations - https://github.com/Team-S5T1](https://github.com/Team-S5T1)
 
 #### 주요 역할 및 담당
 
@@ -77,11 +77,11 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 - Spot Instance와 NAT Instance를 활용한 비용 절감
 - Jenkins CI Pipeline 최적화
 
-#### 아키텍처
+#### Architecture
 
 ![Architecture](/assets/img/weasel/about/architecture.png)
 
-#### CI/CD 구성
+#### CI/CD Pipeline
 
 ![ci-cd](/assets/img/weasel/about/ci-cd.png)
 
@@ -97,7 +97,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 ![workflow](/assets/img/weasel/about/workflow.png)
 
-#### 프로젝트 관리
+#### Project Management
 
 ![project-management](/assets/img/weasel/about/project-management.png)
 
@@ -167,15 +167,15 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 - 사진 업로드, 삭제, 조회
 - 선정적인 사진 필터링
 
-#### 클라우드 아키텍처 구성
+#### Architecture
 
 ![Architecture](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/85603917-67cc-4df3-a02b-ec2265ea235c)
 
-#### CI/CD 구성
+#### CI/CD Pipeline
 
 ![CI/CD](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/054c8b31-2309-42ba-9d34-d99e743210d5)
 
-#### EKS모니터링
+#### EKS 모니터링
 
 ![EKS 모니터링](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/3534ef17-b8b9-4698-941d-c8c4e7bda81f)
 
