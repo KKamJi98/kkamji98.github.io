@@ -65,13 +65,14 @@ namespace/monitoring created
 
 ### Prometheus 배포
 
-> helm
+> 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.
+{: .prompt-tip}
 
 ```bash
 ❯ helm install prometheus prometheus-community/prometheus \
     --namespace monitoring \
-    --set alertmanager.persistence.storageClass="local-path" \
-    --set server.persistentVolume.storageClass="local-path"
+    --set alertmanager.persistence.storageClass="{StorageClassName}" \
+    --set server.persistentVolume.storageClass="{StorageClassName}"
 NAME: prometheus
 LAST DEPLOYED: Fri Nov  8 18:46:00 2024
 NAMESPACE: monitoring
