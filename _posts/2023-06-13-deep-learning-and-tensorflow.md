@@ -5,8 +5,8 @@ author: kkamji
 categories: [University]
 comments: true
 tags: [tensorFlow, deep-learning]     # TAG names should always be lowercase
-image:
-  path: https://github.com/kkamji98/Oxi/assets/72260110/110eebe0-5912-46b5-8b9e-631db9c8e05e
+# image:
+#   path: https://github.com/kkamji98/Oxi/assets/72260110/110eebe0-5912-46b5-8b9e-631db9c8e05e
 
 ---
 
