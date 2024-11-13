@@ -6,7 +6,7 @@ categories: [Kubernetes]
 tags: [kubernetes, mongodb, helm]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/prometheus/prometheus.webp
+  path: /assets/img/mongodb/mongodb.webp
 ---
 
 **MongoDB**는 현대 애플리케이션에서 중요한 역할을 하는 NoSQL 데이터베이스로, 다양한 형태의 데이터와 복잡한 구조를 유연하게 처리할 수 있는 장점을 가지고 있습니다. 관계형 데이터베이스와 비교했을 때, MongoDB는 문서 지향(Document-Oriented) 모델을 채택하여 데이터의 스키마를 자유롭게 설계할 수 있습니다. 이를 통해 불규칙하거나 복잡한 데이터구조를 다룰 때 유용하게 사용할 수 있습니다.
@@ -19,7 +19,6 @@ image:
 
 - Helm (v3.16.2)
 - Kubernetes (v1.29.6)
-- Cert-Manager
 - Storage-Class (rancher/local-path-provisioner)
 
 ## Helm Repository 추가
@@ -67,9 +66,10 @@ replicaset.apps/mongodb-kubernetes-operator-6d7f45687c   1         1         1  
 
 ## MongoDB Custom Resource (CR) 정의 파일 생성
 
-> MongoDB Operator를 통해 MongoDB 인스턴스를 배포하려면 Custom Resource(CR)을 정의하여 MongoDB 클러스터를 생성해야 합니다.
-> storageClassName에는 현재 사용중인 storageClassName을 지정해주셔야 합니다. ex) gp2, gp3, local-path
-> 최신 버전인 8.0 버전을 설치하겠습니다.
+> MongoDB Operator를 통해 MongoDB 인스턴스를 배포하려면 Custom Resource(CR)을 정의하여 MongoDB 클러스터를 생성해야 합니다.  
+> storageClassName에는 현재 사용중인 storageClassName을 지정해주셔야 합니다.  
+> ex) gp2, gp3, local-path  
+> 최신 버전인 8.0 버전을 설치하겠습니다.  
 {: .prompt-tip}
 
 ```yaml
@@ -194,8 +194,8 @@ mongodb [direct: primary] test>
 
 ## Reference
 
-MongoDB Github - <https://github.com/mongodb/mongo>
-MongoDB 공식문서 - <https://www.mongodb.com/ko-kr/docs/manual/>
+MongoDB Github - <https://github.com/mongodb/mongo>  
+MongoDB 공식문서 - <https://www.mongodb.com/ko-kr/docs/manual/>  
 MongoDB Operator - <https://github.com/mongodb/mongodb-kubernetes-operator/tree/master>
 
 ---
