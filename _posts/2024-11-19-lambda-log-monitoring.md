@@ -334,6 +334,7 @@ def handler(event, context):
 ## CloudWatch Log Group - **Subscription Filter** 설정
 
 > 예시를 위해 콘솔에서 작업했습니다. Lambda Function의 개수가 많아질경우 콘솔에서 작업하기 보다는 IaC 도구 사용을 추천드립니다.  
+>
 > CloudWatch에 들어가서 로그 그룹을 선택한 뒤, 작업 -> 구독 필터 -> Lambda 구독 필터 생성
 {: .prompt-tip}
 
@@ -362,6 +363,7 @@ def handler(event, context):
 ## 결과
 
 > ELK를 통해 다수의 Lambda Function에서 발생하는 로그 데이터를 한 곳에서 확인할 수 있게 되었습니다.  
+>
 > 아직 Kibana Dashboard의 가시성과 로그 데이터 필터링 부분에서 많이 개선이 필요하지만. 휴식을 취하고 차근차근 개선해보도록 하겠습니다.
 {: .prompt-tip}
 
