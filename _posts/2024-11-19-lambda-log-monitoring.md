@@ -128,8 +128,8 @@ kibana   green    1       8.16.0    3m1s
 Rkxxxxx19xxxxxmVxxxa
 
 ## 포트포워딩 후 확인
-![kibana_login](/assets/img/monitoring/kibana_login.webp)
 ```
+![kibana_login](/assets/img/monitoring/kibana_login.webp)
 
 ### Logstash 배포
 
