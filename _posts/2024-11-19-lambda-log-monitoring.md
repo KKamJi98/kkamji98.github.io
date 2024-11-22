@@ -240,7 +240,9 @@ with gzip.GzipFile(fileobj=io.BytesIO(decoded_data)) as f:
     original_data = f.read()
 
 print(original_data.decode('utf-8'))
+```
 
+```bash
 ❯ python -u "decode_data.py"
 {"messageType":"DATA_MESSAGE","owner":"376129852049","logGroup":"/aws/Lambda/getIncorrectLists","logStream":"2024/11/20/[$LATEST]bb494dc82843496683c62052533a046f","subscriptionFilters":["test-Lambda"],"logEvents":[{"id":"38627627955484818852768098168489833298904231245367279618","timestamp":1732122743505,"message":"2024-11-20T17:12:23.505Z\t830e95c2-4983-4e72-99f1-1aa410a0ffb0\tINFO\tFetching incorrect lists...\n","extractedFields":{"event":"INFO\tFetching incorrect lists...\n","request_id":"830e95c2-4983-4e72-99f1-1aa410a0ffb0","timestamp":"2024-11-20T17:12:23.505Z"}}]}
 ```
