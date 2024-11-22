@@ -221,7 +221,7 @@ def handler(event, context):
 
 ![Subscription Filter Data Format](/assets/img/monitoring/log_group_data_format.webp)
 
-> event를 보면 dictionary 타입으로 {'awslogs':{'data': 'gzip 압축 + base64 데이터'}} 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.
+> event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.
 {: .prompt-tip}
 
 ```python
@@ -250,8 +250,11 @@ print(original_data.decode('utf-8'))
 ## **Subscription Filter** 역할을 하는 **Lambda Function** 생성
 
 > 이전 단계에서 CloudWatch Logs의 **Subscription Filter**를 통해 데이터가 어떤 방식과 어떤 형식으로 전달되는지 확인할 수 있었습니다.  
+>
 > 이제 해당 데이터를 사람이 읽을 수 있는 방식으로 변환 후 데이터를 Logstash로 전달하는 역할을 하는 Lambda Function을 생성해보겠습니다.  
-> logstash url은 Secrets Manager에 값을 불러오는 방식으로 사용했습니다. (Lambda Function에 권한 부여 필수)  
+>
+> logstash url은 Secrets Manager에 값을 불러오는 방식으로 사용했습니다. (Lambda Function에 권한 부여 필수)
+>
 > 기본 내장된 모듈이 아닌 requests 모듈은 Lambda Layer로 추가해주셔야 합니다. 또한 CloudWatch Logs에서 해당 Lambda 함수를 호출할 역할과 권한을 할당해야 합니다.
 {: .prompt-tip}
 
