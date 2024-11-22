@@ -359,6 +359,7 @@ def handler(event, context):
 
 > ELK를 통해 다수의 Lambda Function에서 발생하는 로그 데이터를 한 곳에서 확인할 수 있게 되었습니다.  
 > 아직 Kibana Dashboard의 가시성과 로그 데이터 필터링 부분에서 많이 개선이 필요하지만. 휴식을 취하고 차근차근 개선해보도록 하겠습니다.
+{: .prompt-tip}
 
 ![kibana_result](/assets/img/monitoring/kibana_result.webp)
 
