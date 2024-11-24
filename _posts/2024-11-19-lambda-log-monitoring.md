@@ -15,6 +15,10 @@ image:
 
 해당 포스트에서는 로컬 Kubernetes 환경에 **Elasticsearch**, **Logstash**, **Kibana**를 배포하고 CloudWatch Logs에 쌓이는 로그 데이터를 **Amazon Data Firehose**로 전송하는 것을 다뤄보도록 하겠습니다.
 
+## Workflows
+
+![workflow](/assets/img/monitoring/log_monitoring.webp)
+
 ## ELK Stack 구축
 
 이전에 작성한 [EFK Stack 구축하기 (2) - Elasticsearch](https://kkamji.net/posts/elasticsearch/)와 [EFK Stack 구축하기 (3) - Kibana](https://kkamji.net/posts/kibana/)를 참고해 **Elasticsearch**와 **Kibana**를 구축하고, **Logstash**는 별도의 Deployment를 통해 구축해보도록 하겠습니다.
