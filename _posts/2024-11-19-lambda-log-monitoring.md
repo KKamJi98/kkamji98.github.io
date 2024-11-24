@@ -1,5 +1,5 @@
 ---
-title: AWS Lambda 로그 모니터링 하기 - ELK, Amazon Data Firehose
+title: AWS Lambda 로그 모니터링 하기 - ELK, CloudWatch Logs Subscription Filter
 date: 2024-11-20 19:12:30 +0900
 author: kkamji
 categories: [Monitoring]
