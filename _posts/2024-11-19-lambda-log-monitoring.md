@@ -9,7 +9,7 @@ image:
   path: /assets/img/monitoring/elk.webp
 ---
 
-최근 서버리스 기반 단어 암기 앱 [Remember Me](https://github.com/vocaAppServerless) 프로젝트를 **AWS Lambda**와 **API Gateway**를 활용하여 진행하고 있습니다. 서버리스 아키텍처를 구축하면서 다수의 **Lambda Function**을 프로비저닝 하였는데, 이 과정에서 각 **Lambda Function**의 로그가 **CloudWatch Logs**의 **Log Group**에 분산되어 저장되어 어떻게 이 로그 데이터를 수집하고 한 곳에서 관리할 수 있을지에 대해 고민하게 되었습니다.  
+최근 서버리스 기반 단어 암기 앱 [Remember Me](https://github.com/vocaAppServerless) 프로젝트를 **AWS Lambda**와 **API Gateway**를 활용하여 진행하고 있습니다. 서버리스 아키텍처를 구축하면서 다수의 **Lambda Function**을 프로비저닝 하였는데, 이 과정에서 각 **Lambda Function**의 로그가 **CloudWatch Logs**의 **Log Group**에 분산 저장되어 어떻게 이 로그 데이터를 수집하고 한 곳에서 관리할 수 있을지에 대해 고민하게 되었습니다.  
 
 이러한 로그 데이터를 효율적으로 수집하고 중앙 집중화하여 관리하는 방안을 찾던 중, 이전에 경험했던 **EFK Stack**을 떠올리게 되었습니다. **CloudWatch Logs**의 **Subscription Filter**를 활용해 **Lambda Function**을 구독하고 **Subscription Filter** 역할을 하는 **Lambda Function**이 로그데이터를 필터링한 뒤, 로그를 **Logstash**로 전송하고 전달받은 로그를 **Elasticsearch**에 저장한 후, **Kibana**를 통해 로그 데이터를 시각화하는 방식을 구상하게 되었습니다.
 
