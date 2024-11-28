@@ -21,12 +21,12 @@ image:
 
 ## Prometheus의 특징
 
-- **데이터 모델**: 모든 메트릭 데이터는 **이름과 레이블(label)로 식별되는 시계열 형태로 수집**합니다.
-- **PromQL**: 시계열 데이터를 실시간으로 분석하고 집계할 수 있는 강력한 쿼리 언어를 사용합니다.
-- **독립 실행형 서버 및 스토리지**: 외부 종속성 없이 자체적인 스토리지 엔진을 사용하여 데이터를 효율적으로 저장하고 관리합니다.
-- **Pull 방식의 데이터 수집**: 모니터링 대상(Target)으로부터 직접 메트릭을 가져오는 Pull 모델을 사용합니다.
-- **Alerting**: **Alert Manager**를 통해 조건에 따른 알림을 설정하고, 이메일, 슬랙 등 다양한 채널로 알림을 전송할 수 있습니다.
-- **시각화 도구와 연동**: **Grafana** 등과 같은 시각화 도구와 쉽게 통합되어 대시보드를 구성하고 모니터링 데이터를 시각적으로 분석할 수 있습니다.
+1. **데이터 모델**: 모든 메트릭 데이터는 **이름과 레이블(label)로 식별되는 시계열 형태로 수집**합니다.
+2. **PromQL**: 시계열 데이터를 실시간으로 분석하고 집계할 수 있는 강력한 쿼리 언어를 사용합니다.
+3. **독립 실행형 서버 및 스토리지**: 외부 종속성 없이 자체적인 스토리지 엔진을 사용하여 데이터를 효율적으로 저장하고 관리합니다.
+4. **Pull 방식의 데이터 수집**: 모니터링 대상(Target)으로부터 직접 메트릭을 가져오는 Pull 모델을 사용합니다.
+5. **Alerting**: **Alert Manager**를 통해 조건에 따른 알림을 설정하고, 이메일, 슬랙 등 다양한 채널로 알림을 전송할 수 있습니다.
+6. **시각화 도구와 연동**: **Grafana** 등과 같은 시각화 도구와 쉽게 통합되어 대시보드를 구성하고 모니터링 데이터를 시각적으로 분석할 수 있습니다.
 
 ## Prometheus의 구성요소
 
@@ -38,7 +38,7 @@ image:
 - **Alert Manager**: Prometheus Server에서 생성된 경고를 받아 연동된 알림 채널로 전달합니다.
 - **Prometheus Web UI**: PromQL 쿼리를 실행하고 메트릭을 확인할 수 있는 내장 Web UI입니다.
 
-## Helm을 사용해 Prometheus 구축하기
+## Prometheus 구축 - Helm
 
 > 실습 환경은 아래와 같습니다.
 > Kubernetes (v1.29.6)
@@ -63,7 +63,7 @@ image:
 namespace/monitoring created
 ```
 
-### Prometheus 배포
+### Prometheus Helm Chart 배포
 
 > 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.
 {: .prompt-tip}
@@ -149,7 +149,7 @@ Handling connection for 9091
 
 ## Reference
 
-Prometheus 공식문서 - <https://prometheus.io/docs/introduction/overview/>  
+Prometheus 공식문서 - <https://prometheus.io/docs/introduction/overview>  
 Prometheus Helm Chart - <https://github.com/prometheus-community/helm-charts>
 
 ---
