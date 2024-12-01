@@ -2,7 +2,7 @@
 title: EKS Karpenter 적용기
 date: 2024-08-06 21:51:43 +0900
 author: kkamji
-categories: [AWS]
+categories: [Kubernetes]
 tags: [kubernetes, aws, eks, karpenter, autoscaling, hpa, ca]     # TAG names should always be lowercase
 comments: true
 image:

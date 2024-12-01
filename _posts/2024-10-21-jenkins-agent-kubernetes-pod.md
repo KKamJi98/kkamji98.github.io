@@ -2,7 +2,7 @@
 title: Kubernetes Pod로 Jenkins Agent 구성하기
 date: 2024-10-21 00:30:21 +0900
 author: kkamji
-categories: [Jenkins]
+categories: [CI/CD, Jenkins]
 tags: [kubernetes, jenkins, pod, agent, jnlp, jenkins-agent]     # TAG names should always be lowercase
 comments: true
 image:

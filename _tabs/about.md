@@ -7,9 +7,7 @@ order: 4
 <!-- > Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
 {: .prompt-tip } -->
 
-# 호기심 많은 트러블슈터 - 김태지 포트폴리오
-
-> ## <span style="color:#BF8C79">소개</span>
+> ## <span style="color:#BF8C79">About Me</span>
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1.2;">
@@ -17,24 +15,41 @@ order: 4
   </div>
   <div style="flex: 2; margin-left: 10px;">
     <!-- <h3 style="color: #D49A7B;">Introduce</h3> -->
-    <h4> "DevOps와 Cloud를 좋아합니다." </h4>
-    <p>학부 시절 AWS를 사용한 웹사이트 배포를 통해 DevOps 및 클라우드에 대해 접하게 되었고, 졸업 후 AWS와 RAPA에서 주관한 AWS Cloud School 1기에 참여하며 기술 역량을 쌓아왔습니다.</p>
+    <h4> "DevOps & Cloud" </h4>
     <p>
-      - 주어진 기간 내 최고의 결과물을 만들어내기 위해 항상 최선을 다합니다.
-      <br> - 사소한 문제라도 지나치지 않고 해결하는 것을 즐깁니다.
-      <br> - 새로운 기술을 습득하는 것을 좋아합니다.
-      <br> - 누군가에게 배움을 나눌 때 큰 성취감을 느낍니다.
-      <br> - 겪은 시행 착오나 공부한 기술을 공유하는 것을 좋아합니다.
+      - 새로운 기술을 습득하는 것을 좋아합니다. <br> 
+      - 사소한 문제라도 지나치지 않고 해결하는 것을 좋아합니다. <br> 
+      - 겪은 시행 착오나 공부한 기술을 공유하는 것을 좋아합니다. <br>
+      - 주어진 기간 내 최고의 결과물을 만들어내기 위해 최선을 다합니다.
     </p>
   </div>
 </div>
 
-연락처 - 010-8813-5460  
-이메일 - <xowl5460@naver.com>  
-Blog - [https://kkamji.net](https://kkamji.net)  
+> ## <span style="color:#BF8C79">Skill-Set</span>
+
+| 구분           | 기술                                                           |
+| -------------- | ------------------------------------------------------------- |
+| AWS            | EC2, EKS, ECS, ECR, RDS, VPC, Route53, CloudFront, CloudWatch |
+| CI/CD          | Jenkins, GitHub Actions, ArgoCD                               |
+| Monitoring     | ELK, Prometheus, Grafana                                      |
+| Container      | Docker, Kubernetes                                            |
+| IaC            | Terraform, Ansible                                            |
+| Programming    | Go, Python                                                    |
+| OS             | Windows, Ubuntu, CentOS, Amazon Linux                         |
+| Virtualization | Hyper-V, VMware                                               |
+
+> ## <span style="color:#BF8C79">Certificate</span>
+
+- Certified Kubernetes Administrator [2024.07.23]
+- AWS Certified Solutions Architect - Associate [2024.02.02]
+- 정보처리기사 [2023.09.30]
+- AWS Certified Cloud Practitioner [2023.05.31]
+- CertifiedAIExpert [2020.12.31]
+
+Email - <xowl5460@naver.com>  
 Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
-> ## <span style="color:#BF8C79">주요 프로젝트</span>
+> ## <span style="color:#BF8C79">Projects</span>
 
 ### Weasel - [ 2024.07 ~ 2024.08 ]
 
@@ -58,14 +73,14 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 #### 프로젝트 기술 스택
 
-| 구분     | 기술                                                            |
+| 구분      | 기술                                                            |
 | -------- | --------------------------------------------------------------- |
 | Develop  | Spring Boot, React                                              |
 | Deploy   | EKS, S3, Route53, CloudFront                                    |
 | Database | RDS(MySQL)                                                      |
 | IaC      | Terraform                                                       |
 | CI/CD    | Jenkins, ArgoCD                                                 |
-| 모니터링 | Prometheus, Grafana                                             |
+| 모니터링  | Prometheus, Grafana                                             |
 | AI       | Bedrock (Claude Sonnet 3.5)                                     |
 | ETC      | Notion, Slack, Postman, GitHub, Secrets Manager, Karpenter, HPA |
 
@@ -214,7 +229,19 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 ---
 
-> ## <span style="color:#BF8C79">교육</span>
+> ## <span style="color:#BF8C79">Educational Background</span>
+
+> **중원대학교 컴퓨터공학과 [2018.03 - 2023.08]**  
+> - 융합과학대학 수석 졸업
+> - 학생 대표로 교내 J-Smart, 교수역량진단시스템 사업 참여
+> - 데이터베이스 강의 보조 활동
+> - GPA (Overall): 4.40 / 4.5
+> - GPA (Major): 4.42 / 4.5
+{: .prompt-tip}
+
+---
+
+> ## <span style="color:#BF8C79">Education</span>
 
 > **AWS Cloud School 1기 [2023.08 - 2024.03]**
 >
@@ -234,35 +261,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 ---
 
-> **중원대학교 컴퓨터공학과 [2018.03 - 2023.08]**  
-> - 융합과학대학 수석 졸업
-> - 학생 대표로 교내 J-Smart, 교수역량진단시스템 사업 참여
-> - 데이터베이스 강의 보조 활동
-> - GPA (Overall): 4.40 / 4.5
-> - GPA (Major): 4.42 / 4.5
-{: .prompt-tip}
-
----
-
-> ## <span style="color:#BF8C79">기술스택</span>
-
-| 구분           | 기술                                                          |
-| -------------- | ------------------------------------------------------------- |
-| Programming    | Go, Python                                                    |
-| OS             | Windows, Ubuntu, CentOS, Amazon Linux                         |
-| Virtualization | Hyper-V, VMware, Docker, Kubernetes                           |
-| DevOps         | Jenkins, ArgoCD, Ansible, Terraform, Prometheus, Grafana      |
-| Cloud(AWS)     | EC2, EKS, ECS, ECR, RDS, VPC, Route53, CloudFront, CloudWatch |
-
-> ## <span style="color:#BF8C79">자격사항</span>
-
-- Certified Kubernetes Administrator [2024.07.23]
-- AWS Certified Solutions Architect - Associate [2024.02.02]
-- 정보처리기사 [2023.09.30]
-- AWS Certified Cloud Practitioner [2023.05.31]
-- CertifiedAIExpert [2020.12.31]
-
-> ## <span style="color:#BF8C79">대내외 활동</span>
+> ## <span style="color:#BF8C79">Activities</span>
 
 - 충남대학교 커스텀 GPT 프롬프톤 참여(Staff) [2024.08]
 - AWS 클라우드 부트캠프 & 멘토링 프로그램 참여(보조강사) [2024.07 ~ 2024.08]
