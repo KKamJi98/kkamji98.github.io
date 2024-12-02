@@ -14,22 +14,25 @@ image:
 ## Data Source 추가
 
 > 이전에 변경한 비밀번호를 사용해 **Grafana**에 접속한 뒤, 메인 화면에 보이는 DATA SOURCES에서 **Add your first data source**를 클릭합니다.
-{: .prompt-info}
+{: .prompt-tip}
 
 ![Add Data Source](/assets/img/grafana/grafana_add_data_source.webp)
 
 > **Prometheus** 메트릭을 Data Source로 사용할 예정이니 **Prometheus**를 클릭합니다.
-{: .prompt-info}
+{: .prompt-tip}
 
 ![Add Data Source Prometheus](/assets/img/grafana/grafana_add_data_source_prometheus.webp)
 
 > Kubernetes FQDN을 통해 Prometheus 도메인 이름을 추가하여 설정합니다.  
 > (namespace: `monitoring`, service: `prometheus-server`)  
-> FQDN: `http://prometheus-server.monitoring.svc.cluster.local:9090`
+> FQDN: `http://prometheus-server.monitoring.svc.cluster.local:9090`  
+{: .prompt-tip}
 
 ![Input Prometheus Server URL](/assets/img/grafana/grafana_input_prometheus_server_url.webp)
 
 > Authentication과 TLS 세팅 등의 설정이 필요한 경우 설정해 준 뒤 페이지 하단의 Save & test를 눌러 접속이 가능한지 확인합니다.
+{: .prompt-tip}
+
 ![Grafana Prometheus Connection Test](/assets/img/grafana/grafana_prometheus_connection_test.webp)
 
 ## Data Source 확인 및 Import DashBoard
