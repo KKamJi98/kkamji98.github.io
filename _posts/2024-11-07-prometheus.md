@@ -13,7 +13,7 @@ image:
 
 1. **Prometheus** 소개와 구축
 2. **Grafana** 소개와 구축
-3. **Prometheus**와 **Grafana** 연동 및 대시보드 구축
+3. **Prometheus**와 **Grafana** 연동 및 Import 대시보드
 
 ## Prometheus란?
 
