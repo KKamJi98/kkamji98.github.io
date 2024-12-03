@@ -15,6 +15,7 @@ image:
 > Minikube는 RAM이 4GB이상이 아니면 애초에 설치가 불가능 하였고,, K3s는 실행 도중 credit을 다쓰자 인스턴스가 죽는… 불상사가 발생했습니다.  
 > 마지막으로 MicroK8s를 사용해서 구축에 성공하였지만 항상 CPU Utilization이 100%.. 명령어 하나 사용할 때 마다 1~3분정도 기다려야 했습니다..  
 > 참다참다 돈을 조금 내더라도 더 좋은 성능을 사용하고자 t4g.small 인스턴스를 선택했습니다.  
+{: .prompt-tip}
 
 시작에 앞서 t4g.small의 스펙입니다. [ 2 vCPU, 2G RAM ]
 
@@ -23,6 +24,7 @@ image:
 ![pic1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/851e5fb2-d785-47fb-9014-22a798aa11e9)
 
 > 4G의 memory가 필요하긴하지만… 일단 해보자
+{: .prompt-tip}
 
 ## 1. snap 패키지 매니저 설치
 
@@ -136,6 +138,7 @@ EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10
 ## 7. alias
 
 > microk8s kubectl명령어를 계속 사용하려면 번거로움이 있습니다. alias기능을 사용해 microctl로 해당 명령어를 단축시킬 수 있습니다. (kubectl로 하면 기존 kubectl 명령어와 충돌이 일어날 가능성을 염두해 microctl로 이름을 지정했습니다)
+{: .prompt-tip}
 
 ```bash
 alias microctl='microk8s kubectl'
@@ -144,6 +147,7 @@ alias microctl='microk8s kubectl'
 ## 8. nginx 배포 테스트
 
 > 간단하게 nginx 서버를 NodePort로 30080포트로 배포해보겠습니다
+{: .prompt-tip}
 
 ### 테스트용 nginx menifest 파일 (nginx_test.yml)
 
@@ -208,4 +212,4 @@ nginx-service   NodePort    10.152.183.56   <none>        80:30080/TCP   80s
 > 여러 우여곡절 끝에 구축에 성공했지만.. 내 시간이... ㅠㅠ 다음 포스트에서는 해당 Local에서 MicroK8s에 명령어를 내리는 것을 다뤄보겠습니다. (될지는 모르겠지만..?).  
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
-{: .prompt-tip}
+{: .prompt-info}
