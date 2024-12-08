@@ -1,5 +1,5 @@
 ---
-title: TCP와 UDP [개념]
+title: TCP & UDP 개념
 date: 2023-10-11 21:44:32 +0900
 author: kkamji
 categories: [Network]
