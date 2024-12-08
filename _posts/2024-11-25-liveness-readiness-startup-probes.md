@@ -1,6 +1,6 @@
 ---
 title: Liveness, Readiness, Startup Probes 개념, 사용방법
-date: 2024-11-20 19:12:30 +0900
+date: 2024-11-25 21:51:24 +0900
 author: kkamji
 categories: [Kubernetes]
 tags: [kubernetes, liveness-probe, readiness-probe, startup-probe, health-check, liveness, readiness, startup, probe]     # TAG names should always be lowercase

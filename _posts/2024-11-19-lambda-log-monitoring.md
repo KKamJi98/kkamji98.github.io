@@ -1,6 +1,6 @@
 ---
 title: AWS Lambda 로그 모니터링 하기 - ELK, CloudWatch Logs Subscription Filter
-date: 2024-11-20 19:12:30 +0900
+date: 2024-11-19 19:12:30 +0900
 author: kkamji
 categories: [Monitoring, Log]
 tags: [lambda, subscription-filter, logstash, elasticsearch, kibana, cloudwatch, cloudwatch-logs]     # TAG names should always be lowercase
