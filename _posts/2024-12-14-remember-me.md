@@ -13,15 +13,15 @@ image:
 
 인프라 팀원으로서 **HCP Terraform(Terraform Cloud)을 이용한 AWS 인프라 프로비저닝**, **GitHub Actions를 통한 CI/CD 파이프라인 구축**, 그리고 **로그 수집·분석 환경(ELK Stack) 설정**에 주력했습니다
 
-> GitHub: <https://github.com/vocaAppServerless>  
-> Application Demo: <https://youtu.be/y15djTDnXYg>  
-> HCP Terraform Demo: <https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u>  
-> WAF Rule & Slack Alarm Demo: <https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU>  
+> **GitHub**: <https://github.com/vocaAppServerless>  
+> **Application Demo**: <https://youtu.be/y15djTDnXYg>  
+> **HCP Terraform Demo**: <https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u>  
+> **WAF Rule & Slack Alarm Demo**: <https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU>  
 {: .prompt-tip}
 
 ## Feature
 
-- **서버리스 아키텍처**: **Lambda** + **API Gateway**로 완전한 서버리스 구현  
+- **서버리스 아키텍처**: **Lambda** + **API Gateway**로 서버리스 구현  
 - **단어 암기 서비스**: 사용자별 단어 리스트 관리 및 퀴즈 기능 제공  
 - **로그 분석 환경**: **CloudWatch Logs** → **Logstash** → **Elasticsearch** → **Kibana** 파이프라인 구축  
 - **IaC 및 CI/CD**: **Terraform(HCP Terraform)**으로 인프라 코드화, **GitHub Actions**으로 빌드/배포 자동화  
@@ -29,14 +29,14 @@ image:
 
 ## Tech Stack
 
-> Frontend  - React  
-> Backend   - Node.js, AWS SAM CLI  
-> Database  - MongoDB  
-> CI/CD     - GitHub Actions  
-> Cloud(AWS)- Lambda, API Gateway, S3, CloudFront, Route53, WAF, Parameter Store, Secrets Manager, Budgets, Chatbot  
-> IaC       - Terraform (HCP Terraform)  
-> Logging   - CloudWatch, Logstash, Elasticsearch, Kibana  
-> ETC       - Git/GitHub, Slack, Notion  
+> **Frontend**  - React  
+> **Backend**   - Node.js, AWS SAM CLI  
+> **Database**  - MongoDB  
+> **CI/CD**     - GitHub Actions  
+> **Cloud(AWS)**- Lambda, API Gateway, S3, CloudFront, Route53, WAF, Parameter Store, Secrets Manager, Budgets, Chatbot  
+> **IaC**       - Terraform (HCP Terraform)  
+> **Logging**   - CloudWatch, Logstash, Elasticsearch, Kibana  
+> **ETC**       - Git/GitHub, Slack, Notion  
 {: .prompt-tip}
 
 ## Infra
