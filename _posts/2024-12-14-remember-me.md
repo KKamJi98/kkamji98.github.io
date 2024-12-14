@@ -6,7 +6,7 @@ categories: [Project]
 tags: [aws, lambda, elk, log-stash, elasticsearch, kibana, terraform, terraform-cloud, hcp-terraform, mongodb, github-actions]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/weasel/banner.webp
+  path: https://github.com/vocaAppServerless/.github/blob/main/assets/img/rememberme_app.png?raw=true
 ---
 
 2024년 11월부터 12월까지 약 2개월간 **Remember Me** 프로젝트를 진행했습니다. 해당 서비스는 **AWS Lambda**와 **Amazon API Gateway**를 기반으로 동작하는 서버리스(Serverless) 환경에서, 사용자가 단어를 외우고 관리할 수 있는 웹 애플리케이션입니다.
