@@ -29,14 +29,14 @@ image:
 
 ## Tech Stack
 
-> Frontend  - React
-> Backend   - Node.js, AWS SAM CLI
-> Database  - MongoDB
-> CI/CD     - GitHub Actions
-> Cloud(AWS)- Lambda, API Gateway, S3, CloudFront, Route53, WAF, Parameter Store, Secrets Manager, Budgets, Chatbot
-> IaC       - Terraform (HCP Terraform)
-> Logging   - CloudWatch, Logstash, Elasticsearch, Kibana
-> ETC       - Git/GitHub, Slack, Notion
+> Frontend  - React  
+> Backend   - Node.js, AWS SAM CLI  
+> Database  - MongoDB  
+> CI/CD     - GitHub Actions  
+> Cloud(AWS)- Lambda, API Gateway, S3, CloudFront, Route53, WAF, Parameter Store, Secrets Manager, Budgets, Chatbot  
+> IaC       - Terraform (HCP Terraform)  
+> Logging   - CloudWatch, Logstash, Elasticsearch, Kibana  
+> ETC       - Git/GitHub, Slack, Notion  
 {: .prompt-tip}
 
 ## Infra
