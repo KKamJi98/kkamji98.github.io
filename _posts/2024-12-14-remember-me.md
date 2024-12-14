@@ -14,9 +14,9 @@ image:
 인프라 팀원으로서 **HCP Terraform(Terraform Cloud)을 이용한 AWS 인프라 프로비저닝**, **GitHub Actions를 통한 CI/CD 파이프라인 구축**, 그리고 **로그 수집·분석 환경(ELK Stack) 설정**에 주력했습니다
 
 > GitHub: <https://github.com/vocaAppServerless>  
-> Application Demo: <https://youtu.be/y15djTDnXYg>
-> HCP Terraform Demo: <https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u>
-> WAF Rule & Slack Alarm Demo: <https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU>
+> Application Demo: <https://youtu.be/y15djTDnXYg>  
+> HCP Terraform Demo: <https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u>  
+> WAF Rule & Slack Alarm Demo: <https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU>  
 {: .prompt-tip}
 
 ## Feature
