@@ -21,11 +21,11 @@ image:
 
 ## Feature
 
-- **서버리스 아키텍처**: **Lambda** + **API Gateway**로 완전한 서버리스 구현
-- **단어 암기 서비스**: 사용자별 단어 리스트 관리 및 퀴즈 기능 제공
-- **로그 분석 환경**: **CloudWatch Logs** → **Logstash** → **Elasticsearch** → **Kibana** 파이프라인 구축
-- **IaC 및 CI/CD**: **Terraform(HCP Terraform)**으로 인프라 코드화, **GitHub Actions**으로 빌드/배포 자동화
-- **AWS SAM**: `sam local` 명령어를 통해 **Lambda** 함수와 **API Gateway**를 로컬에서 실행하고 디버깅.
+- **서버리스 아키텍처**: **Lambda** + **API Gateway**로 완전한 서버리스 구현  
+- **단어 암기 서비스**: 사용자별 단어 리스트 관리 및 퀴즈 기능 제공  
+- **로그 분석 환경**: **CloudWatch Logs** → **Logstash** → **Elasticsearch** → **Kibana** 파이프라인 구축  
+- **IaC 및 CI/CD**: **Terraform(HCP Terraform)**으로 인프라 코드화, **GitHub Actions**으로 빌드/배포 자동화  
+- **AWS SAM**: `sam local` 명령어를 통해 **Lambda** 함수와 **API Gateway**를 로컬에서 실행하고 디버깅.  
 
 ## Tech Stack
 
