@@ -3,7 +3,7 @@ title: Kubernetes Graceful Shutdown이란?
 date: 2024-12-24 22:05:51 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, pod, showdown, graceful, graceful-shutdown, pod-graceful-shutdown]     # TAG names should always be lowercase
+tags: [kubernetes, pod, shotdown, graceful, graceful-shutdown, pod-graceful-shutdown]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
@@ -66,7 +66,7 @@ async def read_root():
 ### FastAPI 애플리케이션 Deployment 정의 파일
 
 > deployment를 통해 pod를 생성하였고, `lifecycle.preStop`을 정의해 pod가 graceful하게 shutdown될 수 있도록 했습니다.  
-> 또한 아래와 같이 `terminationGracePeriodSeconds` 옵션을 통해 60초 안에 pod가 graceful shutdown 되지 않을 시, 강제 종로하도록 설정할 수 있습니다.
+> 또한 아래와 같이 `terminationGracePeriodSeconds` 옵션을 통해 60초 안에 pod가 graceful shutdown 되지 않을 시, 강제 종료하도록 설정할 수 있습니다.
 {:. prompt-tip}
 
 ```yaml
@@ -188,7 +188,7 @@ pod "kubectl logs fastapi-graceful-797fbdfcc9-sfkm2" deleted
 
 ### 결과 확인
 
-> 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, 30초 뒤 `SIGTERM`신호가 전달되어 pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.
+> 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, preStop 훅이 실행된 후, 30초 뒤 `SIGTERM` 신호를 받아 Pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.
 
 ```bash
 ❯ kubectl get po -w
