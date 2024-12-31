@@ -15,7 +15,7 @@ Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유�
 
 ## Kubernetes에서 Graceful Shutdown
 
-[!Graceful Shutdown](assets/img/kubernetes/graceful-shutdown.webp)
+[!Graceful Shutdown](/assets/img/kubernetes/graceful-shutdown.webp)
 
 > **Graceful Shutdown** 절차
 >
