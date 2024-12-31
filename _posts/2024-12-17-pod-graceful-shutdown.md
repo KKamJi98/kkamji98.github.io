@@ -134,7 +134,8 @@ INFO:     10.0.0.201:48012 - "GET / HTTP/1.1" 200 OK
 
 ### Graceful Shutdown 테스트
 
-> `kubectl logs` 명령어의 `-f`, 옵션과 `kubectl get pods` 명령어의 `w` 옵션을 통해 실시간으로 pod의 상태와 로그를 확인하며 정상 동작하는 pod에 `kubectl delete pod {pod_name}` 명령어로 삭제 요청을 한 뒤 상태 변화를 확인해보도록 하겠습니다.
+> `kubectl logs` 명령어의 `-f`, 옵션과 `kubectl get pods` 명령어의 `w` 옵션을 통해 실시간으로 pod의 상태와 로그를 확인하며 정상 동작하는 pod에 `kubectl delete pod {pod_name}` 명령어로 삭제 요청을 한 뒤 상태 변화를 확인해보도록 하겠습니다.  
+{:. prompt-tip}
 
 #### 로그 실시간 확인
 
@@ -187,8 +188,8 @@ pod "kubectl logs fastapi-graceful-797fbdfcc9-sfkm2" deleted
 ```
 
 ### 결과 확인
-
-> 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, preStop 훅이 실행된 후, 30초 뒤 `SIGTERM` 신호를 받아 Pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.
+> 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, preStop 훅이 실행된 후, 30초 뒤 `SIGTERM` 신호를 받아 Pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.  
+{:. prompt-tip}
 
 ```bash
 ❯ kubectl get po -w
