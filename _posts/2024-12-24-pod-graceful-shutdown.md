@@ -187,6 +187,7 @@ pod "kubectl logs fastapi-graceful-797fbdfcc9-sfkm2" deleted
 ```
 
 ### 결과 확인
+
 > 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, preStop 훅이 실행된 후, 30초 뒤 `SIGTERM` 신호를 받아 Pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.  
 {: .prompt-tip}
 
