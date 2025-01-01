@@ -13,11 +13,15 @@ image:
 
 두 스택 모두 실시간 분산 검색 및 분석 엔진으로 **Elasticsearch**를 사용하고 **Kibana**를 사용해 **Elasticsearch**에서 저장된 데이터를 시각화합니다. 그렇다면 **Logstash**와 **Fluent Bit**는 무엇일까요? 정답은 바로 로그 데이터를 수집, 처리, 전송을 위한 오픈 소스 도구입니다. 개인적으로 로그 분석의 시작은 로그 데이터를 수집하는 작업부터라고 생각합니다. 해당 포스트에서는 로그 데이터를 수집하는 Fluent Bit에 대해 다뤄보도록 하겠습니다.
 
+---
+
 ## Fluentd vs Fluent Bit
 
 **Fluentd**와 **Fluent Bit** 모두 CNCF 산하 프로젝트이며 다양한 시스템에서 로그 데이터를 수집하고 전송해주는 도구입니다. **Fluent Bit**은 2014년 Treasure Data의 Fluentd팀에서 개발한 경량 로그 프로세서입니다. 프로젝트 초기에는 임베디드 리눅스와 게이트웨이와 같은 리소스가 제한된 환경에서 로그를 수집을 위한 목표로 시작되었습니다.  
 
 **Fluent Bit**은 C 언어로 작성되어 매우 가볍고, 메모리와 CPU 사용량이 적음과 동시에 빠른 처리 속도(고성능)를 제공하기 때문에 로그 데이터를 실시간으로 빠르게 수집하고 전송할 수 있다는 장점이 있습니다. 따라서 리소스가 제한되거나 분산 시스템인 **Container**, **Cloud Native** 환경에서 폭넓게 사용되는 강력한 로그 관리 도구로 자리잡게 되었습니다. 제가 로그 수집 도구로 **Fluent Bit**을 선택한 이유는 크게 두 가지 입니다. 바로 **EKS(Elastic Kubernetes Service)** 환경에서 **DaemonSet**을 사용해 모든 노드에서 로그를 수집함과 동시에 적은 리소스를 사용할 수 있다는 장점입니다.
+
+---
 
 ## Fluent Bit의 주요 개념
 
@@ -90,6 +94,8 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 **Fluent Bit**은 수집하고 처리된 **Event**를 **Routing** 단계를 통해 하나 이상의 목적지로 전달할 수 있습니다. **Match**는 **Tag**가 정의된 규칙과 일치하는 이벤트를 선택하는 간단한 규칙을 나타냅니다.
 
+---
+
 ## Fluent Bit 설치하기
 
 > **Fluent Bit**은 **DaemonSet**으로 배포되며, Kubernetes Cluster의 모든 Node에서 사용할 수 있습니다. **Fluent Bit**을 배포하는 데 권장되는 방식은 공식 Helm Chart를 사용하는 것입니다. Helm은 Kubernetes용 Package Manager입니다.
@@ -144,6 +150,8 @@ Forwarding from [::1]:2020 -> 2020
 ❯ curl http://127.0.0.1:2020
 {"fluent-bit":{"version":"3.1.4","edition":"Community","flags":["FLB_HAVE_SYS_WAIT_H","FLB_HAVE_IN_STORAGE_BACKLOG","FLB_HAVE_CHUNK_TRACE","FLB_HAVE_PARSER","FLB_HAVE_RECORD_ACCESSOR","FLB_HAVE_STREAM_PROCESSOR","FLB_HAVE_TLS","FLB_HAVE_OPENSSL","FLB_HAVE_METRICS","FLB_HAVE_WASM","FLB_HAVE_AWS","FLB_HAVE_AWS_CREDENTIAL_PROCESS","FLB_HAVE_SIGNV4","FLB_HAVE_SQLDB","FLB_LOG_NO_CONTROL_CHARS","FLB_HAVE_METRICS","FLB_HAVE_HTTP_SERVER","FLB_HAVE_SYSTEMD","FLB_HAVE_SYSTEMD_SDBUS","FLB_HAVE_FORK","FLB_HAVE_TIMESPEC_GET","FLB_HAVE_GMTOFF","FLB_HAVE_UNIX_SOCKET","FLB_HAVE_LIBYAML","FLB_HAVE_ATTRIBUTE_ALLOC_SIZE","FLB_HAVE_PROXY_GO","FLB_HAVE_JEMALLOC","FLB_HAVE_LIBBACKTRACE","FLB_HAVE_REGEX","FLB_HAVE_UTF8_ENCODER","FLB_HAVE_LUAJIT","FLB_HAVE_C_TLS","FLB_HAVE_ACCEPT4","FLB_HAVE_INOTIFY","FLB_HAVE_GETENTROPY","FLB_HAVE_GETENTROPY_SYS_RANDOM"]}}
 ```
+
+---
 
 ## Reference
 

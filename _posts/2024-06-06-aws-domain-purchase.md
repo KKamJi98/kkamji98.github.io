@@ -13,6 +13,8 @@ image:
 `war-oxi.github.io` > `kkamji.net`  
 이 참에 원하는 도메인을 사용하기 위해 aws에서 도메인을 구매했고, 도메인을 구매하는 과정을 공유하도록 하겠습니다.  
 
+---
+
 ## 도메인 구매하기
 
 1. Route53에 들어간 뒤, Domain > Registered domains 속성에 들어갑니다

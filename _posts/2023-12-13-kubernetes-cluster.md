@@ -8,6 +8,7 @@ comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
+
 ## Concept
 
 > 쿠버네티스 클러스터는 애플리케이션  컨테이너를 실행하기 위한 일련의 노드 머신들의 집합입니다.
@@ -15,6 +16,8 @@ image:
 - 클러스터는 **Control-Plane** 및 하나 이상의 컴퓨팅 머신 또는 노드를 포함합니다.
 - 컨트롤플레인이 어느 Application을 실행하고 Application이 어느 Conatiner Image를 사용할지와 같이 클러스터를 원하는 상태로 유지 관리합니다. Node는 Control Plane에서 요청을 받아 Appliation과 Workload를 실제로 실행합니다
 - 따라서 물리 머신, 가상 머신, 온프레미스, 클라우드에 구애받지 않고 머신 그룹 전체에서 컨테이너를 예약하고 실행할 수 있습니다.
+
+---
 
 ## Master Node
 
@@ -79,6 +82,8 @@ image:
 > Node Pod를 Scheduling
 
 - Pod를 어디에 배치시킬지 결정
+
+---
 
 ## Worker Node
 

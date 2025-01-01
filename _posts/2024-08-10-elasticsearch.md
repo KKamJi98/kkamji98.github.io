@@ -13,9 +13,13 @@ image:
 
 해당 포스트에서는 **Elasticsearch**에 대해 알아보고 구축해보도록 하겠습니다. **Elasticsearch**를 구축하는 방법은 **AWS OpenSearch**, **Elastic Cloud**, **Elastic Cloud on Kubernetes(ECK)** 등이 존재합니다. 현재 **Weasel**에서는 EKS를 사용중이었으므로, 쿠버네티스 환경에 Elasticsearch를 구축하는 방법인 **ECK**를 선택했습니다.
 
+---
+
 ## Elastic Cloud on Kubernetes(ECK)란?
 
 **Elastic Cloud on Kubernetes(ECK)**란 **Elasticsearch**와 같은 Elastic 제품을 Kubernetes 클러스터에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 **Elasticsearch** 클러스터를 운영할 수 있습니다.
+
+---
 
 ## ECK 배포
 
@@ -58,6 +62,8 @@ statefulset.apps/elastic-operator created
 validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.elastic.co created
 ```
 
+---
+
 ## Elasticsearch 클러스터 배포
 
 > 하나의 **Elasticsearch** 노드를 가진 **Elasticsearch** 클러스터를 배포해보도록 하겠습니다. 추가적으로 AWS-EBS Volume을 사용하기 위해서는 `volumeClaimTemplates`를 생성 후 어떤 PVC를 생성할지 설정해주어야합니다.  
@@ -95,6 +101,8 @@ spec:
 elasticsearch.elasticsearch.k8s.elastic.co/weasel-elasticsearch configured
 ```
 
+---
+
 ## 확인
 
 ```bash
@@ -126,6 +134,8 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 2. **elasticsearch** pod의 PVC가 요구하는 PV가 아직 생성되지 않아 Pending (1s~3s)
 3. Init container가 실행 (3s~13s)
 4. **elasitcsearch** pod 초기화 후 동작 (14s~)
+
+---
 
 ## Reference
 

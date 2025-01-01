@@ -14,6 +14,8 @@ image:
 > 이러한 차이점은 성능, 사용 용도, 그리고 보안 측면에서 중요한 영향을 미칩니다.
 {: .prompt-info}
 
+---
+
 ## Type 1 가상화(베어 메탈 가상화)
 
 - 정의
@@ -23,6 +25,8 @@ image:
 - 사용 사례
   - 서버 가상화 및 고성능이 요구되는 엔터프라이즈 환경에서 사용도비니다.
   - VMware ESXi, Microsoft Hyper-V, Xen 등이 있습니다.
+
+---
 
 ## Type 2 가상화(호스트된 가상화)
 
@@ -35,6 +39,8 @@ image:
 - 사용 사례
   - 테스트 환경, 개발 환경, 교육 목적
   - VMware Workstation, Oracle VirtualBox, Parallels Desktop 등이 있습니다.
+
+---
 
 ## 정리
 

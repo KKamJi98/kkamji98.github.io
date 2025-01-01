@@ -19,6 +19,8 @@ image:
 > OS ⇒ Ubuntu 24.04 LTS  
 {: .prompt-info}
 
+---
+
 ## 1. Java 설치
 
 > Jenkins는 실행에 Java가 필요합니다. OpenJDK를 설치해봅시다  
@@ -33,6 +35,8 @@ OpenJDK Runtime Environment (build 17.0.11+9-Ubuntu-1)
 OpenJDK 64-Bit Server VM (build 17.0.11+9-Ubuntu-1, mixed mode, sharing)
 ```
 
+---
+
 ## 2. Jenkins 설치
 
 ```bash
@@ -44,6 +48,8 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
 sudo apt-get update
 sudo apt-get install jenkins
 sudo systemctl enable jenkins
+
+---
 
 ## 확인
 
@@ -70,6 +76,8 @@ May 05 06:54:52 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:52.453+0000 [id=
 May 05 06:54:52 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:52.454+0000 [id=49]        INFO        hudson.util.R>
 lines 1-20/20 (END)
 ```
+
+---
 
 ## 3. Jenkins 접속해보기
 
@@ -98,6 +106,8 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 > 접속 했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해볼게요.
 {: .prompt-info}
 
+---
+
 ## 4. Jenkins 설정
 
 > Admin 계정부터 설정해보겠습니다.  
@@ -107,6 +117,8 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/a081faf3-b58c-48db-9446-734d63903d0a)
 
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/5de1886f-9751-43bd-9d83-b5dcd8505298)
+
+---
 
 ## 마무리
 

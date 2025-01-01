@@ -11,6 +11,8 @@ image:
 
 Secrets Manager의 시크릿을 Amazon EKS의 Pod에 마운트된 파일로 표시하려면, **Kubernetes Secrets Store CSI Driver**와 함께 **AWS Secrets and Configuration Provider(ASCP**)를 사용해야 합니다. 해당 기능은 Parameter Store parameters도 사용할 수 있습니다. Fargate 노드 그룹에는 지원되지 않습니다.
 
+---
+
 ## Helm을 사용해 ASCP 설치
 
 ### 1. Helm 레포지토리 업데이트
@@ -42,6 +44,8 @@ helm repo add aws-secrets-manager https://aws.github.io/secrets-store-csi-driver
 ```bash
 helm install -n kube-system secrets-provider-aws aws-secrets-manager/secrets-store-csi-driver-provider-aws
 ```
+
+---
 
 ## 마운트할 시크릿 식별
 
@@ -87,6 +91,8 @@ spec:
             objectAlias: PASSWORD
 ```
 
+---
+
 ## 4. EKS Pod에 Secret을 File로 마운트
 
 ```yaml
@@ -125,6 +131,8 @@ spec:
             secretProviderClass: "test-secrets"
 ```
 
+---
+
 ## 5. 확인
 
 ```bash
@@ -137,6 +145,8 @@ bash-4.2# cat PORT
 bash-4.2# cat DATABASE
 weasel
 ```
+
+---
 
 ## 6. Reference
 

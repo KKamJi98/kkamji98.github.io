@@ -12,6 +12,8 @@ image:
 > 저번시간에는 [EC2상의 MicroK8s Cluster에 Local에서 명령하기](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/) Local에서 EC2위에 있는 MicroK8s의 kubeconfig를 가져와 명령하는 방법을 다뤄보았습니다. 이번 포스트에서는 MicroK8s에 Worker Node를 추가하는 실습을 다뤄보겠습니다.
 {: .prompt-info}
 
+---
+
 ## 1. EC2 Worker Node 생성
 
 Spec
@@ -21,11 +23,15 @@ Spec
 
 ![image](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/96396a50-9f2e-4def-a734-460e8d28a978)
 
+---
+
 ## 2. Microk8s 설치 ( Worker Node )
 
 ```bash
 sudo snap install microk8s --classic
 ```
+
+---
 
 ## 3. 클러스터 조인 명령 생성 ( Master Node )
 
@@ -40,6 +46,8 @@ microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6 --w
 If the node you are adding is not reachable through the default interface you can use one of the following:
 microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6
 ```
+
+---
 
 ## 4. 클러스터에 조인 ( Worker Node )
 
@@ -61,6 +69,8 @@ and replace the API server endpoints with the one provided by the loadbalancer i
 Successfully joined the cluster.
 ```
 
+---
+
 ## 5. 확인 ( Master Node )
 
 ```bash
@@ -69,6 +79,8 @@ NAME            STATUS   ROLES    AGE    VERSION
 ip-10-0-0-241   Ready    <none>   18h    v1.29.4
 ip-10-0-0-81    Ready    <none>   3m4s   v1.29.2
 ```
+
+---
 
 ## 6. Pod가 Worker Node에 생성되는지 확인
 

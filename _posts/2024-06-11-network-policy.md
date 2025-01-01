@@ -20,9 +20,13 @@ image:
 
 ![alt text](/assets/img/network-policy/network-policy.webp)
 
+---
+
 ## 1. Network Policy란?
 
 Network Policy는 쿠버네티스에서 네트워크 트래픽을 제어하기 위한 리소스입니다. 이를 통해 특정 Pod 간의 통신을 허용하거나 차단할 수 있습니다. 주로 보안 목적으로 사용되며, 클러스터 내의 트래픽을 세부적으로 관리할 수 있습니다. 예를 들어, 3계층 아키텍처에서 웹 서버, 애플리케이션 서버, 데이터베이스 서버 간의 통신 규칙을 정의하여 외부 접근을 제한할 수 있습니다.
+
+---
 
 ## 2. Namespace 및 label 생성
 
@@ -41,6 +45,8 @@ namespace/was labeled
 root@Zest ~/Code/k8s-network-policy-3-tier/test# kubectl label namespace web name=web
 namespace/web labeled
 ```
+
+---
 
 ## 3. Pod 및 Service 생성
 
@@ -173,6 +179,8 @@ was            service/was-service            ClusterIP   10.152.183.155   <none
 web            service/web-service            ClusterIP   10.152.183.96    <none>        80/TCP                   51s
 ...
 ```
+
+---
 
 ## 4. Network Policy 생성
 
@@ -332,6 +340,8 @@ was         was-policy   <none>         22s
 web         web-policy   <none>         25s
 ```
 
+---
+
 ## 5. Test
 
 > busybox 이미지를 사용했고, 각각의 namespace에 test pod를 생성해 테스트 했습니다.
@@ -392,6 +402,8 @@ wget: server returned error: HTTP/1.1 404
 wget: can't connect to remote host (10.152.183.144): Connection timed out
 ```
 
+---
+
 ## 6. 결과
 
 web → was ( O )
@@ -405,6 +417,8 @@ was → db ( O )
 db → web ( X )
 
 db → was ( O )
+
+---
 
 ## 7. Trouble Shooting
 
@@ -446,6 +460,8 @@ db → was ( O )
         - protocol: TCP
           port: 53
     ```
+
+---
 
 ## 8. 결론
 

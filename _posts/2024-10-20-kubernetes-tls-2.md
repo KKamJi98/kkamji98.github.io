@@ -14,12 +14,16 @@ image:
 > [Let's Encrypt](https://letsencrypt.org/)는 무료로 SSL/TLS 인증서를 발급해주는 공개 인증 기관입니다. Cert-Manager를 사용하면 Let's Encrypt에서 인증서를 자동으로 발급받고 갱신할 수 있습니다.
 {: .prompt-tip}
 
+---
+
 ## 사전 준비 사항
 
 - Kubernetes Cluster 1.22+
 - Helm
 - Domain
 - Ingress Controller (Nginx Ingress Controller)
+
+---
 
 ## Kubernetes에 Cert-Manager 설치
 
@@ -62,6 +66,8 @@ cert-manager-cainjector-dc59548c5-6q47g   1/1     Running   0          6m38s
 cert-manager-webhook-d45c9fbd6-ph2r8      1/1     Running   0          6m38s
 ```
 
+---
+
 ## ClusterIssuer 생성
 
 **ClusterIssuer**는 Cert-Manager에서 인증서를 발급받기 위한 설정을 정의하는 리소스입니다. Let's Encrypt를 사용하여 인증서를 발급받기 위해 **ClusterIssuer**를 생성합니다. ACME(Automatic Certificate Management Environment)는 인증서의 자동 발급과 갱신을 위한 프로토콜입니다.  
@@ -100,6 +106,8 @@ spec:
 ❯ kubectl apply -f cluster-issuer.yaml
 clusterissuer.cert-manager.io/letsencrypt-prod created
 ```
+
+---
 
 ## Ingress 리소스 수정
 
@@ -173,6 +181,8 @@ Events:
   Normal  Requested  9m21s  cert-manager-certificates-request-manager  Created new CertificateRequest resource "jenkins-tls-1"
   Normal  Issuing    8m33s  cert-manager-certificates-issuing          The certificate has been successfully issued
 ```
+
+---
 
 ## TLS 인증서 적용 확인
 

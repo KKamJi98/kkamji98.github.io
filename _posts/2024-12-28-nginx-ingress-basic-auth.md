@@ -105,6 +105,8 @@ spec:
 - **Force HTTPS**: Basic Auth를 쓸 때는 `nginx.ingress.kubernetes.io/force-ssl-redirect: "true"`로 HTTP->HTTPS 리다이렉트 권장
 - **custom-error-page** 등 다른 Annotation도 조합 가능
 
+---
+
 ## 마무리
 
 Nginx 혹은 Nginx Ingress Controller의 **Basic Auth**를 사용해 별도의 인증 서버를 구축하지 않고 웹사이트에 간단한 인증 절차를 추가할 수 있습니다. 사이드 프로젝트나 테스트용 애플리케이션을 외부에 노출할 때 간단한 인증 보호를 위해 효과적으로 사용할 수 있습니다.  

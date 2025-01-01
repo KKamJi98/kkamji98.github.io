@@ -15,9 +15,13 @@ image:
 > 2024/08/28 - Mysql 같은 경우 클러스터링을 할 경우 여러 개의 Pods를 띄울 상황이 생깁니다. 해당 경우 Deployment가 아닌 StatefulSet을 사용해야 합니다.
 {: .prompt-info}
 
+---
+
 ## 사전 준비물
 
 쿠버네티스
+
+---
 
 ## PV, PVC 생성
 
@@ -55,6 +59,8 @@ spec:
       storage: 5Gi
 ```
 
+---
+
 ## ConfigMap 생성
 
 > 팀원들이 사용할 사용자 계정을 생성해야했고, ConfigMap의 데이터를 컨테이너의 `/docker-entrypoint-initdb.d` 디렉토리에 마운트하면 MySQL 컨테이너가 초기화 되면서 해당 파일이 같이 실행되는 것을 알게 되었습니다.
@@ -73,6 +79,8 @@ data:
     FLUSH PRIVILEGES;
 ```
 
+---
+
 ## secrets 생성
 
 > MySQL 초기화에 필요한 환경변수들을 Secret으로 생성해주었습니다. 여기서 주의할 점은 시크릿을 암호화하지 않게되면 base64로 인코딩 한 값을 kubectl 명령어를 통해 확인할 수 있으므로, 쿠버네티스 클러스터 설정에서 `EncryptionConfigure`를 사용해주어야 합니다. 추가로 HashiCorp Vault, AWS Secret Manager를 사용하는 방법도 추천드립니다.
@@ -90,6 +98,8 @@ data:
   mysql-user-password: {mysql-user-password}
   mysql-database-name: {mysql-database-name}
 ```
+
+---
 
 ## Deployment 생성
 
@@ -149,6 +159,8 @@ spec:
         configMap:
           name: mysql-initdb-config
 ```
+
+---
 
 ## Service 생성
 

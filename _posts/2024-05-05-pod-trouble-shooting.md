@@ -8,8 +8,11 @@ comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
+
 > `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안되서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.
 {: .prompt-info}
+
+---
 
 ## 1. Pod 확인
 
@@ -22,6 +25,8 @@ simple-webapp-color   0/1     Terminating   0          45h
 
 > Pod Terminating 상태에 계속 머물러 있다..
 {: .prompt-info}
+
+---
 
 ## 2. Pod 상태 확인
 
@@ -44,6 +49,8 @@ root@Zest ~# kubectl delete pod simple-webapp-color --grace-period=0 --force
 Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
 pod "simple-webapp-color" force deleted
 ```
+
+---
 
 ## 3. Worker Node 접속 및 여유 공간 확인
 
@@ -75,6 +82,8 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 > 앗… 실제로 여유공간이 1기가가 되지 않았다.. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해줘서 Worker Node의 용량을 10GB로 했었는데… ~~더 올리면 내 돈이…~~  용량을 추가해야겠다.
 {: .prompt-info}
 
+---
+
 ## 4. EBS 용량 확장
 
 > 온프레미스 환경이었다면 HDD나 SSD를 추가 장착해주어야 하지만 EBS는 콘솔을 통해 용량을 추가할 수 있습니다.
@@ -101,6 +110,8 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 {: .prompt-info}
 
 ![4](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/5c8fca09-f8b9-4e20-90ee-4e439cc3bf89)
+
+---
 
 ## 5. 운영체제에 볼륨 확장 적용
 
@@ -162,6 +173,8 @@ shm              64M     0   64M   0% /var/snap/microk8s/common/run/containerd/i
 shm              64M     0   64M   0% /var/snap/microk8s/common/run/containerd/io.containerd.grpc.v1.cri/sandboxes/83bf41130e8a6e90af31e7c9b8fc53296520d5029aa6cc102250956652a6e975/shm
 tmpfs            96M   12K   96M   1% /run/user/1000
 ```
+
+---
 
 ## 6. 문제 해결 여부 확인
 

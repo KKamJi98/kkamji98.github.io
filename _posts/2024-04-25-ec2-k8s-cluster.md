@@ -26,6 +26,8 @@ image:
 > 4G의 memory가 필요하긴하지만… 일단 해보자
 {: .prompt-tip}
 
+---
+
 ## 1. snap 패키지 매니저 설치
 
 ```bash
@@ -39,11 +41,15 @@ $ hello-world
 Hello World!
 ```
 
+---
+
 ## 2. MicroK8s 설치
 
 ```bash
 sudo snap install microk8s --classic --channel=1.29
 ```
+
+---
 
 ## 3. 유저 권한 부여
 
@@ -52,6 +58,8 @@ sudo usermod -a -G microk8s $USER
 sudo mkdir -p ~/.kube
 sudo chown -f -R $USER ~/.kube
 ```
+
+---
 
 ## 4. MicroK8s 상태 체크
 
@@ -89,6 +97,8 @@ addons:
 
 ```
 
+---
+
 ## 5. Cluster에 접근해보기
 
 ```bash
@@ -114,6 +124,8 @@ kube-system   replicaset.apps/calico-kube-controllers-77bd7c5b   1         1    
 kube-system   replicaset.apps/coredns-864597b5fd                 1         1         1       36s
 ```
 
+---
+
 ## 6. 대시보드 확인
 
 ```bash
@@ -135,6 +147,8 @@ EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10
 
 ![pic3](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/b5751561-ce04-425b-a759-10b496110f07)
 
+---
+
 ## 7. alias
 
 > microk8s kubectl명령어를 계속 사용하려면 번거로움이 있습니다. alias기능을 사용해 microctl로 해당 명령어를 단축시킬 수 있습니다. (kubectl로 하면 기존 kubectl 명령어와 충돌이 일어날 가능성을 염두해 microctl로 이름을 지정했습니다)
@@ -143,6 +157,8 @@ EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10
 ```bash
 alias microctl='microk8s kubectl'
 ```
+
+---
 
 ## 8. nginx 배포 테스트
 

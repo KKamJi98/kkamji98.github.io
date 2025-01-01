@@ -11,6 +11,8 @@ image:
 
 **Nginx Ingress Controller**는 Kubernetes Cluster에서 Ingress 리소스를 처리하여 외부 트래픽을 서비스로 라우팅하는 역할을 합니다. 해당 포스트에서는 **Helm**을 사용해 **Nginx Ingress Controller**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
 
+---
+
 ## Nginx Ingress Controller 설치
 
 ### Helm Repository 추가
@@ -27,6 +29,8 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
     --namespace ingress-nginx --create-namespace
 ```
 
+---
+
 ## 설치 확인
 
 ```bash
@@ -39,6 +43,8 @@ nginx-ingress-ingress-nginx-controller-admission   ClusterIP      10.97.125.60  
 NAME    CONTROLLER             PARAMETERS   AGE
 nginx   k8s.io/ingress-nginx   <none>       52m
 ```
+
+---
 
 ## 테스트
 
@@ -120,6 +126,8 @@ Commercial support is available at
 </body>
 </html>
 ```
+
+---
 
 ## Reference
 

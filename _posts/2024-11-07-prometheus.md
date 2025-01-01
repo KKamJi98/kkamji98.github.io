@@ -15,9 +15,13 @@ image:
 2. **Grafana** 소개와 구축
 3. **Prometheus**와 **Grafana** 연동 및 Import 대시보드
 
+---
+
 ## Prometheus란?
 
 **Prometheus**는 오픈소스 모니터링 및 알림 시스템으로, 주로 **클라우드 네이티브 애플리케이션과 인프라의 상태를 모니터링**하는 데 사용됩니다. 2012년 SoundCloud에서 처음 개발되었으며 현재는 **Cloud Native Computing Foundation(CNCF)**에 의해 관리되고 있습니다. Prometheus는 Kubernetes와 같은 컨테이너 오케스트레이션 플랫폼의 모니터링을 위한 사실상의 표준으로 자리 잡았습니다.
+
+---
 
 ## Prometheus의 특징
 
@@ -28,6 +32,8 @@ image:
 5. **Alerting**: **Alert Manager**를 통해 조건에 따른 알림을 설정하고, 이메일, 슬랙 등 다양한 채널로 알림을 전송할 수 있습니다.
 6. **시각화 도구와 연동**: **Grafana** 등과 같은 시각화 도구와 쉽게 통합되어 대시보드를 구성하고 모니터링 데이터를 시각적으로 분석할 수 있습니다.
 
+---
+
 ## Prometheus의 구성요소
 
 ![prometheus_architecture](/assets/img/prometheus/prometheus_diagram.webp)
@@ -37,6 +43,8 @@ image:
 - **Push Gateway**: 단발성 작업(Job)과 짧은 수명의 애플리케이션에서 메트릭을 Prometheus Server에 Push할 수 있도록 도와줍니다.
 - **Alert Manager**: Prometheus Server에서 생성된 경고를 받아 연동된 알림 채널로 전달합니다.
 - **Prometheus Web UI**: PromQL 쿼리를 실행하고 메트릭을 확인할 수 있는 내장 Web UI입니다.
+
+---
 
 ## Prometheus 구축 - Helm
 
@@ -146,6 +154,8 @@ Handling connection for 9091
 Handling connection for 9091
 ```
 ![prometheus_push_gateway](/assets/img/prometheus/prometheus_push_gateway.webp)
+
+---
 
 ## Reference
 

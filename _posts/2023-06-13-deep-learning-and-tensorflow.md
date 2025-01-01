@@ -7,10 +7,12 @@ comments: true
 tags: [tensorFlow, deep-learning]     # TAG names should always be lowercase
 # image:
 #   path: https://github.com/kkamji98/Oxi/assets/72260110/110eebe0-5912-46b5-8b9e-631db9c8e05e
-
 ---
 
+
 ## Chapter 5. 딥러닝과 텐서플로
+
+---
 
 ## 1. 딥러닝의 3가지 학습 방법
 
@@ -31,6 +33,8 @@ tags: [tensorFlow, deep-learning]     # TAG names should always be lowercase
 
 ---
 
+---
+
 ## 2. 학습을 효과적으로 실행할 수 있는 다양한 알고리즘과 규제 기법
 
 ### 2.1. ReLU함수
@@ -44,6 +48,8 @@ tags: [tensorFlow, deep-learning]     # TAG names should always be lowercase
 ### 2.3. 드롭아웃(dropout) 기법
 
 - 임의로 일정 비율의 노드를 선택해 불능으로 놓고 학습하는 기법
+
+---
 
 ---
 
@@ -85,6 +91,8 @@ numpy로 생성한 ndarray:
 
 - tensorflow로 생성한 객체 ⇒ tf.Tensor형
 - numpy로 생성한 객체 n ⇒ ndarray형
+
+---
 
 ## 3.2. TensorFlow로 퍼셉트론 프로그래밍
 
@@ -210,6 +218,8 @@ res = perceptron.predict(x)
 print(res)
 ```
 
+---
+
 ## 4.  TensorFlow(Keras)로 다층 퍼셉트론 프로그래밍
 
 ### 4.1. MNIST 인식
@@ -321,6 +331,8 @@ plt.show()
 
 ![Untitled](https://github.com/kkamji98/Oxi/assets/72260110/0a631ffe-f747-4286-acfa-9be99cb85dba)
 
+---
+
 ## 5. 깊은 다층 퍼셉트론
 
 > 다층 퍼셉트론에 은닉층을 더 많이 추가하면 깊은 다층 퍼셉트론(DMLP$_{deep MLP}$)이 된다.
@@ -331,6 +343,8 @@ plt.show()
 > 깊은 다층 퍼셉트론을 학습하려면 손실 함수를 정의하고 손실 함수의 최저점을 찾는 최적화 알고리즘을 고안해야 한다
 > 
 - 인공 신경망의 가중치(weight)와 편향(bias)을 조정하기 위해 오차를 역으로 전파하여 각각의 가중치와 편향에 대한 기여도를 계산하는 방법
+
+---
 
 ## 6. 딥러닝의 학습 전략
 
@@ -370,6 +384,8 @@ ex) CoLab의 TPU 사용
 > 
 - 과잉 적합을 해소하는 전략 중 가장 확실한 방법은 데이터의 양을 늘리는 것이다. ⇒ 데이터 증대(data augmentation)
 
+---
+
 ## 7. 딥러닝이 사용하는 손실 함수
 
 > 신경망 모델의 예측값과 실제 값 사이의 차이를 측정하는 함수
@@ -393,6 +409,8 @@ ex) CoLab의 TPU 사용
 
 > 확률 분포의 무작위성, 불확실성을 측정하는 함수
 > 
+
+---
 
 ## 8. 딥러닝이 사용하는 옵티마이저
 
@@ -429,6 +447,8 @@ ex) CoLab의 TPU 사용
 
 > RMSprop에 모멘텀을 적용하여 RMSporp를 개선한 기법
 > 
+
+---
 
 ---
 

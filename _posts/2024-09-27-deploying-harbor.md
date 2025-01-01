@@ -13,6 +13,8 @@ image:
 
 이전에 진행했던 **Weasel** 프로젝트를 클라우드에서 로컬 Kubernetes로 마이그레이션하는 작업을 시작하며 컨테이너 이미지를 ECR이 아닌 온프레미스에서 관리해볼까? 라는 생각에 여러가지 솔루션을 고민하였습니다. [Line Engineering](https://engineering.linecorp.com/ko/blog/harbor-for-private-docker-registry)과 [SKT Enterprise](https://www.sktenterprise.com/bizInsight/blogDetail/dev/6171) 기술 블로그를 보고 오픈소스 기반, 강력한 보안 기능을 갖춘 **Harbor**에 매력을 느끼게 되었고, 도입을 확정하게 되었습니다. 해당 포스트에서는 Kubernetes에서 **Harbor**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
 
+---
+
 ## 사전 조건
 
 - Kubernetes cluster 1.10+
@@ -22,12 +24,16 @@ image:
 - High available Redis
 - PVC (Persistent Volume Claim) 또는 외부 오브젝트 스토리지
 
+---
+
 ## 실습 환경
 
 - Kubernetes cluster v1.29.6
 - Helm v3.15.3
 - Nginx Ingress Controller
 - Local Path Provisioner
+
+---
 
 ## Helm 저장소 추가
 
@@ -48,6 +54,8 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. ⎈Happy Helming!⎈
 ```
 
+---
+
 ## Namespace 생성
 
 > **Harbor**를 설치할 Namespace를 생성합니다.
@@ -57,6 +65,8 @@ Update Complete. ⎈Happy Helming!⎈
 ❯ kubectl create namespace harbor
 namespace/harbor created
 ```
+
+---
 
 ## Helm으로 Harbor 설치
 
@@ -136,6 +146,8 @@ harborAdminPassword: # Admin Password
 helm install harbor harbor/harbor --namespace harbor -f values.yaml
 ```
 
+---
+
 ## 접속 확인
 
 > values.yaml 파일에 입력한 AdminPassword를 사용해 접속해봅니다.
@@ -144,6 +156,8 @@ helm install harbor harbor/harbor --namespace harbor -f values.yaml
 ![harbor connection](/assets/img/harbor/harbor_connection_test.webp)
 
 ![harbor login](/assets/img/harbor/harbor_login_test.webp)
+
+---
 
 ## Reference
 

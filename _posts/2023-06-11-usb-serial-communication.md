@@ -16,6 +16,8 @@ comments: true
 > Arduino의 중요한 특징 중 하나는 USB 시리얼 포트를 통해 직접 프로그램을 업로드할 수 있다는 점이다
 > 
 
+---
+
 ## Serial Port
 
 <!-- ![Untitled 1](/assets/img/Untitled.png) -->
@@ -30,6 +32,8 @@ comments: true
 - Arduino Uno에 사용된 **ATmega328P** Micro Controller는 하나의 하드웨어 시리얼 포트만 가지고 있음
 - Arduino Uno의 Hardware Serial Port는 **데이터 송신(TX, transmit)과 수신(RX, receive)에 디지털 0번과 1번 핀**을 사용
 
+---
+
 ## Arduino가 USB Interface를 통해 통신할 수 있도록 사용하는 두 가지 방법
 
 > 시리얼과 USB는 호환이되지 않는다.
@@ -38,6 +42,8 @@ comments: true
     1. **Arduino Uno가** 시리얼과 USB사이의 변환을 위해 별도의 전용 Micro Controller IC를 사용
 2. **USB 인터페이스를 내장하고 있는 마이크로 컨트롤러를 사용하는 방법**
     1. **Arduino 레오나르도**에 사용된 ATmega32U4 Micro Controller가 대표적인 예
+
+---
 
 ## 1. 내장/외장 USB-Serial 변환장치를 사용하는 Arduino 보드
 
@@ -71,6 +77,8 @@ comments: true
 - Arduino Pro (단종)
 - Arduino Pro Mini (단종)
 
+---
+
 ## 2. 별도의 USB 기능을 포함하는 ATmega MicroController를 시리얼 변환기로 사용하는 Arduino 보드
 
 ### Arduino Uno
@@ -89,6 +97,8 @@ comments: true
     - LUFA 기반 펌웨어가 아닌 다른 펌웨어로 교체 시, Arduino 보드가 **조이스틱, 키보드, MIDI** 장치 등 가상의 시리얼 포트와는 다른 장치로 컴퓨터에서 인식되도록 할 수 있음
     - LUFA 기반 펌웨어가 아닌 펌웨어를 사용하는 경우에는 Arduino에 프로그램을 업로드하기 위해 **AVRISP mkII**와 같은 별도의 프로그래머를 사용해야 함
 
+---
+
 ## 3. USB 통신 기능이 내장된 MCU를 사용하는 아두이노 보드
 
 ### Arduino Leonardo
@@ -104,6 +114,8 @@ comments: true
     1. Arduino 보드를 키보드, 마우스, 조이스틱 등 시리얼 포트가 아닌 다른 USB 장치로 동작하도록 만들기가 쉬워짐 
 3. 동시 통신
     1. USB를 통한 프로그램 업로드와 시리얼 통신을 위한 연결선을 분리해서 사용하므로 컴퓨터와 통신을 하면서 GPS와 같은 다른 시리얼 장치와 동시에 통신 가능
+
+---
 
 ## 4. USB 호스트 기능이 있는 Arduino 보드
 

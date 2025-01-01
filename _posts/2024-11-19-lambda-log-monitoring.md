@@ -15,9 +15,13 @@ image:
 
 해당 포스트에서는 로컬 Kubernetes 환경에 **Elasticsearch**, **Logstash**, **Kibana**를 배포하고 CloudWatch Logs에 쌓이는 로그 데이터를 **Amazon Data Firehose**로 전송하는 것을 다뤄보도록 하겠습니다.
 
+---
+
 ## Workflows
 
 ![workflow](/assets/img/monitoring/log_monitoring.webp)
+
+---
 
 ## ELK Stack 구축
 
@@ -187,6 +191,8 @@ spec:
         storageClassName: local-path
 ```
 
+---
+
 ## Logstash -> Elasticsearch 연동 테스트
 
 ### curl 명령어를 통해 logstash에 로그 데이터 전송
@@ -205,6 +211,8 @@ ok
 {: .prompt-tip}
 
 ![elasticsearch_search](/assets/img/monitoring/elasticsearch_search.webp)
+
+---
 
 ## Log Group에서 발생시키는 로그데이터 확인
 
@@ -337,6 +345,8 @@ def handler(event, context):
     return {"statusCode": 200, "body": "Logs sent to Logstash"}
 ```
 
+---
+
 ## CloudWatch Log Group - **Subscription Filter** 설정
 
 > 예시를 위해 콘솔에서 작업했습니다. Lambda Function의 개수가 많아질경우 콘솔에서 작업하기 보다는 IaC 도구 사용을 추천드립니다.  
@@ -356,6 +366,8 @@ def handler(event, context):
 
 ![subscription_filter_log_format](/assets/img/monitoring/subscription_filter_log_format.webp)
 
+---
+
 ## 테스트
 
 > 해당 Lambda Function를 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.
@@ -365,6 +377,8 @@ def handler(event, context):
 
 > Lambda Function 에서 생성되는 로그를 CloudWatch Log Group의 Subscribe Filter를 통해 Kibana에서 확인이 가능한 것을 알 수 있습니다.
 {: .prompt-tip}
+
+---
 
 ## 결과
 

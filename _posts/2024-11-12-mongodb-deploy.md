@@ -15,11 +15,15 @@ image:
 
 **MongoDB**를 사용하는 방법에는 **MongoDB Atlas**, **MongoDB Enterprise**, **MongoDB Community Edition**의 방법이 있으며, 이번 과정에서는 **MongoDB Community Edition**을 **Helm**을 사용해 배포하겠습니다.
 
+---
+
 ## 구성 환경
 
 - Helm (v3.16.2)
 - Kubernetes (v1.29.6)
 - Storage-Class (rancher/local-path-provisioner)
+
+---
 
 ## Helm Repository 추가
 
@@ -31,6 +35,8 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "mongodb" chart repository
 Update Complete. ⎈Happy Helming!⎈
 ```
+
+---
 
 ## Helm을 사용해 MongoDB Operator 배포
 
@@ -48,6 +54,8 @@ REVISION: 1
 TEST SUITE: None
 ```
 
+---
+
 ## MongoDB Operator 확인
 
 ```bash
@@ -63,6 +71,8 @@ deployment.apps/mongodb-kubernetes-operator   1/1     1            1           3
 NAME                                                     DESIRED   CURRENT   READY   AGE
 replicaset.apps/mongodb-kubernetes-operator-6d7f45687c   1         1         1       3m50s
 ```
+
+---
 
 ## MongoDB Custom Resource (CR) 정의 파일 생성
 
@@ -129,6 +139,8 @@ stringData:
   password: <your-password-here> # User의 Password 지정
 ```
 
+---
+
 ## MongoDB Custom Resource (CR)을 사용해 MongoDB 배포
 
 ```bash
@@ -136,6 +148,8 @@ stringData:
 mongodbcommunity.mongodbcommunity.mongodb.com/mongodb created
 secret/mongodb-user-password created
 ```
+
+---
 
 ## MongoDB 배포 확인
 
@@ -165,6 +179,8 @@ Forwarding from [::1]:27017 -> 27017
 
 ```
 
+---
+
 ## MongoDB 접속 확인
 
 ```bash
@@ -191,6 +207,8 @@ config  176.00 KiB
 local   500.00 KiB
 mongodb [direct: primary] test> 
 ```
+
+---
 
 ## Reference
 

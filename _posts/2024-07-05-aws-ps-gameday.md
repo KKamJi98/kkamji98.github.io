@@ -11,6 +11,8 @@ image:
 
 7월 4일 열린 [AWS Public Sector Day Seoul 2024](https://pages.awscloud.com/public-sector-day-seoul-2024.html#about)에서 [Generative AI Unicorn Party GameDay](https://aws.amazon.com/ko/gameday/)에 참가하였습니다.
 
+---
+
 ## 준비 과정
 
 Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각했고, 사전 공지된 자료를 확인해보니 다음과 같은 단서를 구할 수 있었습니다.
@@ -35,6 +37,8 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 따라서 이 시나리오에 사용될 기술들을 중심으로 학습하려 했고, 외부에 공개되어있는 AWS 워크샵 자료를 통해 실습을 하며 대회를 준비했습니다.
 
+---
+
 ## 대회 진행
 
 ![alt text](../assets/img/ps-gameday/winners.jpg)
@@ -44,6 +48,8 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 ![GameDay 진행 사진](../assets/img/ps-gameday/ps-gameday.png)  
 그 결과 중반에는 3등까지 올라갈 수 있었고, 현재 순위를 지키고 싶다는 욕심이 생겨 더욱 열심히 했습니다. 그 때부터 시간이 엄청 빠르게 흐르는 것 같은 느낌을 받았습니다.
+
+---
 
 ## 마무리
 

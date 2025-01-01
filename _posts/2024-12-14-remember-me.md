@@ -19,6 +19,8 @@ image:
 > **WAF Rule & Slack Alarm Demo**: <https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU>  
 {: .prompt-tip}
 
+---
+
 ## Feature
 
 - **서버리스 아키텍처**: **Lambda** + **API Gateway**로 서버리스 구현  
@@ -26,6 +28,8 @@ image:
 - **로그 분석 환경**: **CloudWatch Logs** → **Logstash** → **Elasticsearch** → **Kibana** 파이프라인 구축  
 - **IaC 및 CI/CD**: **Terraform(HCP Terraform)**으로 인프라 코드화, **GitHub Actions**으로 빌드/배포 자동화  
 - **AWS SAM**: `sam local` 명령어를 통해 **Lambda** 함수와 **API Gateway**를 로컬에서 실행하고 디버깅  
+
+---
 
 ## Tech Stack
 
@@ -38,6 +42,8 @@ image:
 > **Logging**   - CloudWatch, Logstash, Elasticsearch, Kibana  
 > **ETC**       - Git/GitHub, Slack, Notion  
 {: .prompt-tip}
+
+---
 
 ## Infra
 
@@ -81,6 +87,8 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 #### Frontend CI/CD
 
 ![Frontend CI/CD](https://github.com/vocaAppServerless/.github/blob/main/assets/img/frontend_ci_cd.png?raw=true)
+
+---
 
 ## 회고
 

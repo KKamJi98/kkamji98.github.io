@@ -15,11 +15,15 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 특히 고가용성(HA)을 요구하는 환경에서 **Master-Agent** 구성은 필수적이라고 생각합니다. 최근 기술 면접에서 Jenkins Agent 구성에 대한 질문을 받게 되었습니다. 이 경험을 통해 Jenkins Master-Agent 구성의 중요성을 다시 한번 깨닫게 되었습니다. 이에 따라 Jenkins **Master-Agent** 환경을 직접 구축하고 정리하는 과정을 통해 여러분께 효율적이고 확장 가능한 Jenkins 환경을 구축하는 방법에 대한 제 경험과 배움을 공유하고자 합니다.
 
+---
+
 ## 사전 준비 사항
 
 - Kubernetes Cluster
 - Jenkins Server
 - Jenkins Server에서 Kubernetes 클러스터에 접근
+
+---
 
 ## Jenkins에 Kubernetes Plugin 설치
 
@@ -33,6 +37,8 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![Kubernetes Plugin Dependency](/assets/img/jenkins/kubernetes-plugin-dependency.png)
 
+---
+
 ## Jenkins에 kubeconfig 파일 등록
 
 > Jenkins가 Kubernetes에 접근하기 위해서는 접근 권한이 있는 Service Account 또는 kubeconfig가 Jenkins Credential에 등록되어 있어야 합니다.
@@ -41,6 +47,8 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 {: .prompt-tip}
 
 ![kubeconfig](/assets/img/jenkins/kube-config-credential.png)
+
+---
 
 ## Jenkins에서 Kubernetes 클라우드 설정
 
@@ -69,6 +77,8 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![Save](/assets/img/jenkins/kubernetes-cloud-save.png)
 
+---
+
 ## Pod Template 추가
 
 > Jenkins가 Kubernetes 클러스터 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야합니다.
@@ -85,6 +95,8 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![New Pod Template Setting 1](/assets/img/jenkins/new-pod-template-setting-1.png)
 ![New Pod Template Setting 2](/assets/img/jenkins/new-pod-template-setting-2.png)
+
+---
 
 ## 테스트
 
