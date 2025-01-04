@@ -1,6 +1,6 @@
 ---
 title: Minio 개념 및 실습 (1) - Object Storage
-date: 2025-01-03 01:12:09 +0900
+date: 2025-01-02 01:12:09 +0900
 author: kkamji
 categories: [Minio]
 tags: [minio, object-storage, s3, pv, pvc, kubernetes, storage]     # TAG names should always be lowercase
