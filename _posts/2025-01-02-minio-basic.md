@@ -13,7 +13,7 @@ image:
 
 **Minio**는 단순히 오브젝트 스토리지(Object Storage)로 운영하는 방법뿐만 아니라, **Kubernetes의 PV(퍼시스턴트 볼륨, PersistentVolume)**로도 활용 가능합니다.
 
-포스트를 2개로 나눠 이번 포스트에서는 **Minio**가 무엇인지 알아보고, 설치 과정과 함께 Object Storage로 사용하는 방법에 대해 알아 보고 다음 포스트에서는 Kubernetes PV로 사용할 수 있는 방법에 대해 다루도록 하겠습니다.
+포스트를 2개로 나눠 이번 포스트에서는 **Minio**가 무엇인지 알아보고, 설치 과정과 함께 **Object Storage**로 사용하는 방법에 대해 알아 보고 다음 포스트에서는 **Kubernetes PV**로 사용할 수 있는 방법에 대해 다루도록 하겠습니다.
 
 ---
 
@@ -150,6 +150,10 @@ kkamji minio bucket file upload test
 ![minio-test-file](/assets/img/minio/minio-test-file.webp)
 
 ---
+
+## 마무리
+
+이로써 AWS S3와 비슷한 Object Storage 공간으로 남은 HDD를 사용할 수 있게 되었습니다. nssm과 let's encrypt를 사용해 자동 시작과 TLS 인증도 적용이 가능합니다!
 
 ## Reference
 
