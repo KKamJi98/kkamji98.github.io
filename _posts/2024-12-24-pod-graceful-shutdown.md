@@ -137,7 +137,7 @@ INFO:     10.0.0.201:48012 - "GET / HTTP/1.1" 200 OK
 
 ### Graceful Shutdown 테스트
 
-> `kubectl logs` 명령어의 `-f`, 옵션과 `kubectl get pods` 명령어의 `w` 옵션을 통해 실시간으로 pod의 상태와 로그를 확인하며 정상 동작하는 pod에 `kubectl delete pod {pod_name}` 명령어로 삭제 요청을 한 뒤 상태 변화를 확인해보도록 하겠습니다.  
+> `kubectl logs` 명령어의 `-f`, 옵션과 `kubectl get pods` 명령어의 `-w` 옵션을 통해 실시간으로 pod의 상태와 로그를 확인하며 정상 동작하는 pod에 `kubectl delete pod {pod_name}` 명령어로 삭제 요청을 한 뒤 상태 변화를 확인해보도록 하겠습니다.  
 {: .prompt-tip}
 
 #### 로그 실시간 확인
