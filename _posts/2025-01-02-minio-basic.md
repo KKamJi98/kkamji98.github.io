@@ -99,7 +99,7 @@ curl https://dl.min.io/client/mc/release/linux-amd64/mc \
 chmod +x $HOME/minio-binaries/mc
 export PATH=$PATH:$HOME/minio-binaries/
 
-mc alias set {alias_name}-minio http://192.168.0.2:9000 {username} {password}
+mc alias set {alias_name} http://192.168.0.2:9000 {username} {password}
 
 ❯ mc admin info {alias_name}
 ●  192.168.0.2:9000
