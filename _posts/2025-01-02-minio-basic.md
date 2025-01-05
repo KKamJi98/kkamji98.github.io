@@ -40,7 +40,7 @@ Kubernetes 환경에서는 Minio를 다음과 같이 활용할 수 있습니다.
 > `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
 {: .prompt-tip}
 
-```ps
+```powershell
 ## Minio 설치 파일 다운로드
 curl -O https://dl.min.io/server/minio/release/windows-amd64/minio.exe
 
