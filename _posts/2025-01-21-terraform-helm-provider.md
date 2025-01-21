@@ -113,6 +113,7 @@ resource "helm_release" "nginx" {
   atomic  = true
   timeout = 300
 }
+
 ```
 
 ### 핵심 옵션
