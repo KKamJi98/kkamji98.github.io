@@ -112,8 +112,7 @@ resource "helm_release" "nginx" {
   # 예시) Atomic, Timeout 등 옵션 설정 가능
   atomic  = true
   timeout = 300
-}
-
+} 
 ```
 
 ### 핵심 옵션
