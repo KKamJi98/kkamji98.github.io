@@ -74,6 +74,8 @@ provider "helm" {
 > 위 정보를 코드에 직접 하드코딩하면 보안적으로 취약할 수 있습니다. 실제 운영 환경에서는 Terraform 변수나 `data` 리소스, 외부 시크릿 저장소 등을 사용해 안전하게 주입하는 방식을 권장합니다.
 {: .prompt-danger}
 
+---
+
 ## Terraform Helm Provider를 사용한 리소스 배포
 
 실습을 위해 `Bitnami`에서 제공하는 **Nginx 웹 서버** Helm Chart를 간단히 배포해보겠습니다.  

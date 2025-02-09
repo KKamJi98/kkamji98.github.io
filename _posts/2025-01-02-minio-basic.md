@@ -155,6 +155,8 @@ kkamji minio bucket file upload test
 
 이로써 AWS S3와 비슷한 Object Storage 공간으로 남은 HDD를 사용할 수 있게 되었습니다. nssm과 let's encrypt를 사용해 자동 시작과 TLS 인증도 적용이 가능합니다!
 
+---
+
 ## Reference
 
 - Minio 공식 문서 - <https://min.io/docs/minio/windows/index.html>
