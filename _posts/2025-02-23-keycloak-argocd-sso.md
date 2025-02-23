@@ -64,6 +64,8 @@ image:
 
 ![PKCE](/assets/img/keycloak/pkce.webp)
 
+---
+
 ## 3. Client Scope 설정하기
 
 > Keycloak에서는 Client Scope를 통해 **Client에게 제공할 권한과 Scope**를 확장하거나 제한할 수 있습니다.  
@@ -73,6 +75,8 @@ image:
 1. 왼쪽 사이드바의 **Client Scopes** 메뉴로 이동한 뒤, **Create client scope** 버튼을 클릭합니다.
 
 ![Client Scope-1](../assets/img/keycloak/client-scope-1.webp)
+
+---
 
 ## 4. Mapper 설정하기
 
@@ -89,6 +93,8 @@ image:
 
 ![Client Scope Mappers-3](../assets/img/keycloak/client-scope-mappers-3.webp)  
 
+---
+
 ## 5. Group 생성하기
 
 > ArgoCD에 맵핑할 Keycloak Group을 생성합니다.
@@ -99,6 +105,8 @@ image:
 
 ![ArgoCDAdmins Group](/assets/img/keycloak/keycloak-group.webp)
 
+---
+
 ## 6. Group에 User 추가하기
 
 > Keycloak Groups에 사용자를 할당하여, 해당 사용자들이 인증 시 Group 정보를 받도록 구성합니다.
@@ -108,6 +116,8 @@ image:
 2. `Add Member` 버튼을 클릭하여 사용자를 추가합니다.
 
 ![ArgoCDAdmins Member](/assets/img/keycloak/keycloak-member.webp)
+
+---
 
 ## 7. ArgoCD 설정하기 (argocd-cm)
 
@@ -134,6 +144,8 @@ data:
     # clientSecret: <YOUR_CLIENT_SECRET>
 ```
 
+---
+
 ## 8. ArgoCD RBAC 구성 (argocd-rbac-cm)
 
 > Keycloak Group과 ArgoCD의 Role을 연결하기 위해, ArgoCD의 RBAC 설정 파일을 수정합니다.  
@@ -150,6 +162,8 @@ data:
     g, /ArgoCDAdmins, role:admin
 ```
 
+---
+
 ## 결과 확인
 
 ![ArgoCD Keycloak](/assets/img/keycloak/argocd-keycloak.webp)  
@@ -158,6 +172,7 @@ data:
 ![ArgoCD Group](/assets/img/keycloak/argocd-group.webp)  
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
 {: .prompt-info}
