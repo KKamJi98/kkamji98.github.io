@@ -55,7 +55,8 @@ image:
 
 ## 2. PKCE 설정하기
 
-> OIDC 인증 시 **Proof Key for Code Exchange(PKCE)** 방식을 사용하면, 클라이언트 보안을 한층 더 강화할 수 있습니다. Keycloak과 ArgoCD의 인증 흐름에서 `S256` 암호화 기법을 사용하도록 설정하면, **Code Challenge**와 **Code Verifier**로 이루어지는 인증 과정을 안전하게 진행할 수 있습니다.
+> OIDC 인증 시 **Proof Key for Code Exchange(PKCE)** 방식을 사용하면, 클라이언트 보안을 한층 더 강화할 수 있습니다.  
+> Keycloak과 ArgoCD의 인증 흐름에서 `S256` 암호화 기법을 사용하도록 설정하면, **Code Challenge**와 **Code Verifier**로 이루어지는 인증 과정을 안전하게 진행할 수 있습니다.  
 {: .prompt-tip}
 
 1. 생성한 Client의 `Advanced Settings`(고급 설정) 탭으로 이동합니다.
@@ -135,8 +136,8 @@ data:
 
 ## 8. ArgoCD RBAC 구성 (argocd-rbac-cm)
 
-> Keycloak Group과 ArgoCD의 Role을 연결하기 위해, ArgoCD의 RBAC 설정 파일을 수정합니다.
-> 필요에 따라 role:readonly, role:developer 등을 추가할 수 있습니다.
+> Keycloak Group과 ArgoCD의 Role을 연결하기 위해, ArgoCD의 RBAC 설정 파일을 수정합니다.  
+> 필요에 따라 role:readonly, role:developer 등을 추가할 수 있습니다.  
 {: .prompt-tip}
 
 ```shell
@@ -149,7 +150,7 @@ data:
     g, /ArgoCDAdmins, role:admin
 ```
 
-## 9. 결과 확인
+## 결과 확인
 
 ![ArgoCD Keycloak](/assets/img/keycloak/argocd-keycloak.webp)  
 ![Keycloak Login](/assets/img/keycloak/keycloak-login.webp)  
