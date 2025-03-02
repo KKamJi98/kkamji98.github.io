@@ -311,8 +311,8 @@ monitoring         clusterexternalsecret-secret             Opaque              
 - <https://external-secrets.io/>
 - <https://external-secrets.io/latest/provider/aws-secrets-manager/>
 - <https://external-secrets.io/latest/provider/aws-parameter-store/>
-- <https://cloudhero.io/getting-started-with-external-secrets-operator-on-kubernetes-using-aws-secrets-manager/#:~:text=referenced%20from%20all%20namespaces,referenced%20from%20a%20single%20namespace>
-- <https://www.devopsschool.com/blog/external-secrets-operator-difference-between-clusterexternalsecret-vs-externalsecret/#:~:text=Use%20cases%20Pushing%20a%20single,ExternalSecret%20to%20a%20specific%20namespace>
+- <https://cloudhero.io/getting-started-with-external-secrets-operator-on-kubernetes-using-aws-secrets-manager/>
+- <https://www.devopsschool.com/blog/external-secrets-operator-difference-between-clusterexternalsecret-vs-externalsecret/>
 - <https://blog.omoknooni.me/150>
 
 ---
