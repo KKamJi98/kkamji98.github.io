@@ -9,7 +9,7 @@ image:
   path: /assets/img/keycloak/keycloak.webp
 ---
 
-저번 시간에 Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
+저번 시간에([Keycloak 개념, Helm으로 배포하기]({% post_url 2025/2025-02-22-keycloak %})) Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
 
 ---
 
@@ -74,7 +74,7 @@ image:
 
 1. 왼쪽 사이드바의 **Client Scopes** 메뉴로 이동한 뒤, **Create client scope** 버튼을 클릭합니다.
 
-![Client Scope-1](../assets/img/keycloak/client-scope-1.webp)
+![Client Scope-1](/assets/img/keycloak/client-scope-1.webp)
 
 ---
 
@@ -87,11 +87,11 @@ image:
 2. Configure New Mapper를 클릭한 뒤, `Group Membership`을 선택한 뒤, 아래의 예시처럼 설정합니다.
 3. Assigned Type을 `Default`로 설정합니다.
 
-![Client Scope Mappers-1](../assets/img/keycloak/client-scope-mappers-1.webp)  
+![Client Scope Mappers-1](/assets/img/keycloak/client-scope-mappers-1.webp)  
 
-![Client Scope Mappers-2](../assets/img/keycloak/client-scope-mappers-2.webp)  
+![Client Scope Mappers-2](/assets/img/keycloak/client-scope-mappers-2.webp)  
 
-![Client Scope Mappers-3](../assets/img/keycloak/client-scope-mappers-3.webp)  
+![Client Scope Mappers-3](/assets/img/keycloak/client-scope-mappers-3.webp)  
 
 ---
 
