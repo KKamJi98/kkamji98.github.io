@@ -27,7 +27,9 @@ External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(
 
 **ClusterSecretStore** - **SecretStore**와 유사하지만 **클러스터 전역에서 사용할 수 있는 ClusterStore**입니다. 즉 **하나의 ClusterSecretStore를 생성하면 모든 네임스페이스의 ExternalSecret**에서 참조할 수 있습니다.
 
-> **SecretStore**는 주로 개별 팀/애플리케이션별로 격리된 자격증명을 갖도록 할 때 쓰이고, **ClusterSecretStore**는 모든 네임스페이스에서 공통으로 접근해야 하는 중앙 시크릿 관리 창구를 만들 때 사용합니다. 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 사용해야 한다면 **ClusterSecretStore**로 한 번 정의해두고 재사용할 수 있고, 반대로 네임스페이스를 팀별로 따로 사용하고, AWS IAM 자격 증명을 따로 사용해야 한다면 각 팀 네임스페이스에 SecretStore를 생성하여 사용할 수 있습니다.  
+> **SecretStore**는 주로 개별 팀/애플리케이션별로 격리된 자격증명을 갖도록 할 때 쓰이고, **ClusterSecretStore**는 모든 네임스페이스에서 공통으로 접근해야 하는 중앙 시크릿 관리 창구를 만들 때 사용합니다.  
+>
+> 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 사용해야 한다면 **ClusterSecretStore**로 한 번 정의해두고 재사용할 수 있고, 반대로 네임스페이스를 팀별로 따로 사용하고, AWS IAM 자격 증명을 따로 사용해야 한다면 각 팀 네임스페이스에 SecretStore를 생성하여 사용할 수 있습니다.  
 {: .prompt-tip}
 
 ### ExternalSecret, ClusterExternalSecret
