@@ -10,9 +10,12 @@ image:
 ---
 
 Kubernetes를 운영하면서 자주 반복적으로 사용하는 명령어들이 있습니다. 그때마다 매번 머릿속의 kubectl 명령어를 직접 입력하거나, 미리 정리해둔 명령어를 복사해서 사용하는 경우가 많았습니다.  
+  
 그러던 중 문득 "자주 쓰는 명령어를 나만의 alias로 등록하거나 간단한 CLI 툴로 만들어보면 어떨까?" 라는 생각이 들었고, 이를 계기로 평소 자주 사용하는 Kubernetes 모니터링 기능들을 모아 하나의 도구로 만들게 되었습니다.  
 
 Github: <https://github.com/KKamJi98/monitoring-kubernetes>  
+
+## 실행 화면
 
 ```shell
 ===== Kubernetes Monitoring Tool =====
