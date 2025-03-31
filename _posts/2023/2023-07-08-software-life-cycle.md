@@ -77,5 +77,5 @@ image:
 <br><br>
 
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKam.\_\.Ji](https://www.instagram.com/kkam._.ji/)**
+> **Written with [KKam.\_\.Ji](https://www.linkedin.com/in/taejikim//)**
 {: .prompt-info}
