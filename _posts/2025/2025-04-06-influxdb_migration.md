@@ -310,7 +310,7 @@ Date: Sun, 06 Apr 2025 13:58:02 GMT
 
 Old InfluxDB에서 특정 시간대에 '이상한 데이터'를 삽입한 뒤, New InfluxDB로 마이그레이션을 진행합니다.
 
-### 이상한 데이터 삽입 후 마이그레이션션
+### 이상한 데이터 삽입 후 마이그레이션
 
 ```shell
 ## New InfluxDB에서 데이터 삭제
@@ -429,41 +429,22 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 
 ![check_overwrite_data](/assets/img/influxdb/check_overwrite_data.webp)
 
----
+> 100, 0, 100으로 흐트러진 데이터가 50, 50, 50 으로 잘 덮어 씌워진 것을 그래프를 통해 확인할 수 있습니다.
+{: .prompt-tip}
 
-## 결과
+## 결론
 
-1. **InfluxDB 1.x → 1.x 마이그레이션**  
-   - `influx_inspect export -lponly`와 `curl write` 조합으로 DB별 데이터를 안정적으로 옮길 수 있었습니다.  
-   - Old DB를 종료하지 않아도 마이그레이션이 가능했습니다.
+1. Measurement 삭제 후 복구  
+   - New InfluxDB에서 Measurement를 완전히 삭제한 뒤 Old InfluxDB에서 데이터를 가져오면, 원하는 시점과 데이터가 정상적으로 복원됨을 확인했습니다.  
+2. 특정 시간대 데이터 삭제 후 복구  
+   - New InfluxDB에서 5시간 전부터 3시간 전 사이의 데이터를 삭제한 뒤 Old → New 마이그레이션을 수행하면, 해당 구간의 데이터가 다시 채워져 그래프가 완전하게 복원되었습니다.  
+3. 이미 존재하는 시간대 데이터 덮어쓰기(Overwrite)  
+   - 특정 시간대에 ‘이상한’ 값(예: 100, 0, 100 등)을 기록해 놓은 뒤 Old InfluxDB 데이터를 가져오면, 정확히 동일한 타임스탬프·태그·필드 조합의 측정값이 덮어써지는 것을 확인했습니다.  
 
-2. **InfluxDB의 불변성**  
-   - 한 번 기록된 데이터(timestamp + tag + field)는 Overwrite가 아니라 **Immutable**에 가깝습니다.  
-   - 정확히 같은 timestamp+tag+field 조합이면 upsert처럼 갱신될 수 있으나, 보통은 추가 포인트로 처리됩니다.
-
-3. **테스트 시 부실한 점**  
-   - GB~TB 단위 대규모 데이터의 성능 테스트는 미흡했습니다.  
-   - Write가 계속 들어오는 환경에서 마지막 순간의 데이터가 누락될 위험을 완전히 배제하기 어렵습니다.  
-   - Best Practice로는 마이그레이션 직전에 read-only 상태를 설정하거나, write를 잠시 중단하는 방법이 있습니다.
-
-4. **1.x→2.x, 2.x→2.x 마이그레이션**    
-   - Flux, Bucket 등 구조적 차이가 있으므로 절차가 달라질 수 있습니다.  
-   - 2.x에서는 `influx backup/restore`, `influxd upgrade` 등을 검토해야 합니다.  
-   - 1.x to 2.x 직접 restore는 지원되지 않습니다.
-
----
-
-## 마무리
-
-`influx_inspect export → curl write` 방식을 통해 DB 전체를 옮겼으며, 특정 시간대 데이터를 삭제했다가 다시 가져오는 시나리오로 데이터 누락 여부를 검증했습니다. 기본적인 기능으로는 문제가 없었지만, 실제 운영환경에서는 다음 사항을 유념해야 합니다.
-
-1. **Downtime 없이 진행할 경우** 최신 시점 데이터 누락 가능성이 있습니다.  
-2. **백업**을 반드시 해두어야 합니다. `/tmp/...` 경로에 생성된 Export 파일을 잘 보관해야 합니다.  
-3. **DB 구조와 Retention Policy** 등을 함께 점검해야 합니다.  
-4. 대규모 마이그레이션 시 **성능 테스트**와 모니터링이 필수입니다.
+종합적으로, Line Protocol을 이용한 InfluxDB 1.x 간 마이그레이션은 다양한 시나리오(Measurement 삭제, 특정 시간대 데이터 삭제, 덮어쓰기)에 대해 안정적으로 동작했습니다. 실제 환경에서는 백업·성능·다운타임 고려가 필요하겠지만, 검증된 시나리오들로 볼 때 정상적인 마이그레이션 수행이 가능함을 알 수 있습니다.
 
 ---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKam.\_\.Ji](https://www.linkedin.com/in/taejikim//)**  
+> **Written with [KKam.\_\.Ji](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}
