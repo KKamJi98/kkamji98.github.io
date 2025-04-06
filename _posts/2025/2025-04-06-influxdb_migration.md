@@ -316,7 +316,7 @@ Old InfluxDB에서 특정 시간대에 '이상한 데이터'를 삽입한 뒤, N
 ## New InfluxDB에서 데이터 삭제
 root@ip-10-0-1-67:~# influx -database test_db -execute "DELETE FROM test_data"
 
-## New InfluxDB에서 해당 시간대에 이상한 데이터 삽입 (100, 150, 200)
+## New InfluxDB에서 해당 시간대에 이상한 데이터 삽입 (100, 0, 100)
 root@ip-10-0-1-67:~# TS1=$(($(date -d '3 hours ago' +%s) * 1000000000))
 root@ip-10-0-1-67:~# TS2=$(($(date -d '4 hours ago' +%s) * 1000000000))
 root@ip-10-0-1-67:~# TS3=$(($(date -d '5 hours ago' +%s) * 1000000000))
