@@ -32,7 +32,7 @@ amd64와 arm64 이미지를 빌드 해 ECR에 Push하는 Workflow를 **Matrix St
 
 [GitHub Repository Link](https://github.com/KKamJi98/github-actions/tree/main/.github/workflows)
 
-> [Environment]  
+> **[Environment]**  
 > OS                  - Ubuntu 24.04 (amd64, arm64)  
 > Language            - Go  
 > Framework           - Gin-Gonic  
