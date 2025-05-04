@@ -12,27 +12,27 @@ image:
 AWS EKS를 사용하다보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit에 의해 더 이상 pod가 프로비저닝되지 않은 문제를 직면하게 됩니다.  
 
 ```shell
-❯ k get po                                          
+❯ kubectl get po                                          
 NAME                                                READY   STATUS    RESTARTS   AGE
 external-secrets-6cddc7bb75-m5qzn                   0/1     Pending   0          33m
 external-secrets-cert-controller-64f8978956-xtkqf   0/1     Pending   0          33m
 external-secrets-webhook-868d7b5756-h24cj           0/1     Pending   0          29m
 
-❯ k describe po external-secrets-6cddc7bb75-m5qzn | grep "Events" -A10
+❯ kubectl describe po external-secrets-6cddc7bb75-m5qzn | grep "Events" -A10
 Events:
   Type     Reason            Age                  From               Message
   ----     ------            ----                 ----               -------
   Warning  FailedScheduling  4m53s (x8 over 33m)  default-scheduler  0/1 nodes are available: 1 Too many pods. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
 
 ## 현재 Running 상태인 파드 개수
-❯ k get po -A --no-headers | grep " Running" | wc -l  
+❯ kubectl get po -A --no-headers | grep " Running" | wc -l  
 11
 
-❯ k top no                                                                              
+❯ kubectl top no                                                                              
 NAME                                            CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
 ip-10-0-3-161.ap-northeast-2.compute.internal   42m          2%       799Mi           58%  
 
-❯ k get no -o yaml | yq '... | path | join(".")' | grep -i instance-type
+❯ kubectl get no -o yaml | yq '... | path | join(".")' | grep -i instance-type
 items.0.metadata.labels.beta.kubernetes.io/instance-type
 
 ❯ kubectl get nodes -o custom-columns=NAME:.metadata.name,CAPACITY_PODS:.status.capacity.pods,ALLOCATE_PODS:.status.allocatable.pods
