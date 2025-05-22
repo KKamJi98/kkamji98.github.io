@@ -9,13 +9,17 @@ image:
   path: /assets/img/argocd/argocd.webp
 ---
 
-최근 Kubernetes 환경에서 ArgoCD를 사용한 GitOps가 주목받고 있습니다. ArgoCD를 처음 접하는 경우, ArgoCD Web UI를 통해 배포하는 방식을 가장 먼저 배우는 경우가 많습니다. 하지만 배포할 애플리케이션이 많아질수록 Web UI를 통해 모든 Application을 생성하게 되면 Human Error의 발생 가능성이 증가하고, 관리가 어렵다는 문제가 발생합니다. 이를 해결하기 위해 선언적 구성 방식을 활용하여 자동화를 구현할 수 있습니다. 이번 글에서는 ArgoCD를 활용하여 애플리케이션을 선언적으로 구성하고 배포하는 방법에 대해 소개하겠습니다.
+최근 Kubernetes 환경에서 ArgoCD를 사용한 GitOps가 주목받고 있습니다. ArgoCD를 처음 접하는 경우, ArgoCD Web UI를 통해 배포하는 방식을 가장 먼저 배우는 경우가 많습니다. 하지만 배포할 애플리케이션이 많아질수록 Web UI를 통해 모든 Application을 생성하게 되면 Human Error의 발생 가능성이 증가하고, 관리가 어렵다는 문제가 발생합니다.  
+
+이를 해결하기 위해 선언적 구성 방식을 활용하여 자동화를 구현할 수 있습니다. 이번 글에서는 ArgoCD를 활용하여 애플리케이션을 선언적으로 구성하고 배포하는 방법에 대해 소개하겠습니다.
 
 ---
 
 ## ArgoCD Application이란?
 
-ArgoCD는 GitOps 원칙에 기반하여 Kubernetes 클러스터에 애플리케이션 배포 및 관리를 자동화하는 오픈소스 도구입니다. ArgoCD에서 관리하는 주요 단위는 Application으로, Kubernetes 리소스를 특정 상태로 유지하도록 합니다. Application은 Git 저장소에 저장된 매니페스트를 Kubernetes 클러스터의 실제 상태와 동기화하는 역할을 수행합니다.
+ArgoCD는 GitOps 원칙에 기반하여 Kubernetes 클러스터에 애플리케이션 배포 및 관리를 자동화하는 오픈소스 도구입니다.  
+
+ArgoCD에서 관리하는 주요 단위는 Application으로, Kubernetes 리소스를 특정 상태로 유지하도록 합니다. Application은 Git 저장소에 저장된 매니페스트를 Kubernetes 클러스터의 실제 상태와 동기화하는 역할을 수행합니다.
 
 ArgoCD Application의 주요 특징은 다음과 같습니다
 
@@ -194,6 +198,7 @@ guestbook-yaml          Synced        Healthy
 ## 마무리
 
 ArgoCD Application의 다양한 생성 방법과 선언적 구성 방법에 대해 알아봤습니다. ArgoCD는 선언적 배포를 통해 Kubernetes 관리의 복잡성을 줄이고, GitOps 방식의 자동화 및 모니터링을 효율적으로 수행할 수 있게 도와줍니다.  
+  
 GitOps의 장점을 극대화하기 위해서는 ArgoCD Application을 선언적으로 구성하고 지속적으로 관리하는 것이 중요합니다. 간단한 예시부터 시작하여 점진적으로 복잡한 환경에 적용해 나가는 것을 추천합니다.
 
 ---
