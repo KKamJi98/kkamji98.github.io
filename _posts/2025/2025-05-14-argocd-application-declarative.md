@@ -162,6 +162,14 @@ deployment.apps/guestbook-ui   1/1     1            1           3m28s
 
 NAME                                      DESIRED   CURRENT   READY   AGE
 replicaset.apps/guestbook-ui-7cf4fd7cb9   1         1         1       3m28s
+
+## application 정보 확인인
+❯ k get application -n argocd
+NAME                    SYNC STATUS   HEALTH STATUS
+cert-manager            Synced        Healthy
+guestbook               Synced        Healthy
+guestbook-cli           Synced        Healthy
+guestbook-yaml          Synced        Healthy
 ```
 
 ![ArgoCD Application Create YAML](/assets/img/argocd/argocd-create-application-using-yaml-result.png)
