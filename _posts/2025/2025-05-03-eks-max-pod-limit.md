@@ -128,6 +128,8 @@ NAME                                            CAPACITY_PODS   ALLOCATE_PODS
 ip-10-0-1-201.ap-northeast-2.compute.internal   11              11
 ```
 
+---
+
 ## Prefix Mode Enable & Max-Pod Limit 상향 조정
 
 ### 1. vpc-cni(aws-node) DaemonSet ENV 수정
