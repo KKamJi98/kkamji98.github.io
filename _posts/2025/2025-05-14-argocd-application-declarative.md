@@ -1,8 +1,9 @@
 ---
 title: ArgoCD Application 선언적으로 구성하기
+date: 2025-05-22 22:35:43 +0900
 author: kkamji
 categories: [ArgoCD]
-tags: [kubernetes, eks, argocd, metrics-server, gitops, max-pods, prefix-mode, nitro]
+tags: [kubernetes, argocd, argocd-cli, metrics-server, gitops, declarative, application]
 comments: true
 image:
   path: /assets/img/argocd/argocd.webp
