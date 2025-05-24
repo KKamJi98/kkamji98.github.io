@@ -1,16 +1,16 @@
 ---
-title: Deep Learning과 TemsorFlow
+title: Deep Learning과 TensorFlow
 date: 2023-06-13 13:15:55 +0900
 author: kkamji
 categories: [University]
 comments: true
-tags: [tensorFlow, deep-learning]     # TAG names should always be lowercase
+tags: [tensorflow, deep-learning]     # TAG names should always be lowercase
 # image:
 #   path: https://github.com/kkamji98/Oxi/assets/72260110/110eebe0-5912-46b5-8b9e-631db9c8e05e
 ---
 
 
-## Chapter 5. 딥러닝과 텐서플로
+## Chapter 5. 딥러닝과 텐서플로우
 
 ---
 
@@ -181,7 +181,7 @@ tf.Tensor(
 
 ### 3.3. Keras Programming
 
-> TensorFlow로 프로그래밍을 하게 되면 신경망의 원리와 수식을 완전히 이해해야 하고 수식을 정확히 프로그램 코드로 표현해야 하기 떄문에 상당히 부담스럽다. 
+> TensorFlow로 프로그래밍을 하게 되면 신경망의 원리와 수식을 완전히 이해해야 하고 수식을 정확히 프로그램 코드로 표현해야 하기 때문에 상당히 부담스럽다. 
 케라스는 이런 부담을 덜어주기 위해 탄생하였다.
 > 
 

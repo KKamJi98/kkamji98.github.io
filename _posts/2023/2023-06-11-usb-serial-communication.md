@@ -3,7 +3,7 @@ title: Section 01 아두이노 시리얼 통신 기능 이해
 date: 2023-06-11 23:36:55 +0900
 author: kkamji
 categories: [University]
-tags: [aduino, usb-serial-communication]     # TAG names should always be lowercase
+tags: [arduino, usb-serial-communication]     # TAG names should always be lowercase
 comments: true
 # image:
 #   path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
@@ -36,10 +36,10 @@ comments: true
 
 ## Arduino가 USB Interface를 통해 통신할 수 있도록 사용하는 두 가지 방법
 
-> 시리얼과 USB는 호환이되지 않는다.
+> 시리얼과 USB는 호환되지 않는다.
 > 
 1. **별도의 집적 회로(IC)를 사용하는 방법**
-    1. **Arduino Uno가** 시리얼과 USB사이의 변환을 위해 별도의 전용 Micro Controller IC를 사용
+    1. **Arduino Uno가** 시리얼과 USB 사이의 변환을 위해 별도의 전용 Micro Controller IC를 사용
 2. **USB 인터페이스를 내장하고 있는 마이크로 컨트롤러를 사용하는 방법**
     1. **Arduino 레오나르도**에 사용된 ATmega32U4 Micro Controller가 대표적인 예
 
@@ -47,8 +47,8 @@ comments: true
 
 ## 1. 내장/외장 USB-Serial 변환장치를 사용하는 Arduino 보드
 
-- USB-Serial 변환을 하기 위해서는 **FTDI**와 Silicon Labs에서 만든 칩(**CP210x**)이 흔히 사용되며 이들 칩은 Serial과 USB 사이의 변환 전용으로 사용 됨
-- FTDI 칩이나 CP210 칩을 컴퓨터에 연결하면 컴퓨터에서는 DB9 포트와 같은 방법으로 제어할 수 잇는 ‘**가상 시리얼 포트**’가 나타남
+- USB-Serial 변환을 하기 위해서는 **FTDI**와 Silicon Labs에서 만든 칩(**CP210x**)이 흔히 사용되며 이들 칩은 Serial과 USB 사이의 변환 전용으로 사용됨
+- FTDI 칩이나 CP210 칩을 컴퓨터에 연결하면 컴퓨터에서는 DB9 포트와 같은 방법으로 제어할 수 있는 '**가상 시리얼 포트**'가 나타남
 
 ![사진2](https://github.com/kkamji98/Oxi/assets/72260110/04f5d508-9ead-4b1f-afb0-d2d1925964e2)
 
@@ -72,7 +72,7 @@ comments: true
 ### 외부 FTDI 케이블이나 브레이크아웃 보드를 사용하여 프로그래밍과 USB-시리얼 통신을 수행하는 Arduino 보드
 
 - Arduino Mini
-- Arduino Ethenet
+- Arduino Ethernet
 - Arduino LilyPad
 - Arduino Pro (단종)
 - Arduino Pro Mini (단종)
@@ -90,10 +90,10 @@ comments: true
 
 1. 윈도우에서 USB-Serial 변환 기능을 사용하기 위해서는 전용 드라이버를 설치해야 함 (Arduino IDE에 포함되어 있음)
 2. 아두이노 우노라는 제품에 대한 생산자 ID(vendor ID)와 제품 ID(product ID)를 컴퓨터에 제공할 수 있음
-    - FTDI 칩은 ‘일반(generic) USB-시리얼 장치’로 인식됨
-    - 장치관리자에 ‘Arduino’로 표시됨
+    - FTDI 칩은 '일반(generic) USB-시리얼 장치'로 인식됨
+    - 장치관리자에 'Arduino'로 표시됨
 3. 별도의 펌웨어를 통해 USB-시리얼 변환 기능 이외의 기능 제공 가능
-    - ATmega16U2에는 USB-Serial 변환 기능을 수행하기 위해 설치되어 있는 LUFA 라이브러리가 설치 되어있음
+    - ATmega16U2에는 USB-Serial 변환 기능을 수행하기 위해 설치되어 있는 LUFA 라이브러리가 설치되어 있음
     - LUFA 기반 펌웨어가 아닌 다른 펌웨어로 교체 시, Arduino 보드가 **조이스틱, 키보드, MIDI** 장치 등 가상의 시리얼 포트와는 다른 장치로 컴퓨터에서 인식되도록 할 수 있음
     - LUFA 기반 펌웨어가 아닌 펌웨어를 사용하는 경우에는 Arduino에 프로그램을 업로드하기 위해 **AVRISP mkII**와 같은 별도의 프로그래머를 사용해야 함
 
@@ -104,7 +104,7 @@ comments: true
 ### Arduino Leonardo
 
 - 하나의 칩으로 메인 MCU와 USB 인터페이스 역할을 구현한 최초의 보드
-- Arduono Leonardo를 포함한 여러 공식 아두이노 보드와 아두이노 호환 보드는 USB 통신 기능을 포함하고 있는 ATmega32U4 마이크로컨트롤러를 사용함
+- Arduino Leonardo를 포함한 여러 공식 아두이노 보드와 아두이노 호환 보드는 USB 통신 기능을 포함하고 있는 ATmega32U4 마이크로컨트롤러를 사용함
 
 ### USB 통신 기능을 내장한 마이크로컨트롤러를 사용하는 것의 장점
 
