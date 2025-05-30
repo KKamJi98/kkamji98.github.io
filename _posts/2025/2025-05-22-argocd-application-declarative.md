@@ -126,7 +126,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: guestbook
-  namespace: argocd-test-yaml
+  namespace: argocd
 spec:
   project: default
   source:
@@ -135,7 +135,7 @@ spec:
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: argocd-test
   syncPolicy:
     automated:
       prune: true
@@ -154,7 +154,7 @@ application.argoproj.io/guestbook-yaml created
 #### 결과 (YAML)
 
 ```shell
-❯ k get all -n argocd-test-yaml
+❯ k get all -n argocd-test
 NAME                                READY   STATUS    RESTARTS   AGE
 pod/guestbook-ui-7cf4fd7cb9-sk7wh   1/1     Running   0          3m27s
 
