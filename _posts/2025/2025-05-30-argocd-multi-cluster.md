@@ -2,7 +2,7 @@
 title: ArgoCD로 Multi-Cluster Application 배포하기
 date: 2025-05-30 20:19:03 +0900
 author: kkamji
-categories: [ArgoCD]
+categories: [CI/CD, ArgoCD]
 tags: [kubernetes, argocd, argocd-cli, metrics-server, gitops, declarative, application]
 comments: true
 image:
