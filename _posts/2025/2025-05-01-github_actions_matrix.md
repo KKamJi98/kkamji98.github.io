@@ -2,7 +2,7 @@
 title: GitHub Actions Matrix Strategy & Multi Architecture Build
 date: 2025-05-01 22:21:01 +0900
 author: kkamji
-categories: [Git & Github]
+categories: [CI/CD, GitHub Actions]
 tags: [github-actions, git, github, action, matrix, runner, buildx, ecr, multi-architecture, multi-platform, docker]
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동
 date: 2024-11-09 23:18:20 +0900
 author: kkamji
-categories: [Monitoring, Resource]
+categories: [Monitoring, Metric]
 tags: [kubernetes, prometheus, node-exporter, push-gateway, grafana, dashboard, slack, data-source]     # TAG names should always be lowercase
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: Terraform Helm Provider 사용 방법
 date: 2025-01-21 23:11:55 +0900
 author: kkamji
-categories: [Terraform]
+categories: [IaC, Terraform]
 tags: [terraform, kubernetes, helm, helm-provider, devops, bitnami, nginx]     # TAG names should always be lowercase
 comments: true
 image:

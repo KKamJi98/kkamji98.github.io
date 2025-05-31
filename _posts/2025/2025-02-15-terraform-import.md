@@ -2,7 +2,7 @@
 title: Terraform Import 개념, 사용 방법
 date: 2025-02-15 09:02:29 +0900
 author: kkamji
-categories: [Terraform]
+categories: [IaC, Terraform]
 tags: [terraform, import, ec2, aws]     # TAG names should always be lowercase
 comments: true
 image:

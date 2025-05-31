@@ -2,7 +2,7 @@
 title: Kubernetes Monitoring Tool 개발 (KMP)
 date: 2025-03-15 16:55:36 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Monitoring, Metric]
 tags: [kubernetes, monitoring, python, cli, devops, sre, eks, aws]     # TAG names should always be lowercase
 comments: true
 image:

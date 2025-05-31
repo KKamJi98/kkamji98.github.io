@@ -2,7 +2,7 @@
 title: Kubernetes 리소스 모니터링 (1) - Prometheus
 date: 2024-11-07 19:15:30 +0900
 author: kkamji
-categories: [Monitoring, Resource]
+categories: [Monitoring, Metric]
 tags: [kubernetes, prometheus, node-exporter, push-gateway, grafana, slack, daemonset, prometheus-web-ui, promql]     # TAG names should always be lowercase
 comments: true
 image:

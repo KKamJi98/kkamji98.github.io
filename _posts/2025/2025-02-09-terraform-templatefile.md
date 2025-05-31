@@ -2,7 +2,7 @@
 title: Terraform templatefile() 함수 개념, 사용 방법
 date: 2025-02-09 16:55:42 +0900
 author: kkamji
-categories: [Terraform]
+categories: [IaC, Terraform]
 tags: [terraform, templatefile, ec2, user-data, file, prometheus, node-exporter]     # TAG names should always be lowercase
 comments: true
 image:

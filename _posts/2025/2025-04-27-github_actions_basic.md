@@ -2,7 +2,7 @@
 title: GitHub Actions 소개 및 구성 요소
 date: 2025-04-27 23:01:05 +0900
 author: kkamji
-categories: [Git & Github]
+categories: [CI/CD, GitHub Actions]
 tags: [github-actions, git, github, action, workflow, event, job, step, runner]
 comments: true
 image:
