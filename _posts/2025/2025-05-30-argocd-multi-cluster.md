@@ -1,6 +1,6 @@
 ---
 title: ArgoCD로 Multi-Cluster Application 배포하기
-date: 2025-05-31 20:19:03 +0900
+date: 2025-05-30 20:19:03 +0900
 author: kkamji
 categories: [ArgoCD]
 tags: [kubernetes, argocd, argocd-cli, metrics-server, gitops, declarative, application]
@@ -51,10 +51,10 @@ CURRENT   NAME                 CLUSTER                                          
 # ArgoCD CLI를 사용하여 클러스터 추가
 ❯ argocd cluster add kkamji-al2023
 WARNING: This will create a service account `argocd-manager` on the cluster referenced by context `kkamji-al2023` with full cluster level privileges. Do you want to continue [y/N]? y
-{"level":"info","msg":"ServiceAccount \"argocd-manager\" created in namespace \"kube-system\"","time":"2025-05-31T00:21:42+09:00"}
-{"level":"info","msg":"ClusterRole \"argocd-manager-role\" created","time":"2025-05-31T00:21:42+09:00"}
-{"level":"info","msg":"ClusterRoleBinding \"argocd-manager-role-binding\" created","time":"2025-05-31T00:21:42+09:00"}
-{"level":"info","msg":"Created bearer token secret for ServiceAccount \"argocd-manager\"","time":"2025-05-31T00:21:42+09:00"}
+{"level":"info","msg":"ServiceAccount \"argocd-manager\" created in namespace \"kube-system\"","time":"2025-05-30T00:21:42+09:00"}
+{"level":"info","msg":"ClusterRole \"argocd-manager-role\" created","time":"2025-05-30T00:21:42+09:00"}
+{"level":"info","msg":"ClusterRoleBinding \"argocd-manager-role-binding\" created","time":"2025-05-30T00:21:42+09:00"}
+{"level":"info","msg":"Created bearer token secret for ServiceAccount \"argocd-manager\"","time":"2025-05-30T00:21:42+09:00"}
 Cluster 'https://F9B06D6BAF4D073065E9EE06283344FA.sk1.ap-northeast-2.eks.amazonaws.com' added
 
 # 클러스터 상태 확인
