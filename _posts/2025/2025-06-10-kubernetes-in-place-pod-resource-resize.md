@@ -6,7 +6,7 @@ categories: [Kubernetes]
 tags: [kubernetes, pod, resource, resize, in-place, devops, eks]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/argocd/argocd.webp
+  path: /assets/img/kubernetes/kubernetes.webp
 ---
 
 **Kubernetes v1.33 Release Note** - <https://kubernetes.io/blog/2025/04/23/kubernetes-v1-33-release/>
