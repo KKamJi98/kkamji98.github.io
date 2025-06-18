@@ -151,6 +151,8 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 >   - 컨테이너 이미지의 스냅샷 및 레이어 정보 저장  
 {: .prompt-info}
 
+---
+
 ## 문제 발생 과정 및 원인 분석
 
 ### 문제 발생 과정
@@ -193,6 +195,8 @@ sudo crictl rmi --prune
 kubectl delete pods --field-selector=status.phase=Failed -n image-converter
 ```
 
+---
+
 ## 문제 재발 방지 방법
 
 ### 1. **모니터링 강화**
@@ -215,6 +219,8 @@ resources:
 ### 3. 정기적인 디스크 관리
 
 - 디스크 공간 점검 및 관리 스크립트를 사용해 주기적으로 이미지 정리 수행 (CronJob)
+
+---
 
 ## 마무리
 
