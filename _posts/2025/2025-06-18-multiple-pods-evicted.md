@@ -9,15 +9,15 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-쿠버네티스 환경에서 이미지를 변환해주는 웹 사이트 <https://image-converter.kkamji.net> 를 로컬 클러스터에서 운영하던 도중 **여러 Pod가 동시에 Evicted 되는 문제가 발생**했습니다. 이번 포스팅에서는 당시 상황과 원인을 분석하고 해결 방법과 재발 방지 방법을 소개합니다.
+쿠버네티스 환경에서 이미지를 변환해주는 웹 사이트 <https://image-converter.kkamji.net> 를 로컬 클러스터에서 운영하던 도중 **여러 Pod가 동시에 Evicted 되는 문제가 발생**했습니다. 이번 포스팅에서는 당시 상황과 원인을 분석하고 해결 방법과 재발 방지 방법에 대해 알아보겠습니다.
 
 ---
 
 ## 상황
 
-GitHub Actions와 ArgoCD를 이용해 자동으로 CI/CD 배포 환경을 구성하고 있습니다. 코드가 배포되면 ArgoCD가 자동으로 배포 작업을 수행하며, Slack을 통해 알람을 받는 구조로 운영 중입니다.
+**GitHub Actions**과 **ArgoCD**를 이용해 자동으로 CI/CD 배포 환경을 구성하고 있습니다. 코드가 배포되면 **ArgoCD**가 자동으로 배포 작업을 수행하며, **Slack**을 통해 알람을 받는 구조로 운영 중입니다.
 
-그런데 특정 배포 직후부터 약 3분 간격으로 ArgoCD가 Sync되었다는 알람을 반복적으로 받았습니다. ArgoCD 대시보드에서 확인해보니 무려 63개의 Pod가 Degraded 상태였고, kubectl 명령어로 상세 조회해보니 Pod들이 Evicted 상태이며 일부는 ContainerStatusUnknown으로 나타났습니다.
+그런데 특정 배포 직후부터 약 3분 간격으로 **ArgoCD**가 `Sync` 되었다는 알람을 반복적으로 받았습니다. **ArgoCD** 대시보드에서 확인해보니 무려 63개의 Pod가 `Degraded` 상태였고, kubectl 명령어로 상세 조회해보니 Pod들이 `Evicted` 상태이며 일부는 `ContainerStatusUnknown으로` 나타났습니다.
 
 ### ArgoCD Slack Alarms
 
@@ -41,6 +41,13 @@ image-converter-backend-8bc77f4c4-swwhm     0/1     Evicted                  0  
 ...
 ...
 ```
+
+---
+
+## 원인 분석
+
+> PV를 사용하는 Pod의 디스크 사용량 증가에 따른 노드 디스크 부족
+{: .prompt-tip}
 
 ### Describe Pod
 
@@ -153,9 +160,7 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 
 ---
 
-## 문제 발생 과정 및 원인 분석
-
-### 문제 발생 과정
+## 문제 발생 과정 정리
 
 1. 디스크 사용량이 highThreshold(85%) 초과 → kubelet **Garbage Collection** 시도
    - `Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold`
@@ -166,11 +171,6 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 
 > ArgoCD의 Auto Sync 기능이 이 반복적인 상황을 지속적으로 감지하여 계속 재배포를 시도하며 Sync 알람을 반복해서 전송  
 {: .prompt-warning}
-
-### 원인
-
-> PV를 사용하는 Pod의 디스크 사용량 증가에 따른 노드 디스크 부족
-{: .prompt-tip}
 
 ---
 
