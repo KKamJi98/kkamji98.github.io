@@ -170,7 +170,7 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 4. ArgoCD Auto Sync가 Sync 상태 점검 → 계속 OutOfSync 감지 후 재배포 시도
 
 > ArgoCD의 Auto Sync 기능이 이 반복적인 상황을 지속적으로 감지하여 계속 재배포를 시도하며 Sync 알람을 반복해서 전송  
-{: .prompt-warning}
+{: .prompt-danger}
 
 ---
 
