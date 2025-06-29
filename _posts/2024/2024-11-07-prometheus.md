@@ -48,10 +48,10 @@ image:
 
 ## Prometheus 구축 - Helm
 
-> 실습 환경은 아래와 같습니다.
-> Kubernetes (v1.29.6)
-> Helm (v3.16.2)
-> StorageClass (rancher.io/local-path)
+> 실습 환경은 아래와 같습니다.  
+> Kubernetes (v1.29.6)  
+> Helm (v3.16.2)  
+> StorageClass (rancher.io/local-path)  
 {: .prompt-tip}
 
 ### prometheus-community Helm Chart Repository 추가
