@@ -9,7 +9,12 @@ image:
   path: /assets/img/grafana/grafana.webp
 ---
 
-1부 [Kubernetes 리소스 모니터링(1) - Prometheus](https://kkamji.net/posts/prometheus/)와 2부 [Kubernetes 리소스 모니터링 (2) - Grafana](https://kkamji.net/posts/grafana/)에 이어서 이번 시간에는 **Prometheus**에서 수집한 지표를 **Grafana**를 사용해 시각화 하는 방법에 대해 알아보도록 하겠습니다.
+이번 시간에는 **Prometheus**에서 수집한 지표를 **Grafana**를 사용해 시각화 하는 방법에 대해 알아보도록 하겠습니다.
+
+#### 이전글
+
+- [Kubernetes 리소스 모니터링 (1) - Prometheus](https://kkamji.net/posts/prometheus/)
+- [Kubernetes 리소스 모니터링 (2) - Grafana](https://kkamji.net/posts/grafana/)
 
 ---
 
