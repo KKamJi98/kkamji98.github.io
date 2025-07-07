@@ -2,7 +2,7 @@
 title: Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동
 date: 2025-06-21 01:31:49 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Monitoring, Metric]
 tags: [kubernetes, devops, monitoring, prometheus, thanos, minio]     # TAG names should always be lowercase
 comments: true
 image:

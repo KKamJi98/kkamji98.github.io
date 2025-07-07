@@ -6,7 +6,7 @@ categories: [Kubernetes]
 tags: [kubernetes, devops, endpoint, endpoint-slice, kubernetes-api]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kubernetes/kubernetes.webp
+  path: /assets/img/kubernetes/endpoint_vs_endpointslice.webp
 ---
 
 아래 Kubernetes v1.33의 CHANGELOG를 확인하다보면 아래와 같이 **Endpoints API(core/v1)**가 **Deprecated** 되고, 이를 대체할 수 있는 **EndpointSlice API(discovery.k8s.io/v1)**의 사용을 권장하고 있음을 확인하실 수 있습니다.  
