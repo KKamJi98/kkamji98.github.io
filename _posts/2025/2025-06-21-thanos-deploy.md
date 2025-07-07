@@ -111,9 +111,9 @@ bucketweb:
 
 compactor:
   enabled: true
-  retentionResolutionRaw: 15d # 원본(1s 해상도) => 15 일까지
-  retentionResolution5m: 30d  # 5m down-sampling => 30 일
-  retentionResolution1h: 90d  # 1h down-sampling => 90 일
+  retentionResolutionRaw: 3d # 원본(1s 해상도)
+  retentionResolution5m:  15d  # 5m down-sampling
+  retentionResolution1h: 90d  # 1h down-sampling
 
 storegateway:
   enabled: true
@@ -138,11 +138,17 @@ metrics:
 
 ```yaml
 ## kkamji_local_with_thanos.yaml
+grafana:
+  defaultDashboardsTimezone: browser # TimeZone 설정 (default: UTC)
+  sidecar:
+    datasources:
+      url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090/
+
 prometheus:
   thanosService:
     enabled: true # Thanos Sidecar용 Service 생성
   prometheusSpec:
-    retention: 15d # 메트릭 데이터 보존 기간
+    retention: 7d # 메트릭 데이터 보존 기간
     thanos:
       objectStorageConfig:
         existingSecret: # Thanos Helm에서 생성한 objectStorageConfig Secret 지정
