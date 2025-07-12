@@ -61,8 +61,7 @@ html {
     margin-bottom: 0;
     font-size: $code-font-size;
     line-height: 1.4rem;
-    white-space: pre-wrap;
-    word-wrap: break-word; /* Fixed Safari overflow-x */
+    word-wrap: normal; /* Fixed Safari overflow-x */
   }
 
   table {
@@ -79,8 +78,7 @@ html {
 
       pre {
         overflow: visible; /* Fixed iOS safari overflow-x */
-        white-space: pre-wrap;
-        word-break: break-all; /* Fixed iOS safari linenos code break */
+        word-break: normal; /* Fixed iOS safari linenos code break */
       }
     }
   }
