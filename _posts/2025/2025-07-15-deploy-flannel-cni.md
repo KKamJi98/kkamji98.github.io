@@ -155,6 +155,8 @@ for i in w1 w2 ; do echo ">> node : cilium-$i <<"; sshpass -p 'vagrant' ssh -o S
 for i in w1 w2 ; do echo ">> node : cilium-$i <<"; sshpass -p 'vagrant' ssh -o StrictHostKeyChecking=no vagrant@cilium-$i sudo iptables -t nat -S ; echo; done
 ```
 
+---
+
 ## Sample Application 배포 및 확인
 
 ```bash
@@ -226,6 +228,8 @@ EOF
 crictl ps
 for i in w1 w2 ; do echo ">> node : cilium-$i <<"; sshpass -p 'vagrant' ssh vagrant@cilium-$i sudo crictl ps ; echo; done
 ```
+
+---
 
 ## 통신 확인
 
