@@ -19,8 +19,8 @@ image:
 ---
 
 ## 1. [.gitignore] 파일이란?
->  **Git 저장소에서 추적하지 않을 파일 또는 디렉토리를 지정하는 데 사용되는 설정 파일**
 
+> **Git 저장소에서 추적하지 않을 파일 또는 디렉토리를 지정하는 데 사용되는 설정 파일**
 
 ---
 
@@ -46,11 +46,12 @@ image:
 ---
 
 ## 3. [gitignore.io] 홈페이지 사용법
+
 > 1.[gitignore.io](https://gitignore.io) 홈페이지에 들어간다.
 
 ![image](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/10da090c-58f9-4cba-a431-7449611702e5)
 ---
-> 2.아래 Text를 입력하는 곳에 운영 체제, 개발 환경, 프로그래밍 언어를 기입하고 생성 버튼을 누른다   
+> 2.아래 Text를 입력하는 곳에 운영 체제, 개발 환경, 프로그래밍 언어를 기입하고 생성 버튼을 누른다  
 
 ![image-1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/e63013d7-3093-4c9a-bb70-bef2792bfacf)
 ---
@@ -59,6 +60,14 @@ image:
 ![image-2](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/3fd3da45-c3ce-4fdf-bf24-4c7e3aaedce9)
 
 <br><br>
+
+---
+
+## Reference
+
+- [gitignore.io](https://gitignore.io)
+
+---
 
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKam.\_\.Ji](https://www.linkedin.com/in/taejikim/)**
