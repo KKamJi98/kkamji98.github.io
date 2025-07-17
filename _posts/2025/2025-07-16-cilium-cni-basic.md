@@ -120,7 +120,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 
 > - [Cilium Docs - Routing](https://docs.cilium.io/en/stable/network/concepts/routing/)
 
-Cilium에는 크게 **Encapsulation (Tunnels) Mode**와 **Direct Routing (Native) Mode**가 있습니다.  
+Cilium에는 크게 **Encapsulation (Tunnel) Mode**와 **Direct Routing (Native) Mode**가 있습니다.  
 
 ![Cilium Networking Modes](/assets/img/kubernetes/cilium/cilium_networking_modes.webp)
 
