@@ -64,7 +64,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         const countElement = document.getElementById('goatcounter-main-count');
         if (countElement) {
-          fetch('https://{{ site.analytics.goatcounter.id }}.goatcounter.com/counter/')
+          fetch('https://{{ site.analytics.goatcounter.id }}.goatcounter.com/counter.json')
             .then(response => response.json())
             .then(data => {
               countElement.textContent = data.count;
