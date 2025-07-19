@@ -13,6 +13,8 @@ image:
 
 기존 Kubernetes의 네트워크 방식(ex: kube-proxy 기반 iptables/ipvs)이 가진 한계를 극복하기 위해 설계되었으며, 현재 많은 글로벌 기업에서 프로덕션 환경에 널리 사용되고 있습니다.
 
+![Cilium Intro](/assets/img/kubernetes/cilium_intro.webp)
+
 ### 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
