@@ -48,34 +48,13 @@
   </nav>
 
   
-  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
-    <div class="d-flex justify-content-center w-100 mb-3">
-      <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-outline-primary" style="pointer-events: none;">
-          Views
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-primary" style="pointer-events: none;">
-          <span id="goatcounter-main-count">--</span>
-        </button>
-      </div>
-    </div>
-  
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const countElement = document.getElementById('goatcounter-main-count');
-        if (countElement) {
-          fetch('https://{{ site.analytics.goatcounter.id }}.goatcounter.com/counter/')
-            .then(response => response.json())
-            .then(data => {
-              countElement.textContent = data.count;
-            })
-            .catch(error => {
-              console.error('Error fetching GoatCounter main page views:', error);
-              countElement.textContent = 'N/A';
-            });
-        }
-      });
-    </script>
+  {% comment %} <div class="align-items-center w-100" style="text-align: center; margin-bottom: 1rem;">
+    <a href="https://kkamji.net">
+      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkkamji.net&count_bg=%23000000&title_bg=%23555555&icon=amazonaws.svg&icon_color=%23E7E7E7&title=Views&edge_flat=false" alt="View Count Badge"/>
+    </a>    
+  </div> {% endcomment %}
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     {% unless site.theme_mode %}
       <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
