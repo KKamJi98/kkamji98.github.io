@@ -465,7 +465,12 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ## INTERNAL-IP 설정 변경
 
-위에서 확인한대로, `cilium-m1` VM은 INTERNAL-IP가 정상적으로 192.168.10.100으로 되어있지만 `cilium-w1`, `cilium-w2` VM은 eth0번 IP인 `10.0.2.15`를 갖고 있습니다. 이는 kubelet이 노드의 INTERNAL-IP로 기본적으로 Routing Table에서 default gateway가 연결된 Interface IP를 선택하기 때문입니다. 현재 구성에서는 `eth0`(NAT 인터페이스)가 default route로 설정되어 있기 때문에, 의도하지 않은 `10.0.2.15`가 INTERNAL-IP로 설정된 것입니다. 이러한 문제를 방지하기 위해서는 `--node-ip` 플래그를 이용해 명시적으로 `eth1`의 IP를 전달해주는 방법을 사용할 수 있습니다. 예시) <https://github.com/KKamJi98/cilium-lab/blob/main/vagrant-advanced/k8s-w.sh>
+위에서 확인한대로, `cilium-m1` VM은 INTERNAL-IP가 정상적으로 192.168.10.100으로 되어있지만 `cilium-w1`, `cilium-w2` VM은 eth0번 IP인 `10.0.2.15`를 갖고 있습니다. 이는 kubelet이 노드의 INTERNAL-IP로 기본적으로 Routing Table에서 default gateway가 연결된 Interface IP를 선택하기 때문입니다. 현재 구성에서는 `eth0`(NAT 인터페이스)가 default route로 설정되어 있기 때문에, 의도하지 않은 `10.0.2.15`가 INTERNAL-IP로 설정된 것입니다. 이러한 문제를 방지하기 위해서는 `JoinConfiguration` 파일을 사용해 해당 설정 파일에 node ip를 명시적으로 설정 한 뒤, `kubeadm join --config {join_configuration_file.yaml}` 명령을 통해 Join 하는 방법을 방법을 사용할 수 있습니다.  
+
+예시) <https://github.com/KKamJi98/cilium-lab/blob/main/vagrant-advanced/k8s-w.sh>
+
+- <https://github.com/KKamJi98/cilium-lab/blob/main/vagrant-advanced/configurations/join-configuration.yaml>
+- <https://github.com/KKamJi98/cilium-lab/blob/main/vagrant-advanced/k8s-w.sh>
 
 추가) `cilium-m1` 노드의 INTERNAL_IP가 정상인 이유는 `kubeadm init` 명령어의 `--apiserver-advertise-address=192.168.10.100`을 지정해주었기 때문입니다.
 
