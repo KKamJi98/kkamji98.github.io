@@ -1,6 +1,6 @@
 ---
 title: Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]
-date: 2025-07-18 23:50:29 +0900
+date: 2025-07-18 21:23:05 +0900
 author: kkamji
 categories: [Kubernetes]
 tags: [kubernetes, devops, flannel, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
