@@ -6,14 +6,14 @@ categories: [Kubernetes]
 tags: [kubernetes, devops, flannel, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kubernetes/kubernetes.webp
+  path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
 **Cilium**은 리눅스의 최신 Kernel 기술인 **eBPF**(extended Berkeley Packet Filter)를 기반으로 동작하는 오픈소스 네트워크 및 보안 솔루션입니다. Kubernetes와 같은 컨테이너 환경에서 높은 성능과 뛰어난 보안을 제공하는 클라우드 네이티브 네트워크 플러그인(CNI: Container Network Interface)입니다.
 
 기존 Kubernetes의 네트워크 방식(ex: kube-proxy 기반 iptables/ipvs)이 가진 한계를 극복하기 위해 설계되었으며, 현재 많은 글로벌 기업에서 프로덕션 환경에 널리 사용되고 있습니다.
 
-![Cilium Intro](/assets/img/kubernetes/cilium_intro.webp)
+![Cilium Intro](/assets/img/kubernetes/cilium/cilium_intro.webp)
 
 ### 관련 글
 
@@ -24,7 +24,7 @@ image:
 
 ## 기존 Kubernetes Network의 한계 (iptables)
 
-> - [eBPF Basic, IPTables/Netfilter 방식과 eBPF 방식 비교 - kangdorr](https://blog.naver.com/kangdorr/222593265958)
+> - [eBPF Basic, iptables/netfilter 방식과 eBPF 방식 비교 - kangdorr](https://blog.naver.com/kangdorr/222593265958)
 
 Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux Network Stack**을 사용합니다. 하지만 이러한 방식은 복잡하고, 변경에 시간이 오래걸리며, Layer를 건너 뛰기 어렵다는 단점이 있습니다.
 
