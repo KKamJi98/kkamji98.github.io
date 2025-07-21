@@ -18,7 +18,7 @@ image:
 
 ---
 
-**Thanos**는 **Prometheus**의 확장성과 고가용성 문제를 해결하기 위해 개발된 오픈소스 프로젝트입니다. 2017년에 시작되어 현재 **CNCF(Cloud Native Computing Foundation) Incubating** 프로젝트로 발전하고 있습니다. **Thanos**는 **Prometheus**의 장기 데이터 저장, 고가용성, 글로벌 쿼리 뷰 등의 기능을 제공하여 대규모 모니터링 환경에서 **Prometheus**아래와 같은 한계를 극복할 수 있게 해줍니다.
+**Thanos**는 **Prometheus**의 확장성과 고가용성 문제를 해결하기 위해 개발된 오픈소스 프로젝트입니다. 2017년에 시작되어 현재 **CNCF(Cloud Native Computing Foundation) Incubating** 프로젝트로 발전하고 있습니다. **Thanos**는 **Prometheus**의 장기 데이터 저장, 고가용성, 글로벌 쿼리 뷰 등의 기능을 제공하여 대규모 모니터링 환경에서 아래와 같은 한계를 극복할 수 있게 해줍니다.
 
 #### Prometheus의 한계
 
