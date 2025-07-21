@@ -442,14 +442,14 @@ curl-pod                  1/1     Running   0          4m19s   172.20.0.87    ci
 webpod-697b545f57-bjlnx   1/1     Running   0          4m19s   172.20.2.2     cilium-w2   <none>           <none>
 webpod-697b545f57-lqzm9   1/1     Running   0          4m19s   172.20.1.249   cilium-w1   <none>           <none>
 
-# ciliumendpoints 확인
+# cilium endpoints 확인
 ❯ kubectl get ciliumendpoints
 NAME                      SECURITY IDENTITY   ENDPOINT STATE   IPV4           IPV6
 curl-pod                  3012                ready            172.20.0.87
 webpod-697b545f57-bjlnx   18197               ready            172.20.2.2
 webpod-697b545f57-lqzm9   18197               ready            172.20.1.249
 
-# ciliumeendpoint list 확인
+# cilium endpoint list 확인
 ❯ kubectl exec -it -n kube-system ds/cilium -c cilium-agent -- cilium-dbg endpoint list
 ENDPOINT   POLICY (ingress)   POLICY (egress)   IDENTITY   LABELS (source:key[=value])                                                  IPv6   IPv4           STATUS
            ENFORCEMENT        ENFORCEMENT
@@ -579,6 +579,13 @@ KubeProxyReplacement Details:
 ...
 
 ```
+
+## Reference
+
+- [Cilium Docs - Component Overview](https://docs.cilium.io/en/stable/overview/component-overview/)
+- [Cilium Docs - System Requirements](https://docs.cilium.io/en/stable/operations/system_requirements/)
+- [Cilium Docs - Kubernetes Without kube-proxy](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)
+- [Cilium Docs - Helm Reference](https://docs.cilium.io/en/stable/helm-reference/)
 
 ---
 
