@@ -9,11 +9,14 @@ image:
   path: /assets/img/prometheus/prometheus.webp
 ---
 
-현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes 클러스터의 리소스 모니터링 시스템을 구축하는 과정을 아래와 같이 3부작으로 여러분께 공유하려 합니다.
+현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes 클러스터의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
 
-1. **Prometheus** 소개와 구축
-2. **Grafana** 소개와 구축
-3. **Prometheus**와 **Grafana** 연동 및 Import 대시보드
+### 관련 글
+
+1. [Kubernetes 리소스 모니터링 (1) - Prometheus (현재 글)]({% post_url 2024/2024-11-07-prometheus %})
+2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
+3. [Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동]({% post_url 2024/2024-11-09-prometheus-grafana %})
+4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동]({% post_url 2025/2025-06-21-thanos-deploy %})
 
 ---
 
