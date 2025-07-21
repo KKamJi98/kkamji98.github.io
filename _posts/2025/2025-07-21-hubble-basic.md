@@ -1,6 +1,6 @@
 ---
 title: Cilium Hubble 알아보기 [Cilium Study 2주차] (작성중)
-date: 2025-07-21 01:13:55 +0900
+date: 2025-07-21 01:43:55 +0900
 author: kkamji
 categories: [Kubernetes]
 tags: [kubernetes, devops, hubble, hubble-relay ,cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
@@ -20,6 +20,7 @@ image:
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
 3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
+5. [Cilium Hubble 알아보기 [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-21-hubble-basic %})
 
 ---
 
