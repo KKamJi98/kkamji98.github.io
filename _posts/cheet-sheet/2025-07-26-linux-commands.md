@@ -1,15 +1,15 @@
 ---
 title: Linux Command Cheat Sheet
-date: 2025-07-26 22:28:00 +0900
+date: 2025-07-26 21:28:11 +0900
 author: kkamji
 categories: [Linux]
-tags: [linux, bash, shell, devops, command-line]     # TAG names should always be lowercase
+tags: [linux, bash, shell, devops, command-line, cli]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/linux/linux-terminal.webp
+  path: /assets/img/linux/linux.webp
 ---
 
-Linux 시스템 관리 및 일상 업무에서 자주 사용하는 명령어들을 정리한 치트시트입니다.
+Linux를 사용하며 알게된 CLI 명령어들을 공유합니다.
 
 ## 파일 및 디렉토리 관리
 

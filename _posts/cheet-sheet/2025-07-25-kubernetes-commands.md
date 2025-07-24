@@ -1,15 +1,15 @@
 ---
 title: Kubernetes Command Cheat Sheet
-date: 2025-07-25 01:42:00 +0900
+date: 2025-07-25 01:12:59 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, kubectl, devops, k8s, container]     # TAG names should always be lowercase
+tags: [kubernetes, kubectl, devops, k8s, container, cli]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-Kubernetes를 사용하며 자주 사용하는 kubectl 명령어들을 정리한 치트시트입니다.
+Kubernetes를 사용하며 알게된 CLI 명령어들을 공유합니다.
 
 ## 기본 설정 및 컨텍스트
 
@@ -270,22 +270,146 @@ kubectl get pods --field-selector status.phase!=Running  # 실행 중이 아닌 
 kubectl get events --sort-by=.metadata.creationTimestamp | tail  # 최근 이벤트
 ```
 
-## 문제 해결 및 디버깅
+## 고급 모니터링 및 실시간 감시
 
 ```shell
-# 클러스터 상태 확인
-kubectl cluster-info dump                            # 클러스터 전체 정보 덤프
+# 실시간 Pod 모니터링
+watch -n2 'kubectl get pods -A --sort-by=.metadata.creationTimestamp | tail -20'  # 2초마다 최근 Pod 20개
+watch -n2 'kubectl get pods -A -o wide --sort-by=.metadata.creationTimestamp | tail -20'  # Pod IP, Node 정보 포함
+watch -n2 'kubectl get pods -A | grep -v Running'    # Running이 아닌 Pod 실시간 모니터링
+watch -n1 'kubectl top pods -A --sort-by=cpu | head -20'  # CPU 사용량 상위 20개 Pod
+
+# 실시간 Node 모니터링
+watch -n2 'kubectl get nodes --sort-by=.metadata.creationTimestamp'  # 생성 시간순 Node 조회
+watch -n2 'kubectl get nodes -L topology.ebs.csi.aws.com/zone -L node.kubernetes.io/app --sort-by=.metadata.creationTimestamp'  # AZ, NodeGroup 라벨 표시
+watch -n2 'kubectl get nodes | grep -v Ready'        # Ready가 아닌 Node 실시간 모니터링
+watch -n1 'kubectl top nodes --sort-by=cpu'          # CPU 사용량 기준 Node 정렬
+watch -n1 'kubectl top nodes --sort-by=memory'       # 메모리 사용량 기준 Node 정렬
+
+# 실시간 Event 모니터링
+watch -n2 'kubectl get events -A --sort-by=.metadata.managedFields[].time | tail -20'  # 시간순 이벤트 조회
+watch -n2 'kubectl get events -A --field-selector type!=Normal --sort-by=.metadata.managedFields[].time | tail -20'  # 비정상 이벤트만
+watch -n2 'kubectl get events --field-selector involvedObject.kind=Pod --sort-by=.lastTimestamp | tail -15'  # Pod 관련 이벤트만
+
+# Pod 상태별 개수 모니터링
+watch -n2 'kubectl get pods -A --no-headers | awk "{print \$4}" | sort | uniq -c'  # Pod 상태별 개수
+watch -n2 'kubectl get pods -A --no-headers | awk "{print \$1}" | sort | uniq -c'  # 네임스페이스별 Pod 개수
+```
+
+## API 리소스 및 고급 쿼리
+
+```shell
+# API 리소스 탐색
+kubectl api-resources                                # 사용 가능한 모든 API 리소스 목록
+kubectl api-resources --verbs=list --namespaced -o name  # 네임스페이스 리소스 중 list 가능한 것들
+kubectl api-resources --api-group=apps              # 특정 API 그룹의 리소스
+kubectl api-resources --namespaced=false            # 클러스터 레벨 리소스만
+kubectl api-resources --namespaced=true             # 네임스페이스 레벨 리소스만
+kubectl api-resources --verbs=get,list,create,update,patch,watch,delete  # 모든 CRUD 동작 가능한 리소스
+
+# API 버전 확인
+kubectl api-versions                                 # 사용 가능한 API 버전 목록
+kubectl explain <resource>                           # 리소스 스키마 설명
+kubectl explain pod.spec                             # 특정 필드 설명
+kubectl explain pod.spec.containers                  # 중첩된 필드 설명
+
+# 모든 리소스 조회 (고급)
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -A  # 모든 네임스페이스 리소스
+kubectl api-resources --verbs=list --namespaced=false -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found  # 모든 클러스터 리소스
+kubectl get all -A                                   # 기본 리소스들만 (pod, service, deployment 등)
+kubectl get $(kubectl api-resources --namespaced=true --verbs=list -o name | tr '\n' ',' | sed 's/,$//') -A  # 모든 네임스페이스 리소스 한번에
+```
+
+## 컨테이너 재시작 및 로그 분석
+
+```shell
+# 재시작된 컨테이너 찾기
+kubectl get pods -A -o jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{range .status.containerStatuses[*]}{.name}{"\t"}{.restartCount}{"\n"}{end}{end}' | sort -k4 -nr  # 재시작 횟수 기준 정렬
+kubectl get pods -A --field-selector=status.phase=Running -o jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{range .status.containerStatuses[*]}{if gt .restartCount 0}{.name}{"\t"}{.restartCount}{"\n"}{end}{end}{end}'  # 재시작된 컨테이너만
+
+# 이전 컨테이너 로그 (재시작된 경우)
+kubectl logs -n <namespace> <pod-name> -c <container-name> --previous  # 이전 컨테이너 로그
+kubectl logs -n <namespace> <pod-name> -c <container-name> --previous --tail=100  # 이전 컨테이너 로그 100줄
+kubectl logs -n <namespace> <pod-name> --all-containers --previous  # 모든 컨테이너의 이전 로그
+
+# 로그 스트리밍 및 필터링
+kubectl logs -n <namespace> <pod-name> -f --tail=50  # 실시간 로그 스트리밍 (최근 50줄부터)
+kubectl logs -n <namespace> <pod-name> -f | grep ERROR  # 에러 로그만 필터링
+kubectl logs -n <namespace> <pod-name> --since=1h    # 최근 1시간 로그만
+kubectl logs -n <namespace> <pod-name> --since-time=2023-01-01T10:00:00Z  # 특정 시간 이후 로그
+```
+
+## 노드 그룹 및 라벨 기반 필터링
+
+```shell
+# 노드 그룹별 필터링 (AWS EKS 환경)
+kubectl get nodes -l node.kubernetes.io/app=my-nodegroup  # 특정 NodeGroup 필터링
+kubectl get pods -A --field-selector spec.nodeName=<node-name>  # 특정 노드의 Pod들
+kubectl get nodes -L topology.ebs.csi.aws.com/zone -L node.kubernetes.io/app  # AZ, NodeGroup 라벨 표시
+kubectl get nodes -l topology.ebs.csi.aws.com/zone=us-west-2a  # 특정 AZ의 노드들
+
+# 라벨 기반 고급 필터링
+kubectl get pods -A -l 'environment in (production,staging)'  # 여러 라벨 값으로 필터링
+kubectl get pods -A -l 'environment!=development'    # 특정 라벨 값 제외
+kubectl get pods -A -l 'environment,tier'            # 두 라벨이 모두 있는 Pod
+kubectl get pods -A -l '!environment'                # 특정 라벨이 없는 Pod
+
+# 필드 셀렉터 고급 사용
+kubectl get pods -A --field-selector=status.phase!=Running,spec.restartPolicy=Always  # 여러 필드 조건
+kubectl get events --field-selector involvedObject.kind=Pod,type=Warning  # Pod 관련 경고 이벤트
+kubectl get pods --field-selector metadata.namespace!=kube-system  # 특정 네임스페이스 제외
+```
+
+## 리소스 사용량 및 성능 분석
+
+```shell
+# 리소스 사용량 상세 분석
+kubectl top pods -A --containers                     # 컨테이너별 리소스 사용량
+kubectl top pods -A --sort-by=cpu                    # CPU 사용량 기준 정렬
+kubectl top pods -A --sort-by=memory                 # 메모리 사용량 기준 정렬
+kubectl top nodes --sort-by=cpu                      # 노드 CPU 사용량 정렬
+kubectl top nodes --sort-by=memory                   # 노드 메모리 사용량 정렬
+
+# 리소스 제한 및 요청 확인
+kubectl describe pods -A | grep -A 5 "Limits\|Requests"  # 모든 Pod의 리소스 제한/요청
+kubectl get pods -A -o jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{range .spec.containers[*]}{.resources.requests.cpu}{"\t"}{.resources.requests.memory}{"\t"}{.resources.limits.cpu}{"\t"}{.resources.limits.memory}{"\n"}{end}{end}'  # 리소스 요청/제한 테이블 형식
+
+# 노드 리소스 할당 현황
+kubectl describe nodes | grep -A 5 "Allocated resources"  # 노드별 리소스 할당 현황
+kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.allocatable.cpu}{"\t"}{.status.allocatable.memory}{"\n"}{end}'  # 노드별 할당 가능한 리소스
+```
+
+## 고급 디버깅 및 문제 해결
+
+```shell
+# 클러스터 전체 상태 점검
+kubectl cluster-info dump --output-directory=/tmp/cluster-dump  # 클러스터 전체 정보 덤프
 kubectl get componentstatuses                        # 컴포넌트 상태 확인
-kubectl get cs                                       # 컴포넌트 상태 확인 (축약)
+kubectl get --raw /healthz                           # 클러스터 헬스 체크
+kubectl get --raw /metrics                           # 메트릭 엔드포인트 확인
 
-# 리소스 정리
-kubectl delete pods --field-selector status.phase=Succeeded  # 완료된 Pod 삭제
-kubectl delete pods --field-selector status.phase=Failed     # 실패한 Pod 삭제
-kubectl delete all --all                             # 모든 리소스 삭제 (주의!)
+# 네트워킹 디버깅
+kubectl get pods -A -o wide | grep -v Running        # 네트워크 문제로 실행되지 않는 Pod
+kubectl get endpoints -A                             # 서비스 엔드포인트 확인
+kubectl get networkpolicies -A                       # 네트워크 정책 확인
+kubectl describe service <service-name> -n <namespace>  # 서비스 상세 정보
 
-# 성능 및 용량 확인
-kubectl describe nodes | grep -A 5 "Allocated resources"  # 노드 리소스 할당 현황
-kubectl get pods --all-namespaces -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName  # Pod와 노드 매핑
+# DNS 문제 해결
+kubectl get pods -n kube-system -l k8s-app=kube-dns  # CoreDNS Pod 상태
+kubectl logs -n kube-system -l k8s-app=kube-dns      # CoreDNS 로그
+kubectl run -it --rm debug --image=busybox --restart=Never -- nslookup kubernetes.default.svc.cluster.local  # DNS 해상도 테스트
+
+# RBAC 디버깅
+kubectl auth can-i --list --as=system:serviceaccount:<namespace>:<serviceaccount>  # 서비스 계정 권한 확인
+kubectl get clusterrolebindings -o wide | grep <user-or-group>  # 클러스터 역할 바인딩 확인
+kubectl get rolebindings -A -o wide | grep <user-or-group>  # 역할 바인딩 확인
+kubectl describe clusterrole <role-name>             # 클러스터 역할 상세 정보
+
+# 리소스 정리 및 유지보수
+kubectl delete pods --field-selector status.phase=Succeeded -A  # 완료된 Pod 삭제
+kubectl delete pods --field-selector status.phase=Failed -A     # 실패한 Pod 삭제
+kubectl get pods -A --field-selector=status.phase=Evicted       # Evicted Pod 확인
+kubectl delete pods -A --field-selector=status.phase=Evicted    # Evicted Pod 삭제
 ```
 
 ---

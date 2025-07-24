@@ -1,15 +1,15 @@
 ---
 title: AWS CLI Command Cheat Sheet
-date: 2025-07-24 23:15:00 +0900
+date: 2025-07-24 23:15:53 +0900
 author: kkamji
 categories: [AWS]
 tags: [aws, cli, devops, cloud, aws-cli]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/aws/aws-cli.webp
+  path: /assets/img/aws/aws.webp
 ---
 
-AWS CLI를 사용하며 자주 사용하는 명령어들을 정리한 치트시트입니다.
+AWS CLI를 사용하며 알게된 CLI 명령어들을 공유합니다.
 
 ## 기본 설정
 
@@ -130,15 +130,44 @@ aws eks list-clusters                                # EKS 클러스터 목록
 aws eks describe-cluster --name my-cluster           # 클러스터 정보 조회
 aws eks create-cluster --name my-cluster --version 1.21 --role-arn arn:aws:iam::123456789012:role/eks-service-role
 aws eks delete-cluster --name my-cluster             # 클러스터 삭제
+aws eks update-cluster-version --name my-cluster --version 1.22  # 클러스터 버전 업데이트
+aws eks update-cluster-config --name my-cluster --logging '{"enable":[{"types":["api","audit","authenticator","controllerManager","scheduler"]}]}'
 
 # 노드 그룹 관리
 aws eks list-nodegroups --cluster-name my-cluster    # 노드 그룹 목록
 aws eks describe-nodegroup --cluster-name my-cluster --nodegroup-name my-nodegroup
-aws eks create-nodegroup --cluster-name my-cluster --nodegroup-name my-nodegroup --subnets subnet-12345678
+aws eks create-nodegroup --cluster-name my-cluster --nodegroup-name my-nodegroup --subnets subnet-12345678 --instance-types t3.medium --ami-type AL2_x86_64 --capacity-type ON_DEMAND
 aws eks delete-nodegroup --cluster-name my-cluster --nodegroup-name my-nodegroup
+aws eks update-nodegroup-version --cluster-name my-cluster --nodegroup-name my-nodegroup  # 노드 그룹 버전 업데이트
+aws eks update-nodegroup-config --cluster-name my-cluster --nodegroup-name my-nodegroup --scaling-config minSize=1,maxSize=10,desiredSize=3
+
+# Fargate 프로파일 관리
+aws eks list-fargate-profiles --cluster-name my-cluster  # Fargate 프로파일 목록
+aws eks describe-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile
+aws eks create-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile --pod-execution-role-arn arn:aws:iam::123456789012:role/eks-fargate-profile
+aws eks delete-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile
+
+# 애드온 관리
+aws eks list-addons --cluster-name my-cluster        # 애드온 목록
+aws eks describe-addon --cluster-name my-cluster --addon-name vpc-cni
+aws eks create-addon --cluster-name my-cluster --addon-name vpc-cni --addon-version v1.12.6-eksbuild.2
+aws eks update-addon --cluster-name my-cluster --addon-name vpc-cni --addon-version v1.13.4-eksbuild.1
+aws eks delete-addon --cluster-name my-cluster --addon-name vpc-cni
 
 # kubeconfig 업데이트
 aws eks update-kubeconfig --region us-west-2 --name my-cluster  # kubeconfig 업데이트
+aws eks update-kubeconfig --region us-west-2 --name my-cluster --alias my-cluster-alias  # 별칭과 함께 업데이트
+aws eks update-kubeconfig --region us-west-2 --name my-cluster --role-arn arn:aws:iam::123456789012:role/EKSRole  # 특정 역할로 업데이트
+
+# 클러스터 액세스 관리
+aws eks list-access-entries --cluster-name my-cluster  # 액세스 엔트리 목록
+aws eks create-access-entry --cluster-name my-cluster --principal-arn arn:aws:iam::123456789012:user/my-user
+aws eks associate-access-policy --cluster-name my-cluster --principal-arn arn:aws:iam::123456789012:user/my-user --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy
+
+# EKS 클러스터 문제 해결
+aws eks describe-cluster --name my-cluster --query 'cluster.status'  # 클러스터 상태
+aws eks describe-cluster --name my-cluster --query 'cluster.health'  # 클러스터 헬스 상태
+aws ec2 describe-instances --filters "Name=tag:kubernetes.io/cluster/my-cluster,Values=owned" --query 'Reservations[*].Instances[*].[InstanceId,State.Name,PrivateIpAddress]'  # EKS 노드 EC2 인스턴스 상태
 ```
 
 ## CloudFormation 관련 명령어
