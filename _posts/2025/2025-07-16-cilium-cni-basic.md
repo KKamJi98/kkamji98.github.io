@@ -9,16 +9,6 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-### 관련 글
-
-1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
-2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
-3. [Cilium CNI 알아보기 [Cilium Study 1주차] (현재 글)]({% post_url 2025/2025-07-16-cilium-cni-basic %})
-4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
-5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
-
----
-
 ## Cilium 이란?
 
 **Cilium**은 리눅스의 최신 Kernel 기술인 **eBPF**(extended Berkeley Packet Filter)를 기반으로 동작하는 오픈소스 네트워크 및 보안 솔루션입니다. Kubernetes와 같은 컨테이너 환경에서 높은 성능과 뛰어난 보안을 제공하는 클라우드 네이티브 네트워크 플러그인(CNI: Container Network Interface)입니다.
@@ -26,6 +16,14 @@ image:
 기존 Kubernetes의 네트워크 방식(ex: kube-proxy 기반 iptables/ipvs)이 가진 한계를 극복하기 위해 설계되었으며, 현재 많은 글로벌 기업에서 프로덕션 환경에 널리 사용되고 있습니다.
 
 ![Cilium Intro](/assets/img/kubernetes/cilium/cilium_intro.webp)
+
+### 관련 글
+
+1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
+2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
+3. [Cilium CNI 알아보기 [Cilium Study 1주차] (현재 글)]({% post_url 2025/2025-07-16-cilium-cni-basic %})
+4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
+5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
 
 ---
 
