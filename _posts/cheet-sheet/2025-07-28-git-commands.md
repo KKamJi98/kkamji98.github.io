@@ -6,7 +6,7 @@ categories: [DevOps, Git]
 tags: [git, version-control, devops, cli, github, gitlab]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/git/git-commands.webp
+  path: /assets/img/github/github.webp
 ---
 
 Git을 사용하며 알게된 CLI 명령어들을 공유합니다.

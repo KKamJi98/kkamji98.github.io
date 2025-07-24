@@ -2,11 +2,11 @@
 title: jq & yq Command Cheat Sheet
 date: 2025-07-27 01:41:04 +0900
 author: kkamji
-categories: [DevOps, Tools]
+categories: [Linux]
 tags: [jq, yq, json, yaml, parsing, cli, devops]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/devops/jq-yq.webp
+  path: /assets/img/linux/linux.webp
 ---
 
 JSON과 YAML 데이터를 처리하는 도구인 jq와 yq사용하며 알게된 CLI 명령어들을 공유합니다.
