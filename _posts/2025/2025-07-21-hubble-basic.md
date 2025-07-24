@@ -1,5 +1,5 @@
 ---
-title: Cilium Hubble 알아보기 [Cilium Study 2주차] (작성중)
+title: Cilium Hubble 알아보기 [Cilium Study 2주차]
 date: 2025-07-21 01:43:55 +0900
 author: kkamji
 categories: [Kubernetes]
@@ -9,6 +9,11 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
+저번 시간에 **Cilium**의 구성요소에 대해 알아보았고, Cilium을 배포까지 해보았습니다. 이번시간에는 Cilium의 구성요소 중 **Observability**를 담당하는 Hubble에 대해 알아보고 배포해보도록 하겠습니다.
+
+![Hubble Web UI](/assets/img/kubernetes/cilium/hubble-web-ui.webp)
+> Hubble UI - <https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/>
+
 ### 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
@@ -16,13 +21,6 @@ image:
 3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-21-hubble-basic %})
-
----
-
-저번 시간에 **Cilium**의 구성요소에 대해 알아보았고, Cilium을 배포까지 해보았습니다. 이번시간에는 Cilium의 구성요소 중 **Observability**를 담당하는 Hubble에 대해 알아보고 배포해보도록 하겠습니다.
-
-![Hubble Web UI](/assets/img/kubernetes/cilium/hubble-web-ui.webp)
-> Hubble UI - <https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/>
 
 ---
 
@@ -79,7 +77,7 @@ Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 
 ## Hubble 배포 전 현재 환경 점검
 
-```bash
+```shell
 ## Cilium Status 확인
 ❯ cilium status
     /¯¯\
@@ -201,7 +199,7 @@ kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor 
   - Latency Exemplar 기록 활성화 - `httpV2:exemplars=true`  
   - 메트릭에 소스/목적지 IP·네임스페이스 등 라벨 포함 - `labelsContext=source_ip\\,source_namespace\\...`  
 
-```bash
+```shell
 helm upgrade cilium cilium/cilium --namespace kube-system --reuse-values \
 --set hubble.enabled=true \
 --set hubble.relay.enabled=true \
@@ -220,7 +218,9 @@ helm upgrade cilium cilium/cilium --namespace kube-system --reuse-values \
 
 ## Hubble 배포 확인
 
-```bash
+### Hubble 상태 확인
+
+```shell
 ## Cilium Status 확인 (Hubble Relay: OK)
 ❯ cilium status
     /¯¯\
@@ -295,18 +295,181 @@ LISTEN 0      4096               *:9963             *:*    users:(("cilium-opera
 LISTEN 0      4096               *:9962             *:*    users:(("cilium-agent",pid=252230,fd=7))
 
 
-
+root@k8s-m1:~# vim -d before.txt after.txt
 ```
 
+### Hubble 배포 전 & 배포 후 포트 변경 확인
 
-root@k8s-m1:~# vim -d before.txt after.txt
+![Hubble Port Comparison](/assets/img/kubernetes/cilium/hubble_port_comparsion.webp)
 
+> 새로 4244(Hubble gRPC), 9965(Hubble Metrics), 9962(Cilium Metrics)의 포트가 추가된 것 확인할 수 있습니다.  
+> 특히 4244 포트는 각 노드의 cilium-agent가 Hubble gRPC 서비스를 외부에 열어주는 핵심 포트로, 클러스터 네트워크 이벤트를 gRPC 스트림으로 실시간 노출합니다.  
+> hubble-relay 컴포넌트가 이 4244 포트를 통해 각 노드의 cilium-agent와 연결하고, 여러 노드의 이벤트를 집계하여 UI나 CLI 등 클러스터 전체 관점에서 조회가 가능하게 만들어줍니다.  
+> 여기에 hubble-peer라는 ClusterIP 서비스가 있는데, 이 서비스가 각 노드의 4244 포트를 백엔드(Endpoints)로 묶어줍니다. Relay가 바로 이 peer 서비스를 통해 각 노드와 통신합니다.  
+{: .prompt-tip}
+
+```shell
+## 각 노드에서 포트 확인
+❯ for i in m1 w1 w2 ; do echo ">> node : k8s-$i <<"; ssh k8s-$i sudo ss -tnlp |grep 4244 ; echo; done                          
+
+>> node : k8s-m1 <<
+LISTEN 0      4096               *:4244             *:*    users:(("cilium-agent",pid=252230,fd=39))               
+
+>> node : k8s-w1 <<
+LISTEN 0      4096               *:4244             *:*    users:(("cilium-agent",pid=3251969,fd=34))  
+
+>> node : k8s-w2 <<
+LISTEN 0      4096               *:4244             *:*    users:(("cilium-agent",pid=2654424,fd=54))   
+
+## hubble-peer 서비스/엔드포인트 확인
+❯ kubectl get svc,ep -n kube-system hubble-peer
+NAME                  TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
+service/hubble-peer   ClusterIP   10.96.145.0   <none>        443/TCP   5h55m
+
+NAME                    ENDPOINTS                                                     AGE
+endpoints/hubble-peer   192.168.10.100:4244,192.168.10.101:4244,192.168.10.102:4244   5h55m
+
+## hubble relay config 확인
+❯ kubectl describe cm -n kube-system hubble-relay-config
+...
+cluster-name: default
+peer-service: "hubble-peer.kube-system.svc.cluster.local.:443"
+listen-address: :4245
+...
+```
+
+### Hubble 접속 확인
+
+```shell
+## 아까 서비스의 노드포트로 지정한 31234 포트 확인
+❯ kubectl get svc | grep hubble-ui    
+hubble-ui                                       NodePort    10.233.17.147   <none>        80:31234/TCP                   46h
+
+## Node IP 확인 후 브라우저에서 <Node IP>:31234 로 접속 (Node IP -> 10.0.0.101로 접속)
+❯ kubectl get no -o wide                                                                                                             
+NAME     STATUS   ROLES           AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+k8s-m1   Ready    control-plane   216d   v1.33.2   10.0.0.101    <none>        Ubuntu 24.04.1 LTS   6.8.0-63-generic   containerd://2.0.5
+k8s-w1   Ready    <none>          216d   v1.33.2   10.0.0.201    <none>        Ubuntu 24.04.1 LTS   6.8.0-63-generic   containerd://2.0.5
+k8s-w2   Ready    <none>          216d   v1.33.2   10.0.0.202    <none>        Ubuntu 24.04.1 LTS   6.8.0-63-generic   containerd://2.0.5
+```
+
+![Hubble UI](/assets/img/kubernetes/cilium/hubble_ui.webp)
+![Hubble Web UI Network Flow Check](/assets/img/kubernetes/cilium/hubble_ui_network_flow_check.webp)
+
+## Hubble CLI 알아보기
+
+이번에는 Hubble CLI를 설치하고 사용하는 방법을 알아보겠습니다. Hubble은 기본적으로 Hubble Relay의 gRPC API에 연결하여 네트워크 흐름을 조회합니다. 이를 위해 먼저 로컬 포트로 API 접근을 연결해 줘야 합니다.
+
+### Install Hubble CLI
+
+```shell
+# Hubble CLI Install <https://docs.cilium.io/en/stable/observability/hubble/setup/#install-the-hubble-client>
+HUBBLE_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/hubble/master/stable.txt)
+HUBBLE_ARCH=amd64
+if [ "$(uname -m)" = "aarch64" ]; then HUBBLE_ARCH=arm64; fi
+curl -L --fail --remote-name-all https://github.com/cilium/hubble/releases/download/$HUBBLE_VERSION/hubble-linux-${HUBBLE_ARCH}.tar.gz{,.sha256sum}
+sudo tar xzvfC hubble-linux-${HUBBLE_ARCH}.tar.gz /usr/local/bin
+which hubble
+hubble status
+```
+
+### Hubble API 접근을 위한 Port-Forward 설정
+
+hubble CLI는 기본적으로 로컬의 `localhost:4245`를 참조하지만, 보통 로컬과 클러스터는 따로 있는 경우가 많습니다. 해당 경우 직접 API 주소를 명시해서 외부에서 사용하거나 포트 포워딩을 한 뒤 사용해야합니다. 저는 `hubble config set port-forward true` 해당 명령어를 통해 hubble 명령어를 칠 때 자동으로 port-forward해서 사용하도록 하겠습니다.
+
+```shell
+## kubeconfig를 로컬 PC에 구성한 경우 (명령어에 Endpoint 명시)
+hubble status --server <API-SERVER-ENDPOINT>:4245
+
+## server 주소를 기본값으로 설정 (Endpoint 설정 유지)
+hubble config set server <API-SERVER-ENDPOINT>:4245
+
+## Hubble Relay를 로컬 4245 포트로 연결
+cilium hubble port-forward &
+
+## Hubble CLI를 날릴 때 단발성으로 잠깐 포트포워딩
+hubble <command> -P
+
+## Hubble CLI를 날릴 때 포트포워딩을 하는 설정을 유지 (-P 옵션 없이도 자동 포트포워딩)
+hubble config set port-forward true
+
+###################################
+## Hubble CLI Test
+###################################
+
+## 클러스터는 외부에 있지만 기본으로 localhost인 127.0.0.1:4245 로 API를 요청 (실패)
+❯ hubble status   
+failed getting status: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:4245: connect: connection refused"
+
+## 포트포워딩 자동 설정
+❯ hubble config set port-forward true
+
+## 설정 확인
+❯ hubble config view
+...
+kube-namespace: kube-system
+kubeconfig: ""
+port-forward: true
+port-forward-port: "4245"
+request-timeout: 12s
+server: localhost:4245
+...
+
+## 명령어 다시 시도 (성공)
+❯ hubble status                      
+Healthcheck (via 127.0.0.1:4245): Ok
+Current/Max Flows: 12,285/12,285 (100.00%)
+Flows/s: 225.93
+Connected Nodes: 3/3
+
+# You can also query the flow API and look for flows
+❯ k get ciliumendpoints.cilium.io -n kube-system
+NAME                                        SECURITY IDENTITY   ENDPOINT STATE   IPV4            IPV6
+coredns-675485d6df-vrnqg                    2793                ready            10.233.66.62
+coredns-675485d6df-xkf24                    2793                ready            10.233.65.168
+coredns-secondary-786c7b8cb9-jlmp5          47610               ready            10.233.64.145
+coredns-secondary-786c7b8cb9-nr99w          47610               ready            10.233.66.75
+dns-autoscaler-c54cbdb65-pbph5              40763               ready            10.233.66.77
+dns-autoscaler-secondary-85746d6f77-v5rpv   37943               ready            10.233.66.226
+external-dns-7c55468cb8-sljnj               9341                ready            10.233.64.154
+hubble-relay-5dcd46f5c-4rf8n                61428               ready            10.233.65.13
+hubble-ui-76d4965bb6-pgcv7                  817                 ready            10.233.65.37
+metrics-server-77bd77b6cb-g4z2t             3009                ready            10.233.64.1
+
+❯ hubble observe # Kubernetes 클러스터 내에서 발생하고 있는 네트워크 흐름(flow) 이벤트 확인
+Jul 24 13:42:21.107: 127.0.0.1:8080 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.107: 127.0.0.1:8080 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.107: 127.0.0.1:8080 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.107: 127.0.0.1:8080 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.107: 127.0.0.1:8080 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.108: 127.0.0.1:60146 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.108: 127.0.0.1:60146 (world) <> kube-system/coredns-675485d6df-xkf24 (ID:2793) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:35786 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:8080 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:8080 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:35786 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:35786 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:8080 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:8080 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:8080 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.127: 127.0.0.1:35786 (world) <> kube-system/coredns-secondary-786c7b8cb9-jlmp5 (ID:47610) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.162: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f5c-4rf8n (ID:61428) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f5c-4rf8n (ID:61428) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f5c-4rf8n (ID:61428) pre-xlate-rev TRACED (TCP)
+Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f5c-4rf8n (ID:61428) pre-xlate-rev TRACED (TCP)
+
+
+❯ hubble observe -f # 클러스터 내에서 발생하는 모든 네트워크 흐름 이벤트를 실시간으로 스트리밍하여 화면에 출력
+❯ hubble observe -f --pod {POD_NAME} # 특정 Ppd에 대한 네트워크 흐름 이벤트 확인
+❯ hubble observe -f --namespace my-namespace # 특정 Namespace에 대한 네트워크 흐름 이벤트 확인
+```
 
 ## Reference
 
 - [Cilium Docs - Introduction to Cilium & Hubble](https://docs.cilium.io/en/stable/overview/intro/)
 - [Cilium Docs - Network Observability with Hubble](https://docs.cilium.io/en/stable/observability/hubble/)
 - [Cilium Docs - Service Map & Hubble UI](https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/)
+- [Cilium Docs - Setting up Hubble Observability](https://docs.cilium.io/en/stable/observability/hubble/setup/)
 - [Cilium Github](https://github.com/cilium/hubble)
 
 ---
