@@ -1,5 +1,5 @@
 ---
-title: Cilium & Hubble Command Cheet Sheet  [Cilium Study 2주차] (작성중)
+title: Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
 categories: [Kubernetes]
