@@ -9,18 +9,9 @@ image:
   path: /assets/img/kubernetes/thanos.webp
 ---
 
-### 관련 글
-
-1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %})
-2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
-3. [Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동]({% post_url 2024/2024-11-09-prometheus-grafana %})
-4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동 (현재 글)]({% post_url 2025/2025-06-21-thanos-deploy %})
-
----
-
 **Thanos**는 **Prometheus**의 확장성과 고가용성 문제를 해결하기 위해 개발된 오픈소스 프로젝트입니다. 2017년에 시작되어 현재 **CNCF(Cloud Native Computing Foundation) Incubating** 프로젝트로 발전하고 있습니다. **Thanos**는 **Prometheus**의 장기 데이터 저장, 고가용성, 글로벌 쿼리 뷰 등의 기능을 제공하여 대규모 모니터링 환경에서 아래와 같은 한계를 극복할 수 있게 해줍니다.
 
-#### Prometheus의 한계
+### Prometheus의 한계
 
 | 한계 항목             | 설명                                                                      |
 | --------------------- | ------------------------------------------------------------------------- |
@@ -30,6 +21,15 @@ image:
 | 전역 쿼리 불가능      | 여러 Prometheus 인스턴스 간 데이터를 통합 쿼리할 수 없음                  |
 | 스토리지 확장성 부족  | 로컬 TSDB 기반으로 저장소 확장이 어렵고 중앙 스토리지 연동이 제한적       |
 | 멀티 클러스터 한계    | 다수 클러스터에서의 통합 모니터링 구성이 복잡하고 별도 솔루션 필요        |
+
+---
+
+### 관련 글
+
+1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %})
+2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
+3. [Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동]({% post_url 2024/2024-11-09-prometheus-grafana %})
+4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동 (현재 글)]({% post_url 2025/2025-06-21-thanos-deploy %})
 
 ---
 
