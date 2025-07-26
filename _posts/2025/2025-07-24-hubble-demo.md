@@ -3,7 +3,7 @@ title: Star Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2
 date: 2025-07-24 02:02:50 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, devops, hubble, hubble-relay ,cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, hubble, hubble-relay, cilium, star-wars, cilium-study, cloudnet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp
@@ -156,7 +156,9 @@ c2 endpoint list
 
 ## Check Current Access
 
-**deathstar** 서비스는 `org=empire` 라벨이 붙은 함선만 착륙 요청을 허용해야 합니다. 하지만 아직 CiliumNetworkPolicy 같은 정책을 적용하지 않았기 때문에, `org=alliance(xwing)`나 `org=empire(tiefighter)` 여부와 관계없이 모든 함선이 착륙을 요청할 수 있습니다.
+**deathstar** 서비스는 `org=empire` 라벨이 붙은 함선만 착륙 요청을 허용해야 합니다.  
+
+하지만 아직 CiliumNetworkPolicy 같은 정책을 적용하지 않았기 때문에, `org=alliance(xwing)`나 `org=empire(tiefighter)` 여부와 관계없이 모든 함선이 착륙을 요청할 수 있습니다.
 
 ```shell
 ## 아래 출력에서 xwing 와 tiefighter 의 IDENTITY 메모
@@ -289,7 +291,7 @@ Cilium을 사용하고 Network Policy를 정의할 때, Endpoint IP는 중요하
 
 이번에는 `org=empire` 레이블이 있는 `tiefighter`만 `deathstar`의 80/TCP 포트에 접근하도록 허용해보겠습니다. 해당 경우 `org=alliance` 레이블의 `xwing`은 차단됩니다.
 
-Cilium은 stateful connection tracking을 수행합니다. 프런트엔드 -> 백엔드 방향이 허용되면, 같은 TCP/UDP 세션의 응답 패킷도 자동으로 허용됩니다. -> 리턴 패킷 자동 허용
+Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend 방향이 허용되면, 같은 TCP/UDP 세션의 응답 패킷도 자동으로 허용됩니다. -> 리턴 패킷 자동 허용
 
 ### Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
 
@@ -548,6 +550,7 @@ ciliumnetworkpolicy.cilium.io "rule1" deleted
 ## Reference
 
 - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
+- [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)
 
 ---
 
