@@ -396,7 +396,6 @@ command terminated with exit code 28
 > L7 동작 처리는 cilium-envoy 데몬셋이 담당 합니다.  
 {: .prompt-danger}
 
-![alt text](image.png)
 ![Life of a Packet](/assets/img/kubernetes/cilium/life_of_a_packet_intgress.webp)
 
 > - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)
