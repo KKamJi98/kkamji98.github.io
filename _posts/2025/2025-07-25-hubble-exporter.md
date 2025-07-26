@@ -98,6 +98,8 @@ kubectl -n kube-system exec $POD -- tail -f /var/run/cilium/hubble/events.log
 kubectl -n kube-system exec $POD -- sh -c 'tail -f /var/run/cilium/hubble/events.log' | jq
 ```
 
+---
+
 ## Static Export 방식 예시 (Helm)
 
 ```shell
@@ -165,6 +167,8 @@ allowlist:
     - '{"source_pod":["kube-system/"]}'
     - '{"destination_pod":["kube-system/"]}'
 ```
+
+---
 
 ## Dynamic Export 방식 예시
 
@@ -240,6 +244,8 @@ total 54464
 {"flow":{"time":"2025-07-26T18:46:58.762540831Z","verdict":"FORWARDED","l4":{"TCP":{"source_port":10250,"destination_port":45168,"flags":{"ACK":true}}},"source":{},"destination":{"namespace":"monitoring","pod_name":"prometheus-kube-prometheus-stack-prometheus-0"},"node_name":"k8s-w2","is_reply":true},"node_name":"k8s-w2","time":"2025-07-26T18:46:58.762540831Z"}
 ```
 
+---
+
 ## Performance tuning tip
 
 - 필터로 이벤트 수를 먼저 줄이고(allow/deny), 그다음 필드 수를 줄입니다(fieldMask 사용).
@@ -247,6 +253,8 @@ total 54464
 - fieldMask A/B 테스트를 수행합니다. 파일 크기, CPU 사용률 변화를 직접 측정해 최적 조합을 찾습니다.
 - 파일 로테이션과 압축 정책을 둡니다. rotate.* 옵션 또는 사이드카/Fluent Bit로 외부 전송 후 삭제를 고려합니다.
 - Exporter 리소스를 모니터링합니다. cilium-agent 컨테이너 CPU/메모리를 지켜보고, 규칙이 많으면 병목이 생길 수 있습니다.
+
+---
 
 ## Reference
 

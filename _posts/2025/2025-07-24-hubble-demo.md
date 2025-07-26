@@ -71,6 +71,8 @@ alias c1bpf="kubectl exec -it $CILIUMPOD1 -n kube-system -c cilium-agent -- bpft
 alias c2bpf="kubectl exec -it $CILIUMPOD2 -n kube-system -c cilium-agent -- bpftool"
 ```
 
+---
+
 ## Star Wars Demo 배포
 
 ```shell
@@ -392,6 +394,8 @@ command terminated with exit code 28
 
 ![XWing Dropped](/assets/img/kubernetes/cilium/xwing_dropped.webp)
 
+---
+
 ## L7 Network Policy(HTTP-aware) 적용 및 테스트
 
 마이크로서비스 간 최소 권한 원칙을 지키기 위해서는 L3/L4 수준의 허용 여부만으로는 부족할 수 있습니다. 더 나은 보안을 위해서는 특정 HTTP 메서드와 경로까지 제한해야 합니다. 예시로 `deathstar` 서비스에는 관리 목적의 **API**(`/v1/exhaust-port` 등)가 존재하며, 임의의 함선이 호출해서는 안 됩니다.
@@ -526,6 +530,8 @@ kubectl -n kube-system exec <cilium-pod> -- cilium-dbg policy get
 
 ![L7 Layer Hubble Dropped](/assets/img/kubernetes/cilium/l7_layer_hubble_dropped.webp)
 
+---
+
 ## 삭제
 
 ```shell
@@ -538,6 +544,8 @@ pod "xwing" deleted
 ❯ kubectl delete cnp rule1
 ciliumnetworkpolicy.cilium.io "rule1" deleted
 ```
+
+---
 
 ## 마무리
 
