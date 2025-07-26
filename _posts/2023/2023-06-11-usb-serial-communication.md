@@ -27,7 +27,7 @@ comments: true
 
 
 
-- Arduino Uno의 0번과 1번 핀으로 시리얼 통신 수행 → 하드웨어 시리얼 포트
+- Arduino Uno의 0번과 1번 핀으로 시리얼 통신 수행 -> 하드웨어 시리얼 포트
 - 최근에는 시리얼 포트가 장착된 컴퓨터가 거의 없지만 USB 포트를 DB9 시리얼 포트로 변환하는 어댑터는 여전히 사용하고 있음
 - Arduino Uno에 사용된 **ATmega328P** Micro Controller는 하나의 하드웨어 시리얼 포트만 가지고 있음
 - Arduino Uno의 Hardware Serial Port는 **데이터 송신(TX, transmit)과 수신(RX, receive)에 디지털 0번과 1번 핀**을 사용

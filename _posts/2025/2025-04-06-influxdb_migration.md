@@ -59,7 +59,7 @@ InfluxDB 1.x 버전에서 데이터를 내보낼 때는 크게 두 가지 접근
 1. **New Influx(influxdb-2)에서 Measurement를 삭제한 뒤**, Old Influx(influxdb-1) Original DB를 Migration  
    - 특정 Measurement를 인위적으로 삭제하고 다시 가져오면, 정상 복원되는지 확인
 
-2. **influxdb-2의 특정 구간 데이터를 삭제한 뒤**(예: 5시간 전부터 3시간 전 까지), Old → New 마이그레이션 후 그 구간이 복구되는지 확인
+2. **influxdb-2의 특정 구간 데이터를 삭제한 뒤**(예: 5시간 전부터 3시간 전 까지), Old -> New 마이그레이션 후 그 구간이 복구되는지 확인
    ```sql
    influx -database test_db -execute "DELETE FROM test_data WHERE time < now() - 3h AND time > now() - 5h"
    ```
@@ -437,7 +437,7 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 1. Measurement 삭제 후 복구  
    - New InfluxDB에서 Measurement를 완전히 삭제한 뒤 Old InfluxDB에서 데이터를 가져오면, 원하는 시점과 데이터가 정상적으로 복원됨을 확인했습니다.  
 2. 특정 시간대 데이터 삭제 후 복구  
-   - New InfluxDB에서 5시간 전부터 3시간 전 사이의 데이터를 삭제한 뒤 Old → New 마이그레이션을 수행하면, 해당 구간의 데이터가 다시 채워져 그래프가 완전하게 복원되었습니다.  
+   - New InfluxDB에서 5시간 전부터 3시간 전 사이의 데이터를 삭제한 뒤 Old -> New 마이그레이션을 수행하면, 해당 구간의 데이터가 다시 채워져 그래프가 완전하게 복원되었습니다.  
 3. 이미 존재하는 시간대 데이터 덮어쓰기(Overwrite)  
    - 특정 시간대에 ‘이상한’ 값(예: 100, 0, 100 등)을 기록해 놓은 뒤 Old InfluxDB 데이터를 가져오면, 정확히 동일한 타임스탬프·태그·필드 조합의 측정값이 덮어써지는 것을 확인했습니다.  
 

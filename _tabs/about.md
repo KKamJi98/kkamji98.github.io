@@ -27,7 +27,7 @@ order: 4
 
 > ## <span style="color:#BF8C79">Skill-Set</span>
 
-| 구분           | 기술                                                           |
+| 구분           | 기술                                                          |
 | -------------- | ------------------------------------------------------------- |
 | AWS            | EC2, EKS, ECS, ECR, RDS, VPC, Route53, CloudFront, CloudWatch |
 | CI/CD          | Jenkins, GitHub Actions, ArgoCD                               |
@@ -73,14 +73,14 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 #### 프로젝트 기술 스택
 
-| 구분      | 기술                                                            |
+| 구분     | 기술                                                            |
 | -------- | --------------------------------------------------------------- |
 | Develop  | Spring Boot, React                                              |
 | Deploy   | EKS, S3, Route53, CloudFront                                    |
 | Database | RDS(MySQL)                                                      |
 | IaC      | Terraform                                                       |
 | CI/CD    | Jenkins, ArgoCD                                                 |
-| 모니터링  | Prometheus, Grafana                                             |
+| 모니터링 | Prometheus, Grafana                                             |
 | AI       | Bedrock (Claude Sonnet 3.5)                                     |
 | ETC      | Notion, Slack, Postman, GitHub, Secrets Manager, Karpenter, HPA |
 
@@ -216,11 +216,11 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 > **S3, DynamoDB 등의 리소스에 대한 Public 접근 차단 후** S3, DynamoDB에서 Access Deny 문제 직면
 > **AWS IRSA** 개념을 공식문서를 통해 습득 후, 팀원들에게 공유  
-{: .prompt-warning}
+{: .prompt-danger}
 ---
 
 > 성능 테스트 도중 다수(500MB 700장)의 이미지 업로드 시 **5분 이상의 시간과 상당한 리소스를 사용**한다는 문제를 발생  
-{: .prompt-warning}
+{: .prompt-danger}
 
 1. 기존 로직에서 이미지 리사이징 기능을 Lambda함수로 분리  
 2. 버지니아 리전을 사용으로 생긴 네트워크 지연 해소를 위해 **Global Accelerator** 도입  

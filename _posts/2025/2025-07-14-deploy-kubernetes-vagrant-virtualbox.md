@@ -23,6 +23,8 @@ image:
 3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
+6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
+7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차] (현재 글) ]({% post_url 2025/2025-07-24-hubble-demo %})
 
 ---
 
@@ -335,7 +337,7 @@ Vagrant로 생성한 VM의 eth0은 모두 10.0.2.15 로 모두 동일하며, 외
 
 ![Vagrant SSH](/assets/img/kubernetes/vagrant_ssh.webp)
 
-- vagrant ssh 접속 시 호스트에 127.0.0.1(2222)를 목적지로 접속 → 이후 포트포워딩(S/DNAT)을 통해서 내부에 VM로 SSH 연결
+- vagrant ssh 접속 시 호스트에 127.0.0.1(2222)를 목적지로 접속 -> 이후 포트포워딩(S/DNAT)을 통해서 내부에 VM로 SSH 연결
 - NAT Mode 에 **10.0.2.2**(GateWay), **10.0.2.3**(DNS Server), **10.0.2.4**(TFTP Server) 용도로 IP 예약
 
 ### Vagrant, VirtualBox 세팅 확인

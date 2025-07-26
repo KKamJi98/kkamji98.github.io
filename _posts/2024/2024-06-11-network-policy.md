@@ -406,17 +406,17 @@ wget: can't connect to remote host (10.152.183.144): Connection timed out
 
 ## 6. 결과
 
-web → was ( O )
+web -> was ( O )
 
-web → db ( X )
+web -> db ( X )
 
-was → web ( O )
+was -> web ( O )
 
-was → db ( O )
+was -> db ( O )
 
-db → web ( X )
+db -> web ( X )
 
-db → was ( O )
+db -> was ( O )
 
 ---
 

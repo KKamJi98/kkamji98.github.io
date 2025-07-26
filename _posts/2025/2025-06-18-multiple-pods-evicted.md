@@ -162,12 +162,12 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 
 ## 문제 발생 과정 정리
 
-1. 디스크 사용량이 highThreshold(85%) 초과 → kubelet **Garbage Collection** 시도
+1. 디스크 사용량이 highThreshold(85%) 초과 -> kubelet **Garbage Collection** 시도
    - `Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold`
-2. GC 대상 이미지 없음 → DiskPressure 상태로 Pod Eviction
+2. GC 대상 이미지 없음 -> DiskPressure 상태로 Pod Eviction
    - `Failed to garbage collect required amount of images. Attempted to free 1290842112 bytes, but only found 0 bytes eligible to free.`
 3. ReplicaSet 컨트롤러가 Evicted Pod 대체 생성 -> 디스크 사용 증가 -> 반복 Eviction
-4. ArgoCD Auto Sync가 Sync 상태 점검 → 계속 OutOfSync 감지 후 재배포 시도
+4. ArgoCD Auto Sync가 Sync 상태 점검 -> 계속 OutOfSync 감지 후 재배포 시도
 
 > ArgoCD의 Auto Sync 기능이 이 반복적인 상황을 지속적으로 감지하여 계속 재배포를 시도하며 Sync 알람을 반복해서 전송  
 {: .prompt-danger}

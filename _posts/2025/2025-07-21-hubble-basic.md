@@ -21,6 +21,8 @@ image:
 3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-21-hubble-basic %})
+6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
+7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
 
 ---
 
@@ -178,18 +180,18 @@ kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor 
 
 기존 Cilium을 배포에 사용되었던 Value를 재사용하고, 아래와 같은 옵션들을 추가해 배포해보도록 하겠습니다. 각 옵션의 용도는 다음과 같습니다.
 
-| 설정 | 설명 |
-|------|------|
-| `--set hubble.enabled=true` | Hubble 가시성 기능 전체 활성화 |
-| `--set hubble.relay.enabled=true` | Hubble Relay(gRPC 집계 서비스) 배포 |
-| `--set hubble.ui.enabled=true` | Hubble UI(웹 대시보드) 배포 |
-| `--set hubble.ui.service.type=NodePort` | UI를 NodePort로 노출 |
-| `--set hubble.ui.service.nodePort=31234` | UI NodePort 번호를 **31234**로 고정 |
-| `--set hubble.export.static.enabled=true` | 플로우 이벤트를 **파일로 내보내기** 기능 활성화 |
-| `--set hubble.export.static.filePath=/var/run/cilium/hubble/events.log` | 내보낼 로그 파일 경로 지정 |
-| `--set prometheus.enabled=true` | Cilium 에이전트 측 메트릭 Service 노출 |
-| `--set operator.prometheus.enabled=true` | Cilium Operator 메트릭도 노출 |
-| `--set hubble.metrics.enableOpenMetrics=true` | Hubble 메트릭을 **OpenMetrics**(Prometheus 호환) 포맷으로 노출 |
+| 설정                                                                    | 설명                                                           |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `--set hubble.enabled=true`                                             | Hubble 가시성 기능 전체 활성화                                 |
+| `--set hubble.relay.enabled=true`                                       | Hubble Relay(gRPC 집계 서비스) 배포                            |
+| `--set hubble.ui.enabled=true`                                          | Hubble UI(웹 대시보드) 배포                                    |
+| `--set hubble.ui.service.type=NodePort`                                 | UI를 NodePort로 노출                                           |
+| `--set hubble.ui.service.nodePort=31234`                                | UI NodePort 번호를 **31234**로 고정                            |
+| `--set hubble.export.static.enabled=true`                               | 플로우 이벤트를 **파일로 내보내기** 기능 활성화                |
+| `--set hubble.export.static.filePath=/var/run/cilium/hubble/events.log` | 내보낼 로그 파일 경로 지정                                     |
+| `--set prometheus.enabled=true`                                         | Cilium 에이전트 측 메트릭 Service 노출                         |
+| `--set operator.prometheus.enabled=true`                                | Cilium Operator 메트릭도 노출                                  |
+| `--set hubble.metrics.enableOpenMetrics=true`                           | Hubble 메트릭을 **OpenMetrics**(Prometheus 호환) 포맷으로 노출 |
 
 * 추가 설명 (길어서 분리)
 `--set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\\,source_namespace\\,source_workload\\,destination_ip\\,destination_namespace\\,destination_workload\\,traffic_direction}"`
@@ -356,6 +358,8 @@ k8s-w2   Ready    <none>          216d   v1.33.2   10.0.0.202    <none>        U
 ![Hubble UI](/assets/img/kubernetes/cilium/hubble_ui.webp)
 ![Hubble Web UI Network Flow Check](/assets/img/kubernetes/cilium/hubble_ui_network_flow_check.webp)
 
+---
+
 ## Hubble CLI 알아보기
 
 이번에는 Hubble CLI를 설치하고 사용하는 방법을 알아보겠습니다. Hubble은 기본적으로 Hubble Relay의 gRPC API에 연결하여 네트워크 흐름을 조회합니다. 이를 위해 먼저 로컬 포트로 API 접근을 연결해 줘야 합니다.
@@ -459,10 +463,12 @@ Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f
 Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f5c-4rf8n (ID:61428) pre-xlate-rev TRACED (TCP)
 
 
-❯ hubble observe -f # 클러스터 내에서 발생하는 모든 네트워크 흐름 이벤트를 실시간으로 스트리밍하여 화면에 출력
-❯ hubble observe -f --pod {POD_NAME} # 특정 Ppd에 대한 네트워크 흐름 이벤트 확인
+❯ hubble observe -f                          # 클러스터 내에서 발생하는 모든 네트워크 흐름 이벤트를 실시간으로 스트리밍하여 화면에 출력
+❯ hubble observe -f --pod {POD_NAME}         # 특정 Ppd에 대한 네트워크 흐름 이벤트 확인
 ❯ hubble observe -f --namespace my-namespace # 특정 Namespace에 대한 네트워크 흐름 이벤트 확인
 ```
+
+---
 
 ## Reference
 

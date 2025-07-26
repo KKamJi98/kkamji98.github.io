@@ -97,7 +97,7 @@ spec:
 - `nginx.ingress.kubernetes.io/auth-realm`: 로그인 창에 보일 Realm 메시지 (선택)
 
 > **중요**: 여기서 `auth-secret`이 가리키는 것은 **htpasswd 파일**을 담은 Secret(위에서 `basic-auth`로 만든 것)입니다.
-{: .prompt-warning}
+{: .prompt-danger}
 
 ### 옵션들
 
@@ -112,7 +112,7 @@ spec:
 Nginx 혹은 Nginx Ingress Controller의 **Basic Auth**를 사용해 별도의 인증 서버를 구축하지 않고 웹사이트에 간단한 인증 절차를 추가할 수 있습니다. 사이드 프로젝트나 테스트용 애플리케이션을 외부에 노출할 때 간단한 인증 보호를 위해 효과적으로 사용할 수 있습니다.  
 
 > **HTTPS** 환경에서만 사용하는 것을 권장합니다.(**HTTP**로 Basic Auth 쓰면 PW가 그대로 노출될 위험이 있음)  
-{: .prompt-warning}
+{: .prompt-danger}
 
 ---
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  

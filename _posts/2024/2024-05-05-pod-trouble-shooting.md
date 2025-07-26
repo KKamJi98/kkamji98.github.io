@@ -91,7 +91,7 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 
 ### EBS 용량 확장
 
-> EC2 → Elastic Block Store → Volume에 들어가서 확인해보자
+> EC2 -> Elastic Block Store -> Volume에 들어가서 확인해보자
 {: .prompt-info}
 
 ![1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/7b2fd302-7940-4f58-9fe2-f02dc5ef7443)

@@ -11,6 +11,16 @@ image:
 
 Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
 
+### 관련 글
+
+1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
+2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
+3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
+4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
+5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
+6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차] (현재 글)]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
+7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
+
 ## 편의성 설정
 
 ```shell
@@ -59,6 +69,10 @@ hubble observe -f                                    # follow 모드(스트림)
 hubble observe --type drop                           # 드롭 이벤트만 출력
 hubble observe --protocol http                       # HTTP 이벤트만 출력
 hubble observe --from-pod ns/pod --to-pod ns/pod     # 특정 Pod 간 흐름 필터링
+hubble observe -f --pod {namespace}/{podname}        # 특정 Pod가 포함된 흐름 필터링 (source or destination)
+hubble observe -f --label {k8s:class}={classname}    # 특정 라벨을 가진 Pod 간의 흐름 필터링
+hubble observe -f --from-identity {IDENTITY_ID}      # 특정 ID에서 시작되는 흐름 필터링
+hubble observe -f --identity {IDENTITY_ID}           # 특정 Security Identity 간의 흐름 필터링
 hubble observe -h                                    # observe 옵션 도움말
 hubble ui                                            # Hubble UI 로컬 실행(포트포워드 필요 시 -P)
 ```
@@ -147,6 +161,11 @@ c0 statedb dump                                      # StateDB 전체를 JSON으
 cilium sysdump --output /tmp/sysdump.tgz              # 문제 발생 시 전체 진단 번들 수집
 cilium connectivity test                              # 기본 연결성 테스트(테스트 리소스 생성 후 검증)
 ```
+
+## Reference
+
+- [Cilium Docs - Command Cheatsheet](https://docs.cilium.io/en/stable/cheatsheet/)
+- [Cilium Docs - Command Reference](https://docs.cilium.io/en/stable/cmdref/)
 
 ---
 

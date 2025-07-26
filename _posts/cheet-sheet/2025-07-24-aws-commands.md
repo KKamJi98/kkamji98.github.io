@@ -147,9 +147,30 @@ aws eks describe-fargate-profile --cluster-name my-cluster --fargate-profile-nam
 aws eks create-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile --pod-execution-role-arn arn:aws:iam::123456789012:role/eks-fargate-profile
 aws eks delete-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile
 
+# 특정 버전과 호환되는 Add-on 리스트 확인
+aws eks describe-addon-versions --kubernetes-version <k8s-version> # 특정 K8s 버전과 호환되는 애드온 버전 확인 ex) `--kubernetes-version 1.33`
+
+# 특정 버전과 호환되는 Add-on 리스트 확인 (table 형태)
+aws eks describe-addon-versions \
+  --kubernetes-version 1.33 \
+  --query 'sort_by(addons, &owner)[].{addonName: addonName, owner: owner, publisher: publisher, type: type}' \
+  --output table
+
+# 특정 버전과 호환되는 vpc-cni의 사용 가능한 버전 확인 (table 형태)
+aws eks describe-addon-versions \
+  --kubernetes-version 1.33 \
+  --addon-name vpc-cni \
+  --query 'addons[].addonVersions[].addonVersion' \
+  --output table
+
 # 애드온 관리
 aws eks list-addons --cluster-name my-cluster        # 애드온 목록
 aws eks describe-addon --cluster-name my-cluster --addon-name vpc-cni
+aws eks describe-addon-versions --kubernetes-version <k8s-version> --addon-name <add-on-name> # 특정 K8s 버전과 특정 애드온 버전 확인
+
+
+
+# 애드온 생성, 업데이트, 삭제
 aws eks create-addon --cluster-name my-cluster --addon-name vpc-cni --addon-version v1.12.6-eksbuild.2
 aws eks update-addon --cluster-name my-cluster --addon-name vpc-cni --addon-version v1.13.4-eksbuild.1
 aws eks delete-addon --cluster-name my-cluster --addon-name vpc-cni
