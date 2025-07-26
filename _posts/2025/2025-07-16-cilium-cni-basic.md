@@ -26,6 +26,7 @@ image:
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
+8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
 
 ---
 

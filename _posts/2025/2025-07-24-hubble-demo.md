@@ -22,6 +22,7 @@ image:
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-24-hubble-demo %})
+8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
 
 ---
 
@@ -466,7 +467,7 @@ Ship landed
 ❯ kubectl exec tiefighter -- curl -s -XPUT deathstar.default.svc.cluster.local/v1/exhaust-port
 Access denied
 
-## 모니터링 로그
+## 모니터링 로그 (API 경로 & HTTP METHOD까지 확인 가능)
 Jul 26 06:57:12.949: default/tiefighter:33338 (ID:22234) -> default/deathstar-8c4c77fb7-vhj8x:80 (ID:27476) http-request DROPPED (HTTP/1.1 PUT http://deathstar.default.svc.cluster.local/v1/exhaust-port)
 
 ❯ kubectl exec xwing -- curl -s -XPOST deathstar.default.svc.cluster.local/v1/request-landing

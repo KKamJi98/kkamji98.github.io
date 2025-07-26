@@ -20,6 +20,7 @@ Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차] (현재 글)]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Start Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
+8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
 
 ## 편의성 설정
 
@@ -66,13 +67,20 @@ hubble config view                                   # 현재 hubble CLI 설정 
 hubble config set server <addr:port>                 # 기본 서버 주소 설정
 hubble observe                                       # 실시간 플로우 출력(기본)
 hubble observe -f                                    # follow 모드(스트림)
-hubble observe --type drop                           # 드롭 이벤트만 출력
+hubble observe --type drop                           # 드롭 이벤트만 출력 (`--verdict DROPPED`와 동일)
+hubble observe --verdict DROPPED --verdict ERROR     # 드롭되거나 오류가 발생한 플로우 필터링
 hubble observe --protocol http                       # HTTP 이벤트만 출력
+hubble observe --http-status "500"                   # 특정 HTTP 상태 코드(500) 필터링
+hubble observe --http-status "4.."                   # 4xx 범위의 HTTP 상태 코드 필터링
+hubble observe --since 5m                            # 지난 5분 동안의 플로우 조회
 hubble observe --from-pod ns/pod --to-pod ns/pod     # 특정 Pod 간 흐름 필터링
 hubble observe -f --pod {namespace}/{podname}        # 특정 Pod가 포함된 흐름 필터링 (source or destination)
 hubble observe -f --label {k8s:class}={classname}    # 특정 라벨을 가진 Pod 간의 흐름 필터링
 hubble observe -f --from-identity {IDENTITY_ID}      # 특정 ID에서 시작되는 흐름 필터링
 hubble observe -f --identity {IDENTITY_ID}           # 특정 Security Identity 간의 흐름 필터링
+hubble observe --to-fqdn cilium.io                   # 특정 FQDN으로 향하는 플로우 필터링
+hubble observe -o json                               # JSON 형식으로 플로우 출력
+hubble observe --print-raw-filters                   # 적용된 필터가 gRPC API에서 어떻게 해석되는지 출력 (디버깅용)
 hubble observe -h                                    # observe 옵션 도움말
 hubble ui                                            # Hubble UI 로컬 실행(포트포워드 필요 시 -P)
 ```
