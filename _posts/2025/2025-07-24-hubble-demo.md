@@ -1,5 +1,5 @@
 ---
-title: Star Wars Demo와 함께 Cilium 동작방식 이해하기 [Cilium Study 2주차]
+title: Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]
 date: 2025-07-24 02:02:50 +0900
 author: kkamji
 categories: [Kubernetes]
