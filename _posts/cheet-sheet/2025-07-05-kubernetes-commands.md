@@ -1,6 +1,6 @@
 ---
 title: Kubernetes Command Cheat Sheet
-date: 2025-07-25 01:12:59 +0900
+date: 2025-07-05 01:12:59 +0900
 author: kkamji
 categories: [Kubernetes]
 tags: [kubernetes, kubectl, devops, k8s, container, cli]     # TAG names should always be lowercase

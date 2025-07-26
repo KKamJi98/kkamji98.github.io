@@ -1,9 +1,9 @@
 ---
 title: Linux Command Cheat Sheet
-date: 2025-07-26 21:28:11 +0900
+date: 2025-03-07 21:28:11 +0900
 author: kkamji
 categories: [Linux]
-tags: [linux, bash, shell, devops, command-line, cli]     # TAG names should always be lowercase
+tags: [linux, bash, shell, devops, command-line, cli, cheet-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/linux/linux.webp

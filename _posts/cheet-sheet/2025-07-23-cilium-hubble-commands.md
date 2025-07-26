@@ -3,7 +3,7 @@ title: Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, devops, hubble, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, hubble, cilium, cilium-study, cloudnet, cheet-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

@@ -3,7 +3,7 @@ title: AWS CLI Command Cheat Sheet
 date: 2025-07-24 23:15:53 +0900
 author: kkamji
 categories: [AWS]
-tags: [aws, cli, devops, cloud, aws-cli]     # TAG names should always be lowercase
+tags: [aws, cli, devops, cloud, aws-cli, cheet-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/aws/aws.webp

@@ -1,9 +1,9 @@
 ---
 title: jq & yq Command Cheat Sheet
-date: 2025-07-27 01:41:04 +0900
+date: 2025-03-23 01:41:04 +0900
 author: kkamji
 categories: [Linux]
-tags: [jq, yq, json, yaml, parsing, cli, devops]     # TAG names should always be lowercase
+tags: [jq, yq, json, yaml, parsing, cli, devops, cheet-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/linux/linux.webp
