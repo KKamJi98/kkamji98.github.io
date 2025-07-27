@@ -369,6 +369,10 @@ Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, E
 
 ![Grafana Imported Dashboard Check](/assets/img/kubernetes/cilium/grafana_imported_dashboard_check.webp)
 
+## Reference
+
+- [Cilium Docs - Monitoring & Metrics](https://docs.cilium.io/en/stable/observability/metrics/)
+
 ---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
