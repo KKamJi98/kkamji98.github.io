@@ -2,7 +2,7 @@
 title: Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Cilium]
 tags: [kubernetes, devops, hubble, cilium, cilium-study, cloudnet, cheet-sheet]     # TAG names should always be lowercase
 comments: true
 image:
@@ -21,6 +21,7 @@ Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차] (현재 글)]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
 8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
+9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
 
 ## 편의성 설정
 
@@ -47,12 +48,12 @@ kubectl get ciliumendpoints.cilium.io -A             # SECURITY IDENTITY 포함 
 ```shell
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg status --verbose  # 상세 상태/헬스 체크
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg metrics list      # Prometheus 메트릭 목록
+kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg config           # 런타임 설정 조회
 
 # 실시간 패킷/이벤트 모니터
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor           # 기본 모니터
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor -v        # 상세 출력(라벨 등)
-kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg mkubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg config # 런타임 설정 조회
-onitor -v -v     # 페이로드 디섹션 포함
+kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor -v -v     # 페이로드 디섹션 포함
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor --related-to=<id>  # 특정 Endpoint 관련 이벤트만
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor --type drop         # 드롭 패킷만 표시
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor -v -v --hex         # 페이로드를 Hex로 출력

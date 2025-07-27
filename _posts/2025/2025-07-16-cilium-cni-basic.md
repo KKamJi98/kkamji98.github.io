@@ -2,7 +2,7 @@
 title: Cilium CNI 알아보기 [Cilium Study 1주차]
 date: 2025-07-16 23:50:29 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Cilium]
 tags: [kubernetes, devops, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
 comments: true
 image:
@@ -27,6 +27,7 @@ image:
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
 8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
+9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
 
 ---
 
