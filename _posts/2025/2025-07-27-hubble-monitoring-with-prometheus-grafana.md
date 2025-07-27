@@ -23,7 +23,7 @@ image:
 6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
 8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
-9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
+9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
 10. [Cilium Metric Monitoring with Prometheus + Grafana [Cilium Study 2주차] (현재 글)]({% post_url 2025/2025-07-27-hubble-monitoring-with-prometheus-grafana %})
 
 ---
@@ -367,7 +367,7 @@ Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, E
 
 ### Dashboard Import 확인
 
-![Grafana Imported Dashboard Check](grafana_imported_dashboard_check.webp)
+![Grafana Imported Dashboard Check](/assets/img/kubernetes/cilium/grafana_imported_dashboard_check.webp)
 
 ---
 
