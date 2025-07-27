@@ -2,7 +2,7 @@
 title: EFK Stack 구축하기 (2) - Elasticsearch
 date: 2024-08-10 04:51:41 +0900
 author: kkamji
-categories: [Monitoring, Metric]
+categories: [Monitoring & Observability, Metric]
 tags: [kubernetes, aws, eks, elasticsearch, elk, efk]     # TAG names should always be lowercase
 comments: true
 image:

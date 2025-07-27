@@ -2,7 +2,7 @@
 title: Stateful과 Stateless 개념 (NACL vs Security Group)
 date: 2024-03-26 14:17:48 +0900
 author: kkamji
-categories: [Network]
+categories: [System, Network]
 tags: [network, stateful, stateless, firewall, nacl, security group, sg]     # TAG names should always be lowercase
 comments: true
 # image:

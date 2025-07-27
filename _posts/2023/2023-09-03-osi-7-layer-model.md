@@ -2,7 +2,7 @@
 title: OSI 7 Layer Model
 date: 2023-09-03 19:17:48 +0900
 author: kkamji
-categories: [Network]
+categories: [System, Network]
 tags: [osi 7 layer, network, cloud, osi, ip, udp, tcp, osi, router, switch]     # TAG names should always be lowercase
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: AWS Summit Seoul 2024
 date: 2024-05-17 21:53:31 +0900
 author: kkamji
-categories: [AWS]
+categories: [Cloud, AWS]
 tags: [aws summit seoul, aws, summit, karpenter, region, ha, ft, monitoring, vectordb, opensearch, llm, rag]     # TAG names should always be lowercase
 comments: true
 image:

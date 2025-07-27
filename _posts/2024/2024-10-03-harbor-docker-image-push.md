@@ -2,7 +2,7 @@
 title: Harbor에 컨테이너 이미지 업로드하기
 date: 2024-10-03 23:44:21 +0900
 author: kkamji
-categories: [Harbor]
+categories: [DevOps, Container]
 tags: [kubernetes, harbor]     # TAG names should always be lowercase
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: Deep Learning과 TensorFlow
 date: 2023-06-13 13:15:55 +0900
 author: kkamji
-categories: [University]
+categories: [Personal, University]
 comments: true
 tags: [tensorflow, deep-learning]     # TAG names should always be lowercase
 # image:

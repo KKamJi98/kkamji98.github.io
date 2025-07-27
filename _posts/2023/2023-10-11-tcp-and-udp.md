@@ -2,7 +2,7 @@
 title: TCP & UDP 개념
 date: 2023-10-11 21:44:32 +0900
 author: kkamji
-categories: [Network]
+categories: [System, Network]
 tags: [network, osi, tcp, udp, control flow, congestion control, packet]     # TAG names should always be lowercase
 comments: true
 # image:

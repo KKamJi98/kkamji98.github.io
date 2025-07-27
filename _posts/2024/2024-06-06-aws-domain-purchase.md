@@ -2,7 +2,7 @@
 title: AWS에서 도메인 구매하기 (Route53)
 date: 2024-06-06 21:33:31 +0900
 author: kkamji
-categories: [AWS]
+categories: [Cloud, AWS]
 tags: [route53, domain, aws]     # TAG names should always be lowercase
 comments: true
 image:

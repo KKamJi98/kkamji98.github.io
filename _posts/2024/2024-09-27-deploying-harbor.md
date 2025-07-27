@@ -2,7 +2,7 @@
 title: Kubernetes에서 Harbor 구축하기
 date: 2024-09-27 21:31:41 +0900
 author: kkamji
-categories: [Harbor]
+categories: [DevOps, Container]
 tags: [kubernetes, harbor]     # TAG names should always be lowercase
 comments: true
 image:

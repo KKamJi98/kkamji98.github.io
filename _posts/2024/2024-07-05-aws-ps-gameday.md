@@ -2,7 +2,7 @@
 title: AWS PS GameDay 후기 및 느낀점
 date: 2024-07-05 20:41:14 +0900
 author: kkamji
-categories: [AWS]
+categories: [Cloud, AWS]
 tags: [aws, public-sector-day, bedrock, party-rock, lambda, gameday]     # TAG names should always be lowercase
 comments: true
 image:

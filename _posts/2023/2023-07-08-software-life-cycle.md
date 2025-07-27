@@ -2,7 +2,7 @@
 title: 소프트웨어 생명 주기 (Software LifeCycle)
 date: 2023-07-08 23:36:55 +0900
 author: kkamji
-categories: [University]
+categories: [Personal, University]
 tags: [sdlc, software-life-cycle, waterfall, prototype-model, spiral-model, agile, agile-model, scrum]     # TAG names should always be lowercase
 comments: true
 image: 

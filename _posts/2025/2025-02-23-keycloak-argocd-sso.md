@@ -2,7 +2,7 @@
 title: Keycloak & ArgoCD SSO 구현하기
 date: 2025-02-23 22:52:55 +0900
 author: kkamji
-categories: [Keycloak]
+categories: [DevOps, SSO]
 tags: [keycloak, sso, realm, argocd, rbac, pkce]     # TAG names should always be lowercase
 comments: true
 image:

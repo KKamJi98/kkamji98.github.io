@@ -2,7 +2,7 @@
 title: InfluxDB Migration 1.x to 1.x
 date: 2025-04-06 10:49:55 +0900
 author: kkamji
-categories: [influxdb]
+categories: [System, DB]
 tags: [influxdb, ec2, aws, tsdb, migration, export, import]
 comments: true
 image:
