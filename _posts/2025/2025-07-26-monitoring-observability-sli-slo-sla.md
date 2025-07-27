@@ -2,7 +2,7 @@
 title: Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]
 date: 2025-07-26 01:29:14 +0900
 author: kkamji
-categories: [Kubernetes, Cilium]
+categories: [Monitoring & Observability]
 tags: [kubernetes, devops, monitoring, observability, sli, slo, sla, cilium-study, cloudnet]
 comments: true
 image:
