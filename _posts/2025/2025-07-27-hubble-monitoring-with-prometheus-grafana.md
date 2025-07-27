@@ -337,8 +337,8 @@ scrape_interval: 30s
 Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, Explore에서 쿼리를 시험하고, 공개된 Cilium 대시보드(ID: 6658)를 Import해 확인해보도록 하겠습니다. Grafana도 위와 동일하게 `ingress`, `NodePort`혹은 `kubectl port-forward`를 사용한 방식 중 편한 방식을 사용해 접속하시면 됩니다.  
 
 > default 계정 정보 (추가로 ID,PW를 지정하지 않았다면 아래 정보로 접속)  
-> Default ID: admin  
-> Default PW: prom-operator  
+> Default ID: `admin`  
+> Default PW: `prom-operator`  
 {: .prompt-tip}
 
 - [Grafana Labs - Cilium Metrics](https://grafana.com/grafana/dashboards/6658-cilium-metrics/)
