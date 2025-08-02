@@ -1,5 +1,5 @@
 ---
-title: IPAM 개념 및 Kubernetes Host Scope vs Cluster Scope 실습 [Cilium Study 3주차]
+title: IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [Cilium Study 3주차]
 date: 2025-07-29 01:13:54 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
