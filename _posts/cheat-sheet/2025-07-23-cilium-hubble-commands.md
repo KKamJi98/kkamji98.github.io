@@ -1,5 +1,5 @@
 ---
-title: Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차]
+title: Cilium & Hubble Command Cheat Sheet [Cilium Study 2주차]
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
@@ -18,12 +18,13 @@ Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
 3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
 5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
-6. [Cilium & Hubble Command Cheet Sheet [Cilium Study 2주차] (현재 글)]({% post_url cheet-sheet/2025-07-23-cilium-hubble-commands %})
+6. [Cilium & Hubble Command Cheat Sheet [Cilium Study 2주차] (현재 글)]({% post_url cheat-sheet/2025-07-23-cilium-hubble-commands %})
 7. [Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
 8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
 9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
 10. [Cilium Metric Monitoring with Prometheus + Grafana [Cilium Study 2주차]]({% post_url 2025/2025-07-27-hubble-monitoring-with-prometheus-grafana %})
-11. [IPAM 개념 및 Kubernetes Host Scope vs Cluster Scope 실습 [Cilium Study 2주차]]({% post_url 2025/2025-07-29-cilium-ipam-mode %})
+11. [IPAM 개념 및 Kubernetes Host Scope vs Cluster Scope 실습 [Cilium Study 3주차]]({% post_url 2025/2025-07-29-cilium-ipam-mode %})
+12. [Cilium 네트워킹 라우팅 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})
 
 ## 편의성 설정
 
