@@ -332,47 +332,63 @@ dmesg                                                # 커널 메시지 확인
 dmesg | tail                                         # 최근 커널 메시지
 ```
 
-## 네트워크 진단 및 도구
+### 네트워크 진단 및 도구
 
-```shell
 # 1. 로컬 네트워크 설정 확인
+ip -br link                                          # 인터페이스 목록 간략히 보기 (UP/DOWN, IP)
 ip addr show                                         # IP 주소, MAC 주소, 인터페이스 상태 확인
 ip -c addr show                                      # 컬러로 보기
 ifconfig                                             # (구 버전) 네트워크 인터페이스 정보
 ip route show                                        # 라우팅 테이블 확인
 ip -c route                                          # 라우팅 테이블 컬러로 확인
 
-# 2. 기본 연결 및 경로 추적
+# 2. 기본 연결 및 경로 추적 (ping, mtr, traceroute)
 ping -c 4 google.com                                 # 4번의 ICMP 요청으로 기본 연결 확인
-traceroute google.com                                # 대상까지의 네트워크 경로 추적
-mtr google.com                                       # ping과 traceroute를 결합, 실시간으로 경로 상태 분석
+traceroute google.com                                # 대상까지의 네트워크 경로 추적 (UDP 기본)
 
-# 3. 포트 및 서비스 확인
+### mtr (My Traceroute) - ping과 traceroute를 결합한 강력한 도구
+sudo mtr 1.1.1.1                                     # 실시간 인터랙티브 모드로 경로 추적
+sudo mtr -n 8.8.8.8                                  # DNS 조회 없이 IP 주소로만 표시
+sudo mtr -rwzc 100 1.1.1.1                            # 100회 실행 후 리포트 출력 (자동화용)
+sudo mtr -rwzc 100 -T -P 443 example.com             # TCP 443 포트로 경로 추적 (방화벽 통과 시 유용)
+sudo mtr -rwzc 100 -u -P 53 1.1.1.1                  # UDP 53 포트로 경로 추적 (DNS 쿼리 경로)
+sudo mtr -rwzc 50 -s 1472 1.1.1.1                    # 패킷 크기 설정 (MTU 문제 확인)
+sudo mtr -rwzc 100 -I eth1 -a 192.168.10.101 8.8.8.8  # 특정 인터페이스와 소스 IP 지정
+sudo mtr -rwzc 200 -T -P 443 example.com > mtr_443.txt # 결과를 파일로 저장
+
+# 3. 포트 및 서비스 확인 (ss, netstat)
 ss -tnlp                                             # TCP 리스닝 소켓과 사용하는 프로세스 확인
 ss -unlp                                             # UDP 리스닝 소켓과 사용하는 프로세스 확인
 ss -tuna                                             # 모든 TCP/UDP 소켓 상태 확인
 netstat -tnlp                                        # (구 버전) ss와 유사한 기능
 
-# 4. DNS 조회
+# 4. DNS 조회 (dig, nslookup, host)
 nslookup google.com                                  # 도메인의 IP 주소 확인
 dig google.com +short                                # 간단한 A 레코드 조회
 dig google.com MX                                    # 메일 서버(MX) 레코드 조회
 host google.com                                      # 간단한 DNS 정보 조회
 
-# 5. 패킷 캡처 및 분석
+# 5. 패킷 캡처 및 분석 (tcpdump, termshark)
+### tcpdump - 저수준 패킷 캡처
 sudo tcpdump -i any -n 'port 80'                     # 모든 인터페이스에서 80번 포트 트래픽 캡처
-sudo tcpdump -i eth0 host 1.2.3.4 -w capture.pcap    # 특정 호스트와의 트래픽을 파일로 저장
 sudo tcpdump -i eth0 -nn -X 'port 53'                # DNS 트래픽(53번 포트) 상세 내용(payload) 보기
-termshark -i eth0                                    # 터미널용 Wireshark, TUI로 패킷 분석
+sudo tcpdump -i eth1 -nn 'udp port 8472'             # VXLAN 캡슐화 트래픽 확인
+sudo tcpdump -i cilium_vxlan -nn icmp                # 가상 터널 인터페이스 내부의 ICMP 패킷 확인
+sudo tcpdump -i eth1 -w /tmp/cap.pcap                # 캡처한 패킷을 파일로 저장
 
-# 6. 원격 연결 및 파일 전송
+### termshark - 터미널용 Wireshark (TUI)
+sudo termshark -i eth1                               # 실시간으로 eth1 인터페이스 캡처 및 분석
+sudo termshark -i eth1 'tcp port 80'                 # BPF 필터로 HTTP 트래픽만 실시간 분석
+termshark -r /tmp/cap.pcap                           # 저장된 pcap 파일 열기
+termshark -r /tmp/cap.pcap 'icmp or tcp port 443'    # 저장된 파일에 필터 적용하여 열기
+
+# 6. 원격 연결 및 파일 전송 (ssh, scp, rsync, wget, curl)
 ssh user@host                                        # SSH 원격 접속
 scp file user@host:/path                             # SCP로 안전하게 파일 전송
 rsync -avz --progress source/ destination/           # 효율적인 파일 동기화 (압축, 진행상황 표시)
 wget -c https://example.com/large-file.zip           # 이어받기 기능으로 대용량 파일 다운로드
 curl -L http://example.com                           # 리다이렉션을 따라가며 HTTP 요청
 curl -s -o /dev/null -w "%{http_code}" http://example.com # HTTP 상태 코드만 확인
-```
 
 ## 유용한 단축키 및 팁
 
