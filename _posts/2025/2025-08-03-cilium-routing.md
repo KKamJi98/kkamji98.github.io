@@ -1,5 +1,5 @@
 ---
-title: Cilium 네트워킹 Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]
+title: Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]
 date: 2025-08-03 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
