@@ -10,13 +10,9 @@ image:
 ---
 
 지난 글 [Cilium 네트워킹 Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})에서는 Native Routing 모드에서 **각 노드/라우터가 다른 노드의 PodCIDR 경로를 알고 있어야 한다**는 점을 살펴봤습니다.  
+  
 이번 시간에는 실제로 **PodCIDR 간 라우팅이 설정되지 않았을 때 어떤 문제가 발생하는지**를 실습 환경에서 확인하고, `tcpdump`로 그 흐름을 분석한 뒤 **Static Route와 BGP를 통한 해결 방법**을 다뤄보겠습니다.
 
-- ControlPlane: `k8s-ctr`
-- Worker Node: `k8s-w0`, `k8s-w1` (서로 다른 네트워크 대역)
-- Router: VM (PodCIDR 라우팅 설정 X)
-- Cilium: Native Routing 모드 활성화
-- PodCIDR: `172.20.0.0/16` (노드별 /24 분리)
 
 ### 관련 글
 
@@ -39,6 +35,14 @@ image:
 ## 1. 실습 환경
 
 ![4W Lab Environment](/assets/img/kubernetes/cilium/4w-lab-environment.webp)
+
+- ControlPlane: `k8s-ctr`
+- Worker Node: `k8s-w0`, `k8s-w1` (서로 다른 네트워크 대역)
+- Router: VM (PodCIDR 라우팅 설정 X)
+- Cilium: Native Routing 모드 활성화
+- PodCIDR: `172.20.0.0/16` (노드별 /24 분리)
+
+---
 
 ## 2. PodCIDR 라우팅을 설정하지 않았을 때 문제 확인
 
@@ -141,6 +145,8 @@ Hostname: webpod-697b545f57-zjp55
 - 동일 네트워크(`192.168.10.0/24`)에 존재하는 Pod와 **통신 가능**
 - 다른 네트워크(`192.168.20.0/24`)에 존재하는 Pod와 **통신 실패**
 
+---
+
 ## 3. tcpdump를 사용해 패킷 흐름 확인
 
 ### 3.1 통신 테스트 및 패킷 캡처
@@ -210,6 +216,8 @@ root@router:~# ip route get 172.20.2.36
 172.20.2.36 via 10.0.2.2 dev eth0 src 10.0.2.15 uid 0
     cache
 ```
+
+---
 
 ## 4. Hubble을 사용해 Flow Log 확인
 
@@ -403,7 +411,7 @@ spec:
 
 ---
 
-## Reference
+## 7. Reference
 
 - [Cilium Docs - Routing](https://docs.cilium.io/en/stable/network/concepts/routing/)
 - [BGP Control Plane Resources](https://docs.cilium.io/en/latest/network/bgp-control-plane/bgp-control-plane-v2/)
