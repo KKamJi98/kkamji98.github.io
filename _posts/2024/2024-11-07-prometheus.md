@@ -11,7 +11,7 @@ image:
 
 현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes 클러스터의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Kubernetes 리소스 모니터링 (1) - Prometheus (현재 글)]({% post_url 2024/2024-11-07-prometheus %})
 2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
@@ -20,13 +20,13 @@ image:
 
 ---
 
-## Prometheus란?
+## 1. Prometheus란?
 
 **Prometheus**는 오픈소스 모니터링 및 알림 시스템으로, 주로 **클라우드 네이티브 애플리케이션과 인프라의 상태를 모니터링**하는 데 사용됩니다. 2012년 SoundCloud에서 처음 개발되었으며 현재는 **Cloud Native Computing Foundation(CNCF)**에 의해 관리되고 있습니다. Prometheus는 Kubernetes와 같은 컨테이너 오케스트레이션 플랫폼의 모니터링을 위한 사실상의 표준으로 자리 잡았습니다.
 
 ---
 
-## Prometheus의 특징
+## 2. Prometheus의 특징
 
 1. **데이터 모델**: 모든 메트릭 데이터는 **이름과 레이블(label)로 식별되는 시계열 형태로 수집**합니다.
 2. **PromQL**: 시계열 데이터를 실시간으로 분석하고 집계할 수 있는 강력한 쿼리 언어를 사용합니다.
@@ -37,7 +37,7 @@ image:
 
 ---
 
-## Prometheus의 구성요소
+## 3. Prometheus의 구성요소
 
 ![prometheus_architecture](/assets/img/prometheus/prometheus_diagram.webp)
 
@@ -49,7 +49,7 @@ image:
 
 ---
 
-## Prometheus 구축 - Helm
+## 4. Prometheus 구축 - Helm
 
 > 실습 환경은 아래와 같습니다.  
 > Kubernetes (v1.29.6)  
@@ -57,14 +57,14 @@ image:
 > StorageClass (rancher.io/local-path)  
 {: .prompt-tip}
 
-### prometheus-community Helm Chart Repository 추가
+### 4.1 prometheus-community Helm Chart Repository 추가
 
 ```bash
 ❯ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 "prometheus-community" has been added to your repositories
 ```
 
-### namespace 생성
+### 4.2 namespace 생성
 
 > prometheus와 grafana가 생성될 monitoring namespace를 생성합니다.
 {: .prompt-tip}
@@ -74,7 +74,7 @@ image:
 namespace/monitoring created
 ```
 
-### Prometheus Helm Chart 배포
+### 4.3 Prometheus Helm Chart 배포
 
 > 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.
 {: .prompt-tip}
@@ -121,7 +121,7 @@ Get the PushGateway URL by running these commands in the same shell:
   kubectl --namespace monitoring port-forward $POD_NAME 9091
 ```
 
-### 확인 (Prometheus Server)
+### 4.4 확인 (Prometheus Server)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
@@ -133,7 +133,7 @@ Handling connection for 9090
 ```
 ![prometheus_server](/assets/img/prometheus/prometheus_server.webp)
 
-### 확인 (Prometheus Alert Manager)
+### 4.5 확인 (Prometheus Alert Manager)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
@@ -145,7 +145,7 @@ Handling connection for 9093
 ```
 ![prometheus_alert_manager](/assets/img/prometheus/prometheus_alert_manager.webp)
 
-### 확인 (Prometheus Push Gateway)
+### 4.6 확인 (Prometheus Push Gateway)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus-pushgateway" -o jsonpath="{.items[0].metadata.name}")
@@ -160,7 +160,7 @@ Handling connection for 9091
 
 ---
 
-## Reference
+## 5. Reference
 
 Prometheus 공식문서 - <https://prometheus.io/docs/introduction/overview>  
 Prometheus Helm Chart - <https://github.com/prometheus-community/helm-charts>

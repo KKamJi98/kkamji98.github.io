@@ -20,7 +20,7 @@ image:
 
 ---
 
-## 개념
+## 1. 개념
 
 **Basic Auth**는 가장 간단한 형태의 HTTP 인증 방식 중 하나로, **Base64로 인코딩된 ID/PW**를 HTTP Header(`Authorization`)에 넣어 전송합니다. SSL 없이 사용하면 Credential이 노출될 위험이 있으므로, **HTTPS 환경**(TLS Ingress)에서 사용하는 것이 바람직합니다.
 
@@ -28,9 +28,9 @@ Nginx Ingress Controller에서는 **Ingress 리소스**에 **특정 Annotation**
 
 ---
 
-## 사용 방법
+## 2. 사용 방법
 
-### htpasswd 파일 생성
+### 2.1 htpasswd 파일 생성
 
 > Nginx의 Basic Auth를 사용하려면, **htpasswd** 유틸리티로 사용자 정보를 생성해야 합니다.  
 > 우분투의 경우 `apache2-utils`, 레드햇 계열의 경우 `httpd-tools`의 패키지를 설치해야 합니다.  
@@ -50,7 +50,7 @@ htpasswd -c auth myuser
 myuser:$apr1$1CYkL3..$hKr3YnMXrRRvNcY/Knmhf/
 ```
 
-### Secret으로 변환
+### 2.2 Secret으로 변환
 
 생성된 `auth` 파일(= htpasswd 파일)을 쿠버네티스 Secret으로 만들어야 Nginx Ingress가 참조할 수 있습니다.
 
@@ -63,7 +63,7 @@ kubectl create secret generic basic-auth \
 - **Secret 이름**: `basic-auth` (임의로 설정 가능)  
 - `--from-file=auth` : key가 `auth`인 데이터 항목으로 저장
 
-### Ingress 리소스에 Annotation 추가
+### 2.3 Ingress 리소스에 Annotation 추가
 
 이제 Ingress에 **Annotation**을 달아 Basic Auth를 활성화합니다.
 
@@ -99,7 +99,7 @@ spec:
 > **중요**: 여기서 `auth-secret`이 가리키는 것은 **htpasswd 파일**을 담은 Secret(위에서 `basic-auth`로 만든 것)입니다.
 {: .prompt-danger}
 
-### 옵션들
+### 2.4 옵션들
 
 - **Whitelist IP**: 특정 IP에서 인증 없이 접근하게 하려면, `nginx.ingress.kubernetes.io/whitelist-source-range` 사용
 - **Force HTTPS**: Basic Auth를 쓸 때는 `nginx.ingress.kubernetes.io/force-ssl-redirect: "true"`로 HTTP->HTTPS 리다이렉트 권장
@@ -107,7 +107,7 @@ spec:
 
 ---
 
-## 마무리
+## 3. 마무리
 
 Nginx 혹은 Nginx Ingress Controller의 **Basic Auth**를 사용해 별도의 인증 서버를 구축하지 않고 웹사이트에 간단한 인증 절차를 추가할 수 있습니다. 사이드 프로젝트나 테스트용 애플리케이션을 외부에 노출할 때 간단한 인증 보호를 위해 효과적으로 사용할 수 있습니다.  
 

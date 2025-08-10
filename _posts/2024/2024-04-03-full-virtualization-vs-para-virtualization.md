@@ -16,7 +16,7 @@ comments: true
 
 ---
 
-## 전가상화(Full-Virtualization)
+## 1. 전가상화(Full-Virtualization)
 
 > 전가상화에서는 하드웨어를 완전히 가상화 하는 방식입니다. 하이퍼바이저가 하드웨어를 직접 제어하며, Guest OS가 가상화된 하드웨어와 상호 작용합니다. 해당 경우, Guest OS는 자신이 가상화된 환경에서 실행되고 있다는 사살은 인식하지 못합니다. 전 가상화는 Guest OS에 아무런 수정 없이 원래의 OS를 사용할 수 있게 해줍니다.
 {: .prompt-info}
@@ -29,7 +29,7 @@ comments: true
 
 ---
 
-## 반가상화(Para-Virtualization)
+## 2. 반가상화(Para-Virtualization)
 
 > 반가상화는 하드웨어를 완전히 가상화하지 않습니다. 게스트 OS가 가상화 환경에 최적화되어 있어야 하며, 이를 위해 운영 체제에 수정이 필요합니다. Guest OS는 하이퍼바이저 API를 호출하여 필요한 서비스를 요청합니다. 해당 방식은 하드웨어를 직접 에물레이션하는 대신, **Hyper Call** 요청을 통해 하이퍼바이저와 효율적으로 상호작용합니다.
 {: .prompt-info}
@@ -43,14 +43,14 @@ comments: true
 
 ---
 
-## 정리
+## 3. 정리
 
 - 전가상화는 Guest OS가 스스로 가상환경임을 인지하지 못하지만 반가상화 환경에서 Guest OS는 스스로가 가상환경임을 인지하고 있습니다.
 - 전가상화와 달리 반가상화는 하드웨어와 상호작용 하기위해 별도의 인터페이스를 통해 명령을 합니다 (**Hyper Call**)
 
 ---
 
-## Reference
+## 4. Reference
 
 [kt cloud 기술 블로그](https://tech.ktcloud.com/77)
 [Suyeon's Blog](https://suyeon96.tistory.com/53)

@@ -13,7 +13,7 @@ image:
 
 > - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
@@ -31,7 +31,7 @@ image:
 
 ---
 
-## Application Topology 개요
+## 1. Application Topology 개요
 
 ![Star Wars Application Topology](/assets/img/kubernetes/cilium/star-wars-application-topology.webp)
 > [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
@@ -42,7 +42,7 @@ image:
 - `tiefighter`와 `xwing`은 각각 제국(Empire)과 동맹(Alliance) 우주선이 착륙 요청을 보내는 클라이언트 역할을 합니다.
 - `tiefighter`와 `xwing`에 대해 서로 다른 보안 정책을 적용하고, `deathstar` 착륙 서비스에 대한 접근 제어를 실습할 수 있게 됩니다.
 
-### Demo를 통해 확인할 수 있는 내용
+### 1.1 Demo를 통해 확인할 수 있는 내용
 
 1. 서비스 디스커버리와 라벨 셀렉터 이해
    - Service가 Selector로 특정 라벨을 가진 pod만 선택해 트래픽을 전달하는 방식 이해
@@ -55,7 +55,7 @@ image:
 
 ---
 
-## 편의성 설정
+## 2. 편의성 설정
 
 실습의 편의를 위해 아래와 같이 Alias를 생성한 뒤, 진행하도록 하겠습니다.
 
@@ -78,7 +78,7 @@ alias c2bpf="kubectl exec -it $CILIUMPOD2 -n kube-system -c cilium-agent -- bpft
 
 ---
 
-## Star Wars Demo 배포
+## 3. Star Wars Demo 배포
 
 ```shell
 # 배포
@@ -162,7 +162,7 @@ c2 endpoint list
 
 ---
 
-## Check Current Access
+## 4. Check Current Access
 
 **deathstar** 서비스는 `org=empire` 라벨이 붙은 함선만 착륙 요청을 허용해야 합니다.  
 
@@ -280,7 +280,7 @@ Jul 25 13:21:15.573: default/tiefighter:53314 (ID:22234) -> default/deathstar-8c
 Jul 25 13:21:15.573: 10.0.0.201:53314 (remote-node) -> default/deathstar-8c4c77fb7-b9qmw:80 (ID:27476) to-endpoint FORWARDED (TCP Flags: ACK)
 ```
 
-### Traffic Flow 해석
+### 4.1 Traffic Flow 해석
 
 | 시각     | 주체(엔드포인트 ID)                           | 행위                             | 의미                                                                       |
 | -------- | --------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------- |
@@ -293,7 +293,7 @@ Jul 25 13:21:15.573: 10.0.0.201:53314 (remote-node) -> default/deathstar-8c4c77f
 
 ---
 
-## L3/L4 Network Policy 적용 및 테스트
+## 5. L3/L4 Network Policy 적용 및 테스트
 
 Cilium을 사용하고 Network Policy를 정의할 때, Endpoint IP는 중요하지 않습니다. Cilium에서는 Endpoint IP가 아닌 Pod 레이블을 기준으로 트래픽을 식별합니다. `EndpointSelector`로 대상 Pod를 지정하고, `fromEndpoints`로 허용할 소스 Pod를 지정합니다.
 
@@ -301,7 +301,7 @@ Cilium을 사용하고 Network Policy를 정의할 때, Endpoint IP는 중요하
 
 Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend 방향이 허용되면, 같은 TCP/UDP 세션의 응답 패킷도 자동으로 허용됩니다. -> 리턴 패킷 자동 허용
 
-### Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
+### 5.1 Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
 
 ![L4 Layer Policy](/assets/img/kubernetes/cilium/l4_layer_policy.webp)
 > [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)
@@ -401,7 +401,7 @@ command terminated with exit code 28
 
 ---
 
-## L7 Network Policy(HTTP-aware) 적용 및 테스트
+## 6. L7 Network Policy(HTTP-aware) 적용 및 테스트
 
 마이크로서비스 간 최소 권한 원칙을 지키기 위해서는 L3/L4 수준의 허용 여부만으로는 부족할 수 있습니다. 더 나은 보안을 위해서는 특정 HTTP 메서드와 경로까지 제한해야 합니다. 예시로 `deathstar` 서비스에는 관리 목적의 **API**(`/v1/exhaust-port` 등)가 존재하며, 임의의 함선이 호출해서는 안 됩니다.
 
@@ -412,7 +412,7 @@ command terminated with exit code 28
 
 > - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)
 
-### 허용되지 않은 요청 확인
+### 6.1 허용되지 않은 요청 확인
 
 ```shell
 # tiefighter에서 허용되지 않은 PUT 요청 실행 (정책 적용 전)
@@ -431,7 +431,7 @@ main.main()
 > 정책이 없을 때는 위와 같은 민감한 엔드포인트가 호출되어 문제가 발생할 수 있습니다.
 {: .prompt-danger}
 
-### L7 정책 YAML
+### 6.2 L7 정책 YAML
 
 ![L7 Layer Policy](/assets/img/kubernetes/cilium/cilium_l7_layer_policy.webp)
 > [L7 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)
@@ -537,7 +537,7 @@ kubectl -n kube-system exec <cilium-pod> -- cilium-dbg policy get
 
 ---
 
-## 삭제
+## 7. 삭제
 
 ```shell
 ❯ kubectl delete -f https://raw.githubusercontent.com/cilium/cilium/1.17.6/examples/minikube/http-sw-app.yaml
@@ -552,7 +552,7 @@ ciliumnetworkpolicy.cilium.io "rule1" deleted
 
 ---
 
-## 마무리
+## 8. 마무리
 
 - L3/L4 정책은 IP, 포트, 프로토콜 수준만 제어합니다. L7 정책을 통해 HTTP 메서드와 경로까지 제한할 수 있습니다.
 - 최소 권한 원칙을 적용하려면 서비스가 실제로 사용하는 엔드포인트만 허용해야 합니다.
@@ -561,7 +561,7 @@ ciliumnetworkpolicy.cilium.io "rule1" deleted
 
 ---
 
-## Reference
+## 9. Reference
 
 - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
 - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)

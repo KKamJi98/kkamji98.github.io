@@ -13,7 +13,7 @@ image:
 
 ---
 
-## 실행 환경
+## 1. 실행 환경
 
 > ArgoCD, Keycloak이 배포되어있는 Kubernetes 환경에서 시작하도록 하겠습니다.
 {: .prompt-tip}
@@ -24,7 +24,7 @@ image:
 
 ---
 
-## 1. Keycloak Client 생성하기
+## 2. Keycloak Client 생성하기
 
 1. Keycloak 관리자 페이지에 접속 후, 설정할 **Realm**을 선택합니다.  
 2. 왼쪽 사이드바의 **Clients** 메뉴로 이동한 뒤, **Create** 버튼을 클릭합니다.
@@ -53,7 +53,7 @@ image:
 
 ---
 
-## 2. PKCE 설정하기
+## 3. PKCE 설정하기
 
 > OIDC 인증 시 **Proof Key for Code Exchange(PKCE)** 방식을 사용하면, 클라이언트 보안을 한층 더 강화할 수 있습니다.  
 > Keycloak과 ArgoCD의 인증 흐름에서 `S256` 암호화 기법을 사용하도록 설정하면, **Code Challenge**와 **Code Verifier**로 이루어지는 인증 과정을 안전하게 진행할 수 있습니다.  
@@ -66,7 +66,7 @@ image:
 
 ---
 
-## 3. Client Scope 설정하기
+## 4. Client Scope 설정하기
 
 > Keycloak에서는 Client Scope를 통해 **Client에게 제공할 권한과 Scope**를 확장하거나 제한할 수 있습니다.  
 > ArgoCD와의 연동에서, 사용자의 **Group** 정보를 전달하기 위해 `groups` Scope가 활성화되어야 합니다.  
@@ -78,7 +78,7 @@ image:
 
 ---
 
-## 4. Mapper 설정하기
+## 5. Mapper 설정하기
 
 > 사용자에게 할당된 **Group** 정보를 **ID Token** 혹은 **Access Token**으로 전달하기 위해 **Mapper**를 설정합니다.  
 {: .prompt-tip}
@@ -95,7 +95,7 @@ image:
 
 ---
 
-## 5. Group 생성하기
+## 6. Group 생성하기
 
 > ArgoCD에 맵핑할 Keycloak Group을 생성합니다.
 {: .prompt-tip}
@@ -107,7 +107,7 @@ image:
 
 ---
 
-## 6. Group에 User 추가하기
+## 7. Group에 User 추가하기
 
 > Keycloak Groups에 사용자를 할당하여, 해당 사용자들이 인증 시 Group 정보를 받도록 구성합니다.
 {: .prompt-tip}
@@ -119,7 +119,7 @@ image:
 
 ---
 
-## 7. ArgoCD 설정하기 (argocd-cm)
+## 8. ArgoCD 설정하기 (argocd-cm)
 
 > ArgoCD에 Keycloak SSO를 적용하기 위해, ArgoCD의 설정 파일을 수정합니다.
 {: .prompt-tip}
@@ -146,7 +146,7 @@ data:
 
 ---
 
-## 8. ArgoCD RBAC 구성 (argocd-rbac-cm)
+## 9. ArgoCD RBAC 구성 (argocd-rbac-cm)
 
 > Keycloak Group과 ArgoCD의 Role을 연결하기 위해, ArgoCD의 RBAC 설정 파일을 수정합니다.  
 > 필요에 따라 role:readonly, role:developer 등을 추가할 수 있습니다.  
@@ -164,7 +164,7 @@ data:
 
 ---
 
-## 결과 확인
+## 10. 결과 확인
 
 ![ArgoCD Keycloak](/assets/img/keycloak/argocd-keycloak.webp)  
 ![Keycloak Login](/assets/img/keycloak/keycloak-login.webp)  

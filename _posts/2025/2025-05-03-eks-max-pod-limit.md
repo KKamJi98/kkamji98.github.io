@@ -44,7 +44,7 @@ ip-10-0-1-5.ap-northeast-2.compute.internal   11              11
 
 ---
 
-## EKS Max-Pods Limit이란?
+## 1. EKS Max-Pods Limit이란?
 
 Kubernetes 자체적으로도 **한 노드 당 110개의 Pod**를 권장 상한으로 설정하고 있지만, EKS에서는 그보다 더 낮은 숫자로 노드의 Pod 수를 제한하는 경우가 많습니다. 이 **max-pods** 제한은 주로 네트워킹 자원, 특히 **`ENI`(Elastic Network Interface)**와 **IP 주소 할당 한계** 때문에 존재합니다.  
 
@@ -54,7 +54,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 ---
 
-## Max-Pods Calculator
+## 2. Max-Pods Calculator
 
 제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입 의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit의 계산은 다음과 같이 이루어지게됩니다.  
 
@@ -80,7 +80,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 ---
 
-## VPC CNI와 Prefix Mode로 Max Pods Limit 완화하기
+## 3. VPC CNI와 Prefix Mode로 Max Pods Limit 완화하기
 
 위와 같은 문제를 해결하기 위해서는 Max Pods Limit을 증가시키는 방법이 있습니다. 바로 `VPC CNI`의 `Prefix Mode` 기능을 활성화하는 것입니다. 우선 VPC CNI의 동작 방식에 대해 알아보도록 하겠습니다.  
 
@@ -117,7 +117,7 @@ else
 fi
 ```
 
-### 현재 max-pods 확인
+### 3.1 현재 max-pods 확인
 
 이제 현재 우리 EKS 노드의 max-pods 값이 얼마로 설정되어 있는지 확인하고, 이를 늘리는 방법을 알아보겠습니다.  
 노드의 max-pods는 **Kubelet (노드의 Kubernetes 에이전트)**이 가지고 있는 설정으로, 노드가 Kubernetes에 등록될 때 그 값이 함께 설정됩니다. 노드 객체의 status를 보면 capacity에 pods 항목으로 이 최대 Pod 수를 확인할 수 있습니다.  
@@ -130,15 +130,15 @@ ip-10-0-1-201.ap-northeast-2.compute.internal   11              11
 
 ---
 
-## Prefix Mode Enable & Max-Pod Limit 상향 조정
+## 4. Prefix Mode Enable & Max-Pod Limit 상향 조정
 
-### 1. vpc-cni(aws-node) DaemonSet ENV 수정
+### 4.1 vpc-cni(aws-node) DaemonSet ENV 수정
 
 ```shell
 ❯ kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
 ```
 
-### 2. kubelet max-pods 설정
+### 4.2 kubelet max-pods 설정
 
 ```shell
 # AL2 => /etc/eks/bootstrap.sh 에 extra-args 추가
@@ -162,7 +162,7 @@ spec:
       - --node-labels=role=backend
 ```
 
-### 3. Node Rolling Update
+### 4.3 Node Rolling Update
 
 `aws-node` 환경변수와 `kubelet maxPods` 값을 모두 바꿨다면 **새로운 AMI / Launch Template** 로 노드를 교체해 주어야 실제 한계치가 반영됩니다. 방법은 두 가지입니다.
 
@@ -178,7 +178,7 @@ spec:
      --preferences '{"MinHealthyPercentage":75,"InstanceWarmup":300}'
    ```
 
-### 4. 결과 확인
+### 4.4 결과 확인
 
 ```shell
 ❯ kubectl get nodes -o custom-columns=NAME:.metadata.name,CAPACITY_PODS:.status.capacity.pods,ALLOCATE_PODS:.status.allocatable.pods
@@ -200,7 +200,7 @@ ip-10-0-2-201.ap-northeast-2.compute.internal   110             110
 
 ---
 
-## 결론  
+## 5. 결론
 
 이상으로 EKS의 `max-pods` 제한이 생기는 원리와 이를 완화하는 방법에 대해 살펴보았습니다.  
 `ENI` 및 IP 한계로 인한 Pod 수에 제한이 존재하며 `VPC CNI`의 `Prefix Mode`를 활용하면 더 많은 Pod를 노드에 생성할 수 있습니다.  
@@ -208,7 +208,7 @@ ip-10-0-2-201.ap-northeast-2.compute.internal   110             110
 
 ---
 
-## 참고자료
+## 6. 참고자료
 
 접두사를 사용하여 Amazon EKS 노드에 추가 IP 주소 할당 - <https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cni-increase-ip-addresses.html>  
 Amazon EKS 노드에 대해 사용 가능한 IP 주소 증가 - <https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cni-increase-ip-addresses-procedure.html>  

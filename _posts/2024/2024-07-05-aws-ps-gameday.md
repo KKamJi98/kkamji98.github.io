@@ -13,11 +13,11 @@ image:
 
 ---
 
-## 준비 과정
+## 1. 준비 과정
 
 Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각했고, 사전 공지된 자료를 확인해보니 다음과 같은 단서를 구할 수 있었습니다.
 
-### 관련 서비스
+### 1.1 관련 서비스
 
 - Amazon Bedrock
 - Amazon Transcribe
@@ -29,7 +29,7 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 - AWS Step Functions
 - PartyRock
 
-### 예상 시나리오
+### 1.2 예상 시나리오
 
 1. S3와 Transcribe, Bedrock이 포함되어 있어, S3에 저장된 음성 파일을 텍스트로 변환하는 작업이 있을 것이라 예상했습니다.
 2. DynamoDB, Bedrock, Lambda를 활용하여 특정 회사나 기술에 대한 정보를 DynamoDB에 저장하고, LangChain이나 RAG를 사용해 챗봇을 구현할 수 있을 것이라 생각했습니다.
@@ -39,7 +39,7 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 ---
 
-## 대회 진행
+## 2. 대회 진행
 
 ![alt text](../assets/img/ps-gameday/winners.jpg)
 ![alt text](../assets/img/ps-gameday/winners2.jpg)
@@ -51,7 +51,7 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 ---
 
-## 마무리
+## 3. 마무리
 
 ![GameDay 최종 결과 사진](../assets/img/ps-gameday/ps-gameday-final.png)  
 

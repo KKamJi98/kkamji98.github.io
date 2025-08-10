@@ -16,7 +16,7 @@ image:
 > GitHub Link - <https://github.com/KKamJi98/cilium-lab/tree/main/vagrant/vagrant-advanced>  
 {: .prompt-tip}
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차] (현재 글)]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
@@ -34,7 +34,7 @@ image:
 
 ---
 
-## 실습 환경
+## 1. 실습 환경
 
 ![Kubernetes VM Structure](/assets/img/kubernetes/kubernetes_virtualbox_structure.webp)
 
@@ -46,7 +46,7 @@ image:
 
 ---
 
-## Vagrant와 VirtualBox 설치
+## 2. Vagrant와 VirtualBox 설치
 
 - `mac M` 사용자
   1. VirtualBox 설치 - [Release](https://www.virtualbox.org/wiki/Changelog)
@@ -75,7 +75,7 @@ image:
 
 ---
 
-## Vagrantfile & Init Script 작성
+## 3. Vagrantfile & Init Script 작성
 
 각 VM이 동일한 `key-pair`를 갖게하기 위해서 `config.ssh.insert_key = false` 해당 부분을 추가해주었고, 로컬에서 `hyper-v` + `kube-spray`를 통해 프로비저닝한 다른 클러스터와 호스트명이 겹치는 것을 방지하기 위해 호스트명을 아래와 같이 수정하였습니다. 또한 다른 환경에서 해당 클러스터로의 접근을 위해 `localhost`의 56444 포트를 Control Plane인 `cilium-m1` VM의 6443 포트(`API-Server` 포트)로 포트포워딩 하는 설정을 추가했습니다.
 
@@ -83,7 +83,7 @@ image:
 - `k8s-w1`  -> `cilium-w1`
 - `k8s-w2`  -> `cilium-w2`
 
-### Vagrantfile
+### 3.1 Vagrantfile
 
 Vagrantfile은 Vagrant가 가상 머신(또는 컨테이너)을 생성할 때 베이스 이미지, 자원 할당, 프로비저닝 방식 등을 선언적으로 기술하는 루비 기반 설정 파일입니다.
 
@@ -146,7 +146,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-### init_cfg.sh
+### 3.2 init_cfg.sh
 
 공식문서의 내용을 기반으로 만들어진 kubeadm으로 Control Plane, Data Plane VM 모두가 가져야 할 기본 설정에 대한 Script입니다.
 [Docs - Bootstrapping clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
@@ -225,7 +225,7 @@ curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | 
 echo ">>>> Initial Config End <<<<"
 ```
 
-### k8s-ctr.sh
+### 3.3 k8s-ctr.sh
 
 alias, PS1 설정, 자동완성 설정 등이 포함된 Control Plane 설정 Script입니다.
 
@@ -284,7 +284,7 @@ for (( i=1; i<=$1; i++  )); do echo "192.168.10.10$i cilium-w$i" >> /etc/hosts; 
 echo ">>>> K8S Controlplane Config End <<<<"
 ```
 
-### k8s-w.sh
+### 3.4 k8s-w.sh
 
 Data Plane의 노드들이 Control Plane에 조인하는 Script입니다.
 
@@ -302,7 +302,7 @@ echo ">>>> K8S Node config End <<<<"
 
 ---
 
-## Kubernetes Cluster 배포
+## 4. Kubernetes Cluster 배포
 
 위에서 작성한 Vagrantfile, Init Script가 존재하는 디렉토리에서 `vagrant up`를 사용해 Kubernetes Cluster를 배포합니다.
 
@@ -337,7 +337,7 @@ Bringing machine 'cilium-w2' up with 'virtualbox' provider...
 
 ---
 
-## 배포 확인
+## 5. 배포 확인
 
 Vagrant로 생성한 VM의 eth0은 모두 10.0.2.15 로 모두 동일하며, 외부 인터넷 연결 역할을 합니다.
 
@@ -346,7 +346,7 @@ Vagrant로 생성한 VM의 eth0은 모두 10.0.2.15 로 모두 동일하며, 외
 - vagrant ssh 접속 시 호스트에 127.0.0.1(2222)를 목적지로 접속 -> 이후 포트포워딩(S/DNAT)을 통해서 내부에 VM로 SSH 연결
 - NAT Mode 에 **10.0.2.2**(GateWay), **10.0.2.3**(DNS Server), **10.0.2.4**(TFTP Server) 용도로 IP 예약
 
-### Vagrant, VirtualBox 세팅 확인
+### 5.1 Vagrant, VirtualBox 세팅 확인
 
 ```bash
 ############################
@@ -377,7 +377,7 @@ PS C:\Code\cilium-lab\vagrant>vagrant ssh cilium-m1
 (⎈|HomeLab:N/A) root@cilium-m1:~# 
 ```
 
-### VM Network 설정 확인
+### 5.2 VM Network 설정 확인
 
 ```bash
 ############################
@@ -456,7 +456,7 @@ PING cilium-w2 (192.168.10.102) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.772/0.772/0.772/0.000 ms
 ```
 
-### kubernetes 정보 확인
+### 5.3 kubernetes 정보 확인
 
 ```bash
 ############################
@@ -483,7 +483,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ---
 
-## INTERNAL-IP 설정 변경
+## 6. INTERNAL-IP 설정 변경
 
 위에서 확인한대로, `cilium-m1` VM은 INTERNAL-IP가 정상적으로 192.168.10.100으로 되어있지만 `cilium-w1`, `cilium-w2` VM은 eth0번 IP인 `10.0.2.15`를 갖고 있습니다. 이는 kubelet이 노드의 INTERNAL-IP로 기본적으로 Routing Table에서 default gateway가 연결된 Interface IP를 선택하기 때문입니다. 현재 구성에서는 `eth0`(NAT 인터페이스)가 default route로 설정되어 있기 때문에, 의도하지 않은 `10.0.2.15`가 INTERNAL-IP로 설정된 것입니다. 이러한 문제를 방지하기 위해서는 `JoinConfiguration` 파일을 사용해 해당 설정 파일에 node ip를 명시적으로 설정 한 뒤, `kubeadm join --config {join_configuration_file.yaml}` 명령을 통해 Join 하는 방법을 방법을 사용할 수 있습니다.  
 
@@ -513,7 +513,7 @@ KUBELET_KUBEADM_ARGS="--node-ip=192.168.10.100 --container-runtime-endpoint=unix
 ## cilium-w1, cilium-w2에서도 반복
 ```
 
-### INTERNAL-IP 설정 변경 확인
+### 6.1 INTERNAL-IP 설정 변경 확인
 
 ```bash
 ⎈|HomeLab:N/A) root@cilium-m1:~# k get no -o wide
@@ -537,7 +537,7 @@ kube-system   kube-scheduler-cilium-m1            1/1     Running   0           
 
 ---
 
-## 편의성 세팅 (Windows + WSL 환경)
+## 7. 편의성 세팅 (Windows + WSL 환경)
 
 Windows 환경에서 WSL을 사용하는 경우, Vagrant로 생성된 VM에 `vagrant ssh` 대신 직접 SSH로 접속할 수 있도록 다음과 같은 SSH 설정을 하면 보다 편리하게 관리할 수 있습니다. 이를 통해 WSL 터미널에서도 손쉽게 VM에 접근 가능합니다.
 
@@ -654,7 +654,7 @@ Host cilium-w2
     HostKeyAlgorithms +ssh-rsa
 ```
 
-### 편의성 세팅 확인
+### 7.1 편의성 세팅 확인
 
 ```bash
 ############################
@@ -714,13 +714,13 @@ logout
 
 ---
 
-## 마무리
+## 8. 마무리
 
 현재 스크립트 기반으로 kubeadm 명령어를 사용해 클러스터를 구성하고 있지만, 실제 운영 환경이나 지속 가능한 관리 환경에서는 kubeadm의 설정을 YAML 파일로 관리하는 것이 좋습니다. YAML로 관리하면 버전 관리 및 설정의 명확한 관리가 가능하며, 추후 클러스터의 변경 및 확장도 더욱 쉽게 할 수 있습니다.
 
 ---
 
-## Reference
+## 9. Reference
 
 - **kubeadm docs** - <https://kubernetes.io/docs/reference/setup-tools/kubeadm/>
 - **kubeadm init docs** - <https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/>

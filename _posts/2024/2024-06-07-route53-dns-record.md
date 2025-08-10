@@ -14,7 +14,7 @@ image:
 
 ---
 
-## 주요 DNS Record 유형
+## 1. 주요 DNS Record 유형
 
 A 레코드 (Address Record): 도메인 이름을 IPv4 주소로 매핑  
 AAAA 레코드: 도메인 이름을 IPv6 주소로 매핑  
@@ -29,7 +29,7 @@ ALIAS 레코드: 루트 도메인(@)을 다른 도메인으로 매핑
 
 ---
 
-## A 레코드 설정
+## 2. A 레코드 설정
 
 1. A 레코드를 생성하기 위해 Route53 > Hosted zones > 설정할 도메인에 들어가준 뒤 Create record를 클릭합니다.
     ![image1](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/b5c65780-bf33-47e4-ba7c-51e0067b5bdf)
@@ -44,7 +44,7 @@ ALIAS 레코드: 루트 도메인(@)을 다른 도메인으로 매핑
 
 ---
 
-## CNAME 설정
+## 3. CNAME 설정
 
 1. A 레코드를 생성할 때와 동일하게 Create record를 클릭하여 설정 화면에 들어가줍니다.
 2. Record type에서 CNAME 속성을 선택한 뒤, Record name에 sub domain인 www를 적어준 뒤, Value에 kkamji.net을 적어 매핑시켜줍니다.
@@ -52,7 +52,7 @@ ALIAS 레코드: 루트 도메인(@)을 다른 도메인으로 매핑
 
 ---
 
-## Github Pages 설정
+## 4. Github Pages 설정
 
 1. Repository 최상위 디렉토리에 CNAME 파일을 생성한 뒤 파일의 내용에 **kkamji.net**을 추가해줍니다.
 2. 이후 Repository > Settings > Pages에 들어간 뒤, Custom Domain에 **kkamji.net**을 추가해준 뒤, Save를 눌러줍니다.
@@ -62,7 +62,7 @@ ALIAS 레코드: 루트 도메인(@)을 다른 도메인으로 매핑
 
 ---
 
-## 확인
+## 5. 확인
 
 ![image5-check](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/592a2d99-8539-4d49-a389-10114be59be0)
 

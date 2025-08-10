@@ -15,15 +15,15 @@ image:
 
 ---
 
-## Elastic Cloud on Kubernetes(ECK)란?
+## 1. Elastic Cloud on Kubernetes(ECK)란?
 
 **Elastic Cloud on Kubernetes(ECK)**란 **Elasticsearch**와 같은 Elastic 제품을 Kubernetes 클러스터에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 **Elasticsearch** 클러스터를 운영할 수 있습니다.
 
 ---
 
-## ECK 배포
+## 2. ECK 배포
 
-### 1. Custom Resource Definitions(CRD) 설치
+### 2.1 Custom Resource Definitions(CRD) 설치
 
 > **ECK**를 사용하기 위해서는 **Custom Resource Definition(CRD)**를 Kubernetes에 설치해야 합니다. Kubernetes의 **Custom Resource**를 활용하면 사용자가 정의한 오브젝트를 직접 구현해서 사용하거나 여러 종류의 리소스를 추상화해서 관리할 수 있습니다. Elastic사에서는 **ECK**를 사용하기 위한 **Custom Resource**를 아래와 같은 명령어를 통해 설치할 수 있도록 제공해주고 있습니다.  
 {: .prompt-info}
@@ -42,7 +42,7 @@ customresourcedefinition.apiextensions.k8s.io/logstashes.logstash.k8s.elastic.co
 customresourcedefinition.apiextensions.k8s.io/stackconfigpolicies.stackconfigpolicy.k8s.elastic.co created
 ```
 
-### 2. Operator 설치
+### 2.2 Operator 설치
 
 > Kubernetes Operator는 Kubernetes 클러스터에서 Application의 배포, 관리, 확장 등을 자동화하는 소프트웨어 확장입니다. Operator는 쿠버네티스의 기본 개념인 "Controller"와 "CRD"를 결합하여 작동하며 Application과, Application의 구성 요소들을 관리하는 역할을 합니다.  
 {: .prompt-info}
@@ -64,12 +64,12 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.
 
 ---
 
-## Elasticsearch 클러스터 배포
+## 3. Elasticsearch 클러스터 배포
 
 > 하나의 **Elasticsearch** 노드를 가진 **Elasticsearch** 클러스터를 배포해보도록 하겠습니다. 추가적으로 AWS-EBS Volume을 사용하기 위해서는 `volumeClaimTemplates`를 생성 후 어떤 PVC를 생성할지 설정해주어야합니다.  
 {: .prompt-info}
 
-### 정의 파일 (`elasticsearch.yaml`)
+### 3.1 정의 파일 (`elasticsearch.yaml`)
 
 ```yaml
 apiVersion: elasticsearch.k8s.elastic.co/v1
@@ -94,7 +94,7 @@ spec:
         storageClassName: gp2
 ```
 
-### 적용
+### 3.2 적용
 
 ```bash
 ❯ k apply -f elasticsearch.yaml
@@ -103,7 +103,7 @@ elasticsearch.elasticsearch.k8s.elastic.co/weasel-elasticsearch configured
 
 ---
 
-## 확인
+## 4. 확인
 
 ```bash
 ❯ kubectl get elasticsearch --watch
@@ -137,7 +137,7 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 
 ---
 
-## Reference
+## 5. Reference
 
 <https://www.elastic.co/docs> - [공식 문서]  
 <https://devocean.sk.com/blog/techBoardDetail.do?ID=165640&boardType=techBlog> - [로그분석에 활용할 수 있는 EFK 스택 간단하게 정리해보기]  

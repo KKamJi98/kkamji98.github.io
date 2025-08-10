@@ -120,14 +120,14 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ---
 
-## 마무리
+## 5. 마무리
 
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/8392049c-02e8-4a77-baa0-98c404040780)
 
 > 다음 글에는 Kubernetes Pod를 Agent로 사용하는 방법을 올려보도록 하겠습니다.  
 ---
 
-## Reference
+## 6. Reference
 
 - [https://www.whatap.io/ko/blog/77/](https://www.whatap.io/ko/blog/77/)
 

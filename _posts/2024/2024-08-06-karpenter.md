@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/karpenter.png
 ---
 
-## Karpenter란?
+## 1. Karpenter란?
 
 최근 **Weasel** 프로젝트를 진행하면서 **Elastic Kubernetes Service(EKS)**를 사용하게 되었고. **Horizontal Pod Autoscaler(HPA)**를 사용해 고가용성을 보완하려 노력했습니다. 하지만 **HPA**만 사용해서는 트래픽이 급증하고 Node의 리소스 사용량이 한계치에 다다르게 되면 더 이상 사용자에게 서비스를 원활하게 제공할 수 없을 것입니다. 따라서 **Weasel** 프로젝트에 AWS에서 개발한 오픈 소스의 고성능 **Kubernetes Cluster Autoscaler**인 **Karpenter**를 도입을 결정짓게 되었습니다.
 
@@ -17,40 +17,40 @@ image:
 
 ---
 
-## Cluster Autoscaler(CA) VS Karpenter
+## 2. Cluster Autoscaler(CA) VS Karpenter
 
 Kubernetes의 클러스터 오토스케일링은 클러스터 내의 리소스를 자동으로 관리하여 애플리케이션의 가용성과 성능을 유지하는 데 중요한 역할을 합니다. AWS에서는 두 가지 주요 오토스케일링 도구를 제공합니다. **Cluster Autoscaler(CA)**와 **Karpenter**입니다.
 
-### Cluster Autoscaler(CA)
+### 2.1 Cluster Autoscaler(CA)
 
 **Cluster Autoscaler(CA)**는 Kubernetes 생태계에서 널리 사용되고 있습니다. 또한 안정성과 신뢰성이 높으며 **Auto Scaling Group(ASG)**과 통합되어 사용할 수 있다는 장점이 있습니다. **CA**는 **ASG** 기반으로 동작하며 Pod가 지속적으로 할당에 실패하면 **ASG**의 Desired Capacity 값을 수정하여 Worker Node의 개수를 증가시키는 방식으로 Auto Scaling이 이루어집니다. 하지만 **ASG**를 기반으로 동작하기 때문에 사전에 정의된 노드 그룹의 인스턴스 타입만을 사용해야 하며, 노드를 추가하거나 제거하는 데 시간이 오래 걸린다는 단점이 있습니다.
 
-### Karpenter
+### 2.2 Karpenter
 
 **Karpenter**는 AWS에서 제공하는 Kubernetes 클러스터의 자동 노드 프로비저닝 도구입니다. **Karpenter**는 Pod가 스케줄링에 실패할 시 즉시 새로운 노드를 프로비저닝하며 다양한 인스턴스 타입을 지원하며, 클러스터의 리소스 요구사항에 맞는 최적의 인스턴스 타입을 선택하여 비용 효율성을 높일 수 있습니다. 또한 필요에 따라 Spot 인스턴스, On-Demand 인스턴스를 선택할 수 있습니다. 하지만 **Karpenter**는 AWS에 종속적이며, **CA**에 비해 상대적으로 성숙도와 안정성이 부족할 수 있다는 단점이 있습니다.
 
 ---
 
-## Karpenter 선택 이유
+## 3. Karpenter 선택 이유
 
 **Weasel** 프로젝트에서는 현재 **EKS**를 사용하고 있으며 그 외 ECR, RDS, S3, Route53, CloudFront, NAT Gateway 등의 AWS 서비스를 사용하고 있습니다. 고가용성을 고려한 아키텍처 설계 및 구축도 중요하지만 고가용성을 고집하게 되면 계획보다 많은 클라우드 인프라 유지 비용이 발생하게 됩니다. 따라서 고가용성은 향상시키며 추가로 지출되는 비용을 최소로 해야 했고, Karpenter의 장점인 다양한 인스턴스 타입 지원, 클러스터의 리소스 요구사항에 맞는 최적의 인스턴스 타입 선택은 매력적으로 다가왔습니다. 추가로 안정적으로 서비스를 제공하기 위해서는 트래픽이 급증했을 때 무엇보다 노드가 확장되는 속도가 중요했기 때문에 **Cluster Autoscaler(CA)**와 **Karpenter** 중 **Karpenter를** 선택하게 되었습니다.
 
 ---
 
-## Karpenter 사전 작업
+## 4. Karpenter 사전 작업
 
 [Migrating from Cluster Autoscaler](https://karpenter.sh/docs/getting-started/migrating-from-cas/)
 
 Karpenter 공식 문서를 참고하여 최신버전의 0.37.0 버전을 설치하는 과정을 공유하겠습니다.
 
-### 1. 준비 도구
+### 4.1 준비 도구
 
 - AWS CLI
 - kubectl
 - eksctl(v0.180.0 이상)
 - helm
 
-### 2. 환경 변수 설정
+### 4.2 환경 변수 설정
 
 ```bash
 KARPENTER_NAMESPACE="karpenter"
@@ -70,7 +70,7 @@ AMD_AMI_ID="$(aws ssm get-parameter --name /aws/service/eks/optimized-ami/${K8S_
 GPU_AMI_ID="$(aws ssm get-parameter --name /aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2-gpu/recommended/image_id --query Parameter.Value --output text)"
 ```
 
-### 3. IAM Role 생성
+### 4.3 IAM Role 생성
 
 ```bash
 echo '{
@@ -90,7 +90,7 @@ aws iam create-role --role-name "KarpenterNodeRole-${CLUSTER_NAME}" \
     --assume-role-policy-document file://node-trust-policy.json
 ```
 
-### 4. 정책 추가
+### 4.4 정책 추가
 
 ```bash
 aws iam attach-role-policy --role-name "KarpenterNodeRole-${CLUSTER_NAME}" \
@@ -106,7 +106,7 @@ aws iam attach-role-policy --role-name "KarpenterNodeRole-${CLUSTER_NAME}" \
     --policy-arn "arn:${AWS_PARTITION}:iam::aws:policy/AmazonSSMManagedInstanceCore"
 ```
 
-### 5. Karpenter Controller IAM Role 생성
+### 4.5 Karpenter Controller IAM Role 생성
 
 > Karpenter Controller가 새 인스턴스를 프로비저닝하는 데 사용할 IAM 역할을 생성합니다. Controller는 OIDC Endpoint를 사용해서 IAM Roles for Service Account(IRSA)를 사용해야 합니다. 따라서 OIDC Provider가 필요합니다.
 {: .prompt-info}
@@ -257,7 +257,7 @@ aws iam put-role-policy --role-name "KarpenterControllerRole-${CLUSTER_NAME}" \
     --policy-document file://controller-policy.json
 ```
 
-### 6. Subnet, Security Group에 Tag 추가
+### 4.6 Subnet, Security Group에 Tag 추가
 
 > Karpenter가 사용할 Subnet을 식별할 수 있도록 Node Group의 Subnet에 Tag를 추가합니다.
 {: .prompt-info}
@@ -297,7 +297,7 @@ aws ec2 create-tags \
     --resources "${SECURITY_GROUPS}"
 ```
 
-### 7. aws_auth ConfigMap 업데이트
+### 4.7 aws_auth ConfigMap 업데이트
 
 > 앞에서 생성한 IAM 역할을 사용하는 노드가 클러스터에 가입할 수 있도록 허용해야 합니다. 이를 위해 클러스터의 aws-auth ConfigMap을 수정합니다.
 {: .prompt-info}
@@ -319,12 +319,12 @@ kubectl edit configmap aws-auth -n kube-system
 
 ---
 
-## Karpenter 설치
+## 5. Karpenter 설치
 
 > 현재 가장 최신버전인 **0.37.0** 버전을 설치하겠습니다.
 {: .prompt-info}
 
-### 1. Helm template을 사용한 manifest 파일 생성
+### 5.1 Helm template을 사용한 manifest 파일 생성
 
 ```bash
 export KARPENTER_VERSION="0.37.0"
@@ -338,7 +338,7 @@ helm template karpenter oci://public.ecr.aws/karpenter/karpenter --version "${KA
     --set controller.resources.limits.memory=1Gi > karpenter.yaml
 ```
 
-### 2. node affinity 설정
+### 5.2 node affinity 설정
 
 > Karpenter가 기존 노드 그룹 중 하나에서 실행되도록 manifest 파일을 수정합니다. ${NODEGROUP}에는 Karpenter가 실행될 EKS Node Group의 이름을 넣어줍니다.
 {: .prompt-info}
@@ -360,7 +360,7 @@ affinity:
       - topologyKey: "kubernetes.io/hostname"
 ```
 
-### 3. karpenter 리소스 배포
+### 5.3 karpenter 리소스 배포
 
 > Namespace 생성 및 NodePool CRD를 만든 뒤, Karpenter 리소스를 배포합니다
 {: .prompt-info}
@@ -378,7 +378,7 @@ kubectl apply -f karpenter.yaml
 
 ---
 
-## NodePool 및 EC2NodeClass 생성
+## 6. NodePool 및 EC2NodeClass 생성
 
 > **NodePool**은 **Karpenter**에서 관리되는 Kubernetes 노드의 집합입니다. 이 **NodePool**은 정의된 사항에 따라 EC2 인스턴스를 자동으로 생성하고 조정합니다. **EC2NodeClass**는 **Karpenter**가 사용할 EC2 인스턴스의 세부 사항을 정의합니다. 현재 사용하고 있는 인스턴스 타입으로 `t3.medium`을 지정했습니다. 주석된 부분처럼 `karpenter.k8s.aws/instance-category` 항목에 인스턴스 타입을, `karpenter.k8s.aws/instance-cpu` 항목에 사용할 vCPU 크기를 나열할 수도 있습니다. 현재는 t3.medium 인스턴스 외에 다른 인스턴스를 사용하지 않기 때문에 `karpenter.sh/capacity-type` 옵션을 사용해 지정해주었습니다.
 {: .prompt-info}
@@ -442,7 +442,7 @@ spec:
 
 ---
 
-## 확인
+## 7. 확인
 
 - `kubectl logs -f -n karpenter -c controller -l app.kubernetes.io/name=karpenter`
     ```bash
@@ -465,7 +465,7 @@ spec:
 
 ---
 
-## 마무리
+## 8. 마무리
 
 블로그, 과거 문서들을 참고하며 Karpenter를 구축하려 했지만, 해당 내용은 Helm Chart의 변수, Karpenter가 사용하는 정책 등이 달랐기 때문에 최신버전의 Karpenter구축에는 적합하지 않아 생각보다 많은 우여곡절이 있었습니다. 간편하게 누군가가 정리해놓은 글을 참고하여 원하는 작업을 수행할 수도 있지만, 가장 확실한 정답은 공식문서에 있다는 것을 다시 한번 상기시키게 되는 계기가 되었습니다. 무엇보다 해당 경험을 통해 Karpenter가 동작하는데에는 어떤 구성요소가 필요한지, Karpenter는 어떤 방식으로 노드를 Scaling하는지 확인할 수 있었습니다.
 

@@ -17,7 +17,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## 사전 준비 사항
+## 1. 사전 준비 사항
 
 - Kubernetes Cluster
 - Jenkins Server
@@ -25,7 +25,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## Jenkins에 Kubernetes Plugin 설치
+## 2. Jenkins에 Kubernetes Plugin 설치
 
 > Dashboard -> Jenkins 관리 -> Plugins -> Available plugins에 접속후 Kubernetes Plugin을 설치합니다.
 {: .prompt-tip}
@@ -39,7 +39,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## Jenkins에 kubeconfig 파일 등록
+## 3. Jenkins에 kubeconfig 파일 등록
 
 > Jenkins가 Kubernetes에 접근하기 위해서는 접근 권한이 있는 Service Account 또는 kubeconfig가 Jenkins Credential에 등록되어 있어야 합니다.
 > Dashboard -> Jenkins 관리 -> Credentials 에 접속 후 kubeconfig 파일을 Jenkins Credential에 등록해줍니다.
@@ -50,7 +50,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## Jenkins에서 Kubernetes 클라우드 설정
+## 4. Jenkins에서 Kubernetes 클라우드 설정
 
 > Dashboard -> Jenkins 관리 -> Clouds -> New cloud에 접속 후 Kubernetes Type의 Cloud를 생성합니다.
 {: .prompt-tip}
@@ -79,7 +79,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## Pod Template 추가
+## 5. Pod Template 추가
 
 > Jenkins가 Kubernetes 클러스터 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야합니다.
 > Dashboard -> Clouds -> Kubernetes -> Pod Templates에 접속 후 Add a pod template를 누릅니다.
@@ -87,7 +87,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![Add Pod a Template](/assets/img/jenkins/add-pod-template.png)
 
-### Pod Template 설정
+### 5.1 Pod Template 설정
 
 > 요구사항에 따라 Agent로 실행되는 Pod에 대한 설정을 해줍니다. 각각의 옵션에 대한 자세한 설명은 옵션을 기입하는 오른쪽 **?(물음표)** 표시를 클릭하면 확인할 수 있습니다.
 > Usage 옵션을 통해 특정 라벨과 일치하는 노드에서만 Agent Pod가 생성되도록 할 수도 있으며 Container를 추가해 하나의 Pod에 여러 Container가 포함되도록 설정할 수도 있습니다.
@@ -98,7 +98,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ---
 
-## 테스트
+## 6. 테스트
 
 > Kubernetes Agent를 사용하도록 테스트 파이프라인을 생성해 정상 동작 여부를 해보겠습니다.
 {: .prompt-tip}

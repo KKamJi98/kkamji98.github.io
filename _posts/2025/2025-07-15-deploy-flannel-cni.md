@@ -11,7 +11,7 @@ image:
 
 이번 포스트에서는 `Flannel CNI`를 Kubernetes Cluster에 배포해보도록 하겠습니다.
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차] (현재 글)]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
@@ -29,7 +29,7 @@ image:
 
 ---
 
-## Flannel 배포 전 확인
+## 1. Flannel 배포 전 확인
 
 ```bash
 #################################
@@ -78,7 +78,7 @@ tree /etc/cni/net.d/   # 설치된 CNI 플러그인 설정 파일 목록 및 디
 
 ---
 
-## Flannel CNI 배포하기
+## 2. Flannel CNI 배포하기
 
 이전 글에서 확인한 바와 같이 eth0 Interface는 VirtualBox의 NAT 네트워크 모드로 동작하기 위해 사용되기 때문에, flannel이 eth1을 사용하도록 수정했습니다.
 
@@ -167,7 +167,7 @@ for i in w1 w2 ; do echo ">> node : cilium-$i <<"; sshpass -p 'vagrant' ssh -o S
 
 ---
 
-## Sample Application 배포 및 확인
+## 3. Sample Application 배포 및 확인
 
 ```bash
 cat << EOF | kubectl apply -f -
@@ -241,7 +241,7 @@ for i in w1 w2 ; do echo ">> node : cilium-$i <<"; sshpass -p 'vagrant' ssh vagr
 
 ---
 
-## 통신 확인
+## 4. 통신 확인
 
 ```bash
 ❯ kubectl get pod -l app=webpod -o wide

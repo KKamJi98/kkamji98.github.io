@@ -17,18 +17,18 @@ image:
 
 ---
 
-## 사전 준비물
+## 1. 사전 준비물
 
 쿠버네티스
 
 ---
 
-## PV, PVC 생성
+## 2. PV, PVC 생성
 
 > 기본적으로 Pod가 실행되면서 생긴 데이터는 Pod가 삭제되거나 재시작될 때 유지되지 않습니다. 따라서 데이터를 영구적으로 저장할 PV, PVC를 생성해주었습니다. 해당 방법과 더불어 Storage Class를 사용하는 방법도 추천드립니다.
 {: .prompt-info}
 
-### mysql-pv.yaml
+### 2.1 mysql-pv.yaml
 
 ```yaml
 apiVersion: v1
@@ -44,7 +44,7 @@ spec:
     path: "/mnt/data"
 ```
 
-### mysql-pvc.yaml
+### 2.2 mysql-pvc.yaml
 
 ```yaml
 apiVersion: v1
@@ -61,12 +61,12 @@ spec:
 
 ---
 
-## ConfigMap 생성
+## 3. ConfigMap 생성
 
 > 팀원들이 사용할 사용자 계정을 생성해야했고, ConfigMap의 데이터를 컨테이너의 `/docker-entrypoint-initdb.d` 디렉토리에 마운트하면 MySQL 컨테이너가 초기화 되면서 해당 파일이 같이 실행되는 것을 알게 되었습니다.
 {: .prompt-info}
 
-### mysql-configmap.yaml
+### 3.1 mysql-configmap.yaml
 
 ```yaml
 apiVersion: v1
@@ -81,7 +81,7 @@ data:
 
 ---
 
-## secrets 생성
+## 4. secrets 생성
 
 > MySQL 초기화에 필요한 환경변수들을 Secret으로 생성해주었습니다. 여기서 주의할 점은 시크릿을 암호화하지 않게되면 base64로 인코딩 한 값을 kubectl 명령어를 통해 확인할 수 있으므로, 쿠버네티스 클러스터 설정에서 `EncryptionConfigure`를 사용해주어야 합니다. 추가로 HashiCorp Vault, AWS Secret Manager를 사용하는 방법도 추천드립니다.
 {: .prompt-info}
@@ -101,7 +101,7 @@ data:
 
 ---
 
-## Deployment 생성
+## 5. Deployment 생성
 
 > 앞에서 만든 ConfigMap, Secret을 사용해 MySQL Deployment를 생성해주었습니다.
 
@@ -162,7 +162,7 @@ spec:
 
 ---
 
-## Service 생성
+## 6. Service 생성
 
 > 간단한 배포를 위해 NodePort를 사용했고, 30006번 포트로 배포했습니다.
 

@@ -11,7 +11,7 @@ image:
 
 이번 시간에는 **Prometheus**에서 수집한 지표를 **Grafana**를 사용해 시각화 하는 방법에 대해 알아보도록 하겠습니다.
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %})
 2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
@@ -20,7 +20,7 @@ image:
 
 ---
 
-## Data Source 추가
+## 1. Data Source 추가
 
 > 이전에 변경한 비밀번호를 사용해 **Grafana**에 접속한 뒤, 메인 화면에 보이는 DATA SOURCES에서 **Add your first data source**를 클릭합니다.
 {: .prompt-tip}
@@ -46,7 +46,7 @@ image:
 
 ---
 
-## Data Source 확인 및 Import DashBoard
+## 2. Data Source 확인 및 Import DashBoard
 
 > 좌측 상단의 메뉴를 클릭 한 뒤, Connections > Data sources에 들어가 prometheus를 확인합니다.
 {: .prompt-tip}
@@ -75,7 +75,7 @@ image:
 
 ---
 
-## Grafana DashBoard 확인
+## 3. Grafana DashBoard 확인
 
 > 추가한 Dashboard를 통해 Prometheus를 통해 수집된 Kubernetes 리소스를 확인할 수 있습니다.
 {: .prompt-tip}

@@ -15,13 +15,13 @@ image:
 
 ---
 
-## External Secrets CRDs
+## 1. External Secrets CRDs
 
 External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(Custom Resource Definition)**를 사용합니다. 주요 CRD로 **특정 네임스페이스 범위에서 동작**하는 **SecretStore**, **ExternalSecret**과 **클러스터 범위로 동작**하는 **ClusterSecretStore**, **ClusterExternalSecret**이 있습니다. 다음 다이어그램을 확인한 뒤, 아래 각 CRD에 대한 설명을 보시면 이해에 도움이 될 수 있습니다.
 
 ![external-secret-diagram](/assets/img/kubernetes/external-secrets-diagram.webp)
 
-### SecretStore, ClusterSecretStore
+### 1.1 SecretStore, ClusterSecretStore
 
 **SecretStore** - **외부 시크릿 서비스에 접근하기 위한 정보를 저장**하는 CRD입니다. 어떤 제공자(provider)를 사용할지, 인증 방식은 어떻게 할지 정의합니다. **SecretStore는 네임스페이스 범위에서 동작하며, 동일한 네임스페이스의 ExternalSecret만 참조**할 수 있습니다.  
 
@@ -32,7 +32,7 @@ External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(
 > 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 사용해야 한다면 **ClusterSecretStore**로 한 번 정의해두고 재사용할 수 있고, 반대로 네임스페이스를 팀별로 따로 사용하고, AWS IAM 자격 증명을 따로 사용해야 한다면 각 팀 네임스페이스에 SecretStore를 생성하여 사용할 수 있습니다.  
 {: .prompt-tip}
 
-### ExternalSecret, ClusterExternalSecret
+### 1.2 ExternalSecret, ClusterExternalSecret
 
 **ExternalSecret** - **외부 시크릿으로부터 실제 쿠버네티스 Secret을 동기화**하기 위한 설정을 담은 CRD입니다. 어떤 **SecretStore**을 참고할지, 외부 시크릿 관리 시스템에서 가져올 시크릿의 키/경로는 무엇인지, 생성될 Kubernetes Secret의 이름은 무엇인지 등을 정의합니다. **ExternalSecret**는 **네임스페이스 범위에서 동작**하며, 생성된 **ExternalSecret은 자신이 속한 네임스페이스에서만 Secret을 생성**합니다.  
 
@@ -43,7 +43,7 @@ External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(
 
 ---
 
-## External Secrets Operator Helm으로 배포하기
+## 2. External Secrets Operator Helm으로 배포하기
 
 ```bash
 # Helm Chart Repository 추가
@@ -88,7 +88,7 @@ webhooks.generators.external-secrets.io                 2025-03-02T05:13:57Z
 
 ---
 
-## AWS 접근을 위한 Access Key, Secret Access Key 설정
+## 3. AWS 접근을 위한 Access Key, Secret Access Key 설정
 
 > 간단한 테스트를 위해 `external-secret`이라는 IAM 유저를 생성하고 해당 유저에 AWS Secrets Manager, SSM Parameter Store에 접근할 수 있는 권한을 부여하여 사용했습니다. 실제 운영환경에서는 최소권한을 갖는 IAM Role을 사용하여 IRSA를 통해 접근하는 것이 좋습니다.  
 > \[[IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/2024-07-17-irsa %})\]
@@ -103,7 +103,7 @@ kubectl create secret generic aws-credentials \
 ```
 ---
 
-## ClusterSecretStore 생성 - \[AWS Secrets Manager\]  
+## 4. ClusterSecretStore 생성 - \[AWS Secrets Manager\]
 
 ```yaml
 # clustersecretstore-secretsmanager.yaml 
@@ -137,7 +137,7 @@ aws-secretsmanager-store   15s   Valid    ReadWrite      True
 
 ---
 
-## ExternalSecret 생성 및 Kubernetes Secret 동기화 - \[AWS Secrets Manager\]
+## 5. ExternalSecret 생성 및 Kubernetes Secret 동기화 - \[AWS Secrets Manager\]
 
 ```yaml
 # externalsecret-secretsmanager.yaml
@@ -179,7 +179,7 @@ basic-auth-secret-manager   Opaque   1      13s
 
 ---
 
-## ClusterSecretStore 생성 - \[AWS SSM Parameter Store\]
+## 6. ClusterSecretStore 생성 - \[AWS SSM Parameter Store\]
 
 ```yaml
 # clustersecretstore-ssm.yaml
@@ -213,7 +213,7 @@ aws-ssm-store              8s      Valid    ReadWrite      True
 
 ---
 
-## ExternalSecret 생성 및 Kubernetes Secret 동기화 - \[AWS SSM Parameter Store\]
+## 7. ExternalSecret 생성 및 Kubernetes Secret 동기화 - \[AWS SSM Parameter Store\]
 
 ```yaml
 # externalsecret-ssm.yaml
@@ -253,7 +253,7 @@ NAME                        TYPE     DATA   AGE
 basic-auth-secret-ssm       Opaque   1      2m53s
 ```
 
-## ClusterExternalSecret으로 여러 네임스페이스에 Secret 배포하기
+## 8. ClusterExternalSecret으로 여러 네임스페이스에 Secret 배포하기
 
 ```yaml
 # clusterexternalsecret-ssm.yaml
@@ -302,13 +302,13 @@ kube-system        clusterexternalsecret-secret             Opaque              
 monitoring         clusterexternalsecret-secret             Opaque               1      15s
 ```
 
-## 마무리
+## 9. 마무리
 
 이번 글에서는 External Secrets Operator를 활용하여 쿠버네티스에서 AWS Secrets Manager와 SSM Parameter Store의 시크릿을 동기화하는 방법을 다뤄보았습니다. 이를 통해 Application에서 사용하는 민감한 값을 Git 등에 직접 노출하지 않고도 참조할 수 있게 되어 보안성과 편의성을 크게 향상시킬 수 있습니다.
 
 실무에서 적용할 때는 IRSA를 사용하는 것을 추천드리며 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹지 않도록 주의해야합니다. 또한 복잡하거나 많은 키를 가진 시크릿을 사용해야할 경우 `.data[]` 형식 외에도 `.dataFrom`, `.template` 형식을 사용해 여러 키를 가진 시크릿을 통째로 가져와 사용할 수도 있습니다.
 
-## 참고 자료
+## 10. 참고 자료
 
 - <https://external-secrets.io/>
 - <https://external-secrets.io/latest/provider/aws-secrets-manager/>

@@ -17,7 +17,7 @@ image:
 
 ---
 
-## Minio란?
+## 1. Minio란?
 
 > Minio는 고성능·고가용성을 갖춘 오브젝트 스토리지(Object Storage) 솔루션입니다.
 {: .prompt-tip}
@@ -35,7 +35,7 @@ Kubernetes 환경에서는 Minio를 다음과 같이 활용할 수 있습니다.
 
 ---
 
-## Minio 설치 및 실행(Windows)
+## 2. Minio 설치 및 실행(Windows)
 
 > `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
 {: .prompt-tip}
@@ -76,7 +76,7 @@ WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that yo
 
 ---
 
-## 접속 확인
+## 3. 접속 확인
 
 > 위 콘솔 출력과 같이 localhost의 9001번 포트로 접속이 가능합니다. 초기 username:password => minioadmin:minioadmin
 > `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
@@ -86,7 +86,7 @@ WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that yo
 
 ---
 
-## Minio Client 설치 및 Minio 연결 (Linux)
+## 4. Minio Client 설치 및 Minio 연결 (Linux)
 
 > 필요한 Minio CLI 명령어는 <https://min.io/docs/minio/linux/reference/minio-mc.html#command-quick-reference> 사이트에서 확인이 가능합니다.
 {: .prompt-tip}
@@ -119,7 +119,7 @@ mc alias set {alias_name} http://192.168.0.2:9000 {username} {password}
 
 ---
 
-## 파일 업로드 테스트
+## 5. 파일 업로드 테스트
 
 > 간단하게 .txt 파일 생성 후 Minio에 업로드 후 해당 파일을 다운로드해 테스트하도록 하겠습니다.
 {: .prompt-tip}
@@ -151,13 +151,13 @@ kkamji minio bucket file upload test
 
 ---
 
-## 마무리
+## 6. 마무리
 
 이로써 AWS S3와 비슷한 Object Storage 공간으로 남은 HDD를 사용할 수 있게 되었습니다. nssm과 let's encrypt를 사용해 자동 시작과 TLS 인증도 적용이 가능합니다!
 
 ---
 
-## Reference
+## 7. Reference
 
 - Minio 공식 문서 - <https://min.io/docs/minio/windows/index.html>
 - Minio GitHub - <https://github.com/minio/minio>

@@ -13,7 +13,7 @@ Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instanc
 
 ---
 
-## Environment
+## 1. Environment
 
 - EC2 Instance(t2.micro) 2대  
   - `influxdb-1` (Old) ip: `10.0.1.129`
@@ -22,7 +22,7 @@ Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instanc
 
 ---
 
-## InfluxDB, TSDB란?
+## 2. InfluxDB, TSDB란?
 
 **InfluxDB**는 시계열(TS, Time-Series) 데이터에 특화된 오픈소스 데이터베이스입니다. 시계열 데이터는 센서, 모니터링, 로그 등 시간축을 따라 들어오는 연속적·대량 데이터를 다루는 데 최적화된 구조를 갖춥니다. 이러한 **TSDB(Time-Series Database)**는 시간 정보를 핵심 인덱스로 사용해 빠른 수집·보관·분석이 가능하며, InfluxDB 역시 Measurement·Tag·Field·Time 구성을 통해 고속 쓰기와 효율적 조회를 지원합니다.
 
@@ -30,18 +30,18 @@ InfluxDB는 DevOps 모니터링(서버 CPU, 메모리 지표)이나 IoT 센서, 
 
 ---
 
-## Export 데이터에서 Line Protocol과 Export 방식의 차이
+## 3. Export 데이터에서 Line Protocol과 Export 방식의 차이
 
 InfluxDB 1.x 버전에서 데이터를 내보낼 때는 크게 두 가지 접근 방식을 사용할 수 있습니다.
 
-### 1) **Line Protocol 기반 Export**
+### 3.1 1) **Line Protocol 기반 Export**
 
 `influx_inspect export -lponly` 옵션이나, `SELECT` 결과를 직접 Line Protocol로 변환하는 방식입니다.
 
 - **장점**: InfluxDB가 이해하는 **Native** 포맷이므로, timestamp·tag·field 정보를 그대로 보존하여 Import 시 매끄럽습니다.  
 - **단점**: CSV보다 사람이 읽기에는 다소 불편할 수 있습니다.
 
-### 2) **CSV 기반 Export**
+### 3.2 2) **CSV 기반 Export**
 
 `influx -execute "SELECT..." -format csv` 명령어로 CSV 파일을 얻을 수 있습니다.
 
@@ -52,7 +52,7 @@ InfluxDB 1.x 버전에서 데이터를 내보낼 때는 크게 두 가지 접근
 
 ---
 
-## 테스트 시나리오
+## 4. 테스트 시나리오
 
 마이그레이션이 정상 동작하는지, 누락 없이 잘 덮어씌울 수 있는지 확인하기 위해 아래와 같은 시나리오로 검증했습니다. Grafana를 사용해 Old Influx와 New Influx를 DataSource를 한 대시보드를 통해 비교 관찰했습니다.
 
@@ -70,7 +70,7 @@ InfluxDB 1.x 버전에서 데이터를 내보낼 때는 크게 두 가지 접근
 
 ---
 
-## 1분 간격 더미 데이터 스크립트
+## 5. 1분 간격 더미 데이터 스크립트
 
 테스트 편의를 위해, 아래 스크립트를 cron에 등록해 Old Influx와 New Influx 양쪽으로 분 단위 데이터를 쌓았습니다.
 
@@ -97,7 +97,7 @@ curl -i -XPOST "http://10.0.1.67:8086/write?db=test_db" \
 
 ---
 
-## New InfluxDB의 Measurement 삭제
+## 6. New InfluxDB의 Measurement 삭제
 
 Old InfluxDB에서 데이터를 마이그레이션하기 전에 New InfluxDB에 있는 Measurement를 삭제합니다. 아래 명령어로 특정 Measurement를 삭제할 수 있습니다.
 
@@ -118,18 +118,18 @@ root@ip-10-0-1-67:~# influx -database test_db -execute "SELECT COUNT(*) FROM tes
 ## 결과 없음
 ```
 
-### Grafana에서 확인
+### 6.1 Grafana에서 확인
 
 ![delete_measurements](/assets/img/influxdb/delete_measurements.webp)
 
 ---
 
-## Old InfluxDB에서 데이터 Export 및및 New InfluxDB에 Import
+## 7. Old InfluxDB에서 데이터 Export 및및 New InfluxDB에 Import
 
 기존 Old InfluxDB에서 데이터를 추출하여 SCP 또는 rsync로 New InfluxDB로 복사한 뒤, `influx_inspect export`를 통해 Line Protocol 형식으로 Export합니다. 이후 `curl`을 사용해 New InfluxDB에 데이터를 Import합니다.
 아래 스크립트를 사용해 자동화 했습니다.
 
-### 사용 스크립트 설명
+### 7.1 사용 스크립트 설명
 
 아래 스크립트는 Old InfluxDB에서 데이터를 추출(Export)하여 Line Protocol로 변환한 뒤, New InfluxDB에 데이터베이스를 생성하고 Import까지 진행합니다.
 
@@ -219,13 +219,13 @@ time count_value
 0    1233
 ```
 
-### Grafana에서 결과 확인
+### 7.2 Grafana에서 결과 확인
 
 ![migration_grafana](/assets/img/influxdb/migration_grafana.webp)
 
 ---
 
-## Old InfluxDB에서 특정 시간대 데이터 삭제 후 마이그레이션
+## 8. Old InfluxDB에서 특정 시간대 데이터 삭제 후 마이그레이션
 
 Old InfluxDB에서 특정 시간대 데이터를 삭제한 뒤, New InfluxDB로 마이그레이션을 진행합니다. 아래 명령어로 특정 시간대 데이터를 삭제할 수 있습니다.
 
@@ -245,7 +245,7 @@ root@ip-10-0-1-67:~# influx -database test_db -execute "SELECT COUNT(*) FROM tes
 ## 결과 없음
 ```
 
-### Grafana에서 결과 확인
+### 8.1 Grafana에서 결과 확인
 
 ![delete_partial_measurement](/assets/img/influxdb/delete_partial_measurement.webp)
 
@@ -297,7 +297,7 @@ Date: Sun, 06 Apr 2025 13:58:02 GMT
 === 모든 데이터베이스 마이그레이션 완료 ===
 ```
 
-### Grafana에서 결과 확인
+### 8.2 Grafana에서 결과 확인
 
 ![restored_partial_measurement](/assets/img/influxdb/restored_partial_measurement.webp)
 
@@ -306,11 +306,11 @@ Date: Sun, 06 Apr 2025 13:58:02 GMT
 
 ---
 
-## Old InfluxDB에서 특정 시간대 데이터 덮어쓰기
+## 9. Old InfluxDB에서 특정 시간대 데이터 덮어쓰기
 
 Old InfluxDB에서 특정 시간대에 '이상한 데이터'를 삽입한 뒤, New InfluxDB로 마이그레이션을 진행합니다.
 
-### 이상한 데이터 삽입 후 마이그레이션
+### 9.1 이상한 데이터 삽입 후 마이그레이션
 
 ```shell
 ## New InfluxDB에서 데이터 삭제
@@ -383,11 +383,11 @@ Date: Sun, 06 Apr 2025 14:26:23 GMT
 === 모든 데이터베이스 마이그레이션 완료 ===
 ```
 
-### Grafana에서 이상한 값 확인
+### 9.2 Grafana에서 이상한 값 확인
 
 ![check_strange_data](/assets/img/influxdb/check_strange_data.webp)
 
-### 데이터 덮어쓰기  
+### 9.3 데이터 덮어쓰기
 
 > 100, 0, 100으로 삽입한 데이터로 인해 그래프가 흐트러진 것을 확인할 수 있습니다. 이제 해당 값을 50, 50, 50으로 덮어씌워 보겠습니다.  
 {: .prompt-tip}
@@ -425,14 +425,14 @@ X-Request-Id: e074ed20-12f4-11f0-8641-02dcd5ada24d
 Date: Sun, 06 Apr 2025 14:38:59 GMT
 ```
 
-### Grafana 확인
+### 9.4 Grafana 확인
 
 ![check_overwrite_data](/assets/img/influxdb/check_overwrite_data.webp)
 
 > 100, 0, 100으로 흐트러진 데이터가 50, 50, 50 으로 잘 덮어 씌워진 것을 그래프를 통해 확인할 수 있습니다.
 {: .prompt-tip}
 
-## 결론
+## 10. 결론
 
 1. Measurement 삭제 후 복구  
    - New InfluxDB에서 Measurement를 완전히 삭제한 뒤 Old InfluxDB에서 데이터를 가져오면, 원하는 시점과 데이터가 정상적으로 복원됨을 확인했습니다.  

@@ -17,17 +17,17 @@ image:
 
 ---
 
-## Workflows
+## 1. Workflows
 
 ![workflow](/assets/img/monitoring/log_monitoring.webp)
 
 ---
 
-## ELK Stack 구축
+## 2. ELK Stack 구축
 
 이전에 작성한 [EFK Stack 구축하기 (2) - Elasticsearch](https://kkamji.net/posts/elasticsearch/)와 [EFK Stack 구축하기 (3) - Kibana](https://kkamji.net/posts/kibana/)를 참고해 **Elasticsearch**와 **Kibana**를 구축하고, **Logstash**는 별도의 Deployment를 통해 구축해보도록 하겠습니다.
 
-### Elasticsearch 배포
+### 2.1 Elasticsearch 배포
 
 ```bash
 ## CRD 설치
@@ -106,7 +106,7 @@ NAME                                        READY   AGE
 statefulset.apps/elasticsearch-es-default   1/1     4m37s
 ```
 
-### Kibana 배포
+### 2.2 Kibana 배포
 
 ```bash
 ## Kibana 리소스 manifest 파일 생성 -> kibana.yaml
@@ -136,11 +136,11 @@ kibana   green    1       8.16.0    3m1s
 Rkxxxxx19xxxxxmVxxxa
 ```
 
-### 포트포워딩 후 확인
+### 2.3 포트포워딩 후 확인
 
 ![kibana_login](/assets/img/monitoring/kibana_login.webp)
 
-### Logstash 배포
+### 2.4 Logstash 배포
 
 ```bash
 apiVersion: logstash.k8s.elastic.co/v1alpha1
@@ -193,9 +193,9 @@ spec:
 
 ---
 
-## Logstash -> Elasticsearch 연동 테스트
+## 3. Logstash -> Elasticsearch 연동 테스트
 
-### curl 명령어를 통해 logstash에 로그 데이터 전송
+### 3.1 curl 명령어를 통해 logstash에 로그 데이터 전송
 
 ```bash
 ❯ curl -X POST "{log_stash_url}" \
@@ -205,7 +205,7 @@ spec:
 ok
 ```
 
-### 로그 확인 {elasticsearch url}/_search
+### 3.2 로그 확인 {elasticsearch url}/_search
 
 > logstash로 전송한 로그가 elasticsearch로 전송된 것을 확인할 수 있습니다.
 {: .prompt-tip}
@@ -214,7 +214,7 @@ ok
 
 ---
 
-## Log Group에서 발생시키는 로그데이터 확인
+## 4. Log Group에서 발생시키는 로그데이터 확인
 
 > 아래 event, content를 확인하기 위한 테스트용 Lambda Function를 생성하고, Lambda 함수의 handler에 어떤 데이터가 들어오는지 확인 해보겠습니다.
 {: .prompt-tip}
@@ -261,7 +261,7 @@ print(original_data.decode('utf-8'))
 > 함수가 동작하면서 발생한 로그는 `logEvents` : 배열 형태로 하나씩 저장되어 전달되는 것을 확인할 수 있습니다.
 {: .prompt-tip}
 
-## **Subscription Filter** 역할을 하는 **Lambda Function** 생성
+## 5. **Subscription Filter** 역할을 하는 **Lambda Function** 생성
 
 > 이전 단계에서 CloudWatch Logs의 **Subscription Filter**를 통해 데이터가 어떤 방식과 어떤 형식으로 전달되는지 확인할 수 있었습니다.  
 >
@@ -347,7 +347,7 @@ def handler(event, context):
 
 ---
 
-## CloudWatch Log Group - **Subscription Filter** 설정
+## 6. CloudWatch Log Group - **Subscription Filter** 설정
 
 > 예시를 위해 콘솔에서 작업했습니다. Lambda Function의 개수가 많아질경우 콘솔에서 작업하기 보다는 IaC 도구 사용을 추천드립니다.  
 >
@@ -368,7 +368,7 @@ def handler(event, context):
 
 ---
 
-## 테스트
+## 7. 테스트
 
 > 해당 Lambda Function를 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.
 {: .prompt-tip}
@@ -380,7 +380,7 @@ def handler(event, context):
 
 ---
 
-## 결과
+## 8. 결과
 
 > ELK를 통해 다수의 Lambda Function에서 발생하는 로그 데이터를 한 곳에서 확인할 수 있게 되었습니다.  
 >

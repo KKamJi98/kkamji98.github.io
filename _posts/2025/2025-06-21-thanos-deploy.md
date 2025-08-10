@@ -11,7 +11,7 @@ image:
 
 **Thanos**는 **Prometheus**의 확장성과 고가용성 문제를 해결하기 위해 개발된 오픈소스 프로젝트입니다. 2017년에 시작되어 현재 **CNCF(Cloud Native Computing Foundation) Incubating** 프로젝트로 발전하고 있습니다. **Thanos**는 **Prometheus**의 장기 데이터 저장, 고가용성, 글로벌 쿼리 뷰 등의 기능을 제공하여 대규모 모니터링 환경에서 아래와 같은 한계를 극복할 수 있게 해줍니다.
 
-### Prometheus의 한계
+### 0.1 Prometheus의 한계
 
 | 한계 항목             | 설명                                                                      |
 | --------------------- | ------------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ image:
 
 ---
 
-### 관련 글
+### 0.2 관련 글
 
 1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %})
 2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
@@ -33,7 +33,7 @@ image:
 
 ---
 
-## Thanos란?
+## 1. Thanos란?
 
 Thanos는 여러 Prometheus가 수집한 데이터를 통합하여, 대규모 클러스터 환경에서 확장성 있는 모니터링 시스템을 제공합니다.  
   
@@ -43,7 +43,7 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 
 ---
 
-## Thanos의 구성요소
+## 2. Thanos의 구성요소
 
 | 컴포넌트           | 핵심 역할                                                           | 배포 형태                 |
 | ------------------ | ------------------------------------------------------------------- | ------------------------- |
@@ -60,11 +60,11 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 
 ---
 
-## Thanos 배포하기 (Helm)
+## 3. Thanos 배포하기 (Helm)
 
 Bitnami Helm Chart를 사용해 Thanos를 배포하고. 기존에 동작하고 있는 Minio와 연동해 보도록 하겠습니다.
 
-### Thanos `kkamji_local_values.yaml` 파일 생성
+### 3.1 Thanos `kkamji_local_values.yaml` 파일 생성
 
 > 실제 운영에서는 `objstoreConfig` 를 Secret 으로 분리하거나 SOPS 로 암호화해 Git 에 노출되지 않도록 합니다.  
 {: .prompt-tip}
@@ -128,7 +128,7 @@ metrics:
     enabled: true
 ```
 
-### Helm 배포 (Thanos)
+### 3.2 Helm 배포 (Thanos)
 
 ```bash
 ❯ helm upgrade --install -n monitoring thanos oci://registry-1.docker.io/bitnamicharts/thanos -f kkamji_local_values.yaml
@@ -136,9 +136,9 @@ metrics:
 
 ---
 
-## Prometheus Operator 배포하기 (Helm)
+## 4. Prometheus Operator 배포하기 (Helm)
 
-### Prometheus Operator `value.yaml` 파일 생성
+### 4.1 Prometheus Operator `value.yaml` 파일 생성
 
 ```yaml
 ## kkamji_local_with_thanos.yaml
@@ -160,7 +160,7 @@ prometheus:
           key: "objstore.yml"
 ```
 
-### Helm 배포 (Prometheus Operator)
+### 4.2 Helm 배포 (Prometheus Operator)
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -170,7 +170,7 @@ helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheu
 
 ---
 
-## 확인 (Status, Log)
+## 5. 확인 (Status, Log)
 
 ```bash
 ❯ k get po -n monitoring
@@ -210,7 +210,7 @@ ts=2025-06-23T14:35:23.689840725Z caller=fetcher.go:627 level=info component=blo
 
 ---
 
-## 확인 (Minio, Query 접속)
+## 6. 확인 (Minio, Query 접속)
 
 ![Minio Thanos Blocks](/assets/img/kubernetes/thanos-minio.png)
 
@@ -218,7 +218,7 @@ ts=2025-06-23T14:35:23.689840725Z caller=fetcher.go:627 level=info component=blo
 
 ---
 
-## Reference
+## 7. Reference
 
 - Thanos GitHub - <https://github.com/thanos-io/thanos>
 - Thanos Docs — <https://thanos.io/tip/thanos/>

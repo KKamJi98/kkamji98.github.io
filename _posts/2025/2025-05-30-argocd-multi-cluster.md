@@ -11,7 +11,7 @@ image:
 
 이번 글에서는 ArgoCD를 활용해 여러 Kubernetes 클러스터에 애플리케이션을 배포하는 방법을 살펴보겠습니다.
 
-## 사전 준비사항
+## 1. 사전 준비사항
 
 - 2개 이상의 Kubernetes 클러스터
 - ArgoCD가 설치된 관리용 클러스터
@@ -20,7 +20,7 @@ image:
 
 ---
 
-## ArgoCD Multi-Cluster 아키텍처
+## 2. ArgoCD Multi-Cluster 아키텍처
 
 ArgoCD의 Multi-Cluster 배포 구조는 다음과 같은 단계를 거칩니다.
 
@@ -31,7 +31,7 @@ ArgoCD의 Multi-Cluster 배포 구조는 다음과 같은 단계를 거칩니다
 
 ---
 
-## 클러스터 등록하기
+## 3. 클러스터 등록하기
 
 먼저 대상 클러스터를 ArgoCD에 등록합니다. 실습을 위해 배포된 EKS Cluster를 사용했습니다.
 
@@ -78,7 +78,7 @@ attachdetach-controller                       0         73m
 
 ---
 
-## ArgoCD Application 배포 및 확인
+## 4. ArgoCD Application 배포 및 확인
 
 이전 글에서도 사용한 `guestbook` 애플리케이션을 예시로 사용하겠습니다.  
 주목할 부분 => 다른 클러스터에 배포될 Application을 정의할 때는 `destination`이 `https://kubernetes.default.svc`가 아닌 위에서 등록한 클러스터의 이름 `kkamji-al2023`을 사용
@@ -152,13 +152,13 @@ Hi
 
 ---
 
-## 결론
+## 5. 결론
 
 ArgoCD를 활용한 Multi-Cluster 애플리케이션 배포는 GitOps 방식의 효율적이고 일관된 관리를 제공합니다. 적절한 보안과 설정 관리를 통해 멀티 클러스터 환경에서도 안정적으로 운영할 수 있으며, 대규모 환경일 경우 `ApplicationSet`을 사용하면 더욱 간편하고 유용하게 활용될 수 있습니다.
 
 ---
 
-## 참고 자료
+## 6. 참고 자료
 
 - **Cluster Bootstrapping** - <https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping>
 - **Declarative Setup** <https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup>

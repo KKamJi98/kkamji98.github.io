@@ -15,7 +15,7 @@ image:
 
 ---
 
-## 도메인 구매하기
+## 1. 도메인 구매하기
 
 1. Route53에 들어간 뒤, Domain > Registered domains 속성에 들어갑니다
     ![image](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/128de451-b3d6-4dd9-8a92-d5bc5a3720fc)

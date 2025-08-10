@@ -17,7 +17,7 @@ image:
 
 ---
 
-## 구성 환경
+## 1. 구성 환경
 
 - Helm (v3.16.2)
 - Kubernetes (v1.29.6)
@@ -25,7 +25,7 @@ image:
 
 ---
 
-## Helm Repository 추가
+## 2. Helm Repository 추가
 
 ```bash
 ❯ helm repo add mongodb https://mongodb.github.io/helm-charts
@@ -38,7 +38,7 @@ Update Complete. ⎈Happy Helming!⎈
 
 ---
 
-## Helm을 사용해 MongoDB Operator 배포
+## 3. Helm을 사용해 MongoDB Operator 배포
 
 > mongodb라는 namespace에 MongoDB Operator를 배포하도록 하겠습니다.
 {: .prompt-tip}
@@ -56,7 +56,7 @@ TEST SUITE: None
 
 ---
 
-## MongoDB Operator 확인
+## 4. MongoDB Operator 확인
 
 ```bash
 ❯ kubens mongodb   
@@ -74,7 +74,7 @@ replicaset.apps/mongodb-kubernetes-operator-6d7f45687c   1         1         1  
 
 ---
 
-## MongoDB Custom Resource (CR) 정의 파일 생성
+## 5. MongoDB Custom Resource (CR) 정의 파일 생성
 
 > MongoDB Operator를 통해 MongoDB 인스턴스를 배포하려면 Custom Resource(CR)을 정의하여 MongoDB 클러스터를 생성해야 합니다.  
 > storageClassName에는 현재 사용중인 storageClassName을 지정해주셔야 합니다.  
@@ -141,7 +141,7 @@ stringData:
 
 ---
 
-## MongoDB Custom Resource (CR)을 사용해 MongoDB 배포
+## 6. MongoDB Custom Resource (CR)을 사용해 MongoDB 배포
 
 ```bash
 ❯ k apply -f mongodb-custom-resource.yaml 
@@ -151,7 +151,7 @@ secret/mongodb-user-password created
 
 ---
 
-## MongoDB 배포 확인
+## 7. MongoDB 배포 확인
 
 ```bash
 ❯ k get all                         
@@ -181,7 +181,7 @@ Forwarding from [::1]:27017 -> 27017
 
 ---
 
-## MongoDB 접속 확인
+## 8. MongoDB 접속 확인
 
 ```bash
 ❯ mongosh --username {user_name} --password {user_password} --authenticationDatabase admin
@@ -210,7 +210,7 @@ mongodb [direct: primary] test>
 
 ---
 
-## Reference
+## 9. Reference
 
 MongoDB Github - <https://github.com/mongodb/mongo>  
 MongoDB 공식문서 - <https://www.mongodb.com/ko-kr/docs/manual/>  

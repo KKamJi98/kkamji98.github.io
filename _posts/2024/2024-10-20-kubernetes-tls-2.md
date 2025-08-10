@@ -16,7 +16,7 @@ image:
 
 ---
 
-## 사전 준비 사항
+## 1. 사전 준비 사항
 
 - Kubernetes Cluster 1.22+
 - Helm
@@ -25,9 +25,9 @@ image:
 
 ---
 
-## Kubernetes에 Cert-Manager 설치
+## 2. Kubernetes에 Cert-Manager 설치
 
-### 1. Namespace 생성
+### 2.1 Namespace 생성
 
 ```bash
 ❯ kubectl create namespace cert-manager

@@ -15,7 +15,7 @@ image:
 
 ---
 
-## Fluentd vs Fluent Bit
+## 1. Fluentd vs Fluent Bit
 
 **Fluentd**와 **Fluent Bit** 모두 CNCF 산하 프로젝트이며 다양한 시스템에서 로그 데이터를 수집하고 전송해주는 도구입니다. **Fluent Bit**은 2014년 Treasure Data의 Fluentd팀에서 개발한 경량 로그 프로세서입니다. 프로젝트 초기에는 임베디드 리눅스와 게이트웨이와 같은 리소스가 제한된 환경에서 로그를 수집을 위한 목표로 시작되었습니다.  
 
@@ -23,9 +23,9 @@ image:
 
 ---
 
-## Fluent Bit의 주요 개념
+## 2. Fluent Bit의 주요 개념
 
-### 1. Event, Record
+### 2.1 Event, Record
 
 **Fluent Bit**에서 검색한 로그나 메트릭에 속하는 모든 수신 데이터는 **Event** 혹은 **Record**로 간주되며 다음과 같은 세 가지 구성 요소로 이루어지며 형식은 다음과 같습니다
 
@@ -51,7 +51,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 위와 같은 로그에서 `Jan 18 12:52:16`는 **Timestamp**, `[session uid=1000 pid=2243]`는 **Key/Value Metadata**, `systemd[2222]: Starting GNOME Terminal Server`는 실제 메시지 내용인 **Payload**입니다.
 
-### 2. Filltering
+### 2.2 Filltering
 
 특정 경우에는 Event의 내용을 수정해야 합니다. Event를 수정, 보강, 삭제하는 과정을 **Filltering**이라고 합니다. **Filtering** 과정을 통해 로그 데이터를 보다 유용하게 만들거나 필요한 정보만을 남길 수 있습니다. **Filtering**의 주요 사용 사례는 다음과 같습니다.
 
@@ -86,24 +86,24 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
         Exclude         log ^DEBUG
     ```
 
-### 3. Tag
+### 2.3 Tag
 
 **Fluent Bit**에서 들어오는 모든 이벤트는 **Tag**를 할당 받습니다. Tag란 **Event**가 나중에 어떤 **Filter** 또는 출력 단계로 이동할지를 결정하는 데 사용되는 내부 문자열입니다. 대부분의 **Tag**는 설정 파일에서 수동으로 할당됩니다. **Tag**가 명시되지 않은 경우, **Fluent Bit**은 해당 이벤트가 생성된 입력 플로그인 인스턴스의 이름을 **Tag**로 할당합니다.
 
-### 4. Match
+### 2.4 Match
 
 **Fluent Bit**은 수집하고 처리된 **Event**를 **Routing** 단계를 통해 하나 이상의 목적지로 전달할 수 있습니다. **Match**는 **Tag**가 정의된 규칙과 일치하는 이벤트를 선택하는 간단한 규칙을 나타냅니다.
 
 ---
 
-## Fluent Bit 설치하기
+## 3. Fluent Bit 설치하기
 
 > **Fluent Bit**은 **DaemonSet**으로 배포되며, Kubernetes Cluster의 모든 Node에서 사용할 수 있습니다. **Fluent Bit**을 배포하는 데 권장되는 방식은 공식 Helm Chart를 사용하는 것입니다. Helm은 Kubernetes용 Package Manager입니다.
 {: .prompt-info}
 
 기본 차트 값에는 Docker parsing, systemd logs, Kubernetes Metadata 추가, Elasticsearch Cluster로 출력하는 구성이 포함되어 있습니다. **Fluent Bit**의 설정을 변경하거나 추가 기능을 구성하려면 [`values.yaml`](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml) 파일을 수정해야 합니다.
 
-### 1. Fluent Helm Charts repo 추가
+### 3.1 Fluent Helm Charts repo 추가
 
 ```bash
 ❯ helm repo add fluent https://fluent.github.io/helm-charts
@@ -117,7 +117,7 @@ fluent/fluent-operator  3.0.0           3.0.0           Fluent Operator provides
 fluent/fluentd          0.5.2           v1.16.2         A Helm chart for Kubernetes  
 ```
 
-### 2. Chart를 사용해 Fluent Bit 설치
+### 3.2 Chart를 사용해 Fluent Bit 설치
 
 ```bash
 # 네임스페이스 생성
@@ -153,7 +153,7 @@ Forwarding from [::1]:2020 -> 2020
 
 ---
 
-## Reference
+## 4. Reference
 
 <https://docs.fluentbit.io/manual> - Fluent Bit 공식문서  
 <https://github.com/fluent/helm-charts> - Fluent Helm Chart

@@ -15,27 +15,27 @@ image:
 
 ---
 
-## Probe란?
+## 1. Probe란?
 
 **Probe**는 쿠버네티스 **Kubelet이 주기적으로 Pod 내 컨테이너 상태를 점검하는 수단**입니다. **HTTP 요청**, **TCP 소켓 연결**, **컨테이너 내부 명령어 실행** 등 다양한 방식으로 애플리케이션의 상태를 확인합니다. 이를 통해 컨테이너의 상태(health)를 판단하고, 비정상 상태일 경우 자동 조치(재시작 등)를 취할 수 있습니다.  
 
 Probe에는 크게 아래 3가지 유형이 있습니다.
 
-### Liveness Probe
+### 1.1 Liveness Probe
 
 컨테이너가 "여전히 살아있는지"를 확인하는 Probe입니다. 만약 컨테이너 내부에 데드락(deadlock)이나 치명적 오류가 발생하여 더 이상 정상 응답을 하지 않는다면, Liveness Probe 실패 시 kubelet은 해당 컨테이너를 재시작하여 문제를 해결하려고 합니다.
 
-### Readiness Probe
+### 1.2 Readiness Probe
 
 컨테이너가 "트래픽을 받을 준비가 되었는지"를 확인하는 Probe입니다. 애플리케이션이 기동되었지만, 아직 완전한 처리 준비가 되지 않은 경우(예: DB 커넥션 풀 준비, 캐시 로딩), Readiness Probe를 통해 이 기간 동안은 Service 엔드포인트에서 Pod를 제외하여 실제 요청이 전달되지 않도록 합니다.
 
-### Startup Probe
+### 1.3 Startup Probe
 
 애플리케이션 기동에 많은 시간이 걸리는 경우, Startup Probe를 사용하여 "애플리케이션이 완전히 시작되었는지" 확인할 수 있습니다. Startup Probe가 성공하기 전까지는 Liveness와 Readiness Probe 체크를 지연시킴으로써, 초기화 시간이 긴 애플리케이션이 Liveness Probe에 의해 조기 재시작되는 문제를 예방할 수 있습니다.
 
 ---
 
-## Probe 동작 방식
+## 2. Probe 동작 방식
 
 Probe는 아래와 같은 방식으로 상태를 확인합니다.  
 
@@ -47,7 +47,7 @@ Probe는 아래와 같은 방식으로 상태를 확인합니다.
 
 ---
 
-## 예시 YAML
+## 3. 예시 YAML
 
 ```yaml
 apiVersion: v1
@@ -82,7 +82,7 @@ spec:
 
 ---
 
-## 마무리
+## 4. 마무리
 
 - Liveness Probe: 애플리케이션이 정상 동작 중인지 판별하여, 비정상 시 컨테이너를 자동 재시작.
 - Readiness Probe: Pod가 트래픽을 처리할 준비 여부 판단. 준비 안 된 Pod는 Service로부터 제외.
@@ -95,7 +95,7 @@ spec:
 
 ---
 
-## Reference
+## 5. Reference
 
 Kubernetes 공식문서 - <https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/>
 

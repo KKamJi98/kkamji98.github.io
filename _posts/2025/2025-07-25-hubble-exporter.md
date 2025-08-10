@@ -13,7 +13,7 @@ image:
 
 - [Cilium Docs - Configuring Hubble exporter](https://docs.cilium.io/en/stable/observability/hubble/configuration/export/#dynamic-exporter-configuration)
 
-### 관련 글
+### 0.1 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
@@ -31,7 +31,7 @@ image:
 
 ---
 
-## Hubble Exporter란?
+## 1. Hubble Exporter란?
 
 Hubble Exporter는 Network Flow를 로그 파일에 저장할 수 있는 **Cilium-Agent**의 기능이고, `file rotation`, `size limits`, `filters`, `field masks`를 지원합니다.
 
@@ -45,7 +45,7 @@ Exporter는 각 노드의 `cilium-agent` 컨테이너 안에서 동작하며, `f
 
 ---
 
-## Hubble Exporter Basic Configuration
+## 2. Hubble Exporter Basic Configuration
 
 Hubble Exporter를 설정하는 방식은 크게 **Static Export** 방식과 **Dynamic Export** 방식으로 나뉩니다. 두 방식의 차이는 아래와 같습니다.
 
@@ -57,7 +57,7 @@ Hubble Exporter를 설정하는 방식은 크게 **Static Export** 방식과 **D
 | 장점           | 단순하고 예측 가능, 변경 빈도 낮은 구성에 적합          | 빠른 조정, 무중단, 조건/필드별 세밀 제어                                        |
 | 대표 설정 키   | `hubble.export.static.*`                                | `spec.hubbleExport.*`                                                           |
 
-### Basic Configuration (Helm)
+### 2.1 Basic Configuration (Helm)
 
 **Hubble Exporter**는 Helm Value `hubble.export.static.filePath`에 로그 파일 경로를 지정해야 활성화되며, 지정하지 않으면 기본적으로 꺼져 있습니다.
 
@@ -105,7 +105,7 @@ kubectl -n kube-system exec $POD -- sh -c 'tail -f /var/run/cilium/hubble/events
 
 ---
 
-## Static Export 방식 예시 (Helm)
+## 3. Static Export 방식 예시 (Helm)
 
 ```shell
 ## value 파일 생성
@@ -145,7 +145,7 @@ hubble-export-file-max-size-mb                    10
 hubble-export-file-path                           /var/run/cilium/hubble/events.log
 ```
 
-### 핵심 Parameter 정리
+### 3.1 핵심 Parameter 정리
 
 | Key                              | 설명                                 | 예시                                                             |
 | -------------------------------- | ------------------------------------ | ---------------------------------------------------------------- |
@@ -156,7 +156,7 @@ hubble-export-file-path                           /var/run/cilium/hubble/events.
 | `hubble.export.static.fieldMask` | 기록할 필드 목록                     | `time source.namespace source.pod_name ... http.method http.url` |
 | `hubble.export.static.rotate.*`  | 파일 로테이션 옵션                   | `enabled=true`, `maxSize=100`, `maxBackups=10`                   |
 
-### Tip: Filter 손쉽게 만들기
+### 3.2 Tip: Filter 손쉽게 만들기
 
 `allowList` 혹은 `denyList`에 들어갈 Filter 조건을 아래와 같이 CLI로 먼저 필터를 만들고 JSON을 추출해 그대로 쓰면 손쉽게 만들 수 있습니다.
 
@@ -175,11 +175,11 @@ allowlist:
 
 ---
 
-## Dynamic Export 방식 예시
+## 4. Dynamic Export 방식 예시
 
 Dynamic 방식은 Pod 재시작 없이 정책 리소스를 적용/삭제하여 즉시 반영할 수 있습니다. Dynamic Export 기능은 아래와 같이 Helm Value를 수정해 활성화할 수 있습니다.
 
-### Dynamic Export 활성화
+### 4.1 Dynamic Export 활성화
 
 ```shell
 ❯ helm upgrade cilium cilium/cilium -n kube-system --version 1.17.6 --reuse-values \
@@ -251,7 +251,7 @@ total 54464
 
 ---
 
-## Performance tuning tip
+## 5. Performance tuning tip
 
 - 필터로 이벤트 수를 먼저 줄이고(allow/deny), 그다음 필드 수를 줄입니다(fieldMask 사용).
 - DROP/ERROR부터 우선 수집합니다. 정상 트래픽은 양이 많으므로 필요할 때만 별도 정책으로 분리합니다.
@@ -261,7 +261,7 @@ total 54464
 
 ---
 
-## Reference
+## 6. Reference
 
 - [Cilium Docs - Configuring Hubble exporter](https://docs.cilium.io/en/stable/observability/hubble/configuration/export/#dynamic-exporter-configuration)
 
