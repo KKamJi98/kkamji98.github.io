@@ -11,7 +11,7 @@ image:
 
 이번 글에서는 **Monitoring(모니터링)**과 **Observability(관측 가능성)**의 차이를 정리하고, **SLI/SLO/SLA** 개념에 대해 알아보도록 하겠습니다.
 
-### 0.1 관련 글
+### 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})

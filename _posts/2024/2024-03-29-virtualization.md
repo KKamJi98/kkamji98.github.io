@@ -6,7 +6,7 @@ categories: [CS, Virtualization]
 tags: [virtualization, docker, k8s, container, vm, vmware]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c39504c6-3de4-4b41-919b-5ef1b132106c
+# path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c39504c6-3de4-4b41-919b-5ef1b132106c
 ---
 
 ## 1. 가상화란?

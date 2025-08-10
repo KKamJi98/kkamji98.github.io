@@ -6,7 +6,7 @@ categories: [Programming Language, JavaScript]
 tags: [web, javascript, js, gitblog, vscode, gitpage, js연산자, 연산자]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
+# path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
 
 ## 1. 연산자

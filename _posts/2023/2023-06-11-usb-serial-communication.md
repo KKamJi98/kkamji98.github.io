@@ -6,12 +6,12 @@ categories: [Personal, University]
 tags: [arduino, usb-serial-communication]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
+# path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
 
 # Chapter 07. USB Serial Communication
 
-# 1. Arduino의 시리얼 통신 기능 이해
+# Arduino의 시리얼 통신 기능 이해
 
 > Arduino의 중요한 특징 중 하나는 USB 시리얼 포트를 통해 직접 프로그램을 업로드할 수 있다는 점이다
 > 

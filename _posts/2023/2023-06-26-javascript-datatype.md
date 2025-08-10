@@ -6,7 +6,7 @@ categories: [Programming Language, JavaScript]
 tags: [web, javascript, js, gitblog, vscode, gitpage, datatype, javascript-data-type]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
+# path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
 
 # 데이터 타입
@@ -24,7 +24,7 @@ comments: true
 |           | symbol 타입    | ES6에서 추가된 7번째 타입                           |
 | 객체 타입 |                | 객체, 함수, 배열 등                                 |
 
-# 1. 숫자 타입
+# 숫자 타입
 
 > C나 자바의 경우, 정수와 실수를 구분해서 int, long, float, double 등과 같은 다양한 숫자 타입을 제공한다. 하지만 자바스크립트는 독특하게 하나의 숫자 타입만 존재한다.
 > 
@@ -45,14 +45,14 @@ console.log(octal === hex);    //true
 ```
 
 
-# 2. 문자열 타입
+# 문자열 타입
 
 > 문자열은 0개 이상의 16비트 유니코드 문자(UTF-16)의 집합으로 전 세계 대부분의 문자를 표한할 수 있다.
 > 
 - 문자열은 작은따옴표(’’), 큰따옴표(””) 또는 백틱(₩₩)으로 텍스트를 감싼다.
 - 자바스크립트의 문자열은 원시 타입이며, 변경 불가능한 값(**immutable value**)이다.
 
-# 3. 템플릿 리터럴(template literal)
+# 템플릿 리터럴(template literal)
 
 > 멀티라인 문자열(multi-line string), 표현식 삽입(expression interpolation), 태그드 템플릿(tagged template) 등 편리한 문자열 처리 기능을 제공한다.
 > 
@@ -78,18 +78,18 @@ var last = 'Lee';
 console.log(`My name is ${first} ${last}.`); //My name is Ung-mo Lee.
 ```
 
-# 4. 불리언 타입
+# 불리언 타입
 
 > 논리적 참, 거짓을 나타내는 true와 false
 > 
 
-# 5. undefined 타입
+# undefined 타입
 
 > javascript 엔진이 변수를 초기화 할 때 사용하는 값.
 > 
 - 변수에 값이 없다는 것을 명시하고 싶을 때는 undefined를 할당하는 것이 아니라 null을 할당하는 것이 바람직함.
 
-# 6. null 타입
+# null 타입
 
 > 변수에 값이 없다는 것을 의도적으로 명시할 때 사용
 > 
@@ -97,7 +97,7 @@ console.log(`My name is ${first} ${last}.`); //My name is Ung-mo Lee.
     - 이전에 할당되어 있던 값에 대한 참조를 명시적으로 제거 ⇒ 자바스크립트 엔진은 누구도 참조하지 않는 메모리 공간에 대해 가비지 콜렉션을 수행.
 - 함수가 유효한 값을 반환할 수 없는 경우에도 명시적으로 null을 반환하기도 한다.
 
-# 7. Symbol 타입
+# Symbol 타입
 
 > 변경 불가능한 원시 타입의 값.
 > 
@@ -117,12 +117,12 @@ console.log(obj[key]); //value
 ```
     
 
-# 8. 객체(object) 타입
+# 객체(object) 타입
 
 > 자바스크립트는 객체 기반의 언어이며, 자바스크립트를 이루고 있는 거의 모든 것이 객체이다.
 > 
 
-# 9. 데이터 타입의 필요성
+# 데이터 타입의 필요성
 
 1. 값을 저장할 때 확보해야 하는 메모리 공간의 크기를 결정하기 위해.
 2. 값을 참조할 때 한 번에 읽어 들여야 할 메모리 공간의 크기를 결정하기 위해
@@ -145,7 +145,7 @@ console.log(obj[key]); //value
 
 </aside>
 
-# 10. 동적 타이핑(dynamic typing)
+# 동적 타이핑(dynamic typing)
 
 > 자바스크립트의 변수는 선언이 아닌 할당에 의해 타입이 결정(타입 추론(type inference))된다.
 그리고 재할당에 의해 변수의 타입은 언제든지 동적으로 변할 수 있다.

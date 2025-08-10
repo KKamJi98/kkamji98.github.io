@@ -6,7 +6,7 @@ categories: [System, Network]
 tags: [network, osi, tcp, udp, control flow, congestion control, packet]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/fce002d4-2ca7-4d74-9990-6b3da63d41f5
+# path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/fce002d4-2ca7-4d74-9990-6b3da63d41f5
 ---
 
 > 전송계층에서 어플리케이션 간 데이터 송수신을 위해 사용하는 프로토콜
@@ -17,7 +17,7 @@ comments: true
 
 </aside>
 
-### 0.1 TCP의 특징
+### 1.1 TCP의 특징
 
 > TCP - 연속성보다 신뢰성있는 전송이 중요할 때 사용합니다
 {: .prompt-tip}
@@ -32,7 +32,7 @@ comments: true
     - UDP보다 속도가 느립니다
     - 서버와 클라이언트는 1대1로 연결됩니다
 
-### 0.2 UDP의 특징
+### 1.2 UDP의 특징
 
 > UDP - 신뢰성보다 연속성이 중요한 서비스에 사용합니다
 {: .prompt-tip}
@@ -48,7 +48,7 @@ comments: true
 - 실시가 통신에 적합
 - Connect 개념이 존재 하지 않아 서버 소켓과 클라이언트 소켓의 구분이 없습니다
 
-### 0.3 알아보기
+### 1.3 알아보기
 
 - 패킷(Packet)이란?
     - 인터넷 내에서 데이터를 보내기 위한 경로배정(라우팅)을 효율적으로 하기 위해서 데이터를 여러 개의 조객들로 나누어 전송하는 데 이 조각을 패킷이라고 합니다

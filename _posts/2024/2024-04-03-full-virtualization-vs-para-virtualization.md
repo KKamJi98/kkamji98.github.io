@@ -6,7 +6,7 @@ categories: [CS, Virtualization]
 tags: [virtualization, docker, k8s, container, vm, vmware, fill, full-virtualization, para-virtualization, hypervisor]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/0794e0e2-b08e-4cc5-b640-c975f5a1a7b7
+# path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/0794e0e2-b08e-4cc5-b640-c975f5a1a7b7
 ---
 
 

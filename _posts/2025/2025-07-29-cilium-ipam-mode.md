@@ -11,7 +11,7 @@ image:
 
 저번 시간까지 Cilium의 Hubble을 비롯한 운영/모니터링 기능을 살펴보았습니다. 이번 시간에는 Cilium의 IP Address Management(IPAM) 개념을 알아보고, Kubernetes Host Scope와 Cluster Scope 두 가지 IPAM 모드의 동작 차이를 실습을 통해 확인해보겠습니다.
 
-### 0.1 관련 글
+### 관련 글
 
 1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})

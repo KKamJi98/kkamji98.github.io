@@ -11,7 +11,7 @@ image:
 
 현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes 클러스터의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
 
-### 0.1 관련 글
+### 관련 글
 
 1. [Kubernetes 리소스 모니터링 (1) - Prometheus (현재 글)]({% post_url 2024/2024-11-07-prometheus %})
 2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})

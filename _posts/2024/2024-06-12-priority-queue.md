@@ -6,7 +6,7 @@ categories: [CS, Data Structure]
 tags: [priority-queue, python, heap, heapq]     # TAG names should always be lowercase
 comments: true
 # image:
-#   path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c39504c6-3de4-4b41-919b-5ef1b132106c
+# path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c39504c6-3de4-4b41-919b-5ef1b132106c
 ---
 
 Priority queue(우선순위 큐)는 각 요소가 우선순위를 가진 구조로, 항상 우선순위가 높은 요소가 먼저 나가는 데이터 구조입니다. Python에서는 `heapq` 모듈을 사용하여 우선순위 큐를 쉽게 구현할 수 있습니다.
