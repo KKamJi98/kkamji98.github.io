@@ -3,7 +3,7 @@ title: Linux Command Cheat Sheet
 date: 2025-03-07 21:28:11 +0900
 author: kkamji
 categories: [System, Linux]
-tags: [linux, bash, shell, devops, command-line, cli, cheet-sheet]     # TAG names should always be lowercase
+tags: [linux, bash, shell, devops, command-line, cli, cheat-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/linux/linux.webp
@@ -432,7 +432,7 @@ title: Linux Command Cheat Sheet
 date: 2025-03-07 21:28:11 +0900
 author: kkamji
 categories: [System, Linux]
-tags: [linux, bash, shell, devops, command-line, cli, cheet-sheet]     # TAG names should always be lowercase
+tags: [linux, bash, shell, devops, command-line, cli, cheat-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/linux/linux.webp
