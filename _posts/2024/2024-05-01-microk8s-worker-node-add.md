@@ -105,5 +105,5 @@ nginx-7854ff8877-sjzkp   1/1     Running   0          27s   10.1.41.2     ip-10-
 ---
 
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKam.\_\.Ji](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}
