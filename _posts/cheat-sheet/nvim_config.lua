@@ -1,0 +1,459 @@
+-- ~/.config/nvim/init.lua
+-- 성능·UX 강화 + 경고 제로(Undefined 'vim', Deprecated fs_stat)
+
+-- 선택: init.lua 자체에 한정해 'vim' 미정의 경고를 끄고 싶다면 다음 주석을 활성화
+-- ---@diagnostic disable: undefined-global
+
+--------------------------------
+-- 기본 옵션
+--------------------------------
+vim.g.mapleader = " "
+
+vim.opt.number = true
+vim.opt.autoindent = true
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.smarttab = true
+vim.opt.softtabstop = 2
+vim.opt.termguicolors = true
+vim.opt.mouse = ""
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- UX
+vim.opt.clipboard     = "unnamedplus"
+vim.opt.cursorline    = true
+vim.opt.signcolumn    = "yes"
+vim.opt.scrolloff     = 5
+vim.opt.sidescrolloff = 8
+vim.opt.splitbelow    = true
+vim.opt.splitright    = true
+vim.opt.updatetime    = 200
+vim.opt.timeoutlen    = 400
+vim.opt.undofile      = true
+vim.opt.inccommand    = "split"
+vim.opt.list          = true
+vim.opt.listchars     = { tab = "▸ ", trail = "·", extends = ">", precedes = "<" }
+vim.opt.shortmess:append("I")   -- intro 숨김
+
+-- Python3 provider(UltiSnips 대비)
+if vim.fn.executable("python3") == 1 then
+  vim.g.python3_host_prog = vim.fn.exepath("python3")
+end
+
+-- Git/cURL 트레이스 차단(부팅시 민감 로그 방지)
+vim.env.GIT_TRACE = nil
+vim.env.GIT_TRACE_CURL = nil
+vim.env.GIT_CURL_VERBOSE = nil
+
+--------------------------------
+-- lazy.nvim 부트스트랩(무소음, fs_stat deprecate 대응)
+--------------------------------
+local uv = vim.uv or vim.loop
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (uv.fs_stat and uv.fs_stat(lazypath)) then
+  if vim.fn.executable("git") == 1 then
+    -- Neovim 0.10+ vim.system 사용, 무소음 실행
+    local cmd = {
+      "git",
+      "-c","http.extraHeader=",
+      "-c","http.proxy=",
+      "-c","https.proxy=",
+      "clone","--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable",
+      lazypath,
+    }
+    if vim.system then
+      vim.system(cmd, { stdout = false, stderr = false }):wait()
+    else
+      vim.fn.system({ "sh","-c", table.concat(cmd, " ") .. " >/dev/null 2>&1" })
+    end
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+--------------------------------
+-- 플러그인
+--------------------------------
+require("lazy").setup({
+  -- Neovim API 타입 주입(Undefined 'vim' 방지). 반드시 LSP보다 먼저.
+  {
+    "folke/neodev.nvim",
+    lazy = false,
+    opts = {},
+    priority = 10000,
+  },
+
+  -- 테마
+  {
+    "folke/tokyonight.nvim",
+    priority = 9999,
+    lazy = false,
+    config = function()
+      require("tokyonight").setup({
+        style = "storm",
+        on_highlights = function(hl, _)
+          hl.LineNr = { fg = "#00ff00" }
+          hl.CursorLineNr = { fg = "#ff66ff", bold = true }
+        end,
+      })
+      vim.cmd("colorscheme tokyonight")
+    end,
+  },
+
+  -- 아이콘
+  { "nvim-tree/nvim-web-devicons", lazy = true, opts = { default = true } },
+
+  -- 상태줄
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup({ options = { theme = "tokyonight", icons_enabled = true } })
+    end,
+  },
+
+  -- 파일 트리
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+    keys = {
+      { "<C-n>", "<cmd>NvimTreeToggle<CR>",  mode = "n", silent = true, desc = "NvimTree Toggle" },
+      { "<C-f>", "<cmd>NvimTreeFindFile<CR>",mode = "n", silent = true, desc = "NvimTree Find" },
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("nvim-tree").setup({
+        view = { width = 36 },
+        renderer = { group_empty = true },
+        filters = { dotfiles = false },
+        git = { enable = true },
+      })
+    end,
+  },
+
+  -- Ctrl+/ 주석
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      local api = require("Comment.api")
+      require("Comment").setup()
+      vim.keymap.set("n", "<C-_>", function() api.toggle.linewise.current() end, { noremap = true, silent = true, desc = "Toggle Comment" })
+      vim.keymap.set("x", "<C-_>", function() api.toggle.linewise(vim.fn.visualmode()) end, { noremap = true, silent = true, desc = "Toggle Comment (v)" })
+    end,
+  },
+
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown" },
+        highlight = { enable = true },
+        indent = { enable = true },
+        auto_install = false, -- 부팅시 네트워크 호출 차단
+      })
+    end,
+  },
+
+  -- Terraform 포맷
+  {
+    "hashivim/vim-terraform",
+    ft = { "terraform", "tf", "hcl" },
+    config = function()
+      vim.g.terraform_fmt_on_save = 1
+      vim.g.terraform_align = 1
+    end,
+  },
+
+  -- Mason
+  { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+
+  -- Mason LSP bridge
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "terraformls", "lua_ls" },
+        automatic_installation = false,
+      })
+    end,
+  },
+
+  -- LSP 설정(Undefined 'vim' 경고 해결 포함)
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "folke/neodev.nvim" },
+    config = function()
+      vim.diagnostic.config({
+        virtual_text = { spacing = 2, prefix = "●" },
+        float = { border = "rounded" },
+        severity_sort = true,
+      })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local ok_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      if ok_cmp then
+        capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+      end
+
+      local on_attach = function(_, bufnr)
+        local buf = function(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+        end
+        buf("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        buf("n", "gr", vim.lsp.buf.references, "References")
+        buf("n", "gi", vim.lsp.buf.implementation, "Implementation")
+        buf("n", "K",  vim.lsp.buf.hover, "Hover")
+        buf("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+        buf("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+        buf("n", "[d", vim.diagnostic.goto_prev, "Prev diagnostic")
+        buf("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+      end
+
+      local lsp = require("lspconfig")
+      if vim.fn.executable("terraform-ls") == 1 then
+        lsp.terraformls.setup({ on_attach = on_attach, capabilities = capabilities })
+      end
+      require("neodev").setup({}) -- 보장: lua_ls 이전에 호출
+      lsp.lua_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },   -- 'vim' 전역 인지
+            workspace = {
+              checkThirdParty = false,
+              library = vim.api.nvim_get_runtime_file("", true), -- Neovim API 경로 주입
+            },
+            telemetry = { enable = false },
+          },
+        },
+      })
+    end,
+  },
+
+  -- TFLint
+  {
+    "mfussenegger/nvim-lint",
+    ft = { "terraform", "tf", "hcl" },
+    config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = { terraform = { "tflint" }, tf = { "tflint" }, hcl = { "tflint" } }
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        callback = function() require("lint").try_lint() end,
+      })
+    end,
+  },
+
+  -- 스니펫
+  { "SirVer/ultisnips", event = "InsertEnter" },
+  { "honza/vim-snippets", event = "InsertEnter" },
+
+  -- 자동 완성
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "quangnguyen30192/cmp-nvim-ultisnips",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+    },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        snippet = { expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<CR>"]  = cmp.mapping.confirm({ select = false }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(ultisnips_jump_forward)", true, true, true), "m", true)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(ultisnips_jump_backward)", true, true, true), "m", true)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = {
+          { name = "ultisnips" },
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        },
+      })
+    end,
+  },
+
+  -- 자동 괄호
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+      local ok, cmp = pcall(require, "cmp")
+      if ok then
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      end
+    end,
+  },
+
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<CR>", mode = "n", silent = true, desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<CR>",  mode = "n", silent = true, desc = "Live grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<CR>",    mode = "n", silent = true, desc = "Buffers" },
+      { "<leader>fh", "<cmd>Telescope help_tags<CR>",  mode = "n", silent = true, desc = "Help tags" },
+    },
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          layout_strategy = "horizontal",
+          sorting_strategy = "ascending",
+          layout_config = { prompt_position = "top" },
+        },
+      })
+    end,
+  },
+
+  -- Git 변경 표시
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup({
+        current_line_blame = false,           -- 부팅시 Git 호출 억제
+        current_line_blame_opts = { delay = 500 },
+      })
+      local gs = package.loaded.gitsigns
+      vim.keymap.set("n", "]h", gs.next_hunk, { silent = true, desc = "Next hunk" })
+      vim.keymap.set("n", "[h", gs.prev_hunk, { silent = true, desc = "Prev hunk" })
+      vim.keymap.set("n", "<leader>hp", gs.preview_hunk, { silent = true, desc = "Preview hunk" })
+      vim.keymap.set("n", "<leader>hs", gs.stage_hunk,   { silent = true, desc = "Stage hunk" })
+      vim.keymap.set("n", "<leader>hu", gs.undo_stage_hunk, { silent = true, desc = "Undo stage hunk" })
+    end,
+  },
+
+  -- 진단 패널
+  {
+    "folke/trouble.nvim",
+    cmd = { "Trouble", "TroubleToggle" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", mode = "n", silent = true, desc = "Diagnostics" },
+      { "<leader>xq", "<cmd>Trouble qflist toggle<CR>",      mode = "n", silent = true, desc = "Quickfix" },
+    },
+    opts = {},
+  },
+
+  -- 세션 복원(수동 트리거)
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    config = true,
+    keys = {
+      { "<leader>ss", function() require("persistence").load() end,                mode = "n", silent = true, desc = "Session restore" },
+      { "<leader>sl", function() require("persistence").load({ last = true }) end, mode = "n", silent = true, desc = "Session last" },
+      { "<leader>sd", function() require("persistence").stop() end,                mode = "n", silent = true, desc = "Session stop" },
+    },
+  },
+}, {
+  checker = { enabled = false },        -- 부팅시 업데이트 체크 끔
+  change_detection = { enabled = false }
+})
+
+--------------------------------
+-- 자동명령
+--------------------------------
+-- Yank 하이라이트
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function() vim.highlight.on_yank() end,
+})
+
+-- 외부 변경 자동 반영
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  callback = function() if vim.fn.getcmdwintype() == "" then vim.cmd("checktime") end end,
+})
+
+-- 마지막 커서 위치 복귀
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+  end,
+})
+
+-- 저장 시 트레일링 공백 제거(마크다운/커밋 제외)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local ft = vim.bo.filetype
+    if ft ~= "markdown" and ft ~= "gitcommit" then
+      local view = vim.fn.winsaveview()
+      vim.cmd([[%s/\s\+$//e]])
+      vim.fn.winrestview(view)
+    end
+  end,
+})
+
+-- 시작 직후 메시지라인 정리
+vim.schedule(function()
+  vim.cmd("echo ''")
+  vim.cmd("redraw!")
+end)
+
+--------------------------------
+-- 키매핑
+--------------------------------
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<leader>w", "<cmd>write<CR>", opts)
+map("n", "<leader>q", "<cmd>quit<CR>",  opts)
+map("n", "<leader>Q", "<cmd>qa!<CR>",   opts)
+map("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+
+-- relativenumber 토글(경고 없는 방식)
+map("n", "<leader>rn", function() vim.wo.relativenumber = not vim.wo.relativenumber end, opts)
+
+map("n", "<C-Up>",    "<cmd>resize +2<CR>", opts)
+map("n", "<C-Down>",  "<cmd>resize -2<CR>", opts)
+map("n", "<C-Left>",  "<cmd>vertical resize -3<CR>", opts)
+map("n", "<C-Right>", "<cmd>vertical resize +3<CR>", opts)
+map("n", "<A-j>", ":m .+1<CR>==", opts)
+map("n", "<A-k>", ":m .-1<CR>==", opts)
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+map("i", "<A-k>", "<Esc>:m .-1<CR>==gi", opts)
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
