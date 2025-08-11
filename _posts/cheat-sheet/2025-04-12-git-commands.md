@@ -58,78 +58,62 @@ ssh-add ~/.ssh/id_ed25519                           # SSH 키 추가
 ### 현재 환경 기반 Git 전역 설정 명령
 
 ```shell
-# 사용자 정보
-git config --global user.name "KKamJi"                                 # 사용자 이름
-git config --global user.email "xowl5460@naver.com"                    # 사용자 이메일
+# 사용자
+git config --global user.name "{USERNAME}"
+git config --global user.email "{USER_EMAIL}"
 
-# 초기 브랜치
-git config --global init.defaultBranch main                             # 기본 브랜치(main)
+# 브랜치
+git config --global init.defaultBranch main
 
-# 코어 동작
-git config --global core.autocrlf input                                 # 줄바꿈(LF) 유지
-git config --global core.fsmonitor true                                  # 파일 변경 감지 최적화
-git config --global core.untrackedCache true                             # 미추적 캐시 활성화
-git config --global core.pager delta                                     # delta를 페이저로 사용
+# 줄바꿈
+git config --global core.autocrlf input      # Windows에서는 true 권장
 
-# 안전 디렉토리(신뢰 경로)
-git config --global safe.directory \
-  "/home/kkamji/Code/kkamji98.github.io"                                 # 안전 디렉토리 등록
+# 성능
+git config --global core.untrackedCache keep # 강제 true 대신 keep
+git config --global core.fsmonitor true
+git fsmonitor--daemon start
 
-# 자주 쓰는 별칭(alias)
-git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'  # add+commit+push 단축
-git config --global alias.lg 'log --graph --pretty=format:%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset --date=short'  # 로그 서식
+# delta
+git config --global core.pager "delta"
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.syntax-theme Dracula
+git config --global delta.line-numbers true
+git config --global delta.side-by-side true
 
-# GitHub/Gist 자격증명 헬퍼(gh CLI 연동)
-git config --global credential.https://github.com.helper ''              # 기본 헬퍼 초기화
-git config --global credential.https://github.com.helper \
-  '!/home/linuxbrew/.linuxbrew/bin/gh auth git-credential'               # gh 자격증명 헬퍼
+# 안전 디렉토리
+git config --global safe.directory "{PATH}"
 
-git config --global credential.https://gist.github.com.helper ''         # 기본 헬퍼 초기화
-git config --global credential.https://gist.github.com.helper \
-  '!/home/linuxbrew/.linuxbrew/bin/gh auth git-credential'               # gh 자격증명 헬퍼
+# 별칭
+git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
+git config --global alias.lg 'log --graph --pretty=format:%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset --date=short'
 
-# UI/정렬/차이 비교/푸시/페치 등 기본 동작
-git config --global column.ui auto                                       # 컬럼 UI 자동
-git config --global branch.sort -committerdate                           # 브랜치 정렬: 최신 커밋 우선
-git config --global tag.sort version:refname                             # 태그 정렬: 버전순
+# 자격증명 헬퍼(PATH 사용, 절대경로 지양)
+git config --global credential.https://github.com.helper ''
+git config --global credential.https://github.com.helper '!gh auth git-credential'
+git config --global credential.https://gist.github.com.helper ''
+git config --global credential.https://gist.github.com.helper '!gh auth git-credential'
 
-git config --global diff.algorithm histogram                             # diff 알고리즘
-git config --global diff.colorMoved zebra                                 # 이동 라인 색상
-git config --global diff.mnemonicPrefix true                              # 의미있는 접두사
-git config --global diff.renames true                                     # 파일 이동 감지
-
-git config --global push.default simple                                   # push 기본 동작
-git config --global push.autoSetupRemote true                             # 원격 자동 설정
-git config --global push.followTags true                                  # 태그 자동 푸시
-
-git config --global fetch.prune true                                      # 불필요한 원격 브랜치 정리
-git config --global fetch.pruneTags true                                  # 불필요한 원격 태그 정리
-
-git config --global help.autocorrect prompt                               # 도움말 오타 교정
-
-git config --global commit.verbose true                                   # 커밋 시 diff 표시
-
-git config --global rebase.autoSquash true                                # fixup/squash 자동 정리
-git config --global rebase.autoStash true                                 # 리베이스 전 자동 스태시
-git config --global rebase.updateRefs true                                # 참조 업데이트
-
-git config --global merge.conflictstyle zdiff3                            # 병합 충돌 스타일
-
-git config --global color.ui auto                                         # 색상 출력 자동
-git config --global color.diff auto                                       # diff 색상 자동
-
-git config --global pager.diff delta                                      # diff 페이지어
-git config --global pager.log delta                                       # log 페이지어
-git config --global pager.show delta                                      # show 페이지어
-
-git config --global interactive.diffFilter 'delta --color-only'           # 대화형 diff 필터
-
-git config --global delta.syntax-theme Dracula                            # delta 테마
-git config --global delta.line-numbers true                                # 줄 번호 표시
-git config --global delta.side-by-side true                                # 좌우 비교
-
-# 확인: 글로벌 설정(출처 포함) 보기
-git config --global --list --show-origin                                   # 값과 설정 파일 경로 확인
+# UI, 정렬, diff, push/fetch
+git config --global column.ui auto
+git config --global branch.sort -committerdate
+git config --global tag.sort version:refname
+git config --global diff.algorithm histogram
+git config --global diff.colorMoved zebra
+git config --global diff.mnemonicPrefix true
+git config --global diff.renames true
+git config --global push.default simple
+git config --global push.autoSetupRemote true
+git config --global push.followTags true
+git config --global fetch.prune true
+git config --global fetch.pruneTags true
+git config --global help.autocorrect -1
+git config --global commit.verbose true
+git config --global rebase.autoSquash true
+git config --global rebase.autoStash true
+git config --global rebase.updateRefs true
+git config --global merge.conflictstyle zdiff3
+git config --global color.ui auto
+git config --global color.diff auto
 ```
 
 ## 2. 저장소 초기화 및 복제
