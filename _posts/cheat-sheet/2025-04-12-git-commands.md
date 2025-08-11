@@ -40,8 +40,6 @@ git config --global user.name "Your Name"           # 사용자 이름 설정
 git config --global user.email "your.email@example.com"  # 이메일 설정
 git config --global init.defaultBranch main         # 기본 브랜치를 main으로 설정
 git config --global core.editor "code --wait"       # 기본 에디터 설정 (VS Code)
-git config --global core.autocrlf true              # Windows에서 CRLF 자동 변환
-git config --global core.autocrlf input             # macOS/Linux에서 LF 사용
 
 # 설정 확인
 git config --list                                   # 모든 설정 확인
@@ -63,7 +61,6 @@ git config --global user.name "{USERNAME}"
 git config --global user.email "{USER_EMAIL}"
 
 # 브랜치
-git config --global init.defaultBranch main
 
 # 줄바꿈
 git config --global core.autocrlf input      # Windows에서는 true 권장
@@ -82,10 +79,6 @@ git config --global delta.side-by-side true
 
 # 안전 디렉토리
 git config --global safe.directory "{PATH}"
-
-# 별칭
-git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
-git config --global alias.lg 'log --graph --pretty=format:%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset --date=short'
 
 # 자격증명 헬퍼(PATH 사용, 절대경로 지양)
 git config --global credential.https://github.com.helper ''
@@ -380,6 +373,7 @@ git config --global alias.ci commit
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.visual '!gitk'
+git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
 git config --global alias.lg "log --graph --pretty=format:'%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset' --date=short"
 
 # 사용 예시
