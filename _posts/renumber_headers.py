@@ -31,7 +31,7 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
             header_hash_counts.append(len(m.group(1)))
 
     if not header_hash_counts:
-        return content
+        return content if content.endswith('\n') else content + '\n'
 
     detected_min = min(header_hash_counts)
     base_hashes = max((min_header_level or detected_min), 1)
@@ -93,7 +93,9 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         out.append(f'{hashes} {prefix} {clean_title}')
 
-    return '\n'.join(out)
+    # 마지막 줄에 항상 개행 하나 유지
+    return '\n'.join(out) + '\n'
+
 
 
 def process_files(directory: str, min_header_level: Optional[int] = None):
