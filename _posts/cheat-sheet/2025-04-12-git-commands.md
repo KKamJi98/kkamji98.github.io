@@ -109,7 +109,27 @@ git config --global color.ui auto
 git config --global color.diff auto
 ```
 
-## 2. 저장소 초기화 및 복제
+## 2. 유용한 별칭 설정
+
+```shell
+# 자주 사용하는 별칭 설정
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.visual '!gitk'
+git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
+git config --global alias.lg "log --graph --pretty=format:'%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset' --date=short"
+
+# 사용 예시
+git st                                              # git status
+git co main                                         # git checkout main
+git lg                                              # 예쁜 로그 출력
+```
+
+## 3. 저장소 초기화 및 복제
 
 ```shell
 # 저장소 생성 및 복제
@@ -128,7 +148,7 @@ git remote remove origin                            # 원격 저장소 제거
 git remote rename origin upstream                   # 원격 저장소 이름 변경
 ```
 
-## 3. 기본 작업 흐름
+## 4. 기본 작업 흐름
 
 ```shell
 # 파일 상태 확인
@@ -158,7 +178,7 @@ git diff HEAD~1                                     # 이전 커밋과 비교
 git diff branch1..branch2                           # 두 브랜치 비교
 ```
 
-## 4. 브랜치 관리
+## 5. 브랜치 관리
 
 ```shell
 # 브랜치 생성 및 전환
@@ -183,7 +203,7 @@ git branch --no-merged                              # 병합되지 않은 브랜
 git branch --contains <commit>                      # 특정 커밋을 포함하는 브랜치들
 ```
 
-## 5. 병합과 리베이스
+## 6. 병합과 리베이스
 
 ```shell
 # 병합 (Merge)
@@ -206,7 +226,7 @@ git commit                                          # 병합 커밋 생성
 git mergetool                                       # 병합 도구 실행
 ```
 
-## 6. 원격 저장소 작업
+## 7. 원격 저장소 작업
 
 ```shell
 # 가져오기와 푸시
@@ -227,7 +247,7 @@ git branch --set-upstream-to=origin/main main       # 업스트림 브랜치 설
 git push -u origin main                             # 푸시와 동시에 업스트림 설정
 ```
 
-## 7. 히스토리 조회
+## 8. 히스토리 조회
 
 ```shell
 # 로그 확인
@@ -253,7 +273,7 @@ git blame file.txt                                 # 파일의 각 줄 작성자
 git show HEAD:file.txt                             # 특정 커밋의 파일 내용 확인
 ```
 
-## 8. 변경사항 되돌리기
+## 9. 변경사항 되돌리기
 
 ```shell
 # 작업 디렉토리 변경사항 되돌리기
@@ -275,7 +295,7 @@ git revert HEAD                                     # 마지막 커밋을 되돌
 git revert <commit-hash>                            # 특정 커밋을 되돌리는 새 커밋 생성
 ```
 
-## 9. 스태시 (Stash)
+## 10. 스태시 (Stash)
 
 ```shell
 # 임시 저장
@@ -299,7 +319,7 @@ git stash drop stash@{1}                            # 특정 스태시 삭제
 git stash clear                                     # 모든 스태시 삭제
 ```
 
-## 10. 태그 관리
+## 11. 태그 관리
 
 ```shell
 # 태그 생성
@@ -319,7 +339,7 @@ git tag -d v1.0.0                                   # 로컬 태그 삭제
 git push origin --delete v1.0.0                     # 원격 태그 삭제
 ```
 
-## 11. 고급 기능
+## 12. 고급 기능
 
 ```shell
 # Cherry-pick
@@ -345,7 +365,7 @@ git worktree list                                   # 작업 디렉토리 목록
 git worktree remove ../feature-branch               # 작업 디렉토리 제거
 ```
 
-## 12. 파일 및 디렉토리 관리
+## 13. 파일 및 디렉토리 관리
 
 ```shell
 # 파일 추적 관리
@@ -360,26 +380,6 @@ git check-ignore -v file.txt                        # 파일이 무시되는 이
 git clean -n                                        # 삭제될 파일 미리보기
 git clean -f                                        # 추적되지 않는 파일 삭제
 git clean -fd                                       # 추적되지 않는 파일과 디렉토리 삭제
-```
-
-## 13. 유용한 별칭 설정
-
-```shell
-# 자주 사용하는 별칭 설정
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.unstage 'reset HEAD --'
-git config --global alias.last 'log -1 HEAD'
-git config --global alias.visual '!gitk'
-git config --global alias.cmp '!f() { git add -A && git commit -m "$@" && git push; }; f'
-git config --global alias.lg "log --graph --pretty=format:'%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s%C(red)%d%Creset' --date=short"
-
-# 사용 예시
-git st                                              # git status
-git co main                                         # git checkout main
-git lg                                              # 예쁜 로그 출력
 ```
 
 ## 14. 문제 해결 및 디버깅
