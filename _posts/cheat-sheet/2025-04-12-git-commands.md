@@ -11,6 +11,27 @@ image:
 
 Git을 사용하며 알게된 CLI 명령어들을 공유합니다.
 
+## 0. 사전 준비 (권장)
+
+`git-delta`는 `git diff`, `git log`, `git show` 등의 출력을 더 읽기 쉽게 만들어주는 도구입니다.
+
+### Ubuntu/Debian
+
+```shell
+sudo apt-get update
+sudo apt-get install git-delta
+```
+
+### macOS (Homebrew)
+
+```shell
+brew install git-delta
+```
+
+### 기타
+
+다른 운영체제나 설치 방법은 [공식 문서](https://dandavison.github.io/delta/installation.html)를 참고하세요.
+
 ## 1. 기본 설정
 
 ```shell
