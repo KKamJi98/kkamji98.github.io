@@ -1,5 +1,5 @@
 ---
-title: Cilium Control Plane & Cluster Mesh [Cilium Study 5주차]
+title: Cilium BGP Control Plane [Cilium Study 5주차]
 date: 2025-08-11 01:04:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
@@ -29,6 +29,7 @@ image:
 12. [IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [Cilium Study 3주차]]({% post_url 2025/2025-07-29-cilium-ipam-mode %})
 13. [Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})
 14. [Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & BGP [Cilium Study 4주차]]({% post_url 2025/2025-08-10-cilium-native-routing %})
+15. [Cilium BGP Control Plane [Cilium Study 5주차] (현재 글)]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})
 
 ---
 
@@ -596,7 +597,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
     - **GoBGP 기본 설정도 FIB 설치 비활성화**
       - Cilium이 사용하는 GoBGP 라이브러리는 `disable-telemetry`, **`disable-fib`** 상태로 빌드됨.
       - 즉, 외부 라우터에서 들어온 BGP NLRI는 커널에 반영되지 않고, Cilium 내부 정책/광고 로직에서만 사용.
-
+  
 - **문제 해결** 후 통신 확인 : 결론은 Cilium 으로 BGP 사용 시, 2개 이상의 NIC 사용할 경우에는 Node에 직접 라우팅 설정 및 관리가 필요
   - 현재 실습 환경은 2개의 NIC(eth0, eth1)을 사용하고 있는 상황으로, default GW가 eth0 경로로 설정 되어 있음
   - eth1은 k8s 통신 용도로 사용 중. 즉, 현재 k8s 파드 사용 대역 통신 전체는 eth1을 통해서 라우팅 설정하면 됨
@@ -670,8 +671,8 @@ Aug 16 21:58:49.504: default/curl-pod:56564 (ID:17401) <> default/webpod-697b545
 
 ## Reference
 
-[Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)
-[Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)
+- [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)
+- [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)
 
 ---
 
