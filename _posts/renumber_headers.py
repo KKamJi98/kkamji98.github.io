@@ -10,7 +10,6 @@ STRIP_NUM_RE = re.compile(r'^(?:\d+(?:\.\d+)*\.?)\s+')
 EXCLUDE_NORMALIZED = {"관련글"}
 
 def _normalize_title(s: str) -> str:
-    # 공백, 탭 등 제거 후 소문자
     return re.sub(r'\s+', '', s).lower()
 
 def renumber_headers(content: str, min_header_level: Optional[int] = None) -> str:
@@ -93,18 +92,17 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         out.append(f'{hashes} {prefix} {clean_title}')
 
-    # 마지막 줄에 항상 개행 하나 유지
     return '\n'.join(out) + '\n'
 
 
-
-def process_files(directory: str, min_header_level: Optional[int] = None):
+def process_files(directory: str, min_header_level: Optional[int] = None, print_errors: bool = True):
+    """업데이트된 파일 경로만 반환"""
+    updated_paths = []
     for root, _, files in os.walk(directory):
         for file in files:
             if not file.endswith('.md'):
                 continue
             path = os.path.join(root, file)
-            print(f'Processing: {path}')
             try:
                 with open(path, 'r', encoding='utf-8') as f:
                     original = f.read()
@@ -112,14 +110,14 @@ def process_files(directory: str, min_header_level: Optional[int] = None):
                 if updated != original:
                     with open(path, 'w', encoding='utf-8') as f:
                         f.write(updated)
-                    print('  -> Updated.')
-                else:
-                    print('  -> No changes needed.')
+                    updated_paths.append(path)
             except Exception as e:
-                print(f'  -> Error processing file: {e}')
+                if print_errors:
+                    print(f'Error: {path}: {e}')
+    return updated_paths
 
 
 if __name__ == '__main__':
-    # H2부터 번호 시작
-    process_files('.', min_header_level=2)
-    print('\nDone.')
+    # H2부터 번호 시작, 변경된 md 파일 경로만 출력
+    for p in process_files('.', min_header_level=2):
+        print(p)
