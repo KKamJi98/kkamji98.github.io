@@ -3,7 +3,7 @@ title: Cilium BGP Control Plane [Cilium Study 5주차]
 date: 2025-08-11 01:04:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet, cluster-mesh, cilium-control-plane]
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, cilium-bgp-control-plane, bgp]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp
@@ -42,7 +42,7 @@ image:
 - k8s-w0: 다른 Node와 구분해 192.168.20.0/24 대역에 배치
 - Static Routing: Vagrant 스크립트에서 자동 설정됨 [Vagrant Script File](<https://github.com/KKamJi98/cilium-lab/blob/main/vagrant/vagrant-5w/Vagrantfile>)
 
-> FRR-Docs - [FRR](https://docs.frrouting.org/en/stable-10.4/about.html>
+> FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
 
 ---
 
@@ -211,8 +211,7 @@ spec:
               matchExpressions:
               - key: app
                 operator: In
-                values:
-                - sample-app
+                values: ["webpod"]
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: webpod
@@ -368,7 +367,6 @@ C>* 192.168.20.0/24 is directly connected, eth2, 02:10:50
 ```shell
 # Cilium Node BGP 설정 (node neighbor 설정파일)
 cat << 'EOF' | sudo tee -a /etc/frr/frr.conf
-!
 neighbor CILIUM peer-group
 neighbor CILIUM remote-as external
 neighbor 192.168.10.100 peer-group CILIUM
@@ -489,7 +487,7 @@ sshpass -p 'vagrant' ssh vagrant@router "ip -c route | grep bgp"
 172.20.2.0/24 nhid 32 via 192.168.20.100 dev eth2 proto bgp metric 20 
 
 #
-sshpass -p 'vagrant' ssh vagrant@router "vtysh -c 'show ip bgp summary'"
+sshpass -p 'vagrant' ssh vagrant@router "sudo vtysh -c 'show ip bgp summary'"
 ...
 
 IPv4 Unicast Summary (VRF default):
@@ -507,7 +505,7 @@ Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down Sta
 Total number of neighbors 3
 
 # 
-sshpass -p 'vagrant' ssh vagrant@router "vtysh -c 'show ip bgp'"
+sshpass -p 'vagrant' ssh vagrant@router "sudo vtysh -c 'show ip bgp'"
 ...
 BGP table version is 4, local router ID is 192.168.10.200, vrf id 0
 Default local pref 100, local AS 65000
@@ -615,7 +613,7 @@ sshpass -p 'vagrant' ssh vagrant@k8s-w1 sudo ip route add 172.20.0.0/16 via 192.
 sshpass -p 'vagrant' ssh vagrant@k8s-w0 sudo ip route add 172.20.0.0/16 via 192.168.20.200
 
 # router 가 bgp로 학습한 라우팅 정보 한번 더 확인 : 
-sshpass -p 'vagrant' ssh vagrant@router ip -c route | grep bgp\
+sshpass -p 'vagrant' ssh vagrant@router ip -c route | grep bgp
 ...
 172.20.0.0/24 nhid 64 via 192.168.10.100 dev eth1 proto bgp metric 20 
 172.20.1.0/24 nhid 60 via 192.168.10.101 dev eth1 proto bgp metric 20 
@@ -669,10 +667,32 @@ Aug 16 21:58:49.504: default/curl-pod:56564 (ID:17401) <> default/webpod-697b545
 
 ---
 
-## Reference
+## 4. 결론
+
+1. **Cilium BGP Control Plane은 컨트롤 플레인 중심으로 동작**
+   - Node의 PodCIDR, ServiceCIDR을 외부 라우터로 광고하는 역할
+   - 내부 Pod 간 라우팅을 `eBPF datapath`로 자체 처리
+
+2. **BGP 세션은 GoBGP 기반으로 관리**
+   - 세션은 `OPEN`, `KEEPALIVE`, `UPDATE` 단계를 거쳐 성립
+
+3. 다중 NIC 환경에서는 추가 설계가 필요함
+   - 실습에서는 ip route add로 경로를 보정했으나 운영 환경에서는 ToR 등 라우터에서 경로를 집약 관리하는 방식이 더 안정적
+   - Node 단위 라우팅 수정은 장애 위험이 있어 지양하고, 필요 시 정책 라우팅(ip rule, 분리 테이블)로 NIC별 경로를 명시
+
+4. BGP 패킷 캡처 분석은 핵심 검증 수단임
+   - `tcpdump`와 `termshark`로 세션 수립과 업데이트 흐름을 확인함
+   - `UPDATE` 메시지의 NLRI를 통해 실제 광고 프리픽스 확인 가능
+
+- **ToR (Top-of-Rack)** : 서버 랙 상단에 설치되는 네트워크 스위치로, 해당 랙 내 서버들과 외부 네트워크를 연결하는 장비
+
+---
+
+## 5. Reference
 
 - [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)
 - [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)
+- [ISOVALENT Blog - Connecting your Kubernetes island to your network with Cilium BGP](https://isovalent.com/blog/post/connecting-your-kubernetes-island-to-your-network-with-cilium-bgp)
 
 ---
 
