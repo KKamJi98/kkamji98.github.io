@@ -35,7 +35,7 @@ image:
 13. [Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})
 14. [Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & BGP [Cilium Study 4주차]]({% post_url 2025/2025-08-10-cilium-native-routing %})
 15. [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})
-16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차] (현재 글)]({% post_url 2025/2025-08-12-cilium-lb-ipam.md %})
+16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차] (현재 글)]({% post_url 2025/2025-08-12-cilium-lb-ipam %})
 
 ---
 
@@ -466,7 +466,7 @@ curl -s http://$LBIP | egrep 'Hostname|RemoteAddr'
 > 라우팅 경로가 줄면서 **RST/ENOTCONN**이 줄어듭니다. (stale nexthop 적음)  
 {: .prompt-tip}
 
-### 7.3 ECMP Hash Policy (Router 권장 튜닝)
+## 8. ECMP Hash Policy (Router 권장 튜닝)
 
 Linux Kernel의 Default인 L3 ECMP Hash는 같은 IP쌍이라면 포트가 달라도 다른 ECMP path로 흘러갈 수 있습니다. 따라서 하나의 클라이언트가 같은 서버로 여러 연결을 열면, 연결들이 서로 다른 노드로 분산되어 세션 일관성(Flow Affinity)이 깨질 수 있습니다.
 
@@ -492,7 +492,7 @@ sysctl net.ipv4.fib_multipath_hash_policy
 # net.ipv4.fib_multipath_hash_policy = 1
 ```
 
-## 8. 마무리
+## 9. 마무리
 
 - **LB IPAM + BGP**로 **노드 대역과 무관한 LBIP를 /32로 광고**하면, 라우터는 **ECMP**로 각 노드에 트래픽을 분산합니다.
 - **ExternalTrafficPolicy**에 따라
@@ -500,9 +500,9 @@ sysctl net.ipv4.fib_multipath_hash_policy
   - **Local**: **로컬 파드 보유 노드만 수신 + 소스IP 보존** / nexthop ↓ / 안정성↑
 - **ECMP Hash를 L4로** 바꾸면 흐름 고정성이 높아져 **RST/ENOTCONN**이 크게 줄어듭니다.
 
-## 9. Reference
+## 10. Reference
 
-- [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
+- [FRR Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
 - [ISOVALENT Blog - Migrating from metallb to Cilium](https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/#l3-announcement-over-bgp)  
 - [Cilium Docs - LoadBalancer IP Address Management (LB IPAM)](https://docs.cilium.io/en/stable/network/lb-ipam/)
 
