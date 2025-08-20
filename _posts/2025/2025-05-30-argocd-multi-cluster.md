@@ -11,6 +11,8 @@ image:
 
 이번 글에서는 ArgoCD를 활용해 여러 Kubernetes Cluster에 애플리케이션을 배포하는 방법을 살펴보겠습니다.
 
+---
+
 ## 1. 사전 준비사항
 
 - 2개 이상의 Kubernetes Cluster

@@ -253,6 +253,8 @@ NAME                        TYPE     DATA   AGE
 basic-auth-secret-ssm       Opaque   1      2m53s
 ```
 
+---
+
 ## 8. ClusterExternalSecret으로 여러 네임스페이스에 Secret 배포하기
 
 ```yaml
@@ -302,11 +304,15 @@ kube-system        clusterexternalsecret-secret             Opaque              
 monitoring         clusterexternalsecret-secret             Opaque               1      15s
 ```
 
+---
+
 ## 9. 마무리
 
 이번 글에서는 External Secrets Operator를 활용하여 쿠버네티스에서 AWS Secrets Manager와 SSM Parameter Store의 시크릿을 동기화하는 방법을 다뤄보았습니다. 이를 통해 Application에서 사용하는 민감한 값을 Git 등에 직접 노출하지 않고도 참조할 수 있게 되어 보안성과 편의성을 크게 향상시킬 수 있습니다.
 
 실무에서 적용할 때는 IRSA를 사용하는 것을 추천드리며 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹지 않도록 주의해야합니다. 또한 복잡하거나 많은 키를 가진 시크릿을 사용해야할 경우 `.data[]` 형식 외에도 `.dataFrom`, `.template` 형식을 사용해 여러 키를 가진 시크릿을 통째로 가져와 사용할 수도 있습니다.
+
+---
 
 ## 10. 참고 자료
 

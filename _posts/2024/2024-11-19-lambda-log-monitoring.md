@@ -261,6 +261,8 @@ print(original_data.decode('utf-8'))
 > 함수가 동작하면서 발생한 로그는 `logEvents` : 배열 형태로 하나씩 저장되어 전달되는 것을 확인할 수 있습니다.
 {: .prompt-tip}
 
+---
+
 ## 5. **Subscription Filter** 역할을 하는 **Lambda Function** 생성
 
 > 이전 단계에서 CloudWatch Logs의 **Subscription Filter**를 통해 데이터가 어떤 방식과 어떤 형식으로 전달되는지 확인할 수 있었습니다.  

@@ -51,6 +51,8 @@ image:
 
 > FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
 
+---
+
 ## 2. 핵심 개념
 
 - **LB IPAM**
@@ -62,6 +64,8 @@ image:
 - **ECMP Hash Policy (Linux)**
   - 기본은 **L3 해시**(src/dst IP)
   - `net.ipv4.fib_multipath_hash_policy=1`로 바꾸면 **L4 해시**(IP+포트) -> 흐름 고정성이 높아져 재시도 `RST`/`ENOTCONN`이 줄어듬
+
+---
 
 ## 3. Sample Application 배포
 
@@ -148,6 +152,8 @@ kubectl get po -o wide
 # webpod-5ddff96fcf-lqhbb   1/1     Running   0          8s    172.20.0.47    k8s-ctr   <none>           <none>
 ```
 
+---
+
 ## 4. LB IPAM Pool 생성 & Service를 LoadBalancer로 전환
 
 ```shell
@@ -183,6 +189,8 @@ kubectl get svc webpod
 # NAME     TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 # webpod   LoadBalancer   10.96.170.16   172.16.1.1    80:30247/TCP   3m
 ```
+
+---
 
 ## 5. LoadBalancer의 External-IP BGP 광고 설정
 
@@ -230,6 +238,8 @@ cilium bgp routes available ipv4 unicast
 # k8s-w1    65001     172.16.1.1/32   0.0.0.0   8m23s   [{Origin: i} {Nexthop: 0.0.0.0}]   
 #           65001     172.20.1.0/24   0.0.0.0   8m23s   [{Origin: i} {Nexthop: 0.0.0.0}] 
 ```
+
+---
 
 ## 6. LoadBalancer IP로 접속 확인
 
@@ -284,6 +294,8 @@ for i in {1..50}; do curl -s http://$LBIP | grep Hostname; done | sort | uniq -c
 > 위의 LoadBalancer의 IP로 Curl 결과를 보면 RemoteAddr이 node, router가 섞여 보이는 것을 확인할 수 있습니다.  
 > 해당 차이는 ExternalTrafficPolicy 설정에 크게 영향을 받습니다.  
 {: .prompt-tip}
+
+---
 
 ## 7. ExternalTrafficPolicy (Cluster vs Local)
 
@@ -467,6 +479,8 @@ curl -s http://$LBIP | egrep 'Hostname|RemoteAddr'
 > 라우팅 경로가 줄면서 **RST/ENOTCONN**이 줄어듭니다. (stale nexthop 적음)  
 {: .prompt-tip}
 
+---
+
 ## 8. ECMP Hash Policy (Router 권장 튜닝)
 
 Linux Kernel의 Default인 L3 ECMP Hash는 같은 IP쌍이라면 포트가 달라도 다른 ECMP path로 흘러갈 수 있습니다. 따라서 하나의 클라이언트가 같은 서버로 여러 연결을 열면, 연결들이 서로 다른 노드로 분산되어 세션 일관성(Flow Affinity)이 깨질 수 있습니다.
@@ -493,6 +507,8 @@ sysctl net.ipv4.fib_multipath_hash_policy
 # net.ipv4.fib_multipath_hash_policy = 1
 ```
 
+---
+
 ## 9. 마무리
 
 - **LB IPAM + BGP**로 **노드 대역과 무관한 LBIP를 /32로 광고**하면, 라우터는 **ECMP**로 각 노드에 트래픽을 분산합니다.
@@ -500,6 +516,8 @@ sysctl net.ipv4.fib_multipath_hash_policy
   - **Cluster**: **모든 노드 수신 + SNAT(소스IP 미보존)** / nexthop ↑ / 분산 폭 넓음
   - **Local**: **로컬 파드 보유 노드만 수신 + 소스IP 보존** / nexthop ↓ / 안정성↑
 - **ECMP Hash를 L4로** 바꾸면 흐름 고정성이 높아져 **RST/ENOTCONN**이 크게 줄어듭니다.
+
+---
 
 ## 10. Reference
 

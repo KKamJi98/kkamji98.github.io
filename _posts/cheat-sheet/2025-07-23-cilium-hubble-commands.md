@@ -31,6 +31,8 @@ Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
 16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]]({% post_url 2025/2025-08-12-cilium-lb-ipam %})
 17. [Kind로 Kubernetes Cluster 배포하기 [Cilium Study 5주차]]({% post_url 2025/2025-08-13-kind %})
 
+---
+
 ## 1. 편의성 설정
 
 ```shell
@@ -39,6 +41,8 @@ hubble config set port-forward true                  # 모든 hubble 명령에 -
 cilium hubble port-forward &                         # 지속적 포워드: 로컬 4245 유지
 export HUBBLE_SERVER=localhost:4245                  # hubble 기본 서버 주소 설정(환경 변수)
 ```
+
+---
 
 ## 2. 확인 명령어
 
@@ -68,6 +72,8 @@ kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor 
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor -v --type l7         # L7(HTTP/gRPC 등) 이벤트만
 ```
 
+---
+
 ## 3. Hubble Commands
 
 ```shell
@@ -94,6 +100,8 @@ hubble observe -h                                    # observe 옵션 도움말
 hubble ui                                            # Hubble UI 로컬 실행(포트포워드 필요 시 -P)
 ```
 
+---
+
 ## 4. Cilium Pod 변수/별칭 설정
 
 ```shell
@@ -112,6 +120,8 @@ alias c0bpf="kubectl exec -it $CILIUMPOD0 -n kube-system -c cilium-agent -- bpft
 alias c1bpf="kubectl exec -it $CILIUMPOD1 -n kube-system -c cilium-agent -- bpftool"
 alias c2bpf="kubectl exec -it $CILIUMPOD2 -n kube-system -c cilium-agent -- bpftool"
 ```
+
+---
 
 ## 5. Cilium Agent Commands (별칭 사용)
 
@@ -242,12 +252,16 @@ c1 map events cilium_ipcache
 c0 statedb dump
 ```
 
+---
+
 ## 6. Trouble Shooting
 
 ```shell
 cilium sysdump --output /tmp/sysdump.tgz              # 문제 발생 시 전체 진단 번들 수집
 cilium connectivity test                              # 기본 연결성 테스트(테스트 리소스 생성 후 검증)
 ```
+
+---
 
 ## 7. Reference
 

@@ -106,6 +106,8 @@ Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Ind
 4. 중복 제거 및 결과 병합
 5. 최종 응답 반환
 
+---
+
 ## 2. Grafana Alloy란?
 
 Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연한, 벤더 중립형(vendor-neutral) 수집기(Collector)로, 로그(Log), 메트릭(Metrics), 트레이스(Traces), 프로파일링(Profiling) 데이터를 단일 파이프라인에서 수집, 처리, 전송할 수 있도록 설계되었습니다. Promtail, Grafana Agent의 기능을 통합하면서도, 엔터프라이즈 환경에서의 확장성과 관리성까지 고려한 차세대 수집기입니다.

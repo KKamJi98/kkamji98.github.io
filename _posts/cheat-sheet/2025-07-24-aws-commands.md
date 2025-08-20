@@ -11,6 +11,8 @@ image:
 
 AWS CLI를 사용하며 알게된 CLI 명령어들을 공유합니다.
 
+---
+
 ## 1. 기본 설정
 
 ```shell
@@ -21,6 +23,8 @@ aws configure set region us-west-2                   # 기본 리전 설정
 aws sts get-caller-identity                          # 현재 사용자/역할 확인
 aws sts assume-role --role-arn <arn> --role-session-name <name>  # 역할 전환
 ```
+
+---
 
 ## 2. Profile및 리전 관리
 
@@ -35,6 +39,8 @@ aws ec2 describe-instances --region us-east-1        # 특정 리전에서 명�
 export AWS_DEFAULT_REGION=us-east-1                  # 기본 리전 설정
 ```
 
+---
+
 ## 3. 디버깅 및 문제 해결
 
 ```shell
@@ -44,6 +50,8 @@ aws --debug s3 ls                                    # 디버그 모드로 실�
 aws --no-verify-ssl s3 ls                            # SSL 검증 비활성화
 aws --cli-read-timeout 0 s3 sync ./large-folder s3://my-bucket/  # 타임아웃 비활성화
 ```
+
+---
 
 ## 4. EC2 관련 명령어
 
@@ -72,6 +80,8 @@ aws ec2 describe-key-pairs                           # 키 페어 목록
 aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
 ```
 
+---
+
 ## 5. S3 관련 명령어
 
 ```shell
@@ -93,6 +103,8 @@ aws s3 ls s3://my-bucket --recursive                 # 재귀적 목록
 aws s3 rm s3://my-bucket/file.txt                    # 파일 삭제
 aws s3 rm s3://my-bucket --recursive                 # 모든 객체 삭제
 ```
+
+---
 
 ## 6. IAM 관련 명령어
 
@@ -121,6 +133,8 @@ aws iam create-access-key --user-name MyUser         # 액세스 키 생성
 aws iam delete-access-key --user-name MyUser --access-key-id AKIAIOSFODNN7EXAMPLE
 ```
 
+---
+
 ## 7. VPC 관련 명령어
 
 ```shell
@@ -144,6 +158,8 @@ aws ec2 describe-route-tables                        # 라우팅 테이블 목�
 aws ec2 create-route-table --vpc-id vpc-12345678     # 라우팅 테이블 생성
 aws ec2 create-route --route-table-id rtb-12345678 --destination-cidr-block 0.0.0.0/0 --gateway-id igw-12345678
 ```
+
+---
 
 ## 8. EKS 관련 명령어
 
@@ -214,6 +230,8 @@ aws eks describe-cluster --name my-cluster --query 'cluster.health'  # 클러스
 aws ec2 describe-instances --filters "Name=tag:kubernetes.io/cluster/my-cluster,Values=owned" --query 'Reservations[*].Instances[*].[InstanceId,State.Name,PrivateIpAddress]'  # EKS 노드 EC2 인스턴스 상태
 ```
 
+---
+
 ## 9. CloudFormation 관련 명령어
 
 ```shell
@@ -229,6 +247,8 @@ aws cloudformation describe-stack-events --stack-name my-stack  # 스택 이벤�
 aws cloudformation describe-stack-resources --stack-name my-stack  # 스택 리소스 조회
 aws cloudformation list-stack-resources --stack-name my-stack   # 스택 리소스 목록
 ```
+
+---
 
 ## 10. CloudWatch 관련 명령어
 
@@ -247,6 +267,8 @@ aws cloudwatch list-metrics                          # 메트릭 목록
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-1234567890abcdef0 --statistics Average --start-time 2023-01-01T00:00:00Z --end-time 2023-01-01T23:59:59Z --period 3600
 ```
 
+---
+
 ## 11. Lambda 관련 명령어
 
 ```shell
@@ -262,6 +284,8 @@ aws lambda invoke --function-name my-function --payload '{"key":"value"}' respon
 aws lambda invoke --function-name my-function --invocation-type Event --payload '{"key":"value"}' response.json  # 비동기 실행
 ```
 
+---
+
 ## 12. RDS 관련 명령어
 
 ```shell
@@ -275,6 +299,8 @@ aws rds describe-db-snapshots                        # 스냅샷 목록
 aws rds create-db-snapshot --db-instance-identifier mydb --db-snapshot-identifier mydb-snapshot
 aws rds delete-db-snapshot --db-snapshot-identifier mydb-snapshot  # 스냅샷 삭제
 ```
+
+---
 
 ## 13. 유용한 필터링 및 출력 옵션
 

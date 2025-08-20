@@ -496,6 +496,8 @@ Hostname: webpod-697b545f57-lqzm9
 Hostname: webpod-697b545f57-bjlnx
 ```
 
+---
+
 ## 4. Cilium 설치 확인
 
 ```bash
@@ -593,6 +595,8 @@ KubeProxyReplacement Details:
 ...
 
 ```
+
+---
 
 ## 5. Reference
 

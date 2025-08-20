@@ -11,6 +11,8 @@ image:
 
 지난 글([GitHub Actions 소개 및 구성 요소]({% post_url 2025/2025-04-27-github_actions_basic %}))에서 **GitHub Actions의 기본 개념과 구성 요소**에 대해 살펴보았습니다. 이번에는 **Matrix Strategy**라는 기능에 대해 알아보고 해당 기능을 활용해 여러 플랫폼 또는 환경에서 병렬로 작업을 수행하여 CI/CD 파이프라인의 성능을 향상시키는 방법에 대해 알아보도록 하겠습니다.
 
+---
+
 ## 1. Matrix Strategy란?
 
 **GitHub Actions**의 **Matrix Strategy**는 동일한 작업(**Job**)을 다양한 환경이나 변수의 조합으로 병렬 실행할 때 사용됩니다. 예를 들어 여러 운영체제(OS)나 아키텍처(arm64, amd64) 환경에서 병렬적으로 테스트하거나 빌드할 수 있습니다. 이를 통해 여러 잡을 순차적으로 진행하거나 하나의 아키텍처에서 QEMU를 사용해 Multi-Architecture Build를 수행하는 방식보다 전체 워크플로우의 수행 시간을 크게 단축시킬 수 있습니다.
@@ -20,6 +22,8 @@ image:
 - Cross‑Platform 테스트: macOS, Windows, Linux 전부 지원해야 할 때.
 - 멀티 아키텍처 빌드: x86과 ARM 이미지를 동시에 만들어야 할 때.
 - 다양한 언어/버전 검증: Node.js 18/20처럼 여러 런타임 버전을 테스트할 때.
+
+---
 
 ## 2. PoC - Matrix 전략을 사용한 병렬 빌드 성능 비교
 
