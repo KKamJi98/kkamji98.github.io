@@ -3,7 +3,7 @@ title: Kubernetes Command Cheat Sheet
 date: 2025-07-05 01:12:59 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, kubectl, devops, k8s, container, cli]     # TAG names should always be lowercase
+tags: [kubernetes, kubectl, cheat-sheet, devops, k8s, container, cli]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp

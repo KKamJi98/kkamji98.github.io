@@ -19,7 +19,7 @@ image:
 
 ### 관련 글
 
-1. [Vagrant와 VirtualBox로 Kubernetes 클러스터 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
+1. [Vagrant와 VirtualBox로 Kubernetes Cluster 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
 2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
 3. [Cilium CNI 알아보기 [Cilium Study 1주차] (현재 글)]({% post_url 2025/2025-07-16-cilium-cni-basic %})
 4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
@@ -35,6 +35,7 @@ image:
 14. [Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & BGP [Cilium Study 4주차]]({% post_url 2025/2025-08-10-cilium-native-routing %})
 15. [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})
 16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]]({% post_url 2025/2025-08-12-cilium-lb-ipam %})
+17. [Kind로 Kubernetes Cluster 생성하기 [Cilium Study 5주차]]({% post_url 2025/2025-08-13-kind %})
 
 ---
 
@@ -64,7 +65,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 
 ![Kubernetes uses iptable](/assets/img/kubernetes/cilium/kubernetes_uses_iptables_for.webp)
 
-- **kube-proxy**: kube-proxy는 Kubernetes 클러스터의 핵심 구성 요소 중 하나입니다. 이 컴포넌트는 **서비스(Services)**를 구현하고 로드 밸런싱(load balancing) 기능을 제공하기 위해 DNAT (Destination Network Address Translation) iptables 규칙을 사용
+- **kube-proxy**: kube-proxy는 Kubernetes Cluster의 핵심 구성 요소 중 하나입니다. 이 컴포넌트는 **서비스(Services)**를 구현하고 로드 밸런싱(load balancing) 기능을 제공하기 위해 DNAT (Destination Network Address Translation) iptables 규칙을 사용
 - **대부분의 CNI 플러그인(CNI plugins)**: CNI (Container Network Interface)는 컨테이너 런타임과 네트워크 플러그인 간의 표준 인터페이스입니다. **Calico**, **Flannel**, **Weave Net** 등 대부분의 CNI 플러그인들은 **네트워크 정책(Network Policies)**을 구현하기 위해 iptables를 사용
 
 ### 3.1 iptables의 단점
@@ -130,7 +131,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 ### 4.5 장점 5. 뛰어난 확장성 및 유연성
 
 - 동적 기능 확장: 커널의 거의 모든 지점에 훅(Hook)을 걸어 기존 기능을 수정하거나 새로운 기능을 런타임 중에 동적으로 추가 및 확장할 수 있습니다. 이는 OS 기능을 유연하게 변경하고 사용자 정의 로직을 적용할 수 있음을 의미합니다.
-- 대규모 클러스터에 최적화: eBPF의 효율성은 수천 개의 Pod와 서비스가 있는 대규모 Kubernetes 클러스터에서도 안정적인 성능을 유지할 수 있도록 합니다. iptables 규칙이 많아질수록 성능이 저하되는 기존 CNI의 한계를 극복합니다.
+- 대규모 클러스터에 최적화: eBPF의 효율성은 수천 개의 Pod와 서비스가 있는 대규모 Kubernetes Cluster에서도 안정적인 성능을 유지할 수 있도록 합니다. iptables 규칙이 많아질수록 성능이 저하되는 기존 CNI의 한계를 극복합니다.
 
 ---
 

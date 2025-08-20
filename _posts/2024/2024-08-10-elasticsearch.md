@@ -17,7 +17,7 @@ image:
 
 ## 1. Elastic Cloud on Kubernetes(ECK)란?
 
-**Elastic Cloud on Kubernetes(ECK)**란 **Elasticsearch**와 같은 Elastic 제품을 Kubernetes 클러스터에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 **Elasticsearch** 클러스터를 운영할 수 있습니다.
+**Elastic Cloud on Kubernetes(ECK)**란 **Elasticsearch**와 같은 Elastic 제품을 Kubernetes Cluster에서 쉽게 배포하고 관리할 수 있게 해주는 Kubernetes Operator입니다. **ECK**를 통해 Kubernetes 환경에서 **Elasticsearch** 클러스터를 운영할 수 있습니다.
 
 ---
 
@@ -44,7 +44,7 @@ customresourcedefinition.apiextensions.k8s.io/stackconfigpolicies.stackconfigpol
 
 ### 2.2 Operator 설치
 
-> Kubernetes Operator는 Kubernetes 클러스터에서 Application의 배포, 관리, 확장 등을 자동화하는 소프트웨어 확장입니다. Operator는 쿠버네티스의 기본 개념인 "Controller"와 "CRD"를 결합하여 작동하며 Application과, Application의 구성 요소들을 관리하는 역할을 합니다.  
+> Kubernetes Operator는 Kubernetes Cluster에서 Application의 배포, 관리, 확장 등을 자동화하는 소프트웨어 확장입니다. Operator는 쿠버네티스의 기본 개념인 "Controller"와 "CRD"를 결합하여 작동하며 Application과, Application의 구성 요소들을 관리하는 역할을 합니다.  
 {: .prompt-info}
 
 ```bash

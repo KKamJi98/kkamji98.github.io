@@ -9,7 +9,7 @@ image:
   path: /assets/img/prometheus/prometheus.webp
 ---
 
-현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes 클러스터의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
+현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes Cluster의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
 
 ### 관련 글
 

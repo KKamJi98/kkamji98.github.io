@@ -17,9 +17,9 @@ image:
 
 ## 1. ArgoCD Application이란?
 
-ArgoCD는 GitOps 원칙에 기반하여 Kubernetes 클러스터에 애플리케이션 배포 및 관리를 자동화하는 오픈소스 도구입니다.  
+ArgoCD는 GitOps 원칙에 기반하여 Kubernetes Cluster에 애플리케이션 배포 및 관리를 자동화하는 오픈소스 도구입니다.  
 
-ArgoCD에서 관리하는 주요 단위는 Application으로, Kubernetes 리소스를 특정 상태로 유지하도록 합니다. Application은 Git 저장소에 저장된 매니페스트를 Kubernetes 클러스터의 실제 상태와 동기화하는 역할을 수행합니다.
+ArgoCD에서 관리하는 주요 단위는 Application으로, Kubernetes 리소스를 특정 상태로 유지하도록 합니다. Application은 Git 저장소에 저장된 매니페스트를 Kubernetes Cluster의 실제 상태와 동기화하는 역할을 수행합니다.
 
 ArgoCD Application의 주요 특징은 다음과 같습니다
 

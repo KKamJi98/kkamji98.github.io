@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-Kubernetes Secret은 Kubernetes 클러스터 내에서 민감한 정보를 안전하게 저장하고 관리하기 위한 리소스 유형입니다. 하지만 Secret은 기본적으로 API 서버의 etcd에 암호화되지 않은 상태로 Base64 인코딩만으로 보호되기 때문에 클러스터 내부에서 쉽게 디코딩될 수 있다는 문제가 있습니다.
+Kubernetes Secret은 Kubernetes Cluster 내에서 민감한 정보를 안전하게 저장하고 관리하기 위한 리소스 유형입니다. 하지만 Secret은 기본적으로 API 서버의 etcd에 암호화되지 않은 상태로 Base64 인코딩만으로 보호되기 때문에 클러스터 내부에서 쉽게 디코딩될 수 있다는 문제가 있습니다.
 
 Kubernetes Secret을 안전하게 사용하기 위해서 대표적으로 다음과 같은 방법이 있습니다.
 

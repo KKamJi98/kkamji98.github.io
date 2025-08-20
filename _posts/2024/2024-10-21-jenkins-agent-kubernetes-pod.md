@@ -21,7 +21,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 - Kubernetes Cluster
 - Jenkins Server
-- Jenkins Server에서 Kubernetes 클러스터에 접근
+- Jenkins Server에서 Kubernetes Cluster에 접근
 
 ---
 
@@ -57,7 +57,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![New Cloud](/assets/img/jenkins/new-cloud.png)
 
-> Jenkins Master가 Kubernetes Api-Server에 접근할 수 있도록 생성한 Jenkins Credential과 Kubernetes 클러스터에 대한 정보를 기입합니다.
+> Jenkins Master가 Kubernetes Api-Server에 접근할 수 있도록 생성한 Jenkins Credential과 Kubernetes Cluster에 대한 정보를 기입합니다.
 {: .prompt-tip}
 
 ![Jenkins Connect Kubernetes](/assets/img/jenkins/jenkins-connect-kubernetes.png)
@@ -81,7 +81,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ## 5. Pod Template 추가
 
-> Jenkins가 Kubernetes 클러스터 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야합니다.
+> Jenkins가 Kubernetes Cluster 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야합니다.
 > Dashboard -> Clouds -> Kubernetes -> Pod Templates에 접속 후 Add a pod template를 누릅니다.
 {: .prompt-tip}
 
