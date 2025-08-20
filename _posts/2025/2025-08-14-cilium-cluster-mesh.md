@@ -1,5 +1,5 @@
 ---
-title: Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]
+title: Cilium Cluster Mesh [Cilium Study 5주차]
 date: 2025-08-12 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
