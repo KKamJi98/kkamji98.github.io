@@ -1,3 +1,26 @@
+"""
+Markdown 헤더에 번호 접두어를 부여/정규화합니다.
+
+사용법(Usage):
+
+- 스크립트 직접 실행(현재 디렉터리 재귀 처리, H2부터 번호 시작):
+  $ python3 renumber_headers.py
+
+- 모듈로 사용(디렉터리/시작 레벨 지정):
+  >>> from renumber_headers import process_files
+  >>> process_files('_posts', min_header_level=2)  # 변경된 파일 경로 리스트 반환
+
+- 문자열 기반 처리(단일 콘텐츠 가공):
+  >>> from renumber_headers import renumber_headers
+  >>> new_text = renumber_headers(original_text, min_header_level=2)
+
+동작 요약:
+- 코드 펜스(``` 또는 ~~~) 내부는 변경하지 않습니다.
+- 파일 내 최소 해시 수를 감지하여 기준 레벨을 정하지만, `min_header_level`로 강제 지정할 수 있습니다.
+- 기준 레벨보다 상위 헤더는 번호를 제거(있다면)하고, 하위부터는 1. / 1.1 / 1.2.1 형태로 번호를 부여합니다.
+- 제목이 "관련 글"(공백 제거 후 비교)인 섹션은 번호에서 제외합니다.
+"""
+
 import os
 import re
 from typing import Optional
