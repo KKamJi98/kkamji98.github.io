@@ -1,5 +1,5 @@
 ---
-title: Cilium Service Mesh [Cilium Study 5주차]
+title: Cilium Service Mesh [Cilium Study 6주차]
 date: 2025-08-18 01:02:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
