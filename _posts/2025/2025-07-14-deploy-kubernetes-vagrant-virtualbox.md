@@ -34,7 +34,6 @@ image:
 14. [Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & BGP [Cilium Study 4주차]]({% post_url 2025/2025-08-10-cilium-native-routing %})
 15. [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})
 16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]]({% post_url 2025/2025-08-12-cilium-lb-ipam %})
-
 18. [Cilium Cluster Mesh [Cilium Study 5주차]]({% post_url 2025/2025-08-14-cilium-cluster-mesh %})
 
 
@@ -60,7 +59,7 @@ image:
     ```bash
     # VirtualBox 설치
     brew install --cask virtualbox
-    
+
     VBoxManage --version
     7.1.10r169112
     ```
@@ -70,7 +69,7 @@ image:
     ```bash
     # Vagrant 설치
     brew install --cask vagrant
-    
+
     vagrant version
     Installed Version: 2.4.7
     ```
