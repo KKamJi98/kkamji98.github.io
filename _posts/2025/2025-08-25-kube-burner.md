@@ -244,6 +244,7 @@ Version: 1.17.3
 
 ### 5.1 시나리오 1. 디플로이먼트 1개 생성 후 삭제하며 qps·burst 의미 확인
 
+{% raw %}
 ```shell
 ########################################################
 # s1-config.yaml
@@ -384,6 +385,7 @@ EOF
 
 kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
+{% endraw %}
 
 ### 5.2 시나리오 2. 노드 1대에 pod 100개 배포 시도 (max_pods limit보다 더 많은 pod 생성)
 
@@ -394,6 +396,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 - `burst: 300`
 - `objects.replicas: 1`
 
+{% raw %}
 ```shell
 ########################################################
 # s1-config.yaml
@@ -513,6 +516,7 @@ kubectl describe node | grep Capacity -A13
 kubectl get pod -A --no-headers | wc -l
 116
 ```
+{% endraw %}
 
 ![Grafana Dashboard Pod Number and Nodes](/assets/img/kubernetes/cilium/7w-grafana-110-pod-limit.webp)
 
@@ -520,6 +524,7 @@ kubectl get pod -A --no-headers | wc -l
 
 위에서 max_pods limit이 110에 걸려 6개의 pod가 Pending 상태임을 확인했습니다. max_pods limit을 증가 시켜 위의 문제를 해결해보겠습니다.
 
+{% raw %}
 ```shell
 ########################################################
 # Kind Kubernetes Cluster의 Control Plane Shell 접근
@@ -606,6 +611,7 @@ EOF
 
 kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
+{% endraw %}
 
 ### 5.3 시나리오 3. 노드 1대에 pod 300개 배포 시도 (PodCIDR 사이즈보다 많은 pod 생성)
 
@@ -826,7 +832,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 ## 7. Reference
 
 - [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)
-- [Kube-burner GitHub](http://github.com/kube-burner/kube-burner)
+- [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)
 - [Kube-burner Docs - Jobs](https://kube-burner.github.io/kube-burner/latest/reference/configuration/#jobs)
 
 ---
