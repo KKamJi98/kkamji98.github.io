@@ -14,7 +14,7 @@ Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의
 이번 글에서는 Kubernetes Cluster의 Performance를 정량적으로 측정하고 비교 가능한 기준선을 만드는 도구인 `Kube-burner`에 대해 알아보고, 로컬 Kind Kubernetes Cluster에서 해당 툴에 대한 실습내용에 대해 공유하도록 하겠습니다.
 
 > [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)
-> [Kube-burner GitHub](http://github.com/kube-burner/kube-burner)
+> [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)
 
 ### 관련 글
 
