@@ -622,6 +622,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 - `burst: 300`
 - `objects.replicas: 1`
 
+{% raw %}
 ```shell
 ########################################################
 # s1-config.yaml
@@ -814,6 +815,7 @@ EOF
 
 kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
+{% endraw %}
 
 > /24 대역에서 위 3개는 할당 불가이므로 사용 가능한 Pod IP는 253개입니다. (hostNetwork 파드는 이 계산에서 제외)  
 > - 10.244.0.0  (첫 번째 주소: /24 네트워크의 네트워크 주소. 라우팅 식별용)
