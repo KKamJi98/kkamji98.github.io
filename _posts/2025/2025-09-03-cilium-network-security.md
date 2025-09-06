@@ -32,8 +32,8 @@ Cilium은 **Identity-Based(Layer3)**, **Port Level(Layer4)**, **Application prot
 17. [Kind로 Kubernetes Cluster 배포하기 [Cilium Study 5주차]]({% post_url 2025/2025-08-13-kind %})
 18. [Cilium Cluster Mesh [Cilium Study 5주차]]({% post_url 2025/2025-08-14-cilium-cluster-mesh %})
 19. [Cilium Service Mesh [Cilium Study 6주차]]({% post_url 2025/2025-08-18-cilium-service-mesh %})
-20. [Kube-burner 소개 및 실습 [Cilium Study 7주차] (현재 글)]({% post_url 2025/2025-08-25-kube-burner %})
-21. [Cilium Network Security [Cilium Study 8주차]]({% post_url 2025/2025-09-03-cilium-network-security %})
+20. [Kube-burner 소개 및 실습 [Cilium Study 7주차]]({% post_url 2025/2025-08-25-kube-burner %})
+21. [Cilium Network Security [Cilium Study 8주차](현재 글)]({% post_url 2025/2025-09-03-cilium-network-security %})
 
 ## Cilium Network Policy
 
