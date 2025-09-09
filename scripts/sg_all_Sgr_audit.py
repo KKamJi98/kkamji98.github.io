@@ -9,7 +9,7 @@ SG All-Rule Auditor
 - CSV 한 줄당 하나의 SGR
 
 Columns:
-  sg_id, SG_Name, SG_Description, SGR_ID, SGR_Description, Direction, CIDR, Resources, Usage_Status
+  sg_id, SG_Name, SG_Description, SGR_ID, SGR_Description, Direction, CIDR, Port_Range, Resources, Usage_Status
 
 Usage:
   python sg_all_sgr_audit.py --region ap-northeast-2 --profile prod --sg-list ./sg_list --out ./all_sg_rules.csv
@@ -173,7 +173,7 @@ def scan_opensearch(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         print(f"[warn] opensearch: {e}", file=sys.stderr)
 
-# ElastiCache MemoryDB
+# ElastiCache / MemoryDB
 def scan_elasticache(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     try:
         ec = safe_client(sess, "elasticache")
@@ -193,7 +193,7 @@ def scan_elasticache(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         print(f"[warn] memorydb: {e}", file=sys.stderr)
 
-# EFS FSx
+# EFS / FSx
 def scan_efs_fsx(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     try:
         efs = safe_client(sess, "efs")
@@ -279,7 +279,6 @@ def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     ec2 = safe_client(sess, "ec2")
     asg = safe_client(sess, "autoscaling")
 
-    # Launch Configuration 이름이 주어지면 그 LC의 SG 포함 여부를 확인
     def lc_uses_sg(lc_name: str) -> bool:
         try:
             resp = asg.describe_launch_configurations(LaunchConfigurationNames=[lc_name])
@@ -292,26 +291,31 @@ def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
             print(f"[warn] asg lc resolve: {e}", file=sys.stderr)
             return False
 
-    # Launch Template 사양에서 SG 포함 여부 확인
     def lt_spec_uses_sg(spec: Dict) -> Tuple[bool, str]:
         try:
-            if not spec:
+            base = spec.get("LaunchTemplateSpecification") or spec
+            if not base:
                 return False, ""
-            if "LaunchTemplateName" in spec:
-                lt_resp = ec2.describe_launch_templates(LaunchTemplateNames=[spec["LaunchTemplateName"]])
-                lt_id = lt_resp["LaunchTemplates"][0]["LaunchTemplateId"]
+            lt_id = base.get("LaunchTemplateId")
+            lt_name = base.get("LaunchTemplateName")
+            ver = str(base.get("Version") or "$Default")
+            kwargs = {"Versions": [ver]}
+            if lt_id:
+                kwargs["LaunchTemplateId"] = lt_id
+            elif lt_name:
+                kwargs["LaunchTemplateName"] = lt_name
             else:
-                lt_id = spec.get("LaunchTemplateId")
-            ver = spec.get("Version") or "$Default"
-            vers = ec2.describe_launch_template_versions(LaunchTemplateId=lt_id, Versions=[ver])
-            for v in vers.get("LaunchTemplateVersions", []):
+                return False, ""
+            vers = ec2.describe_launch_template_versions(**kwargs).get("LaunchTemplateVersions", [])
+            for v in vers:
                 data = v.get("LaunchTemplateData") or {}
                 sgids = set(data.get("SecurityGroupIds") or [])
-                for ni in data.get("NetworkInterfaces", []) or []:
-                    for gg in ni.get("Groups", []) or []:
+                for ni in (data.get("NetworkInterfaces") or []):
+                    for gg in (ni.get("Groups") or []):
                         sgids.add(gg)
                 if sg_id in sgids:
-                    return True, f"{lt_id}:{v.get('VersionNumber')}"
+                    label_base = lt_name if lt_name else lt_id
+                    return True, f"{label_base}:{v.get('VersionNumber')}"
         except Exception as e:
             print(f"[warn] asg lt resolve: {e}", file=sys.stderr)
         return False, ""
@@ -319,36 +323,25 @@ def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     try:
         groups = asg.describe_auto_scaling_groups().get("AutoScalingGroups", [])
         for g in groups:
-            used = False
-
-            # 1 Launch Configuration 경로
             lcname = g.get("LaunchConfigurationName")
             if lcname and lc_uses_sg(lcname):
                 add_usage(usages, "ASG", g["AutoScalingGroupName"])
                 add_usage(usages, "LaunchConfig", lcname)
-                used = True
 
-            # 2 Launch Template 경로
-            if not used:
-                lt_spec = g.get("LaunchTemplate")
-                if lt_spec:
-                    ok, lt_ver = lt_spec_uses_sg(lt_spec)
-                    if ok:
-                        add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                        add_usage(usages, "LT", lt_ver or "unknown")
-                        used = True
+            lt_spec = g.get("LaunchTemplate")
+            if lt_spec:
+                ok, lt_ver = lt_spec_uses_sg(lt_spec)
+                if ok:
+                    add_usage(usages, "ASG", g["AutoScalingGroupName"])
+                    add_usage(usages, "LT", lt_ver or "unknown")
 
-            # 3 MixedInstancesPolicy 경로 상위 LaunchTemplate만 검사
-            if not used:
-                mip = g.get("MixedInstancesPolicy")
-                if mip and mip.get("LaunchTemplate"):
-                    ok, lt_ver = lt_spec_uses_sg(mip["LaunchTemplate"])
-                    if ok:
-                        add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                        add_usage(usages, "LT", lt_ver or "unknown")
-                        used = True
+            mip = g.get("MixedInstancesPolicy")
+            if mip and mip.get("LaunchTemplate"):
+                ok, lt_ver = lt_spec_uses_sg(mip["LaunchTemplate"])
+                if ok:
+                    add_usage(usages, "ASG", g["AutoScalingGroupName"])
+                    add_usage(usages, "LT", lt_ver or "unknown")
 
-            # used 플래그는 참고용일 뿐, ASG가 둘 이상 구성 경로로 동일 SG를 사용할 가능성도 있음
     except Exception as e:
         print(f"[warn] asg: {e}", file=sys.stderr)
 
@@ -400,6 +393,24 @@ def cidr_repr_from_rule(r: Dict) -> str:
         return f"PL:{r['PrefixListId']}"
     return ""
 
+def port_range_repr(r: Dict) -> str:
+    proto = r.get("IpProtocol")
+    if proto in (None, "-1"):
+        return "all"
+    proto_map = {"6": "tcp", "17": "udp"}
+    kind = proto_map.get(str(proto), str(proto)).lower()
+    if kind not in ("tcp", "udp"):
+        return "n/a"
+    fp = r.get("FromPort")
+    tp = r.get("ToPort")
+    if fp is None and tp is None:
+        return "all"
+    if fp is None:
+        fp = tp
+    if tp is None:
+        tp = fp
+    return f"{fp}-{tp}"
+
 def main():
     ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage")
     ap.add_argument("--region", required=True)
@@ -446,12 +457,13 @@ def main():
                 "SGR_Description": r.get("Description", "") or "",
                 "Direction": "Outbound" if r.get("IsEgress") else "Inbound",
                 "CIDR": cidr_repr_from_rule(r),
+                "Port_Range": port_range_repr(r),
                 "Resources": resources_str,
                 "Usage_Status": usage_status,
             })
 
     with open(args.out, "w", newline="", encoding="utf-8") as f:
-        fieldnames = ["sg_id","SG_Name","SG_Description","SGR_ID","SGR_Description","Direction","CIDR","Resources","Usage_Status"]
+        fieldnames = ["sg_id","SG_Name","SG_Description","SGR_ID","SGR_Description","Direction","CIDR","Port_Range","Resources","Usage_Status"]
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
         w.writerows(rows)
