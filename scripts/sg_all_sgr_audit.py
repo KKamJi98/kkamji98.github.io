@@ -2,26 +2,20 @@
 # -*- coding: utf-8 -*-
 """
 SG All-Rule Auditor
-- sg_list에 있는 모든 SG에 대해 모든 SGR을 나열
-- SG가 실제로 사용 중인지 식별 ENI 부착 또는 리소스/서비스에서의 참조
-- ASG가 사용하는 Launch Configuration, Launch Template 모두 고려
-- VPCE는 group-id 필터 미지원이므로 vpc-id로 범위를 좁힌 뒤 SG 매칭
+- sg_list의 모든 SG에 대해 모든 SGR을 나열
+- SG 실제 사용 여부 식별 ENI 부착 및 서비스/리소스 참조
+- ASG의 LC, LT 모두 고려. LT는 LaunchTemplate, MixedInstancesPolicy, Overrides까지 탐색
+- VPCE는 vpc-id로 제한 후 SG 매칭
 - CSV 한 줄당 하나의 SGR
 
 Columns:
   sg_id, SG_Name, SG_Description, SGR_ID, SGR_Description, Direction, CIDR, Port_Range, Resources, Usage_Status
-
-Usage:
-  python sg_all_sgr_audit.py --region ap-northeast-2 --profile prod --sg-list ./sg_list --out ./all_sg_rules.csv
-
-Requirements:
-  pip install boto3
 """
 
 import argparse
 import csv
 import sys
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Tuple, Set, Iterable
 import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError, BotoCoreError
@@ -274,7 +268,73 @@ def scan_eks(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         print(f"[warn] eks: {e}", file=sys.stderr)
 
-# ASG가 실제 사용하는 LC, LT만 고려
+# 안전 문자열
+def sanitize_str(x):
+    return x if isinstance(x, str) and x.strip() else None
+
+# LT 사양 이터레이터 ASG의 모든 LT 경로 포함
+def iter_asg_lt_specs(g: Dict) -> Iterable[Tuple[str, Dict]]:
+    # 1 LaunchTemplate 직결
+    lt = g.get("LaunchTemplate")
+    if lt:
+        yield ("ASG.LaunchTemplate", lt)
+
+    # 2 MixedInstancesPolicy 상위 LT
+    mip = g.get("MixedInstancesPolicy") or {}
+    lt_top = mip.get("LaunchTemplate")
+    if lt_top:
+        yield ("ASG.MIP.LaunchTemplate", lt_top)
+
+    # 3 MixedInstancesPolicy Overrides별 LT
+    for ov in (mip.get("Overrides") or []):
+        lts = ov.get("LaunchTemplateSpecification")
+        if lts:
+            yield ("ASG.MIP.Override", {"LaunchTemplateSpecification": lts})
+
+# LT 사양으로부터 해당 버전의 SG 집합을 구함
+def sgids_from_lt_spec(sess, spec: Dict) -> Tuple[Set[str], str]:
+    ec2 = safe_client(sess, "ec2")
+    base = spec.get("LaunchTemplateSpecification") or spec
+    if not isinstance(base, dict):
+        return set(), ""
+
+    lt_id = sanitize_str(base.get("LaunchTemplateId"))
+    lt_name = sanitize_str(base.get("LaunchTemplateName"))
+    ver = base.get("Version") or "$Default"
+    ver = str(ver)
+
+    kwargs = {"Versions": [ver]}
+    if lt_id:
+        kwargs["LaunchTemplateId"] = lt_id
+        label_base = lt_id
+    elif lt_name:
+        kwargs["LaunchTemplateName"] = lt_name
+        label_base = lt_name
+    else:
+        # 둘 다 없으면 호출하지 않음
+        return set(), ""
+
+    try:
+        resp = ec2.describe_launch_template_versions(**kwargs)
+    except Exception as e:
+        print(f"[warn] asg lt resolve: {e}", file=sys.stderr)
+        return set(), ""
+
+    sgs: Set[str] = set()
+    for v in resp.get("LaunchTemplateVersions", []):
+        data = v.get("LaunchTemplateData") or {}
+        for g in (data.get("SecurityGroupIds") or []):
+            if g:
+                sgs.add(g)
+        for ni in (data.get("NetworkInterfaces") or []):
+            for g in (ni.get("Groups") or []):
+                if g:
+                    sgs.add(g)
+        vernum = v.get("VersionNumber")
+    label = f"{label_base}:{ver}"
+    return sgs, label
+
+# ASG가 실제 사용하는 LC, LT 모두 고려
 def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     ec2 = safe_client(sess, "ec2")
     asg = safe_client(sess, "autoscaling")
@@ -291,57 +351,21 @@ def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
             print(f"[warn] asg lc resolve: {e}", file=sys.stderr)
             return False
 
-    def lt_spec_uses_sg(spec: Dict) -> Tuple[bool, str]:
-        try:
-            base = spec.get("LaunchTemplateSpecification") or spec
-            if not base:
-                return False, ""
-            lt_id = base.get("LaunchTemplateId")
-            lt_name = base.get("LaunchTemplateName")
-            ver = str(base.get("Version") or "$Default")
-            kwargs = {"Versions": [ver]}
-            if lt_id:
-                kwargs["LaunchTemplateId"] = lt_id
-            elif lt_name:
-                kwargs["LaunchTemplateName"] = lt_name
-            else:
-                return False, ""
-            vers = ec2.describe_launch_template_versions(**kwargs).get("LaunchTemplateVersions", [])
-            for v in vers:
-                data = v.get("LaunchTemplateData") or {}
-                sgids = set(data.get("SecurityGroupIds") or [])
-                for ni in (data.get("NetworkInterfaces") or []):
-                    for gg in (ni.get("Groups") or []):
-                        sgids.add(gg)
-                if sg_id in sgids:
-                    label_base = lt_name if lt_name else lt_id
-                    return True, f"{label_base}:{v.get('VersionNumber')}"
-        except Exception as e:
-            print(f"[warn] asg lt resolve: {e}", file=sys.stderr)
-        return False, ""
-
     try:
         groups = asg.describe_auto_scaling_groups().get("AutoScalingGroups", [])
         for g in groups:
+            # LC 경로
             lcname = g.get("LaunchConfigurationName")
             if lcname and lc_uses_sg(lcname):
                 add_usage(usages, "ASG", g["AutoScalingGroupName"])
                 add_usage(usages, "LaunchConfig", lcname)
 
-            lt_spec = g.get("LaunchTemplate")
-            if lt_spec:
-                ok, lt_ver = lt_spec_uses_sg(lt_spec)
-                if ok:
+            # LT 경로들 반복
+            for ctx, spec in iter_asg_lt_specs(g):
+                sgs, label = sgids_from_lt_spec(sess, spec)
+                if sgs and sg_id in sgs:
                     add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                    add_usage(usages, "LT", lt_ver or "unknown")
-
-            mip = g.get("MixedInstancesPolicy")
-            if mip and mip.get("LaunchTemplate"):
-                ok, lt_ver = lt_spec_uses_sg(mip["LaunchTemplate"])
-                if ok:
-                    add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                    add_usage(usages, "LT", lt_ver or "unknown")
-
+                    add_usage(usages, "LT", label or "unknown")
     except Exception as e:
         print(f"[warn] asg: {e}", file=sys.stderr)
 
