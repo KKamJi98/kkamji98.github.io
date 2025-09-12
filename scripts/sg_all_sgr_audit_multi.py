@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-SG All-Rule Auditor (Concurrent + Robust)
+SG All-Rule Auditor (Concurrent + Prefetch + Robust)
 - sg_list의 모든 SG에 대해 모든 SGR을 나열
-- SG 실제 사용 여부 식별 ENI 부착 및 서비스/리소스 참조
-- ASG의 LC, LT 모두 고려. LT는 LaunchTemplate, MixedInstancesPolicy, Overrides까지 탐색
+- SG 실제 사용 여부 식별(ENI 부착 및 주요 서비스 참조)
+- ASG의 LC, LT는 사전 프리페치 캐시 사용(스로틀 회피)
 - VPCE는 vpc-id로 제한 후 SG 매칭
-- 멀티스레드로 SG 단위 병렬 처리
-- 진행 상황을 SG 단위로 로그 출력
-- 프로파일 순환(Infinite loop in credential configuration) 발생 시 기본 자격증명 체인으로 자동 폴백
-- 존재하지 않는 SG는 CSV에 NOT_FOUND 표시로 수록
+- 멀티스레드 병렬 처리, 진행 로그 출력
+- credential loop 시 기본 자격증명 체인으로 폴백
+- 존재하지 않는 SG는 CSV에 NOT_FOUND 표기
 
 CSV Columns:
   sg_id, SG_Name, SG_Description, SGR_ID, SGR_Description, Direction, CIDR, Port_Range, Resources, Usage_Status
@@ -18,6 +17,8 @@ CSV Columns:
 import argparse
 import csv
 import sys
+import time
+import random
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Tuple, Set, Iterable
@@ -25,17 +26,39 @@ import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError, BotoCoreError
 
-# ---------- threading-safe logger ----------
+# ===================== logging =====================
 _print_lock = threading.Lock()
 def log(msg: str):
     with _print_lock:
         print(msg, flush=True)
 
+# ===================== retry/backoff =====================
+THROTTLE_CODES = {
+    "Throttling", "ThrottlingException", "RequestLimitExceeded",
+    "TooManyRequestsException", "ProvisionedThroughputExceededException",
+    "RequestThrottled", "RequestThrottledException"
+}
+
+def call_with_backoff(fn, max_attempts=8, base=0.4, cap=10.0):
+    """지수 백오프(full jitter)로 스로틀 흡수"""
+    attempt = 0
+    while True:
+        try:
+            return fn()
+        except ClientError as e:
+            code = (e.response or {}).get("Error", {}).get("Code", "")
+            if code in THROTTLE_CODES:
+                sleep = min(cap, base * (2 ** attempt)) * random.random()
+                time.sleep(sleep)
+                attempt += 1
+                if attempt >= max_attempts:
+                    raise
+            else:
+                raise
+
+# ===================== session/client =====================
 def session_for(profile: str, region: str):
-    """
-    boto3 세션 생성.
-    - 프로파일 순환 오류가 감지되면 기본 자격증명 체인(환경변수, IMDS 등)으로 폴백.
-    """
+    """프로파일 순환 오류 시 기본 체인으로 폴백"""
     try:
         return boto3.session.Session(profile_name=profile, region_name=region)
     except Exception as e:
@@ -47,9 +70,10 @@ def session_for(profile: str, region: str):
         raise
 
 def safe_client(sess, svc):
-    # 표준 재시도 설정
-    return sess.client(svc, config=Config(retries={"max_attempts": 10, "mode": "standard"}))
+    # adaptive 재시도로 스로틀 시 자동 감속
+    return sess.client(svc, config=Config(retries={"max_attempts": 15, "mode": "adaptive"}))
 
+# ===================== utils =====================
 def load_sg_ids(path: str) -> List[str]:
     ids = []
     with open(path, "r", encoding="utf-8") as f:
@@ -59,22 +83,28 @@ def load_sg_ids(path: str) -> List[str]:
                 ids.append(s)
     return ids
 
+def sanitize_str(x):
+    return x if isinstance(x, str) and x.strip() else None
+
+# ===================== SG describe/rules =====================
 def describe_sg(sess, sg_id: str) -> Dict:
     ec2 = safe_client(sess, "ec2")
-    return ec2.describe_security_groups(GroupIds=[sg_id])["SecurityGroups"][0]
+    return call_with_backoff(lambda: ec2.describe_security_groups(GroupIds=[sg_id]))["SecurityGroups"][0]
 
 def list_sg_rules(sess, sg_id: str) -> List[Dict]:
     ec2 = safe_client(sess, "ec2")
     rules = []
     paginator = ec2.get_paginator("describe_security_group_rules")
+    # paginator 내부 호출도 adaptive 재시도이므로 별도의 래핑 없이 순회
     for page in paginator.paginate(Filters=[{"Name":"group-id","Values":[sg_id]}]):
         rules.extend(page.get("SecurityGroupRules", []))
     return rules
 
+# ===================== usage recording =====================
 def add_usage(usages: Set[Tuple[str,str]], rtype: str, rname: str):
     usages.add((rtype, rname))
 
-# ---------- Usage scanners ----------
+# ===================== scanners (per SG) =====================
 def scan_eni_attachments(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     ec2 = safe_client(sess, "ec2")
     paginator = ec2.get_paginator("describe_network_interfaces")
@@ -282,125 +312,126 @@ def scan_eks(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] eks: {e}")
 
-def sanitize_str(x):
-    return x if isinstance(x, str) and x.strip() else None
-
-def iter_asg_lt_specs(g: Dict) -> Iterable[Tuple[str, Dict]]:
-    lt = g.get("LaunchTemplate")
-    if lt:
-        yield ("ASG.LaunchTemplate", lt)
+# ===================== ASG/LC/LT prefetch and cached scan =====================
+def iter_asg_lt_specs(g: Dict) -> Iterable[Dict]:
+    if g.get("LaunchTemplate"):
+        yield g["LaunchTemplate"]
     mip = g.get("MixedInstancesPolicy") or {}
-    lt_top = mip.get("LaunchTemplate")
-    if lt_top:
-        yield ("ASG.MIP.LaunchTemplate", lt_top)
+    if mip.get("LaunchTemplate"):
+        yield mip["LaunchTemplate"]
     for ov in (mip.get("Overrides") or []):
         lts = ov.get("LaunchTemplateSpecification")
         if lts:
-            yield ("ASG.MIP.Override", {"LaunchTemplateSpecification": lts})
+            yield {"LaunchTemplateSpecification": lts}
 
-def sgids_from_lt_spec(sess, spec: Dict) -> Tuple[Set[str], str]:
-    ec2 = safe_client(sess, "ec2")
+def normalize_lt_key(spec: Dict) -> Tuple[str, str, str]:
     base = spec.get("LaunchTemplateSpecification") or spec
-    if not isinstance(base, dict):
-        return set(), ""
-    lt_id = sanitize_str(base.get("LaunchTemplateId"))
-    lt_name = sanitize_str(base.get("LaunchTemplateName"))
-    ver = str(base.get("Version") or "$Default")
-    kwargs = {"Versions": [ver]}
-    if lt_id:
-        kwargs["LaunchTemplateId"] = lt_id
-        label_base = lt_id
-    elif lt_name:
-        kwargs["LaunchTemplateName"] = lt_name
-        label_base = lt_name
-    else:
-        return set(), ""
-    try:
-        resp = ec2.describe_launch_template_versions(**kwargs)
-    except Exception as e:
-        log(f"[warn] asg lt resolve: {e}")
-        return set(), ""
-    sgs: Set[str] = set()
-    for v in resp.get("LaunchTemplateVersions", []):
-        data = v.get("LaunchTemplateData") or {}
-        for g in (data.get("SecurityGroupIds") or []):
-            if g:
-                sgs.add(g)
-        for ni in (data.get("NetworkInterfaces") or []):
-            for g in (ni.get("Groups") or []):
+    return (
+        base.get("LaunchTemplateId") or "",
+        base.get("LaunchTemplateName") or "",
+        str(base.get("Version") or "$Default"),
+    )
+
+def prefetch_asg_inventory(sess) -> Tuple[List[Dict], Dict[str, Set[str]], Dict[Tuple[str,str,str], Set[str]]]:
+    """
+    전체 ASG 인벤토리와 LC/LT 보안그룹 캐시를 미리 구축.
+    반환:
+      - asg_groups: AutoScalingGroups 리스트
+      - lc_cache: {lc_name: {sg_ids}}
+      - lt_cache: {(lt_id, lt_name, ver): {sg_ids}}
+    """
+    asg_cli = safe_client(sess, "autoscaling")
+    ec2 = safe_client(sess, "ec2")
+
+    # 1) 모든 ASG 수집
+    groups: List[Dict] = []
+    paginator = asg_cli.get_paginator("describe_auto_scaling_groups")
+    for page in paginator.paginate():
+        groups.extend(page.get("AutoScalingGroups", []))
+
+    # 2) LC 이름 수집 및 배치 조회
+    lc_names = sorted({g["LaunchConfigurationName"] for g in groups if g.get("LaunchConfigurationName")})
+    lc_cache: Dict[str, Set[str]] = {}
+    BATCH = 50
+    for i in range(0, len(lc_names), BATCH):
+        chunk = lc_names[i:i+BATCH]
+        resp = call_with_backoff(lambda: asg_cli.describe_launch_configurations(LaunchConfigurationNames=chunk))
+        for lc in resp.get("LaunchConfigurations", []):
+            sgs = set(lc.get("SecurityGroups") or [])
+            lc_cache[lc["LaunchConfigurationName"]] = sgs
+
+    # 3) LT 사양 수집 및 중복 제거
+    lt_specs: Dict[Tuple[str,str,str], Dict] = {}
+    for g in groups:
+        for spec in iter_asg_lt_specs(g):
+            lt_specs[normalize_lt_key(spec)] = spec
+
+    # 4) LT 버전별 SG 캐시 구축
+    lt_cache: Dict[Tuple[str,str,str], Set[str]] = {}
+    for key, spec in lt_specs.items():
+        ltid, ltname, ver = key
+        kwargs = {"Versions": [ver]}
+        if ltid:
+            kwargs["LaunchTemplateId"] = ltid
+        elif ltname:
+            kwargs["LaunchTemplateName"] = ltname
+        else:
+            continue
+        resp = call_with_backoff(lambda: ec2.describe_launch_template_versions(**kwargs))
+        sgs: Set[str] = set()
+        for v in resp.get("LaunchTemplateVersions", []):
+            data = v.get("LaunchTemplateData") or {}
+            for g in (data.get("SecurityGroupIds") or []):
                 if g:
                     sgs.add(g)
-    label = f"{label_base}:{ver}"
-    return sgs, label
+            for ni in (data.get("NetworkInterfaces") or []):
+                for g in (ni.get("Groups") or []):
+                    if g:
+                        sgs.add(g)
+        lt_cache[key] = sgs
 
-def scan_asg_lc_lt(sess, sg_id: str, usages: Set[Tuple[str,str]]):
-    ec2 = safe_client(sess, "ec2")
-    asg = safe_client(sess, "autoscaling")
+    return groups, lc_cache, lt_cache
 
-    def lc_uses_sg(lc_name: str) -> bool:
-        try:
-            resp = asg.describe_launch_configurations(LaunchConfigurationNames=[lc_name])
-            lcs = resp.get("LaunchConfigurations", [])
-            if not lcs:
-                return False
-            sgs = set(lcs[0].get("SecurityGroups") or [])
-            return sg_id in sgs
-        except Exception as e:
-            log(f"[warn] asg lc resolve: {e}")
-            return False
+def scan_asg_lc_lt_from_cache(sg_id: str,
+                              asg_groups: List[Dict],
+                              lc_cache: Dict[str, Set[str]],
+                              lt_cache: Dict[Tuple[str,str,str], Set[str]],
+                              usages: Set[Tuple[str,str]]):
+    for g in asg_groups:
+        asg_name = g.get("AutoScalingGroupName")
 
-    try:
-        groups = asg.describe_auto_scaling_groups().get("AutoScalingGroups", [])
-        for g in groups:
-            lcname = g.get("LaunchConfigurationName")
-            if lcname and lc_uses_sg(lcname):
-                add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                add_usage(usages, "LaunchConfig", lcname)
-            for ctx, spec in iter_asg_lt_specs(g):
-                sgs, label = sgids_from_lt_spec(sess, spec)
-                if sgs and sg_id in sgs:
-                    add_usage(usages, "ASG", g["AutoScalingGroupName"])
-                    add_usage(usages, "LT", label or "unknown")
-    except Exception as e:
-        log(f"[warn] asg: {e}")
+        # LC 경로
+        lcname = g.get("LaunchConfigurationName")
+        if lcname and sg_id in (lc_cache.get(lcname) or set()):
+            add_usage(usages, "ASG", asg_name)
+            add_usage(usages, "LaunchConfig", lcname)
 
-def scan_msk_mq(sess, sg_id: str, usages: Set[Tuple[str,str]]):
-    try:
-        msk = safe_client(sess, "kafka")
-        clusters = msk.list_clusters_v2().get("ClusterInfoList", [])
-        for info in clusters:
-            base = info.get("ClusterInfo") or info
-            v = ((base.get("VpcConfig") or {}).get("SecurityGroups") or [])
-            if sg_id in v:
-                add_usage(usages, "MSK", base.get("ClusterName") or base.get("ClusterArn"))
-    except Exception as e:
-        log(f"[warn] msk: {e}")
-    try:
-        mq = safe_client(sess, "mq")
-        for b in mq.list_brokers().get("BrokerSummaries", []):
-            d = mq.describe_broker(BrokerId=b["BrokerId"])
-            if sg_id in (d.get("SecurityGroups") or []):
-                add_usage(usages, "MQ", d["BrokerName"])
-    except Exception as e:
-        log(f"[warn] mq: {e}")
+        # LT 경로
+        def mark_if_match(spec):
+            base = spec.get("LaunchTemplateSpecification") or spec
+            key = (
+                base.get("LaunchTemplateId") or "",
+                base.get("LaunchTemplateName") or "",
+                str(base.get("Version") or "$Default"),
+            )
+            sgs = lt_cache.get(key) or set()
+            if sg_id in sgs:
+                label = (base.get("LaunchTemplateName") or base.get("LaunchTemplateId") or "") + ":" + key[2]
+                add_usage(usages, "ASG", asg_name)
+                add_usage(usages, "LT", label)
 
-def scan_usages(sess, sg_id: str, vpc_id: str) -> Set[Tuple[str,str]]:
-    usages: Set[Tuple[str,str]] = set()
-    scan_eni_attachments(sess, sg_id, usages)
-    scan_elb(sess, sg_id, usages)
-    scan_lambda(sess, sg_id, usages)
-    scan_rds(sess, sg_id, usages)
-    scan_redshift(sess, sg_id, usages)
-    scan_opensearch(sess, sg_id, usages)
-    scan_elasticache(sess, sg_id, usages)
-    scan_efs_fsx(sess, sg_id, usages)
-    scan_vpce(sess, sg_id, vpc_id, usages)
-    scan_ecs(sess, sg_id, usages)
-    scan_eks(sess, sg_id, usages)
-    scan_asg_lc_lt(sess, sg_id, usages)
-    scan_msk_mq(sess, sg_id, usages)
-    return usages
+        if g.get("LaunchTemplate"):
+            mark_if_match(g["LaunchTemplate"])
 
+        mip = g.get("MixedInstancesPolicy") or {}
+        if mip.get("LaunchTemplate"):
+            mark_if_match(mip["LaunchTemplate"])
+        for ov in (mip.get("Overrides") or []):
+            lts = ov.get("LaunchTemplateSpecification")
+            if lts:
+                mark_if_match({"LaunchTemplateSpecification": lts})
+
+# ===================== helpers =====================
 def cidr_repr_from_rule(r: Dict) -> str:
     if r.get("CidrIpv4"):
         return r["CidrIpv4"]
@@ -430,18 +461,20 @@ def port_range_repr(r: Dict) -> str:
         tp = fp
     return f"{fp}-{tp}"
 
-# ---------- per-SG worker ----------
-def process_sg(sess, sg_id: str, idx: int, total: int) -> List[Dict]:
+# ===================== per-SG worker =====================
+def process_sg(sess, sg_id: str, idx: int, total: int,
+               asg_groups: List[Dict],
+               lc_cache: Dict[str, Set[str]],
+               lt_cache: Dict[Tuple[str,str,str], Set[str]]) -> List[Dict]:
     rows: List[Dict] = []
     log(f"[start] {idx}/{total} scanning {sg_id}")
     try:
-        # SG 존재 확인 및 메타데이터
+        # SG 메타데이터
         try:
             sg = describe_sg(sess, sg_id)
         except ClientError as e:
             code = (e.response or {}).get("Error", {}).get("Code", "")
             if "InvalidGroup" in code or "InvalidGroupId" in code:
-                # 존재하지 않는 SG를 NOT_FOUND로 기록
                 rows.append({
                     "sg_id": sg_id,
                     "SG_Name": "",
@@ -463,7 +496,21 @@ def process_sg(sess, sg_id: str, idx: int, total: int) -> List[Dict]:
         vpc_id = sg.get("VpcId")
 
         # 사용처 스캔
-        usages = scan_usages(sess, sg_id, vpc_id)
+        usages: Set[Tuple[str,str]] = set()
+        scan_eni_attachments(sess, sg_id, usages)
+        scan_elb(sess, sg_id, usages)
+        scan_lambda(sess, sg_id, usages)
+        scan_rds(sess, sg_id, usages)
+        scan_redshift(sess, sg_id, usages)
+        scan_opensearch(sess, sg_id, usages)
+        scan_elasticache(sess, sg_id, usages)
+        scan_efs_fsx(sess, sg_id, usages)
+        scan_vpce(sess, sg_id, vpc_id, usages)
+        scan_ecs(sess, sg_id, usages)
+        scan_eks(sess, sg_id, usages)
+        # ASG/LC/LT는 캐시 기반
+        scan_asg_lc_lt_from_cache(sg_id, asg_groups, lc_cache, lt_cache, usages)
+
         resources_str = "|".join(sorted([f"{t}:{n}" for t, n in usages])) if usages else ""
         usage_status = "USED" if usages else "UNUSED"
 
@@ -507,9 +554,9 @@ def process_sg(sess, sg_id: str, idx: int, total: int) -> List[Dict]:
         log(f"[error] {idx}/{total} {sg_id}: {e}")
     return rows
 
-# ---------- main ----------
+# ===================== main =====================
 def main():
-    ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent, robust)")
+    ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent, prefetch, robust)")
     ap.add_argument("--region", required=True)
     ap.add_argument("--profile", required=True)
     ap.add_argument("--sg-list", required=True, help="Path to file with SG IDs, one per line")
@@ -528,12 +575,24 @@ def main():
         log("sg_list is empty")
         sys.exit(2)
 
+    # ASG/LC/LT 인벤토리 사전 구축(1회)
+    log("[info ] prefetching ASG/LC/LT inventory...")
+    try:
+        asg_groups, lc_cache, lt_cache = prefetch_asg_inventory(sess)
+        log(f"[info ] prefetch done: ASGs={len(asg_groups)}, LCs={len(lc_cache)}, LTs={len(lt_cache)}")
+    except Exception as e:
+        log(f"[warn ] prefetch failed, ASG/LC/LT usage will be incomplete: {e}")
+        asg_groups, lc_cache, lt_cache = [], {}, {}
+
     total = len(sg_ids)
     log(f"[info ] total SGs: {total}, max_workers: {args.max_workers}")
 
     all_rows: List[Dict] = []
     with ThreadPoolExecutor(max_workers=args.max_workers) as ex:
-        futures = {ex.submit(process_sg, sess, sg_id, i+1, total): sg_id for i, sg_id in enumerate(sg_ids)}
+        futures = {
+            ex.submit(process_sg, sess, sg_id, i+1, total, asg_groups, lc_cache, lt_cache): sg_id
+            for i, sg_id in enumerate(sg_ids)
+        }
         for fut in as_completed(futures):
             rows = fut.result()
             if rows:
