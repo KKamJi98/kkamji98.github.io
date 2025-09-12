@@ -1,27 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-SG All-Rule Auditor (Concurrent)
+SG All-Rule Auditor (Concurrent + Robust)
 - sg_list의 모든 SG에 대해 모든 SGR을 나열
 - SG 실제 사용 여부 식별 ENI 부착 및 서비스/리소스 참조
 - ASG의 LC, LT 모두 고려. LT는 LaunchTemplate, MixedInstancesPolicy, Overrides까지 탐색
 - VPCE는 vpc-id로 제한 후 SG 매칭
 - 멀티스레드로 SG 단위 병렬 처리
 - 진행 상황을 SG 단위로 로그 출력
+- 프로파일 순환(Infinite loop in credential configuration) 발생 시 기본 자격증명 체인으로 자동 폴백
+- 존재하지 않는 SG는 CSV에 NOT_FOUND 표시로 수록
 
-Columns:
+CSV Columns:
   sg_id, SG_Name, SG_Description, SGR_ID, SGR_Description, Direction, CIDR, Port_Range, Resources, Usage_Status
-
-Usage:
-  python sg_all_sgr_audit.py \
-    --region ap-northeast-2 \
-    --profile prod \
-    --sg-list ./sg_list \
-    --out ./all_sg_rules.csv \
-    --max-workers 12
-
-Requirements:
-  pip install boto3
 """
 
 import argparse
@@ -41,7 +32,19 @@ def log(msg: str):
         print(msg, flush=True)
 
 def session_for(profile: str, region: str):
-    return boto3.session.Session(profile_name=profile, region_name=region)
+    """
+    boto3 세션 생성.
+    - 프로파일 순환 오류가 감지되면 기본 자격증명 체인(환경변수, IMDS 등)으로 폴백.
+    """
+    try:
+        return boto3.session.Session(profile_name=profile, region_name=region)
+    except Exception as e:
+        msg = str(e)
+        if "Infinite loop in credential configuration detected" in msg:
+            log(f"[warn] credentials: {msg}")
+            log("[warn] credentials: falling back to default credential chain (ignoring --profile)")
+            return boto3.session.Session(region_name=region)
+        raise
 
 def safe_client(sess, svc):
     # 표준 재시도 설정
@@ -430,18 +433,62 @@ def port_range_repr(r: Dict) -> str:
 # ---------- per-SG worker ----------
 def process_sg(sess, sg_id: str, idx: int, total: int) -> List[Dict]:
     rows: List[Dict] = []
+    log(f"[start] {idx}/{total} scanning {sg_id}")
     try:
-        log(f"[start] {idx}/{total} scanning {sg_id}")
-        sg = describe_sg(sess, sg_id)
+        # SG 존재 확인 및 메타데이터
+        try:
+            sg = describe_sg(sess, sg_id)
+        except ClientError as e:
+            code = (e.response or {}).get("Error", {}).get("Code", "")
+            if "InvalidGroup" in code or "InvalidGroupId" in code:
+                # 존재하지 않는 SG를 NOT_FOUND로 기록
+                rows.append({
+                    "sg_id": sg_id,
+                    "SG_Name": "",
+                    "SG_Description": "NOT_FOUND",
+                    "SGR_ID": "",
+                    "SGR_Description": "",
+                    "Direction": "",
+                    "CIDR": "",
+                    "Port_Range": "",
+                    "Resources": "",
+                    "Usage_Status": "NOT_FOUND",
+                })
+                log(f"[done ] {idx}/{total} {sg_id} NOT_FOUND")
+                return rows
+            raise
+
         sg_name = sg.get("GroupName", "")
         sg_desc = sg.get("Description", "") or ""
         vpc_id = sg.get("VpcId")
 
+        # 사용처 스캔
         usages = scan_usages(sess, sg_id, vpc_id)
         resources_str = "|".join(sorted([f"{t}:{n}" for t, n in usages])) if usages else ""
         usage_status = "USED" if usages else "UNUSED"
 
-        rules = list_sg_rules(sess, sg_id)
+        # 규칙 열람
+        try:
+            rules = list_sg_rules(sess, sg_id)
+        except ClientError as e:
+            code = (e.response or {}).get("Error", {}).get("Code", "")
+            if "InvalidGroup" in code or "InvalidGroupId" in code:
+                rows.append({
+                    "sg_id": sg_id,
+                    "SG_Name": sg_name,
+                    "SG_Description": "NOT_FOUND_WHEN_LIST_RULES",
+                    "SGR_ID": "",
+                    "SGR_Description": "",
+                    "Direction": "",
+                    "CIDR": "",
+                    "Port_Range": "",
+                    "Resources": resources_str,
+                    "Usage_Status": "NOT_FOUND",
+                })
+                log(f"[done ] {idx}/{total} {sg_id} NOT_FOUND_WHEN_LIST_RULES")
+                return rows
+            raise
+
         for r in rules:
             rows.append({
                 "sg_id": sg_id,
@@ -462,7 +509,7 @@ def process_sg(sess, sg_id: str, idx: int, total: int) -> List[Dict]:
 
 # ---------- main ----------
 def main():
-    ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent)")
+    ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent, robust)")
     ap.add_argument("--region", required=True)
     ap.add_argument("--profile", required=True)
     ap.add_argument("--sg-list", required=True, help="Path to file with SG IDs, one per line")
@@ -470,7 +517,12 @@ def main():
     ap.add_argument("--max-workers", type=int, default=8, help="Number of concurrent workers")
     args = ap.parse_args()
 
-    sess = session_for(args.profile, args.region)
+    try:
+        sess = session_for(args.profile, args.region)
+    except Exception as e:
+        log(f"[fatal] failed to create session: {e}")
+        sys.exit(2)
+
     sg_ids = load_sg_ids(args.sg_list)
     if not sg_ids:
         log("sg_list is empty")
