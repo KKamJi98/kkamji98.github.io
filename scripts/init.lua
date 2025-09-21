@@ -32,6 +32,7 @@ vim.opt.undofile      = true
 vim.opt.inccommand    = "split"
 vim.opt.list          = true
 vim.opt.listchars     = { tab = "▸ ", trail = "•", extends = ">", precedes = "<" }
+vim.opt.fillchars     = { eob = " ", fold = " ", foldopen = "▾", foldclose = "▸" }
 vim.opt.shortmess:append("I") -- intro 숨김
 vim.opt.wrap = false
 
@@ -39,6 +40,8 @@ vim.opt.wrap = false
 if vim.fn.executable("python3") == 1 then
   vim.g.python3_host_prog = vim.fn.exepath("python3")
 end
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- Python3 host 헬스체크 (pynvim 모듈 유무 확인)
 local function has_python3_host()
@@ -62,8 +65,66 @@ vim.env.GIT_TRACE = nil
 vim.env.GIT_TRACE_CURL = nil
 vim.env.GIT_CURL_VERBOSE = nil
 
+local local_bin = vim.fs.normalize("~/.local/bin")
+if vim.fn.isdirectory(local_bin) == 1 then
+  if not vim.env.PATH:find(local_bin, 1, true) then
+    vim.env.PATH = local_bin .. ":" .. vim.env.PATH
+  end
+end
+
 -- UltiSnips: snipMate 디렉토리 충돌 방지. 반드시 플러그인 로딩 전에 설정
 vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
+
+--------------------------------
+-- 공용 LSP 헬퍼
+--------------------------------
+local function lsp_capabilities()
+  local caps = vim.lsp.protocol.make_client_capabilities()
+  caps.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+  local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if ok then caps = cmp_nvim_lsp.default_capabilities(caps) end
+  return caps
+end
+
+local function lsp_on_attach(_, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  local buf = function(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+  end
+  buf("n", "gd", vim.lsp.buf.definition,        "Go to definition")
+  buf("n", "gr", vim.lsp.buf.references,        "References")
+  buf("n", "gi", vim.lsp.buf.implementation,    "Implementation")
+  buf("n", "K",  vim.lsp.buf.hover,             "Hover")
+  buf("n", "gs", vim.lsp.buf.signature_help,    "Signature help")
+  buf("n", "<leader>rn", vim.lsp.buf.rename,    "Rename symbol")
+  buf("n", "<leader>ca", vim.lsp.buf.code_action,"Code action")
+  buf("n", "gl", vim.diagnostic.open_float,     "Line diagnostics")
+  buf("n", "[d", vim.diagnostic.goto_prev,      "Prev diagnostic")
+  buf("n", "]d", vim.diagnostic.goto_next,      "Next diagnostic")
+  if vim.lsp.buf.format then
+    buf("n", "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, "Format buffer")
+  end
+end
+
+local function configure_lsp(server, opts)
+  local base = {
+    on_attach = lsp_on_attach,
+    capabilities = lsp_capabilities(),
+  }
+  vim.lsp.config(server, vim.tbl_deep_extend("force", {}, base, opts or {}))
+end
+
+local function enable_lsp(server)
+  local ok, err = pcall(vim.lsp.enable, server)
+  if not ok then
+    vim.schedule(function()
+      vim.notify(("LSP enable failed for %s: %s"):format(server, err), vim.log.levels.WARN, { title = "LSP" })
+    end)
+  end
+end
 
 --------------------------------
 -- lazy.nvim 부트스트랩
@@ -112,6 +173,33 @@ require("lazy").setup({
 
   -- 아이콘
   { "nvim-tree/nvim-web-devicons", lazy = true, opts = { default = true } },
+  { "echasnovski/mini.icons", lazy = true, version = false, opts = {} },
+  {
+    "ojroques/nvim-osc52",
+    event = "VeryLazy",
+    config = function()
+      local osc52 = require("osc52")
+      osc52.setup({ silent = true })
+      local function paste()
+        return { vim.fn.getreg("+", 1, true), vim.fn.getregtype("+") }
+      end
+      vim.g.clipboard = {
+        name = "osc52",
+        copy = {
+          ["+"] = function(lines)
+            osc52.copy(table.concat(lines, "\n"))
+          end,
+          ["*"] = function(lines)
+            osc52.copy(table.concat(lines, "\n"))
+          end,
+        },
+        paste = {
+          ["+"] = paste,
+          ["*"] = paste,
+        },
+      }
+    end,
+  },
 
   -- 상태줄
   {
@@ -128,10 +216,10 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeRefresh", "NvimTreeFocus" },
     keys = {
-      { "<C-n>",    "<cmd>NvimTreeToggle<CR>",   mode = "n", silent = true, desc = "NvimTree Toggle" },
-      { "<leader>fe","<cmd>NvimTreeFindFile<CR>",mode = "n", silent = true, desc = "NvimTree Find Current File" },
-      { "<leader>ne","<cmd>NvimTreeFocus<CR>",   mode = "n", silent = true, desc = "NvimTree Focus" },
-      { "<leader>fr","<cmd>NvimTreeRefresh<CR>", mode = "n", silent = true, desc = "NvimTree Refresh" },
+      { "<C-n>",     "<cmd>NvimTreeToggle<CR>",    mode = "n", silent = true, desc = "NvimTree Toggle" },
+      { "<leader>fe","<cmd>NvimTreeFindFile<CR>",  mode = "n", silent = true, desc = "NvimTree Find Current File" },
+      { "<leader>ne","<cmd>NvimTreeFocus<CR>",     mode = "n", silent = true, desc = "NvimTree Focus" },
+      { "<leader>fr","<cmd>NvimTreeRefresh<CR>",   mode = "n", silent = true, desc = "NvimTree Refresh" },
       { "<leader>er", function() local api=require("nvim-tree.api"); api.tree.focus(); api.fs.rename() end,
         mode="n", silent=true, desc="Explorer: Rename" },
       { "<leader>en", function() local api=require("nvim-tree.api"); api.tree.focus(); api.fs.create() end,
@@ -148,6 +236,29 @@ require("lazy").setup({
         renderer = { group_empty = true },
         filters = { dotfiles = false },
         git = { enable = true },
+      })
+    end,
+  },
+
+  -- 키맵 가이드
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      local wk = require("which-key")
+      wk.setup({
+        win = {
+          border = "rounded",
+          title = true,
+          title_pos = "center",
+        },
+      })
+      wk.add({
+        { "<leader>f", group = "find" },
+        { "<leader>e", group = "explorer" },
+        { "<leader>c", group = "code" },
+        { "<leader>s", group = "session" },
+        { "<leader>x", group = "diagnostics" },
       })
     end,
   },
@@ -169,30 +280,50 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown" },
+        ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown", "go", "python" },
         highlight = { enable = true },
-        indent = { enable = true },
-        auto_install = false,
-      })
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter.configs").setup({
+        indent = { enable = true, disable = { "yaml" } }, -- YAML 인덴트 비활성화
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+          },
+        },
         textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+            },
+          },
           move = {
-            enable = true, set_jumps = true,
-            goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
-            goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@class.outer",
+            },
             goto_next_end = { ["]M"] = "@function.outer" },
             goto_previous_end = { ["[M"] = "@function.outer" },
           },
         },
+        auto_install = false,
       })
     end,
   },
@@ -208,25 +339,23 @@ require("lazy").setup({
   },
 
   -- Mason
-  { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+  { "mason-org/mason.nvim", build = ":MasonUpdate", opts = {} },
 
   -- Mason LSP bridge
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "terraformls", "lua_ls" },
-        automatic_installation = false,
-      })
-    end,
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      ensure_installed = { "terraformls", "lua_ls", "yamlls" },
+      automatic_enable = { exclude = { "terraformls" } },
+    },
   },
 
-  -- LSP 설정
+  -- LSP 설정 (terraformls는 하단 TFENV 블록에서 구성)
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "folke/neodev.nvim" },
+    dependencies = { "folke/neodev.nvim", "b0o/schemastore.nvim" },
     config = function()
       vim.diagnostic.config({
         virtual_text = { spacing = 2, prefix = "●" },
@@ -234,37 +363,10 @@ require("lazy").setup({
         severity_sort = true,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      local ok_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      if ok_cmp then
-        capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-      end
-
-      local on_attach = function(_, bufnr)
-        local buf = function(mode, lhs, rhs, desc)
-          vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
-        end
-        buf("n", "gd", vim.lsp.buf.definition,        "Go to definition")
-        buf("n", "gr", vim.lsp.buf.references,        "References")
-        buf("n", "gi", vim.lsp.buf.implementation,    "Implementation")
-        buf("n", "K",  vim.lsp.buf.hover,             "Hover")
-        buf("n", "<leader>rn", vim.lsp.buf.rename,    "Rename symbol")
-        buf("n", "<leader>ca", vim.lsp.buf.code_action,"Code action")
-        buf("n", "[d", vim.diagnostic.goto_prev,      "Prev diagnostic")
-        buf("n", "]d", vim.diagnostic.goto_next,      "Next diagnostic")
-        if vim.lsp.buf.format then
-          buf("n", "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, "Format buffer")
-        end
-      end
-
-      local lsp = require("lspconfig")
-      if vim.fn.executable("terraform-ls") == 1 then
-        lsp.terraformls.setup({ on_attach = on_attach, capabilities = capabilities })
-      end
       require("neodev").setup({})
-      lsp.lua_ls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
+
+      -- Lua
+      configure_lsp("lua_ls", {
         settings = {
           Lua = {
             runtime = { version = "LuaJIT" },
@@ -274,16 +376,40 @@ require("lazy").setup({
           },
         },
       })
+
+      -- YAML (SchemaStore)
+      local ok_schema, schemastore = pcall(require, "schemastore")
+      local yaml_schemas = {}
+      if ok_schema then
+        yaml_schemas = schemastore.yaml.schemas()
+      end
+      configure_lsp("yamlls", {
+        settings = {
+          yaml = {
+            validate = true,
+            format = { enable = true },
+            schemaStore = { enable = false },
+            schemas = yaml_schemas,
+            keyOrdering = false,
+          },
+        },
+      })
     end,
   },
 
-  -- TFLint
+  -- Helm 템플릿 파일타입/하이라이트
+  { "towolf/vim-helm", ft = { "helm" } },
+
+  -- TFLint + yamllint
   {
     "mfussenegger/nvim-lint",
-    ft = { "terraform", "tf", "hcl" },
+    ft = { "terraform", "tf", "hcl", "yaml" },
     config = function()
       local lint = require("lint")
-      lint.linters_by_ft = { terraform = { "tflint" }, tf = { "tflint" }, hcl = { "tflint" } }
+      lint.linters_by_ft = {
+        terraform = { "tflint" }, tf = { "tflint" }, hcl = { "tflint" },
+        yaml = { "yamllint" },
+      }
       vim.api.nvim_create_autocmd("BufWritePost", {
         callback = function() require("lint").try_lint() end,
       })
@@ -371,12 +497,18 @@ require("lazy").setup({
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
-      require("nvim-autopairs").setup({})
+      local autopairs = require("nvim-autopairs")
+      autopairs.setup({
+        check_ts = true,
+        fast_wrap = {},
+        disable_filetype = { "TelescopePrompt", "vim" },
+      })
       local ok, cmp = pcall(require, "cmp")
       if ok then
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
       end
+      autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
     end,
   },
 
@@ -461,6 +593,7 @@ require("lazy").setup({
 }, {
   checker = { enabled = false },
   change_detection = { enabled = false },
+  rocks = { enabled = false },
 })
 
 --------------------------------
@@ -468,7 +601,18 @@ require("lazy").setup({
 --------------------------------
 -- Yank 하이라이트
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function() vim.highlight.on_yank() end,
+  callback = function()
+    vim.highlight.on_yank()
+    if vim.v.event.operator == "y" then
+      local reg = vim.v.event.regname
+      if reg == "" or reg == "+" or reg == "*" then
+        local ok, osc52 = pcall(require, "osc52")
+        if ok then
+          osc52.copy_register(reg == "" and "+" or reg)
+        end
+      end
+    end
+  end,
 })
 
 -- 외부 변경 자동 반영
@@ -485,12 +629,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- 저장 시 트레일링 공백 제거(마크다운/커밋 제외)
+-- 저장 시 트레일링 공백 제거(마크다운/커밋/Helm/Make 제외)
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    if not vim.bo.modifiable or vim.bo.readonly then
+      return
+    end
     local ft = vim.bo.filetype
-    if ft ~= "markdown" and ft ~= "gitcommit" then
+    if ft ~= "markdown" and ft ~= "gitcommit" and ft ~= "helm" and ft ~= "make" then
       local view = vim.fn.winsaveview()
       vim.cmd([[%s/\s\+$//e]])
       vim.fn.winrestview(view)
@@ -506,42 +653,92 @@ vim.schedule(function() vim.cmd("echo ''") vim.cmd("redraw!") end)
 --------------------------------
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+local function mapd(mode, lhs, rhs, desc)
+  local o = desc and vim.tbl_extend("force", opts, { desc = desc }) or opts
+  map(mode, lhs, rhs, o)
+end
 
 -- 창 이동
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-j>", "<C-w>j", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-l>", "<C-w>l", opts)
+mapd("n", "<C-h>", "<C-w>h", "Window left")
+mapd("n", "<C-j>", "<C-w>j", "Window down")
+mapd("n", "<C-k>", "<C-w>k", "Window up")
+mapd("n", "<C-l>", "<C-w>l", "Window right")
 
 -- 편의
-map("n", "<leader>w", "<cmd>write<CR>", opts)
-map("n", "<leader>q", "<cmd>quit<CR>",  opts)
-map("n", "<leader>Q", "<cmd>qa!<CR>",   opts)
-map("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+mapd("n", "<leader>w", "<cmd>write<CR>", "Write buffer")
+mapd("n", "<leader>q", "<cmd>quit<CR>",  "Quit window")
+mapd("n", "<leader>Q", "<cmd>qa!<CR>",   "Quit all (force)")
+mapd("n", "<leader>h", "<cmd>nohlsearch<CR>", "Clear highlight")
 
 -- UI 토글
-map("n", "<leader>un", function() vim.wo.relativenumber = not vim.wo.relativenumber end, opts)
+mapd("n", "<leader>un", function() vim.wo.relativenumber = not vim.wo.relativenumber end, "Toggle relative number")
 
 -- 창 크기 조절
-map("n", "<C-Up>",    "<cmd>resize +2<CR>", opts)
-map("n", "<C-Down>",  "<cmd>resize -2<CR>", opts)
-map("n", "<C-Left>",  "<cmd>vertical resize -3<CR>", opts)
-map("n", "<C-Right>", "<cmd>vertical resize +3<CR>", opts)
+mapd("n", "<C-Up>",    "<cmd>resize +2<CR>", "Increase height")
+mapd("n", "<C-Down>",  "<cmd>resize -2<CR>", "Decrease height")
+mapd("n", "<C-Left>",  "<cmd>vertical resize -3<CR>", "Decrease width")
+mapd("n", "<C-Right>", "<cmd>vertical resize +3<CR>", "Increase width")
 
 -- 라인/블록 이동
-map("n", "<A-j>", ":m .+1<CR>==", opts)
-map("n", "<A-k>", ":m .-1<CR>==", opts)
-map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-map("i", "<A-k>", "<Esc>:m .-1<CR>==gi", opts)
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+mapd("n", "<A-j>", ":m .+1<CR>==", "Move line down")
+mapd("n", "<A-k>", ":m .-1<CR>==", "Move line up")
+mapd("i", "<A-j>", "<Esc>:m .+1<CR>==gi", "Move line down")
+mapd("i", "<A-k>", "<Esc>:m .-1<CR>==gi", "Move line up")
+mapd("v", "<A-j>", ":m '>+1<CR>gv=gv", "Move block down")
+mapd("v", "<A-k>", ":m '<-2<CR>gv=gv", "Move block up")
+
+--------------------------------
+-- 파일타입별 들여쓰기 규칙
+--------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python" },
+  callback = function()
+    local o = vim.opt_local
+    o.expandtab = true
+    o.shiftwidth = 4
+    o.tabstop = 4
+    o.softtabstop = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go" },
+  callback = function()
+    local o = vim.opt_local
+    o.expandtab = false   -- Go는 탭 사용
+    o.tabstop = 4         -- 표시 폭
+    o.shiftwidth = 0      -- 탭 폭을 따름
+    o.softtabstop = 0
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "make" },
+  callback = function()
+    local o = vim.opt_local
+    o.expandtab = false   -- Makefile은 탭 필수
+    o.tabstop = 8
+    o.shiftwidth = 8
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "yaml", "yml", "docker-compose", "helm" },
+  callback = function()
+    local o = vim.opt_local
+    o.expandtab = true
+    o.shiftwidth = 2
+    o.tabstop = 2
+    o.softtabstop = 2
+  end,
+})
+
 -- === TFENV + terraform-ls bootstrap (safe, idempotent) ===
 if not vim.g.__tfenv_lsp_bootstrap then
   vim.g.__tfenv_lsp_bootstrap = true
 
-  local ok_lsp, lspconfig = pcall(require, "lspconfig")
-  if ok_lsp then
-    local util = require("lspconfig.util")
+  local ok_util, util = pcall(require, "lspconfig.util")
+  if ok_util then
 
     -- Build a safe env that prefers tfenv and enables provider caching
     local function tfenv_env(base)
@@ -579,7 +776,7 @@ if not vim.g.__tfenv_lsp_bootstrap then
     local root_dir = util.root_pattern(".terraform-version", ".tool-versions", "versions.tf", ".terraform", ".git")
 
     -- Configure terraform-ls to always use tfenv-backed terraform
-    lspconfig.terraformls.setup({
+    configure_lsp("terraformls", {
       cmd = { "terraform-ls", "serve" },
       cmd_env = cmd_env,
       filetypes = { "terraform", "terraform-vars", "hcl" },
@@ -587,20 +784,28 @@ if not vim.g.__tfenv_lsp_bootstrap then
       single_file_support = true,
       settings = {
         terraform = {
-          path = "terraform",   -- resolved by tfenv shims for 0.12, 0.13, or 1.x per project
-          -- Do not assume schema availability on 0.12
+          path = "terraform",   -- tfenv shims가 해결
         },
       },
     })
 
+    enable_lsp("terraformls")
+
     -- Optional inspection commands (no side effects)
     vim.api.nvim_create_user_command("TerraformEnvInfo", function()
-      -- Show which terraform is used and its version
       local out = ""
-      local ok, handle = pcall(io.popen, "bash -lc 'command -v terraform && terraform version | head -n1'")
-      if ok and handle then
-        out = handle:read("*a") or ""
-        handle:close()
+      if vim.fn.has("wsl") == 1 then
+        local ok, handle = pcall(io.popen, "bash -lc 'command -v terraform && terraform version | head -n1'")
+        if ok and handle then
+          out = handle:read("*a") or ""
+          handle:close()
+        end
+      else
+        local ok2, handle2 = pcall(io.popen, "terraform version | head -n1 2>&1")
+        if ok2 and handle2 then
+          out = handle2:read("*a") or ""
+          handle2:close()
+        end
       end
       if out == "" then out = "terraform not found in PATH" end
       vim.notify(out, vim.log.levels.INFO, { title = "TerraformEnvInfo" })
