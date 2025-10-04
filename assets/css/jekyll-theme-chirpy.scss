@@ -8,14 +8,6 @@
 {%- endif -%}
 ';
 
-/* XL 이상에서 메인 폭 확장: 80% / 패널 20% */
-@media (min-width: 1200px) {
-  main.col-xl-9 { flex: 0 0 80%; max-width: 80%; }
-  #panel-wrapper.col-xl-3 { flex: 0 0 20%; max-width: 20%; }
-}
+/* append your custom style below */
 
-/* 패널을 숨기고 메인을 전체 너비로 (원하면 사용) */
-@media (min-width: 1200px) {
-  #panel-wrapper { display: none !important; }
-  main.col-xl-9 { flex: 0 0 100%; max-width: 100%; }
-}
+#main-wrapper > .container { max-width: 1500px; }
