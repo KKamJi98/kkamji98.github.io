@@ -1,28 +1,21 @@
 ---
 ---
 
-@import 'main
+/* prettier-ignore */
+@use 'main
 {%- if jekyll.environment == 'production' -%}
   .bundle
 {%- endif -%}
 ';
 
-/* append your custom style below */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000;
+/* XL 이상에서 메인 폭 확장: 80% / 패널 20% */
+@media (min-width: 1200px) {
+  main.col-xl-9 { flex: 0 0 80%; max-width: 80%; }
+  #panel-wrapper.col-xl-3 { flex: 0 0 20%; max-width: 20%; }
 }
 
-.video-container iframe,
-.video-container object,
-.video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* 패널을 숨기고 메인을 전체 너비로 (원하면 사용) */
+@media (min-width: 1200px) {
+  #panel-wrapper { display: none !important; }
+  main.col-xl-9 { flex: 0 0 100%; max-width: 100%; }
 }
