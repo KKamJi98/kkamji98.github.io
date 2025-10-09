@@ -18,7 +18,7 @@ image:
 > DB - 3306 포트로만 ingress, egress  
 {: .prompt-tip}
 
-![alt text](/assets/img/network-policy/network-policy.webp)
+![alt text](/assets/img/kubernetes/network-policy.webp)
 
 ---
 
