@@ -6,7 +6,7 @@ categories: [Monitoring & Observability, Log]
 tags: [lambda, subscription-filter, logstash, elasticsearch, kibana, cloudwatch, cloudwatch-logs]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/monitoring/elk.webp
+  path: /assets/img/observability/elk.webp
 ---
 
 최근 서버리스 기반 단어 암기 앱 [Remember Me](https://github.com/vocaAppServerless) 프로젝트를 **AWS Lambda**와 **API Gateway**를 활용하여 진행하고 있습니다. 서버리스 아키텍처를 구축하면서 다수의 **Lambda Function**을 프로비저닝 하였는데, 이 과정에서 각 **Lambda Function**의 로그가 **CloudWatch Logs**의 **Log Group**에 분산 저장되어 어떻게 이 로그 데이터를 수집하고 한 곳에서 관리할 수 있을지에 대해 고민하게 되었습니다.  
@@ -19,7 +19,7 @@ image:
 
 ## 1. Workflows
 
-![workflow](/assets/img/monitoring/log_monitoring.webp)
+![workflow](/assets/img/observability/log_monitoring.webp)
 
 ---
 
@@ -138,7 +138,7 @@ Rkxxxxx19xxxxxmVxxxa
 
 ### 2.3 포트포워딩 후 확인
 
-![kibana_login](/assets/img/monitoring/kibana_login.webp)
+![kibana_login](/assets/img/observability/kibana_login.webp)
 
 ### 2.4 Logstash 배포
 
@@ -210,7 +210,7 @@ ok
 > logstash로 전송한 로그가 elasticsearch로 전송된 것을 확인할 수 있습니다.
 {: .prompt-tip}
 
-![elasticsearch_search](/assets/img/monitoring/elasticsearch_search.webp)
+![elasticsearch_search](/assets/img/observability/elasticsearch_search.webp)
 
 ---
 
@@ -231,7 +231,7 @@ def handler(event, context):
 > 데이터의 형식에 대해 알아보니 해당 형식은 Log Group에서 Log Data를 전송할 때 데이터를 gzip으로 압축한 뒤, gzip파일을 base64로 인코딩 되어 전달된 결과라는 것을 알 수 있었습니다.
 {: .prompt-tip}
 
-![Subscription Filter Data Format](/assets/img/monitoring/log_group_data_format.webp)
+![Subscription Filter Data Format](/assets/img/observability/log_group_data_format.webp)
 
 > event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.
 {: .prompt-tip}
@@ -356,17 +356,17 @@ def handler(event, context):
 > CloudWatch에 들어가서 로그 그룹을 선택한 뒤, 작업 -> 구독 필터 -> Lambda 구독 필터 생성
 {: .prompt-tip}
 
-![create_subscription_filter](/assets/img/monitoring/create_subscription_filter.webp)
+![create_subscription_filter](/assets/img/observability/create_subscription_filter.webp)
 
 > subscription filter 역할을 하는 Lambda function을 선택합니다.
 {: .prompt-tip}
 
-![subscription_filter_select_lambda_function](/assets/img/monitoring/subscription_filter_select_lambda_function.webp)
+![subscription_filter_select_lambda_function](/assets/img/observability/subscription_filter_select_lambda_function.webp)
 
 > 로그 형식을 JSON 방식으로 지정한 뒤, 구독 필터 이름을 넣어준 뒤 **Subscription Filter**를 생성합니다.
 {: .prompt-tip}
 
-![subscription_filter_log_format](/assets/img/monitoring/subscription_filter_log_format.webp)
+![subscription_filter_log_format](/assets/img/observability/subscription_filter_log_format.webp)
 
 ---
 
@@ -375,7 +375,7 @@ def handler(event, context):
 > 해당 Lambda Function를 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.
 {: .prompt-tip}
 
-![subscription_filter_test_kibana](/assets/img/monitoring/subscription_filter_test_kibana.png)
+![subscription_filter_test_kibana](/assets/img/observability/subscription_filter_test_kibana.png)
 
 > Lambda Function 에서 생성되는 로그를 CloudWatch Log Group의 Subscribe Filter를 통해 Kibana에서 확인이 가능한 것을 알 수 있습니다.
 {: .prompt-tip}
@@ -389,7 +389,7 @@ def handler(event, context):
 > 아직 Kibana Dashboard의 가시성과 로그 데이터 필터링 부분에서 많이 개선이 필요하지만. 휴식을 취하고 차근차근 개선해보도록 하겠습니다.
 {: .prompt-tip}
 
-![kibana_result](/assets/img/monitoring/kibana_result.webp)
+![kibana_result](/assets/img/observability/kibana_result.webp)
 
 ---
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  

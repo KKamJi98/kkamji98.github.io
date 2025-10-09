@@ -6,7 +6,7 @@ categories: [Monitoring & Observability]
 tags: [kubernetes, devops, monitoring, observability, sli, slo, sla, cilium-study, cloudnet]
 comments: true
 image:
-  path: /assets/img/monitoring/monitoring_and_observability_and_sli_slo_sla.webp
+  path: /assets/img/observability/monitoring_and_observability_and_sli_slo_sla.webp
 ---
 
 이번 글에서는 **Monitoring(모니터링)**과 **Observability(관측 가능성)**의 차이를 정리하고, **SLI/SLO/SLA** 개념에 대해 알아보도록 하겠습니다.

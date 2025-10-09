@@ -3,10 +3,10 @@ title: Kubernetes 리소스 모니터링 (1) - Prometheus
 date: 2024-11-07 19:15:30 +0900
 author: kkamji
 categories: [Monitoring & Observability, Metric]
-tags: [kubernetes, prometheus, node-exporter, push-gateway, grafana, slack, daemonset, prometheus-web-ui, promql]     # TAG names should always be lowercase
+tags: [kubernetes, monitoring, observability, prometheus, node-exporter, push-gateway, grafana, slack, daemonset, prometheus-web-ui, promql]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/prometheus/prometheus.webp
+  path: /assets/img/observability/prometheus/prometheus.webp
 ---
 
 현재 **Weasel** 프로젝트를 **클라우드 환경에서 온프레미스로 마이그레이션**하는 작업을 진행하고 있습니다. **Prometheus**와 **Grafana**를 사용해 Kubernetes Cluster의 리소스 모니터링 시스템을 구축하는 과정을 공유해보도록 하겟습니다.
@@ -39,7 +39,7 @@ image:
 
 ## 3. Prometheus의 구성요소
 
-![prometheus_architecture](/assets/img/prometheus/prometheus_diagram.webp)
+![prometheus_architecture](/assets/img/observability/prometheus/prometheus_diagram.webp)
 
 - **Prometheus Server**: 메트릭 데이터를 Pull 방식으로 수집하고 시계열 데이터베이스에 저장합니다.
 - **Node Exporter**: 각 Kubernetes Node에 DaemonSet 형태로 배포되어 시스템 메트릭을 수집합니다.
@@ -131,7 +131,7 @@ Forwarding from [::1]:9090 -> 9090
 Handling connection for 9090
 Handling connection for 9090
 ```
-![prometheus_server](/assets/img/prometheus/prometheus_server.webp)
+![prometheus_server](/assets/img/observability/prometheus/prometheus_server.webp)
 
 ### 4.5 확인 (Prometheus Alert Manager)
 
@@ -143,7 +143,7 @@ Forwarding from [::1]:9093 -> 9093
 Handling connection for 9093
 Handling connection for 9093
 ```
-![prometheus_alert_manager](/assets/img/prometheus/prometheus_alert_manager.webp)
+![prometheus_alert_manager](/assets/img/observability/prometheus/prometheus_alert_manager.webp)
 
 ### 4.6 확인 (Prometheus Push Gateway)
 
@@ -156,7 +156,7 @@ Forwarding from [::1]:9091 -> 9091
 Handling connection for 9091
 Handling connection for 9091
 ```
-![prometheus_push_gateway](/assets/img/prometheus/prometheus_push_gateway.webp)
+![prometheus_push_gateway](/assets/img/observability/prometheus/prometheus_push_gateway.webp)
 
 ---
 

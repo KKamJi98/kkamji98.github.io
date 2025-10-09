@@ -93,7 +93,7 @@ curl -i -XPOST "http://10.0.1.67:8086/write?db=test_db" \
 
 이 스크립트를 1분마다 실행하면 같은 시점의 데이터가 Old·New에 동시 기록됩니다. 특정 시점에 New DB에서 일부 데이터를 지우거나 덮어쓰고, 마이그레이션을 통해 데이터를 재확인할 수 있습니다.
 
-![dummy_data_grafana](/assets/img/influxdb/dummy_data_grafana.webp)
+![dummy_data_grafana](/assets/img/database/influxdb/dummy_data_grafana.webp)
 
 ---
 
@@ -120,7 +120,7 @@ root@ip-10-0-1-67:~# influx -database test_db -execute "SELECT COUNT(*) FROM tes
 
 ### 6.1 Grafana에서 확인
 
-![delete_measurements](/assets/img/influxdb/delete_measurements.webp)
+![delete_measurements](/assets/img/database/influxdb/delete_measurements.webp)
 
 ---
 
@@ -221,7 +221,7 @@ time count_value
 
 ### 7.2 Grafana에서 결과 확인
 
-![migration_grafana](/assets/img/influxdb/migration_grafana.webp)
+![migration_grafana](/assets/img/database/influxdb/migration_grafana.webp)
 
 ---
 
@@ -247,7 +247,7 @@ root@ip-10-0-1-67:~# influx -database test_db -execute "SELECT COUNT(*) FROM tes
 
 ### 8.1 Grafana에서 결과 확인
 
-![delete_partial_measurement](/assets/img/influxdb/delete_partial_measurement.webp)
+![delete_partial_measurement](/assets/img/database/influxdb/delete_partial_measurement.webp)
 
 > 약 17:00 ~ 20:00 사이의 데이터가 삭제되어 그래프가 흐트러진 것을 확인할 수 있습니다.  
 > 이후 Old InfluxDB에서 마이그레이션을 진행하면, New InfluxDB에 해당 시간대 데이터가 복원되어야 합니다.  
@@ -299,7 +299,7 @@ Date: Sun, 06 Apr 2025 13:58:02 GMT
 
 ### 8.2 Grafana에서 결과 확인
 
-![restored_partial_measurement](/assets/img/influxdb/restored_partial_measurement.webp)
+![restored_partial_measurement](/assets/img/database/influxdb/restored_partial_measurement.webp)
 
 > 약 17:00 ~ 20:00 사이의 삭제된 데이터가 복원되어 그래프가 되돌아온 것을 확인할 수 있습니다.  
 {: .prompt-tip}
@@ -385,7 +385,7 @@ Date: Sun, 06 Apr 2025 14:26:23 GMT
 
 ### 9.2 Grafana에서 이상한 값 확인
 
-![check_strange_data](/assets/img/influxdb/check_strange_data.webp)
+![check_strange_data](/assets/img/database/influxdb/check_strange_data.webp)
 
 ### 9.3 데이터 덮어쓰기
 
@@ -427,7 +427,7 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 
 ### 9.4 Grafana 확인
 
-![check_overwrite_data](/assets/img/influxdb/check_overwrite_data.webp)
+![check_overwrite_data](/assets/img/database/influxdb/check_overwrite_data.webp)
 
 > 100, 0, 100으로 흐트러진 데이터가 50, 50, 50 으로 잘 덮어 씌워진 것을 그래프를 통해 확인할 수 있습니다.
 {: .prompt-tip}

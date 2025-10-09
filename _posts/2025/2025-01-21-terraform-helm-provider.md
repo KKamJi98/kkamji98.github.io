@@ -6,7 +6,7 @@ categories: [IaC, Terraform]
 tags: [terraform, kubernetes, helm, helm-provider, devops, bitnami, nginx]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/terraform/terraform.webp
+  path: /assets/img/iac/terraform/terraform.webp
 ---
 
 Helm은 Kubernetes의 패키지 매니저로, 애플리케이션의 배포 및 관리를 간편하게 해주는 도구입니다. Kubernetes의 리소스를 정의하는 Manifest 파일을 템플릿화하여 **재사용성**과 **유지보수성**을 높이는 데 도움을 줍니다.

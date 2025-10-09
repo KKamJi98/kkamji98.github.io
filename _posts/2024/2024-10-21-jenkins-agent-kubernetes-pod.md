@@ -6,7 +6,7 @@ categories: [CI/CD, Jenkins]
 tags: [kubernetes, jenkins, pod, agent, jnlp, jenkins-agent]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/jenkins/jenkins.webp
+  path: /assets/img/ci-cd/jenkins/jenkins.webp
 ---
 
 WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.whatap.io/bbs/board.php?bo_table=blog&wr_id=34&page=9) 인프랩의 [EC2 Spot Instance를 활용한 Jenkins 기반의 CI/CD 구축 사례](https://aws.amazon.com/ko/blogs/tech/inflab-ec2-spot-instance/) 사례를 통해 Jenkins **Master-Agent** 구성에 대해 접하게 되었습니다.
@@ -30,12 +30,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > Dashboard -> Jenkins 관리 -> Plugins -> Available plugins에 접속후 Kubernetes Plugin을 설치합니다.
 {: .prompt-tip}
 
-![Install Kubernetes Plugin](/assets/img/jenkins/kubernetes-plugin.png)
+![Install Kubernetes Plugin](/assets/img/ci-cd/jenkins/kubernetes-plugin.png)
 
 > 의존성에 포함된 Kubernetes Client API, Authentication Tokens API 등의 플러그인도 함께 설치된 것을 확인할 수 있습니다.
 {: .prompt-tip}
 
-![Kubernetes Plugin Dependency](/assets/img/jenkins/kubernetes-plugin-dependency.png)
+![Kubernetes Plugin Dependency](/assets/img/ci-cd/jenkins/kubernetes-plugin-dependency.png)
 
 ---
 
@@ -46,7 +46,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > 보통 대부분의 경우 kubeconfig 파일은 `~/.kube/kubeconfig` 혹은 `~/.kube/config`에 위치합니다.
 {: .prompt-tip}
 
-![kubeconfig](/assets/img/jenkins/kube-config-credential.png)
+![kubeconfig](/assets/img/ci-cd/jenkins/kube-config-credential.png)
 
 ---
 
@@ -55,12 +55,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > Dashboard -> Jenkins 관리 -> Clouds -> New cloud에 접속 후 Kubernetes Type의 Cloud를 생성합니다.
 {: .prompt-tip}
 
-![New Cloud](/assets/img/jenkins/new-cloud.png)
+![New Cloud](/assets/img/ci-cd/jenkins/new-cloud.png)
 
 > Jenkins Master가 Kubernetes Api-Server에 접근할 수 있도록 생성한 Jenkins Credential과 Kubernetes Cluster에 대한 정보를 기입합니다.
 {: .prompt-tip}
 
-![Jenkins Connect Kubernetes](/assets/img/jenkins/jenkins-connect-kubernetes.png)
+![Jenkins Connect Kubernetes](/assets/img/ci-cd/jenkins/jenkins-connect-kubernetes.png)
 
 > Test Connection을 눌러 기입한 정보를 기반으로 Jenkins가 Kubernetes와 통신이 가능한지 확인합니다.
 > Jenkins URL에는 Agent들이 Jenkins Master와 통신하기 위한 URL을 적어줍니다.
@@ -70,12 +70,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > 이 부분을 그냥 지나치신다면.. 저와 같이 많은 시간을 트러블 슈팅에 사용하시게 될 수도 있습니다...
 {: .prompt-danger}
 
-![Jenkins Test Connection](/assets/img/jenkins/test-connection.png)
+![Jenkins Test Connection](/assets/img/ci-cd/jenkins/test-connection.png)
 
 > Connection Timeout, Concurrency Limit 등의 다른 옵션은 목적과 요구사항에 맞는 정보를 채워 넣고 Save 버튼을 클릭해 설정을 저장합니다.
 {: .prompt-tip}
 
-![Save](/assets/img/jenkins/kubernetes-cloud-save.png)
+![Save](/assets/img/ci-cd/jenkins/kubernetes-cloud-save.png)
 
 ---
 
@@ -85,7 +85,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > Dashboard -> Clouds -> Kubernetes -> Pod Templates에 접속 후 Add a pod template를 누릅니다.
 {: .prompt-tip}
 
-![Add Pod a Template](/assets/img/jenkins/add-pod-template.png)
+![Add Pod a Template](/assets/img/ci-cd/jenkins/add-pod-template.png)
 
 ### 5.1 Pod Template 설정
 
@@ -93,8 +93,8 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > Usage 옵션을 통해 특정 라벨과 일치하는 노드에서만 Agent Pod가 생성되도록 할 수도 있으며 Container를 추가해 하나의 Pod에 여러 Container가 포함되도록 설정할 수도 있습니다.
 {: .prompt-tip}
 
-![New Pod Template Setting 1](/assets/img/jenkins/new-pod-template-setting-1.png)
-![New Pod Template Setting 2](/assets/img/jenkins/new-pod-template-setting-2.png)
+![New Pod Template Setting 1](/assets/img/ci-cd/jenkins/new-pod-template-setting-1.png)
+![New Pod Template Setting 2](/assets/img/ci-cd/jenkins/new-pod-template-setting-2.png)
 
 ---
 
@@ -103,12 +103,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 > Kubernetes Agent를 사용하도록 테스트 파이프라인을 생성해 정상 동작 여부를 해보겠습니다.
 {: .prompt-tip}
 
-![Test Pipeline Script](/assets/img/jenkins/test-pipeline-script.png)
+![Test Pipeline Script](/assets/img/ci-cd/jenkins/test-pipeline-script.png)
 
 > 위의 파이프라인을 동작시켜 보겠습니다.
 {: .prompt-tip}
 
-![Check Generate Agent](/assets/img/jenkins/check-generate-agent.png)
+![Check Generate Agent](/assets/img/ci-cd/jenkins/check-generate-agent.png)
 
 ```bash
 ❯ k get pods --watch

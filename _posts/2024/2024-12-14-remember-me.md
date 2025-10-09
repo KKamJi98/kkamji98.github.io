@@ -6,7 +6,7 @@ categories: [Project]
 tags: [aws, lambda, elk, log-stash, elasticsearch, kibana, terraform, terraform-cloud, hcp-terraform, mongodb, github-actions]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/rememberme/rememberme_app.webp
+  path: /assets/img/project/rememberme/rememberme_app.webp
 ---
 
 2024년 11월부터 12월까지 약 2개월간 **Remember Me** 프로젝트를 진행했습니다. 해당 서비스는 **AWS Lambda**와 **Amazon API Gateway**를 기반으로 동작하는 서버리스(Serverless) 환경에서, 사용자가 단어를 외우고 관리할 수 있는 웹 애플리케이션입니다.
@@ -49,15 +49,15 @@ image:
 
 HCP Terraform을 사용해 GitHub와 연동, Terraform Cloud 환경을 구축하여 Terraform 코드 변경 시 자동으로 인프라가 업데이트되도록 했습니다. 모든 AWS 리소스(VPC, Lambda, API Gateway, S3, CloudFront 등)를 코드로 정의해 관리 용이성과 일관성을 확보했습니다.
 
-![Architecture](/assets/img/rememberme/architecture.webp)
+![Architecture](/assets/img/project/rememberme/architecture.webp)
 
 ### 3.1 Logging
 
 CloudWatch Logs Subscription Filter를 활용해 Lambda 로그를 실시간으로 Logstash -> Elasticsearch로 전송한 뒤 Kibana 대시보드를 통해 상태별, 로그그룹별 로그를 분석할 수 있도록 구현했습니다. 이를 통해 여러 Lambda에서 생성되는 Log Data를 한곳에서 관리할 수 있었고, 문제 발생 시 신속한 진단과 대응이 가능했습니다.
 
-![Logging Workflow](/assets/img/rememberme/log_monitoring.webp)
+![Logging Workflow](/assets/img/project/rememberme/log_monitoring.webp)
 
-![Kibana Dashboard](/assets/img/rememberme/kibana_dashboard.webp)
+![Kibana Dashboard](/assets/img/project/rememberme/kibana_dashboard.webp)
 
 ### 3.2 Alarm
 
@@ -65,13 +65,13 @@ AWS WAF의 규칙을 활용하여 비정상적으로 과도한 트래픽(예: �
 
 #### 3.2.1 WAF Alarm
 
-![WAF Alarm Workflow](/assets/img/rememberme/waf_alarm_workflow.webp)
-![WAF Alarm](/assets/img/rememberme/waf_alarm.webp)
+![WAF Alarm Workflow](/assets/img/project/rememberme/waf_alarm_workflow.webp)
+![WAF Alarm](/assets/img/project/rememberme/waf_alarm.webp)
 
 #### 3.2.2 Budget Alarm
 
-![Budget Alarm Workflow](/assets/img/rememberme/budget_alarm_workflow.webp)
-![Budgets Alarm](/assets/img/rememberme/budgets_alarm.webp)
+![Budget Alarm Workflow](/assets/img/project/rememberme/budget_alarm_workflow.webp)
+![Budgets Alarm](/assets/img/project/rememberme/budgets_alarm.webp)
 
 ### 3.3 CI/CD
 
@@ -82,11 +82,11 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 
 #### 3.3.1 Backend CI/CD
 
-![Backend CI/CD](/assets/img/rememberme/backend_ci_cd.webp)
+![Backend CI/CD](/assets/img/project/rememberme/backend_ci_cd.webp)
 
 #### 3.3.2 Frontend CI/CD
 
-![Frontend CI/CD](/assets/img/rememberme/frontend_ci_cd.webp)
+![Frontend CI/CD](/assets/img/project/rememberme/frontend_ci_cd.webp)
 
 ---
 

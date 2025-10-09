@@ -6,7 +6,7 @@ categories: [CI/CD, ArgoCD]
 tags: [kubernetes, argocd, argocd-cli, metrics-server, gitops, declarative, application]
 comments: true
 image:
-  path: /assets/img/argocd/argocd.webp
+  path: /assets/img/ci-cd/argocd/argocd.webp
 ---
 
 이번 글에서는 ArgoCD를 활용해 여러 Kubernetes Cluster에 애플리케이션을 배포하는 방법을 살펴보겠습니다.

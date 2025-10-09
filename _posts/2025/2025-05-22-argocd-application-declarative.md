@@ -6,7 +6,7 @@ categories: [CI/CD, ArgoCD]
 tags: [kubernetes, argocd, argocd-cli, metrics-server, gitops, declarative, application]
 comments: true
 image:
-  path: /assets/img/argocd/argocd.webp
+  path: /assets/img/ci-cd/argocd/argocd.webp
 ---
 
 최근 Kubernetes 환경에서 ArgoCD를 사용한 GitOps가 주목받고 있습니다. ArgoCD를 처음 접하는 경우, ArgoCD Web UI를 통해 배포하는 방식을 가장 먼저 배우는 경우가 많습니다. 하지만 배포할 애플리케이션이 많아질수록 Web UI를 통해 모든 Application을 생성하게 되면 Human Error의 발생 가능성이 증가하고, 관리가 어렵다는 문제가 발생합니다.  
@@ -43,17 +43,17 @@ WEB UI에서 "NEW APP" 버튼을 클릭하여 Application을 생성하는 방법
 
 #### 2.1.1 WEB UI 버튼
 
-![New App](/assets/img/argocd/new-app.png)
+![New App](/assets/img/ci-cd/argocd/new-app.png)
 
 #### 2.1.2 WEB UI 설정 예시
 
 사진과 같이 Application과 관련된 정보를 입력 한 뒤, Create 버튼을 클릭하여 생성합니다. 사진에는 포함되어 있지 않지만, 아래로 스크롤하여 Application이 실제 배포될 `Destination`도 입력해주셔야 합니다.
 
-![ArgoCD New App](/assets/img/argocd/argocd-web-ui-new-app.png)
+![ArgoCD New App](/assets/img/ci-cd/argocd/argocd-web-ui-new-app.png)
 
 #### 2.1.3 결과 (WEB UI)
 
-![ArgoCD Application Create Web UI](/assets/img/argocd/argocd-create-application-using-web-ui-result.png)
+![ArgoCD Application Create Web UI](/assets/img/ci-cd/argocd/argocd-create-application-using-web-ui-result.png)
 
 ```shell
 ❯ k get all -n argocd-test   
@@ -114,7 +114,7 @@ NAME                                      DESIRED   CURRENT   READY   AGE
 replicaset.apps/guestbook-ui-7cf4fd7cb9   1         1         1       28s
 ```
 
-![ArgoCD Application Create CLI](/assets/img/argocd/argocd-create-application-using-cli-result.png)
+![ArgoCD Application Create CLI](/assets/img/ci-cd/argocd/argocd-create-application-using-cli-result.png)
 
 ### 2.3 YAML을 통한 선언적 방식
 
@@ -176,7 +176,7 @@ guestbook-cli           Synced        Healthy
 guestbook-yaml          Synced        Healthy
 ```
 
-![ArgoCD Application Create YAML](/assets/img/argocd/argocd-create-application-using-yaml-result.png)
+![ArgoCD Application Create YAML](/assets/img/ci-cd/argocd/argocd-create-application-using-yaml-result.png)
 
 ---
 

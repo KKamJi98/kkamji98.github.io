@@ -6,7 +6,7 @@ categories: [DevOps, Container]
 tags: [kubernetes, harbor]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/harbor/harbor.webp
+  path: /assets/img/registry/harbor/harbor.webp
 ---
 
 저번 포스트에서 Harbor를 구축하는 과정을 다뤘습니다. 이번 포스트에서는 구축한 Harbor에 컨테이너 이미지를 업로드하고 다시 받아오는 과정에 대해 알아보도록 하겠습니다. Harbor를 구축하면서 자체 생성된 인증서를 사용하였기 때문에 해당 인증서를 Docker에 추가해주거나 insecure-registries 설정을 추가해주셔야 로그인이 가능합니다.
@@ -18,7 +18,7 @@ image:
 > 이미지를 업로드하기 위해서는 프로젝트가 생성되어 있어야 합니다. AWS ECR을 사용해보신 분들은 Repository를 생성한다고 생각하시면 될 것 같습니다.
 {: .prompt-tip}
 
-![Harbor Create Project](/assets/img/harbor/harbor_create_project.webp)
+![Harbor Create Project](/assets/img/registry/harbor/harbor_create_project.webp)
 
 ---
 
@@ -74,7 +74,7 @@ latest: digest: sha256:719b34dba7bd01c795f94b3a6f3a5f1fe7d53bf09e79e355168a17d2e
 
 ## 6. 확인
 
-![Harbor Image Check](/assets/img/harbor/harbor_image_upload_check.webp)
+![Harbor Image Check](/assets/img/registry/harbor/harbor_image_upload_check.webp)
 
 ---
 

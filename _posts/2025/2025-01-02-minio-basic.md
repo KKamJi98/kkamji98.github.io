@@ -6,7 +6,7 @@ categories: [DevOps, Storage]
 tags: [minio, object-storage, s3, pv, pvc, kubernetes, storage]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/minio/minio.webp
+  path: /assets/img/storage/minio/minio.webp
 ---
 
 최근 SSD를 사용하게 되면서 기본 HDD의 용량을 어떻게 사용할 수 있을까? 라는 고민을 하던 중 **Minio**를 접하게 되었습니다.
@@ -82,7 +82,7 @@ WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that yo
 > `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
 {: .prompt-tip}
 
-![minio login](/assets/img/minio/minio-login.webp)
+![minio login](/assets/img/storage/minio/minio-login.webp)
 
 ---
 
@@ -147,7 +147,7 @@ cat: file_upload_test_minio.txt: No such file or directory ## 파일이 잘 삭�
 kkamji minio bucket file upload test
 ```
 
-![minio-test-file](/assets/img/minio/minio-test-file.webp)
+![minio-test-file](/assets/img/storage/minio/minio-test-file.webp)
 
 ---
 

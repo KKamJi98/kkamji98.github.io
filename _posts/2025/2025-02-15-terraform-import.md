@@ -6,7 +6,7 @@ categories: [IaC, Terraform]
 tags: [terraform, import, ec2, aws]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/terraform/terraform.webp
+  path: /assets/img/iac/terraform/terraform.webp
 ---
 
 Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, 기존에 수동으로 생성한 리소스를 Terraform 코드로 관리해야 하는 경우가 있습니다. 이때 `terraform import` 명령어를 사용하면 기존 리소스를 Terraform 상태 파일(`.tfstate`)에 추가할 수 있습니다.

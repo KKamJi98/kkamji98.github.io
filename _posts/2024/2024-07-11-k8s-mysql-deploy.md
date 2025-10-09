@@ -6,7 +6,7 @@ categories: [Kubernetes]
 tags: [mysql, kubernetes, pv, pvc, config-map, local]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/mysql/mysql.webp
+  path: /assets/img/database/mysql/mysql.webp
 ---
 
 2024년 07월 08일부터 Weasel 이라는 프로젝트를 시작했습니다. RDS를 띄우기 전, 개발 및 테스트 용도로 사용될 MySQL 서버가 필요했습니다.

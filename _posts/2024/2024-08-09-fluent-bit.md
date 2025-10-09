@@ -6,7 +6,7 @@ categories: [Monitoring & Observability, Metric]
 tags: [kubernetes, aws, eks, elasticsearch, fluent-bit, fluentd, logstash, elk, efk, kibana]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/monitoring/efk.png
+  path: /assets/img/observability/efk.png
 ---
 
 로그 분석 기술에는 Splunk, DataDog, ELK, EFK 등의 기술들이 존재하지만, 가장 먼저 떠오르는 기술은 **ELK(Elasticsearch, Logstash, Fluentd)** 스택과 **EFK(Elasticsearch, Fluent Bit, Kibana)** 스택이 있습니다. 두 스택 모두 로그 데이터의 수집, 저장, 분석을 위한 도구입니다.  

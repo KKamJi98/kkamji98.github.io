@@ -6,7 +6,7 @@ categories: [IaC, Terraform]
 tags: [terraform, templatefile, ec2, user-data, file, prometheus, node-exporter]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/terraform/terraform.webp
+  path: /assets/img/iac/terraform/terraform.webp
 ---
 
 Terraform에서 인프라 코드를 작성하다 보면 간단한 리소스 정의는 **HCL(HashiCorp Configuration Language)**로도 충분히 표현할 수 있습니다. 하지만 실제 운영 환경에서는 배포 초기에 실행해야 하는 스크립트나, 규모가 큰 애플리케이션 설정 파일 등을 다루어야 할 때가 많습니다. **HCL** 내부에 길고 복잡한 내용 설정들을 넣는 것은 **가독성**을 떨어뜨리고 **유지보수**를 어렵게 만들 수 있습니다. 이런 경우 Terraform에서 제공하는 `templatefile()` 함수를 사용하면 이러한 문제를 해결할 수 있습니다.
