@@ -26,18 +26,20 @@ import re
 from typing import Optional
 
 # 헤더/번호 정규식
-HEADER_RE = re.compile(r'^(#{1,6})\s+(.*)$')
-STRIP_NUM_RE = re.compile(r'^(?:\d+(?:\.\d+)*\.?)\s+')
+HEADER_RE = re.compile(r"^(#{1,6})\s+(.*)$")
+STRIP_NUM_RE = re.compile(r"^(?:\d+(?:\.\d+)*\.?)\s+")
 
 # 넘버링 제외 제목(공백 제거 후 비교)
 EXCLUDE_NORMALIZED = {"관련글"}
 
+
 def _normalize_title(s: str) -> str:
-    return re.sub(r'\s+', '', s).lower()
+    return re.sub(r"\s+", "", s).lower()
+
 
 def renumber_headers(content: str, min_header_level: Optional[int] = None) -> str:
     lines = content.splitlines()
-    fence_re = re.compile(r'^(```|~~~)')
+    fence_re = re.compile(r"^(```|~~~)")
 
     # 1. 최소 해시 수 산출
     in_code = False
@@ -53,7 +55,7 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
             header_hash_counts.append(len(m.group(1)))
 
     if not header_hash_counts:
-        return content if content.endswith('\n') else content + '\n'
+        return content if content.endswith("\n") else content + "\n"
 
     detected_min = min(header_hash_counts)
     base_hashes = max((min_header_level or detected_min), 1)
@@ -83,17 +85,17 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         # 상위 레벨은 번호 제외, 기존 번호만 제거
         if hash_count < base_hashes:
-            clean_title = STRIP_NUM_RE.sub('', title).strip()
-            out.append(f'{hashes} {clean_title}')
+            clean_title = STRIP_NUM_RE.sub("", title).strip()
+            out.append(f"{hashes} {clean_title}")
             continue
 
         level = hash_count - base_hashes + 1
-        clean_title = STRIP_NUM_RE.sub('', title).strip()
+        clean_title = STRIP_NUM_RE.sub("", title).strip()
         normalized = _normalize_title(clean_title)
 
         # 3. 제외 제목은 절대 넘버링하지 않음
         if normalized in EXCLUDE_NORMALIZED:
-            out.append(f'{hashes} {clean_title}')
+            out.append(f"{hashes} {clean_title}")
             continue
 
         # 4. 부모 카운터 보정으로 0.1 방지
@@ -109,38 +111,40 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         # 5. 접두 번호 구성
         parts = [str(counters[i]) for i in range(1, level + 1)]
-        prefix = '.'.join(parts)
+        prefix = ".".join(parts)
         if level == 1:
-            prefix += '.'
+            prefix += "."
 
-        out.append(f'{hashes} {prefix} {clean_title}')
+        out.append(f"{hashes} {prefix} {clean_title}")
 
-    return '\n'.join(out) + '\n'
+    return "\n".join(out) + "\n"
 
 
-def process_files(directory: str, min_header_level: Optional[int] = None, print_errors: bool = True):
+def process_files(
+    directory: str, min_header_level: Optional[int] = None, print_errors: bool = True
+):
     """업데이트된 파일 경로만 반환"""
     updated_paths = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if not file.endswith('.md'):
+            if not file.endswith(".md"):
                 continue
             path = os.path.join(root, file)
             try:
-                with open(path, 'r', encoding='utf-8') as f:
+                with open(path, "r", encoding="utf-8") as f:
                     original = f.read()
                 updated = renumber_headers(original, min_header_level=min_header_level)
                 if updated != original:
-                    with open(path, 'w', encoding='utf-8') as f:
+                    with open(path, "w", encoding="utf-8") as f:
                         f.write(updated)
                     updated_paths.append(path)
             except Exception as e:
                 if print_errors:
-                    print(f'Error: {path}: {e}')
+                    print(f"Error: {path}: {e}")
     return updated_paths
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # H2부터 번호 시작, 변경된 md 파일 경로만 출력
-    for p in process_files('.', min_header_level=2):
+    for p in process_files(".", min_header_level=2):
         print(p)

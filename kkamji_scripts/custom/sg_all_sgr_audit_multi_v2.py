@@ -30,16 +30,24 @@ from botocore.exceptions import ClientError, BotoCoreError
 
 # ===================== logging =====================
 _print_lock = threading.Lock()
+
+
 def log(msg: str):
     with _print_lock:
         print(msg, flush=True)
 
+
 # ===================== retry/backoff =====================
 THROTTLE_CODES = {
-    "Throttling", "ThrottlingException", "RequestLimitExceeded",
-    "TooManyRequestsException", "ProvisionedThroughputExceededException",
-    "RequestThrottled", "RequestThrottledException"
+    "Throttling",
+    "ThrottlingException",
+    "RequestLimitExceeded",
+    "TooManyRequestsException",
+    "ProvisionedThroughputExceededException",
+    "RequestThrottled",
+    "RequestThrottledException",
 }
+
 
 def call_with_backoff(fn, max_attempts=8, base=0.4, cap=10.0):
     attempt = 0
@@ -49,13 +57,14 @@ def call_with_backoff(fn, max_attempts=8, base=0.4, cap=10.0):
         except ClientError as e:
             code = (e.response or {}).get("Error", {}).get("Code", "")
             if code in THROTTLE_CODES:
-                sleep = min(cap, base * (2 ** attempt)) * random.random()
+                sleep = min(cap, base * (2**attempt)) * random.random()
                 time.sleep(sleep)
                 attempt += 1
                 if attempt >= max_attempts:
                     raise
             else:
                 raise
+
 
 # ===================== session/client =====================
 def session_for(profile: str, region: str):
@@ -65,15 +74,22 @@ def session_for(profile: str, region: str):
         msg = str(e)
         if "Infinite loop in credential configuration detected" in msg:
             log(f"[warn] credentials: {msg}")
-            log("[warn] credentials: falling back to default credential chain (ignoring --profile)")
+            log(
+                "[warn] credentials: falling back to default credential chain (ignoring --profile)"
+            )
             return boto3.session.Session(region_name=region)
         raise
 
+
 def safe_client(sess, svc):
-    return sess.client(svc, config=Config(retries={"max_attempts": 15, "mode": "adaptive"}))
+    return sess.client(
+        svc, config=Config(retries={"max_attempts": 15, "mode": "adaptive"})
+    )
+
 
 # ===================== sg_list flexible loader =====================
 SG_ID_RE = re.compile(r"\bsg-[0-9a-fA-F]{8,}\b")
+
 
 def _extract_sg_ids_from_obj(obj: Any, out: Set[str]):
     if isinstance(obj, str):
@@ -91,6 +107,7 @@ def _extract_sg_ids_from_obj(obj: Any, out: Set[str]):
         for item in obj:
             _extract_sg_ids_from_obj(item, out)
     # 기타 타입은 무시
+
 
 def load_sg_ids(path: str) -> List[str]:
     ids: List[str] = []
@@ -116,17 +133,21 @@ def load_sg_ids(path: str) -> List[str]:
                     seen.add(sg)
     return ids
 
+
 # ===================== SG describe/rules =====================
 def describe_sg(sess, sg_id: str) -> Dict:
     ec2 = safe_client(sess, "ec2")
-    return call_with_backoff(lambda: ec2.describe_security_groups(GroupIds=[sg_id]))["SecurityGroups"][0]
+    return call_with_backoff(lambda: ec2.describe_security_groups(GroupIds=[sg_id]))[
+        "SecurityGroups"
+    ][0]
+
 
 def list_sg_rules(sess, sg_id: str) -> List[Dict]:
     ec2 = safe_client(sess, "ec2")
     rules: List[Dict] = []
     seen: Set[str] = set()
     paginator = ec2.get_paginator("describe_security_group_rules")
-    for page in paginator.paginate(Filters=[{"Name":"group-id","Values":[sg_id]}]):
+    for page in paginator.paginate(Filters=[{"Name": "group-id", "Values": [sg_id]}]):
         for r in page.get("SecurityGroupRules", []):
             rid = r.get("SecurityGroupRuleId")
             if rid and rid in seen:
@@ -136,15 +157,17 @@ def list_sg_rules(sess, sg_id: str) -> List[Dict]:
             rules.append(r)
     return rules
 
+
 # ===================== usage recording =====================
-def add_usage(usages: Set[Tuple[str,str]], rtype: str, rname: str):
+def add_usage(usages: Set[Tuple[str, str]], rtype: str, rname: str):
     usages.add((rtype, rname))
 
+
 # ===================== scanners (per SG) =====================
-def scan_eni_attachments(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+def scan_eni_attachments(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     ec2 = safe_client(sess, "ec2")
     paginator = ec2.get_paginator("describe_network_interfaces")
-    for page in paginator.paginate(Filters=[{"Name":"group-id","Values":[sg_id]}]):
+    for page in paginator.paginate(Filters=[{"Name": "group-id", "Values": [sg_id]}]):
         for eni in page.get("NetworkInterfaces", []):
             att = eni.get("Attachment") or {}
             inst = att.get("InstanceId")
@@ -159,7 +182,8 @@ def scan_eni_attachments(sess, sg_id: str, usages: Set[Tuple[str,str]]):
                 else:
                     add_usage(usages, "ENI", eni["NetworkInterfaceId"])
 
-def scan_elb(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_elb(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         elbv2 = safe_client(sess, "elbv2")
         paginator = elbv2.get_paginator("describe_load_balancers")
@@ -167,7 +191,11 @@ def scan_elb(sess, sg_id: str, usages: Set[Tuple[str,str]]):
             for lb in page.get("LoadBalancers", []):
                 sgs = lb.get("SecurityGroups") or []
                 if sg_id in sgs:
-                    add_usage(usages, lb.get("Type", "ALB").upper(), lb.get("LoadBalancerName"))
+                    add_usage(
+                        usages,
+                        lb.get("Type", "ALB").upper(),
+                        lb.get("LoadBalancerName"),
+                    )
     except Exception as e:
         log(f"[warn] elbv2: {e}")
     try:
@@ -181,7 +209,8 @@ def scan_elb(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] elb: {e}")
 
-def scan_lambda(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_lambda(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         lam = safe_client(sess, "lambda")
         paginator = lam.get_paginator("list_functions")
@@ -198,17 +227,22 @@ def scan_lambda(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] lambda list: {e}")
 
-def scan_rds(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_rds(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         rds = safe_client(sess, "rds")
         for page in rds.get_paginator("describe_db_instances").paginate():
             for db in page.get("DBInstances", []):
-                v = [g.get("VpcSecurityGroupId") for g in db.get("VpcSecurityGroups", [])]
+                v = [
+                    g.get("VpcSecurityGroupId") for g in db.get("VpcSecurityGroups", [])
+                ]
                 if sg_id in v:
                     add_usage(usages, "RDS-Instance", db["DBInstanceIdentifier"])
         for page in rds.get_paginator("describe_db_clusters").paginate():
             for cl in page.get("DBClusters", []):
-                v = [g.get("VpcSecurityGroupId") for g in cl.get("VpcSecurityGroups", [])]
+                v = [
+                    g.get("VpcSecurityGroupId") for g in cl.get("VpcSecurityGroups", [])
+                ]
                 if sg_id in v:
                     add_usage(usages, "RDS-Cluster", cl["DBClusterIdentifier"])
         for page in rds.get_paginator("describe_db_proxies").paginate():
@@ -218,7 +252,8 @@ def scan_rds(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] rds: {e}")
 
-def scan_redshift(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_redshift(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         rs = safe_client(sess, "redshift")
         resp = rs.describe_clusters()
@@ -237,7 +272,8 @@ def scan_redshift(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] redshift-serverless: {e}")
 
-def scan_opensearch(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_opensearch(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         oss = safe_client(sess, "opensearch")
         resp = oss.list_domain_names()
@@ -252,7 +288,8 @@ def scan_opensearch(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] opensearch: {e}")
 
-def scan_elasticache(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_elasticache(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         ec = safe_client(sess, "elasticache")
         resp = ec.describe_cache_clusters(ShowCacheNodeInfo=True)
@@ -271,15 +308,20 @@ def scan_elasticache(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] memorydb: {e}")
 
-def scan_efs_fsx(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_efs_fsx(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         efs = safe_client(sess, "efs")
         fs = efs.describe_file_systems().get("FileSystems", [])
         for f in fs:
-            mt = efs.describe_mount_targets(FileSystemId=f["FileSystemId"]).get("MountTargets", [])
+            mt = efs.describe_mount_targets(FileSystemId=f["FileSystemId"]).get(
+                "MountTargets", []
+            )
             for m in mt:
                 try:
-                    sgs = efs.describe_mount_target_security_groups(MountTargetId=m["MountTargetId"]).get("SecurityGroups", [])
+                    sgs = efs.describe_mount_target_security_groups(
+                        MountTargetId=m["MountTargetId"]
+                    ).get("SecurityGroups", [])
                     if sg_id in sgs:
                         add_usage(usages, "EFS", f["FileSystemId"])
                         break
@@ -296,18 +338,21 @@ def scan_efs_fsx(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] fsx: {e}")
 
-def scan_vpce(sess, sg_id: str, vpc_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_vpce(sess, sg_id: str, vpc_id: str, usages: Set[Tuple[str, str]]):
     if not vpc_id:
         return
     try:
         ec2 = safe_client(sess, "ec2")
         paginator = ec2.get_paginator("describe_vpc_endpoints")
-        for page in paginator.paginate(Filters=[{"Name":"vpc-id","Values":[vpc_id]}]):
+        for page in paginator.paginate(
+            Filters=[{"Name": "vpc-id", "Values": [vpc_id]}]
+        ):
             for vpce in page.get("VpcEndpoints", []):
                 if vpce.get("VpcEndpointType") != "Interface":
                     continue
                 groups = []
-                for g in (vpce.get("Groups") or []):
+                for g in vpce.get("Groups") or []:
                     gid = g.get("GroupId")
                     if gid:
                         groups.append(gid)
@@ -318,22 +363,31 @@ def scan_vpce(sess, sg_id: str, vpc_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] vpce: {e}")
 
-def scan_ecs(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_ecs(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         ecs = safe_client(sess, "ecs")
         clusters = ecs.list_clusters().get("clusterArns", [])
         for c in clusters:
             svcs = ecs.list_services(cluster=c).get("serviceArns", [])
             for i in range(0, len(svcs), 10):
-                d = ecs.describe_services(cluster=c, services=svcs[i:i+10])
+                d = ecs.describe_services(cluster=c, services=svcs[i : i + 10])
                 for s in d.get("services", []):
-                    v = (((s.get("networkConfiguration") or {}).get("awsvpcConfiguration") or {}).get("securityGroups")) or []
+                    v = (
+                        (
+                            (s.get("networkConfiguration") or {}).get(
+                                "awsvpcConfiguration"
+                            )
+                            or {}
+                        ).get("securityGroups")
+                    ) or []
                     if sg_id in v:
                         add_usage(usages, "ECS-Service", s["serviceName"])
     except Exception as e:
         log(f"[warn] ecs: {e}")
 
-def scan_eks(sess, sg_id: str, usages: Set[Tuple[str,str]]):
+
+def scan_eks(sess, sg_id: str, usages: Set[Tuple[str, str]]):
     try:
         eks = safe_client(sess, "eks")
         for name in eks.list_clusters().get("clusters", []):
@@ -348,6 +402,7 @@ def scan_eks(sess, sg_id: str, usages: Set[Tuple[str,str]]):
     except Exception as e:
         log(f"[warn] eks: {e}")
 
+
 # ===================== ASG/LC/LT prefetch and cached scan =====================
 def iter_asg_lt_specs(g: Dict) -> Iterable[Dict]:
     if g.get("LaunchTemplate"):
@@ -355,10 +410,11 @@ def iter_asg_lt_specs(g: Dict) -> Iterable[Dict]:
     mip = g.get("MixedInstancesPolicy") or {}
     if mip.get("LaunchTemplate"):
         yield mip["LaunchTemplate"]
-    for ov in (mip.get("Overrides") or []):
+    for ov in mip.get("Overrides") or []:
         lts = ov.get("LaunchTemplateSpecification")
         if lts:
             yield {"LaunchTemplateSpecification": lts}
+
 
 def normalize_lt_key(spec: Dict) -> Tuple[str, str, str]:
     base = spec.get("LaunchTemplateSpecification") or spec
@@ -368,7 +424,10 @@ def normalize_lt_key(spec: Dict) -> Tuple[str, str, str]:
         str(base.get("Version") or "$Default"),
     )
 
-def prefetch_asg_inventory(sess) -> Tuple[List[Dict], Dict[str, Set[str]], Dict[Tuple[str,str,str], Set[str]]]:
+
+def prefetch_asg_inventory(
+    sess,
+) -> Tuple[List[Dict], Dict[str, Set[str]], Dict[Tuple[str, str, str], Set[str]]]:
     asg_cli = safe_client(sess, "autoscaling")
     ec2 = safe_client(sess, "ec2")
 
@@ -377,22 +436,32 @@ def prefetch_asg_inventory(sess) -> Tuple[List[Dict], Dict[str, Set[str]], Dict[
     for page in paginator.paginate():
         groups.extend(page.get("AutoScalingGroups", []))
 
-    lc_names = sorted({g["LaunchConfigurationName"] for g in groups if g.get("LaunchConfigurationName")})
+    lc_names = sorted(
+        {
+            g["LaunchConfigurationName"]
+            for g in groups
+            if g.get("LaunchConfigurationName")
+        }
+    )
     lc_cache: Dict[str, Set[str]] = {}
     BATCH = 50
     for i in range(0, len(lc_names), BATCH):
-        chunk = lc_names[i:i+BATCH]
-        resp = call_with_backoff(lambda: asg_cli.describe_launch_configurations(LaunchConfigurationNames=chunk))
+        chunk = lc_names[i : i + BATCH]
+        resp = call_with_backoff(
+            lambda: asg_cli.describe_launch_configurations(
+                LaunchConfigurationNames=chunk
+            )
+        )
         for lc in resp.get("LaunchConfigurations", []):
             sgs = set(lc.get("SecurityGroups") or [])
             lc_cache[lc["LaunchConfigurationName"]] = sgs
 
-    lt_specs: Dict[Tuple[str,str,str], Dict] = {}
+    lt_specs: Dict[Tuple[str, str, str], Dict] = {}
     for g in groups:
         for spec in iter_asg_lt_specs(g):
             lt_specs[normalize_lt_key(spec)] = spec
 
-    lt_cache: Dict[Tuple[str,str,str], Set[str]] = {}
+    lt_cache: Dict[Tuple[str, str, str], Set[str]] = {}
     for key, spec in lt_specs.items():
         ltid, ltname, ver = key
         kwargs = {"Versions": [ver]}
@@ -402,26 +471,31 @@ def prefetch_asg_inventory(sess) -> Tuple[List[Dict], Dict[str, Set[str]], Dict[
             kwargs["LaunchTemplateName"] = ltname
         else:
             continue
-        resp = call_with_backoff(lambda: ec2.describe_launch_template_versions(**kwargs))
+        resp = call_with_backoff(
+            lambda: ec2.describe_launch_template_versions(**kwargs)
+        )
         sgs: Set[str] = set()
         for v in resp.get("LaunchTemplateVersions", []):
             data = v.get("LaunchTemplateData") or {}
-            for g in (data.get("SecurityGroupIds") or []):
+            for g in data.get("SecurityGroupIds") or []:
                 if g:
                     sgs.add(g)
-            for ni in (data.get("NetworkInterfaces") or []):
-                for g in (ni.get("Groups") or []):
+            for ni in data.get("NetworkInterfaces") or []:
+                for g in ni.get("Groups") or []:
                     if g:
                         sgs.add(g)
         lt_cache[key] = sgs
 
     return groups, lc_cache, lt_cache
 
-def scan_asg_lc_lt_from_cache(sg_id: str,
-                              asg_groups: List[Dict],
-                              lc_cache: Dict[str, Set[str]],
-                              lt_cache: Dict[Tuple[str,str,str], Set[str]],
-                              usages: Set[Tuple[str,str]]):
+
+def scan_asg_lc_lt_from_cache(
+    sg_id: str,
+    asg_groups: List[Dict],
+    lc_cache: Dict[str, Set[str]],
+    lt_cache: Dict[Tuple[str, str, str], Set[str]],
+    usages: Set[Tuple[str, str]],
+):
     for g in asg_groups:
         asg_name = g.get("AutoScalingGroupName")
 
@@ -439,7 +513,15 @@ def scan_asg_lc_lt_from_cache(sg_id: str,
             )
             sgs = lt_cache.get(key) or set()
             if sg_id in sgs:
-                label = (base.get("LaunchTemplateName") or base.get("LaunchTemplateId") or "") + ":" + key[2]
+                label = (
+                    (
+                        base.get("LaunchTemplateName")
+                        or base.get("LaunchTemplateId")
+                        or ""
+                    )
+                    + ":"
+                    + key[2]
+                )
                 add_usage(usages, "ASG", asg_name)
                 add_usage(usages, "LT", label)
 
@@ -449,10 +531,11 @@ def scan_asg_lc_lt_from_cache(sg_id: str,
         mip = g.get("MixedInstancesPolicy") or {}
         if mip.get("LaunchTemplate"):
             mark_if_match(mip["LaunchTemplate"])
-        for ov in (mip.get("Overrides") or []):
+        for ov in mip.get("Overrides") or []:
             lts = ov.get("LaunchTemplateSpecification")
             if lts:
                 mark_if_match({"LaunchTemplateSpecification": lts})
+
 
 # ===================== helpers =====================
 def cidr_repr_from_rule(r: Dict) -> str:
@@ -465,6 +548,7 @@ def cidr_repr_from_rule(r: Dict) -> str:
     if r.get("PrefixListId"):
         return f"PL:{r['PrefixListId']}"
     return ""
+
 
 def port_range_repr(r: Dict) -> str:
     proto = r.get("IpProtocol")
@@ -484,21 +568,28 @@ def port_range_repr(r: Dict) -> str:
         tp = fp
     return f"{fp}-{tp}"
 
+
 def dedup_rows(rows: List[Dict]) -> List[Dict]:
     out, seen = [], set()
     for r in rows:
-        key = (r.get("sg_id",""), r.get("SGR_ID",""), r.get("Direction",""))
+        key = (r.get("sg_id", ""), r.get("SGR_ID", ""), r.get("Direction", ""))
         if key in seen:
             continue
         seen.add(key)
         out.append(r)
     return out
 
+
 # ===================== per-SG worker =====================
-def process_sg(sess, sg_id: str, idx: int, total: int,
-               asg_groups: List[Dict],
-               lc_cache: Dict[str, Set[str]],
-               lt_cache: Dict[Tuple[str,str,str], Set[str]]) -> List[Dict]:
+def process_sg(
+    sess,
+    sg_id: str,
+    idx: int,
+    total: int,
+    asg_groups: List[Dict],
+    lc_cache: Dict[str, Set[str]],
+    lt_cache: Dict[Tuple[str, str, str], Set[str]],
+) -> List[Dict]:
     rows: List[Dict] = []
     log(f"[start] {idx}/{total} scanning {sg_id}")
     try:
@@ -507,18 +598,20 @@ def process_sg(sess, sg_id: str, idx: int, total: int,
         except ClientError as e:
             code = (e.response or {}).get("Error", {}).get("Code", "")
             if "InvalidGroup" in code or "InvalidGroupId" in code:
-                rows.append({
-                    "sg_id": sg_id,
-                    "SG_Name": "",
-                    "SG_Description": "NOT_FOUND",
-                    "SGR_ID": "",
-                    "SGR_Description": "",
-                    "Direction": "",
-                    "CIDR": "",
-                    "Port_Range": "",
-                    "Resources": "",
-                    "Usage_Status": "NOT_FOUND",
-                })
+                rows.append(
+                    {
+                        "sg_id": sg_id,
+                        "SG_Name": "",
+                        "SG_Description": "NOT_FOUND",
+                        "SGR_ID": "",
+                        "SGR_Description": "",
+                        "Direction": "",
+                        "CIDR": "",
+                        "Port_Range": "",
+                        "Resources": "",
+                        "Usage_Status": "NOT_FOUND",
+                    }
+                )
                 log(f"[done ] {idx}/{total} {sg_id} NOT_FOUND")
                 return rows
             raise
@@ -527,7 +620,7 @@ def process_sg(sess, sg_id: str, idx: int, total: int,
         sg_desc = sg.get("Description", "") or ""
         vpc_id = sg.get("VpcId")
 
-        usages: Set[Tuple[str,str]] = set()
+        usages: Set[Tuple[str, str]] = set()
         scan_eni_attachments(sess, sg_id, usages)
         scan_elb(sess, sg_id, usages)
         scan_lambda(sess, sg_id, usages)
@@ -541,7 +634,9 @@ def process_sg(sess, sg_id: str, idx: int, total: int,
         scan_eks(sess, sg_id, usages)
         scan_asg_lc_lt_from_cache(sg_id, asg_groups, lc_cache, lt_cache, usages)
 
-        resources_str = "|".join(sorted([f"{t}:{n}" for t, n in usages])) if usages else ""
+        resources_str = (
+            "|".join(sorted([f"{t}:{n}" for t, n in usages])) if usages else ""
+        )
         usage_status = "USED" if usages else "UNUSED"
 
         try:
@@ -549,48 +644,61 @@ def process_sg(sess, sg_id: str, idx: int, total: int,
         except ClientError as e:
             code = (e.response or {}).get("Error", {}).get("Code", "")
             if "InvalidGroup" in code or "InvalidGroupId" in code:
-                rows.append({
-                    "sg_id": sg_id,
-                    "SG_Name": sg_name,
-                    "SG_Description": "NOT_FOUND_WHEN_LIST_RULES",
-                    "SGR_ID": "",
-                    "SGR_Description": "",
-                    "Direction": "",
-                    "CIDR": "",
-                    "Port_Range": "",
-                    "Resources": resources_str,
-                    "Usage_Status": "NOT_FOUND",
-                })
+                rows.append(
+                    {
+                        "sg_id": sg_id,
+                        "SG_Name": sg_name,
+                        "SG_Description": "NOT_FOUND_WHEN_LIST_RULES",
+                        "SGR_ID": "",
+                        "SGR_Description": "",
+                        "Direction": "",
+                        "CIDR": "",
+                        "Port_Range": "",
+                        "Resources": resources_str,
+                        "Usage_Status": "NOT_FOUND",
+                    }
+                )
                 log(f"[done ] {idx}/{total} {sg_id} NOT_FOUND_WHEN_LIST_RULES")
                 return rows
             raise
 
         for r in rules:
-            rows.append({
-                "sg_id": sg_id,
-                "SG_Name": sg_name,
-                "SG_Description": sg_desc,
-                "SGR_ID": r.get("SecurityGroupRuleId", ""),
-                "SGR_Description": r.get("Description", "") or "",
-                "Direction": "Outbound" if r.get("IsEgress") else "Inbound",
-                "CIDR": cidr_repr_from_rule(r),
-                "Port_Range": port_range_repr(r),
-                "Resources": resources_str,
-                "Usage_Status": usage_status,
-            })
+            rows.append(
+                {
+                    "sg_id": sg_id,
+                    "SG_Name": sg_name,
+                    "SG_Description": sg_desc,
+                    "SGR_ID": r.get("SecurityGroupRuleId", ""),
+                    "SGR_Description": r.get("Description", "") or "",
+                    "Direction": "Outbound" if r.get("IsEgress") else "Inbound",
+                    "CIDR": cidr_repr_from_rule(r),
+                    "Port_Range": port_range_repr(r),
+                    "Resources": resources_str,
+                    "Usage_Status": usage_status,
+                }
+            )
         log(f"[done ] {idx}/{total} {sg_id} rules={len(rows)} status={usage_status}")
     except Exception as e:
         log(f"[error] {idx}/{total} {sg_id}: {e}")
     return rows
 
+
 # ===================== main =====================
 def main():
-    ap = argparse.ArgumentParser(description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent, prefetch, robust, flexible loader)")
+    ap = argparse.ArgumentParser(
+        description="Audit ALL SGRs for SGs in sg_list and determine usage (concurrent, prefetch, robust, flexible loader)"
+    )
     ap.add_argument("--region", required=True)
     ap.add_argument("--profile", required=True)
-    ap.add_argument("--sg-list", required=True, help="Path to file with SG IDs or JSON lines that contain SG IDs")
+    ap.add_argument(
+        "--sg-list",
+        required=True,
+        help="Path to file with SG IDs or JSON lines that contain SG IDs",
+    )
     ap.add_argument("--out", required=True, help="Output CSV path")
-    ap.add_argument("--max-workers", type=int, default=8, help="Number of concurrent workers")
+    ap.add_argument(
+        "--max-workers", type=int, default=8, help="Number of concurrent workers"
+    )
     args = ap.parse_args()
 
     try:
@@ -607,7 +715,9 @@ def main():
     log("[info ] prefetching ASG/LC/LT inventory...")
     try:
         asg_groups, lc_cache, lt_cache = prefetch_asg_inventory(sess)
-        log(f"[info ] prefetch done: ASGs={len(asg_groups)}, LCs={len(lc_cache)}, LTs={len(lt_cache)}")
+        log(
+            f"[info ] prefetch done: ASGs={len(asg_groups)}, LCs={len(lc_cache)}, LTs={len(lt_cache)}"
+        )
     except Exception as e:
         log(f"[warn ] prefetch failed, ASG/LC/LT usage will be incomplete: {e}")
         asg_groups, lc_cache, lt_cache = [], {}, {}
@@ -618,7 +728,9 @@ def main():
     all_rows: List[Dict] = []
     with ThreadPoolExecutor(max_workers=args.max_workers) as ex:
         futures = {
-            ex.submit(process_sg, sess, sg_id, i+1, total, asg_groups, lc_cache, lt_cache): sg_id
+            ex.submit(
+                process_sg, sess, sg_id, i + 1, total, asg_groups, lc_cache, lt_cache
+            ): sg_id
             for i, sg_id in enumerate(sg_ids)
         }
         for fut in as_completed(futures):
@@ -630,12 +742,24 @@ def main():
     all_rows = dedup_rows(all_rows)
 
     with open(args.out, "w", newline="", encoding="utf-8") as f:
-        fieldnames = ["sg_id","SG_Name","SG_Description","SGR_ID","SGR_Description","Direction","CIDR","Port_Range","Resources","Usage_Status"]
+        fieldnames = [
+            "sg_id",
+            "SG_Name",
+            "SG_Description",
+            "SGR_ID",
+            "SGR_Description",
+            "Direction",
+            "CIDR",
+            "Port_Range",
+            "Resources",
+            "Usage_Status",
+        ]
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
         w.writerows(all_rows)
 
     log(f"[info ] wrote {len(all_rows)} rows to {args.out}")
+
 
 if __name__ == "__main__":
     main()
