@@ -57,7 +57,7 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 > Antrophic Claude Sonnet 3.5 Model 활용해 문제의 답과 해설 제공
 {: .prompt-tip}
 
-![banner](/assets/img/weasel/banner.webp)
+![banner](/assets/img/project/weasel/banner.webp)
 
 [Weasel Github Organizations - https://github.com/Team-S5T1](https://github.com/Team-S5T1)
 
@@ -94,27 +94,27 @@ Github - [https://github.com/kkamji98](https://github.com/kkamji98)
 
 #### Architecture
 
-![Architecture](/assets/img/weasel/about/architecture.png)
+![Architecture](/assets/img/project/weasel/about/architecture.png)
 
 #### CI/CD Pipeline
 
-![ci-cd](/assets/img/weasel/about/ci-cd.png)
+![ci-cd](/assets/img/project/weasel/about/ci-cd.png)
 
 #### CI - Jenkins
 
-![ci-jenkins](/assets/img/weasel/about/ci-jenkins.png)
+![ci-jenkins](/assets/img/project/weasel/about/ci-jenkins.png)
 
 #### CD - ArgoCD
 
-![cd-argocd](/assets/img/weasel/about/cd-argocd.png)
+![cd-argocd](/assets/img/project/weasel/about/cd-argocd.png)
 
 #### Workflow
 
-![workflow](/assets/img/weasel/about/workflow.png)
+![workflow](/assets/img/project/weasel/about/workflow.png)
 
 #### Project Management
 
-![project-management](/assets/img/weasel/about/project-management.png)
+![project-management](/assets/img/project/weasel/about/project-management.png)
 
 ### Amazon Photo Query - [ 2024.01 ~ 2024.03 ]
 
