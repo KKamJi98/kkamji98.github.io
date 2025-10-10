@@ -3,8 +3,8 @@ Markdown 헤더에 번호 접두어를 부여/정규화합니다.
 
 사용법(Usage):
 
-- 스크립트 직접 실행(현재 디렉터리 재귀 처리, H2부터 번호 시작):
-  $ python3 renumber_headers.py
+- 스크립트 직접 실행(기본 대상: 저장소의 `_posts`, 없으면 현재 디렉터리):
+  $ python3 kkamji_scripts/blog/renumber_headers.py
 
 - 모듈로 사용(디렉터리/시작 레벨 지정):
   >>> from renumber_headers import process_files
@@ -21,8 +21,10 @@ Markdown 헤더에 번호 접두어를 부여/정규화합니다.
 - 제목이 "관련 글"(공백 제거 후 비교)인 섹션은 번호에서 제외합니다.
 """
 
+import argparse
 import os
 import re
+from pathlib import Path
 from typing import Optional
 
 # 헤더/번호 정규식
@@ -31,6 +33,15 @@ STRIP_NUM_RE = re.compile(r"^(?:\d+(?:\.\d+)*\.?)\s+")
 
 # 넘버링 제외 제목(공백 제거 후 비교)
 EXCLUDE_NORMALIZED = {"관련글"}
+
+
+def resolve_default_root() -> Path:
+    script_path = Path(__file__).resolve()
+    for parent in script_path.parents:
+        candidate = parent / "_posts"
+        if candidate.exists():
+            return candidate
+    return Path.cwd()
 
 
 def _normalize_title(s: str) -> str:
@@ -121,15 +132,19 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
 
 def process_files(
-    directory: str, min_header_level: Optional[int] = None, print_errors: bool = True
+    directory: str | os.PathLike[str],
+    min_header_level: Optional[int] = None,
+    print_errors: bool = True,
 ):
     """업데이트된 파일 경로만 반환"""
     updated_paths = []
-    for root, _, files in os.walk(directory):
+    root_path = Path(directory)
+    for current_root, _, files in os.walk(root_path):
+        current_root_path = Path(current_root)
         for file in files:
-            if not file.endswith(".md"):
+            if not file.lower().endswith(".md"):
                 continue
-            path = os.path.join(root, file)
+            path = current_root_path / file
             try:
                 with open(path, "r", encoding="utf-8") as f:
                     original = f.read()
@@ -137,7 +152,7 @@ def process_files(
                 if updated != original:
                     with open(path, "w", encoding="utf-8") as f:
                         f.write(updated)
-                    updated_paths.append(path)
+                    updated_paths.append(str(path))
             except Exception as e:
                 if print_errors:
                     print(f"Error: {path}: {e}")
@@ -145,6 +160,41 @@ def process_files(
 
 
 if __name__ == "__main__":
-    # H2부터 번호 시작, 변경된 md 파일 경로만 출력
-    for p in process_files(".", min_header_level=2):
-        print(p)
+    parser = argparse.ArgumentParser(
+        description=(
+            "Normalize markdown headers with numeric prefixes (default start level: H2)."
+        )
+    )
+    parser.add_argument(
+        "--root",
+        type=str,
+        default=None,
+        help="Root directory to scan (default: repository _posts or current directory)",
+    )
+    parser.add_argument(
+        "--min-level",
+        type=int,
+        default=2,
+        help="Minimum header level to start numbering (default: 2)",
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Suppress per-file output (exit code still reflects success)",
+    )
+    args = parser.parse_args()
+
+    target_root = (
+        Path(args.root).expanduser().resolve()
+        if args.root
+        else resolve_default_root()
+    )
+    if not target_root.exists():
+        raise SystemExit(f"Error: root path not found: {target_root}")
+
+    changed_files = process_files(
+        target_root, min_header_level=args.min_level, print_errors=True
+    )
+    if not args.quiet:
+        for path in changed_files:
+            print(path)

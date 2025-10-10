@@ -17,7 +17,9 @@ image:
 
 이를 위한 가장 기본적이면서도 강력한 두 가지 방법론이 바로 **Black-Box Monitoring**과 **White-Box Monitoring**입니다.
 
-## Black-Box & White-Box Monitoring 소개
+---
+
+## 2. Black-Box & White-Box Monitoring 소개
 
 | 구분          | 블랙박스 모니터링 (Black-Box)                      | 화이트박스 모니터링 (White-Box)                    |
 | ------------- | -------------------------------------------------- | -------------------------------------------------- |
@@ -34,33 +36,37 @@ image:
 
 ---
 
-## Black-Box Monitoring 개념
+## 3. Black-Box Monitoring 개념
 
 Black-Box Monitoring은 사용자가 경험하는 것을 측정하는 것을 목표로, 외부 관찰자 관점에서 시스템을 바라보는 방식입니다. 시스템의 내부 구현에 대한 지식 없이, 외부에서 관찰 가능한 동작에만 집중합니다. 치명적인 장애 발생을 신속하게 감지하여 "**무엇이 고장 났는가?**"를 파악할 때 사용합니다. Black-Box Monitoring은 **사용자 체감 문제**를 빠르게 감지하기 위한 경보의 핵심입니다.
 
 SLO는 사용자 경험 중심인 Black-Box Monitoring 기반으로 수립되어야 하며, SLO Alarm 또한 사용자가 체감하는 증상에 맞춰 Alarm을 설정해야 합니다.
 
-### Black-Box Monitoring의 대표적인 예시
+### 3.1 Black-Box Monitoring의 대표적인 예시
 
 - **가용성(Availability):** 웹 서비스가 99.9%의 시간 동안 정상 응답을 반환하는가  
 - **지연 시간(Latency):** API 응답이 300ms 이내인가  
 - **정확성(Correctness):** 응답 데이터가 올바른 값을 포함하는가  
 - **Synthetic Monitoring (합성 모니터링):** 실제 사용자의 동작을 스크립트로 재현하여 서비스 전반의 상태를 주기적으로 점검  
 
-## White-Box Monitoring
+---
+
+## 4. White-Box Monitoring
 
 White-Box Monitoring은 시스템 내부 상태에서 노출되는 메트릭, 로그, 트레이스를 기반으로 시스템의 구체적인 내부 상태와 동작방식을 이해하고, 문제의 근본 원인(Root Cause)를 진단합니다. 문제가 발생했을 때 시스템 구성 요소의 내부 자원 제약이나 알려진 이슈를 추적하는 데 활용하며, "**왜 고장 났는가?**"를 파악할 때 사용합니다.
 
 해당 접근 방법은 단순한 지표 수집을 넘어서 시스템의 **행동 양상(Behavior)**를 모델링하고 **이상 징후(Anomaly)**를 감지하는 데 목적이 있습니다.
 
-### White-Box Monitoring의 대표적인 예시
+### 4.1 White-Box Monitoring의 대표적인 예시
 
 - **리소스 관찰 (Resource Metrics):** CPU, 메모리, 네트워크 사용률  
 - **큐 및 연결 상태 (Queue Depth / Connection Pool):** 메시지 지연, DB 연결 포화  
 - **애플리케이션 카운터:** 요청 수, 실패율, 에러 코드 분포  
 - **구조화 로그 & 트레이스:** 로그와 분산 추적을 결합하여 병목 원인 분석  
 
-## 마무리
+---
+
+## 5. 마무리
 
 모니터링의 목적은 **장애를 없애는 것**이 아니라, **장애가 발생했을 때 빠르게 이해하고 대응하는 능력**을 기르는 데 있습니다.
 
@@ -69,7 +75,9 @@ White-Box Monitoring은 시스템 내부 상태에서 노출되는 메트릭, �
 
 SRE는 이 두 가지 관점을 결합하여 **“관찰 가능한 시스템(Observable System)”**을 만드는 데 초점을 둡니다. 즉, 단순한 ‘수집’이 아니라 **의미 있는 해석이 가능한 데이터 구조**가 핵심입니다.
 
-## Reference
+---
+
+## 6. Reference
 
 - [Google SRE Book — Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/)
 - [Google SRE Workbook — Monitoring, Alerting on SLOs](https://sre.google/workbook/monitoring/)

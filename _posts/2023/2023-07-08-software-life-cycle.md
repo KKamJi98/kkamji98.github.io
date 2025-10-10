@@ -9,7 +9,6 @@ image:
     path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/87055239-475b-4e8c-b3e5-c8fe594a2063
 ---
 
-
 ## 1. 소프트웨어 생명 주기 (Software Life Cycle)
 
 > 소프트웨어를 개발하기 위한 설계, 운용, 유지보수 등의 과정을 각 단계별로 나눈 것

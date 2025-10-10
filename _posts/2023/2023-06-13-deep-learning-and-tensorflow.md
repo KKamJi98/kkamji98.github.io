@@ -9,7 +9,6 @@ tags: [tensorflow, deep-learning]     # TAG names should always be lowercase
 # path: https://github.com/kkamji98/Oxi/assets/72260110/110eebe0-5912-46b5-8b9e-631db9c8e05e
 ---
 
-
 ## 1. Chapter 5. 딥러닝과 텐서플로우
 
 ---

@@ -5,23 +5,23 @@ Markdown의 모든 H2 헤더("## ") 바로 위에 수평선("---")을 보장합�
 사용법(Usage):
 
 - 단일 파일 처리:
-  $ python3 fix_md_h2_rules.py --file _posts/2025/2025-08-19-my-post.md
+  $ python3 kkamji_scripts/blog/fix_md_h2_rules.py --file _posts/2025/2025-08-19-my-post.md
 
-- 디렉터리 재귀 처리(기본은 현재 디렉터리):
-  $ python3 fix_md_h2_rules.py --root _posts/2025
+- 디렉터리 재귀 처리(기본은 저장소의 `_posts`, 없으면 현재 디렉터리):
+  $ python3 kkamji_scripts/blog/fix_md_h2_rules.py --root content/posts
 
 - 변경 미리보기(파일 미작성):
-  $ python3 fix_md_h2_rules.py --root . --dry-run
+  $ python3 kkamji_scripts/blog/fix_md_h2_rules.py --root . --dry-run
 
 - 백업(.bak) 미생성:
-  $ python3 fix_md_h2_rules.py --root . --no-backup
+  $ python3 kkamji_scripts/blog/fix_md_h2_rules.py --root . --no-backup
 
 - 상세 로그 출력:
-  $ python3 fix_md_h2_rules.py --root . --verbose
+  $ python3 kkamji_scripts/blog/fix_md_h2_rules.py --root . --verbose
 
 옵션:
 - --file <path>: 단일 Markdown 파일만 처리
-- --root <dir>: 루트 디렉터리부터 재귀 처리(기본: .)
+- --root <dir>: 루트 디렉터리부터 재귀 처리(기본: 저장소 `_posts` 또는 현재 디렉터리)
 - --dry-run: 변경 사항만 출력하고 파일은 수정하지 않음
 - --no-backup: 원본 .bak 백업 파일을 생성하지 않음
 - --verbose: 삽입/수정 위치를 자세히 출력
@@ -53,6 +53,15 @@ SKIP_DIRS = {
     "build",
     "__pycache__",
 }
+
+
+def resolve_default_root() -> Path:
+    script_path = Path(__file__).resolve()
+    for parent in script_path.parents:
+        candidate = parent / "_posts"
+        if candidate.exists():
+            return candidate
+    return Path.cwd()
 
 
 def is_h2(line: str) -> bool:
@@ -147,6 +156,18 @@ def process_file(path: Path, dry_run: bool, make_backup: bool, verbose: bool) ->
                 changed = True
                 if verbose:
                     print(f"Inserted HR above H2: {path} (around line {i+1})")
+            else:
+                trailing_segment = out[idx + 1 :] if idx is not None else []
+                needs_normalize = trailing_segment != [""]  # 0개 또는 다수/공백문자 포함 시 true
+                if needs_normalize:
+                    while len(out) > (idx + 1) and out[-1].strip() == "":
+                        out.pop()
+                    out.append("")
+                    changed = True
+                    if verbose:
+                        print(
+                            f"Normalized spacing above H2: {path} (around line {i+1})"
+                        )
             out.append(raw)
             just_closed_front = False
             i += 1
@@ -200,7 +221,10 @@ def main():
         description="Insert --- above every H2 (## ) header in Markdown."
     )
     ap.add_argument(
-        "--root", type=str, default=".", help="Root directory to scan (default: .)"
+        "--root",
+        type=str,
+        default=None,
+        help="Root directory to scan (default: repository _posts or current directory)",
     )
     ap.add_argument("--file", type=str, help="Process only a single file")
     ap.add_argument(
@@ -214,16 +238,19 @@ def main():
 
     files = []
     if args.file:
-        p = Path(args.file).resolve()
+        p = Path(args.file).expanduser().resolve()
         if not p.exists():
             print(f"Error: file not found: {p}", file=sys.stderr)
             sys.exit(2)
         files = [p]
     else:
-        root = Path(args.root).resolve()
-        if not root.exists():
-            print(f"Error: root path not found: {root}", file=sys.stderr)
-            sys.exit(2)
+        if args.root:
+            root = Path(args.root).expanduser().resolve()
+            if not root.exists():
+                print(f"Error: root path not found: {root}", file=sys.stderr)
+                sys.exit(2)
+        else:
+            root = resolve_default_root()
         files = gather_files(root)
 
     total = 0
