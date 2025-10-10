@@ -54,7 +54,7 @@ image:
 
 ## 2. 실습 환경 확인
 
-### 2.1 기본 클러스터 & 네트워크 상태 확인
+### 2.1. 기본 클러스터 & 네트워크 상태 확인
 
 ```shell
 ###############################################
@@ -187,7 +187,7 @@ kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor 
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor -v -v
 ```
 
-### 2.2 샘플 애플리케이션 배포 및 통신 문제 확인
+### 2.2. 샘플 애플리케이션 배포 및 통신 문제 확인
 
 ```shell
 ###############################################
@@ -314,14 +314,14 @@ Cilium BGP Control Plane(BGPv2)는 Cilium의 Custom Resources로 BGP 구성을 �
 > [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)
 > [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)
 
-### 3.1 핵심 Custom Resources
+### 3.1. 핵심 Custom Resources
 
 - CiliumBGPClusterConfig: 여러 Node에 적용할 BGP 인스턴스와 피어 정의
 - CiliumBGPPeerConfig: 공통 BGP 피어 설정 템플릿
 - CiliumBGPAdvertisement: 광고할 프리픽스 정의
 - CiliumBGPNodeConfigOverride: Node 단위 세부 오버라이드
 
-### 3.2 FRR Router 확인
+### 3.2. FRR Router 확인
 
 ```bash
 # k8s-ctr 에서 router 접속
@@ -368,7 +368,7 @@ C>* 192.168.10.0/24 is directly connected, eth1, 02:10:50
 C>* 192.168.20.0/24 is directly connected, eth2, 02:10:50
 ```
 
-### 3.3 FRR Router 설정
+### 3.3. FRR Router 설정
 
 ```shell
 # Cilium Node BGP 설정 (node neighbor 설정파일)
@@ -388,7 +388,7 @@ systemctl status frr --no-pager --full
 journalctl -u frr -f
 ```
 
-### 3.4 Cilium BGP 설정
+### 3.4. Cilium BGP 설정
 
 ```shell
 # 모니터링 터미널 1 (router)
@@ -457,7 +457,7 @@ Aug 17 06:12:10 router bgpd[5154]: [M59KS-A3ZXZ] bgp_update_receive: rcvd End-of
 Aug 17 06:12:10 router bgpd[5154]: [M59KS-A3ZXZ] bgp_update_receive: rcvd End-of-RIB for IPv4 Unicast from 192.168.10.100 in vrf default
 ```
 
-### 3.5 통신 확인
+### 3.5. 통신 확인
 
 ```shell
 # 세션 포트 확인 (k8s-ctr)
@@ -539,7 +539,7 @@ Hostname: webpod-697b545f57-smfjd
 Hostname: webpod-697b545f57-smfjd
 ```
 
-### 3.6 Termshark와 tcpdump를 사용한 패킷 분석
+### 3.6. Termshark와 tcpdump를 사용한 패킷 분석
 
 ```shell
 # 패킷 캡처 (k8s-ctr, 다른 터미널에서)
@@ -587,7 +587,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 ```
 ![BGP Packet Termshark](/assets/img/kubernetes/cilium/5w-bgp-packet-termshark.webp)
 
-### 3.7 문제확인 및 설명 (By ChatGPT)
+### 3.7. 문제확인 및 설명 (By ChatGPT)
 
 - Cilium의 BGP는 기본적으로 **외부 경로를 커널 라우팅 테이블에 주입하지 않음**.
   - 왜 Cilium이 받은 BGP 경로가 K8s 노드 OS 커널 라우팅 테이블에 안 들어오나?
@@ -610,7 +610,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 > 결론: Cilium 으로 BGP 사용 시, 2개 이상의 NIC 사용할 경우에는 Node에 직접 라우팅 설정 및 관리가 필요  
 {: .prompt-tip}
 
-### 3.8 문제해결 후 통신 확인
+### 3.8. 문제해결 후 통신 확인
 
 ```shell
 # k8s 파드 사용 대역 통신 전체는 eth1을 통해서 라우팅 설정

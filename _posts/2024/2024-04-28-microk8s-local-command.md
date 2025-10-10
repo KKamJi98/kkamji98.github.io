@@ -91,7 +91,7 @@ nginx-deployment   2/2     2            2           63m
 
 ## 3. MicroK8s TLS 인증서 갱신하기
 
-### 3.1 cert-manager 사용 설정 및 MicroK8s 중지
+### 3.1. cert-manager 사용 설정 및 MicroK8s 중지
 
 ```bash
 root@i-0fefad06e169df0c3:~/microk8s# microk8s stop
@@ -104,7 +104,7 @@ Enabling cert-manager
 ....
 ```
 
-### 3.2 인증서 설정 파일 수정
+### 3.2. 인증서 설정 파일 수정
 
 > 해당 파일에 Public IP를 추가해줍니다  
 {: .prompt-info}
@@ -160,7 +160,7 @@ NAME                  STATUS   ROLES    AGE     VERSION
 i-0fefad06e169df0c3   Ready    <none>   6m50s   v1.29.2
 ```
 
-### 4.1 마무리
+### 4.1. 마무리
 
 > 중간중간 TLS 인증서를 갱신하려고 csr, crt, rsa key 생성하고 온갖 방법을 동원했었는데.. MicroK8s는 csr.conf.template를 수정해야 적용이 된다..  
 > 다른걸 고치면 무한루프의 지옥에 빠질수도..  

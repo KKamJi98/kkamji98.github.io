@@ -73,7 +73,7 @@ namespace/harbor created
 > Helm을 사용해 Harbor를 설치하기 위해 values.yaml 파일을 다운로드 후 필요에 맞게 설정하고 설치를 진행하도록 하겠습니다.
 {: .prompt-tip}
 
-### 5.1 values.yaml 다운로드
+### 5.1. values.yaml 다운로드
 
 ```bash
 ❯ helm show values harbor/harbor > values.yaml
@@ -81,7 +81,7 @@ namespace/harbor created
 values.yaml
 ```
 
-### 5.2 values.yaml 파일 수정
+### 5.2. values.yaml 파일 수정
 
 > Redis, PostgreSQL, Ingress, externalURL, AdminPassword 등 관련된 설정을 올바르게 수정합니다. TLS 인증서는 자동으로 생성하도록 설정 해주었으며, 여기 나와있는 내용 이외의 이미지 서명 기능인 Notary, 이미지 취약점 스캐너인 Clair, Webhook 등의 설정도 가능합니다.
 {: .prompt-tip}
@@ -140,7 +140,7 @@ persistence:
 harborAdminPassword: # Admin Password
 ```
 
-### 5.3 Harbor 배포
+### 5.3. Harbor 배포
 
 ```bash
 helm install harbor harbor/harbor --namespace harbor -f values.yaml

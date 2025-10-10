@@ -27,7 +27,7 @@ image:
 
 이전에 작성한 [EFK Stack 구축하기 (2) - Elasticsearch](https://kkamji.net/posts/elasticsearch/)와 [EFK Stack 구축하기 (3) - Kibana](https://kkamji.net/posts/kibana/)를 참고해 **Elasticsearch**와 **Kibana**를 구축하고, **Logstash**는 별도의 Deployment를 통해 구축해보도록 하겠습니다.
 
-### 2.1 Elasticsearch 배포
+### 2.1. Elasticsearch 배포
 
 ```bash
 ## CRD 설치
@@ -106,7 +106,7 @@ NAME                                        READY   AGE
 statefulset.apps/elasticsearch-es-default   1/1     4m37s
 ```
 
-### 2.2 Kibana 배포
+### 2.2. Kibana 배포
 
 ```bash
 ## Kibana 리소스 manifest 파일 생성 -> kibana.yaml
@@ -136,11 +136,11 @@ kibana   green    1       8.16.0    3m1s
 Rkxxxxx19xxxxxmVxxxa
 ```
 
-### 2.3 포트포워딩 후 확인
+### 2.3. 포트포워딩 후 확인
 
 ![kibana_login](/assets/img/observability/kibana_login.webp)
 
-### 2.4 Logstash 배포
+### 2.4. Logstash 배포
 
 ```bash
 apiVersion: logstash.k8s.elastic.co/v1alpha1
@@ -195,7 +195,7 @@ spec:
 
 ## 3. Logstash -> Elasticsearch 연동 테스트
 
-### 3.1 curl 명령어를 통해 logstash에 로그 데이터 전송
+### 3.1. curl 명령어를 통해 logstash에 로그 데이터 전송
 
 ```bash
 ❯ curl -X POST "{log_stash_url}" \
@@ -205,7 +205,7 @@ spec:
 ok
 ```
 
-### 3.2 로그 확인 {elasticsearch url}/_search
+### 3.2. 로그 확인 {elasticsearch url}/_search
 
 > logstash로 전송한 로그가 elasticsearch로 전송된 것을 확인할 수 있습니다.
 {: .prompt-tip}

@@ -122,9 +122,7 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         # 5. 접두 번호 구성
         parts = [str(counters[i]) for i in range(1, level + 1)]
-        prefix = ".".join(parts)
-        if level == 1:
-            prefix += "."
+        prefix = ".".join(parts) + "."
 
         out.append(f"{hashes} {prefix} {clean_title}")
 

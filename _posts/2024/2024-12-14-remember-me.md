@@ -51,7 +51,7 @@ HCP Terraform을 사용해 GitHub와 연동, Terraform Cloud 환경을 구축하
 
 ![Architecture](/assets/img/project/rememberme/architecture.webp)
 
-### 3.1 Logging
+### 3.1. Logging
 
 CloudWatch Logs Subscription Filter를 활용해 Lambda 로그를 실시간으로 Logstash -> Elasticsearch로 전송한 뒤 Kibana 대시보드를 통해 상태별, 로그그룹별 로그를 분석할 수 있도록 구현했습니다. 이를 통해 여러 Lambda에서 생성되는 Log Data를 한곳에서 관리할 수 있었고, 문제 발생 시 신속한 진단과 대응이 가능했습니다.
 
@@ -59,32 +59,32 @@ CloudWatch Logs Subscription Filter를 활용해 Lambda 로그를 실시간으�
 
 ![Kibana Dashboard](/assets/img/project/rememberme/kibana_dashboard.webp)
 
-### 3.2 Alarm
+### 3.2. Alarm
 
 AWS WAF의 규칙을 활용하여 비정상적으로 과도한 트래픽(예: 동일 IP에서 분당 300회 이상 요청)을 차단하였습니다. 또한, AWS Budgets와 CloudWatch를 연계하여 비용 초과 알림을 설정하고, Amazon SNS와 AWS Chatbot을 통해 Slack으로 실시간 알림을 받을 수 있도록 구성하였습니다.
 
-#### 3.2.1 WAF Alarm
+#### 3.2.1. WAF Alarm
 
 ![WAF Alarm Workflow](/assets/img/project/rememberme/waf_alarm_workflow.webp)
 ![WAF Alarm](/assets/img/project/rememberme/waf_alarm.webp)
 
-#### 3.2.2 Budget Alarm
+#### 3.2.2. Budget Alarm
 
 ![Budget Alarm Workflow](/assets/img/project/rememberme/budget_alarm_workflow.webp)
 ![Budgets Alarm](/assets/img/project/rememberme/budgets_alarm.webp)
 
-### 3.3 CI/CD
+### 3.3. CI/CD
 
 GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 진행되도록 했습니다.
 
 - Backend 코드 변경 -> GitHub Actions 실행 -> SAM 빌드 -> Lambda 배포
 - Frontend 코드 변경 -> GitHub Actions 실행 -> React 빌드 -> S3/CloudFront 업데이트
 
-#### 3.3.1 Backend CI/CD
+#### 3.3.1. Backend CI/CD
 
 ![Backend CI/CD](/assets/img/project/rememberme/backend_ci_cd.webp)
 
-#### 3.3.2 Frontend CI/CD
+#### 3.3.2. Frontend CI/CD
 
 ![Frontend CI/CD](/assets/img/project/rememberme/frontend_ci_cd.webp)
 

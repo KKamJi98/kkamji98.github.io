@@ -27,7 +27,7 @@ image:
 
 ## 2. Kubernetes에 Cert-Manager 설치
 
-### 2.1 Namespace 생성
+### 2.1. Namespace 생성
 
 ```bash
 ❯ kubectl create namespace cert-manager

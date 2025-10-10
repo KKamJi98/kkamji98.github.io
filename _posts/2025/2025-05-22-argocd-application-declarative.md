@@ -33,7 +33,7 @@ ArgoCD Application의 주요 특징은 다음과 같습니다
 
 ArgoCD Application을 생성하는 방법은 크게 세 가지가 있습니다. 선언적으로 Application의 장점을 직접 느껴보기 위해 세 가지 방법을 모두 사용해 Application을 생성해보도록 하겠습니다.
 
-### 2.1 WEB UI를 사용하는 방식
+### 2.1. WEB UI를 사용하는 방식
 
 WEB UI에서 "NEW APP" 버튼을 클릭하여 Application을 생성하는 방법입니다.  
 
@@ -41,17 +41,17 @@ WEB UI에서 "NEW APP" 버튼을 클릭하여 Application을 생성하는 방법
 2. Application 이름, `Git Repository URL`, `Path`, `Destination` 설정 입력
 3. 설정 확인 후 "CREATE" 버튼을 클릭하여 생성
 
-#### 2.1.1 WEB UI 버튼
+#### 2.1.1. WEB UI 버튼
 
 ![New App](/assets/img/ci-cd/argocd/new-app.png)
 
-#### 2.1.2 WEB UI 설정 예시
+#### 2.1.2. WEB UI 설정 예시
 
 사진과 같이 Application과 관련된 정보를 입력 한 뒤, Create 버튼을 클릭하여 생성합니다. 사진에는 포함되어 있지 않지만, 아래로 스크롤하여 Application이 실제 배포될 `Destination`도 입력해주셔야 합니다.
 
 ![ArgoCD New App](/assets/img/ci-cd/argocd/argocd-web-ui-new-app.png)
 
-#### 2.1.3 결과 (WEB UI)
+#### 2.1.3. 결과 (WEB UI)
 
 ![ArgoCD Application Create Web UI](/assets/img/ci-cd/argocd/argocd-create-application-using-web-ui-result.png)
 
@@ -70,7 +70,7 @@ NAME                                      DESIRED   CURRENT   READY   AGE
 replicaset.apps/guestbook-ui-7cf4fd7cb9   1         1         1       3m59s
 ```
 
-### 2.2 CLI를 사용하는 명령형 방식
+### 2.2. CLI를 사용하는 명령형 방식
 
 ArgoCD CLI 명령어를 통해 Application을 생성하는 방식입니다.
 
@@ -96,7 +96,7 @@ Password: xxxx
 application 'guestbook-cli' created
 ```
 
-#### 2.2.1 결과 (CLI)
+#### 2.2.1. 결과 (CLI)
 
 ```shell
 ## 결과 확인
@@ -116,7 +116,7 @@ replicaset.apps/guestbook-ui-7cf4fd7cb9   1         1         1       28s
 
 ![ArgoCD Application Create CLI](/assets/img/ci-cd/argocd/argocd-create-application-using-cli-result.png)
 
-### 2.3 YAML을 통한 선언적 방식
+### 2.3. YAML을 통한 선언적 방식
 
 YAML Manifest 파일을 통해 Application을 정의하고 생성하는 방식입니다.
 
@@ -151,7 +151,7 @@ spec:
 application.argoproj.io/guestbook-yaml created
 ```
 
-#### 2.3.1 결과 (YAML)
+#### 2.3.1. 결과 (YAML)
 
 ```shell
 ❯ k get all -n argocd-test

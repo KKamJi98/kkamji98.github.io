@@ -17,7 +17,7 @@ image:
 
 **GitHub Actions**의 **Matrix Strategy**는 동일한 작업(**Job**)을 다양한 환경이나 변수의 조합으로 병렬 실행할 때 사용됩니다. 예를 들어 여러 운영체제(OS)나 아키텍처(arm64, amd64) 환경에서 병렬적으로 테스트하거나 빌드할 수 있습니다. 이를 통해 여러 잡을 순차적으로 진행하거나 하나의 아키텍처에서 QEMU를 사용해 Multi-Architecture Build를 수행하는 방식보다 전체 워크플로우의 수행 시간을 크게 단축시킬 수 있습니다.
 
-### 1.1 언제 유용할까?
+### 1.1. 언제 유용할까?
 
 - Cross‑Platform 테스트: macOS, Windows, Linux 전부 지원해야 할 때.
 - 멀티 아키텍처 빌드: x86과 ARM 이미지를 동시에 만들어야 할 때.
@@ -45,7 +45,7 @@ amd64와 arm64 이미지를 빌드 해 ECR에 Push하는 Workflow를 **Matrix St
 > Container Registry  - ECR(Elastic Container Registry)  
 {: .prompt-tip}
 
-### 2.1 Workflow - 단일 러너(amd64), Build & Push Multi-Arch Using QEMU to ECR
+### 2.1. Workflow - 단일 러너(amd64), Build & Push Multi-Arch Using QEMU to ECR
 
 ```yaml
 # .github/workflows/go-multi-architecture-build.yaml
@@ -113,7 +113,7 @@ jobs:
             ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
 ```
 
-### 2.2 결과 확인 - 단일 러너(amd64), Build & Push Multi-Arch Using QEMU to ECR
+### 2.2. 결과 확인 - 단일 러너(amd64), Build & Push Multi-Arch Using QEMU to ECR
 
 Container Image 빌드 및 ECR Push 등 전체 Workflow가 완료되기까지 총 4분 57초가 소요되었습니다.
 
@@ -135,13 +135,13 @@ Container Image 빌드 및 ECR Push 등 전체 Workflow가 완료되기까지 �
 #20 DONE 0.0s
 ```
 
-#### 2.2.1 QEMU 사용 시 빌드 속도가 느린 이유
+#### 2.2.1. QEMU 사용 시 빌드 속도가 느린 이유
 
 **QEMU**를 사용한 **Multi-Architecture Build** 방식은 다른 아키텍처의 바이너리를 에뮬레이션하여 실행하기 때문에 **Native** 환경에서 빌드하는 것보다 성능이 크게 저하됩니다. 특히 ARM64 바이너리를 AMD64 환경에서 에뮬레이션할 때 CPU 명령어 및 메모리 처리 속도가 현저히 낮아져 빌드 시간이 대폭 증가합니다.
 
 <https://docs.docker.com/build/building/multi-platform/#qemu>
 
-### 2.3 Workflow - 다중 러너(amd64, arm64), Build & Push Multi-Arch Using Matrix to ECR
+### 2.3. Workflow - 다중 러너(amd64, arm64), Build & Push Multi-Arch Using Matrix to ECR
 
 ```yaml
 name: "[Go] Gin Project Build & Push Multi-Arch Using Matrix to ECR"
@@ -246,7 +246,7 @@ jobs:
             $IMAGE:arm64-v$VER
 ```
 
-### 2.4 결과 확인 - 다중 러너(amd64, arm64), Build & Push Multi-Arch Using Matrix to ECR
+### 2.4. 결과 확인 - 다중 러너(amd64, arm64), Build & Push Multi-Arch Using Matrix to ECR
 
 ![Multi-Architecture-Build-Using-Matrix](/assets/img/github/multi-architecture-build-using-matrix-result.png)
 

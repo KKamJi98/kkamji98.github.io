@@ -26,14 +26,14 @@ Kubernetes Secret을 안전하게 사용하기 위해서 대표적으로 다음�
 > Secret에 대한 내용을 확인해 보겠습니다.
 {: .prompt-info}
 
-### 1.1 Secret 내용 Base64 인코딩
+### 1.1. Secret 내용 Base64 인코딩
 
 ```bash
 ❯ echo -n test_secrets | base64
 dGVzdF9zZWNyZXRz
 ```
 
-### 1.2 Secret Manifest 파일 (test-secret.yaml)
+### 1.2. Secret Manifest 파일 (test-secret.yaml)
 
 ```yaml
 apiVersion: v1
@@ -45,7 +45,7 @@ data:
   test_secret: dGVzdF9zZWNyZXRz
 ```
 
-### 1.3 Secret 생성 및 암호 확인
+### 1.3. Secret 생성 및 암호 확인
 
 ```bash
 ❯ kubectl apply -f test-secret.yaml
@@ -75,14 +75,14 @@ test_secrets
 > 앞선 예시에서 Base64 방식으로 인코딩된 Secret을 확인할 수 있었고, 디코딩을 통해 Secret의 값을 평문으로도 확인할 수 있었습니다. 이러한 보안 문제를 방지하기 위해 Secret에 대한 암호화 기능을 활성화해 보도록 하겠습니다.
 {: .prompt-info}
 
-### 2.1 새로운 암호화 키 생성 후 Base64 인코딩
+### 2.1. 새로운 암호화 키 생성 후 Base64 인코딩
 
 ```bash
 ❯ head -c 32 /dev/urandom | base64
 IK2pXvujA7VdAyPI3w6mFulvy6ruouE1KkGHKQUZ/fs=
 ```
 
-### 2.2 암호화 설정 파일 작성(encryption-configuration.yaml)
+### 2.2. 암호화 설정 파일 작성(encryption-configuration.yaml)
 
 > 아래의 파일을 Master Node의 `/etc/kubernetes/enc/encryption-configuration.yaml` 경로에 저장합니다.
 {: .prompt-info}
@@ -101,7 +101,7 @@ resources:
       - identity: {}
 ```
 
-### 2.3 암호화 설정 적용
+### 2.3. 암호화 설정 적용
 
 > 암호화 설정 파일을 kube-apiserver에 적용합니다. kube-apiserver 설정 파일이 수정되면 kubelet이 변경 사항을 감지하고 kube-apiserver를 재시작합니다.
 {: .prompt-info}
@@ -131,7 +131,7 @@ spec:
 ...
 ```
 
-### 2.4 암호화 설정 적용 확인
+### 2.4. 암호화 설정 적용 확인
 
 > 5분 전에 재시작된 것을 확인할 수 있습니다. 더 자세하게 설정이 적용되었는지 확인하시려면 kubectl describe pods -n kube-system {kube-apiserver-pod-name} 해당 명령어를 통해 확인 가능합니다.
 {: .prompt-info}
@@ -148,14 +148,14 @@ kube-apiserver-master                      1/1     Running   0                5m
 > Secret에 대한 암호화를 설정해도 기존에 저장된 Secret은 암호화되지 않습니다. 새로운 Secret을 생성 후 기존 Secret과 비교해본 뒤, 기존에 저장된 Secret도 암호화되도록 하겠습니다.
 {: .prompt-info}
 
-### 3.1 Secret 값 Base64 인코딩
+### 3.1. Secret 값 Base64 인코딩
 
 ```bash
 ❯ echo -n test-secrets2 | base64
 dGVzdC1zZWNyZXRzMg==
 ```
 
-### 3.2 Secret Manifest 파일 (test-secret2.yaml)
+### 3.2. Secret Manifest 파일 (test-secret2.yaml)
 
 ```yaml
 apiVersion: v1
@@ -167,7 +167,7 @@ data:
   test_secret2: dGVzdC1zZWNyZXRzMg==
 ```
 
-### 3.3 새로운 Secret 생성 및 암호 확인
+### 3.3. 새로운 Secret 생성 및 암호 확인
 
 ```bash
 ❯ kubectl apply -f test-secret2.yaml
@@ -193,7 +193,7 @@ secret/test-secret2 created
 ...
 ```
 
-### 3.4 기존 Secret 확인
+### 3.4. 기존 Secret 확인
 
 ```bash
 ❯ ETCDCTL_API=3 etcdctl \
@@ -212,7 +212,7 @@ secret/test-secret2 created
 ...
 ```
 
-### 3.5 기존 Secret 암호화 후 다시 확인
+### 3.5. 기존 Secret 암호화 후 다시 확인
 
 ```bash
 ❯ kubectl get secrets --all-namespaces -o json | kubectl replace -f -

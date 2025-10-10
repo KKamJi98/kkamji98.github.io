@@ -117,7 +117,7 @@ else
 fi
 ```
 
-### 3.1 현재 max-pods 확인
+### 3.1. 현재 max-pods 확인
 
 이제 현재 우리 EKS 노드의 max-pods 값이 얼마로 설정되어 있는지 확인하고, 이를 늘리는 방법을 알아보겠습니다.  
 노드의 max-pods는 **Kubelet (노드의 Kubernetes 에이전트)**이 가지고 있는 설정으로, 노드가 Kubernetes에 등록될 때 그 값이 함께 설정됩니다. 노드 객체의 status를 보면 capacity에 pods 항목으로 이 최대 Pod 수를 확인할 수 있습니다.  
@@ -132,13 +132,13 @@ ip-10-0-1-201.ap-northeast-2.compute.internal   11              11
 
 ## 4. Prefix Mode Enable & Max-Pod Limit 상향 조정
 
-### 4.1 vpc-cni(aws-node) DaemonSet ENV 수정
+### 4.1. vpc-cni(aws-node) DaemonSet ENV 수정
 
 ```shell
 ❯ kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
 ```
 
-### 4.2 kubelet max-pods 설정
+### 4.2. kubelet max-pods 설정
 
 ```shell
 # AL2 => /etc/eks/bootstrap.sh 에 extra-args 추가
@@ -162,7 +162,7 @@ spec:
       - --node-labels=role=backend
 ```
 
-### 4.3 Node Rolling Update
+### 4.3. Node Rolling Update
 
 `aws-node` 환경변수와 `kubelet maxPods` 값을 모두 바꿨다면 **새로운 AMI / Launch Template** 로 노드를 교체해 주어야 실제 한계치가 반영됩니다. 방법은 두 가지입니다.
 
@@ -178,7 +178,7 @@ spec:
      --preferences '{"MinHealthyPercentage":75,"InstanceWarmup":300}'
    ```
 
-### 4.4 결과 확인
+### 4.4. 결과 확인
 
 ```shell
 ❯ kubectl get nodes -o custom-columns=NAME:.metadata.name,CAPACITY_PODS:.status.capacity.pods,ALLOCATE_PODS:.status.allocatable.pods

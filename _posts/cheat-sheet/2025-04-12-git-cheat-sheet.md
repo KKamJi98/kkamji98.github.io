@@ -17,20 +17,20 @@ Git을 사용하며 알게된 CLI 명령어들을 공유합니다.
 
 `git-delta`는 `git diff`, `git log`, `git show` 등의 출력을 더 읽기 쉽게 만들어주는 도구입니다.
 
-### 1.1 Ubuntu/Debian
+### 1.1. Ubuntu/Debian
 
 ```shell
 sudo apt-get update
 sudo apt-get install git-delta
 ```
 
-### 1.2 macOS (Homebrew)
+### 1.2. macOS (Homebrew)
 
 ```shell
 brew install git-delta
 ```
 
-### 1.3 기타
+### 1.3. 기타
 
 다른 운영체제나 설치 방법은 [공식 문서](https://dandavison.github.io/delta/installation.html)를 참고하세요.
 
@@ -57,7 +57,7 @@ eval "$(ssh-agent -s)"                              # SSH 에이전트 시작
 ssh-add ~/.ssh/id_ed25519                           # SSH 키 추가
 ```
 
-### 2.1 현재 환경 기반 Git 전역 설정 명령
+### 2.1. 현재 환경 기반 Git 전역 설정 명령
 
 ```shell
 # 사용자
@@ -115,7 +115,7 @@ git config --global color.diff auto
 
 ---
 
-### 2.2 글로벌 .gitignore 설정
+### 2.2. 글로벌 .gitignore 설정
 
 `core.excludesFile` 을 설정하면 모든 Git 저장소에 공통 적용되는 `.gitignore` 를 유지할 수 있습니다. [git-scm 공식 문서의 gitignore 섹션](https://git-scm.com/docs/gitignore#_external_ignores)에서 권장하는 방법으로, 홈 디렉터리에 별도 파일을 두는 구성이 가장 단순합니다.
 

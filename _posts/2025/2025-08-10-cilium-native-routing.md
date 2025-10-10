@@ -53,7 +53,7 @@ image:
 
 ## 2. PodCIDR 라우팅을 설정하지 않았을 때 문제 확인
 
-### 2.1 Sample Application 배포
+### 2.1. Sample Application 배포
 
 ```shell
 # 샘플 애플리케이션 배포
@@ -136,7 +136,7 @@ service/kubernetes   ClusterIP   10.96.0.1     <none>        443/TCP   5h19m   <
 service/webpod       ClusterIP   10.96.54.60   <none>        80/TCP    56s     app=webpod
 ```
 
-### 2.2 curl-pod -> webpod 통신 확인
+### 2.2. curl-pod -> webpod 통신 확인
 
 ```shell
 (⎈|HomeLab:N/A) root@k8s-ctr:~# kubectl exec -it curl-pod -- sh -c 'while true; do curl -s --connect-timeout 1 webpod | grep Hostname; echo "---"; sleep 1; done'
@@ -156,7 +156,7 @@ Hostname: webpod-697b545f57-zjp55
 
 ## 3. tcpdump를 사용해 패킷 흐름 확인
 
-### 3.1 통신 테스트 및 패킷 캡처
+### 3.1. 통신 테스트 및 패킷 캡처
 
 Router에서 `tcpdump`를 사용해, **curl-pod -> 다른 네트워크 대역의 노드에 존재하는 webpod** 통신이 왜 실패하는지 확인해보겠습니다.
 
@@ -191,7 +191,7 @@ PING 172.20.2.249 (172.20.2.249) 56(84) bytes of data.
 command terminated with exit code 1
 ```
 
-### 3.2 패킷 캡처 분석
+### 3.2. 패킷 캡처 분석
 
 ```shell
 22:08:20.123415 eth1  In  IP 172.20.0.89 > 172.20.2.36: ICMP echo request, id 345, seq 1, length 64
@@ -202,7 +202,7 @@ command terminated with exit code 1
 2. eth0 Out: 하지만 목적지 PodCIDR(172.20.2.0/24)에 대한 라우팅 경로가 없어, Router는 기본 경로(default route)를 사용 -> eth0(public NIC)로 패킷 송출
 3. 이 경로는 클러스터 외부망(public)으로 연결되므로, 대상 Pod까지 도달 불가 -> **응답 실패**
 
-### 3.3 Routing Table 확인
+### 3.3. Routing Table 확인
 
 아래와 같이 `ip -c route` 명령어를 통해 Router VM의 Routing Table 정보를 확인하고 `ip route get 172.20.2.36` 명령어로 해당 라우팅 경로를 확인했을 때, PodCIDR 트래픽이 public 경로로 나가는 구조임을 알 수 있습니다. (`10.0.2.15`는 Router의 외부 Gateway 주소임)
 
@@ -377,7 +377,7 @@ Hostname: webpod-697b545f57-9lpt4
 
 Cilium은 BGP Control Plane 기능을 제공하여, 각 노드가 자신의 `PodCIDR`를 외부 라우터에 자동으로 광고(announce)할 수 있도록 지원합니다. 이를 통해 라우터가 모든 노드의 `PodCIDR`를 자동 학습하고, 경로를 최신 상태로 유지합니다.
 
-### 6.1 BGP Control Plane 활성화
+### 6.1. BGP Control Plane 활성화
 
 ```shell
 helm upgrade cilium cilium/cilium \
@@ -385,7 +385,7 @@ helm upgrade cilium cilium/cilium \
   --set bgpControlPlane.enabled=true
 ```
 
-### 6.2 BGP 설정 예시
+### 6.2. BGP 설정 예시
 
 ```yaml
 apiVersion: cilium.io/v2alpha1

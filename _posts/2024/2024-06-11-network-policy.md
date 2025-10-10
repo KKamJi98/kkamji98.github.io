@@ -53,7 +53,7 @@ namespace/web labeled
 > WEB 서버는 nginx:latest 이미지를 사용했고, WAS 서버는 tomcat:latest 이미지를 사용했고 DB 서버는 arm64v8/mysql:latest 이미지를 사용했습니다. arm기반 OS를 사용중이기 때문에 기존 mysql:latest이미지를 사용하면 동작하지 않습니다. 또한 실습에서 Service는 외부에서 접속하지 않아도 되기 때문에 ClusterIP Type으로 생성했습니다. [ Type을 지정하지 않으면 ClusterIP 타입으로 생성됨 ]
 {: .prompt-tip}
 
-### 3.1 WEB manifest file
+### 3.1. WEB manifest file
 
 ```yaml
 apiVersion: v1
@@ -84,7 +84,7 @@ spec:
       targetPort: 80
 ```
 
-### 3.2 WAS manifest file
+### 3.2. WAS manifest file
 
 ```yaml
 apiVersion: v1
@@ -115,7 +115,7 @@ spec:
       targetPort: 8080
 ```
 
-### 3.3 DB manifest file
+### 3.3. DB manifest file
 
 ```yaml
 apiVersion: v1
@@ -151,7 +151,7 @@ spec:
       targetPort: 3306
 ```
 
-### 3.4 Pod 생성 & 확인
+### 3.4. Pod 생성 & 확인
 
 ```bash
 root@Zest ~/Code/k8s-network-policy-3-tier/web# kubectl apply -f .
@@ -187,7 +187,7 @@ web            service/web-service            ClusterIP   10.152.183.96    <none
 > DNS 포트와 프로토콜인 53번 포트로 나가는 UCP, TCP 프로토콜 반드시 명시해야 합니다.
 {: .prompt-tip}
 
-### 4.1 WEB-Network Policy manifest file
+### 4.1. WEB-Network Policy manifest file
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -228,7 +228,7 @@ spec:
 
 ```
 
-### 4.2 WAS-Network Policy manifest file
+### 4.2. WAS-Network Policy manifest file
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -283,7 +283,7 @@ spec:
 
 ```
 
-### 4.3 DB-Network Policy manifest file
+### 4.3. DB-Network Policy manifest file
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -323,7 +323,7 @@ spec:
       port: 53
 ```
 
-### 4.4 Network Policy 생성 & 확인
+### 4.4. Network Policy 생성 & 확인
 
 ```bash
 root@Zest ~/Code/k8s-network-policy-3-tier/Network-Policy# kubectl apply -f web-policy.yaml 
@@ -347,7 +347,7 @@ web         web-policy   <none>         25s
 > busybox 이미지를 사용했고, 각각의 namespace에 test pod를 생성해 테스트 했습니다.
 {: .prompt-tip}
 
-### 5.1 web namespace pod에서 연결 확인
+### 5.1. web namespace pod에서 연결 확인
 
 ```bash
 root@Zest ~/Code/k8s-network-policy-3-tier# kubectl exec -it -n web web-test-pod -- sh
@@ -358,7 +358,7 @@ wget: server returned error: HTTP/1.1 404
 nc: db-service.db.svc.cluster.local (10.152.183.88:3306): Connection timed out
 ```
 
-### 5.2 was namespace pod에서 연결 확인
+### 5.2. was namespace pod에서 연결 확인
 
 ```bash
 root@Zest ~/Code/k8s-network-policy-3-tier# kubectl exec -it -n was was-test-pod -- sh
@@ -391,7 +391,7 @@ Commercial support is available at
 db-service.db.svc.cluster.local (10.152.183.88:3306) open
 ```
 
-### 5.3 db namespace pod에서 연결 확인
+### 5.3. db namespace pod에서 연결 확인
 
 ```bash
 root@Zest ~/Code/k8s-network-policy-3-tier# kubectl exec -it -n db db-test-pod -- sh
@@ -424,7 +424,7 @@ db -> was ( O )
 
 네임스페이스를 생성할 때, 네임스페이스에 레이블이 자동으로 추가되지 않는다는 사실과 network policy를 생성 직후 pod에서 다른 pod에 DNS 이름으로 접근이 불가능 하다는 문제를 직면했습니다.
 
-### 7.1 해결과정
+### 7.1. 해결과정
 
 1. 네임스페이스를 생성하고 네임스페이스 셀렉터를 사용하여 네트워크 정책을 생성했으나, 기대한 대로 통신이 되지 않음
 2. Calico 네트워크 플러그인의 문제를 의심하여 Cilium으로 교체했으나, 여전히 문제가 해결되지 않음

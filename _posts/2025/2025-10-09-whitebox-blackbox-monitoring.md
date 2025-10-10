@@ -42,7 +42,7 @@ Black-Box Monitoring은 사용자가 경험하는 것을 측정하는 것을 목
 
 SLO는 사용자 경험 중심인 Black-Box Monitoring 기반으로 수립되어야 하며, SLO Alarm 또한 사용자가 체감하는 증상에 맞춰 Alarm을 설정해야 합니다.
 
-### 3.1 Black-Box Monitoring의 대표적인 예시
+### 3.1. Black-Box Monitoring의 대표적인 예시
 
 - **가용성(Availability):** 웹 서비스가 99.9%의 시간 동안 정상 응답을 반환하는가  
 - **지연 시간(Latency):** API 응답이 300ms 이내인가  
@@ -57,7 +57,7 @@ White-Box Monitoring은 시스템 내부 상태에서 노출되는 메트릭, �
 
 해당 접근 방법은 단순한 지표 수집을 넘어서 시스템의 **행동 양상(Behavior)**를 모델링하고 **이상 징후(Anomaly)**를 감지하는 데 목적이 있습니다.
 
-### 4.1 White-Box Monitoring의 대표적인 예시
+### 4.1. White-Box Monitoring의 대표적인 예시
 
 - **리소스 관찰 (Resource Metrics):** CPU, 메모리, 네트워크 사용률  
 - **큐 및 연결 상태 (Queue Depth / Connection Pool):** 메시지 지연, DB 연결 포화  

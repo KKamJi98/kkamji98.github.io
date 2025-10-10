@@ -15,31 +15,31 @@ Secrets Manager의 시크릿을 Amazon EKS의 Pod에 마운트된 파일로 표�
 
 ## 1. Helm을 사용해 ASCP 설치
 
-### 1.1 Helm 레포지토리 업데이트
+### 1.1. Helm 레포지토리 업데이트
 
 ```bash
 helm repo update
 ```
 
-### 1.2 Secrets Store CSI Driver 차트 추가
+### 1.2. Secrets Store CSI Driver 차트 추가
 
 ```bash
 helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
 ```
 
-### 1.3 Secrets Store CSI Driver 설치
+### 1.3. Secrets Store CSI Driver 설치
 
 ```bash
 helm install -n kube-system csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver
 ```
 
-### 1.4 ACSP 차트 추가
+### 1.4. ACSP 차트 추가
 
 ```bash
 helm repo add aws-secrets-manager https://aws.github.io/secrets-store-csi-driver-provider-aws
 ```
 
-### 1.5 ACSP 설치
+### 1.5. ACSP 설치
 
 ```bash
 helm install -n kube-system secrets-provider-aws aws-secrets-manager/secrets-store-csi-driver-provider-aws
@@ -51,7 +51,7 @@ helm install -n kube-system secrets-provider-aws aws-secrets-manager/secrets-sto
 
 - SecretProviderClass에는 마운트할 비밀과 마운트할 파일 이름이 나열되어있으며, 사용할 EKS Pod와 동일한 네임스페이스에 있어야 합니다
 
-### 2.1 SecretProviderClass 생성
+### 2.1. SecretProviderClass 생성
 
 ```yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1

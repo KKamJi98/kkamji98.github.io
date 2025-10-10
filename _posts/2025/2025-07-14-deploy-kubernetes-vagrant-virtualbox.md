@@ -90,7 +90,7 @@ image:
 - `k8s-w1`  -> `cilium-w1`
 - `k8s-w2`  -> `cilium-w2`
 
-### 3.1 Vagrantfile
+### 3.1. Vagrantfile
 
 Vagrantfile은 Vagrant가 가상 머신(또는 컨테이너)을 생성할 때 베이스 이미지, 자원 할당, 프로비저닝 방식 등을 선언적으로 기술하는 루비 기반 설정 파일입니다.
 
@@ -153,7 +153,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-### 3.2 init_cfg.sh
+### 3.2. init_cfg.sh
 
 공식문서의 내용을 기반으로 만들어진 kubeadm으로 Control Plane, Data Plane VM 모두가 가져야 할 기본 설정에 대한 Script입니다.
 [Docs - Bootstrapping clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
@@ -232,7 +232,7 @@ curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | 
 echo ">>>> Initial Config End <<<<"
 ```
 
-### 3.3 k8s-ctr.sh
+### 3.3. k8s-ctr.sh
 
 alias, PS1 설정, 자동완성 설정 등이 포함된 Control Plane 설정 Script입니다.
 
@@ -291,7 +291,7 @@ for (( i=1; i<=$1; i++  )); do echo "192.168.10.10$i cilium-w$i" >> /etc/hosts; 
 echo ">>>> K8S Controlplane Config End <<<<"
 ```
 
-### 3.4 k8s-w.sh
+### 3.4. k8s-w.sh
 
 Data Plane의 노드들이 Control Plane에 조인하는 Script입니다.
 
@@ -353,7 +353,7 @@ Vagrant로 생성한 VM의 eth0은 모두 10.0.2.15 로 모두 동일하며, 외
 - vagrant ssh 접속 시 호스트에 127.0.0.1(2222)를 목적지로 접속 -> 이후 포트포워딩(S/DNAT)을 통해서 내부에 VM로 SSH 연결
 - NAT Mode 에 **10.0.2.2**(GateWay), **10.0.2.3**(DNS Server), **10.0.2.4**(TFTP Server) 용도로 IP 예약
 
-### 5.1 Vagrant, VirtualBox 세팅 확인
+### 5.1. Vagrant, VirtualBox 세팅 확인
 
 ```bash
 ############################
@@ -384,7 +384,7 @@ PS C:\Code\cilium-lab\vagrant>vagrant ssh cilium-m1
 (⎈|HomeLab:N/A) root@cilium-m1:~# 
 ```
 
-### 5.2 VM Network 설정 확인
+### 5.2. VM Network 설정 확인
 
 ```bash
 ############################
@@ -463,7 +463,7 @@ PING cilium-w2 (192.168.10.102) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.772/0.772/0.772/0.000 ms
 ```
 
-### 5.3 kubernetes 정보 확인
+### 5.3. kubernetes 정보 확인
 
 ```bash
 ############################
@@ -520,7 +520,7 @@ KUBELET_KUBEADM_ARGS="--node-ip=192.168.10.100 --container-runtime-endpoint=unix
 ## cilium-w1, cilium-w2에서도 반복
 ```
 
-### 6.1 INTERNAL-IP 설정 변경 확인
+### 6.1. INTERNAL-IP 설정 변경 확인
 
 ```bash
 ⎈|HomeLab:N/A) root@cilium-m1:~# k get no -o wide
@@ -661,7 +661,7 @@ Host cilium-w2
     HostKeyAlgorithms +ssh-rsa
 ```
 
-### 7.1 편의성 세팅 확인
+### 7.1. 편의성 세팅 확인
 
 ```bash
 ############################

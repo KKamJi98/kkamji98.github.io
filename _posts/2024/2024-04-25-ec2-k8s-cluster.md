@@ -165,7 +165,7 @@ alias microctl='microk8s kubectl'
 > 간단하게 nginx 서버를 NodePort로 30080포트로 배포해보겠습니다
 {: .prompt-tip}
 
-### 8.1 테스트용 nginx menifest 파일 (nginx_test.yml)
+### 8.1. 테스트용 nginx menifest 파일 (nginx_test.yml)
 
 ```bash
 apiVersion: apps/v1
@@ -204,7 +204,7 @@ spec:
       nodePort: 30080
 ```
 
-### 8.2 적용
+### 8.2. 적용
 
 ```bash
 root@i-0fefad06e169df0c3:~/microk8s# microctl apply -f nginx_test.yml
@@ -212,7 +212,7 @@ deployment.apps/nginx-deployment created
 service/nginx-service created
 ```
 
-### 8.3 확인
+### 8.3. 확인
 
 ```bash
 root@i-0fefad06e169df0c3:~/microk8s# kubectl get svc
@@ -223,7 +223,7 @@ nginx-service   NodePort    10.152.183.56   <none>        80:30080/TCP   80s
 
 ![pic4](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/6b31c129-84cf-4cc4-928a-79dc7b850f86)
 
-### 8.4 마무리
+### 8.4. 마무리
 
 > 여러 우여곡절 끝에 구축에 성공했지만.. 내 시간이... ㅠㅠ 다음 포스트에서는 해당 Local에서 MicroK8s에 명령어를 내리는 것을 다뤄보겠습니다. (될지는 모르겠지만..?).  
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  

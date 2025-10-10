@@ -1,46 +1,68 @@
-# blog 스크립트 사용 가이드
+# Blog Post Formatting Scripts
 
-## 공통 사전 준비
+This directory contains Python scripts to automatically format and standardize markdown files for the blog, primarily located in the `_posts` directory.
 
-- Python 3.9 이상이 설치되어 있어야 합니다.
-- 현재 작업 디렉터리는 저장소 루트(`kkamji_scripts/`)라고 가정합니다.
-- 변경 전에 `_posts/` 디렉터리 백업을 권장합니다. 자동 포맷팅 스크립트이므로 롤백이 어려울 수 있습니다.
+## Recommended Usage
 
-```bash
-# 예시: 백업 디렉터리 생성
-cp -a ../_posts ../_posts_backup_$(date +%Y%m%d%H%M%S)
-```
+The easiest way to apply all formatting rules is to use the `run_md_tools.sh` script. This script runs the necessary Python scripts in the correct order.
 
-## add_headers.py
+**Prerequisites:**
+- Python 3.9 or higher must be installed.
 
-- 목적: Markdown 파일에서 `##` 레벨 헤더 앞에 구분선을 삽입해 가독성을 높입니다.
-- 동작: `_posts/` 트리 내 모든 `.md` 파일을 순회하며 `\n## ` 패턴 앞에 `---` 라인을 추가합니다.
-- 실행 예:
+**Execution:**
+
+The script can be run from the root of the repository.
 
 ```bash
-python blog/add_headers.py
+# Apply formatting to all posts in the default _posts directory
+./kkamji_scripts/blog/run_md_tools.sh
+
+# Apply formatting to a different directory
+./kkamji_scripts/blog/run_md_tools.sh --root path/to/your/posts
 ```
 
-- 주의 사항:
-  - `_posts/` 상대 경로는 현재 작업 디렉터리를 기준으로 합니다. 다른 경로를 사용하려면 스크립트 내 `posts_directory` 상수를 수정해야 합니다.
-  - 이미 `---`가 있는 경우에도 다시 삽입할 수 있으므로 Git diff를 확인한 뒤 커밋하세요.
-
-## insert_blank_lines.py
-
-- 목적: `---` 구분선과 `##` 헤더 사이에 한 줄 공백을 강제하여 Markdown 렌더링을 안정화합니다.
-- 동작: `_posts/` 트리 내 `.md` 파일에서 `---`와 `##` 사이에 빈 줄이 없으면 추가합니다.
-- 실행 예:
+**Important:** Before running, it is highly recommended to back up your `_posts` directory, as the scripts will modify files in place.
 
 ```bash
-python blog/insert_blank_lines.py
+# Example: Create a timestamped backup
+cp -a _posts _posts_backup_$(date +%Y%m%d%H%M%S)
 ```
 
-- 주의 사항:
-  - `add_headers.py` 실행 후 후속 단계로 사용하면 헤더 블록 구조가 정리됩니다.
-  - 추가 공백 외에는 파일을 변경하지 않습니다. 그러나 다중 실행 시에도 안전하므로 필요할 때마다 반복 실행 가능합니다.
+---
 
-## 권장 실행 순서
+## Individual Scripts
 
-1. `python blog/add_headers.py`
-2. `python blog/insert_blank_lines.py`
-3. Git diff를 확인하고 결과를 검토합니다.
+The shell script orchestrates the following Python scripts. You can also run them individually if needed.
+
+### 1. `fix_md_h2_rules.py`
+
+- **Purpose**: Enforces consistent horizontal rules (`---`) above all H2 (`##`) headers to improve readability and structure.
+- **Features**:
+    - Intelligently skips code blocks (```) and YAML front matter.
+    - Prevents duplicate horizontal rules.
+    - Normalizes spacing around the horizontal rule, ensuring exactly one blank line between the rule and the header.
+- **Usage**:
+    ```bash
+    # Run on the default _posts directory
+    python3 kkamji_scripts/blog/fix_md_h2_rules.py
+
+    # Run on a specific file with a dry-run preview
+    python3 kkamji_scripts/blog/fix_md_h2_rules.py --file _posts/path/to/post.md --dry-run
+    ```
+
+### 2. `renumber_headers.py`
+
+- **Purpose**: Automatically adds and corrects numerical prefixes to headers (e.g., `1.`, `1.1.`, `1.2.1.`).
+- **Features**:
+    - Starts numbering from H2 (`##`) by default, but is configurable.
+    - Skips code blocks.
+    - Strips old numbers before applying new ones to ensure correctness.
+    - Excludes specific sections like "관련 글" from being numbered.
+- **Usage**:
+    ```bash
+    # Run on the default _posts directory
+    python3 kkamji_scripts/blog/renumber_headers.py
+
+    # Start numbering from H3 (###) instead
+    python3 kkamji_scripts/blog/renumber_headers.py --min-level 3
+    ```

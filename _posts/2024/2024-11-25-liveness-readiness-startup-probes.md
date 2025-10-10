@@ -21,15 +21,15 @@ image:
 
 Probe에는 크게 아래 3가지 유형이 있습니다.
 
-### 1.1 Liveness Probe
+### 1.1. Liveness Probe
 
 컨테이너가 "여전히 살아있는지"를 확인하는 Probe입니다. 만약 컨테이너 내부에 데드락(deadlock)이나 치명적 오류가 발생하여 더 이상 정상 응답을 하지 않는다면, Liveness Probe 실패 시 kubelet은 해당 컨테이너를 재시작하여 문제를 해결하려고 합니다.
 
-### 1.2 Readiness Probe
+### 1.2. Readiness Probe
 
 컨테이너가 "트래픽을 받을 준비가 되었는지"를 확인하는 Probe입니다. 애플리케이션이 기동되었지만, 아직 완전한 처리 준비가 되지 않은 경우(예: DB 커넥션 풀 준비, 캐시 로딩), Readiness Probe를 통해 이 기간 동안은 Service 엔드포인트에서 Pod를 제외하여 실제 요청이 전달되지 않도록 합니다.
 
-### 1.3 Startup Probe
+### 1.3. Startup Probe
 
 애플리케이션 기동에 많은 시간이 걸리는 경우, Startup Probe를 사용하여 "애플리케이션이 완전히 시작되었는지" 확인할 수 있습니다. Startup Probe가 성공하기 전까지는 Liveness와 Readiness Probe 체크를 지연시킴으로써, 초기화 시간이 긴 애플리케이션이 Liveness Probe에 의해 조기 재시작되는 문제를 예방할 수 있습니다.
 

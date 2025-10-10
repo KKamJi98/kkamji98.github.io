@@ -46,7 +46,7 @@ image:
 
 **Cilium Metric**은 `cilium-agent`, `cilium-envoy`, `cilium-operator`와 같은 **Cilium Processes** 자체의 상태에 대한 인사이트를 제공합니다. Prometheus 메트릭을 활성화하려면. Helm으로 배포할 때 `prometheus.enabled=true` 값을 설정해야 합니다.
 
-### 1.1 Cilium Metrics 활성화
+### 1.1. Cilium Metrics 활성화
 
 ```shell
 ❯ helm upgrade --install cilium cilium/cilium --version 1.17.6 --reuse-values \
@@ -55,7 +55,7 @@ image:
   --set operator.prometheus.enabled=true
 ```
 
-### 1.2 Cilium Metrics 활성화 확인
+### 1.2. Cilium Metrics 활성화 확인
 
 ```shell
 ❯ kubectl get ds/cilium -n kube-system -o yaml | yq '.spec.template.metadata.annotations'
@@ -101,7 +101,7 @@ Events:                   <none>
 
 **Cilium Metric**을 사용하면 **Cilium** 자체의 상태를 모니터링할 수 있는 반면, **Hubble Metric**을 사용하면 연결 및 보안과 관련하여 **Cilium에서 관리하는 Kubernetes Pod의 네트워크 동작을 모니터링**할 수 있습니다.
 
-### 2.1 Hubble Metrics 활성화
+### 2.1. Hubble Metrics 활성화
 
 ```shell
 ❯ helm upgrade --install cilium cilium/cilium --version 1.17.6 --reuse-values \
@@ -113,7 +113,7 @@ Events:                   <none>
   --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}"
 ```
 
-### 2.2 Hubble Metrics 활성화 확인
+### 2.2. Hubble Metrics 활성화 확인
 
 ```shell
 ❯ kubectl describe svc -n kube-system hubble-metrics              
@@ -147,7 +147,7 @@ Events:                   <none>
 
 위에서 `Cilium`과 `Hubble`의 Metrics를 Prometheus가 수집할 수 있도록 설정해주었습니다. 이제 Prometheus를 배포해 Metrics를 수집하고 Grafana를 사용해 수집된 Metrics를 확인해보도록 하겠습니다. 이를 위해서는 아래와 같이 Prometheus가 Cilium과 Hubble의 Metrics을 수집할 수 있도록 Scrape Config를 추가해야합니다.
 
-### 3.1 Cilium Scrape Config
+### 3.1. Cilium Scrape Config
 
 ```yaml
 scrape_configs:
@@ -166,7 +166,7 @@ scrape_configs:
 
 ```
 
-### 3.2 Hubble Scrape Config
+### 3.2. Hubble Scrape Config
 
 ```yaml
 scrape_configs:
@@ -185,7 +185,7 @@ scrape_configs:
         replacement: $1:$2
 ```
 
-### 3.3 Prometheus & Grafana 배포하기 (kube-prometheus-stack)
+### 3.3. Prometheus & Grafana 배포하기 (kube-prometheus-stack)
 
 위의 scrape config 설정은 `kube-prometheus-stack` Helm Chart의 Values의 `prometheus.prometheusSpec.additionalScrapeConfigs`에 정의해주겠습니다. `ingress`, `NodePort`혹은 `kubectl port-forward`를 사용해서 접속하실 수 있습니다.
 
@@ -229,23 +229,23 @@ EOF
     --version 75.12.0 --reuse-values -f kube-prometheus-stack-with-cilium-hubble-values.yaml
 ```
 
-### 3.4 Scrape Config 확인
+### 3.4. Scrape Config 확인
 
 Prometheus 웹 UI에 접속 후 상단의 `Status > Target Health`에서 추가한 `kubernetes-pods`, `kubernetes-endpoints` Target의 State를 확인하고, `Status > Configuration`에서 실제 `kubernetes-pods`, `kubernetes-endpoints` Job을 확인하실 수 있습니다.
 
-#### 3.4.1 Target Health 확인
+#### 3.4.1. Target Health 확인
 
 ![Prometheus Target Health](/assets/img/kubernetes/cilium/prometheus_target_health.webp)
 
-#### 3.4.2 Scrape Config Job 확인 (kubernetes-pods)
+#### 3.4.2. Scrape Config Job 확인 (kubernetes-pods)
 
 ![Scrape Config - kubernetes-pods](/assets/img/kubernetes/cilium/scrape_config_kubernetes_pods.webp)
 
-#### 3.4.3 Scrape Config Job 확인 (kubernetes-endpoints)
+#### 3.4.3. Scrape Config Job 확인 (kubernetes-endpoints)
 
 ![Scrape Config - kubernetes-endpoints](/assets/img/kubernetes/cilium/scrape_config_kubernetes_endpoints.webp)
 
-#### 3.4.4 Scrape Config Job 확인 (secret 내용 확인 & pod 내부에서 config 파일 확인)
+#### 3.4.4. Scrape Config Job 확인 (secret 내용 확인 & pod 내부에서 config 파일 확인)
 
 ```shell
 ## Secrets 확인
@@ -328,19 +328,19 @@ scrape_interval: 30s
 
 간단한 Prometheus Query를 통해 Cilium과 Hubble의 Metrics을 확인해보겠습니다. 우측 상단 톱니 바퀴 모양에서 `autocomplete`와 `syntax highlighting` 기능을 활성화 하시면 쿼리를 조금 더 편리하게 작성하실 수 있습니다.
 
-### 4.1 Prometheus Setting
+### 4.1. Prometheus Setting
 
 ![Prometheus Setting](/assets/img/kubernetes/cilium/prometheus_setting.webp)
 
-### 4.2 Prometheus Sample Query
+### 4.2. Prometheus Sample Query
 
 ![Cilium BPF Prometheus Sample Query](/assets/img/kubernetes/cilium/cilium_bpf_prometheus_query.webp)
 
-### 4.3 Prometheus Sample Query (결과)
+### 4.3. Prometheus Sample Query (결과)
 
 ![Cilium BPF Prometheus Sample Query Result](/assets/img/kubernetes/cilium/cilium_bpf_prometheus_query_result.webp)
 
-### 4.4 Prometheus Sample Query (Graph)
+### 4.4. Prometheus Sample Query (Graph)
 
 ![Cilium BPF Prometheus Sample Query Result Graph](/assets/img/kubernetes/cilium/cilium_bpf_prometheus_query_result_graph.webp)
 
@@ -357,29 +357,29 @@ Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, E
 
 - [Grafana Labs - Cilium Metrics](https://grafana.com/grafana/dashboards/6658-cilium-metrics/)
 
-### 5.1 Data Source 확인
+### 5.1. Data Source 확인
 
 ![Grafana Data Sources](/assets/img/kubernetes/cilium/cilium_grafana_data_sources.webp)
 
-### 5.2 Explorer에서 Query 확인
+### 5.2. Explorer에서 Query 확인
 
 ![Grafana Explorer](/assets/img/kubernetes/cilium/cilium_grafana_explorer.webp)
 
-### 5.3 Dashboard Import 하기
+### 5.3. Dashboard Import 하기
 
-#### 5.3.1 Grafana Dashboard Import 클릭
+#### 5.3.1. Grafana Dashboard Import 클릭
 
 ![Grafana Dashboard Import Button](/assets/img/kubernetes/cilium/grafana_dashboard_import_button.webp)
 
-#### 5.3.2 Grafana-Dashboard Import에서 Dashboard의 ID 삽입 후 Load
+#### 5.3.2. Grafana-Dashboard Import에서 Dashboard의 ID 삽입 후 Load
 
 ![Grafana Dashboard Import ID](/assets/img/kubernetes/cilium/grafana_dashboard_import_id.webp)
 
-#### 5.3.3 Dashboard Name, Folder, Datasource 지정 후 Import
+#### 5.3.3. Dashboard Name, Folder, Datasource 지정 후 Import
 
 ![Grafana Dashboard Import](/assets/img/kubernetes/cilium/grafana_dashboard_import.webp)
 
-### 5.4 Dashboard Import 확인
+### 5.4. Dashboard Import 확인
 
 ![Grafana Imported Dashboard Check](/assets/img/kubernetes/cilium/grafana_imported_dashboard_check.webp)
 

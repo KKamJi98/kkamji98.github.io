@@ -46,23 +46,23 @@ image:
 
 Cilium은 크게 `Cilium Operator`, `Cilium Agent`, `Cilium Client`, `Hubble`, `DataStore` 로 나뉘며 각 구성 요소들은 다음과 같이 동작합니다.
 
-### 1.1 Cilium Operator
+### 1.1. Cilium Operator
 
 클러스터 전역에 하나 또는 고가용성을 위해 2~3대 정도로 배포되는 구성요소로, 노드별 에이전트가 아닌 클러스터 전체적인 작업을 담당합니다. 예를 들어 Pod IP 할당(IPAM), 노드 간 라우팅 정보 관리, kvstore(ETCD 등)와의 연동을 처리합니다
 
-### 1.2 Cilium Agent
+### 1.2. Cilium Agent
 
 데몬셋으로 실행되어 각 노드에서 Kubernetes와 상호작용합니다. NetworkPolicy, Service 등의 리소스를 감지하고 이를 기반으로 eBPF 프로그램 및 맵을 구성하여 Pod 사이의 모든 트래픽을 제어합니다. 예를 들어 새로운 Pod가 생성되면 에이전트는 해당 Pod 네트워크 네임스페이스에 eBPF hook을 설정하고 필요한 경로 설정, 정책맵 초기화를 수행합니다.
 
-### 1.3 Cilium Client (CLI)
+### 1.3. Cilium Client (CLI)
 
 Cilium은 관리용 CLI 도구(cilium CLI)를 제공하여 설치, 상태 점검, 문제 해결 등을 지원합니다. 또한 각 노드 에이전트와 통신하는 디버그 CLI(cilium-dbg)를 통해 로컬 eBPF 맵 상태 등을 점검할 수 있습니다.
 
-### 1.4 Hubble (Option)
+### 1.4. Hubble (Option)
 
 Hubble은 Cilium에 통합된 네트워크 가시성/모니터링 모듈로서, 각 노드의 Cilium 에이전트에 내장된 Hubble 서버를 통해 eBPF로 수집된 플로우 데이터를 gRPC API로 제공합니다. 추가로 Hubble Relay를 배포하면 각 노드의 Hubble 서버와 연결되어 클러스터 전체의 플로우를 집계하며, 여기에 CLI나 Hubble UI 웹 인터페이스를 연결해 실시간 서비스 맵과 흐름 추적을 시각화할 수 있습니다.
 
-### 1.5 Data Store
+### 1.5. Data Store
 
 Cilium Agent 간의 상태를 저장하고 전파하기 위해 사용되는 데이터 저장소입니다. Cilium은 에이전트 간 보안 ID·라우팅·정책 메타데이터를 전파하기 위해 다음과 같이 두 가지 방식을 지원합니다.
 
@@ -80,7 +80,7 @@ Cilium을 배포하기 전, 현재 시스템이 Cilium의 최소 요구사항을
 - Hosts with either AMD64 or AArch64 architecture
 - Linux kernel >= 5.4 or equivalent (e.g., 4.18 on RHEL 8.6)
 
-### 2.1 CPU Architecture, Kerner Version & Options 확인
+### 2.1. CPU Architecture, Kerner Version & Options 확인
 
 ```bash
 ###############################################
@@ -223,7 +223,7 @@ Cilium 요구 커널 옵션 점검 (kernel 6.8.0-53-generic)
 
 ```
 
-### 2.2 Kernel Versions for Advanced Features
+### 2.2. Kernel Versions for Advanced Features
 
 | Cilium Feature                               | Minimum Kernel Version |
 | :------------------------------------------- | :--------------------- |

@@ -49,7 +49,7 @@ Cilium은 쿠버네티스 클러스터에서 Pod 간 트래픽을 전달하는 �
 
 Encapsulation Mode는 별도의 설정을 하지 않으면 Cilium이 자동으로 활성화하는 기본 Routing 방식입니다. 클러스터의 모든 노드가 `VXLAN` 또는 `GENEVE`와 같은 UDP 기반 캡슐화 프로토콜을 사용하여 `Tunnel Mesh`를 형성합니다. 모든 노드 간 트래픽은 해당 터널을 통해 캡슐화되어 전달됩니다.
 
-### 2.1 네트워크 요구사항
+### 2.1. 네트워크 요구사항
 
 - 노드들이 서로 IP/UDP로 통신 가능하다면 추가 Routing 조건은 없음
 - IPv6 Only 클러스터에서만 IPv6 언더레이를 사용할 수 있으며, 듀얼 스택 환경은 지원하지 않음
@@ -60,20 +60,20 @@ Encapsulation Mode는 별도의 설정을 하지 않으면 Cilium이 자동으�
 | VXLAN(기본값) | 8472/UDP           |
 | GENEVE        | 6081/UDP           |
 
-### 2.2 Encapsulation Mode의 장점
+### 2.2. Encapsulation Mode의 장점
 
 1. **단순성(Simplicity)** – 네트워크가 PodCIDR을 인식할 필요가 없으며, 클러스터 노드는 여러 Routing 또는 링크 레이어 도메인을 생성할 수 있습니다. 네트워크 토폴로지에 관계없이 노드 간 연결만 확보되면 됩니다.
 2. **주소 공간(Addressing space)** – 기본 네트워크 제약에 의존하지 않기 때문에 PodCIDR 크기만 충분히 크게 설정하면 노드당 수천 개의 Pod를 실행할 수 있습니다.
 3. **자동 구성(Auto-configuration)** – Kubernetes와 함께 실행될 때 노드 목록과 할당 프리픽스가 각 에이전트에 자동으로 전달됩니다. 신규 노드가 추가되면 자동으로 터널 메시에 편입됩니다.
 4. **정체성 맥락(Identity context)** – 캡슐화 프로토콜은 패킷에 메타데이터를 함께 실어 보낼 수 있어 Cilium이 소스 보안 ID 등의 정보를 전송하는 데 활용합니다
 
-### 2.3 Encapsulation Mode의 단점
+### 2.3. Encapsulation Mode의 단점
 
 1. **MTU 오버헤드** – 캡슐화 헤더(약 50바이트)가 추가되기 때문에 유효 MTU가 줄어들어 Native Routing보다 처리량이 낮을 수 있습니다. Jumbo Frame(예: `9000 Byte MTU`)을 활성화하면 이러한 오버헤드를 크게 완화할 수 있습니다.
 
 > **MTU** - Maximum Transmission Unit (최대 전송 단위)
 
-### 2.4 Encapsulation Mode 설정
+### 2.4. Encapsulation Mode 설정
 
 Encapsulation Mode는 기본값으로 활성화되며, 아래 **Cilium 에이전트 설정 옵션**으로 세부 동작을 조정할 수 있습니다.
 
@@ -91,7 +91,7 @@ tunnel-port: 8472        # 프로토콜 포트 (Geneve는 6081)
 
 Native Routing Mode는 Cilium이 캡슐화를 사용하지 않고 기본 네트워크의 Routing 기능을 활용하는 Mode입니다. `routing-mode: native`로 설정해 활성화하며, Cilium은 로컬 엔드포인트가 아닌 패킷을 모두 Linux 커널의 Routing 하위 시스템에 위임합니다. 즉, Pod에서 발생하는 패킷이 로컬 프로세스처럼 Routing됩니다.
 
-### 3.1 네트워크 요구 사항
+### 3.1. 네트워크 요구 사항
 
 - 클러스터 노드를 연결하는 네트워크는 모든 PodCIDR 주소를 전달할 수 있어야 함
 - 각 노드 또는 라우터는 다른 노드의 Pod IP에 대한 경로를 알고 있어야 함. 이를 달성하는 방법은 아래 두 가지가 있음
@@ -103,7 +103,7 @@ Native Routing Mode는 Cilium이 캡슐화를 사용하지 않고 기본 네트�
      - 단일 L2 네트워크를 공유한다면 `auto-direct-node-routes: true` 옵션으로 자동 관리할 수 있음  
      - 그렇지 않은 경우 BGP 데몬 등 외부 시스템이 경로를 배포해야 함
 
-### 3.2 Native Routing Mode 설정
+### 3.2. Native Routing Mode 설정
 
 Native Routing Mode를 사용하려면 아래 값을 지정합니다
 
@@ -119,7 +119,7 @@ direct-routing-skip-unreachable: true    # BGP 라우터가 있는 경우, 직�
 
 ## 4. 실습) Encapsulation Mode와 Native Routing Mode에서 노드 간 파드 통신 상세 확인
 
-### 4.1 Sample Application 배포
+### 4.1. Sample Application 배포
 
 ```shell
 cat << EOF | kubectl apply -f -
@@ -188,7 +188,7 @@ spec:
 EOF
 ```
 
-### 4.2 Encapsulation Mode에서 노드 간 파드 통신 확인
+### 4.2. Encapsulation Mode에서 노드 간 파드 통신 확인
 
 ```shell
 ## routing mode 확인 (tunnel)
@@ -273,7 +273,7 @@ tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 
 
 ![Term Shark In Encapsulation Mode](/assets/img/kubernetes/cilium/termshark_in_encapsulation_mode.webp)
 
-### 4.3 Native Mode에서 노드 간 Pod 통신 확인
+### 4.3. Native Mode에서 노드 간 Pod 통신 확인
 
 ```shell
 ## Encapsulation Mode에서 -> Native로 변경
@@ -330,7 +330,7 @@ tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 
 ```
 ![Term Shark In Native Mode](/assets/img/kubernetes/cilium/termshark_in_native_mode.webp)
 
-### 4.4 실습 결론
+### 4.4. 실습 결론
 
 1. **Native Mode**
    - 언더레이 NIC에서 바로 PodIP에서 PodIP로 가는 ICMP 확인 가능

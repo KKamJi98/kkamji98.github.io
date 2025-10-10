@@ -50,7 +50,7 @@ image:
 - `tiefighter`와 `xwing`은 각각 제국(Empire)과 동맹(Alliance) 우주선이 착륙 요청을 보내는 클라이언트 역할을 합니다.
 - `tiefighter`와 `xwing`에 대해 서로 다른 보안 정책을 적용하고, `deathstar` 착륙 서비스에 대한 접근 제어를 실습할 수 있게 됩니다.
 
-### 1.1 Demo를 통해 확인할 수 있는 내용
+### 1.1. Demo를 통해 확인할 수 있는 내용
 
 1. 서비스 디스커버리와 라벨 셀렉터 이해
    - Service가 Selector로 특정 라벨을 가진 pod만 선택해 트래픽을 전달하는 방식 이해
@@ -288,7 +288,7 @@ Jul 25 13:21:15.573: default/tiefighter:53314 (ID:22234) -> default/deathstar-8c
 Jul 25 13:21:15.573: 10.0.0.201:53314 (remote-node) -> default/deathstar-8c4c77fb7-b9qmw:80 (ID:27476) to-endpoint FORWARDED (TCP Flags: ACK)
 ```
 
-### 4.1 Traffic Flow 해석
+### 4.1. Traffic Flow 해석
 
 | 시각     | 주체(엔드포인트 ID)                           | 행위                             | 의미                                                                       |
 | -------- | --------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------- |
@@ -309,7 +309,7 @@ Cilium을 사용하고 Network Policy를 정의할 때, Endpoint IP는 중요하
 
 Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend 방향이 허용되면, 같은 TCP/UDP 세션의 응답 패킷도 자동으로 허용됩니다. -> 리턴 패킷 자동 허용
 
-### 5.1 Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
+### 5.1. Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
 
 ![L4 Layer Policy](/assets/img/kubernetes/cilium/l4_layer_policy.webp)
 > [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)
@@ -420,7 +420,7 @@ command terminated with exit code 28
 
 > - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)
 
-### 6.1 허용되지 않은 요청 확인
+### 6.1. 허용되지 않은 요청 확인
 
 ```shell
 # tiefighter에서 허용되지 않은 PUT 요청 실행 (정책 적용 전)
@@ -439,7 +439,7 @@ main.main()
 > 정책이 없을 때는 위와 같은 민감한 엔드포인트가 호출되어 문제가 발생할 수 있습니다.
 {: .prompt-danger}
 
-### 6.2 L7 정책 YAML
+### 6.2. L7 정책 YAML
 
 ![L7 Layer Policy](/assets/img/kubernetes/cilium/cilium_l7_layer_policy.webp)
 > [L7 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)

@@ -19,15 +19,15 @@ image:
 
 그런데 특정 배포 직후부터 약 3분 간격으로 **ArgoCD**가 `Sync` 되었다는 알람을 반복적으로 받았습니다. **ArgoCD** 대시보드에서 확인해보니 무려 63개의 Pod가 `Degraded` 상태였고, kubectl 명령어로 상세 조회해보니 Pod들이 `Evicted` 상태이며 일부는 `ContainerStatusUnknown으로` 나타났습니다.
 
-### 1.1 ArgoCD Slack Alarms
+### 1.1. ArgoCD Slack Alarms
 
 ![ArgoCD Slack Alarms](/assets/img/kubernetes/argocd-slack-alarms.png)
 
-### 1.2 ArgoCD Degraded Pods
+### 1.2. ArgoCD Degraded Pods
 
 ![ArgoCD Degraded Pods](/assets/img/kubernetes/argocd-degraded-pods.webp)
 
-### 1.3 Evicted Pods
+### 1.3. Evicted Pods
 
 ```shell
 ❯ kubectl get pod -n image-converter
@@ -49,7 +49,7 @@ image-converter-backend-8bc77f4c4-swwhm     0/1     Evicted                  0  
 > PV를 사용하는 Pod의 디스크 사용량 증가에 따른 노드 디스크 부족
 {: .prompt-tip}
 
-### 2.1 Describe Pod
+### 2.1. Describe Pod
 
 ```shell
 ❯ kubectl describe pod -n image-converter image-converter-backend-8bc77f4c4-swwhm 
@@ -72,7 +72,7 @@ Message:          Pod was rejected: The node had condition: [DiskPressure].
 Events:                      <none>
 ```
 
-### 2.2 Describe Node
+### 2.2. Describe Node
 
 ```shell
 ❯ kubectl describe node k8s-w2
@@ -105,7 +105,7 @@ Type:         Warning
 Events:       <none>
 ```
 
-### 2.3 Node Disk Usage 확인
+### 2.3. Node Disk Usage 확인
 
 ```shell
 ❯ ansible k8s_nodes -m shell -a "df -h | grep lv"
@@ -117,7 +117,7 @@ k8s-w1 | CHANGED | rc=0 >>
 /dev/mapper/ubuntu--vg-ubuntu--lv   27G   19G  6.8G  74% /
 ```
 
-### 2.4 Kubelet 로그 확인
+### 2.4. Kubelet 로그 확인
 
 ```shell
 Jun 18 00:00:14 k8s-w2 kubelet[391617]: I0618 00:00:14.229011  391617 image_gc_manager.go:383] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=1290842112 lowThreshold=80
@@ -132,7 +132,7 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088931  391617 generic.go
 Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go:2500] "SyncLoop (PLEG): event for pod" pod="image-converter/image-converter-backend-8bc77f4c4-v8w7m" event={"ID":"1e53a7ad-acc8-4bb3-b6b4-af1b06bfd435","Type":"ContainerDied","Data":"c6a5c9ea95e7674f67a4cccab573f533ac148039033b3b845a32607fb305b363"}
 ```
 
-### 2.5 디스크 사용량 확인 (리소스 확인)
+### 2.5. 디스크 사용량 확인 (리소스 확인)
 
 ```shell
 ❯ ncdu /
@@ -176,12 +176,12 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 
 ## 4. 해결 방법
 
-### 4.1 노드 디스크 용량 확장
+### 4.1. 노드 디스크 용량 확장
 
 - 디스크 볼륨 자체의 용량을 추가 확장하여 근본적인 문제를 해결
 - **VM(Virtual Machine)**의 디스크 크기를 조정하거나 추가 디스크를 연결
 
-### 4.2 노드 디스크 정리 (containerd)
+### 4.2. 노드 디스크 정리 (containerd)
 
 이미지 **Garbage Collection**을 수동으로 수행하여 사용하지 않는 이미지를 삭제
 
@@ -189,7 +189,7 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 sudo crictl rmi --prune
 ```
 
-### 4.3 Evicted 상태의 Pod 삭제
+### 4.3. Evicted 상태의 Pod 삭제
 
 ```shell
 kubectl delete pods --field-selector=status.phase=Failed -n image-converter
@@ -199,11 +199,11 @@ kubectl delete pods --field-selector=status.phase=Failed -n image-converter
 
 ## 5. 문제 재발 방지 방법
 
-### 5.1 **모니터링 강화**
+### 5.1. **모니터링 강화**
 
 - Prometheus와 Grafana를 활용하여 DiskPressure, Pod Eviction 현황을 실시간 모니터링하고 경고를 설정하여 미리 예방 조치
 
-### 5.2 ephemeral-storage 리소스 설정
+### 5.2. ephemeral-storage 리소스 설정
 
 - ephemeral-storage는 Pod가 사용하는 임시 저장 공간으로, Pod 내에서 로그, 캐시, 임시 파일 등을 저장하는 데 사용
 - Pod가 예상보다 많은 디스크를 사용하지 않도록 제한하고 관리하는 용도로 사용
@@ -216,7 +216,7 @@ resources:
     ephemeral-storage: 500Mi
 ```
 
-### 5.3 정기적인 디스크 관리
+### 5.3. 정기적인 디스크 관리
 
 - 디스크 공간 점검 및 관리 스크립트를 사용해 주기적으로 이미지 정리 수행 (CronJob)
 

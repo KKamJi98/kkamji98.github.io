@@ -25,14 +25,14 @@ image:
 
 ## 1. Pod Identity 장점, 단점
 
-### 1.1 장점
+### 1.1. 장점
 
 **단일 신뢰 주체**: 모든 클러스터에서 `pods.eks.amazonaws.com`만 지정하면 되기 때문에 IAM Role 재사용이 쉬워졌습니다.  
 **운영 분리**: IAM Role 관리자는 IAM만, 클러스터 관리자는 EKS만 관리하면 됩니다. OIDC Provider 생성 권한이 없어도 되기 때문에 권한 위임 체계가 분리됩니다.  
 **확장성**: STS를 Pod마다 호출하지 않고 노드당 1회 호출하여, 대규모 배치나 ML 워크로드에도 안정적입니다.  
 **추가 기능**: Role Session Tag, EKS 콘솔 내 권한 제안(Suggested Policy) 기능 등 운영 및 감사 측면에서도 유용합니다.  
 
-### 1.2 단점
+### 1.2. 단점
 
 **지원 제한**: 현재는 Linux EC2 노드에서만 사용 가능하며, Fargate나 Windows는 지원되지 않습니다.  
 **Agent 필요**: 모든 노드에 eks-pod-identity-agent DaemonSet이 설치되어 있어야 합니다.  
@@ -58,7 +58,7 @@ image:
 
 ## 3. Pod Identity PoC(Proof of Concept)
 
-### 3.1 pod-identity-agent 설치
+### 3.1. pod-identity-agent 설치
 
 EKS 콘솔에서 Add-on을 설치하거나 CLI를 통해 eks-pod-identity-agent DaemonSet을 설치합니다.
 
@@ -72,7 +72,7 @@ NAME                     DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NO
 eks-pod-identity-agent   2         2         2       2            2           <none>          111s
 ```
 
-### 3.2 IAM Policy 생성
+### 3.2. IAM Policy 생성
 
 테스트를 위해 S3에 접근할 수 있는 IAM Policy를 생성합니다.  
 
@@ -110,7 +110,7 @@ EOF
 }
 ```
 
-### 3.3 IAM Role 생성
+### 3.3. IAM Role 생성
 
 IAM Role을 생성하고, 위에서 만든 Policy를 연결합니다. 해당 Role은 Pod Identity Agent가 AssumeRoleForPodIdentity API를 호출할 때 사용됩니다.  
 
@@ -137,7 +137,7 @@ EOF
 ❯ aws iam create-role --role-name pod-identity-s3-bucket-role --assume-role-policy-document file://pod-identity-s3-bucket-role.json --description "pod identity role for pod identity s3 bucket access"
 ```
 
-### 3.4 Service Account 생성
+### 3.4. Service Account 생성
 
 ```bash
 cat >kkamji-service-account.yaml <<EOF
@@ -152,7 +152,7 @@ kubectl apply -f kkamji-service-account.yaml
 
 ```
 
-### 3.5 Service Account와 IAM Role 연결 (pod-identity-association)
+### 3.5. Service Account와 IAM Role 연결 (pod-identity-association)
 
 ```bash
 ❯ aws eks create-pod-identity-association --cluster-name kkamji-al2023 --role-arn arn:aws:iam::111111111111:role/pod-identity-s3-bucket-role --namespace default --service-account kkamji-service-account
@@ -173,7 +173,7 @@ kubectl apply -f kkamji-service-account.yaml
 }
 ```
 
-### 3.6 Pod 배포
+### 3.6. Pod 배포
 
 ```bash
 cat >kkamji-pod-identity-poc.yaml <<EOF
@@ -198,7 +198,7 @@ kubectl apply -f kkamji-pod-identity-poc.yaml
       AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
 ```
 
-### 3.7 정상 동작 확인
+### 3.7. 정상 동작 확인
 
 ```bash
 # Pod에 접속하여 S3 List 확인

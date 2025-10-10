@@ -41,7 +41,7 @@ Cilium은 **Identity-Based(Layer3)**, **Port Level(Layer4)**, **Application prot
 
 모든 보안 정책은 세션 기반 프로토콜에 대해 상태 저장 방식으로 적용됩니다. 즉, 정책에서 "A가 B에게 연결할 수 있다" 라고 정의되어 있으면 `A -> B` 로 세션이 시작되는 것은 허용되며, `B -> A`로 돌아오는 응답 패킷도 자동으로 허용됩니다(Stateful). 하지만 위 정책은 B가 독자적으로 A에게 연결을 시작할 수 있음을 의미하지 않으므로, `B -> A` 방향의 트래픽을 허용해야 합니다. 결국 일방적인 관계가 아닌 서로 상호작용하는 관계인 경우 `A -> B`, `B -> A` 서로 통신을 원활하게 양쪽 방향을 모두 정책으로 명시해야 합니다.
 
-### 1.1 Default Security Policy
+### 1.1. Default Security Policy
 
 - 정책이 로드되지 않은 경우, 정책 적용이 명시적으로 활성화되지 않은 한 모든 통신을 허용하는 것이 기본 동작입니다.
 - 첫 번째 정책 규칙이 로드되는 즉시 정책 적용이 자동으로 활성화되며, 모든 통신은 허용 목록에 추가되어야 하며, 그렇지 않으면 관련 패킷이 삭제됩니다.
@@ -66,7 +66,7 @@ Cilium은 IP 대신 **레이블에서 파생된 Identity**로 통신 주체를 �
 - **L4 Layer** -> Port/Protocol 기반 접근 제어  
 - **L7 Layer** -> Application Protocol(HTTP Method/Header/URL Path/...) 기반 접근 제어
 
-### 2.1 Cilium Identity 확인
+### 2.1. Cilium Identity 확인
 
 ```shell
 ##########################################################
@@ -166,7 +166,7 @@ kubectl exec -it -n kube-system ds/cilium -- cilium identity list | grep "k8s:k8
 #         k8s:study=8w
 ```
 
-### 2.2 Cilium Identity 변경 테스트
+### 2.2. Cilium Identity 변경 테스트
 
 - Cilium은 pod update 이벤트를 watch하므로, labels 변경 시 endpoint가 waiting-for-identity 상태로 전환되어 새로운 identity를 할당받습니다.
 - 이로 인해 security labels와 관련된 네트워크 정책도 자동으로 재적용됩니다.
@@ -193,7 +193,7 @@ The init identity is only allocated if the labels of the endpoint are not known 
 | `reserved:kube-apiserver` | 7 | Remote node(s) which have backend(s) serving the kube-apiserver running. |
 | `reserved:ingress` | 8 | Given to the IPs used as the source address for connections from Ingress proxies. |
 
-### 3.1 Sepcial Identity 확인
+### 3.1. Sepcial Identity 확인
 
 ```shell
 kubectl exec -it -n kube-system ds/cilium -- cilium identity list |  head -n 13

@@ -89,7 +89,7 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 > 온프레미스 환경이었다면 HDD나 SSD를 추가 장착해주어야 하지만 EBS는 콘솔을 통해 용량을 추가할 수 있습니다.
 {: .prompt-info}
 
-### 4.1 EBS 용량 확장
+### 4.1. EBS 용량 확장
 
 > EC2 -> Elastic Block Store -> Volume에 들어가서 확인해보자
 {: .prompt-info}
@@ -118,7 +118,7 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 > EBS의 용량을 변경 후 운영체제에 볼륨 확장 적용 해주어야 합니다
 {: .prompt-info}
 
-### 5.1 마운트 된 볼륨 확인
+### 5.1. 마운트 된 볼륨 확인
 
 ```bash
 ubuntu@ip-10-0-0-81:~$ sudo fdisk -l
@@ -138,7 +138,7 @@ Device        Start      End  Sectors  Size Type
 /dev/xvda16  227328  2097152  1869825  913M Linux extended boot
 ```
 
-### 5.2 파티션 확장
+### 5.2. 파티션 확장
 
 ```bash
 ubuntu@ip-10-0-0-81:~$ sudo growpart /dev/xvda 1
@@ -146,7 +146,7 @@ ubuntu@ip-10-0-0-81:~$ sudo growpart /dev/xvda 1
 CHANGED: partition=1 start=2099200 old: size=18872287 end=20971486 new: size=23066591 end=25165790
 ```
 
-### 5.3 파일 시스템 확장
+### 5.3. 파일 시스템 확장
 
 ```bash
 ubuntu@ip-10-0-0-81:~$ sudo resize2fs /dev/xvda1
@@ -157,7 +157,7 @@ old_desc_blocks = 2, new_desc_blocks = 2
 dThe filesystem on /dev/xvda1 is now 2883323 (4k) blocks long.
 ```
 
-### 5.4 확장 결과 확인
+### 5.4. 확장 결과 확인
 
 ```bash
 ubuntu@ip-10-0-0-81:~$ df -h

@@ -87,7 +87,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ![Add Pod a Template](/assets/img/ci-cd/jenkins/add-pod-template.png)
 
-### 5.1 Pod Template 설정
+### 5.1. Pod Template 설정
 
 > 요구사항에 따라 Agent로 실행되는 Pod에 대한 설정을 해줍니다. 각각의 옵션에 대한 자세한 설명은 옵션을 기입하는 오른쪽 **?(물음표)** 표시를 클릭하면 확인할 수 있습니다.
 > Usage 옵션을 통해 특정 라벨과 일치하는 노드에서만 Agent Pod가 생성되도록 할 수도 있으며 Container를 추가해 하나의 Pod에 여러 Container가 포함되도록 설정할 수도 있습니다.

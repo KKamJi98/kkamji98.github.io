@@ -57,7 +57,7 @@ In-Place Pod Resource Resize 기능은 Kubernetes v1.33에서 베타로 제공�
 
 test용 nginx pod를 생성하고, In-Place Pod Resource Resize 기능을 활용하여 Pod의 리소스 크기를 조정한 뒤, Pod가 재시작 없이 리소스 크기가 조정되는 것을 확인해보겠습니다.
 
-### 3.1 테스트용 nginx Pod 생성
+### 3.1. 테스트용 nginx Pod 생성
 
 ```shell
 # pod.yaml
@@ -96,7 +96,7 @@ requests:
   memory: 64Mi
 ```
 
-### 3.2 In-Place Pod Resource Resize 적용
+### 3.2. In-Place Pod Resource Resize 적용
 
 ```shell
 # Pod 리소스 크기 조정

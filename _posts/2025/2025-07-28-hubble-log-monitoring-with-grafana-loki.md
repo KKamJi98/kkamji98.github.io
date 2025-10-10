@@ -49,7 +49,7 @@ image:
 
 Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 고가용성을 갖춘 멀티테넌트 로그 집계 시스템입니다. 기존 로깅 시스템과 달리 Loki는 로그 전체 내용을 인덱싱하지 않고, 각 로그 스트림의 레이블(Label) 메타데이터만 인덱싱합니다. 이 설계 덕분에 작은 인덱스와 고도로 압축된 청크(Chunk) 구조로 저장이 가능하여 저장 비용이 저렴하고 운영이 간편합니다.
 
-### 1.1 Grafana Loki 특징
+### 1.1. Grafana Loki 특징
 
 | 특징                     | 설명                                                                                                                                                                                                                                 |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -61,7 +61,7 @@ Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 
 | **Grafana 연동**         | Grafana에서 Loki 데이터 소스를 추가하여 실시간 로그 조회.<br>메트릭과 트레이스와 함께 로그를 시각화하고 상관 분석 가능.<br>Explore 모드, 대시보드 패널, Alert Rule 모두 활용 가능.                                                   |
 | **알림(Alerts)**         | Ruler 컴포넌트를 통해 로그 Query결과에 기반한 경보 생성.<br>Prometheus Alertmanager와 연계하여 Slack, Email, PagerDuty 등 다양한 채널로 알림 전송 가능.<br>특정 키워드, 에러율, 이벤트 패턴 감지 가능.                               |
 
-### 1.2 Grafana Loki 구성 요소
+### 1.2. Grafana Loki 구성 요소
 
 ![Grafana Loki Architecture](/assets/img/kubernetes/cilium/2w-grafana-loki-architecture.webp)
 > [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/)
@@ -80,7 +80,7 @@ Loki는 모듈형 시스템으로, 단일 바이너리(All-in-One)로도 실행�
 | **Ruler**                                           | 룰 기반 알림 처리           | - LogQL 기반 룰/알림 평가<br>- Object Storage 또는 로컬 저장소 사용 가능<br>- Query Frontend를 통한 원격 룰 평가 모드 지원                                                                                                                                                                                                                     |
 | **Bloom Planner / Builder / Gateway** *(실험 기능)* | Bloom 필터 기반 검색 최적화 | - Planner: Bloom 생성 작업 계획 수립<br>- Builder: Bloom 블록 생성 및 메타데이터 관리<br>- Gateway: Bloom 기반 Chunk 필터링<br>- 대규모 환경에서 특정 레이블 검색 속도 향상                                                                                                                                                                    |
 
-### 1.3 Grafana Loki Storage 구조
+### 1.3. Grafana Loki Storage 구조
 
 ![Loki Data Format](/assets/img/kubernetes/cilium/2w-grafana-loki-data-format.webp)
 > [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/#data-format)
@@ -93,7 +93,7 @@ Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Ind
 - **Index**: 특정 라벨 세트의 로그 위치를 가리키는 목차 역할
 - **Chunk**: 특정 라벨 세트 + 시간 범위의 로그 라인 데이터 묶음 (압축 저장)
 
-### 1.4 Grafana Loki Wirte Path
+### 1.4. Grafana Loki Wirte Path
 
 1. Distributor가 HTTP POST(Log Stream)를 수신
 2. Consistent Hash Ring 기반으로 Ingester 노드 선택
@@ -102,7 +102,7 @@ Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Ind
 5. 주기적으로 압축·저장소 전송
 6. 과반수(Quorum) Ingester 승인 시 클라이언트에 성공 응답
 
-### 1.5 Read Path (읽기 경로)
+### 1.5. Read Path (읽기 경로)
 
 1. Query Frontend가 LogQL Query 수신
 2. Query를 하위 작업으로 분할해 Query Scheduler에 전달
@@ -119,7 +119,7 @@ Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연�
 ![Grafana Alloy Overview](/assets/img/kubernetes/cilium/2w-grafana-alloy-overview.webp)
 > [Grafana Docs - Grafana Alloy](https://grafana.com/docs/alloy/latest/)
 
-### 2.1 Grafana Alloy의 특징
+### 2.1. Grafana Alloy의 특징
 
 | 특징                                   | 설명                                                                                                   |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -130,7 +130,7 @@ Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연�
 | **GitOps 친화성**                      | Git, S3, HTTP 등에서 구성(Pipeline Config) 자동 가져오기 가능.                                         |
 | **보안 및 비밀 관리**                  | HashiCorp Vault, Kubernetes Secrets 연동 지원, 인증 정보 안전 관리.                                    |
 
-### 2.2 Grafana Alloy 주요 기능
+### 2.2. Grafana Alloy 주요 기능
 
 | 기능                                              | 설명                                                                                                               |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -145,23 +145,23 @@ Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연�
 
 ---
 
-### 2.3 Grafana Alloy 동작 방식 (OpenTelemetry Collector로서의 역할)
+### 2.3. Grafana Alloy 동작 방식 (OpenTelemetry Collector로서의 역할)
 
 Grafana Alloy는 OpenTelemetry Collector 아키텍처를 기반으로 하며, **Collect -> Transform -> Write** 3단계로 동작합니다.
 
-#### 2.3.1 Collect
+#### 2.3.1. Collect
 
 - 120개 이상의 컴포넌트를 활용해 애플리케이션, 데이터베이스, OpenTelemetry Collector 등 다양한 소스에서 원격 측정 데이터 수집.
 - **Pull 방식**(데이터를 Alloy가 가져옴)과 **Push 방식**(데이터를 Alloy에 전송) 모두 지원.
 - Prometheus, OpenTelemetry, Loki, Pyroscope 등 다양한 데이터 생태계와 호환.
 
-#### 2.3.2 Transform
+#### 2.3.2. Transform
 
 - 수집된 데이터를 전송하기 전에 가공 및 필터링 가능.
 - 예: 메타데이터 삽입, 불필요한 데이터 제거, 포맷 변환 등.
 - 경량 필터링부터 복잡한 데이터 파이프라인까지 유연하게 구성 가능.
 
-#### 2.3.3 Write
+#### 2.3.3. Write
 
 - 가공된 데이터를 OpenTelemetry 호환 데이터베이스, Grafana 스택, Grafana Cloud 등으로 전송.
 - 알림 규칙을 지원하는 데이터베이스에 직접 쓰기 가능.

@@ -80,7 +80,7 @@ Kubernetes Host Scope Mode에서는 쿠버네티스 컨트롤 플레인이 각 �
 - Cilium 에이전트는 시작 시, 활성화된 IP Address Family마다 `v1.Node`에 `PodCIDR`이 제공될 때까지 대기
 - PodCIDR은 아래 두 방법 중 하나로 v1.Node에 제공
 
-### 3.1 `v1.Node` Resource Filed
+### 3.1. `v1.Node` Resource Filed
 
 | Field           | Description                    |
 | --------------- | ------------------------------ |
@@ -90,7 +90,7 @@ Kubernetes Host Scope Mode에서는 쿠버네티스 컨트롤 플레인이 각 �
 > kube-controller-manager를 `--allocate-node-cidrs` 플래그와 함께 실행해야 Kubernetes가 노드별 PodCIDR 범위를 할당합니다.  
 {: .prompt-tip}
 
-### 3.2 `v1.Node` Annotation
+### 3.2. `v1.Node` Annotation
 
 | Annotation                           | Description                           |
 | ------------------------------------ | ------------------------------------- |
@@ -145,7 +145,7 @@ Multi-Pool 모드는 `Cluster Scope`의 확장된 형태로, 여러 개의 `Pod 
 
 앞서 개념적으로 살펴본 Kubernetes Host Scope와 Cluster Scope IPAM 모드의 차이를, 실습을 통해 확인해보도록 하겠습니다. 실습 환경은 두 개의 노드로 구성된 Kubernetes Cluster이며, 초기에는 쿠버네티스 Host Scope 모드(IPAM: kubernetes)로 Cilium이 설치되어 있습니다. (클러스터 생성 시 각 Node에 고유한 Pod CIDR이 할당된 상태) Cilium 및 Hubble은 이미 배포되어있습니다.
 
-### 6.1 실습 환경
+### 6.1. 실습 환경
 
 ![Kubernetes Cluster Environment Architecture](/assets/img/kubernetes/cilium/kubernetes-cluster-environment-arch.webp)
 
@@ -153,9 +153,9 @@ Multi-Pool 모드는 `Cluster Scope`의 확장된 형태로, 여러 개의 `Pod 
 - **router** : 사내망 10.10.0.0/16 대역 통신과 연결, k8s 에 join 되지 않은 서버, loop1/loop2 dump 인터페이스 배치
 - Cilium CNI 설치 상태로 배포 완료
 
-### 6.2 Kubernetes Host Scope Mode에서 클러스터 상태 확인 (사전 작업)
+### 6.2. Kubernetes Host Scope Mode에서 클러스터 상태 확인 (사전 작업)
 
-#### 6.2.1 현재 클러스터 정보 확인
+#### 6.2.1. 현재 클러스터 정보 확인
 
 ```shell
 # 클러스터 정보 확인
@@ -202,7 +202,7 @@ kube-system          hubble-ui-76d4965bb6-h5hp2                54546            
 local-path-storage   local-path-provisioner-74f9666bc9-sf27m   50353               ready            10.244.0.98
 ```
 
-#### 6.2.2 샘플 애플리케이션 배포
+#### 6.2.2. 샘플 애플리케이션 배포
 
 ```shell
 # 샘플 애플리케이션 배포
@@ -273,7 +273,7 @@ spec:
 EOF
 ```
 
-#### 6.2.3 샘플 애플리케이션 배포 후 통신 확인
+#### 6.2.3. 샘플 애플리케이션 배포 후 통신 확인
 
 ```shell
 ###############################
@@ -316,7 +316,7 @@ Hostname: webpod-697b545f57-5zlzm
 ...
 ```
 
-#### 6.2.4 Flow Log 모니터링 (hubble, tcpdump, termshark)
+#### 6.2.4. Flow Log 모니터링 (hubble, tcpdump, termshark)
 
 ```shell
 # hubble relay 포트 포워딩 실행
@@ -428,7 +428,7 @@ tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 
 ```
 ![Termshark HTTP GET Request 확인](/assets/img/kubernetes/cilium/termshark-http-get.webp)
 
-### 6.3 Kubernetes Host Scope Mode -> Cluster Scope로 변경
+### 6.3. Kubernetes Host Scope Mode -> Cluster Scope로 변경
 
 ```shell
 # 반복 요청 해두기

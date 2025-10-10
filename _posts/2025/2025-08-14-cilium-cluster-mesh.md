@@ -43,14 +43,14 @@ image:
 
 Cluster Mesh를 구성하기 위해서는 몇 가지 공통적인 네트워크 및 설정 조건이 충족되어야 합니다.  
 
-### 1.1 Cluster Addressing Requirements
+### 1.1. Cluster Addressing Requirements
 
 - 모든 Cluster는 동일한 **Datapath 모드**(Encapsulation 또는 Native Routing)로 설정해야 합니다.  
 - 각 Cluster의 **PodCIDR**은 서로 충돌하지 않고 고유해야 합니다.  
 - 모든 Cluster의 노드들은 **InternalIP 기준으로 서로 통신 가능**해야 하며, 일반적으로 **VPC Peering**이나 **VPN Tunnel**을 통해 연결됩니다.  
 - 방화벽이나 네트워크 정책에서 Cluster 간 통신이 허용되어야 하며, 필요한 포트는 Cilium Firewall Rules 문서를 참조해야 합니다.  
 
-### 1.2 Additional Requirements for Native-routed Datapath Modes
+### 1.2. Additional Requirements for Native-routed Datapath Modes
 
 - 각 Cluster의 PodCIDR을 모두 포함할 수 있는 **Native Routing CIDR**이 필요합니다.  
   - 예시: 모든 Cluster가 `10.0.0.0/8` 범위에서 할당받는 경우, 아래와 같이 지정해야 합니다.  
@@ -62,7 +62,7 @@ Cluster Mesh를 구성하기 위해서는 몇 가지 공통적인 네트워크 �
 - Pod 역시 Cluster 간 직접 IP 통신이 가능해야 하며, 이를 위해 **VPN Tunnel**이나 **Network Peering** 구성이 필요합니다.  
 - 방화벽 규칙은 `Pod-to-Pod` 트래픽에 대해 모든 포트가 열려 있어야 하며, 그렇지 않으면 워크로드 간 통신이 차단될 수 있습니다.  
 
-### 1.3 Scaling Limitations
+### 1.3. Scaling Limitations
 
 Cluster Mesh는 확장성에도 주의해야 합니다.  
 
@@ -1142,7 +1142,7 @@ Cluster Mesh의 Global Service는 기본적으로 모든 Cluster의 Endpoint를 
 
 이를 위해 Cilium은 다음과 같은 Service Annotation을 제공합니다.
 
-### 9.1 service.cilium.io/affinity
+### 9.1. service.cilium.io/affinity
 
 - `remote`: 로컬 Cluster에 Endpoint가 있더라도 원격 Cluster의 Endpoint로 우선 트래픽을 보냄
 - `local`: 로컬 Cluster에 Endpoint가 있으면 무조건 로컬만 사용
@@ -1279,7 +1279,7 @@ ID   Frontend                Service Type   Backend
 
 `remote`로 설정 시, `west`에 Pod가 있어도 `east`의 Pod를 우선적으로 호출함을 curl 테스트로 확인할 수 있습니다. 또한 반대로 `service.cilium.io/affinity=local`과 같이 `remote`가 아닌 `local`로 설정하면 본인이 속한 Cluster의 Pod만 호출하는 것을 알 수 있습니다. 다만 `remote`로 설정하더라도 원격 Cluster의 Endpoint가 모두 사라진 경우에는 요청이 실패하지 않고, 자동으로 로컬 Pod로 트래픽이 전달됩니다. 운영 환경에서는 Affinity 전략과 Pod 배치 정책을 함께 고려하여 트래픽 흐름을 설계하는 것이 중요합니다.
 
-### 9.2 service.cilium.io/shared
+### 9.2. service.cilium.io/shared
 
 - `true` (기본값): 해당 Service는 Cluster Mesh에 공유
 - `false`: 해당 Cluster의 Service는 Mesh에서 제외되어, 다른 Cluster에서 접근 불가

@@ -247,7 +247,7 @@ cilium bgp routes available ipv4 unicast
 
 ## 6. LoadBalancer IP로 접속 확인
 
-### 6.1 Service -> Backend Mapping 확인
+### 6.1. Service -> Backend Mapping 확인
 
 ```shell
 kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg service list | grep -A6 '172\.16\.1\.1\|webpod'
@@ -256,7 +256,7 @@ kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg service list
 #                                            3 => 172.20.2.229:80/TCP (active)     
 ```
 
-### 6.2 통신 확인 (Source IP)
+### 6.2. 통신 확인 (Source IP)
 
 ```shell
 ###############################################
@@ -305,15 +305,15 @@ for i in {1..50}; do curl -s http://$LBIP | grep Hostname; done | sort | uniq -c
 
 ![External Policy Cluster vs Local](/assets/img/kubernetes/cilium/5w-external-policy-cluster-vs-local.webp)
 
-### 7.1 Cluster Mode
+### 7.1. Cluster Mode
 
-#### 7.1.1 Cluster Mode의 특징
+#### 7.1.1. Cluster Mode의 특징
 
 - **모든 노드**가 LoadBalancer IP로 들어온 요청을 처리(수신)하고, **로컬 파드가 없어도** 다른 노드로 트래픽을 전달합니다.
 - 이때 **교차 노드 포워딩**을 위해 수신 노드에서 **SNAT**가 발생 -> **소스 IP 미보존**(Pod에서 보면 `RemoteAddr = 노드 IP`).
 - Cilium BGP는 **모든 노드에서 동일 LBIP(/32)**를 광고 -> 라우터는 **ECMP**로 여러 next-hop을 사용합니다.
 
-#### 7.1.2 Cluster Mode 실습
+#### 7.1.2. Cluster Mode 실습
 
 ```bash
 ###############################################
@@ -393,15 +393,15 @@ vtysh -c 'show ip bgp 172.16.1.1/32'
 > Linux 기본 ECMP Hash는 **L3**(IP)라서, 요청마다 포트가 달라지면(새 연결) **다른 next-hop**으로 갈 확률이 있습니다. 흐름 고정성이 떨어져 **RST/ENOTCONN**이 관찰되기도 합니다.  
 {: .prompt-tip}
 
-### 7.2 Local Mode
+### 7.2. Local Mode
 
-#### 7.2.1 Local Mode의 특징
+#### 7.2.1. Local Mode의 특징
 
 - **로컬 파드가 있는 노드만** LoadBalancer IP 트래픽을 처리함
 - **소스 IP를 보존함** (교차 노드 포워딩 없음)
 - BGP도 **파드 보유 노드만** LoadBalancer IP를 광고 -> 라우터 ECMP next-hop 수가 줄어 안정적임
 
-#### 7.2.2 Local Mode 실습
+#### 7.2.2. Local Mode 실습
 
 ```shell
 ###############################################

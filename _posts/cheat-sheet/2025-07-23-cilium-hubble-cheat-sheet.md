@@ -59,7 +59,7 @@ kubectl get ciliumnode -o json | grep podCIDRs -A2   # 각 노드 PodCIDR 확인
 kubectl get ciliumendpoints.cilium.io -A             # SECURITY IDENTITY 포함 CEP 목록
 ```
 
-### 2.1 cilium-dbg commands
+### 2.1. cilium-dbg commands
 
 ```shell
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg status --verbose  # 상세 상태/헬스 체크
@@ -129,7 +129,7 @@ alias c2bpf="kubectl exec -it $CILIUMPOD2 -n kube-system -c cilium-agent -- bpft
 
 ## 5. Cilium Agent Commands (별칭 사용)
 
-### 5.1 Endpoint
+### 5.1. Endpoint
 
 ```shell
 # 각 노드의 Endpoint 목록 확인
@@ -149,7 +149,7 @@ c0 endpoint log <id>
 c1 endpoint config <id> Debug=true
 ```
 
-### 5.2 Monitor
+### 5.2. Monitor
 
 ```shell
 # 실시간 이벤트 모니터링
@@ -174,7 +174,7 @@ c1 monitor -v -v --hex
 c1 monitor -v --type l7
 ```
 
-### 5.3 Service & LoadBalancer
+### 5.3. Service & LoadBalancer
 
 ```shell
 # LoadBalancer 서비스 목록 확인
@@ -190,7 +190,7 @@ c0 bpf lb list --revnat
 c1 bpf lb list --revnat
 ```
 
-### 5.4 Connection Tracking (CT)
+### 5.4. Connection Tracking (CT)
 
 ```shell
 # Connection Tracking 항목 확인
@@ -201,7 +201,7 @@ c1 bpf ct list global
 c0 bpf ct flush global
 ```
 
-### 5.5 NAT
+### 5.5. NAT
 
 ```shell
 # NAT 테이블 매핑 항목 확인
@@ -215,7 +215,7 @@ c1 bpf nat flush
 c2 bpf nat flush
 ```
 
-### 5.6 IP / Identity / Policy
+### 5.6. IP / Identity / Policy
 
 ```shell
 # IP와 연결된 Endpoint/Identity 정보 확인
@@ -231,7 +231,7 @@ c0 identity list
 c0 bpf policy get --all
 ```
 
-### 5.7 BPF Maps & Cgroups
+### 5.7. BPF Maps & Cgroups
 
 ```shell
 # 관리 중인 cgroup 메타데이터 확인
@@ -249,7 +249,7 @@ c1 map events cilium_lxc
 c1 map events cilium_ipcache
 ```
 
-### 5.8 StateDB
+### 5.8. StateDB
 
 ```shell
 # StateDB 전체를 JSON으로 덤프

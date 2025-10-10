@@ -58,7 +58,7 @@ Kube-burner가 제공하는 주요 기능은 아래와 같습니다.
 
 Kube-burner로 부하 테스트를 실행하기 전에, 실습 환경인 Kind Kubernetes Cluster와 Monitoring에 사용되는 아래 구성요소들을 배포하도록 하겠습니다.
 
-### 2.1 Kubernetes Cluster 생성 (Kind)
+### 2.1. Kubernetes Cluster 생성 (Kind)
 
 ```shell
 ########################################################
@@ -124,7 +124,7 @@ kubectl top pod -A --sort-by='memory'
 
 ---
 
-### 2.2 Kube-Prometheus-Stack 설치
+### 2.2. Kube-Prometheus-Stack 설치
 
 ```shell
 ########################################################
@@ -243,7 +243,7 @@ Version: 1.17.3
 
 ## 5. 실습
 
-### 5.1 시나리오 1. 디플로이먼트 1개 생성 후 삭제하며 qps·burst 의미 확인
+### 5.1. 시나리오 1. 디플로이먼트 1개 생성 후 삭제하며 qps·burst 의미 확인
 
 {% raw %}
 ```shell
@@ -388,7 +388,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
 {% endraw %}
 
-### 5.2 시나리오 2. 노드 1대에 pod 100개 배포 시도 (max_pods limit보다 더 많은 pod 생성)
+### 5.2. 시나리오 2. 노드 1대에 pod 100개 배포 시도 (max_pods limit보다 더 많은 pod 생성)
 
 위에서 사용한 `s1-config.yaml` 파일의 설정을 아래와 같이 변경 후 실행 (max_pods limit 보다 더 많은 pod를 생성하도록)
 
@@ -521,7 +521,7 @@ kubectl get pod -A --no-headers | wc -l
 
 ![Grafana Dashboard Pod Number and Nodes](/assets/img/kubernetes/cilium/7w-grafana-110-pod-limit.webp)
 
-#### 5.2.1 해결 (max_pods limit 증가)
+#### 5.2.1. 해결 (max_pods limit 증가)
 
 위에서 max_pods limit이 110에 걸려 6개의 pod가 Pending 상태임을 확인했습니다. max_pods limit을 증가 시켜 위의 문제를 해결해보겠습니다.
 
@@ -614,7 +614,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
 {% endraw %}
 
-### 5.3 시나리오 3. 노드 1대에 pod 300개 배포 시도 (PodCIDR 사이즈보다 많은 pod 생성)
+### 5.3. 시나리오 3. 노드 1대에 pod 300개 배포 시도 (PodCIDR 사이즈보다 많은 pod 생성)
 
 위에서 사용한 `s1-config.yaml` 파일의 설정을 아래와 같이 변경 후 실행 (부하가 많이 들어가도록)
 

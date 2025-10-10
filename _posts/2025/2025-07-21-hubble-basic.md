@@ -57,14 +57,14 @@ Cilium을 기반으로 동작하기 때문에 **eBPF의 강력한 가시성 기�
 
 Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 
-### 1.1 서비스 종속성 & 통신 맵
+### 1.1. 서비스 종속성 & 통신 맵
 
 - 어떤 서비스끼리 통신하며, 빈도는 얼마나 되는가?
 - 서비스 간 의존 관계(그래프)는 어떻게 생겼는가?
 - 어떤 HTTP 호출이 이루어지고 있는가?
 - 특정 서비스가 소비·생산하는 Kafka 토픽은 무엇인가?
 
-### 1.2 네트워크 모니터링 & 알림
+### 1.2. 네트워크 모니터링 & 알림
 
 - 통신이 실패한다면 그 원인은 무엇인가?
 - DNS 문제인가? 애플리케이션 오류인가? 네트워크 자체 문제인가?
@@ -73,14 +73,14 @@ Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 - 최근 TCP 연결이 끊기거나 타임아웃이 발생한 서비스는?
 - 응답받지 못한 TCP SYN 요청 비율은 얼마인가?
 
-### 1.3 애플리케이션 모니터링
+### 1.3. 애플리케이션 모니터링
 
 - 특정 서비스(또는 전체 클러스터)의 4xx/5xx HTTP 응답 비율은?
 - HTTP 요청–응답 지연의 95·99 퍼센타일은?
 - 가장 성능이 나쁜 서비스는 어디인가?
 - 두 서비스 간 지연 시간은 얼마인가?
 
-### 1.4 보안 관측
+### 1.4. 보안 관측
 
 - 네트워크 정책 때문에 차단된 서비스는 무엇인가?
 - 클러스터 외부에서 접근된 서비스는 어디인가?
@@ -234,7 +234,7 @@ helm upgrade cilium cilium/cilium --namespace kube-system --reuse-values \
 
 ## 4. Hubble 배포 확인
 
-### 4.1 Hubble 상태 확인
+### 4.1. Hubble 상태 확인
 
 ```shell
 ## Cilium Status 확인 (Hubble Relay: OK)
@@ -314,7 +314,7 @@ LISTEN 0      4096               *:9962             *:*    users:(("cilium-agent
 root@k8s-m1:~# vim -d before.txt after.txt
 ```
 
-### 4.2 Hubble 배포 전 & 배포 후 포트 변경 확인
+### 4.2. Hubble 배포 전 & 배포 후 포트 변경 확인
 
 ![Hubble Port Comparison](/assets/img/kubernetes/cilium/hubble_port_comparsion.webp)
 
@@ -354,7 +354,7 @@ listen-address: :4245
 ...
 ```
 
-### 4.3 Hubble 접속 확인
+### 4.3. Hubble 접속 확인
 
 ```shell
 ## 아까 서비스의 노드포트로 지정한 31234 포트 확인
@@ -378,7 +378,7 @@ k8s-w2   Ready    <none>          216d   v1.33.2   10.0.0.202    <none>        U
 
 이번에는 Hubble CLI를 설치하고 사용하는 방법을 알아보겠습니다. Hubble은 기본적으로 Hubble Relay의 gRPC API에 연결하여 네트워크 흐름을 조회합니다. 이를 위해 먼저 로컬 포트로 API 접근을 연결해 줘야 합니다.
 
-### 5.1 Install Hubble CLI
+### 5.1. Install Hubble CLI
 
 ```shell
 # Hubble CLI Install <https://docs.cilium.io/en/stable/observability/hubble/setup/#install-the-hubble-client>
@@ -391,7 +391,7 @@ which hubble
 hubble status
 ```
 
-### 5.2 Hubble API 접근을 위한 Port-Forward 설정
+### 5.2. Hubble API 접근을 위한 Port-Forward 설정
 
 hubble CLI는 기본적으로 로컬의 `localhost:4245`를 참조하지만, 보통 로컬과 클러스터는 따로 있는 경우가 많습니다. 해당 경우 직접 API 주소를 명시해서 외부에서 사용하거나 포트 포워딩을 한 뒤 사용해야합니다. 저는 `hubble config set port-forward true` 해당 명령어를 통해 hubble 명령어를 칠 때 자동으로 port-forward해서 사용하도록 하겠습니다.
 

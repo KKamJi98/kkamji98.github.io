@@ -60,7 +60,7 @@ comments: true
 
 </aside>
 
-### 3.1 보드 안에 FTDI 칩을 포함하고 있는 Arduino 보드
+### 3.1. 보드 안에 FTDI 칩을 포함하고 있는 Arduino 보드
 
 - Arduino Nano
 - Arduino Extreme (단종)
@@ -69,7 +69,7 @@ comments: true
 - Arduino Duemilanove (단종)
 - 초기 Arduino Mega (단종)
 
-### 3.2 외부 FTDI 케이블이나 브레이크아웃 보드를 사용하여 프로그래밍과 USB-시리얼 통신을 수행하는 Arduino 보드
+### 3.2. 외부 FTDI 케이블이나 브레이크아웃 보드를 사용하여 프로그래밍과 USB-시리얼 통신을 수행하는 Arduino 보드
 
 - Arduino Mini
 - Arduino Ethernet
@@ -81,12 +81,12 @@ comments: true
 
 ## 4. 별도의 USB 기능을 포함하는 ATmega MicroController를 시리얼 변환기로 사용하는 Arduino 보드
 
-### 4.1 Arduino Uno
+### 4.1. Arduino Uno
 
 - USB-Serial 변환을 위해 FTDI 칩이 아닌 다른 IC(**ATmega16U2**)를 사용한 첫 번째 Arduino 보드.
     - (초기에는 ATmega8U2 사용)
 
-### 4.2 ATmega16U2 칩이 FTDI 칩과 다른 점
+### 4.2. ATmega16U2 칩이 FTDI 칩과 다른 점
 
 1. 윈도우에서 USB-Serial 변환 기능을 사용하기 위해서는 전용 드라이버를 설치해야 함 (Arduino IDE에 포함되어 있음)
 2. 아두이노 우노라는 제품에 대한 생산자 ID(vendor ID)와 제품 ID(product ID)를 컴퓨터에 제공할 수 있음
@@ -101,12 +101,12 @@ comments: true
 
 ## 5. USB 통신 기능이 내장된 MCU를 사용하는 아두이노 보드
 
-### 5.1 Arduino Leonardo
+### 5.1. Arduino Leonardo
 
 - 하나의 칩으로 메인 MCU와 USB 인터페이스 역할을 구현한 최초의 보드
 - Arduino Leonardo를 포함한 여러 공식 아두이노 보드와 아두이노 호환 보드는 USB 통신 기능을 포함하고 있는 ATmega32U4 마이크로컨트롤러를 사용함
 
-### 5.2 USB 통신 기능을 내장한 마이크로컨트롤러를 사용하는 것의 장점
+### 5.2. USB 통신 기능을 내장한 마이크로컨트롤러를 사용하는 것의 장점
 
 1. 가격
     1. 하나의 마이크로컨트롤러만 사용하면 되므로 단가를 줄일 수 있음
@@ -119,17 +119,17 @@ comments: true
 
 ## 6. USB 호스트 기능이 있는 Arduino 보드
 
-### 6.1 USB 호스트 기능
+### 6.1. USB 호스트 기능
 
 - USB 장치를 아두이노 보드에 연결하여 사용할 수 있는 기능
 - 연결된 USB 장치를 위한 드라이버가 있어야 함
 
-### 6.2 USB 호스트 기능이 있는 아두이노 보드
+### 6.2. USB 호스트 기능이 있는 아두이노 보드
 
 - Arduino 듀에, Arduino 제로, Arduino MKR100 등
 - USB 호스트 라이브러리를 통해 장치 드라이버 제공
 
-### 6.3 AOA(Android Open Accessory) 프로토콜
+### 6.3. AOA(Android Open Accessory) 프로토콜
 
 - Arduino Mega ADK에서 사용
 - Arduino와 Android 장치 사이의 통신 지원

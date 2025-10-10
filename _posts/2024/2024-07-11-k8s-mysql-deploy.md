@@ -28,7 +28,7 @@ image:
 > 기본적으로 Pod가 실행되면서 생긴 데이터는 Pod가 삭제되거나 재시작될 때 유지되지 않습니다. 따라서 데이터를 영구적으로 저장할 PV, PVC를 생성해주었습니다. 해당 방법과 더불어 Storage Class를 사용하는 방법도 추천드립니다.
 {: .prompt-info}
 
-### 2.1 mysql-pv.yaml
+### 2.1. mysql-pv.yaml
 
 ```yaml
 apiVersion: v1
@@ -44,7 +44,7 @@ spec:
     path: "/mnt/data"
 ```
 
-### 2.2 mysql-pvc.yaml
+### 2.2. mysql-pvc.yaml
 
 ```yaml
 apiVersion: v1
@@ -66,7 +66,7 @@ spec:
 > 팀원들이 사용할 사용자 계정을 생성해야했고, ConfigMap의 데이터를 컨테이너의 `/docker-entrypoint-initdb.d` 디렉토리에 마운트하면 MySQL 컨테이너가 초기화 되면서 해당 파일이 같이 실행되는 것을 알게 되었습니다.
 {: .prompt-info}
 
-### 3.1 mysql-configmap.yaml
+### 3.1. mysql-configmap.yaml
 
 ```yaml
 apiVersion: v1

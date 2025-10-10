@@ -32,7 +32,7 @@ Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, �
 > 기존에 생성된 AWS EC2를 `terraform import` 명령어를 사용하여 해당 리소스를 가져오고, 코드와 리소스가 매칭되지 않을 시, `terraform state show` 명령어를 통해 코드와 리소스를 매칭시키는 방법을 알아보겠습니다.
 {: .prompt-tip}
 
-### 2.1 기존 리소스 정보 확인
+### 2.1. 기존 리소스 정보 확인
 
 ![Existing EC2](/assets/img/kkam-img/kkamji-ec2.webp)
 
@@ -86,7 +86,7 @@ Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, �
 }
 ```
 
-### 2.2 Terraform 코드 작성
+### 2.2. Terraform 코드 작성
 
 ```hcl
 # main.tf
@@ -107,7 +107,7 @@ resource "aws_instance" "kkamji-ec2" {
 }
 ```
 
-### 2.3 Import 명령어 실행
+### 2.3. Import 명령어 실행
 
 ```shell
 ❯ terraform import aws_instance.kkamji-ec2 i-028c380e41117d2a7
@@ -118,14 +118,14 @@ The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
 ```
 
-### 2.4 terraform state 확인
+### 2.4. terraform state 확인
 
 ```shell
 ❯ terraform state list                                               
 aws_instance.kkamji-ec2
 ```
 
-### 2.5 terraform plan
+### 2.5. terraform plan
 
 > import가 잘 되었다면 `terraform plan`시, 변경사항이 없어야 합니다.
 > 하지만 코드와 리소스의 상태가 일치하지 않는 경우, 아래와 같이 변경사항이 발생할 수 있습니다.
@@ -183,7 +183,7 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 run "terraform apply" now.
 ```
 
-### 2.6 `terraform state show` - 손쉽게 코드와 리소스 매칭시키기
+### 2.6. `terraform state show` - 손쉽게 코드와 리소스 매칭시키기
 
 > 위와 같이 코드와 리소스의 상태가 일치하지 않아 `terraform plan` 시 변경사항이 발생하면 코드를 수정해야합니다. (수정하지 않으면 해당 리소스가 삭제 후 다시 만들어지거나, 변경될 수 있습니다.)  
 > 이런 경우 `terraform state show` 명령어를 통해 실제 리소스의 상태를 확인하고 해당 결과를 참고하면 쉽게 코드와 리소스를 매칭시킬 수 있습니다.

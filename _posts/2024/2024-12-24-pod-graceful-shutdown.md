@@ -35,7 +35,7 @@ Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유�
 > FastAPI를 통해 간단한 실습을 해보도록 하겠습니다.  
 {: .prompt-tip}
 
-### 2.1 FastAPI 애플리케이션 배포
+### 2.1. FastAPI 애플리케이션 배포
 
 > 실습을 위해 아래의 간단한 FastAPI 애플리케이션을 만들어 사용했습니다.  
 > SIGTERM을 통해 애플리케이션이 종료될 때 print와 sleep을 통해 확인할 수 있도록 하였습니다.  
@@ -66,7 +66,7 @@ async def read_root():
     return {"message": "Hello from FastAPI"}
 ```
 
-### 2.2 FastAPI 애플리케이션 Deployment 정의 파일
+### 2.2. FastAPI 애플리케이션 Deployment 정의 파일
 
 > deployment를 통해 pod를 생성하였고, `lifecycle.preStop`을 정의해 pod가 graceful하게 shutdown될 수 있도록 했습니다.  
 > 또한 아래와 같이 `terminationGracePeriodSeconds` 옵션을 통해 60초 안에 pod가 graceful shutdown 되지 않을 시, 강제 종료하도록 설정할 수 있습니다.
@@ -114,7 +114,7 @@ spec:
           periodSeconds: 5
 ```
 
-### 2.3 pod 상태 및 로그 확인
+### 2.3. pod 상태 및 로그 확인
 
 ```bash
 ❯ kubectl get po
@@ -135,12 +135,12 @@ INFO:     10.0.0.201:48024 - "GET / HTTP/1.1" 200 OK
 INFO:     10.0.0.201:48012 - "GET / HTTP/1.1" 200 OK
 ```
 
-### 2.4 Graceful Shutdown 테스트
+### 2.4. Graceful Shutdown 테스트
 
 > `kubectl logs` 명령어의 `-f`, 옵션과 `kubectl get pods` 명령어의 `-w` 옵션을 통해 실시간으로 pod의 상태와 로그를 확인하며 정상 동작하는 pod에 `kubectl delete pod {pod_name}` 명령어로 삭제 요청을 한 뒤 상태 변화를 확인해보도록 하겠습니다.  
 {: .prompt-tip}
 
-#### 2.4.1 로그 실시간 확인
+#### 2.4.1. 로그 실시간 확인
 
 ```bash
 ❯ kubectl logs fastapi-graceful-797fbdfcc9-sfkm2 -f --tail=20
@@ -175,7 +175,7 @@ FastAPI application is shutting down...
 FastAPI application shutting down complete!
 ```
 
-#### 2.4.2 pod 실시간 확인
+#### 2.4.2. pod 실시간 확인
 
 ```bash
 ❯ kubectl get po -w
@@ -183,14 +183,14 @@ NAME                                READY   STATUS    RESTARTS   AGE
 fastapi-graceful-797fbdfcc9-sfkm2   1/1     Running   0          3m13s
 ```
 
-#### 2.4.3 pod 삭제 요청
+#### 2.4.3. pod 삭제 요청
 
 ```bash
 ❯ kubectl delete pod fastapi-graceful-797fbdfcc9-sfkm2
 pod "kubectl logs fastapi-graceful-797fbdfcc9-sfkm2" deleted
 ```
 
-### 2.5 결과 확인
+### 2.5. 결과 확인
 
 > 애플리케이션이 종료되며 Shutdown logic을 통해 모든 작업을 마무리하는 것을 log를 통해 확인할 수 있으며 pod가 바로 종료되지 않고, preStop 훅이 실행된 후, 30초 뒤 `SIGTERM` 신호를 받아 Pod가 Completed 상태로 종료되는 것을 확인할 수 있습니다.  
 {: .prompt-tip}

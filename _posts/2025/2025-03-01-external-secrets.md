@@ -21,7 +21,7 @@ External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(
 
 ![external-secret-diagram](/assets/img/kubernetes/external-secrets-diagram.webp)
 
-### 1.1 SecretStore, ClusterSecretStore
+### 1.1. SecretStore, ClusterSecretStore
 
 **SecretStore** - **외부 시크릿 서비스에 접근하기 위한 정보를 저장**하는 CRD입니다. 어떤 제공자(provider)를 사용할지, 인증 방식은 어떻게 할지 정의합니다. **SecretStore는 네임스페이스 범위에서 동작하며, 동일한 네임스페이스의 ExternalSecret만 참조**할 수 있습니다.  
 
@@ -32,7 +32,7 @@ External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(
 > 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 사용해야 한다면 **ClusterSecretStore**로 한 번 정의해두고 재사용할 수 있고, 반대로 네임스페이스를 팀별로 따로 사용하고, AWS IAM 자격 증명을 따로 사용해야 한다면 각 팀 네임스페이스에 SecretStore를 생성하여 사용할 수 있습니다.  
 {: .prompt-tip}
 
-### 1.2 ExternalSecret, ClusterExternalSecret
+### 1.2. ExternalSecret, ClusterExternalSecret
 
 **ExternalSecret** - **외부 시크릿으로부터 실제 쿠버네티스 Secret을 동기화**하기 위한 설정을 담은 CRD입니다. 어떤 **SecretStore**을 참고할지, 외부 시크릿 관리 시스템에서 가져올 시크릿의 키/경로는 무엇인지, 생성될 Kubernetes Secret의 이름은 무엇인지 등을 정의합니다. **ExternalSecret**는 **네임스페이스 범위에서 동작**하며, 생성된 **ExternalSecret은 자신이 속한 네임스페이스에서만 Secret을 생성**합니다.  
 

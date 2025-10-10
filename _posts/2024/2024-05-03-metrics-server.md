@@ -19,7 +19,7 @@ image:
 > 클러스터 내의 모든 Node와 Pod에서 리소스 사용 데이터를 수집 후 kube-apiserver에 전달하는 역할을 합니다. 인메모리 솔루션(디스크에 Metric을 저장하지 않음)이며, Metric Data는 Horizontal Pod Autoscaler (HPA) 및 Vertical Pod Autoscaler (VPA)와 같은 기능을 사용할 때 필수적입니다.  
 {: .prompt-info}
 
-### 1.1 수집절차
+### 1.1. 수집절차
 
 1. kubelet이 자체 내장된 cAdvisor를 사용해 Node와 Pod의 리소스 데이터를 수집
 2. kubelet이 /metrics/resource API 엔드포인트를 통해 리소스 데이터를 제공
@@ -95,7 +95,7 @@ ip-10-0-0-81    <unknown>    <unknown>   <unknown>       <unknown>
 > ???? Master Node는 Metric이 확인이 되는데 Worker Node는 확인이 안된다.. 로그를 확인해볼까..?
 {: .prompt-info}
 
-### 5.1 로그 확인
+### 5.1. 로그 확인
 
 ```bash
 root@ip-10-0-0-241:~# kubectl logs metrics-server-6d94bc8694-n5k29 -n kube-system
@@ -145,7 +145,7 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 > 정상적으로 Node와 Pod들의 Metric을 수집하는 것을 확인할 수 있습니다.  
 {: .prompt-info}
 
-### 5.2 마무리
+### 5.2. 마무리
 
 > Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 포트에 10250 포트를 열어주어야 합니다.
 > **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  

@@ -39,7 +39,7 @@ Helm Provider를 사용하기 위해서는 크게 다음 두 가지 방법이 �
 1. `config_path`를 사용해 kubeconfig 파일로 접근  
 2. Kubernetes Cluster Credentials를 직접 설정
 
-### 2.1 `config_path` 사용
+### 2.1. `config_path` 사용
 
 > `terraform` 명령어를 실행하는 환경에서 `~/.kube/config` 경로의 kubeconfig 파일이 정상적으로 Kubernetes Cluster에 접근할 수 있어야 합니다.
 {: .prompt-tip}
@@ -52,7 +52,7 @@ provider "helm" {
 }
 ```
 
-### 2.2 Kubernetes Cluster Credentials 사용
+### 2.2. Kubernetes Cluster Credentials 사용
 
 > Kubernetes Cluster Credentials를 직접 설정하여 Helm Provider를 사용할 수도 있습니다.  
 > `kubectl config view --raw` 명령어를 사용하면 `client-certificate-data`, `client-key-data`, `cluster-ca-certificate-data` 값을 확인할 수 있습니다.
@@ -117,7 +117,7 @@ resource "helm_release" "nginx" {
 } 
 ```
 
-### 3.1 핵심 옵션
+### 3.1. 핵심 옵션
 
 - **name**: K8s 내 Helm Release 이름
 - **repository**: 차트가 있는 Helm Repo URL
@@ -128,7 +128,7 @@ resource "helm_release" "nginx" {
 
 ---
 
-### 3.2 Nginx Helm Chart 배포
+### 3.2. Nginx Helm Chart 배포
 
 ```shell
 ❯ terraform apply

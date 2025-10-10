@@ -15,14 +15,14 @@ image:
 
 ## 1. Nginx Ingress Controller 설치
 
-### 1.1 Helm Repository 추가
+### 1.1. Helm Repository 추가
 
 ```bash
 ❯ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 ❯ helm repo update
 ```
 
-### 1.2 Helm을 사용해 Nginx Ingress Controller 설치
+### 1.2. Helm을 사용해 Nginx Ingress Controller 설치
 
 ```bash
 helm install nginx-ingress ingress-nginx/ingress-nginx \
@@ -48,7 +48,7 @@ nginx   k8s.io/ingress-nginx   <none>       52m
 
 ## 3. 테스트
 
-### 3.1 테스트용 어플리케이션 배포
+### 3.1. 테스트용 어플리케이션 배포
 
 ```bash
 ❯ kubectl create deployment nginx-test --image=nginx --port=80
@@ -59,7 +59,7 @@ deployment.apps/nginx-test created
 service/nginx-test-service exposed
 ```
 
-### 3.2 테스트용 Ingress 리소스 설정
+### 3.2. 테스트용 Ingress 리소스 설정
 
 > 기존에 사용하고 있는 kkamji.net 도메인을 사용하였습니다.
 {: .prompt-info}
@@ -90,7 +90,7 @@ spec:
 ingress.networking.k8s.io/nginx-test-ingress created
 ```
 
-### 3.3 ingress 확인
+### 3.3. ingress 확인
 
 ```bash
 ❯ k get ingress
@@ -98,7 +98,7 @@ NAME                 CLASS   HOSTS             ADDRESS   PORTS   AGE
 nginx-test-ingress   nginx   test.kkamji.net             80      4m53s
 ```
 
-### 3.4 test.kkamji.net으로 접속 확인
+### 3.4. test.kkamji.net으로 접속 확인
 
 ```bash
 ❯ curl test.kkamji.net

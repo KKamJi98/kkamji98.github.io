@@ -67,14 +67,14 @@ image:
 
 **기본 동작**: 파드 간 통신 경로에 프록시를 놓고 트래픽 모니터링이나 트래픽 컨트롤 -> 기존 Application 코드에 수정 없이 동작
 
-### 2.1 기존 통신 환경 소개
+### 2.1. 기존 통신 환경 소개
 
 ![Traditional Communication Structure](/assets/img/kubernetes/cilium/6w-traditional-communication-structure.webp)
 
 - Application <-> Application 간 별도의 제어 없이 직접 연결
 - 문제: 트래픽 제어,관찰,보안 정책 적용이 어려움
 
-### 2.2 Proxy 도입을 통한 제어
+### 2.2. Proxy 도입을 통한 제어
 
 ![Proxy Injected Communication](/assets/img/kubernetes/cilium/6w-proxy-injected.webp)
 
@@ -83,7 +83,7 @@ image:
 - Application 트래픽을 Proxy가 가로채려면 iptables rule 기반 구현 필요
 - 장점: Application 코드 수정 불필요, 중앙집중식 정책 적용 가능
 
-### 2.3 Control Plane을 통한 중앙 관리
+### 2.3. Control Plane을 통한 중앙 관리
 
 ![Control Plane Managed Communication](/assets/img/kubernetes/cilium/6w-controlplane-managed.webp)
 
@@ -162,7 +162,7 @@ Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/servic
 
 ---
 
-### 5.1 Cilium Ingress의 동작 방식
+### 5.1. Cilium Ingress의 동작 방식
 
 - Ingress Controller는 `LoadBalancer` 타입의 Service를 생성합니다 -> 클러스터가 존재하는 환경에서 LoadBalancer Type Resource 지원 필요
 - `dedicated` Mode: Ingress별 전용 LB를 생성
@@ -171,14 +171,14 @@ Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/servic
   - Shared 모드는 자원 절약에 유리하지만, Path Prefix 충돌 가능성이 있음  
 - 모드 변경 시 LB IP가 바뀌며, 기존 연결이 종료될 수 있음
 
-### 5.2 필수 조건
+### 5.2. 필수 조건
 
 - `nodePort.enabled=true` 또는 `kubeProxyReplacement=true` 설정 필요 -> [kube-proxy replacement](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/#kubeproxy-free)  
 - `l7Proxy=true` (기본값: true) 활성화 필요  
 - Ingress Controller는 기본적으로 `LoadBalancer Service`를 생성하므로 Load Balancer 지원 환경 필요  
   - LB가 불가능한 경우 NodePort 또는 Cilium 1.16+에서는 **Host Network 모드**로 Envoy를 직접 노출 가능
 
-### 5.3 Cilium Ingress/Gateway API가 다른 Ingress Controller와 다른 점
+### 5.3. Cilium Ingress/Gateway API가 다른 Ingress Controller와 다른 점
 
 - **CNI와 밀접하게 통합** -> 다른 Ingress 컨트롤러와 달리 Cilium 네트워킹 스택 일부로 동작
 - 일반적인 Ingress 컨트롤러는 `Deployment`/`Daemonset` 형태로 배포되며 LB Service를 통해 노출  
@@ -187,7 +187,7 @@ Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/servic
   - 패킷이 Service IP:Port에 도달하면 eBPF가 이를 가로채고 `TPROXY`를 이용해 Envoy Proxy로 전달  
   - 원본 `Source`/`Destination` IP,Port를 유지한 채 Envoy가 투명하게 트래픽 처리 가능
 
-### 5.4 Cilium Ingress와 CiliumNetworkPolicy
+### 5.4. Cilium Ingress와 CiliumNetworkPolicy
 
 - Ingress와 Gateway API 트래픽은 **노드 단위 Envoy Proxy**를 경유
 - Envoy Proxy는 eBPF Policy Engine과 상호작용하여 정책 조회 수행. 즉, Ingress 트래픽에도 **CiliumNetworkPolicy**를 적용할 수 있음
@@ -204,19 +204,19 @@ Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/servic
   1. world -> ingress  
   2. ingress -> backend service identity  
 
-### 5.5 Source IP Visibility
+### 5.5. Source IP Visibility
 
 - **기본 설정**
   - Envoy는 수신 HTTP 연결의 소스 주소를 `X-Forwarded-For` 헤더에 추가
   - `X-Envoy-External-Address` 헤더에도 신뢰된 클라이언트 주소를 기록
   - 기본 `trusted hops` 값은 0이므로, Envoy는 실제 연결의 peer 주소를 사용
 
-### 5.6 externalTrafficPolicy for Loadbalancer or NodePort Services
+### 5.6. externalTrafficPolicy for Loadbalancer or NodePort Services
 
 Cilium의 Ingress 지원(Ingress와 Gateway API 모두)은 Envoy Daemonset을 외부에 노출하기 위해 `LoadBalancer` 또는 `NodePort` Service를 자주 사용합니다.  
 이때 클라이언트 **Source IP 가시성**과 관련하여 중요한 설정이 바로 `externalTrafficPolicy` 필드입니다.
 
-#### 5.6.1 Local Mode
+#### 5.6.1. Local Mode
 
 - 노드는 로컬에 실행 중인 Pod로만 트래픽을 전달
 - 이 과정에서 **Source IP를 `Masquerading`하지 않기 때문에** 백엔드 Pod가 실제 클라이언트 IP를 볼 수 있음
@@ -226,13 +226,13 @@ Cilium의 Ingress 지원(Ingress와 Gateway API 모두)은 Envoy Daemonset을 �
   - `/healthz` 엔드포인트를 통해 로컬 Pod 유무를 확인할 수 있음  
   - 로컬 Pod가 있으면 200, 없으면 200이 아닌 상태를 반환  
 
-#### 5.6.2 Cluster Mode
+#### 5.6.2. Cluster Mode
 
 - 노드는 클러스터 전체의 모든 엔드포인트로 트래픽을 균등하게 전달
 - 장점: 트래픽이 특정 노드에 집중되지 않음
 - 단점: 일부 경우 Source IP를 `Masquerading`할 수 있어, 백엔드 Pod가 클라이언트 IP를 보지 못할 수 있음
 
-#### 5.6.3 Cilium Ingress 구성의 externalTrafficPolicy 동작 차이
+#### 5.6.3. Cilium Ingress 구성의 externalTrafficPolicy 동작 차이
 
 - Cilium Ingress 구성의 경우(Ingress와 Gateway API 모두) 조금 다르게 동작합니다:
   - Envoy를 노출하는 Service에 도착한 **모든 트래픽은 항상 로컬 노드로 들어옵니다.**
@@ -240,7 +240,7 @@ Cilium의 Ingress 지원(Ingress와 Gateway API 모두)은 Envoy Daemonset을 �
   - 따라서 소스 IP는 유지된 채 Envoy에 전달되고, 이후 정책 및 L7 라우팅 처리가 적용됩니다.
 - 결론적으로, Cilium에서는 `externalTrafficPolicy`의 Local/Cluster 설정에 따라 기본 동작이 조금 달라지지만, **소스 IP는 항상 Envoy로 보존**됩니다.
 
-#### 5.6.4 TLS Passthrough and Source IP Visibility
+#### 5.6.4. TLS Passthrough and Source IP Visibility
 
 Cilium Ingress와 Gateway API 모두 **TLS Passthrough** 구성을 지원합니다.  
 - Ingress: annotation 기반  
@@ -248,7 +248,7 @@ Cilium Ingress와 Gateway API 모두 **TLS Passthrough** 구성을 지원합니�
 
 이 구성을 통해 여러 TLS Passthrough 백엔드가 **동일한 TLS 포트**를 공유할 수 있습니다. Envoy는 TLS 핸드셰이크에서 **SNI(Server Name Indication)** 필드를 검사해 어떤 백엔드로 TLS 스트림을 전달할지 결정합니다.
 
-##### 5.6.4.1 문제: 소스 IP 가시성(Source IP Visibility)
+##### 5.6.4.1. 문제: 소스 IP 가시성(Source IP Visibility)
 
 Envoy는 TLS 트래픽을 **TCP 프록시**로 처리하기 때문에, 백엔드 Pod 입장에서 원래 클라이언트 IP를 확인하기 어렵습니다.
 
@@ -259,7 +259,7 @@ Envoy는 TLS 트래픽을 **TCP 프록시**로 처리하기 때문에, 백엔드
   4. 다운스트림(외부) TLS 패킷은 업스트림(백엔드) TCP 스트림 내부로 전달
 - 결과적으로, 이는 **새로운 TCP 연결**이기 때문에 백엔드 입장에서는 소스 IP가 Envoy의 IP(보통 Node IP)로 보임
 
-### 5.7 Ingress Path Types and Precedence
+### 5.7. Ingress Path Types and Precedence
 
 - Ingress가 지원하는 Path 타입
   - Exact: 경로 전체가 정확히 일치

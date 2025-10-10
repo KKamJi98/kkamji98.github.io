@@ -57,14 +57,14 @@ image:
 > StorageClass (rancher.io/local-path)  
 {: .prompt-tip}
 
-### 4.1 prometheus-community Helm Chart Repository 추가
+### 4.1. prometheus-community Helm Chart Repository 추가
 
 ```bash
 ❯ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 "prometheus-community" has been added to your repositories
 ```
 
-### 4.2 namespace 생성
+### 4.2. namespace 생성
 
 > prometheus와 grafana가 생성될 monitoring namespace를 생성합니다.
 {: .prompt-tip}
@@ -74,7 +74,7 @@ image:
 namespace/monitoring created
 ```
 
-### 4.3 Prometheus Helm Chart 배포
+### 4.3. Prometheus Helm Chart 배포
 
 > 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.
 {: .prompt-tip}
@@ -121,7 +121,7 @@ Get the PushGateway URL by running these commands in the same shell:
   kubectl --namespace monitoring port-forward $POD_NAME 9091
 ```
 
-### 4.4 확인 (Prometheus Server)
+### 4.4. 확인 (Prometheus Server)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
@@ -133,7 +133,7 @@ Handling connection for 9090
 ```
 ![prometheus_server](/assets/img/observability/prometheus/prometheus_server.webp)
 
-### 4.5 확인 (Prometheus Alert Manager)
+### 4.5. 확인 (Prometheus Alert Manager)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
@@ -145,7 +145,7 @@ Handling connection for 9093
 ```
 ![prometheus_alert_manager](/assets/img/observability/prometheus/prometheus_alert_manager.webp)
 
-### 4.6 확인 (Prometheus Push Gateway)
+### 4.6. 확인 (Prometheus Push Gateway)
 
 ```bash
 ❯ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus-pushgateway" -o jsonpath="{.items[0].metadata.name}")

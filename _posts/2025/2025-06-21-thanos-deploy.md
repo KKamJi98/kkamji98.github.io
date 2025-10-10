@@ -11,7 +11,7 @@ image:
 
 **Thanos**는 **Prometheus**의 확장성과 고가용성 문제를 해결하기 위해 개발된 오픈소스 프로젝트입니다. 2017년에 시작되어 현재 **CNCF(Cloud Native Computing Foundation) Incubating** 프로젝트로 발전하고 있습니다. **Thanos**는 **Prometheus**의 장기 데이터 저장, 고가용성, 글로벌 쿼리 뷰 등의 기능을 제공하여 대규모 모니터링 환경에서 아래와 같은 한계를 극복할 수 있게 해줍니다.
 
-### 1.1 Prometheus의 한계
+### 1.1. Prometheus의 한계
 
 | 한계 항목             | 설명                                                                      |
 | --------------------- | ------------------------------------------------------------------------- |
@@ -64,7 +64,7 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 
 Bitnami Helm Chart를 사용해 Thanos를 배포하고. 기존에 동작하고 있는 Minio와 연동해 보도록 하겠습니다.
 
-### 4.1 Thanos `kkamji_local_values.yaml` 파일 생성
+### 4.1. Thanos `kkamji_local_values.yaml` 파일 생성
 
 > 실제 운영에서는 `objstoreConfig` 를 Secret 으로 분리하거나 SOPS 로 암호화해 Git 에 노출되지 않도록 합니다.  
 {: .prompt-tip}
@@ -128,7 +128,7 @@ metrics:
     enabled: true
 ```
 
-### 4.2 Helm 배포 (Thanos)
+### 4.2. Helm 배포 (Thanos)
 
 ```bash
 ❯ helm upgrade --install -n monitoring thanos oci://registry-1.docker.io/bitnamicharts/thanos -f kkamji_local_values.yaml
@@ -138,7 +138,7 @@ metrics:
 
 ## 5. Prometheus Operator 배포하기 (Helm)
 
-### 5.1 Prometheus Operator `value.yaml` 파일 생성
+### 5.1. Prometheus Operator `value.yaml` 파일 생성
 
 ```yaml
 ## kkamji_local_with_thanos.yaml
@@ -160,7 +160,7 @@ prometheus:
           key: "objstore.yml"
 ```
 
-### 5.2 Helm 배포 (Prometheus Operator)
+### 5.2. Helm 배포 (Prometheus Operator)
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
