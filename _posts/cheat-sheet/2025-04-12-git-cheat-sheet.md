@@ -115,6 +115,35 @@ git config --global color.diff auto
 
 ---
 
+### 2.2 글로벌 .gitignore 설정
+
+`core.excludesFile` 을 설정하면 모든 Git 저장소에 공통 적용되는 `.gitignore` 를 유지할 수 있습니다. [git-scm 공식 문서의 gitignore 섹션](https://git-scm.com/docs/gitignore#_external_ignores)에서 권장하는 방법으로, 홈 디렉터리에 별도 파일을 두는 구성이 가장 단순합니다.
+
+- Linux/macOS: `~/.gitignore_global`
+- Windows: `%USERPROFILE%\.gitignore_global`
+
+```shell
+# 글로벌 .gitignore 파일 생성
+touch ~/.gitignore_global
+
+# Git 전역 설정에 등록
+git config --global core.excludesFile '~/.gitignore_global'
+
+# 설정 확인
+git config --global --get core.excludesFile
+```
+
+```powershell
+# Windows PowerShell 예시
+New-Item -ItemType File -Force "$env:USERPROFILE\.gitignore_global" | Out-Null
+git config --global core.excludesFile "$env:USERPROFILE\.gitignore_global"
+git config --global --get core.excludesFile
+```
+
+Git 은 경로 문자열의 `~` 를 홈 디렉터리로 해석하므로 단일 인용부호를 사용해도 문제 없습니다. 필요하면 `~/.config/git/ignore` 와 같이 다른 경로를 지정해도 무방합니다. 글로벌 `.gitignore` 파일에는 OS 캐시, IDE 설정 파일 등 저장소와 무관한 항목을 두고, 저장소별 `.gitignore` 에는 프로젝트 특화 규칙만 유지하는 것을 권장합니다.
+
+---
+
 ## 3. 유용한 별칭 설정
 
 ```shell
