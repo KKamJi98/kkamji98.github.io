@@ -5,6 +5,7 @@
 -- 기본 옵션
 --------------------------------
 vim.g.mapleader = " "
+vim.g.markdown_recommended_style = 0
 
 vim.opt.number = true
 vim.opt.autoindent = true
@@ -291,6 +292,10 @@ require("lazy").setup({
         { "<leader>c", group = "code" },
         { "<leader>s", group = "session" },
         { "<leader>x", group = "diagnostics" },
+        { "<leader>m", group = "markdown" },
+        { "<leader>mt", desc = "Toggle checkbox" },
+        { "<leader>mr", desc = "Renumber ordered list" },
+        { "<leader>ms", desc = "Toggle spell checking" },
       })
     end,
   },
@@ -317,9 +322,9 @@ require("lazy").setup({
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown", "go", "python" },
+        ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown", "markdown_inline", "go", "python" },
         highlight = { enable = true },
-        indent = { enable = true, disable = { "yaml" } }, -- YAML 인덴트 비활성화
+        indent = { enable = true, disable = { "yaml", "markdown" } }, -- YAML/Markdown 인덴트 비활성화
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -722,46 +727,198 @@ mapd("v", "<A-k>", ":m '<-2<CR>gv=gv", "Move block up")
 --------------------------------
 -- 파일타입별 들여쓰기 규칙
 --------------------------------
+-- per-filetype indentation helper
+local function set_local_indent(width, expandtab)
+  local o = vim.opt_local
+  o.tabstop = width
+  o.shiftwidth = width
+  o.softtabstop = width
+  o.expandtab = expandtab
+end
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "python" },
   callback = function()
-    local o = vim.opt_local
-    o.expandtab = true
-    o.shiftwidth = 4
-    o.tabstop = 4
-    o.softtabstop = 4
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "go" },
-  callback = function()
-    local o = vim.opt_local
-    o.expandtab = false   -- Go는 탭 사용
-    o.tabstop = 4         -- 표시 폭
-    o.shiftwidth = 0      -- 탭 폭을 따름
-    o.softtabstop = 0
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "make" },
-  callback = function()
-    local o = vim.opt_local
-    o.expandtab = false   -- Makefile은 탭 필수
-    o.tabstop = 8
-    o.shiftwidth = 8
+    set_local_indent(4, true)
   end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "yaml", "yml", "docker-compose", "helm" },
   callback = function()
+    set_local_indent(2, true)
+  end,
+})
+
+--------------------------------
+-- Markdown 편집 고도화
+--------------------------------
+local markdown = {} -- markdown-specific helpers
+
+function markdown.toggle_checkbox_line(bufnr, line_nr)
+  if line_nr < 0 then
+    return false
+  end
+  local line = vim.api.nvim_buf_get_lines(bufnr, line_nr, line_nr + 1, false)[1]
+  if not line then
+    return false
+  end
+  local prefix, state, rest = line:match("^(%s*[%-%*+]%s+)%[([ xX%-])%]%s*(.*)$")
+  if not prefix then
+    prefix, state, rest = line:match("^(%s*%d+%.%s+)%[([ xX%-])%]%s*(.*)$")
+  end
+  if not prefix or not state then
+    return false
+  end
+  local new_state = (state == " " or state == "-") and "x" or " "
+  local suffix = rest ~= "" and (" " .. rest) or ""
+  vim.api.nvim_buf_set_lines(bufnr, line_nr, line_nr + 1, false, { ("%s[%s]%s"):format(prefix, new_state, suffix) })
+  return true
+end
+
+function markdown.toggle_checkbox_current()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  markdown.toggle_checkbox_line(bufnr, row)
+end
+
+function markdown.toggle_checkbox_visual()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local start_line = vim.fn.getpos("'<")[2] - 1
+  local end_line = vim.fn.getpos("'>")[2] - 1
+  if start_line < 0 or end_line < 0 then
+    return
+  end
+  if end_line < start_line then
+    start_line, end_line = end_line, start_line
+  end
+  for line_nr = start_line, end_line do
+    markdown.toggle_checkbox_line(bufnr, line_nr)
+  end
+end
+
+function markdown.continue_list_newline()
+  local line = vim.api.nvim_get_current_line()
+  local indent, marker, rest = line:match("^(%s*)([%-%*+])%s+(.*)$")
+  if marker then
+    local checkbox, tail = rest:match("^%[([ xX%-])%]%s*(.*)$")
+    local content = checkbox and tail or rest
+    if content == "" then
+      return "\n" .. indent
+    end
+    local continuation = indent .. marker .. " "
+    if checkbox then continuation = continuation .. "[ ] " end
+    return "\n" .. continuation
+  end
+
+  local number_indent, number, number_rest = line:match("^(%s*)(%d+)%.%s+(.*)$")
+  if number then
+    local checkbox, tail = number_rest:match("^%[([ xX%-])%]%s*(.*)$")
+    local content = checkbox and tail or number_rest
+    if content == "" then
+      return "\n" .. number_indent
+    end
+    local next_number = tonumber(number)
+    local continuation = number_indent .. (next_number and ("%d. "):format(next_number + 1) or (number .. ". "))
+    if checkbox then continuation = continuation .. "[ ] " end
+    return "\n" .. continuation
+  end
+
+  local current_indent = line:match("^(%s*)") or ""
+  return "\n" .. current_indent
+end
+
+function markdown.renumber_ordered_list()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local current = vim.api.nvim_win_get_cursor(0)[1] - 1
+  if current < 0 then
+    return
+  end
+  local line = vim.api.nvim_buf_get_lines(bufnr, current, current + 1, false)[1]
+  if not line or not line:match("^%s*%d+%.%s+") then
+    return
+  end
+  local start_line = current
+  while start_line > 0 do
+    local prev = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+    if not prev or not prev:match("^%s*%d+%.%s+") then
+      break
+    end
+    start_line = start_line - 1
+  end
+  local line_count = vim.api.nvim_buf_line_count(bufnr)
+  local end_line = current
+  while end_line + 1 < line_count do
+    local next_line = vim.api.nvim_buf_get_lines(bufnr, end_line + 1, end_line + 2, false)[1]
+    if not next_line or not next_line:match("^%s*%d+%.%s+") then
+      break
+    end
+    end_line = end_line + 1
+  end
+  local numbering = 1
+  for line_nr = start_line, end_line do
+    local text = vim.api.nvim_buf_get_lines(bufnr, line_nr, line_nr + 1, false)[1]
+    local indent, _, rest = text:match("^(%s*)(%d+)%.%s*(.*)$")
+    if indent then
+      local suffix = rest ~= "" and (" " .. rest) or ""
+      vim.api.nvim_buf_set_lines(bufnr, line_nr, line_nr + 1, false, { ("%s%d.%s"):format(indent, numbering, suffix) })
+      numbering = numbering + 1
+    end
+  end
+end
+
+function markdown.toggle_spell()
+  local new_value = not vim.opt_local.spell:get()
+  vim.opt_local.spell = new_value
+  if new_value then
+    local langs = vim.opt_local.spelllang:get()
+    local has_cjk = false
+    for _, lang in ipairs(langs) do
+      if lang == "cjk" then
+        has_cjk = true
+        break
+      end
+    end
+    if not has_cjk then
+      vim.opt_local.spelllang = { "en_us", "cjk" }
+    end
+  end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function(event)
+    set_local_indent(2, true)
     local o = vim.opt_local
-    o.expandtab = true
-    o.shiftwidth = 2
-    o.tabstop = 2
-    o.softtabstop = 2
+    o.spell = false
+    o.spelllang = { "en_us", "cjk" }
+    o.wrap = true
+    o.linebreak = true
+    o.textwidth = 0
+    o.colorcolumn = ""
+    o.conceallevel = 2
+    o.concealcursor = "nc"
+    o.comments = { "fb:*", "fb:-", "fb:+", "n:>" }
+    o.commentstring = "<!-- %s -->"
+    o.formatlistpat = [[^\s*\d\+\.\s\+\|^\s*[-*+]\s\+\|^\[[^][]\+\]:\&^.\{4\}]]
+    vim.bo.autoindent = false
+    vim.bo.smartindent = false
+    vim.bo.cindent = false
+    vim.bo.indentexpr = ""
+    o.formatoptions:remove("r")
+    o.formatoptions:remove("o")
+    o.formatoptions:append("t")
+    o.formatoptions:append("c")
+    o.formatoptions:append("q")
+    o.formatoptions:append("l")
+    o.formatoptions:append("n")
+
+    local key_opts = { buffer = event.buf, noremap = true, silent = true }
+    vim.keymap.set("n", "<leader>mt", markdown.toggle_checkbox_current, vim.tbl_extend("force", key_opts, { desc = "Toggle checkbox" }))
+    vim.keymap.set("x", "<leader>mt", markdown.toggle_checkbox_visual, vim.tbl_extend("force", key_opts, { desc = "Toggle checkbox (visual)" }))
+    vim.keymap.set("n", "<leader>mr", markdown.renumber_ordered_list, vim.tbl_extend("force", key_opts, { desc = "Renumber ordered list" }))
+    vim.keymap.set("i", "<CR>", markdown.continue_list_newline, vim.tbl_extend("force", key_opts, { expr = true, desc = "Continue Markdown list" }))
+    vim.keymap.set("n", "<leader>ms", markdown.toggle_spell, vim.tbl_extend("force", key_opts, { desc = "Toggle spell checking" }))
   end,
 })
 
