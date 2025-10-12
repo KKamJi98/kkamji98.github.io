@@ -3,7 +3,7 @@ title: Cilium Service Mesh [Cilium Study 6주차]
 date: 2025-08-18 01:02:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, service-mesh, cilium-ingress, gateway-api, hubble]
+tags: [kubernetes, devops, cilium, cilium-study, service-mesh, cilium-ingress, gateway-api, hubble, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

@@ -3,7 +3,7 @@ title: Cilium Metric Monitoring with Prometheus + Grafana [Cilium Study 2주차]
 date: 2025-07-27 10:21:35 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, monitoring, observability, devops, sli, slo, sla, cilium-study, cloudnet]
+tags: [kubernetes, monitoring, observability, devops, sli, slo, sla, cilium, cilium-study, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

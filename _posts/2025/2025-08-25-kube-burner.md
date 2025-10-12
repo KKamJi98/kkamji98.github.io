@@ -3,7 +3,7 @@ title: Kube-burner 소개 및 실습 [Cilium Study 7주차]
 date: 2025-08-25 00:25:11 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, devops, cilium, cilium-study, kube-burner, performance]
+tags: [kubernetes, devops, cilium, cilium-study, kube-burner, performance, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp

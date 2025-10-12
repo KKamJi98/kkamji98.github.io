@@ -3,7 +3,7 @@ title: Cilium BGP Control Plane [Cilium Study 5주차]
 date: 2025-08-11 01:04:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet, cilium-bgp-control-plane, bgp]
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, gasida, cilium-bgp-control-plane, bgp]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

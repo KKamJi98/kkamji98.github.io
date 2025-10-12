@@ -3,7 +3,7 @@ title: Cilium Network Security [Cilium Study 8주차]
 date: 2025-09-03 23:30:22 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, devops, cilium, cilium-study, cilium-security]
+tags: [kubernetes, devops, cilium, cilium-study, cilium-security, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp

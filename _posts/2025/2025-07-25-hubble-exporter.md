@@ -3,7 +3,7 @@ title: Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]
 date: 2025-07-25 02:32:50 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, hubble, hubble-exporter, static-exporter, dynamic-exporter, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, cilium, hubble, hubble-exporter, static-exporter, dynamic-exporter, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

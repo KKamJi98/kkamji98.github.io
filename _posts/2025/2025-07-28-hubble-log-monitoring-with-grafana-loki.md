@@ -3,7 +3,7 @@ title: Cilium Log Monitoring with Grafana Loki + Grafana Alloy [Cilium Study 2ì£
 date: 2025-07-28 10:21:35 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, monitoring, observability, sli, slo, sla, cilium-study, cloudnet]
+tags: [kubernetes, devops, monitoring, observability, sli, slo, sla, cilium, cilium-study, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

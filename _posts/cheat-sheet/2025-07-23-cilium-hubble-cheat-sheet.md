@@ -3,7 +3,7 @@ title: Cilium & Hubble Command Cheat Sheet [Cilium Study 2주차]
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, hubble, cilium, cilium-study, cloudnet, cheat-sheet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, hubble, cilium, cilium-study, cloudnet, gasida, cheat-sheet]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

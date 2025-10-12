@@ -3,7 +3,7 @@ title: Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Ci
 date: 2025-08-12 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, bgp, lb-ipam, external-traffic-policy, ecmp]
+tags: [kubernetes, devops, cilium, cilium-study, bgp, lb-ipam, external-traffic-policy, ecmp, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

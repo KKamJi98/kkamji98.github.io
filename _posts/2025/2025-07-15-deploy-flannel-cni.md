@@ -3,7 +3,7 @@ title: Flannel CNI 배포하기 [Cilium Study 1주차]
 date: 2025-07-15 19:41:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, flannel, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, flannel, cilium, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp

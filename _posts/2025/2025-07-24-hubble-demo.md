@@ -3,7 +3,7 @@ title: Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study
 date: 2025-07-24 02:02:50 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, hubble, hubble-relay, cilium, star-wars, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, hubble, hubble-relay, cilium, star-wars, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

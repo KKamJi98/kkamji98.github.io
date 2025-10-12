@@ -3,7 +3,7 @@ title: Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study
 date: 2025-07-18 21:23:05 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

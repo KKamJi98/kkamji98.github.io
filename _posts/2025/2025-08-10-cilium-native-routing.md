@@ -3,7 +3,7 @@ title: Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & 
 date: 2025-08-10 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet, routing]
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, gasida, routing]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

@@ -3,7 +3,7 @@ title: IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [
 date: 2025-07-29 01:13:54 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, ipam, cloudnet]
+tags: [kubernetes, devops, cilium, cilium-study, ipam, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

@@ -3,7 +3,7 @@ title: Cilium Cluster Mesh [Cilium Study 5주차]
 date: 2025-08-14 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cluster-mesh, service-affinity, hubble, kind]
+tags: [kubernetes, devops, cilium, cilium-study, cluster-mesh, service-affinity, hubble, kind, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

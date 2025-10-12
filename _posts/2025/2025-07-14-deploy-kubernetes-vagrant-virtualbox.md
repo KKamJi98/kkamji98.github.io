@@ -3,7 +3,7 @@ title: Vagrant와 VirtualBox로 Kubernetes Cluster 구축하기 [Cilium Study 1�
 date: 2025-07-14 23:55:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, vagrant, virtual-box, wsl, cloudnet, cilium-study]     # TAG names should always be lowercase
+tags: [kubernetes, devops, cilium, vagrant, virtual-box, wsl, cloudnet, gasida, cilium-study]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp

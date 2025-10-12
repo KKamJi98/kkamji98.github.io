@@ -3,7 +3,7 @@ title: Cilium Hubble 알아보기 [Cilium Study 2주차]
 date: 2025-07-21 01:43:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, hubble, hubble-relay ,cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, hubble, hubble-relay ,cilium, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

@@ -3,7 +3,7 @@ title: Cilium CNI 알아보기 [Cilium Study 1주차]
 date: 2025-07-16 23:50:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet]     # TAG names should always be lowercase
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, gasida]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp

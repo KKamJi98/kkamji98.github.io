@@ -3,7 +3,7 @@ title: Cilium Network Routing 이해하기 – Encapsulation과 Native Routing �
 date: 2025-08-03 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cloudnet, routing]
+tags: [kubernetes, devops, cilium, cilium-study, cloudnet, gasida, routing]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp
