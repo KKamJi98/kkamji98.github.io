@@ -41,12 +41,17 @@ image:
 
 ### 1.3. GitOps 4가지 원칙 (*OpenGitOps* GitOps Principles v1.0.0)
 
-| Number | Principle                   | Description                                                                                                           |
-| :----: | :-------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-|   1    | **Declarative**             | GitOps로 관리되는 시스템은 원하는 상태(Desired State)를 선언적으로(Declaratively) 표현해야 합니다.                      |
-|   2    | **Versioned and Immutable** | 원하는 상태는 변경 불가능(Immutable)하고 버전 관리가 가능한 방식으로 저장되어야 하며, 전체 변경 이력을 유지해야 합니다. |
-|   3    | **Pulled Automatically**    | 소프트웨어 에이전트는 원본(Source)으로부터 선언된 원하는 상태를 자동으로 가져와(Pull) 적용해야 합니다.                  |
-|   4    | **Continuously Reconciled** | 에이전트는 실제 시스템 상태를 지속적으로 관찰하고(Observe), 원하는 상태로 일치하도록(Apply) 조정(Reconcile)해야 합니다. |
+- **1. Declarative**  
+  GitOps로 관리되는 시스템은 원하는 상태(Desired State)를 선언적으로(Declaratively) 표현해야 합니다.
+
+- **2. Versioned and Immutable**  
+  원하는 상태는 변경 불가능(Immutable)하고 버전 관리가 가능한 방식으로 저장되어야 하며, 전체 변경 이력을 유지해야 합니다.
+
+- **3. Pulled Automatically**  
+  소프트웨어 에이전트는 원본(Source)으로부터 선언된 원하는 상태를 자동으로 가져와(Pull) 적용해야 합니다.
+
+- **4. Continuously Reconciled**  
+  에이전트는 실제 시스템 상태를 지속적으로 관찰하고(Observe), 원하는 상태로 일치하도록(Apply) 조정(Reconcile)해야 합니다.
 
 > [OpenGitOps](https://opengitops.dev/)
 
