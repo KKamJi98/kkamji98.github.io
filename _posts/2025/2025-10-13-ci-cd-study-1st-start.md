@@ -9,7 +9,7 @@ image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
 ---
 
-최근 DevOps의 핵심 키워드로 자리 잡은 **CI/CD**, **Automation**, 그리고 **Security**에 관심을 갖고 공부하던 중, `CloudNet@` 팀의 ***Gasida*** 님이 진행하시는 **"CI/CD + ArgoCD + Vault Study"** 모집 소식을 듣고 바로 참여를 결심했습니다.
+최근 DevOps의 핵심 키워드로 자리 잡은 **CI/CD**, **Automation**, 그리고 **Security**에 관심을 갖고 공부하던 중, `CloudNet@` 팀의 ***Gasida*** 님이 진행하시는 `CI/CD + ArgoCD + Vault Study` 모집 소식을 듣고 바로 참여를 결심했습니다.
 
 이전에 참여했던 `Cilium Study`는 상당히 빠른 진도와 타이트한 일정 덕분에 매주 토요일 밤을 새웠던 기억이 있습니다~~ㅠㅠ~~... 하지만 그만큼 **탄탄한 커리큘럼**, **방대한 학습 자료**, 그리고 **실무에 바로 적용 가능한 깊이 있는 실습** 덕분에 정말 많은 것을 배울 수 있었던 값진 시간이었습니다.
 

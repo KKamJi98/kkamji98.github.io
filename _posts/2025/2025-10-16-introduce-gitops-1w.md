@@ -9,7 +9,9 @@ image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
 ---
 
-이번 포스트에서는 *O'Reilly GitOps Cookbook* 의 1장에 해당 하는 GitOps에 대해 알아보겠습니다.
+`CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study` 를 진행하며 학습한 내용을 공유합니다.
+
+이번 포스트에서는 *O'Reilly GitOps Cookbook* 의 1장에 해당 하는 **GitOps**에 대해 알아보겠습니다.
 
 ---
 
