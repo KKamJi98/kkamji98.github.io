@@ -3,7 +3,7 @@ title: Container 개념과 Container Image Build 방식 정리
 date: 2025-10-17 06:22:31 +0900
 author: kkamji
 categories: [DevOps]
-tags: [devops, argocd, gitops, ci-cd, vault, cloudnet, gasida, ci-cd-study, ci-cd-study-1w]
+tags: [devops, gitops, vault, ci-cd-study, ci-cd-study-1w, docker, jib, buildah, podman, buildpack, shipwright, kaniko]
 comments: true
 image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
