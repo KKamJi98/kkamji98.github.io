@@ -1,5 +1,5 @@
 ---
-title: GitOps를 활용한 Kubernetes CI/CD
+title: GitOps 소개
 date: 2025-10-16 06:22:31 +0900
 author: kkamji
 categories: [DevOps]
