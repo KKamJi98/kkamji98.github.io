@@ -1307,6 +1307,19 @@ cat ~/.kube/config
 
 - [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
 - [Open Container Initiative](https://opencontainers.org/)
+- [Docker](https://www.docker.com/)
+- [Jib](https://cloud.google.com/java/getting-started/jib)
+- [Buildah](https://buildah.io/)
+- [Podman](https://podman.io/)
+- [Buildpacks](https://buildpacks.io/)
+- [Shipwright](https://shipwright.io/)
+- [Kaniko](https://github.com/GoogleContainerTools/kaniko)
+- [GitHub - moby/moby](https://github.com/moby/moby)
+- [GitHub - GoogleContainerTools/jib](https://github.com/GoogleContainerTools/jib)
+- [GitHub - containers/buildah](https://github.com/containers/buildah)
+- [GitHub - containers/podman](https://github.com/containers/podman)
+- [GitHub - buildpacks](https://github.com/buildpacks)
+- [GitHub - shipwright-io](https://github.com/shipwright-io)
 
 
 
