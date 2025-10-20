@@ -388,7 +388,8 @@ require("lazy").setup({
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     opts = {
       ensure_installed = { "terraformls", "lua_ls", "yamlls" },
-      automatic_enable = { exclude = { "terraformls" } },
+      -- stylua LSP는 v2.2.0 이전 바이너리에서 --lsp 옵션 인식 오류가 발생하므로 명시 화이트리스트만 자동 활성화
+      automatic_enable = { "lua_ls", "yamlls" },
     },
   },
 
