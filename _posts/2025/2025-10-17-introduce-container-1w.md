@@ -1321,8 +1321,6 @@ cat ~/.kube/config
 - [Shipwright - GitHub](https://github.com/shipwright-io)
 - [Kaniko - GitHub](https://github.com/GoogleContainerTools/kaniko)
 
-
-
 ---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  

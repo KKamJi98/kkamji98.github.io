@@ -306,9 +306,13 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       local api = require("Comment.api")
+      local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
       require("Comment").setup()
       vim.keymap.set("n", "<C-_>", function() api.toggle.linewise.current() end, { noremap = true, silent = true, desc="Toggle Comment" })
-      vim.keymap.set("x", "<C-_>", function() api.toggle.linewise(vim.fn.visualmode()) end, { noremap = true, silent = true, desc="Toggle Comment (v)" })
+      vim.keymap.set("x", "<C-_>", function()
+        vim.api.nvim_feedkeys(esc, "nx", false)
+        api.toggle.linewise(vim.fn.visualmode())
+      end, { noremap = true, silent = true, desc="Toggle Comment (v)" })
     end,
   },
 
