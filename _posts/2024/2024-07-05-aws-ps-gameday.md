@@ -41,19 +41,19 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 ## 2. 대회 진행
 
-![alt text](../assets/img/project/ps-gameday/winners.jpg)
-![alt text](../assets/img/project/ps-gameday/winners2.jpg)
+![alt text]({{ "/assets/img/project/ps-gameday/winners.jpg" | relative_url }})
+![alt text]({{ "/assets/img/project/ps-gameday/winners2.jpg" | relative_url }})
 
 [김지우](https://www.linkedin.com/in/kim-jiwoo-3b4828184/), [김진우](https://www.linkedin.com/in/jinwoo-kim-2aa0362a6/), [최보현](https://www.linkedin.com/in/bohyunchoi/), [김태지](https://www.linkedin.com/in/taejikim/) 이렇게 4인이서 **'자 드가자'** 팀을 이뤘고, '꼴등만 면하자'라는 마음가짐으로 대회에 임했습니다. 초반부터 실무 경험이 풍부한 실무진으로 구성된 팀들이 빠르게 상위권으로 치고 올라갔습니다. 우리는 다른 팀 신경쓰지말고 차분하게 현재 문제에만 집중하려 노력했습니다.
 
-![GameDay 진행 사진](../assets/img/project/ps-gameday/ps-gameday.png)  
+![GameDay 진행 사진]({{ "/assets/img/project/ps-gameday/ps-gameday.png" | relative_url }})  
 그 결과 중반에는 3등까지 올라갈 수 있었고, 현재 순위를 지키고 싶다는 욕심이 생겨 더욱 열심히 했습니다. 그 때부터 시간이 엄청 빠르게 흐르는 것 같은 느낌을 받았습니다.
 
 ---
 
 ## 3. 마무리
 
-![GameDay 최종 결과 사진](../assets/img/project/ps-gameday/ps-gameday-final.png)  
+![GameDay 최종 결과 사진]({{ "/assets/img/project/ps-gameday/ps-gameday-final.png" | relative_url }})  
 
 결국 5등으로 마무리하게 되었고, 대회의 시나리오를 통해 Bedrock 서비스를 사용해 결과물을 도출해내는 과정이 되게 재미있었습니다. 다음에 또 기회가 생긴다면 꼭 다시 참가하고 싶습니다.
 
