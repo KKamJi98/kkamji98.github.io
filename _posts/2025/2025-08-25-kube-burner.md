@@ -221,6 +221,7 @@ Version: 1.17.3
 
 ### 5.1. 시나리오 1. 디플로이먼트 1개 생성 후 삭제하며 qps·burst 의미 확인
 
+{% raw %}
 ```shell
 ########################################################
 # s1-config.yaml
@@ -492,7 +493,6 @@ kubectl describe node | grep Capacity -A13
 kubectl get pod -A --no-headers | wc -l
 116
 ```
-{% endraw %}
 
 ![Grafana Dashboard Pod Number and Nodes](/assets/img/kubernetes/cilium/7w-grafana-110-pod-limit.webp)
 
@@ -500,7 +500,6 @@ kubectl get pod -A --no-headers | wc -l
 
 위에서 max_pods limit이 110에 걸려 6개의 pod가 Pending 상태임을 확인했습니다. max_pods limit을 증가 시켜 위의 문제를 해결해보겠습니다.
 
-{% raw %}
 ```shell
 ########################################################
 # Kind Kubernetes Cluster의 Control Plane Shell 접근
@@ -791,6 +790,7 @@ EOF
 
 kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
+{% endraw %}
 
 > /24 대역에서 위 3개는 할당 불가이므로 사용 가능한 Pod IP는 253개입니다. (hostNetwork 파드는 이 계산에서 제외)  
 > - 10.244.0.0  (첫 번째 주소: /24 네트워크의 네트워크 주소. 라우팅 식별용)
