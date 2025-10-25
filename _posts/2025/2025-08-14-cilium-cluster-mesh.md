@@ -3,7 +3,7 @@ title: Cilium Cluster Mesh [Cilium Study 5주차]
 date: 2025-08-14 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
-tags: [kubernetes, devops, cilium, cilium-study, cluster-mesh, service-affinity, hubble, kind, cloudnet, gasida]
+tags: [kubernetes, devops, cilium, cilium-study, cilium-5w, cluster-mesh, service-affinity, hubble, kind, cloudnet, gasida]
 comments: true
 image:
   path: /assets/img/kubernetes/cilium/cilium.webp
@@ -12,30 +12,6 @@ image:
 **Cluster Mesh**는 여러 Kubernetes Cluster를 하나의 **Network Mesh**로 확장하는 기능으로, 연결된 모든 Cluster의 엔드포인트가 서로 통신할 수 있도록 하면서도 **정책(Policy) 적용**을 그대로 유지할 수 있게 해주는 기능입니다. 이를 통해 **Multi Cluster에서 Pod-to-Pod 간 연결**이 가능하며, 글로벌 서비스를 정의하여 여러 Cluster에 걸쳐 **로드밸런싱**을 수행할 수도 있습니다. 특히 멀티 Cluster 운영 환경에서 **서비스 가용성**을 높이고 **정책 기반의 보안**을 강화할 수 있다는 점에서 중요한 기능입니다.  
 
 이번 시간에는 Kind를 사용해 2개의 Kubernetes Cluster를 배포하고, Cluster Mesh로 연결한 뒤, 통신이 되는 것을 확인해보도록 하겠습니다.
-
-### 관련 글
-
-1. [Vagrant와 VirtualBox로 Kubernetes Cluster 구축하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-14-deploy-kubernetes-vagrant-virtualbox %})
-2. [Flannel CNI 배포하기 [Cilium Study 1주차]]({% post_url 2025/2025-07-15-deploy-flannel-cni %})
-3. [Cilium CNI 알아보기 [Cilium Study 1주차]]({% post_url 2025/2025-07-16-cilium-cni-basic %})
-4. [Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]]({% post_url 2025/2025-07-18-deploy-cilium %})
-5. [Cilium Hubble 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-21-hubble-basic %})
-6. [Cilium & Hubble Command Cheat Sheet [Cilium Study 2주차]]({% post_url cheat-sheet/2025-07-23-cilium-hubble-cheat-sheet %})
-7. [Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-24-hubble-demo %})
-8. [Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]]({% post_url 2025/2025-07-25-hubble-exporter %})
-9. [Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]]({% post_url 2025/2025-07-26-monitoring-observability-sli-slo-sla %})
-10. [Cilium Metric Monitoring with Prometheus + Grafana [Cilium Study 2주차]]({% post_url 2025/2025-07-27-hubble-metric-monitoring-with-prometheus-grafana %})
-11. [Cilium Log Monitoring with Grafana Loki & Grafana Alloy [Cilium Study 2주차]]({% post_url 2025/2025-07-28-hubble-log-monitoring-with-grafana-loki %})
-12. [IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [Cilium Study 3주차]]({% post_url 2025/2025-07-29-cilium-ipam-mode %})
-13. [Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})
-14. [Cilium Native Routing 통신 확인 및 문제 해결 – Static Route & BGP [Cilium Study 4주차]]({% post_url 2025/2025-08-10-cilium-native-routing %})
-15. [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})
-16. [Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]]({% post_url 2025/2025-08-12-cilium-lb-ipam %})
-17. [Kind로 Kubernetes Cluster 배포하기 [Cilium Study 5주차]]({% post_url 2025/2025-08-13-kind %})
-18. [Cilium Cluster Mesh [Cilium Study 5주차] (현재 글)]({% post_url 2025/2025-08-14-cilium-cluster-mesh %})
-19. [Cilium Service Mesh [Cilium Study 6주차]]({% post_url 2025/2025-08-18-cilium-service-mesh %})
-20. [Kube-burner 소개 및 실습 [Cilium Study 7주차]]({% post_url 2025/2025-08-25-kube-burner %})
-21. [Cilium Network Security [Cilium Study 8주차]]({% post_url 2025/2025-09-03-cilium-network-security %})
 
 ---
 
