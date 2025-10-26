@@ -1,5 +1,5 @@
 ---
-title: EC2위에 Jenkins Server 구축하기
+title: EC2 위에 Jenkins Server 구축하기
 date: 2024-05-02 22:42:36 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]
@@ -9,7 +9,7 @@ image:
   path: /assets/img/ci-cd/jenkins/jenkins.webp
 ---
 
-> <https://www.whatap.io/ko/blog/77/> 와탭랩스에서 이런 글을 올린 것을 확인했고,, 한번 적용해볼까?? 라는 생각을 하게되었습니다. 기존의 계획은 Jenkins Server를 하나 만들고 사용할 예정이었지만 우리는 저번에 MicroK8s Server를 만들었고.. 해당 클러스터를 이용해 Jenkins Agent를 Pod로 동적으로 생성하는 것은 어떨까요?? 아무래도.. 해보고 싶은건 해봐야겠죠??  
+> <https://www.whatap.io/ko/blog/77/> 와탭랩스에서 공유한 글을 보고 한 번 적용해 볼까 하는 생각이 들었습니다. 기존 계획은 Jenkins Server를 하나 만들어 사용하는 것이었지만 이미 MicroK8s Server를 구축해 둔 만큼 해당 클러스터를 활용해 Jenkins Agent를 Pod로 동적으로 생성해 보는 건 어떨까요? 하고 싶은 건 해봐야겠죠.  
 {: .prompt-tip}
 
 ---
@@ -81,7 +81,7 @@ lines 1-20/20 (END)
 
 ## 3. Jenkins 접속해보기
 
-> Jenkins Server에 접속하기 위해서는 EC2 인스턴스에 인바운드 규칙에 8080포트를 허용해주셔야 합니다
+> Jenkins Server에 접속하려면 EC2 인스턴스 인바운드 규칙에서 8080 포트를 허용해야 합니다.
 {: .prompt-info}
 ---
 > {EC2_Public_IP}:8080.  
@@ -103,7 +103,7 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/902c0205-5850-4ef8-91e9-5c991a426301)
 
-> 접속 했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해볼게요.
+> 접속했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해 보겠습니다.
 {: .prompt-info}
 
 ---
@@ -133,6 +133,6 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ---
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}

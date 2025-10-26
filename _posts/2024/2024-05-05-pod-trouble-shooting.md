@@ -3,7 +3,7 @@ title: Pod가 계속 종료되지 않음 + EBS Volume 확장
 date: 2024-05-05 21:46:52 +0900
 author: kkamji
 categories: [Kubernetes]
-tags: [kubernetes, k8s, k8s-cluster, cluster, api-server, terminating, ebs, volume,  kubelet, aws, ec2, ubuntu]     # TAG names should always be lowercase
+tags: [kubernetes, k8s, k8s-cluster, cluster, api-server, terminating, ebs, volume, kubelet, aws, ec2, ubuntu]     # TAG names should always be lowercase
 comments: true
 image:
   path: /assets/img/kubernetes/kubernetes.webp
@@ -79,7 +79,7 @@ shm              64M     0   64M   0% /var/snap/microk8s/common/run/containerd/i
 tmpfs            96M   12K   96M   1% /run/user/1000
 ```
 
-> 앗… 실제로 여유공간이 1기가가 되지 않았다.. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해줘서 Worker Node의 용량을 10GB로 했었는데… ~~더 올리면 내 돈이…~~  용량을 추가해야겠다.
+> 앗… 실제로 여유 공간이 1GB가 되지 않았다. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해 줘 Worker Node의 용량을 10GB로 설정했는데… ~~더 올리면 내 돈이…~~ 결국 용량을 추가해야 했다.
 {: .prompt-info}
 
 ---
@@ -154,7 +154,7 @@ ubuntu@ip-10-0-0-81:~$ sudo resize2fs /dev/xvda1
 resize2fs 1.47.0 (5-Feb-2023)
 Filesystem at /dev/xvda1 is mounted on /; on-line resizing required
 old_desc_blocks = 2, new_desc_blocks = 2
-dThe filesystem on /dev/xvda1 is now 2883323 (4k) blocks long.
+The filesystem on /dev/xvda1 is now 2883323 (4k) blocks long.
 ```
 
 ### 5.4. 확장 결과 확인
@@ -196,10 +196,10 @@ root@Zest ~# kubectl get pods
 No resources found in default namespace.
 ```
 
-> 정상적으로 동작한다. ㅎㅎ 문제가 해결되어서 다행…입니다
+> 정상적으로 동작한다. 문제가 해결되어서 다행이다.
 {: .prompt-info}
 
 ---
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}

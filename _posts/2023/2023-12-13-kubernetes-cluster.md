@@ -11,10 +11,10 @@ image:
 
 ## 1. Concept
 
-> 쿠버네티스 클러스터는 애플리케이션  컨테이너를 실행하기 위한 일련의 노드 머신들의 집합입니다.
+> 쿠버네티스 클러스터는 애플리케이션 컨테이너를 실행하기 위한 일련의 노드 머신들의 집합입니다.
 
 - 클러스터는 **Control-Plane** 및 하나 이상의 컴퓨팅 머신 또는 노드를 포함합니다.
-- 컨트롤플레인이 어느 Application을 실행하고 Application이 어느 Conatiner Image를 사용할지와 같이 클러스터를 원하는 상태로 유지 관리합니다. Node는 Control Plane에서 요청을 받아 Appliation과 Workload를 실제로 실행합니다
+- 컨트롤 플레인이 어느 Application을 실행하고 Application이 어느 Container Image를 사용할지와 같이 클러스터를 원하는 상태로 유지 관리합니다. Node는 Control Plane에서 요청을 받아 Application과 Workload를 실제로 실행합니다
 - 따라서 물리 머신, 가상 머신, 온프레미스, 클라우드에 구애받지 않고 머신 그룹 전체에서 컨테이너를 예약하고 실행할 수 있습니다.
 
 ---
@@ -47,7 +47,7 @@ image:
     - Raft 합의 알고리즘을 사용해 클러스터 전반에 걸쳐 데이터의 강력한 일관성을 보장
 3. 고가용성
 4. 변경 감지 및 감시 기능
-    - key-value 데이터에 대한 병경 사항을 감시하는 기능을 제공함.
+    - key-value 데이터에 대한 변경 사항을 감시하는 기능을 제공합니다.
     - etcd를 통해 k8s는 클러스터의 상태 변화를 실시간으로 감지하고, 필요한 조치를 취할 수 있음
 
 #### 2.1.2. k8s와 etcd의 상호 작용
@@ -104,8 +104,8 @@ image:
 - 해당 Worker Node는 독립적으로 존재하며 해당 Worker Node의 kubelet은 독립적으로 Pods를 관리합니다
 - 이 경우 kubelet은 Pods를 어떻게 관리할까?
   - Pod에 관한 정보를 저장하는 서버 디렉토리를 통해 Pod 정의 파일을 읽을 수 있습니다.
-    - `/etc/kubernetes/menifests` - 서버 디렉토리
-    - 서버디렉토리에 Pod 정의 파일을 넣어두면 kubelet은 주기적으로 서버 디렉토리를 확인한 후 Host에 Pod를 생성합니다
+    - `/etc/kubernetes/manifests` - 서버 디렉터리
+    - 서버 디렉터리에 Pod 정의 파일을 넣어두면 kubelet은 주기적으로 해당 경로를 확인한 후 Host에 Pod를 생성합니다
 
 ### 3.3. kube-proxy
 
@@ -120,12 +120,11 @@ image:
     1. K8s의 서비스 추상화를 구현
     2. 서비스 ⇒ Pod 그룹에 대한 네트워크 접근을 제공하는 추상적인 개념
 2. 로드밸런싱
-    1. 클러이언트 요청을 서비스에 연결된 여러 포드 중 하나로 분산시키는 역할을 합니다
+    1. 클라이언트 요청을 서비스에 연결된 여러 Pod 중 하나로 분산시키는 역할을 합니다
 3. 네트워크 규칙 관리
-    1. 각 노드의 iptabels, ipvs 또는 사용자 공간 프록시를 통해 네트워크 규칙을 설정하고 관리함
-    ⇒ Pod, Service 및 Endpoint 간의 네트워크 통신을 가능하게 해줍니다
+    1. 각 노드의 iptables, IPVS 또는 사용자 공간 프록시를 통해 네트워크 규칙을 설정하고 관리해 Pod, Service 및 Endpoint 간 통신을 보장합니다
 4. 외부 접근 처리
-    1. 외부에서 클러스터 내의 서비스에 접근할 수 있도록 NodePort LoadBalancer 또는 ClusterIP 서비스 타입을 통해 트래픽을 적절한 Pod로 라우팅합니다.
+    1. 외부에서 클러스터 내의 서비스에 접근할 수 있도록 NodePort, LoadBalancer 또는 ClusterIP 서비스 타입을 통해 트래픽을 적절한 Pod로 라우팅합니다.
 
 ### 3.4. Containerd
 
@@ -151,6 +150,6 @@ image:
 6. 표준화 및 호환성
     1. OCI 표준을 준수 ⇒ 다양한 컨테이너 도구 및 시스템과의 호환성 보장
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

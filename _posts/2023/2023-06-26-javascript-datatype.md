@@ -47,16 +47,16 @@ console.log(octal === hex);    //true
 
 # 문자열 타입
 
-> 문자열은 0개 이상의 16비트 유니코드 문자(UTF-16)의 집합으로 전 세계 대부분의 문자를 표한할 수 있다.
+> 문자열은 0개 이상의 16비트 유니코드 문자(UTF-16)의 집합으로 전 세계 대부분의 문자를 표현할 수 있다.
 > 
-- 문자열은 작은따옴표(’’), 큰따옴표(””) 또는 백틱(₩₩)으로 텍스트를 감싼다.
+- 문자열은 작은따옴표(''), 큰따옴표("") 또는 백틱(``)으로 텍스트를 감싼다.
 - 자바스크립트의 문자열은 원시 타입이며, 변경 불가능한 값(**immutable value**)이다.
 
 # 템플릿 리터럴(template literal)
 
 > 멀티라인 문자열(multi-line string), 표현식 삽입(expression interpolation), 태그드 템플릿(tagged template) 등 편리한 문자열 처리 기능을 제공한다.
 > 
-- 템플릿 리터럴은 일반 문자열과 비슷해 보이지만 백틱(₩₩)을 사용해 표현한다.
+- 템플릿 리터럴은 일반 문자열과 비슷해 보이지만 백틱(``)을 사용해 표현한다.
     
 ```javascript
 var template = `Template literal`;
@@ -163,6 +163,6 @@ console.log(obj[key]); //value
 
 <br><br>
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

@@ -6,7 +6,7 @@ categories: [Programming Language, Rust]
 tags: [rust, backend, programming]     # TAG names should always be lowercase
 comments: true
 image:
-  path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/87acadfe-2601-4413-add5-6c8a482e1471
+  path: /assets/img/kkam-img/kkam.webp
 ---
 
 # 제로부터 시작하는 백엔드 프로그래밍
@@ -23,6 +23,6 @@ image:
 
 <br><br>
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

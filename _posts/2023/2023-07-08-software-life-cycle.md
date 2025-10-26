@@ -6,7 +6,7 @@ categories: [Personal, University]
 tags: [sdlc, software-life-cycle, waterfall, prototype-model, spiral-model, agile, agile-model, scrum]     # TAG names should always be lowercase
 comments: true
 image: 
-    path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/87055239-475b-4e8c-b3e5-c8fe594a2063
+    path: /assets/img/kkam-img/kkam.webp
 ---
 
 ## 1. 소프트웨어 생명 주기 (Software Life Cycle)
@@ -61,7 +61,7 @@ image:
 ### 5.1. * 대표적인 개발 모형
 
 1. 스크럼(Scrum)
-2. XP(eXtream Programming)
+2. XP(eXtreme Programming)
 3. 칸반(Kanban)
 4. Lean
 5. 기능 중심 개발(FDD; Feature Driven Development)
@@ -71,10 +71,10 @@ image:
 - 프로세스와 도구보다 개인과 상호작용
 - 방대한 문서보다 실행되는 SW
 - 계약 협상보다 고객과 협업
-- 계획에 따르기 보다 변화에 반응
+- 계획에 따르기보다 변화에 반응
 
 <br><br>
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

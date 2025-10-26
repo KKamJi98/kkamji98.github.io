@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> Kubernetes Cluster를 관리하기 위해서는 성능 metrics을 모니터링하고 지표를 저장한 뒤 지표 데이터에 대한 분석을 제공할 수 있는 솔루션이 필요합니다. 오픈 소스 모니터링 솔루션에는 Metric Server, Prometheus, Elastic Stack, DataDog 등이 있지만 이번 시간에는 가장 기본적인 Metrics Server를 클러스터에 설치해보도록 하겠습니다.  
+> Kubernetes Cluster를 관리하기 위해서는 성능 metrics를 모니터링하고 지표를 저장한 뒤 지표 데이터를 분석할 수 있는 솔루션이 필요합니다. 오픈 소스 모니터링 솔루션에는 Metric Server, Prometheus, Elastic Stack, DataDog 등이 있지만 이번 시간에는 가장 기본적인 Metrics Server를 클러스터에 설치해 보겠습니다.  
 {: .prompt-info}
 
 ---
@@ -19,7 +19,7 @@ image:
 > 클러스터 내의 모든 Node와 Pod에서 리소스 사용 데이터를 수집 후 kube-apiserver에 전달하는 역할을 합니다. 인메모리 솔루션(디스크에 Metric을 저장하지 않음)이며, Metric Data는 Horizontal Pod Autoscaler (HPA) 및 Vertical Pod Autoscaler (VPA)와 같은 기능을 사용할 때 필수적입니다.  
 {: .prompt-info}
 
-### 1.1. 수집절차
+### 1.1. 수집 절차
 
 1. kubelet이 자체 내장된 cAdvisor를 사용해 Node와 Pod의 리소스 데이터를 수집
 2. kubelet이 /metrics/resource API 엔드포인트를 통해 리소스 데이터를 제공
@@ -147,7 +147,8 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 
 ### 5.2. 마무리
 
-> Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 포트에 10250 포트를 열어주어야 합니다.
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 규칙에 10250 포트를 허용해야 합니다.
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}

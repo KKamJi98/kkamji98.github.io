@@ -6,7 +6,7 @@ categories: [CS, Virtualization]
 tags: [virtualization, docker, k8s, container, vm, vmware, type-1-virtualization, type-2-virtualization, hypervisor]     # TAG names should always be lowercase
 comments: true
 image:
-  path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/0794e0e2-b08e-4cc5-b640-c975f5a1a7b7
+  path: /assets/img/kkam-img/kkam.webp
 ---
 
 
@@ -23,7 +23,7 @@ image:
 - 특징
   - 높은 성능과 효율성을 제공합니다. 직접 하드웨어를 관리하므로, 오버헤드가 적고 가상 머신 간의 성능 격리가 우수합니다.
 - 사용 사례
-  - 서버 가상화 및 고성능이 요구되는 엔터프라이즈 환경에서 사용도비니다.
+  - 서버 가상화 및 고성능이 요구되는 엔터프라이즈 환경에서 사용됩니다.
   - VMware ESXi, Microsoft Hyper-V, Xen 등이 있습니다.
 
 ---
@@ -32,7 +32,7 @@ image:
 
 - 정의
   - 기존 운영 체제 위에 소프트웨어로 설치되어 실행됩니다.
-  - 호스트 운영 체제상에서 작동하며, 가상 머신을 관리합니다.
+  - 호스트 운영 체제 상에서 작동하며, 가상 머신을 관리합니다.
 - 특징
   - 설치와 관리가 비교적 쉽지만, Type 1에 비해 성능 오버헤드가 큽니다.
   - 호스트 OS를 통해 하드웨어 자원에 접근하기 때문에, 성능이 저해될 수 있습니다.
@@ -50,6 +50,6 @@ image:
 >  
 > Type 2 가상화에서 하이퍼바이저는 호스트 운영 체제 위에 소프트웨어로 설치됩니다. 따라서 호스트 OS의 서비스와 자원을 사용하여 가상 머신을 실행합니다.  
 {: .prompt-info}
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}

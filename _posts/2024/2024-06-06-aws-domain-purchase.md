@@ -21,9 +21,9 @@ image:
     ![image](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/128de451-b3d6-4dd9-8a92-d5bc5a3720fc)
 2. Register domains를 누른 후 사용하고 싶은 도메인을 확인합니다. 저는 kkamji.net 도메인을 구매하도록 하겠습니다.
     ![image](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/25ce37fa-32ec-4d3a-9d04-9cf209cb9cbb)
-3. 도메인을 얼마나 사용할 것인지, 선택해 주거나 자동으로 도메인을 갱신할 것인지 체크한 뒤, 개인정보를 입력후 결제를 진행합니다.
+3. 도메인을 얼마나 사용할 것인지 선택하거나 자동 갱신 여부를 체크한 뒤 개인정보를 입력하고 결제를 진행합니다.
     ![image3](https://github.com/KKamJi98/kkamji98.github.io/assets/72260110/3b4b2fd8-cb26-4a78-9a98-c910962a710f)
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

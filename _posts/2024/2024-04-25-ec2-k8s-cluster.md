@@ -12,8 +12,8 @@ image:
 > 필자는 맥북과 윈도우 데스크탑 환경을 사용하고 있습니다. EKS Cluster의 context를 가져와 하나의 Kubernetes Cluster를 두 환경에서 공유해서 사용하고 있었으나….  
 > 문제는 EKS를 개인 실습용으로 지속적으로 사용하기에는 비용이.. ㅠㅠ 너무 비쌌습니다.  
 > 이를 해결하기 위해 Free-Tier인 t2.micro로 Minikube, K3s, MicroK8s 등을 구축하려했으나..  
-> Minikube는 RAM이 4GB이상이 아니면 애초에 설치가 불가능 하였고,, K3s는 실행 도중 credit을 다쓰자 인스턴스가 죽는… 불상사가 발생했습니다.  
-> 마지막으로 MicroK8s를 사용해서 구축에 성공하였지만 항상 CPU Utilization이 100%.. 명령어 하나 사용할 때 마다 1~3분정도 기다려야 했습니다..  
+> Minikube는 RAM이 4GB 이상이 아니면 애초에 설치가 불가능하였고, K3s는 실행 도중 크레딧을 다 쓰자 인스턴스가 종료되는 불상사가 발생했습니다.  
+> 마지막으로 MicroK8s를 사용해 구축에는 성공했지만 항상 CPU Utilization이 100%여서 명령어 하나를 사용할 때마다 1~3분 정도 기다려야 했습니다.  
 > 참다참다 돈을 조금 내더라도 더 좋은 성능을 사용하고자 t4g.small 인스턴스를 선택했습니다.  
 {: .prompt-tip}
 
@@ -23,7 +23,7 @@ image:
 
 ![pic1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/851e5fb2-d785-47fb-9014-22a798aa11e9)
 
-> 4G의 memory가 필요하긴하지만… 일단 해보자
+> 4GB의 메모리가 필요하긴 하지만 일단 해 보자
 {: .prompt-tip}
 
 ---
@@ -32,7 +32,7 @@ image:
 
 ```bash
 sudo apt update
-sudo install snapd
+sudo apt install snapd
 
 ##test
 $ sudo snap install hello-world
@@ -151,7 +151,7 @@ EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10
 
 ## 7. alias
 
-> microk8s kubectl명령어를 계속 사용하려면 번거로움이 있습니다. alias기능을 사용해 microctl로 해당 명령어를 단축시킬 수 있습니다. (kubectl로 하면 기존 kubectl 명령어와 충돌이 일어날 가능성을 염두해 microctl로 이름을 지정했습니다)
+> `microk8s kubectl` 명령어를 계속 사용하려면 번거로움이 있습니다. alias 기능을 사용해 `microctl`로 해당 명령어를 단축할 수 있습니다. (kubectl로 지정하면 기존 kubectl 명령어와 충돌할 가능성이 있어 별도 이름을 사용했습니다)
 {: .prompt-tip}
 
 ```bash
@@ -165,7 +165,7 @@ alias microctl='microk8s kubectl'
 > 간단하게 nginx 서버를 NodePort로 30080포트로 배포해보겠습니다
 {: .prompt-tip}
 
-### 8.1. 테스트용 nginx menifest 파일 (nginx_test.yml)
+### 8.1. 테스트용 nginx manifest 파일 (nginx_test.yml)
 
 ```bash
 apiVersion: apps/v1
@@ -226,6 +226,6 @@ nginx-service   NodePort    10.152.183.56   <none>        80:30080/TCP   80s
 ### 8.4. 마무리
 
 > 여러 우여곡절 끝에 구축에 성공했지만.. 내 시간이... ㅠㅠ 다음 포스트에서는 해당 Local에서 MicroK8s에 명령어를 내리는 것을 다뤄보겠습니다. (될지는 모르겠지만..?).  
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}

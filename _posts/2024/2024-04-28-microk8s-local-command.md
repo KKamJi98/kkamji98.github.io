@@ -1,5 +1,5 @@
 ---
-title: EC2위의 MicroK8s Cluster에 Local에서 명령 하기
+title: EC2 위의 MicroK8s Cluster에 Local에서 명령하기
 date: 2024-04-28 16:34:31 +0900
 author: kkamji
 categories: [Kubernetes]
@@ -9,9 +9,9 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> 저번 시간에 EC2위에 MicroK8s Cluster를 구축후 web server를 배포하는 것까지 다뤘습니다..  
-> 하지만 MicroK8s를 구축한 이유는..? 데스크탑과 맥북에서 해당 클러스터를 공유해서 사용하기 위해!!  
-> 이번에는 EC2의 kubeconfig파일을 Local에 가져와 kubectl 명령을 하는 것을 목표로 진행해보겠습니다.  
+> 저번 시간에 EC2 위에 MicroK8s Cluster를 구축 후 web server를 배포하는 것까지 다뤘습니다.  
+> 하지만 MicroK8s를 구축한 이유는 데스크탑과 맥북에서 해당 클러스터를 공유해 사용하기 위해서였습니다.  
+> 이번에는 EC2의 kubeconfig 파일을 Local에 가져와 kubectl 명령을 수행하는 것을 목표로 진행해보겠습니다.  
 {: .prompt-tip}  
 > 주의! Local에서 EC2에 kubectl 명령어를 내리기 위해서는 kube-apiserver 포트인 16443 포트를 인바운드 규칙에 허용해주어야 합니다.  
 {: .prompt-tip}
@@ -164,6 +164,6 @@ i-0fefad06e169df0c3   Ready    <none>   6m50s   v1.29.2
 
 > 중간중간 TLS 인증서를 갱신하려고 csr, crt, rsa key 생성하고 온갖 방법을 동원했었는데.. MicroK8s는 csr.conf.template를 수정해야 적용이 된다..  
 > 다른걸 고치면 무한루프의 지옥에 빠질수도..  
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-tip}

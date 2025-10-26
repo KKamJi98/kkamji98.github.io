@@ -1,24 +1,24 @@
 ---
-title: Go Routine 이란?
+title: Goroutine이란?
 date: 2024-01-15 15:54:32 +0900
 author: kkamji
 categories: [Programming Language, Go]
 tags: [go, go routine, goroutine, concurrency, parallelism]     # TAG names should always be lowercase
 comments: true
 image:
-  path: https://github.com/kkamji98/kkamji98.github.io/assets/72260110/89734e1d-6afb-45dc-a6f9-8da0266bf529
+  path: /assets/img/kkam-img/kkam.webp
 ---
 
-## 1. Go Routine - [ Concurrency vs Parallelism ]
+## 1. Goroutine - [Concurrency vs Parallelism]
 
-> Go Routine은 동시성과 병렬성을 매우 간결하고 효과적으로 다룰 수 있는 기능을 제공합니다.  
+> Goroutine은 동시성과 병렬성을 매우 간결하고 효과적으로 다룰 수 있는 기능을 제공합니다.  
 
 ### 1.1. 동시성(Concurrency)
 
 - **싱글 코어에서 멀티 쓰레드 동작**
 - 여러 작업을 시간을 나누어 사용함으로써 동시에 실행되는 것처럼 보이는 기술입니다.
 - 실제로는 한 순간에 하나의 작업만 처리하지만, 작업들 사이를 빠르게 전환하면서 동시에 진행되는 것처럼 보이게 합니다.
-- 단일 코어 환경에서 효율적인 자원사용과 빠른 응답 시간을 목표로 사용됩니다.
+- 단일 코어 환경에서 효율적인 자원 사용과 빠른 응답 시간을 목표로 사용됩니다.
 
 ### 1.2. 병렬성(Parallelism)
 
@@ -29,8 +29,8 @@ image:
 
 ### 1.3. 다중 CPU 처리
 
-> `runtime.GOMAXPROCS()` 함수는 프로그램이 동시에 실행할 수 있는 최대 CPU 코어 수를 설정합니다.
-Go 1.5 버전부터, `runtime.GOMAXPROCS()`의 디폴트 값은 시스템에서 사용 가능한 물리적 CPU 코어의 수로 설정되어 있습니다.  
+> `runtime.GOMAXPROCS()` 함수는 프로그램이 동시에 실행할 수 있는 최대 CPU 코어 수를 설정합니다.  
+Go 1.5 버전부터 `runtime.GOMAXPROCS()`의 기본값은 시스템에서 사용 가능한 물리적 CPU 코어 수로 설정되어 있습니다.  
 
 ### 1.4. 예시 (Basic)
 
@@ -52,7 +52,7 @@ func main() {
 	// 기존 -> 동기적
 	printHelloWorld("Sync")
 
-	// Go Routine -> 비동기적
+	// Goroutine -> 비동기적
 	go printHelloWorld("Async1")
 	go printHelloWorld("Async2")
 	go printHelloWorld("Async3")
@@ -72,7 +72,7 @@ import (
 )
 
 func main() {
-	// WaitGroup 생성. 2개의 Go Routine이 끝날때까지 기다리기
+	// WaitGroup 생성. 2개의 Goroutine이 끝날 때까지 기다리기
 	var wait sync.WaitGroup
 	wait.Add(2)
 
@@ -83,15 +83,15 @@ func main() {
 
 	go func(msg string) {
 		defer wait.Done()
-		fmt.Prinln(msg)
+		fmt.Println(msg)
 	}("Hi")
 
-	wait.Wait() //Go루틴이 모두 끝날 때까지 대기
+	wait.Wait() // Go 루틴이 모두 끝날 때까지 대기
 }
 ```
 
 <br><br>
 
-> **궁금하신 점이나 추가해야할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
 {: .prompt-info}
