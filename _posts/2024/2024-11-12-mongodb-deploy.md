@@ -9,19 +9,19 @@ image:
   path: /assets/img/database/mongodb/mongodb.webp
 ---
 
-**MongoDB**는 현대 애플리케이션에서 중요한 역할을 하는 NoSQL 데이터베이스로, 다양한 형태의 데이터와 복잡한 구조를 유연하게 처리할 수 있는 장점을 가지고 있습니다. 관계형 데이터베이스와 비교했을 때, MongoDB는 문서 지향(Document-Oriented) 모델을 채택하여 데이터의 스키마를 자유롭게 설계할 수 있습니다. 이를 통해 불규칙하거나 복잡한 데이터구조를 다룰 때 유용하게 사용할 수 있습니다.
+**MongoDB**는 현대 애플리케이션에서 중요한 역할을 하는 NoSQL 데이터베이스로, 다양한 형태의 데이터와 복잡한 구조를 유연하게 처리할 수 있는 장점을 제공합니다. 관계형 데이터베이스와 비교했을 때 MongoDB는 문서 지향(Document-Oriented) 모델을 채택하여 데이터 스키마를 자유롭게 설계할 수 있습니다. 이를 통해 불규칙하거나 복잡한 데이터 구조를 다룰 때 유리합니다.
 
-사이드 프로젝트로 영어 단어장 애플리케이션 만들기를 진행하며 프로젝트에 어떤 데이터베이스를 사용하는게 적합할까? 라는 고민을 하게 되었고 **MongoDB**를 채택하게 되었습니다. 이유는 바로 하나의 단어에 여러 개의 뜻이 존재하는 경우, 관계형 데이터베이스에서는 이를 처리하기 위해 복잡한 테이블 설계나 조인(join) 연산이 필요하지만 **MongoDB**를 사용할 경우 단일 문서에 배열 형태로 여러 뜻을 저장할 수 있어 구조를 단순화할 수 있다는 이점이 있었기 때문입니다. 따라서 **MongoDB** 사용을 확정하였고 해당 포스트에서 Kubernetes에 MongoDB를 구축하고 배포하는 과정을 공유하려 합니다.
+사이드 프로젝트로 영어 단어장 애플리케이션을 만들면서 어떤 데이터베이스가 가장 적합할지 고민한 끝에 **MongoDB**를 채택했습니다. 하나의 단어에 여러 뜻이 존재하면 관계형 데이터베이스에서는 복잡한 테이블 설계나 조인(join) 연산이 필요하지만 **MongoDB**는 단일 문서에 배열 형태로 다양한 뜻을 저장해 구조를 단순화할 수 있기 때문입니다. 이번 포스트에서는 Kubernetes 환경에 MongoDB를 구축하고 배포하는 과정을 공유합니다.
 
-**MongoDB**를 사용하는 방법에는 **MongoDB Atlas**, **MongoDB Enterprise**, **MongoDB Community Edition**의 방법이 있으며, 이번 과정에서는 **MongoDB Community Edition**을 **Helm**을 사용해 배포하겠습니다.
+MongoDB를 사용하는 대표적인 방법에는 **MongoDB Atlas**, **MongoDB Enterprise**, **MongoDB Community Edition**이 있습니다. 이번 과정에서는 **MongoDB Community Edition**을 **Helm**으로 배포합니다.
 
 ---
 
 ## 1. 구성 환경
 
-- Helm (v3.16.2)
-- Kubernetes (v1.29.6)
-- Storage-Class (rancher/local-path-provisioner)
+- Helm: v3.16.2
+- Kubernetes: v1.29.6
+- StorageClass: rancher/local-path-provisioner
 
 ---
 
@@ -76,10 +76,9 @@ replicaset.apps/mongodb-kubernetes-operator-6d7f45687c   1         1         1  
 
 ## 5. MongoDB Custom Resource (CR) 정의 파일 생성
 
-> MongoDB Operator를 통해 MongoDB 인스턴스를 배포하려면 Custom Resource(CR)을 정의하여 MongoDB 클러스터를 생성해야 합니다.  
-> storageClassName에는 현재 사용중인 storageClassName을 지정해주셔야 합니다.  
-> ex) gp2, gp3, local-path  
-> 최신 버전인 8.0 버전을 설치하겠습니다.  
+> MongoDB Operator로 MongoDB 인스턴스를 배포하려면 Custom Resource(CR)를 정의해 MongoDB 클러스터를 생성해야 합니다.  
+> `storageClassName`에는 현재 사용 중인 StorageClass를 지정합니다. (예: gp2, gp3, local-path)  
+> 예제에서는 MongoDB 8.0을 설치합니다.  
 {: .prompt-tip}
 
 ```yaml
@@ -206,6 +205,8 @@ admin   172.00 KiB
 config  176.00 KiB
 local   500.00 KiB
 mongodb [direct: primary] test> 
+
+이처럼 프롬프트가 출력되면 포트 포워딩 및 인증이 정상적으로 완료된 것입니다. `show dbs`, `rs.status()` 등으로 ReplicaSet 상태를 점검하고, 필요한 데이터베이스와 사용자를 추가로 구성하면 됩니다.
 ```
 
 ---

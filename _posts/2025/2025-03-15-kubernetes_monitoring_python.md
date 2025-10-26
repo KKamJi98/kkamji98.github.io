@@ -13,7 +13,7 @@ Kubernetes를 운영하면서 자주 반복적으로 사용하는 명령어들�
   
 그러던 중 문득 "자주 쓰는 명령어를 나만의 alias로 등록하거나 간단한 CLI 툴로 만들어보면 어떨까?" 라는 생각이 들었고, 이를 계기로 평소 자주 사용하는 Kubernetes 모니터링 기능들을 모아 하나의 도구로 만들게 되었습니다.  
 
-Github: <https://github.com/KKamJi98/monitoring-kubernetes>  
+GitHub: <https://github.com/KKamJi98/monitoring-kubernetes>  
 
 ---
 
@@ -39,8 +39,8 @@ Select an option:
 ## 2. 주요 기능
 
 1. Event Monitoring  
-   - 특정 혹인 전체 네임스페이스에서 발생하는 모든 이벤트를 실시간으로 확인할 수 있습니다.  
-   - 옵션을 통해 Event의 Type이 Normal이 아닌 이벤트만 출력할 수 있습니다.
+   - 특정 혹은 전체 네임스페이스에서 발생하는 모든 이벤트를 실시간으로 확인할 수 있습니다.  
+   - 옵션을 통해 이벤트 타입이 `Normal`이 아닌 리소스만 필터링할 수 있습니다.
 
 2. Error Pod Catch  
    - 문제가 생겨 재시작된 컨테이너를 최근 순으로 빠르게 확인할 수 있습니다.  
@@ -54,13 +54,36 @@ Select an option:
 
 5. Node Monitoring  
    - Unhealthy 노드, 리소스 사용량이 높은 노드를 쉽게 파악할 수 있습니다.
-   - 옵션을 통해 특정 노드그룹에 속한 노드들만 따로 조회할 수 있습니다.
+   - 옵션을 통해 특정 노드 그룹만 따로 조회할 수 있습니다.
 
-이 프로그램의 자세한 사용법은 [GitHub 저장소](https://github.com/KKamJi98/monitoring-kubernetes)의 README를 참고해주세요.
+자세한 사용법과 옵션 설명은 [GitHub 저장소](https://github.com/KKamJi98/monitoring-kubernetes)의 README에서 확인할 수 있습니다.
 
 ---
 
-## 3. 마무리
+## 3. 설치 및 실행
+
+사전 요구 사항
+
+- Python 3.10 이상
+- `kubectl`과 유효한 `KUBECONFIG`
+- Kubernetes Metrics Server(옵션 9 사용 시)
+
+```bash
+git clone https://github.com/KKamJi98/monitoring-kubernetes.git
+cd monitoring-kubernetes
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python main.py
+```
+
+실행 후 메뉴에서 원하는 번호를 입력하고 프롬프트에 따라 네임스페이스, 출력 개수 등의 조건을 선택하면 됩니다.
+
+---
+
+## 4. 마무리
 
 이 툴을 만들면서 가장 크게 느낀 점은 "작은 귀찮음" 하나가 개발의 좋은 출발점이 될 수 있다는 것입니다. 평소 Kubernetes 운영에서 반복되는 명령어 입력이나, 작은 모니터링 업무가 귀찮다는 이유 하나로 시작한 간단한 툴이었지만, 직접 만들고 나니 생각보다 큰 성취감을 느꼈습니다.  
 처음부터 대단한 프로그램을 만들어야겠다고 생각하면 부담스럽고 시작조차 하지 못했을 거라 생각합니다. 비록 단순히 귀찮음을 해결하려고 만든 기능이 단순하고 누구나 만들 수 있을 정도의 간단한 프로그램이지만, 앞으로도 꾸준히 이렇게 한 발짝 한 발짝 나아가다 보면 언젠가 여럿이 편리하게 사용할 수 있는 더 좋은 툴을 만들 수 있지 않을까 기대합니다.  
