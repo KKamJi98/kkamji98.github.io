@@ -28,7 +28,7 @@ Helm Project는 아래와 같은 구성 요소와 구조를 갖습니다.
 ![What is a Helm Chart?](/assets/img/ci-cd/ci-cd-study/what-is-a-helm-chart.webp)
 > SimplyBlock - What is a Helm Chart? - <https://www.simplyblock.io/glossary/what-is-a-helm-chart>
 
-### Helm Project의 구조
+### 2.1. Helm Project의 구조
 
 {% raw %}
 
@@ -63,7 +63,7 @@ tree myapp
 
 {% endraw %}
 
-### Helm Project의 구성 요소
+### 2.2. Helm Project의 구성 요소
 
 | 항목             | 설명                                                                                    |
 | ---------------- | --------------------------------------------------------------------------------------- |
@@ -75,9 +75,11 @@ tree myapp
 | **NOTES.txt**    | 설치 완료 후 출력되는 안내 메시지가 정의                                                |
 | **tests/**       | Chart 테스트 리소스가 포함되어 있으며, `helm test`로 검증에 사용                        |
 
+---
+
 ## 3. Creating a Helm Project
 
-### Helm Chart 생성
+### 3.1. Helm Chart 생성
 
 {% raw %}
 
@@ -204,7 +206,7 @@ securityContext:
 
 {% endraw %}
 
-### Helm Chart Rendering (Template)
+### 3.2. Helm Chart Rendering (Template)
 
 ```shell
 #
@@ -262,7 +264,7 @@ spec:
 ... 
 ```
 
-### Helm Chart 배포 및 확인
+### 3.3. Helm Chart 배포 및 확인
 
 ```shell
 ##############################################################
@@ -303,7 +305,7 @@ kubectl get secret
 # sh.helm.release.v1.pacman.v1   helm.sh/release.v1   1      5m17s
 ```
 
-### Helm Chart Upgrade, Metadata 확인
+### 3.4. Helm Chart Upgrade, Metadata 확인
 
 ```shell
 ##############################################################
@@ -337,6 +339,8 @@ helm uninstall pacman
 kubectl get secret
 # No resources found in default namespace.
 ```
+
+---
 
 ## 4. Reusing Statements Between Templates
 
@@ -411,11 +415,15 @@ helm template .
 > Template 함수를 정의하는 파일명으로는 `_helpers.tpl`을 사용하는 것이 일반적이지만, 실제로는 `_`로 시작하기만 하면 됩니다. 이와 같은 파일들은 Kubernetes Manifest 파일로 취급되지 않습니다.  
 {: .prompt-tip}
 
-## Reference
+---
+
+## 5. Reference
 
 - [SimplyBlock - What is a Helm Chart?](https://www.simplyblock.io/glossary/what-is-a-helm-chart/)
 
-## 5. Updating a Container Image in Helm
+---
+
+## 6. Updating a Container Image in Helm
 
 `helm upgrade` 명령을 사용해 배포 파일에서 컨테이너 이미지를 갱신하고 실행 중인 인스턴스를 업그레이드 할 수 있고, `helm rollback` 명령어를 통해 이전 버전으로 롤백할 수 있습니다.
 
@@ -522,7 +530,9 @@ helm uninstall pacman
 
 {% endraw %}
 
-## 6. Packaging and Distributing a Helm Chart
+---
+
+## 7. Packaging and Distributing a Helm Chart
 
 `helm package` 명령을 사용해 Helm Chart를 패키징하고 공개하여 다른 차트의 의존성으로 이용될 수 있도록 하거나, 다른 사용자가 시스템에 배포할 수 있도록 할 수 있습니다.
 
@@ -577,7 +587,9 @@ cat index.yaml
 # generated: "2025-10-18T18:33:41.239645+09:00"
 ```
 
-## 7. Deploying a Chart From a Repository
+---
+
+## 8. Deploying a Chart From a Repository
 
 `helm repo add` 명령을 사용하여 원격 저장소를 추가하고, `helm install` 명령을 사용해 해당 저장소에 저장되어있는 Helm Chart를 배포할 수 있습니다.
 
@@ -617,7 +629,9 @@ helm show values bitnami/postgresql
 helm uninstall my-db
 ```
 
-## 8. Deploying a Chart with Dependency
+---
+
+## 9. Deploying a Chart with Dependency
 
 `Chart.yaml` 파일의 `dependencies` 섹션에 다른 차트에 대한 의존성을 추가할 수 있습니다. 위에서 차트를 통해 배포한 서비스들은 간단했지만, 일반적으로 서비스는 데이터베이스, 메일 서버, 분산 캐시 등에 의존하는 경우가 많습니다.
 
@@ -812,7 +826,7 @@ kubectl get sts,pod,svc,ep,secret,pv,pvc
 # ...
 ```
 
-### Trouble Shooting 1 (music-db-postgresql-0 - ImagePullBackOff)
+### 9.1. Trouble Shooting 1 (music-db-postgresql-0 - ImagePullBackOff)
 
 ```shell
 ##############################################################
@@ -902,7 +916,7 @@ kubectl get sts,pod,svc,ep,secret,pv,pvc
 kubectl logs music-db-postgresql-0
 ```
 
-### Trouble Shooting 2 (music-6c45d566f4-9qdlr)
+### 9.2. Trouble Shooting 2 (music-6c45d566f4-9qdlr)
 
 ```shell
 ##############################################################
@@ -1131,13 +1145,15 @@ helm uninstall music-db
 kubectl delete pvc --all
 ```
 
-## Triggering a Rolling Update Automatically
+---
+
+## 10. Triggering a Rolling Update Automatically
 
 일반적으로 `ConfigMap`이 변경되더라도 이미 실행 중인 Pod에는 자동으로 반영되지 않습니다. 즉, `Pod`는 `ConfigMap`의 변경 사실을 인식하지 못하고, 수동으로 재배포(`kubectl rollout restart`)를 수행해야만 최신 설정이 반영됩니다. 이와 같이, `ConfigMap` 값이 수정되어도 `Pod`가 재시작되지 않으면, 애플리케이션은 여전히 구 버전의 설정으로 동작하기 때문에, `ConfigMap` 에 설정된 내용에 의존하며 동작하는 서비스에서는 장애나 일관성 문제를 야기할 수 있습니다.
 
 이러한 문제를 해결하기 위해 **Helm**의 `sha256sum` 템플릿 함수를 사용하여 `ConfigMap` 파일의 해시를 **Pod Annotation**에 주입할 수 있습니다. 해당 방식은 `ConfigMap` 내용이 바뀔 때마다 해시 값이 달라져 `Deployment` 템플릿의 스펙이 자동으로 변경되므로, **Kubernetes는 이를 새로운 버전의 Deployment로 인식하고 자동으로 `Rolling Update`를 수행**합니다.
 
-### 1. greetings Helm Chart 생성 및 배포
+### 10.1. greetings Helm Chart 생성 및 배포
 
 ```shell
 ##############################################################
@@ -1267,7 +1283,7 @@ curl localhost:8080;echo
 # Aloha Alexandra
 ```
 
-### 2. greetings Helm Chart ConfigMap 수정 후 확인
+### 10.2. greetings Helm Chart ConfigMap 수정 후 확인
 
 ```shell
 ##############################################################
@@ -1319,7 +1335,7 @@ curl localhost:8080;echo
 > [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Greetings application with new configuration value - 5.7. Triggering a Rolling Update Automatically p.121
 
-### 3. sha256sum 함수를 사용해 ConfigMap 에 대한 변경사항 Rolling Update Triggering
+### 10.3. sha256sum 함수를 사용해 ConfigMap 에 대한 변경사항 Rolling Update Triggering
 
 위와 같은 문제를 해결하기 위해 **Helm Chart**의 `sha256sum` 함수를 사용할 수 있습니다. `configmap.yaml` 파일 내용에 대한 `SHA-256` 값을 계산하고 이를 **Pod Annotation**으로 설정하면 `ConfigMap`의 내용이 바뀔 때마다 `Pod Manifest`도 바뀌므로, `Rolling Update`가 자동으로 시작됩니다.
 
@@ -1459,9 +1475,17 @@ kubectl port-forward service/greetings 8080:8080
 
 curl localhost:8080;echo 
 # Namaste Ada
+
+
+##############################################################
+# 실습 마무리 (자원 삭제)
+##############################################################
+kind delete cluster --name myk8s
 ```
 
-## 마무리
+---
+
+## 11. 마무리
 
 이번 글에서는 `Helm`의 기본 구조부터 의존성 관리, 그리고 `ConfigMap` 변경을 체크섬 기반 롤링 업데이트로 자동화하는 패턴에 대해 알아봤습니다. `Kustomize`가 원본 YAML을 유지하며 템플릿 없이 변경을 적용하는 데 중점을 둔다면, `Helm`은 **Chart**라는 패키징 개념과 **Release**라는 버전 관리, 그리고 **Go Template**을 통한 강력한 동적 구성 기능을 제공합니다.
 
