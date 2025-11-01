@@ -17,7 +17,7 @@ image:
 
 ## 1. Jenkins 란?
 
-**Jenkins**는 오픈소스 자동화 서버입니다. 프로젝트의 Build, Test, Deploy 및 자동화를 지원하는 수백 개의 플러그인을 제공하고, 각 파이르파인의 단계별 동작에 대한 내용을 **코드로 정의**하여 사용할 수 있습니다.
+**Jenkins**는 오픈소스 자동화 서버입니다. 프로젝트의 Build, Test, Deploy 및 자동화를 지원하는 수백 개의 플러그인을 제공하고, 각 파이프라인의 단계별 동작에 대한 내용을 **코드로 정의**하여 사용할 수 있습니다.
 
 > [Jenkins Home](https://www.jenkins.io/)
 > [Jenkins Docs](https://www.jenkins.io/doc/)
@@ -1077,7 +1077,7 @@ sudo docker compose restart gogs
 
 Jenkins job Trigger - [dev-app] - Setting → Webhooks → Gogs 클릭
 
-- Payload URL : [`http://172.28.8.232:8080/gogs-webhook/?job=**SCM-Pipeline**/`](http://172.28.8.232:8080/gogs-webhook/?job=SCM-Pipeline/)  *# 각자 자신의 IP*
+- Payload URL : `http://172.28.8.232:8080/gogs-webhook/?job=**SCM-Pipeline**/`  *# 각자 자신의 IP*
 - Content Type : `application/json`
 - Secret : `asdasd123`
 - When should this webhook be triggered? : **Just the push event**
@@ -1094,7 +1094,7 @@ Jenkins job Trigger - [dev-app] - Setting → Webhooks → Gogs 클릭
 ### 4.8. Jenkins Item 생성(Pipeline Name - SCM-Pipeline)
 
 - GitHub project : `http://***자신의 IP>***:3000/***<Gogs 계정명>***/dev-app` ← *.git 은 제거*
-  - *GitHub project : http://172.28.8.232:3000/devops/dev-app*
+  - *GitHub project : `http://172.28.8.232:3000/devops/dev-app`*
 - Use Gogs secret : **asdasd123**
 - Triggers : **Build when a change is pushed to Gogs 체크**
 - Pipeline script from SCM
