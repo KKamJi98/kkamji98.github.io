@@ -642,6 +642,8 @@ helm uninstall my-db
 > [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Music application overview - 5.6. Deploying a Chart with Dependency p.111  
 
+{% raw %}
+
 ```shell
 ##############################################################
 # 의존성을 가진 Helm Chart 생성
@@ -825,6 +827,8 @@ kubectl get sts,pod,svc,ep,secret,pv,pvc
 # pod/music-db-postgresql-0    0/1     ImagePullBackOff             0          85s
 # ...
 ```
+
+{% endraw %}
 
 ### 9.1. Trouble Shooting 1 (music-db-postgresql-0 - ImagePullBackOff)
 
@@ -1030,6 +1034,8 @@ helm show values bitnami/postgresql --version="18.1.1" | yq '...|path|join(".")'
 
 ![Bitnami Postgresql Global Parameters](/assets/img/ci-cd/ci-cd-study/bitnami-postgresql-global-value.webp)
 
+{% raw %}
+
 ```shell
 ##############################################################
 # 문제 해결 (차트 및 템플릿 수정)
@@ -1145,6 +1151,8 @@ helm uninstall music-db
 kubectl delete pvc --all
 ```
 
+{% endraw %}
+
 ---
 
 ## 10. Triggering a Rolling Update Automatically
@@ -1154,6 +1162,8 @@ kubectl delete pvc --all
 이러한 문제를 해결하기 위해 **Helm**의 `sha256sum` 템플릿 함수를 사용하여 `ConfigMap` 파일의 해시를 **Pod Annotation**에 주입할 수 있습니다. 해당 방식은 `ConfigMap` 내용이 바뀔 때마다 해시 값이 달라져 `Deployment` 템플릿의 스펙이 자동으로 변경되므로, **Kubernetes는 이를 새로운 버전의 Deployment로 인식하고 자동으로 `Rolling Update`를 수행**합니다.
 
 ### 10.1. greetings Helm Chart 생성 및 배포
+
+{% raw %}
 
 ```shell
 ##############################################################
@@ -1283,6 +1293,8 @@ curl localhost:8080;echo
 # Aloha Alexandra
 ```
 
+{% endraw %}
+
 ### 10.2. greetings Helm Chart ConfigMap 수정 후 확인
 
 ```shell
@@ -1338,6 +1350,8 @@ curl localhost:8080;echo
 ### 10.3. sha256sum 함수를 사용해 ConfigMap 에 대한 변경사항 Rolling Update Triggering
 
 위와 같은 문제를 해결하기 위해 **Helm Chart**의 `sha256sum` 함수를 사용할 수 있습니다. `configmap.yaml` 파일 내용에 대한 `SHA-256` 값을 계산하고 이를 **Pod Annotation**으로 설정하면 `ConfigMap`의 내용이 바뀔 때마다 `Pod Manifest`도 바뀌므로, `Rolling Update`가 자동으로 시작됩니다.
+
+{% raw %}
 
 ```shell
 ##############################################################
@@ -1482,6 +1496,8 @@ curl localhost:8080;echo
 ##############################################################
 kind delete cluster --name myk8s
 ```
+
+{% endraw %}
 
 ---
 
