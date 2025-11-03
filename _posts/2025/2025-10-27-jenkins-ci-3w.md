@@ -1,9 +1,9 @@
 ---
-title: Jenkins CI + K8s
+title: Jenkins CI with Kubernetes
 date: 2025-10-28 01:32:51 +0900
 author: kkamji
 categories: [DevOps]
-tags: [devops, ci-cd-study, ci-cd-study-3w, jenkins, gogs, kind, docker]
+tags: [devops, ci-cd-study, ci-cd-study-3w, jenkins, gogs, kind, docker, jenkins-ci]
 comments: true
 image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
