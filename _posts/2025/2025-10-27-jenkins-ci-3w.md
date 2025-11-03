@@ -683,6 +683,20 @@ watch -d "kubectl get deploy,ep timeserver; echo; kubectl get rs,pod"
 
 ---
 
+## 4. Reference
+
+- [Gogs Docs](https://gogs.io/docs)
+- [Jenkins Docs](https://www.jenkins.io/doc/)
+- [Jenkins Docs - Getting started with Pipeline](https://www.jenkins.io/doc/book/pipeline/getting-started/)
+- [Jenkins Docs - Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
+- [Jenkins Docs - Blue Ocean](https://www.jenkins.io/doc/book/blueocean/)
+- [Jenkins Docs - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/)
+- [Jenkins Plugins - Pipeline Stage View](https://plugins.jenkins.io/pipeline-stage-view/)
+- [Jenkins Plugins - Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
+- [Jenkins Plugins - Gogs Webhook](https://plugins.jenkins.io/gogs-webhook/)
+
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}
