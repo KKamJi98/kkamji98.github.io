@@ -78,6 +78,27 @@ end
 -- UltiSnips: snipMate 디렉토리 충돌 방지. 반드시 플러그인 로딩 전에 설정
 vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
 
+if vim.loader and vim.loader.enable then
+  local cache_root = vim.fn.stdpath("cache")
+  local lua_cache = cache_root and (cache_root .. "/luac") or nil
+  local can_enable = true
+  if lua_cache then
+    if vim.fn.isdirectory(lua_cache) == 0 then
+      can_enable = (vim.fn.mkdir(lua_cache, "p") == 1)
+    else
+      can_enable = (vim.fn.filewritable(lua_cache) == 2)
+    end
+  end
+  if can_enable then
+    local ok, err = pcall(vim.loader.enable)
+    if not ok then
+      vim.schedule(function()
+        vim.notify(("vim.loader.enable() failed: %s"):format(err), vim.log.levels.WARN, { title = "loader" })
+      end)
+    end
+  end
+end
+
 --------------------------------
 -- 공용 LSP 헬퍼
 --------------------------------
@@ -117,16 +138,32 @@ local function configure_lsp(server, opts)
     on_attach = lsp_on_attach,
     capabilities = lsp_capabilities(),
   }
-  vim.lsp.config(server, vim.tbl_deep_extend("force", {}, base, opts or {}))
+  local ok, err = pcall(vim.lsp.config, server, vim.tbl_deep_extend("force", base, opts or {}))
+  if not ok then
+    vim.schedule(function()
+      vim.notify(("vim.lsp.config failed for %s: %s"):format(server, err), vim.log.levels.ERROR, { title = "LSP" })
+    end)
+    return false
+  end
+  return true
 end
 
 local function enable_lsp(server)
   local ok, err = pcall(vim.lsp.enable, server)
   if not ok then
     vim.schedule(function()
-      vim.notify(("LSP enable failed for %s: %s"):format(server, err), vim.log.levels.WARN, { title = "LSP" })
+      vim.notify(("vim.lsp.enable failed for %s: %s"):format(server, err), vim.log.levels.WARN, { title = "LSP" })
     end)
+    return false
   end
+  return true
+end
+
+local function setup_lsp(server, opts)
+  if not configure_lsp(server, opts) then
+    return false
+  end
+  return enable_lsp(server)
 end
 
 --------------------------------
@@ -265,6 +302,12 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup({
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_root = false,
+        },
         view = { width = 36 },
         renderer = { group_empty = true },
         filters = { dotfiles = false },
@@ -328,7 +371,7 @@ require("lazy").setup({
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "lua", "terraform", "hcl", "yaml", "json", "bash", "markdown", "markdown_inline", "go", "python" },
         highlight = { enable = true },
-        indent = { enable = true, disable = { "yaml", "markdown" } }, -- YAML/Markdown 인덴트 비활성화
+        indent = { enable = true, disable = { "yaml", "markdown", "helm", "terraform", "hcl" } },
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -374,8 +417,18 @@ require("lazy").setup({
     "hashivim/vim-terraform",
     ft = { "terraform", "tf", "hcl" },
     config = function()
-      vim.g.terraform_fmt_on_save = 1
+      vim.g.terraform_fmt_on_save = 0
       vim.g.terraform_align = 1
+      local group = vim.api.nvim_create_augroup("TerraformFormatOnSave", { clear = true })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = group,
+        pattern = { "*.tf", "*.tfvars", "*.hcl" },
+        callback = function(event)
+          if vim.lsp.buf.format then
+            vim.lsp.buf.format({ async = false, bufnr = event.buf })
+          end
+        end,
+      })
     end,
   },
 
@@ -387,9 +440,9 @@ require("lazy").setup({
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     opts = {
-      ensure_installed = { "terraformls", "lua_ls", "yamlls" },
-      -- stylua LSP는 v2.2.0 이전 바이너리에서 --lsp 옵션 인식 오류가 발생하므로 명시 화이트리스트만 자동 활성화
-      automatic_enable = { "lua_ls", "yamlls" },
+      ensure_installed = { "terraformls", "lua_ls", "yamlls", "bashls", "gopls", "pyright" },
+      -- 자동 enable은 직접 제어한다(setup_lsp 사용)
+      automatic_enable = false,
     },
   },
 
@@ -408,7 +461,7 @@ require("lazy").setup({
       require("neodev").setup({})
 
       -- Lua
-      configure_lsp("lua_ls", {
+      setup_lsp("lua_ls", {
         settings = {
           Lua = {
             runtime = { version = "LuaJIT" },
@@ -425,7 +478,7 @@ require("lazy").setup({
       if ok_schema then
         yaml_schemas = schemastore.yaml.schemas()
       end
-      configure_lsp("yamlls", {
+      setup_lsp("yamlls", {
         settings = {
           yaml = {
             validate = true,
@@ -436,6 +489,10 @@ require("lazy").setup({
           },
         },
       })
+
+      setup_lsp("bashls")
+      setup_lsp("gopls")
+      setup_lsp("pyright")
     end,
   },
 
@@ -550,7 +607,10 @@ require("lazy").setup({
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
       end
-      autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
+      local ok_endwise, endwise = pcall(require, "nvim-autopairs.rules.endwise-lua")
+      if ok_endwise then
+        autopairs.add_rules(endwise)
+      end
     end,
   },
 
@@ -582,7 +642,7 @@ require("lazy").setup({
     keys = {
       { "<leader>fB", function()
           require("telescope").extensions.file_browser.file_browser({
-            path = "%:p:h", select_buffer = true, respect_gitignore = false, hidden = true,
+            path = vim.fn.expand("%:p:h"), select_buffer = true, respect_gitignore = false, hidden = true,
           })
         end, mode="n", silent=true, desc="File Browser (buffer dir)" },
     },
@@ -634,7 +694,7 @@ require("lazy").setup({
   },
 }, {
   checker = { enabled = false },
-  change_detection = { enabled = false },
+  change_detection = { enabled = true, notify = false },
   rocks = { enabled = false },
 })
 
@@ -711,6 +771,35 @@ mapd("n", "<leader>w", "<cmd>write<CR>", "Write buffer")
 mapd("n", "<leader>q", "<cmd>quit<CR>",  "Quit window")
 mapd("n", "<leader>Q", "<cmd>qa!<CR>",   "Quit all (force)")
 mapd("n", "<leader>h", "<cmd>nohlsearch<CR>", "Clear highlight")
+
+mapd("n", "gx", function()
+  local target = vim.fn.expand("<cfile>")
+  if target == "" then
+    return
+  end
+  if target:match("^https?://") then
+    if vim.fn.has("wsl") == 1 then
+      vim.fn.jobstart({ "powershell.exe", "-NoProfile", "-Command", "Start-Process", target }, { detach = true })
+    elseif vim.fn.has("mac") == 1 then
+      vim.fn.jobstart({ "open", target }, { detach = true })
+    elseif vim.fn.executable("xdg-open") == 1 then
+      vim.fn.jobstart({ "xdg-open", target }, { detach = true })
+    end
+    return
+  end
+  local path = vim.fn.expand(target)
+  if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
+    if vim.fn.has("wsl") == 1 then
+      local converted = vim.fn.systemlist({ "wslpath", "-w", path })[1]
+      local win_path = (converted ~= nil and converted ~= "") and converted or path
+      vim.fn.jobstart({ "powershell.exe", "-NoProfile", "-Command", "Start-Process", win_path }, { detach = true })
+    elseif vim.fn.has("mac") == 1 then
+      vim.fn.jobstart({ "open", path }, { detach = true })
+    elseif vim.fn.executable("xdg-open") == 1 then
+      vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+    end
+  end
+end, "Open URL or path via system")
 
 -- UI 토글
 mapd("n", "<leader>un", function() vim.wo.relativenumber = not vim.wo.relativenumber end, "Toggle relative number")
@@ -901,8 +990,8 @@ vim.api.nvim_create_autocmd("FileType", {
     o.linebreak = true
     o.textwidth = 0
     o.colorcolumn = ""
-    o.conceallevel = 2
-    o.concealcursor = "nc"
+    o.conceallevel = 0
+    o.concealcursor = ""
     o.comments = { "fb:*", "fb:-", "fb:+", "n:>" }
     o.commentstring = "<!-- %s -->"
     o.formatlistpat = [[^\s*\d\+\.\s\+\|^\s*[-*+]\s\+\|^\[[^][]\+\]:\&^.\{4\}]]
@@ -970,7 +1059,7 @@ if not vim.g.__tfenv_lsp_bootstrap then
     local root_dir = util.root_pattern(".terraform-version", ".tool-versions", "versions.tf", ".terraform", ".git")
 
     -- Configure terraform-ls to always use tfenv-backed terraform
-    configure_lsp("terraformls", {
+    setup_lsp("terraformls", {
       cmd = { "terraform-ls", "serve" },
       cmd_env = cmd_env,
       filetypes = { "terraform", "terraform-vars", "hcl" },
@@ -982,8 +1071,6 @@ if not vim.g.__tfenv_lsp_bootstrap then
         },
       },
     })
-
-    enable_lsp("terraformls")
 
     -- Optional inspection commands (no side effects)
     vim.api.nvim_create_user_command("TerraformEnvInfo", function()
