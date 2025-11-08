@@ -19,6 +19,7 @@ Markdown 헤더에 번호 접두어를 부여/정규화합니다.
 - 파일 내 최소 해시 수를 감지하여 기준 레벨을 정하지만, `min_header_level`로 강제 지정할 수 있습니다.
 - 기준 레벨보다 상위 헤더는 번호를 제거(있다면)하고, 하위부터는 1. / 1.1 / 1.2.1 형태로 번호를 부여합니다.
 - 제목이 "관련 글"(공백 제거 후 비교)인 섹션은 번호에서 제외합니다.
+- `#####`(H5) 이상의 헤더는 넘버링 대상에서 제외합니다.
 """
 
 import argparse
@@ -26,6 +27,9 @@ import os
 import re
 from pathlib import Path
 from typing import Optional
+
+MIN_NUMBERED_HEADER_LEVEL = 2
+MAX_NUMBERED_HEADER_LEVEL = 4
 
 # 헤더/번호 정규식
 HEADER_RE = re.compile(r"^(#{1,6})\s+(.*)$")
@@ -69,7 +73,7 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
         return content if content.endswith("\n") else content + "\n"
 
     detected_min = min(header_hash_counts)
-    base_hashes = max((min_header_level or detected_min), 1)
+    base_hashes = max((min_header_level or detected_min), MIN_NUMBERED_HEADER_LEVEL)
 
     # 2. 재번호화
     counters = [0] * 8  # 인덱스 1..6 사용
@@ -93,15 +97,14 @@ def renumber_headers(content: str, min_header_level: Optional[int] = None) -> st
 
         hashes, title = m.group(1), m.group(2)
         hash_count = len(hashes)
+        clean_title = STRIP_NUM_RE.sub("", title).strip()
 
-        # 상위 레벨은 번호 제외, 기존 번호만 제거
-        if hash_count < base_hashes:
-            clean_title = STRIP_NUM_RE.sub("", title).strip()
+        # 상위 레벨 및 H5 이상은 번호 제외, 기존 번호만 제거
+        if hash_count < base_hashes or hash_count > MAX_NUMBERED_HEADER_LEVEL:
             out.append(f"{hashes} {clean_title}")
             continue
 
         level = hash_count - base_hashes + 1
-        clean_title = STRIP_NUM_RE.sub("", title).strip()
         normalized = _normalize_title(clean_title)
 
         # 3. 제외 제목은 절대 넘버링하지 않음
