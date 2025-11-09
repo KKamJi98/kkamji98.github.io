@@ -88,6 +88,14 @@ grep -E "pattern1|pattern2" file                     # 확장 정규식 사용
 grep -o "pattern" file                               # 매칭되는 부분만 출력
 grep -A 3 -B 2 "pattern" file                        # 매칭된 줄의 앞 2줄, 뒤 3줄 함께 출력
 
+# 고성능 텍스트 검색 (rg / ripgrep)
+rg "pattern"                                         # 현재 디렉토리 기준 재귀 검색 (.gitignore 준수)
+rg -n "pattern" file                                 # 줄 번호와 함께 빠르게 검색
+rg -i "pattern" directory                            # 대소문자 무시하고 재귀 검색
+rg -g "*.py" "pattern"                               # 지정한 glob(와일드카드) 대상만 검색
+rg --files -g "*.md"                                 # 패턴 없이 조건에 맞는 파일 목록만 출력
+rg --hidden --glob "!.git/*" "pattern"               # 숨김 파일 포함 검색(특정 경로는 제외)
+
 # 텍스트 처리 (sort, uniq, cut)
 sort file                                            # 파일 내용 정렬
 sort -r file                                         # 역순 정렬
