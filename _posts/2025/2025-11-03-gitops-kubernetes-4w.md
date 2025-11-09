@@ -1,5 +1,5 @@
 ---
-title: GitOps와 Kubernetes
+title: Argo CD in Practice (1) - GitOps와 Kubernetes
 date: 2025-11-03 11:40:31 +0900
 author: kkamji
 categories: [DevOps]
