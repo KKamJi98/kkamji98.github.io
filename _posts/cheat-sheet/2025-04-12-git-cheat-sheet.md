@@ -85,6 +85,7 @@ git config --global delta.side-by-side true
 git config --global safe.directory "{PATH}"
 
 # 자격증명 헬퍼(PATH 사용, 절대경로 지양)
+git config --global credential.helper manager-core
 git config --global credential.https://github.com.helper ''
 git config --global credential.https://github.com.helper '!gh auth git-credential'
 git config --global credential.https://gist.github.com.helper ''
