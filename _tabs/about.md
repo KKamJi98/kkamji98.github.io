@@ -11,7 +11,7 @@ order: 4
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1.2;">
-    <img src="https://github.com/kkamji98/kkamji98.github.io/assets/72260110/63652803-688c-4c82-97fa-9dd8f1cea58f" alt="Profile Photo" style="max-width: 90%; border-radius: 8px;">
+    <img src="/assets/img/kkam-img/kcd_2025.jpg" alt="Profile Photo" style="max-width: 90%; border-radius: 8px;">
   </div>
   <div style="flex: 2; margin-left: 10px;">
     <!-- <h3 style="color: #D49A7B;">Introduce</h3> -->
