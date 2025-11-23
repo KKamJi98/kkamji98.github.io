@@ -18,9 +18,9 @@ vim.opt.termguicolors = true
 vim.opt.mouse = "" -- 터미널 복사 충돌 방지
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.completeopt = { "menuone", "noselect" }
 
 -- UX 강화
-vim.opt.clipboard     = "unnamedplus"
 vim.opt.cursorline    = true
 vim.opt.signcolumn    = "yes"
 vim.opt.scrolloff     = 5
@@ -216,28 +216,25 @@ require("lazy").setup({
   { "echasnovski/mini.icons", lazy = true, version = false, opts = {} },
   {
     "ojroques/nvim-osc52",
-    event = "VeryLazy",
+    lazy = false,
     config = function()
       local osc52 = require("osc52")
-      osc52.setup({ silent = true })
-      local function paste()
-        return { vim.fn.getreg("+", 1, true), vim.fn.getregtype("+") }
-      end
-      vim.g.clipboard = {
-        name = "osc52",
-        copy = {
-          ["+"] = function(lines)
-            osc52.copy(table.concat(lines, "\n"))
-          end,
-          ["*"] = function(lines)
-            osc52.copy(table.concat(lines, "\n"))
-          end,
-        },
-        paste = {
-          ["+"] = paste,
-          ["*"] = paste,
-        },
-      }
+      -- osc52 기본 설정
+      osc52.setup({
+        silent = true,
+      })
+      -- 네이티브 clipboard provider 사용 중지
+      vim.opt.clipboard = ""
+      -- 모든 yank 이후 unnamed 레지스터 내용을 OSC 52로 전송
+      local group = vim.api.nvim_create_augroup("Osc52Yank", { clear = true })
+      vim.api.nvim_create_autocmd("TextYankPost", {
+        group = group,
+        callback = function()
+          if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+            osc52.copy_register("")
+          end
+        end,
+      })
     end,
   },
 
@@ -310,7 +307,10 @@ require("lazy").setup({
         },
         view = { width = 36 },
         renderer = { group_empty = true },
-        filters = { dotfiles = false },
+        filters = {
+          dotfiles = false,
+          git_ignored = false,
+        },
         git = { enable = true },
       })
     end,
@@ -510,7 +510,11 @@ require("lazy").setup({
         yaml = { "yamllint" },
       }
       vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function() require("lint").try_lint() end,
+        callback = function(event)
+          if lint.linters_by_ft[vim.bo[event.buf].filetype] then
+            lint.try_lint()
+          end
+        end,
       })
     end,
   },
@@ -705,15 +709,6 @@ require("lazy").setup({
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
-    if vim.v.event.operator == "y" then
-      local reg = vim.v.event.regname
-      if reg == "" or reg == "+" or reg == "*" then
-        local ok, osc52 = pcall(require, "osc52")
-        if ok then
-          osc52.copy_register(reg == "" and "+" or reg)
-        end
-      end
-    end
   end,
 })
 
