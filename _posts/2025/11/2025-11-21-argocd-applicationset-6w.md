@@ -11,7 +11,7 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study`를 진행하며 학습한 내용을 공유합니다.
 
-이번 포스팅에서는 Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이전 포스팅]({% post_url 2025/2025-11-18-argocd-cluster-management-6w %})에서 구축한 `kind-mgmt`, `kind-dev`, `kind-prd` 3개의 클러스터에 ApplicationSet 리소스를 활용해 애플리케이션을 배포하는 과정을 정리해보겠습니다.
+이번 포스팅에서는 Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이전 포스팅]({% post_url 2025/11/2025-11-18-argocd-cluster-management-6w %})에서 구축한 `kind-mgmt`, `kind-dev`, `kind-prd` 3개의 클러스터에 ApplicationSet 리소스를 활용해 애플리케이션을 배포하는 과정을 정리해보겠습니다.
 
 ---
 

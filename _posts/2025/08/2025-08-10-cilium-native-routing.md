@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-지난 글 [Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/2025-08-03-cilium-routing %})에서는 Native Routing 모드에서 **각 노드/라우터가 다른 노드의 PodCIDR 경로를 알고 있어야 한다**는 점을 살펴봤습니다.  
+지난 글 [Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/08/2025-08-03-cilium-routing %})에서는 Native Routing 모드에서 **각 노드/라우터가 다른 노드의 PodCIDR 경로를 알고 있어야 한다**는 점을 살펴봤습니다.  
 
 이번 시간에는 실제로 **PodCIDR 간 라우팅이 설정되지 않았을 때 어떤 문제가 발생하는지**를 실습 환경에서 확인하고, `tcpdump`로 그 흐름을 분석한 뒤 **Static Route와 BGP를 통한 해결 방법**을 다뤄보겠습니다.
 

@@ -11,7 +11,7 @@ image:
 
 **Cilium**과 **Hubble**은 모두 **Prometheus** 메트릭을 제공하도록 구성할 수 있습니다. **Prometheus**는 플러그형 메트릭 수집 및 저장 시스템이며, 메트릭 시각화 프런트엔드인 Grafana 의 데이터 소스 역할을 할 수 있습니다. 
 
-**Prometheus**에 대한 추가적인 내용은 [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %}) 해당 글을 참고하시면 좋을 것 같습니다.
+**Prometheus**에 대한 추가적인 내용은 [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/11/2024-11-07-prometheus %}) 해당 글을 참고하시면 좋을 것 같습니다.
 
 - [Cilium Docs - Monitoring & Metrics](https://docs.cilium.io/en/stable/observability/metrics/)
 

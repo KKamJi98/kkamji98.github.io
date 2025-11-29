@@ -9,7 +9,7 @@ image:
   path: /assets/img/github/github.webp
 ---
 
-지난 글([GitHub Actions 소개 및 구성 요소]({% post_url 2025/2025-04-27-github_actions_basic %}))에서 **GitHub Actions의 기본 개념과 구성 요소**에 대해 살펴보았습니다. 이번에는 **Matrix Strategy**라는 기능에 대해 알아보고 해당 기능을 활용해 여러 플랫폼 또는 환경에서 병렬로 작업을 수행하여 CI/CD 파이프라인의 성능을 향상시키는 방법에 대해 알아보도록 하겠습니다.
+지난 글([GitHub Actions 소개 및 구성 요소]({% post_url 2025/04/2025-04-27-github_actions_basic %}))에서 **GitHub Actions의 기본 개념과 구성 요소**에 대해 살펴보았습니다. 이번에는 **Matrix Strategy**라는 기능에 대해 알아보고 해당 기능을 활용해 여러 플랫폼 또는 환경에서 병렬로 작업을 수행하여 CI/CD 파이프라인의 성능을 향상시키는 방법에 대해 알아보도록 하겠습니다.
 
 ---
 

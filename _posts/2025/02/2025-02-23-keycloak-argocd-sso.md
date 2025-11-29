@@ -9,7 +9,7 @@ image:
   path: /assets/img/security/keycloak/keycloak.webp
 ---
 
-저번 시간에([Keycloak 개념, Helm으로 배포하기]({% post_url 2025/2025-02-22-keycloak %})) Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
+저번 시간에([Keycloak 개념, Helm으로 배포하기]({% post_url 2025/02/2025-02-22-keycloak %})) Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
 
 ---
 

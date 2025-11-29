@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-지난 글 [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/2025-08-11-cilium-bgp-control-plane %})에서는 **PodCIDR 경로를 BGP로 전파**하고, Cilium이 왜 커널 라우팅 테이블을 직접 수정하지 않는지, 그리고 다중 NIC 환경에서 발생하는 문제를 해결하는 방법을 살펴봤습니다.
+지난 글 [Cilium BGP Control Plane [Cilium Study 5주차]]({% post_url 2025/08/2025-08-11-cilium-bgp-control-plane %})에서는 **PodCIDR 경로를 BGP로 전파**하고, Cilium이 왜 커널 라우팅 테이블을 직접 수정하지 않는지, 그리고 다중 NIC 환경에서 발생하는 문제를 해결하는 방법을 살펴봤습니다.
 
 이번 글에서는 **Service(LoadBalancer) External IP를 BGP로 광고**하는 과정을 살펴보고, `ExternalTrafficPolicy`(Cluster vs Local)에 따른 동작 차이와 **Linux ECMP Hash Policy**가 트래픽 분산/소스IP 보존/연결 안정성에 미치는 영향을 실습을 통해 알아보겠습니다.
 

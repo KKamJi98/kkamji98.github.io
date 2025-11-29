@@ -26,10 +26,10 @@ image:
 
 ### 관련 글
 
-1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/2024-11-07-prometheus %})
-2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/2024-11-08-grafana %})
-3. [Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동]({% post_url 2024/2024-11-09-prometheus-grafana %})
-4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동 (현재 글)]({% post_url 2025/2025-06-21-thanos-deploy %})
+1. [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/11/2024-11-07-prometheus %})
+2. [Kubernetes 리소스 모니터링 (2) - Grafana]({% post_url 2024/11/2024-11-08-grafana %})
+3. [Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동]({% post_url 2024/11/2024-11-09-prometheus-grafana %})
+4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동 (현재 글)]({% post_url 2025/06/2025-06-21-thanos-deploy %})
 
 ---
 

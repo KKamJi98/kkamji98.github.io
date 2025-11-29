@@ -13,7 +13,7 @@ image:
 
 이번 포스트에서는 **Jenkins 를 사용한 CD**(Continuous Delivery)과정에 대해 실습 중심으로 정리하겠습니다.
 
-실습 환경은 [Jenkins + ArgoCD 실습 환경 구축]({% post_url 2025/2025-10-26-jenkins-ci-cd-env-3w %}) 의 실습환경을 사용합니다.
+실습 환경은 [Jenkins + ArgoCD 실습 환경 구축]({% post_url 2025/10/2025-10-26-jenkins-ci-cd-env-3w %}) 의 실습환경을 사용합니다.
 
 ---
 

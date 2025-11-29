@@ -573,8 +573,8 @@ OpenID Connect의 **Authorization Code Flow**를 사용하면 다음과 같은 �
 Argo CD와 Keycloak을 연동하는 전체 절차(클라이언트 생성, 리다이렉트 URI 설정, OIDC 설정, 그룹 기반 RBAC 연동 등)는 아래 공식 문서를 따르는 것을 권장합니다.
 
 - [Argo CD Docs - User Management / Keycloak](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/)
-- [Keycloak & ArgoCD SSO 구현하기]({% post_url 2025/2025-02-23-keycloak-argocd-sso %})
-- [Keycloak 개념, Helm으로 배포하기]({% post_url 2025/2025-02-22-keycloak %})
+- [Keycloak & ArgoCD SSO 구현하기]({% post_url 2025/02/2025-02-23-keycloak-argocd-sso %})
+- [Keycloak 개념, Helm으로 배포하기]({% post_url 2025/02/2025-02-22-keycloak %})
 
 ---
 

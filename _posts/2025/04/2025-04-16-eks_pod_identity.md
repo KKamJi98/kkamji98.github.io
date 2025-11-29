@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-지난 글([IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/2024-07-17-irsa %}))에서 **IRSA**를 통해 AWS 리소스 권한을 위임하는 방법을 설명했었습니다. **Amazon EKS Pod Identity**는 Pod 단위로 IAM 자격 증명을 제공하는 새로운 기능입니다. 기존 **IRSA**(IAM Role for Service Account)에서는 OIDC Provider 설정과 클러스터별 신뢰 정책 관리가 필수였지만, **Pod Identity**에서는 이를 없애 배포와 운영이 훨씬 간단해졌습니다.
+지난 글([IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/07/2024-07-17-irsa %}))에서 **IRSA**를 통해 AWS 리소스 권한을 위임하는 방법을 설명했었습니다. **Amazon EKS Pod Identity**는 Pod 단위로 IAM 자격 증명을 제공하는 새로운 기능입니다. 기존 **IRSA**(IAM Role for Service Account)에서는 OIDC Provider 설정과 클러스터별 신뢰 정책 관리가 필수였지만, **Pod Identity**에서는 이를 없애 배포와 운영이 훨씬 간단해졌습니다.
 
 **Pod Identity**를 사용하려면 신뢰 주체가 `pods.eks.amazonaws.com`인 IAM Role을 만들고, Service Account(SA)와 1:1로 연결(Association)하면 끝입니다. EKS Auth API가 Role을 한 번만 Assume하고, 각 노드에 설치된 Pod Identity Agent가 Pod에 임시 자격 증명을 전달하기 때문에 STS 호출 수가 크게 줄어들어 대규모 클러스터에서도 안정적으로 동작합니다.
 
