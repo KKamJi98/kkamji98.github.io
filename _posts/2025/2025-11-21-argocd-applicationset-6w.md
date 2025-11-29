@@ -3,7 +3,7 @@ title: Argo CD App of Apps & ApplicationSet
 date: 2025-11-21 22:19:02 +0900
 author: kkamji
 categories: [DevOps]
-tags: [devops, ci-cd-study, ci-cd-study-5w, gitops, kubernetes, argocd, applicationset]
+tags: [devops, ci-cd-study, ci-cd-study-6w, gitops, kubernetes, argocd, applicationset, app-of-apps]
 comments: true
 image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
@@ -29,7 +29,7 @@ image:
 
 ## 2. App of Apps Pattern이란?
 
-**App of Apps 패턴은 ‘하나의 Root Application이 여러 Child Application을 생성·관리’하도록 구성하는 Argo CD 구조적 패턴입니다.**
+**App of Apps 패턴은 ‘하나의 Root Application이 여러 Child Application을 생성하고 관리’하도록 구성하는 Argo CD 구조적 패턴입니다.**
 
 다시 말해, Root Application 하나만 배포해도 Root Application 내부에서 정의한 모든 하위 Application이 자동 생성됩니다.
 
@@ -206,7 +206,7 @@ App of Apps 패턴은 여러 애플리케이션을 그룹화하여 일관된 방
 
 ![Argo CD ApplicationSet 구조](/assets/img/ci-cd/ci-cd-study/argo-cd-introduce-applicationset.webp)
 
-- 위 그림처럼 **ApplicationSet Controller**(그림 중앙 맨 상단)는 **Argo CD**(그림 중간)와 통신하며, Argo CD 네임스페이스 내에서 **Application 리소스를 생성·수정·삭제하는 역할만 수행**합니다.
+- 위 그림처럼 **ApplicationSet Controller**(그림 중앙 맨 상단)는 **Argo CD**(그림 중간)와 통신하며, Argo CD 네임스페이스 내에서 **Application 리소스를 생성, 수정, 삭제하는 역할만 수행**합니다.
 - 즉, ApplicationSet의 유일한 목표는 **ApplicationSet 리소스에 선언된 상태를 실제 Argo CD Application 리소스 상태와 일치시키는 것(Reconciliation)** 입니다.
 - 클러스터 생성이나 Secret 생성 같은 작업은 다른 컴포넌트/관리자가 수행하고, ApplicationSet은 **이미 정의된 정보(클러스터, Git, SCM 등)를 조합해 Application을 자동으로 만들어주는 오케스트레이터**에 가깝습니다.
 

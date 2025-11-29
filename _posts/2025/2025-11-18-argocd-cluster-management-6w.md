@@ -3,7 +3,7 @@ title: Argo CD Multi Cluster Management
 date: 2025-11-18 21:33:18 +0900
 author: kkamji
 categories: [DevOps]
-tags: [devops, ci-cd-study, ci-cd-study-5w, gitops, kubernetes, argocd, cluster-management]
+tags: [devops, ci-cd-study, ci-cd-study-6w, gitops, kubernetes, argocd, cluster-management]
 comments: true
 image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
@@ -197,9 +197,9 @@ alias k8s3='kubectl --context kind-prd'
 ##############################################################
 # alias 확인
 ##############################################################
-k8s1 get node -owide
-k8s2 get node -owide
-k8s3 get node -owide
+k8s1 get node -o wide
+k8s2 get node -o wide
+k8s3 get node -o wide
 
 
 ##############################################################
@@ -422,7 +422,7 @@ argocd cluster list
 # https://kubernetes.default.svc  in-cluster            Unknown  Cluster has no applications and is not being monitored.   
 ```
 
-### 2.4. Prod Cluser 추가
+### 2.4. Prod Cluster 추가
 
 ```shell
 ##############################################################
@@ -804,13 +804,26 @@ kubectl delete applications -n argocd mgmt-nginx dev-nginx prd-nginx
 
 ---
 
-## 5. 마무리
+## 5. 실습 환경 정리
+
+```shell
+##############################################################
+# kind 클러스터 삭제
+##############################################################
+kind delete cluster --name mgmt
+kind delete cluster --name dev
+kind delete cluster --name prd
+```
+
+---
+
+## 6. 마무리
 
 이번 포스팅에서는 **Argo CD**를 사용하여 멀티 클러스터 환경을 구축하고 관리하는 방법을 실습해 보았습니다. `kind`를 이용해 로컬에서 관리용(Mgmt), 운영용(Prod), 개발용(Dev) 클러스터를 구성하고, **Argo CD**에 외부 클러스터를 등록하여 중앙에서 애플리케이션을 배포하고 관리하는 과정을 경험했습니다. 이를 통해 **Argo CD**가 단일 클러스터뿐만 아니라 멀티 클러스터 환경에서도 강력한 GitOps 도구로 활용될 수 있음을 확인했습니다.
 
 ---
 
-## 6. Reference
+## 7. Reference
 
 - [Argo CD Docs - Cluster Management](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-management/)
 - [Argo CD Docs - Declarative Setup/Clusters](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#clusters)
@@ -819,6 +832,6 @@ kubectl delete applications -n argocd mgmt-nginx dev-nginx prd-nginx
 
 ---
 
-> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글로 알려주세요.**  
+> **Written with KKamJi**  
 {: .prompt-info}

@@ -9,13 +9,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  // Formatter
-  "[html][liquid]": {
-    "editor.defaultFormatter": "Shopify.theme-check-vscode"
-  },
-  "[shellscript]": {
-    "editor.defaultFormatter": "mkhl.shfmt"
-  },
   // Disable vscode built-in stylelint
   "css.validate": false,
   "scss.validate": false,
@@ -27,8 +20,7 @@
   "terminal.integrated.profiles.osx": {
     "zsh": { "path": "/bin/zsh", "args": ["-l", "-i"] }
   },
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
-  },
+
+  "markdown.validate.referenceLinks.enabled": "ignore",
   "markdown.validate.enabled": true
 }
