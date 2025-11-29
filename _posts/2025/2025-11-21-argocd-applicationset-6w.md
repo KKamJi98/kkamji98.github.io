@@ -798,5 +798,6 @@ argocd appset delete guestbook --yes
 
 ---
 
-> **궁금하신 점이나 추가해야 할 부분은 댓글로 알려주세요.**  
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}
