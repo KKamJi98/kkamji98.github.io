@@ -19,13 +19,11 @@ image:
 
 ![Argo CD Multi-Cluster Architecture](/assets/img/ci-cd/ci-cd-study/argo-multi-cluster-architecture.webp)
 
-구조는 위와 같습니다.
-
-- **kind-mgmt**: Argo CD가 설치되는 **제어(Control) 클러스터**입니다. 이곳에서 모든 배포 파이프라인을 관리
-- **kind-prod**: 실제 서비스가 운영된다고 가정한 **운영 클러스터**
+- **kind-mgmt**: Argo CD가 설치되는 **제어(Control) 클러스터**
+- **kind-prd**: 실제 서비스가 운영된다고 가정한 **운영 클러스터**
 - **kind-dev**: 개발 및 테스트가 이루어지는 **개발 클러스터**
 
-`kind-mgmt`에 설치된 Argo CD는 `kind-prod`와 `kind-dev` 클러스터의 자격 증명을 등록받아, Git 저장소의 변경 사항을 각 대상 클러스터로 동기화(Sync)하는 역할을 수행합니다.
+`kind-mgmt`에 설치된 Argo CD는 `kind-prd`와 `kind-dev` 클러스터의 자격 증명을 등록받아, Git 저장소의 변경 사항을 각 대상 클러스터로 동기화(Sync)하는 역할을 수행합니다.
 
 ---
 
@@ -118,7 +116,7 @@ open "http://localhost:30000/"
 
 ![Argo CD Main Login Check kind-mgmt](/assets/img/ci-cd/ci-cd-study/argo-main-login-check-kind-mgmt.webp)
 
-### 2.2. kind-prod, kind-dev Cluster 배포 및 kubeconfig 파일 수정
+### 2.2. kind-prd, kind-dev Cluster 배포 및 kubeconfig 파일 수정
 
 ```shell
 ##############################################################
@@ -488,6 +486,7 @@ argocd cluster list
 
 ## 3. nginx helm chart 생성 후 GitHub에 Push
 
+{% raw %}
 ```shell
 ##############################################################
 # 디렉토리 생성
@@ -662,6 +661,7 @@ helm template mgmt-nginx . -f values.yaml
 helm template dev-nginx . -f values-dev.yaml
 helm template prd-nginx . -f values-prd.yaml
 ```
+{% endraw %}
 
 ---
 
