@@ -154,9 +154,10 @@ open http://localhost:30003
 
 ## 3. References
 
-[Jenkins GitHub - kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator)
-[Jenkins Docs - Architecture and Design](https://jenkinsci.github.io/kubernetes-operator/docs/how-it-works/architecture-and-design/)
-[Jenkins Docs - Installing the Operator](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/installing-the-operator/))
+- [Jenkins GitHub - kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator)
+- [Jenkins Docs - Architecture and Design](https://jenkinsci.github.io/kubernetes-operator/docs/how-it-works/architecture-and-design/)
+- [Jenkins Docs - Installing the Operator](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/installing-the-operator/)
+
 ---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
