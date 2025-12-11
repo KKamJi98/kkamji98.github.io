@@ -35,10 +35,26 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-echo "Running: ${PYTHON_BIN} ${FIX_SCRIPT} --no-backup --verbose ${ROOT_ARG[*]}"
-"${PYTHON_BIN}" "${FIX_SCRIPT}" --no-backup --verbose "${ROOT_ARG[@]}"
+ROOT_SUFFIX=""
+if [[ ${#ROOT_ARG[@]} -gt 0 ]]; then
+  ROOT_SUFFIX=" ${ROOT_ARG[*]}"
+fi
 
-echo "Running: ${PYTHON_BIN} ${RENUMBER_SCRIPT} ${ROOT_ARG[*]}"
-"${PYTHON_BIN}" "${RENUMBER_SCRIPT}" "${ROOT_ARG[@]}"
+run_python() {
+  local script_path="$1"
+  shift
+
+  if [[ ${#ROOT_ARG[@]} -gt 0 ]]; then
+    "${PYTHON_BIN}" "${script_path}" "$@" "${ROOT_ARG[@]}"
+  else
+    "${PYTHON_BIN}" "${script_path}" "$@"
+  fi
+}
+
+echo "Running: ${PYTHON_BIN} ${FIX_SCRIPT} --no-backup --verbose${ROOT_SUFFIX}"
+run_python "${FIX_SCRIPT}" --no-backup --verbose
+
+echo "Running: ${PYTHON_BIN} ${RENUMBER_SCRIPT}${ROOT_SUFFIX}"
+run_python "${RENUMBER_SCRIPT}"
 
 echo "All done."
