@@ -222,7 +222,7 @@ docker exec -it mgmt-control-plane curl -sk https://dev-control-plane:6443/versi
 docker exec -it mgmt-control-plane curl -sk https://prd-control-plane:6443/version
 ```
 
-### 2.3. Argo CD에 다른 K8s 클러스터 추가
+### 2.3. Argo CD에 다른 Kubernetes 클러스터 추가
 
 #### 2.3.1. Cluster Add Script (`register-cluster.sh`)
 

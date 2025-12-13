@@ -77,7 +77,7 @@ addons:
     helm3                # (core) Helm 3 - the package manager for Kubernetes
   disabled:
     cert-manager         # (core) Cloud native certificate management
-    cis-hardening        # (core) Apply CIS K8s hardening
+    cis-hardening        # (core) Apply CIS Kubernetes hardening
     community            # (core) The community addons repository
     dashboard            # (core) The Kubernetes dashboard
     host-access          # (core) Allow Pods connecting to Host services smoothly
@@ -86,7 +86,7 @@ addons:
     kube-ovn             # (core) An advanced network fabric for Kubernetes
     mayastor             # (core) OpenEBS MayaStor
     metallb              # (core) Loadbalancer for your Kubernetes cluster
-    metrics-server       # (core) K8s Metrics Server for API access to service metrics
+    metrics-server       # (core) Kubernetes Metrics Server for API access to service metrics
     minio                # (core) MinIO object storage
     observability        # (core) A lightweight observability stack for logs, traces and metrics
     prometheus           # (core) Prometheus operator for monitoring and logging

@@ -153,14 +153,14 @@ http://127.0.0.1:30002 # grafana 웹 접속 ( admin , prom-operator )
 ########################################################
 # 대시보드 추가 (15661, 12006)
 ########################################################
-1. K8S Dashboard (15661) 
+1. Kubernetes Dashboard (15661)
   link: https://grafana.com/grafana/dashboards/15661-k8s-dashboard-en-20250125/
 2. Kubernetes apiserver (12006)
   link: https://grafana.com/grafana/dashboards/12006-kubernetes-apiserver/
 ```
 
-- K8S Dashboard 확인
-![K8S Dashboard](/assets/img/kubernetes/cilium/7w-k8s-dashboard.webp)
+- Kubernetes Dashboard 확인
+![Kubernetes Dashboard](/assets/img/kubernetes/cilium/7w-k8s-dashboard.webp)
 
 - Kubernetes apiserver Dashboard 확인
 ![Kubernetes apiserver Dashboard](/assets/img/kubernetes/cilium/7w-k8s-apiserver-dashboard.webp)

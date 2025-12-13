@@ -52,7 +52,7 @@ Container를 만들기 위해서는 Container Image를 빌드해야 합니다. C
 | Jib                 | 불필요 (Dockerless)      | Java 기반, Gradle/Maven 통합         | JVM 애플리케이션에 최적  |
 | Buildah             | 불필요 (Daemonless)      | 언어 비종속, Rootless 지원           | 보안 강화 및 CI 적합     |
 | Buildpack          | 불필요 (Daemonless)      | 자동 빌드, Dockerfile 불필요         | Cloud Native Buildpack  |
-| Shipwright + Kaniko | 불필요 (Daemonless, K8s) | Kubernetes 상에서 빌드 수행          | 완전한 클라우드 네이티브 |
+| Shipwright + Kaniko | 불필요 (Daemonless, Kubernetes) | Kubernetes 상에서 빌드 수행          | 완전한 클라우드 네이티브 |
 
 ---
 
@@ -953,16 +953,16 @@ Kubernetes는 기본적으로 이미지 빌드 기능을 내장하고 있지 않
   - 컨테이너 이미지를 생성해야 하는데, 이 작업을 쿠버네티스로 실행해 보자
 - **풀이**
   - 쿠버네티스는 컨테이너 이미지를 빌드하는 기능을 제공하지 않는다.
-  - 그리하여 널리 사용되는 방안은 **CI/CD 시스템**을 사용하는 것이다. 또 다른 방안은 빌드 관리 프레임워크를 사용하는 것이다. 그중 하나가 Shipwrite.
-  - 십라이트 Shipwrite 는 쿠버네티스에서 컨테이너 이미지를 빌드하는 확장 가능 프레임워크다 - [Home](https://shipwright.io/) , [Intro](https://shipwright.io/docs/introduction/)
+  - 그리하여 널리 사용되는 방안은 **CI/CD 시스템**을 사용하는 것이다. 또 다른 방안은 빌드 관리 프레임워크를 사용하는 것이다. 그중 하나가 Shipwright.
+  - 십라이트 Shipwright는 쿠버네티스에서 컨테이너 이미지를 빌드하는 확장 가능 프레임워크다 - [Home](https://shipwright.io/) , [Intro](https://shipwright.io/docs/introduction/)
   - 빌다 Buildah , 빌드팩 Buildpacks , ~~카니코 kaniko~~ 같은 유명 도구를 지원한다.
   - 이 프레임워크는 쿠버네티스 스타일 API를 사용하여, 텍톤 Tekton 위에서 작업을 실행한다.
   - 개발자 입장에서는 컨테이너 또는 컨테이너 엔진에 대한 사전 지식 없이도 YAML 파일만 정의하면 컨테이너 이미지를 빌드할 수 있다.
   - 특정 솔루션에 종속되지 않으며, 쿠버네티스 API 에코시스템과 잘 어울린다.
 
-### 7.2. Shipwrite Supported platform
+### 7.2. Shipwright Supported platforms
 
-Shipwrite를 설치한 후에는 다음 도구 중 하나로 컨테이너 이미지 생성을 시작해 볼 수 있습니다.
+Shipwright를 설치한 후에는 다음 도구 중 하나로 컨테이너 이미지 생성을 시작해 볼 수 있습니다.
 
 | Name | Supported platforms |
 | --- | --- |
@@ -975,9 +975,9 @@ Shipwrite를 설치한 후에는 다음 도구 중 하나로 컨테이너 이미
 | [**ko**](https://github.com/shipwright-io/build/tree/v0.15.2/samples/v1beta1/buildstrategy/ko) | all |
 | [**source-to-image**](https://github.com/shipwright-io/build/tree/v0.15.2/samples/v1beta1/buildstrategy/source-to-image) | linux/amd64 only |
 
-> [Shipwirte Docs - Build Strategies](https://shipwright.io/docs/build/buildstrategies/)
+> [Shipwright Docs - Build Strategies](https://shipwright.io/docs/build/buildstrategies/)
 
-### 7.3. kind K8S에 Shipwirte 설치
+### 7.3. kind Kubernetes에 Shipwright 설치
 
 ```shell
 # Tekton dependency 파이프라인(pipeline) 설치 : ~0.61.0 ErrImagePull
@@ -1062,7 +1062,7 @@ kubectl get-all -n shipwright-build
 **kubectl get all -n shipwright-build**
 ```
 
-### 7.5. CRD를 통해 제공되는 Shipwrite APIs
+### 7.5. CRD를 통해 제공되는 Shipwright APIs
 
 - ClusterBuildStrategy
   - 실행할 빌드 유형
@@ -1098,9 +1098,9 @@ kubectl get-all -n shipwright-build
   ...
   ```
 
-### 7.6. Shipwirte를 사용한 Container Iamge Build 및 Push
+### 7.6. Shipwright를 사용한 Container Image Build 및 Push
 
-Shipwrite 는 쿠버네티스 노드의 Container Cache에 Container Image를 생성합니다. 또한 빌드한 Container Image를 Container Registry로 푸시할 수도 있습니다.
+Shipwright는 쿠버네티스 노드의 Container Cache에 Container Image를 생성합니다. 또한 빌드한 Container Image를 Container Registry로 푸시할 수도 있습니다.
 
 ```shell
 ##############################################################
@@ -1264,11 +1264,11 @@ kaniko-golang-buildrun-jz5cg   True        Succeeded   11m         10m
 kubectl delete build,buildrun --all
 ```
 
-![Shipwirte Docker Image](/assets/img/ci-cd/ci-cd-study/shipwirte-docker-hub-image-check.webp)
+![Shipwright Docker Image](/assets/img/ci-cd/ci-cd-study/shipwirte-docker-hub-image-check.webp)
 
-### 7.7. Shipwirte 추가 정보
+### 7.7. Shipwright 추가 정보
 
-- 십라이트 Shipwrite 는 쿠버네티스의 빌드 API가 되는 것, 즉 쿠버네티스를 통한 좀 더 쉬운 자동화 방안을 개발자에게 제공하는 것을 목표로 시작되었다.
+- 십라이트 Shipwright는 쿠버네티스의 빌드 API가 되는 것, 즉 쿠버네티스를 통한 좀 더 쉬운 자동화 방안을 개발자에게 제공하는 것을 목표로 시작되었다.
 - 실제 빌드 작업 수행은 텍톤이 수행하므로, 쿠버네티스 위에서 좀 더 큰 규모의 파이프라인을 운용하고 싶을 때 좋다.
 - 참고로 카니코 대신 빌다를 사용하려면 Build API를 이용할 때 ClusterBuildStrategy 에 다른 값을 지정하기만 하면 된다.
 

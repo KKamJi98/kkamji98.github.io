@@ -216,7 +216,7 @@ alias, PS1 설정, 자동완성 설정 등이 포함된 Control Plane 설정 Scr
 ```bash
 #!/usr/bin/env bash
 
-echo ">>>> K8S Controlplane config Start <<<<"
+echo ">>>> Kubernetes Controlplane config Start <<<<"
 
 echo "[TASK 1] Initial Kubernetes"
 kubeadm init --token 123456.1234567890123456 --token-ttl 0 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/16 --apiserver-advertise-address=192.168.10.100 --cri-socket=unix:///run/containerd/containerd.sock >/dev/null 2>&1
@@ -265,7 +265,7 @@ echo "192.168.10.100 cilium-m1" >> /etc/hosts
 for (( i=1; i<=$1; i++  )); do echo "192.168.10.10$i cilium-w$i" >> /etc/hosts; done
 
 
-echo ">>>> K8S Controlplane Config End <<<<"
+echo ">>>> Kubernetes Controlplane Config End <<<<"
 ```
 
 ### 3.4. k8s-w.sh
@@ -275,13 +275,13 @@ Data Plane의 노드들이 Control Plane에 조인하는 Script입니다.
 ```bash
 #!/usr/bin/env bash
 
-echo ">>>> K8S Node config Start <<<<"
+echo ">>>> Kubernetes Node config Start <<<<"
 
-echo "[TASK 1] K8S Controlplane Join" 
+echo "[TASK 1] Kubernetes Controlplane Join"
 kubeadm join --token 123456.1234567890123456 --discovery-token-unsafe-skip-ca-verification 192.168.10.100:6443  >/dev/null 2>&1
 
 
-echo ">>>> K8S Node config End <<<<"
+echo ">>>> Kubernetes Node config End <<<<"
 ```
 
 ---
@@ -314,9 +314,9 @@ Bringing machine 'cilium-w2' up with 'virtualbox' provider...
 ==> cilium-m1: Setting the name of the VM: cilium-m1
 ...
 ...
-    cilium-w2: >>>> K8S Node config Start <<<<
-    cilium-w2: [TASK 1] K8S Controlplane Join
-    cilium-w2: >>>> K8S Node config End <<<<
+    cilium-w2: >>>> Kubernetes Node config Start <<<<
+    cilium-w2: [TASK 1] Kubernetes Controlplane Join
+    cilium-w2: >>>> Kubernetes Node config End <<<<
 ```
 
 ---

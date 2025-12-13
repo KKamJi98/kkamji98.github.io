@@ -566,7 +566,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 ### 3.7. 문제확인 및 설명 (By ChatGPT)
 
 - Cilium의 BGP는 기본적으로 **외부 경로를 커널 라우팅 테이블에 주입하지 않음**.
-  - 왜 Cilium이 받은 BGP 경로가 K8s 노드 OS 커널 라우팅 테이블에 안 들어오나?
+  - 왜 Cilium이 받은 BGP 경로가 Kubernetes 노드 OS 커널 라우팅 테이블에 안 들어오나?
     - **Cilium의 BGP는 "컨트롤 플레인"만 동작**
       - Cilium BGP Speaker(GoBGP 기반)는 BGP 세션을 맺고 prefix를 광고하거나 수신합니다.
       - 하지만 **수신한 경로를 Linux 커널(FIB)** 에 바로 주입하지 않음.

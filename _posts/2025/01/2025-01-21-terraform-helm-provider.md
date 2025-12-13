@@ -83,7 +83,7 @@ provider "helm" {
 
 ```hcl
 resource "helm_release" "nginx" {
-  name       = "my-nginx"                                 # K8s 내 Release 이름
+  name       = "my-nginx"                                 # Kubernetes 내 Release 이름
   repository = "oci://registry-1.docker.io/bitnamicharts" # 차트 레포지토리
   chart      = "nginx"                                    # 차트명
   version    = "18.3.5"                                   # 차트 버전 (원하는 버전)
@@ -119,7 +119,7 @@ resource "helm_release" "nginx" {
 
 ### 3.1. 핵심 옵션
 
-- **name**: K8s 내 Helm Release 이름
+- **name**: Kubernetes 내 Helm Release 이름
 - **repository**: 차트가 있는 Helm Repo URL
 - **chart**: 사용할 차트 이름
 - **version**: 차트 버전 (생략 시 최신 버전 사용)
