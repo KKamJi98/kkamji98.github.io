@@ -6,7 +6,7 @@ categories: [Kubernetes, Istio]
 tags: [kubernetes, istio, request-routing, virtualservice, destinationrule, traffic-management, canary, ab-test, envoy, kiali]
 comments: true
 image:
-  path: /assets/img/kubernetes/kubernetes.webp
+  path: /assets/img/kubernetes/istio/istio.webp
 ---
 
 서비스 메시의 핵심 가치는 **트래픽 제어를 애플리케이션 밖에서 일관되게 수행**하는 데 있습니다. Istio의 **Request Routing** 기능을 활용하면 동일 서비스의 버전별 트래픽 분산, 사용자 그룹별 라우팅, 점진적 배포를 손쉽게 구현할 수 있습니다.
@@ -110,7 +110,7 @@ open http://<EXTERNAL-IP>:30010/productpage
 2. Username에 `admin` 입력 (Password는 임의 입력)
 3. 새로고침 시 별점(Star Ratings)이 보이면 `reviews:v2`가 호출된 상태입니다.
 
-![Bookinfo 로그인 화면](/assets/img/kubernetes/istio-study/01_bookinfo_login.webp)
+![Bookinfo 로그인 화면](/assets/img/kubernetes/istio/01_bookinfo_login.webp)
 
 ---
 
@@ -157,7 +157,7 @@ kubectl logs deployments/productpage-v1 -c istio-proxy
 - `upstream_info`: 실제 라우팅된 서비스 버전 확인
 - `res_code`: 응답 코드 확인
 
-![Pod Detail](/assets/img/kubernetes/istio-study/02_pod_detail.webp)
+![Pod Detail](/assets/img/kubernetes/istio/02_pod_detail.webp)
 
 ---
 
@@ -167,7 +167,7 @@ kubectl logs deployments/productpage-v1 -c istio-proxy
 istioctl dashboard kiali
 ```
 
-![Traffic Visualization](/assets/img/kubernetes/istio-study/03_kiali_traffic.webp)
+![Traffic Visualization](/assets/img/kubernetes/istio/03_kiali_traffic.webp)
 
 Kiali에서는 서비스 간 트래픽 흐름, 응답 시간, 버전별 분산 비율을 한눈에 확인할 수 있습니다.
 
@@ -208,7 +208,7 @@ kubectl get httproutes reviews -o yaml
 kubectl get service
 ```
 
-![Gateway API Traffic](/assets/img/kubernetes/istio-study/04_gateway_api.webp)
+![Gateway API Traffic](/assets/img/kubernetes/istio/04_gateway_api.webp)
 
 위 delete는 기존 **DestinationRule/VirtualService** 리소스를 제거합니다.  
 apply는 **HTTPRoute**와 `reviews-v1`, `reviews-v2` **Service**를 생성/갱신하여 동일 라우팅을 Gateway API로 구현합니다.

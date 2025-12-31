@@ -6,7 +6,7 @@ categories: [Kubernetes, Istio]
 tags: [kubernetes, istio, service-mesh, envoy, sidecar, ambient, istioctl, bookinfo, traffic-management]
 comments: true
 image:
-  path: /assets/img/kubernetes/kubernetes.webp
+  path: /assets/img/kubernetes/istio/istio.webp
 ---
 
 마이크로서비스가 늘어날수록 서비스 간 통신을 **보안**, **트래픽 제어**, **관찰성** 관점에서 일관되게 관리하기가 어려워집니다. 각 서비스에 라이브러리를 붙이는 방식은 확장될수록 유지보수 비용이 커지기 때문에, 네트워크 계층에서 공통 기능을 제공하는 **서비스 메시(Service Mesh)**가 필요합니다.
@@ -77,7 +77,7 @@ make monitoring-install
 make monitoring-delete
 ```
 
-![Istio 설치 흐름](/assets/img/kubernetes/istio-study/01_install_istio.webp)
+![Istio 설치 흐름](/assets/img/kubernetes/istio/01_install_istio.webp)
 
 ### 4.2. istioctl 기반 설치
 
@@ -116,7 +116,7 @@ kubectl apply -f https://raw.githubusercontent.com/KKamJi98/kkamji-lab/main/stud
 kubectl get pods -n default
 ```
 
-![Bookinfo 배포 상태](/assets/img/kubernetes/istio-study/02_demo_app_deploy.webp)
+![Bookinfo 배포 상태](/assets/img/kubernetes/istio/02_demo_app_deploy.webp)
 
 위 `kubectl apply`는 Bookinfo 샘플의 **Service/ServiceAccount/Deployment**를 생성합니다.  
 두 번째 apply는 Sidecar 자동 주입 라벨을 적용한 뒤 재배포하여 **Envoy가 포함된 Pod**를 생성합니다.
@@ -141,7 +141,7 @@ kubectl get gateways.gateway.networking.k8s.io -n default
 kubectl get httproutes.gateway.networking.k8s.io -n default
 ```
 
-![Gateway 구성 및 Web UI](/assets/img/kubernetes/istio-study/03_gateway_web_ui.webp)
+![Gateway 구성 및 Web UI](/assets/img/kubernetes/istio/03_gateway_web_ui.webp)
 
 위 명령은 **Gateway**와 **HTTPRoute** 리소스를 생성하여 `/productpage` 경로를 외부로 노출합니다.
 
@@ -162,7 +162,7 @@ open http://<EXTERNAL-IP>:30010/productpage
 open http://<EXTERNAL-IP>:30020/productpage
 ```
 
-![Bookinfo Web UI](/assets/img/kubernetes/istio-study/04_book_info_web.webp)
+![Bookinfo Web UI](/assets/img/kubernetes/istio/04_book_info_web.webp)
 
 ---
 
@@ -176,9 +176,9 @@ Prometheus, Grafana, Kiali를 함께 구성하면 트래픽과 지표를 시각�
 
 Kiali 설치 후에는 Istio 관련 ServiceMonitor/PodMonitor를 적용해 메트릭 수집 범위를 확장할 수 있습니다.
 
-![Prometheus Targets](/assets/img/kubernetes/istio-study/05_prometheus-targets.webp)
+![Prometheus Targets](/assets/img/kubernetes/istio/05_prometheus-targets.webp)
 
-![Kiali Dashboard](/assets/img/kubernetes/istio-study/06_kiali_dashboard.webp)
+![Kiali Dashboard](/assets/img/kubernetes/istio/06_kiali_dashboard.webp)
 
 ---
 
@@ -200,7 +200,7 @@ spec:
 istioctl install -f istio-cni.yaml -y
 ```
 
-![Istio CNI 모드](/assets/img/kubernetes/istio-study/07_istio_cni.webp)
+![Istio CNI 모드](/assets/img/kubernetes/istio/07_istio_cni.webp)
 
 ---
 

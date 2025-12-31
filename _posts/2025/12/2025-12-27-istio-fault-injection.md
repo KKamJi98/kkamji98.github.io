@@ -6,7 +6,7 @@ categories: [Kubernetes, Istio]
 tags: [kubernetes, istio, fault-injection, delay, abort, resiliency, observability, envoy, virtualservice]
 comments: true
 image:
-  path: /assets/img/kubernetes/kubernetes.webp
+  path: /assets/img/kubernetes/istio/istio.webp
 ---
 
 스테이징 환경에서 장애 상황을 그대로 재현하기는 어렵습니다. 운영에서만 발생하는 타임아웃, 지연, 오류 응답은 테스트 환경에서 재현이 힘들고, 이를 코드로 직접 만들기에도 비용이 큽니다.
@@ -74,23 +74,23 @@ open http://<EXTERNAL-IP>:30010/productpage
 > ⚠️ **결과**: admin으로 로그인하면 ratings 서비스에 지연이 발생하여 별점(★)이 표시되지 않습니다.
 {: .prompt-warning}
 
-![Rating Error](/assets/img/kubernetes/istio-study/01_rating_error.webp)
+![Rating Error](/assets/img/kubernetes/istio/01_rating_error.webp)
 
 ### 4.1. 지연 시간 변경 (4s → 2s)
 
 지연을 2초로 낮추면 reviews의 timeout(2.5초) 내에 응답이 들어와 별점이 정상 표시됩니다.
 
-![Delay Config Change](/assets/img/kubernetes/istio-study/04_delay_config_change.webp)
+![Delay Config Change](/assets/img/kubernetes/istio/04_delay_config_change.webp)
 
-![Delay 2s Check](/assets/img/kubernetes/istio-study/05_delay_2s_check.webp)
+![Delay 2s Check](/assets/img/kubernetes/istio/05_delay_2s_check.webp)
 
-![Delay 2s Logs](/assets/img/kubernetes/istio-study/06_delay_2s_logs.webp)
+![Delay 2s Logs](/assets/img/kubernetes/istio/06_delay_2s_logs.webp)
 
 ### 4.2. 지연 시간 증가 (11s) 및 재시도
 
 지연을 11초로 늘리면 productpage가 재시도를 수행하는 흐름을 로그로 확인할 수 있습니다.
 
-![Delay 11s Retry Logs](/assets/img/kubernetes/istio-study/07_delay_11s_retry_logs.webp)
+![Delay 11s Retry Logs](/assets/img/kubernetes/istio/07_delay_11s_retry_logs.webp)
 
 ---
 
@@ -123,7 +123,7 @@ kubectl logs -n default --tail 10 deploy/productpage-v1 -c istio-proxy
 
 Kiali에서도 오류 트레이싱 흐름을 확인할 수 있습니다.
 
-![Kiali Error Tracing](/assets/img/kubernetes/istio-study/03_kiali_error_tracing.webp)
+![Kiali Error Tracing](/assets/img/kubernetes/istio/03_kiali_error_tracing.webp)
 
 ---
 
@@ -163,15 +163,15 @@ EOF
 istioctl install -f istio-cni.yaml -y
 ```
 
-![Envoy Duration](/assets/img/kubernetes/istio-study/02_envoy_duration_log.webp)
+![Envoy Duration](/assets/img/kubernetes/istio/02_envoy_duration_log.webp)
 
 ### 7.1. App Timeout 참고
 
 서비스별 timeout 설정을 참고할 때 유용한 화면입니다.
 
-![App Timeout Code](/assets/img/kubernetes/istio-study/08_app_timeout_code.webp)
+![App Timeout Code](/assets/img/kubernetes/istio/08_app_timeout_code.webp)
 
-![Kiali Traffic Graph](/assets/img/kubernetes/istio-study/09_kiali_traffic_graph.webp)
+![Kiali Traffic Graph](/assets/img/kubernetes/istio/09_kiali_traffic_graph.webp)
 
 ---
 
@@ -225,7 +225,7 @@ spec:
 open http://<EXTERNAL-IP>:30010/productpage
 ```
 
-![Ratings Abort Error](/assets/img/kubernetes/istio-study/10_ratings_abort_error.webp)
+![Ratings Abort Error](/assets/img/kubernetes/istio/10_ratings_abort_error.webp)
 
 ---
 
