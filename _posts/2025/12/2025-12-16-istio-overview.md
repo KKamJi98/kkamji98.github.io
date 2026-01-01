@@ -1,5 +1,5 @@
 ---
-title: Istio 개요와 설치 흐름 [Istio Study 1]
+title: Istio Overview & Installation Guide
 date: 2025-12-16 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]
@@ -143,6 +143,8 @@ kubectl get httproutes.gateway.networking.k8s.io -n default
 
 ![Gateway 구성 및 Web UI](/assets/img/kubernetes/istio/03_gateway_web_ui.webp)
 
+Gateway/HTTPRoute 리소스 적용 후 productpage가 외부에서 접근 가능한 상태임을 보여주는 화면입니다.
+
 위 명령은 **Gateway**와 **HTTPRoute** 리소스를 생성하여 `/productpage` 경로를 외부로 노출합니다.
 
 필요하다면 Service의 NodePort를 수정해 접근 포트를 명확히 지정할 수 있습니다.
@@ -164,6 +166,8 @@ open http://<EXTERNAL-IP>:30020/productpage
 
 ![Bookinfo Web UI](/assets/img/kubernetes/istio/04_book_info_web.webp)
 
+외부 접속으로 Bookinfo productpage UI가 정상 렌더링된 것을 확인한 화면입니다.
+
 ---
 
 ## 7. 관찰성 스택 (Prometheus, Kiali)
@@ -178,7 +182,11 @@ Kiali 설치 후에는 Istio 관련 ServiceMonitor/PodMonitor를 적용해 메�
 
 ![Prometheus Targets](/assets/img/kubernetes/istio/05_prometheus-targets.webp)
 
+Prometheus Targets에서 Istio 관련 타겟이 정상 수집(Up)되는 상태를 확인한 화면입니다.
+
 ![Kiali Dashboard](/assets/img/kubernetes/istio/06_kiali_dashboard.webp)
+
+Kiali 대시보드에서 서비스 간 트래픽 흐름과 메트릭이 시각화된 상태를 보여줍니다.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Istio Request Routing 실습 [Istio Study 2]
+title: Istio Request Routing
 date: 2025-12-21 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]
@@ -28,7 +28,7 @@ image:
 - Bookinfo 애플리케이션이 배포되어 있어야 합니다.
 - `default` 네임스페이스에 Sidecar 자동 주입이 활성화되어 있어야 합니다.
 
-### 실습 코드 받기
+### 2.1. 실습 코드 받기
 
 ```shell
 git clone https://github.com/KKamJi98/kkamji-lab.git 
@@ -99,6 +99,8 @@ spec:
 
 ## 4. 라우팅 동작 검증
 
+위에서 DestinationRule과 VirtualService를 적용했으므로, 실제로 헤더 기반 라우팅이 동작하는지 UI에서 확인해보겠습니다.
+
 ```shell
 kubectl get nodes -o wide
 open http://<EXTERNAL-IP>:30010/productpage
@@ -112,9 +114,15 @@ open http://<EXTERNAL-IP>:30010/productpage
 
 ![Bookinfo 로그인 화면](/assets/img/kubernetes/istio/01_bookinfo_login.webp)
 
+Bookinfo productpage에서 로그인 버튼을 눌러 `end-user` 헤더를 주입하는 화면입니다.
+
+이를 통해 `admin` 사용자 요청이 reviews:v2로 라우팅되는지 시각적으로 확인할 수 있습니다.
+
 ---
 
 ## 5. Envoy 액세스 로그로 요청 경로 확인
+
+UI 결과만으로는 라우팅 경로를 확정하기 어려우므로, Envoy access log로 실제 upstream을 확인합니다.
 
 Envoy access log를 활성화하면 라우팅 결과를 정밀하게 확인할 수 있습니다.
 
@@ -159,6 +167,10 @@ kubectl logs deployments/productpage-v1 -c istio-proxy
 
 ![Pod Detail](/assets/img/kubernetes/istio/02_pod_detail.webp)
 
+productpage Pod 상세 화면에서 `istio-proxy` 컨테이너 로그를 확인하는 위치를 보여줍니다.
+
+이 로그를 통해 실제 라우팅된 버전과 요청 헤더를 정확히 검증할 수 있습니다.
+
 ---
 
 ## 6. Kiali로 트래픽 시각화
@@ -168,6 +180,8 @@ istioctl dashboard kiali
 ```
 
 ![Traffic Visualization](/assets/img/kubernetes/istio/03_kiali_traffic.webp)
+
+Kiali에서 productpage↔reviews 트래픽 흐름과 버전 분산을 시각화한 화면입니다.
 
 Kiali에서는 서비스 간 트래픽 흐름, 응답 시간, 버전별 분산 비율을 한눈에 확인할 수 있습니다.
 
@@ -191,6 +205,8 @@ Kiali에서는 서비스 간 트래픽 흐름, 응답 시간, 버전별 분산 �
 
 > **P95 이해하기**: 100개의 요청 중 95번째로 느린 요청의 응답 시간이 `260ms`라면, P95는 `260ms`입니다. 즉, 95%의 사용자는 260ms 이내의 응답 속도를 경험합니다.
 
+이 지표들을 통해 버전별 트래픽 분산과 응답 성능을 함께 확인할 수 있습니다.
+
 ---
 
 ## 7. Gateway API로 동일한 라우팅 구성 (옵션)
@@ -210,8 +226,12 @@ kubectl get service
 
 ![Gateway API Traffic](/assets/img/kubernetes/istio/04_gateway_api.webp)
 
+Gateway API 구성 이후 productpage의 라우팅이 정상 동작하는 화면입니다.
+
 위 delete는 기존 **DestinationRule/VirtualService** 리소스를 제거합니다.  
 apply는 **HTTPRoute**와 `reviews-v1`, `reviews-v2` **Service**를 생성/갱신하여 동일 라우팅을 Gateway API로 구현합니다.
+
+이를 통해 Istio API 없이도 동일한 라우팅 정책을 적용할 수 있음을 확인했습니다.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Istio Fault Injection 실습 [Istio Study 3]
+title: Istio Fault Injection
 date: 2025-12-27 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]
@@ -38,7 +38,7 @@ Productpage (timeout: 3s)
 > Productpage의 타임아웃(3초)보다 큰 지연을 주입하면, 별점(★) 영역에서 오류가 발생하는 것을 확인할 수 있습니다.
 {: .prompt-tip}
 
-### 실습 코드 받기
+### 2.1. 실습 코드 받기
 
 ```shell
 git clone https://github.com/KKamJi98/kkamji-lab.git 
@@ -76,21 +76,33 @@ open http://<EXTERNAL-IP>:30010/productpage
 
 ![Rating Error](/assets/img/kubernetes/istio/01_rating_error.webp)
 
+4초 지연 주입 후 productpage에서 별점 영역에 오류가 표시된 화면입니다.
+
 ### 4.1. 지연 시간 변경 (4s → 2s)
 
-지연을 2초로 낮추면 reviews의 timeout(2.5초) 내에 응답이 들어와 별점이 정상 표시됩니다.
+위에서 4초 지연 주입으로 별점이 표시되지 않는 것을 확인했습니다. 이제 지연 시간을 2초로 낮춰 reviews의 timeout(2.5초) 내에 응답이 도착하는지 확인해보겠습니다.
 
 ![Delay Config Change](/assets/img/kubernetes/istio/04_delay_config_change.webp)
 
+VirtualService의 `fixedDelay` 값을 4초에서 2초로 변경한 설정 파일입니다.
+
 ![Delay 2s Check](/assets/img/kubernetes/istio/05_delay_2s_check.webp)
+
+지연 시간을 2초로 변경한 뒤 별점(★)이 정상 표시되는 화면입니다.
 
 ![Delay 2s Logs](/assets/img/kubernetes/istio/06_delay_2s_logs.webp)
 
+Envoy 로그에서 지연 시간이 약 2000ms로 기록된 것을 확인한 화면입니다.
+
+이를 통해 2초 지연에서는 timeout 없이 정상 응답이 완료됨을 확인할 수 있습니다.
+
 ### 4.2. 지연 시간 증가 (11s) 및 재시도
 
-지연을 11초로 늘리면 productpage가 재시도를 수행하는 흐름을 로그로 확인할 수 있습니다.
+2초 지연에서는 정상 동작을 확인했으므로, 이번에는 11초 지연을 주입해 재시도 동작을 로그로 확인해보겠습니다.
 
 ![Delay 11s Retry Logs](/assets/img/kubernetes/istio/07_delay_11s_retry_logs.webp)
+
+지연을 11초로 늘린 뒤 productpage가 재시도를 수행하는 로그를 보여줍니다.
 
 ---
 
@@ -124,6 +136,10 @@ kubectl logs -n default --tail 10 deploy/productpage-v1 -c istio-proxy
 Kiali에서도 오류 트레이싱 흐름을 확인할 수 있습니다.
 
 ![Kiali Error Tracing](/assets/img/kubernetes/istio/03_kiali_error_tracing.webp)
+
+Kiali에서 오류가 발생한 경로와 지연 구간을 시각적으로 확인한 화면입니다.
+
+이를 통해 어느 구간에서 타임아웃이 발생했는지 빠르게 파악할 수 있습니다.
 
 ---
 
@@ -165,13 +181,21 @@ istioctl install -f istio-cni.yaml -y
 
 ![Envoy Duration](/assets/img/kubernetes/istio/02_envoy_duration_log.webp)
 
+Envoy access log에 `duration` 필드가 포함된 결과 예시 화면입니다.
+
 ### 7.1. App Timeout 참고
 
 서비스별 timeout 설정을 참고할 때 유용한 화면입니다.
 
 ![App Timeout Code](/assets/img/kubernetes/istio/08_app_timeout_code.webp)
 
+Bookinfo 애플리케이션에서 서비스별 timeout 값을 확인하는 코드 화면입니다.
+
 ![Kiali Traffic Graph](/assets/img/kubernetes/istio/09_kiali_traffic_graph.webp)
+
+Kiali 트래픽 그래프에서 요청 흐름과 지연 구간을 확인하는 화면입니다.
+
+duration 필드와 timeout 설정을 비교해 지연/타임아웃 관계를 정량적으로 확인할 수 있습니다.
 
 ---
 
@@ -226,6 +250,8 @@ open http://<EXTERNAL-IP>:30010/productpage
 ```
 
 ![Ratings Abort Error](/assets/img/kubernetes/istio/10_ratings_abort_error.webp)
+
+Abort 주입 후 productpage에서 HTTP 500 오류가 표시된 화면입니다.
 
 ---
 
