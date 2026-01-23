@@ -47,8 +47,8 @@ git worktree add main main
 ### 1.2. Worktree 생성/삭제
 
 ```shell
-# 기존 원격 브랜치 기반 worktree 생성
-git worktree add staging origin/staging
+# 기존 원격 브랜치 기반 worktree 생성 (로컬 브랜치 생성 + upstream 추적)
+git worktree add staging -b staging origin/staging
 
 # 새 브랜치 생성과 동시에 worktree 생성
 git worktree add feat-login -b feat/login main
@@ -207,12 +207,15 @@ git branch --set-upstream-to=origin/staging staging
 git pull
 ```
 
-**예방:** worktree 생성 시 원격 브랜치 직접 지정
+**예방:** worktree 생성 시 `-b` 옵션으로 로컬 브랜치 생성
 
 ```shell
-# 원격 브랜치 기반으로 생성하면 자동 추적
-git worktree add staging origin/staging
+# 로컬 브랜치 생성 + 원격 브랜치 추적 (권장)
+git worktree add staging -b staging origin/staging
 ```
+
+> **주의:** `git worktree add staging origin/staging` (without `-b`)은 **detached HEAD** 상태가 됩니다. 반드시 `-b` 옵션으로 로컬 브랜치를 생성하세요.
+{: .prompt-warning}
 
 ### 4.2. 같은 브랜치 중복 체크아웃 불가
 
@@ -251,7 +254,7 @@ code main feat-login fix-payment
 | Worktree 목록 확인           | `git worktree list`                               |
 | 기존 브랜치로 Worktree 생성  | `git worktree add <path> <branch>`                |
 | 새 브랜치로 Worktree 생성    | `git worktree add <path> -b <new-branch> <base>`  |
-| 원격 브랜치로 Worktree 생성  | `git worktree add <path> origin/<branch>`         |
+| 원격 브랜치로 Worktree 생성  | `git worktree add <path> -b <branch> origin/<branch>` |
 | Worktree 삭제                | `git worktree remove <path>`                      |
 | 강제 삭제 (uncommitted 있을 때) | `git worktree remove --force <path>`           |
 | 삭제된 Worktree 메타데이터 정리 | `git worktree prune`                           |
