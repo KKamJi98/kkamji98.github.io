@@ -386,6 +386,9 @@ wt add staging
 # 새 브랜치 생성하면서 worktree 추가
 wt add feat/my-feature -c
 
+# 특정 브랜치 기반으로 새 브랜치 생성 (예: staging에서 분기)
+wt add chore/test123 -c --base staging
+
 # worktree 삭제
 wt remove staging
 
@@ -415,6 +418,9 @@ wt fetch
 
 # fetch + 모든 worktree 동기화 (ff-only)
 wt pull
+
+# rebase 모드로 동기화
+wt pull --rebase
 ```
 
 ### 6.5. 명령어 요약
@@ -423,10 +429,13 @@ wt pull
 | :----- | :--- | :--- |
 | `wt init <url> [path]` | - | 새 bare repo + worktree 초기화 |
 | `wt add <branch>` | `a` | worktree 추가 |
+| `wt add <branch> -c` | `a -c` | 새 브랜치 생성하며 worktree 추가 |
+| `wt add <branch> -c -b <base>` | `a -c -b` | 특정 브랜치 기반으로 새 브랜치 생성 |
 | `wt remove <branch>` | `rm` | worktree 삭제 |
 | `wt status` | `st` | 모든 worktree 상태 확인 |
 | `wt fetch` | `f` | `git fetch --all --prune` |
-| `wt pull` | `p` | fetch + ff-only merge |
+| `wt pull` | `p` | fetch + ff-only (기본) |
+| `wt pull -r` | `p -r` | fetch + rebase |
 | `wt list` | `ls` | worktree 목록 |
 | `wt upstream` | `up` | upstream 자동 설정 |
 
