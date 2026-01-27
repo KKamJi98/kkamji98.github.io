@@ -16,6 +16,7 @@ AI 코딩 에이전트(Claude Code, Cursor 등)를 활용한 개발이 보편화
 > - **Git Worktree**: 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 독립된 폴더에서 작업
 > - **Bare Repository 방식**: `.bare/` 폴더에 Git DB를 두고, 모든 브랜치를 worktree로 관리
 > - **Multi-Agent 활용**: 각 AI 에이전트에게 독립된 worktree 할당 → 컨텍스트 분리 및 충돌 위험 감소
+> - **wt CLI 도구**: `wt init` 한 줄로 bare repo + worktree 자동 설정 ([GitHub](https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool))
 {: .prompt-info}
 
 ---
@@ -326,7 +327,112 @@ code "$BASE_BRANCH" feat/login fix/payment-bug
 
 ---
 
-## 6. 마무리
+## 6. wt CLI 도구로 자동화하기
+
+지금까지 수동으로 bare repository와 worktree를 설정하는 방법을 알아보았습니다. 하지만 매번 이런 명령어들을 입력하는 것은 번거롭습니다. **wt(git-worktree-tool)**는 이 과정을 자동화해주는 CLI 도구입니다.
+
+### 6.1. 설치
+
+[wt 도구](https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool)는 Python 3.9+ 환경에서 `uv`를 통해 설치할 수 있습니다.
+
+```bash
+# uv가 없다면 먼저 설치
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# wt 도구 설치
+uv tool install git+https://github.com/KKamJi98/kkamji-lab.git#subdirectory=tools/git-worktree-tool
+```
+
+### 6.2. 빠른 시작: wt init
+
+앞서 설명한 복잡한 초기 설정 과정을 **한 줄**로 완료할 수 있습니다.
+
+```bash
+# 수동 설정 (기존 방식)
+mkdir my-project && cd my-project
+git clone --bare https://github.com/user/repo.git .bare
+echo "gitdir: ./.bare" > .git
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git fetch origin
+git worktree add main -b main origin/main
+git -C main branch --set-upstream-to=origin/main main
+
+# wt init 사용 (자동화)
+wt init https://github.com/user/repo.git my-project
+```
+
+추가 브랜치 worktree도 함께 생성할 수 있습니다.
+
+```bash
+wt init https://github.com/user/repo.git my-project -w staging,develop
+```
+
+**생성 결과:**
+
+```
+my-project/
+├── .bare/       # bare repository (fetch refspec 자동 설정)
+├── main/        # 기본 브랜치 worktree
+├── staging/     # 추가 worktree
+└── develop/     # 추가 worktree
+```
+
+### 6.3. Worktree 관리
+
+```bash
+# 기존 브랜치로 worktree 추가
+wt add staging
+
+# 새 브랜치 생성하면서 worktree 추가
+wt add feat/my-feature -c
+
+# worktree 삭제
+wt remove staging
+
+# 강제 삭제 (uncommitted 변경이 있어도)
+wt remove staging -f
+```
+
+### 6.4. 상태 확인 및 동기화
+
+```bash
+# 모든 worktree 상태 확인
+wt status
+
+# 출력 예시:
+# STATUS   BRANCH      SYNC           PATH
+# -------- ----------- -------------- ---------------------------
+# CLEAN    main        =              /path/to/repo/main
+# CLEAN    staging     ↓3             /path/to/repo/staging
+# DIRTY    feat/login  ↑2             /path/to/repo/feat-login
+#
+# Summary: total=3 clean=2 dirty=1
+```
+
+```bash
+# 원격에서 fetch (bare repo에서 실행)
+wt fetch
+
+# fetch + 모든 worktree 동기화 (ff-only)
+wt pull
+```
+
+### 6.5. 명령어 요약
+
+| 명령어 | 별칭 | 설명 |
+| :----- | :--- | :--- |
+| `wt init <url> [path]` | - | 새 bare repo + worktree 초기화 |
+| `wt add <branch>` | `a` | worktree 추가 |
+| `wt remove <branch>` | `rm` | worktree 삭제 |
+| `wt status` | `st` | 모든 worktree 상태 확인 |
+| `wt fetch` | `f` | `git fetch --all --prune` |
+| `wt pull` | `p` | fetch + ff-only merge |
+| `wt list` | `ls` | worktree 목록 |
+| `wt upstream` | `up` | upstream 자동 설정 |
+
+---
+
+## 7. 마무리
 
 Git Worktree + Bare Repository 조합은 **Multi-Agent 개발 환경의 핵심 인프라**입니다.
 
@@ -337,9 +443,11 @@ Git Worktree + Bare Repository 조합은 **Multi-Agent 개발 환경의 핵심 �
 | **안전**   | 실패한 작업만 폐기, 기본 브랜치 보호           |
 | **단순**   | stash/switch 없이 폴더 이동으로 브랜치 전환    |
 
+수동 설정이 부담스럽다면 `wt init` 명령어로 간편하게 시작하세요!
+
 ---
 
-## 7. Reference
+## 8. Reference
 
 - [출처 - Git Docs: git-worktree](https://git-scm.com/docs/git-worktree)
 - [출처 - Atlassian: Git Worktree](https://www.atlassian.com/git/tutorials/git-worktree)
