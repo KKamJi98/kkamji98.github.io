@@ -310,6 +310,22 @@ cd feat/login && npm install
 code "$BASE_BRANCH" feat/login fix/payment-bug
 ```
 
+### 4.6. 새 브랜치 생성 후 `git push` 실패
+
+**원인:** `wt add -c` 또는 `wt add -c --base`로 생성한 새 브랜치는 remote에 없어서 upstream이 설정되지 않음
+
+```shell
+git push
+# fatal: The upstream branch of your current branch does not match
+# the name of your current branch.
+```
+
+**해결:** 첫 push 시 `-u` 옵션으로 upstream 설정
+
+```shell
+git push -u origin HEAD
+```
+
 ---
 
 ## 5. 명령어 치트시트
@@ -388,6 +404,10 @@ wt add feat/my-feature -c
 
 # 특정 브랜치 기반으로 새 브랜치 생성 (예: staging에서 분기)
 wt add chore/test123 -c --base staging
+
+# 새 브랜치는 remote에 없으므로 첫 push 시 -u 옵션 필요
+cd chore-test123
+git push -u origin HEAD
 
 # worktree 삭제
 wt remove staging
