@@ -478,9 +478,9 @@ Git Worktree + Bare Repository 조합은 **Multi-Agent 개발 환경의 핵심 �
 
 ## 8. Reference
 
-- [출처 - Git Docs: git-worktree](https://git-scm.com/docs/git-worktree)
-- [출처 - Atlassian: Git Worktree](https://www.atlassian.com/git/tutorials/git-worktree)
-- [출처 - GitHub Blog: Working with Multiple Worktrees](https://github.blog/open-source/git/highlights-from-git-2-42/#working-with-multiple-worktrees)
+- [Git Docs: git-worktree](https://git-scm.com/docs/git-worktree)
+- [Atlassian: Git Worktree](https://www.atlassian.com/git/tutorials/git-worktree)
+- [GitHub Blog: Working with Multiple Worktrees](https://github.blog/open-source/git/highlights-from-git-2-42/#working-with-multiple-worktrees)
 
 ---
 
