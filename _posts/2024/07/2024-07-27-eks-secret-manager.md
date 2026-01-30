@@ -157,6 +157,7 @@ weasel
 <https://docs.aws.amazon.com/ko_kr/secretsmanager/latest/userguide/integrating_csi_driver.html> - [아마존 엘라스틱 쿠버네티스 서비스에서 AWS Secrets Manager 시크릿 사용하기 - AWS Secrets Manager]
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

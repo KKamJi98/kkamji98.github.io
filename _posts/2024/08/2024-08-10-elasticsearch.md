@@ -146,6 +146,7 @@ weasel-elasticsearch-es-default-0   1/1     Running           0          46s
 <https://medium.com/musinsa-tech/%EB%AC%B4%EC%8B%A0%EC%82%AC%EC%9D%98-%EC%97%98%EB%9D%BC%EC%8A%A4%ED%8B%B1%EC%84%9C%EC%B9%98-muse-musinsa-elasticsearch-e6355516186a> - [무신사의 엘라스틱서치 MusE (Musinsa Elasticsearch)]  
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

@@ -468,6 +468,7 @@ db -> was ( O )
 > 네임스페이스를 생성할 때 레이블이 자동으로 설정되지 않으므로, 네트워크 정책을 설정할 때 반드시 레이블을 수동으로 설정해야 합니다. 또한, DNS 트래픽을 명시적으로 허용하지 않으면 DNS 이름으로 접근할 수 없습니다.
 {: .prompt-tip}
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

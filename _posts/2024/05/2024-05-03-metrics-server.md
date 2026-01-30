@@ -148,7 +148,10 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 ### 5.2. 마무리
 
 > Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 규칙에 10250 포트를 허용해야 합니다.
+{: .prompt-tip}
+
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
-{: .prompt-tip}
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

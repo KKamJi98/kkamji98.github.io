@@ -50,5 +50,5 @@ comments: true
 이를 통해 사용자는 여러 데이터 소스를 직접 연결하지 않고도 필요한 정보에 접근할 수 있습니다. 데이터 가상화는 데이터 통합, 실시간 데이터 액세스, 데이터 품질 관리에 유용합니다.
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

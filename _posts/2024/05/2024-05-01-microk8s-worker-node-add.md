@@ -100,10 +100,11 @@ nginx-7854ff8877-sjzkp   1/1     Running   0          27s   10.1.41.2     ip-10-
 
 ### 6.1. 마무리
 
-> 무심코 25000번 포트를 열어주지 않거나 Worker Node를 Private Subnet에 위치시킬 경우 NAT Gateway나 NAT Instance를 사용해 인스턴스가 MicroK8s 이미지를 다운로드할 수 있도록 해야 합니다. 저처럼 헤매지 않도록 주의하세요.  
+> 무심코 25000번 포트를 열어주지 않거나 Worker Node를 Private Subnet에 위치시킬 경우 NAT Gateway나 NAT Instance를 사용해 인스턴스가 MicroK8s 이미지를 다운로드할 수 있도록 해야 합니다. 저처럼 헤매지 않도록 주의하세요.
+{: .prompt-tip}
 
 ---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
-{: .prompt-tip}
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

@@ -252,6 +252,7 @@ FastAPI application shutting down complete!
 이를 통해 Pod IP가 언제든 바뀌거나 Pod가 재시작되는 불안정한 상황에서도 안정적이고 예측 가능한 애플리케이션 종료를 구현할 수 있습니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

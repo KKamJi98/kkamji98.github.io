@@ -101,6 +101,7 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 이번 프로젝트는 서버리스 아키텍처와 MSA의 장점뿐만 아니라 그 한계까지 체감할 수 있는 귀중한 경험이었습니다. 이를 통해 시스템 설계와 운영에서 더 깊이 있는 고민을 하게 되었고, 앞으로의 프로젝트에 적용할 중요한 교훈을 얻을 수 있었습니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

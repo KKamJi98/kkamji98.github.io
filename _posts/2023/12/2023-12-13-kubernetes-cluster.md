@@ -151,5 +151,5 @@ image:
     1. OCI 표준을 준수 ⇒ 다양한 컨테이너 도구 및 시스템과의 호환성 보장
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

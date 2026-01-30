@@ -58,6 +58,7 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 결국 5등으로 마무리하게 되었고, 대회의 시나리오를 통해 Bedrock 서비스를 사용해 결과물을 도출해내는 과정이 되게 재미있었습니다. 다음에 또 기회가 생긴다면 꼭 다시 참가하고 싶습니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

@@ -470,6 +470,7 @@ spec:
 블로그, 과거 문서들을 참고하며 Karpenter를 구축하려 했지만, 해당 내용은 Helm Chart의 변수, Karpenter가 사용하는 정책 등이 달랐기 때문에 최신버전의 Karpenter구축에는 적합하지 않아 생각보다 많은 우여곡절이 있었습니다. 간편하게 누군가가 정리해놓은 글을 참고하여 원하는 작업을 수행할 수도 있지만, 가장 확실한 정답은 공식문서에 있다는 것을 다시 한번 상기시키게 되는 계기가 되었습니다. 무엇보다 해당 경험을 통해 Karpenter가 동작하는데에는 어떤 구성요소가 필요한지, Karpenter는 어떤 방식으로 노드를 Scaling하는지 확인할 수 있었습니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

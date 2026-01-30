@@ -134,6 +134,7 @@ Commercial support is available at
 - nginx 공식 문서 - <https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/>
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

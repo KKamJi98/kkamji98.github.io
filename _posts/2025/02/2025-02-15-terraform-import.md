@@ -256,6 +256,7 @@ run "terraform apply" now.
 terraform import를 통해 클라우드 환경에서 수동으로 생성한 리소스를 Terraform 상태에 가져오고, terraform state show를 활용해 코드와 실제 리소스 설정을 손쉽게 맞추는 과정을 다뤄봤습니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

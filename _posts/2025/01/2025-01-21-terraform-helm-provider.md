@@ -202,6 +202,7 @@ replicaset.apps/my-nginx-6c44c9689c   3         3         3       2m31s
 AWS EKS 환경에서 `aws eks get-token` 등을 통해 동적 토큰을 발행하고, Terraform의 exec 플러그인이나 `data "aws_eks_cluster_auth"`와 연동하여 사용하는 방법도 있으니 참고하시기 바랍니다.
 
 ---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
-> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}
