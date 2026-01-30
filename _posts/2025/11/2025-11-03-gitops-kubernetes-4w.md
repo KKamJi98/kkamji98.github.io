@@ -30,7 +30,7 @@ image:
 ### 1.1. GitOps Principles
 
 ![GitOps Principles](/assets/img/ci-cd/ci-cd-study/gitops-principles.webp)
-> <https://opengitops.dev/>
+> <https://opengitops.dev/>  
 
 - **Declarative 선언적 구성**
   - 엔지니어가 원하는 의도와 **완료된 상태를 명시**하지만, 이를 위해 실행하기 위한 **구체적인 행동을 명시하지 않는다**.

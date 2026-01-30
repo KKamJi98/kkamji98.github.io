@@ -58,7 +58,7 @@ Helm 옵션: --set clustermesh.maxConnectedClusters=511
 CLI 설치 옵션: cilium install --set clustermesh.maxConnectedClusters=511
 ```
 
-> 주의: maxConnectedClusters 값은 설치 이후 변경 불가하며, 잘못 변경하면 Cluster Mesh 전체에 통신 장애가 발생할 수 있습니다.
+> 주의: maxConnectedClusters 값은 설치 이후 변경 불가하며, 잘못 변경하면 Cluster Mesh 전체에 통신 장애가 발생할 수 있습니다.  
 {: .prompt-danger}
 
 ---

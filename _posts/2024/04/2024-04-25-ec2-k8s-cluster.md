@@ -23,7 +23,7 @@ image:
 
 ![pic1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/851e5fb2-d785-47fb-9014-22a798aa11e9)
 
-> 4GB의 메모리가 필요하긴 하지만 일단 해 보자
+> 4GB의 메모리가 필요하긴 하지만 일단 해 보자  
 {: .prompt-tip}
 
 ---
@@ -151,7 +151,7 @@ EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10
 
 ## 7. alias
 
-> `microk8s kubectl` 명령어를 계속 사용하려면 번거로움이 있습니다. alias 기능을 사용해 `microctl`로 해당 명령어를 단축할 수 있습니다. (kubectl로 지정하면 기존 kubectl 명령어와 충돌할 가능성이 있어 별도 이름을 사용했습니다)
+> `microk8s kubectl` 명령어를 계속 사용하려면 번거로움이 있습니다. alias 기능을 사용해 `microctl`로 해당 명령어를 단축할 수 있습니다. (kubectl로 지정하면 기존 kubectl 명령어와 충돌할 가능성이 있어 별도 이름을 사용했습니다)  
 {: .prompt-tip}
 
 ```bash
@@ -162,7 +162,7 @@ alias microctl='microk8s kubectl'
 
 ## 8. nginx 배포 테스트
 
-> 간단하게 nginx 서버를 NodePort로 30080포트로 배포해보겠습니다
+> 간단하게 nginx 서버를 NodePort로 30080포트로 배포해보겠습니다  
 {: .prompt-tip}
 
 ### 8.1. 테스트용 nginx manifest 파일 (nginx_test.yml)

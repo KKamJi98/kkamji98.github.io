@@ -13,7 +13,7 @@ comments: true
 
 # Arduino의 시리얼 통신 기능 이해
 
-> Arduino의 중요한 특징 중 하나는 USB 시리얼 포트를 통해 직접 프로그램을 업로드할 수 있다는 점이다
+> Arduino의 중요한 특징 중 하나는 USB 시리얼 포트를 통해 직접 프로그램을 업로드할 수 있다는 점이다  
 > 
 
 ---
@@ -36,7 +36,7 @@ comments: true
 
 ## 2. Arduino가 USB Interface를 통해 통신할 수 있도록 사용하는 두 가지 방법
 
-> 시리얼과 USB는 호환되지 않는다.
+> 시리얼과 USB는 호환되지 않는다.  
 > 
 1. **별도의 집적 회로(IC)를 사용하는 방법**
     1. **Arduino Uno가** 시리얼과 USB 사이의 변환을 위해 별도의 전용 Micro Controller IC를 사용

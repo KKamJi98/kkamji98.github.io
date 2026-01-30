@@ -19,7 +19,7 @@ image:
 
 ## 1. Minio란?
 
-> Minio는 고성능·고가용성을 갖춘 오브젝트 스토리지(Object Storage) 솔루션입니다.
+> Minio는 고성능·고가용성을 갖춘 오브젝트 스토리지(Object Storage) 솔루션입니다.  
 {: .prompt-tip}
 
 - AWS S3와 호환되는 API 인터페이스를 제공하기 때문에, AWS SDK, s3cmd 등과 함께 사용할 수 있습니다.
@@ -37,7 +37,7 @@ Kubernetes 환경에서는 Minio를 다음과 같이 활용할 수 있습니다.
 
 ## 2. Minio 설치 및 실행(Windows)
 
-> `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
+> `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.  
 {: .prompt-tip}
 
 ```powershell
@@ -78,8 +78,8 @@ WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that yo
 
 ## 3. 접속 확인
 
-> 위 콘솔 출력과 같이 localhost의 9001번 포트로 접속이 가능합니다. 초기 username:password => minioadmin:minioadmin
-> `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.
+> 위 콘솔 출력과 같이 localhost의 9001번 포트로 접속이 가능합니다. 초기 username:password => minioadmin:minioadmin  
+> `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` 환경변수를 사용한 root계정의 USERNAME과, PASSWORD를 지정할 수 있습니다.  
 {: .prompt-tip}
 
 ![minio login](/assets/img/storage/minio/minio-login.webp)
@@ -88,7 +88,7 @@ WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that yo
 
 ## 4. Minio Client 설치 및 Minio 연결 (Linux)
 
-> 필요한 Minio CLI 명령어는 <https://min.io/docs/minio/linux/reference/minio-mc.html#command-quick-reference> 사이트에서 확인이 가능합니다.
+> 필요한 Minio CLI 명령어는 <https://min.io/docs/minio/linux/reference/minio-mc.html#command-quick-reference> 사이트에서 확인이 가능합니다.  
 {: .prompt-tip}
 
 ```shell
@@ -121,7 +121,7 @@ mc alias set {alias_name} http://192.168.0.2:9000 {username} {password}
 
 ## 5. 파일 업로드 테스트
 
-> 간단하게 .txt 파일 생성 후 Minio에 업로드 후 해당 파일을 다운로드해 테스트하도록 하겠습니다.
+> 간단하게 .txt 파일 생성 후 Minio에 업로드 후 해당 파일을 다운로드해 테스트하도록 하겠습니다.  
 {: .prompt-tip}
 
 ```shell

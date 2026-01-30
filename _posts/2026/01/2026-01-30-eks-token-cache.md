@@ -283,8 +283,8 @@ users:
       interactiveMode: Never
 ```
 
-> `interactiveMode: Never`를 추가하면 토큰 발급 시 프롬프트가 표시되지 않습니다.
-> {: .prompt-tip}
+> `interactiveMode: Never`를 추가하면 토큰 발급 시 프롬프트가 표시되지 않습니다.  
+{: .prompt-tip}
 
 ---
 

@@ -40,7 +40,7 @@ Update Complete. ⎈Happy Helming!⎈
 
 ## 3. Helm을 사용해 MongoDB Operator 배포
 
-> mongodb라는 namespace에 MongoDB Operator를 배포하도록 하겠습니다.
+> mongodb라는 namespace에 MongoDB Operator를 배포하도록 하겠습니다.  
 {: .prompt-tip}
 
 ```bash

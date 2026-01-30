@@ -91,7 +91,7 @@ webhooks.generators.external-secrets.io                 2025-03-02T05:13:57Z
 ## 3. AWS 접근을 위한 Access Key, Secret Access Key 설정
 
 > 간단한 테스트를 위해 `external-secret`이라는 IAM 유저를 생성하고 해당 유저에 AWS Secrets Manager, SSM Parameter Store에 접근할 수 있는 권한을 부여하여 사용했습니다. 실제 운영환경에서는 최소권한을 갖는 IAM Role을 사용하여 IRSA를 통해 접근하는 것이 좋습니다.  
-> \[[IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/07/2024-07-17-irsa %})\]
+> \[[IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/07/2024-07-17-irsa %})\]  
 {: .prompt-tip}
 
 ```bash

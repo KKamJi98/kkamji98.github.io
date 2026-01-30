@@ -24,7 +24,7 @@ image:
 - k8s-w0: 다른 Node와 구분해 192.168.20.0/24 대역에 배치
 - Static Routing: Vagrant 스크립트에서 자동 설정됨 [Vagrant Script File](<https://github.com/KKamJi98/cilium-lab/blob/main/vagrant/vagrant-5w/Vagrantfile>)
 
-> FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
+> FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)  
 
 ---
 
@@ -287,8 +287,8 @@ Cilium BGP Control Plane(BGPv2)는 Cilium의 Custom Resources로 BGP 구성을 �
 
 ![Cilium Docs - Cilium BGP Control Plane v2 Architecture](/assets/img/kubernetes/cilium/5w-bgp-control-plane-v2-architecture.webp)
 
-> [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)
-> [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)
+> [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)  
+> [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)  
 
 ### 3.1. 핵심 Custom Resources
 

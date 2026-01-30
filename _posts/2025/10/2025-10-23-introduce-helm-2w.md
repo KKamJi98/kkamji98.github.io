@@ -26,7 +26,7 @@ image:
 Helm Project는 아래와 같은 구성 요소와 구조를 갖습니다.
 
 ![What is a Helm Chart?](/assets/img/ci-cd/ci-cd-study/what-is-a-helm-chart.webp)
-> SimplyBlock - What is a Helm Chart? - <https://www.simplyblock.io/glossary/what-is-a-helm-chart>
+> SimplyBlock - What is a Helm Chart? - <https://www.simplyblock.io/glossary/what-is-a-helm-chart>  
 
 ### 2.1. Helm Project의 구조
 
@@ -1339,7 +1339,7 @@ curl localhost:8080;echo
 
 ![Greetings application with new configuration value](/assets/img/ci-cd/ci-cd-study/greetings-application-with-new-configuration-value.webp)
 > [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
-> Greetings application with new configuration value - 5.7. Triggering a Rolling Update Automatically p.121
+> Greetings application with new configuration value - 5.7. Triggering a Rolling Update Automatically p.121  
 
 ### 9.3. sha256sum 함수를 사용해 ConfigMap 에 대한 변경사항 Rolling Update Triggering
 

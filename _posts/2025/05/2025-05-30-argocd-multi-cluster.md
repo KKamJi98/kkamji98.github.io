@@ -67,7 +67,7 @@ https://F9B06D6BAF4D073065E9EE06283344FA.sk1.ap-northeast-2.eks.amazonaws.com  k
 https://kubernetes.default.svc                                                 in-cluster          1.32     Successful           
 ```
 
-> 위 명령어를 실행하면, ArgoCD가 대상 클러스터에 필요한 권한을 가진 ServiceAccount를 생성하고, 해당 클러스터를 ArgoCD에 등록합니다. 이 과정에서 `argocd-manager`라는 이름의 ServiceAccount가 대상 클러스터에 생성됩니다.
+> 위 명령어를 실행하면, ArgoCD가 대상 클러스터에 필요한 권한을 가진 ServiceAccount를 생성하고, 해당 클러스터를 ArgoCD에 등록합니다. 이 과정에서 `argocd-manager`라는 이름의 ServiceAccount가 대상 클러스터에 생성됩니다.  
 {: .prompt-tip}
 
 ```shell

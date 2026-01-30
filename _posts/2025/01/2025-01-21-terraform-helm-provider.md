@@ -27,7 +27,7 @@ Terraform 환경에서 Helm을 활용하면, Kubernetes 애플리케이션의 �
 - kubectl (v1.32.0)
 - Kubernetes Cluster (v1.32.0)
 
-> 위 버전은 현재 실습 환경이며, 실제 운영 환경에서는 다른 버전을 사용하셔도 무방합니다. 다만, Terraform Helm Provider 버전에 따라 일부 설정이나 문법이 달라질 수 있습니다.
+> 위 버전은 현재 실습 환경이며, 실제 운영 환경에서는 다른 버전을 사용하셔도 무방합니다. 다만, Terraform Helm Provider 버전에 따라 일부 설정이나 문법이 달라질 수 있습니다.  
 {: .prompt-tip}
 
 ---
@@ -41,7 +41,7 @@ Helm Provider를 사용하기 위해서는 크게 다음 두 가지 방법이 �
 
 ### 2.1. `config_path` 사용
 
-> `terraform` 명령어를 실행하는 환경에서 `~/.kube/config` 경로의 kubeconfig 파일이 정상적으로 Kubernetes Cluster에 접근할 수 있어야 합니다.
+> `terraform` 명령어를 실행하는 환경에서 `~/.kube/config` 경로의 kubeconfig 파일이 정상적으로 Kubernetes Cluster에 접근할 수 있어야 합니다.  
 {: .prompt-tip}
 
 ```hcl
@@ -55,7 +55,7 @@ provider "helm" {
 ### 2.2. Kubernetes Cluster Credentials 사용
 
 > Kubernetes Cluster Credentials를 직접 설정하여 Helm Provider를 사용할 수도 있습니다.  
-> `kubectl config view --raw` 명령어를 사용하면 `client-certificate-data`, `client-key-data`, `cluster-ca-certificate-data` 값을 확인할 수 있습니다.
+> `kubectl config view --raw` 명령어를 사용하면 `client-certificate-data`, `client-key-data`, `cluster-ca-certificate-data` 값을 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ```hcl
@@ -71,7 +71,7 @@ provider "helm" {
 ```
 
 > **주의**  
-> 위 정보를 코드에 직접 하드코딩하면 보안적으로 취약할 수 있습니다. 실제 운영 환경에서는 Terraform 변수나 `data` 리소스, 외부 시크릿 저장소 등을 사용해 안전하게 주입하는 방식을 권장합니다.
+> 위 정보를 코드에 직접 하드코딩하면 보안적으로 취약할 수 있습니다. 실제 운영 환경에서는 Terraform 변수나 `data` 리소스, 외부 시크릿 저장소 등을 사용해 안전하게 주입하는 방식을 권장합니다.  
 {: .prompt-danger}
 
 ---

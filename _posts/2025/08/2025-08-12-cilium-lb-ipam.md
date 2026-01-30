@@ -29,7 +29,7 @@ image:
 - k8s-w0: 다른 Node와 구분해 192.168.20.0/24 대역에 배치
 - Static Routing: Vagrant 스크립트에서 자동 설정됨 [Vagrant Script File](<https://github.com/KKamJi98/cilium-lab/blob/main/vagrant/vagrant-5w/Vagrantfile>)
 
-> FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
+> FRR-Docs - [FRR-Docs](https://docs.frrouting.org/en/stable-10.4/about.html)  
 
 ---
 

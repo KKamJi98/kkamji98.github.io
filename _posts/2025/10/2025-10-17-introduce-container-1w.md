@@ -37,8 +37,8 @@ Container Image는 아래 그림과 같은 **계층 구조(layered structure)** 
 
 ![Container Image Layers](/assets/img/ci-cd/ci-cd-study/container-image-layers.webp)
 
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
-> Container Image Layers - 3.1. 도커를 사용한 컨테이너 빌드 p.23
+> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> Container Image Layers - 3.1. 도커를 사용한 컨테이너 빌드 p.23  
 
 ### 1.3. Container Image Build 방식의 종류
 
@@ -360,7 +360,7 @@ docker push $MYREGISTRY/$MYUSER/pythonapp:latest
 ```
 
 ![Docker Hub Python App](/assets/img/ci-cd/ci-cd-study/docker-hub-pythonapp.webp)
-> Docker Hub Python App Container Image 확인
+> Docker Hub Python App Container Image 확인  
 
 ```shell
 ##############################################################
@@ -409,10 +409,10 @@ docker rm -f myweb
 Jib의 경우, 아래와 같이 Dockerfile이 필요 없이 Build 단계에서 Container Image Registry로 Container Image Push까지 처리합니다. 따라서 개발자의 경우 개발에만 집중 할 수 있다는 장점이 있습니다. 또한 애플리케이션을 종속 항목, 리소스, 클래스 등 별개의 레이어로 구성하고 Docker Image Layer Caching을 활용하며 변경사항만 다시 빌드함으로써, 빌드를 빠르게 유지합니다. Jib 레이어 구성과 작은 기본 이미지는 전체 이미지를 작게 유지하여 성능과 휴대성을 향상시킵니다.
 
 ![Docker Build Workflow](/assets/img/ci-cd/ci-cd-study/docker-build-workflow.webp)
-> Docker Build Workflow
+> Docker Build Workflow  
 
 ![Jib Build Workflow](/assets/img/ci-cd/ci-cd-study/jib-build-workflow.webp)
-> Jib Build Workflow
+> Jib Build Workflow  
 
 ### 4.2. Docker가 필요 없는 Jib을 사용한 Container Image Build (dockerless) 빌드 흐름 실습
 
@@ -585,8 +585,8 @@ docker rm -f myweb2
 
 ![Buildah Scratch](/assets/img/ci-cd/ci-cd-study/buildah-scratch.webp)
 
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
-> Container Image Layers - 3.3. 빌다를 사용한 컨테이너 빌드 p.40
+> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> Container Image Layers - 3.3. 빌다를 사용한 컨테이너 빌드 p.40  
 
 - Buildah 설치 방법 - <https://github.com/containers/buildah/blob/main/install.md>
 
@@ -807,7 +807,7 @@ buildah push docker.io/kkankkandev/gitops-website docker.io/kkankkandev/gitops-w
 ```
 
 ![Buildah Container Image Check](/assets/img/ci-cd/ci-cd-study/buildah-container-image-push.webp)
-> Buildah Container Image Check
+> Buildah Container Image Check  
 
 ---
 
@@ -818,8 +818,8 @@ buildah push docker.io/kkankkandev/gitops-website docker.io/kkankkandev/gitops-w
 Buildpack은 Dockerfile 없이도 Application Source에서 OCI 호환 컨테이너 이미지를 생성할 수 있습니다.
 
 ![What is a buildpack?](/assets/img/ci-cd/ci-cd-study/buildpacks-intro.webp)
-> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)
-> Buildpack Overview
+> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
+> Buildpack Overview  
 
 ### 6.1. Buildpack Mechanism
 
@@ -831,11 +831,11 @@ Buildpack은 Mechanism은 아래 두 단계로 구성됩니다.
   - 일단 Buildpack이 결정되면 **소스는 컴파일**되고, Buildpack은 적절한 **진입점** entrypoint 과 **시작 스크립트** startup stripts 가 포함된 **컨테이너 이미지**를 만든다.
 
 ![Buildpack Mechanism](/assets/img/ci-cd/ci-cd-study/buildpacks-mechanism.webp)
-> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)
-> Buildpack Mechanism
+> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
+> Buildpack Mechanism  
 
 ![Build Pack - Builder](/assets/img/ci-cd/ci-cd-study/buildpack-builder.webp)
-> Build Pack - Builder
+> Build Pack - Builder  
 
 ### 6.2. Buildpack 실습
 
@@ -975,7 +975,7 @@ Shipwright를 설치한 후에는 다음 도구 중 하나로 컨테이너 이�
 | [**ko**](https://github.com/shipwright-io/build/tree/v0.15.2/samples/v1beta1/buildstrategy/ko) | all |
 | [**source-to-image**](https://github.com/shipwright-io/build/tree/v0.15.2/samples/v1beta1/buildstrategy/source-to-image) | linux/amd64 only |
 
-> [Shipwright Docs - Build Strategies](https://shipwright.io/docs/build/buildstrategies/)
+> [Shipwright Docs - Build Strategies](https://shipwright.io/docs/build/buildstrategies/)  
 
 ### 7.3. kind Kubernetes에 Shipwright 설치
 

@@ -37,7 +37,7 @@ image:
 
 ## 3. Helm 저장소 추가
 
-> Helm 패키지를 사용하여 **Harbor**를 구축하기 위해 **Harbor Chart**가 있는 Helm 저장소를 추가합니다.
+> Helm 패키지를 사용하여 **Harbor**를 구축하기 위해 **Harbor Chart**가 있는 Helm 저장소를 추가합니다.  
 {: .prompt-tip}
 
 ```bash
@@ -58,7 +58,7 @@ Update Complete. ⎈Happy Helming!⎈
 
 ## 4. Namespace 생성
 
-> **Harbor**를 설치할 Namespace를 생성합니다.
+> **Harbor**를 설치할 Namespace를 생성합니다.  
 {: .prompt-tip}
 
 ```bash
@@ -70,7 +70,7 @@ namespace/harbor created
 
 ## 5. Helm으로 Harbor 설치
 
-> Helm을 사용해 Harbor를 설치하기 위해 values.yaml 파일을 다운로드 후 필요에 맞게 설정하고 설치를 진행하도록 하겠습니다.
+> Helm을 사용해 Harbor를 설치하기 위해 values.yaml 파일을 다운로드 후 필요에 맞게 설정하고 설치를 진행하도록 하겠습니다.  
 {: .prompt-tip}
 
 ### 5.1. values.yaml 다운로드
@@ -83,7 +83,7 @@ values.yaml
 
 ### 5.2. values.yaml 파일 수정
 
-> Redis, PostgreSQL, Ingress, externalURL, AdminPassword 등 관련된 설정을 올바르게 수정합니다. TLS 인증서는 자동으로 생성하도록 설정 해주었으며, 여기 나와있는 내용 이외의 이미지 서명 기능인 Notary, 이미지 취약점 스캐너인 Clair, Webhook 등의 설정도 가능합니다.
+> Redis, PostgreSQL, Ingress, externalURL, AdminPassword 등 관련된 설정을 올바르게 수정합니다. TLS 인증서는 자동으로 생성하도록 설정 해주었으며, 여기 나와있는 내용 이외의 이미지 서명 기능인 Notary, 이미지 취약점 스캐너인 Clair, Webhook 등의 설정도 가능합니다.  
 {: .prompt-tip}
 
 ```yaml
@@ -150,7 +150,7 @@ helm install harbor harbor/harbor --namespace harbor -f values.yaml
 
 ## 6. 접속 확인
 
-> values.yaml 파일에 입력한 AdminPassword를 사용해 접속해봅니다.
+> values.yaml 파일에 입력한 AdminPassword를 사용해 접속해봅니다.  
 {: .prompt-tip}
 
 ![harbor connection](/assets/img/registry/harbor/harbor_connection_test.webp)

@@ -11,7 +11,7 @@ image:
 
 이전 글([Kubernetes 환경에서 TLS 인증서 적용하기 - (1)]({% post_url 2024/10/2024-10-19-kubernetes-tls-1 %}))에서는 TLS(Transport Layer Security)의 개념과 인증 과정을 살펴보았습니다. 이어서 이번 포스트에서는 실제로 Kubernetes 환경에서 Let's Encrypt에서 발급받은 TLS 인증서를 적용하는 방법에 대해 다뤄보도록 하겠습니다.
 
-> [Let's Encrypt](https://letsencrypt.org/)는 무료로 SSL/TLS 인증서를 발급해주는 공개 인증 기관입니다. Cert-Manager를 사용하면 Let's Encrypt에서 인증서를 자동으로 발급받고 갱신할 수 있습니다.
+> [Let's Encrypt](https://letsencrypt.org/)는 무료로 SSL/TLS 인증서를 발급해주는 공개 인증 기관입니다. Cert-Manager를 사용하면 Let's Encrypt에서 인증서를 자동으로 발급받고 갱신할 수 있습니다.  
 {: .prompt-tip}
 
 ---
@@ -111,7 +111,7 @@ clusterissuer.cert-manager.io/letsencrypt-prod created
 
 ## Ingress 리소스 수정
 
-> 이전에 구축했던 Jenkins Server의 Ingress를 수정해 TLS 인증서를 사용하도록 해보겠습니다.
+> 이전에 구축했던 Jenkins Server의 Ingress를 수정해 TLS 인증서를 사용하도록 해보겠습니다.  
 {: .prompt-tip}
 
 ```yaml

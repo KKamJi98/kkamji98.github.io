@@ -21,7 +21,7 @@ image:
 ## 1. Grafana Loki란?
 
 ![Grafana Loki Overview](/assets/img/kubernetes/cilium/2w-grafana-loki-overview.webp)
-> [Grafana Docs - Loki overview](https://grafana.com/docs/loki/latest/get-started/overview/)
+> [Grafana Docs - Loki overview](https://grafana.com/docs/loki/latest/get-started/overview/)  
 
 Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 고가용성을 갖춘 멀티테넌트 로그 집계 시스템입니다. 기존 로깅 시스템과 달리 Loki는 로그 전체 내용을 인덱싱하지 않고, 각 로그 스트림의 레이블(Label) 메타데이터만 인덱싱합니다. 이 설계 덕분에 작은 인덱스와 고도로 압축된 청크(Chunk) 구조로 저장이 가능하여 저장 비용이 저렴하고 운영이 간편합니다.
 
@@ -40,7 +40,7 @@ Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 
 ### 1.2. Grafana Loki 구성 요소
 
 ![Grafana Loki Architecture](/assets/img/kubernetes/cilium/2w-grafana-loki-architecture.webp)
-> [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/)
+> [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/)  
 
 Loki는 모듈형 시스템으로, 단일 바이너리(All-in-One)로도 실행할 수 있고, Read/Write/Backend 역할로 나누어 단순 확장형(Simple Scalable) 또는 마이크로서비스(Microservice) 형태로 구성할 수도 있습니다. 각 구성 요소에 대한 설명은 아래 표와 같습니다.
 
@@ -59,7 +59,7 @@ Loki는 모듈형 시스템으로, 단일 바이너리(All-in-One)로도 실행�
 ### 1.3. Grafana Loki Storage 구조
 
 ![Loki Data Format](/assets/img/kubernetes/cilium/2w-grafana-loki-data-format.webp)
-> [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/#data-format)
+> [Grafana Docs - Loki Architecture](https://grafana.com/docs/loki/latest/get-started/architecture/#data-format)  
 
 Loki는 모든 데이터를 Amazon S3, Google Cloud Storage(GCS), Azure Blob Storage 같은 단일 오브젝트 스토리지 백엔드에 저장합니다.
 Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Index) 파일과 청크(Chunk) 파일 모두를 동일 스토리지에 보관합니다.
@@ -93,7 +93,7 @@ Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Ind
 Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연한, 벤더 중립형(vendor-neutral) 수집기(Collector)로, 로그(Log), 메트릭(Metrics), 트레이스(Traces), 프로파일링(Profiling) 데이터를 단일 파이프라인에서 수집, 처리, 전송할 수 있도록 설계되었습니다. Promtail, Grafana Agent의 기능을 통합하면서도, 엔터프라이즈 환경에서의 확장성과 관리성까지 고려한 차세대 수집기입니다.
 
 ![Grafana Alloy Overview](/assets/img/kubernetes/cilium/2w-grafana-alloy-overview.webp)
-> [Grafana Docs - Grafana Alloy](https://grafana.com/docs/alloy/latest/)
+> [Grafana Docs - Grafana Alloy](https://grafana.com/docs/alloy/latest/)  
 
 ### 2.1. Grafana Alloy의 특징
 
@@ -145,7 +145,7 @@ Grafana Alloy는 OpenTelemetry Collector 아키텍처를 기반으로 하며, **
 
 ---
 
-> **Tip:** Grafana Alloy는 Promtail, Grafana Agent, OpenTelemetry Collector의 기능을 결합하면서도 엔터프라이즈 수준의 확장성과 관리성을 제공하므로, 단일 도구로 Observability 파이프라인을 단순화할 수 있습니다.
+> **Tip:** Grafana Alloy는 Promtail, Grafana Agent, OpenTelemetry Collector의 기능을 결합하면서도 엔터프라이즈 수준의 확장성과 관리성을 제공하므로, 단일 도구로 Observability 파이프라인을 단순화할 수 있습니다.  
 
 
 ---

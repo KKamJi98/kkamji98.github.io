@@ -462,7 +462,7 @@ CoreDNS is running at https://192.168.10.100:6443/api/v1/namespaces/kube-system/
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-> 현재는 CNI(Container Network Interface)가 설치되지 않았기 때문에 모든 노드가 `NotReady` 상태로 나타납니다. 이후의 포스트에서 CNI(Cilium)를 설치하고 나면 정상적으로 Ready 상태로 전환됩니다.
+> 현재는 CNI(Container Network Interface)가 설치되지 않았기 때문에 모든 노드가 `NotReady` 상태로 나타납니다. 이후의 포스트에서 CNI(Cilium)를 설치하고 나면 정상적으로 Ready 상태로 전환됩니다.  
 {. prompt-tip}
 
 ---
@@ -478,7 +478,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 추가) `cilium-m1` 노드의 INTERNAL_IP가 정상인 이유는 `kubeadm init` 명령어의 `--apiserver-advertise-address=192.168.10.100`을 지정해주었기 때문입니다.
 
-> The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
+> The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.  
 
 <https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init>
 

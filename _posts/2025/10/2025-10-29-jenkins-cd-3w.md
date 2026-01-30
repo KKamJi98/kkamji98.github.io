@@ -103,7 +103,7 @@ clusters:
 
 ## 3. Jenkins Item 생성(Pipeline)
 
-> Item name(k8s-cmd) -> 아래의 Pipeline script 입력 후 Item 생성 -> Save -> 지금 빌드
+> Item name(k8s-cmd) -> 아래의 Pipeline script 입력 후 Item 생성 -> Save -> 지금 빌드  
 {: .prompt-tip}
 
 ```shell
@@ -271,7 +271,7 @@ cd ..
 
 ## 5. Jenkins blue-green 배포 Item 생성(Pipeline)
 
-> Item name(k8s-bluegreen) -> 아래의 Pipeline script 입력 후 Item 생성 -> Save
+> Item name(k8s-bluegreen) -> 아래의 Pipeline script 입력 후 Item 생성 -> Save  
 {: .prompt-tip}
 
 ### 5.1. Pipeline Script (Blue-Green)

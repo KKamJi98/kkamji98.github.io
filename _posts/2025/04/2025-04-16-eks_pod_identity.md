@@ -51,7 +51,7 @@ image:
 4. Pod 내부에서 실행되는 AWS SDK/CLI는 컨테이너 Credential Provider를 통해 이 로컬 엔드포인트에서 IAM 자격 증명을 안전하게 얻어 사용
 
 > ***EKS Auth API**란?  
-> EKS의 신규 API(AssumeRoleForPodIdentity 등)로, 토큰 검증 및 임시 자격 증명 발급을 담당
+> EKS의 신규 API(AssumeRoleForPodIdentity 등)로, 토큰 검증 및 임시 자격 증명 발급을 담당  
 {: .prompt-tip}
 
 ---

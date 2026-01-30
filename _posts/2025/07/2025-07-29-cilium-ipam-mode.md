@@ -34,7 +34,7 @@ Cilium은 사용자의 요구를 충족하기 위해 다양한 IPAM 모드를 �
 | Multiple CIDRs per node    | ❌                     | ❌                       | ✅                 | N/A        | N/A            |
 | Dynamic CIDR/IP allocation | ❌                     | ❌                       | ✅                 | ✅          | ✅              |
 
-> [Cilium Docs - IPAM](https://docs.cilium.io/en/stable/network/concepts/ipam/)
+> [Cilium Docs - IPAM](https://docs.cilium.io/en/stable/network/concepts/ipam/)  
 
 ---
 
@@ -87,7 +87,7 @@ Cluster Scope 모드는 Cilium 설치 시 기본 활성화되는 IPAM 방식으�
 
 Cluster Scope의 장점은 IP 주소 활용 효율이 높다는 것입니다. 예를 들어 여유 IP가 많은 노드의 CIDR을 축소하고 부족한 노드에 재할당하는 식으로 유휴 IP를 클러스터 전체에서 재분배할 수 있습니다.
 
-> [Cilium Docs - Cluster Scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)
+> [Cilium Docs - Cluster Scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)  
 
 ![Cluster Scope IPAM Mode](/assets/img/kubernetes/cilium/cluster_scope_ipam_mode.webp)
 
@@ -106,7 +106,7 @@ Multi-Pool 모드는 `Cluster Scope`의 확장된 형태로, 여러 개의 `Pod 
 
 - [Isovalent Blog - Overcoming Kubernetes IP Address Exhaustion with Cilium](https://isovalent.com/blog/post/overcoming-kubernetes-ip-address-exhaustion-with-cilium/)
 
-> Multi-Pool - <https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/>
+> Multi-Pool - <https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/>  
 
 ![Multi-Pool](/assets/img/kubernetes/cilium/multi-pool.webp)
 

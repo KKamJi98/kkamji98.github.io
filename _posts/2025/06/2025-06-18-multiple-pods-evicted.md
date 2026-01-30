@@ -46,7 +46,7 @@ image-converter-backend-8bc77f4c4-swwhm     0/1     Evicted                  0  
 
 ## 2. 원인 분석
 
-> PV를 사용하는 Pod의 디스크 사용량 증가에 따른 노드 디스크 부족
+> PV를 사용하는 Pod의 디스크 사용량 증가에 따른 노드 디스크 부족  
 {: .prompt-tip}
 
 ### 2.1. Describe Pod
@@ -148,7 +148,7 @@ Jun 18 00:01:37 k8s-w2 kubelet[391617]: I0618 00:01:37.088970  391617 kubelet.go
 ---
 ```
 
-> `ncdu` 명령어를 사용해 확인한 결과 아래 3개의 디렉터리에서 디스크를 많이 사용하고 있었습니다.
+> `ncdu` 명령어를 사용해 확인한 결과 아래 3개의 디렉터리에서 디스크를 많이 사용하고 있었습니다.  
 >
 > - `/opt/local-path-provisioner (7.3 GiB)`  
 >   - Persistent Volume 생성 및 로컬 데이터를 저장하는 공간  

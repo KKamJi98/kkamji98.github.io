@@ -96,7 +96,7 @@ spec:
 - `nginx.ingress.kubernetes.io/auth-secret: "basic-auth"`: 위에서 만든 Secret 이름과 동일해야 함  
 - `nginx.ingress.kubernetes.io/auth-realm`: 로그인 창에 보일 Realm 메시지 (선택)
 
-> **중요**: 여기서 `auth-secret`이 가리키는 것은 **htpasswd 파일**을 담은 Secret(위에서 `basic-auth`로 만든 것)입니다.
+> **중요**: 여기서 `auth-secret`이 가리키는 것은 **htpasswd 파일**을 담은 Secret(위에서 `basic-auth`로 만든 것)입니다.  
 {: .prompt-danger}
 
 ### 2.4. 옵션들

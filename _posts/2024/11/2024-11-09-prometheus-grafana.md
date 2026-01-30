@@ -22,12 +22,12 @@ image:
 
 ## 1. Data Source 추가
 
-> 이전에 변경한 비밀번호를 사용해 **Grafana**에 접속한 뒤, 메인 화면에 보이는 DATA SOURCES에서 **Add your first data source**를 클릭합니다.
+> 이전에 변경한 비밀번호를 사용해 **Grafana**에 접속한 뒤, 메인 화면에 보이는 DATA SOURCES에서 **Add your first data source**를 클릭합니다.  
 {: .prompt-tip}
 
 ![Add Data Source](/assets/img/observability/grafana/grafana_add_data_source.webp)
 
-> **Prometheus** 메트릭을 Data Source로 사용할 예정이니 **Prometheus**를 클릭합니다.
+> **Prometheus** 메트릭을 Data Source로 사용할 예정이니 **Prometheus**를 클릭합니다.  
 {: .prompt-tip}
 
 ![Add Data Source Prometheus](/assets/img/observability/grafana/grafana_add_data_source_prometheus.webp)
@@ -39,7 +39,7 @@ image:
 
 ![Input Prometheus Server URL](/assets/img/observability/grafana/grafana_input_prometheus_server_url.webp)
 
-> Authentication과 TLS 세팅 등의 설정이 필요한 경우 설정해 준 뒤 페이지 하단의 Save & test를 눌러 접속이 가능한지 확인합니다.
+> Authentication과 TLS 세팅 등의 설정이 필요한 경우 설정해 준 뒤 페이지 하단의 Save & test를 눌러 접속이 가능한지 확인합니다.  
 {: .prompt-tip}
 
 ![Grafana Prometheus Connection Test](/assets/img/observability/grafana/grafana_prometheus_connection_test.webp)
@@ -48,27 +48,27 @@ image:
 
 ## 2. Data Source 확인 및 Import DashBoard
 
-> 좌측 상단의 메뉴를 클릭 한 뒤, Connections > Data sources에 들어가 prometheus를 확인합니다.
+> 좌측 상단의 메뉴를 클릭 한 뒤, Connections > Data sources에 들어가 prometheus를 확인합니다.  
 {: .prompt-tip}
 
 ![Grafana Check Prometheus Data Source](/assets/img/observability/grafana/grafana_check_prometheus_data_source.webp)
 
-> 좌측 상단의 Dashboards 메뉴에서, Create dashboard를 클릭합니다.
+> 좌측 상단의 Dashboards 메뉴에서, Create dashboard를 클릭합니다.  
 {: .prompt-tip}
 
 ![Grafana Create Dashboard](/assets/img/observability/grafana/grafana_create_dashboard.webp)
 
-> Import dashboard를 클릭하고 Import Dashboard에 마음에 드는 URL이나 ID를 입력한 뒤, Load 버튼을 클릭합니다.
+> Import dashboard를 클릭하고 Import Dashboard에 마음에 드는 URL이나 ID를 입력한 뒤, Load 버튼을 클릭합니다.  
 >
 > <https://grafana.com/grafana/dashboards/>  
-> 위의 사이트에서 대시보드를 찾아볼 수 있습니다.
+> 위의 사이트에서 대시보드를 찾아볼 수 있습니다.  
 {: .prompt-tip}
 
 ![Grafana Click Import Dashboard](/assets/img/observability/grafana/grafana_click_import_dashboard.webp)
 
 ![Grafana Insert Dashboard Number](/assets/img/observability/grafana/grafana_insert_dashboard_number.webp)
 
-> Data Source가 방금 추가한 Prometheus로 되어있는지 확인한 뒤, Import 버튼을 클릭합니다.
+> Data Source가 방금 추가한 Prometheus로 되어있는지 확인한 뒤, Import 버튼을 클릭합니다.  
 {: .prompt-tip}
 
 ![Grafana Import Dashboard](/assets/img/observability/grafana/grafana_import_dashboard.webp)
@@ -77,7 +77,7 @@ image:
 
 ## 3. Grafana DashBoard 확인
 
-> 추가한 Dashboard를 통해 Prometheus를 통해 수집된 Kubernetes 리소스를 확인할 수 있습니다.
+> 추가한 Dashboard를 통해 Prometheus를 통해 수집된 Kubernetes 리소스를 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ![Grafana DashBoard](/assets/img/observability/grafana/grafana_dashboard.webp)

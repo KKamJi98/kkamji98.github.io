@@ -108,7 +108,7 @@ aws iam attach-role-policy --role-name "KarpenterNodeRole-${CLUSTER_NAME}" \
 
 ### 4.5. Karpenter Controller IAM Role 생성
 
-> Karpenter Controller가 새 인스턴스를 프로비저닝하는 데 사용할 IAM 역할을 생성합니다. Controller는 OIDC Endpoint를 사용해서 IAM Roles for Service Account(IRSA)를 사용해야 합니다. 따라서 OIDC Provider가 필요합니다.
+> Karpenter Controller가 새 인스턴스를 프로비저닝하는 데 사용할 IAM 역할을 생성합니다. Controller는 OIDC Endpoint를 사용해서 IAM Roles for Service Account(IRSA)를 사용해야 합니다. 따라서 OIDC Provider가 필요합니다.  
 {: .prompt-info}
 
 ```bash
@@ -259,7 +259,7 @@ aws iam put-role-policy --role-name "KarpenterControllerRole-${CLUSTER_NAME}" \
 
 ### 4.6. Subnet, Security Group에 Tag 추가
 
-> Karpenter가 사용할 Subnet을 식별할 수 있도록 Node Group의 Subnet에 Tag를 추가합니다.
+> Karpenter가 사용할 Subnet을 식별할 수 있도록 Node Group의 Subnet에 Tag를 추가합니다.  
 {: .prompt-info}
 
 ```bash
@@ -272,7 +272,7 @@ done
 
 ```
 
-> 보안 그룹에 태그를 추가합니다. 해당 명령어는 클러스터의 첫 번째 노드 그룹에 대한 보안 그룹에만 태그를 지정합니다. 노드 그룹이나 보안 그룹이 여러 개 있는 경우 Karpenter가 어떤 것을 사용해야 할지 결정해야 합니다.
+> 보안 그룹에 태그를 추가합니다. 해당 명령어는 클러스터의 첫 번째 노드 그룹에 대한 보안 그룹에만 태그를 지정합니다. 노드 그룹이나 보안 그룹이 여러 개 있는 경우 Karpenter가 어떤 것을 사용해야 할지 결정해야 합니다.  
 {: .prompt-info}
 
 ```bash
@@ -299,14 +299,14 @@ aws ec2 create-tags \
 
 ### 4.7. aws_auth ConfigMap 업데이트
 
-> 앞에서 생성한 IAM 역할을 사용하는 노드가 클러스터에 가입할 수 있도록 허용해야 합니다. 이를 위해 클러스터의 aws-auth ConfigMap을 수정합니다.
+> 앞에서 생성한 IAM 역할을 사용하는 노드가 클러스터에 가입할 수 있도록 허용해야 합니다. 이를 위해 클러스터의 aws-auth ConfigMap을 수정합니다.  
 {: .prompt-info}
 
 ```bash
 kubectl edit configmap aws-auth -n kube-system
 ```
 
-> mapRoles에 다음과 같은 섹션을 추가합니다. ${AWS_PARTITION} 변수에는 계정 파티션을, ${AWS_ACCOUNT_ID}에는 계정 넘버를 ${CLUSTER_NAME} 변수에는 클러스터 이름을 넣어줍니다.{{EC2PrivateDNSName}}은 변경하지 않습니다.
+> mapRoles에 다음과 같은 섹션을 추가합니다. ${AWS_PARTITION} 변수에는 계정 파티션을, ${AWS_ACCOUNT_ID}에는 계정 넘버를 ${CLUSTER_NAME} 변수에는 클러스터 이름을 넣어줍니다.{{EC2PrivateDNSName}}은 변경하지 않습니다.  
 {: .prompt-info}
 
 ```bash
@@ -321,7 +321,7 @@ kubectl edit configmap aws-auth -n kube-system
 
 ## 5. Karpenter 설치
 
-> 현재 가장 최신버전인 **0.37.0** 버전을 설치하겠습니다.
+> 현재 가장 최신버전인 **0.37.0** 버전을 설치하겠습니다.  
 {: .prompt-info}
 
 ### 5.1. Helm template을 사용한 manifest 파일 생성
@@ -340,7 +340,7 @@ helm template karpenter oci://public.ecr.aws/karpenter/karpenter --version "${KA
 
 ### 5.2. node affinity 설정
 
-> Karpenter가 기존 노드 그룹 중 하나에서 실행되도록 manifest 파일을 수정합니다. ${NODEGROUP}에는 Karpenter가 실행될 EKS Node Group의 이름을 넣어줍니다.
+> Karpenter가 기존 노드 그룹 중 하나에서 실행되도록 manifest 파일을 수정합니다. ${NODEGROUP}에는 Karpenter가 실행될 EKS Node Group의 이름을 넣어줍니다.  
 {: .prompt-info}
 
 ```bash
@@ -362,7 +362,7 @@ affinity:
 
 ### 5.3. karpenter 리소스 배포
 
-> Namespace 생성 및 NodePool CRD를 만든 뒤, Karpenter 리소스를 배포합니다
+> Namespace 생성 및 NodePool CRD를 만든 뒤, Karpenter 리소스를 배포합니다  
 {: .prompt-info}
 
 ```bash
@@ -380,7 +380,7 @@ kubectl apply -f karpenter.yaml
 
 ## 6. NodePool 및 EC2NodeClass 생성
 
-> **NodePool**은 **Karpenter**에서 관리되는 Kubernetes 노드의 집합입니다. 이 **NodePool**은 정의된 사항에 따라 EC2 인스턴스를 자동으로 생성하고 조정합니다. **EC2NodeClass**는 **Karpenter**가 사용할 EC2 인스턴스의 세부 사항을 정의합니다. 현재 사용하고 있는 인스턴스 타입으로 `t3.medium`을 지정했습니다. 주석된 부분처럼 `karpenter.k8s.aws/instance-category` 항목에 인스턴스 타입을, `karpenter.k8s.aws/instance-cpu` 항목에 사용할 vCPU 크기를 나열할 수도 있습니다. 현재는 t3.medium 인스턴스 외에 다른 인스턴스를 사용하지 않기 때문에 `karpenter.sh/capacity-type` 옵션을 사용해 지정해주었습니다.
+> **NodePool**은 **Karpenter**에서 관리되는 Kubernetes 노드의 집합입니다. 이 **NodePool**은 정의된 사항에 따라 EC2 인스턴스를 자동으로 생성하고 조정합니다. **EC2NodeClass**는 **Karpenter**가 사용할 EC2 인스턴스의 세부 사항을 정의합니다. 현재 사용하고 있는 인스턴스 타입으로 `t3.medium`을 지정했습니다. 주석된 부분처럼 `karpenter.k8s.aws/instance-category` 항목에 인스턴스 타입을, `karpenter.k8s.aws/instance-cpu` 항목에 사용할 vCPU 크기를 나열할 수도 있습니다. 현재는 t3.medium 인스턴스 외에 다른 인스턴스를 사용하지 않기 때문에 `karpenter.sh/capacity-type` 옵션을 사용해 지정해주었습니다.  
 {: .prompt-info}
 
 ```bash

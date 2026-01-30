@@ -295,7 +295,7 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
 이번에는 Vault에 시크릿을 생성하고, 이를 Kubernetes에서 사용하는 방법에 대해 알아보겠습니다. 이를 위해 `Vault Secrets Operator (VSO)`를 사용합니다. VSO는 Kubernetes 환경에서 Vault 시크릿을 쉽게 관리할 수 있도록 도와주는 오픈소스 프로젝트입니다. - [docmoa - Vault Secrets Operator 개요](https://docmoa.github.io/04-HashiCorp/06-Vault/01-Information/vault-secret-operator/1-vso-overview.html)
 
 ![Vault In Kubernetes](/assets/img/ci-cd/ci-cd-study/vault-in-k8s.webp)
-> <https://developer.hashicorp.com/vault/tutorials/kubernetes/agent-kubernetes>
+> <https://developer.hashicorp.com/vault/tutorials/kubernetes/agent-kubernetes>  
 
 ### 3.1. Vault Kubernetes 인증 및 시크릿 접근 흐름 설명
 
@@ -591,7 +591,7 @@ vault write auth/kubernetes/role/webapp \
 ### 3.10. Launch a web application - [Vault Docs - Launch a web application](https://developer.hashicorp.com/vault/tutorials/kubernetes-introduction/kubernetes-minikube-raft#launch-a-web-application)
 
 > [Vault Docs - Retrieve secrets for Kubernetes workloads with Vault Agent](https://developer.hashicorp.com/vault/tutorials/kubernetes-introduction/agent-kubernetes)  
-> [Vault Docs - Manage Kubernetes service tokens](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-secrets-engine)
+> [Vault Docs - Manage Kubernetes service tokens](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-secrets-engine)  
 
 이제 Kubernetes에 Web Application을 배포하고, Vault에서 시크릿을 가져오는 과정을 살펴보겠습니다.
 해당 Application은 HTTP 요청을 Listening하는 단일 기능을 수행하며 요청 시 Kubernetes Service Account Token을 읽고 Vault에 로그인 후 시크릿을 조회합니다.

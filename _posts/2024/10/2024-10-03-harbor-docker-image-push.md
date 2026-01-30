@@ -15,7 +15,7 @@ image:
 
 ## 1. 프로젝트 생성
 
-> 이미지를 업로드하기 위해서는 프로젝트가 생성되어 있어야 합니다. AWS ECR을 사용해보신 분들은 Repository를 생성한다고 생각하시면 될 것 같습니다.
+> 이미지를 업로드하기 위해서는 프로젝트가 생성되어 있어야 합니다. AWS ECR을 사용해보신 분들은 Repository를 생성한다고 생각하시면 될 것 같습니다.  
 {: .prompt-tip}
 
 ![Harbor Create Project](/assets/img/registry/harbor/harbor_create_project.webp)
@@ -24,7 +24,7 @@ image:
 
 ## 2. Harbor 로그인
 
-> Docker CLI를 사용해 Harbor에 로그인 할 수 있습니다. 로그인에는 웹 브라우저에서 접속할 때 사용한 Username, Password가 필요합니다.
+> Docker CLI를 사용해 Harbor에 로그인 할 수 있습니다. 로그인에는 웹 브라우저에서 접속할 때 사용한 Username, Password가 필요합니다.  
 {: .prompt-tip}
 
 ```bash
@@ -46,7 +46,7 @@ Login Succeeded
 
 ## 4. 이미지 태그 변경
 
-> Harbor 레지스트리에 이미지를 업로드하기 위해서는 해당 이미지 태그를 Harbor의 도메인에 맞게 변경해주어야 합니다.
+> Harbor 레지스트리에 이미지를 업로드하기 위해서는 해당 이미지 태그를 Harbor의 도메인에 맞게 변경해주어야 합니다.  
 {: .prompt-tip}
 
 ```bash
@@ -80,7 +80,7 @@ latest: digest: sha256:719b34dba7bd01c795f94b3a6f3a5f1fe7d53bf09e79e355168a17d2e
 
 ## 7. 이미지 다운로드
 
-> 명확한 확인을 위해 모든 Docker 이미지를 삭제 후 다운로드 해보겠습니다.
+> 명확한 확인을 위해 모든 Docker 이미지를 삭제 후 다운로드 해보겠습니다.  
 {: .prompt-tip}
 
 ```bash

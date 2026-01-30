@@ -19,7 +19,7 @@ Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유�
 
 ![Graceful Shutdown](/assets/img/kubernetes/graceful-shutdown.webp)
 
-> **Graceful Shutdown** 절차
+> **Graceful Shutdown** 절차  
 >
 > 1. api-server에 pod 삭제 요청  
 > 2. kubelet과 kube-proxy가 api-server를 통해 pod 상태 변경(삭제 요청)을 감지  
@@ -69,7 +69,7 @@ async def read_root():
 ### 2.2. FastAPI 애플리케이션 Deployment 정의 파일
 
 > deployment를 통해 pod를 생성하였고, `lifecycle.preStop`을 정의해 pod가 graceful하게 shutdown될 수 있도록 했습니다.  
-> 또한 아래와 같이 `terminationGracePeriodSeconds` 옵션을 통해 60초 안에 pod가 graceful shutdown 되지 않을 시, 강제 종료하도록 설정할 수 있습니다.
+> 또한 아래와 같이 `terminationGracePeriodSeconds` 옵션을 통해 60초 안에 pod가 graceful shutdown 되지 않을 시, 강제 종료하도록 설정할 수 있습니다.  
 {: .prompt-tip}
 
 ```yaml

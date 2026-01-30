@@ -39,7 +39,7 @@ image:
 - 모든 것을 코드로 표현
 - 작업은 Git 워크플로(workflow)를 통해 수행
 
-> [RedHat Developer - GitOps Cookbook: Kubernetes automation in practice](https://developers.redhat.com/articles/2022/12/20/gitops-cookbook-kubernetes-automation-practice)
+> [RedHat Developer - GitOps Cookbook: Kubernetes automation in practice](https://developers.redhat.com/articles/2022/12/20/gitops-cookbook-kubernetes-automation-practice)  
 
 ### 1.3. GitOps 4가지 원칙 (*OpenGitOps* GitOps Principles v1.0.0)
 
@@ -55,7 +55,7 @@ image:
 - **4. Continuously Reconciled**  
   에이전트는 실제 시스템 상태를 지속적으로 관찰하고(Observe), 원하는 상태로 일치하도록(Apply) 조정(Reconcile)해야 합니다.
 
-> [OpenGitOps](https://opengitops.dev/)
+> [OpenGitOps](https://opengitops.dev/)  
 
 ---
 
@@ -66,12 +66,12 @@ CI(Continuous Integration, 지속적 통합)와 CD(Continuous Delivery, 지속�
 일반적인 CI/CD 파이프라인에서 CI 프로세스는 제출된 코드를 빌드하고 테스트하여 검증하며, CD 프로세스는 보안 정책, IaC(Infrastructure as Code), 애플리케이션 설정 등의 요구 사항을 자동으로 적용합니다. 이 과정에서 모든 변경 사항은 Git을 통해 버전 관리되므로, 변경 이력 추적과 롤백이 용이합니다. 이러한 Workflow는 아래와 같이 표현될 수 있습니다.
 
 ![CI/CD Workflow text](/assets/img/ci-cd/ci-cd-study/ci-cd-workflow.webp)
-> CI/CD Workflow
+> CI/CD Workflow  
 
 Kubernetes를 활용하면 클러스터 내부에 CI/CD 파이프라인을 아래와 같은 구조로 쉽게 구현할 수 있습니다. CI 과정에서는 애플리케이션을 나타내는 컨테이너 이미지(Container Image)를 생성하여 컨테이너 이미지 저장소(Container Image Registry)에 저장하고, Pull-Request 등의 Git Workflow를 통해 배포할 앱의 명세(Manifest)파일을 변경한 후 CD 동기화 루프를 개시합니다.
 
 ![Application Deployment Model In Kubernetes](/assets/img/ci-cd/ci-cd-study/application-deploy-model-in-kubernetes.webp)
-> Application Deployment Model In Kubernetes
+> Application Deployment Model In Kubernetes  
 
 ---
 
@@ -84,7 +84,7 @@ GitOps의 애플리케이션 배포 모델(Application Deployment Model)은 클�
 Kubernetes GitOps Lifecycle은 다음과 같은 순서로 구성되며, 모든 단계는 Git 저장소를 단일 신뢰 소스(Single Source of Truth) 로 사용하고 Git 워크플로(Git Workflow)를 통해 수행됩니다.
 
 ![GitOps Lifecycle](/assets/img/ci-cd/ci-cd-study/gitops-lifecycle.webp)
-> GitOps Lifecycle
+> GitOps Lifecycle  
 
 1. Deploy
   Git에 저장된 Manifest를 배포
@@ -106,7 +106,7 @@ Kubernetes에서 GitOps 접근법을 사용해 애플리케이션을 배포하�
 하나는 애플리케이션 소스 코드를 보관하기 위해 사용하고, 다른 하나는 앱의 배포 형상을 기술하는 Kubernetes Manifest 파일들을 보관하기 위해 사용합니다.
 
 ![Kubernetes GitOps Loop](/assets/img/ci-cd/ci-cd-study/kubernetes-gitops-loop.webp)
-> Kubernetes GitOps Loop
+> Kubernetes GitOps Loop  
 
 
 > **Kubernetes GitOps Loop의 중요 항목 5 가지**  

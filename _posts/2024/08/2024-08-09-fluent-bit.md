@@ -98,7 +98,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 ## 3. Fluent Bit 설치하기
 
-> **Fluent Bit**은 **DaemonSet**으로 배포되며, Kubernetes Cluster의 모든 Node에서 사용할 수 있습니다. **Fluent Bit**을 배포하는 데 권장되는 방식은 공식 Helm Chart를 사용하는 것입니다. Helm은 Kubernetes용 Package Manager입니다.
+> **Fluent Bit**은 **DaemonSet**으로 배포되며, Kubernetes Cluster의 모든 Node에서 사용할 수 있습니다. **Fluent Bit**을 배포하는 데 권장되는 방식은 공식 Helm Chart를 사용하는 것입니다. Helm은 Kubernetes용 Package Manager입니다.  
 {: .prompt-info}
 
 기본 차트 값에는 Docker parsing, systemd logs, Kubernetes Metadata 추가, Elasticsearch Cluster로 출력하는 구성이 포함되어 있습니다. **Fluent Bit**의 설정을 변경하거나 추가 기능을 구성하려면 [`values.yaml`](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml) 파일을 수정해야 합니다.

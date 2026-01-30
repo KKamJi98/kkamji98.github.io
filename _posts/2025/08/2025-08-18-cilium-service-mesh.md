@@ -39,7 +39,7 @@ image:
 
 **개념**: 마이크로서비스 간에 매시 형태의 통신을 기반으로 통신 경로 제어 - ex) Istio, Linkerd
 
-> [Service Mesh LandScape](https://layer5.io/service-mesh-landscape)
+> [Service Mesh LandScape](https://layer5.io/service-mesh-landscape)  
 
 **기본 동작**: 파드 간 통신 경로에 프록시를 놓고 트래픽 모니터링이나 트래픽 컨트롤 -> 기존 Application 코드에 수정 없이 동작
 
@@ -90,7 +90,7 @@ image:
 
 ## 4. Cilium Service Mesh
 
-> [Cilium Docs - Service Mesh](https://docs.cilium.io/en/stable/network/servicemesh/)
+> [Cilium Docs - Service Mesh](https://docs.cilium.io/en/stable/network/servicemesh/)  
 
 Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`은 내장 Envoy로 처리하는 Service Mesh를 제공합니다. `Sidecar`가 필요하지 않아 경량이며, Kubernetes 리소스와 Gateway API로 선언적으로 제어합니다.
 
@@ -117,7 +117,7 @@ Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`
   - Multi-Cluster 및 On-premise/Cloud 경계 회복성 있는 연결성 확보  
 
 ![Ingress to Endpoint](/assets/img/kubernetes/cilium/6w-ingress-to-endpoint.webp)
-> [Cilium Docs - Ingress to Endpoint](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/#ingress-to-endpoint)
+> [Cilium Docs - Ingress to Endpoint](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/#ingress-to-endpoint)  
 
 - **트래픽 모니터링** : 요청의 '에러율, 레이턴시, 커넥션 개수, 요청 개수' 등 메트릭 모니터링, 특정 서비스간 혹은 특정 요청 경로로 필터링 -> 원인 파악에 용이
 - **트래픽 컨트롤** : 트래픽 시프팅(Traffic shifting), 서킷 브레이커(Circuit Breaker), 폴트 인젝션(Fault Injection), 속도 제한(Rate Limit)
@@ -130,7 +130,7 @@ Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`
 
 ## 5. Cilium Ingress
 
-> [Cilium Docs - Cilium Ingress](https://docs.cilium.io/en/stable/network/servicemesh/ingress/)
+> [Cilium Docs - Cilium Ingress](https://docs.cilium.io/en/stable/network/servicemesh/ingress/)  
 
 Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) 리소스를 지원하며, `ingressClassName: cilium`을 사용합니다.  
 해당 방식으로 **Path 기반 라우팅**과 **TLS 종료(Termination)** 를 제공할 수 있습니다.  

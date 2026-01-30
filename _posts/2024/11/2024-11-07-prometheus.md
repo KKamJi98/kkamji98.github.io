@@ -66,7 +66,7 @@ image:
 
 ### 4.2. namespace 생성
 
-> prometheus와 grafana가 생성될 monitoring namespace를 생성합니다.
+> prometheus와 grafana가 생성될 monitoring namespace를 생성합니다.  
 {: .prompt-tip}
 
 ```bash
@@ -76,7 +76,7 @@ namespace/monitoring created
 
 ### 4.3. Prometheus Helm Chart 배포
 
-> 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.
+> 현재 사용 중인 StorageClass를 사용하셔야 합니다 `kubectl get sc` 명령어로 StorageClass 이름을 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ```bash

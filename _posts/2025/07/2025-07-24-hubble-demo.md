@@ -11,14 +11,14 @@ image:
 
 이번에는 Cilium 공식문서에서 제공하는 **Star Wars Demo**를 진행하며 **Cilium**이 어떻게 동작하는지 알아보도록 하겠습니다.
 
-> - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
+> - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 ---
 
 ## 1. Application Topology 개요
 
 ![Star Wars Application Topology](/assets/img/kubernetes/cilium/star-wars-application-topology.webp)
-> [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)
+> [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 - `deathstar`, `tiefighter`, `xwing` 세 가지 마이크로서비스로 구성됩니다.
 - Cilium과 kube-dns가 정상 동작하면 Star Wars Demo 애플리케이션을 배포할 수 있습니다.
@@ -288,7 +288,7 @@ Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend �
 ### 5.1. Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
 
 ![L4 Layer Policy](/assets/img/kubernetes/cilium/l4_layer_policy.webp)
-> [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)
+> [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 ```shell
 ## Network Policy 생성
@@ -394,7 +394,7 @@ command terminated with exit code 28
 
 ![Life of a Packet](/assets/img/kubernetes/cilium/life_of_a_packet_intgress.webp)
 
-> - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)
+> - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)  
 
 ### 6.1. 허용되지 않은 요청 확인
 
@@ -412,13 +412,13 @@ main.main()
         temp/main.go:5 +0x85
 ```
 
-> 정책이 없을 때는 위와 같은 민감한 엔드포인트가 호출되어 문제가 발생할 수 있습니다.
+> 정책이 없을 때는 위와 같은 민감한 엔드포인트가 호출되어 문제가 발생할 수 있습니다.  
 {: .prompt-danger}
 
 ### 6.2. L7 정책 YAML
 
 ![L7 Layer Policy](/assets/img/kubernetes/cilium/cilium_l7_layer_policy.webp)
-> [L7 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)
+> [L7 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 **Cilium**은 HTTP 계층(L7 Layer) 정책을 적용하여 `tiefighter`가 접근할 수 있는 URL을 제한할 수 있습니다. 아래 정책은 기존 L3/L4 정책(rule1)을 확장하여, `tiefighter`가 `POST /v1/request-landing` 요청만 보낼 수 있도록 제한합니다. 다른 모든 HTTP 호출(ex: `PUT /v1/exhaust-port`)은 차단됩니다.
 

@@ -15,7 +15,7 @@ image:
 
 ## 1. 실행 환경
 
-> ArgoCD, Keycloak이 배포되어있는 Kubernetes 환경에서 시작하도록 하겠습니다.
+> ArgoCD, Keycloak이 배포되어있는 Kubernetes 환경에서 시작하도록 하겠습니다.  
 {: .prompt-tip}
 
 - Kubernetes (v1.32.0)
@@ -31,17 +31,17 @@ image:
 
 ![Create Client-1](/assets/img/security/keycloak/client-1.webp)
 
-> 사진과 같이 Client Type을 OpenID Connect로 설정 후, Client ID, Name을 `ArgoCD` 등으로 지정합니다.
+> 사진과 같이 Client Type을 OpenID Connect로 설정 후, Client ID, Name을 `ArgoCD` 등으로 지정합니다.  
 {: .prompt-tip}
 
 ![Create Client-2](/assets/img/security/keycloak/client-2.webp)
 
-> 기본 값인 `Standard Flow`, `Direct Access Grants` 옵션은 그대로 두고 넘어갑니다.
+> 기본 값인 `Standard Flow`, `Direct Access Grants` 옵션은 그대로 두고 넘어갑니다.  
 {: .prompt-tip}
 
 ![Create Client-3](/assets/img/security/keycloak/client-3.webp)
 
-> 마킹된 부분에 ArgoCD 도메인을 넣어주시면 됩니다. ex) `argocd.example.com`
+> 마킹된 부분에 ArgoCD 도메인을 넣어주시면 됩니다. ex) `argocd.example.com`  
 >
 > **Root URL** - ArgoCD의 Root URL을 입력합니다. 사용자가 Keycloak 인증 후 돌아올 서비스의 Root 경로입니다.  
 > **Home URL** - 사용자가 로그인에 성공한 뒤 이동할 경로 (로그인 하면 /applications로 이동하도록 설정)  
@@ -97,7 +97,7 @@ image:
 
 ## 6. Group 생성하기
 
-> ArgoCD에 맵핑할 Keycloak Group을 생성합니다.
+> ArgoCD에 맵핑할 Keycloak Group을 생성합니다.  
 {: .prompt-tip}
 
 1. 왼쪽 사이드바의 **Groups** 메뉴로 이동한 뒤, **Create Group** 버튼을 클릭합니다.
@@ -109,7 +109,7 @@ image:
 
 ## 7. Group에 User 추가하기
 
-> Keycloak Groups에 사용자를 할당하여, 해당 사용자들이 인증 시 Group 정보를 받도록 구성합니다.
+> Keycloak Groups에 사용자를 할당하여, 해당 사용자들이 인증 시 Group 정보를 받도록 구성합니다.  
 {: .prompt-tip}
 
 1. 생성한 Group으로 이동한 뒤, **Members** 탭으로 이동합니다.
@@ -121,7 +121,7 @@ image:
 
 ## 8. ArgoCD 설정하기 (argocd-cm)
 
-> ArgoCD에 Keycloak SSO를 적용하기 위해, ArgoCD의 설정 파일을 수정합니다.
+> ArgoCD에 Keycloak SSO를 적용하기 위해, ArgoCD의 설정 파일을 수정합니다.  
 {: .prompt-tip}
 
 ```shell

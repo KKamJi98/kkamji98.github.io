@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안되서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.
+> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안되서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.  
 {: .prompt-info}
 
 ---
@@ -23,7 +23,7 @@ NAME                  READY   STATUS        RESTARTS   AGE
 simple-webapp-color   0/1     Terminating   0          45h
 ```
 
-> Pod Terminating 상태에 계속 머물러 있다..
+> Pod Terminating 상태에 계속 머물러 있다..  
 {: .prompt-info}
 
 ---
@@ -40,7 +40,7 @@ Events:
   Warning  Evicted  4m50s (x2334 over 26h)  kubelet  (combined from similar events): The node was low on resource: ephemeral-storage. Threshold quantity: 1Gi, available: 925292Ki.
 ```
 
-> 용량이 부족하다…고?? 설마.. Worker node의 용량이 벌써 다 차버린건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자
+> 용량이 부족하다…고?? 설마.. Worker node의 용량이 벌써 다 차버린건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자  
 {: .prompt-info}
 
 ```bash
@@ -79,34 +79,34 @@ shm              64M     0   64M   0% /var/snap/microk8s/common/run/containerd/i
 tmpfs            96M   12K   96M   1% /run/user/1000
 ```
 
-> 앗… 실제로 여유 공간이 1GB가 되지 않았다. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해 줘 Worker Node의 용량을 10GB로 설정했는데… ~~더 올리면 내 돈이…~~ 결국 용량을 추가해야 했다.
+> 앗… 실제로 여유 공간이 1GB가 되지 않았다. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해 줘 Worker Node의 용량을 10GB로 설정했는데… ~~더 올리면 내 돈이…~~ 결국 용량을 추가해야 했다.  
 {: .prompt-info}
 
 ---
 
 ## 4. EBS 용량 확장
 
-> 온프레미스 환경이었다면 HDD나 SSD를 추가 장착해주어야 하지만 EBS는 콘솔을 통해 용량을 추가할 수 있습니다.
+> 온프레미스 환경이었다면 HDD나 SSD를 추가 장착해주어야 하지만 EBS는 콘솔을 통해 용량을 추가할 수 있습니다.  
 {: .prompt-info}
 
 ### 4.1. EBS 용량 확장
 
-> EC2 -> Elastic Block Store -> Volume에 들어가서 확인해보자
+> EC2 -> Elastic Block Store -> Volume에 들어가서 확인해보자  
 {: .prompt-info}
 
 ![1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/7b2fd302-7940-4f58-9fe2-f02dc5ef7443)
 
-> 해당 볼륨을 체크하고 우상단의 Actions를 누르고 Modify Volume을 누릅니다
+> 해당 볼륨을 체크하고 우상단의 Actions를 누르고 Modify Volume을 누릅니다  
 {: .prompt-info}
 
 ![2](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c916644d-b83a-4104-90d8-fd2fb94386a4)
 
-> Size를 우선.. 10GB에서 12GB로 늘린 후 Modify를 눌러줍시다
+> Size를 우선.. 10GB에서 12GB로 늘린 후 Modify를 눌러줍시다  
 {: .prompt-info}
 
 ![3](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/c274b701-bd7f-4dcf-b9f6-4699a25b566d)
 
-> 변경 완료
+> 변경 완료  
 {: .prompt-info}
 
 ![4](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/5c8fca09-f8b9-4e20-90ee-4e439cc3bf89)
@@ -115,7 +115,7 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 
 ## 5. 운영체제에 볼륨 확장 적용
 
-> EBS의 용량을 변경 후 운영체제에 볼륨 확장 적용 해주어야 합니다
+> EBS의 용량을 변경 후 운영체제에 볼륨 확장 적용 해주어야 합니다  
 {: .prompt-info}
 
 ### 5.1. 마운트 된 볼륨 확인
@@ -178,7 +178,7 @@ tmpfs            96M   12K   96M   1% /run/user/1000
 
 ## 6. 문제 해결 여부 확인
 
-> 테스트로 nginx pod를 생성하고 삭제해보자
+> 테스트로 nginx pod를 생성하고 삭제해보자  
 {: .prompt-info}
 
 ```bash
@@ -196,7 +196,7 @@ root@Zest ~# kubectl get pods
 No resources found in default namespace.
 ```
 
-> 정상적으로 동작한다. 문제가 해결되어서 다행이다.
+> 정상적으로 동작한다. 문제가 해결되어서 다행이다.  
 {: .prompt-info}
 
 ---

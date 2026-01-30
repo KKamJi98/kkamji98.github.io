@@ -46,7 +46,7 @@ In-Place Pod Resource Resize 기능은 Kubernetes v1.33에서 베타로 제공�
 - **유연한 리소스 관리**: Pod의 리소스 크기를 동적으로 조정할 수 있어, 애플리케이션의 리소스 사용량에 따라 유연하게 대응할 수 있습니다.
 - **간편한 리소스 조정**: 기존의 Pod를 재시작하지 않고도 리소스 크기를 조정할 수 있어, 관리가 간편해집니다.
 
-> Memory Decrease: Memory limits cannot be decreased unless the resizePolicy for memory is RestartContainer. Memory requests can generally be decreased.
+> Memory Decrease: Memory limits cannot be decreased unless the resizePolicy for memory is RestartContainer. Memory requests can generally be decreased.  
 {: .prompt-danger}
 
 => **Memory limits는 `RestartContainer`로 설정하지 않는 이상 감소시킬 수 없습니다.**

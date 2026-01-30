@@ -50,7 +50,7 @@ namespace/web labeled
 
 ## 3. Pod 및 Service 생성
 
-> WEB 서버는 nginx:latest 이미지를 사용했고, WAS 서버는 tomcat:latest 이미지를 사용했고 DB 서버는 arm64v8/mysql:latest 이미지를 사용했습니다. arm기반 OS를 사용중이기 때문에 기존 mysql:latest이미지를 사용하면 동작하지 않습니다. 또한 실습에서 Service는 외부에서 접속하지 않아도 되기 때문에 ClusterIP Type으로 생성했습니다. [ Type을 지정하지 않으면 ClusterIP 타입으로 생성됨 ]
+> WEB 서버는 nginx:latest 이미지를 사용했고, WAS 서버는 tomcat:latest 이미지를 사용했고 DB 서버는 arm64v8/mysql:latest 이미지를 사용했습니다. arm기반 OS를 사용중이기 때문에 기존 mysql:latest이미지를 사용하면 동작하지 않습니다. 또한 실습에서 Service는 외부에서 접속하지 않아도 되기 때문에 ClusterIP Type으로 생성했습니다. [ Type을 지정하지 않으면 ClusterIP 타입으로 생성됨 ]  
 {: .prompt-tip}
 
 ### 3.1. WEB manifest file
@@ -184,7 +184,7 @@ web            service/web-service            ClusterIP   10.152.183.96    <none
 
 ## 4. Network Policy 생성
 
-> DNS 포트와 프로토콜인 53번 포트로 나가는 UCP, TCP 프로토콜 반드시 명시해야 합니다.
+> DNS 포트와 프로토콜인 53번 포트로 나가는 UCP, TCP 프로토콜 반드시 명시해야 합니다.  
 {: .prompt-tip}
 
 ### 4.1. WEB-Network Policy manifest file
@@ -344,7 +344,7 @@ web         web-policy   <none>         25s
 
 ## 5. Test
 
-> busybox 이미지를 사용했고, 각각의 namespace에 test pod를 생성해 테스트 했습니다.
+> busybox 이미지를 사용했고, 각각의 namespace에 test pod를 생성해 테스트 했습니다.  
 {: .prompt-tip}
 
 ### 5.1. web namespace pod에서 연결 확인
@@ -465,7 +465,7 @@ db -> was ( O )
 
 ## 8. 결론
 
-> 네임스페이스를 생성할 때 레이블이 자동으로 설정되지 않으므로, 네트워크 정책을 설정할 때 반드시 레이블을 수동으로 설정해야 합니다. 또한, DNS 트래픽을 명시적으로 허용하지 않으면 DNS 이름으로 접근할 수 없습니다.
+> 네임스페이스를 생성할 때 레이블이 자동으로 설정되지 않으므로, 네트워크 정책을 설정할 때 반드시 레이블을 수동으로 설정해야 합니다. 또한, DNS 트래픽을 명시적으로 허용하지 않으면 DNS 이름으로 접근할 수 없습니다.  
 {: .prompt-tip}
 ---
 

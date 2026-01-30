@@ -61,7 +61,7 @@ service/nginx-test-service exposed
 
 ### 3.2. 테스트용 Ingress 리소스 설정
 
-> 기존에 사용하고 있는 kkamji.net 도메인을 사용하였습니다.
+> 기존에 사용하고 있는 kkamji.net 도메인을 사용하였습니다.  
 {: .prompt-info}
 
 ```bash

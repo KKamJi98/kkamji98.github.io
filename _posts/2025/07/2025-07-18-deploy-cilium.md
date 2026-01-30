@@ -15,10 +15,10 @@ image:
 
 ## 1. Cilium 구성 요소
 
-> - [Cilium Docs - Component Overview](https://docs.cilium.io/en/stable/overview/component-overview/)
+> - [Cilium Docs - Component Overview](https://docs.cilium.io/en/stable/overview/component-overview/)  
 
 ![Cilium Overview](/assets/img/kubernetes/cilium/cilium-overview.webp)
-> Cilium Overview - <https://docs.cilium.io/en/stable/overview/component-overview/>
+> Cilium Overview - <https://docs.cilium.io/en/stable/overview/component-overview/>  
 
 Cilium은 크게 `Cilium Operator`, `Cilium Agent`, `Cilium Client`, `Hubble`, `DataStore` 로 나뉘며 각 구성 요소들은 다음과 같이 동작합니다.
 
@@ -49,7 +49,7 @@ Cilium Agent 간의 상태를 저장하고 전파하기 위해 사용되는 데�
 
 ## 2. System Requirements 확인
 
-> - [Cilium Docs - System Requirements](https://docs.cilium.io/en/stable/operations/system_requirements/)
+> - [Cilium Docs - System Requirements](https://docs.cilium.io/en/stable/operations/system_requirements/)  
 
 Cilium을 배포하기 전, 현재 시스템이 Cilium의 최소 요구사항을 충족하는지 확인해보도록 하겠습니다. Cilium의 최소 요구사항은 다음과 같습니다.
 

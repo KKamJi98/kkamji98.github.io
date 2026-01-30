@@ -10,17 +10,17 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
-> **Git을 사용해 프로젝트 폴더나 알고리즘 파일을 업로드해야 할 때 업로드될 필요가 없는 파일까지 함께 업로드되는 경우가 있습니다.**
+> **Git을 사용해 프로젝트 폴더나 알고리즘 파일을 업로드해야 할 때 업로드될 필요가 없는 파일까지 함께 업로드되는 경우가 있습니다.**  
 > 
-> **이러한 문제를 해결하기 위해 .gitignore 파일을 수정하게 되는데 IDE마다 gitignore 서식을 다르게 지정해야 해서 번거로움이 있었습니다.**
+> **이러한 문제를 해결하기 위해 .gitignore 파일을 수정하게 되는데 IDE마다 gitignore 서식을 다르게 지정해야 해서 번거로움이 있었습니다.**  
 >
-> **간단하게 .gitignore 파일을 설정할 수 있는 방법을 찾다가 제가 찾은 방법을 공유합니다.**
+> **간단하게 .gitignore 파일을 설정할 수 있는 방법을 찾다가 제가 찾은 방법을 공유합니다.**  
     
 ---
 
 ## 1. [.gitignore] 파일이란?
 
-> **Git 저장소에서 추적하지 않을 파일 또는 디렉토리를 지정하는 데 사용되는 설정 파일**
+> **Git 저장소에서 추적하지 않을 파일 또는 디렉토리를 지정하는 데 사용되는 설정 파일**  
 
 ---
 
@@ -47,7 +47,7 @@ image:
 
 ## 3. [gitignore.io] 홈페이지 사용법
 
-> 1. [gitignore.io](https://gitignore.io) 홈페이지에 들어간다.
+> 1. [gitignore.io](https://gitignore.io) 홈페이지에 들어간다.  
 
 ![image](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/10da090c-58f9-4cba-a431-7449611702e5)
 ---
@@ -55,7 +55,7 @@ image:
 
 ![image-1](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/e63013d7-3093-4c9a-bb70-bef2792bfacf)
 ---
-> 3. 넘어간 페이지에서 Ctrl + A 혹은 Command + A를 눌러 소스 코드를 전체 복사한 뒤 .**gitignore** 파일에 추가해준다
+> 3. 넘어간 페이지에서 Ctrl + A 혹은 Command + A를 눌러 소스 코드를 전체 복사한 뒤 .**gitignore** 파일에 추가해준다  
 
 ![image-2](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/3fd3da45-c3ce-4fdf-bf24-4c7e3aaedce9)
 

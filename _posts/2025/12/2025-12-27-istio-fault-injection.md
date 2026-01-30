@@ -35,7 +35,7 @@ Productpage (timeout: 3s)
        └─ Ratings
 ```
 
-> Productpage의 타임아웃(3초)보다 큰 지연을 주입하면, 별점(★) 영역에서 오류가 발생하는 것을 확인할 수 있습니다.
+> Productpage의 타임아웃(3초)보다 큰 지연을 주입하면, 별점(★) 영역에서 오류가 발생하는 것을 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ### 2.1. 실습 코드 받기
@@ -71,7 +71,7 @@ kubectl apply -f https://raw.githubusercontent.com/KKamJi98/kkamji-lab/main/stud
 open http://<EXTERNAL-IP>:30010/productpage
 ```
 
-> ⚠️ **결과**: admin으로 로그인하면 ratings 서비스에 지연이 발생하여 별점(★)이 표시되지 않습니다.
+> ⚠️ **결과**: admin으로 로그인하면 ratings 서비스에 지연이 발생하여 별점(★)이 표시되지 않습니다.  
 {: .prompt-warning}
 
 ![Rating Error](/assets/img/kubernetes/istio/01_rating_error.webp)

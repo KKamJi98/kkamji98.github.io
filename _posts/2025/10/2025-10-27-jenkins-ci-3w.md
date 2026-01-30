@@ -21,8 +21,8 @@ image:
 
 **Jenkins**는 오픈소스 자동화 서버입니다. 프로젝트의 Build, Test, Deploy 및 자동화를 지원하는 수백 개의 플러그인을 제공하고, 각 파이프라인의 단계별 동작에 대한 내용을 **코드로 정의**하여 사용할 수 있습니다.
 
-> [Jenkins Home](https://www.jenkins.io/)
-> [Jenkins Docs](https://www.jenkins.io/doc/)
+> [Jenkins Home](https://www.jenkins.io/)  
+> [Jenkins Docs](https://www.jenkins.io/doc/)  
 
 ### 1.1. Jenkins 핵심 특징
 
@@ -54,7 +54,7 @@ image:
 
 ![Jenkins Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-pipeline.webp)
 
-> [Jenkins Docs - What is Jenkins Pipeline?](https://www.jenkins.io/doc/book/pipeline/)
+> [Jenkins Docs - What is Jenkins Pipeline?](https://www.jenkins.io/doc/book/pipeline/)  
 
 ### 2.1. Jenkins Pipeline 장점
 
@@ -92,7 +92,7 @@ image:
 
 ![Blue Ocean](/assets/img/ci-cd/ci-cd-study/jenkins-pipeline-blue-ocean.webp)
 
-> [Jenkins Docs - Pipeline Run Details View](https://www.jenkins.io/doc/book/blueocean/pipeline-run-details/)
+> [Jenkins Docs - Pipeline Run Details View](https://www.jenkins.io/doc/book/blueocean/pipeline-run-details/)  
 
 ### 2.4. 파이프라인 2가지 구문 : **선언형** 파이프라인(권장)과 **스크립트형** 파이프라인
 
@@ -100,7 +100,7 @@ image:
 - **스크립트형** 파이프라인 : 커스텀 작업에 용이, 복잡하여 난이도가 높음, step은 필수 아님
 
 ![Scripted vs Declarative Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative.webp)
-> [Scripted vs Declarative Pipeline](https://velog.io/@kku64r/pipeline)
+> [Scripted vs Declarative Pipeline](https://velog.io/@kku64r/pipeline)  
 
 #### 2.4.1. Declarative Pipeline 예시
 
@@ -152,10 +152,10 @@ node {                  # Execute this Pipeline or any of its stages, on any ava
 #### 3.1.1. Jenkins Plugin 설치
 
 ![Jenkins Install Plugins](/assets/img/ci-cd/ci-cd-study/jenkins-install-plugins.webp)
-> Jenkins 관리 -> Plugins
+> Jenkins 관리 -> Plugins  
 
 ![Jenkins Install Plugins - 2](/assets/img/ci-cd/ci-cd-study/jenkins-install-plugins-2.webp)
-> Available plugins -> Search available plugins -> 아래 3개 플러그인 선택 -> Install
+> Available plugins -> Search available plugins -> 아래 3개 플러그인 선택 -> Install  
 
 1. [Pipeline Stage View](https://plugins.jenkins.io/pipeline-stage-view/)
 2. [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
@@ -163,7 +163,7 @@ node {                  # Execute this Pipeline or any of its stages, on any ava
 
 #### 3.1.2. Jenkins Credential 설정
 
-> Jenkins 관리 -> Credentials -> System -> Global credentials -> Add Credentials
+> Jenkins 관리 -> Credentials -> System -> Global credentials -> Add Credentials  
 
 1. Gogs Repo 자격증명 설정 : **gogs-crd**
     - Kind : Username with password
@@ -183,8 +183,8 @@ node {                  # Execute this Pipeline or any of its stages, on any ava
 
 ### 3.2. Jenkins Item 생성(Pipeline)
 
-> Jenkins Home -> 새로운 Item(New Item) -> item type(Pipeline)
-> item name: `pipeline-ci`
+> Jenkins Home -> 새로운 Item(New Item) -> item type(Pipeline)  
+> item name: `pipeline-ci`  
 
 ```shell
 pipeline {
@@ -543,10 +543,10 @@ Jenkins job Trigger - [dev-app] - Setting → Webhooks → Gogs 클릭
 => Add webhook 클릭 -> Test Delivery 시도 시, 현재는 Jenkins 미설정 상태로 404 실패
 
 ![Gogs - Add Webhook](/assets/img/ci-cd/ci-cd-study/gogs-add-webhook.webp)
-> Webhook 설정
+> Webhook 설정  
 
 ![Gogs - Check Webhook](/assets/img/ci-cd/ci-cd-study/gogs-check-webhook.webp)
-> 생성한 Webhook 확인
+> 생성한 Webhook 확인  
 
 ### 3.8. Jenkins Item 생성(Pipeline Name - SCM-Pipeline)
 
@@ -650,13 +650,13 @@ git add . && git commit -m "VERSION $(cat VERSION) Changed" && git push -u origi
 ### 3.10. WebHook 기록, Jenkins 트리거 빌드 확인 및 Container Image 확인
 
 ![Gogs Webhook History Check](/assets/img/ci-cd/ci-cd-study/gogs-webhook-histroy-check.webp)
-> Gogs Webhook 기록
+> Gogs Webhook 기록  
 
 ![Jenkins Trigger Build Check](/assets/img/ci-cd/ci-cd-study/jenkins-trigger-build-check.webp)
-> Jenkins Trigger Build
+> Jenkins Trigger Build  
 
 ![Docker Hub 0.0.3 Container Iamge](/assets/img/ci-cd/ci-cd-study/docker-hub-0-0-3-container-image.webp)
-> Docker Hub 0.0.3 버전 컨테이너 이미지 확인
+> Docker Hub 0.0.3 버전 컨테이너 이미지 확인  
 
 ### 3.11. Kubernetes 에 신규 버전 컨테이너 이미지 적용
 

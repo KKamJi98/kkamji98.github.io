@@ -12,18 +12,18 @@ image:
 
 AI 코딩 에이전트(Claude Code, Cursor 등)를 활용한 개발이 보편화되면서, **여러 에이전트가 동시에 작업할 때 발생하는 충돌과 컨텍스트 오염 문제**가 새로운 과제로 떠오르고 있습니다. 이 글에서는 Git Worktree를 활용하여 **병렬 Multi-Agent 개발 환경**을 구축하는 방법을 다룹니다.
 
-> **TL;DR**
-> - **Git Worktree**: 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 독립된 폴더에서 작업
-> - **Bare Repository 방식**: `.bare/` 폴더에 Git DB를 두고, 모든 브랜치를 worktree로 관리
-> - **Multi-Agent 활용**: 각 AI 에이전트에게 독립된 worktree 할당 → 컨텍스트 분리 및 충돌 위험 감소
-> - **wt CLI 도구**: `wt init` 한 줄로 bare repo + worktree 자동 설정 ([GitHub](https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool))
+> **TL;DR**  
+> - **Git Worktree**: 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 독립된 폴더에서 작업  
+> - **Bare Repository 방식**: `.bare/` 폴더에 Git DB를 두고, 모든 브랜치를 worktree로 관리  
+> - **Multi-Agent 활용**: 각 AI 에이전트에게 독립된 worktree 할당 → 컨텍스트 분리 및 충돌 위험 감소  
+> - **wt CLI 도구**: `wt init` 한 줄로 bare repo + worktree 자동 설정 ([GitHub](https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool))  
 {: .prompt-info}
 
 ---
 
 ## 1. Quick Start
 
-> **환경 기준:** Git 2.52.0
+> **환경 기준:** Git 2.52.0  
 {: .prompt-info}
 
 ### 1.1. Bare Repository 초기 설정
@@ -59,7 +59,7 @@ git worktree add "$BASE_BRANCH" -b "$BASE_BRANCH" "origin/$BASE_BRANCH"
 git -C "$BASE_BRANCH" branch --set-upstream-to="origin/$BASE_BRANCH" "$BASE_BRANCH"
 ```
 
-> **Note:** 루트 디렉토리는 컨트롤 영역이며 실제 작업은 각 worktree 디렉토리에서 수행합니다.
+> **Note:** 루트 디렉토리는 컨트롤 영역이며 실제 작업은 각 worktree 디렉토리에서 수행합니다.  
 {: .prompt-tip}
 
 ### 1.2. Worktree 생성/삭제
@@ -263,7 +263,7 @@ git worktree add staging -b staging origin/staging
 git -C staging switch -c staging --track origin/staging
 ```
 
-> **주의:** `git worktree add worktrees/staging origin/staging` (without `-b`)은 **detached HEAD** 상태가 됩니다. 반드시 `-b` 옵션으로 로컬 브랜치를 생성하세요.
+> **주의:** `git worktree add worktrees/staging origin/staging` (without `-b`)은 **detached HEAD** 상태가 됩니다. 반드시 `-b` 옵션으로 로컬 브랜치를 생성하세요.  
 {: .prompt-warning}
 
 ### 4.2. `git pull` 시 "There is no tracking information for the current branch"
@@ -299,7 +299,7 @@ cd "$BASE_BRANCH" && npm install
 cd feat/login && npm install
 ```
 
-> **Tip:** pnpm, yarn berry 등 링크 기반 패키지 매니저를 사용하면 디스크 공간 절약 가능
+> **Tip:** pnpm, yarn berry 등 링크 기반 패키지 매니저를 사용하면 디스크 공간 절약 가능  
 {: .prompt-tip}
 
 ### 4.5. IDE에서 여러 Worktree 열기

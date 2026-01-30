@@ -207,7 +207,7 @@ ok
 
 ### 3.2. 로그 확인 {elasticsearch url}/_search
 
-> logstash로 전송한 로그가 elasticsearch로 전송된 것을 확인할 수 있습니다.
+> logstash로 전송한 로그가 elasticsearch로 전송된 것을 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ![elasticsearch_search](/assets/img/observability/elasticsearch_search.webp)
@@ -216,7 +216,7 @@ ok
 
 ## 4. Log Group에서 발생시키는 로그데이터 확인
 
-> 아래 event, content를 확인하기 위한 테스트용 Lambda Function를 생성하고, Lambda 함수의 handler에 어떤 데이터가 들어오는지 확인 해보겠습니다.
+> 아래 event, content를 확인하기 위한 테스트용 Lambda Function를 생성하고, Lambda 함수의 handler에 어떤 데이터가 들어오는지 확인 해보겠습니다.  
 {: .prompt-tip}
 
 ```python
@@ -228,12 +228,12 @@ def handler(event, context):
 ```
 
 > **CloudWatch Logs**의 **Subscription Filter**으로 위의 테스트용 Lambda Function로 지정해 테스트 한 결과. 들어오는 데이터의 형식은 아래와 같았습니다.  
-> 데이터의 형식에 대해 알아보니 해당 형식은 Log Group에서 Log Data를 전송할 때 데이터를 gzip으로 압축한 뒤, gzip파일을 base64로 인코딩 되어 전달된 결과라는 것을 알 수 있었습니다.
+> 데이터의 형식에 대해 알아보니 해당 형식은 Log Group에서 Log Data를 전송할 때 데이터를 gzip으로 압축한 뒤, gzip파일을 base64로 인코딩 되어 전달된 결과라는 것을 알 수 있었습니다.  
 {: .prompt-tip}
 
 ![Subscription Filter Data Format](/assets/img/observability/log_group_data_format.webp)
 
-> event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.
+> event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.  
 {: .prompt-tip}
 
 ```python
@@ -258,7 +258,7 @@ print(original_data.decode('utf-8'))
 ❯ python -u "decode_data.py"
 {"messageType":"DATA_MESSAGE","owner":"376129852049","logGroup":"/aws/Lambda/getIncorrectLists","logStream":"2024/11/20/[$LATEST]bb494dc82843496683c62052533a046f","subscriptionFilters":["test-Lambda"],"logEvents":[{"id":"38627627955484818852768098168489833298904231245367279618","timestamp":1732122743505,"message":"2024-11-20T17:12:23.505Z\t830e95c2-4983-4e72-99f1-1aa410a0ffb0\tINFO\tFetching incorrect lists...\n","extractedFields":{"event":"INFO\tFetching incorrect lists...\n","request_id":"830e95c2-4983-4e72-99f1-1aa410a0ffb0","timestamp":"2024-11-20T17:12:23.505Z"}}]}
 ```
-> 함수가 동작하면서 발생한 로그는 `logEvents` : 배열 형태로 하나씩 저장되어 전달되는 것을 확인할 수 있습니다.
+> 함수가 동작하면서 발생한 로그는 `logEvents` : 배열 형태로 하나씩 저장되어 전달되는 것을 확인할 수 있습니다.  
 {: .prompt-tip}
 
 ---
@@ -269,9 +269,9 @@ print(original_data.decode('utf-8'))
 >
 > 이제 해당 데이터를 사람이 읽을 수 있는 방식으로 변환 후 데이터를 Logstash로 전달하는 역할을 하는 Lambda Function을 생성해보겠습니다.  
 >
-> logstash url은 Secrets Manager에 값을 불러오는 방식으로 사용했습니다. (Lambda Function에 권한 부여 필수)
+> logstash url은 Secrets Manager에 값을 불러오는 방식으로 사용했습니다. (Lambda Function에 권한 부여 필수)  
 >
-> 기본 내장된 모듈이 아닌 requests 모듈은 Lambda Layer로 추가해주셔야 합니다. 또한 CloudWatch Logs에서 해당 Lambda 함수를 호출할 역할과 권한을 할당해야 합니다.
+> 기본 내장된 모듈이 아닌 requests 모듈은 Lambda Layer로 추가해주셔야 합니다. 또한 CloudWatch Logs에서 해당 Lambda 함수를 호출할 역할과 권한을 할당해야 합니다.  
 {: .prompt-tip}
 
 ```python
@@ -353,17 +353,17 @@ def handler(event, context):
 
 > 예시를 위해 콘솔에서 작업했습니다. Lambda Function의 개수가 많아질경우 콘솔에서 작업하기 보다는 IaC 도구 사용을 추천드립니다.  
 >
-> CloudWatch에 들어가서 로그 그룹을 선택한 뒤, 작업 -> 구독 필터 -> Lambda 구독 필터 생성
+> CloudWatch에 들어가서 로그 그룹을 선택한 뒤, 작업 -> 구독 필터 -> Lambda 구독 필터 생성  
 {: .prompt-tip}
 
 ![create_subscription_filter](/assets/img/observability/create_subscription_filter.webp)
 
-> subscription filter 역할을 하는 Lambda function을 선택합니다.
+> subscription filter 역할을 하는 Lambda function을 선택합니다.  
 {: .prompt-tip}
 
 ![subscription_filter_select_lambda_function](/assets/img/observability/subscription_filter_select_lambda_function.webp)
 
-> 로그 형식을 JSON 방식으로 지정한 뒤, 구독 필터 이름을 넣어준 뒤 **Subscription Filter**를 생성합니다.
+> 로그 형식을 JSON 방식으로 지정한 뒤, 구독 필터 이름을 넣어준 뒤 **Subscription Filter**를 생성합니다.  
 {: .prompt-tip}
 
 ![subscription_filter_log_format](/assets/img/observability/subscription_filter_log_format.webp)
@@ -372,12 +372,12 @@ def handler(event, context):
 
 ## 7. 테스트
 
-> 해당 Lambda Function를 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.
+> 해당 Lambda Function를 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.  
 {: .prompt-tip}
 
 ![subscription_filter_test_kibana](/assets/img/observability/subscription_filter_test_kibana.png)
 
-> Lambda Function 에서 생성되는 로그를 CloudWatch Log Group의 Subscribe Filter를 통해 Kibana에서 확인이 가능한 것을 알 수 있습니다.
+> Lambda Function 에서 생성되는 로그를 CloudWatch Log Group의 Subscribe Filter를 통해 Kibana에서 확인이 가능한 것을 알 수 있습니다.  
 {: .prompt-tip}
 
 ---
@@ -386,7 +386,7 @@ def handler(event, context):
 
 > ELK를 통해 다수의 Lambda Function에서 발생하는 로그 데이터를 한 곳에서 확인할 수 있게 되었습니다.  
 >
-> 아직 Kibana Dashboard의 가시성과 로그 데이터 필터링 부분에서 많이 개선이 필요하지만. 휴식을 취하고 차근차근 개선해보도록 하겠습니다.
+> 아직 Kibana Dashboard의 가시성과 로그 데이터 필터링 부분에서 많이 개선이 필요하지만. 휴식을 취하고 차근차근 개선해보도록 하겠습니다.  
 {: .prompt-tip}
 
 ![kibana_result](/assets/img/observability/kibana_result.webp)

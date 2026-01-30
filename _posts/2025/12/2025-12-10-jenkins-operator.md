@@ -23,10 +23,10 @@ Jenkins Operator 설계에는 다음과 같은 개념이 포함되어 있습니�
 - 베이스(Base) 루프와 사용자(User) 루프라는 두 개의 더 작은 조정(Reconciliation) 루프로 구성된 메인 조정 루프를 구현
 
 ![Jenkins Operator Reconcile Process](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-process.webp)
-> Jenkins Operator Reconcile Process
+> Jenkins Operator Reconcile Process  
 
 ![Detailed Jenkins Operator Reconcile Process](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-process-detailed.webp)
-> Detailed Jenkins Operator Reconcile Process
+> Detailed Jenkins Operator Reconcile Process  
 
 ### 1.1. Base Reconciliation Loop
 

@@ -39,7 +39,7 @@ eBPF를 사용하기에 Cilium은 대규모 환경에서도 매우 뛰어난 확
 
 ## 3. 기존 Kubernetes Network의 한계 (iptables)
 
-> - [eBPF Basic, iptables/netfilter 방식과 eBPF 방식 비교 - kangdorr](https://blog.naver.com/kangdorr/222593265958)
+> - [eBPF Basic, iptables/netfilter 방식과 eBPF 방식 비교 - kangdorr](https://blog.naver.com/kangdorr/222593265958)  
 
 Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux Network Stack**을 사용합니다. 하지만 이러한 방식은 복잡하고, 변경에 시간이 오래걸리며, Layer를 건너 뛰기 어렵다는 단점이 있습니다.
 
@@ -72,17 +72,17 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 가장 큰 장점은 압도적인 성능과 높은 프로그래밍 유연성입니다. 특히 복잡한 규칙으로 성능 저하가 발생하는 기존 iptables 방식의 한계를 극복하는 차세대 네트워킹 기술로 주목받고 있습니다.
 
 ![Linux Kernel Network Flow](/assets/img/kubernetes/cilium/linux_kernel_network_flow.webp)
-> Linux Kernel Network Flow - <https://cilium.io/blog/2020/11/10/ebpf-future-of-networking/>
+> Linux Kernel Network Flow - <https://cilium.io/blog/2020/11/10/ebpf-future-of-networking/>  
 
 ![BGP Network Flow](/assets/img/kubernetes/cilium/bgp_network_flow.webp)
 ![Standard vs Cilium eBPF Networking](/assets/img/kubernetes/cilium/standard_vs_cilium_ebpf_networing.webp)
-> Standard vs Cilium eBPF Networking - <https://cilium.io/blog/2021/05/11/cni-benchmark/>
+> Standard vs Cilium eBPF Networking - <https://cilium.io/blog/2021/05/11/cni-benchmark/>  
 
 ![eBPF Summary](/assets/img/kubernetes/cilium/ebpf_summary.webp)
-> eBPF Summary - <https://ebpf.io/>
+> eBPF Summary - <https://ebpf.io/>  
 
 ![eBPF Merit](/assets/img/kubernetes/cilium/ebpf_merit.webp)
-> eBPF Merit - <https://ebpf.io/what-is-ebpf/>
+> eBPF Merit - <https://ebpf.io/what-is-ebpf/>  
 
 ### 4.1. 장점 1. 커널 내 고성능 네트워킹 및 실행
 
@@ -120,12 +120,12 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 **eBPF**는 Kernel 코드의 특정 지점에 **훅(Hook)**을 걸어두고, 해당 지점에서 이벤트(예: 네트워크 패킷 수신)가 발생하면 미리 로드해둔 eBPF 프로그램을 실행하는 방식으로 동작합니다. 사전 정의된 훅(Hook)에는 시스템 호출, 함수 진입/종료, Kernel 추적점, 네트워크 이벤트 등이 포함됩니다.
 
 ![eBPF Event](/assets/img/kubernetes/cilium/ebpf_event.webp)
-> eBPF Even - <https://ebpf.io/what-is-ebpf/>
+> eBPF Even - <https://ebpf.io/what-is-ebpf/>  
 
 **eBPF**는 특정 요구 사항에 맞는 사전 정의된 후크가 없는 경우 Kernel 프로브(kprobe)나 사용자 프로브(uprobe)를 만들어 Kernel이나 사용자 애플리케이션의 어느 곳에나 eBPF 프로그램을 첨부할 수 있습니다.
 
 ![eBPF Scenario](/assets/img/kubernetes/cilium/ebpf_scenario.webp)
-> eBPF Scenario - <https://ebpf.io/what-is-ebpf/>
+> eBPF Scenario - <https://ebpf.io/what-is-ebpf/>  
 
 - XDP (eXpress Data Path): 네트워크 드라이버 단에서 가장 먼저 패킷을 처리하여 최고 속도를 보장
 - TC (Traffic Control): Kernel의 트래픽 제어 계층에서 패킷을 처리
@@ -135,7 +135,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 
 ## 6. Cilium Networking(Routing) Modes
 
-> - [Cilium Docs - Routing](https://docs.cilium.io/en/stable/network/concepts/routing/)
+> - [Cilium Docs - Routing](https://docs.cilium.io/en/stable/network/concepts/routing/)  
 
 Cilium에는 크게 **Encapsulation (Tunnel) Mode**와 **Direct Routing (Native) Mode**가 있습니다.  
 
@@ -209,7 +209,7 @@ IP 주소 관리(IPAM)는 Cilium이 관리하는 네트워크 엔드포인트(�
 
 ![Kubernetes-host scope IPAM Mode](/assets/img/kubernetes/cilium/kubernetes_host_scope_ipam_mode.webp)
 
-> Kubernetes-host scope IPAM Mode - <https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/>
+> Kubernetes-host scope IPAM Mode - <https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/>  
 
 ### 7.2. Cluster Scope (Default)
 
@@ -217,22 +217,22 @@ IP 주소 관리(IPAM)는 Cilium이 관리하는 네트워크 엔드포인트(�
 
 ![Cluster Scope IPAM Mode](/assets/img/kubernetes/cilium/cluster_scope_ipam_mode.webp)
 
-> Cluster Scope IPAM Mode - <https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/>
+> Cluster Scope IPAM Mode - <https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/>  
 
 ### 7.3. Multi-Pool (Beta)
 
 사용자가 정의한 작업 주석 및 노드 레이블에 따라 여러 개의 다른 IPAM 풀에서 PodCIDR을 할당하는 것을 지원합니다.
 
 ![Multi-Pool](/assets/img/kubernetes/cilium/multi-pool.webp)
-> Multi-Pool - <https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/>
+> Multi-Pool - <https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/>  
 
 ---
 
 ## 8. Kube-Proxy Replacement
 
-> - [Cilium Docs - Kubernetes Without kube-proxy](https://docs.cilium.io/en/latest/network/kubernetes/kubeproxy-free/)
-> - [Cilium 100% Kube-proxy replacement 동작 소개 1 - Microsoft 사례](https://www.youtube.com/watch?v=yKPNmhckJHY)
-> - [Cilium 100% Kube-proxy replacement 동작 소개 2 - ByteDance 사례](https://www.youtube.com/watch?v=cKPW67D7X10)
+> - [Cilium Docs - Kubernetes Without kube-proxy](https://docs.cilium.io/en/latest/network/kubernetes/kubeproxy-free/)  
+> - [Cilium 100% Kube-proxy replacement 동작 소개 1 - Microsoft 사례](https://www.youtube.com/watch?v=yKPNmhckJHY)  
+> - [Cilium 100% Kube-proxy replacement 동작 소개 2 - ByteDance 사례](https://www.youtube.com/watch?v=cKPW67D7X10)  
 
 Cilium으로 Kube-Proxy를 대체할 수 있는데, 이를 통해 아래와 같이 전통적인 Linux Network Stack의 절차를 Skip하고 iptables가 가진 고질적인 문제를 해결할 수 있습니다.
 

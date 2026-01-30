@@ -134,10 +134,10 @@ kubectl get pod,svc,ep -n guestbook
 ```
 
 ![Admin User Main](/assets/img/ci-cd/ci-cd-study/argocd-admin-user-main-page.webp)
-> Admin 계정에서 Application 확인
+> Admin 계정에서 Application 확인  
 
 ![Alice User Main](/assets/img/ci-cd/ci-cd-study/argocd-alice-user-main-page.webp)
-> Alice 계정에서 Application 확인
+> Alice 계정에서 Application 확인  
 
 현재 alice 계정은 아무런 권한을 갖고 있지 않아 로그인은 할 수 있지만 애플리케이션이나 클러스터 목록을 조회해도 볼 수 없고, 빈 내용만 표시됩니다. 권한을 부여하는 방법에는 아래 두 가지 방법이 있습니다.
 
@@ -170,7 +170,7 @@ kubectl edit cm -n argocd argocd-rbac-cm
 ```
 
 ![Alice User Main - default policy](/assets/img/ci-cd/ci-cd-study/argocd-alice-user-main-page-readonly.webp)
-> Alice 계정에서 Application 확인 (default 정책으로 Application이 보이는 상태)
+> Alice 계정에서 Application 확인 (default 정책으로 Application이 보이는 상태)  
 
 이제 마지막으로 admin 사용자를 비활성화 하도록 하겠습니다. `argocd-cm` ConfigMap 에서 `admin.enabled` 필드를 `false` 로 변경하면 됩니다.
 
@@ -196,7 +196,7 @@ alice  true     apiKey, login
 
 ## 2. 서비스 어카운트
 
-> [Argo CD Docs - RBAC Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/)
+> [Argo CD Docs - RBAC Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/)  
 
 서비스 어카운트는 CI/CD 파이프라인과 같은 자동화 프로세스를 시스템에 인증하는 데 사용하는 계정입니다. 개인 사용자 계정이 비활성화되거나 권한이 변경되면 파이프라인이 실패할 수 있으므로, 서비스 어카운트는 개인 사용자 계정에 종속되어서는 안 됩니다. 또한 서비스 어카운트는 엄격하게 최소 권한 원칙을 적용해야 하며, 파이프라인에서 수행하는 작업 범위를 초과하는 권한을 가져서는 안 됩니다.
 
@@ -339,10 +339,10 @@ kubectl get appproject -n argocd
 ```
 
 ![Argo CD Project - sample-apps](/assets/img/ci-cd/ci-cd-study/argocd-project-sample-apps.webp)
-> 대상 네임스페이스와 클러스터를 제한하고, 정해진 리포지터리로부터 상태 파일을 가져오도록 설정
+> 대상 네임스페이스와 클러스터를 제한하고, 정해진 리포지터리로부터 상태 파일을 가져오도록 설정  
 
 ![Argo CD Project - sample-apps Roles](/assets/img/ci-cd/ci-cd-study/argocd-project-sample-apps-roles.webp)
-> 대상 네임스페이스와 클러스터를 제한하고, 정해진 리포지터리로부터 상태 파일을 가져오도록 설정
+> 대상 네임스페이스와 클러스터를 제한하고, 정해진 리포지터리로부터 상태 파일을 가져오도록 설정  
 
 이제 생성한 `sample-apps` 프로젝트에 애플리케이션을 배포 해보겠습니다.
 
@@ -446,10 +446,10 @@ argocd app sync argocd/pre-post-sync --auth-token $TOKEN
 ```
 
 ![ArgoCD Application Sync Result](/assets/img/ci-cd/ci-cd-study/argocd-application-sync-result.webp)
-> ArgoCD Application Sync 결과
+> ArgoCD Application Sync 결과  
 
 ![ArgoCD Events](/assets/img/ci-cd/ci-cd-study/argocd-application-sync-events.webp)
-> ArgoCD Application Sync Events 확인
+> ArgoCD Application Sync Events 확인  
 
 프로젝트 역할(Project Role) 기반으로 생성되는 모든 토큰은 해당 역할 내에 저장되며, 토큰이 마지막으로 사용된 시점과 교체가 필요한 시기를 확인할 수 있습니다. 필요한 경우 토큰에 만료 일자를 지정하여 일정 기간 동안만 사용하도록 구성할 수도 있습니다. 다만 만료 주기를 지나치게 짧게 설정하면 관리자가 주기적으로 토큰을 재발급해야 하기 때문에 운영 부담이 증가할 수 있습니다.
 
@@ -516,7 +516,7 @@ SSO를 활성화한 상태에서 로그인 할수 있는 로컬 계정이 없고
 #### 3.1.1. Keycloak 소개
 
 Keycloak은 애플리케이션에 초점을 맞춘 **오픈 소스 ID 및 접근(권한) 관리 도구**입니다. 사용자는 Keycloak을 통해 인증을 수행하고, 애플리케이션은 Keycloak이 발급하는 토큰을 기반으로 권한을 검증합니다. 이를 통해 애플리케이션은 직접 사용자 자격 증명(아이디/비밀번호)을 관리하지 않고도 안전한 인증·인가 기능을 제공할 수 있습니다.  
-> [Keycloak Docs](https://www.keycloak.org/)
+> [Keycloak Docs](https://www.keycloak.org/)  
 
 Keycloak의 주요 특징은 다음과 같습니다.
 

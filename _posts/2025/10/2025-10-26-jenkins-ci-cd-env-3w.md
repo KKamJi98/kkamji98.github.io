@@ -101,10 +101,10 @@ curl -k https://172.28.8.232:32795/version
 
 `kube-ops-view`는 여러 Kubernetes 클러스터를 대상으로 읽기 전용(Read-only) 대시보드를 제공하는 오픈소스 도구입니다. 클러스터의 현재 상태(노드, 파드, 네임스페이스 등)를 시각적으로 확인하고 운영팀이 빠르게 전반 구조 및 이상 상태를 파악할 수 있습니다.
 
-> [kube-ops-view - GitHub](https://github.com/hjacobs/kube-ops-view)
+> [kube-ops-view - GitHub](https://github.com/hjacobs/kube-ops-view)  
 
 ![kube-ops-view](/assets/img/ci-cd/ci-cd-study/kube-ops-view.webp)
-> [ec2spotworkshops - Install Kube-ops-view](https://ec2spotworkshops.com/using_ec2_spot_instances_with_eks/030_k8s_tools.html)
+> [ec2spotworkshops - Install Kube-ops-view](https://ec2spotworkshops.com/using_ec2_spot_instances_with_eks/030_k8s_tools.html)  
 
 ```shell
 # kube-ops-view
@@ -219,21 +219,21 @@ docker compose logs jenkins -f
 ```
 
 ![Jenkins Setup](/assets/img/ci-cd/ci-cd-study/jenkins-setup.webp)
-> Jenkins 초기 암호 입력 -> Install Suggested Plugins 클릭
+> Jenkins 초기 암호 입력 -> Install Suggested Plugins 클릭  
 
 ![Jenkins Create First Admin User](/assets/img/ci-cd/ci-cd-study/jenkins-create-first-admin-user.webp)
-> 사용할 계정 정보 입력 후 Save and Continue 클릭 해 계정 생성
+> 사용할 계정 정보 입력 후 Save and Continue 클릭 해 계정 생성  
 
 ![Jenkins Instance Configuration](/assets/img/ci-cd/ci-cd-study/jenkins-instance-configuration.webp)
-> Jenkins URL -> Host OS의 eth0 인터페이스의 IP 입력
+> Jenkins URL -> Host OS의 eth0 인터페이스의 IP 입력  
 
 ![Jenkins Main](/assets/img/ci-cd/ci-cd-study/jenkins-main.webp)
-> Jenkins 접속 완료 확인
+> Jenkins 접속 완료 확인  
 
 #### 1.3.2. Jenkins 컨테이너에서 호스트에 도커 데몬 설정 (Docker-out-of-Docker)
 
 ![DinD vs DooD](/assets/img/ci-cd/ci-cd-study/d-in-d_vs_d-out-d.webp)
-> <https://daniel00324.tistory.com/17>
+> <https://daniel00324.tistory.com/17>  
 
 ```shell
 ##############################################################
@@ -311,7 +311,7 @@ open "http://$IP:3000/install"
 3. Token Name(devops) ⇒ Generate Token 클릭 (Token 메모해두기)
 
 ![Gogs Generate Token](/assets/img/ci-cd/ci-cd-study/gogs-generate-token.webp)
-> <https://daniel00324.tistory.com/17>
+> <https://daniel00324.tistory.com/17>  
 
 ```shell
 # 실습에 사용할 Gogs Token
@@ -321,10 +321,10 @@ open "http://$IP:3000/install"
 ### 1.6. Gogs Repository 생성
 
 ![Gogs Create Repository](/assets/img/ci-cd/ci-cd-study/gogs-create-repository.webp)
-> Gogs Repository 생성
+> Gogs Repository 생성  
 
 ![Gogs Repository Setting Screen](/assets/img/ci-cd/ci-cd-study/gogs-repository-setting-screen.webp)
-> Gogs Repository 설정 화면
+> Gogs Repository 설정 화면  
 
 - New Repository 1 : **개발팀용**
   - Repository Name : **dev-app**
@@ -343,7 +343,7 @@ open "http://$IP:3000/install"
   ⇒ Create Repository 클릭 : Repo 주소 확인
 
 ![Gogs Repository Setting Dev App](/assets/img/ci-cd/ci-cd-study/gogs-repository-setting-dev-app.webp)
-> dev-app repository 예시
+> dev-app repository 예시  
 
 ### 1.7. Gogs 실습을 위한 저장소 설정
 

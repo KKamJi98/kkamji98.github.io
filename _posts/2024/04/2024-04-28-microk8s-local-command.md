@@ -162,8 +162,8 @@ i-0fefad06e169df0c3   Ready    <none>   6m50s   v1.29.2
 
 ### 4.1. 마무리
 
-> 중간중간 TLS 인증서를 갱신하려고 csr, crt, rsa key 생성하고 온갖 방법을 동원했었는데.. MicroK8s는 csr.conf.template를 수정해야 적용이 된다..
-> 다른걸 고치면 무한루프의 지옥에 빠질수도..
+> 중간중간 TLS 인증서를 갱신하려고 csr, crt, rsa key 생성하고 온갖 방법을 동원했었는데.. MicroK8s는 csr.conf.template를 수정해야 적용이 된다..  
+> 다른걸 고치면 무한루프의 지옥에 빠질수도..  
 {: .prompt-tip}
 
 ---

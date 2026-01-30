@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> 저번 시간에는 [EC2상의 MicroK8s Cluster에 Local에서 명령하기](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/)에서 EC2 위에 있는 MicroK8s의 kubeconfig를 가져와 명령하는 방법을 다뤘습니다. 이번 포스트에서는 MicroK8s에 Worker Node를 추가하는 실습을 진행해 보겠습니다.
+> 저번 시간에는 [EC2상의 MicroK8s Cluster에 Local에서 명령하기](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/)에서 EC2 위에 있는 MicroK8s의 kubeconfig를 가져와 명령하는 방법을 다뤘습니다. 이번 포스트에서는 MicroK8s에 Worker Node를 추가하는 실습을 진행해 보겠습니다.  
 {: .prompt-info}
 
 ---
@@ -51,7 +51,7 @@ microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6
 
 ## 4. 클러스터에 조인 ( Worker Node )
 
-> 조인 명령어를 보니 Master Node의 **25000번 포트**가 클러스터 조인에 사용된다는 것을 알 수 있습니다. 따라서 Worker Node가 Master Node의 25000번 포트로 접근할 수 있도록 인바운드 규칙을 수정해줘야 합니다.
+> 조인 명령어를 보니 Master Node의 **25000번 포트**가 클러스터 조인에 사용된다는 것을 알 수 있습니다. 따라서 Worker Node가 Master Node의 25000번 포트로 접근할 수 있도록 인바운드 규칙을 수정해줘야 합니다.  
 {: .prompt-info}
 
 ```bash
@@ -95,12 +95,12 @@ nginx-7854ff8877-fnmlp   1/1     Running   0          27s   10.1.84.199   ip-10-
 nginx-7854ff8877-sjzkp   1/1     Running   0          27s   10.1.41.2     ip-10-0-0-81    <none>           <none>
 ```
 
-> pod가 Master Node와 Worker Node에 분산되어 생성된 것을 확인할 수 있습니다.
+> pod가 Master Node와 Worker Node에 분산되어 생성된 것을 확인할 수 있습니다.  
 {: .prompt-info}
 
 ### 6.1. 마무리
 
-> 무심코 25000번 포트를 열어주지 않거나 Worker Node를 Private Subnet에 위치시킬 경우 NAT Gateway나 NAT Instance를 사용해 인스턴스가 MicroK8s 이미지를 다운로드할 수 있도록 해야 합니다. 저처럼 헤매지 않도록 주의하세요.
+> 무심코 25000번 포트를 열어주지 않거나 Worker Node를 Private Subnet에 위치시킬 경우 NAT Gateway나 NAT Instance를 사용해 인스턴스가 MicroK8s 이미지를 다운로드할 수 있도록 해야 합니다. 저처럼 헤매지 않도록 주의하세요.  
 {: .prompt-tip}
 
 ---

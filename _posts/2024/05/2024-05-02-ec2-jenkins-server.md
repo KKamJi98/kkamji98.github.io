@@ -81,7 +81,7 @@ lines 1-20/20 (END)
 
 ## 3. Jenkins 접속해보기
 
-> Jenkins Server에 접속하려면 EC2 인스턴스 인바운드 규칙에서 8080 포트를 허용해야 합니다.
+> Jenkins Server에 접속하려면 EC2 인스턴스 인바운드 규칙에서 8080 포트를 허용해야 합니다.  
 {: .prompt-info}
 ---
 > {EC2_Public_IP}:8080.  
@@ -90,7 +90,7 @@ lines 1-20/20 (END)
 
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/54600af8-b49f-4694-a9f0-6bc047ad7ce1)
 
-> 비밀번호가 필요한 것을 알 수 있습니다. /var/lib/jenkins/secrets/initialAdminPassword를 확인해볼까요?
+> 비밀번호가 필요한 것을 알 수 있습니다. /var/lib/jenkins/secrets/initialAdminPassword를 확인해볼까요?  
 {: .prompt-info}
 
 ```bash
@@ -98,12 +98,12 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 39a746af851e4dca44bcbe3669r153128ab 
 ```
 
-> 해당 비밀번호로 접속해봅시다.
+> 해당 비밀번호로 접속해봅시다.  
 {: .prompt-info}
 
 ![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/902c0205-5850-4ef8-91e9-5c991a426301)
 
-> 접속했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해 보겠습니다.
+> 접속했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해 보겠습니다.  
 {: .prompt-info}
 
 ---

@@ -13,8 +13,8 @@ Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의
 
 이번 글에서는 Kubernetes Cluster의 Performance를 정량적으로 측정하고 비교 가능한 기준선을 만드는 도구인 `Kube-burner`에 대해 알아보고, 로컬 Kind Kubernetes Cluster에서 해당 툴에 대한 실습내용에 대해 공유하도록 하겠습니다.
 
-> [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)
-> [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)
+> [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)  
+> [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)  
 
 ---
 
@@ -213,7 +213,7 @@ Version: 1.17.3
 | `preLoadImages`    | Boolean  | `false` | Job 실행 전 DaemonSet으로 이미지 프리로드 수행 여부                                   |
 | `preLoadPeriod`    | Duration |    `1m` | 프리로드 대기 시간 설정                                                               |
 
-> [Kube-burner Docs - Jobs](https://kube-burner.github.io/kube-burner/latest/reference/configuration/#jobs)
+> [Kube-burner Docs - Jobs](https://kube-burner.github.io/kube-burner/latest/reference/configuration/#jobs)  
 
 ---
 
@@ -793,9 +793,9 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 {% endraw %}
 
 > /24 대역에서 위 3개는 할당 불가이므로 사용 가능한 Pod IP는 253개입니다. (hostNetwork 파드는 이 계산에서 제외)  
-> - 10.244.0.0  (첫 번째 주소: /24 네트워크의 네트워크 주소. 라우팅 식별용)
-> - 10.244.0.1  (두 번째 주소: CNI Bridge Gateway가 사용하는 주소)
-> - 10.244.0.255 (마지막 주소: /24의 브로드캐스트 주소)
+> - 10.244.0.0  (첫 번째 주소: /24 네트워크의 네트워크 주소. 라우팅 식별용)  
+> - 10.244.0.1  (두 번째 주소: CNI Bridge Gateway가 사용하는 주소)  
+> - 10.244.0.255 (마지막 주소: /24의 브로드캐스트 주소)  
 {: .prompt-tip}
 
 ---

@@ -92,7 +92,7 @@ ip-10-0-0-241   125m         6%          1136Mi          65%
 ip-10-0-0-81    <unknown>    <unknown>   <unknown>       <unknown>
 ```
 
-> ???? Master Node는 Metric이 확인이 되는데 Worker Node는 확인이 안된다.. 로그를 확인해볼까..?
+> ???? Master Node는 Metric이 확인이 되는데 Worker Node는 확인이 안된다.. 로그를 확인해볼까..?  
 {: .prompt-info}
 
 ### 5.1. 로그 확인
@@ -119,7 +119,7 @@ E0505 10:31:18.254969       1 scraper.go:147] "Failed to scrape node, timeout to
 E0505 10:31:33.249591       1 scraper.go:147] "Failed to scrape node, timeout to access kubelet" err="Get \"https://10.0.0.81:10250/metrics/resource\": context deadline exceeded" node="ip-10-0-0-81" timeout="10s"
 ```
 
-> 메트릭을 수집할 때 10250 포트를 사용하는 것 같다. 10250 포트를 열어주고 다시 확인해볼까?
+> 메트릭을 수집할 때 10250 포트를 사용하는 것 같다. 10250 포트를 열어주고 다시 확인해볼까?  
 {: .prompt-info}
 
 ```bash
@@ -147,7 +147,7 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 
 ### 5.2. 마무리
 
-> Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 규칙에 10250 포트를 허용해야 합니다.
+> Metrics-Server는 데이터를 송수신할 때 10250 포트를 사용합니다. 인바운드 규칙에 10250 포트를 허용해야 합니다.  
 {: .prompt-tip}
 
 ---

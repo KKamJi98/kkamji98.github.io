@@ -29,7 +29,7 @@ templatefile(path, vars)
 
 ## 2. 사용 예시
 
-> `templatefile()` 함수를 사용하여 EC2 인스턴스를 생성하는 코드에서 User_Data를 분리한 뒤 변수를 통해 템플릿 파일에, 값을 적용하는 예시입니다.
+> `templatefile()` 함수를 사용하여 EC2 인스턴스를 생성하는 코드에서 User_Data를 분리한 뒤 변수를 통해 템플릿 파일에, 값을 적용하는 예시입니다.  
 {: .prompt-tip}
 
 ### 2.1. TemplateFile 예시 (user_data.tpl)
@@ -59,7 +59,7 @@ resource "aws_instance" "example" {
 
 ### 2.3. 결과 확인
 
-> 위의 예시를 기반으로 `terraform apply`를 통해 인스턴스를 생성한 뒤, User_Data가 제대로 반영되었는지 확인해보도록 하겠습니다.
+> 위의 예시를 기반으로 `terraform apply`를 통해 인스턴스를 생성한 뒤, User_Data가 제대로 반영되었는지 확인해보도록 하겠습니다.  
 {: .prompt-tip}
 
 ```bash

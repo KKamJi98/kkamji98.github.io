@@ -35,7 +35,7 @@ comments: true
 ## 2. Stateful (상태 유지)
 
 > Stateful 통신에서는 서버가 이전의 상태나 세션 정보를 기억합니다. 이를 통해 서버는 클라이언트의 이전 요청을 기반으로 향후 요청을 처리할 수 있습니다.  
-> 이로 인해 서버와 클라이언트 간의 통신이 상태 정보를 기반으로 연속적으로 이루어집니다.
+> 이로 인해 서버와 클라이언트 간의 통신이 상태 정보를 기반으로 연속적으로 이루어집니다.  
 {: .prompt-info}
 
 ### 2.1. Stateful 장점
@@ -54,8 +54,8 @@ comments: true
 
 ## 3. NACL vs Security Group
 
-> AWS EC2와 VPC를 사용하다 보면 NACL과 Security Group에 대해 자주 접하게 됩니다.
-> 둘의 차이는 무엇일까요?
+> AWS EC2와 VPC를 사용하다 보면 NACL과 Security Group에 대해 자주 접하게 됩니다.  
+> 둘의 차이는 무엇일까요?  
 {: .prompt-info}
 
 ### 3.1. NACL(Network Access Control List)
