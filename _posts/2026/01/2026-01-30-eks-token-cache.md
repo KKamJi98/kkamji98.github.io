@@ -9,9 +9,9 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-On-Premise와 연결된 Kubernetes Cluster를 사용하는 것과 EKS 환경에서 kubectl 명령어를 실행할 때 체감되는 지연 시간에 차이가 있어, aws eks update-kubeconfig로 가져온 클러스터 인증 정보를 통해 kubectl에 EKS Cluster에 접근하는 방법에 대해 알아봤습니다.
-해당 지연 문제는 여러 클러스터를 오가며 작업하거나, 스크립트에서 kubectl을 반복 호출할 때 더욱 두드러지게 되며 이로 인해 소중한 시간을 빼앗기게 됩니다.
-이번 포스트에서는 이 문제의 원인을 파악하고, 토큰 캐싱 스크립트를 통해 해결하는 방법을 다뤄보겠습니다.
+On-Premise와 연결된 Kubernetes Cluster를 사용하는 것과 EKS 환경에서 kubectl 명령어를 실행할 때 체감되는 지연 시간에 차이가 있어, aws eks update-kubeconfig로 가져온 클러스터 인증 정보를 통해 kubectl에 EKS Cluster에 접근하는 방법에 대해 알아봤습니다.  
+해당 지연 문제는 여러 클러스터를 오가며 작업하거나, 스크립트에서 kubectl을 반복 호출할 때 더욱 두드러지게 되며 이로 인해 소중한 시간을 빼앗기게 됩니다.  
+이번 포스트에서는 이 문제의 원인을 파악하고, 토큰 캐싱 스크립트를 통해 해결하는 방법을 다뤄보겠습니다.  
 
 ---
 
@@ -393,4 +393,3 @@ rm -rf ~/.kube/eks-token-cache/
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}
-
