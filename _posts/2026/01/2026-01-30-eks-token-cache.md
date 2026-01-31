@@ -297,7 +297,7 @@ users:
 ```bash
 ❯ time kubectl get nodes
 NAME                                              STATUS   ROLES    AGE   VERSION
-ip-10-0-1-100.ap-northeast-2.compute.internal     Ready    <none>   30d   v1.33.0-eks
+ip-10-0-1-100.ap-northeast-2.compute.internal     Ready    <none>   5h    v1.33.0-eks
 
 real    0m1.847s
 user    0m0.523s
@@ -309,7 +309,7 @@ sys     0m0.089s
 ```bash
 ❯ time kubectl get nodes
 NAME                                              STATUS   ROLES    AGE   VERSION
-ip-10-0-1-100.ap-northeast-2.compute.internal     Ready    <none>   30d   v1.33.0-eks
+ip-10-0-1-100.ap-northeast-2.compute.internal     Ready    <none>   5h    v1.33.0-eks
 
 real    0m0.312s
 user    0m0.098s
