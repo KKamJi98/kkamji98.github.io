@@ -129,7 +129,7 @@ root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## 6. Reference
 
-- [https://www.whatap.io/ko/blog/77/](https://www.whatap.io/ko/blog/77/)
+- [WhaTap - https://www.whatap.io/ko/blog/77/](https://www.whatap.io/ko/blog/77/)
 
 ---
 

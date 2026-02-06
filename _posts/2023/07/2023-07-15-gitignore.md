@@ -65,7 +65,7 @@ image:
 
 ## 4. Reference
 
-- [gitignore.io](https://gitignore.io)
+- [Gitignore - gitignore.io](https://gitignore.io)
 
 ---
 

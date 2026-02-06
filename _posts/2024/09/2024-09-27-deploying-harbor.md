@@ -161,9 +161,9 @@ helm install harbor harbor/harbor --namespace harbor -f values.yaml
 
 ## 7. Reference
 
-- Harbor 공식문서 - <https://www.sktenterprise.com/bizInsight/blogDetail/dev/6171>
-- Line Engineering - <https://goharbor.io/docs/2.0.0/install-config/harbor-ha-helm/>
-- SKT Enterprise - <https://engineering.linecorp.com/ko/blog/harbor-for-private-docker-registry>
+- [SKT Enterprise - Harbor 공식문서](https://www.sktenterprise.com/bizInsight/blogDetail/dev/6171)
+- [Harbor Docs - Line Engineering](https://goharbor.io/docs/2.0.0/install-config/harbor-ha-helm/)
+- [Line Engineering - SKT Enterprise](https://engineering.linecorp.com/ko/blog/harbor-for-private-docker-registry)
 
 ---
 

@@ -79,13 +79,13 @@ SRE는 이 두 가지 관점을 결합하여 **“관찰 가능한 시스템(Obs
 
 ## 6. Reference
 
-- [Google SRE Book — Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/)
-- [Google SRE Workbook — Monitoring, Alerting on SLOs](https://sre.google/workbook/monitoring/)
-- [OpenTelemetry Docs — Collector](https://opentelemetry.io/docs/collector/)
-- [OpenTelemetry Specs — Overview](https://opentelemetry.io/docs/specs/otel/overview/)
-- [Prometheus — Blackbox Exporter](https://github.com/prometheus/blackbox_exporter)
-- [Prometheus — Alerting Best Practices](https://prometheus.io/docs/practices/alerting/)
-- [Brendan Gregg — USE Method](https://www.brendangregg.com/usemethod.html)
+- [Google SRE Book - Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/)
+- [Google SRE Workbook - Monitoring, Alerting on SLOs](https://sre.google/workbook/monitoring/)
+- [OpenTelemetry Docs - Collector](https://opentelemetry.io/docs/collector/)
+- [OpenTelemetry Specs - Overview](https://opentelemetry.io/docs/specs/otel/overview/)
+- [Prometheus - Blackbox Exporter](https://github.com/prometheus/blackbox_exporter)
+- [Prometheus - Alerting Best Practices](https://prometheus.io/docs/practices/alerting/)
+- [Brendan Gregg - USE Method](https://www.brendangregg.com/usemethod.html)
 
 ---
 

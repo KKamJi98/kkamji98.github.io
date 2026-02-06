@@ -397,8 +397,8 @@ spec:
 ## 7. Reference
 
 - [Cilium Docs - Routing](https://docs.cilium.io/en/stable/network/concepts/routing/)
-- [BGP Control Plane Resources](https://docs.cilium.io/en/latest/network/bgp-control-plane/bgp-control-plane-v2/)
-- [Cilium BGP Control Plane](https://docs.cilium.io/en/latest/network/bgp-control-plane/bgp-control-plane)
+- [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/latest/network/bgp-control-plane/bgp-control-plane-v2/)
+- [Cilium Docs - Cilium BGP Control Plane](https://docs.cilium.io/en/latest/network/bgp-control-plane/bgp-control-plane)
 
 ---
 

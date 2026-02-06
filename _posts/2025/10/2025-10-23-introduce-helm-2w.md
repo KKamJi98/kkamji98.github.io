@@ -1504,8 +1504,8 @@ kind delete cluster --name myk8s
 ## 11. Reference
 
 - [SimplyBlock - What is a Helm Chart?](https://www.simplyblock.io/glossary/what-is-a-helm-chart/)
-- [Helm Docs](https://helm.sh/docs/)
-- [Helm GitHub](https://github.com/helm/helm)
+- [Helm Docs - Documentation](https://helm.sh/docs/)
+- [GitHub - helm/helm](https://github.com/helm/helm)
 - [Helm Docs - The Chart Chart Best Practices Guide](https://helm.sh/docs/chart_best_practices/)
 - [Helm Docs - The Chart Template Developer's Guide](https://helm.sh/docs/chart_template_guide/)
 - [Helm Docs - The Chart Repository Guide](https://helm.sh/docs/topics/chart_repository/)

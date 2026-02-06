@@ -685,8 +685,8 @@ watch -d "kubectl get deploy,ep timeserver; echo; kubectl get rs,pod"
 
 ## 4. Reference
 
-- [Gogs Docs](https://gogs.io/docs)
-- [Jenkins Docs](https://www.jenkins.io/doc/)
+- [Gogs Docs - Documentation](https://gogs.io/docs)
+- [Jenkins Docs - Documentation](https://www.jenkins.io/doc/)
 - [Jenkins Docs - Getting started with Pipeline](https://www.jenkins.io/doc/book/pipeline/getting-started/)
 - [Jenkins Docs - Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 - [Jenkins Docs - Blue Ocean](https://www.jenkins.io/doc/book/blueocean/)

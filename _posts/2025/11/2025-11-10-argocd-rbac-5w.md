@@ -582,15 +582,15 @@ Argo CD와 Keycloak을 연동하는 전체 절차(클라이언트 생성, 리다
 
 - [OWASP - OWASP Top 10 2021](https://owasp.org/www-project-top-ten/)
 - [Argo CD FAQ - Admin Password Reset](https://github.com/argoproj/argo-cd/blob/master/docs/faq.md#i-forgot-the-admin-password-how-do-i-reset-it)
-- [예제로 배우는 Argo CD](https://product.kyobobook.co.kr/detail/S000212377128)
+- [교보문고 - 예제로 배우는 Argo CD](https://product.kyobobook.co.kr/detail/S000212377128)
 - [Wiki - Principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege)
 - [GitHub - argocd-example-apps](https://github.com/argoproj/argocd-example-apps)
 - [Argo CD Docs - User Management / Overview](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/)
 - [Argo CD Docs - Operator Manual / RBAC Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/)
 - [Argo CD Docs - User Management / Keycloak](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/)
-- [Keycloak Docs](https://www.keycloak.org/)
-- [Kubernetes Default Service Endpoint](https://kubernetes.default.svc)
-- [[10분 테코톡] 홍실의 Oauth 2.0](https://youtu.be/Mh3LaHmA21I?si=upaUrBNdzOZR_tBl)
+- [Keycloak Docs - Keycloak](https://www.keycloak.org/)
+- [Kubernetes - Default Service Endpoint](https://kubernetes.default.svc)
+- [YouTube - 10분 테코톡 홍실의 Oauth 2.0](https://youtu.be/Mh3LaHmA21I?si=upaUrBNdzOZR_tBl)
 
 ---
 

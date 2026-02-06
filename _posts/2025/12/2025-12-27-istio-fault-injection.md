@@ -274,7 +274,7 @@ kubectl delete destinationrule -n default ratings reviews
 - [Istio Bookinfo - productpage.py](https://github.com/istio/istio/blob/master/samples/bookinfo/src/productpage/productpage.py)
 - [Istio Bookinfo - LibertyRestEndpoint.java](https://github.com/istio/istio/blob/master/samples/bookinfo/src/reviews/reviews-application/src/main/java/application/rest/LibertyRestEndpoint.java)
 - [Istio Bookinfo - ratings.js](https://github.com/istio/istio/blob/master/samples/bookinfo/src/ratings/ratings.js)
-- [k8s-1pro/kubernetes-anotherclass-sprint5](https://github.com/k8s-1pro/kubernetes-anotherclass-sprint5)
+- [GitHub - k8s-1pro/kubernetes-anotherclass-sprint5](https://github.com/k8s-1pro/kubernetes-anotherclass-sprint5)
 
 ---
 

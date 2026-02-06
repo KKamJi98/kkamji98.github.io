@@ -794,7 +794,7 @@ argocd appset delete guestbook --yes
 - [GitHub - Argo CD](https://github.com/argoproj/argo-cd)
 - [GitHub - Argo CD Example Apps](https://github.com/argoproj/argocd-example-apps/)
 - [GitHub - ApplicationSet Examples](https://github.com/argoproj/argo-cd/tree/master/applicationset/examples)
-- [KT Tech Blog - [기술가이드] Kubernetes 환경에서 App of Apps로 구현하는 GitOps 실전 전략](https://tech.ktcloud.com/entry/2025-05-ktcloud-kubernetes-gitops-appofapps-%EA%B5%AC%ED%98%84%ED%99%98%EA%B2%BD-%EC%A0%84%EB%9E%B5)
+- [KT Tech Blog - 기술가이드 Kubernetes 환경에서 App of Apps로 구현하는 GitOps 실전 전략](https://tech.ktcloud.com/entry/2025-05-ktcloud-kubernetes-gitops-appofapps-%EA%B5%AC%ED%98%84%ED%99%98%EA%B2%BD-%EC%A0%84%EB%9E%B5)
 
 ---
 

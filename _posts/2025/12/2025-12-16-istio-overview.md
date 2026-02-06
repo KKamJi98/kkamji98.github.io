@@ -214,13 +214,13 @@ istioctl install -f istio-cni.yaml -y
 
 ## 9. Reference
 
-- [KubeOps - [이스티오(Istio) 시작하기] Istio 설치하기](https://cafe.naver.com/kubeops/821)
+- [KubeOps - 이스티오(Istio) 시작하기 Istio 설치하기](https://cafe.naver.com/kubeops/821)
 - [Istio Docs - Getting Started](https://istio.io/latest/docs/setup/getting-started/)
 - [Istio Docs - What is Istio?](https://istio.io/latest/docs/overview/what-is-istio/)
 - [Istio Docs - Data Plane Modes](https://istio.io/latest/docs/overview/dataplane-modes/)
-- [Istio GitHub](https://github.com/istio/istio)
+- [GitHub - istio/istio](https://github.com/istio/istio)
 - [Istio Docs - Kiali Integration](https://istio.io/latest/docs/ops/integrations/kiali/)
-- [Kiali Docs](https://kiali.io/docs/)
+- [Kiali Docs - Documentation](https://kiali.io/docs/)
 
 ---
 

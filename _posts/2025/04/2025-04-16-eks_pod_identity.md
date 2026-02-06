@@ -273,12 +273,12 @@ Amazon EKS Pod Identity는 기존의 IRSA(IAM Roles for Service Accounts)가 가
 
 ## 6. Reference
 
-- [EKS Pod Identity Documentation](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/pod-identities.html)
-- [Amazon EKS Pod Identity, Amazon EKS 클러스터앱의 IAM 권한 단순화](https://aws.amazon.com/ko/blogs/korea/amazon-eks-pod-identity-simplifies-iam-permissions-for-applications-on-amazon-eks-clusters/)
-- [EKS Pod Identity Addon PoC](https://techblog.uplus.co.kr/eks-pod-identity-addon-poc-3326b6adb23e)
-- [Amazon EKS Pod Identity: EKS의 애플리케이션이 IAM 자격 증명을 얻는 새로운 방법](https://aws.amazon.com/ko/blogs/containers/amazon-eks-pod-identity-a-new-way-for-applications-on-eks-to-obtain-iam-credentials/)
-- [EKS Auth API](https://docs.aws.amazon.com/ko_kr/general/latest/gr/eks.html)
-- [EKS Pod Identity or IAM Roles for Service Accounts (IRSA) ?](https://awsmorocco.com/eks-pod-identity-or-iam-roles-for-service-accounts-irsa-e32ea9331f27)
+- [AWS Docs - EKS Pod Identity Documentation](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/pod-identities.html)
+- [AWS - Amazon EKS Pod Identity, Amazon EKS 클러스터앱의 IAM 권한 단순화](https://aws.amazon.com/ko/blogs/korea/amazon-eks-pod-identity-simplifies-iam-permissions-for-applications-on-amazon-eks-clusters/)
+- [U+ Tech Blog - EKS Pod Identity Addon PoC](https://techblog.uplus.co.kr/eks-pod-identity-addon-poc-3326b6adb23e)
+- [Amazon EKS Pod Identity - EKS의 애플리케이션이 IAM 자격 증명을 얻는 새로운 방법](https://aws.amazon.com/ko/blogs/containers/amazon-eks-pod-identity-a-new-way-for-applications-on-eks-to-obtain-iam-credentials/)
+- [AWS Docs - EKS Auth API](https://docs.aws.amazon.com/ko_kr/general/latest/gr/eks.html)
+- [Awsmorocco - EKS Pod Identity or IAM Roles for Service Accounts (IRSA) ?](https://awsmorocco.com/eks-pod-identity-or-iam-roles-for-service-accounts-irsa-e32ea9331f27)
 
 ---
 

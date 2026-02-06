@@ -250,9 +250,9 @@ kubectl delete httproutes bookinfo
 
 ## 9. Reference
 
-- [KubeOPS - [아는 만큼 힘이 되는 트래픽 관리]](https://cafe.naver.com/kubeops/822)
+- [KubeOPS - 아는 만큼 힘이 되는 트래픽 관리](https://cafe.naver.com/kubeops/822)
 - [Istio Docs - Envoy Access Logs](https://istio.io/v1.26/docs/tasks/observability/logs/access-log/#using-mesh-config)
-- [k8s-1pro/kubernetes-anotherclass-sprint5](https://github.com/k8s-1pro/kubernetes-anotherclass-sprint5)
+- [GitHub - k8s-1pro/kubernetes-anotherclass-sprint5](https://github.com/k8s-1pro/kubernetes-anotherclass-sprint5)
 
 ---
 

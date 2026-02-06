@@ -466,7 +466,7 @@ Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f
 - [Cilium Docs - Network Observability with Hubble](https://docs.cilium.io/en/stable/observability/hubble/)
 - [Cilium Docs - Service Map & Hubble UI](https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/)
 - [Cilium Docs - Setting up Hubble Observability](https://docs.cilium.io/en/stable/observability/hubble/setup/)
-- [Cilium Github](https://github.com/cilium/hubble)
+- [GitHub - Cilium Github](https://github.com/cilium/hubble)
 
 ---
 

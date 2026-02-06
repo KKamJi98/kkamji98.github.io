@@ -159,8 +159,8 @@ kkamji minio bucket file upload test
 
 ## 7. Reference
 
-- Minio 공식 문서 - <https://min.io/docs/minio/windows/index.html>
-- Minio GitHub - <https://github.com/minio/minio>
+- [MinIO Docs - Minio 공식 문서](https://min.io/docs/minio/windows/index.html)
+- [GitHub - Minio GitHub](https://github.com/minio/minio)
 
 ---
 

@@ -808,8 +808,8 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 
 ## 7. Reference
 
-- [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)
-- [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)
+- [Kube-burner Docs - v1.17.1](https://kube-burner.github.io/kube-burner/v1.17.1/)
+- [GitHub - Kube-burner GitHub](https://github.com/kube-burner/kube-burner)
 - [Kube-burner Docs - Jobs](https://kube-burner.github.io/kube-burner/latest/reference/configuration/#jobs)
 
 ---

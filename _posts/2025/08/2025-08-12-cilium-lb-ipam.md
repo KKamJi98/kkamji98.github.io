@@ -501,8 +501,8 @@ sysctl net.ipv4.fib_multipath_hash_policy
 
 ## 10. Reference
 
-- [FRR Docs](https://docs.frrouting.org/en/stable-10.4/about.html)
-- [ISOVALENT Blog - Migrating from metallb to Cilium](https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/#l3-announcement-over-bgp)  
+- [FRR Docs - about.html](https://docs.frrouting.org/en/stable-10.4/about.html)
+- [ISOVALENT Blog - Migrating from metallb to Cilium](https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/#l3-announcement-over-bgp)
 - [Cilium Docs - LoadBalancer IP Address Management (LB IPAM)](https://docs.cilium.io/en/stable/network/lb-ipam/)
 
 ---

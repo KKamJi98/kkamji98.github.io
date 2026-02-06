@@ -220,11 +220,11 @@ ts=2025-06-23T14:35:23.689840725Z caller=fetcher.go:627 level=info component=blo
 
 ## 8. Reference
 
-- Thanos GitHub - <https://github.com/thanos-io/thanos>
-- Thanos Docs — <https://thanos.io/tip/thanos/>
-- Prometheus Docs — <https://prometheus.io/docs/introduction/overview/>
-- Bitnami Thanos Helm Chart — <https://artifacthub.io/packages/helm/bitnami/thanos>
-- kube-prometheus-stack Helm Chart — <https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack>
+- [GitHub - Thanos GitHub](https://github.com/thanos-io/thanos)
+- [Thanos Docs - thanos](https://thanos.io/tip/thanos/)
+- [Prometheus Docs - overview](https://prometheus.io/docs/introduction/overview/)
+- [Artifact Hub - Bitnami Thanos Helm Chart](https://artifacthub.io/packages/helm/bitnami/thanos)
+- [Artifact Hub - kube-prometheus-stack Helm Chart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)
 
 ---
 

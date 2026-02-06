@@ -303,7 +303,7 @@ kubectl delete ns nginx
 
 ## 5. Reference
 
-- [예제로 배우는 Argo CD](https://product.kyobobook.co.kr/detail/S000212377128)
+- [교보문고 - 예제로 배우는 Argo CD](https://product.kyobobook.co.kr/detail/S000212377128)
 - [GitLab - What is GitOps?](https://about.gitlab.com/topics/gitops/)
 - [OpenGitOps - What is OpenGitOps?](https://opengitops.dev/)
 - [Kubernetes Docs - Controllers](https://kubernetes.io/docs/concepts/architecture/controller/)

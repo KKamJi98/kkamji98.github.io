@@ -131,7 +131,7 @@ Commercial support is available at
 
 ## 4. Reference
 
-- nginx 공식 문서 - <https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/>
+- [Nginx - nginx 공식 문서](https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/)
 
 ---
 

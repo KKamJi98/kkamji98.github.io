@@ -254,7 +254,7 @@ Envoy는 TLS 트래픽을 **TCP 프록시**로 처리하기 때문에, 백엔드
 ## 6. Reference
 
 - [Cilium Docs - Service Mesh](https://docs.cilium.io/en/stable/network/servicemesh/)
-- [Service Mesh LandScape](https://layer5.io/service-mesh-landscape)
+- [Layer5 - Service Mesh LandScape](https://layer5.io/service-mesh-landscape)
 - [Cilium Docs - Cilium Ingress](https://docs.cilium.io/en/stable/network/servicemesh/ingress/)
 
 ---

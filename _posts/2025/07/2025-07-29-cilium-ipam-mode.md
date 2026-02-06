@@ -569,7 +569,7 @@ Hostname: webpod-5d558dbbb-fv5cp
 ## 8. Reference
 
 - [Cilium Docs - IPAM](https://docs.cilium.io/en/stable/network/concepts/ipam/)
-- [Cilium Docs - Kubernetes-host scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)  
+- [Cilium Docs - Kubernetes-host scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)
 - [Cilium Docs - Cluster Scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)
 - [Cilium Docs - Multi-Pool](https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/)
 - [Isovalent Blog - Overcoming Kubernetes IP Address Exhaustion with Cilium](https://isovalent.com/blog/post/overcoming-kubernetes-ip-address-exhaustion-with-cilium/)

@@ -1305,11 +1305,11 @@ cat ~/.kube/config
 
 ## 9. Reference
 
-- [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
+- [O’Reilly GitOps Cookbook - Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
 - [Open Container Initiative - Home](https://opencontainers.org/)
 - [Docker - Home](https://www.docker.com/)
 - [Docker - GitHub](https://github.com/moby/moby)
-- [Jib - Docs](https://cloud.google.com/java/getting-started/jib)
+- [Google Cloud Docs - Jib](https://cloud.google.com/java/getting-started/jib)
 - [Jib - GitHub](https://github.com/GoogleContainerTools/jib)
 - [Buildah - Home](https://buildah.io/)
 - [Buildah - GitHub](https://github.com/containers/buildah)

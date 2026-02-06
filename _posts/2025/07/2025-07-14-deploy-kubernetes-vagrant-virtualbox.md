@@ -706,13 +706,13 @@ logout
 
 ## 9. Reference
 
-- **kubeadm docs** - <https://kubernetes.io/docs/reference/setup-tools/kubeadm/>
-- **kubeadm init docs** - <https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/>
-- **kubeadm configuration(v1beta4)** - <https://kubernetes.io/docs/reference/config-api/kubeadm-config.v1beta4/>
-- **VirtualBox 설치** - <https://www.virtualbox.org/wiki/Downloads>
-- **Vagrant 설치** - <https://developer.hashicorp.com/vagrant/downloads#windows>
-- **vagrant box ubuntu image** - <https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04>
-- **vagrant box rockylinux image** - <https://portal.cloud.hashicorp.com/vagrant/discover/rockylinux>
+- [Kubernetes Docs - kubeadm docs](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
+- [Kubernetes Docs - kubeadm init docs](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)
+- [Kubernetes Docs - kubeadm configuration(v1beta4)](https://kubernetes.io/docs/reference/config-api/kubeadm-config.v1beta4/)
+- [VirtualBox - VirtualBox 설치](https://www.virtualbox.org/wiki/Downloads)
+- [HashiCorp Docs - Vagrant 설치](https://developer.hashicorp.com/vagrant/downloads#windows)
+- [HashiCorp - vagrant box ubuntu image](https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04)
+- [HashiCorp - vagrant box rockylinux image](https://portal.cloud.hashicorp.com/vagrant/discover/rockylinux)
 
 ---
 
