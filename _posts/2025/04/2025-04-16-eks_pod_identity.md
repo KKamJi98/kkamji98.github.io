@@ -43,14 +43,14 @@ image:
 
 ![pod-identity-workflow]({{ "/assets/img/kubernetes/pod-identity-workflow.jpg" | relative_url }})
 
-1. 서비스 어카운트와 IAM Role을 연결하는 SA-Role Association을 만들면, ***EKS Auth API**가 이 정보를 메타데이터로 저장합니다.
+1. 서비스 어카운트와 IAM Role을 연결하는 SA-Role Association을 만들면, **EKS Auth API**가 이 정보를 메타데이터로 저장합니다.
 2. Pod가 연결된 SA를 사용해 배포되면, **EKS API가 자동으로 Pod Manifest에 다음 두 환경 변수(ENV)**를 삽입하고 Credential 볼륨을 생성
    - `AWS_CONTAINER_CREDENTIALS_FULL_URI`: Pod에 연결된 IAM Role ARN
    - `AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE`: Pod에 연결된 IAM Role의 OIDC 토큰 파일 경로
 3. 각 노드의 Pod Identity Agent가 AssumeRoleForPodIdentity API를 호출하여 얻은 임시 자격 증명을 로컬 엔드포인트에 저장
 4. Pod 내부에서 실행되는 AWS SDK/CLI는 컨테이너 Credential Provider를 통해 이 로컬 엔드포인트에서 IAM 자격 증명을 안전하게 얻어 사용
 
-> ***EKS Auth API**란?  
+> **EKS Auth API**란?  
 > EKS의 신규 API(AssumeRoleForPodIdentity 등)로, 토큰 검증 및 임시 자격 증명 발급을 담당  
 {: .prompt-tip}
 
