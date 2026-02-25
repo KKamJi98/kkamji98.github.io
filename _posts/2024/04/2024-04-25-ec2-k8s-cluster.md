@@ -11,7 +11,7 @@ image:
 
 > 필자는 맥북과 윈도우 데스크탑 환경을 사용하고 있습니다. EKS Cluster의 context를 가져와 하나의 Kubernetes Cluster를 두 환경에서 공유해서 사용하고 있었으나….  
 > 문제는 EKS를 개인 실습용으로 지속적으로 사용하기에는 비용이.. ㅠㅠ 너무 비쌌습니다.  
-> 이를 해결하기 위해 Free-Tier인 t2.micro로 Minikube, K3s, MicroK8s 등을 구축하려했으나..  
+> 이를 해결하기 위해 Free-Tier인 t2.micro로 Minikube, K3s, MicroK8s 등을 구축하려 했으나..  
 > Minikube는 RAM이 4GB 이상이 아니면 애초에 설치가 불가능하였고, K3s는 실행 도중 크레딧을 다 쓰자 인스턴스가 종료되는 불상사가 발생했습니다.  
 > 마지막으로 MicroK8s를 사용해 구축에는 성공했지만 항상 CPU Utilization이 100%여서 명령어 하나를 사용할 때마다 1~3분 정도 기다려야 했습니다.  
 > 참다참다 돈을 조금 내더라도 더 좋은 성능을 사용하고자 t4g.small 인스턴스를 선택했습니다.  

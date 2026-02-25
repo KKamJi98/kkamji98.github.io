@@ -563,7 +563,7 @@ Jenkins job Trigger - [dev-app] - Setting → Webhooks → Gogs 클릭
 
 ![Jenkins Item Configuration - GitHub project & Use Gogs Secret](/assets/img/ci-cd/ci-cd-study/jenkins-item-configuration-github-project-and-use-gogs-secret.webp)
 ![Jenkins Item Configuration - Triggers](/assets/img/ci-cd/ci-cd-study/jenkins-item-configuration-triggers.webp)
-![Jenkins Item Configurtaion - Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-item-configuration-pipeline.webp)
+![Jenkins Item Configuration - Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-item-configuration-pipeline.webp)
 
 ### 3.9. Jenkinsfile 작성 후 git push
 

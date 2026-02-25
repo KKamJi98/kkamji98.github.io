@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-Kubernetes를 사용하며 알게된 CLI 명령어들을 공유합니다.
+Kubernetes를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 ---
 

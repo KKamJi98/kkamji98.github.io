@@ -17,7 +17,7 @@ image:
 
 **GitHub Actions**과 **ArgoCD**를 이용해 자동으로 CI/CD 배포 환경을 구성하고 있습니다. 코드가 배포되면 **ArgoCD**가 자동으로 배포 작업을 수행하며, **Slack**을 통해 알람을 받는 구조로 운영 중입니다.
 
-그런데 특정 배포 직후부터 약 3분 간격으로 **ArgoCD**가 `Sync` 되었다는 알람을 반복적으로 받았습니다. **ArgoCD** 대시보드에서 확인해보니 무려 63개의 Pod가 `Degraded` 상태였고, kubectl 명령어로 상세 조회해보니 Pod들이 `Evicted` 상태이며 일부는 `ContainerStatusUnknown으로` 나타났습니다.
+그런데 특정 배포 직후부터 약 3분 간격으로 **ArgoCD**가 `Sync` 되었다는 알람을 반복적으로 받았습니다. **ArgoCD** 대시보드에서 확인해보니 무려 63개의 Pod가 `Degraded` 상태였고, kubectl 명령어로 상세 조회해보니 Pod들이 `Evicted` 상태이며 일부는 `ContainerStatusUnknown`으로 나타났습니다.
 
 ### 1.1. ArgoCD Slack Alarms
 

@@ -294,7 +294,7 @@ root@k8s-m1:~# vim -d before.txt after.txt
 
 ![Hubble Port Comparison](/assets/img/kubernetes/cilium/hubble_port_comparsion.webp)
 
-> 새로 4244(Hubble gRPC), 9965(Hubble Metrics), 9962(Cilium Metrics)의 포트가 추가된 것 확인할 수 있습니다.  
+> 새로 4244(Hubble gRPC), 9965(Hubble Metrics), 9962(Cilium Metrics)의 포트가 추가된 것을 확인할 수 있습니다.  
 > 특히 4244 포트는 각 노드의 cilium-agent가 Hubble gRPC 서비스를 외부에 열어주는 핵심 포트로, 클러스터 네트워크 이벤트를 gRPC 스트림으로 실시간 노출합니다.  
 > hubble-relay 컴포넌트가 이 4244 포트를 통해 각 노드의 cilium-agent와 연결하고, 여러 노드의 이벤트를 집계하여 UI나 CLI 등 클러스터 전체 관점에서 조회가 가능하게 만들어줍니다.  
 > 여기에 hubble-peer라는 ClusterIP 서비스가 있는데, 이 서비스가 각 노드의 4244 포트를 백엔드(Endpoints)로 묶어줍니다. Relay가 바로 이 peer 서비스를 통해 각 노드와 통신합니다.  

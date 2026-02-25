@@ -33,7 +33,7 @@ Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 
 | **확장성**               | 소규모(개발, PoC) 환경부터 페타바이트 규모의 대규모 환경까지 대응 가능.<br>**읽기(Read)**와 **쓰기(Write)** 경로를 독립적으로 확장할 수 있음.<br>모놀리식(단순 확장 가능 모드)과 마이크로서비스(분산 모드) 모두 지원.                |
 | **멀티테넌시 지원**      | 하나의 Loki 인스턴스에서 여러 팀과 환경을 분리 운영 가능.<br>테넌트 ID를 통해 데이터와 요청을 논리적으로 분리.<br>API 요청 시 `X-Scope-OrgID` 헤더로 테넌트 지정.                                                                    |
 | **유연한 저장소 백엔드** | Amazon S3, Google Cloud Storage, MinIO 등 객체 스토리지에 청크 저장 가능.<br>로컬 파일시스템 저장도 가능(개발 및 테스트 환경에 적합).<br>압축 및 청크 단위 저장 구조로 장기 보존에 효율적.                                           |
-| **LogQL**                | PromQL과 유사한 ,Query 언어.<br>로그 필터링, 라벨 기반 집계, 시간 범위 지정 가능.<br>`rate()`, `count_over_time()` 등으로 로그를 메트릭처럼 분석 가능.                                                                               |
+| **LogQL**                | PromQL과 유사한 Query 언어.<br>로그 필터링, 라벨 기반 집계, 시간 범위 지정 가능.<br>`rate()`, `count_over_time()` 등으로 로그를 메트릭처럼 분석 가능.                                                                                |
 | **Grafana 연동**         | Grafana에서 Loki 데이터 소스를 추가하여 실시간 로그 조회.<br>메트릭과 트레이스와 함께 로그를 시각화하고 상관 분석 가능.<br>Explore 모드, 대시보드 패널, Alert Rule 모두 활용 가능.                                                   |
 | **알림(Alerts)**         | Ruler 컴포넌트를 통해 로그 Query결과에 기반한 경보 생성.<br>Prometheus Alertmanager와 연계하여 Slack, Email, PagerDuty 등 다양한 채널로 알림 전송 가능.<br>특정 키워드, 에러율, 이벤트 패턴 감지 가능.                               |
 

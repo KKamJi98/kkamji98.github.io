@@ -47,7 +47,7 @@ WEB UI에서 "NEW APP" 버튼을 클릭하여 Application을 생성하는 방법
 
 #### 2.1.2. WEB UI 설정 예시
 
-사진과 같이 Application과 관련된 정보를 입력 한 뒤, Create 버튼을 클릭하여 생성합니다. 사진에는 포함되어 있지 않지만, 아래로 스크롤하여 Application이 실제 배포될 `Destination`도 입력해주셔야 합니다.
+사진과 같이 Application과 관련된 정보를 입력한 뒤, Create 버튼을 클릭하여 생성합니다. 사진에는 포함되어 있지 않지만, 아래로 스크롤하여 Application이 실제 배포될 `Destination`도 입력해주셔야 합니다.
 
 ![ArgoCD New App](/assets/img/ci-cd/argocd/argocd-web-ui-new-app.png)
 

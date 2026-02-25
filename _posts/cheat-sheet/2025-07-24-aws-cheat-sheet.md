@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-AWS CLI를 사용하며 알게된 CLI 명령어들을 공유합니다.
+AWS CLI를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 ---
 
@@ -18,7 +18,7 @@ AWS CLI를 사용하며 알게된 CLI 명령어들을 공유합니다.
 ```shell
 aws configure                                        # AWS CLI 기본 설정
 aws configure list                                   # 현재 설정 확인
-aws configure list-profiles                          # Profile목록 확인
+aws configure list-profiles                          # Profile 목록 확인
 aws configure set region us-west-2                   # 기본 리전 설정
 aws sts get-caller-identity                          # 현재 사용자/역할 확인
 aws sts assume-role --role-arn <arn> --role-session-name <name>  # 역할 전환
@@ -26,13 +26,13 @@ aws sts assume-role --role-arn <arn> --role-session-name <name>  # 역할 전환
 
 ---
 
-## 2. Profile및 리전 관리
+## 2. Profile 및 리전 관리
 
 ```shell
-# Profile사용
-aws configure --profile myprofile                    # Profile설정
+# Profile 사용
+aws configure --profile myprofile                    # Profile 설정
 aws s3 ls --profile myprofile                        # 특정 프로파일로 명령 실행
-export AWS_PROFILE=myprofile                         # 기본 Profile설정
+export AWS_PROFILE=myprofile                         # 기본 Profile 설정
 
 # 리전 지정
 aws ec2 describe-instances --region us-east-1        # 특정 리전에서 명령 실행
@@ -180,8 +180,8 @@ aws eks delete-nodegroup --cluster-name my-cluster --nodegroup-name my-nodegroup
 aws eks update-nodegroup-version --cluster-name my-cluster --nodegroup-name my-nodegroup  # 노드 그룹 버전 업데이트
 aws eks update-nodegroup-config --cluster-name my-cluster --nodegroup-name my-nodegroup --scaling-config minSize=1,maxSize=10,desiredSize=3
 
-# Fargate Profile관리
-aws eks list-fargate-profiles --cluster-name my-cluster  # Fargate Profile목록
+# Fargate Profile 관리
+aws eks list-fargate-profiles --cluster-name my-cluster  # Fargate Profile 목록
 aws eks describe-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile
 aws eks create-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile --pod-execution-role-arn arn:aws:iam::123456789012:role/eks-fargate-profile
 aws eks delete-fargate-profile --cluster-name my-cluster --fargate-profile-name my-fargate-profile

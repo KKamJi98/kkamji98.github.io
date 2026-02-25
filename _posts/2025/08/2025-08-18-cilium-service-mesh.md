@@ -133,7 +133,7 @@ Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`
 > [Cilium Docs - Cilium Ingress](https://docs.cilium.io/en/stable/network/servicemesh/ingress/)  
 
 Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) 리소스를 지원하며, `ingressClassName: cilium`을 사용합니다.  
-해당 방식으로 **Path 기반 라우팅**과 **TLS 종료(Termination)** 를 제공할 수 있습니다.  
+해당 방식으로 **Path 기반 라우팅**과 **TLS 종료(Termination)**를 제공할 수 있습니다.  
 기존 호환성을 위해 `kubernetes.io/ingress.class: cilium` annotation도 지원합니다.
 
 ---

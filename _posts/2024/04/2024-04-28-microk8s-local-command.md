@@ -57,7 +57,7 @@ E0428 18:14:30.919345    1268 memcache.go:265] couldn't get current server API g
 E0428 18:15:03.852532    1268 memcache.go:265] couldn't get current server API group list: Get "https://10.0.0.35:16443/api?timeout=32s": dial tcp 10.0.0.35:16443: i/o timeout
 ```
 
-> ????? 에러가 났다.. 로그를 확인해보니 주소가.. 이상한데..? 저건 EC2 Public 주소가 아닌 Private 주소이기 떄문… 고쳐볼까??  
+> ????? 에러가 났다.. 로그를 확인해보니 주소가.. 이상한데..? 저건 EC2 Public 주소가 아닌 Private 주소이기 때문… 고쳐볼까??  
 {: .prompt-info}
 
 ```bash

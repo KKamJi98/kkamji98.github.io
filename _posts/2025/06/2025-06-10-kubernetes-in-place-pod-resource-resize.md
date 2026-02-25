@@ -140,7 +140,7 @@ Events:
 
 ## 4. 마무리
 
-In-Place Pod Resource Resize 기능은 `vertical scaling`을 무중단으로 지원하며, Pod를 재시작하지 않고도 리소스 크기를 조정할 수 있는 유용한 기능입니다. Kubernetes 공식문서에 따르면 해당 기능은 다음과 같이 앞으로도 꾸준히 고도화될 것으로 보입니다.
+In-Place Pod Resource Resize 기능은 `vertical scaling`을 무중단으로 지원하며, Pod를 재시작하지 않고도 리소스 크기를 조정할 수 있는 유용한 기능입니다. Kubernetes 공식 문서에 따르면 해당 기능은 다음과 같이 앞으로도 꾸준히 고도화될 것으로 보입니다.
 
 - **Stability and Productionization**: Continued focus on hardening the feature, improving performance, and ensuring it is robust for production environments.
 - **Addressing Limitations**: Working towards relaxing some of the current limitations noted in the documentation, such as allowing memory limit decreases.

@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-**External Secrets**는 쿠버네티스 클러스터에서 외부 시크릿 관리 시스템과 통합하여 시크릿을 관리해주는 오픈소스 도구입니다. AWS Secrets Manager, AWS SSM Parameter Store, HashiCorp Vault, Google Secret Manager 등의 **외부 시크릿 관리 서비스의 값을 가져와 Kubernetes Secret에 주입**하고 **주기적으로 외부 API를 호출하여 시크릿 값을 읽어오고 동기화** 할 수 있습니다.
+**External Secrets**는 쿠버네티스 클러스터에서 외부 시크릿 관리 시스템과 통합하여 시크릿을 관리해주는 오픈소스 도구입니다. AWS Secrets Manager, AWS SSM Parameter Store, HashiCorp Vault, Google Secret Manager 등의 **외부 시크릿 관리 서비스의 값을 가져와 Kubernetes Secret에 주입**하고 **주기적으로 외부 API를 호출하여 시크릿 값을 읽어오고 동기화**할 수 있습니다.
 
 이를 통해 Application에서 사용하는 API URL이나 DB 정보 등의 변화가 생겼을 때 코드를 수정하지 않고, 외부에 저장된 시크릿을 가져와 환경변수나 볼륨으로 사용할 수 있습니다. 이를 통해 **운영 우수성**과 **보안성**을 높일 수 있고, 휴먼 에러의 가능성을 낮출 수 있습니다.
 
@@ -310,7 +310,7 @@ monitoring         clusterexternalsecret-secret             Opaque              
 
 이번 글에서는 External Secrets Operator를 활용하여 쿠버네티스에서 AWS Secrets Manager와 SSM Parameter Store의 시크릿을 동기화하는 방법을 다뤄보았습니다. 이를 통해 Application에서 사용하는 민감한 값을 Git 등에 직접 노출하지 않고도 참조할 수 있게 되어 보안성과 편의성을 크게 향상시킬 수 있습니다.
 
-실무에서 적용할 때는 IRSA를 사용하는 것을 추천드리며 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹지 않도록 주의해야합니다. 또한 복잡하거나 많은 키를 가진 시크릿을 사용해야할 경우 `.data[]` 형식 외에도 `.dataFrom`, `.template` 형식을 사용해 여러 키를 가진 시크릿을 통째로 가져와 사용할 수도 있습니다.
+실무에서 적용할 때는 IRSA를 사용하는 것을 추천드리며 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹지 않도록 주의해야 합니다. 또한 복잡하거나 많은 키를 가진 시크릿을 사용해야 할 경우 `.data[]` 형식 외에도 `.dataFrom`, `.template` 형식을 사용해 여러 키를 가진 시크릿을 통째로 가져와 사용할 수도 있습니다.
 
 ---
 

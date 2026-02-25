@@ -27,7 +27,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ## 2. Jenkins에 Kubernetes Plugin 설치
 
-> Dashboard -> Jenkins 관리 -> Plugins -> Available plugins에 접속후 Kubernetes Plugin을 설치합니다.  
+> Dashboard -> Jenkins 관리 -> Plugins -> Available plugins에 접속 후 Kubernetes Plugin을 설치합니다.  
 {: .prompt-tip}
 
 ![Install Kubernetes Plugin](/assets/img/ci-cd/jenkins/kubernetes-plugin.png)
@@ -81,7 +81,7 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 ## 5. Pod Template 추가
 
-> Jenkins가 Kubernetes Cluster 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야합니다.  
+> Jenkins가 Kubernetes Cluster 내에서 Agent를 Pod 형태로 동적 생성할 수 있도록 Pod Template를 생성해야 합니다.  
 > Dashboard -> Clouds -> Kubernetes -> Pod Templates에 접속 후 Add a pod template를 누릅니다.  
 {: .prompt-tip}
 

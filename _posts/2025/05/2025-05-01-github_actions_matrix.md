@@ -250,14 +250,14 @@ jobs:
 
 ![Multi-Architecture-Build-Using-Matrix](/assets/img/github/multi-architecture-build-using-matrix-result.png)
 
-단일 러너(amd64)에서 Multi-Architecture Build 하는 Workflow를 실행했을 때 **4분 57초**가 소요된 반면, **Matrix Strategy**를 사용해 다중 러너(amd64, arm64)에서 각각 **Native**하게 빌드 했을 때, 각각의 Manifest를 합치는 Job이 추가되었음에도 불구하고 Workflow 실행 시간이 **1분 32초** 밖에 소요되지 않았습니다. 결과적으로 약 70%정도 빌드 시간을 단축시킬 수 있었습니다.
+단일 러너(amd64)에서 Multi-Architecture Build 하는 Workflow를 실행했을 때 **4분 57초**가 소요된 반면, **Matrix Strategy**를 사용해 다중 러너(amd64, arm64)에서 각각 **Native**하게 빌드했을 때, 각각의 Manifest를 합치는 Job이 추가되었음에도 불구하고 Workflow 실행 시간이 **1분 32초** 밖에 소요되지 않았습니다. 결과적으로 약 70% 정도 빌드 시간을 단축시킬 수 있었습니다.
 
 ---
 
 ## 3. 마무리
 
 GitHub Actions의 Matrix Strategy를 활용하면 Multi-Architecture, Multi-Platform 빌드가 포함된 워크플로우의 **실행 시간을 효과적으로 단축**할 수 있습니다.  
-Multi-Architecture 또는 Multi-Platform을 지원하는 컨테이너 이미지를 사용하거나, 꼭 순차적으로 실행되어야하지 않아도 되는 OS 및 패키지 조합별 취약점 스캔 등의 시간을 줄이고자 할 때 **도입을 고려해보는건 어떨까요?**.
+Multi-Architecture 또는 Multi-Platform을 지원하는 컨테이너 이미지를 사용하거나, 꼭 순차적으로 실행되어야 하지 않아도 되는 OS 및 패키지 조합별 취약점 스캔 등의 시간을 줄이고자 할 때 **도입을 고려해보는 건 어떨까요?**.
 
 ---
 

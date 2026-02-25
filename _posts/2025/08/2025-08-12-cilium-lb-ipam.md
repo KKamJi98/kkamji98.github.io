@@ -465,7 +465,7 @@ curl -s http://$LBIP | egrep 'Hostname|RemoteAddr'
 
 Linux Kernel의 Default인 L3 ECMP Hash는 같은 IP쌍이라면 포트가 달라도 다른 ECMP path로 흘러갈 수 있습니다. 따라서 하나의 클라이언트가 같은 서버로 여러 연결을 열면, 연결들이 서로 다른 노드로 분산되어 세션 일관성(Flow Affinity)이 깨질 수 있습니다.
 
-반면 튜플 기반인 L4 Hash를 사용하게 되면 L3 Hash(default) 대비 **흐름 고정성**이 올라가서, 새 연결이라도 트래픽이 **동일하게**으로 흘러갑니다. 따라서 Cluster/Local Mode 모두에서 **분산 품질**과 **연결 안정성**이 개선될 수 있습니다.
+반면 튜플 기반인 L4 Hash를 사용하게 되면 L3 Hash(default) 대비 **흐름 고정성**이 올라가서, 새 연결이라도 트래픽이 **동일하게** 흘러갑니다. 따라서 Cluster/Local Mode 모두에서 **분산 품질**과 **연결 안정성**이 개선될 수 있습니다.
 
 - **ECMP** (Equal-Cost Multi-Path): 동일 목적지에 대해 동일한 비용(cost)을 가지는 라우트가 여러 개 있을 때, 커널은 이들 중 하나를 선택해 패킷을 전달 (리눅스 커널 기본값 `fib_multipath_hash_policy=0` (L3 Hash))
 

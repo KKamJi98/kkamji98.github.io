@@ -818,7 +818,7 @@ buildah push docker.io/kkankkandev/gitops-website docker.io/kkankkandev/gitops-w
 Buildpack은 Dockerfile 없이도 Application Source에서 OCI 호환 컨테이너 이미지를 생성할 수 있습니다.
 
 ![What is a buildpack?](/assets/img/ci-cd/ci-cd-study/buildpacks-intro.webp)
-> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
+> [Buildpack.io - What is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
 > Buildpack Overview  
 
 ### 6.1. Buildpack Mechanism
@@ -828,10 +828,10 @@ Buildpack은 Mechanism은 아래 두 단계로 구성됩니다.
 - **탐지** Detection
   - Buildpack은 **소스 코드를 탐색**하여 어떤 프로그래밍 언어 또는 프레임워크가 사용되는지 파악하고 (가령 POM, NPM 파일, Python requirements 등) 해당 소스 코드 빌드에 **가장 적합한 Buildpack을 선정**한다.
 - **빌드** Building
-  - 일단 Buildpack이 결정되면 **소스는 컴파일**되고, Buildpack은 적절한 **진입점** entrypoint 과 **시작 스크립트** startup stripts 가 포함된 **컨테이너 이미지**를 만든다.
+  - 일단 Buildpack이 결정되면 **소스는 컴파일**되고, Buildpack은 적절한 **진입점** entrypoint 과 **시작 스크립트** startup scripts 가 포함된 **컨테이너 이미지**를 만든다.
 
 ![Buildpack Mechanism](/assets/img/ci-cd/ci-cd-study/buildpacks-mechanism.webp)
-> [Buildpack.io - Waht is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
+> [Buildpack.io - What is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
 > Buildpack Mechanism  
 
 ![Build Pack - Builder](/assets/img/ci-cd/ci-cd-study/buildpack-builder.webp)

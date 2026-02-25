@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-AWS EKS를 사용하다보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit에 의해 더 이상 pod가 프로비저닝되지 않은 문제를 직면하게 됩니다.  
+AWS EKS를 사용하다 보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit에 의해 더 이상 pod가 프로비저닝되지 않은 문제를 직면하게 됩니다.  
 
 ```shell
 ❯ kubectl get po                                          
@@ -56,7 +56,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 ## 2. Max-Pods Calculator
 
-제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입 의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit의 계산은 다음과 같이 이루어지게됩니다.  
+제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit의 계산은 다음과 같이 이루어지게 됩니다.  
 
 `maxPods = ENIs × (IPv4PerENI – 1) + 2`  
 
@@ -64,7 +64,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 =>  `3 * (4 - 1) + 2 = 11`
 
-> AWS에서 제공하는 Max-Pods 계산 툴을 사용하면 특정인스턴스에 대한 권장 Max-Pods 값을 쉽게 확인할 수 있습니다.  
+> AWS에서 제공하는 Max-Pods 계산 툴을 사용하면 특정 인스턴스에 대한 권장 Max-Pods 값을 쉽게 확인할 수 있습니다.  
 > <https://github.com/awslabs/amazon-eks-ami/blob/main/templates/shared/runtime/eni-max-pods.txt>  
 > <https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/choosing-instance-type.html#determine-max-pods>  
 {: .prompt-tip}

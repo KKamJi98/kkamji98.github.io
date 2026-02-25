@@ -9,7 +9,7 @@ image:
   path: /assets/img/linux/linux.webp
 ---
 
-Linux를 사용하며 알게된 CLI 명령어들을 공유합니다.
+Linux를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 ---
 

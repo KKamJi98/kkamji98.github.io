@@ -124,7 +124,7 @@ root@ip-10-0-1-67:~# influx -database test_db -execute "SELECT COUNT(*) FROM tes
 
 ---
 
-## 7. Old InfluxDB에서 데이터 Export 및및 New InfluxDB에 Import
+## 7. Old InfluxDB에서 데이터 Export 및 New InfluxDB에 Import
 
 기존 Old InfluxDB에서 데이터를 추출하여 SCP 또는 rsync로 New InfluxDB로 복사한 뒤, `influx_inspect export`를 통해 Line Protocol 형식으로 Export합니다. 이후 `curl`을 사용해 New InfluxDB에 데이터를 Import합니다.
 아래 스크립트를 사용해 자동화 했습니다.
@@ -237,7 +237,7 @@ time                count_value
 ----                -----------
 1743929389592826534 120
 
-## New InfluxDB에서 해당 시간데 데이터 삭제
+## New InfluxDB에서 해당 시간대 데이터 삭제
 root@ip-10-0-1-67:~# influx -database test_db -execute "DELETE FROM test_data WHERE time < now() - 3h AND time > now() - 5h"
 
 ## New InfluxDB에서 삭제된 데이터 확인

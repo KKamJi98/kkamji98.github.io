@@ -1108,7 +1108,7 @@ Accept: */*
 
 위와 같이 두 Cluster에 동일한 Service가 생성되고, `service.cilium.io/global: "true"` Annotation을 서비스에 추가하면 Cilium이 이를 글로벌 서비스로 인식합니다. `kwest exec -it -n kube-system ds/cilium -c cilium-agent -- cilium service list --clustermesh-affinity` 명령어의 결과를 통해 Service의 Backend에 west에 존재하는 webpod와 east에 존재하는 webpod의 Endpoint가 모두 추가된 것을 확인하였습니다.  
 
-curl pod를 사용해 실제 통신을 하게 되면 위 사진과 같이 Hubble 에서 각 Cluster에 존재하는 webpod와 모두 통신하고 있는 것을 더 명확하게 확인할 수 있습니다. 또한 자신의 Cluster에 해당 service의 pod가 존재하지 않을 때 다른 Cluster에 존재하는 pod로 요청을 하는 것도 알 수 있습니다.
+curl pod를 사용해 실제 통신을 하게 되면 위 사진과 같이 Hubble에서 각 Cluster에 존재하는 webpod와 모두 통신하고 있는 것을 더 명확하게 확인할 수 있습니다. 또한 자신의 Cluster에 해당 service의 pod가 존재하지 않을 때 다른 Cluster에 존재하는 pod로 요청을 하는 것도 알 수 있습니다.
 
 ---
 

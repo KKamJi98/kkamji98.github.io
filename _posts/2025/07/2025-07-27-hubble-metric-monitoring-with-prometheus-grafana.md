@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-**Cilium**과 **Hubble**은 모두 **Prometheus** 메트릭을 제공하도록 구성할 수 있습니다. **Prometheus**는 플러그형 메트릭 수집 및 저장 시스템이며, 메트릭 시각화 프런트엔드인 Grafana 의 데이터 소스 역할을 할 수 있습니다. 
+**Cilium**과 **Hubble**은 모두 **Prometheus** 메트릭을 제공하도록 구성할 수 있습니다. **Prometheus**는 플러그형 메트릭 수집 및 저장 시스템이며, 메트릭 시각화 프런트엔드인 Grafana의 데이터 소스 역할을 할 수 있습니다. 
 
 **Prometheus**에 대한 추가적인 내용은 [Kubernetes 리소스 모니터링 (1) - Prometheus]({% post_url 2024/11/2024-11-07-prometheus %}) 해당 글을 참고하시면 좋을 것 같습니다.
 
@@ -162,7 +162,7 @@ scrape_configs:
 
 ### 3.3. Prometheus & Grafana 배포하기 (kube-prometheus-stack)
 
-위의 scrape config 설정은 `kube-prometheus-stack` Helm Chart의 Values의 `prometheus.prometheusSpec.additionalScrapeConfigs`에 정의해주겠습니다. `ingress`, `NodePort`혹은 `kubectl port-forward`를 사용해서 접속하실 수 있습니다.
+위의 scrape config 설정은 `kube-prometheus-stack` Helm Chart의 Values의 `prometheus.prometheusSpec.additionalScrapeConfigs`에 정의해주겠습니다. `ingress`, `NodePort` 혹은 `kubectl port-forward`를 사용해서 접속하실 수 있습니다.
 
 ```shell
 ❯ cat << EOF > kube-prometheus-stack-with-cilium-hubble-values.yaml
@@ -301,7 +301,7 @@ scrape_interval: 30s
 
 ## 4. Cilium & Hubble Metrics 확인하기 (Prometheus)
 
-간단한 Prometheus Query를 통해 Cilium과 Hubble의 Metrics을 확인해보겠습니다. 우측 상단 톱니 바퀴 모양에서 `autocomplete`와 `syntax highlighting` 기능을 활성화 하시면 쿼리를 조금 더 편리하게 작성하실 수 있습니다.
+간단한 Prometheus Query를 통해 Cilium과 Hubble의 Metrics을 확인해보겠습니다. 우측 상단 톱니 바퀴 모양에서 `autocomplete`와 `syntax highlighting` 기능을 활성화하시면 쿼리를 조금 더 편리하게 작성하실 수 있습니다.
 
 ### 4.1. Prometheus Setting
 
@@ -323,7 +323,7 @@ scrape_interval: 30s
 
 ## 5. Cilium & Hubble Metrics 확인하기 (Grafana)
 
-Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, Explore에서 쿼리를 시험하고, 공개된 Cilium 대시보드(ID: 6658)를 Import해 확인해보도록 하겠습니다. Grafana도 위와 동일하게 `ingress`, `NodePort`혹은 `kubectl port-forward`를 사용한 방식 중 편한 방식을 사용해 접속하시면 됩니다.  
+Grafana에서 Prometheus가 DataSource로 등록되어있는지 확인한 뒤, Explore에서 쿼리를 시험하고, 공개된 Cilium 대시보드(ID: 6658)를 Import해 확인해보도록 하겠습니다. Grafana도 위와 동일하게 `ingress`, `NodePort` 혹은 `kubectl port-forward`를 사용한 방식 중 편한 방식을 사용해 접속하시면 됩니다.  
 
 > default 계정 정보 (추가로 ID,PW를 지정하지 않았다면 아래 정보로 접속)  
 > Default ID: `admin`  

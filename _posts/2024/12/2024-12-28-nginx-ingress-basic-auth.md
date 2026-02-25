@@ -1,5 +1,5 @@
 ---
-title: Nginx Ingress에 간단 인증절차 추가하기(Basic Auth)
+title: Nginx Ingress에 간단 인증 절차 추가하기(Basic Auth)
 date: 2024-12-28 02:16:33 +0900
 author: kkamji
 categories: [Kubernetes]

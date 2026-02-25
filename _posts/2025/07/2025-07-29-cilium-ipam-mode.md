@@ -23,7 +23,7 @@ Kubernetes 환경에서도 Pod에게 IP를 부여하기 위해 IPAM을 사용합
 
 ## 2. Cilium의 IPAM Mode
 
-Cilium은 사용자의 요구를 충족하기 위해 다양한 IPAM 모드를 지원합니다. 해당 포스트에서 다루는 주제인 `Kubernetes Host Scope`, `Cluster Scope`, `Multi-Pool`을 제외하고, `CRD-backed`, `AWS ENI`, `Azure IPAM`, `GKE`과 같은 다양한 IPAM 모드가 존재하는데 상세한 내용은 아래 공식문서에서 확인하실 수 있습니다.
+Cilium은 사용자의 요구를 충족하기 위해 다양한 IPAM 모드를 지원합니다. 해당 포스트에서 다루는 주제인 `Kubernetes Host Scope`, `Cluster Scope`, `Multi-Pool`을 제외하고, `CRD-backed`, `AWS ENI`, `Azure IPAM`, `GKE`와 같은 다양한 IPAM 모드가 존재하는데 상세한 내용은 아래 공식문서에서 확인하실 수 있습니다.
 
 | Feature                    | Kubernetes Host Scope | Cluster Scope (default) | Multi-Pool (Beta) | CRD-backed | AWS ENI…       |
 | :------------------------- | :-------------------- | :---------------------- | :---------------- | :--------- | :------------- |

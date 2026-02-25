@@ -15,7 +15,7 @@ image:
 
 ## 1. 실행 환경
 
-> ArgoCD, Keycloak이 배포되어있는 Kubernetes 환경에서 시작하도록 하겠습니다.  
+> ArgoCD, Keycloak이 배포되어 있는 Kubernetes 환경에서 시작하도록 하겠습니다.  
 {: .prompt-tip}
 
 - Kubernetes (v1.32.0)
@@ -97,7 +97,7 @@ image:
 
 ## 6. Group 생성하기
 
-> ArgoCD에 맵핑할 Keycloak Group을 생성합니다.  
+> ArgoCD에 매핑할 Keycloak Group을 생성합니다.  
 {: .prompt-tip}
 
 1. 왼쪽 사이드바의 **Groups** 메뉴로 이동한 뒤, **Create Group** 버튼을 클릭합니다.

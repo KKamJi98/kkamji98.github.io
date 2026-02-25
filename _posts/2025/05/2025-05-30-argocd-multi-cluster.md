@@ -116,7 +116,7 @@ spec:
 {: .prompt-danger}
 
 ```shell
-## Argocd Application 배포
+## ArgoCD Application 배포
 ❯ kubectl apply -f application-target.yaml
 application.argoproj.io/guestbook created
 

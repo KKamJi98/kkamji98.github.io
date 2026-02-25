@@ -232,7 +232,7 @@ vault login
 ...
 ```
 
-### 1.4. Vault UI Access : 로그인 Method(Tokne), Token(위 Root Token 입력) 후 Sign in
+### 1.4. Vault UI Access : 로그인 Method(Token), Token(위 Root Token 입력) 후 Sign in
 
 ```shell
 ##############################################################

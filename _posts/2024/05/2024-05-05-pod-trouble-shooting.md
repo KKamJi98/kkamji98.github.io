@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안되서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.  
+> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안 돼서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.  
 {: .prompt-info}
 
 ---
@@ -40,7 +40,7 @@ Events:
   Warning  Evicted  4m50s (x2334 over 26h)  kubelet  (combined from similar events): The node was low on resource: ephemeral-storage. Threshold quantity: 1Gi, available: 925292Ki.
 ```
 
-> 용량이 부족하다…고?? 설마.. Worker node의 용량이 벌써 다 차버린건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자  
+> 용량이 부족하다…고?? 설마.. Worker node의 용량이 벌써 다 차버린 건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자  
 {: .prompt-info}
 
 ```bash

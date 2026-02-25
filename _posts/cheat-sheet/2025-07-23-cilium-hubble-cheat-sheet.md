@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-Cilium과 Hubble을 공부하며 알게된 CLI 명령어들을 공유합니다.
+Cilium과 Hubble을 공부하며 알게 된 CLI 명령어들을 공유합니다.
 
 ---
 

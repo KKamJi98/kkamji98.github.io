@@ -120,7 +120,7 @@ echo "환경: staging"
 
 Terraform에서 제공하는 templatefile() 함수는 HCL 코드 내부에 복잡한 스크립트나 설정 파일을 직접 작성하지 않아도 되도록 해주어 유지보수와 가독성을 개선해 줍니다. 특히 AWS 환경에서 EC2를 생성할 때 자주 사용하는 User Data 스크립트나, 대규모 애플리케이션의 설정 파일 등을 템플릿 형태로 관리하면 반복 작업도 줄어들고 환경별 변수를 쉽게 관리할 수 있습니다.
 
-규모가 커질수록 텍스트 기반 설정 파일(예: Nginx config, Prometheus config, Node Exporter config 등)이 많아지기 마련인데, 이런 경우에도 templatefile()를 활용해 인프라 코드와 설정 파일을 분리하게되면, 각각의 상황과 환경에 따라 Terraform 변수만 교체해 주면 되므로 개발과 운영 환경 관리에 도움이 될 것 같습니다.
+규모가 커질수록 텍스트 기반 설정 파일(예: Nginx config, Prometheus config, Node Exporter config 등)이 많아지기 마련인데, 이런 경우에도 templatefile()를 활용해 인프라 코드와 설정 파일을 분리하게 되면, 각각의 상황과 환경에 따라 Terraform 변수만 교체해 주면 되므로 개발과 운영 환경 관리에 도움이 될 것 같습니다.
 
 ---
 

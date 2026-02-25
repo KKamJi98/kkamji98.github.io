@@ -51,9 +51,9 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 위와 같은 로그에서 `Jan 18 12:52:16`는 **Timestamp**, `[session uid=1000 pid=2243]`는 **Key/Value Metadata**, `systemd[2222]: Starting GNOME Terminal Server`는 실제 메시지 내용인 **Payload**입니다.
 
-### 2.2. Filltering
+### 2.2. Filtering
 
-특정 경우에는 Event의 내용을 수정해야 합니다. Event를 수정, 보강, 삭제하는 과정을 **Filltering**이라고 합니다. **Filtering** 과정을 통해 로그 데이터를 보다 유용하게 만들거나 필요한 정보만을 남길 수 있습니다. **Filtering**의 주요 사용 사례는 다음과 같습니다.
+특정 경우에는 Event의 내용을 수정해야 합니다. Event를 수정, 보강, 삭제하는 과정을 **Filtering**이라고 합니다. **Filtering** 과정을 통해 로그 데이터를 보다 유용하게 만들거나 필요한 정보만을 남길 수 있습니다. **Filtering**의 주요 사용 사례는 다음과 같습니다.
 
 1. 특정 정보 추가 - 이벤트에 IP 주소나 메타데이터와 같은 정보 추가
 
@@ -88,7 +88,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 ### 2.3. Tag
 
-**Fluent Bit**에서 들어오는 모든 이벤트는 **Tag**를 할당 받습니다. Tag란 **Event**가 나중에 어떤 **Filter** 또는 출력 단계로 이동할지를 결정하는 데 사용되는 내부 문자열입니다. 대부분의 **Tag**는 설정 파일에서 수동으로 할당됩니다. **Tag**가 명시되지 않은 경우, **Fluent Bit**은 해당 이벤트가 생성된 입력 플로그인 인스턴스의 이름을 **Tag**로 할당합니다.
+**Fluent Bit**에서 들어오는 모든 이벤트는 **Tag**를 할당 받습니다. Tag란 **Event**가 나중에 어떤 **Filter** 또는 출력 단계로 이동할지를 결정하는 데 사용되는 내부 문자열입니다. 대부분의 **Tag**는 설정 파일에서 수동으로 할당됩니다. **Tag**가 명시되지 않은 경우, **Fluent Bit**은 해당 이벤트가 생성된 입력 플러그인 인스턴스의 이름을 **Tag**로 할당합니다.
 
 ### 2.4. Match
 

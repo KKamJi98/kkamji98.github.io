@@ -9,7 +9,7 @@ image:
   path: /assets/img/linux/linux.webp
 ---
 
-JSON과 YAML 데이터를 처리하는 도구인 jq와 yq사용하며 알게된 CLI 명령어들을 공유합니다.
+JSON과 YAML 데이터를 처리하는 도구인 jq와 yq 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 ---
 

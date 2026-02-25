@@ -61,7 +61,7 @@ image:
 
 ## 3. Vagrantfile & Init Script 작성
 
-각 VM이 동일한 `key-pair`를 갖게하기 위해서 `config.ssh.insert_key = false` 해당 부분을 추가해주었고, 로컬에서 `hyper-v` + `kube-spray`를 통해 프로비저닝한 다른 클러스터와 호스트명이 겹치는 것을 방지하기 위해 호스트명을 아래와 같이 수정하였습니다. 또한 다른 환경에서 해당 클러스터로의 접근을 위해 `localhost`의 56444 포트를 Control Plane인 `cilium-m1` VM의 6443 포트(`API-Server` 포트)로 포트포워딩 하는 설정을 추가했습니다.
+각 VM이 동일한 `key-pair`를 갖게 하기 위해서 `config.ssh.insert_key = false` 해당 부분을 추가해주었고, 로컬에서 `hyper-v` + `kube-spray`를 통해 프로비저닝한 다른 클러스터와 호스트명이 겹치는 것을 방지하기 위해 호스트명을 아래와 같이 수정하였습니다. 또한 다른 환경에서 해당 클러스터로의 접근을 위해 `localhost`의 56444 포트를 Control Plane인 `cilium-m1` VM의 6443 포트(`API-Server` 포트)로 포트포워딩 하는 설정을 추가했습니다.
 
 - `k8s-ctr` -> `cilium-m1`
 - `k8s-w1`  -> `cilium-w1`
@@ -469,7 +469,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ## 6. INTERNAL-IP 설정 변경
 
-위에서 확인한대로, `cilium-m1` VM은 INTERNAL-IP가 정상적으로 192.168.10.100으로 되어있지만 `cilium-w1`, `cilium-w2` VM은 eth0번 IP인 `10.0.2.15`를 갖고 있습니다. 이는 kubelet이 노드의 INTERNAL-IP로 기본적으로 Routing Table에서 default gateway가 연결된 Interface IP를 선택하기 때문입니다. 현재 구성에서는 `eth0`(NAT 인터페이스)가 default route로 설정되어 있기 때문에, 의도하지 않은 `10.0.2.15`가 INTERNAL-IP로 설정된 것입니다. 이러한 문제를 방지하기 위해서는 `JoinConfiguration` 파일을 사용해 해당 설정 파일에 node ip를 명시적으로 설정 한 뒤, `kubeadm join --config {join_configuration_file.yaml}` 명령을 통해 Join 하는 방법을 방법을 사용할 수 있습니다.  
+위에서 확인한 대로, `cilium-m1` VM은 INTERNAL-IP가 정상적으로 192.168.10.100으로 되어있지만 `cilium-w1`, `cilium-w2` VM은 eth0번 IP인 `10.0.2.15`를 갖고 있습니다. 이는 kubelet이 노드의 INTERNAL-IP로 기본적으로 Routing Table에서 default gateway가 연결된 Interface IP를 선택하기 때문입니다. 현재 구성에서는 `eth0`(NAT 인터페이스)가 default route로 설정되어 있기 때문에, 의도하지 않은 `10.0.2.15`가 INTERNAL-IP로 설정된 것입니다. 이러한 문제를 방지하기 위해서는 `JoinConfiguration` 파일을 사용해 해당 설정 파일에 node ip를 명시적으로 설정한 뒤, `kubeadm join --config {join_configuration_file.yaml}` 명령을 통해 Join 하는 방법을 사용할 수 있습니다.  
 
 예시) <https://github.com/KKamJi98/cilium-lab/blob/main/vagrant-advanced/k8s-w.sh>
 
