@@ -108,20 +108,20 @@ order: 4
 
 ## Profile
 
-Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 서비스 신뢰성을 개선하는 엔지니어입니다. 현재는 Samsung Galaxy Chatting Plus (RCS) 서비스 운영과 AWS / EKS 기반 인프라 운영을 담당하며, Terraform IaC, GitHub Actions, Argo CD, Keycloak, Grafana, Prometheus, Thanos, InfluxDB 등 운영 도구의 구축과 개선을 함께 수행하고 있습니다.
+Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 서비스 신뢰성을 개선하는 엔지니어입니다. 현재는 번개장터에서 서비스 운영 및 고도화를 담당하며, EKS Upgrade, Terraform 모듈화, AWS 인프라 프로비저닝, Grafana / Datadog Dashboard, Packer 기반 Golden Image 자동화, 사내 장애대응 AI Agent, 백신 PoC, AWS 인증 방식 전환 등 운영 플랫폼의 안정성과 보안성을 개선하고 있습니다.
 
 <div class="cv-summary-grid">
   <div class="cv-summary-card">
     <strong>Platform Operations</strong>
-    <span class="cv-muted">AWS Infra, EKS, Terraform IaC, Cluster Upgrade, Open-source Upgrade</span>
+    <span class="cv-muted">AWS Infra, EKS Upgrade, Terraform IaC, Packer, Golden Image</span>
   </div>
   <div class="cv-summary-card">
     <strong>Reliability</strong>
-    <span class="cv-muted">Incident Response, RCA Guide, Observability, Log Centralization</span>
+    <span class="cv-muted">Incident Response, RCA Guide, Grafana, Datadog, AI Agent</span>
   </div>
   <div class="cv-summary-card">
     <strong>Security & Automation</strong>
-    <span class="cv-muted">Keycloak SSO, RBAC, Secrets, CI/CD, Cost Optimization</span>
+    <span class="cv-muted">Access Key Removal, Security Group, ClamAV, RBAC, CI/CD</span>
   </div>
 </div>
 
@@ -131,17 +131,31 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 | :--- | :--- |
 | **Cloud / Infra** | AWS, EC2, EKS, ECS, ECR, RDS, VPC, Route 53, CloudFront, CloudWatch, Lambda, API Gateway, WAF |
 | **Kubernetes / Platform** | Kubernetes, EKS, Helm, Karpenter, HPA, IRSA, Cilium, Hubble, Gateway API, Envoy |
-| **IaC / CI/CD** | Terraform, HCP Terraform, Jenkins, GitHub Actions, Argo CD |
-| **Observability / Data** | Prometheus, Grafana, Thanos, ELK, CloudWatch Logs, InfluxDB, Apache Superset |
-| **Security / Identity** | Keycloak, SSO, RBAC, AWS IAM, Secrets Manager, Parameter Store, External Secrets |
+| **IaC / CI/CD** | Terraform, HCP Terraform, Packer, Jenkins, GitHub Actions, Argo CD |
+| **Observability / Data** | Prometheus, Grafana, Datadog, Thanos, ELK, CloudWatch Logs, InfluxDB, Apache Superset |
+| **Security / Identity** | Keycloak, SSO, RBAC, AWS IAM, Secrets Manager, Parameter Store, External Secrets, ClamAV |
 | **Programming / App** | Python, Go, Java, Spring Boot, Streamlit, React |
 | **OS / Runtime** | Ubuntu, Amazon Linux, CentOS, Docker |
 
 ## Careers
 
+### Bunjang / DevSecOps Engineer
+
+`2025.11 ~ 현재`
+
+- 번개장터 서비스 운영 및 고도화
+- EKS Upgrade 진행: Kubernetes 1.32 이상
+- Terraform 모듈화 및 AWS 인프라 프로비저닝
+- Grafana, Datadog Dashboards 구성
+- ClamAV 서버 백신 PoC 및 도입
+- Packer 도입 및 Golden Image 생성 자동화
+- 사내 장애대응 AI Agent 개발 및 도입
+- Security Group Outbound Rule 최적화
+- AWS 인증 방식 전환: Access Key 제거
+
 ### Warepoint / Technical Architect
 
-`2024.12 ~ 현재`
+`2024.12 ~ 2025.10`
 
 - Samsung Galaxy Chatting Plus (RCS) 서비스 운영
 - AWS Infra 구축 및 운영, Terraform 기반 IaC 적용
