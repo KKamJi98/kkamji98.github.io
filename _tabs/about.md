@@ -250,7 +250,7 @@ order: 4
   /* ===== Card grid ===== */
   .cv-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.95rem;
     margin: 0.4rem 0 1.6rem;
   }
@@ -549,8 +549,23 @@ order: 4
     flex-shrink: 0;
   }
 
-  .cv-activity.speaker::before { background: var(--cv-icon-amber); }
+  .cv-activity.speaker::before {
+    width: 9px;
+    height: 9px;
+    background: var(--cv-icon-amber);
+  }
   .cv-activity.staff::before { background: var(--cv-icon-khaki); }
+
+  .cv-activity.speaker .cv-activity-text {
+    font-weight: 600;
+    color: var(--text-color, inherit);
+  }
+
+  .cv-activity.speaker .cv-activity-role {
+    color: var(--cv-icon-amber);
+    border-color: var(--cv-icon-amber);
+    font-weight: 600;
+  }
 
   .cv-activity-text {
     flex: 1;
@@ -839,6 +854,35 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 <div class="cv-card-grid">
   <article class="cv-card">
     <header class="cv-card-head">
+      <h3 class="cv-card-title">KubeRCA</h3>
+      <span class="cv-card-links">
+        <a href="https://github.com/kube-rca/kuberca" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
+        <span class="cv-period">2025.11 ~ 현재</span>
+      </span>
+    </header>
+    <p class="cv-card-meta">Project Lead · AI · Kubernetes · Observability</p>
+    <p class="cv-card-desc">AI 기반 Kubernetes 장애 분석 및 RCA 자동화 플랫폼</p>
+    <ul>
+      <li>AI Agent 기반 Kubernetes 장애 분석 및 근본 원인(Root Cause) 자동 추론</li>
+      <li>Dashboard 기반 Alert / Incident History 관리 기능 제공</li>
+      <li>Chaos Mesh 기반 장애 시나리오 주입 및 검증 환경 구성</li>
+      <li>Prometheus / Tempo / Grafana 기반 Metric · Trace 통합 관측</li>
+      <li>Istio Service Mesh 환경에서 트래픽 / 정책 데이터 활용</li>
+    </ul>
+    <ul class="cv-card-tech">
+      <li class="cv-chip">Python</li>
+      <li class="cv-chip">Strands Agents</li>
+      <li class="cv-chip">Kubernetes</li>
+      <li class="cv-chip">Istio</li>
+      <li class="cv-chip">Prometheus</li>
+      <li class="cv-chip">Tempo</li>
+      <li class="cv-chip">Grafana</li>
+      <li class="cv-chip">Chaos Mesh</li>
+    </ul>
+  </article>
+
+  <article class="cv-card">
+    <header class="cv-card-head">
       <h3 class="cv-card-title">Home Sweet Home</h3>
       <span class="cv-card-links">
         <span class="cv-period">2025.04</span>
@@ -985,6 +1029,38 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
   <a class="cv-mini-card" href="https://github.com/KKamJi98/image-converter" target="_blank" rel="noopener">
     <div class="cv-mini-title"><i class="fab fa-github"></i> image-converter</div>
     <p class="cv-mini-desc">이미지 확장자 변환, 리사이즈, 압축을 제공하는 Web App</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/route53-traffic-monitor" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> dnsmon</div>
+    <p class="cv-mini-desc">Route53 가중치 vs 실제 DNS 응답 분포 실시간 비교 및 전파 추적 CLI</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/mirror-container-images" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> mirror-container-images</div>
+    <p class="cv-mini-desc">crane 기반 외부 레지스트리 → Private ECR 미러링 CLI (병렬 / 플랫폼 선택)</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/eks-token-cache" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> eks-token-cache</div>
+    <p class="cv-mini-desc">EKS 토큰 캐싱으로 kubectl 응답 지연 제거</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> wt (git-worktree-tool)</div>
+    <p class="cv-mini-desc">Git bare repo 기반 worktree 일괄 관리 CLI</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/swagger-loadgen" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> swagger-loadgen</div>
+    <p class="cv-mini-desc">OpenAPI / Swagger 기반 GET endpoint 자동 수집 후 고정 TPS 부하 도구</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/domain-resource-tracer" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> drt (domain-resource-tracer)</div>
+    <p class="cv-mini-desc">AWS 도메인 패턴으로 연결된 리소스를 한 번에 추적</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/pull-request-jump" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> prj (pull-request-jump)</div>
+    <p class="cv-mini-desc">GitHub / Bitbucket PR 페이지를 CLI에서 바로 열기</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> kubeconfig toolkit</div>
+    <p class="cv-mini-desc">kube-pick, kubeconfig-cleaner / merger, kubectx-kubens shell 함수 모음</p>
   </a>
 </div>
 
@@ -1135,6 +1211,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #activities .cv-h2}
 
 <ul class="cv-activities">
+  <li class="cv-activity speaker">
+    <span class="cv-activity-text"><span class="cv-activity-role">Speaker</span>AWS KRUG 마곡 소모임 - EKS Pod Identity로 더 간편하게 Kubernetes 서비스 권한 관리하기</span>
+    <span class="cv-activity-date">2026.04</span>
+  </li>
+  <li class="cv-activity speaker">
+    <span class="cv-activity-text"><span class="cv-activity-role">Speaker</span>RAPA x AWS Cloud School 커리어 세션 - AWS Cloud School 그리고 그 다음 이야기</span>
+    <span class="cv-activity-date">2026.01</span>
+  </li>
   <li class="cv-activity speaker">
     <span class="cv-activity-text"><span class="cv-activity-role">Speaker</span>Cloud Native Korea Community Day 2025 - ArgoCD와 함께하는 Multi-Cluster 운영</span>
     <span class="cv-activity-date">2025.09</span>
