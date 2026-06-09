@@ -64,3 +64,22 @@ python3 kkamji_scripts/blog/renumber_headers.py
 # H3(###)부터 번호 매기기
 python3 kkamji_scripts/blog/renumber_headers.py --min-level 3
 ```
+
+---
+
+## 다이어그램 이미지 여백 도구
+
+### `pad_diagram_margins.py`
+
+- **역할**: drawio 등에서 export 한 다이어그램 이미지의 사방(상하좌우) 여백을 동일하게 맞춥니다.
+- **배경**: drawio의 `-b`/`--crop` 옵션만으로는 border/shadow 처리 때문에 여백이 비대칭(예: 좌/상은 넓고 우/하는 좁음)으로 남습니다. 이 스크립트는 export 결과의 잉크(비-흰색) 영역만 잘라낸 뒤 사방에 동일한 패딩을 다시 입혀 균일한 여백을 보장합니다.
+- **사전 준비**: Pillow가 필요하므로 `uv run --with pillow`로 실행합니다. drawio 도형의 `shadow=1`은 우하단 그림자로 잉크 경계를 비대칭으로 만드므로 export 전에 끄는 것을 권장합니다.
+- **사용 예**
+
+```bash
+# 트림 + 사방 110px 균등 패딩 후 webp 저장
+uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py in.png out.webp --pad 110
+
+# 결과 이미지의 사방 여백 측정 (L/R/T/B 가 같아야 함, 1px 오차 허용)
+uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py out.webp --verify
+```
