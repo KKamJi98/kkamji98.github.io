@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="gcp-org-tree" name="GCP Org Tree Example">
+    <mxGraphModel dx="1024" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="740" pageHeight="420" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="org" parent="1" vertex="1" value="Organization&lt;br&gt;example.com" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="305" y="36" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="folder-eng" parent="1" vertex="1" value="engineering" style="shape=folder;html=1;whiteSpace=wrap;shadow=1;fillColor=#F9AB00;strokeColor=#E37400;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="170" y="156" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="folder-fin" parent="1" vertex="1" value="finance" style="shape=folder;html=1;whiteSpace=wrap;shadow=1;fillColor=#F9AB00;strokeColor=#E37400;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="470" y="156" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="app-prod" parent="1" vertex="1" value="app-prod" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#000000;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="120" y="296" width="150" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="app-staging" parent="1" vertex="1" value="app-staging" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#000000;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="295" y="296" width="150" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="billing-system" parent="1" vertex="1" value="billing-system" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#000000;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="495" y="296" width="150" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="e-org-eng" parent="1" edge="1" source="org" target="folder-eng" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-org-fin" parent="1" edge="1" source="org" target="folder-fin" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-eng-prod" parent="1" edge="1" source="folder-eng" target="app-prod" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-eng-staging" parent="1" edge="1" source="folder-eng" target="app-staging" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fin-billing" parent="1" edge="1" source="folder-fin" target="billing-system" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="gcp-iam-inheritance" name="GCP IAM Inheritance">
+    <mxGraphModel dx="1024" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="620" pageHeight="600" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="org" parent="1" vertex="1" value="Organization" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="190" y="50" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="viewer-chip" parent="1" vertex="1" value="grant: Viewer" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#000000;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="450" y="64" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="folder" parent="1" vertex="1" value="engineering" style="shape=folder;html=1;whiteSpace=wrap;shadow=1;fillColor=#F9AB00;strokeColor=#E37400;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="200" y="190" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="project" parent="1" vertex="1" value="app-prod" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="190" y="370" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="editor-chip" parent="1" vertex="1" value="grant: Editor" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#000000;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="450" y="384" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="result" parent="1" vertex="1" value="Effective on app-prod&lt;br&gt;= Viewer + Editor" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=middle;align=center;">
+          <mxGeometry x="170" y="480" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-org-viewer" parent="1" edge="1" source="org" target="viewer-chip" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.2;fontColor=#000000;endArrow=none;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-project-editor" parent="1" edge="1" source="project" target="editor-chip" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.2;fontColor=#000000;endArrow=none;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-org-folder" parent="1" edge="1" source="org" target="folder" value="inherits" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-folder-project" parent="1" edge="1" source="folder" target="project" value="inherits" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-project-result" parent="1" edge="1" source="project" target="result" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
