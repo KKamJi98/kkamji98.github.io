@@ -11,3 +11,14 @@
 /* append your custom style below */
 
 #main-wrapper > .container { max-width: 1500px; }
+
+/* Search results pagination (mirrors PR cotes2020/jekyll-theme-chirpy#2584) */
+#search-pagination {
+  width: 100%;
+  margin-top: 1.5rem;
+
+  .pagination {
+    width: 100%;
+    justify-content: center;
+  }
+}
