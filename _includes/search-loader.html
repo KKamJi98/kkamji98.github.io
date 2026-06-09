@@ -1,20 +1,11 @@
 <!--
-  Jekyll Simple Search loader
-  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
--->
+  Search loader with data-driven pagination.
 
-{% capture result_elem %}
-  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-    <header>
-      <h2><a href="{url}">{title}</a></h2>
-      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
-        {categories}
-        {tags}
-      </div>
-    </header>
-    <p>{content}</p>
-  </article>
-{% endcapture %}
+  Replaces the default SimpleJekyllSearch DOM rendering: the search index is
+  fetched once into a JS array, queries are matched in memory (debounced), and
+  only the current page of results is rendered to the DOM. This avoids building
+  every matching post (full body) on each keystroke, which caused typing jank.
+-->
 
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 {% assign total_posts = site.posts | size %}
@@ -22,19 +13,25 @@
 {% assign search_per_page = site.search.per_page | default: site.paginate | default: 10 %}
 
 <script>
-  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
   document.addEventListener('DOMContentLoaded', () => {
     const SEARCH_LIMIT = Number('{{ search_limit }}') || {{ total_posts }};
-    const RESULTS_PER_PAGE = Number('{{ search_per_page }}') || 10;
+    const RESULTS_PER_PAGE = Math.max(Number('{{ search_per_page }}') || 10, 1);
+    const JSON_URL = '{{ '/assets/js/data/search.json' | relative_url }}';
+    const NO_RESULTS_HTML = '{{ not_found | strip_newlines }}';
+    const SNIPPET_LENGTH = 150;
+    const DEBOUNCE_MS = 250;
+
     const searchInput = document.getElementById('search-input');
-    const visibleResults = document.getElementById('search-results');
-    const cacheContainer = document.getElementById('search-results-cache');
+    const resultsContainer = document.getElementById('search-results');
     const paginationNav = document.getElementById('search-pagination');
     const paginationList = paginationNav ? paginationNav.querySelector('.pagination') : null;
 
+    if (!searchInput || !resultsContainer) {
+      return;
+    }
+
     class SearchPaginator {
-      constructor({ cacheContainer, targetContainer, paginationNav, paginationList, perPage }) {
-        this.cacheContainer = cacheContainer;
+      constructor({ targetContainer, paginationNav, paginationList, perPage }) {
         this.targetContainer = targetContainer;
         this.paginationNav = paginationNav;
         this.paginationList = paginationList;
@@ -48,45 +45,27 @@
         }
       }
 
-      observe() {
-        if (!this.cacheContainer) {
-          return;
-        }
-
-        this.observer = new MutationObserver(() => this.refresh());
-        this.observer.observe(this.cacheContainer, { childList: true });
-      }
-
-      refresh() {
-        if (!this.cacheContainer) {
-          return;
-        }
-
-        this.items = Array.from(this.cacheContainer.children);
+      setItems(items) {
+        this.items = items || [];
 
         if (this.items.length === 0) {
           this.clear();
           return;
         }
 
-        const onlyParagraph = this.items.length === 1 && this.items[0].tagName === 'P';
-
-        if (onlyParagraph) {
-          if (this.targetContainer) {
-            this.targetContainer.innerHTML = '';
-            this.targetContainer.appendChild(this.items[0].cloneNode(true));
-          }
-          this.hidePagination();
-          this.totalPages = 1;
-          this.currentPage = 1;
-          return;
-        }
-
         this.gotoPage(1);
       }
 
+      showNoResults(html) {
+        this.items = [];
+        this.currentPage = 1;
+        this.totalPages = 0;
+        this.targetContainer.innerHTML = html;
+        this.hidePagination();
+      }
+
       gotoPage(pageNumber) {
-        if (!this.items.length || !this.targetContainer) {
+        if (!this.items.length) {
           this.clear();
           return;
         }
@@ -99,13 +78,58 @@
         const fragment = document.createDocumentFragment();
 
         for (let i = start; i < end; i += 1) {
-          fragment.appendChild(this.items[i].cloneNode(true));
+          fragment.appendChild(this.renderArticle(this.items[i]));
         }
 
         this.targetContainer.innerHTML = '';
         this.targetContainer.appendChild(fragment);
 
         this.renderControls();
+      }
+
+      renderArticle(item) {
+        const article = document.createElement('article');
+        article.className = 'px-1 px-sm-2 px-lg-4 px-xl-0';
+
+        const header = document.createElement('header');
+        const heading = document.createElement('h2');
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.title;
+        heading.appendChild(link);
+        header.appendChild(heading);
+
+        const meta = document.createElement('div');
+        meta.className = 'post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1';
+
+        if (item.categories) {
+          const categories = document.createElement('div');
+          categories.className = 'me-sm-4';
+          categories.innerHTML = '<i class="far fa-folder fa-fw"></i>';
+          categories.appendChild(document.createTextNode(item.categories));
+          meta.appendChild(categories);
+        }
+
+        if (item.tags) {
+          const tags = document.createElement('div');
+          tags.innerHTML = '<i class="fa fa-tag fa-fw"></i>';
+          tags.appendChild(document.createTextNode(item.tags));
+          meta.appendChild(tags);
+        }
+
+        header.appendChild(meta);
+        article.appendChild(header);
+
+        const summary = document.createElement('p');
+        summary.textContent = this.snippet(item.content);
+        article.appendChild(summary);
+
+        return article;
+      }
+
+      snippet(text) {
+        const value = (text || '').trim();
+        return value.length > SNIPPET_LENGTH ? `${value.slice(0, SNIPPET_LENGTH)}...` : value;
       }
 
       buildVisiblePages() {
@@ -228,9 +252,7 @@
       }
 
       clear() {
-        if (this.targetContainer) {
-          this.targetContainer.innerHTML = '';
-        }
+        this.targetContainer.innerHTML = '';
         this.hidePagination();
         this.items = [];
         this.currentPage = 1;
@@ -265,47 +287,67 @@
     }
 
     const paginator = new SearchPaginator({
-      cacheContainer,
-      targetContainer: visibleResults,
+      targetContainer: resultsContainer,
       paginationNav,
       paginationList,
       perPage: RESULTS_PER_PAGE
     });
 
-    paginator.observe();
+    let dataset = null;
+    let loadPromise = null;
 
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        if (searchInput.value === '') {
-          paginator.clear();
+    function loadDataset() {
+      if (dataset) {
+        return Promise.resolve(dataset);
+      }
+
+      if (!loadPromise) {
+        loadPromise = fetch(JSON_URL)
+          .then((response) => response.json())
+          .then((entries) => {
+            dataset = entries.slice(0, SEARCH_LIMIT).map((entry) => {
+              entry._haystack = `${entry.title} ${entry.categories} ${entry.tags} ${entry.content}`.toLowerCase();
+              return entry;
+            });
+            return dataset;
+          })
+          .catch(() => {
+            dataset = [];
+            return dataset;
+          });
+      }
+
+      return loadPromise;
+    }
+
+    function runSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+
+      if (!query) {
+        paginator.clear();
+        return;
+      }
+
+      loadDataset().then((entries) => {
+        if (searchInput.value.trim().toLowerCase() !== query) {
+          return; // input changed while loading; a later run handles it
         }
+
+        const matches = entries.filter((entry) => entry._haystack.includes(query));
+
+        if (matches.length === 0) {
+          paginator.showNoResults(NO_RESULTS_HTML);
+          return;
+        }
+
+        paginator.setItems(matches);
       });
     }
 
-    SimpleJekyllSearch({
-      searchInput,
-      resultsContainer: cacheContainer || visibleResults,
-      json: '{{ '/assets/js/data/search.json' | relative_url }}',
-      searchResultTemplate: '{{ result_elem | strip_newlines }}',
-      noResultsText: '{{ not_found }}',
-      limit: SEARCH_LIMIT,
-      templateMiddleware: function(prop, value, template) {
-        if (prop === 'categories') {
-          if (value === '') {
-            return `${value}`;
-          } else {
-            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
-          }
-        }
-
-        if (prop === 'tags') {
-          if (value === '') {
-            return `${value}`;
-          } else {
-            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
-          }
-        }
-      }
+    let debounceTimer = null;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runSearch, DEBOUNCE_MS);
     });
   });
 </script>

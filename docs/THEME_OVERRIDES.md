@@ -37,12 +37,13 @@ bash tools/run.sh    # 로컬 미리보기
 - **gem 버전 기준**: `jekyll-theme-chirpy 7.4.1`
 - **출처**: 본인 PR [cotes2020/jekyll-theme-chirpy#2584](https://github.com/cotes2020/jekyll-theme-chirpy/pull/2584) (이슈 #2583). upstream 미머지 상태라 수동 이식.
 - **목적**: 기본 검색은 최대 10건만 노출. 변경 후 매칭되는 모든 글을 페이지당 N개로 페이지네이션.
+- **성능 재작성(2026-06-09)**: 초기 구현은 PR #2584를 그대로 이식해 `SimpleJekyllSearch`가 매칭 전체를 hidden cache DOM에 렌더하고 `MutationObserver`로 페이지를 잘랐다. `search.json`의 `content`가 `full_text=true`(전체 본문, 약 1.6MB/144건)인데 `limit`을 전체로 올린 탓에, 한 글자 입력마다 수백 개 전체-본문 노드를 동기 렌더해 타이핑이 버벅였다. 이를 데이터 기반(메모리 배열 + debounce + 스니펫 + 현재 페이지만 렌더)으로 재작성해 해소. 이 시점부터 로컬 구현은 PR #2584와 다르다(`SimpleJekyllSearch` 결과 렌더링 미사용). 단, 라이브러리는 테마 `js-selector`가 CDN에서 계속 로드한다(미사용).
 
 | 파일 | 변경 내용 |
 | :--- | :--- |
 | `_config.yml` | `search.limit`(빈값=전체), `search.per_page: 10` 키 추가 |
-| `_includes/search-results.html` | 신규 override. 페이지네이션 `nav` + 캐시 `div` 마크업 추가 |
-| `_includes/search-loader.html` | 신규 override. `SearchPaginator` JS 클래스 + SimpleJekyllSearch `limit` 연결 |
+| `_includes/search-results.html` | 신규 override. 페이지네이션 `nav` 마크업 추가 |
+| `_includes/search-loader.html` | 신규 override. 데이터 기반 페이지네이션. `search.json`을 1회 fetch해 메모리 배열로 보관하고, 입력은 debounce(250ms), 매칭은 substring(title/categories/tags/content), 현재 페이지만 DOM 렌더(스니펫 ~150자). `SimpleJekyllSearch` 결과 렌더링은 미사용 |
 | `assets/css/jekyll-theme-chirpy.scss` | `#search-pagination` 스타일 추가 (원래 PR은 `_sass/pages/_search.scss`였으나 위 메커니즘 이유로 진입점으로 이동) |
 
 - **설정**: `_config.yml`의 `search.per_page`(페이지당 개수), `search.limit`(전체 fetch 상한, 빈값=전체 글).
