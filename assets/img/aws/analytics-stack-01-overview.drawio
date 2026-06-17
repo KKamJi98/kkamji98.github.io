@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="AWS Analytics Stack" id="aws-analytics-overview">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="470" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="user" value="Query Author" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="110" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="engines_lane" value="Query Engines" style="swimlane;rounded=1;arcSize=6;html=1;fillColor=#1A73E8;fontColor=#FFFFFF;swimlaneFillColor=#E8F0FE;strokeColor=#1A73E8;startSize=28;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="50" width="180" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="athena" value="Amazon Athena" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="engines_lane">
+          <mxGeometry x="20" y="48" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="redshift" value="Redshift Spectrum" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#5F6368;dashed=1;" vertex="1" parent="engines_lane">
+          <mxGeometry x="20" y="118" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="catalog_lane" value="Metadata" style="swimlane;rounded=1;arcSize=6;html=1;fillColor=#F9AB00;fontColor=#202124;swimlaneFillColor=#FEF7E0;strokeColor=#F9AB00;startSize=28;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="50" width="180" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_catalog" value="Glue Data Catalog" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#F9AB00;fontColor=#202124;" vertex="1" parent="catalog_lane">
+          <mxGeometry x="20" y="60" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="storage_lane" value="Storage" style="swimlane;rounded=1;arcSize=6;html=1;fillColor=#34A853;fontColor=#FFFFFF;swimlaneFillColor=#E6F4EA;strokeColor=#34A853;startSize=28;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="50" width="200" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Amazon S3" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="storage_lane">
+          <mxGeometry x="20" y="48" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3tables" value="S3 Tables (Iceberg)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="storage_lane">
+          <mxGeometry x="20" y="113" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perm_lane" value="Permission Gates" style="swimlane;rounded=1;arcSize=6;html=1;fillColor=#EA4335;fontColor=#FFFFFF;swimlaneFillColor=#FCE8E6;strokeColor=#EA4335;startSize=28;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="300" width="680" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" value="IAM&#10;(API authorization)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;" vertex="1" parent="perm_lane">
+          <mxGeometry x="60" y="45" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="lakeformation" value="Lake Formation&#10;(data authorization)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;" vertex="1" parent="perm_lane">
+          <mxGeometry x="380" y="45" width="240" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_user_athena" value="SQL query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;" edge="1" parent="1" source="user" target="athena">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_athena_catalog" value="get metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;" edge="1" parent="1" source="athena" target="glue_catalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_catalog_s3" value="data location" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;" edge="1" parent="1" source="glue_catalog" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_catalog_s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;endArrow=block;" edge="1" parent="1" source="glue_catalog" target="s3tables">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_iam_engines" value="API authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=open;" edge="1" parent="1" source="iam" target="engines_lane">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lf_storage" value="data authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=open;" edge="1" parent="1" source="lakeformation" target="s3tables">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
