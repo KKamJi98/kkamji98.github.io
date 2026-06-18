@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Lake Formation Gates" id="lake-formation-gates">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="470" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="principal" value="analytics-workload-role&#10;(principal)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="30" y="120" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="athena" value="Amazon Athena&#10;(query engine)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="110" width="160" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iamgate" value="IAM Gate&#10;(API authz)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="115" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lfgate" value="Lake Formation Gate&#10;(data authz)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="115" width="290" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="regrole" value="Registered Role&#10;(LF assumes)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="650" y="270" width="290" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3data" value="S3 Tables data&#10;(underlying data)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="410" y="270" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="1. StartQuery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="principal" target="athena">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="2. API authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="athena" target="iamgate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="3. data authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iamgate" target="lfgate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="4. assume role" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lfgate" target="regrole">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="5. vend creds + read" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="regrole" target="s3data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fn1" value="IAM (API authz):  athena:*  &#183;  glue:Get* (target + ancestor ARNs)  &#183;  lakeformation:GetDataAccess" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="30" y="372" width="910" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="fn2" value="Lake Formation (data authz):  SELECT / DESCRIBE grant on DB / Table  &#8594;  granted by data lake admin" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="30" y="396" width="910" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="fn3" value="Both gates must Allow.  IAM Allow + missing LF grant  &#8594;  AccessDenied (LF is a separate gate on top of IAM)." style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="30" y="420" width="910" height="22" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
