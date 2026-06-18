@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Catalog Federation" id="catalog-federation">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="860" pageHeight="430" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="defcat" value="Default Catalog (AwsDataCatalog)" style="swimlane;rounded=1;arcSize=4;html=1;startSize=30;fillColor=#5F6368;fontColor=#FFFFFF;swimlaneFillColor=#F8F9FA;strokeColor=#5F6368;fontStyle=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="780" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="logsdb" value="logs_db&#10;(regular Glue DB)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="defcat">
+          <mxGeometry x="30" y="60" width="210" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3tcat" value="s3tablescatalog (federated)" style="swimlane;rounded=1;arcSize=4;html=1;startSize=28;fillColor=#F9AB00;fontColor=#202124;swimlaneFillColor=#FEF7E0;strokeColor=#F9AB00;fontStyle=1;shadow=0;" vertex="1" parent="defcat">
+          <mxGeometry x="290" y="55" width="460" height="175" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bucket" value="amzn-s3-demo-bucket (table bucket)" style="swimlane;rounded=1;arcSize=4;html=1;startSize=28;fillColor=#34A853;fontColor=#FFFFFF;swimlaneFillColor=#E6F4EA;strokeColor=#34A853;fontStyle=1;shadow=0;" vertex="1" parent="s3tcat">
+          <mxGeometry x="25" y="50" width="410" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nstable" value="sales_db (namespace)  &gt;  orders (table)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="bucket">
+          <mxGeometry x="25" y="45" width="360" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arn1" value="Regular DB ARN:  arn:aws:glue:REGION:ACCOUNT:database/logs_db" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="310" width="780" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="arn2" value="S3 Tables ARN:  arn:aws:glue:REGION:ACCOUNT:catalog/s3tablescatalog/{bucket}/{db}  +  table/{bucket}/{db}/orders" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="338" width="780" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="arnnote" value="Deeper federation = deeper ARN path (catalog &gt; database &gt; table nested under s3tablescatalog/{bucket})" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="368" width="780" height="24" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
