@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Warehouse vs Lake vs Lakehouse" id="warehouse-lake-lakehouse">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="430" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Data Warehouse vs Data Lake vs Data Lakehouse" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="16" width="880" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="whname" value="Data Warehouse" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="58" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="whtrait" value="schema-on-write&#10;structured data only&#10;&#10;+ fast queries, governance&#10;- storage cost, rigid schema" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="whaws" value="AWS: Amazon Redshift" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="298" width="270" height="64" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lkname" value="Data Lake" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#34A853;strokeColor=#1E8E3E;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="58" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lktrait" value="schema-on-read&#10;raw / any format&#10;&#10;+ cheap, flexible&#10;- weak governance (data swamp)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="345" y="120" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lkaws" value="AWS: S3 + Glue + Athena" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="298" width="270" height="64" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lhname" value="Data Lakehouse" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#A142F4;strokeColor=#7B27C4;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="58" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lhtrait" value="lake storage&#10;+ warehouse features&#10;(ACID, schema, transactions)&#10;&#10;table format:&#10;Iceberg / Delta / Hudi" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;shadow=0;fillColor=#FFFFFF;strokeColor=#A142F4;fontColor=#202124;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="650" y="120" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lhaws" value="AWS: S3 Tables + Athena&#10;+ Lake Formation" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="298" width="270" height="64" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="Lakehouse = data lake storage (cheap, open formats) + data warehouse capabilities (ACID, schema, fast SQL)" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="376" width="880" height="24" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
