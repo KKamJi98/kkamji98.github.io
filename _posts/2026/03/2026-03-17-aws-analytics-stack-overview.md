@@ -36,7 +36,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 
 다만 초기 데이터 레이크(S3 + Parquet/JSON 파일 더미)는 약점이 있었습니다. 파일을 직접 다루다 보니 **트랜잭션(ACID)이 없고**, 스키마 변경이 까다롭고, 잘못된 부분 수정(update/delete)이 어렵습니다. "그냥 읽기 전용 로그 분석"엔 충분해도, 정합성이 필요한 데이터엔 부족했습니다.
 
-그래서 등장한 게 **레이크하우스(lakehouse)** 입니다. S3 위에 **Apache Iceberg** 같은 테이블 포맷을 얹어, 파일 더미를 "진짜 테이블"처럼 다룹니다. ACID 트랜잭션, 스키마 진화(schema evolution), 시간여행(time travel, 과거 스냅샷 조회) 같은 DW의 장점을 데이터 레이크의 유연함 위에서 얻습니다. AWS에서는 **S3 Tables**가 이 Iceberg 테이블을 관리형으로 제공합니다(3편에서 상세).
+그래서 등장한 게 **레이크하우스(lakehouse)** 입니다. S3 위에 **Apache Iceberg** 같은 테이블 포맷을 얹어, 파일 더미를 "진짜 테이블"처럼 다룹니다. ACID 트랜잭션, 스키마 진화(schema evolution), 시간여행(time travel, 과거 스냅샷 조회) 같은 DW의 장점을 데이터 레이크의 유연함 위에서 얻습니다. AWS에서는 **S3 Tables**가 이 Iceberg 테이블을 관리형으로 제공합니다(이후 글에서 자세히 설명합니다).
 
 ### 1.3. 자연스럽게 갈라지는 역할
 
@@ -74,7 +74,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 
 여기서 메타데이터(Glue Data Catalog)의 위상을 한 번 더 짚어둘 필요가 있습니다. 분석 스택에서 **"테이블"이란 곧 Glue Data Catalog의 엔트리**입니다. S3의 파일 그 자체가 아니라, "이 위치의 파일들은 이런 스키마의 테이블"이라는 **정의**가 Catalog에 들어 있고, Athena/Redshift/EMR이 그 정의를 공유합니다. 그래서 한 곳(Catalog)에서 테이블을 정의하면 여러 엔진이 같은 테이블을 봅니다.
 
-> 위 그림에서는 **Glue Data Catalog 를 하나로 단순화**했습니다. 실제로는 기본 카탈로그(default) 안에 S3 Tables용 federated 카탈로그(`s3tablescatalog`)가 중첩되는데, 이 구조는 **3편(S3 Tables & Catalog Federation)** 에서 자세히 다룹니다. 1편에서는 "메타데이터는 Glue Catalog가 맡는다" 정도로 충분합니다.  
+> 위 그림에서는 **Glue Data Catalog 를 하나로 단순화**했습니다. 실제로는 기본 카탈로그(default) 안에 S3 Tables용 federated 카탈로그(`s3tablescatalog`)가 중첩되는데, 이 구조는 **S3 Tables와 Catalog Federation을 다루는 글**에서 자세히 설명합니다. 이 글에서는 "메타데이터는 Glue Catalog가 맡는다" 정도로 충분합니다.  
 {: .prompt-info}
 
 ---
@@ -184,7 +184,7 @@ Redshift Spectrum은 Athena처럼 Glue Data Catalog의 외부 테이블(S3/S3 Ta
 
 ## 5. 실습 맛보기 - Athena로 S3 데이터 쿼리하기
 
-개념을 잡았으니, 분석 스택이 실제로 어떻게 맞물리는지 **최소 예시**로 감을 잡아봅니다. (서비스별 깊은 실습은 2편 이후에서 다룹니다.)
+개념을 잡았으니, 분석 스택이 실제로 어떻게 맞물리는지 **최소 예시**로 감을 잡아봅니다. (서비스별 깊은 실습은 이후 글에서 다룹니다.)
 
 전제: S3 버킷 `s3://amzn-s3-demo-bucket/app-events/` 아래에 날짜 파티션으로 데이터가 쌓여 있다고 가정합니다.
 
@@ -241,7 +241,7 @@ LIMIT 20;
 - `WHERE dt = ...` -> 파티션 프루닝으로 스캔량/비용 절감
 - 이 모든 호출이 **IAM**(API) 권한을 통과해야 하고, 데이터가 Lake Formation 관리 대상이면 **LF grant**까지 필요
 
-> `MSCK REPAIR TABLE`은 파티션이 많아지면 느려집니다. 운영에서는 **partition projection**(파티션을 패턴으로 계산)이나 Glue Crawler로 파티션을 관리하는 방식을 더 씁니다. 이 부분은 2편(Glue)에서 다룹니다.  
+> `MSCK REPAIR TABLE`은 파티션이 많아지면 느려집니다. 운영에서는 **partition projection**(파티션을 패턴으로 계산)이나 Glue Crawler로 파티션을 관리하는 방식을 더 씁니다. 이 부분은 Glue를 다루는 글에서 설명합니다.  
 {: .prompt-tip}
 
 ---
