@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="LF Permission Matrix and Timeline" id="lf-permissions">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title1" value="Permission matrix: 2 axes (IAM, Lake Formation) x 3 layers" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="30" y="18" width="900" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="corner" value="Layer" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="54" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="iamhdr" value="IAM (API authz)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FAD2CF;strokeColor=#D93025;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="54" width="410" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lfhdr" value="Lake Formation (data authz)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#EADDFB;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="54" width="410" height="44" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lblcat" value="catalog" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="98" width="160" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="iamcat" value="glue:GetCatalog / GetCatalogs&#10;+ catalog/s3tablescatalog/{bucket} ARN" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="98" width="410" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="lfcat" value="DESCRIBE&#10;on s3tablescatalog/{bucket}" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="98" width="410" height="78" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lbldb" value="database" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="176" width="160" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="iamdb" value="glue:GetDatabase / GetDatabases&#10;+ database/s3tablescatalog/{bucket}/{db} ARN" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="176" width="410" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdb" value="DESCRIBE&#10;on {db}" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="176" width="410" height="78" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lbltbl" value="table" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="254" width="160" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="iamtbl" value="glue:GetTable / GetTables&#10;+ table/s3tablescatalog/{bucket}/{db}/* ARN" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="254" width="410" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="lftbl" value="SELECT / DESCRIBE&#10;on table" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="254" width="410" height="78" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gda" value="+ lakeformation:GetDataAccess (IAM) on the query principal  &#8594;  enables credential vending" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="332" width="820" height="42" as="geometry" />
+        </mxCell>
+
+        <mxCell id="title2" value="Debugging timeline -- each added permission advances the symptom" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="30" y="404" width="900" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t1" value="CATALOG_NOT_FOUND&#10;/ TABLE_NOT_FOUND" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="446" width="215" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" value="glue:GetDatabases&#10;AccessDenied" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="300" y="446" width="215" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" value="glue:GetTable&#10;AccessDenied" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="570" y="446" width="215" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" value="query OK&#10;(short name)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="446" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="te1" value="+ catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t1" target="t2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te2" value="+ database" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t2" target="t3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te3" value="+ table" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t3" target="t4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
