@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, athena, trino, presto, distributed-sql, query-engine, mpp]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-08-distributed-sql-mpp.webp
+  path: /assets/img/aws/analytics-stack-03-distributed-sql-mpp.webp
 ---
 
 데이터 레이크나 레이크하우스에 쌓인 대규모 데이터를 SQL로 빠르게 조회하는 일의 중심에는 **분산 SQL 엔진**이 있습니다. Amazon Athena가 데이터를 옮기지 않고도 여러 소스를 한 쿼리로 조인하고 빠르게 응답하는 것도, 그 바탕에 분산 SQL 엔진이 있기 때문입니다. 이번 글에서는 SQL 엔진이 무엇이고, 단일 노드 엔진과 분산 SQL 엔진(Trino/Presto)이 어떻게 다른지, 그리고 Athena가 그것을 어떻게 활용하는지를 알아봅니다.
@@ -46,7 +46,7 @@ image:
 
 분산 SQL 엔진은 **MPP(Massively Parallel Processing)** 구조로 이 한계를 풉니다. 하나의 쿼리를 여러 노드에 쪼개 동시에 처리하는 방식입니다.
 
-![분산 SQL 엔진의 coordinator-worker MPP 구조](/assets/img/aws/analytics-stack-08-distributed-sql-mpp.webp)
+![분산 SQL 엔진의 coordinator-worker MPP 구조](/assets/img/aws/analytics-stack-03-distributed-sql-mpp.webp)
 
 ### 3.1. coordinator와 worker
 

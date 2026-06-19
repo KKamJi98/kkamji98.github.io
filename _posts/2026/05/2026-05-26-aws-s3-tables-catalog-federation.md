@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, s3-tables, iceberg, glue, catalog-federation, data-lakehouse]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-03-catalog-federation.webp
+  path: /assets/img/aws/analytics-stack-06-catalog-federation.webp
 ---
 
 앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리했습니다. 이번 글에서는 한 단계 더 들어가, 데이터 레이크하우스의 핵심인 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
@@ -78,7 +78,7 @@ S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3
 
 즉 카탈로그 안에 카탈로그가 들어가는 **중첩 구조**가 됩니다. 그림으로 보면 다음과 같습니다.
 
-![카탈로그 중첩 구조 - Default Catalog 안에 s3tablescatalog(federated)와 table bucket, namespace, table이 중첩](/assets/img/aws/analytics-stack-03-catalog-federation.webp)
+![카탈로그 중첩 구조 - Default Catalog 안에 s3tablescatalog(federated)와 table bucket, namespace, table이 중첩](/assets/img/aws/analytics-stack-06-catalog-federation.webp)
 
 왼쪽의 `logs_db`는 기본 카탈로그에 직접 속한 일반 데이터베이스입니다. 오른쪽은 `s3tablescatalog` -> table bucket -> namespace -> table 순으로 중첩된 S3 Tables 경로입니다. 같은 "테이블"이지만 한쪽은 평면, 한쪽은 깊은 계층에 있습니다.
 

@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, data-warehouse, data-lake, data-lakehouse, redshift, s3-tables, iceberg]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-06-warehouse-lake-lakehouse.webp
+  path: /assets/img/aws/analytics-stack-02-warehouse-lake-lakehouse.webp
 ---
 
 데이터 분석 스택을 다루다 보면 **데이터 웨어하우스(Data Warehouse)**, **데이터 레이크(Data Lake)**, **레이크하우스(Data Lakehouse)** 라는 용어가 자주 등장합니다. 셋 다 "데이터를 모아 분석한다"는 점은 같지만, 어디에 어떻게 저장하고 언제 스키마를 적용하느냐가 다릅니다. 이 차이를 모르면, 어떤 저장 방식을 택해야 하는지, 그리고 최근의 레이크하우스가 무엇을 해결하려는 것인지 감을 잡기 어렵습니다.
@@ -22,7 +22,7 @@ image:
 
 아래 그림이 세 패러다임의 핵심 차이와 AWS 매핑을 한눈에 보여 줍니다.
 
-![데이터 웨어하우스, 레이크, 레이크하우스 비교](/assets/img/aws/analytics-stack-06-warehouse-lake-lakehouse.webp)
+![데이터 웨어하우스, 레이크, 레이크하우스 비교](/assets/img/aws/analytics-stack-02-warehouse-lake-lakehouse.webp)
 
 ---
 

@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, athena, glue, s3-tables, lake-formation, redshift, data-lake, data-lakehouse]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-01-overview.webp
+  path: /assets/img/aws/analytics-stack-04-overview.webp
 ---
 
 S3 버킷에는 로그, 이벤트, 각종 추출 데이터가 끊임없이 쌓입니다. 그런데 막상 "이 데이터를 SQL로 한 번 들여다보자"고 하면, 어디서부터 손대야 할지 막막할 때가 많습니다. 별도 DB로 적재(ETL)해야 하나? 권한은 어디서 거나? 카탈로그는 또 뭔가?
@@ -58,7 +58,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 
 먼저 큰 그림부터 봅니다.
 
-![AWS 데이터 분석 스택 전체도 - 엔진(Athena/Redshift), 메타데이터(Glue Data Catalog), 저장(S3/S3 Tables), 권한 게이트(IAM/Lake Formation)](/assets/img/aws/analytics-stack-01-overview.webp)
+![AWS 데이터 분석 스택 전체도 - 엔진(Athena/Redshift), 메타데이터(Glue Data Catalog), 저장(S3/S3 Tables), 권한 게이트(IAM/Lake Formation)](/assets/img/aws/analytics-stack-04-overview.webp)
 
 각 구성요소를 한 줄로 정의하면 다음과 같습니다.
 

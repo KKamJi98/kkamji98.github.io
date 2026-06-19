@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, lake-formation, iam, glue, data-governance, security]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-04-lake-formation.webp
+  path: /assets/img/aws/analytics-stack-07-lake-formation.webp
 ---
 
 앞선 [S3 Tables & Catalog Federation](/posts/aws-s3-tables-catalog-federation/) 글에서 관리형 Iceberg 레이크하우스가 `s3tablescatalog` 아래에 어떻게 중첩되는지, 그래서 ARN이 왜 깊어지는지를 정리했습니다. 이번 글에서는 이 federated 데이터에 한 겹 더 얹히는 권한 계층, **AWS Lake Formation**을 알아봅니다.
@@ -56,7 +56,7 @@ GRANT SELECT, DESCRIBE ON TABLE sales_db.orders TO analytics-workload-role
 
 Lake Formation을 이해하는 핵심은, 그것이 IAM 위에 얹히는 **별도의 데이터 권한 게이트**라는 점입니다. 다음 다이어그램은 쿼리가 두 게이트를 차례로 통과하는 흐름을 보여줍니다.
 
-![AWS Lake Formation 2층 권한 게이트와 credential vending](/assets/img/aws/analytics-stack-04-lake-formation.webp)
+![AWS Lake Formation 2층 권한 게이트와 credential vending](/assets/img/aws/analytics-stack-07-lake-formation.webp)
 
 ### 2.1. 역할 분리
 

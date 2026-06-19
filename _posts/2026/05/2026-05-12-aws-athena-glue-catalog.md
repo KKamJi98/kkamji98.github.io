@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, athena, glue, glue-data-catalog, presto, trino, iam]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-02-query-flow.webp
+  path: /assets/img/aws/analytics-stack-05-query-flow.webp
 ---
 
 앞선 [AWS 데이터 분석 스택 Overview](/posts/aws-analytics-stack-overview/)에서 분석 스택의 큰 그림과, 쿼리 한 번이 엔진과 메타스토어, 저장소를 지나는 흐름을 살펴봤습니다. 이번 글에서는 그 중심에 있는 두 구성요소, **Amazon Athena**와 **AWS Glue Data Catalog**를 자세히 알아봅니다.
@@ -34,7 +34,7 @@ image:
 
 Athena는 비동기로 동작합니다. 쿼리를 제출하면 즉시 결과가 오는 것이 아니라, "시작 -> 완료 폴링 -> 결과 조회" 순서를 거칩니다. 쿼리 한 번이 지나는 길을 그림으로 보면 다음과 같습니다.
 
-![Athena 쿼리 1회 흐름 - StartQuery, Glue 메타데이터 조회, S3 스캔, 결과 기록](/assets/img/aws/analytics-stack-02-query-flow.webp)
+![Athena 쿼리 1회 흐름 - StartQuery, Glue 메타데이터 조회, S3 스캔, 결과 기록](/assets/img/aws/analytics-stack-05-query-flow.webp)
 
 1. **SQL 제출**: 클라이언트가 `StartQueryExecution`으로 쿼리를 던집니다. 이때 실행할 **workgroup**이 정해집니다.
 2. **메타데이터 조회**: Athena가 대상 테이블의 스키마와 S3 위치, 파티션 정보를 **Glue Data Catalog**에서 받아옵니다.
