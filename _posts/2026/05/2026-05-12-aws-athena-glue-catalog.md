@@ -1,6 +1,6 @@
 ---
 title: Amazon Athena & Glue Data Catalog 알아보기 - 서버리스 쿼리와 메타스토어
-date: 2026-03-31 09:00:00 +0900
+date: 2026-05-12 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, athena, glue, glue-data-catalog, presto, trino, iam]

@@ -1,6 +1,6 @@
 ---
 title: AWS Lake Formation 권한 Deep Dive - 권한을 다 줬는데 왜 CATALOG_NOT_FOUND일까
-date: 2026-05-12 09:00:00 +0900
+date: 2026-06-23 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, lake-formation, s3-tables, athena, troubleshooting, iam]

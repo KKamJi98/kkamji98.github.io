@@ -1,6 +1,6 @@
 ---
 title: AWS Lake Formation 알아보기 - IAM 위의 데이터 접근 권한
-date: 2026-04-28 09:00:00 +0900
+date: 2026-06-09 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, lake-formation, iam, glue, data-governance, security]

@@ -1,6 +1,6 @@
 ---
 title: S3 Tables & Catalog Federation 알아보기 - 관리형 Iceberg 레이크하우스
-date: 2026-04-14 09:00:00 +0900
+date: 2026-05-26 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, s3-tables, iceberg, glue, catalog-federation, data-lakehouse]

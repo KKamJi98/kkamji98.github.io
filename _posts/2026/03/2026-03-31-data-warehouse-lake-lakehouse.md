@@ -1,6 +1,6 @@
 ---
 title: 데이터 웨어하우스 vs 데이터 레이크 vs 레이크하우스
-date: 2026-05-26 09:00:00 +0900
+date: 2026-03-31 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, data-warehouse, data-lake, data-lakehouse, redshift, s3-tables, iceberg]
@@ -147,7 +147,7 @@ image:
 | **Data Lake** | Amazon S3 + AWS Glue + Amazon Athena | S3=저장, Glue=메타데이터, Athena=쿼리 |
 | **Data Lakehouse** | Amazon S3 Tables + Athena + AWS Lake Formation | S3 Tables=관리형 Iceberg, LF=거버넌스 |
 
-[Amazon S3 Tables](/posts/aws-s3-tables-catalog-federation/)는 관리형 Apache Iceberg 테이블 버킷으로, 레이크하우스의 테이블 포맷 계층을 AWS가 운영해 주는 형태입니다. 여기에 [AWS Lake Formation](/posts/aws-lake-formation/)이 fine-grained 권한과 거버넌스를 더하면, 레이크의 저장 위에서 웨어하우스 수준의 통제를 갖춘 레이크하우스가 됩니다.
+Amazon S3 Tables는 관리형 Apache Iceberg 테이블 버킷으로, 레이크하우스의 테이블 포맷 계층을 AWS가 운영해 주는 형태입니다. 여기에 AWS Lake Formation이 fine-grained 권한과 거버넌스를 더하면, 레이크의 저장 위에서 웨어하우스 수준의 통제를 갖춘 레이크하우스가 됩니다. S3 Tables와 Lake Formation은 이 시리즈의 뒤쪽 글에서 각각 자세히 다룹니다.
 
 ---
 

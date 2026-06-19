@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Distributed SQL MPP" id="distributed-sql-mpp">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Distributed SQL engine (MPP): coordinator + workers" style="text;html=1;align=left;verticalAlign=middle;fontColor=#202124;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="14" width="900" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="client" value="Client" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="195" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="coord" value="Coordinator&#10;(parse, plan, schedule)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="180" width="190" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="w1" value="Worker 1&#10;(execute tasks)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="520" y="70" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" value="Worker 2&#10;(execute tasks)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="520" y="190" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" value="Worker 3&#10;(execute tasks)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="520" y="310" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sources" value="Data sources&#10;(S3, MySQL, Kafka, ...)&#10;via connectors" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="790" y="70" width="180" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="1. SQL query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="coord">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2a" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2b" value="2. split into tasks (splits)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2c" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e3a" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.113;entryDx=0;entryDy=0;" edge="1" parent="1" source="w1" target="sources">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3b" value="3. parallel scan" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="w2" target="sources">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3c" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.887;entryDx=0;entryDy=0;" edge="1" parent="1" source="w3" target="sources">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="Single-node SQL engine: one process parses, scans, and computes -- bounded by one machine.   MPP: the coordinator splits a query into tasks across many workers that scan and compute in parallel, then merges the results." style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="410" width="930" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
