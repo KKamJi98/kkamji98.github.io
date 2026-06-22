@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-03-ioc-before-after" name="IoC Before vs After">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="panel-before" parent="1" vertex="1" value="Before: manual new (tight coupling)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;spacingTop=10;">
+          <mxGeometry x="40" y="60" width="400" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="panel-after" parent="1" vertex="1" value="After: IoC Container (loose coupling)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;spacingTop=10;">
+          <mxGeometry x="540" y="60" width="400" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="vs" parent="1" vertex="1" value="vs" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#9AA0A6;">
+          <mxGeometry x="455" y="265" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrl-before" parent="1" vertex="1" value="OrderController" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="120" y="130" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-before" parent="1" vertex="1" value="OrderService" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="120" y="250" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-before" parent="1" vertex="1" value="OrderRepository" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="120" y="370" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="note-before" parent="1" vertex="1" value="construction baked into code = tight coupling" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="448" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrl-after" parent="1" vertex="1" value="OrderController (bean)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="620" y="130" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-after" parent="1" vertex="1" value="OrderService (bean)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="620" y="250" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-after" parent="1" vertex="1" value="OrderRepository (bean)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="620" y="370" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="note-after" parent="1" vertex="1" value="container builds and injects = loose coupling" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#1A57B0;fontStyle=2;">
+          <mxGeometry x="560" y="448" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="eb1" parent="1" edge="1" source="ctrl-before" target="svc-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eb2" parent="1" edge="1" source="svc-before" target="repo-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea1" parent="1" edge="1" source="repo-after" target="svc-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea2" parent="1" edge="1" source="svc-after" target="ctrl-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
