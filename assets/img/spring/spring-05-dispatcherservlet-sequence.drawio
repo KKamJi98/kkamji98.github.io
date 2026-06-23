@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-05-dispatcherservlet-sequence" name="DispatcherServlet Sequence">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="780" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dispatcher-box" parent="1" vertex="1" value="DispatcherServlet (front controller) - coordinates delegates" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="120" y="96" width="520" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="request" parent="1" vertex="1" value="Client request (GET /orders/42)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="250" y="20" width="260" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="hm" parent="1" vertex="1" value="HandlerMapping&#10;match request -&gt; handler (path pattern + HTTP method)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="210" y="150" width="340" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="ha" parent="1" vertex="1" value="HandlerAdapter&#10;invoke the matched handler (bind args)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="210" y="250" width="340" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="csr" parent="1" vertex="1" value="Controller -&gt; Service -&gt; Repository&#10;(your code / beans)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="210" y="350" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ret" parent="1" vertex="1" value="Return value handling&#10;HttpMessageConverter (JSON) / ViewResolver" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+          <mxGeometry x="210" y="454" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="response" parent="1" vertex="1" value="Client response" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="250" y="700" width="260" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="request" target="hm" value="HTTP request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="hm" target="ha" value="matched handler" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="ha" target="csr" value="invoke" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" edge="1" source="csr" target="ret" value="return value" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" edge="1" source="ret" target="response" value="HTTP response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
