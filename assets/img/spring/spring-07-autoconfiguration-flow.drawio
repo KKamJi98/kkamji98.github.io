@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-07-autoconfiguration-flow" name="Auto-configuration Flow">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s1" parent="1" vertex="1" value="App start (@SpringBootApplication)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="220" y="30" width="320" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" vertex="1" value="@EnableAutoConfiguration&#10;load AutoConfiguration candidates (AutoConfiguration.imports)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="170" y="126" width="420" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" vertex="1" value="@Conditional met?&#10;(OnClass / OnMissingBean / OnProperty)" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="280" y="232" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="s4yes" parent="1" vertex="1" value="Register auto-config beans&#10;(embedded Tomcat, DispatcherServlet, ...)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="210" y="430" width="340" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="s4no" parent="1" vertex="1" value="Skip (backs off)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="580" y="262" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="note-loop" parent="1" vertex="1" value="repeated for each&#10;AutoConfiguration&#10;candidate" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="262" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="note-no" parent="1" vertex="1" value="your own bean wins&#10;(non-invasive)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="580" y="330" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="s3" target="s4yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" edge="1" source="s3" target="s4no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
