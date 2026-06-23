@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-01-process-memory-layout" name="Process Memory Layout">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="740" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hi" parent="1" vertex="1" value="higher address" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="140" y="42" width="300" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="stack" parent="1" vertex="1" value="stack  (call stack: frames, locals, per-thread)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="140" y="70" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="free" parent="1" vertex="1" value="(free space)  -  stack grows down, heap grows up" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=2;dashed=1;">
+          <mxGeometry x="140" y="128" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="heap" parent="1" vertex="1" value="heap  (dynamic allocation: new / malloc)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="140" y="188" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="bss" parent="1" vertex="1" value="bss  (uninitialized static)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="140" y="246" width="300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="data" parent="1" vertex="1" value="data  (initialized static)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="140" y="288" width="300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="text" parent="1" vertex="1" value="text / code  (read-only)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="140" y="330" width="300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="lo" parent="1" vertex="1" value="lower address" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="140" y="378" width="300" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Conventional (x86). Growth direction and layout vary by architecture / OS (e.g. ASLR)." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="478" y="124" width="232" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="np" parent="1" edge="1" source="note" target="free" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=open;endSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

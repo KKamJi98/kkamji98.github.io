@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-02-stack-vs-heap" name="Stack vs Heap">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="430" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="code" parent="1" vertex="1" value="void process() {&#10;    int count = 10;&#10;    Order order = new Order();&#10;}  // returns" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;">
+          <mxGeometry x="40" y="100" width="380" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="stackr" parent="1" vertex="1" value="Stack  (process() frame, per-thread)&#10;&#10;count = 10&#10;order = [reference]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;">
+          <mxGeometry x="480" y="84" width="240" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="heapr" parent="1" vertex="1" value="Heap  (shared)&#10;&#10;Order object" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;">
+          <mxGeometry x="480" y="250" width="240" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="On return: count and 'order' (the reference) pop with the frame. The Order object stays on the heap until GC reclaims it." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="270" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ref" parent="1" edge="1" source="stackr" target="heapr" value="references" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
