@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-04-container-memory-breakdown" name="Container Memory Breakdown">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" parent="1" vertex="1" value="Container memory limit" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="240" y="46" width="340" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="heapseg" parent="1" vertex="1" value="Heap  (-Xmx)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="270" y="82" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="metaseg" parent="1" vertex="1" value="Metaspace (class metadata)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="270" y="216" width="280" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="stackseg" parent="1" vertex="1" value="Thread Stacks (-Xss x N)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="270" y="264" width="280" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="codeseg" parent="1" vertex="1" value="Code Cache (JIT)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="270" y="312" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="directseg" parent="1" vertex="1" value="Direct Memory (off-heap)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+          <mxGeometry x="270" y="356" width="280" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="headseg" parent="1" vertex="1" value="Headroom / other native" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="270" y="404" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-heap" parent="1" vertex="1" value="-Xmx caps&#10;ONLY this slice" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1A57B0;fontStyle=1;">
+          <mxGeometry x="40" y="120" width="180" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-native" parent="1" vertex="1" value="the rest is native memory,&#10;outside -Xmx" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="300" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Container limit = Heap + Metaspace + Thread Stacks + Code Cache + Direct + Headroom.   Size -Xmx with room for the rest, or the container OOMs." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="466" width="620" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
