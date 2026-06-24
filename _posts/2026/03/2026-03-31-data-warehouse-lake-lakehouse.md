@@ -23,10 +23,11 @@ image:
 아래 그림이 세 패러다임의 핵심 차이와 AWS 매핑을 한눈에 보여 줍니다.
 
 ![데이터 웨어하우스, 레이크, 레이크하우스 비교](/assets/img/aws/analytics-stack-02-warehouse-lake-lakehouse.webp)
+_세 패러다임의 스키마 적용 시점(schema-on-write vs schema-on-read), 데이터 형식, 트랜잭션 지원과 AWS 서비스 매핑 비교_
 
 ---
 
-## 1. 왜 데이터를 한곳에 모으나
+## 1. 데이터를 한곳에 모으는 이유
 
 서비스 데이터는 보통 여러 운영 데이터베이스와 로그, 외부 소스에 흩어져 있습니다. 분석이나 리포팅을 하려면 이 데이터를 한곳에 모아 일관된 방식으로 조회할 수 있어야 합니다. 운영 DB에 직접 분석 쿼리를 던지면 서비스 트래픽에 영향을 주고, 소스마다 형식이 달라 조인도 어렵습니다.
 
@@ -71,7 +72,7 @@ image:
 
 ---
 
-## 3. Data Lake - 일단 다 담는다
+## 3. Data Lake - 원본 그대로 적재
 
 데이터 레이크는 웨어하우스의 경직성을 풀기 위해 2010년대 빅데이터(Hadoop) 흐름과 함께 등장했습니다. **형식을 가리지 않고 원본 그대로** 저장합니다. 정형 데이터뿐 아니라 로그, JSON, 이미지 같은 반정형/비정형 데이터까지 한곳에 담습니다.
 
@@ -129,11 +130,13 @@ image:
 | 스키마 시점 | schema-on-write | schema-on-read | schema-on-read + 강제 가능 |
 | 데이터 형식 | 정형 | 정형/반정형/비정형 | 정형/반정형/비정형 |
 | 변환 순서 | ETL | ELT | ELT |
-| 트랜잭션 | 있음 | 없음 | 있음(테이블 포맷) |
+| 트랜잭션 | 있음 | 없음[^lake-tx] | 있음(테이블 포맷) |
 | 거버넌스 | 강함 | 약함 | 강함 |
 | 스토리지 비용 | 높음 | 낮음 | 낮음 |
 | 쿼리 성능 | 높음 | 보통 | 높음 |
 | 대표 용도 | BI/리포팅 | 원본 적재/탐색 | 통합 분석 |
+
+[^lake-tx]: 정확히는 트랜잭션 부재가 "Data Lake"라는 패러다임의 본질적 한계는 아닙니다. S3 같은 객체 스토리지에 쌓인 raw 파일 더미 자체가 트랜잭션을 모를 뿐이고, 같은 레이크 스토리지 위에 Apache Iceberg 같은 테이블 포맷을 얹으면 ACID 트랜잭션이 생깁니다. Iceberg는 "brings the reliability and simplicity of SQL tables to big data"라고 스스로를 설명합니다. 즉 트랜잭션 유무를 가르는 경계는 저장 위치(레이크 vs 웨어하우스)가 아니라 그 위에 테이블 포맷이 있는지 여부이며, 이 경계 위에 선 형태가 곧 4절의 레이크하우스입니다.
 
 ---
 
@@ -147,7 +150,9 @@ image:
 | **Data Lake** | Amazon S3 + AWS Glue + Amazon Athena | S3=저장, Glue=메타데이터, Athena=쿼리 |
 | **Data Lakehouse** | Amazon S3 Tables + Athena + AWS Lake Formation | S3 Tables=관리형 Iceberg, LF=거버넌스 |
 
-Amazon S3 Tables는 관리형 Apache Iceberg 테이블 버킷으로, 레이크하우스의 테이블 포맷 계층을 AWS가 운영해 주는 형태입니다. 여기에 AWS Lake Formation이 fine-grained 권한과 거버넌스를 더하면, 레이크의 저장 위에서 웨어하우스 수준의 통제를 갖춘 레이크하우스가 됩니다. S3 Tables와 Lake Formation은 이 시리즈의 뒤쪽 글에서 각각 자세히 다룹니다.
+위 표는 각 패러다임의 가장 대표적인 한 가지 조합일 뿐, 유일한 정답은 아닙니다. 예를 들어 웨어하우스는 Redshift 외에 Snowflake/BigQuery로, 레이크하우스의 쿼리 엔진은 Athena 외에 Spark/Trino/Redshift Spectrum으로 얼마든지 바꿔 끼울 수 있습니다. 여기서는 AWS 기준의 표준적인 출발점을 한 줄로 보여 주는 데 초점을 둡니다.
+
+Amazon S3 Tables는 관리형 Apache Iceberg 테이블 버킷으로, 레이크하우스의 테이블 포맷 계층을 AWS가 운영해 주는 형태입니다. 여기에 AWS Lake Formation이 fine-grained 권한과 거버넌스를 더하면, 레이크의 저장 위에서 웨어하우스 수준의 통제를 갖춘 레이크하우스가 됩니다. [S3 Tables](/posts/aws-s3-tables-catalog-federation/)와 [Lake Formation](/posts/aws-lake-formation/)은 이 시리즈의 뒤쪽 글에서 각각 자세히 다룹니다.
 
 ---
 

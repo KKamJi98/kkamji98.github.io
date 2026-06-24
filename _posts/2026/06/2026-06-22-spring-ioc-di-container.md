@@ -133,9 +133,18 @@ _컴포넌트 스캔 -> 빈 정의 등록 -> 인스턴스화 -> 의존 주입 ->
 
 - 컨테이너 시작 시 컴포넌트 스캔으로 빈 정의를 등록한다.
 - 인스턴스를 만들고 의존성을 주입한다.
-- `@PostConstruct` 초기화 콜백이 호출된다.
+- `Aware` 콜백이 호출된다. 빈이 자기 이름(`BeanNameAware`)이나 `ApplicationContext`(`ApplicationContextAware`) 같은 컨테이너 인프라를 필요로 한다고 알리면, 컨테이너가 해당 참조를 넘겨준다.
+- `BeanPostProcessor`의 `postProcessBeforeInitialization`이 호출된다. 컨테이너가 만든 모든 빈 인스턴스에 대해 초기화 콜백 **전후로** 가로채는 확장 지점이다.
+- 초기화 콜백이 호출된다. `InitializingBean.afterPropertiesSet()`(또는 `@PostConstruct`/지정한 init 메서드)로, 컨테이너가 필요한 프로퍼티를 모두 세팅한 **뒤에** 초기화 작업을 수행한다.
+- `BeanPostProcessor`의 `postProcessAfterInitialization`이 호출된다.
 - 이후 앱이 사는 동안 싱글톤으로 상주하며 모든 요청에 재사용된다.
 - 앱 종료 시 `@PreDestroy`가 호출되고 소멸한다.
+
+핵심 단계는 **의존 주입 -> Aware -> 초기화(전후로 BeanPostProcessor가 감싼다) -> 사용 -> 소멸**입니다. `BeanPostProcessor`가 호출되는 시점을 Spring 공식 레퍼런스는 이렇게 정의합니다.
+
+> ... for each bean instance that is created by the container, the post-processor gets a callback from the container both before container initialization methods (such as `InitializingBean.afterPropertiesSet()` or any declared `init` method) are called, and after any bean initialization callbacks.  
+
+그래서 `@PostConstruct`나 `afterPropertiesSet()` 같은 초기화 콜백은 의존성이 모두 주입된 뒤에 돌고, 그 양옆을 `BeanPostProcessor`가 가로채 공통 후처리(프록시 생성 등)를 끼워 넣을 수 있습니다.
 
 ---
 
@@ -156,3 +165,5 @@ _컴포넌트 스캔 -> 빈 정의 등록 -> 인스턴스화 -> 의존 주입 ->
 - Spring Framework Reference - Classpath Scanning and Stereotype Annotations: <https://docs.spring.io/spring-framework/reference/core/beans/classpath-scanning.html>
 - Spring Framework Reference - Dependency Injection (constructor-based): <https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html>
 - Spring Framework Reference - Bean Scopes (singleton): <https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html>
+- Spring Framework Reference - Customizing the Nature of a Bean (lifecycle callbacks, Aware): <https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html>
+- Spring Framework Reference - Container Extension Points (BeanPostProcessor): <https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html>

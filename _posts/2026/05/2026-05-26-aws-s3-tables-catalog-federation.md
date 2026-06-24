@@ -17,7 +17,7 @@ image:
 > - **S3 Tables**는 관리형 Apache Iceberg 테이블 버킷입니다. compaction/스냅샷 관리를 AWS가 맡고, ACID/스키마 진화/시간여행을 제공합니다.  
 > - S3 Tables를 Glue Data Catalog에 통합하면 기본 카탈로그(default) 안에 **`s3tablescatalog`라는 federated 카탈로그**가 생깁니다.  
 > - 매핑: **table bucket -> catalog, namespace -> database, table -> table**. 즉 카탈로그가 중첩됩니다.  
-> - 그래서 federated 테이블의 ARN은 `catalog/s3tablescatalog/{bucket}/{db}`처럼 일반 테이블보다 **경로가 깊어집니다**.  
+> - 그래서 Glue Data Catalog에서 본 카탈로그 경로는 `catalog/s3tablescatalog/{bucket}`처럼 일반 테이블보다 **한 단계 깊어집니다**.  
 {: .prompt-info}
 
 ---
@@ -46,6 +46,22 @@ table bucket 안에는 **namespace**(논리적 그룹)가 있고, 그 안에 **t
 > S3 Tables의 실데이터는 관리형 스토리지에 보관됩니다. 일반 S3 객체 ARN으로 직접 다루는 모델이 아니라, 분석 엔진이 카탈로그를 통해 접근한다는 점이 일반 S3와 다릅니다.  
 {: .prompt-tip}
 
+#### 1.2.1. 관리형 유지보수 - compaction과 snapshot 관리
+
+S3 Tables의 "관리형"이 구체적으로 어떤 동작인지가 직접 Iceberg를 운영하는 것과의 핵심 차이입니다. table bucket의 모든 테이블에는 두 가지 유지보수가 **기본 활성화**되어 있습니다.
+
+**Compaction**은 작은 객체 여러 개를 큰 객체 적은 수로 병합해 쿼리 성능을 높이고, 병합 과정에서 row-level delete의 효과도 함께 반영합니다. 기본 target 파일 크기는 512MB이며, 64MB에서 512MB 사이로 조정할 수 있습니다.
+
+> Compaction is enabled by default for all tables, with a default target file size of 512MB, or a custom value you specify between 64MB to 512MB. The compacted files are written as the most recent snapshot of your table.  
+{: .prompt-info}
+
+**Snapshot 관리**는 테이블의 활성 스냅샷 개수를 `MinimumSnapshots`(기본 1)와 `MaximumSnapshotAge`(기본 120시간) 기준으로 만료/제거합니다. 스냅샷이 만료되면 그 스냅샷만 참조하던 객체는 noncurrent로 표시되고, unreferenced file removal 정책의 `NoncurrentDays` 일수가 지나면 삭제됩니다. 직접 Iceberg를 돌릴 때 손수 스케줄링해야 하는 `OPTIMIZE`/`VACUUM`을 S3 Tables가 대신 처리하는 셈입니다. 실제로 Athena는 S3 Tables에 대해 `OPTIMIZE`/`VACUUM` DDL을 지원하지 않으며, 이 작업은 S3의 관리형 maintenance에 맡깁니다.
+
+> You can manage compaction and snapshot management in S3.  
+{: .prompt-tip}
+
+두 동작 모두 테이블 단위로 `PutTableMaintenanceConfiguration`으로 끄거나 임계값을 바꿀 수 있지만, 기본값만으로도 별도 운영 없이 파일이 정리됩니다.
+
 ### 1.3. Iceberg가 주는 것 - 스키마 진화와 시간여행
 
 Iceberg 테이블이라, 일반 파일 테이블에서는 까다롭던 작업이 SQL로 가능합니다.
@@ -60,6 +76,29 @@ SELECT * FROM sales_db.orders FOR TIMESTAMP AS OF (current_timestamp - interval 
 
 스키마를 바꿔도 과거 데이터를 재적재할 필요가 없고, 특정 시점의 스냅샷을 그대로 조회할 수 있습니다. 이런 기능이 S3 Tables(관리형 Iceberg)를 단순한 파일 더미와 구분 짓는 지점입니다.
 
+### 1.4. partition projection vs Iceberg hidden partitioning
+
+1편에서 일반 Glue 테이블은 **partition projection**으로 파티션을 다뤘습니다. `year/month/day/hour` 같은 파티션 키를 테이블 properties에 미리 정의해 두고, 쿼리는 `WHERE year='2026' AND month='04'`처럼 그 키를 직접 걸어 스캔 범위를 좁히는 방식입니다. 즉 물리적 디렉터리 레이아웃(`s3://.../year=2026/month=04/`)을 쿼리 작성자가 알고 있어야 합니다.
+
+Iceberg 테이블은 **hidden partitioning**으로 이 결합을 끊습니다. 파티션을 별도 컬럼으로 저장해 매번 채워 넣는 대신, 원본 컬럼에 **partition transform**(예: `month(sale_date)`, `day(ts)`, `bucket(16, id)`)을 적용해 파티션 값을 테이블이 자동으로 만들어 냅니다. 테이블을 만들 때 transform을 선언하는 모습은 다음과 같습니다.
+
+```sql
+CREATE TABLE sales_db.daily_sales (
+    sale_date        date,
+    product_category string,
+    sales_amount     double
+)
+PARTITIONED BY (month(sale_date))
+TBLPROPERTIES ('table_type' = 'iceberg');
+```
+
+쿼리는 파티션 키를 따로 알 필요 없이 원본 컬럼(`sale_date`)으로 필터링하면 되고, Iceberg가 transform을 통해 알아서 파티션을 건너뜁니다. Athena도 이 동작을 그대로 지원합니다.
+
+> Athena supports Iceberg's hidden partitioning.  
+{: .prompt-info}
+
+정리하면, partition projection은 "키를 미리 정의하고 쿼리가 그 키를 직접 건다"는 모델이고, hidden partitioning은 "원본 컬럼에 transform을 걸어두면 파티션 컬럼을 따로 관리하거나 물리 레이아웃을 알 필요가 없다"는 모델입니다. 파티션 스킴을 바꾸는 partition evolution도 기존 데이터를 다시 쓰지 않고 적용할 수 있다는 점이 일반 Glue 테이블과의 차이입니다.
+
 ---
 
 ## 2. Catalog Federation - default vs federated
@@ -70,7 +109,12 @@ SELECT * FROM sales_db.orders FOR TIMESTAMP AS OF (current_timestamp - interval 
 
 ### 2.2. federated 카탈로그(s3tablescatalog)
 
-S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3tablescatalog`라는 federated 카탈로그**가 만들어집니다. 그리고 S3 Tables의 리소스가 다음과 같이 매핑됩니다.
+S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3tablescatalog`라는 federated 카탈로그**가 만들어집니다. 이 통합은 Glue 서비스가 계정/리전 단위로 한 번 수행하며, 이후 같은 리전의 table bucket은 모두 자동으로 하위 카탈로그로 마운트됩니다. AWS 문서는 다음과 같이 설명합니다.
+
+> When you integrate the S3 tables catalog with the Data Catalog and Lake Formation, the AWS Glue service creates a single federated catalog called `s3tablescatalog` in your account's default Data Catalog specific to your AWS Region.  
+{: .prompt-info}
+
+그리고 S3 Tables의 리소스가 다음과 같이 매핑됩니다.
 
 - **table bucket -> 카탈로그**(multi-level)
 - **namespace -> 데이터베이스**
@@ -81,6 +125,29 @@ S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3
 ![카탈로그 중첩 구조 - Default Catalog 안에 s3tablescatalog(federated)와 table bucket, namespace, table이 중첩](/assets/img/aws/analytics-stack-06-catalog-federation.webp)
 
 왼쪽의 `logs_db`는 기본 카탈로그에 직접 속한 일반 데이터베이스입니다. 오른쪽은 `s3tablescatalog` -> table bucket -> namespace -> table 순으로 중첩된 S3 Tables 경로입니다. 같은 "테이블"이지만 한쪽은 평면, 한쪽은 깊은 계층에 있습니다.
+
+### 2.3. 통합은 어떻게 등록되나
+
+이 federated 카탈로그는 table bucket을 만들 때 한 번 등록됩니다. 콘솔에서는 table bucket을 생성하면서 **Enable integration** 체크박스를 켜면 자동으로 처리됩니다.
+
+> When you enable the integration using the console, AWS creates a federated catalog named `s3tablescatalog` that automatically discovers and mounts all S3 table buckets in your AWS account and Region.  
+{: .prompt-info}
+
+리전에서 처음 통합할 때 `s3tablescatalog`가 생기고, 그 뒤로는 같은 계정/리전의 table bucket이 모두 자식 카탈로그로 자동 마운트됩니다. CLI로 직접 만들 때는 `glue create-catalog`에 **federated 연결**을 지정합니다. `aws:s3tables` 커넥션과 table bucket ARN 패턴(`arn:aws:s3tables:<region>:<account-id>:bucket/*`)을 가리키는 것이 핵심입니다.
+
+```bash
+aws glue create-catalog \
+  --name "s3tablescatalog" \
+  --catalog-input '{
+    "Description": "Federated catalog for S3 Tables",
+    "FederatedCatalog": {
+      "Identifier": "arn:aws:s3tables:<region>:<account-id>:bucket/*",
+      "ConnectionName": "aws:s3tables"
+    }
+  }'
+```
+
+즉 `s3tablescatalog`는 일반 Glue 데이터베이스가 아니라 S3 Tables 쪽을 가리키는 **federated 카탈로그**이고, table bucket 하나하나가 그 아래 자식 카탈로그로 노출됩니다. 자식 카탈로그가 제대로 마운트됐는지는 `aws glue get-catalogs --parent-catalog-id s3tablescatalog`로 확인할 수 있습니다.
 
 ---
 
@@ -93,12 +160,25 @@ S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3
 arn:aws:glue:<region>:<account-id>:database/logs_db
 arn:aws:glue:<region>:<account-id>:table/logs_db/app_events
 
-# S3 Tables (federated catalog)
-arn:aws:glue:<region>:<account-id>:catalog/s3tablescatalog/{bucket}/{db}
-arn:aws:glue:<region>:<account-id>:table/{bucket}/{db}/orders
+# S3 Tables의 native 리소스 (s3tables 네임스페이스)
+arn:aws:s3tables:<region>:<account-id>:bucket/{bucket}
+arn:aws:s3tables:<region>:<account-id>:bucket/{bucket}/table/{table-id}
+
+# Glue/Lake Formation에서 본 federated 카탈로그 (catalog 단계가 중첩)
+arn:aws:glue:<region>:<account-id>:catalog/s3tablescatalog/{bucket}
+# Lake Formation grant의 Catalog Id 표기
+<account-id>:s3tablescatalog/{bucket}
 ```
 
-federated 카탈로그는 `catalog > database > table` 단계가 `s3tablescatalog/{bucket}` 아래로 한 겹 더 들어갑니다. 그래서 IAM 정책에서 S3 Tables 테이블에 권한을 줄 때는, 일반 테이블보다 **카탈로그 레벨 ARN까지 함께** 지정해야 합니다. 이 부분은 권한을 다루는 다음 편에서 더 구체적으로 이어집니다.
+두 가지를 구분하는 것이 중요합니다. 첫째, S3 Tables의 **native ARN**은 `s3tables` 네임스페이스를 쓰며 `bucket/{bucket}`, `bucket/{bucket}/table/{table-id}` 형태입니다. IAM 권한 참조에서 정의하는 native 리소스 ARN 템플릿은 다음과 같습니다.
+
+> arn:${Partition}:s3tables:${Region}:${Account}:bucket/${TableBucketName}  
+> arn:${Partition}:s3tables:${Region}:${Account}:bucket/${TableBucketName}/table/${TableID}  
+{: .prompt-info}
+
+테이블이 이름이 아니라 `TableID`로 식별된다는 점에 주의합니다. 둘째, 같은 데이터를 **Glue Data Catalog에서 볼 때**는 `catalog` 단계에 `s3tablescatalog/{bucket}`가 한 겹 더 들어가는 중첩 카탈로그가 됩니다. Lake Formation grant도 이 카탈로그 단위를 가리키며, grant의 `Catalog.Id`는 `<account-id>:s3tablescatalog/{bucket}` 형태입니다.
+
+그래서 IAM 정책에서 S3 Tables 테이블에 권한을 줄 때는, 일반 테이블보다 **카탈로그 레벨 ARN까지 함께** 지정해야 합니다. 이 부분은 권한을 다루는 [다음 편(Lake Formation)](/posts/aws-lake-formation/)에서 더 구체적으로 이어집니다.
 
 ---
 
@@ -185,11 +265,14 @@ GROUP BY dt;
 
 ## 7. Reference
 
-- [Amazon S3 Tables](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables.html)
-- [Querying Amazon S3 tables with Athena](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-integrating-athena.html)
-- [Register S3 table bucket catalogs and query Tables from Athena](https://docs.aws.amazon.com/athena/latest/ug/gdc-register-s3-table-bucket-cat.html)
-- [Amazon S3 Tables integration with AWS Glue Data Catalog and Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/create-s3-tables-catalog.html)
-- [Apache Iceberg](https://iceberg.apache.org/)
+- AWS Documentation - Amazon S3 Tables (개요): <https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables.html>
+- AWS Documentation - Maintenance for tables (compaction/snapshot 관리형 동작): <https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-maintenance.html>
+- AWS Documentation - Enabling S3 Tables integration with the Data Catalog (federation 등록): <https://docs.aws.amazon.com/glue/latest/dg/enable-s3-tables-catalog-integration.html>
+- AWS Documentation - Register S3 table bucket catalogs and query Tables from Athena: <https://docs.aws.amazon.com/athena/latest/ug/gdc-register-s3-table-bucket-cat.html>
+- AWS Documentation - Amazon S3 Tables integration with AWS Glue Data Catalog and Lake Formation (s3tablescatalog 매핑): <https://docs.aws.amazon.com/lake-formation/latest/dg/create-s3-tables-catalog.html>
+- AWS Documentation - Create Iceberg tables (partition transform/hidden partitioning): <https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html>
+- AWS Documentation - Actions, resources, and condition keys for Amazon S3 Tables (native ARN 템플릿): <https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3tables.html>
+- Apache Iceberg - Documentation: <https://iceberg.apache.org/>
 
 ---
 

@@ -36,7 +36,7 @@ image:
 TABLE_NOT_FOUND: line 1:15: Table 'awsdatacatalog.sales_db.orders' does not exist
 ```
 
-분명히 테이블은 존재하고, admin 계정으로는 같은 SQL이 동작합니다. 권한 문제 같은데, IAM 정책에는 `glue:GetTable`이 들어 있습니다. 여기서 [3편](/posts/aws-s3-tables-catalog-federation/)에서 정리한 사실을 떠올려야 합니다. `sales_db`는 일반 Glue 데이터베이스가 아니라 `s3tablescatalog` 아래 **federated 카탈로그**에 중첩돼 있고, [4편](/posts/aws-lake-formation/)에서 본 대로 **Lake Formation 거버넌스 대상**입니다. 즉 일반 테이블과는 권한 모델 자체가 다릅니다.
+분명히 테이블은 존재하고, admin 계정으로는 같은 SQL이 동작합니다. 권한 문제 같은데, IAM 정책에는 `glue:GetTable`이 들어 있습니다. 여기서 [6편](/posts/aws-s3-tables-catalog-federation/)에서 정리한 사실을 떠올려야 합니다. `sales_db`는 일반 Glue 데이터베이스가 아니라 `s3tablescatalog` 아래 **federated 카탈로그**에 중첩돼 있고, [7편](/posts/aws-lake-formation/)에서 본 대로 **Lake Formation 거버넌스 대상**입니다. 즉 일반 테이블과는 권한 모델 자체가 다릅니다.
 
 ---
 
@@ -191,9 +191,32 @@ on resource: arn:aws:glue:ap-northeast-2:<account-id>:database/s3tablescatalog/a
 }
 ```
 
+federated 카탈로그를 참조하는 쿼리에는 `athena:GetDataCatalog`가 필수입니다. AWS 공식 문서의 federated query 권한 예시도 이 action을 가장 먼저 명시합니다.
+
+> The `GetDataCatalog` action is required for views.  
+>
+> Athena permissions that are required to run federated queries.  
+{: .prompt-info}
+
+같은 예시 정책은 federated 쿼리 실행에 필요한 Athena action 묶음으로 `athena:GetDataCatalog`, `athena:GetQueryExecution`, `athena:GetQueryResults`, `athena:GetWorkGroup`, `athena:StartQueryExecution`, `athena:StopQueryExecution`를 함께 제시합니다. 위 정책에는 workgroup/쿼리 실행 권한(`athena:*` workgroup 한정)이 이미 1절에서 부여됐다고 가정해 catalog 참조 action만 추렸습니다.
+
 ### 5.2. Lake Formation grant - catalog/database/table
 
 IAM만으로는 끝이 아닙니다. Lake Formation 축에서 catalog -> database -> table 순으로 grant를 부여합니다. grant는 data lake admin(또는 위임받은 principal)만 실행할 수 있습니다.
+
+여기서 핵심은 `--resource`에 넣는 catalog 식별자 형식입니다. federated S3 Tables 리소스는 일반 Glue 테이블처럼 12자리 account ID만 쓰는 것이 아니라, `CatalogId`에 **`<account-id>:s3tablescatalog/<bucket>` 경로 전체**를 넣어야 합니다. AWS 공식 문서의 S3 Tables grant 예시가 이 형식을 그대로 보여줍니다.
+
+```json
+"Resource": {
+    "Table": {
+        "CatalogId":"{{111122223333}}:{{s3tablescatalog}}/{{amzn-s3-demo-bucket1}}",
+        "DatabaseName":"{{S3 table bucket namespace <example_namespace>}}",
+        "Name":"{{S3 table bucket table name <example_table>}}"
+    }
+}
+```
+
+즉 `Database.CatalogId`, `Table.CatalogId`(그리고 catalog 레벨의 `Catalog.Id`)에는 모두 이 federated 경로를 채워야 하며, account ID만 넣으면 default 카탈로그를 가리켜 federated 데이터에는 닿지 않습니다.
 
 ```bash
 ROLE='arn:aws:iam::<account-id>:role/analytics-workload-role'
@@ -256,6 +279,7 @@ JOIN logs_db.app_event e ON e.order_id = o.id;
 - [Granting permissions on S3 Tables catalog resources](https://docs.aws.amazon.com/lake-formation/latest/dg/s3-tables-grant-permissions.html)
 - [Fine-grained access to Glue Data Catalog resources](https://docs.aws.amazon.com/athena/latest/ug/fine-grained-access-to-glue-resources.html)
 - [Running federated queries in Athena](https://docs.aws.amazon.com/athena/latest/ug/running-federated-queries.html)
+- [Allow access to Athena Federated Query - Example policies](https://docs.aws.amazon.com/athena/latest/ug/federated-query-iam-access.html)
 - [Lake Formation - access to underlying data](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html)
 
 ---

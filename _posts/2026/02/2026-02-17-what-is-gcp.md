@@ -10,7 +10,7 @@ image:
 ---
 
 GCP를 처음부터 공부해 보기로 마음먹고 가장 먼저 정리한 것은 "GCP가 도대체 무엇인가"였습니다. 개별 서비스나 명령어를 외우기 전에, 이 플랫폼이 어떤 성격을 가졌고 무엇을 잘하는지 큰 그림을 그려두면 이후 학습이 훨씬 수월하기 때문입니다.
-이번 포스트는 GCP 학습 시리즈의 출발점으로, GCP가 무엇이고 어떤 특징이 있으며 어떤 서비스들로 구성되는지, 그리고 GCP를 다루는 방법에는 무엇이 있는지를 개요 수준에서 정리합니다.
+이번 포스트는 GCP 학습 시리즈의 출발점으로, GCP가 무엇이고 어떤 특징이 있으며 어떤 서비스들로 구성되는지, 그리고 GCP를 다루는 방법에는 무엇이 있는지를 개요 수준에서 정리합니다. 개요를 잡은 뒤에는 [리소스 계층(Organization/Folder/Project) 글](/posts/gcp-resource-hierarchy/)과 [IAM 글](/posts/gcp-iam/)로 이어집니다.
 
 > **TL;DR**  
 > - GCP(Google Cloud Platform)는 Google이 제공하는 퍼블릭 클라우드로, Google 서비스가 동작하는 동일한 글로벌 인프라 위에서 실행됩니다.  
@@ -37,10 +37,20 @@ GCP는 AWS, Microsoft Azure와 함께 대표적인 메이저 퍼블릭 클라우
 
 GCP가 다른 클라우드와 구별되는 대표적인 강점은 다음과 같습니다.
 
-- **글로벌 네트워크**: Google이 직접 소유·운영하는 전용 백본 네트워크를 사용해, 리전 간 트래픽이 공용 인터넷이 아닌 Google 내부망을 통해 전달됩니다.
+- **글로벌 네트워크**: Google이 직접 소유·운영하는 전용 백본 네트워크를 사용해, 기본값인 Premium Tier에서는 트래픽이 공용 인터넷이 아닌 Google 내부망을 통해 전달됩니다. [Network Service Tiers 문서](https://cloud.google.com/network-tiers/docs/overview)는 Premium Tier를 다음과 같이 설명합니다.
+
+> Premium Tier delivers traffic from external systems to Google Cloud resources by using Google's low latency, highly reliable global network. This network consists of an extensive private fiber network with over 200 points of presence (PoPs) around the globe.  
+
 - **데이터 분석과 AI/ML**: 서버리스 데이터 웨어하우스인 **BigQuery**, 머신러닝 플랫폼인 **Vertex AI** 등 데이터·AI 분야에서 강점을 가집니다.
 - **Kubernetes**: Kubernetes는 본래 Google이 개발해 오픈소스로 공개한 프로젝트이며, **GKE(Google Kubernetes Engine)** 는 대표적인 관리형 Kubernetes 서비스입니다.
-- **과금 모델**: 초 단위 과금, 일정 기간 이상 사용 시 자동 적용되는 **지속 사용 할인(Sustained Use Discount)**, 약정 기반 **약정 사용 할인(Committed Use Discount)** 등 비용 최적화 옵션을 제공합니다.
+- **과금 모델**: 초 단위 과금, 일정 기간 이상 사용 시 자동 적용되는 **지속 사용 할인(Sustained Use Discount, SUD)**, 약정 기반 **약정 사용 할인(Committed Use Discount, CUD)** 등 비용 최적화 옵션을 제공합니다.
+  - SUD는 별도 신청 없이 사용량에 따라 자동 적용됩니다. [Sustained use discounts 문서](https://cloud.google.com/compute/docs/sustained-use-discounts)는 다음과 같이 설명합니다.
+
+    > Whenever you use an applicable resource for more than a fourth of a billing month, you automatically receive a discount for every incremental hour that you continue to use that resource.
+
+  - CUD는 1년 또는 3년 약정을 맺고 할인된 가격을 적용받는 방식입니다. [Committed use discounts 문서](https://cloud.google.com/compute/docs/instances/committed-use-discounts-overview)의 설명은 다음과 같습니다.
+
+    > When you purchase a commitment, you commit either to a minimum amount of resource usage or to a minimum spend amount for a specified term duration of one or three years.
 
 ---
 
@@ -75,15 +85,51 @@ GCP 리소스는 여러 인터페이스로 제어할 수 있습니다. 상황에
 
 입문 단계에서는 Console로 전체 구조를 눈으로 익히고, 반복 작업이나 자동화는 gcloud CLI로 넘어가는 흐름이 일반적입니다.
 
+gcloud CLI를 처음 쓸 때 가장 먼저 마주치는 명령은 인증과 기본 설정입니다. 아래는 로그인하고 작업 대상 프로젝트와 기본 리전을 지정하는 예시입니다.
+
+```bash
+# 사용자 계정으로 로그인 (브라우저 인증)
+gcloud auth login
+
+# 이후 명령에 사용할 기본 프로젝트 지정
+gcloud config set project my-project-id
+
+# Compute Engine 기본 리전 지정
+gcloud config set compute/region asia-northeast3
+
+# 현재 설정 확인
+gcloud config list
+```
+
+각 명령의 옵션과 더 많은 사용 예시는 별도 정리한 [gcloud 치트시트](/posts/gcloud-cheat-sheet/)에서 다룹니다.
+
+> **리전 선택 시 주의**  
+> 리전은 한 번 정하면 바꾸기 번거로운 결정이므로 처음에 신중히 고릅니다. 두 가지를 같이 봐야 합니다.  
+> - **지연 시간(latency)**: 사용자(또는 호출하는 다른 서비스)와 가까운 리전을 골라야 왕복 지연이 줄어듭니다. 예를 들어 한국 사용자 대상 서비스라면 `asia-northeast3`(서울)가 유리합니다.  
+> - **가격**: 동일한 리소스라도 리전마다 단가가 다릅니다. 가까운 리전이 항상 가장 저렴하지는 않으므로, 지연 시간과 비용을 함께 따져 결정합니다.  
+{: .prompt-warning}
+
 ---
 
-## 5. Reference
+## 5. 다음 글
+
+이 개요에서 잡은 큰 그림을 바탕으로, 시리즈는 다음 순서로 이어집니다.
+
+1. [GCP 리소스 계층 알아보기 - Organization, Folder, Project](/posts/gcp-resource-hierarchy/): 리소스가 어떤 계층으로 묶이고 권한/정책/결제가 어디에 적용되는지 정리합니다.
+2. [GCP IAM 알아보기 - Principal, Role, Policy, Service Account](/posts/gcp-iam/): 리소스 계층 위에서 동작하는 권한 체계를 다룹니다.
+
+---
+
+## 6. Reference
 
 - [Google Cloud Docs - Google Cloud overview](https://cloud.google.com/docs/overview)
 - [Google Cloud Docs - Geography and regions](https://cloud.google.com/docs/geography-and-regions)
 - [Google Cloud Docs - Google Cloud products](https://cloud.google.com/products)
 - [Google Cloud Docs - gcloud CLI overview](https://cloud.google.com/sdk/gcloud)
 - [Google Cloud Docs - Cloud Shell](https://cloud.google.com/shell/docs)
+- [Google Cloud Docs - Network Service Tiers overview](https://cloud.google.com/network-tiers/docs/overview)
+- [Google Cloud Docs - Sustained use discounts](https://cloud.google.com/compute/docs/sustained-use-discounts)
+- [Google Cloud Docs - Committed use discounts](https://cloud.google.com/compute/docs/instances/committed-use-discounts-overview)
 
 ---
 

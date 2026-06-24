@@ -49,6 +49,14 @@ import boto3, time
 athena = boto3.client("athena", region_name="ap-northeast-2")
 
 def run_query(sql, workgroup="primary"):
+    # 전제: workgroup에 결과 위치를 enforce로 고정해 두었다고 가정한다.
+    #   그렇지 않으면 QueryExecutionContext(Database/Catalog)와
+    #   ResultConfiguration(OutputLocation)을 명시해야 한다. 예:
+    #     athena.start_query_execution(
+    #         QueryString=sql, WorkGroup=workgroup,
+    #         QueryExecutionContext={"Database": "sales_db"},
+    #         ResultConfiguration={"OutputLocation": "s3://.../results/"},
+    #     )
     qid = athena.start_query_execution(
         QueryString=sql, WorkGroup=workgroup,
     )["QueryExecutionId"]
@@ -66,7 +74,19 @@ def run_query(sql, workgroup="primary"):
 
 ### 1.3. workgroup - 실행 단위의 경계
 
-**workgroup**은 쿼리 실행의 경계입니다. 결과 저장 위치, 쿼리당 스캔 한도(예: 1 TiB), 암호화, CloudWatch 지표 같은 정책을 workgroup 단위로 강제할 수 있습니다. 팀이나 용도별로 workgroup을 나누면 비용 추적과 권한 통제가 쉬워집니다.
+**workgroup**은 쿼리 실행의 경계입니다. 결과 저장 위치, 데이터 스캔 한도, 암호화, CloudWatch 지표 같은 정책을 workgroup 단위로 강제할 수 있습니다. 팀이나 용도별로 workgroup을 나누면 비용 추적과 권한 통제가 쉬워집니다.
+
+비용 통제는 두 종류로 나뉩니다. workgroup마다 **per-query limit**은 하나만, **per-workgroup limit**은 여러 개 둘 수 있습니다.
+
+> Athena allows you to set two types of cost controls: per-query limit and per-workgroup limit. For each workgroup, you can set only one per-query limit and multiple per-workgroup limits.  
+{: .prompt-info}
+
+핵심은 두 한도의 동작이 다르다는 점입니다. **per-query control limit**은 쿼리 한 건이 스캔하는 데이터량의 상한이고, 이 한도를 넘기면 해당 쿼리는 자동으로 취소됩니다(`CANCELLED`). 반면 **per-workgroup limit**은 일정 기간 동안 workgroup 전체의 누적 스캔량에 대한 경보일 뿐이며, 한도를 넘겨도 쿼리가 자동 취소되지는 않습니다.
+
+> The **per-query control limit** specifies the total amount of data scanned per query. If any query that runs in the workgroup exceeds the limit, it is canceled. [...] The default action is to cancel the query if it exceeds the limit. This setting cannot be changed.  
+{: .prompt-warning}
+
+per-query limit은 폭주 쿼리(파티션 필터 누락으로 풀스캔하는 경우 등)가 막대한 스캔 비용을 일으키기 전에 잘라내는 안전장치입니다. 1.2절의 폴링 루프에서 `state`가 `CANCELLED`로 끝나는 경우 중 상당수가 바로 이 한도 초과입니다. 한도값은 10 MB부터 7 EB까지 지정할 수 있습니다. 다만 per-query 한도로 취소된 쿼리도 그 시점까지 스캔한 양만큼은 과금되며, 부분 결과가 S3 결과 prefix에 남을 수 있다는 점은 주의해야 합니다.
 
 > 결과 위치를 workgroup에 `enforce`로 고정해 두면, 클라이언트는 `WorkGroup` 이름만 지정하면 됩니다. 결과 객체에 대한 권한도 workgroup별 prefix로 좁힐 수 있습니다.  
 {: .prompt-tip}
@@ -99,6 +119,27 @@ Glue는 메타스토어 외에 두 가지 일을 더 합니다.
 > partition projection은 파티션 메타데이터를 Catalog에 일일이 등록하지 않고, 테이블 속성에 정의한 규칙으로 파티션 값을 계산합니다. 파티션이 수천 개 이상으로 늘어날 때 특히 유리합니다.  
 {: .prompt-tip}
 
+규칙은 테이블 속성(table properties)의 key-value로 정의합니다. 컬럼마다 `projection.<columnName>.type`을 지정하고(지원 타입은 `enum`, `integer`, `date`, `injected`), 타입에 따라 `projection.<columnName>.range`(integer/date의 범위), `projection.<columnName>.format`(date의 포맷), `projection.<columnName>.values`(enum의 값 목록) 같은 보조 속성을 더합니다. 마지막에 `projection.enabled`를 `true`로 설정하면 활성화됩니다. 예를 들어 `dt`가 `yyyy-MM-dd` 형식의 날짜 파티션이라면 다음과 같이 정의합니다.
+
+```text
+'projection.enabled'        = 'true'
+'projection.dt.type'        = 'date'
+'projection.dt.range'       = '2020-01-01,NOW'
+'projection.dt.format'      = 'yyyy-MM-dd'
+```
+
+S3 경로가 `.../column=value/...` 패턴을 따르지 않는다면 `storage.location.template`로 경로 템플릿을 직접 지정할 수 있으며, 이때 템플릿에는 **파티션 컬럼마다 placeholder가 반드시 하나씩** 있어야 하고 경로는 forward slash로 끝나야 합니다.
+
+> if you use a custom template, the template must contain a placeholder for each partition column. Templated locations must end with a forward slash so that the partitioned data files live in a "folder" per partition.  
+{: .prompt-info}
+
+한 가지 함정은 projection을 켜면 Catalog에 등록된 기존 파티션 메타데이터를 Athena가 무시한다는 점입니다.
+
+> Enabling partition projection on a table causes Athena to ignore any partition metadata registered to the table in the AWS Glue Data Catalog or Hive metastore.  
+{: .prompt-warning}
+
+즉 `MSCK REPAIR TABLE`이나 Crawler로 등록한 파티션과 projection을 섞어 쓸 수 없으며, projection 규칙이 곧 단일 진실 공급원이 됩니다.
+
 ---
 
 ## 3. 권한 - Glue 리소스의 fine-grained IAM
@@ -125,7 +166,17 @@ arn:aws:glue:<region>:<account-id>:table/<db>/<table>
 
 ### 3.2. 조상 권한이 모두 필요하다
 
-핵심 규칙은 **delete가 아닌 모든 Athena 동작은 대상 리소스와 그 조상 전부에 대한 IAM 권한을 요구**한다는 점입니다. 예를 들어 한 테이블을 쿼리하려면 그 **table**, 소속 **database**, 계정 **catalog**에 대한 권한이 모두 있어야 합니다.
+핵심 규칙은 **delete가 아닌 모든 Athena 동작은 대상 리소스와 그 조상 전부에 대한 IAM 권한을 요구**한다는 점입니다. 예를 들어 한 테이블을 쿼리하려면 그 **table**, 소속 **database**, 계정 **catalog**에 대한 권한이 모두 있어야 합니다. AWS 문서는 이를 다음과 같이 명시합니다.
+
+> For any non-delete Athena action on a resource, such as `CREATE DATABASE`, `CREATE TABLE`, `SHOW DATABASE`, `SHOW TABLE`, or `ALTER TABLE`, you need permissions to call this action on the resource (table or database) and all ancestors of the resource in the Data Catalog.  
+{: .prompt-info}
+
+파티션도 같은 원칙을 따릅니다. 파티션은 독립 리소스가 아니라 테이블에 종속되므로, 파티션 조회 권한은 **catalog/database/table 세 층 모두에서** 부여해야 합니다.
+
+> To run actions in AWS Glue on partitions, permissions for partition actions are required at the catalog, database, and table levels. Having access to partitions within a table is not sufficient. For example, to run `GetPartitions` on table `myTable` in the database `myDB`, you must grant `glue:GetPartitions` permissions on the catalog, `myDB` database, and `myTable` resources.  
+{: .prompt-warning}
+
+여기서 단수형 `glue:GetPartition`과 복수형 `glue:GetPartitions`는 서로 다른 action입니다. `GetPartitions`(복수)는 테이블의 파티션 목록을 한 번에 조회하는 호출로, Athena가 partition pruning 전에 사용합니다. `GetPartition`(단수)은 특정 파티션 하나를 조회하며, `BatchCreatePartition`/`BatchGetPartition` 같은 batch action도 대량 파티션을 다루는 작업(`MSCK REPAIR TABLE` 등)에서 필요합니다. SELECT 쿼리만 한다면 `GetPartitions`로 충분하지만, DDL이나 파티션 등록까지 다루면 단수형과 batch action을 함께 부여해야 누락 없이 동작합니다.
 
 ```json
 {
@@ -187,7 +238,16 @@ ORDER BY dt;
 
 ### 4.3. 권한이 끊기면
 
-만약 `glue:GetPartitions` 권한이 없거나 `catalog` ARN이 빠져 있으면, 같은 쿼리가 메타데이터 단계에서 `AccessDeniedException`으로 실패합니다. 에러 메시지에 어떤 action이 어떤 리소스에서 거부됐는지 나오므로, 그 action/리소스를 IAM 정책에 추가하면 됩니다.
+만약 `glue:GetPartitions` 권한이 없거나 `catalog` ARN이 빠져 있으면, 같은 쿼리가 메타데이터 단계에서 `AccessDeniedException`으로 실패합니다. 에러 메시지에 어떤 action이 어떤 리소스에서 거부됐는지 나오므로, 그 action/리소스를 IAM 정책에 추가하면 됩니다. 메시지는 대략 다음 형태입니다.
+
+```text
+AccessDeniedException: User: arn:aws:sts::<account-id>:assumed-role/analyst/...
+is not authorized to perform: glue:GetPartitions
+on resource: arn:aws:glue:ap-northeast-2:<account-id>:table/sales_db/orders
+because no identity-based policy allows the glue:GetPartitions action
+```
+
+진단의 핵심은 메시지의 `perform:`(거부된 action)과 `on resource:`(거부된 ARN)를 그대로 읽는 것입니다. 위 예시라면 `glue:GetPartitions`를 정책에 추가하되, 3.2절 원칙대로 `table` ARN만이 아니라 `catalog`와 `database` ARN까지 함께 넣어야 합니다. action 하나를 추가했는데도 다음 단계에서 또 다른 ARN으로 같은 에러가 반복된다면, 조상 ARN 중 하나가 여전히 빠져 있을 가능성이 높습니다.
 
 ---
 
@@ -210,6 +270,8 @@ ORDER BY dt;
 - [Athena - Partition projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection.html)
 - [AWS Glue - Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/components-overview.html)
 - [Athena - Workgroups](https://docs.aws.amazon.com/athena/latest/ug/manage-queries-control-costs-with-workgroups.html)
+- [Athena - Configure per-query and per-workgroup data usage controls](https://docs.aws.amazon.com/athena/latest/ug/workgroups-setting-control-limits-cloudwatch.html)
+- [Athena - Set up partition projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection-setting-up.html)
 
 ---
 

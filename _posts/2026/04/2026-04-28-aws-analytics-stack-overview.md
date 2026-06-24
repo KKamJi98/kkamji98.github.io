@@ -24,7 +24,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 
 ---
 
-## 1. 왜 "분석 스택"이 필요한가
+## 1. 분석 스택의 등장 배경
 
 ### 1.1. 적재 방식에서 query-in-place로
 
@@ -98,9 +98,14 @@ GROUP BY user_id
 1. **쿼리 제출**: 사용자가 Athena에 SQL을 던집니다 (`StartQueryExecution`). 이때 어느 **workgroup**에서 실행할지가 정해지고, 결과 저장 위치와 스캔 한도 같은 정책이 적용됩니다.
 2. **메타데이터 조회**: Athena가 `logs_db.app_events` 테이블이 어디 있는지 **Glue Data Catalog**에 묻습니다. Catalog는 스키마(컬럼/타입)와 **실제 데이터의 S3 위치(LOCATION)**, 파티션 정보를 돌려줍니다.
 3. **데이터 읽기**: Catalog가 알려준 위치의 **S3**(또는 **S3 Tables**) 데이터를 스캔합니다. 이때 `WHERE dt = ...` 같은 **파티션 필터**가 있으면 해당 파티션만 읽어 스캔량(=비용)을 줄입니다.
-4. **결과 반환**: 결과는 결과 버킷(S3)에 기록되고, 클라이언트로 돌아옵니다.
+4. **결과 반환**: Athena는 쿼리 결과를 클라이언트에 바로 흘려보내는 것이 아니라, 1번에서 정해진 **workgroup의 query result location(S3)에 먼저 기록**한 뒤 그곳에서 읽어 반환합니다. 그래서 `GetQueryResults` 호출과 별개로, 결과 위치의 S3 객체에 직접 접근하면 같은 결과를 받을 수 있습니다.
 
-즉 Athena 자체는 데이터를 들고 있지 않습니다. **메타데이터는 Glue Catalog에, 데이터는 S3에** 있고, Athena는 그 둘을 엮어 실행할 뿐입니다.
+즉 Athena 자체는 데이터를 들고 있지 않습니다. **메타데이터는 Glue Catalog에, 데이터는 S3에** 있고, Athena는 그 둘을 엮어 실행할 뿐입니다. 결과 역시 Athena가 보관하는 것이 아니라 S3의 결과 위치에 떨어집니다.
+
+> Amazon Athena automatically stores query results and query execution result metadata for each query that runs in a *query result location* that you can specify in Amazon S3.  
+>
+> -- [Amazon Athena User Guide, Work with query results and recent queries](https://docs.aws.amazon.com/athena/latest/ug/querying.html)  
+{: .prompt-info}
 
 ### 3.2. 모든 길목의 권한 게이트 (두 축)
 
@@ -111,19 +116,33 @@ GROUP BY user_id
 | **IAM** | AWS **API/리소스 호출** 권한 | `athena:StartQueryExecution`, `glue:GetTable` |
 | **Lake Formation** | **Data Catalog 리소스/데이터 접근** 권한 | 특정 테이블에 `SELECT`/`DESCRIBE` grant |
 
-IAM 쪽은 "이 주체가 이 API를 이 리소스에 호출할 수 있는가"를 봅니다. 예를 들어 Athena가 Glue 테이블 메타데이터를 읽으려면, 호출 주체에게 다음과 같은 IAM 권한이 있어야 합니다.
+IAM 쪽은 "이 주체가 이 API를 이 리소스에 호출할 수 있는가"를 봅니다. 위 표의 두 예시(`athena:StartQueryExecution`로 쿼리를 제출하고, `glue:GetTable`로 테이블 메타데이터를 읽는 것)를 그대로 정책으로 옮기면, 호출 주체에게 다음과 같은 IAM 권한이 있어야 합니다.
 
 ```json
 {
-  "Effect": "Allow",
-  "Action": ["glue:GetTable", "glue:GetTables", "glue:GetDatabase", "glue:GetPartitions"],
-  "Resource": [
-    "arn:aws:glue:ap-northeast-2:<account-id>:catalog",
-    "arn:aws:glue:ap-northeast-2:<account-id>:database/logs_db",
-    "arn:aws:glue:ap-northeast-2:<account-id>:table/logs_db/*"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RunAthenaQuery",
+      "Effect": "Allow",
+      "Action": ["athena:StartQueryExecution", "athena:GetQueryExecution", "athena:GetQueryResults"],
+      "Resource": "arn:aws:athena:ap-northeast-2:<account-id>:workgroup/primary"
+    },
+    {
+      "Sid": "ReadGlueMetadata",
+      "Effect": "Allow",
+      "Action": ["glue:GetTable", "glue:GetTables", "glue:GetDatabase", "glue:GetDatabases", "glue:GetPartitions"],
+      "Resource": [
+        "arn:aws:glue:ap-northeast-2:<account-id>:catalog",
+        "arn:aws:glue:ap-northeast-2:<account-id>:database/logs_db",
+        "arn:aws:glue:ap-northeast-2:<account-id>:table/logs_db/*"
+      ]
+    }
   ]
 }
 ```
+
+`athena:StartQueryExecution`은 표의 IAM 축 첫 예시 그대로 1번 단계(쿼리 제출)를 통과시키고, `glue:GetTable`을 포함한 Glue read 액션은 2번 단계(메타데이터 조회)를 통과시킵니다. 결과를 다시 읽으려면 여기에 결과 위치 S3 버킷의 `s3:GetObject`가 추가로 필요합니다.
 
 Lake Formation 쪽은 결이 다릅니다. IAM 정책이 아니라 **grant 모델**로, "이 주체에게 이 테이블의 `SELECT`를 부여한다"는 식입니다.
 
@@ -138,6 +157,16 @@ aws lakeformation grant-permissions \
 
 - **Lake Formation에 등록되지 않은** 일반 데이터(예: 평범한 Glue 테이블 + S3)는 **IAM만으로** 접근이 결정됩니다.
 - **Lake Formation에 등록된** 데이터(예: S3 Tables 레이크하우스)는 **IAM 통과 + Lake Formation grant**를 **둘 다** 만족해야 합니다.
+
+이 "IAM만으로 결정"이 동작하는 메커니즘이 `IAMAllowedPrincipals` 그룹입니다. Lake Formation에 등록되지 않은 리소스에는 이 가상 그룹의 permission이 붙어 있어, Lake Formation이 접근 판단을 IAM 정책에 위임합니다. 즉 "LF 미등록 = IAM only"는 LF가 권한을 안 보는 게 아니라, `IAMAllowedPrincipals` 덕분에 LF 검사를 통과시켜 IAM에 넘기는 것입니다.
+
+> AWS Glue resource  
+> A resources that is not registered with Lake Formation. Users require only IAM permissions to access the resource because it has `IAMAllowedPrincipals` group permissions. Lake Formation permissions are not enforced.  
+>
+> -- [AWS Lake Formation Developer Guide, Hybrid access mode](https://docs.aws.amazon.com/lake-formation/latest/dg/hybrid-access-mode.html)  
+{: .prompt-info}
+
+그래서 한 리소스의 상태는 "IAM only(LF 미등록)"와 "LF 강제(둘 다 필요)"의 양극단만 있는 게 아니라, 그 사이에 **hybrid access mode**라는 중간 단계가 있습니다. hybrid로 등록한 S3 위치는, opt-in한 주체에게는 IAM + LF grant를 둘 다 요구하고, opt-in하지 않은 기존 주체는 그대로 IAM만으로 접근하게 둡니다. 기존 워크로드를 끊지 않고 Lake Formation을 점진 도입할 때 쓰는 경로이며, 자세한 동작은 Lake Formation 편에서 다룹니다.
 
 > 이 "두 축" 때문에 실무에서 가장 흔한 함정이 생깁니다. **IAM 권한을 완벽하게 줬는데도 쿼리가 안 되는** 상황입니다. Lake Formation grant가 빠졌기 때문이며, 이 이야기는 시리즈 마지막 편에서 실제 디버깅 과정으로 다룹니다.  
 {: .prompt-warning}

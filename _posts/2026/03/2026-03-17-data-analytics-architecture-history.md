@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-이 글은 AWS 데이터 분석 스택 시리즈의 출발점입니다. 데이터 웨어하우스, 데이터 레이크, 레이크하우스 같은 용어는 어느 날 동시에 등장한 것이 아니라, 각각 직전 방식의 한계를 풀면서 **순서대로 진화**한 결과입니다. 이번 글에서는 그 변천사를 시간 축으로 따라가며, 왜 이런 흐름이 생겼는지를 정리합니다. 세 패러다임의 정적인 비교는 이어지는 글에서 따로 다룹니다.
+이 글은 AWS 데이터 분석 스택 시리즈의 출발점입니다. 데이터 웨어하우스, 데이터 레이크, 레이크하우스 같은 용어는 어느 날 동시에 등장한 것이 아니라, 각각 직전 방식의 한계를 풀면서 **순서대로 진화**한 결과입니다. 이번 글에서는 그 변천사를 시간 축으로 따라가며, 왜 이런 흐름이 생겼는지를 정리합니다. 세 패러다임의 정적인 비교는 이어지는 글 [데이터 웨어하우스 vs 데이터 레이크 vs 레이크하우스](/posts/data-warehouse-lake-lakehouse/)에서 따로 다룹니다.
 
 큰 줄기는 두 개의 축으로 볼 수 있습니다. 하나는 **저장/엔진의 기술 축**(먼저 정제하는 웨어하우스 -> 일단 적재하는 레이크 -> 둘을 합친 레이크하우스)이고, 다른 하나는 **조직/처리 방식의 축**(중앙집중 -> 분산 거버넌스, 배치 -> 스트리밍)입니다.
 
@@ -50,7 +50,9 @@ image:
 
 ## 3. OLAP과 MPP 어플라이언스 (2000s)
 
-웨어하우스 위에서 분석을 빠르게 하기 위한 기술도 발전했습니다. **OLAP**은 데이터를 미리 다차원 큐브(cube)로 집계해 두고 차원을 바꿔 가며 빠르게 조회하는 방식입니다. 저장 방식에 따라 다차원 저장(MOLAP)과 관계형 기반(ROLAP)으로 나뉩니다.
+웨어하우스 위에서 분석을 빠르게 하기 위한 기술도 발전했습니다. **OLAP**은 데이터를 미리 다차원 큐브(cube)로 집계해 두고 차원을 바꿔 가며 빠르게 조회하는 방식입니다. 핵심 메커니즘은 **사전 집계(pre-aggregation)** 입니다. "지역 x 월 x 상품군별 매출 합계" 같은 조합을 쿼리 시점이 아니라 적재 시점에 미리 계산해 큐브 셀에 채워 두면, 사용자가 차원을 바꿔 가며(drill-down/roll-up) 조회해도 원본 행을 다시 스캔하지 않고 셀 값을 읽어 오기만 하면 됩니다. 빠른 응답을 대량의 사전 계산과 저장 공간으로 사는 트레이드오프입니다.
+
+저장 방식에 따라 MOLAP과 ROLAP으로 나뉘며, 둘은 정반대의 트레이드오프를 갖습니다. **MOLAP**은 집계 결과를 전용 다차원 배열에 물리적으로 저장합니다. 조회는 가장 빠르지만, 차원과 멤버 수가 늘수록 채워야 할 셀 조합이 곱셈적으로 폭증하는 **데이터 폭발(data explosion)** 과 사전 계산 시간, 그리고 정형 큐브에 갇히는 경직성이 약점입니다. **ROLAP**은 별도 큐브 없이 관계형 웨어하우스의 star schema에 SQL `GROUP BY` 집계를 그때그때 돌립니다. 큰 테이블도 스키마만 바꾸면 수용할 수 있어 확장성과 유연성은 좋지만, 사전 집계가 없으니 조회 때마다 대량 스캔이 일어나 응답이 느려집니다. 즉 MOLAP은 "미리 다 계산(빠르지만 무겁고 경직적)", ROLAP은 "그때그때 계산(유연하지만 느림)"이라는 양 끝에 놓입니다.
 
 규모가 커지면서 **MPP(Massively Parallel Processing)** 어플라이언스도 등장했습니다. Teradata, Netezza, Greenplum 같은 제품은 데이터를 여러 노드에 분산하고 쿼리를 병렬 처리해, 대량 집계를 빠르게 수행했습니다. 다만 이 시기의 시스템은 대체로 **컴퓨트와 스토리지가 한 어플라이언스에 묶여** 있어, 둘을 따로 늘릴 수 없다는 한계가 있었습니다. 이 한계는 뒤의 클라우드 전환에서 풀립니다.
 
@@ -68,7 +70,9 @@ image:
 
 "Data Lake"라는 용어는 Pentaho의 창립자 **James Dixon**이 2010년 블로그 글에서 만들었습니다. 그는 데이터 마트를 "병에 담긴 물(정제된 데이터)"에, 데이터 레이크를 "더 자연 상태의 큰 물 덩어리(원본 데이터)"에 비유했습니다. 미래에 어떤 질문을 던질지 미리 알 수 없으니 원본을 그대로 저장해 두자는 것이 핵심입니다.
 
-이것이 웨어하우스와 반대되는 **schema-on-read**입니다. 적재할 때는 스키마를 강제하지 않고, 읽는 시점에 구조를 부여합니다. 저장이 싸고 유연하지만, 관리가 없으면 무엇이 믿을 만한지 추적되지 않는 **데이터 늪(data swamp)** 이 되고, 파일 더미 위에서는 ACID 트랜잭션 같은 기능이 어렵다는 약점이 있었습니다.
+이것이 웨어하우스와 반대되는 **schema-on-read**입니다. 적재할 때는 스키마를 강제하지 않고, 읽는 시점에 구조를 부여합니다. 적재가 빠르고 유연한 대신, 정합성을 보장하던 게이트(적재 전 ETL/검증)를 없앤 셈이라는 점이 양날의 검입니다.
+
+데이터 늪은 이 게이트가 사라진 결과로 생깁니다. 메커니즘은 대략 이렇습니다. 스키마 검증이 없으니 같은 개념의 데이터가 컬럼명, 타입, 인코딩, 단위가 제각각인 채로 쌓이고, 어떤 파일이 원본이고 어떤 것이 가공본인지를 기록하는 메타데이터/카탈로그가 강제되지 않으니 시간이 지나면 무엇이 믿을 만한지 추적할 단서가 사라집니다. 거기에 데이터 정의를 알던 사람이 떠나면, 남은 것은 출처도 의미도 불분명한 파일 더미뿐입니다. 결국 읽는 시점에 구조를 부여하려 해도 "무엇을 어떻게 읽어야 하는지"를 아는 사람이 없는 상태, 즉 **데이터 늪(data swamp)** 이 됩니다. 적재를 막던 비용을 조회/거버넌스 쪽으로 미뤘을 뿐, 관리 부담 자체가 사라지지는 않는다는 것이 핵심입니다. 게다가 파일 더미 위에는 트랜잭션 경계라는 개념이 없어, 여러 작업이 같은 데이터를 동시에 쓰는 도중 읽으면 부분 결과가 보이는 등 ACID 트랜잭션 같은 기능을 보장하기 어렵다는 약점도 있었습니다.
 
 ---
 
@@ -76,9 +80,23 @@ image:
 
 다음 변화는 클라우드에서 왔습니다. **Amazon Redshift**는 2012년 re:Invent에서 preview로 공개되고 2013년 초 GA되며, 관리형 클라우드 데이터 웨어하우스를 대중화했습니다. 뒤이어 **Snowflake**는 SIGMOD 2016 논문 「The Snowflake Elastic Data Warehouse」에서 멀티클러스터 구조를 기술하며 등장했습니다.
 
-이 시기의 핵심 키워드는 **스토리지-컴퓨트 분리(separation of storage and compute)** 입니다. 이전 MPP 어플라이언스가 둘을 묶어 두었던 것과 달리, 클라우드 웨어하우스는 데이터를 저비용 스토리지에 두고 컴퓨트를 독립적으로 늘리거나 줄일 수 있게 했습니다. 워크로드별로 컴퓨트를 격리하고 탄력적으로 확장하는 것이 가능해졌습니다.
+이 시기의 핵심 키워드는 **스토리지-컴퓨트 분리(separation of storage and compute)** 입니다. 이전 MPP 어플라이언스가 둘을 한 노드에 묶어 두어 한쪽만 늘리려 해도 다른 쪽까지 함께 증설해야 했던 것과 달리, **Snowflake를 비롯한 클라우드 웨어하우스가 이 분리를 대중화**했습니다. 데이터는 저비용 오브젝트 스토리지에 한 벌만 두고, 그 위에서 컴퓨트 클러스터를 독립적으로 띄우고 끄는 구조입니다. SIGMOD 2016 논문 「The Snowflake Elastic Data Warehouse」는 이를 Snowflake의 핵심 설계 결정으로 명시합니다.
 
-같은 흐름에서 데이터 레이크의 저장 계층도 바뀝니다. 2015년경부터 **S3, ADLS, GCS 같은 클라우드 오브젝트 스토리지가 HDFS를 대체**하기 시작했습니다. 많은 조직이 원본은 클라우드 레이크에 두고, 그중 일부를 다운스트림 웨어하우스(Redshift, Snowflake 등)로 옮겨 분석하는 **2계층(two-tier) 구조**를 갖게 됩니다. 이 구조의 중복과 복잡성이 다음 세대의 동기가 됩니다.
+> "the key design choice behind Snowflake: separation of storage and compute."  
+> "We call this novel architecture the multi-cluster, shared-data architecture."  
+{: .prompt-info}
+
+이 분리 덕분에 같은 데이터 위에 워크로드별로 컴퓨트를 격리된 클러스터로 띄우고(예: ETL용과 BI용을 분리), 필요할 때만 탄력적으로 키우거나 0으로 줄이는 것이 가능해졌습니다. 스토리지 비용과 컴퓨트 비용을 따로 지불한다는 점도 어플라이언스 시대와 달라진 부분입니다.
+
+같은 흐름에서 데이터 레이크의 저장 계층도 바뀝니다. 2015년경부터 **S3, ADLS, GCS 같은 클라우드 오브젝트 스토리지가 HDFS를 대체**하기 시작했습니다. 많은 조직이 원본은 클라우드 레이크에 두고, 그중 일부를 다운스트림 웨어하우스(Redshift, Snowflake 등)로 옮겨 분석하는 **2계층(two-tier) 구조**를 갖게 됩니다.
+
+이 구조의 중복 비용이 다음 세대의 직접적인 동기가 됩니다. 메커니즘을 풀어 보면, 같은 데이터가 레이크에 한 벌, 웨어하우스에 또 한 벌 존재하므로 **스토리지 비용을 이중으로 지불**하게 됩니다. 두 벌을 일치시키려면 레이크에서 웨어하우스로 끊임없이 복제 파이프라인(ETL/ELT)을 돌려야 하는데, 이 파이프라인을 유지하는 엔지니어링 비용 자체가 들고, 단계가 늘수록 실패와 버그로 데이터 품질이 깨질 여지도 커집니다. 게다가 웨어하우스 쪽 데이터는 다음 적재 주기가 돌기 전까지 레이크 원본보다 **오래된(stale)** 상태로 남습니다. CIDR 2021 논문은 이 2계층 구조의 문제를 reliability, data staleness, total cost of ownership 등으로 정리하며, 적재 경로 자체가 복잡해졌다고 지적합니다.
+
+> "In today's architectures, data is first ETLed into lakes, and then again ELTed into warehouses, creating complexity, delays, and new failure modes."  
+> "users pay double the storage cost for data copied to a warehouse"  
+{: .prompt-warning}
+
+이 중복과 복잡성, 그리고 staleness를 줄이려는 것이 레이크하우스의 출발점입니다.
 
 ---
 
@@ -90,7 +108,11 @@ image:
 
 그 열쇠가 **오픈 테이블 포맷**입니다. S3 같은 객체 스토리지의 파일 더미(Parquet/ORC) 위에 메타데이터 계층을 얹어, 파일을 "진짜 테이블"처럼 다루게 합니다.
 
-- **Apache Iceberg**: Netflix에서 시작됐으며(Ryan Blue, Dan Weeks), 기존 파일 위에 atomicity, snapshot isolation, 안전한 스키마 진화를 부여합니다.
+- **Apache Iceberg**: Netflix에서 시작됐으며(Ryan Blue, Dan Weeks), 기존 파일 위에 atomicity, snapshot isolation, 안전한 스키마 진화를 부여합니다. 공식 정의는 거대한 분석 테이블을 위한 고성능 포맷으로, SQL 테이블의 신뢰성과 단순함을 빅데이터에 가져오는 것을 목표로 합니다.
+
+> "Iceberg is a high-performance format for huge analytic tables. Iceberg brings the reliability and simplicity of SQL tables to big data, while making it possible for engines like Spark, Trino, Flink, Presto, Hive and Impala to safely work with the same tables, at the same time."  
+{: .prompt-info}
+
 - **Delta Lake**: Databricks가 2019년 4월 24일 Apache 2.0으로 오픈소스화했습니다. 트랜잭션 로그 기반으로 ACID 트랜잭션과 데이터 버저닝(시간여행)을 제공합니다.
 - **Apache Hudi**: Uber에서 시작된 또 다른 테이블 포맷으로, 같은 계열의 기능을 제공합니다.
 
@@ -129,8 +151,8 @@ image:
 
 레이크하우스 이후로도 변화는 이어지고 있습니다. 자주 언급되는 두 가지를 짚어 둡니다.
 
-- **Medallion architecture**: 레이크/레이크하우스에서 데이터를 품질 단계별로 계층화하는 패턴입니다. 원본을 그대로 받는 **bronze**, 정제/검증한 **silver**, 분석/집계용으로 가공한 **gold**의 3단계로 나눠, 같은 저장소 안에서 데이터를 점진적으로 다듬습니다. 레이크의 "일단 적재"와 웨어하우스의 "정제된 결과"를 한 흐름으로 잇는 실용적 구성입니다.
-- **Zero-ETL**: 소스와 분석 저장소 사이의 ETL 파이프라인을 직접 구축하는 부담을 줄이려는 흐름입니다. 운영 DB의 변경을 분석 측으로 자동 반영해, 복제 파이프라인을 별도로 운영하지 않고도 최신 데이터를 분석하려는 시도입니다.
+- **Medallion architecture**: 레이크/레이크하우스에서 데이터를 품질 단계별로 계층화하는 패턴입니다. 원본을 그대로 받는 **bronze**, 정제/검증한 **silver**, 분석/집계용으로 가공한 **gold**의 3단계로 나눠, 같은 저장소 안에서 데이터를 점진적으로 다듬습니다. 동작 메커니즘은 단계마다 별도 테이블 계층을 두고 한 방향으로 흘려보내는 것입니다. bronze는 소스에서 온 그대로(append-only)라 잘못되면 재처리의 기준점이 되고, silver는 bronze를 읽어 중복 제거/타입 정리/조인을 거친 정제 테이블, gold는 silver를 읽어 BI/리포트용으로 집계한 테이블입니다. 각 단계가 직전 단계만 입력으로 삼으므로 변환 로직과 데이터 품질의 책임 경계가 단계별로 나뉘고, 문제가 생기면 어느 계층에서 깨졌는지 좁히기 쉬워집니다. 앞서 본 2계층 구조처럼 레이크와 웨어하우스를 **물리적으로** 분리하는 대신, 같은 레이크하우스 저장소 안에서 "일단 적재(bronze)"와 "정제된 결과(gold)"를 테이블 계층으로 잇는다는 점이 핵심 차이입니다.
+- **Zero-ETL**: 소스와 분석 저장소 사이의 복제 ETL 파이프라인을 직접 구축/운영하는 부담을 줄이려는 흐름입니다. 메커니즘 측면에서 보면, 기존 방식이 주기적으로 소스를 통째로 읽어 분석 저장소에 적재하는 배치 ETL이었다면, Zero-ETL은 운영 DB의 변경 이벤트(insert/update/delete)를 관리형 통합 계층이 포착해 분석 측에 거의 실시간으로 반영하는 데 가깝습니다. 사용자가 스스로 추출/변환/적재 코드를 작성·스케줄링·모니터링하지 않아도 되므로, 앞 절의 2계층 구조에서 문제였던 staleness와 파이프라인 운영 비용을 동시에 줄이려는 시도입니다. "ETL이 사라진다"기보다 그 복제 단계를 플랫폼이 대신 떠맡는다는 의미에 가깝습니다.
 
 두 흐름 모두 앞선 변천사의 연장선에 있습니다. 정제와 적재의 경계를 더 매끄럽게 잇고, 파이프라인 운영 부담을 줄이는 방향입니다.
 
@@ -154,6 +176,8 @@ AWS 스택에서 이 흐름이 어떤 서비스로 구현되는지는 이 시리
 - [James Dixon - Pentaho, Hadoop, and Data Lakes (2010)](https://jamesdixon.wordpress.com/2010/10/14/pentaho-hadoop-and-data-lakes/)
 - [Apache Hadoop](https://hadoop.apache.org/)
 - [Amazon Redshift - ten years of continuous reinvention](https://www.amazon.science/latest-news/amazon-redshift-ten-years-of-continuous-reinvention)
+- [Dageville et al. - The Snowflake Elastic Data Warehouse (SIGMOD 2016)](https://www.cs.cmu.edu/~15721-f24/papers/Snowflake.pdf)
+- [Apache Iceberg](https://iceberg.apache.org/)
 - [Databricks - Open Sourcing Delta Lake (2019)](https://www.databricks.com/blog/2019/04/24/open-sourcing-delta-lake.html)
 - [Lakehouse: A New Generation of Open Platforms (CIDR 2021)](https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf)
 - [Zhamak Dehghani - Data Mesh Principles (2020)](https://martinfowler.com/articles/data-mesh-principles.html)
