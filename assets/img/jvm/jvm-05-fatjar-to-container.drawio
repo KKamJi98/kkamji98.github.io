@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-05-fatjar-to-container" name="Fat Jar to Container">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="320" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b1" parent="1" vertex="1" value="fat jar (app.jar)&#10;[Series 1 ch.4]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="40" y="110" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" vertex="1" value="Paketo buildpack&#10;(bootBuildImage)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="320" y="110" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="1" vertex="1" value="OCI image&#10;JRE + jar + launcher" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="620" y="110" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" parent="1" vertex="1" value="container run&#10;(memory calculator sets -Xmx)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="920" y="110" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="No Dockerfile. Buildpack picks the JRE and adds a launcher. At startup the memory calculator reads the container memory limit and computes -Xmx." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="120" y="232" width="900" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="b1" target="b2" value="build-image" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="b2" target="b3" value="produces" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="b3" target="b4" value="run" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

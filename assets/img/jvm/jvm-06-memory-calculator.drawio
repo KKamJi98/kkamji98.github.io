@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-06-memory-calculator" name="Memory Calculator">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="660" pageHeight="600" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="total" parent="1" vertex="1" value="Container memory limit  (total)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="150" y="40" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sub1" parent="1" vertex="1" value="-  Headroom  (default 0%)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="108" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub2" parent="1" vertex="1" value="-  Direct Memory  (default 10M)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="152" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub3" parent="1" vertex="1" value="-  Metaspace  (5.8KB x class count + 14MB)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="196" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub4" parent="1" vertex="1" value="-  Reserved Code Cache  (default 240M)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="240" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub5" parent="1" vertex="1" value="-  Thread Stacks  (1M x 250 threads = ~250M)" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontStyle=1;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="284" width="360" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="rule" parent="1" vertex="1" value="" style="line;strokeWidth=2;html=1;strokeColor=#202124;">
+          <mxGeometry x="150" y="340" width="360" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="result" parent="1" vertex="1" value="=  Heap  (-Xmx)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;align=left;spacingLeft=16;">
+          <mxGeometry x="150" y="362" width="360" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="note-lever" parent="1" vertex="1" value="biggest lever" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#B06000;fontStyle=2;">
+          <mxGeometry x="522" y="294" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Runs at container startup (reads cgroup memory limit). Setting -Xss / -XX:MaxDirectMemorySize / thread count shifts the split, so -Xmx auto-recomputes." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="440" width="580" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
