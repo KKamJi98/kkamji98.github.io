@@ -1,5 +1,5 @@
 ---
-title: 리액티브 프로그래밍과 Reactor 기초 - 블로킹을 안 하는 법
+title: 리액티브 프로그래밍과 Reactor 기초 - Reactive Streams, backpressure, Mono/Flux
 date: 2026-06-24 12:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

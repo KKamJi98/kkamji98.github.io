@@ -1,5 +1,5 @@
 ---
-title: Spring은 왜 필요한가 - IoC/DI와 Bean
+title: Spring IoC/DI와 Bean 개념
 date: 2026-06-22 10:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

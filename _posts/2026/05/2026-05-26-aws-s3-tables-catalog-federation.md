@@ -11,7 +11,7 @@ image:
 
 앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리했습니다. 이번 글에서는 한 단계 더 들어가, 데이터 레이크하우스의 핵심인 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
 
-이 편을 이해하면, 같은 Athena 쿼리인데도 `db_service1.orders`처럼 평범해 보이는 테이블이 사실은 `s3tablescatalog` 아래 깊은 경로에 있고, 그래서 권한 ARN이 왜 길어지는지가 보입니다. 다음 편(Lake Formation)의 권한 이야기를 위한 토대이기도 합니다.
+이 편을 이해하면, 같은 Athena 쿼리인데도 `sales_db.orders`처럼 평범해 보이는 테이블이 사실은 `s3tablescatalog` 아래 깊은 경로에 있고, 그래서 권한 ARN이 왜 길어지는지가 보입니다. 다음 편(Lake Formation)의 권한 이야기를 위한 토대이기도 합니다.
 
 > **TL;DR**  
 > - **S3 Tables**는 관리형 Apache Iceberg 테이블 버킷입니다. compaction/스냅샷 관리를 AWS가 맡고, ACID/스키마 진화/시간여행을 제공합니다.  

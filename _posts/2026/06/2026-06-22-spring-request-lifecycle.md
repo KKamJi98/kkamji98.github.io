@@ -1,5 +1,5 @@
 ---
-title: HTTP 요청 한 건이 Spring Boot 앱에서 응답까지 가는 길
+title: Spring Boot HTTP 요청 처리 흐름 개요
 date: 2026-06-22 09:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

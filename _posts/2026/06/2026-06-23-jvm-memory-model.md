@@ -1,5 +1,5 @@
 ---
-title: JVM 메모리 모델 - Heap과 Non-heap, 그리고 -Xmx의 진실
+title: JVM 메모리 모델 - Heap과 Non-heap, -Xmx가 제한하는 영역
 date: 2026-06-23 12:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

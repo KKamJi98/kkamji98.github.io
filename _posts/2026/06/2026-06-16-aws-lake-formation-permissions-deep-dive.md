@@ -1,5 +1,5 @@
 ---
-title: AWS Lake Formation 권한 Deep Dive - 권한을 다 줬는데 왜 CATALOG_NOT_FOUND일까
+title: AWS Lake Formation 권한 Deep Dive - CATALOG_NOT_FOUND / TABLE_NOT_FOUND 진단과 해소
 date: 2026-06-16 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

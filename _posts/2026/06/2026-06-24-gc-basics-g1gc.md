@@ -1,5 +1,5 @@
 ---
-title: GC 기초와 G1GC - 힙은 어떻게 회수되나
+title: GC 기초와 G1GC - 동작 원리와 튜닝 손잡이
 date: 2026-06-24 10:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

@@ -1,5 +1,5 @@
 ---
-title: 컨테이너로 가는 길 - buildpack과 Memory Calculator
+title: buildpack과 JVM Memory Calculator
 date: 2026-06-24 09:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

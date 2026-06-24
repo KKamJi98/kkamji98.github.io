@@ -1,5 +1,5 @@
 ---
-title: Spring Boot의 정체 - 자동설정, 스타터, 그리고 fat jar
+title: Spring Boot 자동설정, 스타터, fat jar 동작 원리
 date: 2026-06-23 10:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

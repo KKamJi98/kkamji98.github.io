@@ -1,5 +1,5 @@
 ---
-title: 메모리 기초 다시 보기 - 프로세스 메모리 레이아웃과 stack vs heap
+title: 프로세스 메모리 레이아웃과 stack vs heap
 date: 2026-06-23 11:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]

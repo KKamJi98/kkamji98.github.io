@@ -1,5 +1,5 @@
 ---
-title: GCP (Google Cloud Platform) 이란?
+title: GCP (Google Cloud Platform) 개요
 date: 2026-02-17 09:00:00 +0900
 author: kkamji
 categories: [Cloud, GCP]
