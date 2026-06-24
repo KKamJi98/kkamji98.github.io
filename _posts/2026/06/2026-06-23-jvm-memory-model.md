@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, jvm, memory, heap, metaspace, off-heap]
 comments: true
 image:
-  path: /assets/img/jvm/jvm-03-jvm-memory-areas.webp
+  path: /assets/img/jvm/duke.webp
 ---
 
 [앞 편](/posts/process-memory-layout/)에서 프로세스 메모리가 stack/heap 등으로 나뉜다는 CS 기초를 다시 잡았습니다. 이번 편은 그 위에서 **JVM이 자기 메모리를 어떤 영역으로 조직하는지**를 봅니다. JVM도 하나의 프로세스지만, 자기만의 "런타임 데이터 영역(runtime data areas)"으로 메모리를 관리합니다.

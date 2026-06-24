@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, jvm, buildpack, paketo, memory, container]
 comments: true
 image:
-  path: /assets/img/jvm/jvm-06-memory-calculator.webp
+  path: /assets/img/jvm/duke.webp
 ---
 
 [앞 편](/posts/jvm-memory-model/)에서 "컨테이너 메모리 = Heap + Non-heap + 여유"라는 걸 봤습니다. 그런데 **`-Xmx`(Heap)를 누가 정할까요?** 내가 명시하지 않으면, Spring Boot 컨테이너 이미지에서는 **buildpack의 Memory Calculator**가 자동으로 계산합니다. 그리고 그 계산식이 앞 편의 분해 그대로입니다.

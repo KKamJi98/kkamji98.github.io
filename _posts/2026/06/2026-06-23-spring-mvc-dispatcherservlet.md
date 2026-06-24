@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, spring, spring-mvc, dispatcherservlet, servlet, tomcat, thread-per-request]
 comments: true
 image:
-  path: /assets/img/spring/spring-05-dispatcherservlet-sequence.webp
+  path: /assets/img/spring/spring.webp
 ---
 
 [1편](/posts/spring-request-lifecycle/)에서 "DispatcherServlet이 front controller로 모든 요청을 받아 분배한다", "요청당 스레드 1개를 쓴다"고 선언만 했습니다. 이번 편에서는 그 **안을 해부**합니다. DispatcherServlet 내부가 어떻게 동작하는지, 그리고 "요청당 스레드 1개"가 정확히 무슨 의미이고 왜 그게 메모리/동시성의 갈림길인지를 다룹니다.

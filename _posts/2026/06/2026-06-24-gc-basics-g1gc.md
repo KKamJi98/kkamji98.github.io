@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, jvm, gc, g1gc, garbage-collection, memory]
 comments: true
 image:
-  path: /assets/img/jvm/jvm-08-g1gc-regions.webp
+  path: /assets/img/jvm/duke.webp
 ---
 
 [ep2~3](/posts/jvm-memory-model/)에서 메모리가 "어떻게 잡히나"(Heap + Non-heap, buildpack이 -Xmx 계산)를 봤습니다. 이번 편은 그 **Heap 안에서 GC가 메모리를 어떻게 회수하는지**입니다. 그리고 이게 다음 편(업무 메모리/GC 이슈)의 토대가 됩니다.

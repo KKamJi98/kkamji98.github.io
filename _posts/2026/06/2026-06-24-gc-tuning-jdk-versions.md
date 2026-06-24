@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, jvm, gc, g1gc, tuning, jdk]
 comments: true
 image:
-  path: /assets/img/jvm/jvm-10-jdk-version-gc-shift.webp
+  path: /assets/img/jvm/duke.webp
 ---
 
 [앞 편](/posts/gc-basics-g1gc/)에서 G1의 기계장치(pause 목표, adaptive IHOP, mixed collection)를 봤습니다. Series 2의 마지막인 이번 편은 그 손잡이를 **튜닝**하거나, **JDK 버전이 G1의 휴리스틱을 바꿀 때** 메모리 곡선이 어떻게 달라지는지를 다룹니다.

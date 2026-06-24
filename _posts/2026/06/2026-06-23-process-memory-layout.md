@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, jvm, memory, stack, heap, cs]
 comments: true
 image:
-  path: /assets/img/jvm/jvm-01-process-memory-layout.webp
+  path: /assets/img/jvm/duke.webp
 ---
 
 [Series 1](/posts/spring-request-lifecycle/)에서 "요청이 흐르는 길"을 위에서 아래로 따라왔고, [3편](/posts/spring-mvc-dispatcherservlet/)에서 "스레드 스택은 힙이 아니라 native 메모리"라고 했습니다. 그 stack과 heap이 정확히 뭘까요?

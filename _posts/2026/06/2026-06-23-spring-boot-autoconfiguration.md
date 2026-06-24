@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, spring, spring-boot, auto-configuration, starter, fat-jar]
 comments: true
 image:
-  path: /assets/img/spring/spring-07-autoconfiguration-flow.webp
+  path: /assets/img/spring/spring.webp
 ---
 
 지금까지 당연하게 넘긴 것들이 있습니다. [1편](/posts/spring-request-lifecycle/)에서 내장 Tomcat이 알아서 떴고, [3편](/posts/spring-mvc-dispatcherservlet/)에서 DispatcherServlet이 알아서 등록됐으며, [2편](/posts/spring-ioc-di-container/)에서 `@Service`/`@Repository`가 알아서 빈으로 스캔됐습니다. 누가 이걸 다 해줬을까요?

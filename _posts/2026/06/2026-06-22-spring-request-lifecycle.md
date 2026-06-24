@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, spring, spring-boot, spring-mvc, request-lifecycle, dispatcherservlet, tomcat]
 comments: true
 image:
-  path: /assets/img/spring/spring-01-request-flow.webp
+  path: /assets/img/spring/spring.webp
 ---
 
 인프라를 다루다 보면 애플리케이션은 "컨테이너 안에서 도는 검은 상자"처럼 보일 때가 많습니다. `GET /orders/42` 요청 하나가 들어오면 그 안에서 무슨 일이 벌어지는지, 왜 요청이 몰리면 스레드와 메모리가 같이 올라가는지 설명하려면 결국 그 상자를 열어봐야 합니다.

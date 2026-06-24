@@ -6,7 +6,7 @@ categories: [Programming Language, Java]
 tags: [java, spring, ioc, dependency-injection, bean]
 comments: true
 image:
-  path: /assets/img/spring/spring-03-ioc-before-after.webp
+  path: /assets/img/spring/spring.webp
 ---
 
 [1편](/posts/spring-request-lifecycle/)에서 요청이 `Controller -> Service -> Repository`를 거쳐 처리되고, 이들이 "전부 빈(Bean)으로 힙에 상주한다"고 했습니다. 그런데 빈이 정확히 뭐고, 왜 우리는 이 객체들을 직접 `new`로 만들지 않을까요?
