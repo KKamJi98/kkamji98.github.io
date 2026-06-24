@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, data-warehouse, data-lake, data-lakehouse, data-mesh, big-data, history]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-01-architecture-history.webp
+  path: /assets/img/aws/aws.webp
 ---
 
 이 글은 AWS 데이터 분석 스택 시리즈의 출발점입니다. 데이터 웨어하우스, 데이터 레이크, 레이크하우스 같은 용어는 어느 날 동시에 등장한 것이 아니라, 각각 직전 방식의 한계를 풀면서 **순서대로 진화**한 결과입니다. 이번 글에서는 그 변천사를 시간 축으로 따라가며, 왜 이런 흐름이 생겼는지를 정리합니다. 세 패러다임의 정적인 비교는 이어지는 글에서 따로 다룹니다.

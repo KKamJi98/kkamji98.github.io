@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, athena, glue, glue-data-catalog, presto, trino, iam]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-05-query-flow.webp
+  path: /assets/img/aws/aws.webp
 ---
 
 앞선 [AWS 데이터 분석 스택 Overview](/posts/aws-analytics-stack-overview/)에서 분석 스택의 큰 그림과, 쿼리 한 번이 엔진과 메타스토어, 저장소를 지나는 흐름을 살펴봤습니다. 이번 글에서는 그 중심에 있는 두 구성요소, **Amazon Athena**와 **AWS Glue Data Catalog**를 자세히 알아봅니다.

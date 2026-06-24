@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, s3-tables, iceberg, glue, catalog-federation, data-lakehouse]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-06-catalog-federation.webp
+  path: /assets/img/aws/aws.webp
 ---
 
 앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리했습니다. 이번 글에서는 한 단계 더 들어가, 데이터 레이크하우스의 핵심인 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.

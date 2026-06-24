@@ -6,7 +6,7 @@ categories: [Cloud, AWS]
 tags: [aws, lake-formation, s3-tables, athena, troubleshooting, iam]
 comments: true
 image:
-  path: /assets/img/aws/analytics-stack-08-lf-permissions.webp
+  path: /assets/img/aws/aws.webp
 ---
 
 이 글은 AWS 데이터 분석 스택 시리즈의 마지막 편입니다. 앞선 [AWS Lake Formation](/posts/aws-lake-formation/) 글에서 Lake Formation이 IAM 위에 얹히는 별도의 데이터 권한 게이트라는 점과 grant 모델, credential vending을 정리했습니다. 이번 글에서는 그 개념을 실제 트러블슈팅에 적용합니다.
