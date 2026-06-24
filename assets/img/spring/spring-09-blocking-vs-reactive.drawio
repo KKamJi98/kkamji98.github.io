@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-09-blocking-vs-reactive" name="Blocking vs Reactive">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lp" parent="1" vertex="1" value="Blocking (imperative)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="40" y="60" width="420" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="rp" parent="1" vertex="1" value="Non-blocking (event-driven)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="540" y="60" width="420" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="lb1" parent="1" vertex="1" value="call db.query()" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="110" width="360" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="lb2" parent="1" vertex="1" value="thread BLOCKED, waiting for I/O&#10;(held, doing nothing)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="70" y="190" width="360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="lb3" parent="1" vertex="1" value="use(result)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="288" width="360" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="rb1" parent="1" vertex="1" value="declare stream:&#10;query().map(...).subscribe(...)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="570" y="110" width="360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="rb2" parent="1" vertex="1" value="thread NOT held&#10;(freed for other requests)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="570" y="198" width="360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="rb3" parent="1" vertex="1" value="data arrives -&gt; handle (onNext)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="570" y="296" width="360" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Blocking holds the thread during I/O. Non-blocking declares a pipeline; the thread is freed and handles data when ready." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="452" width="880" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="la" parent="1" edge="1" source="lb1" target="lb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lb" parent="1" edge="1" source="lb2" target="lb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ra" parent="1" edge="1" source="rb1" target="rb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rbk" parent="1" edge="1" source="rb2" target="rb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

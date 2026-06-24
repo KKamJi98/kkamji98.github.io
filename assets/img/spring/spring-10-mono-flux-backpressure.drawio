@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-10-mono-flux-backpressure" name="Reactive Streams Backpressure">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="440" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pub" parent="1" vertex="1" value="Publisher&#10;(Mono 0..1 / Flux 0..N)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="60" y="120" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ops" parent="1" vertex="1" value="operators&#10;(map / filter / flatMap)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="380" y="120" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" vertex="1" value="Subscriber&#10;(onNext / onComplete / onError)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="680" y="120" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="note1" parent="1" vertex="1" value="subscribe() triggers the flow - operators do nothing until then (lazy)." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="40" width="860" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="note2" parent="1" vertex="1" value="Backpressure: the Subscriber signals demand with request(n), so a fast Publisher cannot overwhelm a slow consumer (bounded)." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="360" width="860" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" parent="1" edge="1" source="pub" target="ops" value="emit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" parent="1" edge="1" source="ops" target="sub" value="transformed data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bp" parent="1" edge="1" source="sub" target="pub" value="request(n) : demand (backpressure)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontColor=#C5221F;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="280" />
+              <mxPoint x="180" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
