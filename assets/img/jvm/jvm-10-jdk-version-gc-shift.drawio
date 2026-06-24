@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-10-jdk-version-gc-shift" name="JDK GC Behavior Shift">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="780" pageHeight="760" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="Causal chain (general): faster G1 -> Old sawtooth" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#202124;">
+          <mxGeometry x="120" y="20" width="520" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" vertex="1" value="Newer JDK: G1 faster (shorter pause per cycle)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="160" y="58" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" vertex="1" value="Same pause goal -&gt; G1 grows the young generation (eden)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="160" y="148" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" vertex="1" value="Fewer young (minor) GCs" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="160" y="238" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" vertex="1" value="adaptive IHOP defers concurrent marking" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="160" y="328" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" vertex="1" value="More promotion to Old (premature promotion)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="160" y="418" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" parent="1" vertex="1" value="Old held high, cleaned at once by mixed GC = sawtooth" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="160" y="508" width="460" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="note-leak" parent="1" vertex="1" value="Not a memory leak - a GC behavior shift. More pronounced when -Xmx is tight." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="100" y="586" width="580" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="note-fix" parent="1" vertex="1" value="Fix lever: capping young (-XX:MaxNewSize) reduces promotion BUT disables pause-time control - measure before / after." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#B06000;fontStyle=2;">
+          <mxGeometry x="100" y="626" width="580" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" edge="1" source="s3" target="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" edge="1" source="s4" target="s5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" edge="1" source="s5" target="s6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

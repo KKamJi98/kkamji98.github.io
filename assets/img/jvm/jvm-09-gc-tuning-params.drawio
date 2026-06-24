@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-09-gc-tuning-params" name="G1 Tuning Knobs">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="820" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="Key G1 tuning knobs (and what each controls)" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#202124;">
+          <mxGeometry x="120" y="32" width="560" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" vertex="1" value="-Xms / -Xmx&#10;initial / max heap" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;verticalAlign=middle;spacingLeft=16;">
+          <mxGeometry x="120" y="78" width="560" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" vertex="1" value="-XX:MaxGCPauseMillis (default 200)&#10;pause goal; G1 sizes the young generation to meet it" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;align=left;verticalAlign=middle;spacingLeft=16;">
+          <mxGeometry x="120" y="146" width="560" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" vertex="1" value="-XX:MaxNewSize / -Xmn&#10;caps young (note: pinning it disables pause-time control)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;align=left;verticalAlign=middle;spacingLeft=16;">
+          <mxGeometry x="120" y="214" width="560" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" vertex="1" value="-XX:InitiatingHeapOccupancyPercent (+ G1UseAdaptiveIHOP)&#10;concurrent marking start threshold (adaptive by default)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;align=left;verticalAlign=middle;spacingLeft=16;">
+          <mxGeometry x="120" y="282" width="560" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p5" parent="1" vertex="1" value="-Xlog:gc*   /   JFR (Java Flight Recorder)&#10;diagnose: GC logs, flight recorder (measure before tuning)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;align=left;verticalAlign=middle;spacingLeft=16;">
+          <mxGeometry x="120" y="350" width="560" height="58" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
