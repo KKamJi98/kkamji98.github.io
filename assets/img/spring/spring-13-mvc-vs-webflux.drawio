@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-13-mvc-vs-webflux" name="MVC vs WebFlux">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mvc" parent="1" vertex="1" value="Spring MVC (thread-per-request)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="40" y="60" width="440" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" parent="1" vertex="1" value="Execution: synchronous / imperative" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="70" y="110" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" parent="1" vertex="1" value="Threads: one per request (hundreds)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="70" y="200" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" parent="1" vertex="1" value="Blocking libraries: JPA / JDBC work as-is" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="70" y="290" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" parent="1" vertex="1" value="Fit: most common apps, easy to debug" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="70" y="380" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="wf" parent="1" vertex="1" value="Spring WebFlux (event loop)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#188038;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="520" y="60" width="440" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="w1" parent="1" vertex="1" value="Execution: asynchronous / non-blocking / declarative" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="550" y="110" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" parent="1" vertex="1" value="Threads: small fixed pool (~ number of CPU cores)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="550" y="200" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" parent="1" vertex="1" value="Blocking libraries: need non-blocking (R2DBC / WebClient)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="550" y="290" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" parent="1" vertex="1" value="Fit: high-concurrency I/O-bound, streaming" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="550" y="380" width="380" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="If a Spring MVC application works fine, there is no need to change (Spring docs). Choose by dependencies, concurrency needs, and team." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="505" width="920" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

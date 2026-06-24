@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-14-when-to-use" name="MVC vs WebFlux decision">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="660" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" parent="1" vertex="1" value="Choose MVC or WebFlux" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="360" y="20" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q1" parent="1" vertex="1" value="Existing MVC app works fine?" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="340" y="100" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" vertex="1" value="Keep Spring MVC (no need to change)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="680" y="125" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q2" parent="1" vertex="1" value="Core dependencies are blocking? (JPA / JDBC)" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="340" y="250" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" vertex="1" value="Spring MVC" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="700" y="275" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q3" parent="1" vertex="1" value="High-concurrency I/O-bound or streaming, and able to adopt a non-blocking stack end-to-end?" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="320" y="400" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" vertex="1" value="Spring WebFlux" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="700" y="435" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" parent="1" vertex="1" value="Start with MVC, adopt non-blocking WebClient only" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="300" y="560" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" parent="1" edge="1" source="start" target="q1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="q1" target="a1" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="q1" target="q2" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="q2" target="a2" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" edge="1" source="q2" target="q3" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" edge="1" source="q3" target="a3" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" parent="1" edge="1" source="q3" target="a4" value="no / unsure" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
