@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-18-propagation" name="Transaction propagation">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="540" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lf" parent="1" vertex="1" value="PROPAGATION_REQUIRED (default)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="40" y="50" width="440" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="lo" parent="1" vertex="1" value="outer @Transactional" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="105" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="li" parent="1" vertex="1" value="inner @Transactional (REQUIRED)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="195" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="lr" parent="1" vertex="1" value="= 1 physical transaction (inner joins outer)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="70" y="285" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ln" parent="1" vertex="1" value="inner rollback marks the whole transaction rollback-only" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#C5221F;fontStyle=2;">
+          <mxGeometry x="70" y="375" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rf" parent="1" vertex="1" value="PROPAGATION_REQUIRES_NEW" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#188038;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="520" y="50" width="440" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="ro" parent="1" vertex="1" value="outer @Transactional (suspended)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="550" y="105" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ri" parent="1" vertex="1" value="inner @Transactional (REQUIRES_NEW)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="550" y="195" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rr" parent="1" vertex="1" value="= 2 independent physical transactions" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="550" y="285" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rn" parent="1" vertex="1" value="inner commits / rolls back independently of outer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#188038;fontStyle=2;">
+          <mxGeometry x="550" y="375" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="le1" parent="1" edge="1" source="lo" target="li" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="le2" parent="1" edge="1" source="li" target="lr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="re1" parent="1" edge="1" source="ro" target="ri" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="re2" parent="1" edge="1" source="ri" target="rr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
