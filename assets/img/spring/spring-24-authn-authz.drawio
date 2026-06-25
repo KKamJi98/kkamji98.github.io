@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-24-authn-authz" name="Authentication vs Authorization">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lf" parent="1" vertex="1" value="Authentication (인증: 누구인가)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="40" y="40" width="460" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" vertex="1" value="credentials (Authentication 입력)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="80" y="100" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" vertex="1" value="AuthenticationManager (인증 수행)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="80" y="190" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" vertex="1" value="인증된 Authentication (principal + authorities)&#10;-> SecurityContextHolder (ThreadLocal)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="80" y="280" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rf" parent="1" vertex="1" value="Authorization (인가: 무엇을 허용)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#188038;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="540" y="40" width="460" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="1" vertex="1" value="AuthorizationFilter" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="580" y="100" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" vertex="1" value="authorities/roles  vs  접근 규칙 비교" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="580" y="190" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="1" vertex="1" value="허용  또는  거부 (403 Forbidden)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="580" y="280" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="먼저 인증(누구인지 확정해 SecurityContext에 저장), 그다음 인가(그 권한으로 이 요청이 허용되는지 판단)." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="415" width="960" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ae1" parent="1" edge="1" source="a1" target="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae2" parent="1" edge="1" source="a2" target="a3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be1" parent="1" edge="1" source="b1" target="b2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be2" parent="1" edge="1" source="b2" target="b3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-23-security-filter-chain" name="Security filter chain">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="660" pageHeight="720" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="req" parent="1" vertex="1" value="HTTP request" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="180" y="30" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sc" parent="1" vertex="1" value="Servlet container filter chain" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="140" y="120" width="380" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="dfp" parent="1" vertex="1" value="DelegatingFilterProxy&#10;(Servlet 컨테이너 &lt;-&gt; Spring ApplicationContext 브리지)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="110" y="215" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fcp" parent="1" vertex="1" value="FilterChainProxy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="170" y="325" width="320" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="sfc" parent="1" vertex="1" value="SecurityFilterChain&#10;(보안 필터들: 인증 -&gt; 인가)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="110" y="420" width="440" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ds" parent="1" vertex="1" value="통과 시 -> DispatcherServlet -> 컨트롤러 (Series 1)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="130" y="545" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="req" target="sc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="sc" target="dfp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="dfp" target="fcp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" edge="1" source="fcp" target="sfc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" edge="1" source="sfc" target="ds" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="보안은 컨트롤러 앞단의 필터 체인에서 끝난다. 거부되면 앱 코드까지 도달하지 않는다." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="640" width="580" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
