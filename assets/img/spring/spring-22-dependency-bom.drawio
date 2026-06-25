@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-22-dependency-bom" name="Dependency management BOM">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1020" pageHeight="400" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="decl" parent="1" vertex="1" value="declared dependencies (version omitted)&#10;&#10;spring-boot-starter-web&#10;spring-boot-starter-data-jpa" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="40" y="110" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bom" parent="1" vertex="1" value="spring-boot-dependencies BOM&#10;(controls versions via properties)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="390" y="125" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="res" parent="1" vertex="1" value="resolved dependency tree&#10;&#10;consistent, compatible versions&#10;(direct + transitive aligned)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="700" y="110" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="버전을 직접 적지 않아도 BOM이 호환되는 버전 집합으로 맞춰 준다 (버전 충돌/불일치 예방)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="300" width="950" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="decl" target="bom" value="no version" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="bom" target="res" value="fills versions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
