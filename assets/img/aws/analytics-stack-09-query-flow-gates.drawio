@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="analytics-stack-09-query-flow-gates" name="Athena query flow with gates">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="740" pageHeight="700" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client" parent="1" vertex="1" value="Client (SQL 제출)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="220" y="30" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" vertex="1" value="1. StartQueryExecution (Athena, 엔진)&#10;workgroup: 결과 위치 / 스캔 한도 정책   [IAM]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+          <mxGeometry x="130" y="120" width="480" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" vertex="1" value="2. Glue Data Catalog 조회 (메타데이터)&#10;스키마 + S3 LOCATION + 파티션   [IAM (+ Lake Formation)]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="130" y="230" width="480" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" vertex="1" value="3. S3 / S3 Tables 데이터 스캔 (저장)&#10;파티션 필터로 스캔량(=비용) 축소   [IAM (+ LF for S3 Tables)]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="130" y="340" width="480" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" vertex="1" value="4. query result location (S3)에 기록 후 반환   [IAM]" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="130" y="450" width="480" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" parent="1" edge="1" source="client" target="s1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" edge="1" source="s3" target="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Athena는 데이터를 들고 있지 않다: 메타데이터=Glue, 데이터=S3. 각 길목에 권한 게이트(IAM / Lake Formation)가 선다." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="540" width="620" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

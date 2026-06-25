@@ -100,6 +100,9 @@ GROUP BY user_id
 3. **데이터 읽기**: Catalog가 알려준 위치의 **S3**(또는 **S3 Tables**) 데이터를 스캔합니다. 이때 `WHERE dt = ...` 같은 **파티션 필터**가 있으면 해당 파티션만 읽어 스캔량(=비용)을 줄입니다.
 4. **결과 반환**: Athena는 쿼리 결과를 클라이언트에 바로 흘려보내는 것이 아니라, 1번에서 정해진 **workgroup의 query result location(S3)에 먼저 기록**한 뒤 그곳에서 읽어 반환합니다. 그래서 `GetQueryResults` 호출과 별개로, 결과 위치의 S3 객체에 직접 접근하면 같은 결과를 받을 수 있습니다.
 
+![Athena 쿼리가 지나는 4단계와 권한 게이트](/assets/img/aws/analytics-stack-09-query-flow-gates.webp)
+_쿼리 제출(Athena, 엔진) -> 메타데이터 조회(Glue Catalog) -> 데이터 스캔(S3/S3 Tables) -> 결과 위치(S3) 기록. 각 길목에 IAM(+ Lake Formation) 권한 게이트가 선다._
+
 즉 Athena 자체는 데이터를 들고 있지 않습니다. **메타데이터는 Glue Catalog에, 데이터는 S3에** 있고, Athena는 그 둘을 엮어 실행할 뿐입니다. 결과 역시 Athena가 보관하는 것이 아니라 S3의 결과 위치에 떨어집니다.
 
 > Amazon Athena automatically stores query results and query execution result metadata for each query that runs in a *query result location* that you can specify in Amazon S3.  
