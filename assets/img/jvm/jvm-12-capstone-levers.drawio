@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="jvm-12-capstone-levers" name="Cause and levers">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lf" parent="1" vertex="1" value="관찰된 원인 (누수 아님)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="40" y="40" width="470" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" vertex="1" value="JDK 업그레이드 + adaptive IHOP -> 같은 워크로드에서 Old 점유 baseline이 달라짐" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="95" width="410" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" vertex="1" value="G1은 Old를 mixed GC로 점진 회수 -> IHOP 전까지 Old 높게 유지 (설계상 정상)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="70" y="195" width="410" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" vertex="1" value="netty 등 off-heap(direct memory)은 heap(-Xmx) 바깥 -> heap만 보면 안 보임" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+          <mxGeometry x="70" y="295" width="410" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="rf" parent="1" vertex="1" value="처방 (levers)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#188038;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+          <mxGeometry x="540" y="40" width="470" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" vertex="1" value="MaxNewSize: young 상한 -> Old 증가 속도 / 승격 관리" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="570" y="90" width="410" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" vertex="1" value="IHOP 하향: mixed GC 조기 트리거 -> Old 회수 앞당김" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="570" y="160" width="410" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" vertex="1" value="MaxDirectMemorySize 명시: off-heap 상한" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="570" y="230" width="410" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" vertex="1" value="컨테이너 메모리 >= heap + off-heap (buildpack 계산)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+          <mxGeometry x="570" y="300" width="410" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="구체적 수치는 워크로드별로 측정해 정한다. 단일 수치가 아니라 baseline과 비교 관측이 핵심." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="40" y="405" width="970" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
