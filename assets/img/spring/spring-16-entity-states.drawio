@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="spring-16-entity-states" name="JPA entity states">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="transient" parent="1" vertex="1" value="transient (new)&#10;not in any context" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="60" y="50" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" vertex="1" value="Database" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+          <mxGeometry x="80" y="245" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="managed" parent="1" vertex="1" value="managed (persistent)&#10;in persistence context, tracked" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+          <mxGeometry x="430" y="230" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="detached" parent="1" vertex="1" value="detached&#10;has id, no longer in context" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+          <mxGeometry x="810" y="245" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="removed" parent="1" vertex="1" value="removed&#10;scheduled for DELETE at flush" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
+          <mxGeometry x="440" y="440" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t2m" parent="1" edge="1" source="transient" target="managed" value="persist()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d2m" parent="1" edge="1" source="db" target="managed" value="find() / query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m2det" parent="1" edge="1" source="managed" target="detached" value="detach() / clear() / close()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det2m" parent="1" edge="1" source="detached" target="managed" value="merge()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m2rem" parent="1" edge="1" source="managed" target="removed" value="remove()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="State transitions are driven by EntityManager calls. managed entities are auto-flushed (dirty checking); no explicit update() needed." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+          <mxGeometry x="60" y="525" width="960" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
