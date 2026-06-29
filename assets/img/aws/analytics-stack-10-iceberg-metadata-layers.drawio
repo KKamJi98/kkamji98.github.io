@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Iceberg Metadata Layers" id="iceberg-metadata-layers">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="720" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="catalog" value="Catalog" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#5F6368;strokeColor=#5F6368;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="300" height="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="metadata" value="metadata file (*.metadata.json)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="126" width="300" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mlist" value="manifest list (snap-*.avro)&#10;= one snapshot" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#F9AB00;strokeColor=#F9AB00;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="242" width="300" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mfile" value="manifest file (*-m*.avro)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#34A853;strokeColor=#34A853;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="358" width="300" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="datafile" value="data file&#10;(*.parquet)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="80" y="474" width="140" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="deletefile" value="delete file&#10;(row-level)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="240" y="474" width="140" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cap_meta" value="Current schema, partition specs, and the snapshot list with the current pointer" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="410" y="130" width="280" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cap_mlist" value="One snapshot = the list of manifest files it points to" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="410" y="246" width="280" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cap_mfile" value="One row per data/delete file, plus column stats (min/max, null counts)" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="410" y="362" width="280" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cap_data" value="Actual row data (Parquet/ORC) and row-level delete markers" style="text;html=1;align=left;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="410" y="478" width="280" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="catalog" target="metadata">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="metadata" target="mlist">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="mlist" target="mfile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="mfile" target="datafile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="mfile" target="deletefile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

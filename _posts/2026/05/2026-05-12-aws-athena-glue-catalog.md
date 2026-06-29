@@ -255,6 +255,7 @@ because no identity-based policy allows the glue:GetPartitions action
 
 이번 편에서는 일반적인 Glue 테이블(S3 + Glue Catalog)을 기준으로 Athena와 메타스토어, 권한을 정리했습니다. 다음 편에서는 한 단계 더 들어갑니다.
 
+- **Apache Iceberg 테이블 포맷** - S3 Tables가 전제하는 오픈 테이블 포맷의 구조(메타데이터 계층, ACID, 스키마/파티션 진화)를 먼저 정리합니다.
 - **S3 Tables & Catalog Federation** - 관리형 Iceberg 레이크하우스가 등장하면, Glue Catalog 안에 federated 카탈로그(`s3tablescatalog`)가 중첩되고 ARN이 깊어집니다.
 - **AWS Lake Formation** - 레이크하우스 데이터에는 IAM 위에 데이터 접근 권한 계층이 하나 더 얹힙니다.
 

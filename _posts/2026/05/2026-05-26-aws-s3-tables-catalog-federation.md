@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리했습니다. 이번 글에서는 한 단계 더 들어가, 데이터 레이크하우스의 핵심인 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
+앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리하고, 이어 [Apache Iceberg 테이블 포맷](/posts/apache-iceberg-table-format/) 글에서 Iceberg 자체의 구조와 동작 원리를 살펴봤습니다. 이번 글에서는 그 Iceberg를 AWS가 관리형으로 감싼 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
 
 이 편을 이해하면, 같은 Athena 쿼리인데도 `sales_db.orders`처럼 평범해 보이는 테이블이 사실은 `s3tablescatalog` 아래 깊은 경로에 있고, 그래서 권한 ARN이 왜 길어지는지가 보입니다. 다음 편(Lake Formation)의 권한 이야기를 위한 토대이기도 합니다.
 
