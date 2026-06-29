@@ -206,6 +206,7 @@ IAM만으로는 끝이 아닙니다. Lake Formation 축에서 catalog -> databas
 
 여기서 핵심은 `--resource`에 넣는 catalog 식별자 형식입니다. federated S3 Tables 리소스는 일반 Glue 테이블처럼 12자리 account ID만 쓰는 것이 아니라, `CatalogId`에 **`<account-id>:s3tablescatalog/<bucket>` 경로 전체**를 넣어야 합니다. AWS 공식 문서의 S3 Tables grant 예시가 이 형식을 그대로 보여줍니다.
 
+{% raw %}
 ```json
 "Resource": {
     "Table": {
@@ -215,6 +216,7 @@ IAM만으로는 끝이 아닙니다. Lake Formation 축에서 catalog -> databas
     }
 }
 ```
+{% endraw %}
 
 즉 `Database.CatalogId`, `Table.CatalogId`(그리고 catalog 레벨의 `Catalog.Id`)에는 모두 이 federated 경로를 채워야 하며, account ID만 넣으면 default 카탈로그를 가리켜 federated 데이터에는 닿지 않습니다.
 
