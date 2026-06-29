@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="datadog-rum-03-positioning" name="RUM vs Synthetic vs APM">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="920" pageHeight="420" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="grp_client" parent="1" vertex="1" value="Client-side (사용자 단)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#F6F1FB;strokeColor=#632CA6;fontColor=#632CA6;fontSize=13;fontStyle=1;verticalAlign=top;align=left;spacingTop=8;spacingLeft=14;">
+          <mxGeometry x="40" y="60" width="520" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="grp_server" parent="1" vertex="1" value="Server-side (서버 단)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;shadow=0;fillColor=#F2F7FE;strokeColor=#1A73E8;fontColor=#1A73E8;fontSize=13;fontStyle=1;verticalAlign=top;align=left;spacingTop=8;spacingLeft=14;">
+          <mxGeometry x="600" y="60" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="card_rum" parent="1" vertex="1" value="RUM&#10;Real User Monitoring&#10;&#10;실제 사용자 세션을 수동 관측&#10;성능 · 에러 · 사용자 행동&#10;단위: real user 트래픽" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#632CA6;strokeColor=#4B2080;fontColor=#FFFFFF;fontSize=11;verticalAlign=middle;align=center;">
+          <mxGeometry x="62" y="110" width="232" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="card_syn" parent="1" vertex="1" value="Synthetic Monitoring&#10;&#10;스케줄된 스크립트 테스트&#10;선제적 회귀 · 가용성 검증&#10;단위: 합성(simulated) 트래픽" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;verticalAlign=middle;align=center;">
+          <mxGeometry x="308" y="110" width="232" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="card_apm" parent="1" vertex="1" value="APM&#10;Application Performance&#10;Monitoring&#10;&#10;분산 추적으로 백엔드 · DB&#10;병목 추적&#10;단위: server-side span" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;verticalAlign=middle;align=center;">
+          <mxGeometry x="620" y="110" width="240" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="함께 쓰기 - Synthetic으로 선제 검증, RUM으로 실사용자 영향 측정, APM으로 근본 원인 추적.&#10;allowedTracingUrls로 RUM ↔ APM을 trace_id로 연결하면 frontend~backend 전 구간을 한 화면에서 추적할 수 있다." style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;shadow=0;fillColor=#F8F9FA;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;align=center;">
+          <mxGeometry x="40" y="300" width="840" height="84" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

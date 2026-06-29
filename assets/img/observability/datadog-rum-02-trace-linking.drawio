@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="datadog-rum-02-trace-linking" name="RUM to APM trace linking">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="520" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="browser" parent="1" vertex="1" value="Browser + RUM Browser SDK&#10;사용자 클릭 → fetch/XHR 요청 발생" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#632CA6;strokeColor=#4B2080;fontColor=#FFFFFF;fontSize=12;verticalAlign=middle;">
+          <mxGeometry x="110" y="60" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="backend" parent="1" vertex="1" value="Backend Service + APM tracer&#10;주입된 trace_id 이어받아 span 생성" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=12;verticalAlign=middle;">
+          <mxGeometry x="110" y="240" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" vertex="1" value="Database / downstream&#10;느린 SQL = 백엔드 병목 지점" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=12;verticalAlign=middle;">
+          <mxGeometry x="110" y="420" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" vertex="1" value="Connect RUM &amp; Traces&#10;&#10;· 프론트 Resource와 백엔드 trace가 같은 trace_id 공유&#10;· Datadog 헤더: x-datadog-trace-id / -parent-id&#10;&#160;&#160;x-datadog-origin: rum&#10;· W3C 헤더: traceparent / tracestate&#10;· RUM 세션 ↔ APM trace(flame graph) 양방향 이동&#10;&#160;&#160;(View Trace in APM / See in RUM)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#F3E9FB;strokeColor=#632CA6;fontColor=#202124;fontSize=11;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;dashed=1;">
+          <mxGeometry x="470" y="150" width="380" height="224" as="geometry" />
+        </mxCell>
+        <mxCell id="e_bb" parent="1" source="browser" target="backend" edge="1" value="요청 시 trace header 주입&#10;(allowedTracingUrls 매칭)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;fontColor=#202124;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_bd" parent="1" source="backend" target="db" edge="1" value="쿼리" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;fontColor=#202124;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_note" parent="1" source="note" edge="1" style="edgeStyle=none;rounded=0;html=1;exitX=0;exitY=0.25;strokeColor=#232F3E;endArrow=open;startArrow=none;dashed=1;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="256" y="212" as="targetPoint" /></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

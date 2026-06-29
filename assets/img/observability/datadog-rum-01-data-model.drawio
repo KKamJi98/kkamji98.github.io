@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram id="datadog-rum-01-data-model" name="RUM event data model">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="session" parent="1" vertex="1" value="Session  (session.id)&#10;사용자 여정 전체 · 최대 4h, 15min 비활동 시 만료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#632CA6;strokeColor=#4B2080;fontColor=#FFFFFF;fontSize=12;verticalAlign=middle;">
+          <mxGeometry x="280" y="60" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="view" parent="1" vertex="1" value="View  (view.id)&#10;페이지/화면 단위 · initial load 또는 route change" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#EDE7F6;strokeColor=#632CA6;fontColor=#202124;fontSize=12;verticalAlign=middle;">
+          <mxGeometry x="290" y="200" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ev_action" parent="1" vertex="1" value="Action&#10;click/tap · frustration signals" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+          <mxGeometry x="24" y="360" width="160" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ev_resource" parent="1" vertex="1" value="Resource&#10;XHR/fetch · 단계별 타이밍" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+          <mxGeometry x="202" y="360" width="160" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ev_error" parent="1" vertex="1" value="Error&#10;JS error/crash · stack trace" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+          <mxGeometry x="380" y="360" width="160" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ev_longtask" parent="1" vertex="1" value="Long Task&#10;main thread 50ms+ 블록" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+          <mxGeometry x="558" y="360" width="160" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ev_vital" parent="1" vertex="1" value="Vital&#10;Core Web Vitals · custom" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+          <mxGeometry x="736" y="360" width="160" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sv" parent="1" source="session" target="view" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_va" parent="1" source="view" target="ev_action" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="104" y="310" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e_vr" parent="1" source="view" target="ev_resource" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="282" y="310" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e_ve" parent="1" source="view" target="ev_error" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="460" y="310" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e_vl" parent="1" source="view" target="ev_longtask" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="638" y="310" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e_vv" parent="1" source="view" target="ev_vital" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="816" y="310" /></Array></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
