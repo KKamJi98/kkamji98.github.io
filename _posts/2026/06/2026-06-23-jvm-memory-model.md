@@ -142,7 +142,7 @@ NMT는 JVM 내부 사용량만 추적하고 non-JVM native 코드 할당은 못 
 # 1초 간격으로 GC 통계 출력 (S0/S1/Eden/Old/Metaspace 사용률 %)
 jstat -gcutil <pid> 1000
 
-# metaspace 용량/최소·최대 (Metaspace 누수 추적)
+# metaspace 용량/최소,최대 (Metaspace 누수 추적)
 jstat -gcmetacapacity <pid>
 ```
 
@@ -218,3 +218,7 @@ trade-off는 이렇습니다.
 - JVM Specification (SE 21) - Run-Time Data Areas: <https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html>
 - The java Command (JVM 옵션: -Xmx / -Xss / -XX:MaxMetaspaceSize / -XX:ReservedCodeCacheSize / -XX:MaxDirectMemorySize / -XX:MaxRAMPercentage): <https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html>
 - Java Platform Troubleshooting Guide (Native Memory Tracking, jcmd VM.native_memory): <https://docs.oracle.com/en/java/javase/21/troubleshoot/diagnostic-tools.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

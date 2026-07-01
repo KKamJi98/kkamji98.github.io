@@ -31,7 +31,7 @@ amd64와 arm64 이미지를 빌드 해 ECR에 Push하는 Workflow를 **Matrix St
 
 > **비교 대상**  
 > - 단일 러너(amd64)에서 QEMU 에뮬레이션으로 멀티 아키텍처 빌드.  
-> - Matrix Strategy로 amd64·arm64 전용 러너에서 네이티브 빌드 후 Manifest 병합.  
+> - Matrix Strategy로 amd64,arm64 전용 러너에서 네이티브 빌드 후 Manifest 병합.  
 {: .prompt-info}
 
 [GitHub Repository Link](https://github.com/KKamJi98/github-actions/tree/main/.github/workflows)
@@ -260,6 +260,10 @@ GitHub Actions의 Matrix Strategy를 활용하면 Multi-Architecture, Multi-Plat
 Multi-Architecture 또는 Multi-Platform을 지원하는 컨테이너 이미지를 사용하거나, 꼭 순차적으로 실행되어야 하지 않아도 되는 OS 및 패키지 조합별 취약점 스캔 등의 시간을 줄이고자 할 때 **도입을 고려해보는 건 어떨까요?**.
 
 ---
+
+## 4. Reference
+
+- [docs.docker.com - multi platform](https://docs.docker.com/build/building/multi-platform/#qemu)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

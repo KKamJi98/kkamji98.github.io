@@ -48,13 +48,13 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 | 컴포넌트           | 핵심 역할                                                           | 배포 형태                 |
 | ------------------ | ------------------------------------------------------------------- | ------------------------- |
 | **Sidecar**        | Prometheus 데이터를 객체 스토리지에 업로드, 최신 데이터 조회        | Prometheus Pod 내 Sidecar |
-| **Store Gateway**  | 객체 스토리지의 장기 저장 데이터를 조회·노출                        | Deployment                |
+| **Store Gateway**  | 객체 스토리지의 장기 저장 데이터를 조회,노출                        | Deployment                |
 | **Querier**        | 여러 StoreAPI 데이터를 통합하고 하나로 병합하여 Prometheus API 제공 | Deployment                |
 | **Compactor**      | 저장 데이터 병합, 다운샘플링, 보존 정책 적용                        | Deployment / CronJob      |
 | **Ruler**          | 전역 알림(Alert) 및 기록 규칙(Recording Rule) 평가 및 관리          | Deployment                |
 | **Receiver**       | Prometheus Remote-Write 데이터 수신 및 저장 (멀티테넌시 지원)       | StatefulSet               |
 | **Bucket Web**     | 객체 스토리지(S3/GCS) 데이터 시각화 및 관리 WEB UI 제공             | Deployment                |
-| **Query Frontend** | Querier 앞에서 쿼리 캐싱·최적화 (대규모 환경)                       | Deployment                |
+| **Query Frontend** | Querier 앞에서 쿼리 캐싱,최적화 (대규모 환경)                       | Deployment                |
 
 ![Thanos Architecture](/assets/img/kubernetes/thanos_architecture.webp)
 

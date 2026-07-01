@@ -323,16 +323,16 @@ tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 
 
 ## 5. 마무리
 
-| 항목              | Encapsulation(VXLAN·GENEVE)                           | Native Routing                                                |
+| 항목              | Encapsulation(VXLAN,GENEVE)                           | Native Routing                                                |
 | :---------------- | :---------------------------------------------------- | :------------------------------------------------------------ |
 | 네트워크 요구사항 | 노드 간 IP/UDP 통신만 가능하면 됨                     | PodCIDR Routing 가능해야 함                                   |
 | 데이터 패스       | 모든 노드 간 트래픽을 터널로 캡슐화                   | Linux 커널 Routing Table로 직접 포워딩                        |
 | 포트/프로토콜     | VXLAN 8472/UDP, Geneve 6081/UDP                       | 별도 포트 요구 없음(언더레이 Routing 필요)                    |
 | MTU 영향          | 캡슐화 오버헤드로 유효 MTU 감소, Jumbo Frame 권장     | 오버헤드 없음, 일반 MTU 그대로                                |
 | 구성 난이도       | 간단, 토폴로지 의존성 낮음                            | Routing, Advertisement 구성 필요, 토폴로지 의존성 있음        |
-| 확장/성능         | 손쉬운 확장, 처리량은 MTU 영향 받음                   | 고성능·낮은 지연, Routing 수·수렴 시간 고려                   |
+| 확장/성능         | 손쉬운 확장, 처리량은 MTU 영향 받음                   | 고성능,낮은 지연, Routing 수,수렴 시간 고려                   |
 | 트러블슈팅        | 터널(UDP) 레벨 캡처 필요                              | 평면 IP로 디버깅 용이(tcpdump, hubble Event 직관적)           |
-| 대표 사용처       | Hybrid/Segmented 네트워크, 빠른 PoC, 단순한 초기 구축 | 단일 L2·클라우드 라우터 환경, 고성능/저지연 요구, 대규모 운영 |
+| 대표 사용처       | Hybrid/Segmented 네트워크, 빠른 PoC, 단순한 초기 구축 | 단일 L2,클라우드 라우터 환경, 고성능/저지연 요구, 대규모 운영 |
 
 ---
 

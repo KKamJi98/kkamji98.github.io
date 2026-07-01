@@ -53,8 +53,8 @@ kubectl apply -f https://raw.githubusercontent.com/KKamJi98/kkamji-lab/main/stud
 
 **설정 요약**
 
-- `end-user: admin` → **reviews:v2**로 라우팅
-- 그 외 사용자 → **reviews:v1**로 라우팅
+- `end-user: admin` -> **reviews:v2**로 라우팅
+- 그 외 사용자 -> **reviews:v1**로 라우팅
 
 아래는 적용된 리소스의 핵심 구조 예시입니다.
 

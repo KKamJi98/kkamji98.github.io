@@ -243,7 +243,7 @@ FastAPI application shutting down complete!
 
 ## 3. 결론
 
-쿠버네티스 환경에서 Graceful Shutdown은 무중단 배포(Rolling Update)나 스케일 인·아웃 등의 과정에서 데이터 무결성을 지키고, 에러 없는 종료를 위해 필수적으로 고려해야 할 요소입니다.
+쿠버네티스 환경에서 Graceful Shutdown은 무중단 배포(Rolling Update)나 스케일 인,아웃 등의 과정에서 데이터 무결성을 지키고, 에러 없는 종료를 위해 필수적으로 고려해야 할 요소입니다.
 
 - Pod 종료 시점에 `preStop` 훅과 `SIGTERM` 신호를 활용해, 애플리케이션이 DB 커넥션 정리, 로그 Flush, Queue ACK 등의 작업을 수행할 수 있게 됩니다.
 - kube-proxy가 Pod IP를 Service 엔드포인트에서 제거하여 새 트래픽이 더 이상 해당 Pod로 가지 않도록 처리함으로써, 사용 중인 연결을 안전하게 정리할 시간을 확보합니다.
@@ -252,6 +252,10 @@ FastAPI application shutting down complete!
 이를 통해 Pod IP가 언제든 바뀌거나 Pod가 재시작되는 불안정한 상황에서도 안정적이고 예측 가능한 애플리케이션 종료를 구현할 수 있습니다.
 
 ---
+
+## 4. Reference
+
+- [0.0.0.0:8000 - Home](http://0.0.0.0:8000)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

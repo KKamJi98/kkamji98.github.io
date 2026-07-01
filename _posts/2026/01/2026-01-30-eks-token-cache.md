@@ -316,7 +316,7 @@ user    0m0.098s
 sys     0m0.045s
 ```
 
-**약 83% 응답 시간 감소** (1.847s → 0.312s)
+**약 83% 응답 시간 감소** (1.847s -> 0.312s)
 
 ### 5.2. 디버그 모드로 동작 확인
 
@@ -324,7 +324,7 @@ sys     0m0.045s
 # 디버그 모드 활성화
 export EKS_TOKEN_DEBUG=1
 
-# 첫 번째 호출 (캐시 미스 → 새 토큰 발급)
+# 첫 번째 호출 (캐시 미스 -> 새 토큰 발급)
 ❯ kubectl get nodes
 [DEBUG] Cache file not found
 [DEBUG] Fetching new token from AWS

@@ -501,6 +501,16 @@ git push origin main                                # 포크에 푸시
 
 ---
 
+## 17. Reference
+
+- [dandavison.github.io - installation](https://dandavison.github.io/delta/installation.html)
+- [github.com.helper - Home](https://github.com.helper)
+- [gist.github.com.helper - Home](https://gist.github.com.helper)
+- [git-scm.com - gitignore](https://git-scm.com/docs/gitignore#_external_ignores)
+- [github.com - repo.git](https://github.com/user/repo.git)
+- [github.com - new repo.git](https://github.com/user/new-repo.git)
+- [github.com - repo.git](https://github.com/original/repo.git)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

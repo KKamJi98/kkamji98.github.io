@@ -131,6 +131,11 @@ jnlp-agent-qzw70   0/1     Terminating         0               20s
 
 ---
 
+## 7. Reference
+
+- [whatap.io - board](https://www.whatap.io/bbs/board.php?bo_table=blog&wr_id=34&page=9)
+- [aws.amazon.com - inflab ec2 spot instance](https://aws.amazon.com/ko/blogs/tech/inflab-ec2-spot-instance/)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

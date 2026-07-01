@@ -186,3 +186,7 @@ DevSecOps 비유: event loop는 nginx나 Node.js의 단일 스레드 이벤트 �
 - Java SE 21 API - java.nio.ByteBuffer (Direct vs. non-direct buffers): <https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/ByteBuffer.html>
 - Netty 4.1 API - PooledByteBufAllocator (direct buffer pooling): <https://netty.io/4.1/api/io/netty/buffer/PooledByteBufAllocator.html>
 - Java SE 21 - java launcher manual (-XX:MaxDirectMemorySize): <https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

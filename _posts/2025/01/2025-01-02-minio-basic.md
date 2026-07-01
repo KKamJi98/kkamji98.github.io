@@ -19,7 +19,7 @@ image:
 
 ## 1. Minio란?
 
-> Minio는 고성능·고가용성을 갖춘 오브젝트 스토리지(Object Storage) 솔루션입니다.  
+> Minio는 고성능,고가용성을 갖춘 오브젝트 스토리지(Object Storage) 솔루션입니다.  
 {: .prompt-tip}
 
 - AWS S3와 호환되는 API 인터페이스를 제공하기 때문에, AWS SDK, s3cmd 등과 함께 사용할 수 있습니다.

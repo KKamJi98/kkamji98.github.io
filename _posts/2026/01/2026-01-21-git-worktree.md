@@ -15,7 +15,7 @@ AI 코딩 에이전트(Claude Code, Cursor 등)를 활용한 개발이 보편화
 > **TL;DR**  
 > - **Git Worktree**: 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 독립된 폴더에서 작업  
 > - **Bare Repository 방식**: `.bare/` 폴더에 Git DB를 두고, 모든 브랜치를 worktree로 관리  
-> - **Multi-Agent 활용**: 각 AI 에이전트에게 독립된 worktree 할당 → 컨텍스트 분리 및 충돌 위험 감소  
+> - **Multi-Agent 활용**: 각 AI 에이전트에게 독립된 worktree 할당 -> 컨텍스트 분리 및 충돌 위험 감소  
 > - **wt CLI 도구**: `wt init` 한 줄로 bare repo + worktree 자동 설정 ([GitHub](https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool))  
 {: .prompt-info}
 
@@ -230,8 +230,8 @@ git -C "$BASE_BRANCH" pull origin "$BASE_BRANCH"
 - 어떤 규칙이든 문서화하여 모든 에이전트가 동일하게 적용
 
 **예시**
-- 동일 경로: `feat/login` → `feat/login`
-- Flat 매핑: `feat/login` → `feat-login` (규칙 문서화)
+- 동일 경로: `feat/login` -> `feat/login`
+- Flat 매핑: `feat/login` -> `feat-login` (규칙 문서화)
 
 ### 3.5. Multi-Agent 컨텍스트 공유 & 충돌 방지
 

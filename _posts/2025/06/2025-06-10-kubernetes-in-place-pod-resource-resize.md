@@ -148,6 +148,11 @@ In-Place Pod Resource Resize 기능은 `vertical scaling`을 무중단으로 지
 
 ---
 
+## 5. Reference
+
+- [kubernetes.io - kubernetes v1 33 release](https://kubernetes.io/blog/2025/04/23/kubernetes-v1-33-release/)
+- [kubernetes.io - kubernetes v1 33 in place pod resize beta](https://kubernetes.io/blog/2025/05/16/kubernetes-v1-33-in-place-pod-resize-beta/)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

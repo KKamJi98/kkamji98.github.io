@@ -37,7 +37,7 @@ Hubble Exporter를 설정하는 방식은 크게 **Static Export** 방식과 **D
 | :------------- | :------------------------------------------------------ | :------------------------------------------------------------------------------ |
 | 정의/위치      | Helm values, `cilium-config` ConfigMap                  | `CiliumNetworkPolicy` / `CiliumClusterwideNetworkPolicy` 의 `spec.hubbleExport` |
 | 적용,변경 방법 | Helm upgrade 또는 ConfigMap 수정 -> Cilium Agent 재시작 | `kubectl apply/delete` 즉시 반영, Cilium Agent 재시작 불필요                    |
-| 주요 목적      | 기본 상시 수집 규칙 유지                                | 사고 대응, 일시적·세밀한 추적, 특정 엔드포인트 캡처                             |
+| 주요 목적      | 기본 상시 수집 규칙 유지                                | 사고 대응, 일시적,세밀한 추적, 특정 엔드포인트 캡처                             |
 | 장점           | 단순하고 예측 가능, 변경 빈도 낮은 구성에 적합          | 빠른 조정, 무중단, 조건/필드별 세밀 제어                                        |
 | 대표 설정 키   | `hubble.export.static.*`                                | `spec.hubbleExport.*`                                                           |
 

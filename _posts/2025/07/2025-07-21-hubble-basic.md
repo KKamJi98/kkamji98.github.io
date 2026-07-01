@@ -20,7 +20,7 @@ image:
 
 > - [Cilium Docs - Introduction to Cilium & Hubble](https://docs.cilium.io/en/stable/overview/intro/)  
 
-**Hubble**은 **완전 분산형 네트워킹·보안 가시성(Observability) 플랫폼**입니다. Cilium과 eBPF 위에 구축되어, **서비스 간 통신과 네트워크 인프라의 동작을 투명하고 깊이 관찰**할 수 있게 해 줍니다.
+**Hubble**은 **완전 분산형 네트워킹,보안 가시성(Observability) 플랫폼**입니다. Cilium과 eBPF 위에 구축되어, **서비스 간 통신과 네트워크 인프라의 동작을 투명하고 깊이 관찰**할 수 있게 해 줍니다.
 
 Cilium을 기반으로 동작하기 때문에 **eBPF의 강력한 가시성 기능을 그대로 활용**할 수 있습니다. eBPF는 프로그래머블하고 동적으로 구성이 가능해, **필요한 수준만큼 세밀한 정보를 수집하면서도 오버헤드는 최소화**합니다. Hubble은 이러한 eBPF의 장점을 극대화하도록 설계된 도구입니다.
 
@@ -38,7 +38,7 @@ Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 - 어떤 서비스끼리 통신하며, 빈도는 얼마나 되는가?
 - 서비스 간 의존 관계(그래프)는 어떻게 생겼는가?
 - 어떤 HTTP 호출이 이루어지고 있는가?
-- 특정 서비스가 소비·생산하는 Kafka 토픽은 무엇인가?
+- 특정 서비스가 소비,생산하는 Kafka 토픽은 무엇인가?
 
 ### 1.2. 네트워크 모니터링 & 알림
 
@@ -52,7 +52,7 @@ Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 ### 1.3. 애플리케이션 모니터링
 
 - 특정 서비스(또는 전체 클러스터)의 4xx/5xx HTTP 응답 비율은?
-- HTTP 요청–응답 지연의 95·99 퍼센타일은?
+- HTTP 요청–응답 지연의 95,99 퍼센타일은?
 - 가장 성능이 나쁜 서비스는 어디인가?
 - 두 서비스 간 지연 시간은 얼마인가?
 
@@ -62,7 +62,7 @@ Hubble이 답할 수 있는 질문들은 다음과 같습니다.
 - 클러스터 외부에서 접근된 서비스는 어디인가?
 - 특정 DNS 이름을 조회한 서비스는?
 
-> 이처럼 Hubble은 서비스 토폴로지부터 성능·보안 이슈까지, 쿠버네티스 클러스터 내부 네트워크의 현미경 역할을 수행합니다.  
+> 이처럼 Hubble은 서비스 토폴로지부터 성능,보안 이슈까지, 쿠버네티스 클러스터 내부 네트워크의 현미경 역할을 수행합니다.  
 {: .prompt-tip}
 
 ---
@@ -138,7 +138,7 @@ LISTEN 0      4096               *:9963             *:*    users:(("cilium-opera
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg config          # 모든 에이전트 설정 값 출력
 
 # Cilium 클러스터 상태 상세 보기
-kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg status --verbose # 헬스·버전·에러 등 상세 상태 확인
+kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg status --verbose # 헬스,버전,에러 등 상세 상태 확인
 
 # Prometheus 메트릭 목록 확인
 kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg metrics list     # 수집 가능한 메트릭 이름 나열
@@ -189,7 +189,7 @@ kubectl exec -n kube-system -c cilium-agent -it ds/cilium -- cilium-dbg monitor 
 - 활성화할 메트릭 종류 및 옵션 지정  
   - 메트릭 수집 - `dns`, `drop`, `tcp`, `flow`, `port-distribution`, `icmp`, `httpV2`  
   - Latency Exemplar 기록 활성화 - `httpV2:exemplars=true`  
-  - 메트릭에 소스/목적지 IP·네임스페이스 등 라벨 포함 - `labelsContext=source_ip\\,source_namespace\\...`  
+  - 메트릭에 소스/목적지 IP,네임스페이스 등 라벨 포함 - `labelsContext=source_ip\\,source_namespace\\...`  
 
 ```shell
 helm upgrade cilium cilium/cilium --namespace kube-system --reuse-values \

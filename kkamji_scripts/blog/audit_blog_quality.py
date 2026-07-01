@@ -15,6 +15,7 @@ from datetime import datetime
 from pathlib import Path
 from statistics import mean, median
 from typing import Iterable
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 POSTS_DIR = ROOT / "_posts"
@@ -32,6 +33,34 @@ MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((/[^)\s#]+)(?:#[^)]*)?\)")
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((/posts/[^)#\s]+/?)(?:#[^)]*)?\)")
 EXTERNAL_LINK_RE = re.compile(r"https?://[^\s)<>]+")
 HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
+EXCLUDED_REFERENCE_HOSTS = {
+    "localhost",
+    "127.0.0.1",
+    "kkamji.net",
+    "www.kkamji.net",
+    "linkedin.com",
+    "www.linkedin.com",
+    "private-user-images.githubusercontent.com",
+}
+EXCLUDED_REFERENCE_HOST_PARTS = ["github.com/kkamji98/", "github.com/KKamJi98/"]
+
+
+def clean_url(url: str) -> str:
+    return url.rstrip(".,;:")
+
+
+def should_require_reference(url: str) -> bool:
+    cleaned = clean_url(url)
+    try:
+        parsed = urlparse(cleaned)
+    except ValueError:
+        return False
+    host = parsed.netloc.lower()
+    host_no_www = host[4:] if host.startswith("www.") else host
+    if host in EXCLUDED_REFERENCE_HOSTS or host_no_www in EXCLUDED_REFERENCE_HOSTS:
+        return False
+    lowered = cleaned.lower()
+    return not any(part.lower() in lowered for part in EXCLUDED_REFERENCE_HOST_PARTS)
 
 
 @dataclass
@@ -156,7 +185,7 @@ def audit_posts() -> list[PostAudit]:
         audit.h3_count = len(H3_RE.findall(body))
         audit.code_fence_count = body.count("```") // 2
         audit.image_count = len(MD_IMAGE_RE.findall(scan_text))
-        audit.external_link_count = len(EXTERNAL_LINK_RE.findall(scan_body))
+        audit.external_link_count = len([url for url in EXTERNAL_LINK_RE.findall(scan_body) if should_require_reference(url)])
         audit.has_reference = bool(REFERENCE_HEADING_RE.search(scan_body))
         audit.has_footer = FOOTER_SNIPPET in scan_body
         audit.has_tldr = "TL;DR" in scan_body or "요약" in scan_body[:1500]

@@ -120,3 +120,7 @@ DevSecOps 비유: 보안 필터 체인은 **요청이 앱에 닿기 전 게이�
 - Spring Security Reference - Servlet Architecture (Filter / DelegatingFilterProxy / FilterChainProxy / SecurityFilterChain): <https://docs.spring.io/spring-security/reference/servlet/architecture.html>
 - Spring Security Reference - Authentication Architecture (SecurityContextHolder / Authentication / AuthenticationManager): <https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html>
 - Spring Security Reference - Authorization Architecture (AuthorizationFilter): <https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

@@ -153,3 +153,7 @@ _참조(order)는 stack 프레임에, 객체(Order)는 heap에_
 - Wikipedia - Address space layout randomization (ASLR base randomization): <https://en.wikipedia.org/wiki/Address_space_layout_randomization>
 - Oracle - JRockit JVM Diagnostics Guide, Thread Local Areas (TLA로 동기화 없이 할당): <https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/geninfo/diagnos/garbage_collect.html>
 - 추가 읽을거리: Operating Systems - Three Easy Pieces (OSTEP), Address Spaces: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

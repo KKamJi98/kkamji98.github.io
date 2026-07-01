@@ -393,6 +393,12 @@ def handler(event, context):
 
 ---
 
+## 9. Reference
+
+- [github.com - vocaAppServerless](https://github.com/vocaAppServerless)
+- [download.elastic.co - crds.yaml](https://download.elastic.co/downloads/eck/2.15.0/crds.yaml)
+- [download.elastic.co - operator.yaml](https://download.elastic.co/downloads/eck/2.15.0/operator.yaml)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

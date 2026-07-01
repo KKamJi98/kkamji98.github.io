@@ -131,3 +131,7 @@ DevSecOps 비유: backpressure는 흐름 제어(TCP flow control, bounded queue,
 - Reactor Reference - Core Features (Mono / Flux): <https://projectreactor.io/docs/core/release/reference/coreFeatures.html>
 - Reactor Reference - Reactive Programming (Nothing Happens Until You subscribe()): <https://projectreactor.io/docs/core/release/reference/reactiveProgramming.html>
 - Reactive Streams (표준 / backpressure): <https://www.reactive-streams.org/>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

@@ -24,9 +24,9 @@ Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instanc
 
 ## 2. InfluxDB, TSDB란?
 
-**InfluxDB**는 시계열(TS, Time-Series) 데이터에 특화된 오픈소스 데이터베이스입니다. 시계열 데이터는 센서, 모니터링, 로그 등 시간축을 따라 들어오는 연속적·대량 데이터를 다루는 데 최적화된 구조를 갖춥니다. 이러한 **TSDB(Time-Series Database)**는 시간 정보를 핵심 인덱스로 사용해 빠른 수집·보관·분석이 가능하며, InfluxDB 역시 Measurement·Tag·Field·Time 구성을 통해 고속 쓰기와 효율적 조회를 지원합니다.
+**InfluxDB**는 시계열(TS, Time-Series) 데이터에 특화된 오픈소스 데이터베이스입니다. 시계열 데이터는 센서, 모니터링, 로그 등 시간축을 따라 들어오는 연속적,대량 데이터를 다루는 데 최적화된 구조를 갖춥니다. 이러한 **TSDB(Time-Series Database)**는 시간 정보를 핵심 인덱스로 사용해 빠른 수집,보관,분석이 가능하며, InfluxDB 역시 Measurement,Tag,Field,Time 구성을 통해 고속 쓰기와 효율적 조회를 지원합니다.
 
-InfluxDB는 DevOps 모니터링(서버 CPU, 메모리 지표)이나 IoT 센서, 주가·환율 같은 금융 데이터 등 폭넓은 시나리오에 활용될 수 있습니다. Retention Policy로 오래된 데이터를 자동 정리하여 스토리지 사용을 조절하고, Telegraf·Grafana 등과 연동해 실시간 대시보드도 쉽게 구성할 수 있어 인프라 및 애플리케이션 모니터링에 적합합니다.
+InfluxDB는 DevOps 모니터링(서버 CPU, 메모리 지표)이나 IoT 센서, 주가,환율 같은 금융 데이터 등 폭넓은 시나리오에 활용될 수 있습니다. Retention Policy로 오래된 데이터를 자동 정리하여 스토리지 사용을 조절하고, Telegraf,Grafana 등과 연동해 실시간 대시보드도 쉽게 구성할 수 있어 인프라 및 애플리케이션 모니터링에 적합합니다.
 
 ---
 
@@ -38,7 +38,7 @@ InfluxDB 1.x 버전에서 데이터를 내보낼 때는 크게 두 가지 접근
 
 `influx_inspect export -lponly` 옵션이나, `SELECT` 결과를 직접 Line Protocol로 변환하는 방식입니다.
 
-- **장점**: InfluxDB가 이해하는 **Native** 포맷이므로, timestamp·tag·field 정보를 그대로 보존하여 Import 시 매끄럽습니다.  
+- **장점**: InfluxDB가 이해하는 **Native** 포맷이므로, timestamp,tag,field 정보를 그대로 보존하여 Import 시 매끄럽습니다.  
 - **단점**: CSV보다 사람이 읽기에는 다소 불편할 수 있습니다.
 
 ### 3.2. 2) **CSV 기반 Export**
@@ -91,7 +91,7 @@ curl -i -XPOST "http://10.0.1.67:8086/write?db=test_db" \
   --data-binary "test_data,location=serverroom value=${sum}"
 ```
 
-이 스크립트를 1분마다 실행하면 같은 시점의 데이터가 Old·New에 동시 기록됩니다. 특정 시점에 New DB에서 일부 데이터를 지우거나 덮어쓰고, 마이그레이션을 통해 데이터를 재확인할 수 있습니다.
+이 스크립트를 1분마다 실행하면 같은 시점의 데이터가 Old,New에 동시 기록됩니다. 특정 시점에 New DB에서 일부 데이터를 지우거나 덮어쓰고, 마이그레이션을 통해 데이터를 재확인할 수 있습니다.
 
 ![dummy_data_grafana](/assets/img/database/influxdb/dummy_data_grafana.webp)
 
@@ -441,11 +441,17 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 2. 특정 시간대 데이터 삭제 후 복구  
    - New InfluxDB에서 5시간 전부터 3시간 전 사이의 데이터를 삭제한 뒤 Old -> New 마이그레이션을 수행하면, 해당 구간의 데이터가 다시 채워져 그래프가 완전하게 복원되었습니다.  
 3. 이미 존재하는 시간대 데이터 덮어쓰기(Overwrite)  
-   - 특정 시간대에 ‘이상한’ 값(예: 100, 0, 100 등)을 기록해 놓은 뒤 Old InfluxDB 데이터를 가져오면, 정확히 동일한 타임스탬프·태그·필드 조합의 측정값이 덮어써지는 것을 확인했습니다.  
+   - 특정 시간대에 ‘이상한’ 값(예: 100, 0, 100 등)을 기록해 놓은 뒤 Old InfluxDB 데이터를 가져오면, 정확히 동일한 타임스탬프,태그,필드 조합의 측정값이 덮어써지는 것을 확인했습니다.  
 
-종합적으로, Line Protocol을 이용한 InfluxDB 1.x 간 마이그레이션은 다양한 시나리오(Measurement 삭제, 특정 시간대 데이터 삭제, 덮어쓰기)에 대해 안정적으로 동작했습니다. 실제 환경에서는 백업·성능·다운타임 고려가 필요하겠지만, 검증된 시나리오들로 볼 때 정상적인 마이그레이션 수행이 가능함을 알 수 있습니다.
+종합적으로, Line Protocol을 이용한 InfluxDB 1.x 간 마이그레이션은 다양한 시나리오(Measurement 삭제, 특정 시간대 데이터 삭제, 덮어쓰기)에 대해 안정적으로 동작했습니다. 실제 환경에서는 백업,성능,다운타임 고려가 필요하겠지만, 검증된 시나리오들로 볼 때 정상적인 마이그레이션 수행이 가능함을 알 수 있습니다.
 
 ---
+
+## 11. Reference
+
+- [localhost:8086 - write](http://localhost:8086/write?db=test_db)
+- [10.0.1.67:8086 - write](http://10.0.1.67:8086/write?db=test_db)
+- [${TARGET_HOST - Home](http://${TARGET_HOST)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

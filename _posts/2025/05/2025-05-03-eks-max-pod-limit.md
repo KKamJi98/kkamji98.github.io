@@ -218,6 +218,16 @@ Amazon VPC CNI - <https://docs.aws.amazon.com/eks/latest/best-practices/vpc-cni.
 
 ---
 
+## 7. Reference
+
+- [github.com - eni max pods.txt](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/shared/runtime/eni-max-pods.txt)
+- [docs.aws.amazon.com - choosing instance type](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
+- [raw.githubusercontent.com - max pods calculator.sh](https://raw.githubusercontent.com/awslabs/amazon-eks-ami/master/templates/al2/runtime/max-pods-calculator.sh)
+- [docs.aws.amazon.com - cni increase ip addresses](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cni-increase-ip-addresses.html)
+- [docs.aws.amazon.com - cni increase ip addresses procedure](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cni-increase-ip-addresses-procedure.html)
+- [docs.aws.amazon.com - prefix mode linux](https://docs.aws.amazon.com/eks/latest/best-practices/prefix-mode-linux.html)
+- [docs.aws.amazon.com - vpc cni](https://docs.aws.amazon.com/eks/latest/best-practices/vpc-cni.html)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

@@ -349,7 +349,7 @@ Hostname: webpod-697b545f57-9lpt4
 
 ## 6. BGP Routing
 
-앞서 설명한 Static Routing 방식은 노드 수가 늘어날수록 운영 부담이 커집니다. 특히 노드 교체나 네트워크 대역 변경 시 수동 라우트 추가·삭제가 필요하므로, 실제 운영 환경에서는 BGP(Border Gateway Protocol)를 통한 동적 라우팅을 사용하는 것이 좋습니다.  
+앞서 설명한 Static Routing 방식은 노드 수가 늘어날수록 운영 부담이 커집니다. 특히 노드 교체나 네트워크 대역 변경 시 수동 라우트 추가,삭제가 필요하므로, 실제 운영 환경에서는 BGP(Border Gateway Protocol)를 통한 동적 라우팅을 사용하는 것이 좋습니다.  
 
 Cilium은 BGP Control Plane 기능을 제공하여, 각 노드가 자신의 `PodCIDR`를 외부 라우터에 자동으로 광고(announce)할 수 있도록 지원합니다. 이를 통해 라우터가 모든 노드의 `PodCIDR`를 자동 학습하고, 경로를 최신 상태로 유지합니다.
 

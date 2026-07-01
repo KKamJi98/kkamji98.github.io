@@ -167,3 +167,7 @@ _컴포넌트 스캔 -> 빈 정의 등록 -> 인스턴스화 -> 의존 주입 ->
 - Spring Framework Reference - Bean Scopes (singleton): <https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html>
 - Spring Framework Reference - Customizing the Nature of a Bean (lifecycle callbacks, Aware): <https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html>
 - Spring Framework Reference - Container Extension Points (BeanPostProcessor): <https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

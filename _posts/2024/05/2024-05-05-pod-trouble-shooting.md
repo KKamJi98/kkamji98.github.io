@@ -201,6 +201,12 @@ No resources found in default namespace.
 
 ---
 
+## 7. Reference
+
+- [help.ubuntu.com - Home](https://help.ubuntu.com)
+- [landscape.canonical.com - Home](https://landscape.canonical.com)
+- [ubuntu.com - pro](https://ubuntu.com/pro)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

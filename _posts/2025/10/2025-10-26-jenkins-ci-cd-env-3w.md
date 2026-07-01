@@ -330,7 +330,7 @@ open "http://$IP:3000/install"
   - Repository Name : **dev-app**
   - Visibility : (**Check**) This repository is **Private** *← 가시성 위에것 체크*
   - .gitignore : **Python**
-  - Readme : Default → (Check) initialize this repository with selected files and template
+  - Readme : Default -> (Check) initialize this repository with selected files and template
   
   ⇒ Create Repository 클릭 : Repo 주소 확인
 
@@ -338,7 +338,7 @@ open "http://$IP:3000/install"
   - Repository Name : **ops-deploy**
   - Visibility : (**Check**) This repository is **Private**
   - .gitignore : **Python**
-  - Readme : Default → (Check) initialize this repository with selected files and template
+  - Readme : Default -> (Check) initialize this repository with selected files and template
   
   ⇒ Create Repository 클릭 : Repo 주소 확인
 
@@ -581,6 +581,25 @@ cat ~/.kube/config
 ```
 
 ---
+
+## 3. Reference
+
+- [0.0.0.0:32795 - Home](https://0.0.0.0:32795)
+- [172.28.8.232:32795 - version](https://172.28.8.232:32795/version)
+- [github.com - kube ops view](https://github.com/hjacobs/kube-ops-view)
+- [ec2spotworkshops.com - 030 k8s tools](https://ec2spotworkshops.com/using_ec2_spot_instances_with_eks/030_k8s_tools.html)
+- [geek-cookbook.github.io - charts](https://geek-cookbook.github.io/charts/)
+- [$IP:30001 - Home](http://$IP:30001/#scale=1.5)
+- [$IP:30001 - Home](http://$IP:30001/#scale=2)
+- [$IP:8080 - Home](http://$IP:8080)
+- [daniel00324.tistory.com - 17](https://daniel00324.tistory.com/17)
+- [download.docker.com - gpg](https://download.docker.com/linux/debian/gpg)
+- [download.docker.com - debian](https://download.docker.com/linux/debian)
+- [github.com - gogs](https://github.com/gogs/gogs)
+- [gogs.io - docs](https://gogs.io/docs)
+- [$IP:3000 - install](http://$IP:3000/install)
+- [devops:$TOKEN@$MyIP:3000 - dev app.git](http://devops:$TOKEN@$MyIP:3000/devops/dev-app.git)
+- [devops:48bf0caa1c0eeaf85eea28858c3dd472c16d9103@172.28.8.232:3000 - dev app.git](http://devops:48bf0caa1c0eeaf85eea28858c3dd472c16d9103@172.28.8.232:3000/devops/dev-app.git)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

@@ -11,7 +11,7 @@ image:
 
 2024년 11월부터 12월까지 약 2개월간 **Remember Me** 프로젝트를 진행했습니다. 해당 서비스는 **AWS Lambda**와 **Amazon API Gateway**를 기반으로 동작하는 서버리스(Serverless) 환경에서, 사용자가 단어를 외우고 관리할 수 있는 웹 애플리케이션입니다.
 
-인프라 팀원으로서 **HCP Terraform(Terraform Cloud)을 이용한 AWS 인프라 프로비저닝**, **GitHub Actions를 통한 CI/CD 파이프라인 구축**, 그리고 **로그 수집·분석 환경(ELK Stack) 설정**에 주력했습니다.
+인프라 팀원으로서 **HCP Terraform(Terraform Cloud)을 이용한 AWS 인프라 프로비저닝**, **GitHub Actions를 통한 CI/CD 파이프라인 구축**, 그리고 **로그 수집,분석 환경(ELK Stack) 설정**에 주력했습니다.
 
 > **GitHub**: <https://github.com/vocaAppServerless>  
 > **Application Demo**: <https://youtu.be/y15djTDnXYg>  
@@ -101,6 +101,13 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 이번 프로젝트는 서버리스 아키텍처와 MSA의 장점뿐만 아니라 그 한계까지 체감할 수 있는 귀중한 경험이었습니다. 이를 통해 시스템 설계와 운영에서 더 깊이 있는 고민을 하게 되었고, 앞으로의 프로젝트에 적용할 중요한 교훈을 얻을 수 있었습니다.
 
 ---
+
+## 5. Reference
+
+- [github.com - vocaAppServerless](https://github.com/vocaAppServerless)
+- [youtu.be - y15djTDnXYg](https://youtu.be/y15djTDnXYg)
+- [youtu.be - zg9rhHcf8w0](https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u)
+- [youtu.be - S6AAgXVevEw](https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

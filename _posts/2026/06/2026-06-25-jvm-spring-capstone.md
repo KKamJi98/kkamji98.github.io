@@ -126,3 +126,7 @@ DevSecOps 비유: 런타임/플랫폼 업그레이드 후 지표가 달라지는
 - Oracle GC Tuning Guide (SE 21) - Garbage-First (G1) Garbage Collector (space-reclamation / IHOP / adaptive): <https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html>
 - Oracle GC Tuning Guide (SE 21) - Garbage-First Garbage Collector Tuning (young 크기 / pause 목표): <https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-garbage-collector-tuning.html>
 - The java Command (SE 21) - JVM 옵션(-Xmx / -XX:MaxNewSize / -XX:MaxDirectMemorySize / IHOP): <https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

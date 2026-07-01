@@ -158,3 +158,7 @@ DevSecOps 비유로는 Apache prefork/worker MPM처럼 "연결 하나가 워커 
 - Spring Framework Reference - @ResponseBody (HttpMessageConverter): <https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html>
 - Spring Framework Reference - Content Types (content negotiation): <https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/content-negotiation.html>
 - Apache Tomcat - HTTP Connector (maxThreads): <https://tomcat.apache.org/tomcat-10.1-doc/config/http.html>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

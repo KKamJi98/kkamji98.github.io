@@ -115,3 +115,7 @@ DevSecOps 비유: write-behind flush는 변경을 모아 한 번에 내보내는
 - Hibernate ORM User Guide - Persistence Context / Flushing (1차 캐시, 엔티티 상태, dirty checking, flush): <https://docs.hibernate.org/orm/current/userguide/html_single/Hibernate_User_Guide.html>
 - Jakarta Persistence (엔티티 생명주기 / EntityManager 스펙): <https://jakarta.ee/specifications/persistence/>
 - Spring Data JPA Reference: <https://docs.spring.io/spring-data/jpa/reference/>
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

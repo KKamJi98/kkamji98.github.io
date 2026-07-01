@@ -111,7 +111,7 @@ Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`
   - Hubble로 `L3`~`L7` 플로우, 지표, 드랍 원인을 즉시 관찰  
 
 - **효과**
-  - Sidecar 제거 -> 리소스 오버헤드·운영 복잡도 축소  
+  - Sidecar 제거 -> 리소스 오버헤드,운영 복잡도 축소  
   - eBPF Data Path -> 지연 감소, 경로 단순화  
   - Identity 기반 정책,관찰성 표준화  
   - Multi-Cluster 및 On-premise/Cloud 경계 회복성 있는 연결성 확보  

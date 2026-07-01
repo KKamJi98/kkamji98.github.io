@@ -152,6 +152,11 @@ kube-system    metrics-server-6d94bc8694-n5k29           3m           28Mi
 
 ---
 
+## 6. Reference
+
+- [github.com - components.yaml](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml)
+- [10.0.0.81:10250 - resource\](https://10.0.0.81:10250/metrics/resource\)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

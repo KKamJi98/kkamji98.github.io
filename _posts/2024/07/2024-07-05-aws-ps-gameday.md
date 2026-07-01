@@ -59,6 +59,11 @@ Generative AI 라는 주제에 맞게 생성형 AI를 사용할 것이라 생각
 
 ---
 
+## 4. Reference
+
+- [pages.awscloud.com - public sector day seoul 2024](https://pages.awscloud.com/public-sector-day-seoul-2024.html#about)
+- [aws.amazon.com - gameday](https://aws.amazon.com/ko/gameday/)
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

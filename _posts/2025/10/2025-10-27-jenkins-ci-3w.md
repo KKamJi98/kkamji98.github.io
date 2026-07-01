@@ -532,7 +532,7 @@ exit
 sudo docker compose restart gogs
 ```
 
-Jenkins job Trigger - [dev-app] - Setting → Webhooks → Gogs 클릭
+Jenkins job Trigger - [dev-app] - Setting -> Webhooks -> Gogs 클릭
 
 - Payload URL : `http://172.28.8.232:8080/gogs-webhook/?job=**SCM-Pipeline**/`  *# 각자 자신의 IP*
 - Content Type : `application/json`
