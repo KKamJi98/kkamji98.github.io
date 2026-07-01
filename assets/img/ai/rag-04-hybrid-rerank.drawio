@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-04-hybrid" name="Hybrid + Rerank">
+    <mxGraphModel dx="1360" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1360" pageHeight="340" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="query" value="User Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="142" width="140" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="dense" value="Dense Retrieval (vector)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="250" y="60" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="bm25" value="Sparse Retrieval (BM25)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="250" y="224" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="rrf" value="RRF Fusion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="142" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank" value="Reranking (cross-encoder)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="740" y="142" width="190" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="topn" value="Top-N" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="142" width="110" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" value="LLM Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="142" width="150" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="q1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="query" target="dense">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="query" target="bm25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="dense" target="rrf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="bm25" target="rrf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q5" value="candidates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="rrf" target="rerank">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="rerank" target="topn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="topn" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

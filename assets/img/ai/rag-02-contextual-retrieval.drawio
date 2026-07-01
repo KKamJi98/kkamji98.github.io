@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-02-ctx" name="Contextual Retrieval">
+    <mxGraphModel dx="1040" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="doc" value="Original Document" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="chunk" value="Chunk" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="170" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="llm" value="LLM&#10;(Context Generation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="300" y="105" width="180" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ctxchunk" value="Contextualized Chunk&#10;(context + chunk)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=12;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="105" width="200" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="embindex" value="Embedding Index" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="850" y="50" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="bm25index" value="BM25 Index" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="850" y="170" width="170" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1" value="full doc (cached)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="doc" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="chunk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="chunk" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="prepend context" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="llm" target="ctxchunk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="ctxchunk" target="embindex">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="ctxchunk" target="bm25index">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

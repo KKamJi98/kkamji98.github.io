@@ -1,0 +1,77 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-07-variants" name="RAG Variants">
+    <mxGraphModel dx="960" dy="520" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="h1" value="Vector RAG" style="rounded=1;fillColor=#E8F0FE;strokeColor=#4285F4;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#1A73E8;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="80" y="104" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="Retrieve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="80" y="178" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="Generate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="80" y="252" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="an1" value="single-hop, fast" style="text;html=1;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="220" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="h2" value="GraphRAG" style="rounded=1;fillColor=#E8F0FE;strokeColor=#4285F4;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#1A73E8;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="400" y="104" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Graph Traversal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="400" y="178" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="Generate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="400" y="252" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="an2" value="multi-hop / relational, high build cost" style="text;html=1;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="340" y="320" width="260" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="h3" value="Agentic RAG" style="rounded=1;fillColor=#E8F0FE;strokeColor=#4285F4;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#1A73E8;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="740" y="104" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="Agent Loop&#10;(plan -&gt; retrieve -&gt; reflect)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=11;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="720" y="172" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="Generate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="740" y="252" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="an3" value="adaptive, higher overhead" style="text;html=1;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="700" y="320" width="220" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="v1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="a1" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="a2" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="b1" target="b2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="b2" target="b3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="c1" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="c2" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

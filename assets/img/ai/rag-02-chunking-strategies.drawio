@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-02-chunking" name="Chunking Strategies">
+    <mxGraphModel dx="900" dy="520" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="h1" value="Fixed-size" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=13;fontStyle=1;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="200" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" value="Structure-aware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=13;fontStyle=1;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="200" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" value="Semantic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=13;fontStyle=1;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="620" y="40" width="200" height="44" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1" value="Chunk 1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="60" y="104" width="200" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="Chunk 2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="60" y="194" width="200" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="Chunk 3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="60" y="284" width="200" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="Chunk 4" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="60" y="374" width="200" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="fnote" value="equal size + overlap&#10;(ignores meaning)" style="text;html=1;align=center;fontSize=11;fontColor=#B06000;" vertex="1" parent="1">
+          <mxGeometry x="60" y="466" width="200" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1" value="Section 1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="340" y="104" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="Section 2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="340" y="178" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Section 3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="340" y="312" width="200" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="snote" value="split by document structure&#10;(headings / clauses)" style="text;html=1;align=center;fontSize=11;fontColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="340" y="466" width="200" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m1" value="Topic A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="620" y="104" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="Topic B" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="620" y="228" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="Topic C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="620" y="322" width="200" height="138" as="geometry" />
+        </mxCell>
+        <mxCell id="mnote" value="split where meaning shifts&#10;(embedding similarity)" style="text;html=1;align=center;fontSize=11;fontColor=#B06000;" vertex="1" parent="1">
+          <mxGeometry x="620" y="466" width="200" height="34" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

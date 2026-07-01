@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-03-hnsw-ivf" name="HNSW vs IVF">
+    <mxGraphModel dx="900" dy="500" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="460" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="hHNSW" value="HNSW (graph-based)" style="rounded=1;fillColor=#E8F0FE;strokeColor=#4285F4;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#1A73E8;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" value="Layer 2 (sparse)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="140" y="104" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" value="Layer 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="100" y="174" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" value="Layer 0 (all vectors)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="60" y="244" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hnote" value="high recall, low latency / higher memory" style="text;html=1;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="340" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="hd1" value="greedy search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="l2" target="l1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hd2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="l1" target="l0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="hIVF" value="IVF (cluster-based)" style="rounded=1;fillColor=#E6F4EA;strokeColor=#34A853;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#188038;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="40" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="q" value="Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="600" y="104" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cent" value="Centroids (coarse quantizer)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="560" y="174" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="probe" value="Probe top-nprobe lists" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="560" y="244" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="scan" value="Scan candidates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="560" y="314" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inote" value="memory efficient / tune nprobe" style="text;html=1;align=center;fontSize=11;fontColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="500" y="366" width="340" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="id1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="q" target="cent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="cent" target="probe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="probe" target="scan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

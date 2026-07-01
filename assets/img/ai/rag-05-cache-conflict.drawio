@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-05-cache" name="Cache vs Access Control">
+    <mxGraphModel dx="1040" dy="380" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="360" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="userA" value="User A (role: HR)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="66" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="userB" value="User B (role: Eng)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="228" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cache" value="Semantic Cache&#10;(key = query embedding)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="146" width="210" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="out1" value="Shared key: User B receives User A's HR docs (leak)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;shadow=0;fontSize=12;fontColor=#C5221F;" vertex="1" parent="1">
+          <mxGeometry x="650" y="60" width="340" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="out2" value="Per-role key: isolated, safe (lower hit rate)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="650" y="228" width="340" height="64" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ca" value="store (HR docs)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userA" target="cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cb" value="similar query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userB" target="cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="cache" target="out1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="cache" target="out2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

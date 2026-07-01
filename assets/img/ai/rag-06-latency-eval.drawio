@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="rag-06-latency" name="Latency and Eval">
+    <mxGraphModel dx="1280" dy="420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="query" value="User Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="130" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cache" value="Semantic Cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="230" y="150" width="160" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="retr" value="Retrieval (ANN)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="470" y="150" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank" value="Reranking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="710" y="150" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="gen" value="LLM Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="930" y="150" width="160" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="ans" value="Answer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#188038;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="150" width="100" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="eval" value="Ragas eval&#10;(faithfulness, context precision)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;shadow=0;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
+          <mxGeometry x="930" y="300" width="220" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="budget" value="latency budget = t_retrieve + t_rerank + t_generate  (manage p99)" style="text;html=1;align=center;fontSize=11;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="470" y="232" width="620" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="query" target="cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="retr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="retr" target="rerank">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="rerank" target="gen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="gen" target="ans">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" value="hit: bypass" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="ans">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="70" />
+              <mxPoint x="1200" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l7" value="measure" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ans" target="eval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
