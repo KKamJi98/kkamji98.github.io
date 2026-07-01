@@ -76,11 +76,38 @@ def clean_url(url: str) -> str:
     return url.rstrip(".,;:")
 
 
+def is_private_or_placeholder_url(url: str) -> bool:
+    if any(token in url for token in ["${", "$", "{", "}", "@"]):
+        return True
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return True
+    host = parsed.netloc.lower().split(":", 1)[0]
+    if not host or host == "localhost":
+        return True
+    if "." not in host:
+        return True
+    if re.match(r"^\d+\.\d+\.\d+\.\d+$", host):
+        parts = [int(part) for part in host.split(".")]
+        return (
+            parts[0] == 10
+            or parts[0] == 127
+            or (parts[0] == 172 and 16 <= parts[1] <= 31)
+            or (parts[0] == 192 and parts[1] == 168)
+        )
+    return False
+
+
 def should_reference(url: str) -> bool:
     cleaned = clean_url(url)
+    if is_private_or_placeholder_url(cleaned):
+        return False
     try:
         parsed = urlparse(cleaned)
     except ValueError:
+        return False
+    if parsed.scheme != "https":
         return False
     host = parsed.netloc.lower()
     if host.startswith("www."):

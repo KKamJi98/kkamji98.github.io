@@ -523,15 +523,11 @@ kubectl delete deploy echo-server-blue echo-server-green ; kubectl delete svc ec
 
 ## 8. Reference
 
-- [dl.k8s.io - $(curl](https://dl.k8s.io/release/$(curl)
 - [dl.k8s.io - stable.txt](https://dl.k8s.io/release/stable.txt)
 - [dl.k8s.io - kubectl](https://dl.k8s.io/release/v1.32.8/bin/linux/arm64/kubectl)
 - [dl.k8s.io - kubectl](https://dl.k8s.io/release/v1.32.8/bin/linux/amd64/kubectl)
 - [raw.githubusercontent.com - get helm 3](https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3)
-- [172.18.0.3:6443 - version](https://172.18.0.3:6443/version)
 - [hub.docker.com - http echo](https://hub.docker.com/r/hashicorp/http-echo)
-- [127.0.0.1:30000 - Home](http://127.0.0.1:30000)
-- [172.28.8.232:3000 - dev app.git](http://172.28.8.232:3000/devops/dev-app.git)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

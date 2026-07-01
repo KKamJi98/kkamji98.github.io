@@ -449,9 +449,6 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 
 ## 11. Reference
 
-- [localhost:8086 - write](http://localhost:8086/write?db=test_db)
-- [10.0.1.67:8086 - write](http://10.0.1.67:8086/write?db=test_db)
-- [${TARGET_HOST - Home](http://${TARGET_HOST)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
