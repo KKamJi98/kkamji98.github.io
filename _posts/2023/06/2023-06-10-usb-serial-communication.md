@@ -1,6 +1,6 @@
 ---
 title: Section 01 아두이노 시리얼 통신 기능 이해
-date: 2023-06-11 23:36:55 +0900
+date: 2023-06-10 23:36:55 +0900
 author: kkamji
 categories: [Personal, University]
 tags: [arduino, usb-serial-communication]     # TAG names should always be lowercase

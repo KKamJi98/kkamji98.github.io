@@ -1,6 +1,6 @@
 ---
 title: Spring MVC 깊이 보기 - DispatcherServlet과 thread-per-request
-date: 2026-06-23 09:00:00 +0900
+date: 2026-06-18 09:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]
 tags: [java, spring, spring-mvc, dispatcherservlet, servlet, tomcat, thread-per-request]

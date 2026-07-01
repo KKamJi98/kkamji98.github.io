@@ -1,6 +1,6 @@
 ---
 title: RAG 지연 최적화와 평가 - 캐싱, 인덱스 튜닝, Ragas [RAG 6]
-date: 2026-07-01 13:30:00 +0900
+date: 2026-06-27 13:30:00 +0900
 author: kkamji
 categories: [AI]
 tags: [rag, latency, semantic-cache, prompt-caching, ragas, evaluation, faithfulness, ai]     # TAG names should always be lowercase

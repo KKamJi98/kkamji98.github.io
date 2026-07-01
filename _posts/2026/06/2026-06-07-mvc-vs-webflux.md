@@ -1,6 +1,6 @@
 ---
 title: Spring MVC vs WebFlux - 선택 기준과 트레이드오프
-date: 2026-06-25 13:00:00 +0900
+date: 2026-06-07 13:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]
 tags: [java, spring, webflux, spring-mvc, architecture]

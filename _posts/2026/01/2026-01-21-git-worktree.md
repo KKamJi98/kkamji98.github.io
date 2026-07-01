@@ -1,6 +1,6 @@
 ---
 title: Git Worktree Multi-Agent Development Environment
-date: 2026-01-22 16:43:08 +0900
+date: 2026-01-21 16:43:08 +0900
 author: kkamji
 categories: [DevOps, Git & Github]
 tags: [git, git-worktree, bare-repository, multi-agent, ai-coding, claude-code, cursor]

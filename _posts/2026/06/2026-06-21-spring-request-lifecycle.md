@@ -1,6 +1,6 @@
 ---
 title: Spring Boot HTTP 요청 처리 흐름 개요
-date: 2026-06-22 09:00:00 +0900
+date: 2026-06-21 09:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]
 tags: [java, spring, spring-boot, spring-mvc, request-lifecycle, dispatcherservlet, tomcat]

@@ -19,6 +19,9 @@ fi
 echo "=== Markdown tools ==="
 "${SCRIPT_DIR}/run_md_tools.sh"
 
+echo "=== Post date hygiene ==="
+"${PYTHON_BIN}" "${SCRIPT_DIR}/check_post_dates.py"
+
 echo "=== Quality audit ==="
 "${PYTHON_BIN}" "${SCRIPT_DIR}/audit_blog_quality.py"
 

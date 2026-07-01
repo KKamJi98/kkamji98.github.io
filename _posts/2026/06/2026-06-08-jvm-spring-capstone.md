@@ -1,6 +1,6 @@
 ---
 title: Spring/JVM Capstone - 업그레이드 후 Old gen과 off-heap 메모리 진단
-date: 2026-06-25 17:00:00 +0900
+date: 2026-06-08 17:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]
 tags: [java, jvm, gc, g1gc, spring-boot, netty, memory]

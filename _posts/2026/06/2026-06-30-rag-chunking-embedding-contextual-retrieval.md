@@ -1,6 +1,6 @@
 ---
 title: RAG 청킹과 임베딩, Contextual Retrieval - 검색 품질을 좌우하는 인덱싱 설계 [RAG 2]
-date: 2026-07-01 11:30:00 +0900
+date: 2026-06-30 11:30:00 +0900
 author: kkamji
 categories: [AI]
 tags: [rag, chunking, embedding, contextual-retrieval, vector-search, metadata, llm, ai]     # TAG names should always be lowercase

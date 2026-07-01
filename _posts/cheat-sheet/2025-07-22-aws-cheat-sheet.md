@@ -1,6 +1,6 @@
 ---
 title: AWS CLI Command Cheat Sheet
-date: 2025-07-24 23:15:53 +0900
+date: 2025-07-22 23:15:53 +0900
 author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, cli, devops, cloud, aws-cli, cheat-sheet]     # TAG names should always be lowercase

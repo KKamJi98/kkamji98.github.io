@@ -1,6 +1,6 @@
 ---
 title: RAG 검색 정확도 - Hybrid Search와 Reranking [RAG 4]
-date: 2026-07-01 12:30:00 +0900
+date: 2026-06-28 12:30:00 +0900
 author: kkamji
 categories: [AI]
 tags: [rag, hybrid-search, bm25, reranking, cross-encoder, rrf, retrieval, ai]     # TAG names should always be lowercase

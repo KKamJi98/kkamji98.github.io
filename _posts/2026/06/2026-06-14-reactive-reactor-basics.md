@@ -1,6 +1,6 @@
 ---
 title: 리액티브 프로그래밍과 Reactor 기초 - Reactive Streams, backpressure, Mono/Flux
-date: 2026-06-24 12:00:00 +0900
+date: 2026-06-14 12:00:00 +0900
 author: kkamji
 categories: [Programming Language, Java]
 tags: [java, spring, webflux, reactor, reactive-streams, backpressure]

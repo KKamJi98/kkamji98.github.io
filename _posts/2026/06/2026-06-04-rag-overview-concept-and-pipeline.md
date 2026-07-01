@@ -1,6 +1,6 @@
 ---
 title: RAG 개념과 파이프라인 Overview - LLM의 한계와 검색 증강 파이프라인 [RAG 1]
-date: 2026-07-01 11:00:00 +0900
+date: 2026-06-04 11:00:00 +0900
 author: kkamji
 categories: [AI]
 tags: [rag, llm, retrieval-augmented-generation, embedding, vector-search, reranking, hallucination, ai]     # TAG names should always be lowercase
