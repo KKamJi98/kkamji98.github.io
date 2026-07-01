@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="bedrock-kb" name="Bedrock Knowledge Base">
+    <mxGraphModel dx="1300" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s3" value="S3 (Documents)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="20" y="70" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="kb" value="Bedrock KB (ingest)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=12;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="70" width="160" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="vstore" value="Vector Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="430" y="70" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="rag" value="RetrieveAndGenerate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="630" y="70" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="fm" value="FM (Claude)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="860" y="70" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="answer" value="Answer + Citation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=12;fontColor=#188038;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="70" width="160" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="x1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" edge="1" parent="1" source="s3" target="kb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x2" value="index" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="kb" target="vstore">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x3" value="top-k" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="vstore" target="rag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" edge="1" parent="1" source="rag" target="fm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" edge="1" parent="1" source="fm" target="answer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
