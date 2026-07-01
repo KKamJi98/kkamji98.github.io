@@ -12,6 +12,12 @@ image:
 > Kubernetes Cluster를 관리하기 위해서는 성능 metrics를 모니터링하고 지표를 저장한 뒤 지표 데이터를 분석할 수 있는 솔루션이 필요합니다. 오픈 소스 모니터링 솔루션에는 Metric Server, Prometheus, Elastic Stack, DataDog 등이 있지만 이번 시간에는 가장 기본적인 Metrics Server를 클러스터에 설치해 보겠습니다.  
 {: .prompt-info}
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Metrics Server란?

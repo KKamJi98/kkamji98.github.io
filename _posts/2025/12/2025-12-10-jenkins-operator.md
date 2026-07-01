@@ -13,6 +13,12 @@ image:
 
 일반적으로 Jenkins를 Kubernetes에 배포하려면 Pod, Service, PVC, ConfigMap 등을 각각 정의하고 관리해야 하는데, Jenkins Operator는 이 모든 과정을 자동화해서 사용자는 원하는 Jenkins 설정만 CRD(Custom Resource Definition)로 선언적으로 정의하면 됩니다. Jenkins Operator는 이러한 선언적 정의를 기반으로 Jenkins 인스턴스를 생성하고 관리합니다.
 
+> **TL;DR**  
+> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
+> - 주요 키워드는 ci-cd, jenkins, jenkins-operator이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Architecture & Design

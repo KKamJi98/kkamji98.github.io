@@ -11,6 +11,12 @@ image:
 
 Secrets Manager의 시크릿을 Amazon EKS의 Pod에 마운트된 파일로 표시하려면, **Kubernetes Secrets Store CSI Driver**와 함께 **AWS Secrets and Configuration Provider(ASCP)**를 사용해야 합니다. 해당 기능은 Parameter Store parameters도 사용할 수 있습니다. Fargate 노드 그룹에는 지원되지 않습니다.
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 eks, secrets-manager, secrets이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Helm을 사용해 ASCP 설치
@@ -77,7 +83,7 @@ spec:
           key: PASSWORD
   parameters:
     objects: |
-      - objectName: "arn:aws:secretsmanager:us-east-1:393035689023:secret:/secret/prod/weasel-I4AhIF"
+      - objectName: "arn:aws:secretsmanager:us-east-1:393035689023:secret:<BASE64_ENCRYPTION_SECRET>-I4AhIF"
         jmesPath:
           - path: HOST
             objectAlias: HOST

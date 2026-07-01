@@ -15,6 +15,12 @@ image:
 
 실습 환경은 [Jenkins + ArgoCD 실습 환경 구축]({% post_url 2025/10/2025-10-26-jenkins-ci-cd-env-3w %}) 의 실습환경을 사용합니다.
 
+> **TL;DR**  
+> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
+> - 주요 키워드는 ci-cd-study, ci-cd-study-3w, jenkins이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Jenkins 컨테이너 내부에 툴 설치 (kubectl, helm)
@@ -518,6 +524,14 @@ endpoints/echo-server-service   10.244.1.13:5678,10.244.1.14:5678   18m
 ```shell
 kubectl delete deploy echo-server-blue echo-server-green ; kubectl delete svc echo-server-service
 ```
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Jenkins CD with Kubernetes`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

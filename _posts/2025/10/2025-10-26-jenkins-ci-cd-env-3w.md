@@ -378,7 +378,7 @@ cd /data # 호스트 mount 볼륨 공유 경로
 git config --list --show-origin
 
 # TOKEN=<각자 Gogs Token>
-TOKEN=48bf0caa1c0eeaf85eea28858c3dd472c16d9103
+TOKEN=<REDACTED_TOKEN>
 
 # MyIP=<각자 자신의 IP> # mac(PC IP), windows(ubuntu eth0)
 MyIP=172.28.8.232
@@ -585,6 +585,14 @@ sudo docker ps
 # kubeconfig 파일 확인
 cat ~/.kube/config
 ```
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Jenkins + ArgoCD 실습 환경 구축`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

@@ -16,6 +16,12 @@ Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의
 > [Kube-burner Docs](https://kube-burner.github.io/kube-burner/v1.17.1/)  
 > [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)  
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-7w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Kube-burner 소개
@@ -803,6 +809,14 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 ## 6. 마무리
 
 `Kube-burner`로 단시간에 1개, 150개, 300개의 Pod를 생성해 클러스터에 부하를 가해 보았습니다. 그 과정에서 단일 노드 환경에서는 `maxPods` 상한과 PodCIDR 크기가 병목이 되어 일부 파드가 `Pending`에 머무를 수 있음을 확인했습니다.
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Kube-burner 소개 및 실습 [Cilium Study 7주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

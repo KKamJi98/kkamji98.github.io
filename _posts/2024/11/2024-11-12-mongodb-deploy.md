@@ -15,6 +15,12 @@ image:
 
 MongoDB를 사용하는 대표적인 방법에는 **MongoDB Atlas**, **MongoDB Enterprise**, **MongoDB Community Edition**이 있습니다. 이번 과정에서는 **MongoDB Community Edition**을 **Helm**으로 배포합니다.
 
+> **TL;DR**  
+> - IaC와 배포 자동화 도구를 사용할 때 필요한 구성 흐름과 주의사항을 정리합니다.  
+> - 주요 키워드는 mongodb, helm, #이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 구성 환경

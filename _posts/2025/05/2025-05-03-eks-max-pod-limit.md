@@ -42,6 +42,12 @@ ip-10-0-1-5.ap-northeast-2.compute.internal   11              11
 
 그 이유는 AWS EKS에서 **한 노드에 생성할 수 있는 최대 Pod의 개수(max-pods)**는 인스턴스의 타입에 따라 보유할 수 있는 IP 주소 수가 달라지고 그와 비례하게 결정되기 때문입니다. 이번 포스트에서는 이 제한이 생기는 이유와 배경을 알아보고, `VPC CNI` 플러그인의 역할과 `Prefix Mode`(Prefix Delegation) 기능을 통해 어떻게 이 Limit을 조절할 수 있는지 알아보도록 하겠습니다.
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 eks, vpc-cni, prefix-delegation이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. EKS Max-Pods Limit이란?

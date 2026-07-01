@@ -14,6 +14,12 @@ image:
 ![Hubble Web UI](/assets/img/kubernetes/cilium/hubble-web-ui.webp)
 > Hubble UI - <https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/>  
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 hubble, hubble-relay, cilium이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Hubble이란?
@@ -89,9 +95,9 @@ Containers:            cilium                   Running: 3
                        hubble-relay
 Cluster Pods:          46/46 managed by Cilium
 Helm chart version:    1.17.6
-Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 3
-                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 3
-                       cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
+Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
 
 ## Hubble 활성화 여부 확인
 ❯ cilium config view | grep -i hubble
@@ -235,12 +241,12 @@ Containers:            cilium                   Running: 3
                        hubble-ui                Running: 1
 Cluster Pods:          48/48 managed by Cilium
 Helm chart version:    1.17.6
-Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 3
-                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 3
-                       cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
-                       hubble-relay       quay.io/cilium/hubble-relay:v1.17.6@sha256:7d17ec10b3d37341c18ca56165b2f29a715cb8ee81311fd07088d8bf68c01e60: 1
-                       hubble-ui          quay.io/cilium/hubble-ui-backend:v0.13.2@sha256:a034b7e98e6ea796ed26df8f4e71f83fc16465a19d166eff67a03b822c0bfa15: 1
-                       hubble-ui          quay.io/cilium/hubble-ui:v0.13.2@sha256:9e37c1296b802830834cc87342a9182ccbb71ffebb711971e849221bd9d59392: 1
+Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
+                       hubble-relay       quay.io/cilium/hubble-relay:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
+                       hubble-ui          quay.io/cilium/hubble-ui-backend:v0.13.2@sha256:<DISCOVERY_CA_CERT_HASH>: 1
+                       hubble-ui          quay.io/cilium/hubble-ui:v0.13.2@sha256:<DISCOVERY_CA_CERT_HASH>: 1
 
 ## Cilium 설정 확인 (두 명령어 동일)
 ❯ kubectl get cm -n kube-system cilium-config -o json | grep -i hubble
@@ -457,6 +463,14 @@ Jul 24 13:42:21.163: 127.0.0.1:54966 (world) <> kube-system/hubble-relay-5dcd46f
 ❯ hubble observe -f --pod {POD_NAME}         # 특정 Ppd에 대한 네트워크 흐름 이벤트 확인
 ❯ hubble observe -f --namespace my-namespace # 특정 Namespace에 대한 네트워크 흐름 이벤트 확인
 ```
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Cilium Hubble 알아보기 [Cilium Study 2주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

@@ -13,6 +13,12 @@ image:
 
 이번 포스팅에서는 로컬 환경에서 `kind`를 사용하여 관리용(Management), 운영용(Production), 개발용(Development) 클러스터를 구축하고, `Argo CD`를 이용해 중앙에서 멀티 클러스터에 애플리케이션을 배포하는 과정을 정리해보겠습니다.
 
+> **TL;DR**  
+> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
+> - 주요 키워드는 ci-cd-study, ci-cd-study-6w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Overview
@@ -403,7 +409,7 @@ Type:  Opaque
 Data
 ====
 config: {
-  "bearerToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ild3Y05sWkVLeEl4czN0djFsUHFzOEd2ZUhQb0ZMeTJJLWpGVkpOZExuYW8ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhcmdvY2QtbWFuYWdlci10b2tlbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhcmdvY2QtbWFuYWdlciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImJkM2VhYWJkLTc3MzItNDEyMi1iZmZiLTZjNjNkMjkwMjJjNCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphcmdvY2QtbWFuYWdlciJ9.UQvopJ2aoc-g9hdcN9HYLQOm3iUb-lufnS68Vn-pNIBxq0gztp3qhIM7A61-bN7VNcb22aiuKw6LnaWGkwyj8Qrngc8K3NUoU6XGi7VWHG1ORsTiPsucOqxjfbpIC30Dvmz2L8XDSEg44EC3_puBBTt_EvyT5ZMUn525GrfvicLQgRyzbZNsRfB41WpwThLzp4_3mfF5kEGz-Z8uiMt43g3u5q0xFUwryhUG0s9MtB2N9-5YuFpoyboSVCjYR376Ga1awAh7JexyajWbLOfS992E8viRC9NjveDIwlQyA3Nlf4IW2YR-k7i-XKvYE9gBRn5gySgiDcWUR76fiEiXoQ",
+  "bearerToken": "<REDACTED_JWT>",
   "tlsClientConfig": {
     "insecure": false,
     "caData": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJS245SWNCV2cwZHN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRFeE1qSXdNakkxTWpGYUZ3MHpOVEV4TWpBd01qTXdNakZhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM5R1gxVERiOVZIRCtsSmR4d0hsOVpkTGYrRURza0NDMWdGMmdPbkxKQ3NyQlhLR0Y1ZjhXZDZxejUKYTg3N1J2US9iazBUZ1pyOFZBdWUzOFM1WEtwVU4wOEFTU0ExRTgvcEtleS9pMHRjYStZY29YWFJSN1pVM0l1ago2SGhxdy9RdU93eDVLMGNDRmd4TVZpSE1kcjNmYzNqVTRpb0ZOUURwN24rbXpyZDBVTTVRR09WVUU3Q0JGeFg1CkpOTWZvQlRxYldLdjlhQVVrZW0vS0dKMisxR2JrU01wUXpnQVREaVJ0ekhxQitQMEV1UEdiSGhyWCs5WkNEMGgKQmpkcmVDSHY1eWQzVWhWbkx4eHhXbFMwNHFTT0hGZTBWdGh4dk9rOFRXeE9zS3c0Q0xqY2ovYjN3SmYwKzNGcApVdXF4ZmkvTEhhcTFsQWNveFV2U0U1T0lUWjNMQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUYkdUMnNvenBWOTdrNS96clpBaXFXdUw2ZWpUQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWxwbHF3WWQwRwpncTd1ZFMvZmFpWmh0YmprV0gyaDZRWWpqOXg3cXByelp3UmRHMDdvMGVzV0F0ZkF4YmhuaEtZaXVrdDBLN2hQCmtFQVIwcjhGS0d2aStEdmliTzVLSjkrOTB2bkRMQ1haV0FLc2NleG11N0VwNENwWVZ4eFNDZmhYQUZSdUdlanMKVXBTeXp5RnZ4a3VGMEhuSk1heHJmMmJPNERnV21PVlRvSHdwa3ZYQngvUXdSeERlblRHUkZiN0lrTWJhaFJZRgo5aFI4cXExNkJZbTJ0TVhpTzI1NDV3QjQrOEtYNFEzSjQwMkxoZjhTVEM5Y3R6bEw5OHpiL3h1TTV4bndzZDF2CjF2MDlIU1R5eWt6dlhPQXgxYlMxaHFzKzdEaHIrNW9WbTY1dGNpbXhNc24wMHZnSURaQzY3VmZqNTFQYURsNWIKY0JNdk5lS0FSRndMCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
@@ -820,6 +826,14 @@ kind delete cluster --name prd
 ## 6. 마무리
 
 이번 포스팅에서는 **Argo CD**를 사용하여 멀티 클러스터 환경을 구축하고 관리하는 방법을 실습해 보았습니다. `kind`를 이용해 로컬에서 관리용(Mgmt), 운영용(Prod), 개발용(Dev) 클러스터를 구성하고, **Argo CD**에 외부 클러스터를 등록하여 중앙에서 애플리케이션을 배포하고 관리하는 과정을 경험했습니다. 이를 통해 **Argo CD**가 단일 클러스터뿐만 아니라 멀티 클러스터 환경에서도 강력한 GitOps 도구로 활용될 수 있음을 확인했습니다.
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Argo CD Multi Cluster Management`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

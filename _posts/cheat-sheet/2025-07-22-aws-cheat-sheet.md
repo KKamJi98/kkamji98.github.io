@@ -11,6 +11,12 @@ image:
 
 AWS CLI를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
+> **TL;DR**  
+> - 자주 사용하는 명령과 옵션을 빠르게 찾아볼 수 있도록 정리합니다.  
+> - 주요 키워드는 cli, cloud, aws-cli이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 기본 설정
@@ -130,7 +136,7 @@ aws iam detach-user-policy --user-name MyUser --policy-arn arn:aws:iam::12345678
 # 액세스 키 관리
 aws iam list-access-keys --user-name MyUser          # 액세스 키 목록
 aws iam create-access-key --user-name MyUser         # 액세스 키 생성
-aws iam delete-access-key --user-name MyUser --access-key-id AKIAIOSFODNN7EXAMPLE
+aws iam delete-access-key --user-name MyUser --access-key-id <AWS_ACCESS_KEY_ID_EXAMPLE>
 ```
 
 ---

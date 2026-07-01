@@ -276,10 +276,10 @@ docker pull registry.access.redhat.com/ubi8/python-39
 docker images ls
 docker inspect registry.access.redhat.com/ubi8/python-39 | jq '.[].RootFS.Layers'
 # [
-#   "sha256:efbb01c414da9dbe80503875585172034d618260b0179622a67440af141ada49",
-#   "sha256:0e770dacd8dd8e0f783addb2f8e2889360ecc1443acc1ca32f03158f8b459b14",
-#   "sha256:03b1af2d2f1752f587c99bf9afca0a564054b79f46cf22cef211f86f1d4a4497",
-#   "sha256:ae81327beceb885cbdb2663e2f89e6e55aaa614f5ce2d502f772420d6fe37f2f"
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>"
 # ]
 
 ##############################################################
@@ -302,8 +302,8 @@ docker build -f Dockerfile -t $MYREGISTRY/$MYUSER/pythonapp:latest .
 #  => [internal] load metadata for registry.access.redhat.com/ubi8/python-39:latest                                                                                                                                                  0.1s
 #  => [internal] load .dockerignore                                                                                                                                                                                                  0.0s
 #  => => transferring context: 2B                                                                                                                                                                                                    0.0s
-#  => [1/5] FROM registry.access.redhat.com/ubi8/python-39:latest@sha256:1f8117d04c016fc6c161d4809e0b89f33c31a545a3217573bf1edbca30d105da                                                                                            0.1s
-#  => => resolve registry.access.redhat.com/ubi8/python-39:latest@sha256:1f8117d04c016fc6c161d4809e0b89f33c31a545a3217573bf1edbca30d105da                                                                                            0.0s
+#  => [1/5] FROM registry.access.redhat.com/ubi8/python-39:latest@sha256:<DISCOVERY_CA_CERT_HASH>                                                                                            0.1s
+#  => => resolve registry.access.redhat.com/ubi8/python-39:latest@sha256:<DISCOVERY_CA_CERT_HASH>                                                                                            0.0s
 #  => [internal] load build context                                                                                                                                                                                                  0.0s
 #  => => transferring context: 525B                                                                                                                                                                                                  0.0s
 #  => [2/5] WORKDIR /usr/src/app                                                                                                                                                                                                     0.0s
@@ -324,23 +324,23 @@ docker image ls
 
 # 기존 Layer 
 # [
-#   "sha256:efbb01c414da9dbe80503875585172034d618260b0179622a67440af141ada49",
-#   "sha256:0e770dacd8dd8e0f783addb2f8e2889360ecc1443acc1ca32f03158f8b459b14",
-#   "sha256:03b1af2d2f1752f587c99bf9afca0a564054b79f46cf22cef211f86f1d4a4497",
-#   "sha256:ae81327beceb885cbdb2663e2f89e6e55aaa614f5ce2d502f772420d6fe37f2f"
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>",
+#   "sha256:<DISCOVERY_CA_CERT_HASH>"
 # ]
 
 # 위의 Dockerfile을 사용해 Build 한 이미지의 Layer
 docker inspect $MYUSER/pythonapp:latest | jq '.[].RootFS.Layers'   
 # [
-#   "sha256:efbb01c414da9dbe80503875585172034d618260b0179622a67440af141ada49", # Base Layer
-#   "sha256:0e770dacd8dd8e0f783addb2f8e2889360ecc1443acc1ca32f03158f8b459b14", # Base Layer
-#   "sha256:03b1af2d2f1752f587c99bf9afca0a564054b79f46cf22cef211f86f1d4a4497", # Base Layer
-#   "sha256:ae81327beceb885cbdb2663e2f89e6e55aaa614f5ce2d502f772420d6fe37f2f", # Base Layer
-#   "sha256:dfc422e9754c1b15c721ee82bd1f11f3be96d3855ccda6a152a9f0b4f072cd8f", # Added Layer
-#   "sha256:1672e8fee0e5c361034b2cd4fb6426f555dae546f9d82c16c354e279f7c70281", # Added Layer
-#   "sha256:a3db286d0d13afc65be0047868891b9e794ba2804a2909e9127865a6695aa0a8", # Added Layer
-#   "sha256:385b56145ab52a9e13062ebce5c206e0a1c89858c4cde4d5dabb3b02f1c70695"  # Added Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Base Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Base Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Base Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Base Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Added Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Added Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>", # Added Layer
+#   "sha256:<DISCOVERY_CA_CERT_HASH>"  # Added Layer
 # ]
 ```
 
@@ -480,7 +480,7 @@ mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.6:build \
 # [WARNING] Base image 'eclipse-temurin:11-jre' does not use a specific image digest - build may not be reproducible
 # [INFO] Using credentials from <to><auth> for kkankkandev/jib-example
 # [INFO] The base image requires auth. Trying again for eclipse-temurin:11-jre...
-# [INFO] Using base image with digest: sha256:12e6611e8bdd47af0a12574f69c178745b09998459ccbac2ec2b08e837bce1a7
+# [INFO] Using base image with digest: sha256:<DISCOVERY_CA_CERT_HASH>
 # [INFO] 
 # [INFO] Container entrypoint set to [java, -cp, @/app/jib-classpath-file, com.redhat.hello.HelloApplication]
 # [INFO] 
@@ -1235,7 +1235,7 @@ step-build-and-push INFO[0050] EXPOSE 8080
 step-build-and-push INFO[0050] Cmd: EXPOSE
 step-build-and-push INFO[0050] Adding exposed port: 8080/tcp
 step-build-and-push INFO[0050] Pushing image to docker.io/gasida/sample-golang:latest
-step-build-and-push INFO[0058] Pushed index.docker.io/gasida/sample-golang@sha256:7c81dca3f9b56047c21db204fcea3f6233c7cc782ebdcf679e3d140b9f2daacd
+step-build-and-push INFO[0058] Pushed index.docker.io/gasida/sample-golang@sha256:<DISCOVERY_CA_CERT_HASH>
 ```
 
 #### 7.6.1. 상세 정보 확인

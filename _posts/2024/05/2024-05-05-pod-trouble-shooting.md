@@ -12,6 +12,12 @@ image:
 > `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안 돼서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다뤄보겠습니다.  
 {: .prompt-info}
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Pod 확인

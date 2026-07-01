@@ -18,6 +18,12 @@ image:
 > [ISOVALENT Blog - Migrating from metallb to Cilium](https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/#l3-announcement-over-bgp)  
 > [Cilium Docs - LoadBalancer IP Address Management (LB IPAM)](https://docs.cilium.io/en/stable/network/lb-ipam/)  
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-5w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 실습 환경
@@ -496,6 +502,14 @@ sysctl net.ipv4.fib_multipath_hash_policy
   - **Cluster**: **모든 노드 수신 + SNAT(소스IP 미보존)** / nexthop ↑ / 분산 폭 넓음
   - **Local**: **로컬 파드 보유 노드만 수신 + 소스IP 보존** / nexthop ↓ / 안정성↑
 - **ECMP Hash를 L4로** 바꾸면 흐름 고정성이 높아져 **RST/ENOTCONN**이 크게 줄어듭니다.
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

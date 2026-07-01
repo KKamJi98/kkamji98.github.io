@@ -13,6 +13,12 @@ image:
 
 Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유로 pod가 언제든 종료될 수 있습니다. 따라서 앞선 문제를 피하기 위해 **Graceful Shutdown**을 통해 pod가 안전하게 종료되도록 처리하는 것이 중요합니다.
 
+> **TL;DR**  
+> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
+> - 주요 키워드는 pod, shutdown, graceful이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Kubernetes에서 Graceful Shutdown

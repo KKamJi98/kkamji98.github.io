@@ -26,6 +26,12 @@ image:
 > 4GB의 메모리가 필요하긴 하지만 일단 해 보자  
 {: .prompt-tip}
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. snap 패키지 매니저 설치
@@ -138,7 +144,7 @@ Trying to get token from microk8s-dashboard-token
 Waiting for secret token (attempt 0)
 Dashboard will be available at https://127.0.0.1:10443
 Use the following token to login:
-eyJhbGciOiJSUzI1NiIsImtpZCI6ImVHaExXbGJtQUpjMHc0SFl5SHMtWGxKODQ3LUdOcEZFRnNTSVRaNWYtdVkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJtaWNyb2s4cy1kYXNoYm9hcmQtdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjI1NmM3YTJhLWI3YzUtNGZkMi04MjViLTQ3ZmQyN2YxMGZlOCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTpkZWZhdWx0In0.zGwpupWmIilRG19ns6rMJar1ygiSbmgVwd9ejX5iSmZgM5u90zfazuSrKnONXWe05YFiiiOk7DVwj7M8l_6howEkj6VLfTimwrBTbKOCUaL-RQIVaTNlyVH_rubxFfUAPZKZD3uwIMiuqUdcYD4UmOQX3j2y6Gh6JDGbmudm227O_hkodLTWFOSzz9HmPaCiGIc0m8p5km6FhvKMIhjMkxrJGZKQBvVfO_5_cvWe6lh5QuifARwilkOH4iFCTPF7rvc6J1dkpo1outDkigk21vpx6YDjvkn08lAIVO7F_V7WiFCe_JqzNqAeceXRLSwupDV-kRQEtX1iucVxbPjbaQ
+<REDACTED_JWT>
 ```
 
 EC2가 아닌 로컬 컴퓨터에서 확인하기 위해 Security Group에서 10443 포트를 열고 해당 EC2의 10443포트에 브라우저로 접속을 시도했습니다. (맨 아랫줄의 token 입력 필수)

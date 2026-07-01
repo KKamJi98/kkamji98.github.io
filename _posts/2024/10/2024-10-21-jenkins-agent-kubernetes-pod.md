@@ -15,6 +15,12 @@ WhaTap과 [Kubernetes Pod로 Jenkins Agent 동적 생성하기](https://www.what
 
 특히 고가용성(HA)을 요구하는 환경에서 **Master-Agent** 구성은 필수적이라고 생각합니다. 최근 기술 면접에서 Jenkins Agent 구성에 대한 질문을 받게 되었습니다. 이 경험을 통해 Jenkins Master-Agent 구성의 중요성을 다시 한번 깨닫게 되었습니다. 이에 따라 Jenkins **Master-Agent** 환경을 직접 구축하고 정리하는 과정을 통해 여러분께 효율적이고 확장 가능한 Jenkins 환경을 구축하는 방법에 대한 제 경험과 배움을 공유하고자 합니다.
 
+> **TL;DR**  
+> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
+> - 주요 키워드는 jenkins, pod, agent이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 사전 준비 사항

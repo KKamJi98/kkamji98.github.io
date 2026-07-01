@@ -18,6 +18,12 @@ image:
 1. Kubernetes가 어떻게 GitOps 개념을 도입할 수 있었는지
 2. 선언적 API와 파일, 폴더, Git Repository에서 리소스를 어떻게 적용할 수 있는지
 
+> **TL;DR**  
+> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
+> - 주요 키워드는 ci-cd-study, ci-cd-study-4w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. GitOps란 무엇인가?

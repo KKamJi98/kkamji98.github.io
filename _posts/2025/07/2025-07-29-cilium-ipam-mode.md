@@ -11,6 +11,12 @@ image:
 
 저번 시간까지 Cilium의 Hubble을 비롯한 운영/모니터링 기능을 살펴보았습니다. 이번 시간에는 Cilium의 IP Address Management(IPAM) 개념을 알아보고, Kubernetes Host Scope와 Cluster Scope 두 가지 IPAM 모드의 동작 차이를 실습을 통해 확인해보겠습니다.
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-3w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. IPAM이란?
@@ -563,6 +569,14 @@ Hostname: webpod-5d558dbbb-fv5cp
 ## 7. 마무리
 
 실습 결과와 같이 이미 Pod들이 동작 중인 클러스터에서 IPAM 모드를 변경하는 것은 안전하지 않으므로 피해야 합니다. Cilium 공식 문서에서도 "IPAM 모드를 바꾸고 싶다면 새로운 IPAM 설정으로 클러스터를 새로 구성하는 것이 가장 안전한 경로"라고 명시하고 있습니다. 실제로 Cluster Scope 모드를 쓰려면 초기 Cilium 설치 시부터 clusterpool로 설정하여 Pod들이 처음부터 그 대역으로 IP를 받도록 해야 합니다.
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [Cilium Study 3주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

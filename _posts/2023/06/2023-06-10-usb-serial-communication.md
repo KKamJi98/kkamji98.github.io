@@ -21,7 +21,7 @@ comments: true
 ## 1. Serial Port
 
 <!-- ![Untitled 1](/assets/img/Untitled.png) -->
-<!-- ![사진1](https://private-user-images.githubusercontent.com/72260110/244950819-ff29f2ef-5e57-4237-90fc-03829bc13a87.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjg2NTA3ODMzLCJuYmYiOjE2ODY1MDc1MzMsInBhdGgiOiIvNzIyNjAxMTAvMjQ0OTUwODE5LWZmMjlmMmVmLTVlNTctNDIzNy05MGZjLTAzODI5YmMxM2E4Ny5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNjExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDYxMVQxODE4NTNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xYzVkZDNhYzRhYjk1NmMyZTQ4NmMxZGE1MWRkMTZjMzcwY2I0Yzg2OTNmM2I5ZmNjZTcxMmZhYzM0OThiODcyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.hPDO5u1ZdA43cOs0uGEJZRh4PfsrwoCRYxIj_NW71jk) -->
+<!-- ![사진1](https://private-user-images.githubusercontent.com/72260110/244950819-ff29f2ef-5e57-4237-90fc-03829bc13a87.png?jwt=<REDACTED_JWT>) -->
 ![사진1](https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53)
 <!-- ![사진2](_site/assets/img/favicons/android-chrome-512x512.png) -->
 

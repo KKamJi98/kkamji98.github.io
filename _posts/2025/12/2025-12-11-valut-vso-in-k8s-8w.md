@@ -13,6 +13,12 @@ image:
 
 이번 포스팅에서는 HashiCorp Vault/VSO에 대해 알아보겠습니다.
 
+> **TL;DR**  
+> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
+> - 주요 키워드는 ci-cd-study, ci-cd-study-8w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Vault Install on Kubernetes - [Vault Docs - Vault on Kubernetes deployment guide](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-raft-deployment-guide)
@@ -431,8 +437,8 @@ curl -s --header "X-Vault-Token: $VAULT_ROOT_TOKEN" --request GET \
 #   "lease_duration": 0,
 #   "data": {
 #     "data": {
-#       "password": "static-password",
-#       "username": "static-user"
+#       "password": "<REDACTED_PASSWORD>",
+#       "username": "<REDACTED_USERNAME>"
 #     },
 #     "metadata": {
 #       "created_time": "2025-12-13T14:53:52.896906979Z",
@@ -758,8 +764,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     },
     "request": {
         "data": {
-            "jwt": "hmac-sha256:ef7ef69ada78306a869b639647c1a4e647ab7cd448ed42137ef528a1c9244575",
-            "role": "hmac-sha256:00d7e66d7673210eeb1434c40d7a56b53d583857c1d1dd5fcb32a4abfb3ffa12"
+            "jwt": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+            "role": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>"
         },
         "headers": {
             "user-agent": [
@@ -790,8 +796,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
 ```json
 {
     "auth": {
-        "accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
-        "client_token": "hmac-sha256:041a17e266dc6d22b5119df83745c22e91e38d14f36b0942ffbe9abe2298ebf3",
+        "accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+        "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
         "display_name": "kubernetes-default-vault",
         "entity_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
         "metadata": {
@@ -814,8 +820,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     },
     "request": {
         "data": {
-            "jwt": "hmac-sha256:ef7ef69ada78306a869b639647c1a4e647ab7cd448ed42137ef528a1c9244575",
-            "role": "hmac-sha256:00d7e66d7673210eeb1434c40d7a56b53d583857c1d1dd5fcb32a4abfb3ffa12"
+            "jwt": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+            "role": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>"
         },
         "headers": {
             "user-agent": [
@@ -838,8 +844,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     },
     "response": {
         "auth": {
-            "accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
-            "client_token": "hmac-sha256:041a17e266dc6d22b5119df83745c22e91e38d14f36b0942ffbe9abe2298ebf3",
+            "accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+            "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
             "display_name": "kubernetes-default-vault",
             "entity_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
             "metadata": {
@@ -876,8 +882,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
 ```json
 {
     "auth": {
-        "accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
-        "client_token": "hmac-sha256:041a17e266dc6d22b5119df83745c22e91e38d14f36b0942ffbe9abe2298ebf3",
+        "accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+        "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
         "display_name": "kubernetes-default-vault",
         "entity_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
         "metadata": {
@@ -914,8 +920,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     },
     "request": {
         "client_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
-        "client_token": "hmac-sha256:81e4d35d947f4dc6786cd349da166303875cdbd64b13318e71fe94071b454d32",
-        "client_token_accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
+        "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+        "client_token_accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
         "headers": {
             "user-agent": [
                 "Go-http-client/1.1"
@@ -944,8 +950,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
 ```json
 {
     "auth": {
-        "accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
-        "client_token": "hmac-sha256:041a17e266dc6d22b5119df83745c22e91e38d14f36b0942ffbe9abe2298ebf3",
+        "accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+        "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
         "display_name": "kubernetes-default-vault",
         "entity_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
         "metadata": {
@@ -982,8 +988,8 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     },
     "request": {
         "client_id": "481c4eec-74be-2fd5-2c78-ce8108a69fef",
-        "client_token": "hmac-sha256:81e4d35d947f4dc6786cd349da166303875cdbd64b13318e71fe94071b454d32",
-        "client_token_accessor": "hmac-sha256:d4f4e30a932a0580a83e4486a38f7682364c59af0103c8775f78de603ef175c5",
+        "client_token": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
+        "client_token_accessor": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
         "headers": {
             "user-agent": [
                 "Go-http-client/1.1"
@@ -1006,13 +1012,13 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
     "response": {
         "data": {
             "data": {
-                "password": "hmac-sha256:fdd33a2c65e563d1d0c2e026f3e71d7f457b66ed50c2efdb67d9d761a63a6a05",
-                "username": "hmac-sha256:b74d0b553a23887a509ac85f5b71e91b184badcd1b76072d85d6cd7ce549b5db"
+                "password": "<REDACTED_PASSWORD>",
+                "username": "<REDACTED_USERNAME>"
             },
             "metadata": {
-                "created_time": "hmac-sha256:b17c0c831c5ce2d76ce9c177f0f95670aed260d8f21e4ee58715dd5acbb7df4a",
+                "created_time": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
                 "custom_metadata": null,
-                "deletion_time": "hmac-sha256:a528e8995baee2920f8276eecbdfdb7f0dfa689c0ac51c604ff4715de5c60219",
+                "deletion_time": "hmac-sha256:<DISCOVERY_CA_CERT_HASH>",
                 "destroyed": false,
                 "version": 1
             }
@@ -1404,6 +1410,14 @@ kubectl rolesum -n vault-secrets-operator-system vault-secrets-operator-controll
 
 ---
 
+> **핵심 정리**  
+> - 이 글은 `HashiCorp Vault/VSO in Kubernetes`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
+
+---
+
 ## 6. References
 
 - [docmoa - Vault Secrets Operator 개요](https://docmoa.github.io/04-HashiCorp/06-Vault/01-Information/vault-secret-operator/1-vso-overview.html)
@@ -1558,8 +1572,8 @@ kubectl get secret -n app
 ##############################################################
 kubectl krew install view-secret
 kubectl view-secret -n app secretkv --all
-# _raw='{"data":{"password":"static-password","username":"static-user"},"metadata":{"created_time":"2025-12-13T18:07:01.593020255Z","custom_metadata":null,"deletion_time":"","destroyed":false,"version":1}}'
-# password='static-password'
+# _raw='{"data":{"password":"<REDACTED_PASSWORD>","username":"<REDACTED_USERNAME>"},"metadata":{"created_time":"2025-12-13T18:07:01.593020255Z","custom_metadata":null,"deletion_time":"","destroyed":false,"version":1}}'
+# password='<REDACTED_PASSWORD>'
 # username='static-user'
 
 ##############################################################
@@ -1583,8 +1597,8 @@ vault kv put kvv2/webapp/config username="static-user2" password="static-passwor
 # Kubernetes Secret 값 확인 >> 이후 VSO 는 설정된 주기(현재 30초) 마다 Vault 서버에 GET 요청으로 시크릿 값을 받음
 ##############################################################
 kubectl view-secret -n app secretkv --all
-# _raw='{"data":{"password":"static-password2","username":"static-user2"},"metadata":{"created_time":"2025-12-13T18:56:42.285009468Z","custom_metadata":null,"deletion_time":"","destroyed":false,"version":2}}'
-# password='static-password2'
+# _raw='{"data":{"password":"<REDACTED_PASSWORD>","username":"<REDACTED_USERNAME>"},"metadata":{"created_time":"2025-12-13T18:56:42.285009468Z","custom_metadata":null,"deletion_time":"","destroyed":false,"version":2}}'
+# password='<REDACTED_PASSWORD>'
 # username='static-user2'
 
 ##############################################################
@@ -1632,7 +1646,7 @@ helm upgrade --install postgres bitnami/postgresql --namespace postgres --set au
 ##############################################################
 kubectl get sts,pod,svc,ep,pvc,secret -n postgres
 kubectl view-secret -n postgres postgres-postgresql --all
-# postgres-password='secret-pass'
+# postgres-password='<REDACTED_PASSWORD>'
 
 ##############################################################
 # psql 로그인 확인
@@ -1845,8 +1859,8 @@ kubectl get secret -n demo-ns
 # vso-db-demo-created   Opaque   3      4m44s
 
 kubectl view-secret -n demo-ns vso-db-demo --all
-# _raw='{"password":"IozcZE6XtLp-UmfC0xCw","username":"v-demo-aut-dev-post-D8Nzb3VluenoFtl2rrSv-1744857520"}'
-# password='IozcZE6XtLp-UmfC0xCw'
+# _raw='{"password":"<REDACTED_PASSWORD>","username":"<REDACTED_USERNAME>"}'
+# password='<REDACTED_PASSWORD>'
 # username='v-demo-aut-dev-post-D8Nzb3VluenoFtl2rrSv-1744857520'
 
 
@@ -1896,7 +1910,7 @@ kubectl get vaultdynamicsecret -n demo-ns vso-db-demo -o yaml
 #     rotationPeriod: 0
 #     ttl: 0
 #   vaultClientMeta:
-#     cacheKey: kubernetes-f12ec83aa75d21ece5a0e9
+#     cacheKey: example-cache-key
 #     id: 618c2ba8875fef7f43289dad00c4a742ddd273ee812539bc51376961b9a08a3e
 ```
 
@@ -1917,8 +1931,8 @@ kubectl get secret -n demo-ns
 # vso-db-demo-created   Opaque   3      4m44s
 
 kubectl view-secret -n demo-ns vso-db-demo --all
-# _raw='{"password":"IozcZE6XtLp-UmfC0xCw","username":"v-demo-aut-dev-post-D8Nzb3VluenoFtl2rrSv-1744857520"}'
-# password='IozcZE6XtLp-UmfC0xCw'
+# _raw='{"password":"<REDACTED_PASSWORD>","username":"<REDACTED_USERNAME>"}'
+# password='<REDACTED_PASSWORD>'
 # username='v-demo-aut-dev-post-D8Nzb3VluenoFtl2rrSv-1744857520'
 
 
@@ -1932,8 +1946,8 @@ kubectl get secret -n demo-ns
 # vso-db-demo-created   Opaque   3      18m
 
 kubectl view-secret -n demo-ns vso-db-demo --all
-# _raw='{"password":"1TBYsIThp71-c8zHc3ka","username":"v-demo-aut-dev-post-E36N51q8c12D8mQvb34I-1744858374"}'
-# password='1TBYsIThp71-c8zHc3ka'
+# _raw='{"password":"<REDACTED_PASSWORD>","username":"<REDACTED_USERNAME>"}'
+# password='<REDACTED_PASSWORD>'
 # username='v-demo-aut-dev-post-E36N51q8c12D8mQvb34I-1744858374'
 
 ##############################################################
@@ -2027,7 +2041,7 @@ kubectl stern -n vault-secrets-operator-system -l app.kubernetes.io/name=vault-s
 vault-secrets-operator-controller-manager-7f67cd89fd-d2t2k manager {"level":"info","ts":"2025-04-10T06:50:14Z","logger":"initCachingClientFactory","msg":"Initializing the CachingClientFactory"}
 vault-secrets-operator-controller-manager-7f67cd89fd-d2t2k manager {"level":"info","ts":"2025-04-10T06:50:14Z","logger":"setup","msg":"Starting manager","gitVersion":"0.10.0","gitCommit":"aebf0c1c59485059a9ea6c58340fd406afe4cbef","gitTreeState":"clean","buildDate":"2025-03-04T22:22:24+0000","goVersion":"go1.23.6","platform":"linux/arm64","clientCachePersistenceModel":"direct-encrypted","clientCacheSize":10000,"backoffMultiplier":1.5,"backoffMaxInterval":60,"backoffMaxElapsedTime":0,"backoffInitialInterval":5,"backoffRandomizationFactor":0.5,"globalTransformationOptions":"","globalVaultAuthOptions":"allow-default-globals"}
 ...
-vault-secrets-operator-controller-manager-7f67cd89fd-d2t2k manager {"level":"info","ts":"2025-04-10T08:11:00Z","logger":"lifetimeWatcher","msg":"Starting","id":"aee67272-40e9-41ba-a380-b9f948acea7e","entityID":"77fb779f-c79e-567e-1c72-e83c0a0552a7","clientID":"024b5ed8d389816c9a4a99f2968ffc4ba66282d7f39d34b465aba1ebe3a8bb67","cacheKey":"kubernetes-5530fb1481fb1695773196"}
+vault-secrets-operator-controller-manager-7f67cd89fd-d2t2k manager {"level":"info","ts":"2025-04-10T08:11:00Z","logger":"lifetimeWatcher","msg":"Starting","id":"aee67272-40e9-41ba-a380-b9f948acea7e","entityID":"77fb779f-c79e-567e-1c72-e83c0a0552a7","clientID":"024b5ed8d389816c9a4a99f2968ffc4ba66282d7f39d34b465aba1ebe3a8bb67","cacheKey":"example-cache-key"}
 ...
 
 # (Skip) 암호화된 캐시 저장소 확인 : vso-cc-<auth method>

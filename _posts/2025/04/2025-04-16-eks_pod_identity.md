@@ -21,6 +21,12 @@ image:
 | 장점      | 클라우드 네이티브, Fargate 지원                    | 구성 간소화, 대규모 성능, Role Session Tag 지원 |
 | 제약      | OIDC Provider 관리 필요                            | Linux EC2 노드만 지원, SA당 Role 1개            |
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 eks, irsa, pod-identity이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Pod Identity 장점, 단점

@@ -13,6 +13,12 @@ image:
 
 이전에 진행했던 **Weasel** 프로젝트를 클라우드에서 로컬 Kubernetes로 마이그레이션하는 작업을 시작하며 컨테이너 이미지를 ECR이 아닌 온프레미스에서 관리해볼까? 라는 생각에 여러가지 솔루션을 고민하였습니다. [Line Engineering](https://engineering.linecorp.com/ko/blog/harbor-for-private-docker-registry)과 [SKT Enterprise](https://www.sktenterprise.com/bizInsight/blogDetail/dev/6171) 기술 블로그를 보고 오픈소스 기반, 강력한 보안 기능을 갖춘 **Harbor**에 매력을 느끼게 되었고, 도입을 확정하게 되었습니다. 해당 포스트에서는 Kubernetes에서 **Harbor**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
 
+> **TL;DR**  
+> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
+> - 주요 키워드는 harbor, #, TAG이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 사전 조건

@@ -11,6 +11,12 @@ image:
 
 지난 포스트에서는 Cilium의 IPAM Mode에 대해 살펴보았습니다. 이번 글에서는 **Cilium이 제공하는 두 가지 Routing 모델, Encapsulation Mode와 Native Routing Mode를 비교하며 각각의 특징과 장단점을 이해**해보겠습니다. Cilium은 eBPF를 활용하여 클러스터 간 트래픽을 전달하는 방식을 세밀하게 제어할 수 있습니다. 기본값으로는 `VXLAN`/`GENEVE` 기반의 Overlay(Encapsulation) 방식을 사용하지만, 네트워크 환경에 따라 Native Routing을 사용할 수도 있습니다.
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-3w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Cilium에서 제공하는 두 가지 Routing Mode

@@ -524,7 +524,7 @@ sudo docker exec -it gogs bash
 ##############################################################
 [security]
 INSTALL_LOCK = true                         
-SECRET_KEY   = 8Idn7RM0joCQ5Qa
+SECRET_KEY   = <REDACTED_SECRET_KEY>
 LOCAL_NETWORK_ALLOWLIST = 172.28.8.232 # 각자 자신의 IP 추가
 
 ##############################################################
@@ -686,6 +686,14 @@ kubectl set image deployment timeserver timeserver-container=$DHUSER/dev-app:0.0
 # 확인
 watch -d "kubectl get deploy,ep timeserver; echo; kubectl get rs,pod"
 ```
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Jenkins CI with Kubernetes`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

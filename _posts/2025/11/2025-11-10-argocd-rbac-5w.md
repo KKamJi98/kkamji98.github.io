@@ -88,12 +88,12 @@ argocd account update-password --account alice --current-password qwe12345 --new
 ##############################################################
 kubectl get secret -n argocd argocd-secret -o jsonpath='{.data}' | jq
 # {
-#   "accounts.alice.password": "JDJhJDEwJHJXRE51WXlHYjBuZ0tGbmhYaWtNWmUuRk5jaWI3ek5lc1Z0NVJ1WThvSFZJVjduUVkzWU5H",
-#   "accounts.alice.passwordMtime": "MjAyNS0xMS0xNVQxNTo1MDowM1o=",
+#   "accounts.alice.password": "<REDACTED_SECRET_DATA>",
+#   "accounts.alice.passwordMtime": "<REDACTED_SECRET_DATA>",
 #   "accounts.alice.tokens": "bnVsbA==",
-#   "admin.password": "JDJhJDEwJE53aDhCTzV0N3A2WTdPMDVpZFRua2U0VHFkWmdEVXB0NTV2THZlY2JiU0hwSHY2cTBHU09x",
-#   "admin.passwordMtime": "MjAyNS0xMS0xNVQxNTo0OToxNVo=",
-#   "server.secretkey": "dDBEaitmT1UxWHQwMnVrZHcxUHRhNlhoTGpoSEV2dEdaekpOcjVMWlNUYz0="
+#   "admin.password": "<REDACTED_SECRET_DATA>",
+#   "admin.passwordMtime": "<REDACTED_SECRET_DATA>",
+#   "server.secretkey": "<REDACTED_SECRET_DATA>"
 # }
 
 # account.alice.token 부분에서 생성된 사용자 토큰은 아직 생성된 것이 없기 때문에 실제 값은 null임
@@ -267,12 +267,12 @@ kubectl edit cm -n argocd argocd-rbac-cm
 # 서비스 어카운트 토큰 생성 시도
 ##############################################################
 argocd account generate-token -a gitops-ci
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJnaXRvcHMtY2k6YXBpS2V5IiwibmJmIjoxNzYzMjI1MjkyLCJpYXQiOjE3NjMyMjUyOTIsImp0aSI6IjRkMTE3M2ZjLTQ0MDgtNGU3MC05MGRkLWRhZDBjZjhhNGNjYyJ9.EnzXyrfRzCkQeNuaJVU_78IOCTRYIMaSJDcxE3-MV54
+# <REDACTED_JWT>
 
 ##############################################################
 # 서비스 어카운트 토큰 동작 확인
 ##############################################################
-argocd account get-user-info --auth-token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJnaXRvcHMtY2k6YXBpS2V5IiwibmJmIjoxNzYzMjI1MjkyLCJpYXQiOjE3NjMyMjUyOTIsImp0aSI6IjRkMTE3M2ZjLTQ0MDgtNGU3MC05MGRkLWRhZDBjZjhhNGNjYyJ9.EnzXyrfRzCkQeNuaJVU_78IOCTRYIMaSJDcxE3-MV54
+argocd account get-user-info --auth-token <REDACTED_JWT>
 # Logged In: true
 # Username: gitops-ci
 # Issuer: argocd
@@ -413,7 +413,7 @@ argocd proj role create-token sample-apps read-sync
 #   ID: 1f83b927-fc2b-4b1b-ba2a-26392ccaffa7
 #   Issued At: 2025-11-16T02:14:39+09:00
 #   Expires At: Never
-#   Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJwcm9qOnNhbXBsZS1hcHBzOnJlYWQtc3luYyIsIm5iZiI6MTc2MzIyNjg3OSwiaWF0IjoxNzYzMjI2ODc5LCJqdGkiOiIxZjgzYjkyNy1mYzJiLTRiMWItYmEyYS0yNjM5MmNjYWZmYTcifQ.LphrYhdZkb7nCNgNzIMXunXnZD6BqyykwpqhkbykBG0
+#   Token: <REDACTED_JWT>
 
 ##############################################################
 # 동기화 재시도 (계정 권한)
@@ -424,7 +424,7 @@ argocd app sync argocd/pre-post-sync
 ##############################################################
 # 동기화 재시도 (발급한 프로젝트 역할 권한)
 ##############################################################
-TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJwcm9qOnNhbXBsZS1hcHBzOnJlYWQtc3luYyIsIm5iZiI6MTc2MzIyNjg3OSwiaWF0IjoxNzYzMjI2ODc5LCJqdGkiOiIxZjgzYjkyNy1mYzJiLTRiMWItYmEyYS0yNjM5MmNjYWZmYTcifQ.LphrYhdZkb7nCNgNzIMXunXnZD6BqyykwpqhkbykBG0
+TOKEN=<REDACTED_JWT>
 argocd app sync argocd/pre-post-sync --auth-token $TOKEN
 # ...
 # Name:               argocd/pre-post-sync
@@ -475,7 +475,7 @@ argocd account get --account gitops-ci
 ##############################################################
 # 토큰으로 확인 iat: 발급 시각, exp: 만료 시각 (Unix time)
 ##############################################################
-TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJwcm9qOnNhbXBsZS1hcHBzOnJlYWQtc3luYyIsIm5iZiI6MTc2MzIyNjg3OSwiaWF0IjoxNzYzMjI2ODc5LCJqdGkiOiIxZjgzYjkyNy1mYzJiLTRiMWItYmEyYS0yNjM5MmNjYWZmYTcifQ.LphrYhdZkb7nCNgNzIMXunXnZD6BqyykwpqhkbykBG0
+TOKEN=<REDACTED_JWT>
 echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq .
 # {
 #   "iss": "argocd",
@@ -581,6 +581,14 @@ Argo CD와 Keycloak을 연동하는 전체 절차(클라이언트 생성, 리다
 - [Argo CD Docs - User Management / Keycloak](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/)
 - [Keycloak & ArgoCD SSO 구현하기]({% post_url 2025/02/2025-02-23-keycloak-argocd-sso %})
 - [Keycloak 개념, Helm으로 배포하기]({% post_url 2025/02/2025-02-22-keycloak %})
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Argo CD in Practice (4) - 접근제어`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

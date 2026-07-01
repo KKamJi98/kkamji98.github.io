@@ -24,6 +24,12 @@ You can find more in KEP-4974: Deprecate v1.Endpoints.
 
 따라서 이번 글에서는 **Endpoints API**를 사용하는 Application이나 Kubernetes Resource들을 확인하고 해당 리소스들을 **EndpointSlice API**로 전환하기 위해 도움이 될 내용들에 대해 다루도록 하겠습니다.
 
+> **TL;DR**  
+> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
+> - 주요 키워드는 endpoint, endpoint-slice, kubernetes-api이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Kubernetes API란?

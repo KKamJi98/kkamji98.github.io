@@ -11,6 +11,12 @@ image:
 
 저번 시간에 **Cilium**에 대해 알아보았습니다. 이번에는 **Cilium**의 구성요소에 대해 알아본 뒤, Helm을 통해 **Cilium**을 배포하면서 kube-proxy를 대체해 사용해보도록 하겠습니다.
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-1w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Cilium 구성 요소
@@ -508,9 +514,9 @@ Containers:            cilium                   Running: 3
                        hubble-relay
 Cluster Pods:          2/2 managed by Cilium
 Helm chart version:    1.17.5
-Image versions         cilium             quay.io/cilium/cilium:v1.17.5@sha256:baf8541723ee0b72d6c489c741c81a6fdc5228940d66cb76ef5ea2ce3c639ea6: 3
-                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.32.6-1749271279-0864395884b263913eac200ee2048fd985f8e626@sha256:9f69e290a7ea3d4edf9192acd81694089af048ae0d8a67fb63bd62dc1d72203e: 3
-                       cilium-operator    quay.io/cilium/operator-generic:v1.17.5@sha256:f954c97eeb1b47ed67d08cc8fb4108fb829f869373cbb3e698a7f8ef1085b09e: 2
+Image versions         cilium             quay.io/cilium/cilium:v1.17.5@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-envoy       quay.io/cilium/cilium-envoy:v1.32.6-1749271279-0864395884b263913eac200ee2048fd985f8e626@sha256:<DISCOVERY_CA_CERT_HASH>: 3
+                       cilium-operator    quay.io/cilium/operator-generic:v1.17.5@sha256:<DISCOVERY_CA_CERT_HASH>: 2
 
 # cilium config 확인
 ❯ cilium config view
@@ -575,6 +581,14 @@ KubeProxyReplacement Details:
 ...
 
 ```
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

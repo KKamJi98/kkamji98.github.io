@@ -12,6 +12,12 @@ image:
 > 저번 시간에는 [EC2상의 MicroK8s Cluster에 Local에서 명령하기](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/)에서 EC2 위에 있는 MicroK8s의 kubeconfig를 가져와 명령하는 방법을 다뤘습니다. 이번 포스트에서는 MicroK8s에 Worker Node를 추가하는 실습을 진행해 보겠습니다.  
 {: .prompt-info}
 
+> **TL;DR**  
+> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
+> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. EC2 Worker Node 생성

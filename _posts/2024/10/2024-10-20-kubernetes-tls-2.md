@@ -14,6 +14,12 @@ image:
 > [Let's Encrypt](https://letsencrypt.org/)는 무료로 SSL/TLS 인증서를 발급해주는 공개 인증 기관입니다. Cert-Manager를 사용하면 Let's Encrypt에서 인증서를 자동으로 발급받고 갱신할 수 있습니다.  
 {: .prompt-tip}
 
+> **TL;DR**  
+> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
+> - 주요 키워드는 harbor, jenkins, tls이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 사전 준비 사항

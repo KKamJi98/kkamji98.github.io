@@ -13,6 +13,12 @@ image:
 
 이번 시간에는 Kind를 사용해 2개의 Kubernetes Cluster를 배포하고, Cluster Mesh로 연결한 뒤, 통신이 되는 것을 확인해보도록 하겠습니다.
 
+> **TL;DR**  
+> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
+> - 주요 키워드는 cilium, cilium-study, cilium-5w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Prerequisites & Requirements
@@ -262,9 +268,9 @@ cilium status --context kind-west && cilium status --context kind-east
 #                        hubble-relay
 # Cluster Pods:          3/3 managed by Cilium
 # Helm chart version:    1.17.6
-# Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 2
-#                        cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 2
-#                        cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
+# Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
 #     /¯¯\
 #  /¯¯\__/¯¯\    Cilium:             OK
 #  \__/¯¯\__/    Operator:           OK
@@ -282,9 +288,9 @@ cilium status --context kind-west && cilium status --context kind-east
 #                        hubble-relay
 # Cluster Pods:          3/3 managed by Cilium
 # Helm chart version:    1.17.6
-# Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 2
-#                        cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 2
-#                        cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
+# Image versions         cilium             quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-envoy       quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-operator    quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
 
 cilium config view --context kind-west
 cilium config view --context kind-east
@@ -551,10 +557,10 @@ cilium status --context kind-west
 #                        hubble-relay
 # Cluster Pods:          4/4 managed by Cilium
 # Helm chart version:    1.17.6
-# Image versions         cilium                   quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 2
-#                        cilium-envoy             quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 2
-#                        cilium-operator          quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
-#                        clustermesh-apiserver    quay.io/cilium/clustermesh-apiserver:v1.17.6@sha256:f619e97432db427e1511bf91af3be8ded418c53a353a09629e04c5880659d1df: 2
+# Image versions         cilium                   quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-envoy             quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-operator          quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
+#                        clustermesh-apiserver    quay.io/cilium/clustermesh-apiserver:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
 
 cilium status --context kind-east
 #     /¯¯\
@@ -575,10 +581,10 @@ cilium status --context kind-east
 #                        hubble-relay
 # Cluster Pods:          4/4 managed by Cilium
 # Helm chart version:    1.17.6
-# Image versions         cilium                   quay.io/cilium/cilium:v1.17.6@sha256:544de3d4fed7acba72758413812780a4972d47c39035f2a06d6145d8644a3353: 2
-#                        cilium-envoy             quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:318eff387835ca2717baab42a84f35a83a5f9e7d519253df87269f80b9ff0171: 2
-#                        cilium-operator          quay.io/cilium/operator-generic:v1.17.6@sha256:91ac3bf7be7bed30e90218f219d4f3062a63377689ee7246062fa0cc3839d096: 1
-#                        clustermesh-apiserver    quay.io/cilium/clustermesh-apiserver:v1.17.6@sha256:f619e97432db427e1511bf91af3be8ded418c53a353a09629e04c5880659d1df: 2
+# Image versions         cilium                   quay.io/cilium/cilium:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-envoy             quay.io/cilium/cilium-envoy:v1.33.4-1752151664-7c2edb0b44cf95f326d628b837fcdd845102ba68@sha256:<DISCOVERY_CA_CERT_HASH>: 2
+#                        cilium-operator          quay.io/cilium/operator-generic:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 1
+#                        clustermesh-apiserver    quay.io/cilium/clustermesh-apiserver:v1.17.6@sha256:<DISCOVERY_CA_CERT_HASH>: 2
 
 ########################################################
 # Cilium Status 확인 (--verbose)
@@ -1284,6 +1290,14 @@ shared=false로 설정하면 west의 Service가 east에 공유되지 않으며, 
 - `service.cilium.io/global: "true"` 어노테이션을 통해 Global Service를 선언하면, 두 Cluster의 Pod가 모두 Backend로 등록되어 Round-Robin 방식으로 로드밸런싱이 수행
 - `service.cilium.io/affinity=remote` 설정 시 원격 Cluster의 Pod를 우선 호출하지만, Endpoint가 사라지면 자동으로 로컬 Pod로 트래픽이 전달되는 동작을 확인
 - `service.cilium.io/shared=false` 설정 시 특정 Cluster의 Service를 Mesh에서 제외하여, 다른 Cluster에서는 접근할 수 없음을 확인
+
+---
+
+> **핵심 정리**  
+> - 이 글은 `Cilium Cluster Mesh [Cilium Study 5주차]`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
+> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
+> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
+{: .prompt-tip}
 
 ---
 

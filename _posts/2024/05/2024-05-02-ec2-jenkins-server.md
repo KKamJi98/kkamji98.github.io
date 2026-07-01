@@ -12,6 +12,12 @@ image:
 > <https://www.whatap.io/ko/blog/77/> 와탭랩스에서 공유한 글을 보고 한 번 적용해 볼까 하는 생각이 들었습니다. 기존 계획은 Jenkins Server를 하나 만들어 사용하는 것이었지만 이미 MicroK8s Server를 구축해 둔 만큼 해당 클러스터를 활용해 Jenkins Agent를 Pod로 동적으로 생성해 보는 건 어떨까요? 하고 싶은 건 해봐야겠죠.  
 {: .prompt-tip}
 
+> **TL;DR**  
+> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
+> - 주요 키워드는 jenkins, agent, ec2이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 > 일단 이번에는 Jenkins Server를 구축하는 내용을 기반으로 포스트를 작성하겠습니다.  

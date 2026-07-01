@@ -10,10 +10,14 @@ cd "${REPO_ROOT}"
 echo "=== Blog pre-publish check ==="
 
 if ! command -v gitleaks >/dev/null 2>&1; then
-  echo "WARN: gitleaks not found; skipping staged secret scan" >&2
+  echo "ERROR: gitleaks not found; install gitleaks before publishing" >&2
+  exit 1
 else
   echo "=== gitleaks staged scan ==="
   gitleaks protect --staged --redact --verbose
+
+  echo "=== gitleaks source scan ==="
+  gitleaks detect --source _posts --no-git --redact --no-banner
 fi
 
 echo "=== Markdown tools ==="
@@ -24,6 +28,9 @@ echo "=== Post date hygiene ==="
 
 echo "=== Quality audit ==="
 "${PYTHON_BIN}" "${SCRIPT_DIR}/audit_blog_quality.py"
+
+echo "=== High-impact TL;DR gate ==="
+"${PYTHON_BIN}" "${SCRIPT_DIR}/check_high_impact_tldr.py"
 
 "${PYTHON_BIN}" - <<'PY'
 import csv

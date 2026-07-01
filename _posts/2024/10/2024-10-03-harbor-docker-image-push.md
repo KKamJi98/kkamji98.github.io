@@ -11,6 +11,12 @@ image:
 
 저번 포스트에서 Harbor를 구축하는 과정을 다뤘습니다. 이번 포스트에서는 구축한 Harbor에 컨테이너 이미지를 업로드하고 다시 받아오는 과정에 대해 알아보도록 하겠습니다. Harbor를 구축하면서 자체 생성된 인증서를 사용하였기 때문에 해당 인증서를 Docker에 추가해주거나 insecure-registries 설정을 추가해주셔야 로그인이 가능합니다.
 
+> **TL;DR**  
+> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
+> - 주요 키워드는 harbor, #, TAG이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 프로젝트 생성
@@ -67,7 +73,7 @@ The push refers to repository [{your-harbor-domain}/{project-name}/nginx]
 3d07a4a7eb2a: Pushed 
 756474215d29: Pushed 
 8d853c8add5d: Pushed 
-latest: digest: sha256:719b34dba7bd01c795f94b3a6f3a5f1fe7d53bf09e79e355168a17d2e2949cef size: 1778
+latest: digest: sha256:<DISCOVERY_CA_CERT_HASH> size: 1778
 ```
 
 ---
@@ -95,7 +101,7 @@ d07412f52e9d: Pull complete
 55af3c8febf2: Pull complete 
 5b8e768fb22d: Pull complete 
 85177e2c6f39: Pull complete 
-Digest: sha256:719b34dba7bd01c795f94b3a6f3a5f1fe7d53bf09e79e355168a17d2e2949cef
+Digest: sha256:<DISCOVERY_CA_CERT_HASH>
 Status: Downloaded newer image for {your-harbor-domain}/test-project/nginx:latest
 {your-harbor-domain}/test-project/nginx:latest
 
