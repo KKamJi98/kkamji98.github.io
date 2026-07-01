@@ -15,6 +15,12 @@ image:
 
 실습 환경은 [Jenkins + ArgoCD 실습 환경 구축]({% post_url 2025/10/2025-10-26-jenkins-ci-cd-env-3w %}) 의 실습환경을 사용합니다.
 
+> **TL;DR**  
+> - Jenkins Pipeline을 코드로 정의하고, SCM 변경을 기준으로 빌드와 테스트를 자동화하는 흐름을 정리합니다.  
+> - Kind, Gogs, Jenkins를 연결해 컨테이너 이미지 빌드와 레지스트리 푸시까지 이어지는 CI 실습을 다룹니다.  
+> - 운영 관점에서는 Credential 관리, Webhook 연결, Agent 실행 환경, 실패 로그 확인 지점을 함께 보는 것이 중요합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Jenkins 란?

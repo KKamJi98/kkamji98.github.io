@@ -13,6 +13,12 @@ image:
 
 이번 3주차 내용에서는 **Jenkins 와 ArgoCD를 사용한 CI/CD**에 대한 내용을 다룹니다. 이번 포스트에서는 **실습 환경 구축**에 대한 내용을 다룹니다.
 
+> **TL;DR**  
+> - Jenkins, Gogs, Kind 기반 CI/CD 실습을 위한 로컬 Kubernetes 환경 구성 과정을 정리합니다.  
+> - 클러스터 생성, kubeconfig 접근, Gogs 설치, Jenkins 설치, 플러그인과 credential 준비까지 순서대로 다룹니다.  
+> - 운영 관점에서는 실습용 IP, NodePort, kubeconfig, registry 접근 정보를 실제 운영 값과 분리해 관리해야 합니다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 실습 환경 구성
