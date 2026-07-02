@@ -2,16 +2,15 @@
 """Check Jekyll post date hygiene.
 
 Fails when:
+- Two or more posts share the same filename date.
 - A filename date is later than today.
 - Front matter date does not match the filename date.
-
-Multiple posts may intentionally share the same filename date. Jekyll sorts posts by
-front matter datetime, so same-day series posts should use different times.
 """
 
 from __future__ import annotations
 
 import re
+from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -36,16 +35,16 @@ def frontmatter_date(path: Path) -> str:
 
 def main() -> None:
     today = date.today()
-    checked = 0
+    by_date: dict[str, list[str]] = defaultdict(list)
     failures: list[str] = []
 
     for path in sorted(POSTS_DIR.glob("**/*.md")):
         match = POST_NAME_RE.match(path.name)
         if not match:
             continue
-        checked += 1
         filename_date = match.group(1)
         rel = path.relative_to(ROOT).as_posix()
+        by_date[filename_date].append(rel)
 
         parsed_date = date.fromisoformat(filename_date)
         if parsed_date > today:
@@ -55,13 +54,18 @@ def main() -> None:
         if fm_date and not fm_date.startswith(filename_date):
             failures.append(f"frontmatter date mismatch: {rel} filename={filename_date} frontmatter={fm_date}")
 
+    for filename_date, rels in sorted(by_date.items()):
+        if len(rels) > 1:
+            failures.append(f"duplicate filename date: {filename_date}")
+            failures.extend(f"  - {rel}" for rel in rels)
+
     if failures:
         print("Post date hygiene failed:")
         for failure in failures:
             print(failure)
         raise SystemExit(1)
 
-    print(f"Post date hygiene passed: {checked} posts, no future dates, filename dates match front matter dates")
+    print(f"Post date hygiene passed: {sum(len(v) for v in by_date.values())} posts, no duplicates, no future dates")
 
 
 if __name__ == "__main__":
