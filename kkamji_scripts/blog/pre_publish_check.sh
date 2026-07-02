@@ -26,6 +26,9 @@ echo "=== Markdown tools ==="
 echo "=== Post date hygiene ==="
 "${PYTHON_BIN}" "${SCRIPT_DIR}/check_post_dates.py"
 
+echo "=== Series order check ==="
+"${PYTHON_BIN}" "${SCRIPT_DIR}/check_series_order.py"
+
 echo "=== Quality audit ==="
 "${PYTHON_BIN}" "${SCRIPT_DIR}/audit_blog_quality.py"
 
