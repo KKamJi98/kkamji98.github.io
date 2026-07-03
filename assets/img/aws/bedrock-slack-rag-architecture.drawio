@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="bedrock-slack-rag" name="Bedrock Slack RAG Architecture">
+    <mxGraphModel dx="1600" dy="760" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Bedrock Knowledge Bases Slack RAG" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;fontColor=#202124;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="455" y="24" width="690" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="authoring" value="1. Authoring" style="swimlane;html=1;rounded=1;startSize=34;fillColor=#E8F0FE;swimlaneFillColor=#F8FBFF;strokeColor=#1A73E8;fontSize=14;fontStyle=1;fontColor=#174EA6;" vertex="1" parent="1">
+          <mxGeometry x="45" y="100" width="300" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="sync" value="2. Sync Automation" style="swimlane;html=1;rounded=1;startSize=34;fillColor=#FEF7E0;swimlaneFillColor=#FFFCF2;strokeColor=#F9AB00;fontSize=14;fontStyle=1;fontColor=#B06000;" vertex="1" parent="1">
+          <mxGeometry x="390" y="100" width="340" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="kbgroup" value="3. Knowledge Store" style="swimlane;html=1;rounded=1;startSize=34;fillColor=#E6F4EA;swimlaneFillColor=#FAFFFB;strokeColor=#34A853;fontSize=14;fontStyle=1;fontColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="775" y="100" width="780" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="runtime" value="4. Slack Query Runtime" style="swimlane;html=1;rounded=1;startSize=34;fillColor=#FCE8E6;swimlaneFillColor=#FFF8F7;strokeColor=#EA4335;fontSize=14;fontStyle=1;fontColor=#A50E0E;" vertex="1" parent="1">
+          <mxGeometry x="45" y="380" width="930" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ops" value="5. Evaluation and Ops" style="swimlane;html=1;rounded=1;startSize=34;fillColor=#F1F3F4;swimlaneFillColor=#FFFFFF;strokeColor=#9AA0A6;fontSize=14;fontStyle=1;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="380" width="525" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="docs" value="Google Docs&lt;br&gt;source of truth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1A73E8;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="165" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="editors" value="Editors" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1A73E8;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="115" y="238" width="160" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="n8n" value="n8n Workflow&lt;br&gt;already deployed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F9AB00;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="165" width="150" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pdf" value="PDF export&lt;br&gt;+ metadata.json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F9AB00;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="610" y="165" width="110" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="S3 knowledge/&lt;br&gt;PDF + sidecar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#34A853;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="165" width="155" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="bedrock" value="Bedrock KB&lt;br&gt;ingest and index" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#34A853;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="165" width="160" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="vector" value="Vector Store&lt;br&gt;OpenSearch or pgvector" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#34A853;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="165" width="170" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="slack_req" value="Slack&lt;br&gt;Slash Command" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#EA4335;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="465" width="145" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="receiver" value="Receiver Lambda&lt;br&gt;verify and ack" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#EA4335;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="295" y="465" width="150" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="worker" value="Worker Lambda&lt;br&gt;RetrieveAndGenerate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#EA4335;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="465" width="180" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="slack_answer" value="Slack Answer&lt;br&gt;+ citations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#EA4335;fontSize=13;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="775" y="465" width="150" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" value="CloudWatch Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="455" width="140" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="tables" value="S3 Tables&lt;br&gt;or Athena" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontSize=13;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="455" width="125" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="eval" value="Quality eval&lt;br&gt;hit rate, citation, p95" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontSize=12;fontColor=#202124;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="530" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="edit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#1A73E8;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="editors" target="docs"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" value="detect changes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#5F6368;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="docs" target="n8n"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" value="export" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#B06000;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n8n" target="pdf"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" value="upload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#188038;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="pdf" target="s3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" value="sync" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#188038;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="s3" target="bedrock"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" value="index" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#188038;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="bedrock" target="vector"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" value="ask" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#A50E0E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="slack_req" target="receiver"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" value="ack + async" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#A50E0E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="receiver" target="worker"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" value="retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#5F6368;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="worker" target="bedrock"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="610" y="335"/><mxPoint x="1135" y="335"/></Array></mxGeometry></mxCell>
+        <mxCell id="e10" value="post" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#A50E0E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="worker" target="slack_answer"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e11" value="metrics" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#5F6368;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="worker" target="logs"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="610" y="625"/><mxPoint x="1150" y="625"/></Array></mxGeometry></mxCell>
+        <mxCell id="e12" value="analyze" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#5F6368;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="logs" target="tables"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e13" value="evaluate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#5F6368;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="tables" target="eval"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

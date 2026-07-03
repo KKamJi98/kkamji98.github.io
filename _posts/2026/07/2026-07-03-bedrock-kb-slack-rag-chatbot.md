@@ -1,5 +1,5 @@
 ---
-title: Bedrock Knowledge Bases로 Slack RAG 챗봇 만들기 - Google Docs, PDF, S3, n8n 자동화
+title: Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 운영하기 - Google Docs, PDF, S3 자동화
 date: 2026-07-03 01:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
@@ -9,74 +9,41 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-[AWS Bedrock Knowledge Base 글](/posts/aws-bedrock-knowledge-base/)에서는 관리형 RAG의 구성 요소를 정리했습니다. 이번 글에서는 한 단계 더 내려가 실제 Slack 챗봇을 만듭니다. 원본 문서는 Google Docs에서 작성하고, n8n workflow가 Google Docs를 PDF로 export한 뒤 S3에 업로드합니다. Bedrock Knowledge Bases는 이 PDF를 데이터 소스로 동기화하고, Slack 사용자는 Slash Command로 질문합니다.
+[AWS Bedrock Knowledge Base 글](/posts/aws-bedrock-knowledge-base/)에서는 관리형 RAG의 구성 요소와 API, 접근제어를 정리했습니다. 이번 글에서는 그 개념을 바탕으로 **Slack에서 실제로 사용할 수 있는 RAG 챗봇 운영 구조**를 설계합니다. 원본 문서는 Google Docs에서 관리하고, 이미 배포된 n8n workflow가 Google Docs를 PDF로 export한 뒤 S3에 업로드합니다. Bedrock Knowledge Bases는 이 PDF를 데이터 소스로 동기화하고, Slack 사용자는 Slash Command로 질문합니다.
 
-핵심은 단순히 챗봇을 붙이는 것이 아닙니다. RAG 챗봇의 완성도는 문서 품질, PDF 변환 품질, 메타데이터, 청킹, 검색 설정, Citation, Slack UX, 보안 검증, 그리고 문서 수정 후 자동 sync 루프에서 결정됩니다.
+이 글의 주제는 n8n 배포가 아닙니다. n8n은 이미 접근 가능한 상태라고 가정하고, RAG 챗봇의 완성도를 좌우하는 문서 품질, PDF 변환 품질, 메타데이터, 청킹, 검색 설정, Citation, Slack UX, 보안 검증, 그리고 문서 수정 후 자동 sync 루프에 집중합니다.
 
 ---
 
 ## 1. TL;DR
 
-> - 원본 문서는 Google Docs로 관리하고, n8n이 Google Drive API를 통해 PDF로 export한 뒤 일반 S3 버킷에 저장합니다.  
+> - 원본 문서는 Google Docs로 관리하고, 이미 배포된 n8n이 Google Drive API를 통해 PDF로 export한 뒤 일반 S3 버킷에 저장합니다.  
 > - Bedrock Knowledge Bases의 S3 connector는 PDF를 지원하며, PDF 옆에 `.metadata.json` sidecar를 두면 검색 필터와 Citation 품질을 높일 수 있습니다.  
 > - Google Docs가 수정되면 n8n workflow가 변경을 감지하고, PDF export, S3 upload, Bedrock `StartIngestionJob`, sync polling까지 자동화합니다.  
 > - Slack Slash Command는 3초 안에 ack를 반환해야 하므로, Slack 수신 Lambda와 Bedrock 질의 처리는 분리하는 편이 안전합니다.  
-> - S3 Tables는 Knowledge Base의 직접 원본보다는 질문 로그, 응답 로그, 평가 결과를 분석하는 운영 테이블로 쓰는 편이 적합합니다.  
+> - n8n 배포 방법은 다루지 않고, RAG 챗봇 운영에 필요한 workflow, 보안, 평가 루프에 집중합니다.  
 {: .prompt-info}
 
 ---
 
 ## 2. 목표 아키텍처
 
-이번 실습의 전체 흐름입니다.
+이번 글의 전체 흐름입니다. 문서 작성, sync 자동화, Knowledge Base ingestion, Slack 질의, 운영 로그와 평가를 분리해서 봅니다.
 
-```text
-Google Docs 원본 문서
-  |
-n8n trigger
-  |
-Google Drive API export PDF
-  |
-PDF 품질 검사와 metadata.json 생성
-  |
-S3 일반 버킷 knowledge prefix 업로드
-  |
-Bedrock Knowledge Base StartIngestionJob
-  |
-GetIngestionJob 상태 polling
-  |
-Slack Slash Command
-  |
-Lambda Function URL 또는 API Gateway
-  |
-Lambda
-  |
-Bedrock RetrieveAndGenerate
-  |
-Slack response_url로 답변
-```
-
-운영 로그와 평가까지 포함하면 다음 컴포넌트를 추가합니다.
-
-```text
-Lambda 또는 n8n
-  |
-CloudWatch Logs
-  |
-S3 또는 S3 Tables
-  |
-Athena 품질 분석
-```
+![Bedrock Knowledge Bases Slack RAG 아키텍처 - Google Docs를 사람이 관리하고, 이미 배포된 n8n이 PDF와 metadata.json을 S3에 업로드하며, Bedrock Knowledge Base가 ingest/index 후 Slack Slash Command 요청을 Lambda와 RetrieveAndGenerate로 처리하는 구조](/assets/img/aws/bedrock-slack-rag-architecture.webp)
 
 역할을 분리하면 다음과 같습니다.
 
-| 영역 | 추천 저장소 | 목적 |
+| 영역 | 추천 저장소 또는 구성 요소 | 목적 |
 | :--- | :--- | :--- |
 | 원본 문서 | Google Docs | 사람이 수정하는 knowledge 원본 |
-| 자동화 | n8n | export, upload, sync, 알림 workflow |
+| 자동화 | 이미 배포된 n8n workflow | export, upload, sync, 알림 workflow |
 | Knowledge 문서 | 일반 S3 bucket | Bedrock Knowledge Base가 ingest할 PDF |
 | 문서 메타데이터 | PDF 옆의 `.metadata.json` | 검색 필터, 권한, 출처 표시 |
+| 질의 런타임 | Slack, Lambda, Bedrock Runtime | 질문 수신, 비동기 처리, 답변 반환 |
 | 운영 로그 | CloudWatch, S3, S3 Tables | 질문, 응답, 지연, 피드백 분석 |
+
+이 구조에서 n8n은 운영 자동화 계층입니다. n8n 자체를 어떻게 설치하고 노출할지는 이 글의 범위에서 제외하고, Google Docs 변경을 PDF와 metadata sidecar로 변환해 Knowledge Base sync까지 이어주는 workflow에 집중합니다.
 
 ---
 
@@ -284,25 +251,26 @@ wc -c build/text-check/external-saas-policy.txt
 
 ## 8. Bedrock Knowledge Base 구성
 
-첫 실습에서는 빠른 구축을 위해 다음 선택을 추천합니다.
+Knowledge Base 자체의 구성 요소와 API는 [이전 글](/posts/aws-bedrock-knowledge-base/)에서 다뤘습니다. 여기서는 Slack RAG 챗봇 운영에 필요한 선택지만 짚습니다.
 
-| 항목 | 추천 |
-| :--- | :--- |
-| Data source | S3 `knowledge/` prefix |
-| Embedding model | Amazon Titan Text Embeddings v2 |
-| Vector store | OpenSearch Serverless quick create |
-| Chunking | Hierarchical 또는 Semantic부터 실험 |
-| Query API | RetrieveAndGenerate |
-| 결과 수 | 처음에는 5 |
+| 항목 | 추천 | 이유 |
+| :--- | :--- | :--- |
+| Data source | S3 `knowledge/` prefix | PDF와 metadata sidecar를 안정적으로 배포 산출물로 관리 |
+| Embedding model | Amazon Titan Text Embeddings v2 | AWS 안에서 빠르게 시작하기 쉬운 기본 후보 |
+| Vector store | OpenSearch Serverless quick create | PoC와 초기 운영에서 관리 부담이 낮음 |
+| Chunking | Hierarchical 또는 Semantic부터 실험 | 정책 문서처럼 섹션 구조와 문맥이 중요한 문서에 유리 |
+| Query API | RetrieveAndGenerate | Slack 답변과 Citation을 한 번에 구성 |
+| 결과 수 | 처음에는 5 | 정확도와 지연의 균형을 보기 좋은 기준점 |
 
-PDF 문서는 페이지 번호 Citation이 중요합니다. Bedrock Knowledge Bases는 PDF와 일부 vector store 조합에서 페이지 번호를 metadata field로 생성할 수 있습니다. 답변에 문서명과 페이지 정보를 함께 보여주면 Slack 사용자가 검증하기 쉬워집니다.
+PDF 문서는 페이지 번호 Citation이 중요합니다. Bedrock Knowledge Bases는 PDF와 일부 vector store 조합에서 페이지 번호를 metadata field로 생성할 수 있습니다. Slack 답변에 문서명, 섹션, 페이지 정보를 함께 보여주면 사용자가 근거를 검증하기 쉬워집니다.
 
-중요한 제약도 있습니다.
+운영 전에 확인할 제약은 다음입니다.
 
 - Data source 생성 후 parsing strategy type은 쉽게 바꿀 수 없으므로 PoC 단계에서 parser를 비교해야 합니다.
 - Chunking strategy도 data source 연결 후 변경이 제한되므로 baseline KB와 실험 KB를 분리하는 편이 안전합니다.
 - `NONE` chunking을 선택하면 PDF page number Citation이나 page number metadata filter를 쓰지 못할 수 있습니다.
 - 표, 차트, 이미지가 답변 근거에 중요하면 default parser만 믿지 말고 Bedrock Data Automation parser 또는 foundation model parser를 검토합니다.
+- Slack 사용자별 권한을 적용해야 한다면, 애플리케이션에서 Slack user 또는 channel을 사내 role로 변환하고 그 값을 metadata filter로 넘겨야 합니다.
 
 ---
 
@@ -544,9 +512,9 @@ question,expected_source,expected_keyword,expected_behavior
 이번 프로젝트는 다음 순서로 진행합니다.
 
 1. Google Docs 폴더와 샘플 문서 준비
-2. n8n 설치와 Gateway API HTTPRoute 구성
+2. 이미 배포된 n8n 접근 정보와 credential 준비
 3. n8n Google Drive credential 설정
-4. n8n AWS credential 또는 sync Lambda credential 설정
+4. n8n에서 사용할 AWS credential 또는 sync Lambda credential 설정
 5. Google Docs를 PDF로 export
 6. PDF와 metadata.json을 S3에 업로드
 7. Bedrock Knowledge Base 생성
@@ -562,80 +530,37 @@ question,expected_source,expected_keyword,expected_behavior
 
 ---
 
-## 16. n8n Helm 설치 값
+## 16. 운영 전제: n8n은 이미 배포되어 있다고 가정
 
-n8n은 별도 Helm chart로 배포하고, `n8n.kkamji.net`은 Kubernetes Ingress가 아니라 Gateway API `HTTPRoute`로 Envoy Gateway에 연결합니다. 운영에서는 encryption key를 자동 생성에 맡기지 말고 Secret으로 고정하는 편이 안전합니다.
+이 글에서는 n8n을 Kubernetes나 VM에 배포하는 방법은 다루지 않습니다. 주요 주제는 RAG 챗봇이므로, n8n은 이미 다음 조건을 만족한다고 가정합니다.
 
-예시 값 파일명은 `kkamji_local_values.yaml`로 둡니다.
+- n8n UI에 접근할 수 있습니다.
+- Google Drive credential을 등록할 수 있습니다.
+- AWS S3 업로드와 Bedrock ingestion job 호출을 수행할 credential 또는 Lambda wrapper가 준비되어 있습니다.
+- workflow 실패 시 Slack 또는 운영 채널로 알림을 보낼 수 있습니다.
+- production에서는 n8n credential과 encryption key가 고정 Secret으로 관리됩니다.
 
-```yaml
-timezone: Asia/Seoul
-existingEncryptionKeySecret: n8n-encryption-key
+따라서 n8n에서 필요한 작업은 배포가 아니라 workflow 구성입니다.
 
-main:
-  persistence:
-    enabled: true
-    storageClass: local-path
-    size: 8Gi
-  extraEnvVars:
-    N8N_HOST: n8n.kkamji.net
-    N8N_PROTOCOL: https
-    N8N_EDITOR_BASE_URL: https://n8n.kkamji.net
-    WEBHOOK_URL: https://n8n.kkamji.net
-
-db:
-  type: postgresdb
-
-postgresql:
-  enabled: true
-  auth:
-    existingSecret: n8n-postgresql-auth
-    secretKeys:
-      adminPasswordKey: postgres-password
-      userPasswordKey: password
-
-ingress:
-  enabled: false
-
-extraManifests:
-  - apiVersion: gateway.networking.k8s.io/v1
-    kind: HTTPRoute
-    metadata:
-      name: n8n
-    spec:
-      hostnames:
-        - n8n.kkamji.net
-      parentRefs:
-        - group: gateway.networking.k8s.io
-          kind: Gateway
-          name: kkamji
-          namespace: envoy-gateway-system
-          sectionName: https
-      rules:
-        - matches:
-            - path:
-                type: PathPrefix
-                value: /
-          backendRefs:
-            - group: ""
-              kind: Service
-              name: n8n
-              port: 5678
-              weight: 1
+```text
+Google Drive Trigger 또는 Schedule Trigger
+  |
+Google Drive: 변경된 Google Docs 조회
+  |
+Google Drive: PDF export
+  |
+Function: metadata.json 생성
+  |
+AWS S3: PDF와 metadata.json 업로드
+  |
+Lambda 또는 HTTP Request: StartIngestionJob 호출
+  |
+Loop: GetIngestionJob polling
+  |
+Slack: sync 결과 알림
 ```
 
-이 구성에서 PostgreSQL은 외부 DB가 아니라 n8n chart의 Bitnami PostgreSQL subchart로 같이 배포됩니다. 렌더링 기준 리소스는 `StatefulSet/n8n-postgresql`, `Service/n8n-postgresql`이며 `local-path` PVC를 사용합니다. 재설치나 복구 시 password drift를 막기 위해 PostgreSQL 비밀번호도 기존 Secret으로 고정합니다.
-
-설치 전에는 다음 Secret을 준비합니다. 값은 예시 placeholder이며 실제 값은 로컬 password manager에서 생성합니다.
-
-```bash
-kubectl -n n8n create secret generic n8n-encryption-key \
-  --from-literal=N8N_ENCRYPTION_KEY=<REPLACE_WITH_32_BYTE_RANDOM_VALUE>
-
-kubectl -n n8n create secret generic n8n-postgresql-auth \
-  --from-literal=postgres-password=<REPLACE_WITH_POSTGRES_ADMIN_PASSWORD> \
-  --from-literal=password=<REPLACE_WITH_N8N_DB_PASSWORD>
-```
+AWS SigV4 요청을 n8n workflow 안에 직접 구현할 수도 있지만, 운영에서는 작은 Lambda wrapper를 두는 편이 관리하기 쉽습니다. n8n은 문서 변경 감지와 workflow orchestration에 집중하고, IAM 권한과 Bedrock API 호출 세부 구현은 Lambda에서 관리합니다.
 
 ---
 
