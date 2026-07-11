@@ -201,55 +201,64 @@ tmux show-options -gv history-limit
 
 ## 6. zsh 함수와 별칭
 
-다음 내용을 `~/.zshrc`에 추가하면 자주 쓰는 작업을 짧게 실행할 수 있습니다. 모든 session 이름은 인용해 word splitting과 glob 확장을 막고, 종료 함수는 대상 존재 여부와 사용자 확인을 거칩니다.
+이 글의 명령은 모두 `tm`으로 시작하도록 통일합니다. 아래를 `~/.zshrc` 또는 `~/.zsh_functions`처럼 zsh가 source하는 파일에 추가합니다. session 이름은 task ID로 사용하고, 기존 session에 잘못 연결하거나 같은 task에 writer를 중복으로 만들지 않도록 생성·attach 경로를 분리합니다.
 
 ```zsh
-# 지정한 session을 생성하거나 attach합니다. 기본 이름은 work입니다.
+__tmux_task_id_valid() {
+  [[ -n "$1" && "$1" =~ '^[A-Za-z0-9][A-Za-z0-9._-]*$' ]]
+}
+
+# 생성 또는 기존 task session에 재접속
 tm() {
-  local session_name="${1:-work}"
-  tmux new-session -A -s "$session_name"
+  local task="$1"
+  __tmux_task_id_valid "$task" || { print -u2 -- 'Usage: tm <task-id>'; return 2; }
+  tmux new-session -A -s "$task" -c "$PWD"
 }
 
-# 모든 session을 표시합니다.
+# session 이름, attach 상태, window 수, 시작 경로 확인
 tml() {
-  tmux list-sessions
+  tmux list-sessions -F '#{session_name}\t#{session_attached}\t#{session_windows}\t#{session_path}' \
+    || print -u2 -- 'No tmux sessions.'
 }
 
-# 기존 session에 attach합니다.
+# 새 session만 생성: 기존 이름이면 중복 writer 방지를 위해 거부
+tmn() {
+  local task="$1"
+  __tmux_task_id_valid "$task" || { print -u2 -- 'Usage: tmn <task-id>'; return 2; }
+  tmux has-session -t "$task" 2>/dev/null && { print -u2 -- "Session already exists: $task"; return 1; }
+  tmux new-session -s "$task" -c "$PWD"
+}
+
+# 기존 session에만 attach: 빈 session을 암묵적으로 만들지 않음
 tma() {
-  if (( $# != 1 )); then
-    print -u2 -- "Usage: tma <session-name>"
-    return 2
-  fi
-
-  tmux attach-session -t "$1"
+  local task="$1"
+  [[ -n "$task" ]] || { print -u2 -- 'Usage: tma <task-id>'; return 2; }
+  tmux has-session -t "$task" 2>/dev/null || { print -u2 -- "Session not found: $task"; return 1; }
+  tmux attach-session -t "$task"
 }
 
-# 확인 후 기존 session을 종료합니다.
+# detached 장기 worker 시작. 한 task에는 한 writer만 둠
+tmw() {
+  local task="$1"
+  shift || true
+  __tmux_task_id_valid "$task" && (( $# > 0 )) || { print -u2 -- 'Usage: tmw <task-id> <command...>'; return 2; }
+  tmux has-session -t "$task" 2>/dev/null && { print -u2 -- "Session already exists: $task"; return 1; }
+  tmux new-session -d -s "$task" -c "$PWD" "$@"
+}
+
+# 확인 후 session 종료
 tmk() {
-  if (( $# != 1 )); then
-    print -u2 -- "Usage: tmk <session-name>"
-    return 2
-  fi
-
-  if ! tmux has-session -t "$1" 2>/dev/null; then
-    print -u2 -- "Session not found: $1"
-    return 1
-  fi
-
-  local reply
-  printf "Kill tmux session '%s'? [y/N] " "$1"
+  local task="$1" reply
+  tmux has-session -t "$task" 2>/dev/null || { print -u2 -- "Session not found: $task"; return 1; }
+  printf "Kill tmux session '%s'? [y/N] " "$task"
   read -r reply
-  if [[ "$reply" != [yY] ]]; then
-    print -- "Canceled."
-    return 1
-  fi
-
-  tmux kill-session -t "$1"
+  [[ "$reply" == [yY] ]] || { print -- 'Canceled.'; return 1; }
+  tmux kill-session -t "$task"
 }
 
-# 선택 사항: 원래 명령을 가리지 않는 짧은 alias
+# 짧은 읽기/설정 alias
 alias tls='tmux list-sessions'
+alias tmr='tmux source-file ~/.tmux.conf'
 ```
 
 ```shell
@@ -257,13 +266,14 @@ alias tls='tmux list-sessions'
 source ~/.zshrc
 
 # 사용 예시
-tm ai-review
+tm hermes-review
 tml
-tma ai-review
-tmk ai-review
+tma hermes-review
+tmw docs-build npm run build
+tmk hermes-review
 ```
 
-`tm`은 기존 session이 있으면 그 session에 attach하므로 현재 디렉터리에서 새 session이 만들어질 것이라고 가정하면 안 됩니다. 새 session의 시작 디렉터리를 명시해야 한다면 직접 `tmux new-session -d -s NAME -c "$PWD"`를 사용합니다.
+`tm`은 기존 session이 있으면 그 session에 attach합니다. 현재 디렉터리에서 반드시 새 session을 시작해야 할 때는 `tmn`을 사용합니다. `tmw`는 긴 build, test watcher, interactive worker처럼 terminal app 종료 뒤에도 계속 살아야 하는 process에만 사용하며, native subagent와 one-shot worker를 무조건 tmux로 감싸지는 않습니다.
 
 ---
 
