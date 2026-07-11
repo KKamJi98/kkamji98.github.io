@@ -215,11 +215,16 @@ tm() {
   tmux new-session -A -s "$task" -c "$PWD"
 }
 
-# session 이름, attach 상태, window 수, 시작 경로 확인
+# 고정 열 task dashboard: tmux의 prose list보다 빠르게 훑을 수 있습니다.
 tml() {
-  # tmux format string에는 실제 tab 문자를 전달해야 합니다.
-  tmux list-sessions -F $'#{session_name}\t#{session_attached}\t#{session_windows}\t#{session_path}' \
-    || print -u2 -- 'No tmux sessions.'
+  local rows
+  rows="$(tmux list-sessions -F $'#{session_name}\t#{session_windows}\t#{?session_attached,attached,detached}\t#{session_path}' 2>/dev/null)" \
+    || { print -u2 -- 'No tmux sessions.'; return 1; }
+  [[ -n "$rows" ]] || { print -u2 -- 'No tmux sessions.'; return 0; }
+  {
+    print -r -- $'SESSION\tWINDOWS\tSTATUS\tPATH'
+    print -r -- "$rows"
+  } | column -t -s $'\t'
 }
 
 # 새 session만 생성: 기존 이름이면 중복 writer 방지를 위해 거부
