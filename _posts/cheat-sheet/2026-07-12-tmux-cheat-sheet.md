@@ -217,7 +217,8 @@ tm() {
 
 # session 이름, attach 상태, window 수, 시작 경로 확인
 tml() {
-  tmux list-sessions -F '#{session_name}\t#{session_attached}\t#{session_windows}\t#{session_path}' \
+  # tmux format string에는 실제 tab 문자를 전달해야 합니다.
+  tmux list-sessions -F $'#{session_name}\t#{session_attached}\t#{session_windows}\t#{session_path}' \
     || print -u2 -- 'No tmux sessions.'
 }
 
