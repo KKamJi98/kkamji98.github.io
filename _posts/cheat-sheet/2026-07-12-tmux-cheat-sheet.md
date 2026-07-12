@@ -262,8 +262,34 @@ tmk() {
   tmux kill-session -t "$task"
 }
 
+# fzf로 session을 고르는 fuzzy switcher: tmux 안에서는 switch, 밖에서는 attach
+tms() {
+  local rows pick
+  rows="$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"
+  [[ -n "$rows" ]] || { print -u2 -- 'No tmux sessions.'; return 1; }
+  pick="$(print -r -- "$rows" | fzf --height=40% --reverse --prompt='tmux session> ')" || return 1
+  [[ -n "$pick" ]] || return 1
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$pick"
+  else
+    tmux attach-session -t "$pick"
+  fi
+}
+
+# 현재 session 또는 지정한 session의 이름 변경. task ID 규칙을 그대로 검증
+tmrn() {
+  local old new
+  if (( $# == 2 )); then old="$1"; new="$2"; else new="$1"; fi
+  __tmux_task_id_valid "$new" || { print -u2 -- 'Usage: tmrn [old-name] <new-name>'; return 2; }
+  if [[ -n "$old" ]]; then
+    tmux rename-session -t "$old" "$new"
+  else
+    tmux rename-session "$new"
+  fi
+}
+
 # 짧은 읽기/설정 alias
-alias tls='tmux list-sessions'
+alias tls='tml'
 alias tmr='tmux source-file ~/.tmux.conf'
 ```
 
@@ -275,11 +301,15 @@ source ~/.zshrc
 tm hermes-review
 tml
 tma hermes-review
+tms
+tmrn hermes-review incident-review
 tmw docs-build npm run build
-tmk hermes-review
+tmk incident-review
 ```
 
 `tm`은 기존 session이 있으면 그 session에 attach합니다. 현재 디렉터리에서 반드시 새 session을 시작해야 할 때는 `tmn`을 사용합니다. `tmw`는 긴 build, test watcher, interactive worker처럼 terminal app 종료 뒤에도 계속 살아야 하는 process에만 사용하며, native subagent와 one-shot worker를 무조건 tmux로 감싸지는 않습니다.
+
+`tms`는 [fzf](https://github.com/junegunn/fzf)가 설치되어 있어야 하며, session이 늘어나 이름을 정확히 기억하기 어려울 때 유용합니다. tmux 내부에서 실행하면 `attach` 대신 `switch-client`를 사용하므로 중첩 attach 오류 없이 session을 전환할 수 있습니다. `tmrn`은 인자 하나면 현재 session의 이름을, 인자 둘이면 지정한 session의 이름을 변경하며, 생성 함수와 같은 task ID 규칙을 검증합니다.
 
 ---
 
