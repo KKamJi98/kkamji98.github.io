@@ -36,7 +36,7 @@ Bedrock Knowledge Base는 foundation model(FM)을 사내 데이터에 연결해 
 
 즉 RAG 시리즈에서 다룬 개념을 그대로 두되, 구현/운영 부담을 서비스로 넘기는 것이 핵심입니다.
 
-![Bedrock Knowledge Base 흐름 - S3(Documents)를 Bedrock KB가 ingest(parse/chunk/embed)해 Vector Store에 index하고, 질의 시 RetrieveAndGenerate가 top-k로 검색해 FM(Claude)이 Answer + Citation을 생성](/assets/img/aws/bedrock-kb-architecture.webp)
+![Amazon Bedrock Knowledge Base 전체 구조 - 관리형 ingestion은 S3와 connector의 문서를 fetch, parse, chunk, embed해 vector store에 색인합니다. 질의는 Agent Runtime에서 IAM과 metadata filter를 적용한 뒤 top-k chunk를 검색하고, foundation model이 출처 기반 Answer와 Citation을 생성합니다.](/assets/img/aws/bedrock-kb-architecture.webp)
 
 ---
 
