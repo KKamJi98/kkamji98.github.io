@@ -11,7 +11,7 @@ image:
 
 [RAG 시리즈](/posts/rag-overview-concept-and-pipeline/)에서 chunking, 임베딩, 벡터 DB, hybrid search, 보안까지 RAG 파이프라인을 직접 구성하는 관점으로 다뤘습니다. 그런데 이 파이프라인 전체를 매니지드 서비스로 대신 운영해 주는 선택지도 있습니다. **Amazon Bedrock Knowledge Base**는 S3 등에 있는 문서를 가리키면 fetch, chunking, embedding, 벡터 저장, 검색, 생성까지의 RAG 워크플로우를 관리형으로 처리합니다. 이번 글에서는 Bedrock Knowledge Base의 구성 요소와 콘솔/IaC 구축, Retrieve API, 그리고 접근제어를 살펴보고, 앞선 RAG 시리즈의 개념이 실제 서비스에서 어떻게 매핑되는지 정리합니다.
 
-이 글은 Bedrock Knowledge Base 자체를 이해하기 위한 기본편입니다. Slack 챗봇, Google Docs, PDF, S3, n8n sync workflow까지 묶은 실전 운영 구조는 [Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 운영하기](/posts/bedrock-kb-slack-rag-chatbot/)에서 이어서 다룹니다.
+이 글은 Bedrock Knowledge Base 자체를 이해하기 위한 기본편입니다. Google Docs 파싱, S3 Vectors, n8n workflow, Slack 멘션 봇까지 묶어 실제로 구축하며 밟은 함정들은 [Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 운영하기](/posts/bedrock-kb-slack-rag-chatbot/)에서 이어서 다룹니다.
 
 ---
 
