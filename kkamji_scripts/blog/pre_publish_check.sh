@@ -61,5 +61,10 @@ if failures:
 print('Quality gate passed: no blocking mechanical issues')
 PY
 
+echo "=== Content-depth audit ==="
+# Reading-time and semantic signals are advisory. This command fails only for
+# deterministic mechanical violations defined by audit_content_depth.py.
+"${PYTHON_BIN}" "${SCRIPT_DIR}/audit_content_depth.py" --fail-on mechanical
+
 echo "=== Git status ==="
 git status --short --branch

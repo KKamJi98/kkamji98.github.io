@@ -1,6 +1,6 @@
 ---
 title: tmux Command Cheat Sheet
-date: 2026-07-12 02:30:00 +0900
+date: 2026-07-11 02:30:00 +0900
 author: kkamji
 categories: [System, Linux]
 tags: [tmux, terminal, shell, zsh, macos, linux, devops, cli, cheat-sheet] # TAG names should always be lowercase
