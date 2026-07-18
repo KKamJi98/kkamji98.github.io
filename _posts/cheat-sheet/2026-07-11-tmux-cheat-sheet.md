@@ -201,7 +201,7 @@ tmux show-options -gv history-limit
 
 ## 6. zsh 함수와 별칭
 
-이 글의 명령은 모두 `tm`으로 시작하도록 통일합니다. 아래를 `~/.zshrc` 또는 `~/.zsh_functions`처럼 zsh가 source하는 파일에 추가합니다. session 이름은 task ID로 사용하고, 기존 session에 잘못 연결하거나 같은 task에 writer를 중복으로 만들지 않도록 생성·attach 경로를 분리합니다.
+이 글의 명령은 모두 `tm`으로 시작하도록 통일합니다. 아래를 `~/.zshrc` 또는 `~/.zsh_functions`처럼 zsh가 source하는 파일에 추가합니다. session 이름은 task ID로 사용하고, 기존 session에 잘못 연결하거나 같은 task에 writer를 중복으로 만들지 않도록 생성 및 attach 경로를 분리합니다.
 
 ```zsh
 __tmux_task_id_valid() {

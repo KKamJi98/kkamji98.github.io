@@ -5,139 +5,128 @@ author: kkamji
 categories: [CI/CD, Jenkins]
 tags: [jenkins, agent, ec2, aws, microk8s]     # TAG names should always be lowercase
 comments: true
+content_kind: lab
 image:
   path: /assets/img/ci-cd/jenkins/jenkins.webp
 ---
 
-> <https://www.whatap.io/ko/blog/77/> 와탭랩스에서 공유한 글을 보고 한 번 적용해 볼까 하는 생각이 들었습니다. 기존 계획은 Jenkins Server를 하나 만들어 사용하는 것이었지만 이미 MicroK8s Server를 구축해 둔 만큼 해당 클러스터를 활용해 Jenkins Agent를 Pod로 동적으로 생성해 보는 건 어떨까요? 하고 싶은 건 해봐야겠죠.  
-{: .prompt-tip}
+Jenkins controller를 EC2에 두고 build 실행은 이후 Kubernetes agent에 맡기면 controller의 상태와 build workload를 분리할 수 있습니다. 이 글은 Ubuntu 24.04에서 Jenkins LTS를 설치하고, 외부 노출과 초기 administrator 설정에서 놓치기 쉬운 보안 항목을 함께 정리합니다.
 
 > **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 jenkins, agent, ec2이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - 현재 Jenkins Debian/Ubuntu 설치 안내는 Java 21을 먼저 설치한 뒤 LTS apt repository를 추가하는 흐름입니다.  
+> - package는 systemd service와 `jenkins` 사용자, 기본 8080 listener를 만듭니다.  
+> - 8080을 Internet에 직접 공개하지 말고, HTTPS reverse proxy 또는 VPN 뒤에 두며 administrator password와 Jenkins home을 보호합니다.  
 {: .prompt-info}
 
 ---
 
-> 일단 이번에는 Jenkins Server를 구축하는 내용을 기반으로 포스트를 작성하겠습니다.  
-> EC2 ⇒ t4g.small  
-> OS ⇒ Ubuntu 24.04 LTS  
-{: .prompt-info}
+## 1. 구성과 용어
+
+| 용어 | 의미 |
+| --- | --- |
+| controller | pipeline 정의, credential, queue, plugin을 관리하는 Jenkins server입니다. |
+| agent | controller가 할당한 build와 test를 실행하는 worker입니다. Kubernetes Pod agent도 이 역할입니다. |
+| `JENKINS_HOME` | job 설정, build metadata, plugin, credential 관련 데이터를 보관하는 Jenkins data directory입니다. |
+
+작은 팀 기준으로 Jenkins는 4 GiB 이상의 memory와 충분한 persistent disk를 권장합니다. EC2 instance type은 build를 controller에서 실행할지, agent에서 실행할지에 따라 달라집니다. controller 자체에는 build cache와 대량 artifact를 쌓지 않는 편이 운영과 backup에 유리합니다.
+
+```text
+developer
+    |
+HTTPS reverse proxy or VPN
+    |
+Jenkins controller on EC2 ----- schedules ----- Kubernetes agent Pod
+    |                                            |
+JENKINS_HOME and backups                        build, test, artifact upload
+```
+
+controller는 pipeline의 제어와 상태를 맡고, 신뢰하지 않는 repository code를 실행하는 build는 agent에 격리하는 것이 핵심입니다. Jenkins도 built-in node에서 build를 실행하지 않는 controller isolation을 권장합니다.
 
 ---
 
-## 1. Java 설치
+## 2. Java 21 설치
 
-> Jenkins는 실행에 Java가 필요합니다. OpenJDK를 설치해봅시다  
-{: .prompt-info}
+Jenkins 설치보다 Java를 먼저 설치합니다. Jenkins 공식 설치 문서는 현재 Java 21 이상을 요구하며, Java를 나중에 설치하면 service가 유효한 Java runtime을 찾지 못할 수 있다고 안내합니다.
 
 ```bash
 sudo apt update
-sudo apt install fontconfig openjdk-17-jre
+sudo apt install -y fontconfig openjdk-21-jre
 java -version
-openjdk version "17.0.11" 2024-04-16
-OpenJDK Runtime Environment (build 17.0.11+9-Ubuntu-1)
-OpenJDK 64-Bit Server VM (build 17.0.11+9-Ubuntu-1, mixed mode, sharing)
 ```
+
+지원 Java version은 Jenkins release에 따라 바뀔 수 있습니다. controller와 agent image를 upgrade할 때는 Jenkins Java support policy와 plugin compatibility를 함께 확인합니다.
 
 ---
 
-## 2. Jenkins 설치
+## 3. Jenkins LTS 설치
+
+LTS repository를 사용하면 12주 주기의 장기 지원 release stream을 받습니다. weekly repository는 새 기능을 더 빨리 제공하지만 운영 환경에서는 plugin 검증 부담이 커질 수 있습니다.
 
 ```bash
-sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update
-sudo apt-get install jenkins
-sudo systemctl enable jenkins
-
----
-
-## 확인
-
-root@ip-10-0-0-24:~/jenkins# systemctl status jenkins
-● jenkins.service - Jenkins Continuous Integration Server
-     Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
-     Active: active (running) since Sun 2024-05-05 06:54:50 UTC; 1min 27s ago
-   Main PID: 3338760 (java)
-      Tasks: 45 (limit: 2197)
-     Memory: 594.5M (peak: 602.5M)
-        CPU: 26.886s
-     CGroup: /system.slice/jenkins.service
-             └─3338760 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/j>
-
-May 05 06:54:32 ip-10-0-0-24 jenkins[3338760]: 39ea4f81e4ca4b0cb3669573128b5aed
-May 05 06:54:32 ip-10-0-0-24 jenkins[3338760]: This may also be found at: /var/lib/jenkins/secrets/initialAdminPassw>
-May 05 06:54:32 ip-10-0-0-24 jenkins[3338760]: *************************************************************
-May 05 06:54:32 ip-10-0-0-24 jenkins[3338760]: *************************************************************
-May 05 06:54:32 ip-10-0-0-24 jenkins[3338760]: *************************************************************
-May 05 06:54:50 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:50.698+0000 [id=33]        INFO        jenkins.InitR>
-May 05 06:54:50 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:50.814+0000 [id=24]        INFO        hudson.lifecy>
-May 05 06:54:50 ip-10-0-0-24 systemd[1]: Started jenkins.service - Jenkins Continuous Integration Server.
-May 05 06:54:52 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:52.453+0000 [id=49]        INFO        h.m.DownloadS>
-May 05 06:54:52 ip-10-0-0-24 jenkins[3338760]: 2024-05-05 06:54:52.454+0000 [id=49]        INFO        hudson.util.R>
-lines 1-20/20 (END)
+sudo apt update
+sudo apt install -y jenkins
+sudo systemctl enable --now jenkins
 ```
 
----
-
-## 3. Jenkins 접속해보기
-
-> Jenkins Server에 접속하려면 EC2 인스턴스 인바운드 규칙에서 8080 포트를 허용해야 합니다.  
-{: .prompt-info}
----
-> {EC2_Public_IP}:8080.  
-> 위와 같이 웹브라우저에서 접속해줍니다.  
-{: .prompt-info}
-
-![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/54600af8-b49f-4694-a9f0-6bc047ad7ce1)
-
-> 비밀번호가 필요한 것을 알 수 있습니다. /var/lib/jenkins/secrets/initialAdminPassword를 확인해볼까요?  
-{: .prompt-info}
+설치 후에는 process 상태와 log를 확인합니다.
 
 ```bash
-root@ip-10-0-0-24:~# cat /var/lib/jenkins/secrets/initialAdminPassword
-39a746af851e4dca44bcbe3669r153128ab 
+sudo systemctl status jenkins --no-pager
+sudo journalctl -u jenkins.service -n 100 --no-pager
 ```
 
-> 해당 비밀번호로 접속해봅시다.  
-{: .prompt-info}
-
-![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/902c0205-5850-4ef8-91e9-5c991a426301)
-
-> 접속했습니다. Install suggested plugins를 눌러 기본 플러그인을 설치해 보겠습니다.  
-{: .prompt-info}
+기본 listener는 8080입니다. 이미 사용 중인 port가 있다면 systemd drop-in으로 `JENKINS_PORT`를 바꾸고 daemon reload 후 재시작합니다. package가 제공하는 unit file을 직접 수정하면 package upgrade에서 덮어쓸 수 있습니다.
 
 ---
 
-## 4. Jenkins 설정
+## 4. 안전하게 초기 설정 열기
 
-> Admin 계정부터 설정해보겠습니다.  
-> ~~플러그인 설치하다가 캡쳐 까먹은건 비밀~~.  
-{: .prompt-info}
+최초 unlock password는 server의 다음 파일에 있습니다.
 
-![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/a081faf3-b58c-48db-9446-734d63903d0a)
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
 
-![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/5de1886f-9751-43bd-9d83-b5dcd8505298)
+이 값은 one-time administrator setup에만 사용하고 chat, source repository, terminal capture에 남기지 않습니다. setup wizard에서는 필요한 plugin만 설치하고, administrator 계정에는 개인 계정과 강력한 password 또는 조직의 identity provider를 사용합니다.
+
+EC2 security group은 다음을 기준으로 설계합니다.
+
+- SSH는 bastion 또는 관리자 CIDR로만 제한합니다.
+- Jenkins 8080은 reverse proxy, load balancer, VPN subnet 등 필요한 caller만 허용합니다.
+- 일반 사용자는 HTTPS endpoint로 접속하고, TLS certificate와 HTTP to HTTPS redirect는 edge proxy에서 강제합니다.
+- controller에서 Kubernetes API, source control, artifact registry로 나가는 egress도 필요한 host와 port로 제한합니다.
+
+---
+
+## 5. 운영 준비
+
+Jenkins는 controller state가 사라지면 job 설정과 credential 운영에 큰 영향을 받습니다. 다음 항목을 설치 직후 준비합니다.
+
+- EBS volume 또는 동등한 persistent disk에 `JENKINS_HOME`을 두고, backup과 restore 절차를 실제로 점검합니다.
+- plugin은 update center에서 무분별하게 올리지 말고 staging에서 core LTS와 함께 검증합니다.
+- credential은 Jenkins credential store와 외부 secret manager를 사용합니다. Jenkinsfile, console log, agent image에 token을 넣지 않습니다.
+- build는 가능한 ephemeral agent에서 실행하고, controller executor는 0으로 두는 운영 모델을 검토합니다.
+- administrator 권한, audit log, security advisory, backup retention을 정기적으로 검토합니다.
 
 ---
 
-## 5. 마무리
+## 6. 정리
 
-![Untitled](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/8392049c-02e8-4a77-baa0-98c404040780)
-
-> 다음 글에는 Kubernetes Pod를 Agent로 사용하는 방법을 올려보도록 하겠습니다.  
----
-
-## 6. Reference
-
-- [WhaTap - https://www.whatap.io/ko/blog/77/](https://www.whatap.io/ko/blog/77/)
+EC2에 Jenkins를 설치하는 작업은 package 설치에서 끝나지 않습니다. Java와 LTS repository를 확인한 뒤 controller의 영속 데이터, HTTPS 접근 경로, administrator 계정, build agent 격리를 함께 준비해야 복구와 권한 관리가 가능한 CI 기반이 됩니다.
 
 ---
+
+## 7. Reference
+
+- [Jenkins Docs - Installing Jenkins on Linux](https://www.jenkins.io/doc/book/installing/linux/)
+- [Jenkins Docs - Java Support Policy](https://www.jenkins.io/doc/book/platform-information/support-policy-java/)
+- [Jenkins Docs - Securing Jenkins](https://www.jenkins.io/doc/book/security/)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

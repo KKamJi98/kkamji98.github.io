@@ -5,112 +5,116 @@ author: kkamji
 categories: [DevOps, Container]
 tags: [kubernetes, harbor]     # TAG names should always be lowercase
 comments: true
+content_kind: lab
 image:
   path: /assets/img/registry/harbor/harbor.webp
 ---
 
-저번 포스트에서 Harbor를 구축하는 과정을 다뤘습니다. 이번 포스트에서는 구축한 Harbor에 컨테이너 이미지를 업로드하고 다시 받아오는 과정에 대해 알아보도록 하겠습니다. Harbor를 구축하면서 자체 생성된 인증서를 사용하였기 때문에 해당 인증서를 Docker에 추가해주거나 insecure-registries 설정을 추가해주셔야 로그인이 가능합니다.
+Harbor는 OCI registry에 project 단위 권한, 취약점 scan, retention, content trust 같은 운영 기능을 더한 container image registry입니다. 이 글은 project에 versioned image를 push하고 digest로 검증해 pull하는 기본 흐름을 다룹니다.
 
 > **TL;DR**  
-> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
-> - 주요 키워드는 harbor, #, TAG이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Harbor에 push하려면 먼저 project를 만들고 `<harbor-address>/<project>/<repository>:<tag>` 형식으로 image를 tag합니다.  
+> - self-signed CA를 쓰는 HTTPS registry는 client가 해당 CA를 신뢰하도록 설정합니다. HTTP 또는 무분별한 insecure registry 설정은 피합니다.  
+> - CI에는 사람 계정보다 project-scoped robot account와 만료, 최소 권한을 사용하고 deployment는 mutable tag 대신 digest를 사용합니다.  
 {: .prompt-info}
 
 ---
 
-## 1. 프로젝트 생성
+## 1. 이미지 이름과 project 이해하기
 
-> 이미지를 업로드하기 위해서는 프로젝트가 생성되어 있어야 합니다. AWS ECR을 사용해보신 분들은 Repository를 생성한다고 생각하시면 될 것 같습니다.  
-{: .prompt-tip}
+Harbor에서 project는 image repository와 권한을 묶는 최상위 단위입니다. private project는 member 또는 권한이 있는 robot account만 pull할 수 있고, public project는 누구나 pull할 수 있습니다.
 
-![Harbor Create Project](/assets/img/registry/harbor/harbor_create_project.webp)
+| 구성 요소 | example | 의미 |
+| --- | --- | --- |
+| registry | `harbor.example.com` | Harbor endpoint입니다. port가 기본 HTTPS port가 아니면 port도 포함합니다. |
+| project | `platform` | 권한과 policy를 적용하는 Harbor namespace입니다. |
+| repository | `api` | 하나의 image 계열과 tag를 보관합니다. |
+| tag | `1.0.0` | 사람이 읽는 version label입니다. 같은 tag는 변경될 수 있습니다. |
+| digest | `sha256:...` | image content를 식별하는 immutable hash입니다. |
 
----
+Harbor UI에서 project를 먼저 생성합니다. CI가 push할 project는 기본적으로 private으로 두고, 필요한 pull 권한만 부여합니다. proxy cache project에는 직접 push할 수 없습니다.
 
-## 2. Harbor 로그인
-
-> Docker CLI를 사용해 Harbor에 로그인 할 수 있습니다. 로그인에는 웹 브라우저에서 접속할 때 사용한 Username, Password가 필요합니다.  
-{: .prompt-tip}
-
-```bash
-❯ docker login {your-harbor-domain}
-Username: {your-username}
-Password: {your-passowrd}
-Login Succeeded
+```text
+local image -- tag --> harbor.example.com/platform/api:1.0.0
+                              |
+                            push
+                              |
+                         Harbor project
+                              |
+                    digest-pinned image pull
+                              |
+                       Kubernetes workload
 ```
 
 ---
 
-## 3. 테스트용 Docker 이미지 가져오기
+## 2. TLS trust와 로그인
+
+Docker client는 registry에 HTTPS로 연결하려고 합니다. Harbor가 사설 CA로 서명한 certificate를 사용한다면 CA certificate를 client host의 아래 경로에 설치합니다. `<harbor-address>`에는 registry port가 있으면 port까지 포함합니다.
 
 ```bash
-❯ docker pull nginx:latest
+sudo install -d -m 0755 /etc/docker/certs.d/<harbor-address>
+sudo install -m 0644 ca.crt /etc/docker/certs.d/<harbor-address>/ca.crt
 ```
 
----
-
-## 4. 이미지 태그 변경
-
-> Harbor 레지스트리에 이미지를 업로드하기 위해서는 해당 이미지 태그를 Harbor의 도메인에 맞게 변경해주어야 합니다.  
-{: .prompt-tip}
+그 후 project에 push 권한이 있는 account로 로그인합니다.
 
 ```bash
-❯ docker tag nginx:latest {your-harbor-domain}/{project-name}/nginx:latest
+docker login <harbor-address>
 ```
+
+`insecure-registries`는 plain HTTP 또는 검증되지 않은 certificate를 허용하게 하므로 production 해결책으로 사용하지 않습니다. CA trust 문제는 certificate chain, DNS name, client trust store를 수정해 해결합니다.
+
+CI에서는 project-scoped robot account를 만들고 `Pull Repository`와 필요한 경우 `Push Repository`만 부여합니다. robot secret은 생성 화면에서 한 번만 받을 수 있으므로 secret manager에 저장하고, 만료일과 rotation 절차를 설정합니다.
 
 ---
 
-## 5. 이미지 업로드
+## 3. Image tag와 push
+
+예시로 public image를 가져와 project namespace와 version tag를 붙입니다. `latest`는 이후 다른 image를 가리킬 수 있으므로 release와 deployment에는 명시적인 version tag를 사용합니다.
 
 ```bash
-❯ docker push {your-harbor-domain}/{project-name}/nginx:latest
-The push refers to repository [{your-harbor-domain}/{project-name}/nginx]
-825fb68b6033: Pushed 
-7619c0ba3c92: Pushed 
-1c1f11fd65d6: Pushed 
-6b133b4de5e6: Pushed 
-3d07a4a7eb2a: Pushed 
-756474215d29: Pushed 
-8d853c8add5d: Pushed 
-latest: digest: sha256:<DISCOVERY_CA_CERT_HASH> size: 1778
+docker pull alpine:3.20
+docker tag alpine:3.20 <harbor-address>/platform/alpine:3.20
+docker push <harbor-address>/platform/alpine:3.20
 ```
 
----
-
-## 6. 확인
-
-![Harbor Image Check](/assets/img/registry/harbor/harbor_image_upload_check.webp)
+push가 끝나면 Harbor UI의 repository에서 artifact, tag, digest, scan 결과와 project policy를 확인합니다. tag immutability, vulnerability severity policy, retention policy는 production project별로 결정합니다.
 
 ---
 
-## 7. 이미지 다운로드
+## 4. Digest로 pull 검증
 
-> 명확한 확인을 위해 모든 Docker 이미지를 삭제 후 다운로드 해보겠습니다.  
-{: .prompt-tip}
+push 결과에 표시된 digest 또는 Harbor UI의 digest를 사용하면 정확히 같은 artifact를 다시 가져올 수 있습니다.
 
 ```bash
-❯ docker rmi $(docker images -q) -f
-
-❯ docker pull {your-harbor-domain}/test-project/nginx:latest
-latest: Pulling from test-project/nginx
-302e3ee49805: Pull complete 
-d07412f52e9d: Pull complete 
-9ab66c386e9c: Pull complete 
-4b563e5e980a: Pull complete 
-55af3c8febf2: Pull complete 
-5b8e768fb22d: Pull complete 
-85177e2c6f39: Pull complete 
-Digest: sha256:<DISCOVERY_CA_CERT_HASH>
-Status: Downloaded newer image for {your-harbor-domain}/test-project/nginx:latest
-{your-harbor-domain}/test-project/nginx:latest
-
-❯ docker images
-REPOSITORY                                TAG       IMAGE ID       CREATED      SIZE
-{your-harbor-domain}/test-project/nginx   latest    7f553e8bbc89   5 days ago   192MB
+docker pull <harbor-address>/platform/alpine@sha256:<digest>
+docker image inspect <harbor-address>/platform/alpine@sha256:<digest>
 ```
 
+특정 image만 삭제해 pull을 다시 확인하려면 대상 reference를 명시합니다. `docker rmi $(docker images -q) -f`처럼 host의 모든 local image를 제거하는 명령은 build cache와 실행 중인 workload에 영향을 줄 수 있으므로 사용하지 않습니다.
+
+```bash
+docker image rm <harbor-address>/platform/alpine:3.20
+docker pull <harbor-address>/platform/alpine@sha256:<digest>
+```
+
+Kubernetes에서 private Harbor project의 image를 pull하려면 node runtime에도 registry CA trust가 필요하며, Pod에는 project pull 권한을 가진 `imagePullSecret`이 필요합니다. registry credential을 Pod manifest에 평문으로 넣지 않습니다.
+
 ---
+
+## 5. 정리
+
+Harbor push의 핵심은 단순 upload가 아니라 project 경계와 artifact 식별을 함께 정하는 일입니다. HTTPS CA trust와 최소 권한 robot account로 push 경로를 제한하고, deployment에서는 version tag를 추적용으로 남기되 digest를 사용하면 재현 가능한 pull 기준을 만들 수 있습니다.
+
+---
+
+## 6. Reference
+
+- [Harbor Docs - Create Projects](https://goharbor.io/docs/2.15.0/working-with-projects/create-projects/)
+- [Harbor Docs - Pulling and Pushing Images in the Docker Client](https://goharbor.io/docs/2.15.0/working-with-projects/working-with-images/pulling-pushing-images/)
+- [Harbor Docs - Create Project Robot Accounts](https://goharbor.io/docs/2.15.0/working-with-projects/project-configuration/create-robot-accounts/)
+- [Kubernetes Docs - Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

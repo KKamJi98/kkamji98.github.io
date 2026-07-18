@@ -9,69 +9,57 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-일반적으로 **쿠버네티스 환경**에서 애플리케이션을 노출할 때, Ingress Controller를 활용해 HTTP/HTTPS 트래픽을 라우팅합니다. 그런데 간단한 테스트나 내부용 서비스처럼 **전체 인증/인가 시스템을 구축하기엔 오버**지만, 그래도 **외부에 바로 열고 싶지 않은 경우**가 있습니다.
-
-예컨대:
-
-- 사내 POC 서비스나 개발용 애플리케이션을 일단 인터넷에서 접속 가능하게 하되, 팀원 외에는 못 들어오게 하고 싶을 때
-- 별도의 OAuth/OpenID/SAML 같은 인증 시스템까지는 필요 없고, 임시로 **ID/Password** 한 세트를 걸어두고 싶을 때
-
-이럴 때 **Nginx Ingress**가 제공하는 **Basic Authentication** 기능을 사용하면 **손쉽게 인증 절차**를 추가할 수 있습니다.
+Basic Auth는 별도 identity provider 없이 HTTP request에 사용자 이름과 password를 보내는 단순한 인증 방식입니다. 이 글은 `ingress-nginx` controller를 이미 설치한 cluster에서 특정 Ingress path를 htpasswd Secret으로 보호하는 방법을 다룹니다.
 
 > **TL;DR**  
-> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
-> - 주요 키워드는 ingress, basic-auth, nginx이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - 이 예제는 `ingress-nginx` 전용 annotation을 사용합니다. Ingress resource만 만들면 동작하지 않고 해당 IngressClass를 처리하는 controller가 필요합니다.  
+> - Secret의 key는 반드시 `auth`여야 합니다. key가 다르면 controller가 503을 반환할 수 있습니다.  
+> - Basic Auth는 encoding일 뿐 encryption이 아닙니다. TLS, secret 접근 제어, rate limit을 함께 적용하고 장기적인 사용자 인증에는 SSO 또는 external auth를 검토합니다.  
 {: .prompt-info}
 
 ---
 
-## 1. 개념
+## 1. 선택 전에 알아둘 점
 
-**Basic Auth**는 가장 간단한 형태의 HTTP 인증 방식 중 하나로, **Base64로 인코딩된 ID/PW**를 HTTP Header(`Authorization`)에 넣어 전송합니다. SSL 없이 사용하면 Credential이 노출될 위험이 있으므로, **HTTPS 환경**(TLS Ingress)에서 사용하는 것이 바람직합니다.
+Kubernetes Ingress API는 stable이지만 동결되어 있으며, Kubernetes 프로젝트는 새 traffic API 설계에 Gateway API를 권장합니다. 다만 Basic Auth는 Gateway API의 공통 기능이 아니라 controller별 extension일 수 있습니다. 기존 `ingress-nginx` 환경에 간단한 접근 장벽이 필요할 때는 아래 방식이 유효하지만, 새 platform을 설계한다면 선택한 Gateway implementation의 인증 정책과 external auth 연동을 먼저 확인합니다.
 
-Nginx Ingress Controller에서는 **Ingress 리소스**에 **특정 Annotation**을 달고, 별도로 **htpasswd 포맷**의 Secret을 만들어 등록하면, 해당 Host/Path에 접속 시 Basic Auth 창이 뜨게 됩니다.
+| 용어 | 의미 |
+| --- | --- |
+| Ingress | 외부 HTTP(S) request를 cluster Service로 route하는 Kubernetes resource입니다. |
+| IngressClass | 어떤 controller가 Ingress를 처리할지 나타내는 field입니다. |
+| `ingress-nginx` | Ingress resource와 `nginx.ingress.kubernetes.io/*` annotation을 해석하는 controller입니다. |
+| Basic Auth | `Authorization` header에 Base64 encoded credential을 보내는 HTTP authentication scheme입니다. |
+| htpasswd | 사용자 이름과 password hash를 저장하는 file format입니다. |
 
 ---
 
-## 2. 사용 방법
+## 2. htpasswd Secret 만들기
 
-### 2.1. htpasswd 파일 생성
-
-> Nginx의 Basic Auth를 사용하려면, **htpasswd** 유틸리티로 사용자 정보를 생성해야 합니다.  
-> 우분투의 경우 `apache2-utils`, 레드햇 계열의 경우 `httpd-tools`의 패키지를 설치해야 합니다.  
-{: .prompt-tip}
+Ubuntu에서는 `apache2-utils` package에 `htpasswd`가 포함됩니다. bcrypt hash를 사용해 `auth` file을 만듭니다.
 
 ```bash
-htpasswd -c auth myuser
+sudo apt update
+sudo apt install -y apache2-utils
+htpasswd -cB auth myuser
 ```
 
-- `-c`: 새 파일 생성  
-- `auth`: 결과가 들어갈 파일 이름  
-- `myuser`: 사용자명 (ID)
+`-c`는 file을 새로 만들거나 덮어씁니다. 기존 사용자를 유지한 채 사용자를 추가할 때는 `-c` 없이 실행합니다. `auth` file은 password hash를 포함하므로 repository에 commit하거나 chat에 올리지 않습니다.
 
-이렇게 하면 비밀번호 입력 후, `auth` 파일에 아래와 같은 내용이 생깁니다:
-
-```shell
-myuser:$apr1$1CYkL3..$hKr3YnMXrRRvNcY/Knmhf/
-```
-
-### 2.2. Secret으로 변환
-
-생성된 `auth` 파일(= htpasswd 파일)을 쿠버네티스 Secret으로 만들어야 Nginx Ingress가 참조할 수 있습니다.
+아래 명령은 Secret을 원하는 namespace에 apply합니다. `--from-file=auth`가 Secret의 `data.auth` key를 만듭니다.
 
 ```bash
-kubectl create secret generic basic-auth \
+kubectl -n <namespace> create secret generic basic-auth \
   --from-file=auth \
-  -n <namespace>
+  --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-- **Secret 이름**: `basic-auth` (임의로 설정 가능)  
-- `--from-file=auth` : key가 `auth`인 데이터 항목으로 저장
+Secret과 Ingress는 기본적으로 같은 namespace에 둡니다. `ingress-nginx`는 `namespace/secretName` 형식도 지원하지만 namespace 경계를 넘는 Secret 참조는 RBAC와 운영 책임을 더 복잡하게 만들 수 있습니다.
 
-### 2.3. Ingress 리소스에 Annotation 추가
+---
 
-이제 Ingress에 **Annotation**을 달아 Basic Auth를 활성화합니다.
+## 3. TLS Ingress에 Basic Auth 연결
+
+`ingressClassName`은 cluster에 설치한 class 이름과 일치해야 합니다. TLS Secret은 신뢰 가능한 certificate를 포함한 별도 Secret을 사용합니다.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -80,11 +68,16 @@ metadata:
   name: myapp-ingress
   namespace: <namespace>
   annotations:
-    # Basic Auth 설정
-    nginx.ingress.kubernetes.io/auth-type: "basic"
-    nginx.ingress.kubernetes.io/auth-secret: "basic-auth"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
     nginx.ingress.kubernetes.io/auth-realm: "Restricted Access"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - myapp.example.com
+    secretName: myapp-tls
   rules:
   - host: myapp.example.com
     http:
@@ -98,29 +91,40 @@ spec:
               number: 80
 ```
 
-- `nginx.ingress.kubernetes.io/auth-type: "basic"`: Basic Auth를 사용한다고 지정  
-- `nginx.ingress.kubernetes.io/auth-secret: "basic-auth"`: 위에서 만든 Secret 이름과 동일해야 함  
-- `nginx.ingress.kubernetes.io/auth-realm`: 로그인 창에 보일 Realm 메시지 (선택)
+```bash
+kubectl apply -f ingress.yaml
+kubectl -n <namespace> describe ingress myapp-ingress
+```
 
-> **중요**: 여기서 `auth-secret`이 가리키는 것은 **htpasswd 파일**을 담은 Secret(위에서 `basic-auth`로 만든 것)입니다.  
-{: .prompt-danger}
-
-### 2.4. 옵션들
-
-- **Whitelist IP**: 특정 IP에서 인증 없이 접근하게 하려면, `nginx.ingress.kubernetes.io/whitelist-source-range` 사용
-- **Force HTTPS**: Basic Auth를 쓸 때는 `nginx.ingress.kubernetes.io/force-ssl-redirect: "true"`로 HTTP->HTTPS 리다이렉트 권장
-- **custom-error-page** 등 다른 Annotation도 조합 가능
+`auth-secret`의 Secret name이나 `auth` key가 틀리면 정상 backend가 있어도 인증 구성 실패로 503이 발생할 수 있습니다. annotation은 controller마다 호환되지 않으므로 다른 NGINX 기반 controller에 그대로 복사하지 않습니다.
 
 ---
 
-## 3. 마무리
+## 4. 동작과 보안 확인
 
-Nginx 혹은 Nginx Ingress Controller의 **Basic Auth**를 사용해 별도의 인증 서버를 구축하지 않고 웹사이트에 간단한 인증 절차를 추가할 수 있습니다. 사이드 프로젝트나 테스트용 애플리케이션을 외부에 노출할 때 간단한 인증 보호를 위해 효과적으로 사용할 수 있습니다.  
+인증 없이 요청하면 401과 `WWW-Authenticate` header를, 올바른 credential을 넣으면 backend response를 확인할 수 있습니다.
 
-> **HTTPS** 환경에서만 사용하는 것을 권장합니다.(**HTTP**로 Basic Auth 쓰면 PW가 그대로 노출될 위험이 있음)  
-{: .prompt-danger}
+```bash
+curl -I https://myapp.example.com/
+curl --user myuser https://myapp.example.com/
+```
+
+Basic Auth credential은 request마다 전송됩니다. TLS가 없거나 TLS termination 이후 구간이 안전하지 않으면 credential을 보호할 수 없습니다. 다음 운영 기준을 함께 적용합니다.
+
+- HTTPS redirect만으로 충분하다고 보지 말고 HTTP listener와 certificate renewal 상태를 점검합니다.
+- Secret `get` 권한을 필요한 workload와 운영자에게만 부여하고, etcd encryption at rest와 backup 접근 권한을 검토합니다.
+- browser에 credential이 cache될 수 있으므로 password rotation과 account 폐기 절차를 둡니다.
+- Internet-facing endpoint에는 WAF, IP allowlist, rate limit을 함께 검토합니다. Basic Auth만으로 brute-force 공격을 방어하지 못합니다.
+- 사용자 lifecycle, MFA, audit, fine-grained authorization이 필요해지면 OIDC, OAuth2 proxy, external auth 같은 중앙 인증 방식을 사용합니다.
 
 ---
+
+## 5. Reference
+
+- [Kubernetes Docs - Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+- [Gateway API Docs - Concepts](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
+- [Ingress-NGINX Docs - Basic Authentication](https://kubernetes.github.io/ingress-nginx/examples/auth/basic/)
+- [Ingress-NGINX Docs - Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

@@ -5,6 +5,7 @@ author: kkamji
 categories: [Personal, University]
 tags: [arduino, usb-serial-communication]     # TAG names should always be lowercase
 comments: true
+mermaid: true
 # image:
 # path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
@@ -13,127 +14,117 @@ comments: true
 
 # Arduino의 시리얼 통신 기능 이해
 
-> Arduino의 중요한 특징 중 하나는 USB 시리얼 포트를 통해 직접 프로그램을 업로드할 수 있다는 점이다  
-> 
+---
+
+## 1. TL;DR
+
+- UART는 TX와 RX 선으로 바이트를 주고받는 비동기 직렬 통신이다.
+- USB와 UART는 전기 신호와 프로토콜이 다르다. PC에서 보이는 "시리얼 포트"는 USB 장치나 변환기가 제공하는 논리적 인터페이스일 수 있다.
+- UNO R3에서는 USB 브리지와 외부 장치가 모두 메인 microcontroller unit(MCU)의 D0(RX), D1(TX)을 사용한다. 두 장치를 동시에 연결하면 통신이 충돌할 수 있다.
+- Leonardo처럼 USB가 내장된 보드는 `Serial`과 물리 UART인 `Serial1`의 역할을 구분해야 한다.
 
 ---
 
-## 1. Serial Port
+## 2. 먼저 구분할 것: UART와 USB
 
-<!-- ![Untitled 1](/assets/img/Untitled.png) -->
-<!-- ![사진1](https://private-user-images.githubusercontent.com/72260110/244950819-ff29f2ef-5e57-4237-90fc-03829bc13a87.png?jwt=<REDACTED_JWT>) -->
-![사진1](https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53)
-<!-- ![사진2](_site/assets/img/favicons/android-chrome-512x512.png) -->
+**UART(Universal Asynchronous Receiver/Transmitter)** 는 송신선 TX(Transmit)와 RX(Receive)로 데이터를 비동기 직렬 방식으로 전달하는 하드웨어 인터페이스다. 별도 클록 선이 없으므로 송신기와 수신기는 보드레이트, 데이터 비트, 패리티, 정지 비트 같은 설정을 맞춰야 한다.
 
+UART 한 바이트는 보통 유휴 상태의 높은 전압 뒤에 start bit, 데이터 비트, 선택적 패리티, stop bit 순으로 전송한다. 예를 들어 `8N1`은 데이터 8비트, 패리티 없음(None), stop bit 1개를 뜻한다. 수신기는 start bit를 기준으로 각 비트를 샘플링하므로 설정이 맞지 않으면 문자가 깨지거나 framing error가 발생할 수 있다.
 
+**USB(Universal Serial Bus)** 는 호스트와 장치가 패킷으로 통신하는 버스다. USB 케이블을 꽂았다고 해서 곧바로 UART 신호가 흐르는 것은 아니다. 장치의 펌웨어와 운영체제 드라이버가 USB CDC ACM(Communications Device Class Abstract Control Model) 같은 통신 장치 클래스를 제공할 때, 운영체제는 이를 가상 직렬 포트로 보일 수 있다.
 
-- Arduino Uno의 0번과 1번 핀으로 시리얼 통신 수행 -> 하드웨어 시리얼 포트
-- 최근에는 시리얼 포트가 장착된 컴퓨터가 거의 없지만 USB 포트를 DB9 시리얼 포트로 변환하는 어댑터는 여전히 사용하고 있음
-- Arduino Uno에 사용된 **ATmega328P** Micro Controller는 하나의 하드웨어 시리얼 포트만 가지고 있음
-- Arduino Uno의 Hardware Serial Port는 **데이터 송신(TX, transmit)과 수신(RX, receive)에 디지털 0번과 1번 핀**을 사용
+즉, "USB 시리얼"은 USB 자체와 UART가 같은 기술이라는 뜻이 아니라, USB 연결을 PC용 직렬 포트처럼 사용할 수 있게 만든 구성이다.
 
 ---
 
-## 2. Arduino가 USB Interface를 통해 통신할 수 있도록 사용하는 두 가지 방법
+## 3. UNO R3의 USB 시리얼 경로
 
-> 시리얼과 USB는 호환되지 않는다.  
-> 
-1. **별도의 집적 회로(IC)를 사용하는 방법**
-    1. **Arduino Uno가** 시리얼과 USB 사이의 변환을 위해 별도의 전용 Micro Controller IC를 사용
-2. **USB 인터페이스를 내장하고 있는 마이크로 컨트롤러를 사용하는 방법**
-    1. **Arduino 레오나르도**에 사용된 ATmega32U4 Micro Controller가 대표적인 예
+UNO R3의 주 MCU는 ATmega328P이며, 보드의 USB 브리지용 보조 MCU는 ATmega16U2다. Arduino 문서는 UNO R3의 D0을 RX, D1을 TX로 표기한다. USB 케이블을 통한 personal computer(PC) 연결은 ATmega16U2를 거쳐 ATmega328P의 하드웨어 UART로 이어진다.
 
----
+```mermaid
+flowchart LR
+    PC["PC terminal"] -->|"USB packets"| Bridge["ATmega16U2<br/>USB bridge"]
+    Bridge -->|"TTL UART"| Main["ATmega328P<br/>main MCU"]
+    Main <-->|"D0 RX, D1 TX"| Device["external UART device"]
+```
 
-## 3. 내장/외장 USB-Serial 변환장치를 사용하는 Arduino 보드
+이 연결 때문에 UNO R3에서 D0/D1에 GPS(Global Positioning System), Bluetooth 모듈, USB-UART 어댑터 같은 외부 장치를 연결하는 경우에는 다음을 확인해야 한다.
 
-- USB-Serial 변환을 하기 위해서는 **FTDI**와 Silicon Labs에서 만든 칩(**CP210x**)이 흔히 사용되며 이들 칩은 Serial과 USB 사이의 변환 전용으로 사용됨
-- FTDI 칩이나 CP210 칩을 컴퓨터에 연결하면 컴퓨터에서는 DB9 포트와 같은 방법으로 제어할 수 있는 '**가상 시리얼 포트**'가 나타남
+- USB 브리지와 외부 장치가 같은 RX/TX 선을 동시에 구동하지 않는지 확인한다.
+- 외부 장치의 TX는 보드의 RX로, 외부 장치의 RX는 보드의 TX로 교차 연결한다.
+- 외부 장치의 전압 레벨과 보드의 허용 전압을 확인한다.
+- 업로드나 시리얼 모니터 사용 중에는 D0/D1 연결을 분리해야 할 수 있다.
 
-![사진2](https://github.com/kkamji98/Oxi/assets/72260110/04f5d508-9ead-4b1f-afb0-d2d1925964e2)
+`Serial.begin(9600)`은 UNO R3에서 ATmega328P UART의 데이터 전송률을 9600 bit/s로 설정한다. 이것은 USB 버스 자체의 전송 속도를 9600 bit/s로 바꾸는 호출이 아니다.
 
-<aside>
-👨🏽‍🦯 마이크로컨트롤러가 동작할 때 USB를 통해 컴퓨터와 연결되어 있지 않아도 된다면 분리가 가능한 FTDI 프로그래머를 사용하는 것이 좋음
+### 3.1. 전압과 접지는 별도 확인 대상이다
 
-⇒ 제품의 단가를 낮출 수 있음
-⇒ 제품의 크기를 작게 만들 수 있음
-
-</aside>
-
-### 3.1. 보드 안에 FTDI 칩을 포함하고 있는 Arduino 보드
-
-- Arduino Nano
-- Arduino Extreme (단종)
-- Arduino NG (단종)
-- Arduino Diecimila (단종)
-- Arduino Duemilanove (단종)
-- 초기 Arduino Mega (단종)
-
-### 3.2. 외부 FTDI 케이블이나 브레이크아웃 보드를 사용하여 프로그래밍과 USB-시리얼 통신을 수행하는 Arduino 보드
-
-- Arduino Mini
-- Arduino Ethernet
-- Arduino LilyPad
-- Arduino Pro (단종)
-- Arduino Pro Mini (단종)
+D0/D1의 UART 신호는 보드에 따라 5 V 또는 3.3 V TTL(Transistor-Transistor Logic) 전압 레벨을 사용한다. 두 장치는 TX와 RX를 교차 연결하는 것 외에 GND(ground)를 공통으로 연결해야 신호 전압의 기준을 공유한다. Arduino 공식 문서가 경고하듯이 TTL UART 핀을 RS-232 포트에 직접 연결하면 안 된다. RS-232는 다른 전압 범위를 사용하므로 변환기가 필요하며, 직접 연결하면 보드를 손상시킬 수 있다.
 
 ---
 
-## 4. 별도의 USB 기능을 포함하는 ATmega MicroController를 시리얼 변환기로 사용하는 Arduino 보드
+## 4. 가장 작은 에코 예제
 
-### 4.1. Arduino Uno
+아래 스케치는 시리얼 모니터에서 받은 바이트를 그대로 되돌려 보낸다. 시리얼 모니터의 보드레이트를 `9600`으로 맞춘다.
 
-- USB-Serial 변환을 위해 FTDI 칩이 아닌 다른 IC(**ATmega16U2**)를 사용한 첫 번째 Arduino 보드.
-    - (초기에는 ATmega8U2 사용)
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
 
-### 4.2. ATmega16U2 칩이 FTDI 칩과 다른 점
+void loop() {
+  if (Serial.available() > 0) {
+    const char received = static_cast<char>(Serial.read());
+    Serial.write(received);
+  }
+}
+```
 
-1. 윈도우에서 USB-Serial 변환 기능을 사용하기 위해서는 전용 드라이버를 설치해야 함 (Arduino IDE에 포함되어 있음)
-2. 아두이노 우노라는 제품에 대한 생산자 ID(vendor ID)와 제품 ID(product ID)를 컴퓨터에 제공할 수 있음
-    - FTDI 칩은 '일반(generic) USB-시리얼 장치'로 인식됨
-    - 장치관리자에 'Arduino'로 표시됨
-3. 별도의 펌웨어를 통해 USB-시리얼 변환 기능 이외의 기능 제공 가능
-    - ATmega16U2에는 USB-Serial 변환 기능을 수행하기 위해 설치되어 있는 LUFA 라이브러리가 설치되어 있음
-    - LUFA 기반 펌웨어가 아닌 다른 펌웨어로 교체 시, Arduino 보드가 **조이스틱, 키보드, MIDI** 장치 등 가상의 시리얼 포트와는 다른 장치로 컴퓨터에서 인식되도록 할 수 있음
-    - LUFA 기반 펌웨어가 아닌 펌웨어를 사용하는 경우에는 Arduino에 프로그램을 업로드하기 위해 **AVRISP mkII**와 같은 별도의 프로그래머를 사용해야 함
+`Serial.available()`은 읽을 수신 데이터가 있는지 확인하고, `Serial.read()`는 한 바이트를 읽는다. `Serial.write()`는 값을 문자로 형식화하지 않고 바이트로 보낸다. 사람이 읽을 메시지를 출력할 때는 `Serial.print()` 또는 `Serial.println()`을 사용한다.
 
----
-
-## 5. USB 통신 기능이 내장된 MCU를 사용하는 아두이노 보드
-
-### 5.1. Arduino Leonardo
-
-- 하나의 칩으로 메인 MCU와 USB 인터페이스 역할을 구현한 최초의 보드
-- Arduino Leonardo를 포함한 여러 공식 아두이노 보드와 아두이노 호환 보드는 USB 통신 기능을 포함하고 있는 ATmega32U4 마이크로컨트롤러를 사용함
-
-### 5.2. USB 통신 기능을 내장한 마이크로컨트롤러를 사용하는 것의 장점
-
-1. 가격
-    1. 하나의 마이크로컨트롤러만 사용하면 되므로 단가를 줄일 수 있음
-2. 범용성
-    1. Arduino 보드를 키보드, 마우스, 조이스틱 등 시리얼 포트가 아닌 다른 USB 장치로 동작하도록 만들기가 쉬워짐 
-3. 동시 통신
-    1. USB를 통한 프로그램 업로드와 시리얼 통신을 위한 연결선을 분리해서 사용하므로 컴퓨터와 통신을 하면서 GPS와 같은 다른 시리얼 장치와 동시에 통신 가능
+UART는 바이트 스트림이지 "한 줄"이나 "한 메시지"를 보장하는 프로토콜이 아니다. 따라서 수신 측은 줄바꿈 문자, 고정 길이, 길이 필드처럼 메시지의 끝을 판단하는 규칙을 별도로 정해야 한다. `available()`이 1보다 크다는 사실은 읽을 바이트 수만 알려 줄 뿐, 한 번의 `read()`로 논리적 메시지가 완성됐다는 뜻은 아니다.
 
 ---
 
-## 6. USB 호스트 기능이 있는 Arduino 보드
+## 5. USB 내장 보드에서는 `Serial`과 `Serial1`을 구분한다
 
-### 6.1. USB 호스트 기능
+Leonardo의 ATmega32U4에는 USB 통신 기능이 내장되어 있다. 이 보드는 컴퓨터에 가상 CDC 직렬 포트뿐 아니라 키보드나 마우스 같은 USB 장치로도 보일 수 있다.
 
-- USB 장치를 아두이노 보드에 연결하여 사용할 수 있는 기능
-- 연결된 USB 장치를 위한 드라이버가 있어야 함
+Arduino의 보드별 Serial 표에서 Leonardo는 다음과 같이 구분된다.
 
-### 6.2. USB 호스트 기능이 있는 아두이노 보드
+- `Serial`: 컴퓨터와의 USB 가상 직렬 통신
+- `Serial1`: D0(RX), D1(TX)을 사용하는 물리 UART 통신
 
-- Arduino 듀에, Arduino 제로, Arduino MKR100 등
-- USB 호스트 라이브러리를 통해 장치 드라이버 제공
+따라서 PC 로그와 외부 UART 장치를 동시에 써야 한다면, Leonardo에서는 보통 `Serial`을 PC용으로, `Serial1`을 외부 장치용으로 사용한다. UNO R3처럼 D0/D1이 USB 브리지와 공유되는 구조와는 차이가 있다.
 
-### 6.3. AOA(Android Open Accessory) 프로토콜
+USB CDC 포트인 Leonardo의 `Serial`에서는 `Serial.begin()`의 보드레이트와 형식 설정이 USB 전송에 적용되지 않는다. PC 프로그램이 포트를 열었는지 확인해야 하는 초기화 코드라면 `if (Serial)`의 의미도 보드별로 다르다. Arduino 문서에 따르면 native USB 보드에서는 연결 열림 상태를 나타내지만, 비 USB CDC UART에서는 항상 참이다. USB 연결을 기다리는 `while (!Serial)`은 PC 없이 독립적으로 동작해야 하는 장치의 시작을 멈출 수 있으므로 용도를 분명히 해야 한다.
 
-- Arduino Mega ADK에서 사용
-- Arduino와 Android 장치 사이의 통신 지원
-- Android 장치에서 애플리케이션을 사용하여 아두이노의 입출력을 제어하는 것이 목적
+---
+
+## 6. 보드 선택 기준
+
+| 요구 사항 | 확인할 점 |
+| --- | --- |
+| PC와 로그 또는 명령을 주고받기 | 보드가 USB 가상 직렬 포트를 제공하는지 확인 |
+| 외부 UART 장치 하나를 연결 | D0/D1 핀의 UART를 사용할 수 있는지 확인 |
+| PC 통신과 외부 UART를 동시에 사용 | USB 경로와 하드웨어 UART가 분리되어 있는지, 추가 UART가 있는지 확인 |
+| 키보드 또는 마우스 같은 USB 장치 동작 | 보드와 펌웨어가 USB 장치 클래스를 지원하는지 확인 |
+
+---
+
+## 7. 자료 범위와 한계
+
+이 글은 공식 UNO R3와 Leonardo 문서, Arduino Serial API 문서를 기준으로 한다. FTDI, CP210x, 단종 보드, 호환 보드는 제조사와 보드 리비전에 따라 USB 브리지 칩과 드라이버 구성이 달라 일괄적으로 단정하지 않았다. 실제 연결 전에는 사용하는 보드의 회로도, 핀아웃, 전압 조건을 확인해야 한다.
+
+---
+
+## 8. Reference
+
+- [Arduino UNO R3](https://docs.arduino.cc/hardware/uno-rev3/)
+- [Arduino Serial API](https://docs.arduino.cc/language-reference/en/functions/communication/serial/)
+- [Arduino Serial.begin()](https://docs.arduino.cc/language-reference/en/functions/communication/serial/begin/)
+- [Arduino Leonardo](https://docs.arduino.cc/hardware/leonardo)
+- [USB-IF - Class Definitions for Communication Devices 1.2](https://www.usb.org/document-library/class-definitions-communication-devices-12)
 
 <br><br>
 

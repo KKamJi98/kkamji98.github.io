@@ -669,7 +669,7 @@ citation은 검색 결과 metadata의 `doc_url`(문서 heading 앵커 딥링크)
 
 ```python
 # section_path의 '>'가 Slack 링크를 끊으므로 구분자를 교체
-_label = _h["section_path"].replace(" > ", " · ")
+_label = _h["section_path"].replace(" > ", " / ")
 _cites.append(f"[{_i2}] <{_h['doc_url']}|{_label}>")
 ```
 

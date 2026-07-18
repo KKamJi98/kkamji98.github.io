@@ -9,152 +9,117 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-## 1. Concept
-
-> 쿠버네티스 클러스터는 애플리케이션 컨테이너를 실행하기 위한 일련의 노드 머신들의 집합입니다.  
-
-- 클러스터는 **Control-Plane** 및 하나 이상의 컴퓨팅 머신 또는 노드를 포함합니다.
-- 컨트롤 플레인이 어느 Application을 실행하고 Application이 어느 Container Image를 사용할지와 같이 클러스터를 원하는 상태로 유지 관리합니다. Node는 Control Plane에서 요청을 받아 Application과 Workload를 실제로 실행합니다
-- 따라서 물리 머신, 가상 머신, 온프레미스, 클라우드에 구애받지 않고 머신 그룹 전체에서 컨테이너를 예약하고 실행할 수 있습니다.
+Kubernetes 클러스터는 컨테이너를 실행하는 머신의 묶음이 아니라, 선언한 상태를 실제 상태에 계속 맞추는 분산 제어 시스템이다. 사용자는 API에 원하는 상태를 기록하고, 컨트롤 플레인과 노드 구성 요소는 그 상태를 관찰하고 조정한다. 이 관점을 잡으면 Pod가 어느 경로로 생성되고, 장애 때 무엇을 먼저 확인할지 이해하기 쉬워진다.
 
 > **TL;DR**  
-> - 핵심 개념과 실습 흐름을 운영 관점에서 다시 확인할 수 있도록 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - 클러스터는 컨트롤 플레인과 하나 이상의 노드로 구성된다. 컨트롤 플레인은 API 상태를 관리하고, 노드는 Pod를 실제로 실행한다.  
+> - `kube-apiserver`는 모든 제어 요청의 중심이며, `etcd`는 API 데이터의 일관된 저장소다. 스케줄러와 컨트롤러는 API를 통해 원하는 상태를 실제 상태로 수렴시킨다.  
+> - `kubelet`은 노드에서 Pod 실행을 보장한다. `kube-proxy`는 선택 구성 요소이며 Service 네트워크 규칙을 구현한다.  
 {: .prompt-info}
 
 ---
 
-## 2. Master Node
+## 1. 전체 구조와 책임 경계
 
-> 클러스터의 전반적인 관리와 조정을 담당합니다. 여러 개의 마스터 노드로 구성될 수 있어 고가용성(HA)를 지원합니다.  
+클러스터는 컨트롤 플레인(control plane)과 하나 이상의 노드(node)로 구성된다. 컨트롤 플레인은 클러스터 전반의 상태를 관리하고, 노드는 컨테이너 런타임을 통해 Pod를 실행한다. Pod는 Kubernetes가 배치하고 관리하는 가장 작은 배포 단위이며, 하나 이상의 컨테이너를 포함한다.
 
-### 2.1. etcd
+`kubectl`이나 CI 시스템이 리소스를 생성할 때 구성 요소끼리 직접 호출하는 구조가 아니다. 요청과 상태 변경은 API 서버를 중심으로 흐른다. 이 hub-and-spoke 구조에서 다른 컨트롤 플레인 구성 요소는 원격 API를 제공하지 않는다.
 
-> 🔥 키 값 형식으로 클러스터의 모든 상태와 정보를 저장하는 데이터베이스입니다.  
-> 데이터베이스, 분산 시스템을 위한 신뢰할 수 있는 키-값 스토어. 단순하고 안전하며 신속합니다  
-> ⇒ k8s 클러스터의 모든 상태 정보와 메타데이터가 저장됩니다.  
-{: .prompt-tip}
+```mermaid
+flowchart LR
+    U[사용자와 자동화] --> A[kube-apiserver]
+    A <--> E[etcd]
+    A --> C[kube-controller-manager]
+    A --> S[kube-scheduler]
+    C --> A
+    S --> A
+    A <--> K1[kubelet: Node A]
+    A <--> K2[kubelet: Node B]
+    K1 --> R1[Container runtime]
+    K2 --> R2[Container runtime]
+    R1 --> P1[Pods]
+    R2 --> P2[Pods]
+```
 
-- etcd 데이터 저장소에 저장되는 Cluster에 관한 정보는 다음과 같습니다.
-  - Nodes
-  - Pods
-  - Configs
-  - Secrets
-  - Accounts
-  - Roles
-  - Bindings
-  - Others
-
-#### 2.1.1. etcd의 역할과 중요성
-
-1. 클러스터 상태 저장
-2. 데이터의 일관성 유지
-    - Raft 합의 알고리즘을 사용해 클러스터 전반에 걸쳐 데이터의 강력한 일관성을 보장
-3. 고가용성
-4. 변경 감지 및 감시 기능
-    - key-value 데이터에 대한 변경 사항을 감시하는 기능을 제공합니다.
-    - etcd를 통해 k8s는 클러스터의 상태 변화를 실시간으로 감지하고, 필요한 조치를 취할 수 있음
-
-#### 2.1.2. k8s와 etcd의 상호 작용
-
-- **API 서버와의 통신:** Kubernetes의 API 서버는 클러스터의 모든 정보를 etcd에 읽고 쓰는 주된 방법입니다. API 서버는 etcd와의 상호작용을 통해 클러스터 상태의 변경 사항을 반영하고 조회합니다.
-- **클러스터 복원력:** etcd의 높은 가용성과 일관성은 Kubernetes Cluster의 전반적인 복원력과 안정성을 강화합니다. 예를 들어, 마스터 노드가 실패할 경우, etcd 데이터를 사용하여 클러스터 상태를 복원할 수 있습니다.
-- **스케일링과 업데이트:** 클러스터의 스케일링이나 업데이트 시, etcd는 새로운 노드나 서비스의 정보를 저장하고, 이를 클러스터 전체와 동기화합니다.
-
-### 2.2. api-server
-
-> 🔥 쿠버네티스 API를 제공하는 컴포넌트로, 사용자 클러스터 내의 다양한 컴포넌트와 통신을 담당합니다  
-{: .prompt-tip}
-
-- api-server를 통해 사용자, 클러스터 내부의 다양한 컴포넌트, 그리고 외부 시스템들이 클러스터와 상호 작용할 수 있습니다.
-- **RESTful Interface**
-  - 클라이언트가 HTTP 메서드를 사용해 리소스(Pod, Service 등)를 생성, 수정, 삭제할 수 있습니다.
-- **인증 및 권한 부여**
-  - 클라이언트 요청에 대한 인증과 권한 부여 절차를 처리합니다.
-- **클러스터 상태 관리**
-  - api-server는 클러스터의 상태를 etcd와 같은 분산 키-값 저장소에 저장하고 관리합니다.
-- 리소스 유효성 검사 및 적용
-  - 클라이언트로부터 리소스에 대한 요청을 받으면, 해당 요청의 유효성을 검사하고, 규칙에 맞는 경우에만 시스템에 적용합니다
-
-### 2.3. controller-manager
-
-> 쿠버네티스 컨트롤러는 종류가 매우 다양합니다. 예시로 아래 두 개의 컨트롤러가 있습니다. 이 컨트롤러들은 Kube Controller Manager라는 하나의 프로세스로 패키지화되어 관리됩니다  
-
-- Kube Controller Manager를 설치하면 나머지 다른 컨트롤러도 같이 설치됨
-
-### 2.4. scheduler
-
-> Node Pod를 Scheduling  
-
-- Pod를 어디에 배치시킬지 결정
+이 그림은 논리적 책임을 표현한다. 관리형 Kubernetes에서는 컨트롤 플레인의 프로세스가 사용자 노드와 다른 인프라에서 실행될 수 있으며, 구성 요소의 물리적 배치는 제품과 운영 방식에 따라 달라진다.
 
 ---
 
-## 3. Worker Node
+## 2. 컨트롤 플레인: 원하는 상태를 기록하고 조정하는 쪽
 
-### 3.1. kubelet
+### 2.1. kube-apiserver
 
-> 클러스터의 각 노드에서 실행되는 Agent  
-> 🔥 API 서버로부터 Pod 명세를 받아, 이를 해석 후 컨테이너 실행합니다.  
-{: .prompt-tip}
+`kube-apiserver`는 Kubernetes HTTP API를 노출하는 핵심 서버다. `kubectl`, 컨트롤러, kubelet, 외부 자동화는 API 서버를 통해 리소스를 읽고 변경한다. 요청은 일반적으로 인증, 인가, 입력 검증과 정책 적용을 거친 뒤 API 데이터로 처리된다.
 
-- Kube API 서버의 지시를 듣고 필요한대로 노드에서 컨테이너를 배포하거나 파괴합니다
-- Kube API 서버는 주기적으로 Kubelet으로부터 상태 보고서를 가져옵니다
-- 클러스터의 각 노드의 kubelet은 pod의 상태를 확인 후 k8s api 서버에 보고합니다.
-  - ⇒ 노드와 컨테이너의 상태를 모니터링
+API 서버는 구성 요소 간의 계약 경계이기도 하다. 예를 들어 스케줄러는 Pod를 노드에 직접 전달하지 않고 API의 Pod 정보를 관찰한 뒤 바인딩 결과를 API에 기록한다. 따라서 API 서버의 가용성이나 인증 문제가 발생하면 새 배포, 스케줄링, 상태 조회 같은 제어 작업이 먼저 영향을 받는다.
 
-### 3.2. Worker Node가 Master Node와 연결이 끊겼을 경우
+### 2.2. etcd
 
-- kube-apiserver와 kube-scheduler가 없기 때문에 kubelet은 외부에서 명령을 받을 수 없습니다
-- 해당 Worker Node는 독립적으로 존재하며 해당 Worker Node의 kubelet은 독립적으로 Pods를 관리합니다
-- 이 경우 kubelet은 Pods를 어떻게 관리할까?
-  - Pod에 관한 정보를 저장하는 서버 디렉토리를 통해 Pod 정의 파일을 읽을 수 있습니다.
-    - `/etc/kubernetes/manifests` - 서버 디렉터리
-    - 서버 디렉터리에 Pod 정의 파일을 넣어두면 kubelet은 주기적으로 해당 경로를 확인한 후 Host에 Pod를 생성합니다
+`etcd`는 API 서버 데이터의 일관되고 고가용성인 키-값 저장소다. Pod, Deployment, Secret, RBAC 객체처럼 Kubernetes API로 관리하는 객체의 상태는 API 서버를 통해 저장되고 조회된다. 애플리케이션이나 운영 도구가 etcd에 직접 접근하는 방식은 일반적인 제어 경로가 아니다.
 
-### 3.3. kube-proxy
+etcd는 제어면의 핵심 데이터이므로 백업과 복구 절차는 클러스터 구축 방식에 맞춰 검증해야 한다. 관리형 서비스에서는 공급자가 etcd 운영과 복구 책임을 맡을 수 있으므로, 사용자가 접근 가능한 범위와 복원 절차를 먼저 확인한다.
 
-> Kubernetes 클러스터 내에서 네트워킹을 관리하는 주요 컴포넌트  
+### 2.3. kube-scheduler
 
-- 각 Kubernetes 노드에 설치되며, 클러스터 내의 네트워크 통신 및 라우팅 규칙을 처리
-- Pod간 네트워크 통신을 가능하게 하고, 외부 네트워크로부터의 접근을 관리
+`kube-scheduler`는 아직 노드에 할당되지 않은 Pod를 찾고, 리소스 요청, 노드 제약, affinity, taint와 toleration 같은 조건을 고려해 적합한 노드를 선택한다. 스케줄러는 컨테이너를 실행하지 않는다. 선택 결과를 API에 기록하면 해당 노드의 kubelet이 Pod 명세를 보고 실행을 진행한다.
 
-#### 3.3.1. Kube-Proxy의 주요 기능
+### 2.4. kube-controller-manager와 cloud-controller-manager
 
-1. 서비스 추상화
-    1. Kubernetes의 서비스 추상화를 구현
-    2. 서비스 ⇒ Pod 그룹에 대한 네트워크 접근을 제공하는 추상적인 개념
-2. 로드밸런싱
-    1. 클라이언트 요청을 서비스에 연결된 여러 Pod 중 하나로 분산시키는 역할을 합니다
-3. 네트워크 규칙 관리
-    1. 각 노드의 iptables, IPVS 또는 사용자 공간 프록시를 통해 네트워크 규칙을 설정하고 관리해 Pod, Service 및 Endpoint 간 통신을 보장합니다
-4. 외부 접근 처리
-    1. 외부에서 클러스터 내의 서비스에 접근할 수 있도록 NodePort, LoadBalancer 또는 ClusterIP 서비스 타입을 통해 트래픽을 적절한 Pod로 라우팅합니다.
+컨트롤러(controller)는 원하는 상태와 관찰된 상태의 차이를 계속 조정하는 제어 루프다. `kube-controller-manager`는 ReplicaSet, Node, Job 등 Kubernetes 기본 동작을 구현하는 여러 컨트롤러를 실행한다. 예를 들어 Deployment의 원하는 복제 수와 실제 Pod 수가 다르면 관련 컨트롤러가 API 상태를 바꿔 차이를 줄인다.
 
-### 3.4. Containerd
+`cloud-controller-manager`는 선택 구성 요소다. 클라우드 공급자의 로드 밸런서, 노드, 라우트 같은 리소스와 Kubernetes를 연결할 때 사용된다. 클라우드 통합 방식은 배포판과 공급자마다 다르므로, 모든 클러스터에 이 프로세스가 있다고 가정하면 안 된다.
 
-> 컨테이너 런타임으로 사용되는 컴포넌트  
+---
 
-- Kubernetes 클러스터 내에서 컨테이너를 생성하고 실행하는 역할을 합니다
+## 3. 노드: Pod를 실제로 실행하는 쪽
 
-#### 3.4.1. Containerd의 주요 기능과 특징
+### 3.1. kubelet과 컨테이너 런타임
 
-1. 컨테이너 실행 및 관리
-    1. 컨테이너의 생명주기를 관리합니다
-    ⇒ 컨테이너의 생성, 실행, 일시 정지, 재개 및 종료
-2. 이미지 관리
-    1. 컨테이너 이미지를 다운로드, 저장, 관리하는 기능을 제공합니다
-    2. Docker 이미지 레지스트리 또는 OCI(Open Container Initiative) 호환 레지스트리에서 이미지를 가져오는 것을 포함
-3. 네트워킹 및 스토리지
-    1. 컨테이너에 대한 네트워킹 및 스토리지 인터페이스를 제공
-    2. CNI(Container Network Interface)와 CSI(Container Storage Interface) 플러그인을 통해 확장 가능
-4. 보안
-    1. 컨테이너의 격리 및 보안을 위해 Namespace, Cgroups, AppArmor, SELinux 등을 사용함
-5. 가벼움 및 성능
-    1. Docker 보다 가벼운 대안으로 시스템 리소스를 적게 사용하며, 더 빠른 시작 시간과 성능을 제공
-6. 표준화 및 호환성
-    1. OCI 표준을 준수 ⇒ 다양한 컨테이너 도구 및 시스템과의 호환성 보장
+`kubelet`은 각 노드에서 실행되며, API에서 할당된 Pod 명세에 맞게 컨테이너가 실행 중인지 보장한다. kubelet은 컨테이너 런타임(container runtime)에 이미지 준비와 컨테이너 생명주기 작업을 요청하고, Pod와 노드 상태를 API 서버에 보고한다. 런타임은 컨테이너를 실제로 실행하는 소프트웨어이며, Kubernetes는 특정 구현 하나를 요구하지 않는다.
+
+노드에서 API 서버와의 연결이 끊겨도 이미 실행 중인 컨테이너가 즉시 사라지는 것은 아니다. 다만 새 명세를 받거나 상태를 보고할 수 없으므로, 새 스케줄링과 정상적인 제어 루프는 진행되지 않는다. `/etc/kubernetes/manifests` 같은 static Pod 경로는 kubelet이 로컬 파일을 감시하는 별도 기능이며, 일반 워크로드의 장애 복구 수단으로 혼동하지 않아야 한다.
+
+### 3.2. kube-proxy와 네트워크 Add-on
+
+`kube-proxy`는 선택 구성 요소로, 각 노드에서 Service를 구현하기 위한 네트워크 규칙을 유지한다. Service의 가상 IP나 포트로 들어온 트래픽이 적절한 백엔드 Pod로 전달되도록 돕지만, 모든 Pod 간 네트워크를 단독으로 구성하는 구성 요소는 아니다.
+
+Pod 네트워크, NetworkPolicy 구현, DNS 같은 기능은 CNI 플러그인과 CoreDNS 등 Add-on의 책임이다. 따라서 Service 연결 문제가 발생했을 때 kube-proxy만 점검하지 말고 EndpointSlice, CNI, DNS, NetworkPolicy, 애플리케이션 리스닝 상태를 함께 확인해야 한다.
+
+---
+
+## 4. Deployment가 Pod가 되기까지
+
+다음 흐름은 Deployment를 적용했을 때의 대표적인 제어 경로다.
+
+1. 사용자가 `kubectl apply`로 Deployment의 원하는 상태를 API 서버에 제출한다.
+2. API 서버가 요청을 처리하고 API 데이터를 저장한다.
+3. Deployment와 ReplicaSet 컨트롤러가 원하는 복제 수에 맞는 Pod 객체를 만든다.
+4. 스케줄러가 아직 노드가 정해지지 않은 Pod를 선택해 노드에 바인딩한다.
+5. 선택된 노드의 kubelet이 Pod 명세를 관찰하고 런타임으로 컨테이너를 실행한다.
+6. kubelet과 컨트롤러가 상태를 API에 보고하고, 차이가 생기면 다시 조정한다.
+
+핵심은 이 과정이 한 번만 실행되는 배포 스크립트가 아니라는 점이다. 노드 장애, 컨테이너 종료, 복제 수 변경처럼 실제 상태가 달라질 때 컨트롤러는 API에 선언된 상태로 다시 수렴하려 한다.
+
+---
+
+## 5. 운영 시 확인 순서
+
+문제가 생기면 컴포넌트 이름을 나열하기보다 제어 경로를 따라 범위를 좁힌다.
+
+- 새 Pod가 Pending이면 Pod의 이벤트, 스케줄링 조건, 노드 가용 자원과 taint를 먼저 확인한다.
+- Pod가 노드에 배정됐지만 실행되지 않으면 해당 노드의 kubelet, 런타임, 이미지 pull, 볼륨과 네트워크 조건을 확인한다.
+- Service로 트래픽이 전달되지 않으면 Pod Ready 상태와 EndpointSlice를 확인한 뒤 Service, kube-proxy 또는 데이터 플레인, DNS와 NetworkPolicy를 점검한다.
+- API 조작이 실패하면 현재 인증 주체와 RBAC 권한, API 서버 연결, API 서버 감사 로그를 확인한다. kubelet과 API 서버의 통신은 TLS와 적절한 인증 및 인가 설정으로 보호해야 한다.
+
+클러스터는 여러 구성 요소의 합이지만, 운영 판단은 API의 원하는 상태, 노드의 실제 상태, 그리고 둘을 연결하는 제어 루프를 기준으로 내리는 편이 정확하다.
+
+---
+
+## 6. Reference
+
+- [Kubernetes Documentation - Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)
+- [Kubernetes Documentation - Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
+- [Kubernetes Documentation - Communication between Nodes and the Control Plane](https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

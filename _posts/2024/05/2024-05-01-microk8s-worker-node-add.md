@@ -5,115 +5,135 @@ author: kkamji
 categories: [Kubernetes]
 tags: [kubernetes, k8s, k8s-cluster, cluster, microk8s, aws, ec2, tls, ssl, kubeconfig, worker-node]     # TAG names should always be lowercase
 comments: true
+content_kind: lab
 image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> 저번 시간에는 [EC2상의 MicroK8s Cluster에 Local에서 명령하기](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/)에서 EC2 위에 있는 MicroK8s의 kubeconfig를 가져와 명령하는 방법을 다뤘습니다. 이번 포스트에서는 MicroK8s에 Worker Node를 추가하는 실습을 진행해 보겠습니다.  
-{: .prompt-info}
+MicroK8s 클러스터에 계산 자원을 늘리고 싶을 때 worker node를 추가할 수 있습니다. 이 글은 EC2의 private network 안에서 기존 control plane에 worker를 안전하게 조인하고, 실제 Pod가 해당 node에 배치되는지 확인하는 흐름을 다룹니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - `microk8s add-node`가 만든 일회성 조인 명령을 새 node에서 `--worker`와 함께 실행합니다.  
+> - worker는 workload를 실행하지만 Kubernetes control plane과 datastore를 실행하지 않으므로 HA 용량에는 기여하지 않습니다.  
+> - 조인 포트 25000과 cluster 내부 통신은 Internet이 아니라 필요한 private CIDR에서만 허용합니다.  
 {: .prompt-info}
 
 ---
 
-## 1. EC2 Worker Node 생성
+## 1. 먼저 확인할 것
 
-Spec
+MicroK8s의 worker는 kubelet과 kube-proxy가 local API server proxy를 통해 control plane의 API server와 통신하는 node입니다. 따라서 worker를 늘리는 것은 Pod 실행 capacity를 늘리는 작업이지 control plane 장애 허용성을 높이는 작업은 아닙니다. HA가 목적이라면 control plane node 수와 datastore quorum을 별도로 설계해야 합니다.
 
-- t2.micro
-- Ubuntu 24.04 LTS
+| 항목 | 확인 이유 |
+| --- | --- |
+| MicroK8s channel | control plane과 worker는 같은 안정 channel을 사용해 version skew를 피합니다. |
+| private IP 경로 | 조인 명령에 control plane의 worker가 도달 가능한 private IP를 사용합니다. |
+| security group | 25000/TCP는 조인에 필요하며, cluster 내부 Pod와 Service 통신도 node 사이에서 허용되어야 합니다. |
+| storage | hostpath storage는 node-local입니다. Stateful workload에는 공유 또는 분산 storage를 검토합니다. |
 
-![image](https://github.com/kkamji98/kkamji98.github.io/assets/72260110/96396a50-9f2e-4def-a734-460e8d28a978)
+EC2에서는 control plane security group의 25000/TCP source를 worker subnet 또는 worker security group으로 제한합니다. 0.0.0.0/0으로 여는 것은 조인 token 노출 위험을 키우므로 피합니다. 필요한 node 간 통신 범위는 사용하는 CNI, addon, control plane 구성에 따라 다르므로 배포한 MicroK8s의 services and ports 문서와 security group rule을 함께 점검합니다.
+
+```text
+control plane                         worker
+microk8s add-node                     microk8s join ... --worker
+cluster-agent :25000  <------------   join request
+Kubernetes API and CNI <----------->  kubelet and workload Pods
+```
+
+조인 전에는 두 instance의 시간이 동기화되어 있는지도 확인합니다. MicroK8s는 node 간 통신을 위해 각 node에 독립된 실행 환경과 올바른 시간이 필요하다고 안내합니다.
 
 ---
 
-## 2. MicroK8s 설치 (Worker Node)
+## 2. Worker node 준비
+
+Ubuntu instance를 준비한 뒤 control plane과 같은 MicroK8s channel을 설치합니다. 아래의 `<channel>`은 이미 운영 중인 control plane의 channel 값으로 바꿉니다.
 
 ```bash
-sudo snap install microk8s --classic
+sudo snap install microk8s --classic --channel=<channel>
+sudo microk8s status --wait-ready
+```
+
+`status --wait-ready`가 끝나기 전에 조인하면 snap 초기화 중인 서비스 때문에 실패할 수 있습니다. node의 hostname과 private DNS가 운영 규칙에 맞는지도 이 단계에서 확인합니다.
+
+---
+
+## 3. Control plane에서 조인 명령 만들기
+
+control plane node에서 다음 명령을 실행합니다.
+
+```bash
+sudo microk8s add-node
+```
+
+출력에는 `microk8s join <private-ip>:25000/<token>/<node-id>` 형태의 명령이 포함됩니다. 이 token은 cluster 가입 권한을 주는 민감 정보이므로 ticket, terminal history 공유, 블로그에 그대로 남기지 않습니다. 출력된 여러 주소 중 worker에서 실제로 도달 가능한 private IP를 선택합니다.
+
+---
+
+## 4. Worker로 조인
+
+새 worker node에서 출력된 명령에 `--worker`를 붙여 실행합니다.
+
+```bash
+sudo microk8s join <private-ip>:25000/<token>/<node-id> --worker
+```
+
+`--worker` 없이 조인하면 일반 cluster member로 추가되어 control plane 구성에 영향을 줄 수 있습니다. 조인이 완료되면 worker의 API server proxy가 control plane endpoint 목록을 관리합니다. control plane endpoint를 load balancer 뒤에 둘 때는 MicroK8s 문서의 worker endpoint 설정 절차를 따릅니다.
+
+---
+
+## 5. Cluster 상태 확인
+
+control plane에서 node가 `Ready`인지 확인합니다.
+
+```bash
+sudo microk8s kubectl get nodes -o wide
+sudo microk8s status
+```
+
+`NotReady`라면 먼저 worker에서 `sudo microk8s inspect`를 실행하고, private DNS, security group, CNI network, 서로 다른 MicroK8s channel을 확인합니다. 조인 직후 바로 `Ready`가 되지 않을 수 있으므로 원인을 보기 전에 상태 변화와 kube-system Pod를 함께 확인합니다.
+
+---
+
+## 6. Worker에 workload가 배치되는지 확인
+
+간단한 Deployment를 배포한 뒤 Pod의 `NODE` column을 확인합니다.
+
+```bash
+sudo microk8s kubectl create deployment web --image=nginx:stable --replicas=2
+sudo microk8s kubectl rollout status deployment/web
+sudo microk8s kubectl get pods -l app=web -o wide
+```
+
+이 결과는 scheduler가 해당 worker를 사용할 수 있음을 보여주지만, replica가 모든 node에 균등 분산된다는 보장은 아닙니다. node별 배치가 요구되면 resource request와 limit을 설정하고, 필요에 따라 node affinity, topology spread constraint, taint와 toleration을 명시합니다.
+
+실습을 마쳤다면 리소스를 정리합니다.
+
+```bash
+sudo microk8s kubectl delete deployment web
 ```
 
 ---
 
-## 3. 클러스터 조인 명령 생성 ( Master Node )
+## 7. 운영 시 주의점
 
-```bash
-root@ip-10-0-0-241:~# microk8s add-node
-From the node you wish to join to this cluster, run the following:
-microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6
-
-Use the '--worker' flag to join a node as a worker not running the control plane, eg:
-microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6 --worker
-
-If the node you are adding is not reachable through the default interface you can use one of the following:
-microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6
-```
+- worker를 private subnet에 두더라도 snap과 container image를 내려받을 egress 경로, DNS, proxy 정책이 필요합니다.
+- worker-only node는 control plane HA를 높이지 않습니다. control plane 장애 시에도 API를 제공해야 한다면 quorum을 충족하는 control plane 구성을 먼저 검토합니다.
+- hostpath 기반 PersistentVolume은 Pod가 다른 node로 이동하면 데이터를 자동으로 따라가지 않습니다. stateful workload에는 storage class의 failure domain과 reclaim policy를 확인합니다.
+- node 제거는 단순 instance 종료보다 `microk8s leave`, workload drain, 남은 cluster에서 `microk8s remove-node` 순서로 수행해 cluster membership을 정리합니다.
 
 ---
 
-## 4. 클러스터에 조인 ( Worker Node )
+## 8. 정리
 
-> 조인 명령어를 보니 Master Node의 **25000번 포트**가 클러스터 조인에 사용된다는 것을 알 수 있습니다. 따라서 Worker Node가 Master Node의 25000번 포트로 접근할 수 있도록 인바운드 규칙을 수정해줘야 합니다.  
-{: .prompt-info}
-
-```bash
-root@ip-10-0-0-81:~# microk8s join 10.0.0.241:25000/5da02d8092097265cffdf4e47433bdea/2618bff96bd6 --worker
-Contacting cluster at 10.0.0.241
-
-The node has joined the cluster and will appear in the nodes list in a few seconds.
-
-This worker node gets automatically configured with the API server endpoints.
-If the API servers are behind a loadbalancer please set the '--refresh-interval' to '0s' in:
-    /var/snap/microk8s/current/args/apiserver-proxy
-and replace the API server endpoints with the one provided by the loadbalancer in:
-    /var/snap/microk8s/current/args/traefik/provider.yaml
-
-Successfully joined the cluster.
-```
+worker 추가의 완료 기준은 조인 명령의 성공이 아니라 node가 `Ready`가 되고 실제 workload가 의도한 node에서 정상 실행되는 것입니다. 먼저 private network와 필요한 port를 최소 범위로 열고, 조인 후에는 scheduling과 storage의 node 의존성을 함께 확인하면 단순 용량 확장이 운영 문제로 이어지는 일을 줄일 수 있습니다.
 
 ---
 
-## 5. 확인 ( Master Node )
+## 9. Reference
 
-```bash
-root@ip-10-0-0-241:~# microk8s kubectl get nodes
-NAME            STATUS   ROLES    AGE    VERSION
-ip-10-0-0-241   Ready    <none>   18h    v1.29.4
-ip-10-0-0-81    Ready    <none>   3m4s   v1.29.2
-```
-
----
-
-## 6. Pod가 Worker Node에 생성되는지 확인
-
-```bash
-root@ip-10-0-0-241:~/microk8s# kubectl create deployment nginx --image=nginx --replicas=4
-deployment.apps/nginx created
-root@ip-10-0-0-241:~/microk8s# kubectl get pods -o wide
-NAME                     READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
-nginx-7854ff8877-9m55j   1/1     Running   0          27s   10.1.84.200   ip-10-0-0-241   <none>           <none>
-nginx-7854ff8877-flx7p   1/1     Running   0          27s   10.1.41.1     ip-10-0-0-81    <none>           <none>
-nginx-7854ff8877-fnmlp   1/1     Running   0          27s   10.1.84.199   ip-10-0-0-241   <none>           <none>
-nginx-7854ff8877-sjzkp   1/1     Running   0          27s   10.1.41.2     ip-10-0-0-81    <none>           <none>
-```
-
-> pod가 Master Node와 Worker Node에 분산되어 생성된 것을 확인할 수 있습니다.  
-{: .prompt-info}
-
-### 6.1. 마무리
-
-> 무심코 25000번 포트를 열어주지 않거나 Worker Node를 Private Subnet에 위치시킬 경우 NAT Gateway나 NAT Instance를 사용해 인스턴스가 MicroK8s 이미지를 다운로드할 수 있도록 해야 합니다. 저처럼 헤매지 않도록 주의하세요.  
-{: .prompt-tip}
-
----
-
-## 7. Reference
-
-- [kkamji98.github.io - MicroK8s Local%EC%97%90%EC%84%9C %EB%AA%85%EB%A0%B9](https://kkamji98.github.io/posts/MicroK8s-Local%EC%97%90%EC%84%9C-%EB%AA%85%EB%A0%B9/)
+- [MicroK8s Docs - Create a MicroK8s cluster](https://canonical.com/microk8s/docs/clustering)
+- [MicroK8s Docs - Services and ports](https://canonical.com/microk8s/docs/services-and-ports)
+- [Kubernetes Docs - Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

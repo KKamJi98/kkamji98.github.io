@@ -5,6 +5,7 @@ author: kkamji
 categories: [DevOps]
 tags: [devops, argocd, gitops, ci-cd, vault, cloudnet, gasida, ci-cd-study]
 comments: true
+content_kind: announcement
 image:
   path: /assets/img/ci-cd/ci-cd-study/ci-cd-study.webp
 ---
@@ -19,9 +20,8 @@ image:
 앞으로 알찬 내용으로 찾아뵙겠습니다!
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 argocd, gitops, ci-cd이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - CloudNet@의 CI/CD + ArgoCD + Vault Study에 참여했습니다.  
+> - 스터디에서 얻은 학습 내용과 인사이트를 매주 포스팅할 계획입니다.  
 {: .prompt-info}
 
 ---

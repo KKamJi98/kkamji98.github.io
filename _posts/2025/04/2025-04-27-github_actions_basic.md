@@ -9,70 +9,117 @@ image:
   path: /assets/img/github/github.webp
 ---
 
-**GitHub Actions**는 GitHub Repository 내에서 **CI/CD 파이프라인**과 다양한 자동화 작업을 쉽게 구축할 수 있도록 도와주는 도구입니다. 기존에는 Jenkins와 같은 별도의 CI 서버를 설치하고 웹훅(Webhook)을 연동해야 했지만, **GitHub Actions**는 소스 코드와 동일한 Repository 내의 특정 디렉토리에 YAML 파일로 정의한 Workflow를 추가하는 것만으로도 빌드, 테스트, 배포 등 일련의 작업을 자동화할 수 있습니다.
+GitHub Actions는 저장소 안에 YAML로 자동화 절차를 정의하고 GitHub 이벤트, 수동 실행, 일정에 따라 실행하는 자동화 플랫폼이다. CI뿐 아니라 배포, 이슈 처리, 릴리스 준비처럼 GitHub의 변경 흐름과 연결된 작업에 사용할 수 있다. 중요한 것은 Workflow 파일을 작성하는 일보다, 어떤 이벤트가 신뢰할 수 있는 입력인지와 어떤 권한으로 어떤 runner에서 실행되는지 명확히 하는 일이다.
 
-특히, **GitHub Actions**는 GitHub와 깊게 통합되어 있어 Push, Pull Request 생성, Issue 등록 등의 GitHub 이벤트를 트리거로 삼아 Workflow를 실행할 수 있습니다. **Workflow**는 여러 개의 Job으로 구성되며, 각 **Job**은 다시 개별적인 **Step**들로 구성됩니다. **Step**은 하나 이상의 **Action**이나 **run**을 실행하며, Actions는 GitHub Marketplace에서 손쉽게 가져다 쓸 수 있는 다양한 미리 정의된 작업 단위입니다.
-
-실행 환경을 제공하는 Runner는 GitHub에서 기본적으로 제공하는 가상 머신을 사용할 수도 있고, 필요에 따라 조직의 내부 인프라에 직접 설치하여(Self-Hosted Runner) 사용할 수도 있습니다. 이를 통해 별도의 서버 구축 없이도 손쉽게 안정적인 CI/CD 환경을 운영할 수 있는 것이 **GitHub Actions**의 큰 장점입니다.
-
----
-
-## 1. GitHub Actions의 주요 이점
-
-### 1.1. 설정 간소화
-
-저장소에 **YAML** 파일 하나로 CI/CD 파이프라인 설정이 가능하며, 별도의 서버 관리나 웹훅 설정이 불필요합니다. 하드웨어 준비나 보안 패치와 같은 유지보수를 신경 쓸 필요 없이, **GitHub**에서 제공하는 **Hosted Runner**를 그대로 활용할 수 있습니다.
-
-### 1.2. 이벤트 기반 트리거
-
-**GitHub**과 완전히 통합되어 커밋 푸시, 풀 리퀘스트 생성, 이슈 등록 등 GitHub 이벤트에 자동으로 응답하여 워크플로우를 실행할 수 있습니다. 예를 들어, "커밋이 푸시되면 자동으로 빌드와 테스트를 실행하거나, 릴리스 태그가 생성되면 자동 배포를 수행하고, 새로운 이슈가 생성되면 자동으로 라벨을 붙이는" 등의 작업을 **GitHub Actions** 워크플로우로 손쉽게 구현할 수 있습니다.
-
-### 1.3. 풍부한 액션 생태계
-
-수천 개가 넘는 커뮤니티 액션들이 **GitHub Marketplace**에 공개되어 있어, 이를 워크플로우에 가져다 써서 손쉽게 기능을 구현할 수 있습니다. 예를 들어 코드 체크아웃, 특정 언어 환경 세팅, 클라우드 배포 등 흔한 작업들은 검증된 액션을 사용해 간단히 수행할 수 있고, 직접 커스텀 액션을 만들어 사용할 수도 있습니다.
-
-### 1.4. 다양한 플랫폼 지원
-
-리눅스(Ubuntu), 윈도우, macOS 등 다양한 OS 환경과 언어, 클라우드에 구애받지 않고 동작합니다. 필요에 따라 자체 호스팅 러너를 연결해 특정 하드웨어나 OS에서 작업을 실행할 수도 있습니다.
-
-> 위와 같은 장점으로 인해 **GitHub Actions**는 인기 있는 CI/CD 도구로 자리 잡았습니다.  
-> 실제로 **GitHub Actions** 워크플로우를 통해 커밋이 푸시되면 자동으로 빌드/테스트를 돌리고, 릴리스 태그가 생성되면 배포를 수행하며, 새로운 이슈가 열리면 라벨을 붙이는 등의 작업을 설정할 수 있습니다  
-{: .prompt-tip}
+> **TL;DR**  
+> - Workflow는 `.github/workflows`의 YAML 파일이며, 이벤트가 발생하면 하나 이상의 Job을 실행한다. Job은 runner에서 Step을 순서대로 실행한다.  
+> - Job은 기본적으로 병렬 실행되며, `needs`로 선행 Job을 명시한다. Job 간 파일은 자동으로 공유되지 않으므로 artifact, cache, output을 목적에 맞게 사용한다.  
+> - Workflow는 권한과 비밀 정보를 다루는 코드다. `permissions`를 최소화하고, 외부 Action은 검토한 전체 commit SHA로 고정한다.  
+{: .prompt-info}
 
 ---
 
-## 2. GitHub Actions의 구성 요소
+## 1. 실행 모델부터 이해하기
 
-![GitHub Actions Component](/assets/img/github/github_actions_component.webp)
+Workflow는 구성 가능한 자동화 프로세스다. 저장소의 `.github/workflows`에 `.yml` 또는 `.yaml` 파일로 저장하며, `push`, `pull_request`, `workflow_dispatch`, 일정 같은 트리거를 `on`에 선언한다. 하나의 저장소에는 목적이 다른 Workflow를 여러 개 둘 수 있다.
 
-### 2.1. 워크플로우 (Workflow)
+실행은 이벤트에 연결된 commit SHA와 Git ref를 기준으로 시작된다. GitHub는 그 ref에 존재하는 Workflow 파일을 찾아 트리거 조건과 일치하는 것을 실행한다. 따라서 Workflow 변경도 일반 코드 변경처럼 리뷰해야 하며, 기본 브랜치에 파일이 있어야 하는 이벤트 조건도 별도로 확인해야 한다.
 
-하나 이상의 잡(Job)으로 구성된 자동화 프로세스입니다. 저장소 내 `.github/workflows` 디렉터리에 **YAML** 파일로 정의되며, 저장소에서 특정 이벤트가 발생하면 트리거되어 실행됩니다. 예를 들어 “코드 푸시 시 테스트 수행”이나 “릴리스 생성 시 배포”와 같은 작업 흐름을 워크플로우로 작성할 수 있습니다.
+```mermaid
+flowchart LR
+    E[GitHub event or manual dispatch] --> W[Workflow run]
+    W --> J1[Job: test]
+    W --> J2[Job: lint]
+    J1 --> R1[Runner]
+    J2 --> R2[Runner]
+    R1 --> S1[Step: checkout]
+    S1 --> S2[Step: test command]
+    R2 --> S3[Step: lint command]
+    J1 --> J3[Job: deploy]
+    J2 --> J3
+    J3 --> R3[Runner]
+```
 
-### 2.2. 이벤트 (Event)
-
-워크플로우 실행을 트리거하는 **GitHub** 활동을 의미합니다. 푸시(push), 풀 리퀘스트 열림/병합, 이슈 생성, 일정(cron) 등 다양한 이벤트를 감지하여 해당 워크플로우가 시작됩니다. 이벤트 정의에 따라 워크플로우가 자동으로 필요한 시점에 실행됩니다.
-
-### 2.3. 잡 (Job)
-
-워크플로우를 구성하는 개별 작업 단위입니다. 각 잡은 병렬 또는 순차적으로 실행될 수 있으며, 하나의 잡 안에서는 여러 스텝(step)이 순서대로 실행됩니다. 기본적으로 잡들은 서로 독립적으로 병렬 실행되지만, needs 키워드를 통해 특정 잡이 다른 잡의 완료를 기다리도록 의존성을 설정할 수도 있습니다. 또한 각각의 잡은 격리된 자체 가상환경(러너)에서 실행되므로, 잡 간에는 파일시스템이나 환경이 공유되지 않습니다.
-
-### 2.4. 스텝 (Step)
-
-잡 내부에서 순차적으로 수행되는 단계를 뜻합니다. 각 스텝은 실제로 실행될 단일 작업을 나타내며, 쉘 스크립트 명령을 직접 실행하거나 또는 **액션(Action)**을 호출할 수 있습니다. 모든 스텝은 정의된 순서대로 동일한 러너 환경 내에서 실행되기 때문에, 이전 스텝에서 생성된 산출물(예: 빌드 결과)을 다음 스텝에서 바로 활용할 수 있습니다.
-
-### 2.5. 액션 (Action)
-
-재사용 가능한 작업 명령 세트로, 반복적으로 쓰이는 스크립트나 애플리케이션을 캡슐화한 것입니다. 예를 들어 코드 체크아웃, 특정 언어 환경 설정, 클라우드 인증 등 자주 쓰이는 작업들을 액션으로 만들어 두고 워크플로우의 스텝에서 호출해서 사용합니다. 액션은 GitHub Marketplace에서 공개된 것을 가져다 쓸 수도 있고, 필요하면 자신만의 커스텀 액션을 작성하여 사용할 수도 있습니다. 액션을 활용하면 복잡한 스크립트 내용을 숨기고 워크플로우 파일을 보다 간결하게 유지할 수 있습니다.
-
-### 2.6. 러너 (Runner)
-
-잡을 실행하는 **호스트 머신**을 지칭합니다. 러너는 **GitHub Actions** 워크플로우가 실행될 때 할당되는 가상 머신 또는 컨테이너로, 각 잡은 격리된 러너 환경에서 수행됩니다. **GitHub**에서 **Ubuntu Linux**, **Windows**, **macOS** 러너를 기본 제공하며, 사용자는 호스트 러너의 이미지(runs-on)만 지정하면 됩니다. 매 워크플로우 실행마다 새로운 VM이 프로비저닝되므로 깨끗한 환경이 보장됩니다. 또한 고유한 요구 사항이 있을 경우 **자체 호스팅(self-hosted) 러너**를 등록하여 사용할 수도 있습니다.
-
-> 이벤트 -> 워크플로우 -> 잡 -> 스텝/액션의 계층적인 구조로 서로 연결됩니다. 즉, 특정 이벤트가 발생하면 대응하는 워크플로우가 시작되고, 그 안의 각 잡이 순서대로 혹은 병렬로 실행되며, 잡은 다시 여러 스텝으로 이루어져 차례차례 작업을 수행하게 됩니다.  
-{: .prompt-tip}
+이 그림의 `deploy`처럼 선행 작업이 필요한 Job은 `needs`로 의존성을 선언한다. `needs`가 없으면 Job은 서로 독립적으로 실행될 수 있다.
 
 ---
+
+## 2. 구성 요소와 실행 경계
+
+### 2.1. Event와 Workflow
+
+**Event**는 Workflow 실행을 시작하는 신호다. 저장소 안의 이벤트 외에 `repository_dispatch`, 예약 실행, 수동 실행도 사용할 수 있다. 이벤트별 payload, 실행 ref, fork에서 온 pull request의 권한 모델은 다르므로, 같은 `push`처럼 보이는 자동화라도 트리거별 보안 경계를 구분해야 한다.
+
+**Workflow**는 Event, 권한, Job을 묶는 최상위 정의다. `concurrency`를 사용하면 같은 배포 대상에 대한 중복 실행을 제어할 수 있고, 환경별 승인은 GitHub Environments로 별도 설계할 수 있다. 이 글의 기본 예제는 테스트 Workflow이므로 배포 권한을 포함하지 않는다.
+
+### 2.2. Job과 Step
+
+**Job**은 runner에서 실행되는 작업 단위다. 한 Job 안의 **Step**은 정의한 순서대로 실행되며, 각 Step은 `run`으로 셸 명령을 실행하거나 `uses`로 Action을 호출한다. 같은 Job의 Step은 작업 디렉터리와 앞 Step이 만든 파일을 이어서 사용할 수 있다.
+
+Job은 별도 실행 환경이다. GitHub-hosted runner를 사용하면 각 Job은 `runs-on`으로 지정한 runner 이미지의 새 인스턴스에서 실행된다. 그러므로 Job 사이에 빌드 결과를 전달해야 한다면 파일이 우연히 남아 있다고 기대하지 말고 artifact, cache, Job output 중 목적에 맞는 방법을 명시한다.
+
+### 2.3. Action과 Runner
+
+**Action**은 재사용 가능한 자동화 단위다. JavaScript, Docker, composite Action 형태로 만들 수 있으며, `uses`에서 호출한다. Action은 편리하지만 Workflow 권한, workspace, 환경 변수와 비밀 정보에 접근할 수 있으므로 일반 의존성과 같은 공급망 검토 대상이다.
+
+**Runner**는 Job을 처리하는 실행 머신이다. `runs-on`으로 GitHub-hosted runner, larger runner, self-hosted runner를 선택한다. GitHub-hosted runner는 관리 부담이 낮고 Job마다 새 인스턴스를 제공한다. self-hosted runner는 사설 네트워크나 특수 하드웨어에 접근할 수 있지만, 작업 간 잔여 파일, 권한, 네트워크 접근, runner 업데이트를 운영자가 책임져야 한다.
+
+---
+
+## 3. 최소 권한의 테스트 Workflow
+
+다음 예시는 push와 pull request에서 테스트 스크립트를 실행하는 최소 구조다. `contents: read`는 checkout에 필요한 읽기 권한만 선언한다. 실제 저장소에서는 사용 언어의 패키지 설치와 테스트 명령으로 `./scripts/test.sh`를 바꾼다.
+
+```yaml
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Run tests
+        run: ./scripts/test.sh
+```
+
+예제의 `actions/checkout@v6`는 읽기 편의를 위한 태그 표기다. 운영 Workflow에서 외부 Action을 사용할 때는 검토한 전체 commit SHA로 고정해, 태그가 다른 코드로 이동해도 실행 내용이 바뀌지 않게 한다. Action 버전을 갱신할 때는 SHA가 가리키는 코드와 필요한 권한을 다시 검토한다.
+
+배포 Job을 추가할 때는 `test` Job 성공을 `needs: test`로 요구하고, 배포에 필요한 권한만 Job 또는 Workflow 수준에 선언한다. pull request의 사용자 제공 코드와 배포 credential을 같은 신뢰 경계에서 실행하지 않는 것이 안전하다.
+
+---
+
+## 4. 운영 시 자주 놓치는 경계
+
+### 4.1. 권한과 비밀 정보
+
+`GITHUB_TOKEN`의 권한은 `permissions`로 명시적으로 최소화한다. 비밀 정보는 GitHub Secrets나 외부 secret manager에서 주입하고, `run` 명령과 로그에 출력하지 않는다. `pull_request`와 `pull_request_target`은 실행 코드와 권한의 조합이 다르므로, fork의 변경을 다루는 Workflow에서는 특히 이벤트 선택을 검토해야 한다.
+
+### 4.2. runner 선택
+
+GitHub-hosted runner는 ephemeral 환경이 필요한 일반 CI에 적합하다. self-hosted runner는 내부 네트워크 접근이 필요한 경우에만 최소 범위로 사용하고, 신뢰하지 않는 pull request를 같은 runner에서 실행하지 않는다. `runs-on` label은 실행 위치를 결정하는 보안 경계이므로, self-hosted label을 넓게 공유하지 않는다.
+
+### 4.3. 재현성과 관측성
+
+`ubuntu-latest` 같은 이동 태그는 환경 업데이트를 따라간다. 안정적인 재현성이 더 중요하면 특정 runner 이미지를 선택하고, 사용 도구의 버전도 Workflow에서 고정한다. 실패 분석에는 Workflow run의 commit SHA, runner 정보, Step 로그와 artifact를 함께 보관한다. 로그에는 토큰, 인증 헤더, 구성 파일의 비밀 값이 남지 않게 주의한다.
+
+GitHub Actions를 안정적으로 운영하는 기준은 "실행된다"가 아니다. 각 이벤트가 어떤 코드와 입력을 실행하는지, 어느 권한을 얻는지, 어떤 runner에서 실행되는지를 코드 리뷰에서 설명할 수 있어야 한다.
+
+---
+
+## 5. Reference
+
+- [GitHub Docs - Workflows](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows)
+- [GitHub Docs - Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
+- [GitHub Docs - Choosing the runner for a job](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job)
+- [GitHub Docs - Protecting against security threats](https://docs.github.com/en/enterprise-cloud@latest/code-security/tutorials/secure-your-organization/protect-against-threats)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
