@@ -31,7 +31,16 @@ bash tools/run.sh    # 로컬 미리보기
 
 ## Overrides 목록
 
-### 1. 검색 결과 페이지네이션
+### 1. Sidebar quote spacing
+
+- **적용일**: 2026-07-18
+- **목적**: 사이트 tagline과 sidebar quote 사이의 공백을 full line break 대신 반 줄 수준으로 축소.
+- **파일**:
+  - `_includes/sidebar.html`: quote에 `profile-quote` class를 부여하고 별도 `<br>` 제거.
+  - `assets/css/jekyll-theme-chirpy.scss`: `#sidebar .profile-quote { margin-top: 0.5rem; }` 추가.
+- **검증**: production build 후 생성 CSS와 sidebar markup에서 class 및 margin rule을 확인.
+
+### 2. 검색 결과 페이지네이션
 
 - **적용일**: 2026-06-09
 - **gem 버전 기준**: `jekyll-theme-chirpy 7.4.1`

@@ -12,6 +12,11 @@
 
 #main-wrapper > .container { max-width: 1500px; }
 
+/* Keep the sidebar quote visually separated without a full blank line. */
+#sidebar .profile-quote {
+  margin-top: 0.5rem;
+}
+
 /* Search results pagination (mirrors PR cotes2020/jekyll-theme-chirpy#2584) */
 #search-pagination {
   width: 100%;
