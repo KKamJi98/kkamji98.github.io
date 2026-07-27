@@ -20,7 +20,7 @@ Node.js 서버의 성능, Event Loop, Worker Threads, Kubernetes CPU limit을 �
 
 ## 1. 이 글의 범위와 도착 역량
 
-이 글의 독자는 TCP의 바이트 스트림 특성과 Kubernetes Pod의 기본 개념을 알고, 이제 Node.js 서버를 처음부터 운영 관점으로 이해하려는 DevOps 엔지니어입니다. 읽은 뒤에는 HTTP 요청이 Node.js handler에 도착하는 흐름을 설명하고, keep-alive 재사용 여부를 관찰하며, `SIGTERM`을 받는 서버의 최소 종료 처리를 구현할 수 있어야 합니다.
+이 글의 독자는 [TCP와 UDP](/posts/tcp-and-udp/)에서 다룬 TCP 바이트 스트림 특성과 Kubernetes Pod의 기본 개념을 알고, 이제 Node.js 서버를 처음부터 운영 관점으로 이해하려는 DevOps 엔지니어입니다. 읽은 뒤에는 HTTP 요청이 Node.js handler에 도착하는 흐름을 설명하고, keep-alive 재사용 여부를 관찰하며, `SIGTERM`을 받는 서버의 최소 종료 처리를 구현할 수 있어야 합니다.
 
 다루지 않는 범위도 명확히 둡니다. TLS handshake, DNS, HTTP/2와 HTTP/3, reverse proxy 세부 설정, Event Loop 내부 단계, libuv Worker Pool, Worker Threads는 이후 글에서 다룹니다. 이 글에서 컨테이너와 Kubernetes는 요청 처리의 실행 경계와 종료 신호를 설명하는 데만 사용합니다.
 
@@ -87,6 +87,8 @@ process.on('SIGTERM', () => {
 ```
 
 `server.close()`의 현재 Node.js 문서는 새 연결 수락을 중단하고, 요청을 보내거나 응답을 기다리지 않는 idle connection을 닫는다고 설명합니다. 장기 연결, streaming response, WebSocket upgrade처럼 일반 HTTP 요청보다 오래가는 연결은 별도 종료 설계가 필요합니다. "`server.close()`를 호출했으므로 모든 작업이 즉시 안전하게 끝난다"고 일반화하면 안 됩니다.
+
+또한 non-Windows Node.js에서 `SIGTERM` listener를 등록하면 기본 종료 동작이 제거됩니다. handler에서 로그만 남기면 process가 계속 실행될 수 있으므로, 위 예제처럼 close를 시작하고 event loop가 비워지도록 하거나 제한 시간 뒤 명시적으로 종료해야 합니다.
 
 ---
 
