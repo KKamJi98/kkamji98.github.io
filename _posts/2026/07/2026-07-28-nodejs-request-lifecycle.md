@@ -166,24 +166,11 @@ HTTP 5xx나 connection reset이 보이면 바로 "Node.js가 느리다"고 결�
 | 종료 중이었는가 | `SIGTERM` log, Pod event, termination timestamp | rollout drain, grace period 부족, forced kill |
 | 같은 connection이 재사용됐는가 | socket/connection log, client `reusedSocket` | keep-alive timeout, proxy connection policy |
 
-이 표는 진단 순서의 출발점입니다. 운영 환경에서는 request timestamp, Pod name, container restart count, error rate, p95/p99 latency, connection 수를 같은 시간 창에서 비교해야 인과관계를 판단할 수 있습니다.
+이 표는 진단 순서의 출발점입니다. 운영 환경에서는 request timestamp, Pod name, container restart count, error rate, p95/p99 latency, connection 수를 같은 시간 창에서 비교해야 인과관계를 판단할 수 있습니다. 다음 글에서는 handler 안의 비동기 작업을 이해하기 위한 Promise와 module boundary를 다룹니다.
 
 ---
 
-## 7. 다음 글로 이어지는 질문
-
-이 글의 handler는 HTTP 요청을 받으면 즉시 JSON을 반환합니다. 실제 서버에서는 handler 안에 validation, database I/O, external API call, file/crypto 작업, CPU-bound JavaScript가 들어갑니다. 다음 단계에서는 Promise와 module boundary를 먼저 다루고, 그 뒤 Node.js Event Loop, libuv Worker Pool, Worker Threads, V8 profiling으로 확장합니다.
-
-특히 아래 문장을 구분할 수 있어야 합니다.
-
-- TCP connection 하나와 HTTP request 하나는 같은 단위가 아닙니다.
-- keep-alive가 켜져 있다고 항상 socket이 재사용되는 것은 아닙니다.
-- container restart는 graceful shutdown 구현을 대신하지 않습니다.
-- CPU usage가 높다는 사실만으로 handler, Event Loop, libuv, GC, Kubernetes quota 중 어느 계층이 원인인지 확정할 수는 없습니다.
-
----
-
-## 8. 학습 점검
+## 7. 학습 점검
 
 - [ ] TCP 바이트 스트림과 HTTP 요청 경계가 다른 이유를 설명할 수 있는가?
 - [ ] Node.js의 connection event와 request handler가 각각 언제 관찰되는지 구분할 수 있는가?
@@ -193,7 +180,7 @@ HTTP 5xx나 connection reset이 보이면 바로 "Node.js가 느리다"고 결�
 
 ---
 
-## 9. Reference
+## 8. Reference
 
 - [Node.js Documentation - HTTP](https://nodejs.org/api/http.html)
 - [Node.js Documentation - Net](https://nodejs.org/api/net.html)
