@@ -6,8 +6,8 @@ categories: [Node.js, System]
 tags: [nodejs, http, tcp, keep-alive, process, signal, container, kubernetes]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/nodejs/nodejs-run-javascript-everywhere.png
-  alt: Official Node.js Run JavaScript Everywhere image
+  path: /assets/img/nodejs/nodejs-hexagon-card-banner.png
+  alt: Official Node.js Hexagon logo centered on a white banner
 ---
 
 Node.js 서버의 성능, Event Loop, Worker Threads, Kubernetes CPU limit을 이해하려면 먼저 요청 하나가 어디에서 시작하고 어느 책임 경계를 지나 애플리케이션 코드에 도착하는지 알아야 합니다. 이 글은 `GET /healthz` 같은 HTTP 요청을 기준으로 TCP 연결, HTTP 메시지, Node.js 프로세스, 컨테이너 종료 신호까지의 기본 흐름을 정리합니다.
@@ -181,7 +181,7 @@ HTTP 5xx나 connection reset이 보이면 바로 "Node.js가 느리다"고 결�
 
 ## 8. Reference
 
-- [Node.js Official OG Image](https://nodejs.org/en/next-data/og/announcement/Node.js%20%E2%80%94%20Run%20JavaScript%20Everywhere)
+- [Node.js Official Hexagon Logo](https://nodejs.org/static/images/logo-hexagon-card.png)
 - [Node.js Documentation - HTTP](https://nodejs.org/api/http.html)
 - [Node.js Documentation - Net](https://nodejs.org/api/net.html)
 - [Node.js Documentation - Process Signal Events](https://nodejs.org/api/process.html#signal-events)
