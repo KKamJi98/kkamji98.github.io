@@ -9,6 +9,10 @@ image:
     path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Software life cycle](/assets/img/software-engineering/software-life-cycle.webp)
+
+---
+
 ## 1. 소프트웨어 생명 주기 (Software Life Cycle)
 
 > 소프트웨어를 개발하기 위한 설계, 운용, 유지보수 등의 과정을 각 단계별로 나눈 것  

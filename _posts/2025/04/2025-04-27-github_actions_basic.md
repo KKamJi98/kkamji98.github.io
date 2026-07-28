@@ -25,20 +25,7 @@ Workflow는 구성 가능한 자동화 프로세스다. 저장소의 `.github/wo
 
 실행은 이벤트에 연결된 commit SHA와 Git ref를 기준으로 시작된다. GitHub는 그 ref에 존재하는 Workflow 파일을 찾아 트리거 조건과 일치하는 것을 실행한다. 따라서 Workflow 변경도 일반 코드 변경처럼 리뷰해야 하며, 기본 브랜치에 파일이 있어야 하는 이벤트 조건도 별도로 확인해야 한다.
 
-```mermaid
-flowchart LR
-    E[GitHub event or manual dispatch] --> W[Workflow run]
-    W --> J1[Job: test]
-    W --> J2[Job: lint]
-    J1 --> R1[Runner]
-    J2 --> R2[Runner]
-    R1 --> S1[Step: checkout]
-    S1 --> S2[Step: test command]
-    R2 --> S3[Step: lint command]
-    J1 --> J3[Job: deploy]
-    J2 --> J3
-    J3 --> R3[Runner]
-```
+![GitHub Actions workflow flow](/assets/img/ci-cd/github-actions-workflow-flow.webp)
 
 이 그림의 `deploy`처럼 선행 작업이 필요한 Job은 `needs`로 의존성을 선언한다. `needs`가 없으면 Job은 서로 독립적으로 실행될 수 있다.
 

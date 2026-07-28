@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
+![Hubble Exporter flow](/assets/img/kubernetes/hubble-exporter-flow.webp)
+
 이번 글에서는 **Hubble Exporter**에 대해 알아보도록 하겠습니다.
 
 - [Cilium Docs - Configuring Hubble exporter](https://docs.cilium.io/en/stable/observability/hubble/configuration/export/#dynamic-exporter-configuration)

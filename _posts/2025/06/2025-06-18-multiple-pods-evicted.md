@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
+![Multiple Pods evicted flow](/assets/img/kubernetes/multiple-pods-evicted-flow.webp)
+
 쿠버네티스 환경에서 이미지를 변환해주는 웹 사이트 <https://image-converter.kkamji.net> 를 로컬 클러스터에서 운영하던 도중 **여러 Pod가 동시에 Evicted 되는 문제가 발생**했습니다. 이번 포스팅에서는 당시 상황과 원인을 분석하고 해결 방법과 재발 방지 방법에 대해 알아보겠습니다.
 
 > **TL;DR**  

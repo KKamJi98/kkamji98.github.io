@@ -5,7 +5,6 @@ author: kkamji
 categories: [Personal, University]
 tags: [arduino, usb-serial-communication]     # TAG names should always be lowercase
 comments: true
-mermaid: true
 # image:
 # path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
@@ -41,12 +40,7 @@ UART 한 바이트는 보통 유휴 상태의 높은 전압 뒤에 start bit, �
 
 UNO R3의 주 MCU는 ATmega328P이며, 보드의 USB 브리지용 보조 MCU는 ATmega16U2다. Arduino 문서는 UNO R3의 D0을 RX, D1을 TX로 표기한다. USB 케이블을 통한 personal computer(PC) 연결은 ATmega16U2를 거쳐 ATmega328P의 하드웨어 UART로 이어진다.
 
-```mermaid
-flowchart LR
-    PC["PC terminal"] -->|"USB packets"| Bridge["ATmega16U2<br/>USB bridge"]
-    Bridge -->|"TTL UART"| Main["ATmega328P<br/>main MCU"]
-    Main <-->|"D0 RX, D1 TX"| Device["external UART device"]
-```
+![USB serial bridge flow](/assets/img/hardware/usb-serial-bridge-flow.webp)
 
 이 연결 때문에 UNO R3에서 D0/D1에 GPS(Global Positioning System), Bluetooth 모듈, USB-UART 어댑터 같은 외부 장치를 연결하는 경우에는 다음을 확인해야 한다.
 

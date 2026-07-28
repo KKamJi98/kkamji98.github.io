@@ -9,6 +9,10 @@ comments: true
 # path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Virtualization model](/assets/img/virtualization/virtualization-model.webp)
+
+---
+
 ## 1. 가상화란?
 
 가상화란 IT 인프라의 다양한 측면을 추상화하고 최적화하기 위해 사용되는 기술입니다.  

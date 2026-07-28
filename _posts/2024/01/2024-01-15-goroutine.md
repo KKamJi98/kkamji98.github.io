@@ -9,6 +9,10 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Goroutine scheduling model](/assets/img/go/goroutine-scheduling-model.webp)
+
+---
+
 ## 1. Goroutine - [Concurrency vs Parallelism]
 
 > Goroutine은 동시성과 병렬성을 매우 간결하고 효과적으로 다룰 수 있는 기능을 제공합니다.  

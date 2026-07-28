@@ -9,6 +9,8 @@ comments: true
 # path: https://github.com/kkamji98/Oxi/assets/72260110/3af8c7c9-cc3a-4fed-84d5-c736bad8ba53
 ---
 
+![JavaScript data type model](/assets/img/javascript/javascript-data-type-model.webp)
+
 # 데이터 타입
 
 ---

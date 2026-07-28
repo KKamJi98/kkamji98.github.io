@@ -9,6 +9,8 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Type 1 and Type 2 hypervisor comparison](/assets/img/virtualization/type1-type2-hypervisor.webp)
+
 
 > Type 1과 Type 2 가상화는 하이퍼바이저 기반의 가상화 접근 방식을 구분 짓는 두 가지 주요 유형입니다. 이 두 가지 유형은 각각 다른 방식으로 하드웨어 상에서 가상 머신(VM)을 실행합니다.  
 > 이러한 차이점은 성능, 사용 용도, 그리고 보안 측면에서 중요한 영향을 미칩니다.  

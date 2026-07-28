@@ -10,6 +10,8 @@ image:
   path: /assets/img/ci-cd/jenkins/jenkins.webp
 ---
 
+![EC2 Jenkins server flow](/assets/img/ci-cd/ec2-jenkins-server-flow.webp)
+
 Jenkins controller를 EC2에 두고 build 실행은 이후 Kubernetes agent에 맡기면 controller의 상태와 build workload를 분리할 수 있습니다. 이 글은 Ubuntu 24.04에서 Jenkins LTS를 설치하고, 외부 노출과 초기 administrator 설정에서 놓치기 쉬운 보안 항목을 함께 정리합니다.
 
 > **TL;DR**  

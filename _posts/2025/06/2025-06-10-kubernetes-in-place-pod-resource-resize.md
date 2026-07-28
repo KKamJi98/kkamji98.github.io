@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
+![In-place Pod resource resize flow](/assets/img/kubernetes/in-place-pod-resource-resize.webp)
+
 **Kubernetes v1.33 Release Note** - <https://kubernetes.io/blog/2025/04/23/kubernetes-v1-33-release/>  
 **In-Place Pod Resource Resize 소개** - <https://kubernetes.io/blog/2025/05/16/kubernetes-v1-33-in-place-pod-resize-beta/>  
 

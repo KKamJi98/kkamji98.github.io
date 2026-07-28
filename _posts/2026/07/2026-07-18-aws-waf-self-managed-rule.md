@@ -5,7 +5,6 @@ author: kkamji
 categories: [Cloud, AWS]
 tags: [aws, waf, cloudfront, security, firewall, asn, rate-limit, ip-set]
 comments: true
-mermaid: true
 image:
   path: /assets/img/aws/aws.webp
 ---
@@ -270,15 +269,7 @@ Web ACL 변경은 즉시 전역에 반영되지 않습니다. 특히 CloudFront�
 
 self-managed rule의 값(대상 ASN, IP set 항목, threshold)은 근거와 함께 IaC로 관리하면 review와 rollback이 쉬워집니다. commit message나 코드 주석에 "왜 이 network를 차단했는지", "언제 재검토할지"를 남기면 시간이 지나도 정책의 이유를 추적할 수 있습니다. 다만 실제 운영 근거가 되는 내부 로그나 트래픽 수치, 실제 ASN/IP 목록은 공개 저장소에 노출되지 않도록 주의해야 합니다.
 
-```mermaid
-flowchart LR
-  Evidence[근거/owner 기록] --> Count[Count 적용]
-  Count --> Observe[metric/log 관찰]
-  Observe --> Exception[예외/scope-down]
-  Exception --> Block[단계적 Block]
-  Block --> Expiry[만료일/재검토]
-  Expiry -->|문제 발생| Count
-```
+![WAF rule rollout flow](/assets/img/aws/waf-rule-rollout-flow.webp)
 
 ---
 

@@ -9,6 +9,8 @@ image:
   path: /assets/img/database/mysql/mysql.webp
 ---
 
+![MySQL on Kubernetes flow](/assets/img/kubernetes/mysql-kubernetes-deployment.webp)
+
 2024년 07월 08일부터 Weasel 이라는 프로젝트를 시작했습니다. RDS를 띄우기 전, 개발 및 테스트 용도로 사용될 MySQL 서버가 필요했습니다.
 해당 포스트에서는 Kubernetes Cluster에 MySQL 서버를 구축하고 배포하는 과정에 대해 다뤄보겠습니다.
 

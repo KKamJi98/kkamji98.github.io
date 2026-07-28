@@ -9,6 +9,8 @@ image:
   path: /assets/img/ci-cd/argocd/argocd.webp
 ---
 
+![Argo CD multi-cluster flow](/assets/img/ci-cd/argocd-multi-cluster-flow.webp)
+
 이번 글에서는 ArgoCD를 활용해 여러 Kubernetes Cluster에 애플리케이션을 배포하는 방법을 살펴보겠습니다.
 
 > **TL;DR**  

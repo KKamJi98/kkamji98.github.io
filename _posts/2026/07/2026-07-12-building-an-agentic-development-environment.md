@@ -5,7 +5,6 @@ author: kkamji
 categories: [AI, Development Environment]
 tags: [ai-agent, agentic-development, cmux, ghostty, tmux, claude-code, codex, hermes-agent, macos, devsecops]
 comments: true
-mermaid: true
 image:
   path: /assets/img/kkam-img/kkam.webp
 ---
@@ -155,19 +154,7 @@ kitty는 tab, window, remote control API, desktop notification 기능을 제공�
 
 ## 4. 최종 아키텍처
 
-```mermaid
-flowchart TB
-  User[Developer] --> Cmux[cmux workspace and attention cockpit]
-  Cmux --> Group[Workspace group]
-  Group --> TaskA[Task workspace and worktree]
-  Group --> TaskB[Another task workspace and worktree]
-  TaskA --> Writer[One primary writer agent]
-  TaskA --> Verify[Test diff and log pane]
-  TaskB --> Agent[Claude Code Codex or Hermes]
-  TaskB --> Tmux[tmux only for a long-lived interactive process]
-  User --> Ghostty[Ghostty fallback terminal]
-  Ghostty --> Recovery[Recovery and troubleshooting shell]
-```
+![Agentic development workspace](/assets/img/ai/agentic-development-workspace.webp)
 
 핵심은 cmux와 tmux의 책임을 겹치지 않는 것입니다.
 

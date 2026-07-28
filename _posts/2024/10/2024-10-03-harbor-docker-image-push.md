@@ -10,6 +10,8 @@ image:
   path: /assets/img/registry/harbor/harbor.webp
 ---
 
+![Harbor image push flow](/assets/img/registry/harbor-image-push-flow.webp)
+
 Harbor는 OCI registry에 project 단위 권한, 취약점 scan, retention, content trust 같은 운영 기능을 더한 container image registry입니다. 이 글은 project에 versioned image를 push하고 digest로 검증해 pull하는 기본 흐름을 다룹니다.
 
 > **TL;DR**  

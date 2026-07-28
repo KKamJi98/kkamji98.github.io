@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
+![NGINX Basic Auth flow](/assets/img/kubernetes/nginx-basic-auth-flow.webp)
+
 Basic Auth는 별도 identity provider 없이 HTTP request에 사용자 이름과 password를 보내는 단순한 인증 방식입니다. 이 글은 `ingress-nginx` controller를 이미 설치한 cluster에서 특정 Ingress path를 htpasswd Secret으로 보호하는 방법을 다룹니다.
 
 > **TL;DR**  

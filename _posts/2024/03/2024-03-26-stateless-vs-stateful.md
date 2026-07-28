@@ -9,6 +9,8 @@ comments: true
   # path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Stateless and stateful firewall comparison](/assets/img/network/stateless-stateful-firewall.webp)
+
 > 네트워크나 웹을 공부하다 보면 **Stateless**와 **Stateful**을 자주 접하게 됩니다.  
 > **Stateless**는 **상태를 유지하지 않고**, **Stateful**은 **상태를 유지**한다고 하는데 이게 무슨 의미일까요?  
 {: .prompt-tip}

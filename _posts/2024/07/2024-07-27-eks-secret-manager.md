@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
+![EKS Secrets Manager CSI flow](/assets/img/aws/eks-secrets-manager-csi.webp)
+
 Secrets Manager의 시크릿을 Amazon EKS의 Pod에 마운트된 파일로 표시하려면, **Kubernetes Secrets Store CSI Driver**와 함께 **AWS Secrets and Configuration Provider(ASCP)**를 사용해야 합니다. 해당 기능은 Parameter Store parameters도 사용할 수 있습니다. Fargate 노드 그룹에는 지원되지 않습니다.
 
 > **TL;DR**  

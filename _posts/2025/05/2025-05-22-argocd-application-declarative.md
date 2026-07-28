@@ -9,6 +9,8 @@ image:
   path: /assets/img/ci-cd/argocd/argocd.webp
 ---
 
+![Argo CD declarative Application flow](/assets/img/ci-cd/argocd-declarative-application.webp)
+
 최근 Kubernetes 환경에서 ArgoCD를 사용한 GitOps가 주목받고 있습니다. ArgoCD를 처음 접하는 경우, ArgoCD Web UI를 통해 배포하는 방식을 가장 먼저 배우는 경우가 많습니다. 하지만 배포할 애플리케이션이 많아질수록 Web UI를 통해 모든 Application을 생성하게 되면 Human Error의 발생 가능성이 증가하고, 관리가 어렵다는 문제가 발생합니다.  
 
 이를 해결하기 위해 선언적 구성 방식을 활용하여 자동화를 구현할 수 있습니다. 이번 글에서는 ArgoCD를 활용하여 애플리케이션을 선언적으로 구성하고 배포하는 방법에 대해 소개하겠습니다.

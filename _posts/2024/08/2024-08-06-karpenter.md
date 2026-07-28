@@ -9,6 +9,10 @@ image:
   path: /assets/img/kubernetes/karpenter.png
 ---
 
+![Karpenter provisioning flow](/assets/img/kubernetes/karpenter-provisioning-flow.webp)
+
+---
+
 ## 1. Karpenter란?
 
 최근 **Weasel** 프로젝트를 진행하면서 **Elastic Kubernetes Service(EKS)**를 사용하게 되었고. **Horizontal Pod Autoscaler(HPA)**를 사용해 고가용성을 보완하려 노력했습니다. 하지만 **HPA**만 사용해서는 트래픽이 급증하고 Node의 리소스 사용량이 한계치에 다다르게 되면 더 이상 사용자에게 서비스를 원활하게 제공할 수 없을 것입니다. 따라서 **Weasel** 프로젝트에 AWS에서 개발한 오픈 소스의 고성능 **Kubernetes Cluster Autoscaler**인 **Karpenter**를 도입을 결정짓게 되었습니다.

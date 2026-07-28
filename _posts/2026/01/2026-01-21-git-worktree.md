@@ -5,7 +5,6 @@ author: kkamji
 categories: [DevOps, Git & Github]
 tags: [git, git-worktree, bare-repository, multi-agent, ai-coding, claude-code, cursor]
 comments: true
-mermaid: true
 image:
   path: /assets/img/github/github.webp
 ---
@@ -119,37 +118,7 @@ git worktree add ../feat feature-branch
 
 Bare Repository는 **작업 디렉토리 없이 Git 데이터만 보관**합니다. 모든 브랜치를 동등하게 worktree로 관리할 수 있습니다.
 
-```mermaid
-flowchart TB
-    subgraph PROJECT["my-project/"]
-        subgraph BARE[".bare/ (Git Database)"]
-            OBJECTS["objects/"]
-            REFS["refs/"]
-        end
-
-        GITFILE[".git (gitdir: ./.bare)"]
-
-        subgraph WORKTREES["Worktrees"]
-            BASE["master/ (or main/)"]
-            STAGING["staging/"]
-            FEAT["feat/login/"]
-            CHORE["chore/tooling/"]
-        end
-    end
-
-    BARE -.->|공유| BASE
-    BARE -.->|공유| STAGING
-    BARE -.->|공유| FEAT
-    BARE -.->|공유| CHORE
-
-    AGENT1["Agent 1"]
-    AGENT2["Agent 2"]
-    AGENT3["Agent 3"]
-
-    AGENT1 --> FEAT
-    AGENT2 --> CHORE
-    AGENT3 --> STAGING
-```
+![Git bare worktree layout](/assets/img/git/bare-worktree-layout.webp)
 
 ---
 

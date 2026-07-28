@@ -35,20 +35,7 @@ Liveness와 Readiness는 서로의 성공을 기다리지 않는다. 둘을 함�
 
 ## 2. 컨테이너 기동부터 트래픽 수신까지
 
-```mermaid
-stateDiagram-v2
-    [*] --> Starting
-    Starting --> StartupChecking: startupProbe configured
-    Starting --> Probing: startupProbe omitted
-    StartupChecking --> StartupChecking: failure below threshold
-    StartupChecking --> Restarting: failure reaches threshold
-    StartupChecking --> Probing: first success
-    Probing --> Ready: readiness succeeds
-    Ready --> Probing: readiness fails
-    Probing --> Restarting: liveness fails at threshold
-    Restarting --> Starting
-    Ready --> Ready: liveness and readiness continue
-```
+![Kubernetes probe state flow](/assets/img/kubernetes/probe-state-flow.webp)
 
 Readiness가 실패해도 프로세스는 계속 실행되고 kubelet은 이후에도 Readiness를 재시도한다. Ready 조건이 다시 참이 되면 Service의 EndpointSlice에 다시 포함될 수 있다. 반대로 Liveness나 Startup 실패가 임계값에 도달하면 해당 컨테이너는 재시작 대상이 된다.
 

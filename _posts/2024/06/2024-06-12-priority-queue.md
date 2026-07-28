@@ -9,6 +9,10 @@ comments: true
 # path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Priority queue heap flow](/assets/img/data-structures/priority-queue-heap-flow.webp)
+
+---
+
 ## 1. TL;DR
 
 - 우선순위 큐(priority queue)는 먼저 넣은 순서가 아니라 우선순위에 따라 다음 원소를 꺼내는 자료구조다.

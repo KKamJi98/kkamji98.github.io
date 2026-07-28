@@ -9,6 +9,8 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
+![Metrics Server collection flow](/assets/img/kubernetes/metrics-server-collection.webp)
+
 > Kubernetes Cluster를 관리하기 위해서는 성능 metrics를 모니터링하고 지표를 저장한 뒤 지표 데이터를 분석할 수 있는 솔루션이 필요합니다. 오픈 소스 모니터링 솔루션에는 Metric Server, Prometheus, Elastic Stack, DataDog 등이 있지만 이번 시간에는 가장 기본적인 Metrics Server를 클러스터에 설치해 보겠습니다.  
 {: .prompt-info}
 

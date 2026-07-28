@@ -9,6 +9,8 @@ comments: true
 # path: /assets/img/kkam-img/kkam.webp
 ---
 
+![Full and paravirtualization comparison](/assets/img/virtualization/full-para-virtualization.webp)
+
 
 > Type 1, Type 2 가상화의 차이점으로는 하이퍼바이저가 하드웨어 바로 위에서 동작하느냐, 소프트웨어(OS) 위에서 동작하느냐였습니다.  
 > 그렇다면 전가상화, 반가상화는 무엇이고 각각의 차이점은 어떻게 될까요?  

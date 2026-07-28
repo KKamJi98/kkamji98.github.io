@@ -31,17 +31,7 @@ OSI는 Open Systems Interconnection의 약자로, 시스템 간 상호 연결을
 
 ## 2. 일곱 계층의 역할
 
-```mermaid
-flowchart TB
-    L7["L7 Application<br/>사용자 응용에 네트워크 서비스를 제공"]
-    L6["L6 Presentation<br/>표현 형식, 인코딩, 압축, 암호화"]
-    L5["L5 Session<br/>대화의 설정과 동기화"]
-    L4["L4 Transport<br/>종단 간 전달, 포트, 신뢰성 또는 비신뢰성"]
-    L3["L3 Network<br/>논리 주소와 서로 다른 네트워크 사이의 전달"]
-    L2["L2 Data Link<br/>한 링크 안의 프레임 전달과 링크 계층 주소"]
-    L1["L1 Physical<br/>매체 위 비트 전송"]
-    L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1
-```
+![OSI seven layer stack](/assets/img/network/osi-seven-layer-stack.webp)
 
 | 계층 | 핵심 책임 | 대표적인 예 | 문제를 볼 때 확인할 지점 |
 | --- | --- | --- | --- |
@@ -61,13 +51,7 @@ flowchart TB
 
 응용이 만든 데이터는 네트워크로 내려갈수록 각 계층의 제어 정보와 결합합니다. 이를 **캡슐화(encapsulation)**라고 합니다. 수신 측은 반대 순서로 헤더와 트레일러를 해석하고 제거하여 응용 데이터까지 전달하는데, 이를 **역캡슐화(decapsulation)**라고 합니다.
 
-```mermaid
-flowchart LR
-    A["응용 데이터"] --> B["전송 계층<br/>TCP 또는 UDP 헤더 + 데이터<br/>세그먼트 또는 데이터그램"]
-    B --> C["네트워크 계층<br/>IP 헤더 + 전송 계층 데이터<br/>패킷"]
-    C --> D["링크 계층<br/>Ethernet 헤더와 트레일러 + IP 패킷<br/>프레임"]
-    D --> E["물리 계층<br/>매체 위의 비트"]
-```
+![OSI encapsulation flow](/assets/img/network/osi-encapsulation-flow.webp)
 
 PDU(Protocol Data Unit) 이름은 문맥에 따라 조금씩 다르지만, 전송 계층에서는 TCP 세그먼트 또는 UDP 데이터그램, 네트워크 계층에서는 IP 패킷, 링크 계층에서는 프레임이라고 부르는 것이 일반적입니다. 중요한 점은 목적지까지 가는 동안 모든 헤더가 그대로 유지되는 것은 아니라는 사실입니다.
 

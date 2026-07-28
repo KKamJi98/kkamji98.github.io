@@ -9,6 +9,8 @@ image:
   path: /assets/img/iac/terraform/terraform.webp
 ---
 
+![Terraform Helm Provider flow](/assets/img/iac/terraform-helm-provider-flow.webp)
+
 Helm은 Kubernetes의 패키지 매니저로, 애플리케이션의 배포 및 관리를 간편하게 해주는 도구입니다. Kubernetes의 리소스를 정의하는 Manifest 파일을 템플릿화하여 **재사용성**과 **유지보수성**을 높이는 데 도움을 줍니다.
 
 일반적으로 패키지 매니저를 사용하지 않고 Dev, Stage, Prod 등의 다양한 환경에서 Kubernetes Manifest 파일만을 사용해 운영할 경우, 각 환경에 맞춘 `Replicas`, `ConfigMap`, `Secrets` 등의 설정을 개별적으로 관리해야 합니다. 이로 인해 **운영의 복잡성 증가**, **구성의 일관성 유지 어려움**, **수작업에 의한 오류 가능성 증가**와 같은 문제점이 발생할 수 있습니다.

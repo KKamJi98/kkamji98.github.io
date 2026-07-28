@@ -9,6 +9,8 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
+![InfluxDB migration flow](/assets/img/database/influxdb-migration-flow.webp)
+
 Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instance로 마이그레이션 하는 방법에 대해 정리해보았습니다.
 
 > **TL;DR**  
