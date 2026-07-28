@@ -1,6 +1,6 @@
 ---
 title: "Node.js HTTP 서버의 요청 경로: HTTP, TCP, 프로세스, 컨테이너의 경계"
-date: 2026-07-28 07:13:49 +0900
+date: 2026-07-27 09:00:00 +0900
 author: kkamji
 categories: [Node.js, System]
 tags: [nodejs, http, tcp, keep-alive, process, signal, container, kubernetes]     # TAG names should always be lowercase
