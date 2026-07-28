@@ -5,7 +5,6 @@ author: kkamji
 categories: [System, Network]
 tags: [network, osi, tcp, udp, control flow, congestion control, packet]     # TAG names should always be lowercase
 comments: true
-mermaid: true
 # image:
 # path: /assets/img/kkam-img/kkam.webp
 ---
@@ -46,15 +45,7 @@ TCP는 메시지 경계를 보존하지 않습니다. 예를 들어 송신자가
 
 TCP 연결 수립에 흔히 쓰는 절차가 3-way handshake입니다. SYN은 초기 시퀀스 번호 동기화를 시작하고, ACK는 다음에 받을 시퀀스 번호를 확인합니다. 이 교환은 지연된 오래된 연결 요청이 새 연결로 오인되는 가능성을 줄입니다.
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    C->>S: SYN, SEQ = x
-    S->>C: SYN + ACK, SEQ = y, ACK = x + 1
-    C->>S: ACK, ACK = y + 1
-    Note over C,S: ESTABLISHED 이후 양방향 데이터 전송
-```
+![TCP 3-way handshake flow](/assets/img/network/tcp-3-way-handshake.webp)
 
 이 그림은 가장 일반적인 연결 수립 흐름입니다. 실제 환경에서는 재전송, 동시 연결 시작, 연결 거절, 보안 장비의 정책 등으로 패킷 흐름이 달라질 수 있습니다. 연결 종료도 별도의 상태 전이를 거치며, 항상 단순한 네 개의 패킷으로 끝난다고 가정해서는 안 됩니다.
 
