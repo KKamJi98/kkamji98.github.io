@@ -6,8 +6,8 @@ categories: [Node.js, System]
 tags: [nodejs, http, tcp, keep-alive, process, signal, container, kubernetes]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/nodejs/node-http-request-lifecycle-banner.webp
-  alt: Node.js HTTP 요청이 TCP socket과 HTTP parser를 거쳐 process에 도착하고 SIGTERM 종료 신호를 받는 흐름
+  path: /assets/img/nodejs/nodejs-hexagon-card.png
+  alt: Official Node.js Hexagon logo
 ---
 
 Node.js 서버의 성능, Event Loop, Worker Threads, Kubernetes CPU limit을 이해하려면 먼저 요청 하나가 어디에서 시작하고 어느 책임 경계를 지나 애플리케이션 코드에 도착하는지 알아야 합니다. 이 글은 `GET /healthz` 같은 HTTP 요청을 기준으로 TCP 연결, HTTP 메시지, Node.js 프로세스, 컨테이너 종료 신호까지의 기본 흐름을 정리합니다.
@@ -39,7 +39,7 @@ Node.js process는 포트를 listen하고 HTTP 요청을 handler로 전달합니
 
 HTTP/1.1 keep-alive가 유효하고 양 끝점이 연결을 유지하기로 하면 하나의 TCP 연결로 여러 HTTP 요청과 응답을 처리할 수 있습니다. 반대로 클라이언트 agent 설정, server timeout, reverse proxy 정책, max request 수, network 오류, 배포 중 drain 상태가 있으면 새 연결이 만들어질 수 있습니다. 따라서 "요청 두 번을 보냈는데 connection event가 하나였다"는 것은 연결 재사용의 관측 결과이지 Node.js가 요청을 하나만 처리했다는 뜻이 아닙니다.
 
-![Node.js HTTP 요청 처리와 종료 제어 흐름](/assets/img/nodejs/node-http-request-lifecycle-banner.webp)
+![Node.js HTTP 요청 처리와 종료 제어 흐름](/assets/img/nodejs/node-http-request-lifecycle-flow.webp)
 _Node.js HTTP 요청은 TCP socket과 HTTP parser를 거쳐 process handler에 도착합니다. 실선은 데이터 흐름, 점선은 container runtime 또는 kubelet의 종료 제어 흐름입니다._
 
 그림의 왼쪽에서 오른쪽은 요청 처리의 논리 흐름입니다. 점선은 데이터 요청이 아니라 종료 제어 흐름입니다. 실제 배포에서는 client와 Node.js 사이에 load balancer, Gateway, reverse proxy가 추가될 수 있지만, 각 홉에서도 TCP 연결과 HTTP 메시지의 구분은 유지됩니다.
@@ -181,6 +181,7 @@ HTTP 5xx나 connection reset이 보이면 바로 "Node.js가 느리다"고 결�
 
 ## 8. Reference
 
+- [Node.js Official Hexagon Logo](https://nodejs.org/static/images/logo-hexagon-card.png)
 - [Node.js Documentation - HTTP](https://nodejs.org/api/http.html)
 - [Node.js Documentation - Net](https://nodejs.org/api/net.html)
 - [Node.js Documentation - Process Signal Events](https://nodejs.org/api/process.html#signal-events)
