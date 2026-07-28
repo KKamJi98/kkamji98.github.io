@@ -5,6 +5,7 @@ author: kkamji
 categories: [System, Network]
 tags: [network, osi, tcp, udp, control flow, congestion control, packet]     # TAG names should always be lowercase
 comments: true
+mermaid: true
 # image:
 # path: /assets/img/kkam-img/kkam.webp
 ---
