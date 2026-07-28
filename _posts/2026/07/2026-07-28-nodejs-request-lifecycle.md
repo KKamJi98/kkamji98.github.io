@@ -7,7 +7,6 @@ tags: [nodejs, http, tcp, keep-alive, process, signal, container, kubernetes]   
 comments: true
 image:
   path: /assets/img/nodejs/nodejs-logo-history-banner.png
-  alt: Node.js logo history image supplied by the author, centered on a white banner
 ---
 
 Node.js 서버의 성능, Event Loop, Worker Threads, Kubernetes CPU limit을 이해하려면 먼저 요청 하나가 어디에서 시작하고 어느 책임 경계를 지나 애플리케이션 코드에 도착하는지 알아야 합니다. 이 글은 `GET /healthz` 같은 HTTP 요청을 기준으로 TCP 연결, HTTP 메시지, Node.js 프로세스, 컨테이너 종료 신호까지의 기본 흐름을 정리합니다.
