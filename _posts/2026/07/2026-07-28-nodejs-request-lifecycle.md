@@ -39,15 +39,15 @@ Node.js process는 포트를 listen하고 HTTP 요청을 handler로 전달합니
 HTTP/1.1 keep-alive가 유효하고 양 끝점이 연결을 유지하기로 하면 하나의 TCP 연결로 여러 HTTP 요청과 응답을 처리할 수 있습니다. 반대로 클라이언트 agent 설정, server timeout, reverse proxy 정책, max request 수, network 오류, 배포 중 drain 상태가 있으면 새 연결이 만들어질 수 있습니다. 따라서 "요청 두 번을 보냈는데 connection event가 하나였다"는 것은 연결 재사용의 관측 결과이지 Node.js가 요청을 하나만 처리했다는 뜻이 아닙니다.
 
 ![Node.js HTTP 요청 처리와 종료 제어 흐름](/assets/img/nodejs/node-http-request-lifecycle-flow.webp)
-_Node.js HTTP 요청은 TCP socket과 HTTP parser를 거쳐 process handler에 도착합니다. 실선은 데이터 흐름, 점선은 container runtime 또는 kubelet의 종료 제어 흐름입니다._
+_Node.js process 안에서 accepted TCP socket의 byte stream을 HTTP parser가 해석하고, request event가 application handler를 호출합니다. 실선은 데이터 흐름, 점선은 container runtime 또는 kubelet의 종료 제어 흐름입니다._
 
-그림의 왼쪽에서 오른쪽은 요청 처리의 논리 흐름입니다. 점선은 데이터 요청이 아니라 종료 제어 흐름입니다. 실제 배포에서는 client와 Node.js 사이에 load balancer, Gateway, reverse proxy가 추가될 수 있지만, 각 홉에서도 TCP 연결과 HTTP 메시지의 구분은 유지됩니다.
+그림의 왼쪽에서 오른쪽은 요청 처리의 논리 흐름입니다. HTTP parser, request event, application handler는 모두 Node.js process와 container boundary 안에 있습니다. 점선은 데이터 요청이 아니라 process termination 제어 흐름입니다. 실제 배포에서는 client와 Node.js 사이에 load balancer, Gateway, reverse proxy가 추가될 수 있지만, 각 홉에서도 TCP 연결과 HTTP 메시지의 구분은 유지됩니다.
 
 ---
 
 ## 3. Node.js `http` 서버가 하는 일
 
-`http.createServer()`는 서버 객체를 만들고 request listener를 등록합니다. 서버가 `listen()`한 뒤 HTTP 요청을 받으면 listener는 `IncomingMessage`와 `ServerResponse`를 받아 status, header, body를 작성합니다. connection event는 TCP socket이 수락될 때 관찰할 수 있고, request handler는 HTTP 요청마다 호출됩니다.
+`http.createServer()`는 서버 객체를 만들고 request listener를 등록합니다. 서버가 `listen()`한 뒤 일반 HTTP 요청을 받으면 listener는 `IncomingMessage`와 `ServerResponse`를 받아 status, header, body를 작성합니다. connection event는 TCP socket이 수락될 때 관찰할 수 있고, 일반 request handler는 해석된 HTTP 요청마다 호출됩니다. 다만 `Expect: 100-continue`, `CONNECT`, protocol upgrade는 각각 `checkContinue`, `connect`, `upgrade` event로 별도 처리 경로를 가질 수 있으므로, 이 글의 실험은 일반 HTTP/1.1 request event만 대상으로 합니다.
 
 다음 예제는 요청과 연결을 각각 로그로 남기고, `SIGTERM` 때 새 연결 수락을 중단하는 최소 서버입니다. 실제 서비스에서는 readiness 전환, 외부 연결 drain, timeout, 강제 종료 정책을 서비스 특성에 맞게 추가해야 합니다.
 
@@ -130,6 +130,18 @@ server.close callback error=none
 ```
 
 두 번째 client 요청의 `reusedSocket=true`와 server의 connection log 한 줄, 같은 remote port는 이 실험에서 하나의 TCP 연결이 두 HTTP 요청에 재사용됐다는 증거입니다. 이는 특정 Node.js version, localhost network, 순차 요청, 명시적인 keep-alive agent 조건의 결과입니다. browser, proxy, HTTP version, concurrent request 수가 달라지면 관측 결과도 달라질 수 있습니다.
+
+같은 환경에서 `/slow` 요청을 처리하는 동안 `SIGTERM`을 보내는 별도 drain 실험도 실행했습니다. 이 실험은 새 연결을 성공적으로 처리했다는 보장이 아니라, `server.close()` 호출 뒤 listen socket이 닫혀 새 TCP 연결이 거절되고 기존 handler가 종료 전까지 완료되는 한 가지 조건을 확인합니다.
+
+```text
+listening
+request_start path=/slow
+sigterm
+request_end path=/slow status=200
+close_callback
+```
+
+실험에서 SIGTERM 뒤 새 연결은 `ECONNREFUSED`였고, 이미 시작한 `/slow` 요청은 `200`으로 끝났습니다. 장기 streaming response, WebSocket, downstream database transaction은 이 재현 범위에 없으므로 같은 종료 결과를 보장한다고 해석하면 안 됩니다.
 
 ---
 
