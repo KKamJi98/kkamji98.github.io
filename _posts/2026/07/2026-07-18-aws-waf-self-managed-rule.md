@@ -9,9 +9,9 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-이전 글 [AWS WAF 알아보기 - Web ACL, Rule, Managed Rules, 비용 구조](/posts/aws-waf/)에서는 AWS WAF의 전체 구조와 Managed Rule Group, 비용 계산 방식을 정리했습니다. Managed Rule Group은 SQL injection이나 XSS 같은 널리 알려진 공격 pattern을 AWS와 공급자가 대신 작성하고 갱신해 주므로 초기 도입 부담을 크게 줄여 줍니다. 다만 Managed Rule Group만으로 모든 정책을 덮을 수는 없습니다. 특정 hosting network에서만 반복되는 abuse, 회사가 직접 근거를 관리하고 만료시켜야 하는 임시 차단, 특정 고비용 endpoint의 요청량 완화처럼 조직이 직접 정의하고 설명할 수 있어야 하는 조건이 있기 때문입니다.
+[이전 글](/posts/aws-waf/)에서는 AWS WAF의 Web ACL, Managed Rule Group, 비용과 공통 rollout을 다뤘습니다.
 
-이번 글에서는 이런 조건을 다루는 **self-managed rule**을 `AsnMatchStatement`, IP set match, rate-based rule 세 가지를 중심으로 살펴봅니다. 각 수단의 선택 기준, ASN Match의 동작과 비용, Count에서 Block까지의 안전한 전환 절차, 그리고 ASN 차단이 만능이 아닌 이유까지 정리합니다. 모든 예시는 일반화한 가상 값과 AWS 공식 문서만 사용합니다.
+이번 글에서는 조직이 직접 근거와 만료를 관리해야 하는 self-managed rule을 `AsnMatchStatement`, IP set match, rate-based rule 세 가지를 중심으로 다룹니다. 각 수단의 선택 기준, ASN Match의 동작, Count에서 Block까지의 전환, ASN 차단의 한계를 정리합니다. 모든 예시는 일반화한 가상 값과 AWS 공식 문서만 사용합니다.
 
 ---
 
@@ -29,7 +29,7 @@ image:
 
 ## 2. Self-managed rule은 언제 필요한가?
 
-[이전 글](/posts/aws-waf/)은 Web ACL, Managed Rule Group, observability, 비용과 공통 Count rollout을 다룹니다. 이 글은 그 기반 위에서 **조직이 직접 근거와 만료를 소유해야 하는 좁은 조건**만 다룹니다. self-managed rule은 Managed Rule Group, 애플리케이션 인증과 권한 검사, 입력 검증, origin 보호를 대체하지 않습니다.
+self-managed rule은 Managed Rule Group, 애플리케이션 인증과 권한 검사, 입력 검증, origin 보호를 대체하지 않습니다. 조직 고유의 traffic 근거가 있고 차단 사유와 재검토 시점을 직접 설명할 수 있을 때만 추가합니다.
 
 | 구분 | Managed Rule Group | Self-managed rule |
 | :--- | :--- | :--- |
@@ -159,7 +159,7 @@ WCU 관점에서 IP set match statement는 대부분의 사용에서 1 WCU입니
 
 ### 5.2. Rate-based rule
 
-rate-based rule의 evaluation window와 근사치 기반 탐지라는 기본 동작은 [이전 글](/posts/aws-waf/)에서 다뤘습니다. 여기서는 self-managed policy에서 path와 aggregation key를 어떻게 좁힐지에 집중합니다.
+self-managed rate-based rule은 scope-down statement로 대상 path를 좁히고, aggregation key와 threshold를 traffic 근거에 맞춰 선택합니다.
 
 다음은 특정 고비용 path에만 rate limit을 적용하는 일반화 예시입니다. `limit`과 path 값은 workload마다 반드시 재검증해야 하는 placeholder입니다.
 
@@ -210,21 +210,9 @@ WCU 관점에서 rate-based rule statement의 기본 비용은 2 WCU입니다. �
 
 ---
 
-## 6. 비용 - 이 글에서 추가되는 부분
+## 6. 안전한 운영 - self-managed rule에 추가할 것
 
-Web ACL, request, WCU 초과, body inspection, logging, CAPTCHA, Challenge, Bot Control의 전체 가격 구조는 [이전 글](/posts/aws-waf/)에서 다룹니다. self-managed rule 판단에 필요한 증분만 분리하면 다음과 같습니다.
-
-- 일반 custom ASN rule 하나는 rule당 월 $1.00이며, **그 rule 때문에 별도 per-request 요금이 한 번 더 붙지는 않습니다**. request 요금은 Web ACL이 처리한 request를 기준으로 계산됩니다.
-- ASN Match는 1 WCU입니다. 다만 전체 Web ACL이 1,500 WCU를 넘으면 별도 WCU surcharge가 발생할 수 있으므로 rule 하나의 WCU만 분리해 판단하면 안 됩니다.
-- `Allow`, `Block`, `Count`는 같은 기본 WAF inspection 비용을 사용합니다. `Count`는 무료 mode가 아니라 안전한 관측 mode입니다.
-
-따라서 self-managed rule 자체보다 유료 bot 기능, WCU 초과, body inspection과 logging 범위가 실제 비용을 크게 바꾸는지 함께 확인해야 합니다.
-
----
-
-## 7. 안전한 운영 - self-managed rule에 추가할 것
-
-공통 `Count` rollout, metric과 log 관찰, Block 전환, rollback 절차는 [이전 글](/posts/aws-waf/)의 배포 전략을 따릅니다. self-managed rule에는 다음 운영 정보가 추가로 필요합니다.
+self-managed rule에는 다음 운영 정보가 필요합니다.
 
 1. **근거와 policy owner**: 어떤 log 근거로 어떤 network 또는 path를 대상으로 하는지, 소유자와 재검토 시점을 기록합니다.
 2. **명시적 만료**: 임시 ASN 또는 CIDR 차단은 만료일을 둡니다. 근거 없이 남은 항목은 false positive를 추적하기 어렵습니다.
@@ -237,7 +225,7 @@ Web ACL, request, WCU 초과, body inspection, logging, CAPTCHA, Challenge, Bot 
 
 ---
 
-## 8. 한계와 결합 전략
+## 7. 한계와 결합 전략
 
 ASN Match는 강력하지만 오용하기 쉬운 수단입니다. 다음 한계를 분명히 이해해야 합니다.
 
@@ -245,11 +233,11 @@ ASN Match는 강력하지만 오용하기 쉬운 수단입니다. 다음 한계�
 - **residential, mobile, CGNAT, enterprise NAT 대역은 부적합하다**: 가정용 ISP, 모바일 통신망, CGNAT, 기업 NAT은 수많은 정상 사용자가 소수의 ASN과 IP를 공유합니다. 이런 대역을 ASN으로 넓게 차단하면 대규모 정상 사용자를 함께 막게 됩니다. ASN 차단은 근거가 뒷받침되는 datacenter/hosting network에 좁게 한정해야 합니다.
 - **residential proxy를 막지 못한다**: 공격자가 residential proxy를 경유하면 정상 가정용 ASN으로 위장하므로 ASN Match만으로는 걸러지지 않습니다.
 
-ASN Match는 단독 방어선이 아닙니다. Managed Rule Group, 애플리케이션 인증과 입력 검증, origin 보호가 맡는 공통 역할은 [이전 글](/posts/aws-waf/)을 따릅니다. 이 글의 판단은 그중 self-managed rule을 어떤 근거와 만료 조건으로 좁게 보완할지에 한정합니다.
+ASN Match는 단독 방어선이 아닙니다. self-managed rule은 조직 고유의 network 정책을 좁게 보완하는 수단이며, 적용 근거와 만료 조건을 계속 검토해야 합니다.
 
 ---
 
-## 9. 마무리
+## 8. 마무리
 
 Self-managed rule의 핵심은 rule을 많이 만드는 것이 아니라, **조직이 근거를 설명하고 만료시킬 수 있는 좁은 정책을 안전하게 운영하는 것**입니다. ASN Match는 network 조직 단위로 datacenter/hosting traffic을 다루기에 유용하고, IP set은 좁고 명확한 대상에, rate-based rule은 특정 path의 aggregate abuse 완화에 적합합니다.
 
@@ -257,7 +245,7 @@ Self-managed rule의 핵심은 rule을 많이 만드는 것이 아니라, **조�
 
 ---
 
-## 10. Reference
+## 9. Reference
 
 - [AWS Docs - Autonomous System Number (ASN) match rule statement](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-asn-match.html)
 - [AWS Docs - AsnMatchStatement API](https://docs.aws.amazon.com/waf/latest/APIReference/API_AsnMatchStatement.html)
