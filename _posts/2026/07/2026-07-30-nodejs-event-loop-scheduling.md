@@ -22,7 +22,9 @@ Node.js는 기본적으로 하나의 JavaScript thread에서 callback을 실행�
 
 JavaScript callback이 실행 중일 때 `process.nextTick()`, `queueMicrotask()`, `Promise.then()`을 등록하면 callback body가 끝난 직후에 바로 다음 event-loop phase로 넘어가지 않습니다.
 
-Node.js는 우선 `process.nextTick()` queue를 비우고, 그다음 V8 microtask queue를 처리합니다. `queueMicrotask()`와 이미 resolve된 Promise의 `.then()`은 같은 microtask queue에 들어가므로 등록 순서가 FIFO 순서를 결정합니다.
+CommonJS script와 일반 callback boundary에서는 Node.js가 우선 `process.nextTick()` queue를 비우고, 그다음 V8 microtask queue를 처리합니다. `queueMicrotask()`와 이미 resolve된 Promise의 `.then()`은 같은 microtask queue에 들어가므로 등록 순서가 FIFO 순서를 결정합니다.
+
+ESM top-level은 예외입니다. ESM module 자체가 microtask queue의 일부로 처리되므로, top-level에서 등록한 `queueMicrotask()` callback이 `process.nextTick()`보다 먼저 실행될 수 있습니다. 따라서 next-tick과 microtask의 순서는 module format과 callback placement를 함께 적어야 합니다.
 
 ```js
 process.nextTick(() => console.log('nextTick'));
