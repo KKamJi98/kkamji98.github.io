@@ -9,7 +9,7 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
-[RAG 2편](/posts/rag-chunking-embedding-contextual-retrieval/)에서 문서를 청크로 나누고 임베딩으로 벡터화하는 인덱싱 설계를 살펴봤습니다. 이제 만들어진 벡터에서 질의와 가까운 후보를 어떻게 찾는지 보겠습니다. 이번 글에서는 정확 검색과 ANN의 차이, 대표 인덱스인 **HNSW와 IVF**, 그리고 **pgvector와 Qdrant**를 선택 기준 관점에서 살펴봅니다. 인덱스는 검색 품질을 직접 보장하지 않지만, 같은 품질 목표를 어느 지연과 메모리 비용으로 달성할지 결정합니다.
+[RAG 2편](/posts/rag-chunking-embedding-contextual-retrieval/)에서 문서를 청크로 나누고 임베딩으로 벡터화하는 인덱싱 설계를 살펴봤습니다. 이제 만들어진 벡터에서 질의와 가까운 후보를 어떻게 찾는지 보겠습니다. 정확 검색과 ANN의 차이, 대표 인덱스인 **HNSW와 IVF**, 그리고 **pgvector와 Qdrant**를 선택 기준 관점에서 살펴봅니다. 인덱스는 검색 품질을 직접 보장하지 않지만, 같은 품질 목표를 어느 지연과 메모리 비용으로 달성할지 결정합니다.
 
 > **TL;DR**  
 >

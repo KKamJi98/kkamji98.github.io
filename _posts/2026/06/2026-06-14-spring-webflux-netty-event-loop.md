@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브는 "블로킹을 하지 않는다"는 데까지 봤습니다. 그런데 블로킹을 하지 않으면 서버 스레드는 구체적으로 어떻게 동작할까요. "적은 스레드로 많은 요청을 처리한다"는 말의 실체는 무엇이고, netty가 쓰는 메모리는 왜 JVM 힙 바깥(off-heap)에 있을까요. 이번 글에서는 Spring WebFlux의 실행 모델인 **event loop**와 netty의 **direct memory**를 살펴봅니다. 앞의 [Series 1 3편 thread-per-request](/posts/spring-mvc-dispatcherservlet/)와 [Series 2의 JVM 메모리 구조](/posts/jvm-memory-model/)가 여기서 다시 만납니다.
+[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브는 "블로킹을 하지 않는다"는 데까지 봤습니다. 그런데 블로킹을 하지 않으면 서버 스레드는 구체적으로 어떻게 동작할까요. "적은 스레드로 많은 요청을 처리한다"는 말의 실체는 무엇이고, netty가 쓰는 메모리는 왜 JVM 힙 바깥(off-heap)에 있을까요. Spring WebFlux의 실행 모델인 **event loop**와 netty의 **direct memory**를 살펴봅니다. 앞의 [Series 1 3편 thread-per-request](/posts/spring-mvc-dispatcherservlet/)와 [Series 2의 JVM 메모리 구조](/posts/jvm-memory-model/)가 여기서 다시 만납니다.
 
 > **TL;DR**  
 > - Spring WebFlux의 기본 서버는 **Netty**이고, thread-per-request가 아니라 **event loop** 모델로 동작한다.  
@@ -168,7 +168,7 @@ _JVM process memory = JVM Heap(-Xmx) + Direct Memory(off-heap). netty 소켓 I/O
 
 ---
 
-이번 글에서는 WebFlux가 **적은 event loop 스레드로 다수 커넥션을 논블로킹 처리**하는 모델과, netty가 **off-heap direct memory를 I/O 버퍼로 쓰는 이유**를 봤습니다.
+WebFlux가 **적은 event loop 스레드로 다수 커넥션을 논블로킹 처리**하는 모델과, netty가 **off-heap direct memory를 I/O 버퍼로 쓰는 이유**를 봤습니다.
 
 > capstone 연결: event loop 모델과 off-heap direct memory는 커리큘럼 마지막 capstone(실전 메모리/GC 사례)에서 다시 회수합니다. **서비스명이나 실측치 없이, 일반화된 메커니즘과 재구성된 예시로만** 다룹니다.  
 {: .prompt-tip}

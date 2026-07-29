@@ -9,7 +9,7 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
-[RAG 2편](/posts/rag-chunking-embedding-contextual-retrieval/)에서 청킹과 임베딩을, [3편](/posts/rag-vector-database-and-index/)에서 벡터 DB와 인덱스를 살펴봤습니다. 그런데 dense 벡터 검색만으로는 검색 품질에 한계가 있습니다. 임베딩은 의미가 비슷한 문장을 잘 찾지만, "제3조" 같은 정확한 조항 번호나 고유명사, 제품명 매칭에는 오히려 약합니다. 이번 글에서는 dense 검색과 키워드 검색을 결합하는 **Hybrid Search**, 두 검색 결과를 합치는 **RRF**, 그리고 후보를 정밀 재정렬하는 **Reranking**을 살펴봅니다.
+[RAG 2편](/posts/rag-chunking-embedding-contextual-retrieval/)에서 청킹과 임베딩을, [3편](/posts/rag-vector-database-and-index/)에서 벡터 DB와 인덱스를 살펴봤습니다. 그런데 dense 벡터 검색만으로는 검색 품질에 한계가 있습니다. 임베딩은 의미가 비슷한 문장을 잘 찾지만, "제3조" 같은 정확한 조항 번호나 고유명사, 제품명 매칭에는 오히려 약합니다. dense 검색과 키워드 검색을 결합하는 **Hybrid Search**, 두 검색 결과를 합치는 **RRF**, 그리고 후보를 정밀 재정렬하는 **Reranking**을 살펴봅니다.
 
 > - dense(임베딩) 검색은 동의어와 문맥 같은 **의미**를, sparse(BM25 등) 검색은 질의에 실제로 등장한 **용어**를 찾는 데 각각 강점이 있습니다. 정책 문서는 두 신호를 함께 평가해야 합니다.  
 > - **Hybrid Search**는 dense와 sparse를 함께 실행해 결과를 합칩니다.  

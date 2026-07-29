@@ -11,7 +11,7 @@ image:
 
 CloudFront를 ALB나 EC2 앞단에 두려고 하면, 정작 오리진(origin)은 퍼블릭 서브넷에 두고 퍼블릭 IP를 부여해야 했습니다. 그러면서도 "CloudFront만 들어오게" 하려고 Security Group에 CloudFront managed prefix list를 걸거나, 커스텀 헤더를 검증하는 등 추가 작업이 필요했고, 결국 오리진이 인터넷에 노출되는 구조 자체는 그대로 남았습니다.
 **Amazon CloudFront VPC Origins**는 이 문제를 정면으로 해결합니다. 프라이빗 서브넷에 있는 ALB/NLB/EC2를 CloudFront 오리진으로 직접 연결해, 오리진을 인터넷에 노출하지 않고도 CloudFront를 유일한 진입점으로 만들 수 있습니다.
-이번 포스트에서는 VPC Origins가 무엇이고, 기존 방식과 무엇이 다르며, 어떻게 동작하고 어떤 준비물과 제약이 있는지를 개요 수준에서 정리합니다.
+VPC Origins가 무엇이고, 기존 방식과 무엇이 다르며, 어떻게 동작하고 어떤 준비물과 제약이 있는지를 개요 수준에서 정리합니다.
 
 > **TL;DR**  
 > - VPC Origins는 프라이빗 서브넷의 ALB/NLB/EC2를 CloudFront 오리진으로 직접 연결하는 관리형 기능입니다.  

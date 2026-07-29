@@ -11,7 +11,7 @@ image:
 
 서비스 메시의 핵심 가치는 **트래픽 제어를 애플리케이션 밖에서 일관되게 수행**하는 데 있습니다. Istio의 **Request Routing** 기능을 활용하면 동일 서비스의 버전별 트래픽 분산, 사용자 그룹별 라우팅, 점진적 배포를 손쉽게 구현할 수 있습니다.
 
-이번 글에서는 Bookinfo 데모 애플리케이션을 대상으로 DestinationRule과 VirtualService를 적용해 **헤더 기반 라우팅**을 구현하고, Envoy 로그와 Kiali로 동작을 검증합니다.
+Bookinfo 데모 애플리케이션을 대상으로 DestinationRule과 VirtualService를 적용해 **헤더 기반 라우팅**을 구현하고, Envoy 로그와 Kiali로 동작을 검증합니다.
 
 ---
 
@@ -99,7 +99,7 @@ spec:
 
 ## 4. 라우팅 동작 검증
 
-위에서 DestinationRule과 VirtualService를 적용했으므로, 실제로 헤더 기반 라우팅이 동작하는지 UI에서 확인해보겠습니다.
+위에서 DestinationRule과 VirtualService를 적용했으므로, 실제로 헤더 기반 라우팅이 동작하는지 UI에서 확인합니다.
 
 ```shell
 kubectl get nodes -o wide

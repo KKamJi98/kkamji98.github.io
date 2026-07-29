@@ -11,7 +11,7 @@ image:
 
 앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서는 일반 Glue 테이블(S3 + Parquet 파일 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리했습니다. 그런데 다음 편에서 다룰 **S3 Tables**는 "관리형 Iceberg 레이크하우스"입니다. 즉 S3 Tables를 제대로 이해하려면 그 바탕에 깔린 **Apache Iceberg 테이블 포맷**이 무엇인지 먼저 알아야 합니다.
 
-Iceberg는 AWS 전용 기능이 아니라, S3 같은 객체 스토리지 위의 파일을 테이블로 관리하는 **오픈 테이블 포맷(open table format)** 입니다. 파일 위치와 현재 메타데이터 위치는 **카탈로그(catalog)** 가 관리하고, 메타데이터가 어떤 파일이 현재 테이블에 속하는지 결정합니다. 이번 글에서는 AWS 맥락을 잠시 내려놓고, Iceberg 자체의 구조와 동작 원리를 깊이 들여다봅니다. 메타데이터가 어떤 계층으로 쌓이는지, 시간여행과 스키마 및 파티션 진화가 어떻게 가능한지, 그리고 Copy-on-Write와 Merge-on-Read의 차이까지 정리합니다.
+Iceberg는 AWS 전용 기능이 아니라, S3 같은 객체 스토리지 위의 파일을 테이블로 관리하는 **오픈 테이블 포맷(open table format)** 입니다. 파일 위치와 현재 메타데이터 위치는 **카탈로그(catalog)** 가 관리하고, 메타데이터가 어떤 파일이 현재 테이블에 속하는지 결정합니다. AWS 맥락을 잠시 내려놓고, Iceberg 자체의 구조와 동작 원리를 깊이 들여다봅니다. 메타데이터가 어떤 계층으로 쌓이는지, 시간여행과 스키마 및 파티션 진화가 어떻게 가능한지, 그리고 Copy-on-Write와 Merge-on-Read의 차이까지 정리합니다.
 
 > **TL;DR**  
 > - Iceberg는 디렉터리가 아니라 **개별 파일을 추적**하는 테이블 포맷입니다. 메타데이터는 **metadata file -> manifest list -> manifest file -> data file** 4계층으로 쌓입니다.  
@@ -333,8 +333,6 @@ Iceberg와 같은 문제(객체 스토리지 위의 ACID 테이블)를 푸는 �
 
 어느 하나가 절대적으로 우월하다기보다, 사용하는 엔진 생태계와 워크로드(분석 위주 vs 잦은 upsert)에 따라 선택이 갈립니다. AWS 분석 스택은 그중 **Iceberg를 1급으로 채택**해 Athena, Glue, S3 Tables가 모두 Iceberg를 지원합니다.
 
-> 세 포맷의 상호 운용을 노리는 Apache XTable 같은 프로젝트도 있지만, 이 글의 범위를 벗어나므로 다루지 않습니다.  
-{: .prompt-info}
 
 ---
 

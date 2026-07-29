@@ -16,7 +16,6 @@ Istio의 **Fault Injection** 기능을 사용하면 네트워크 지연이나 �
 > **TL;DR**  
 > - Istio 서비스 메시 구성과 트래픽 제어 관점을 실습 중심으로 정리합니다.  
 > - 주요 키워드는 istio, fault-injection, delay이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -86,7 +85,7 @@ open http://<EXTERNAL-IP>:30010/productpage
 
 ### 4.1. 지연 시간 변경 (4s -> 2s)
 
-위에서 4초 지연 주입으로 별점이 표시되지 않는 것을 확인했습니다. 이제 지연 시간을 2초로 낮춰 reviews의 timeout(2.5초) 내에 응답이 도착하는지 확인해보겠습니다.
+위에서 4초 지연 주입으로 별점이 표시되지 않는 것을 확인했습니다. 이제 지연 시간을 2초로 낮춰 reviews의 timeout(2.5초) 내에 응답이 도착하는지 확인합니다.
 
 ![Delay Config Change](/assets/img/kubernetes/istio/04_delay_config_change.webp)
 
@@ -104,7 +103,7 @@ Envoy 로그에서 지연 시간이 약 2000ms로 기록된 것을 확인한 화
 
 ### 4.2. 지연 시간 증가 (11s) 및 재시도
 
-2초 지연에서는 정상 동작을 확인했으므로, 이번에는 11초 지연을 주입해 재시도 동작을 로그로 확인해보겠습니다.
+2초 지연에서는 정상 동작을 확인했으므로, 이번에는 11초 지연을 주입해 재시도 동작을 로그로 확인합니다.
 
 ![Delay 11s Retry Logs](/assets/img/kubernetes/istio/07_delay_11s_retry_logs.webp)
 

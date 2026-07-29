@@ -11,7 +11,7 @@ image:
 
 [이전 글](/posts/aws-waf/)에서는 AWS WAF의 Web ACL, Managed Rule Group, 비용과 공통 rollout을 다뤘습니다.
 
-이번 글에서는 조직이 직접 근거와 만료를 관리해야 하는 self-managed rule을 `AsnMatchStatement`, IP set match, rate-based rule 세 가지를 중심으로 다룹니다. 각 수단의 선택 기준, ASN Match의 동작, Count에서 Block까지의 전환, ASN 차단의 한계를 정리합니다. 모든 예시는 일반화한 가상 값과 AWS 공식 문서만 사용합니다.
+조직이 직접 근거와 만료를 관리해야 하는 self-managed rule을 `AsnMatchStatement`, IP set match, rate-based rule 세 가지를 중심으로 다룹니다. 각 수단의 선택 기준, ASN Match의 동작, Count에서 Block까지의 전환, ASN 차단의 한계를 정리합니다. 모든 예시는 일반화한 가상 값과 AWS 공식 문서만 사용합니다.
 
 ---
 

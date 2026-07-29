@@ -17,12 +17,11 @@ Helm은 Kubernetes의 패키지 매니저로, 애플리케이션의 배포 및 �
 
 Terraform 환경에서 Helm을 활용하면, Kubernetes 애플리케이션의 배포 자동화가 가능하며, **인프라 및 애플리케이션을 일관되게** 관리하기가 쉬워집니다. Terraform의 Helm Provider를 사용하면 Helm Chart의 설치, 업데이트, 삭제를 코드로 정의할 수 있으며, 이를 통해 **운영 효율성을 높이고 CI/CD 파이프라인과의 연동**도 원활해집니다.
 
-이번 포스트에서는 Terraform Helm Provider를 활용해 Kubernetes 애플리케이션을 배포하는 방법에 대해 다뤄보도록 하겠습니다.
+Terraform Helm Provider를 활용해 Kubernetes 애플리케이션을 배포하는 방법에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
 > - IaC와 배포 자동화 도구를 사용할 때 필요한 구성 흐름과 주의사항을 정리합니다.  
 > - 주요 키워드는 terraform, helm, helm-provider이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---

@@ -11,12 +11,11 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study`를 진행하며 학습한 내용을 공유합니다.
 
-이번 포스트에서는 **Argo Rollouts**에 대해 다루겠습니다.
+**Argo Rollouts**에 대해 다루겠습니다.
 
 > **TL;DR**  
 > - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
 > - 주요 키워드는 ci-cd-study, ci-cd-study-5w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -348,7 +347,7 @@ Set Weight를 `20%`로 설정해두었기 때문에 5개의 Pod 중 1개의 Pod�
 
 ## 5. 마무리
 
-이번 포스트에서는 **Argo Rollouts**의 개념과 아키텍처를 살펴보고, 실제 **Rollout** 리소스를 배포하여 Canary 배포 전략을 실습해 보았습니다. **Argo Rollouts**를 사용하면 기존 Kubernetes Deployment로는 어려웠던 세밀한 트래픽 제어와 자동화된 배포 전략을 손쉽게 구현할 수 있음을 확인했습니다.
+**Argo Rollouts**의 개념과 아키텍처를 살펴보고, 실제 **Rollout** 리소스를 배포하여 Canary 배포 전략을 실습해 보았습니다. **Argo Rollouts**를 사용하면 기존 Kubernetes Deployment로는 어려웠던 세밀한 트래픽 제어와 자동화된 배포 전략을 손쉽게 구현할 수 있음을 확인했습니다.
 
 ---
 

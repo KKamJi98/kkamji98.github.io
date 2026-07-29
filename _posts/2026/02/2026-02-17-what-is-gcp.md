@@ -117,16 +117,11 @@ gcloud config list
 
 ---
 
-## 5. 다음 글
-
-이 개요에서 잡은 큰 그림을 바탕으로, 시리즈는 다음 순서로 이어집니다.
-
-1. [GCP 리소스 계층 알아보기 - Organization, Folder, Project](/posts/gcp-resource-hierarchy/): 리소스가 어떤 계층으로 묶이고 권한/정책/결제가 어디에 적용되는지 정리합니다.
-2. [GCP IAM 알아보기 - Principal, Role, Policy, Service Account](/posts/gcp-iam/): 리소스 계층 위에서 동작하는 권한 체계를 다룹니다.
+GCP resource hierarchy는 조직의 정책, 권한, 결제가 어디에 적용되는지 결정하고, IAM은 그 계층 위에서 principal과 role을 연결합니다. 두 주제는 [GCP 리소스 계층](/posts/gcp-resource-hierarchy/)과 [GCP IAM](/posts/gcp-iam/)에서 각각 다룹니다.
 
 ---
 
-## 6. Reference
+## 5. Reference
 
 - [Google Cloud Docs - Google Cloud overview](https://cloud.google.com/docs/overview)
 - [Google Cloud Docs - Geography and regions](https://cloud.google.com/docs/geography-and-regions)

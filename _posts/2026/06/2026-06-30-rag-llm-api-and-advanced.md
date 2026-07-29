@@ -9,7 +9,7 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
-[RAG 1편](/posts/rag-overview-concept-and-pipeline/)부터 [6편](/posts/rag-latency-optimization-and-evaluation/)까지 검색 파이프라인을 인덱싱, 벡터 DB, 검색 정확도, 보안, 지연/평가 순으로 살펴봤습니다. 이번 글에서는 검색된 청크를 LLM에 넘겨 답을 만드는 **generation 단계**와, 이 단계에서 출처(citation)를 어떻게 보장하는지를 다룹니다. 이어서 표준 vector RAG를 넘어서는 고급 기법인 **GraphRAG**와 **Agentic RAG**를 정리하고, 사내 정책 문서 RAG 관점에서 어떤 이점과 한계가 있는지 정직하게 짚어봅니다. 마지막 편인 만큼 시리즈를 관통한 원칙도 함께 정리합니다.
+[RAG 1편](/posts/rag-overview-concept-and-pipeline/)부터 [6편](/posts/rag-latency-optimization-and-evaluation/)까지 검색 파이프라인을 인덱싱, 벡터 DB, 검색 정확도, 보안, 지연/평가 순으로 살펴봤습니다. 검색된 청크를 LLM에 넘겨 답을 만드는 **generation 단계**와, 이 단계에서 출처(citation)를 어떻게 보장하는지를 다룹니다. 이어서 표준 vector RAG를 넘어서는 고급 기법인 **GraphRAG**와 **Agentic RAG**를 정리하고, 사내 정책 문서 RAG 관점에서 어떤 이점과 한계가 있는지 정직하게 짚어봅니다. 마지막 편인 만큼 시리즈를 관통한 원칙도 함께 정리합니다.
 
 > - Generation 단계는 검색된 문맥을 답변 근거로 제한하고, 사용자가 검증할 수 있는 citation을 반환해야 합니다. citation은 근거 위치를 가리키지만 답변 해석의 정확성을 보장하지는 않습니다.  
 > - Claude Citations는 제공 문서의 유효 포인터와 직접 추출한 `cited_text`를 반환합니다. 현재 문서 기준으로 structured outputs와 동시에 사용할 수 없으므로 응답 계약을 먼저 선택해야 합니다.  

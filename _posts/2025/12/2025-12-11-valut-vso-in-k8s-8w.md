@@ -11,12 +11,11 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study`를 진행하며 학습한 내용을 공유합니다.
 
-이번 포스팅에서는 HashiCorp Vault/VSO에 대해 알아보겠습니다.
+HashiCorp Vault/VSO에 대해 알아봅니다.
 
 > **TL;DR**  
 > - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
 > - 주요 키워드는 ci-cd-study, ci-cd-study-8w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -298,7 +297,7 @@ kubectl exec -it vault-0 -n vault -- tail -f /vault/logs/audit.log
 
 ## 3. Using Vault on Kubernetes
 
-이번에는 Vault에 시크릿을 생성하고, 이를 Kubernetes에서 사용하는 방법에 대해 알아보겠습니다. 이를 위해 `Vault Secrets Operator (VSO)`를 사용합니다. VSO는 Kubernetes 환경에서 Vault 시크릿을 쉽게 관리할 수 있도록 도와주는 오픈소스 프로젝트입니다. - [docmoa - Vault Secrets Operator 개요](https://docmoa.github.io/04-HashiCorp/06-Vault/01-Information/vault-secret-operator/1-vso-overview.html)
+이번에는 Vault에 시크릿을 생성하고, 이를 Kubernetes에서 사용하는 방법에 대해 알아봅니다. 이를 위해 `Vault Secrets Operator (VSO)`를 사용합니다. VSO는 Kubernetes 환경에서 Vault 시크릿을 쉽게 관리할 수 있도록 도와주는 오픈소스 프로젝트입니다. - [docmoa - Vault Secrets Operator 개요](https://docmoa.github.io/04-HashiCorp/06-Vault/01-Information/vault-secret-operator/1-vso-overview.html)
 
 ![Vault In Kubernetes](/assets/img/ci-cd/ci-cd-study/vault-in-k8s.webp)
 > <https://developer.hashicorp.com/vault/tutorials/kubernetes/agent-kubernetes>  
@@ -599,7 +598,7 @@ vault write auth/kubernetes/role/webapp \
 > [Vault Docs - Retrieve secrets for Kubernetes workloads with Vault Agent](https://developer.hashicorp.com/vault/tutorials/kubernetes-introduction/agent-kubernetes)  
 > [Vault Docs - Manage Kubernetes service tokens](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-secrets-engine)  
 
-이제 Kubernetes에 Web Application을 배포하고, Vault에서 시크릿을 가져오는 과정을 살펴보겠습니다.
+이제 Kubernetes에 Web Application을 배포하고, Vault에서 시크릿을 가져오는 과정을 살펴봅니다.
 해당 Application은 HTTP 요청을 Listening하는 단일 기능을 수행하며 요청 시 Kubernetes Service Account Token을 읽고 Vault에 로그인 후 시크릿을 조회합니다.
 
 #### 3.10.1. Web Application Deployment
@@ -1411,9 +1410,6 @@ kubectl rolesum -n vault-secrets-operator-system vault-secrets-operator-controll
 ---
 
 > **핵심 정리**  
-> - 이 글은 `HashiCorp Vault/VSO in Kubernetes`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
-> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
-> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
 {: .prompt-tip}
 
 ---

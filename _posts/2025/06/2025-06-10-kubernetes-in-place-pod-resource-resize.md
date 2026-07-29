@@ -16,12 +16,11 @@ image:
 
 Kubernetes v1.33에서 In-Place Pod Resource Resize 기능이 베타로 승격되었습니다. 기존에는 Pod의 CPU/Memory requests나 limits를 변경하려면 Pod를 재생성해야 했지만, 이제는 Pod를 재시작하지 않고 자원 크기를 조정할 수 있습니다.
 
-이번 글에서는 해당 기능의 개념을 설명하고, PoC를 통해 실제로 개념에 맞게 동작하는지를 확인해보도록 하겠습니다.
+해당 기능의 개념을 설명하고, PoC를 통해 실제로 개념에 맞게 동작하는지를 확인해보도록 하겠습니다.
 
 > **TL;DR**  
 > - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
 > - 주요 키워드는 pod, resource, resize이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -63,7 +62,7 @@ In-Place Pod Resource Resize 기능은 Kubernetes v1.33에서 베타로 제공�
 
 ## 3. PoC 진행
 
-test용 nginx pod를 생성하고, In-Place Pod Resource Resize 기능을 활용하여 Pod의 리소스 크기를 조정한 뒤, Pod가 재시작 없이 리소스 크기가 조정되는 것을 확인해보겠습니다.
+test용 nginx pod를 생성하고, In-Place Pod Resource Resize 기능을 활용하여 Pod의 리소스 크기를 조정한 뒤, Pod가 재시작 없이 리소스 크기가 조정되는 것을 확인합니다.
 
 ### 3.1. 테스트용 nginx Pod 생성
 

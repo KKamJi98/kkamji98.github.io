@@ -9,7 +9,7 @@ image:
   path: /assets/img/observability/datadog/datadog.webp
 ---
 
-서버 쪽 observability는 APM, logs, metrics로 비교적 익숙하게 다룹니다. 그런데 "백엔드는 200 OK로 빠르게 응답했는데 사용자는 느리다고 한다"는 상황은 server-side 신호만으로는 잘 잡히지 않습니다. 느린 렌더링, 레이아웃 이동, 브라우저 JS 에러처럼 사용자가 실제로 겪는 문제는 대부분 client-side에서 발생하기 때문입니다. 이번 글에서는 이 갭을 메우는 **Datadog RUM(Real User Monitoring)**의 개념과 데이터 모델, 무엇을 관측할 수 있는지, 그리고 이를 통해 observability를 어떻게 향상시킬 수 있는지 살펴봅니다.
+서버 쪽 observability는 APM, logs, metrics로 비교적 익숙하게 다룹니다. 그런데 "백엔드는 200 OK로 빠르게 응답했는데 사용자는 느리다고 한다"는 상황은 server-side 신호만으로는 잘 잡히지 않습니다. 느린 렌더링, 레이아웃 이동, 브라우저 JS 에러처럼 사용자가 실제로 겪는 문제는 대부분 client-side에서 발생하기 때문입니다. 이 갭을 메우는 **Datadog RUM(Real User Monitoring)**의 개념과 데이터 모델, 무엇을 관측할 수 있는지, 그리고 이를 통해 observability를 어떻게 향상시킬 수 있는지 살펴봅니다.
 
 > - RUM은 server-side observability의 반대편인 **client-side에서 실제 사용자 세션을 그대로 관측**하는 frontend observability입니다.  
 > - 데이터 모델은 `Session > View > (Action / Resource / Error / Long Task / Vital)` 트리 구조입니다.  
@@ -20,7 +20,6 @@ image:
 > **TL;DR**  
 > - 모니터링과 Observability 관점에서 수집, 시각화, 문제 분석 흐름을 정리합니다.  
 > - 주요 키워드는 datadog, rum, real-user-monitoring이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---

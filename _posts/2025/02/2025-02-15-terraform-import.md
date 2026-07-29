@@ -11,12 +11,11 @@ image:
 
 Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, 기존에 수동으로 생성한 리소스를 Terraform 코드로 관리해야 하는 경우가 있습니다. 이때 `terraform import` 명령어를 사용하면 기존 리소스를 Terraform 상태 파일(`.tfstate`)에 추가할 수 있습니다.
 
-이번 포스팅에서는 `terraform import` 의 기본 개념과 사용 방법, 그리고 `terraform state show` 명령어를 통해 코드와 리소스를 쉽게 매칭시키는 방법에 대해 알아보겠습니다.
+`terraform import` 의 기본 개념과 사용 방법, 그리고 `terraform state show` 명령어를 통해 코드와 리소스를 쉽게 매칭시키는 방법에 대해 알아봅니다.
 
 > **TL;DR**  
 > - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
 > - 주요 키워드는 terraform, import, ec2이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -35,7 +34,7 @@ Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, �
 
 ## 2. terraform import 사용 방법
 
-> 기존에 생성된 AWS EC2를 `terraform import` 명령어를 사용하여 해당 리소스를 가져오고, 코드와 리소스가 매칭되지 않을 시, `terraform state show` 명령어를 통해 코드와 리소스를 매칭시키는 방법을 알아보겠습니다.  
+> 기존에 생성된 AWS EC2를 `terraform import` 명령어를 사용하여 해당 리소스를 가져오고, 코드와 리소스가 매칭되지 않을 시, `terraform state show` 명령어를 통해 코드와 리소스를 매칭시키는 방법을 알아봅니다.
 {: .prompt-tip}
 
 ### 2.1. 기존 리소스 정보 확인

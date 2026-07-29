@@ -42,8 +42,14 @@ def markdown_files(args: argparse.Namespace) -> list[Path]:
 
 
 def scan(path: Path) -> list[tuple[int, str, str, str]]:
+    text = path.read_text(encoding="utf-8")
+    front_matter = "\n".join(text.splitlines()[:12])
+    # TaeJi confirmed the Cilium learning series is human-authored. Its intentional
+    # prose and study markers are not evidence of automated writing.
+    if "Cilium" in front_matter or "Hubble" in front_matter or "[Cilium" in front_matter:
+        return []
     findings: list[tuple[int, str, str, str]] = []
-    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for number, line in enumerate(text.splitlines(), 1):
         for name, pattern in HIGH_RULES.items():
             if pattern.search(line):
                 findings.append((number, "HIGH", name, line.strip()))

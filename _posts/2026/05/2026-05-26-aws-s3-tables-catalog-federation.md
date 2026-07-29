@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리하고, 이어 [Apache Iceberg 테이블 포맷](/posts/apache-iceberg-table-format/) 글에서 Iceberg 자체의 구조와 동작 원리를 살펴봤습니다. 이번 글에서는 그 Iceberg를 AWS가 관리형으로 감싼 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
+앞선 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/) 글에서 일반 Glue 테이블(S3 + Glue Catalog)을 기준으로 쿼리 흐름과 권한을 정리하고, 이어 [Apache Iceberg 테이블 포맷](/posts/apache-iceberg-table-format/) 글에서 Iceberg 자체의 구조와 동작 원리를 살펴봤습니다. 그 Iceberg를 AWS가 관리형으로 감싼 **Amazon S3 Tables**와, 그것이 Glue Data Catalog에 연결되는 방식인 **Catalog Federation**을 알아봅니다.
 
 이 편을 이해하면, 같은 Athena 쿼리인데도 `sales_db.orders`처럼 평범해 보이는 테이블이 사실은 `s3tablescatalog` 아래 깊은 경로에 있고, 그래서 권한 ARN이 왜 길어지는지가 보입니다. 다음 편(Lake Formation)의 권한 이야기를 위한 토대이기도 합니다.
 
@@ -255,15 +255,11 @@ GROUP BY dt;
 
 ---
 
-## 6. 다음 글
-
-이번 편에서는 S3 Tables가 무엇이고, Catalog Federation으로 기본 카탈로그 안에 어떻게 중첩되는지, 그래서 ARN이 왜 깊어지는지를 정리했습니다.
-
-다음 글에서는 이 federated 데이터에 한 겹 더 얹히는 권한 계층, **AWS Lake Formation**을 다룹니다. S3 Tables 레이크하우스 데이터는 IAM만으로는 접근할 수 없고, Lake Formation의 grant가 함께 있어야 합니다. 왜 그런지, 어떻게 부여하는지를 이어서 풀어갑니다.
+Lake Formation 권한은 S3 Tables의 federated 데이터에 한 겹 더 놓입니다. IAM과 Lake Formation grant가 함께 필요한 이유와 권한을 진단하는 순서는 [AWS Lake Formation 권한 심화](/posts/aws-lake-formation-permissions-deep-dive/)에서 이어집니다.
 
 ---
 
-## 7. Reference
+## 6. Reference
 
 - AWS Documentation - Amazon S3 Tables (개요): <https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables.html>
 - AWS Documentation - Maintenance for tables (compaction/snapshot 관리형 동작): <https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-maintenance.html>

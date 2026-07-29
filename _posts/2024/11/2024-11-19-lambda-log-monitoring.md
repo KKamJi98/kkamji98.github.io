@@ -18,7 +18,6 @@ image:
 > **TL;DR**  
 > - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
 > - 주요 키워드는 lambda, subscription-filter, logstash이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---
@@ -222,7 +221,7 @@ ok
 
 ## 4. Log Group에서 발생시키는 로그데이터 확인
 
-> 아래 event, content를 확인하기 위한 테스트용 Lambda Function을 생성하고, Lambda 함수의 handler에 어떤 데이터가 들어오는지 확인해보겠습니다.  
+> 아래 event, content를 확인하기 위한 테스트용 Lambda Function을 생성하고, Lambda 함수의 handler에 어떤 데이터가 들어오는지 확인합니다.
 {: .prompt-tip}
 
 ```python
@@ -239,7 +238,7 @@ def handler(event, context):
 
 ![Subscription Filter Data Format](/assets/img/observability/log_group_data_format.webp)
 
-> event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인해보겠습니다.  
+> event를 보면 dictionary 타입으로 `{'awslogs':{'data': 'gzip 압축 + base64 데이터'}}` 가 저장되는데 내부 구조가 어떤지 확인합니다.
 {: .prompt-tip}
 
 ```python
@@ -378,7 +377,7 @@ def handler(event, context):
 
 ## 7. 테스트
 
-> 해당 Lambda Function을 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인해보겠습니다.  
+> 해당 Lambda Function을 호출한 뒤 kibana를 통해 해당 Lambda Function의 로그가 제대로 전달되는지 확인합니다.
 {: .prompt-tip}
 
 ![subscription_filter_test_kibana](/assets/img/observability/subscription_filter_test_kibana.png)

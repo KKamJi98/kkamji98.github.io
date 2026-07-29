@@ -11,7 +11,7 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study`를 진행하며 학습한 내용을 공유합니다.
 
-이번 포스팅에서는 Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이전 포스팅]({% post_url 2025/11/2025-11-18-argocd-cluster-management-6w %})에서 구축한 `kind-mgmt`, `kind-dev`, `kind-prd` 3개의 클러스터에 ApplicationSet 리소스를 활용해 애플리케이션을 배포하는 과정을 정리해보겠습니다.
+Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이전 포스팅]({% post_url 2025/11/2025-11-18-argocd-cluster-management-6w %})에서 구축한 `kind-mgmt`, `kind-dev`, `kind-prd` 3개의 클러스터에 ApplicationSet 리소스를 활용해 애플리케이션을 배포하는 과정을 정리합니다.
 
 ---
 
@@ -762,7 +762,7 @@ argocd appset delete guestbook --yes
 
 ## 7. 마무리
 
-이번 포스팅에서는 Argo CD의 기본적인 관리 패턴인 App of Apps의 구조와 한계, 그리고 이를 극복하기 위한 ApplicationSet의 개념과 활용법을 알아보았습니다.
+Argo CD의 기본적인 관리 패턴인 App of Apps의 구조와 한계, 그리고 이를 극복하기 위한 ApplicationSet의 개념과 활용법을 알아보았습니다.
 
 실습을 통해 확인했듯이, 초기 단계의 소규모 환경에서는 App of Apps 패턴이 직관적이고 유용합니다. 하지만 관리해야 할 클러스터가 늘어나고 테넌트가 복잡해지는 확장 단계에서는 ApplicationSet의 Generator를 활용한 동적 관리가 필수적임을 알 수 있었습니다.
 
@@ -773,9 +773,6 @@ argocd appset delete guestbook --yes
 ---
 
 > **핵심 정리**  
-> - 이 글은 `Argo CD App of Apps & ApplicationSet`의 개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다.  
-> - 다시 볼 때는 전체 명령을 처음부터 실행하기보다 환경 전제, 권한, 네트워크, 버전 차이를 먼저 확인하는 것이 좋습니다.  
-> - 운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고, 조직의 보안 정책과 장애 대응 절차에 맞게 조정해야 합니다.  
 {: .prompt-tip}
 
 ---

@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 4 1편](/posts/jpa-persistence-context/)에서 영속성 컨텍스트의 수명이 트랜잭션에 묶인다고 했습니다. 그 트랜잭션을 거는 도구가 `@Transactional`인데, 메서드에 한 줄 붙이면 트랜잭션이 시작되고 끝납니다. 그런데 정확히 어떻게 동작할까요. 언제 롤백되고, 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출하면 어떻게 될까요. 이번 글에서는 `@Transactional`의 동작(AOP 프록시), 롤백 규칙, 그리고 **트랜잭션 전파(propagation)**를 정리합니다.
+[Series 4 1편](/posts/jpa-persistence-context/)에서 영속성 컨텍스트의 수명이 트랜잭션에 묶인다고 했습니다. 그 트랜잭션을 거는 도구가 `@Transactional`인데, 메서드에 한 줄 붙이면 트랜잭션이 시작되고 끝납니다. 그런데 정확히 어떻게 동작할까요. 언제 롤백되고, 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출하면 어떻게 될까요. `@Transactional`의 동작(AOP 프록시), 롤백 규칙, 그리고 **트랜잭션 전파(propagation)**를 정리합니다.
 
 > **TL;DR**  
 > - `@Transactional`은 **AOP 프록시**로 동작한다. 프록시가 메서드 호출을 가로채 트랜잭션을 begin/commit/rollback으로 감싼다.  
@@ -106,17 +106,13 @@ public class OrderService {
 
 ---
 
-## 5. 다음 글
+`@Transactional`의 propagation은 영속성 컨텍스트와 DB connection의 경계를 함께 바꿉니다. 조회 패턴에서 발생하는 N+1 문제는 [JPA N+1](/posts/jpa-n-plus-1/)에서, 트랜잭션 경계가 JVM 자원 사용에 미치는 영향은 [JVM 메모리](/posts/jvm-memory-model/)에서 연결해 볼 수 있습니다.
 
-이번 편에서 `@Transactional`의 프록시 동작, 롤백 규칙, 전파(REQUIRED/REQUIRES_NEW), self-invocation 함정을 봤습니다. [1편의 영속성 컨텍스트](/posts/jpa-persistence-context/)는 바로 이 트랜잭션 경계 안에서 살아 있습니다. 다음 편은 데이터 계층 성능의 단골 문제인 **N+1과 그 해결(fetch join, batch size)**을 다룹니다.
-
-capstone 연결: 전파를 잘못 설계하면(예: 불필요한 `REQUIRES_NEW` 남발) 물리 트랜잭션과 DB 커넥션이 늘어 커넥션 풀과 메모리에 압박을 줍니다. 트랜잭션 경계 설계는 [JVM 메모리](/posts/jvm-memory-model/)와 자원 사용으로 이어집니다.
-
-DevSecOps 비유: 전파는 **중첩 작업의 원자성 경계 설계**입니다. REQUIRED는 "전부 함께 성공/실패", REQUIRES_NEW는 "독립 커밋"이고, 이는 분산 시스템의 saga/보상 트랜잭션이나 nested 작업의 부분 롤백(savepoint) 설계와 같은 고민입니다. self-invocation 함정은 **데코레이터/미들웨어를 우회하는 직접 호출**(프록시를 안 거치면 부가기능이 안 붙는다)과 동일한 패턴입니다.
+`REQUIRES_NEW`를 불필요하게 중첩하면 물리 트랜잭션과 DB connection이 늘어 connection pool과 메모리를 압박할 수 있습니다. propagation은 중첩 작업의 원자성 경계를 설계하는 일이며, self-invocation은 decorator나 middleware를 우회하는 직접 호출과 같은 문제를 만듭니다.
 
 ---
 
-## 6. 참고 자료
+## 5. 참고 자료
 
 - Spring Framework Reference - Declarative Transaction Management (AOP 프록시 / 롤백 규칙): <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html>
 - Spring Framework Reference - Transaction Propagation (REQUIRED / REQUIRES_NEW / NESTED): <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html>

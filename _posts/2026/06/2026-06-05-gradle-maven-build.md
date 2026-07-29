@@ -92,17 +92,13 @@ _버전을 생략해 선언하면, spring-boot-dependencies BOM이 호환되는 
 
 ---
 
-## 5. 다음 글
+fat jar는 Spring Boot가 실행할 classpath를 고정한 산출물이고, BOM은 그 안의 dependency version을 함께 관리합니다. Spring Security의 filter chain은 [Spring Security 기본](/posts/spring-security-basics/)에서, 버전 업그레이드 뒤 runtime 동작 변화는 [JVM Spring capstone](/posts/jvm-spring-capstone/)에서 이어집니다.
 
-이번 편에서 빌드 단계, 실행 가능 jar(`bootJar`), 의존성 관리(BOM)를 봤습니다. 다음 편은 Series 5의 두 번째 주제인 **Spring Security**(인증/인가와 필터 체인)를 다룹니다.
-
-연결 고리도 분명합니다. 빌드 산출물인 fat jar는 [Series 1](/posts/spring-boot-autoconfiguration/)에서 실행되고, 의존성 버전(특히 JDK/라이브러리 메이저 업그레이드)은 [Capstone](/posts/jvm-spring-capstone/)에서 본 "업그레이드 후 거동 변화"의 출발점이기도 합니다.
-
-DevSecOps 비유: BOM/버전 고정은 **lockfile과 재현 가능한 빌드**(같은 입력 -> 같은 산출물)의 발상이고, 의존성 트리 관리는 **공급망 보안(SBOM, 취약점 스캔)**과 직결됩니다. 빌드 파이프라인의 compile/test/package 단계는 그대로 CI 파이프라인의 단계가 됩니다.
+BOM과 version pinning은 재현 가능한 build의 기반이며, dependency tree는 SBOM과 취약점 scan이 실제로 어떤 library를 다루는지 보여 주는 출발점입니다.
 
 ---
 
-## 6. 참고 자료
+## 5. 참고 자료
 
 - Spring Boot Gradle Plugin - Packaging Executable Archives (`bootJar` / fat jar / BOOT-INF): <https://docs.spring.io/spring-boot/gradle-plugin/packaging.html>
 - Spring Boot Gradle Plugin - Managing Dependencies (dependency management / BOM): <https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html>

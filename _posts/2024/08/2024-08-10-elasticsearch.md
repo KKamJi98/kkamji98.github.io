@@ -11,14 +11,13 @@ image:
 
 ![Elasticsearch ECK flow](/assets/img/observability/elasticsearch-eck-flow.webp)
 
-저번 포스트에서 시스템에서 로그를 수집 후 전송해주는 도구인 **Fluent Bit**을 설치했습니다. 이번 포스트에서는 **EFK Stack**의 핵심인 분산형 검색 및 분석 엔진 입니다. **Fluent Bit**에서 수집된 로그는 **Elasticsearch**에 저장될 수 있으며, **Elasticsearch**는 다양한 유형의 데이터에 대해 거의 실시간 검색 및 분석을 제공합니다.  
+저번 포스트에서 시스템에서 로그를 수집 후 전송해주는 도구인 **Fluent Bit**을 설치했습니다. **EFK Stack**의 핵심인 분산형 검색 및 분석 엔진 입니다. **Fluent Bit**에서 수집된 로그는 **Elasticsearch**에 저장될 수 있으며, **Elasticsearch**는 다양한 유형의 데이터에 대해 거의 실시간 검색 및 분석을 제공합니다.
 
 해당 포스트에서는 **Elasticsearch**에 대해 알아보고 구축해보도록 하겠습니다. **Elasticsearch**를 구축하는 방법은 **AWS OpenSearch**, **Elastic Cloud**, **Elastic Cloud on Kubernetes(ECK)** 등이 존재합니다. 현재 **Weasel**에서는 EKS를 사용 중이었으므로, 쿠버네티스 환경에 Elasticsearch를 구축하는 방법인 **ECK**를 선택했습니다.
 
 > **TL;DR**  
 > - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
 > - 주요 키워드는 eks, elasticsearch, elk이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
 {: .prompt-info}
 
 ---

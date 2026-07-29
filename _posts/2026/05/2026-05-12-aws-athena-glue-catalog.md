@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-앞선 [AWS 데이터 분석 스택 Overview](/posts/aws-analytics-stack-overview/)에서 분석 스택의 큰 그림과, 쿼리 한 번이 엔진과 메타스토어, 저장소를 지나는 흐름을 살펴봤습니다. 이번 글에서는 그 중심에 있는 두 구성요소, **Amazon Athena**와 **AWS Glue Data Catalog**를 자세히 알아봅니다.
+앞선 [AWS 데이터 분석 스택 Overview](/posts/aws-analytics-stack-overview/)에서 분석 스택의 큰 그림과, 쿼리 한 번이 엔진과 메타스토어, 저장소를 지나는 흐름을 살펴봤습니다. 그 중심에 있는 두 구성요소, **Amazon Athena**와 **AWS Glue Data Catalog**를 자세히 알아봅니다.
 
 이 둘은 한 쌍으로 움직입니다. Athena는 SQL을 실행하는 엔진이고, Glue Data Catalog는 "그 SQL이 가리키는 테이블이 무엇이고 어디에 있는지"를 알려주는 메타스토어입니다. 둘의 역할 분리와 권한 모델까지 정리합니다.
 

@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브와 Reactor의 기초를, [2편](/posts/spring-webflux-netty-event-loop/)에서 WebFlux의 event loop와 netty direct memory를 봤습니다. 그러면 자연스러운 질문이 남습니다. **그래서 새 서비스에 MVC를 쓸까, WebFlux를 쓸까.** 흥미롭게도 Spring 공식 문서의 답은 "무조건 최신(WebFlux)"이 아니라 의외로 담백합니다. 이번 글에서는 두 모델의 선택 기준과 트레이드오프를, Spring 공식 문서의 권고에 근거해 정리합니다. Series 3의 마무리입니다.
+[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브와 Reactor의 기초를, [2편](/posts/spring-webflux-netty-event-loop/)에서 WebFlux의 event loop와 netty direct memory를 봤습니다. 그러면 자연스러운 질문이 남습니다. **그래서 새 서비스에 MVC를 쓸까, WebFlux를 쓸까.** 흥미롭게도 Spring 공식 문서의 답은 "무조건 최신(WebFlux)"이 아니라 의외로 담백합니다. 두 모델의 선택 기준과 트레이드오프를, Spring 공식 문서의 권고에 근거해 정리합니다. Series 3의 마무리입니다.
 
 > **TL;DR**  
 > - WebFlux가 항상 정답은 아니다. **"잘 동작하는 MVC 앱이면 바꿀 이유가 없다"**가 Spring 공식 권고다.  

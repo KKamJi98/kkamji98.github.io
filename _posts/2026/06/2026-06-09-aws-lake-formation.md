@@ -9,9 +9,9 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-앞선 [S3 Tables & Catalog Federation](/posts/aws-s3-tables-catalog-federation/) 글에서 관리형 Iceberg 레이크하우스가 `s3tablescatalog` 아래에 어떻게 중첩되는지, 그래서 ARN이 왜 깊어지는지를 정리했습니다. 이번 글에서는 이 federated 데이터에 한 겹 더 얹히는 권한 계층, **AWS Lake Formation**을 알아봅니다.
+앞선 [S3 Tables & Catalog Federation](/posts/aws-s3-tables-catalog-federation/) 글에서 관리형 Iceberg 레이크하우스가 `s3tablescatalog` 아래에 어떻게 중첩되는지, 그래서 ARN이 왜 깊어지는지를 정리했습니다. 이 federated 데이터에 한 겹 더 얹히는 권한 계층, **AWS Lake Formation**을 알아봅니다.
 
-Lake Formation이 까다로운 이유는, IAM 정책에서 모든 권한을 Allow로 열어 줘도 쿼리가 `AccessDenied`로 막힐 수 있기 때문입니다. IAM 위에 데이터 접근을 따로 통제하는 게이트가 하나 더 있고, 그 게이트는 IAM과 전혀 다른 방식(grant)으로 동작합니다. 이번 글에서는 그 두 번째 게이트가 무엇이고, IAM과 어떻게 결합해 동작하는지를 정리합니다.
+Lake Formation이 까다로운 이유는, IAM 정책에서 모든 권한을 Allow로 열어 줘도 쿼리가 `AccessDenied`로 막힐 수 있기 때문입니다. IAM 위에 데이터 접근을 따로 통제하는 게이트가 하나 더 있고, 그 게이트는 IAM과 전혀 다른 방식(grant)으로 동작합니다. 그 두 번째 게이트가 무엇이고, IAM과 어떻게 결합해 동작하는지를 정리합니다.
 
 > **TL;DR**  
 > - **Lake Formation(LF)**은 Glue Data Catalog 리소스와 그 실데이터에 대한 **중앙 집중 fine-grained 접근 권한** 서비스입니다.  
@@ -277,15 +277,11 @@ aws lakeformation grant-permissions \
 
 ---
 
-## 6. 다음 글
-
-이번 편에서는 Lake Formation이 IAM 위에 얹히는 별도의 데이터 권한 게이트라는 점, grant 모델과 두 종류의 접근(metadata/underlying), credential vending과 `GetDataAccess`, 그리고 access control mode를 정리했습니다.
-
-다음 글에서는 이 모든 것을 실제 문제 상황에 적용합니다. 레이크하우스의 federated 데이터베이스가 Athena에서 `CATALOG_NOT_FOUND` / `TABLE_NOT_FOUND` / `AccessDenied`로 보이지 않을 때, IAM 두 축과 LF 세 계층(catalog/database/table)을 어떻게 진단하고 단계적으로 해소하는지를 다룹니다.
+Lake Formation의 grant는 IAM 권한과 별도로 Athena query를 통과시키는 데이터 권한 gate입니다. federated database가 `CATALOG_NOT_FOUND`, `TABLE_NOT_FOUND`, `AccessDenied`로 보일 때 IAM과 Lake Formation 계층을 진단하는 방법은 [Lake Formation 권한 심화](/posts/aws-lake-formation-permissions-deep-dive/)에서 다룹니다.
 
 ---
 
-## 7. Reference
+## 6. Reference
 
 - [AWS Lake Formation Developer Guide](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html)
 - [Lake Formation - access to underlying data](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html)

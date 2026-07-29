@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-JPA로 데이터를 다루다 보면 이상한 경험을 합니다. 엔티티의 필드를 바꾸기만 했는데 `update()` 같은 걸 부르지 않아도 DB에 반영됩니다. 같은 트랜잭션에서 같은 id를 두 번 조회하면 두 번째는 쿼리가 안 나갑니다. 이 "마법"의 정체가 **영속성 컨텍스트(persistence context)**입니다. 이번 글에서는 영속성 컨텍스트가 무엇이고(1차 캐시), 엔티티가 어떤 상태를 오가며, 변경이 어떻게 자동 반영(dirty checking)되는지를 정리합니다. Series 4(데이터 계층)의 출발점입니다.
+JPA로 데이터를 다루다 보면 이상한 경험을 합니다. 엔티티의 필드를 바꾸기만 했는데 `update()` 같은 걸 부르지 않아도 DB에 반영됩니다. 같은 트랜잭션에서 같은 id를 두 번 조회하면 두 번째는 쿼리가 안 나갑니다. 이 "마법"의 정체가 **영속성 컨텍스트(persistence context)**입니다. 영속성 컨텍스트가 무엇이고(1차 캐시), 엔티티가 어떤 상태를 오가며, 변경이 어떻게 자동 반영(dirty checking)되는지를 정리합니다. Series 4(데이터 계층)의 출발점입니다.
 
 > **TL;DR**  
 > - **영속성 컨텍스트 = 1차 캐시**. id -> 엔티티의 유일한 매핑을 트랜잭션 범위에서 관리한다. 같은 id 재조회는 DB를 안 간다.  
@@ -100,17 +100,13 @@ Hibernate는 엔티티를 1차 캐시에 적재할 때 **스냅샷**을 떠 두�
 
 ---
 
-## 5. 다음 글
+영속성 컨텍스트의 수명은 트랜잭션 경계에 달려 있습니다. `@Transactional`의 propagation은 [트랜잭션 전파](/posts/spring-transactional-propagation/)에서, 조회 패턴에 따른 SQL 증가와 성능 문제는 [JPA N+1](/posts/jpa-n-plus-1/)에서 이어집니다.
 
-이번 편에서 영속성 컨텍스트(1차 캐시), 엔티티 상태, dirty checking을 봤습니다. 다음 편은 이 컨텍스트의 수명을 결정하는 **`@Transactional`과 트랜잭션 전파**를, 그다음은 **N+1 문제와 성능**을 다룹니다.
-
-capstone 연결: managed 엔티티와 1차 캐시는 모두 [JVM 힙](/posts/jvm-memory-model/)에 상주합니다. 대량 처리에서 영속성 컨텍스트를 비우지 않으면 힙 사용이 늘고, 이는 Series 2에서 본 GC 압박/메모리 산정과 직결됩니다.
-
-DevSecOps 비유: write-behind flush는 변경을 모아 한 번에 내보내는 **버퍼링/배치 쓰기**와 같고, dirty checking은 **선언된 상태와 실제 상태를 비교해 차이만 반영하는 reconciliation**(Terraform plan/apply, Kubernetes 컨트롤러의 desired vs actual)과 같은 발상입니다.
+managed 엔티티와 1차 캐시는 JVM heap에 상주합니다. 대량 처리에서 context를 비우지 않으면 heap 사용과 GC 압박이 커질 수 있으므로 `flush()`와 `clear()`의 주기를 workload에 맞춰 정해야 합니다.
 
 ---
 
-## 6. 참고 자료
+## 5. 참고 자료
 
 - Hibernate ORM User Guide - Persistence Context / Flushing (1차 캐시, 엔티티 상태, dirty checking, flush): <https://docs.hibernate.org/orm/current/userguide/html_single/Hibernate_User_Guide.html>
 - Jakarta Persistence (엔티티 생명주기 / EntityManager 스펙): <https://jakarta.ee/specifications/persistence/>
