@@ -20,13 +20,11 @@ Node.js 서버의 성능, Event Loop, Worker Threads, Kubernetes CPU limit을 �
 
 ---
 
-## 1. 이 글의 범위와 도착 역량
+## 1. 요청의 책임 경계를 먼저 나눠야 하는 이유
 
-이 글의 독자는 [TCP와 UDP](/posts/tcp-and-udp/)에서 다룬 TCP 바이트 스트림 특성과 Kubernetes Pod의 기본 개념을 알고, 이제 Node.js 서버를 처음부터 운영 관점으로 이해하려는 DevOps 엔지니어입니다. 읽은 뒤에는 HTTP 요청이 Node.js handler에 도착하는 흐름을 설명하고, keep-alive 재사용 여부를 관찰하며, `SIGTERM`을 받는 서버의 최소 종료 처리를 구현할 수 있어야 합니다.
+`GET /healthz`가 실패했을 때 application handler만 보면 원인을 놓치기 쉽습니다. TCP 연결, HTTP parser, Node.js process, container termination은 서로 다른 책임을 가지며, 어느 경계에서 실패했는지에 따라 확인할 log와 metric도 달라집니다.
 
-다루지 않는 범위도 명확히 둡니다. TLS handshake, DNS, HTTP/2와 HTTP/3, reverse proxy 세부 설정, Event Loop 내부 단계, libuv Worker Pool, Worker Threads는 이후 글에서 다룹니다. 이 글에서 컨테이너와 Kubernetes는 요청 처리의 실행 경계와 종료 신호를 설명하는 데만 사용합니다.
-
-TCP는 연결된 양 끝점 사이에 순서가 있는 바이트 스트림을 제공하지만 HTTP 요청 경계나 애플리케이션 처리 성공을 보장하지는 않습니다. HTTP는 method, target, header, status, body의 의미를 정의하지만 요청 처리의 병렬성이나 DB 작업 성공을 보장하지는 않습니다.
+TCP는 연결된 양 끝점 사이에 순서가 있는 바이트 스트림을 제공합니다. HTTP는 method, target, header, status, body의 의미를 정의합니다. 둘만으로 application 처리 성공이나 DB 작업 성공까지 보장되지는 않습니다.
 
 Node.js process는 포트를 listen하고 HTTP 요청을 handler로 전달합니다. Container runtime 또는 kubelet은 process에 종료를 요청하고 grace period를 적용하지만, 애플리케이션별 drain과 데이터 정합성은 보장하지 않습니다.
 
@@ -176,21 +174,11 @@ HTTP 5xx나 connection reset이 보이면 바로 "Node.js가 느리다"고 결�
 | 종료 중이었는가 | `SIGTERM` log, Pod event, termination timestamp | rollout drain, grace period 부족, forced kill |
 | 같은 connection이 재사용됐는가 | socket/connection log, client `reusedSocket` | keep-alive timeout, proxy connection policy |
 
-이 표는 진단 순서의 출발점입니다. 운영 환경에서는 request timestamp, Pod name, container restart count, error rate, p95/p99 latency, connection 수를 같은 시간 창에서 비교해야 인과관계를 판단할 수 있습니다. 다음 글에서는 handler 안의 비동기 작업을 이해하기 위한 Promise와 module boundary를 다룹니다.
+운영 환경에서는 request timestamp, Pod name, container restart count, error rate, p95/p99 latency, connection 수를 같은 시간 창에서 비교해야 인과관계를 판단할 수 있습니다. 이 순서로 보면 port bind 실패, network policy, request parsing, rollout drain을 서로 다른 문제로 분리할 수 있습니다.
 
 ---
 
-## 7. 학습 점검
-
-- [ ] TCP 바이트 스트림과 HTTP 요청 경계가 다른 이유를 설명할 수 있는가?
-- [ ] Node.js의 connection event와 request handler가 각각 언제 관찰되는지 구분할 수 있는가?
-- [ ] keep-alive 재사용 여부를 `reusedSocket`과 server log로 확인할 수 있는가?
-- [ ] `SIGTERM`, grace period, `SIGKILL`의 역할 차이를 설명할 수 있는가?
-- [ ] 장애 시 process, TCP, HTTP handler, termination 중 어느 경계를 먼저 확인할지 정할 수 있는가?
-
----
-
-## 8. Reference
+## 7. Reference
 
 - [Node.js Documentation - HTTP](https://nodejs.org/api/http.html)
 - [Node.js Documentation - Net](https://nodejs.org/api/net.html)

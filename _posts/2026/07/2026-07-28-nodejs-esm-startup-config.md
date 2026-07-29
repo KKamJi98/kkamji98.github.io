@@ -179,16 +179,11 @@ import './state.mjs?second';
 
 ---
 
-## 9. 운영 적용 점검
+## 9. startup에서 확인할 경계
 
-- [ ] package boundary에서 `"type"` 또는 `.mjs`와 `.cjs` extension을 명시했는가?
-- [ ] ESM relative import에 file extension을 포함했는가?
-- [ ] environment variable을 parse하고 validation한 immutable configuration을 startup에서 한 번 만들었는가?
-- [ ] configuration failure가 `listen()` 전에 non-zero exit로 끝나는 것을 test했는가?
-- [ ] server `error` listener를 `listen()`보다 먼저 등록했는가?
-- [ ] startup log와 request error response가 서로 다른 channel임을 운영자가 구분할 수 있는가?
+package boundary에서는 `"type"` 또는 `.mjs`, `.cjs` extension을 명시하고, ESM relative import에는 file extension을 포함해야 합니다. environment variable은 startup에서 parse하고 validation한 immutable configuration으로 한 번만 만들며, configuration failure는 `listen()` 전에 non-zero exit로 끝나는지 test로 확인하는 편이 안전합니다.
 
-다음 글에서는 valid server가 I/O를 기다리는 동안 Event Loop와 microtask가 어떤 scheduling 경계를 만드는지 살펴봅니다.
+server `error` listener는 `listen()`보다 먼저 등록합니다. startup log는 운영자가 process가 왜 뜨지 않았는지 확인하는 channel이고, request error response는 client contract이므로 같은 오류 정보를 두 곳에 복사하지 않습니다.
 
 ---
 

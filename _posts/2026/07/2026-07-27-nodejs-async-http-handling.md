@@ -21,11 +21,11 @@ Node.js HTTP handler는 비동기 작업을 시작한 뒤에도 다른 요청을
 
 ---
 
-## 1. 이 글의 범위와 도착 역량
+## 1. Promise 실패는 HTTP response가 아닙니다
 
-이 글은 [Node.js HTTP 서버의 요청 경로](/posts/nodejs-request-lifecycle/)에서 request handler까지 도착한 뒤의 경계를 다룹니다. 독자는 Promise의 성공과 실패를 HTTP response로 명시적으로 매핑하고, native `node:http` server에서 비동기 upstream 호출을 안전하게 조립할 수 있어야 합니다.
+[HTTP 요청 경로](/posts/nodejs-request-lifecycle/)를 지나 handler에 도착한 뒤에는 입력 검증, upstream 호출, response 직렬화처럼 완료 시간이 다른 작업이 이어집니다. 여기서 rejected Promise를 어떤 status와 body로 바꿀지는 runtime이 아니라 application의 책임입니다.
 
-다루지 않는 범위는 Event Loop phase 내부, Worker Pool, Worker Threads, Express나 NestJS middleware, retry와 circuit breaker, WebSocket, HTTP/2입니다. retry는 idempotency와 중복 요청 위험을 먼저 설계해야 하므로 이 글의 예제에는 넣지 않습니다.
+retry와 circuit breaker는 idempotency, 중복 요청, dependency 계약을 먼저 정해야 합니다. 이 글의 예제는 그 정책을 섞지 않고 요청 하나가 terminal response 하나만 소유하도록 만드는 데 집중합니다.
 
 ---
 
@@ -194,15 +194,7 @@ client abort는 integration test에서도 별도 case로 다루는 편이 좋습
 | upstream non-2xx | `response.ok=false`와 upstream status | API contract, dependency health |
 | coding bug | 예상하지 못한 rejection과 500 | stack trace를 안전한 내부 log에서 확인 |
 
-학습 점검은 다음과 같습니다.
-
-- [ ] `async` 함수의 throw가 rejected Promise가 되는 이유를 설명할 수 있는가?
-- [ ] `fetch()`에서 `response.ok`를 확인해야 하는 이유를 설명할 수 있는가?
-- [ ] timeout, client abort, upstream 오류를 서로 다른 response policy로 구분할 수 있는가?
-- [ ] 요청 하나가 terminal response 하나만 끝내도록 `writableEnded`를 확인할 수 있는가?
-- [ ] client에 보내면 안 되는 오류 정보와 log에 남길 최소 field를 구분할 수 있는가?
-
-다음 글에서는 이 handler가 기다리는 동안 Node.js가 I/O를 어떻게 scheduling하는지 Event Loop와 microtask 경계를 기준으로 다룹니다.
+timeout, client abort, upstream 오류, coding bug는 서로 다른 관측 조건과 response policy를 가집니다. `AbortSignal`, elapsed time, `response.ok`, 내부 log를 함께 남기면 같은 500처럼 보이는 증상을 dependency, client, application 문제로 나눌 수 있습니다.
 
 ---
 

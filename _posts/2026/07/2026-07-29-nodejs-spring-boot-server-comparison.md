@@ -20,11 +20,11 @@ Node.js와 Spring Boot를 "싱글 스레드 대 멀티 스레드" 또는 "어느
 
 ---
 
-## 1. 비교 대상과 도착 역량
+## 1. 세 실행 스택을 같은 층위에서 비교하지 않기
 
-이 글은 [Node.js Overview](/posts/nodejs-overview/)와 Spring MVC 및 WebFlux의 기본 개념을 알고, Node.js와 Spring Boot를 운영 선택지로 비교하려는 독자를 대상으로 합니다. 읽은 뒤에는 서비스의 blocking dependency, I/O wait, CPU 작업, 관측 지점을 기준으로 세 실행 스택을 구분할 수 있어야 합니다.
+Node.js는 runtime이고 Spring Boot는 framework입니다. 따라서 서비스 선택을 논의할 때는 Node.js의 `node:http`, Spring Boot MVC, Spring Boot WebFlux를 각각의 실행 스택으로 분리해야 합니다.
 
-Node.js는 runtime이고 Spring Boot는 framework이므로 둘을 일대일로 대응하지 않습니다. 이 글의 비교 단위는 Node.js의 `node:http`, Spring Boot MVC, Spring Boot WebFlux입니다. Express, NestJS, Spring Security, JPA, R2DBC, Kubernetes tuning과 benchmark 순위는 다루지 않습니다.
+세 stack에서 blocking dependency, I/O wait, CPU 작업이 어느 실행 단위를 점유하는지 보면, 단일 RPS 숫자보다 서비스에 필요한 관측 지점과 분리 전략이 먼저 드러납니다.
 
 ---
 
