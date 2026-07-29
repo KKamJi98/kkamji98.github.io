@@ -29,25 +29,16 @@ image:
 
 ## 2. Self-managed rule은 언제 필요한가?
 
-AWS WAF 공식 문서는 ASN matching을 설명하면서 "ASN matching supplements, but doesn't replace, standard authentication and authorization controls"라고 명시합니다. 이 문장은 self-managed rule 전체를 이해하는 출발점입니다. self-managed rule은 애플리케이션 인증, 권한 검사, 입력 검증, origin 보호를 대신하지 않으며, Managed Rule Group을 대체하지도 않습니다.
-
-Managed Rule Group과 self-managed rule의 역할은 다음과 같이 나뉩니다.
+[이전 글](/posts/aws-waf/)은 Web ACL, Managed Rule Group, observability, 비용과 공통 Count rollout을 다룹니다. 이 글은 그 기반 위에서 **조직이 직접 근거와 만료를 소유해야 하는 좁은 조건**만 다룹니다. self-managed rule은 Managed Rule Group, 애플리케이션 인증과 권한 검사, 입력 검증, origin 보호를 대체하지 않습니다.
 
 | 구분 | Managed Rule Group | Self-managed rule |
 | :--- | :--- | :--- |
-| 작성/갱신 주체 | AWS 또는 Marketplace 공급자 | 조직 본인 |
+| 작성과 갱신 주체 | AWS 또는 Marketplace 공급자 | 조직 본인 |
 | 주 대상 | 공통 exploit, 알려진 악성 input, IP 평판, bot | 조직 고유 조건, 임시 차단, 특정 path 완화 |
-| 근거 관리 | 공급자가 rule 내부 관리 | 조직이 근거와 만료를 직접 기록 |
+| 근거와 만료 | 공급자 문서와 version 정책 | 조직이 차단 사유와 재검토 시점을 기록 |
 | 변경 통제 | version pin과 update 감시 | priority, scope, action을 직접 소유 |
-| 설명 책임 | 공급자 문서 참조 | 조직이 차단 사유를 설명 가능해야 함 |
 
-self-managed rule이 필요한 대표적인 상황은 다음과 같습니다.
-
-- Managed Rule Group의 IP 평판 목록에는 없지만, 로그상 특정 hosting/datacenter network에서만 반복되는 abuse가 관찰될 때
-- 긴급하게 특정 좁은 IP 대역을 임시로 차단하거나, 반대로 신뢰하는 partner 대역을 예외 처리해야 할 때
-- 로그인, 검색, 대량 조회처럼 origin 부하가 큰 특정 path에 대해 aggregate 요청량을 완화해야 할 때
-
-이런 조건들은 공통 pattern이 아니라 조직 고유의 traffic 근거에 의존하므로, 근거와 만료 기준을 직접 관리해야 합니다. 그래서 Managed Rule Group에 맡기기보다 self-managed rule로 다루는 편이 적절합니다.
+예를 들어 log에서 특정 hosting network에만 반복 abuse가 관찰되거나, 좁은 CIDR 예외와 특정 고비용 path의 완화가 필요할 때 self-managed rule을 검토합니다.
 
 ---
 
@@ -168,9 +159,7 @@ WCU 관점에서 IP set match statement는 대부분의 사용에서 1 WCU입니
 
 ### 5.2. Rate-based rule
 
-rate-based rule은 최근 evaluation window 동안 aggregation key별 요청 수를 세어, threshold를 넘으면 action을 적용합니다. window는 60, 120, 300, 600초 중에서 선택하며 기본값은 300초입니다. source IP 외에 forwarded IP나 여러 custom key를 조합할 수 있고, scope-down statement로 특정 path만 집계할 수 있습니다.
-
-중요한 점은 AWS WAF의 rate limiting이 **엄밀한 quota가 아니라 주기적으로 갱신되는 근사치 기반 탐지**라는 것입니다. counter는 일정 주기로 갱신되고 설정 변경 시 초기화될 수 있으므로, "정확히 N번째 요청부터 차단"을 보장하지 않습니다. 결제 API의 정확한 호출 한도처럼 엄격한 보장이 필요하면 애플리케이션 로직이나 API Gateway usage plan 같은 별도 장치로 처리해야 합니다.
+rate-based rule의 evaluation window와 근사치 기반 탐지라는 기본 동작은 [이전 글](/posts/aws-waf/)에서 다뤘습니다. 여기서는 self-managed policy에서 path와 aggregation key를 어떻게 좁힐지에 집중합니다.
 
 다음은 특정 고비용 path에만 rate limit을 적용하는 일반화 예시입니다. `limit`과 path 값은 workload마다 반드시 재검증해야 하는 placeholder입니다.
 
@@ -221,53 +210,28 @@ WCU 관점에서 rate-based rule statement의 기본 비용은 2 WCU입니다. �
 
 ---
 
-## 6. 비용 - 정확히 무엇이 늘어나는가
+## 6. 비용 - 이 글에서 추가되는 부분
 
-self-managed rule 도입을 검토할 때 가장 오해하기 쉬운 부분이 비용입니다. AWS WAF 요금은 생성한 Web ACL 수, Web ACL당 추가한 rule 수, 처리한 web request 수를 기준으로 계산합니다.
+Web ACL, request, WCU 초과, body inspection, logging, CAPTCHA, Challenge, Bot Control의 전체 가격 구조는 [이전 글](/posts/aws-waf/)에서 다룹니다. self-managed rule 판단에 필요한 증분만 분리하면 다음과 같습니다.
 
-기존 Web ACL에 일반 custom ASN rule 하나를 추가할 때의 증분 비용은 다음과 같습니다.
+- 일반 custom ASN rule 하나는 rule당 월 $1.00이며, **그 rule 때문에 별도 per-request 요금이 한 번 더 붙지는 않습니다**. request 요금은 Web ACL이 처리한 request를 기준으로 계산됩니다.
+- ASN Match는 1 WCU입니다. 다만 전체 Web ACL이 1,500 WCU를 넘으면 별도 WCU surcharge가 발생할 수 있으므로 rule 하나의 WCU만 분리해 판단하면 안 됩니다.
+- `Allow`, `Block`, `Count`는 같은 기본 WAF inspection 비용을 사용합니다. `Count`는 무료 mode가 아니라 안전한 관측 mode입니다.
 
-- **rule 요금**: rule 하나당 월 $1.00(시간 단위 prorated)
-- **추가 per-request 요금 없음**: request 요금은 Web ACL이 처리한 request에 대해 부과되며, 일반 custom rule을 하나 더 얹었다고 해서 그 rule 때문에 두 번째 per-request 요금이 붙지 않습니다. AWS WAF 공식 pricing 예시에서도 사용자가 직접 작성한 rule이 19개인 경우 rule 요금($1 * 19)과 Web ACL당 request 요금($0.60/백만)만 계산할 뿐, rule 개수만큼 request 요금을 곱하지 않습니다.
-- **standard action은 무료**: `Allow`, `Block`, `Count`는 추가 요금 없이 사용합니다. 즉 `Count`로 관찰하는 것과 `Block`으로 차단하는 것의 기본 요금은 같습니다.
-
-반면 아래 항목은 위의 "일반 custom rule 추가"와 **별개**로 청구되므로 혼동하면 안 됩니다.
-
-| 별도 청구 항목 | 조건 |
-| :--- | :--- |
-| Web ACL 단위 request 요금 | Web ACL이 처리한 전체 request(100만 건당 $0.60) |
-| WCU 초과 | 기본 1,500 WCU 초과 시 추가 500 WCU마다 100만 request당 $0.20 |
-| body inspection 초과 | 기본 한도 초과 시 추가 16KB마다 100만 request당 $0.30 |
-| CAPTCHA | CAPTCHA attempt 1,000건당 $0.40 |
-| Challenge | Challenge response 100만 건당 $0.40 |
-| logging 초과 | request 100만 건당 500MB 포함, 초과분은 CloudWatch Vended Logs 요금 |
-| Bot Control/Fraud Control/DDoS Protection | 각 기능의 subscription과 분석 request 요금 |
-| Marketplace managed rule group | 판매자가 정한 subscription과 request 요금 |
-
-특히 CAPTCHA와 Challenge는 과금 단위가 서로 다릅니다. CAPTCHA는 **attempt 1,000건당 $0.40**, Challenge는 **response 100만 건당 $0.40**입니다. 단가 숫자는 같은 $0.40이지만 과금 단위가 1,000 대 100만으로 크게 달라 실제 비용 규모가 완전히 다릅니다.
-
-정리하면, ASN Match rule 하나 추가의 직접 비용은 월 $1과 1 WCU 수준으로 작습니다. 비용이 크게 늘어나는 것은 rule 개수 자체가 아니라 Bot Control 같은 유료 기능, WCU 초과, logging 초과입니다. self-managed rule은 이런 유료 기능과 달리 가볍게 도입할 수 있지만, Web ACL 단위 request 요금과 WCU 예산은 여전히 전체 설계에서 함께 봐야 합니다.
+따라서 self-managed rule 자체보다 유료 bot 기능, WCU 초과, body inspection과 logging 범위가 실제 비용을 크게 바꾸는지 함께 확인해야 합니다.
 
 ---
 
-## 7. 안전한 운영 - Count에서 Block까지
+## 7. 안전한 운영 - self-managed rule에 추가할 것
 
-self-managed rule의 가장 큰 운영 위험은 공격을 놓치는 것보다 **정상 사용자를 차단하는 false positive**입니다. ASN 차단은 특히 대역이 넓어 한 번의 실수가 큰 범위에 영향을 줍니다. 다음 순서를 권장합니다.
+공통 `Count` rollout, metric과 log 관찰, Block 전환, rollback 절차는 [이전 글](/posts/aws-waf/)의 배포 전략을 따릅니다. self-managed rule에는 다음 운영 정보가 추가로 필요합니다.
 
-1. **근거와 policy owner 기록**: 어떤 로그 근거로 어떤 network를 대상으로 하는지, 누가 이 정책을 소유하고 언제 재검토할지 먼저 문서화합니다.
-2. **Count로 시작**: 새 rule을 `count {}`로 적용하고 CloudWatch metric과 full logging을 함께 켭니다. `Count`는 차단하지 않고 match를 기록만 하므로 실제 영향 범위를 안전하게 관찰할 수 있습니다.
-3. **다각도로 false positive 평가**: path, country/geography, 로그인 성공률 같은 user/business signal, 예외 traffic 관점에서 match를 검토합니다. 단일 수치가 아니라 평시 baseline과 함께 봅니다.
-4. **예외를 좁게 추가**: false positive가 확인되면 넓은 차단을 유지한 채 IP set 예외나 scope-down 조건으로 좁게 처리합니다.
-5. **한 번에 하나씩 Block 전환**: 영향이 명확한 정책부터 `Block`으로 바꿉니다. 여러 rule을 동시에 전환하면 원인 분리가 어려워집니다.
-6. **만료일과 빠른 rollback 유지**: 임시 정책에는 명시적 만료/재검토 날짜를 남기고, 문제가 생기면 즉시 `Count`로 되돌리거나 rule을 제거할 수 있는 경로를 준비합니다.
+1. **근거와 policy owner**: 어떤 log 근거로 어떤 network 또는 path를 대상으로 하는지, 소유자와 재검토 시점을 기록합니다.
+2. **명시적 만료**: 임시 ASN 또는 CIDR 차단은 만료일을 둡니다. 근거 없이 남은 항목은 false positive를 추적하기 어렵습니다.
+3. **좁은 예외와 빠른 rollback**: false positive는 넓은 차단을 새로 추가하기보다 IP set 예외 또는 scope-down으로 좁게 처리하고, 문제가 생기면 우선 `Count`로 되돌립니다.
+4. **전파 지연**: CloudFront Web ACL 변경은 global edge에 반영될 시간이 필요합니다. Block과 rollback의 효과를 같은 관찰 창에서 성급하게 판단하지 않습니다.
 
-### 7.1. 전파 지연을 감안한다
-
-Web ACL 변경은 즉시 전역에 반영되지 않습니다. 특히 CloudFront에 연결된 Web ACL은 전 세계 edge에 전파되는 데 시간이 걸리므로, action을 바꾼 직후의 metric만 보고 성급하게 결론짓지 말고 전파가 안정된 뒤 관찰해야 합니다. rollback 역시 즉시 반영되지 않을 수 있으므로, 긴급 상황에서는 전파 지연을 감안한 대응 시간을 미리 계산해 둬야 합니다.
-
-### 7.2. 근거와 만료를 Git으로 관리한다
-
-self-managed rule의 값(대상 ASN, IP set 항목, threshold)은 근거와 함께 IaC로 관리하면 review와 rollback이 쉬워집니다. commit message나 코드 주석에 "왜 이 network를 차단했는지", "언제 재검토할지"를 남기면 시간이 지나도 정책의 이유를 추적할 수 있습니다. 다만 실제 운영 근거가 되는 내부 로그나 트래픽 수치, 실제 ASN/IP 목록은 공개 저장소에 노출되지 않도록 주의해야 합니다.
+값, 근거, 만료, owner는 IaC와 review 기록으로 관리합니다. 다만 실제 운영의 ASN, IP, 내부 log와 traffic 수치는 공개 저장소에 넣지 않습니다.
 
 ![WAF rule rollout flow](/assets/img/aws/waf-rule-rollout-flow.webp)
 
@@ -281,18 +245,7 @@ ASN Match는 강력하지만 오용하기 쉬운 수단입니다. 다음 한계�
 - **residential, mobile, CGNAT, enterprise NAT 대역은 부적합하다**: 가정용 ISP, 모바일 통신망, CGNAT, 기업 NAT은 수많은 정상 사용자가 소수의 ASN과 IP를 공유합니다. 이런 대역을 ASN으로 넓게 차단하면 대규모 정상 사용자를 함께 막게 됩니다. ASN 차단은 근거가 뒷받침되는 datacenter/hosting network에 좁게 한정해야 합니다.
 - **residential proxy를 막지 못한다**: 공격자가 residential proxy를 경유하면 정상 가정용 ASN으로 위장하므로 ASN Match만으로는 걸러지지 않습니다.
 
-따라서 self-managed rule은 단독 방어선이 아니라 **defense-in-depth의 한 계층**으로 설계해야 합니다.
-
-| 계층 | 역할 |
-| :--- | :--- |
-| AWS Managed Rules | 공통 exploit, 알려진 악성 input, IP 평판, bot 분류 |
-| Self-managed rule | 근거 기반 network 정책, 좁은 IP 예외, 특정 path 완화 |
-| Rate-based rule | aggregate 요청량 abuse 완화 |
-| Bot Control 등 유료 기능 | behavior/fingerprint 기반 고급 bot, 계정 보호 |
-| 애플리케이션 | 인증, 권한, 입력 검증, session/identity signal |
-| Origin 보호 | WAF 우회 경로 차단, origin 직접 접근 제한 |
-
-self-managed rule은 인증, 권한 검사, 입력 검증, origin 보호, 애플리케이션 수준 제한을 대체하지 않습니다. Managed Rules로 공통 위협을 막고, self-managed rule로 조직 고유 조건을 좁게 다루며, 애플리케이션과 origin에서 신원과 진입점을 통제하는 조합이 가장 견고합니다.
+ASN Match는 단독 방어선이 아닙니다. Managed Rule Group, 애플리케이션 인증과 입력 검증, origin 보호가 맡는 공통 역할은 [이전 글](/posts/aws-waf/)을 따릅니다. 이 글의 판단은 그중 self-managed rule을 어떤 근거와 만료 조건으로 좁게 보완할지에 한정합니다.
 
 ---
 
