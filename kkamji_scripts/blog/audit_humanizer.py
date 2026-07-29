@@ -22,7 +22,6 @@ HIGH_RULES: dict[str, re.Pattern[str]] = {
         r"(?:이 글의 (?:독자|범위|목표|역할|결론)|이번 (?:글|연재)에서는|이 글은 .*?(?:다룹니다|역할)|도착 역량|의도적으로 (?:제외|상세 설명하지))"
     ),
     "roadmap-checklist": re.compile(r"^\s*- \[[ xX]\]|(?:연재의 각 글|이후 글에서 책임을 분리)"),
-    "study-progress-title": re.compile(r"^title: .*\[(?:Cilium )?Study\s*\d+주차\]", re.IGNORECASE),
     "template-wrapup": re.compile(
         r"(?:개념, 구성 흐름, 실습 결과를 한 번에 따라갈 수 있도록 정리한 글입니다|다시 볼 때는 전체 명령을 처음부터 실행하기보다|운영 환경에 적용할 때는 예제 값을 그대로 쓰지 말고)"
     ),

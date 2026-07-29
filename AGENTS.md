@@ -12,7 +12,6 @@
 - `이 글의 범위`, `연재에서의 위치`, `학습 점검`, `다음 글`, `읽기 순서`, `도착 역량`처럼 글 제작 과정을 드러내는 heading, checklist, roadmap 표는 공개 글에 기본으로 넣지 않는다. 실제 오해를 막는 범위나 버전 경계는 구체적인 기술 문장으로 쓴다.
 - 도입은 독자가 실제로 만나는 증상, 질문, 코드, 관측값 중 하나에서 시작한다. generic TL;DR, "이번 글에서는", "의도적으로 제외", "무엇이 아닌가"의 반복, 대칭적인 세 항목 bullet을 자동으로 넣지 않는다.
 - 각 heading은 내용 자체를 말한다. heading 아래에서 heading을 반복하는 한 문장, 글의 구성 공지, 다음 글 예고는 삭제한다. 기존 글에서 문맥상 필요한 내부 링크만 해당 기술 설명 곁에 둔다.
-- 제목에는 `[Cilium Study N주차]`처럼 연재 진도나 학습 순서를 넣지 않는다. 글 주제만 title로 쓰고 series 정보는 태그, collection, hub post에서 관리한다.
 - 발행 전 `python3 kkamji_scripts/blog/audit_humanizer.py --strict --file <post>` humanizer review를 수행한다. 메타 서술, 과도한 부정 병렬, 기계적인 목록, 교과 과정 같은 문체를 찾고, 정확성 근거와 실험 증거는 유지한 채 고친다.
 
 ## Git Add, Commit, Push Convention
