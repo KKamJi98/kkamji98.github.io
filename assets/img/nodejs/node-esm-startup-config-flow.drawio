@@ -4,40 +4,40 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-cli" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Node CLI&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-cli" value="Node CLI" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="80" y="355" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="environment" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Environment&lt;br&gt;--env-file&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF3CD;strokeColor=#F9AB00;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="environment" value="Environment&lt;br&gt;--env-file" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF3CD;strokeColor=#F9AB00;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="300" y="345" width="190" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="main-module" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;main.mjs&lt;br&gt;Bootstrap&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=17;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="main-module" value="main.mjs&lt;br&gt;Bootstrap" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=17;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="570" y="345" width="190" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="config-module" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;config.mjs&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=17;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="config-module" value="config.mjs" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=17;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="830" y="140" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="server-module" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;server.mjs&lt;br&gt;createServer&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="server-module" value="server.mjs&lt;br&gt;createServer" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1110" y="345" width="190" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="config-validation" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Parse and&lt;br&gt;validate config&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="config-validation" value="Parse and&lt;br&gt;validate config" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="830" y="550" width="190" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="error-listener" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;error listener&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=2;fontColor=#000000;fontSize=15;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="error-listener" value="error listener" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=2;fontColor=#000000;fontSize=15;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1110" y="550" width="190" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="listen" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;server.listen()&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="listen" value="server.listen()" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1380" y="345" width="170" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="ready" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;READY&lt;br&gt;HTTP 200&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="ready" value="READY&lt;br&gt;HTTP 200" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1650" y="345" width="140" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="module-failure" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Module failure&lt;br&gt;resolve or evaluate&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=15;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="module-failure" value="Module failure&lt;br&gt;resolve or evaluate" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=15;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="570" y="110" width="190" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="startup-error" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Startup error&lt;br&gt;safe log&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="startup-error" value="Startup error&lt;br&gt;safe log" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="830" y="745" width="190" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="no-listener" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;No listener&lt;br&gt;non-zero exit&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
+        <mxCell id="no-listener" value="No listener&lt;br&gt;non-zero exit" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1110" y="745" width="190" height="90" as="geometry" />
         </mxCell>
         <mxCell id="cli-environment" value="provide values" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="node-cli" target="environment">
