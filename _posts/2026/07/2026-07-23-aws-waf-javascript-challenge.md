@@ -11,11 +11,11 @@ image:
 
 `/api` 요청에 AWS WAF Challenge를 바로 붙였는데 browser application이 `202`만 받고 멈춘다면, rule이 고장 난 것이 아니라 request 경계를 잘못 잡았을 가능성이 큽니다. Challenge는 일반 API authentication도, 무조건 차단하는 Block action도 아닙니다. browser가 JavaScript를 실행해 WAF token을 획득할 수 있다는 전제에서 동작합니다.
 
-Challenge의 보호 단위는 개별 API endpoint가 아니라, token을 보관하고 재시도할 수 있는 browser navigation입니다. ASN, IP set, rate-based rule처럼 조직이 직접 유지하는 network policy는 [AWS WAF Self-Managed Rule](/posts/aws-waf-self-managed-rule/)에...[truncated]
+Challenge action은 rule에 매칭된 각 web request를 평가합니다. 다만 token이 없는 browser가 challenge를 실행할 수 있도록 Challenge rule은 일반적으로 `GET` `text/html` navigation에 적용하고, 보호 API request는 token 획득이 끝난 뒤 전송되도록 구성합니다. ASN, IP set, rate-based rule처럼 조직이 직접 유지하는 network policy는 [AWS WAF Self-Managed Rule](/posts/aws-waf-self-managed-rule/)에 따로 정리했습니다.
 
 ---
 
-## 1. Challenge는 token이 없을 때만 평가를 끝냅니다
+## 1. Challenge는 token이 없거나 유효하지 않을 때 평가를 끝냅니다
 
 Challenge rule에 매칭된 요청의 결과는 request가 WAF token을 가지고 있는지에 따라 달라집니다.
 
@@ -27,7 +27,7 @@ Challenge rule에 매칭된 요청의 결과는 request가 WAF token을 가지�
 Challenge는 CAPTCHA와 달리 일반적으로 사람이 puzzle을 푸는 화면보다 browser background verification을 목표로 합니다. token이 유효하면 pass 자체가 allow를 뜻하지 않습니다. 뒤 priority의 Block rule이나 Web ACL default action은 계속 평가됩니다.
 
 ![AWS WAF Challenge token flow](/assets/img/aws/aws-waf-challenge-token-flow.webp)
-_Challenge token이 없을 때만 WAF가 202 response를 반환합니다. browser가 token을 얻어 재시도한 요청은 다음 rule 평가로 진행합니다._
+_token이 없거나 만료 또는 무효일 때 WAF가 202 response를 반환합니다. browser가 유효한 token을 얻어 재시도한 요청은 다음 rule 평가로 진행합니다._
 
 Challenge와 CAPTCHA는 모두 default immunity time이 300초입니다. Challenge의 최소값은 300초이고 CAPTCHA의 최소값은 60초이며, 최대값은 3일입니다. 이 값은 Web ACL의 token domain, browser behavior, attack pattern에 맞춰 정해야 합니다. 짧다고 더 강한 방어가 되지는 않으며 token refresh와 추가 비용을 늘릴 수 있습니다.
 
@@ -86,7 +86,7 @@ async function startProtectedPage() {
 
 plain `fetch()`를 wrapped API와 섞으면 일부 request만 token 없이 나갈 수 있습니다. token retrieval timeout, network failure, expired token refresh를 application error model에 넣고, user에게 raw 202 page가 보이지 않도록 처리해야 합니다.
 
-cross-origin SPA는 한 단계 더 확인해야 합니다. browser가 `x-amzn-waf-action` response header를 받더라도 CORS `Access-Control-Expose-Headers`가 없으면 frontend JavaScript가 읽지 못할 수 있습니다. 이 문제를 header parsing으로 우회하기보다, protected API가 browser document와 같은 token trust boundary 안에 있는지 먼저 검토합니다.
+cross-origin SPA는 한 단계 더 확인해야 합니다. AWS는 `x-amzn-waf-action` header를 cross-domain retrieval에 제공하지 않습니다. 이 header를 읽어 Challenge를 복구하는 방식에 의존하지 말고, protected API가 browser document와 같은 token trust boundary 안에 있는지 먼저 검토합니다.
 
 ---
 
@@ -108,7 +108,7 @@ Count 기간에는 WAF log와 application metric을 같은 시간 창에서 봅�
 | `CountedRequests` | 의도한 HTML route만 매칭되는가 |
 | `ChallengeRequests` | Challenge 전환 뒤 token 없는 요청이 급증하는가 |
 | `RequestsWithValidChallengeToken` | 정상 browser가 token을 받아 재시도하는가 |
-| `ChallengesAttempted`, `ChallengesSolved` | browser verification 시도와 성공 비율이 유지되는가 |
+| `ChallengeAttempts`, `ChallengeSolved` | browser verification 시도와 성공 비율이 유지되는가 |
 | origin 4xx, 5xx, login success | WAF 전환이 service behavior를 악화시키지 않았는가 |
 
 no-token Challenge request는 최초 202 response와 token 획득 뒤 retry request로 log와 metric에 두 번 보일 수 있습니다. Challenge count만으로 attack volume이나 unique user 수를 계산하면 안 됩니다.
@@ -132,9 +132,9 @@ AWS WAF logging에는 authorization header, cookie, query string 같은 민감 �
 
 ---
 
-## 7. browser signal 수집은 보안 설계와 privacy 검토를 함께 요구합니다
+## 7. browser integration에는 privacy 검토가 필요합니다
 
-AWS WAF JavaScript integration은 browser signal뿐 아니라 mouse movement, key press, HTML form interaction signal을 수집할 수 있습니다. AWS 문서는 integration 동작을 설명하지만, 특정 조직과 지역의 개인정보 처리 적법성까지 대신 판단하지는 않습니다.
+AWS WAF client integration은 silent browser challenge와 token acquisition을 수행합니다. AWS 문서는 integration 동작을 설명하지만, 특정 조직과 지역의 개인정보 처리 적법성까지 대신 판단하지는 않습니다. event-level browser signal의 수집과 전송 범위는 적용하는 integration, AWS 계약 문서, 조직의 privacy review에서 별도로 확인해야 합니다.
 
 따라서 security team은 Challenge 적용 endpoint와 threat model을 정의하고, privacy와 legal 담당자는 수집 signal, notice, consent 필요성, retention과 third-party transfer를 조직 정책과 관할 규정으로 별도 검토해야 합니다. "silent" challenge라는 이름만으로 사용자 영향이나 privacy 영향이 없다고 단정하면 안 됩니다.
 
