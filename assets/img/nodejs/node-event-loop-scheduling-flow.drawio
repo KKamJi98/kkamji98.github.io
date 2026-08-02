@@ -1,24 +1,65 @@
 <mxfile host="app.diagrams.net" agent="herwin" version="26.0.14">
   <diagram id="node-event-loop-scheduling" name="Node Event Loop Scheduling">
-    <mxGraphModel dx="1200" dy="720" grid="0" gridSize="10" page="1" pageScale="1" pageWidth="1200" pageHeight="720" background="#FFFFFF" math="0" shadow="0"><root>
-      <mxCell id="0"/><mxCell id="1" parent="0"/>
-      <mxCell id="title" value="NODE.JS EVENT LOOP SCHEDULING" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="50" y="32" width="760" height="38" as="geometry"/></mxCell>
-      <mxCell id="subtitle" value="CommonJS callback placement determines the scheduling boundary" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#5F6368;" vertex="1" parent="1"><mxGeometry x="52" y="76" width="700" height="24" as="geometry"/></mxCell>
-      <mxCell id="sync" value="Synchronous JavaScript&lt;br&gt;callback body" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="294" width="170" height="72" as="geometry"/></mxCell>
-      <mxCell id="queues" value="NODE.JS SCHEDULING BOUNDARY" style="swimlane;horizontal=1;startSize=34;rounded=1;arcSize=12;html=1;fillColor=#EAF2F8;swimlaneFillColor=#FFFFFF;strokeColor=#5F6368;strokeWidth=1.5;fontColor=#232F3E;fontSize=14;fontStyle=1;align=left;spacingLeft=12;" vertex="1" parent="1"><mxGeometry x="285" y="142" width="640" height="410" as="geometry"/></mxCell>
-      <mxCell id="nexttick" value="process.nextTick&lt;br&gt;queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#EA4335;strokeWidth=2;fontColor=#000000;fontSize=15;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="325" y="215" width="165" height="68" as="geometry"/></mxCell>
-      <mxCell id="microtask" value="V8 microtask queue&lt;br&gt;queueMicrotask / Promise.then" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F9AB00;strokeWidth=2;fontColor=#000000;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="555" y="205" width="255" height="86" as="geometry"/></mxCell>
-      <mxCell id="poll" value="poll&lt;br&gt;I/O callback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=15;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="325" y="390" width="165" height="70" as="geometry"/></mxCell>
-      <mxCell id="check" value="check&lt;br&gt;setImmediate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FD;strokeColor=#9334E6;strokeWidth=2;fontColor=#000000;fontSize=15;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="555" y="390" width="155" height="70" as="geometry"/></mxCell>
-      <mxCell id="timers" value="timers&lt;br&gt;setTimeout(0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=15;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="755" y="390" width="135" height="70" as="geometry"/></mxCell>
-      <mxCell id="continuation" value="JavaScript continuation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="980" y="294" width="175" height="72" as="geometry"/></mxCell>
-      <mxCell id="e-sync-next" value="enqueue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="sync" target="nexttick"><mxGeometry relative="1" as="geometry"/></mxCell>
-      <mxCell id="e-next-micro" value="CJS: drain first" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="nexttick" target="microtask"><mxGeometry relative="1" as="geometry"/></mxCell>
-      <mxCell id="e-micro-poll" value="return to event loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="microtask" target="poll"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="682" y="340"/><mxPoint x="408" y="340"/></Array></mxGeometry></mxCell>
-      <mxCell id="e-poll-check" value="I/O callback schedules immediate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="poll" target="check"><mxGeometry relative="1" as="geometry"/></mxCell>
-      <mxCell id="e-check-timer" value="next iteration" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="check" target="timers"><mxGeometry relative="1" as="geometry"/></mxCell>
-      <mxCell id="e-timer-cont" value="run callback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=2;endArrow=block;endFill=1;fontColor=#000000;fontSize=12;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="timers" target="continuation"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="940" y="425"/><mxPoint x="940" y="330"/></Array></mxGeometry></mxCell>
-      <mxCell id="note" value="ESM top-level drains V8 microtasks before process.nextTick" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9AB00;strokeWidth=1.5;fontColor=#5F4300;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="375" y="492" width="430" height="38" as="geometry"/></mxCell>
-    </root></mxGraphModel>
+    <mxGraphModel dx="1320" dy="720" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1320" pageHeight="720" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="title" value="NODE.JS EVENT LOOP" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#232F3E;opacity=100;" vertex="1" parent="1">
+          <mxGeometry x="50" y="34" width="720" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="CommonJS boundary" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#5F6368;" vertex="1" parent="1">
+          <mxGeometry x="52" y="78" width="400" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sync" value="Synchronous callback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;fontColor=#000000;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="55" y="326" width="170" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="boundary" value="NODE.JS BOUNDARY" style="swimlane;horizontal=1;startSize=36;rounded=1;arcSize=12;html=1;fillColor=#F8FBFF;swimlaneFillColor=#FFFFFF;strokeColor=#5F6368;strokeWidth=1.25;fontColor=#232F3E;fontSize=14;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="270" y="150" width="720" height="430" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="nexttick" value="nextTick queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#EA4335;strokeWidth=1.5;fontColor=#000000;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="340" y="220" width="180" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="microtask" value="V8 microtasks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F9AB00;strokeWidth=1.5;fontColor=#000000;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="630" y="212" width="230" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="poll" value="poll phase&lt;br&gt;I/O callback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.5;fontColor=#000000;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="340" y="405" width="170" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="check" value="check phase&lt;br&gt;setImmediate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FD;strokeColor=#9334E6;strokeWidth=1.5;fontColor=#000000;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="590" y="405" width="170" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="timers" value="timers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;fontColor=#000000;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="840" y="405" width="120" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="continuation" value="JavaScript continuation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.5;fontColor=#000000;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="326" width="190" height="76" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="ESM: microtasks first" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#5F4300;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="510" width="490" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e-sync-next" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontColor=#232F3E;" edge="1" parent="1" source="sync" target="nexttick">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="290" y="364"/><mxPoint x="290" y="258"/></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-next-micro" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontColor=#232F3E;" edge="1" parent="1" source="nexttick" target="microtask">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-micro-poll" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontColor=#232F3E;" edge="1" parent="1" source="microtask" target="poll">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="745" y="350"/><mxPoint x="425" y="350"/></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-poll-check" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontColor=#232F3E;" edge="1" parent="1" source="poll" target="check">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-check-timers" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontColor=#232F3E;" edge="1" parent="1" source="check" target="timers">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-timers-cont" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontColor=#232F3E;" edge="1" parent="1" source="timers" target="continuation">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1020" y="443"/><mxPoint x="1020" y="364"/></Array></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
   </diagram>
 </mxfile>
