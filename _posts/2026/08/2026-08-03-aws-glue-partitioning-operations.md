@@ -91,7 +91,7 @@ LOCATION 's3://example-analytics-lake/orders/';
 | Glue Crawler | crawler configuration | schema와 partition discovery를 함께 자동화해야 함 | schema drift를 자동 승인하지 않도록 변경 정책이 필요함 |
 | partition projection | table property | 가능한 partition 값의 규칙이 작고 예측 가능함 | projection 규칙이 실제 S3 layout과 어긋나면 빈 prefix를 계속 계산할 수 있음 |
 
-`MSCK REPAIR TABLE`은 recovery tool로는 유용하지만, 매 ingestion마다 전 prefix를 재발견하는 기본 운영 방식으로 두기에는 비용과 시간의 경계를 따져야 합니다. 반대로 partition 생성 시점이 pipeline에 분명하면 `ADD PARTITION`을 함께 commit하는 방식이 누락 원인을 좁히기 쉽습니다.
+`MSCK REPAIR TABLE`은 recovery tool로는 유용하지만, 매 ingestion마다 전 prefix를 재발견하는 기본 운영 방식으로 두기에는 비용과 시간의 경계를 따져야 합니다. `MSCK`는 Hive style partition에만 쓰고, table root 아래에 다른 table의 partition hierarchy를 섞지 않습니다. `MSCK`로 발견할 partition key는 소문자로 유지합니다. 반대로 partition 생성 시점이 pipeline에 분명하면 `ADD PARTITION`을 함께 commit하는 방식이 누락 원인을 좁히기 쉽습니다.
 
 Glue Crawler는 발견을 자동화하지만, schema나 partition path가 예상과 다르게 바뀌었을 때도 Catalog가 변할 수 있습니다. crawler가 편하다는 이유만으로 schema change를 무검토로 받아들이지 말고, table update 정책과 change detection을 별도로 두는 편이 안전합니다.
 
@@ -121,9 +121,9 @@ ALTER TABLE analytics.orders SET TBLPROPERTIES (
 
 이 table에서는 `dt`, `region`, `hour` 값을 Catalog partition row에서 읽지 않습니다. 날짜 range, enum, integer range와 storage template이 location 계산의 기준이 됩니다. custom template을 쓸 때에는 모든 partition column의 placeholder가 들어가고 각 partition location이 slash로 끝나야 합니다.
 
-projection을 활성화하면 Athena는 기존 Glue Catalog 또는 Hive metastore에 등록된 partition metadata를 무시합니다. 따라서 같은 table에서 crawler나 `MSCK REPAIR TABLE` 결과를 projection의 보조 source로 기대하면 안 됩니다. 등록형 metadata와 계산형 metadata 중 하나를 table별 source of truth로 정해야 합니다.
+`projection.enabled=true`인 table을 Athena로 조회하면 Athena는 기존 Glue Catalog 또는 Hive metastore에 등록된 partition metadata를 무시합니다. 따라서 Athena query에서는 crawler나 `MSCK REPAIR TABLE` 결과를 projection의 보조 source로 기대하면 안 됩니다. 이 동작은 Athena에만 적용됩니다. 같은 table을 Redshift Spectrum, Athena for Spark, EMR에서도 읽는다면 등록형 partition metadata를 별도로 유지하거나 소비자별 table 설계를 분리합니다.
 
-projection은 partition 수가 많다는 이유만으로 항상 이득이 되지는 않습니다. 가능한 날짜, 리전, 시간 조합은 넓은데 실제 S3 prefix가 드문 sparse layout이라면, Athena가 존재하지 않는 location도 후보로 계산할 수 있습니다. query가 늘 partition key를 충분히 좁히는지, 실제 partition density가 규칙과 맞는지 확인한 뒤 선택해야 합니다.
+projection은 partition 수가 많다는 이유만으로 항상 이득이 되지는 않습니다. 가능한 날짜, 리전, 시간 조합은 넓은데 실제 S3 prefix가 드문 sparse layout이라면, Athena가 존재하지 않는 location도 후보로 계산할 수 있습니다. AWS 가이드도 projected partition의 절반을 넘게 비어 있다면 전통적인 Glue partition을 고려하라고 안내합니다. query가 늘 partition key를 충분히 좁히는지, projection range와 실제 데이터 보존 기간이 맞는지 확인한 뒤 선택해야 합니다.
 
 ---
 
@@ -145,6 +145,8 @@ GROUP BY dt, region
 ORDER BY dt, region;
 ```
 
+`hour`는 문자열이므로 이 범위 조건은 S3 경로와 등록된 partition 값이 모두 `00`부터 `23`까지 zero-padding됐다는 전제에서만 올바릅니다. ingest 단계에서 `hour=9` 같은 비정규 값을 차단합니다.
+
 반대로 event timestamp 같은 일반 column에만 조건을 걸면, 파일 안의 row filtering은 가능해도 partition location 선택 범위는 충분히 줄지 않을 수 있습니다. 시간 단위 partition을 운영하면서 query가 항상 timestamp function으로만 표현된다면, predicate와 partition key가 만나는 지점을 설계에서 다시 확인해야 합니다.
 
 `SELECT *`를 피하고 Parquet 같은 columnar format을 쓰는 일도 여전히 중요합니다. 다만 column pruning과 partition pruning은 대체 관계가 아닙니다. 하나는 파일 내부에서 읽을 column을 줄이고, 다른 하나는 S3에서 열어 볼 prefix와 file set을 줄입니다.
@@ -156,13 +158,20 @@ ORDER BY dt, region;
 3. projection table이면 `projection.*` 속성과 `storage.location.template`이 실제 S3 prefix와 같은지 확인합니다.
 4. 등록형 metadata table이면 새 partition이 Catalog에 실제로 보이는지 확인합니다.
 
-DataScannedInBytes가 줄지 않는다고 CPU usage 하나만 보고 Athena engine 병목으로 단정하면 안 됩니다. partition filter, S3 layout, file size, column selection, join shape를 분리해서 확인해야 합니다.
+`GetQueryExecution` 또는 콘솔 Query details의 DataScannedInBytes를 같은 workload와 비교하고, partition predicate와 등록된 location 또는 projection template의 대응을 따로 확인합니다. DataScannedInBytes가 줄지 않는다고 단일 실행 시간이나 지표만 보고 Athena engine 병목으로 단정하면 안 됩니다. partition filter, S3 layout, file size, column selection, join shape를 분리해서 확인해야 합니다.
 
 ---
 
 ## 5. Partition index와 권한은 대규모 table의 메타데이터 경계다
 
-등록형 partition metadata가 많은 Glue table에서는 `GetPartitions` 호출 자체가 query planning이나 metadata operation의 병목이 될 수 있습니다. Glue partition index는 특정 partition key 조합의 filter lookup을 빠르게 하도록 만든 index입니다. index 생성은 metadata access path를 바꾸는 일이지, S3 file layout이나 Athena scan 자체를 자동으로 재배치하는 기능은 아닙니다.
+등록형 partition metadata가 많은 Glue table에서는 `GetPartitions` 호출 자체가 query planning이나 metadata operation의 병목이 될 수 있습니다. Glue partition index는 특정 partition key 조합의 filter lookup을 빠르게 하도록 만든 index입니다. Athena에서 index를 활용하려면 index를 만든 뒤 다음 table property도 설정합니다.
+
+```sql
+ALTER TABLE analytics.orders
+SET TBLPROPERTIES ('partition_filtering.enabled' = 'true');
+```
+
+GetPartitions filter에는 index의 첫 key가 포함돼야 하며, index 적용은 best effort입니다. index가 없거나 연산자가 지원되지 않으면 전체 partition loading 방식으로 fallback될 수 있습니다. index 생성은 metadata access path를 바꾸는 일이지, S3 file layout이나 Athena scan 자체를 자동으로 재배치하는 기능은 아닙니다.
 
 index를 먼저 만들기보다 다음을 확인하는 편이 낫습니다.
 
@@ -190,6 +199,8 @@ index를 먼저 만들기보다 다음을 확인하는 편이 낫습니다.
 - [Amazon Athena User Guide - Set up partition projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection-setting-up.html)
 - [AWS Glue User Guide - Managing partitions for ETL output](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-partitions.html)
 - [AWS Glue User Guide - Working with partition indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html)
+- [Amazon Athena User Guide - Fine-grained access to Glue Data Catalog resources](https://docs.aws.amazon.com/athena/latest/ug/fine-grained-access-to-glue-resources.html)
+- [AWS Lake Formation Developer Guide - Permissions reference](https://docs.aws.amazon.com/lake-formation/latest/dg/lf-permissions-reference.html)
 - [Amazon Athena User Guide - Query Apache Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg.html)
 - [Amazon Athena User Guide - Create Apache Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html)
 

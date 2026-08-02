@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2026-08-03T02:25:00.000Z" agent="herwin" version="26.0.14" type="device">
+<mxfile host="app.diagrams.net" modified="2026-08-03T02:25:00.000Z" version="26.0.14" type="device">
   <diagram id="aws-glue-partitioning-pruning-flow" name="AWS Glue Partitioning and Athena Pruning">
     <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
@@ -25,7 +25,7 @@
         <mxCell id="s3" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;S3 prefixes to scan&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;only selected locations&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#232f3e;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="970" y="360" width="300" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="note" value="&lt;font style=&quot;color: rgb(60, 64, 67);&quot;&gt;A table uses Catalog metadata or projection rules as its single partition source of truth. The physical S3 layout must match it.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f3f4;strokeColor=#9aa0a6;fontColor=#3c4043;fontSize=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="note" value="&lt;font style=&quot;color: rgb(60, 64, 67);&quot;&gt;For Athena queries, use Catalog metadata or projection rules. Other engines may need registered partitions.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f3f4;strokeColor=#9aa0a6;fontColor=#3c4043;fontSize=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry x="270" y="770" width="1040" height="54" as="geometry" />
         </mxCell>
         <mxCell id="e_query" value="partition predicate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="query" target="planner">
