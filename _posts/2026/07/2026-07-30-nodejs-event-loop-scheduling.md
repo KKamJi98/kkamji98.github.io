@@ -7,7 +7,6 @@ tags: [nodejs, event-loop, microtask, process-nexttick, setimmediate, timers]
 comments: true
 image:
   path: /assets/img/nodejs/nodejs-logo-history-banner.png
-  alt: Node.js 로고와 역사 타임라인
 ---
 
 `setTimeout(fn, 0)`과 `setImmediate(fn)`을 같은 위치에서 등록했는데 실행 순서가 바뀌면, timer가 고장 난 것처럼 보일 수 있습니다. 하지만 두 API는 같은 queue에 들어가지 않고, callback을 등록한 위치도 같습니다. 순서를 판단할 때 먼저 봐야 할 것은 delay 값이 아니라 **어느 scheduling boundary에서 callback을 등록했는가**입니다.
