@@ -47,28 +47,28 @@
         <mxCell id="note" value="No long-lived Service Account key" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f3f4;strokeColor=#232F3E;fontColor=#3c4043;fontSize=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry x="90" y="660" width="1330" height="55" as="geometry"/>
         </mxCell>
-        <mxCell id="e1" value="issued by CI" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="ext" target="provider">
+        <mxCell id="e1" value="issued by CI" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="ext" target="provider">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e2" value="trust boundary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="pool" target="provider">
+        <mxCell id="e2" value="trust boundary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="pool" target="provider">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e3" value="validated assertion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="provider" target="sts">
+        <mxCell id="e3" value="validated assertion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="provider" target="sts">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e4" value="exchange" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="sts" target="federated">
+        <mxCell id="e4" value="exchange" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="sts" target="federated">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e5" value="IAM binding" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="federated" target="direct">
+        <mxCell id="e5" value="IAM binding" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="federated" target="direct">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e6" value="workloadIdentityUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="federated" target="sa">
+        <mxCell id="e6" value="workloadIdentityUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="federated" target="sa">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e7" value="API call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="direct" target="resource">
+        <mxCell id="e7" value="API call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="direct" target="resource">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="e8" value="short-lived credential" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="sa" target="resource">
+        <mxCell id="e8" value="short-lived credential" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="gcp" source="sa" target="resource">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
       </root>
