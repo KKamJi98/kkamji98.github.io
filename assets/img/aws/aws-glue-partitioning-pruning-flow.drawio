@@ -4,28 +4,28 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;Athena Partition Pruning: Catalog Metadata or Projection Rules&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#202124;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="title" value="Athena Partition Pruning: Catalog Metadata or Projection Rules" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#202124;fontSize=24;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="55" width="1040" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="&lt;font style=&quot;color: rgb(95, 99, 104);&quot;&gt;The query predicate must agree with the partition source of truth and S3 prefix layout.&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5f6368;fontSize=15;" vertex="1" parent="1">
+        <mxCell id="subtitle" value="The query predicate must agree with the partition source of truth and S3 prefix layout." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5f6368;fontSize=15;" vertex="1" parent="1">
           <mxGeometry x="300" y="99" width="1000" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="query" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;SQL query&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;WHERE dt, region, hour&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="query" value="SQL query&#xa;WHERE dt, region, hour" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e8f0fe;strokeColor=#1a73e8;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="90" y="360" width="220" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="catalog" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;Glue Data Catalog&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;registered partitions&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#f9ab00;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="catalog" value="Glue Data Catalog&#xa;registered partitions" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff7e6;strokeColor=#f9ab00;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="455" y="130" width="220" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="planner" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;Athena planning&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;selects S3 prefixes&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#9334e6;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="planner" value="Athena planning&#xa;selects S3 prefixes" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f3e8fd;strokeColor=#9334e6;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="455" y="360" width="220" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="projection" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;Partition projection&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;date, enum, and integer&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#34a853;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="projection" value="Partition projection&#xa;date, enum, and integer" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e6f4ea;strokeColor=#34a853;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="455" y="590" width="220" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="s3" value="&lt;font style=&quot;color: rgb(32, 33, 36);&quot;&gt;S3 prefixes to scan&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;only selected locations&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#232f3e;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="s3" value="S3 prefixes to scan&#xa;only selected locations" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#232f3e;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="970" y="360" width="300" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="note" value="&lt;font style=&quot;color: rgb(60, 64, 67);&quot;&gt;For Athena queries, use Catalog metadata or projection rules. Other engines may need registered partitions.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f3f4;strokeColor=#9aa0a6;fontColor=#3c4043;fontSize=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="note" value="For Athena queries, use Catalog metadata or projection rules. Other engines may need registered partitions." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f1f3f4;strokeColor=#9aa0a6;fontColor=#3c4043;fontSize=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry x="270" y="770" width="1040" height="54" as="geometry" />
         </mxCell>
         <mxCell id="e_query" value="partition predicate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="query" target="planner">
