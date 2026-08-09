@@ -29,16 +29,16 @@
         <mxCell id="cyc-title" parent="1" vertex="1" value="G1 collection cycle" style="text;html=0;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#5F6368;">
           <mxGeometry x="560" y="58" width="320" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="c1" parent="1" vertex="1" value="Young collection (STW)&#10;evacuate eden + survivor" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="c1" parent="1" vertex="1" value="Young collection (STW)&#xa;evacuate eden + survivor" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
           <mxGeometry x="570" y="92" width="300" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="c2" parent="1" vertex="1" value="Concurrent Marking&#10;starts at IHOP (adaptive, default 45%)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="c2" parent="1" vertex="1" value="Concurrent Marking&#xa;starts at IHOP (adaptive, default 45%)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="570" y="192" width="370" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="c3" parent="1" vertex="1" value="Mixed collection&#10;young + selected Old regions" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="c3" parent="1" vertex="1" value="Mixed collection&#xa;young + selected Old regions" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="570" y="298" width="300" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="cnote" parent="1" vertex="1" value="cycle&#10;repeats" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="cnote" parent="1" vertex="1" value="cycle&#xa;repeats" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="900" y="210" width="120" height="45" as="geometry" />
         </mxCell>
         <mxCell id="k1" parent="1" edge="1" source="c1" target="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;">

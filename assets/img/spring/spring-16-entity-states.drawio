@@ -5,19 +5,19 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="transient" parent="1" vertex="1" value="transient (new)&#10;not in any context" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+        <mxCell id="transient" parent="1" vertex="1" value="transient (new)&#xa;not in any context" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="60" y="50" width="220" height="70" as="geometry" />
         </mxCell>
         <mxCell id="db" parent="1" vertex="1" value="Database" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="80" y="245" width="180" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="managed" parent="1" vertex="1" value="managed (persistent)&#10;in persistence context, tracked" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+        <mxCell id="managed" parent="1" vertex="1" value="managed (persistent)&#xa;in persistence context, tracked" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="430" y="230" width="300" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="detached" parent="1" vertex="1" value="detached&#10;has id, no longer in context" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="detached" parent="1" vertex="1" value="detached&#xa;has id, no longer in context" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
           <mxGeometry x="810" y="245" width="280" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="removed" parent="1" vertex="1" value="removed&#10;scheduled for DELETE at flush" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
+        <mxCell id="removed" parent="1" vertex="1" value="removed&#xa;scheduled for DELETE at flush" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
           <mxGeometry x="440" y="440" width="290" height="70" as="geometry" />
         </mxCell>
         <mxCell id="t2m" parent="1" edge="1" source="transient" target="managed" value="persist()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;">

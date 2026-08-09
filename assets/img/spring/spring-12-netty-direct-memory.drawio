@@ -8,13 +8,13 @@
         <mxCell id="frame" parent="1" vertex="1" value="JVM process memory (= container limit)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
           <mxGeometry x="300" y="50" width="400" height="320" as="geometry" />
         </mxCell>
-        <mxCell id="heap" parent="1" vertex="1" value="JVM Heap (-Xmx)&#10;objects, GC-managed" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="heap" parent="1" vertex="1" value="JVM Heap (-Xmx)&#xa;objects, GC-managed" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="330" y="100" width="340" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="direct" parent="1" vertex="1" value="Direct Memory (off-heap, native)&#10;netty socket I/O buffers (pooled)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;">
+        <mxCell id="direct" parent="1" vertex="1" value="Direct Memory (off-heap, native)&#xa;netty socket I/O buffers (pooled)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="330" y="220" width="340" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="net" parent="1" vertex="1" value="Network / socket&#10;(OS kernel)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+        <mxCell id="net" parent="1" vertex="1" value="Network / socket&#xa;(OS kernel)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="60" y="235" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="Direct buffers live OUTSIDE the heap. = Series 2 off-heap -> -XX:MaxDirectMemorySize, buildpack 'Direct Memory' subtraction. This is why container memory must exceed -Xmx." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">

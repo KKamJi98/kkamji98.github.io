@@ -13,7 +13,7 @@
         <mxCell id="a2" parent="1" vertex="1" value="AuthenticationManager (인증 수행)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="80" y="190" width="460" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="a3" parent="1" vertex="1" value="인증된 Authentication (principal + authorities)&#10;-> SecurityContextHolder (ThreadLocal)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+        <mxCell id="a3" parent="1" vertex="1" value="인증된 Authentication (principal + authorities)&#xa;-> SecurityContextHolder (ThreadLocal)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="80" y="280" width="380" height="80" as="geometry" />
         </mxCell>
         <mxCell id="rf" parent="1" vertex="1" value="Authorization (인가: 무엇을 허용)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#188038;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">

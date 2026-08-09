@@ -13,16 +13,16 @@
         <mxCell id="lb1" parent="1" vertex="1" value="call db.query()" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="70" y="110" width="360" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="lb2" parent="1" vertex="1" value="thread BLOCKED, waiting for I/O&#10;(held, doing nothing)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">
+        <mxCell id="lb2" parent="1" vertex="1" value="thread BLOCKED, waiting for I/O&#xa;(held, doing nothing)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="70" y="190" width="360" height="64" as="geometry" />
         </mxCell>
         <mxCell id="lb3" parent="1" vertex="1" value="use(result)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="70" y="288" width="360" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="rb1" parent="1" vertex="1" value="declare stream:&#10;query().map(...).subscribe(...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="rb1" parent="1" vertex="1" value="declare stream:&#xa;query().map(...).subscribe(...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="570" y="110" width="360" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="rb2" parent="1" vertex="1" value="thread NOT held&#10;(freed for other requests)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
+        <mxCell id="rb2" parent="1" vertex="1" value="thread NOT held&#xa;(freed for other requests)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="570" y="198" width="360" height="64" as="geometry" />
         </mxCell>
         <mxCell id="rb3" parent="1" vertex="1" value="data arrives -> handle (onNext)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">

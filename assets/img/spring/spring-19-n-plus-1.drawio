@@ -8,7 +8,7 @@
         <mxCell id="q1" parent="1" vertex="1" value="Query 1:  SELECT * FROM orders   ->   returns N orders" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="120" y="60" width="650" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="loop" parent="1" vertex="1" value="Then, per order (LAZY items accessed in a loop):&#10;SELECT * FROM order_items WHERE order_id = ?   x N" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
+        <mxCell id="loop" parent="1" vertex="1" value="Then, per order (LAZY items accessed in a loop):&#xa;SELECT * FROM order_items WHERE order_id = ?   x N" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
           <mxGeometry x="120" y="190" width="650" height="90" as="geometry" />
         </mxCell>
         <mxCell id="total" parent="1" vertex="1" value="= 1 + N queries  (the N+1 selects problem)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">

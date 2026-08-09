@@ -25,10 +25,10 @@
         <mxCell id="headseg" parent="1" vertex="1" value="Headroom / other native" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="270" y="404" width="280" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-heap" parent="1" vertex="1" value="-Xmx caps&#10;ONLY this slice" style="text;html=0;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1A57B0;fontStyle=1;">
+        <mxCell id="lbl-heap" parent="1" vertex="1" value="-Xmx caps&#xa;ONLY this slice" style="text;html=0;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1A57B0;fontStyle=1;">
           <mxGeometry x="40" y="120" width="180" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-native" parent="1" vertex="1" value="the rest is native memory,&#10;outside -Xmx" style="text;html=0;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="lbl-native" parent="1" vertex="1" value="the rest is native memory,&#xa;outside -Xmx" style="text;html=0;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="40" y="300" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="Container limit = Heap + Metaspace + Thread Stacks + Code Cache + Direct + Headroom.   Size -Xmx with room for the rest, or the container OOMs." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">

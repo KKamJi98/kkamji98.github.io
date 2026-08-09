@@ -6,27 +6,27 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
-        <mxCell id="principal" value="analytics-workload-role&#10;(principal)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="1">
+        <mxCell id="principal" value="analytics-workload-role&#xa;(principal)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="1">
           <mxGeometry x="30" y="120" width="200" height="70" as="geometry" />
         </mxCell>
 
-        <mxCell id="athena" value="Amazon Athena&#10;(query engine)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="athena" value="Amazon Athena&#xa;(query engine)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="210" y="110" width="200" height="90" as="geometry" />
         </mxCell>
 
-        <mxCell id="iamgate" value="IAM Gate&#10;(API authz)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="iamgate" value="IAM Gate&#xa;(API authz)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FCE8E6;strokeColor=#D93025;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="410" y="115" width="200" height="80" as="geometry" />
         </mxCell>
 
-        <mxCell id="lfgate" value="Lake Formation Gate&#10;(data authz)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="lfgate" value="Lake Formation Gate&#xa;(data authz)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="650" y="115" width="290" height="80" as="geometry" />
         </mxCell>
 
-        <mxCell id="regrole" value="Registered Role&#10;(LF assumes)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
+        <mxCell id="regrole" value="Registered Role&#xa;(LF assumes)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;" vertex="1" parent="1">
           <mxGeometry x="650" y="270" width="290" height="70" as="geometry" />
         </mxCell>
 
-        <mxCell id="s3data" value="S3 Tables data&#10;(underlying data)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="1">
+        <mxCell id="s3data" value="S3 Tables data&#xa;(underlying data)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;" vertex="1" parent="1">
           <mxGeometry x="410" y="270" width="200" height="70" as="geometry" />
         </mxCell>
 

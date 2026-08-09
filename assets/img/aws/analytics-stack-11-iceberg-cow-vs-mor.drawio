@@ -9,26 +9,26 @@
         <mxCell id="cow" value="Copy-on-Write" style="swimlane;rounded=1;arcSize=4;html=0;startSize=30;fillColor=#1A73E8;fontColor=#FFFFFF;swimlaneFillColor=#E8F0FE;strokeColor=#1A73E8;fontStyle=1;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="40" width="340" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="cow_src" value="data file A&#10;(rows 1..n)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="cow">
+        <mxCell id="cow_src" value="data file A&#xa;(rows 1..n)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="cow">
           <mxGeometry x="65" y="55" width="210" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="cow_new" value="new data file A'&#10;(rewritten)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;" vertex="1" parent="cow">
+        <mxCell id="cow_new" value="new data file A'&#xa;(rewritten)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;" vertex="1" parent="cow">
           <mxGeometry x="65" y="195" width="210" height="50" as="geometry" />
         </mxCell>
         <mxCell id="cow_note" value="Old file is dropped from the new snapshot" style="text;html=0;align=center;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="cow">
           <mxGeometry x="40" y="262" width="260" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cow_cap" value="Fast reads, costly writes&#10;(read-heavy tables)" style="text;html=0;align=center;verticalAlign=middle;fontColor=#202124;fontStyle=2;" vertex="1" parent="cow">
+        <mxCell id="cow_cap" value="Fast reads, costly writes&#xa;(read-heavy tables)" style="text;html=0;align=center;verticalAlign=middle;fontColor=#202124;fontStyle=2;" vertex="1" parent="cow">
           <mxGeometry x="40" y="302" width="260" height="80" as="geometry" />
         </mxCell>
 
         <mxCell id="mor" value="Merge-on-Read" style="swimlane;rounded=1;arcSize=4;html=0;startSize=30;fillColor=#34A853;fontColor=#FFFFFF;swimlaneFillColor=#E6F4EA;strokeColor=#34A853;fontStyle=1;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="420" y="40" width="360" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="mor_src" value="data file A&#10;(kept)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="mor">
+        <mxCell id="mor_src" value="data file A&#xa;(kept)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;" vertex="1" parent="mor">
           <mxGeometry x="25" y="55" width="200" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="mor_del" value="delete file&#10;(position / equality)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;" vertex="1" parent="mor">
+        <mxCell id="mor_del" value="delete file&#xa;(position / equality)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;" vertex="1" parent="mor">
           <mxGeometry x="185" y="55" width="200" height="80" as="geometry" />
         </mxCell>
         <mxCell id="mor_merge" value="read = data file + delete file merged" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;" vertex="1" parent="mor">
@@ -37,7 +37,7 @@
         <mxCell id="mor_note" value="DELETE / UPDATE adds a delete file; read merges them" style="text;html=0;align=center;verticalAlign=middle;fontColor=#5F6368;" vertex="1" parent="mor">
           <mxGeometry x="40" y="266" width="280" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="mor_cap" value="Fast writes, merge on read&#10;(frequent updates / CDC)" style="text;html=0;align=center;verticalAlign=middle;fontColor=#202124;fontStyle=2;" vertex="1" parent="mor">
+        <mxCell id="mor_cap" value="Fast writes, merge on read&#xa;(frequent updates / CDC)" style="text;html=0;align=center;verticalAlign=middle;fontColor=#202124;fontStyle=2;" vertex="1" parent="mor">
           <mxGeometry x="40" y="306" width="280" height="80" as="geometry" />
         </mxCell>
 

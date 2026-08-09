@@ -8,16 +8,16 @@
         <mxCell id="jar" parent="1" vertex="1" value="app.jar (executable / fat jar)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
           <mxGeometry x="40" y="56" width="420" height="408" as="geometry" />
         </mxCell>
-        <mxCell id="manifest" parent="1" vertex="1" value="META-INF/MANIFEST.MF&#10;Main-Class: JarLauncher&#10;Start-Class: MyApplication" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="manifest" parent="1" vertex="1" value="META-INF/MANIFEST.MF&#xa;Main-Class: JarLauncher&#xa;Start-Class: MyApplication" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
           <mxGeometry x="70" y="104" width="360" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="loader" parent="1" vertex="1" value="org/springframework/boot/loader/&#10;(Spring Boot loader classes)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="loader" parent="1" vertex="1" value="org/springframework/boot/loader/&#xa;(Spring Boot loader classes)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="70" y="194" width="360" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="classes" parent="1" vertex="1" value="BOOT-INF/classes/&#10;(your code)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="classes" parent="1" vertex="1" value="BOOT-INF/classes/&#xa;(your code)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="70" y="264" width="360" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="lib" parent="1" vertex="1" value="BOOT-INF/lib/&#10;(dependency jars: tomcat, spring, jackson, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="lib" parent="1" vertex="1" value="BOOT-INF/lib/&#xa;(dependency jars: tomcat, spring, jackson, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="70" y="334" width="450" height="70" as="geometry" />
         </mxCell>
         <mxCell id="exec-title" parent="1" vertex="1" value="Execution path" style="text;html=0;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#5F6368;">
@@ -26,13 +26,13 @@
         <mxCell id="ex1" parent="1" vertex="1" value="java -jar app.jar" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
           <mxGeometry x="560" y="88" width="230" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="ex2" parent="1" vertex="1" value="JarLauncher runs&#10;(Main-Class)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="ex2" parent="1" vertex="1" value="JarLauncher runs&#xa;(Main-Class)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="560" y="176" width="230" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="ex3" parent="1" vertex="1" value="nested-jar classloader&#10;loads BOOT-INF/lib/*.jar" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+        <mxCell id="ex3" parent="1" vertex="1" value="nested-jar classloader&#xa;loads BOOT-INF/lib/*.jar" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
           <mxGeometry x="560" y="272" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ex4" parent="1" vertex="1" value="calls Start-Class main&#10;(MyApplication)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="ex4" parent="1" vertex="1" value="calls Start-Class main&#xa;(MyApplication)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="560" y="372" width="230" height="56" as="geometry" />
         </mxCell>
         <mxCell id="x1" parent="1" edge="1" source="ex1" target="ex2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;">

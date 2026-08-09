@@ -35,7 +35,7 @@
         <mxCell id="overflow" parent="1" vertex="1" value="pool full -> wait queue -> reject / timeout" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#C5221F;fontStyle=1;">
           <mxGeometry x="260" y="402" width="380" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="note-stack" parent="1" vertex="1" value="each worker = its own call stack&#10;in native memory (~0.5-1MB, -Xss)&#10;-> off-heap, counts toward container memory" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#188038;fontStyle=2;">
+        <mxCell id="note-stack" parent="1" vertex="1" value="each worker = its own call stack&#xa;in native memory (~0.5-1MB, -Xss)&#xa;-> off-heap, counts toward container memory" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#188038;fontStyle=2;">
           <mxGeometry x="664" y="120" width="240" height="80" as="geometry" />
         </mxCell>
         <mxCell id="a1" parent="1" edge="1" source="reqA" target="w1" value="assigned 1:1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;">

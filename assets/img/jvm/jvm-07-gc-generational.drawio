@@ -14,13 +14,13 @@
         <mxCell id="newobj" parent="1" vertex="1" value="new object" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="40" y="180" width="140" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eden" parent="1" vertex="1" value="Eden&#10;(new objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="eden" parent="1" vertex="1" value="Eden&#xa;(new objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
           <mxGeometry x="240" y="170" width="170" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="survivor" parent="1" vertex="1" value="Survivor&#10;(S0 / S1, aging)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="survivor" parent="1" vertex="1" value="Survivor&#xa;(S0 / S1, aging)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
           <mxGeometry x="460" y="170" width="180" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="old" parent="1" vertex="1" value="Old&#10;(long-lived)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="old" parent="1" vertex="1" value="Old&#xa;(long-lived)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="730" y="170" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="Most objects die in young (collected quickly by minor GC). Aged survivors are promoted to Old; Old fills slower and its collection is heavier." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
