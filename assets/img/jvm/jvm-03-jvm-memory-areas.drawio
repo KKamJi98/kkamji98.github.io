@@ -4,28 +4,28 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="heap-panel" parent="1" vertex="1" value="Heap  (shared, GC-managed)  -  capped by -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+        <mxCell id="heap-panel" parent="1" vertex="1" value="Heap  (shared, GC-managed)  -  capped by -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
           <mxGeometry x="40" y="60" width="440" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="young" parent="1" vertex="1" value="Young&#xa;Eden (new objects) + Survivor (S0 / S1)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="young" parent="1" vertex="1" value="Young&#xa;Eden (new objects) + Survivor (S0 / S1)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="70" y="110" width="380" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="old" parent="1" vertex="1" value="Old&#xa;(long-lived / promoted objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="old" parent="1" vertex="1" value="Old&#xa;(long-lived / promoted objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="70" y="250" width="380" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="nh-panel" parent="1" vertex="1" value="Non-heap / Native  -  outside -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#5F6368;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+        <mxCell id="nh-panel" parent="1" vertex="1" value="Non-heap / Native  -  outside -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
           <mxGeometry x="520" y="60" width="440" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="meta" parent="1" vertex="1" value="Metaspace  (class metadata, JDK8+, native)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="meta" parent="1" vertex="1" value="Metaspace  (class metadata, JDK8+, native)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="550" y="110" width="400" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="stacks" parent="1" vertex="1" value="Thread Stacks  (-Xss x N, per-thread)  = ch.1 stack" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="stacks" parent="1" vertex="1" value="Thread Stacks  (-Xss x N, per-thread)  = ch.1 stack" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="550" y="180" width="480" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="codecache" parent="1" vertex="1" value="Code Cache  (JIT machine code)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="codecache" parent="1" vertex="1" value="Code Cache  (JIT machine code)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="550" y="250" width="380" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="direct" parent="1" vertex="1" value="Direct Memory  (off-heap, NIO / netty)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+        <mxCell id="direct" parent="1" vertex="1" value="Direct Memory  (off-heap, NIO / netty)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="550" y="320" width="380" height="58" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="-Xmx caps the Heap only. Everything on the right is native memory, outside -Xmx." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">

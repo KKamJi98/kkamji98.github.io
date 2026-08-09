@@ -5,31 +5,31 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-terraform-configuration" value="Terraform configuration" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-1-terraform-configuration" value="Terraform configuration" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-helm-provider" value="Helm provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-2-helm-provider" value="Helm provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="385" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-helm-chart" value="Helm chart" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-3-helm-chart" value="Helm chart" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="700" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-kubernetes-api" value="Kubernetes API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-4-kubernetes-api" value="Kubernetes API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1015" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-release-resources" value="Release resources" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-5-release-resources" value="Release resources" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-terraform-configuration-to-node-2-helm-provider" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-1-terraform-configuration" target="node-2-helm-provider">
+        <mxCell id="edge-1-node-1-terraform-configuration-to-node-2-helm-provider" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-terraform-configuration" target="node-2-helm-provider">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-helm-provider-to-node-3-helm-chart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-2-helm-provider" target="node-3-helm-chart">
+        <mxCell id="edge-2-node-2-helm-provider-to-node-3-helm-chart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-helm-provider" target="node-3-helm-chart">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-helm-chart-to-node-4-kubernetes-api" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-3-helm-chart" target="node-4-kubernetes-api">
+        <mxCell id="edge-3-node-3-helm-chart-to-node-4-kubernetes-api" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-helm-chart" target="node-4-kubernetes-api">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-4-node-4-kubernetes-api-to-node-5-release-resources" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-4-kubernetes-api" target="node-5-release-resources">
+        <mxCell id="edge-4-node-4-kubernetes-api-to-node-5-release-resources" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-kubernetes-api" target="node-5-release-resources">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

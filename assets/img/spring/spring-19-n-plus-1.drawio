@@ -5,19 +5,19 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="q1" parent="1" vertex="1" value="Query 1:  SELECT * FROM orders   ->   returns N orders" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="q1" parent="1" vertex="1" value="Query 1:  SELECT * FROM orders   ->   returns N orders" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="120" y="60" width="650" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="loop" parent="1" vertex="1" value="Then, per order (LAZY items accessed in a loop):&#xa;SELECT * FROM order_items WHERE order_id = ?   x N" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;">
+        <mxCell id="loop" parent="1" vertex="1" value="Then, per order (LAZY items accessed in a loop):&#xa;SELECT * FROM order_items WHERE order_id = ?   x N" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="120" y="190" width="650" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="total" parent="1" vertex="1" value="= 1 + N queries  (the N+1 selects problem)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=10;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;">
+        <mxCell id="total" parent="1" vertex="1" value="= 1 + N queries  (the N+1 selects problem)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
           <mxGeometry x="120" y="340" width="650" height="65" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="q1" target="loop" value="iterate associations" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;">
+        <mxCell id="e1" parent="1" edge="1" source="q1" target="loop" value="iterate associations" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="loop" target="total" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;">
+        <mxCell id="e2" parent="1" edge="1" source="loop" target="total" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="One query for the parent list, then one extra query per element to load its lazy association." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">

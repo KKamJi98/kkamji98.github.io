@@ -5,31 +5,31 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-users-and-automation" value="Users and automation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-1-users-and-automation" value="Users and automation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-api-server-and-etcd" value="API server and etcd" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-2-api-server-and-etcd" value="API server and etcd" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="385" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-controllers-and-scheduler" value="Controllers and scheduler" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-3-controllers-and-scheduler" value="Controllers and scheduler" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="700" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-kubelet-on-nodes" value="kubelet on nodes" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-4-kubelet-on-nodes" value="kubelet on nodes" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1015" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-runtime-and-pods" value="Runtime and Pods" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-5-runtime-and-pods" value="Runtime and Pods" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-users-and-automation-to-node-2-api-server-and-etcd" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-1-users-and-automation" target="node-2-api-server-and-etcd">
+        <mxCell id="edge-1-node-1-users-and-automation-to-node-2-api-server-and-etcd" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-users-and-automation" target="node-2-api-server-and-etcd">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-api-server-and-etcd-to-node-3-controllers-and-scheduler" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-2-api-server-and-etcd" target="node-3-controllers-and-scheduler">
+        <mxCell id="edge-2-node-2-api-server-and-etcd-to-node-3-controllers-and-scheduler" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-api-server-and-etcd" target="node-3-controllers-and-scheduler">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-controllers-and-scheduler-to-node-4-kubelet-on-nodes" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-3-controllers-and-scheduler" target="node-4-kubelet-on-nodes">
+        <mxCell id="edge-3-node-3-controllers-and-scheduler-to-node-4-kubelet-on-nodes" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-controllers-and-scheduler" target="node-4-kubelet-on-nodes">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-4-node-4-kubelet-on-nodes-to-node-5-runtime-and-pods" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-4-kubelet-on-nodes" target="node-5-runtime-and-pods">
+        <mxCell id="edge-4-node-4-kubelet-on-nodes-to-node-5-runtime-and-pods" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-kubelet-on-nodes" target="node-5-runtime-and-pods">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

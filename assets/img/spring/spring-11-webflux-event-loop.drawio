@@ -5,25 +5,25 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="conns" parent="1" vertex="1" value="Many connections&#xa;(A, B, C, D, E, F, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+        <mxCell id="conns" parent="1" vertex="1" value="Many connections&#xa;(A, B, C, D, E, F, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="40" y="190" width="230" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="pool" parent="1" vertex="1" value="Netty event loop pool (threads ~ number of CPU cores)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=6;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#1A57B0;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;">
+        <mxCell id="pool" parent="1" vertex="1" value="Netty event loop pool (threads ~ number of CPU cores)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
           <mxGeometry x="330" y="80" width="500" height="340" as="geometry" />
         </mxCell>
-        <mxCell id="el1" parent="1" vertex="1" value="event-loop-1  ->  serves A, C, E ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="el1" parent="1" vertex="1" value="event-loop-1  ->  serves A, C, E ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="360" y="130" width="370" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="el2" parent="1" vertex="1" value="event-loop-2  ->  serves B, D, F ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="el2" parent="1" vertex="1" value="event-loop-2  ->  serves B, D, F ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="360" y="200" width="370" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="elnote" parent="1" vertex="1" value="while one connection's I/O is pending, the thread serves another (non-blocking)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="elnote" parent="1" vertex="1" value="while one connection's I/O is pending, the thread serves another (non-blocking)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="360" y="272" width="370" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cmp" parent="1" vertex="1" value="vs thread-per-request (Spring MVC): ~200 threads, each blocked during I/O" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#B06000;fontStyle=2;">
+        <mxCell id="cmp" parent="1" vertex="1" value="vs thread-per-request (Spring MVC): ~200 threads, each blocked during I/O" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#F9AB00;fontStyle=2;">
           <mxGeometry x="60" y="452" width="840" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="conns" target="el1" value="multiplexed onto few threads" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="e1" parent="1" edge="1" source="conns" target="el1" value="multiplexed onto few threads" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

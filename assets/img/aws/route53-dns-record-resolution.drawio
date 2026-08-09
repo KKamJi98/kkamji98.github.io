@@ -5,31 +5,31 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-domain-registrar" value="Domain registrar" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-1-domain-registrar" value="Domain registrar" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-route-53-hosted-zone" value="Route 53 hosted zone" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-2-route-53-hosted-zone" value="Route 53 hosted zone" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="385" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-ns-delegation" value="NS delegation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-3-ns-delegation" value="NS delegation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="700" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-dns-record" value="DNS record" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-4-dns-record" value="DNS record" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1015" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-application-endpoint" value="Application endpoint" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-5-application-endpoint" value="Application endpoint" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-domain-registrar-to-node-2-route-53-hosted-zone" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-1-domain-registrar" target="node-2-route-53-hosted-zone">
+        <mxCell id="edge-1-node-1-domain-registrar-to-node-2-route-53-hosted-zone" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-domain-registrar" target="node-2-route-53-hosted-zone">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-route-53-hosted-zone-to-node-3-ns-delegation" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-2-route-53-hosted-zone" target="node-3-ns-delegation">
+        <mxCell id="edge-2-node-2-route-53-hosted-zone-to-node-3-ns-delegation" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-route-53-hosted-zone" target="node-3-ns-delegation">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-ns-delegation-to-node-4-dns-record" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-3-ns-delegation" target="node-4-dns-record">
+        <mxCell id="edge-3-node-3-ns-delegation-to-node-4-dns-record" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-ns-delegation" target="node-4-dns-record">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-4-node-4-dns-record-to-node-5-application-endpoint" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-4-dns-record" target="node-5-application-endpoint">
+        <mxCell id="edge-4-node-4-dns-record-to-node-5-application-endpoint" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-dns-record" target="node-5-application-endpoint">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

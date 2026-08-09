@@ -5,25 +5,25 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-pc-terminal" value="PC terminal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-1-pc-terminal" value="PC terminal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-atmega16u2-bridge" value="ATmega16U2 bridge" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-2-atmega16u2-bridge" value="ATmega16U2 bridge" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="490" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-atmega328p-main-mcu" value="ATmega328P main MCU" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-3-atmega328p-main-mcu" value="ATmega328P main MCU" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="910" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-external-uart-device" value="External UART device" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EAF2FF;strokeColor=#4A6FA5;strokeWidth=1.5;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
+        <mxCell id="node-4-external-uart-device" value="External UART device" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-pc-terminal-to-node-2-atmega16u2-bridge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-1-pc-terminal" target="node-2-atmega16u2-bridge">
+        <mxCell id="edge-1-node-1-pc-terminal-to-node-2-atmega16u2-bridge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-pc-terminal" target="node-2-atmega16u2-bridge">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-atmega16u2-bridge-to-node-3-atmega328p-main-mcu" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-2-atmega16u2-bridge" target="node-3-atmega328p-main-mcu">
+        <mxCell id="edge-2-node-2-atmega16u2-bridge-to-node-3-atmega328p-main-mcu" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-atmega16u2-bridge" target="node-3-atmega328p-main-mcu">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-atmega328p-main-mcu-to-node-4-external-uart-device" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#000000;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-3-atmega328p-main-mcu" target="node-4-external-uart-device">
+        <mxCell id="edge-3-node-3-atmega328p-main-mcu-to-node-4-external-uart-device" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-atmega328p-main-mcu" target="node-4-external-uart-device">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

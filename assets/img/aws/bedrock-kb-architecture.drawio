@@ -1,58 +1,58 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram id="bedrock-kb" name="Bedrock Knowledge Base">
-    <mxGraphModel dx="1500" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="640" math="0" shadow="0">
+    <mxGraphModel background="#FFFFFF" dx="1500" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="640" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ingestion-lane" value="1. Managed Ingestion" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#E8F0FE;swimlaneFillColor=#F8FBFF;strokeColor=#1A73E8;strokeWidth=1.5;fontSize=15;fontStyle=1;fontColor=#174EA6;shadow=0;" vertex="1" parent="1">
+        <mxCell id="ingestion-lane" value="1. Managed Ingestion" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#E8F0FE;swimlaneFillColor=#F8FBFF;strokeColor=#1A73E8;strokeWidth=1.25;fontSize=16;fontStyle=1;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="30" width="1420" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="query-lane" value="2. Query and Grounding" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#FCE8E6;swimlaneFillColor=#FFF8F7;strokeColor=#EA4335;strokeWidth=1.5;fontSize=15;fontStyle=1;fontColor=#A50E0E;shadow=0;" vertex="1" parent="1">
+        <mxCell id="query-lane" value="2. Query and Grounding" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#FCE8E6;swimlaneFillColor=#FFF8F7;strokeColor=#EA4335;strokeWidth=1.25;fontSize=16;fontStyle=1;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="320" width="1420" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="data-sources" value="Data SourcesS3 and connectors" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#3F8624;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="data-sources" value="Data SourcesS3 and connectors" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="85" y="125" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="kb-ingestion" value="Bedrock KBFetch | Parse | Chunk" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="kb-ingestion" value="Bedrock KBFetch | Parse | Chunk" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="365" y="125" width="210" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="embedding-model" value="Embedding ModelTitan or Cohere" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
+        <mxCell id="embedding-model" value="Embedding ModelTitan or Cohere" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="665" y="125" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="vector-store" value="Vector StoreManaged index" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="vector-store" value="Vector StoreManaged index" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="955" y="125" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ingestion-controls" value="Ingestion ControlsChunking | Metadata | Sync" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#F1F3F4;strokeColor=#9AA0A6;strokeWidth=1.5;fontSize=12;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="ingestion-controls" value="Ingestion ControlsChunking | Metadata | Sync" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1245" y="125" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="client-query" value="User or AppNatural language query" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="client-query" value="User or AppNatural language query" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="425" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="runtime-api" value="Agent RuntimeRetrieve or R+G" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#8C4FFF;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="runtime-api" value="Agent RuntimeRetrieve or R+G" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="295" y="425" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="access-filter" value="Access FilterIAM + metadata" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#DD344C;strokeColor=#DD344C;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
+        <mxCell id="access-filter" value="Access FilterIAM + metadata" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EA4335;strokeColor=#EA4335;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="520" y="425" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="vector-search" value="Vector SearchTop-k chunks" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#000000;shadow=0;" vertex="1" parent="1">
+        <mxCell id="vector-search" value="Vector SearchTop-k chunks" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="745" y="425" width="190" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="foundation-model" value="Foundation ModelGrounded generation" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
+        <mxCell id="foundation-model" value="Foundation ModelGrounded generation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=13;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="970" y="425" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="grounded-answer" value="Answer + CitationTraceable source" style="rounded=1;arcSize=14;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#188038;shadow=0;" vertex="1" parent="1">
+        <mxCell id="grounded-answer" value="Answer + CitationTraceable source" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=13;fontColor=#202124;shadow=0;" vertex="1" parent="1">
           <mxGeometry x="1195" y="425" width="220" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ingest-fetch" value="sync" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#F8FBFF;" edge="1" parent="1" source="data-sources" target="kb-ingestion"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-embed" value="chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#F8FBFF;" edge="1" parent="1" source="kb-ingestion" target="embedding-model"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-index" value="vectors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#F8FBFF;" edge="1" parent="1" source="embedding-model" target="vector-store"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-manage" value="configure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;startArrow=block;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;dashed=1;fontSize=10;fontColor=#000000;labelBackgroundColor=#F8FBFF;" edge="1" parent="1" source="vector-store" target="ingestion-controls"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-request" value="request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFF8F7;" edge="1" parent="1" source="client-query" target="runtime-api"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-authorize" value="authorize" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFF8F7;" edge="1" parent="1" source="runtime-api" target="access-filter"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-retrieve" value="filter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFF8F7;" edge="1" parent="1" source="access-filter" target="vector-search"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-ground" value="context" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFF8F7;" edge="1" parent="1" source="vector-search" target="foundation-model"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-answer" value="respond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFF8F7;" edge="1" parent="1" source="foundation-model" target="grounded-answer"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ingest-fetch" value="sync" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#F8FBFF;endSize=7;" edge="1" parent="1" source="data-sources" target="kb-ingestion"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ingest-embed" value="chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#F8FBFF;endSize=7;" edge="1" parent="1" source="kb-ingestion" target="embedding-model"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ingest-index" value="vectors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#F8FBFF;endSize=7;" edge="1" parent="1" source="embedding-model" target="vector-store"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ingest-manage" value="configure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;startArrow=block;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;dashed=1;fontSize=11;fontColor=#202124;labelBackgroundColor=#F8FBFF;endSize=7;" edge="1" parent="1" source="vector-store" target="ingestion-controls"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="query-request" value="request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFF8F7;endSize=7;" edge="1" parent="1" source="client-query" target="runtime-api"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="query-authorize" value="authorize" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFF8F7;endSize=7;" edge="1" parent="1" source="runtime-api" target="access-filter"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="query-retrieve" value="filter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFF8F7;endSize=7;" edge="1" parent="1" source="access-filter" target="vector-search"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="query-ground" value="context" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFF8F7;endSize=7;" edge="1" parent="1" source="vector-search" target="foundation-model"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="query-answer" value="respond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFF8F7;endSize=7;" edge="1" parent="1" source="foundation-model" target="grounded-answer"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

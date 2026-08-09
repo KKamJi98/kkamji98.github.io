@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "id": "probe-state-flow",
+  "title": "Startup gates the other two probes; liveness and readiness then judge independently",
+  "subtitle": "A readiness failure only removes the Pod from the EndpointSlice. A liveness or startup failure restarts the container.",
+  "diagram_type": "lifecycle",
+  "profile": "product-runtime",
+  "layout": {
+    "node_w": 250,
+    "node_h": 92,
+    "col_gap": 170,
+    "row_gap": 70
+  },
+  "nodes": [
+    {
+      "id": "starting",
+      "label": "Container starting",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "startup",
+      "label": "Startup probe",
+      "detail": "blocks the other two until it first succeeds",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "readiness",
+      "label": "Readiness probe",
+      "detail": "can it take traffic now?",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "liveness",
+      "label": "Liveness probe",
+      "detail": "is it stuck beyond recovery?",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "ready",
+      "label": "In the EndpointSlice",
+      "detail": "Service sends traffic",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "notready",
+      "label": "Out of the EndpointSlice",
+      "detail": "process keeps running, kubelet retries",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "restart",
+      "label": "Container restart",
+      "detail": "restart policy applies",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "starts",
+      "source": "starting",
+      "target": "startup",
+      "label": "kubelet starts it"
+    },
+    {
+      "id": "unblocks-readiness",
+      "source": "startup",
+      "target": "readiness",
+      "label": "after first success"
+    },
+    {
+      "id": "unblocks-liveness",
+      "source": "startup",
+      "target": "liveness",
+      "label": "after first success"
+    },
+    {
+      "id": "readiness-passes",
+      "source": "readiness",
+      "target": "ready",
+      "label": "passes"
+    },
+    {
+      "id": "readiness-fails",
+      "source": "readiness",
+      "target": "notready",
+      "label": "fails"
+    },
+    {
+      "id": "liveness-fails",
+      "source": "liveness",
+      "target": "restart",
+      "label": "fails past threshold",
+      "emphasis": true
+    }
+  ]
+}

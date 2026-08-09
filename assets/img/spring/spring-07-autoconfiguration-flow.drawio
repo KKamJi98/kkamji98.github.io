@@ -5,37 +5,37 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="s1" parent="1" vertex="1" value="App start (@SpringBootApplication)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;">
+        <mxCell id="s1" parent="1" vertex="1" value="App start (@SpringBootApplication)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
           <mxGeometry x="220" y="30" width="330" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="s2" parent="1" vertex="1" value="@EnableAutoConfiguration&#xa;load AutoConfiguration candidates (AutoConfiguration.imports)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="s2" parent="1" vertex="1" value="@EnableAutoConfiguration&#xa;load AutoConfiguration candidates (AutoConfiguration.imports)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="170" y="126" width="570" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="s3" parent="1" vertex="1" value="@Conditional met?&#xa;(OnClass / OnMissingBean / OnProperty)" style="rhombus;whiteSpace=wrap;html=0;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;">
+        <mxCell id="s3" parent="1" vertex="1" value="@Conditional met?&#xa;(OnClass / OnMissingBean / OnProperty)" style="rhombus;whiteSpace=wrap;html=0;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="280" y="232" width="370" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="s4yes" parent="1" vertex="1" value="Register auto-config beans&#xa;(embedded Tomcat, DispatcherServlet, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="s4yes" parent="1" vertex="1" value="Register auto-config beans&#xa;(embedded Tomcat, DispatcherServlet, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="210" y="430" width="390" height="66" as="geometry" />
         </mxCell>
-        <mxCell id="s4no" parent="1" vertex="1" value="Skip (backs off)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=14;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
+        <mxCell id="s4no" parent="1" vertex="1" value="Skip (backs off)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
           <mxGeometry x="580" y="262" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="note-loop" parent="1" vertex="1" value="repeated for each&#xa;AutoConfiguration&#xa;candidate" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="note-loop" parent="1" vertex="1" value="repeated for each&#xa;AutoConfiguration&#xa;candidate" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="40" y="262" width="150" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="note-no" parent="1" vertex="1" value="your own bean wins&#xa;(non-invasive)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="note-no" parent="1" vertex="1" value="your own bean wins&#xa;(non-invasive)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="580" y="330" width="180" height="45" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="e1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="e2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="s3" target="s4yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="e3" parent="1" edge="1" source="s3" target="s4yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="s3" target="s4no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="e4" parent="1" edge="1" source="s3" target="s4no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

@@ -5,44 +5,44 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="session" parent="1" vertex="1" value="Session  (session.id)&#xa;사용자 여정 전체 · 최대 4h, 15min 비활동 시 만료" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#632CA6;strokeColor=#4B2080;fontColor=#FFFFFF;fontSize=12;verticalAlign=middle;">
+        <mxCell id="session" parent="1" vertex="1" value="Session  (session.id)&#xa;사용자 여정 전체 · 최대 4h, 15min 비활동 시 만료" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#A142F4;strokeColor=#A142F4;fontColor=#FFFFFF;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="280" y="60" width="340" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="view" parent="1" vertex="1" value="View  (view.id)&#xa;페이지/화면 단위 · initial load 또는 route change" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#EDE7F6;strokeColor=#632CA6;fontColor=#202124;fontSize=12;verticalAlign=middle;">
+        <mxCell id="view" parent="1" vertex="1" value="View  (view.id)&#xa;페이지/화면 단위 · initial load 또는 route change" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="290" y="200" width="320" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ev_action" parent="1" vertex="1" value="Action&#xa;click/tap · frustration signals" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+        <mxCell id="ev_action" parent="1" vertex="1" value="Action&#xa;click/tap · frustration signals" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="24" y="360" width="200" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="ev_resource" parent="1" vertex="1" value="Resource&#xa;XHR/fetch · 단계별 타이밍" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+        <mxCell id="ev_resource" parent="1" vertex="1" value="Resource&#xa;XHR/fetch · 단계별 타이밍" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="202" y="360" width="200" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="ev_error" parent="1" vertex="1" value="Error&#xa;JS error/crash · stack trace" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+        <mxCell id="ev_error" parent="1" vertex="1" value="Error&#xa;JS error/crash · stack trace" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="380" y="360" width="200" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="ev_longtask" parent="1" vertex="1" value="Long Task&#xa;main thread 50ms+ 블록" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+        <mxCell id="ev_longtask" parent="1" vertex="1" value="Long Task&#xa;main thread 50ms+ 블록" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="558" y="360" width="200" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="ev_vital" parent="1" vertex="1" value="Vital&#xa;Core Web Vitals · custom" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;">
+        <mxCell id="ev_vital" parent="1" vertex="1" value="Vital&#xa;Core Web Vitals · custom" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;verticalAlign=middle;strokeWidth=1.25;">
           <mxGeometry x="736" y="360" width="200" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="e_sv" parent="1" source="session" target="view" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+        <mxCell id="e_sv" parent="1" source="session" target="view" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_va" parent="1" source="view" target="ev_action" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="104" y="310" /></Array></mxGeometry>
+        <mxCell id="e_va" parent="1" source="view" target="ev_action" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="104" y="310" /><mxPoint x="124" y="310" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e_vr" parent="1" source="view" target="ev_resource" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="282" y="310" /></Array></mxGeometry>
+        <mxCell id="e_vr" parent="1" source="view" target="ev_resource" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="282" y="310" /><mxPoint x="302" y="310" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e_ve" parent="1" source="view" target="ev_error" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
+        <mxCell id="e_ve" parent="1" source="view" target="ev_error" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_vl" parent="1" source="view" target="ev_longtask" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="638" y="310" /></Array></mxGeometry>
+        <mxCell id="e_vl" parent="1" source="view" target="ev_longtask" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="638" y="310" /><mxPoint x="658" y="310" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e_vv" parent="1" source="view" target="ev_vital" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="816" y="310" /></Array></mxGeometry>
+        <mxCell id="e_vv" parent="1" source="view" target="ev_vital" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#232F3E;endArrow=block;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="310" /><mxPoint x="816" y="310" /><mxPoint x="836" y="310" /></Array></mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
