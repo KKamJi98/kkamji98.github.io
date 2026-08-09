@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "profile": "product-runtime",
+  "title": "Athena Partition Pruning: Catalog Metadata or Projection Rules",
+  "evidence": [],
+  "groups": [],
+  "nodes": [
+    {
+      "id": "query",
+      "label": "SQL query\nWHERE dt, region, hour",
+      "kind": "service"
+    },
+    {
+      "id": "catalog",
+      "label": "Glue Data Catalog\nregistered partitions",
+      "kind": "store"
+    },
+    {
+      "id": "planner",
+      "label": "Athena planning\nselects S3 prefixes",
+      "kind": "service"
+    },
+    {
+      "id": "projection",
+      "label": "Partition projection\ndate, enum, and integer",
+      "kind": "service"
+    },
+    {
+      "id": "s3",
+      "label": "S3 prefixes to scan\nonly selected locations",
+      "kind": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-query",
+      "source": "query",
+      "target": "planner",
+      "label": "partition predicate"
+    },
+    {
+      "id": "e-catalog",
+      "source": "catalog",
+      "target": "planner",
+      "label": "registered metadata"
+    },
+    {
+      "id": "e-projection",
+      "source": "projection",
+      "target": "planner",
+      "label": "candidate prefixes"
+    },
+    {
+      "id": "e-s3",
+      "source": "planner",
+      "target": "s3",
+      "label": "selected prefixes"
+    }
+  ]
+}
