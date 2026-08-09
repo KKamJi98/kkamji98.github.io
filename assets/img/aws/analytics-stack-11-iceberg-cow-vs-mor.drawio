@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram name="CoW vs MoR" id="iceberg-cow-vs-mor">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="820" pageHeight="440" math="0" shadow="0">
@@ -40,13 +41,13 @@
           <mxGeometry x="40" y="306" width="280" height="44" as="geometry" />
         </mxCell>
 
-        <mxCell id="ce1" value="UPDATE / DELETE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cow_src" target="cow_new">
+        <mxCell id="ce1" value="UPDATE / DELETE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cow_src" target="cow_new">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="me1" value="read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mor_src" target="mor_merge">
+        <mxCell id="me1" value="read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mor_src" target="mor_merge">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="me2" value="merge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mor_del" target="mor_merge">
+        <mxCell id="me2" value="merge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mor_del" target="mor_merge">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

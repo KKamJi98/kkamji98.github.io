@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="spring-17-transactional-proxy" name="Transactional proxy">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1020" pageHeight="540" math="0" shadow="0" background="#FFFFFF">
@@ -22,10 +23,10 @@
         <mxCell id="db" parent="1" vertex="1" value="Database" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="840" y="190" width="130" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="self-invocation: a @Transactional method called via this.other() bypasses the proxy -> the advice does not run -> no new transaction" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#B06000;fontStyle=2;">
+        <mxCell id="note" parent="1" vertex="1" value="self-invocation: a @Transactional method called via this.other() bypasses the proxy -&gt; the advice does not run -&gt; no new transaction" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#B06000;fontStyle=2;">
           <mxGeometry x="60" y="450" width="900" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="caller" target="begin" value="call" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e1" parent="1" edge="1" source="caller" target="begin" value="call" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e2" parent="1" edge="1" source="begin" target="method" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
@@ -34,7 +35,7 @@
         <mxCell id="e3" parent="1" edge="1" source="method" target="end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="method" target="db" value="SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e4" parent="1" edge="1" source="method" target="db" value="SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="gcp-sa-auth" name="GCP Service Account Auth">
     <mxGraphModel dx="1024" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="840" pageHeight="400" background="#FFFFFF" math="0" shadow="0">
@@ -37,13 +38,13 @@
         <mxCell id="key-note" parent="1" vertex="1" value="leak / rotation risk" style="text;html=1;align=left;verticalAlign=middle;fontColor=#C5221F;fontSize=10;fontStyle=2;">
           <mxGeometry x="370" y="338" width="300" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="e-wl1-sa1" parent="1" edge="1" source="wl1" target="sa1" value="short-lived token" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#E6F4EA;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="e-wl1-sa1" parent="1" edge="1" source="wl1" target="sa1" value="short-lived token" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#E6F4EA;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-sa1-res1" parent="1" edge="1" source="sa1" target="res1" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-wl2-sa2" parent="1" edge="1" source="wl2" target="sa2" value="JSON key file" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#FCE8E6;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="e-wl2-sa2" parent="1" edge="1" source="wl2" target="sa2" value="JSON key file" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;labelBackgroundColor=#FCE8E6;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-sa2-res2" parent="1" edge="1" source="sa2" target="res2" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram name="Distributed SQL MPP" id="distributed-sql-mpp">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0">
@@ -31,7 +32,7 @@
           <mxGeometry x="790" y="70" width="180" height="310" as="geometry" />
         </mxCell>
 
-        <mxCell id="e1" value="1. SQL query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="coord">
+        <mxCell id="e1" value="1. SQL query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="coord">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
@@ -43,7 +44,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e2b" value="2. split into tasks (splits)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w2">
+        <mxCell id="e2b" value="2. split into tasks (splits)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e2c" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coord" target="w3">
@@ -58,7 +59,7 @@
         <mxCell id="e3a" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.113;entryDx=0;entryDy=0;" edge="1" parent="1" source="w1" target="sources">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3b" value="3. parallel scan" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="w2" target="sources">
+        <mxCell id="e3b" value="3. parallel scan" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="w2" target="sources">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e3c" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.887;entryDx=0;entryDy=0;" edge="1" parent="1" source="w3" target="sources">

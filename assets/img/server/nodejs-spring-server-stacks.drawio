@@ -1,38 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" modified="2026-07-29T10:30:00.000Z" version="30.2.6">
 <diagram id="node-spring-stacks" name="Server Stack Boundaries">
 <mxGraphModel dx="1800" dy="900" grid="1" gridSize="10">
 <root>
-<mxCell id="0"/>
-<mxCell id="1" parent="0"/>
+<mxCell id="0" />
+<mxCell id="1" parent="0" />
 <mxCell id="title" value="SERVER STACK BOUNDARIES" style="fillColor=none;strokeColor=none;fontColor=#111827;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="560" y="80" width="680" height="50" as="geometry"/>
+<mxGeometry x="560" y="80" width="680" height="50" as="geometry" />
 </mxCell>
 <mxCell id="node" value="NODE.JS CORE HTTP" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D9EAF7;strokeColor=#1A73E8;strokeWidth=2;fontColor=#000000;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="100" y="250" width="400" height="160" as="geometry"/>
+<mxGeometry x="100" y="250" width="400" height="160" as="geometry" />
 </mxCell>
 <mxCell id="mvc" value="SPRING BOOT MVC" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=2;fontColor=#000000;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="700" y="250" width="400" height="160" as="geometry"/>
+<mxGeometry x="700" y="250" width="400" height="160" as="geometry" />
 </mxCell>
 <mxCell id="webflux" value="SPRING BOOT WEBFLUX" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF3CD;strokeColor=#F9AB00;strokeWidth=2;fontColor=#000000;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="1300" y="250" width="400" height="160" as="geometry"/>
+<mxGeometry x="1300" y="250" width="400" height="160" as="geometry" />
 </mxCell>
 <mxCell id="node-exec" value="main JavaScript flow" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="130" y="520" width="340" height="80" as="geometry"/>
+<mxGeometry x="130" y="520" width="340" height="80" as="geometry" />
 </mxCell>
 <mxCell id="mvc-exec" value="servlet request thread" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="730" y="520" width="340" height="80" as="geometry"/>
+<mxGeometry x="730" y="520" width="340" height="80" as="geometry" />
 </mxCell>
 <mxCell id="webflux-exec" value="event loop worker" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=2;fontColor=#000000;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="1330" y="520" width="340" height="80" as="geometry"/>
+<mxGeometry x="1330" y="520" width="340" height="80" as="geometry" />
 </mxCell>
-<mxCell id="node-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="node" target="node-exec">
-<mxGeometry relative="1" as="geometry"/>
+<mxCell id="node-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="node" target="node-exec">
+<mxGeometry relative="1" as="geometry" />
 </mxCell>
-<mxCell id="mvc-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mvc" target="mvc-exec">
-<mxGeometry relative="1" as="geometry"/>
+<mxCell id="mvc-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mvc" target="mvc-exec">
+<mxGeometry relative="1" as="geometry" />
 </mxCell>
-<mxCell id="webflux-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="webflux" target="webflux-exec">
-<mxGeometry relative="1" as="geometry"/>
+<mxCell id="webflux-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;fontColor=#000000;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="webflux" target="webflux-exec">
+<mxGeometry relative="1" as="geometry" />
 </mxCell>
 </root>
 </mxGraphModel>

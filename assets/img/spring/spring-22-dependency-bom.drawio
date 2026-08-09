@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="spring-22-dependency-bom" name="Dependency management BOM">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1020" pageHeight="400" math="0" shadow="0" background="#FFFFFF">
@@ -16,10 +17,10 @@
         <mxCell id="note" parent="1" vertex="1" value="버전을 직접 적지 않아도 BOM이 호환되는 버전 집합으로 맞춰 준다 (버전 충돌/불일치 예방)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="40" y="300" width="950" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="decl" target="bom" value="no version" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e1" parent="1" edge="1" source="decl" target="bom" value="no version" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="bom" target="res" value="fills versions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e2" parent="1" edge="1" source="bom" target="res" value="fills versions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

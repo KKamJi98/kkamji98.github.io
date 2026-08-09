@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram id="rag-05-cache" name="Cache vs Access Control">
     <mxGraphModel dx="1040" dy="380" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="360" math="0" shadow="0">
@@ -21,10 +22,10 @@
           <mxGeometry x="650" y="228" width="340" height="64" as="geometry" />
         </mxCell>
 
-        <mxCell id="ca" value="store (HR docs)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userA" target="cache">
+        <mxCell id="ca" value="store (HR docs)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userA" target="cache">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cb" value="similar query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userB" target="cache">
+        <mxCell id="cb" value="similar query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="userB" target="cache">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="cc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="cache" target="out1">

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="spring-03-ioc-before-after" name="IoC Before vs After">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
@@ -37,16 +38,16 @@
         <mxCell id="note-after" parent="1" vertex="1" value="container builds and injects = loose coupling" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#1A57B0;fontStyle=2;">
           <mxGeometry x="560" y="448" width="360" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="eb1" parent="1" edge="1" source="ctrl-before" target="svc-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+        <mxCell id="eb1" parent="1" edge="1" source="ctrl-before" target="svc-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="eb2" parent="1" edge="1" source="svc-before" target="repo-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+        <mxCell id="eb2" parent="1" edge="1" source="svc-before" target="repo-before" value="new" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8EAED;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ea1" parent="1" edge="1" source="repo-after" target="svc-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="ea1" parent="1" edge="1" source="repo-after" target="svc-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ea2" parent="1" edge="1" source="svc-after" target="ctrl-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="ea2" parent="1" edge="1" source="svc-after" target="ctrl-after" value="injects" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#E8F0FE;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

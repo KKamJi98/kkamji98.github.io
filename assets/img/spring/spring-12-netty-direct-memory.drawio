@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="spring-12-netty-direct-memory" name="Netty Direct Memory">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="940" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
@@ -16,10 +17,10 @@
         <mxCell id="net" parent="1" vertex="1" value="Network / socket&#10;(OS kernel)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="60" y="235" width="180" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Direct buffers live OUTSIDE the heap. = Series 2 off-heap -> -XX:MaxDirectMemorySize, buildpack 'Direct Memory' subtraction. This is why container memory must exceed -Xmx." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
+        <mxCell id="note" parent="1" vertex="1" value="Direct buffers live OUTSIDE the heap. = Series 2 off-heap -&gt; -XX:MaxDirectMemorySize, buildpack 'Direct Memory' subtraction. This is why container memory must exceed -Xmx." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="60" y="392" width="820" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="io" parent="1" edge="1" source="net" target="direct" value="native I/O (no heap copy)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;startArrow=block;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="io" parent="1" edge="1" source="net" target="direct" value="native I/O (no heap copy)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;startArrow=block;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

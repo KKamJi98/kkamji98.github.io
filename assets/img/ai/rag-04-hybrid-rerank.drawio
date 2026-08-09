@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram id="rag-04-hybrid" name="Hybrid + Rerank">
     <mxGraphModel dx="1360" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1360" pageHeight="340" math="0" shadow="0">
@@ -39,7 +40,7 @@
         <mxCell id="q4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="bm25" target="rrf">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="q5" value="candidates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="rrf" target="rerank">
+        <mxCell id="q5" value="candidates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="rrf" target="rerank">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="q6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="rerank" target="topn">

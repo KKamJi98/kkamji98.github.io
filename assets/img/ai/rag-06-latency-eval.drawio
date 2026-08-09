@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram id="rag-06-latency" name="Latency and Eval">
     <mxGraphModel dx="1280" dy="420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="400" math="0" shadow="0">
@@ -34,7 +35,7 @@
         <mxCell id="l1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="query" target="cache">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l2" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="retr">
+        <mxCell id="l2" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="retr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="l3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="retr" target="rerank">
@@ -46,7 +47,7 @@
         <mxCell id="l5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;" edge="1" parent="1" source="gen" target="ans">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l6" value="hit: bypass" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="ans">
+        <mxCell id="l6" value="hit: bypass" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cache" target="ans">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="310" y="70" />
@@ -54,7 +55,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="l7" value="measure" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ans" target="eval">
+        <mxCell id="l7" value="measure" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;dashed=1;strokeColor=#232F3E;fontColor=#232F3E;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ans" target="eval">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

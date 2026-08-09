@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="gcp-access-stack" name="GCP access stack">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
@@ -22,19 +23,19 @@
         <mxCell id="svc" parent="1" vertex="1" value="GCP services (Compute Engine, Cloud Storage, BigQuery, IAM, ...)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;">
           <mxGeometry x="90" y="340" width="830" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="c1" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" >
+        <mxCell id="e1" parent="1" edge="1" source="c1" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="c2" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" >
+        <mxCell id="e2" parent="1" edge="1" source="c2" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="c3" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" >
+        <mxCell id="e3" parent="1" edge="1" source="c3" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="c4" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;" >
+        <mxCell id="e4" parent="1" edge="1" source="c4" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" parent="1" edge="1" source="api" target="svc" value="same API for every tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e5" parent="1" edge="1" source="api" target="svc" value="same API for every tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" vertex="1" value="Console / gcloud / Cloud Shell / Client Library are all front-ends over the same Cloud API." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">

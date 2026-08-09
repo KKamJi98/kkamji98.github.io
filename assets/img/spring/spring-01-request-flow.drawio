@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
   <diagram id="spring-01-request-flow" name="HTTP Request Lifecycle">
     <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="1000" math="0" shadow="0" background="#FFFFFF">
@@ -22,19 +23,19 @@
         <mxCell id="dispatcher" parent="1" vertex="1" value="&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;DispatcherServlet&lt;br&gt;(front controller, mapped to /)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#1A73E8;strokeColor=#1457B0;fontColor=#FFFFFF;fontStyle=1;">
           <mxGeometry x="220" y="436" width="320" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="handler" parent="1" vertex="1" value="HandlerMapping &#8594; HandlerAdapter&#10;(find &amp; invoke controller method)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
+        <mxCell id="handler" parent="1" vertex="1" value="HandlerMapping → HandlerAdapter&#10;(find &amp; invoke controller method)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;">
           <mxGeometry x="220" y="540" width="320" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="csr" parent="1" vertex="1" value="Controller &#8594; Service &#8594; Repository&#10;(all are Beans, live in heap)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
+        <mxCell id="csr" parent="1" vertex="1" value="Controller → Service → Repository&#10;(all are Beans, live in heap)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;">
           <mxGeometry x="220" y="636" width="320" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="converter" parent="1" vertex="1" value="HttpMessageConverter&#10;(return object &#8594; JSON)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
+        <mxCell id="converter" parent="1" vertex="1" value="HttpMessageConverter&#10;(return object → JSON)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;">
           <mxGeometry x="220" y="740" width="320" height="58" as="geometry" />
         </mxCell>
         <mxCell id="worker-note" parent="1" vertex="1" value="1 worker thread is held&#10;for the whole request&#10;(even while blocking on I/O)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#B06000;fontStyle=2;">
           <mxGeometry x="14" y="234" width="186" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="client" target="tomcat-connector" value="HTTP request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+        <mxCell id="e1" parent="1" edge="1" source="client" target="tomcat-connector" value="HTTP request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e2" parent="1" edge="1" source="tomcat-connector" target="servlet-container" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
@@ -55,7 +56,7 @@
         <mxCell id="e7" parent="1" edge="1" source="csr" target="converter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontColor=#232F3E;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e8" parent="1" edge="1" source="converter" target="client" value="HTTP response&#10;(thread released)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontColor=#188038;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="e8" parent="1" edge="1" source="converter" target="client" value="HTTP response&#10;(thread released)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#188038;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="700" y="769" />
