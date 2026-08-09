@@ -34,23 +34,11 @@
         <mxCell id="e-catalog" value="registered metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="catalog" target="planner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-projection" value="candidate prefixes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="projection" target="planner">
+        <mxCell id="e-projection" value="candidate prefixes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="projection" target="planner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-s3" value="selected prefixes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="planner" target="s3">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="lbl-query" value="partition predicate" style="text;html=0;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontColor=#202124;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="330" y="398" width="150" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="lbl-catalog" value="registered metadata" style="text;html=0;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;fontColor=#202124;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="625" y="280" width="170" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="lbl-projection" value="candidate prefixes" style="text;html=0;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;fontColor=#202124;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="625" y="528" width="160" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="lbl-s3" value="selected prefixes" style="text;html=0;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontColor=#202124;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="780" y="398" width="150" height="22" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
