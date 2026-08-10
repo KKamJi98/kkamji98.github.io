@@ -69,7 +69,9 @@ built-in 통합에 포함되지 않는 도구는 세 가지 프로토콜로 연�
 
 **MCP(Model Context Protocol)** 서버는 private 또는 remote로 연결할 수 있습니다. Bitbucket 연동, 조직의 커스텀 도구, 전용 플랫폼, 자체 티켓팅 시스템과의 통합에 사용합니다. Datadog과 Grafana도 각자의 Remote MCP Server를 통해 연결되므로, MCP는 사실상 DevOps Agent의 확장 스펙 역할을 합니다.
 
-**ACP(Agent Communication Protocol)** 와 **A2A(Agent-to-Agent)** 는 자체 에이전트를 안전하게 연결해 DevOps Agent의 조사 범위를 확장합니다. 예를 들어 조직 내부의 보안 스캐닝 에이전트를 A2A로 연결하면, 인시던트 조사 과정에서 보안 컨텍스트를 자동으로 참조할 수 있습니다.
+**A2A(Agent-to-Agent)** 는 A2A v1.0 규격을 따르며, HTTP+JSON 바인딩으로 동작합니다. 단순한 정보 공유를 넘어 실제 작업을 비동기로 위임할 수 있습니다. A2A로 연결된 에이전트는 DevOps Agent에게 `investigate` 명령을 보내 5~8분간의 심층 조사를 요청하거나, `chat`으로 즉각적인 운영 질문을 할 수 있습니다. 태스크 생성, 상태 추적, 취소도 지원하며, `agent` 클라이언트 타입과 `operate` 스코프를 조합하면 자율 에이전트가 메시지 전송, 채팅 생성, 백로그 태스크 관리까지 수행할 수 있습니다. 모든 A2A 호출은 CloudTrail에 `AuthenticateAccessToken` 이벤트로 기록됩니다. AWS는 A2A 응답을 사람 검토 없이 자동 실행하지 말 것을 명시적으로 권고하고 있습니다.
+
+**ACP(Agent Communication Protocol)** 는 A2A와 함께 자체 에이전트를 안전하게 연결하는 또 다른 프로토콜입니다.
 
 ---
 
@@ -121,7 +123,25 @@ DevOps Agent는 완화 조치를 "제안"하지만, 사용자 명시적 승인 �
 
 ---
 
-## 10. Reference
+## 10. 프롬프트 인젝션 보호
+
+DevOps Agent는 로그, 리소스 태그, 운영 데이터를 입력으로 소비하므로, 악성 명령이 외부 데이터에 삽입되는 prompt injection 공격에 노출될 수 있습니다. AWS는 이에 대해 4계층 방어를 공식 보안 문서에 명시하고 있습니다.
+
+첫째, 에이전트가 사용하는 도구는 티켓과 support case 생성을 제외하고 리소스를 변경할 수 없습니다. 악성 명령이 인프라나 애플리케이션을 수정하는 것을 원천 차단합니다. 둘째, 에이전트는 primary 및 연결된 secondary AWS 계정에 할당된 역할 범위 내에서만 동작합니다. 셋째, ASL-3(AI Safety Level 3) 보호가 적용된 모델과 Amazon Bedrock Guardrails의 prompt attack filter로 prompt injection 및 jailbreak 시도를 탐지하고 차단합니다. 넷째, 에이전트의 모든 추론 단계와 행동은 journal에 기록되며, journal 항목은 기록 후 수정할 수 없습니다. 악성 행동을 숨기려는 시도를 방지합니다.
+
+공동 책임 모델이 적용됩니다. 에이전트에 입력을 제공하는 외부 시스템에 접근할 수 있는 사용자를 신뢰할 수 있는 사용자로 제한하는 것은 고객의 책임입니다. Custom MCP 서버를 통해 임의의 도구를 추가하면 추가적인 prompt injection 기회가 발생할 수 있으므로, MCP 서버 도구에 대한 검토가 필요합니다.
+
+---
+
+## 11. 다중 Agent Space와 헤드리스 모드
+
+하나의 조직에서 팀별, 계정별, 환경별로 별도의 Agent Space를 만들 수 있습니다. 각 Agent Space는 자체 구성과 권한을 가지며, 서로 엄격하게 격리됩니다. 하나의 MCP 클라이언트(IDE, CLI)에서 `agent_space_id`를 전달해 여러 Agent Space를 번갈아 호출하는 multi-Agent-Space routing도 지원합니다.
+
+일정 주기(cadence)나 이벤트 기반으로 동작하는 커스텀 에이전트를 만들 수 있습니다. 매일 아침 데이터베이스 상태를 점검하거나 로그 이상 징후를 플래깅하는 에이전트를 설정하는 방식입니다. Headless Mode를 사용하면 웹 앱 없이 모든 기능을 MCP/A2A 엔드포인트로 호출할 수 있어, 자체 자동화 파이프라인에 DevOps Agent를 통합할 수 있습니다.
+
+---
+
+## 12. Reference
 
 - [AWS DevOps Agent 공식 페이지](https://aws.amazon.com/devops-agent/)
 - [AWS DevOps Agent 요금](https://aws.amazon.com/devops-agent/pricing/)
@@ -130,6 +150,10 @@ DevOps Agent는 완화 조치를 "제안"하지만, 사용자 명시적 승인 �
 - [Announcing General Availability of AWS DevOps Agent (2026-03-31)](https://aws.amazon.com/blogs/mt/announcing-general-availability-of-aws-devops-agent/)
 - [AWS DevOps Agent Release Management Preview (2026-06-17)](https://aws.amazon.com/blogs/aws/aws-devops-agent-adds-release-management-capabilities-to-assess-code-changes-before-production-preview)
 - [AWS Premium Support Plans](https://aws.amazon.com/premiumsupport/plans/)
+- [AWS DevOps Agent Security (Prompt Injection Protection)](https://docs.aws.amazon.com/devopsagent/latest/userguide/aws-devops-agent-security.html)
+- [AWS DevOps Agent Remote Servers (MCP/A2A)](https://docs.aws.amazon.com/devopsagent/latest/userguide/accessing-devops-agent-connect-to-devops-agent-remote-servers.html)
+- [AWS DevOps Agent Grafana Integration](https://docs.aws.amazon.com/devopsagent/latest/userguide/connecting-telemetry-sources-connecting-grafana.html)
+- [AWS DevOps Agent Datadog Integration](https://docs.aws.amazon.com/devopsagent/latest/userguide/connecting-telemetry-sources-connecting-datadog.html)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
