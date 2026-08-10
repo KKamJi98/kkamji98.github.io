@@ -32,6 +32,20 @@ except ImportError:
 
 THRESHOLD = 244  # 채널 값이 이 미만이면 잉크(비-흰색)로 간주
 
+# 여백 비대칭 허용치(px).
+#
+# 패딩 자체는 정확하다. 잉크 bbox로 자른 뒤 사방에 같은 값을 덧대므로 무손실
+# 이미지에서 재보면 네 변이 모두 같은 값으로 나온다. 그러나 저장 형식이
+# webp(quality 92)면 인코더가 내용 경계 바깥으로 240대 초반의 옅은 halo를 한 픽셀
+# 남기고, 그 halo가 변마다 다르게 걸려서 재측정값이 1~2px 흔들린다. 임계값을
+# 낮춰 halo를 걸러내 봐도(236 실측) 어떤 파일은 반대로 halo를 잃어 R이 2px 커지므로,
+# 임계값 조정은 잡음을 옮길 뿐이다.
+#
+# 이 검사가 잡으려는 결함은 drawio의 `--crop`이 만드는 비대칭이고 그 크기는
+# 실측 L=162 R=104 T=162 B=42 처럼 수십 px 단위다. 따라서 인코더 잡음보다는 크고
+# 실제 결함보다는 두 자릿수 작은 2px를 허용치로 둔다.
+MAX_MARGIN_SPREAD = 2
+
 
 def ink_bbox(im: "Image.Image") -> tuple[int, int, int, int]:
     """비-흰색 픽셀의 bounding box (minx, miny, maxx, maxy) 반환."""
@@ -73,10 +87,16 @@ def verify(src: str) -> int:
     w, h = im.size
     minx, miny, maxx, maxy = ink_bbox(im)
     left, right, top, bottom = minx, w - 1 - maxx, miny, h - 1 - maxy
-    print(f"{src}: L={left} R={right} T={top} B={bottom}")
-    # 안티앨리어싱 1px 오차 허용
-    ok = max(left, right, top, bottom) - min(left, right, top, bottom) <= 1
-    print("equal margins: OK" if ok else "equal margins: MISMATCH")
+    spread = max(left, right, top, bottom) - min(left, right, top, bottom)
+    print(f"{src}: L={left} R={right} T={top} B={bottom} (spread {spread}px)")
+    ok = spread <= MAX_MARGIN_SPREAD
+    if ok:
+        print("equal margins: OK")
+    else:
+        print(
+            f"equal margins: MISMATCH (spread {spread}px > {MAX_MARGIN_SPREAD}px "
+            "allowance; re-run the trim+pad pipeline instead of adjusting the border)"
+        )
     return 0 if ok else 1
 
 
