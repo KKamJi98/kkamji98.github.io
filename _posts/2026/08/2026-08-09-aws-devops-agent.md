@@ -49,7 +49,7 @@ DevOps Agent는 다음 관측 도구와 built-in 통합을 제공합니다.
 
 각 관측 도구의 통합 범위는 동일하지 않습니다. 공식 문서에서 확인한 구체적인 기능은 다음과 같습니다.
 
-**Grafana**는 메트릭, 대시보드, 알럿 데이터를 read-only로 조회합니다. Grafana에 연결된 모든 데이터 소스(Prometheus, Loki, OpenSearch 등)에 접근할 수 있으므로, Grafana MCP 서버를 경유해 Prometheus 지표를 읽을 수 있습니다. 하지만 에이전트가 PromQL 쿼리를 직접 작성하고 실행한다는 공식 문서상 명시는 없습니다. Grafana 알럿의 Contact Points webhook을 통해 조사를 자동으로 트리거할 수도 있지만, Amazon Managed Grafana(AMG)는 webhook contact points를 지원하지 않아 이 경로를 사용할 수 없습니다.
+**Grafana**는 메트릭, 대시보드, 알럿 데이터를 read-only로 조회합니다. Grafana에 연결된 모든 데이터 소스(Prometheus, Loki, OpenSearch 등)에 접근할 수 있으므로, Grafana MCP 서버를 경유해 Prometheus 지표를 읽을 수 있습니다. 하지만 에이전트가 PromQL 쿼리를 직접 작성하고 실행한다는 공식 문서상 명시는 없습니다. Grafana 알럿의 Contact Points webhook을 통해 조사를 자동으로 트리거할 수도 있지만, Amazon Managed Grafana(AMG)는 webhook contact points를 지원하지 않아 이 경로를 사용할 수 없습니다. VPC 내부에만 노출된 private Grafana도 Private Connections 기능으로 연결할 수 있습니다. VPC Lattice 기반으로 동작하며, 에이전트가 VPC 내에 ENI를 프로비저닝해 Grafana에 private network path로 접근합니다. 공개 인터넷 노출이나 Internet Gateway가 불필요하고, Private Hosted Zone DNS 이름과 사설 인증서도 지원됩니다.
 
 **Datadog**은 built-in 1-way integration으로, Datadog 모니터 알럿을 webhook으로 받아 조사를 자동 시작합니다. 조사 중에는 Datadog의 Remote MCP Server(mcp.datadoghq.com 등)를 연결해 telemetry를 introspect할 수 있습니다. Datadog API를 직접 호출하거나 DQL(Datadog Query Language) 쿼리를 실행하는 것은 Datadog MCP 서버가 제공하는 도구 범위 내에서만 가능합니다.
 
@@ -75,7 +75,11 @@ built-in 통합에 포함되지 않는 도구는 세 가지 프로토콜로 연�
 
 ---
 
-## 5. 예방 권고와 자연어 SRE 인터페이스
+## 5. 인프라 지식을 에이전트에 주입하고 예방 권고를 받습니다
+
+DevOps Agent는 조사를 시작하기 전에 인프라 컨텍스트를 학습합니다. GA에서 추가된 Code Indexing은 연결된 코드 리포지토리를 인덱싱해 서비스 의존성 맵을 만들고, Learned Skills는 클라우드 계정, 코드, 텔레메트리를 분석해 리소스 관계와 임계 요청 경로를 자동으로 파악합니다.
+
+사용자가 직접 지식을 주입할 수도 있습니다. Skills 기능에 Markdown 지시서(SKILL.md), 참조 문서(references/), 아키텍처 다이어그램(assets/)을 업로드하면, 에이전트가 조사 중 이를 참조합니다. 예를 들어 "우리 인프라는 EKS와 Calico 네트워킹을 사용한다", "이 서비스의 트러블슈팅 절차는 다음과 같다"를 SKILL.md로 작성해 두면, 에이전트가 매 조사마다 이 지식을 활용합니다. Skills는 UI에서 직접 작성하거나 ZIP 업로드, GitHub 리포지토리 import로 등록할 수 있습니다.
 
 인시던트 조사 외에도 과거 패턴을 분석해 관측성, 인프라 설정, 배포 파이프라인, 애플리케이션 복원력 네 가지 영역에서 예방 권고를 제공합니다. 권고에는 코딩 에이전트나 동료 엔지니어에게 바로 넘겨 구현할 수 있는 수준의 구체적 지시 사항인 "agent-ready spec"이 포함됩니다.
 
