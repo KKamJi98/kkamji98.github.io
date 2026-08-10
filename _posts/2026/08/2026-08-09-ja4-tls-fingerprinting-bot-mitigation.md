@@ -1,6 +1,6 @@
 ---
 title: "JA4 TLS Fingerprinting: TLS 핸드셰이크로 봇 트래픽을 식별하는 방법"
-date: 2026-08-10 19:00:00 +0900
+date: 2026-08-09 19:00:00 +0900
 author: kkamji
 categories: [Cloud, Security]
 tags: [ja4, tls, fingerprinting, waf, bot, aws, cloudflare, security]
