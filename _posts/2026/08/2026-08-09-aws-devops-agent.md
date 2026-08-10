@@ -1,5 +1,5 @@
 ---
-title: "AWS DevOps Agent: 새벽 알림 없이 인시던트를 조사하는 방법"
+title: "AWS DevOps Agent Overview"
 date: 2026-08-09 20:00:00 +0900
 author: kkamji
 categories: [Cloud, DevOps]
@@ -9,9 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-PagerDuty 알림이 울리면 당번 엔지니어는 컨텍스트를 전환한다. CloudWatch 대시보드를 열고, Datadog APM 트레이스를 뒤지고, 최근 배포 기록을 확인하면서 원인을 좁혀나간다. 이 과정에 걸리는 시간이 곧 MTTR이다. AWS DevOps Agent는 알림이 발생한 순간 이 조사를 자율적으로 수행하고, 사람이 Slack 메시지를 열었을 때 이미 근본 원인과 완화 조치가 정리되어 있는 상태를 만든다.
-
-2024년 re:Invent에서 preview로 발표된 Production Operations는 2026년 3월 31일에 일반 available(GA)로 전환되었다. 코드 변경을 배포 전에 검증하는 Release Management는 2026년 6월 17일 AWS Summit New York에서 Preview로 발표되었다.
+인시던트가 발생하면 CloudWatch 지표, APM 트레이스, 로그, 배포 기록을 번갈아 확인하며 원인을 좁혀나가는 과정에 시간이 걸린다. AWS DevOps Agent는 알림이 감지된 순간 이 조사를 자율적으로 수행하고, 근본 원인과 완화 조치를 Slack이나 PagerDuty에 정리해 전달한다. Production Operations는 2026년 3월 31일에 GA 되었고, 코드 변경을 배포 전에 검증하는 Release Management는 Preview 단계다.
 
 ---
 
