@@ -35,6 +35,7 @@ image:
 Athena는 비동기로 동작합니다. 쿼리를 제출하면 즉시 결과가 오는 것이 아니라, "시작 -> 완료 폴링 -> 결과 조회" 순서를 거칩니다. 쿼리 한 번이 지나는 길을 그림으로 보면 다음과 같습니다.
 
 ![Athena 쿼리 1회 흐름 - StartQuery, Glue 메타데이터 조회, S3 스캔, 결과 기록](/assets/img/aws/analytics-stack-05-query-flow.webp)
+_Athena에서 갈라지는 세 화살표는 순서대로 Catalog 메타데이터 조회, S3 데이터 스캔, 결과 버킷 기록이다. 결과는 클라이언트로 바로 흐르지 않고 workgroup이 정한 S3 위치를 먼저 거친다._
 
 1. **SQL 제출**: 클라이언트가 `StartQueryExecution`으로 쿼리를 던집니다. 이때 실행할 **workgroup**이 정해집니다.
 2. **메타데이터 조회**: Athena가 대상 테이블의 스키마와 S3 위치, 파티션 정보를 **Glue Data Catalog**에서 받아옵니다.

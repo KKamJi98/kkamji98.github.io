@@ -11,7 +11,7 @@ image:
 
 ![Terminating Pod troubleshooting flow](/assets/img/kubernetes/terminating-pod-troubleshooting.webp)
 
-> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안 돼서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다룹니다.
+> `kubectl delete pod simple-webapp-color`로 pod를 삭제하려 했는데 바로 삭제가 안 돼서 기다리면 삭제되겠지.. 하면서 다른 일을 하다가 다음날 확인을 해봤는데 아직도 `Terminating` 상태였다.. 그래서 이번에는 Pod가 Terminating 상태에 계속 머물러 있는 원인에 대해 다룹니다.  
 {: .prompt-info}
 
 > **TL;DR**  

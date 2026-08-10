@@ -119,6 +119,7 @@ git worktree add ../feat feature-branch
 Bare Repository는 **작업 디렉토리 없이 Git 데이터만 보관**합니다. 모든 브랜치를 동등하게 worktree로 관리할 수 있습니다.
 
 ![Git bare worktree layout](/assets/img/git/bare-worktree-layout.webp)
+_bare database에서 갈라지는 네 화살표는 단계가 아니라 서로 대등한 worktree다. 어느 디렉터리도 특정 브랜치에 묶여 있지 않으므로 긴급 수정에 stash가 필요 없다._
 
 ---
 

@@ -59,6 +59,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 먼저 큰 그림부터 봅니다.
 
 ![AWS 데이터 분석 스택 전체도 - 엔진(Athena/Redshift), 메타데이터(Glue Data Catalog), 저장(S3/S3 Tables), 권한 게이트(IAM/Lake Formation)](/assets/img/aws/analytics-stack-04-overview.webp)
+_Athena는 Catalog에 스키마와 데이터 위치를 묻고 S3 또는 S3 Tables를 읽는다. IAM은 API 호출을, Lake Formation은 데이터 접근을 서로 다른 길목에서 통제한다._
 
 각 구성요소를 한 줄로 정의하면 다음과 같습니다.
 

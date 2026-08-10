@@ -56,6 +56,7 @@ Apache Iceberg는 이 문제를 정반대로 풉니다. 디렉터리를 스캔�
 Iceberg의 모든 능력은 메타데이터 구조에서 나옵니다. 메타데이터는 네 단계로 쌓입니다.
 
 ![Iceberg 메타데이터 계층 - catalog가 metadata file을 가리키고, metadata file이 manifest list를, manifest list가 manifest file들을, manifest file이 data/delete file을 가리키는 트리 구조](/assets/img/aws/analytics-stack-10-iceberg-metadata-layers.webp)
+_카탈로그는 현재 metadata file 하나만 가리키고, 그 아래로 스냅샷(manifest list), 파일 목록과 통계(manifest file), 실제 data file과 row-level delete file이 이어진다. 엔진은 디렉터리를 훑는 대신 이 트리를 따라 읽을 파일을 고른다._
 
 실제 스토리지에 펼쳐 보면 대략 다음과 같은 모습입니다.
 

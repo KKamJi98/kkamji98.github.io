@@ -35,6 +35,7 @@ RAG의 응답 지연은 단일 값이 아니라 여러 단계의 합입니다.
 ---
 
 ![RAG 지연 예산과 평가 루프 - User Query가 Semantic Cache를 거쳐 hit면 바로 Answer로 bypass하고, miss면 Retrieval/Reranking/LLM Generation을 지나며 지연이 쌓이며, Answer는 Ragas eval로 품질을 측정](/assets/img/ai/rag-06-latency-eval.webp)
+_캐시에 맞으면 검색과 생성을 건너뛰고 곧바로 답변으로 간다. 빗나가면 retrieval, reranking, generation을 차례로 지나며 지연이 누적된다. 답변은 Ragas로 품질을 되짚는다._
 
 ---
 

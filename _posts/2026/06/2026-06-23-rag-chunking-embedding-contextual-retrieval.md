@@ -107,6 +107,7 @@ Anthropic이 제안한 Contextual Retrieval은 이 맥락 손실을 정면으로
 이렇게 맥락이 덧붙은 텍스트를 **임베딩과 BM25 색인 양쪽 모두**에 사용합니다. 그러면 "출장 숙박비 한도 조정" 같은 질문에서 청크 자체에 없던 문서 및 섹션 정보도 검색 신호로 쓸 수 있습니다.
 
 ![Contextual Retrieval 흐름 - Original Document(prompt caching)와 Chunk를 LLM에 주어 맥락을 생성하고, 맥락이 prepend된 Contextualized Chunk를 Embedding Index와 BM25 Index 양쪽에 색인](/assets/img/ai/rag-02-contextual-retrieval.webp)
+_원문과 청크를 함께 LLM에 넣어 짧은 맥락을 만들고, 그 맥락이 앞에 붙은 청크를 임베딩 색인과 BM25 색인 양쪽에 같은 텍스트로 넣는다._
 
 ### 5.1. 효과
 

@@ -10,6 +10,7 @@ image:
 ---
 
 ![Type 1 and Type 2 hypervisor comparison](/assets/img/virtualization/type1-type2-hypervisor.webp)
+_Hardware에서 갈라지는 두 화살표는 단계가 아니라 서로 다른 구성이다. 위쪽은 하이퍼바이저가 하드웨어 위에 바로 올라가는 Type 1, 아래쪽은 호스트 OS 위에서 애플리케이션처럼 도는 Type 2다._
 
 
 > Type 1과 Type 2 가상화는 하이퍼바이저 기반의 가상화 접근 방식을 구분 짓는 두 가지 주요 유형입니다. 이 두 가지 유형은 각각 다른 방식으로 하드웨어 상에서 가상 머신(VM)을 실행합니다.  

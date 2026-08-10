@@ -10,6 +10,7 @@ image:
 ---
 
 ![Argo CD multi-cluster flow](/assets/img/ci-cd/argocd-multi-cluster-flow.webp)
+_Argo CD는 Git의 원하는 상태를 읽고 클러스터 자격증명을 통해 두 클러스터에 동기화한다. 갈라지는 두 화살표는 순서가 아니라 대상이 다른 것이다._
 
 ArgoCD를 활용해 여러 Kubernetes Cluster에 애플리케이션을 배포하는 방법을 살펴봅니다.
 

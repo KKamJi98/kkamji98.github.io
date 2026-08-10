@@ -34,7 +34,7 @@ Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, �
 
 ## 2. terraform import 사용 방법
 
-> 기존에 생성된 AWS EC2를 `terraform import` 명령어를 사용하여 해당 리소스를 가져오고, 코드와 리소스가 매칭되지 않을 시, `terraform state show` 명령어를 통해 코드와 리소스를 매칭시키는 방법을 알아봅니다.
+> 기존에 생성된 AWS EC2를 `terraform import` 명령어를 사용하여 해당 리소스를 가져오고, 코드와 리소스가 매칭되지 않을 시, `terraform state show` 명령어를 통해 코드와 리소스를 매칭시키는 방법을 알아봅니다.  
 {: .prompt-tip}
 
 ### 2.1. 기존 리소스 정보 확인

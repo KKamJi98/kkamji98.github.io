@@ -48,6 +48,7 @@ image:
 전체 흐름은 색인(ingestion)과 질의(chat) 두 파이프라인으로 나뉩니다.
 
 ![Bedrock Knowledge Bases Slack RAG 전체 구조 - Google Docs를 n8n sync workflow가 Docs API로 가져와 Python parser로 섹션별 Markdown과 citation metadata를 만들고, S3와 Bedrock KB를 거쳐 S3 Vectors에 색인합니다. Slack 멘션은 n8n chat workflow에서 KB Retrieve, Cohere rerank, evidence gate, external LLM을 거쳐 출처 딥링크가 포함된 thread reply로 반환됩니다.](/assets/img/aws/bedrock-slack-rag-architecture.webp)
+_색인 파이프라인은 Google Docs를 파서가 섹션별 Markdown으로 바꿔 S3와 Bedrock KB를 거쳐 S3 Vectors에 넣는다. 질의 파이프라인은 Slack 멘션을 받아 retrieve, rerank, 근거 게이트를 지나 출처 딥링크가 붙은 스레드 답변으로 돌아온다. Python Parser에서 갈라지는 두 화살표는 본문 Markdown과 citation metadata로, 한 번의 파싱에서 함께 나오는 산출물이다._
 
 ```text
 [색인]  Google Docs 원본 수정
