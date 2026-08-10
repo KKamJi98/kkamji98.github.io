@@ -39,24 +39,37 @@ DevOps Agent는 다음 관측 도구와 built-in 통합을 제공합니다.
 
 | 범주 | 도구 |
 | :--- | :--- |
-| 관측 (Observability) | CloudWatch, Datadog, Dynatrace, New Relic, Splunk, Grafana, Prometheus |
+| 관측 (Observability) | CloudWatch, Datadog, Dynatrace, New Relic, Splunk, Grafana |
 | CI/CD | GitHub, GitLab, Azure DevOps |
 | 협업/알림 | Slack, ServiceNow, PagerDuty, Microsoft Teams |
+| AWS 서비스 | EKS, EventBridge, Private Connections |
 | 프로토콜 확장 | MCP(Model Context Protocol), ACP(Agent Communication Protocol), A2A(Agent-to-Agent) |
 
 에이전트가 이 도구들을 대체하는 것이 아니라, 각 도구가 수집한 데이터를 하나의 조사 흐름에서 교차 분석하는 상위 계층에서 동작합니다.
 
-Grafana Mimir(Prometheus 호환) 저장 지표는 Grafana 통합으로 접근할 수 있습니다. 직접 PromQL을 실행하는 기능은 공식 문서에 명시되어 있지 않으므로, Mimir를 주요 지표 저장소로 사용하는 조직은 Grafana 통합 경유로 접근해야 합니다. AWS Athena의 S3 데이터는 CloudWatch 로그 통합으로 일부 접근할 수 있지만, Athena 쿼리 자체를 에이전트에서 직접 실행하려면 MCP 확장이 필요합니다.
+각 관측 도구의 통합 범위는 동일하지 않습니다. 공식 문서에서 확인한 구체적인 기능은 다음과 같습니다.
 
-Azure는 Microsoft Entra ID(구 Azure AD)를 경유해 native로 연결됩니다. 온프레미스 환경의 서비스는 MCP 서버를 통해 연결합니다. EventBridge 통합으로 조사 이벤트를 다운스트림 자동화 파이프라인으로 전송할 수 있고, Private connections 기능으로 VPC 내 private 서비스에 안전하게 연결할 수 있습니다.
+**Grafana**는 메트릭, 대시보드, 알럿 데이터를 read-only로 조회합니다. Grafana에 연결된 모든 데이터 소스(Prometheus, Loki, OpenSearch 등)에 접근할 수 있으므로, Grafana MCP 서버를 경유해 Prometheus 지표를 읽을 수 있습니다. 하지만 에이전트가 PromQL 쿼리를 직접 작성하고 실행한다는 공식 문서상 명시는 없습니다. Grafana 알럿의 Contact Points webhook을 통해 조사를 자동으로 트리거할 수도 있지만, Amazon Managed Grafana(AMG)는 webhook contact points를 지원하지 않아 이 경로를 사용할 수 없습니다.
+
+**Datadog**은 built-in 1-way integration으로, Datadog 모니터 알럿을 webhook으로 받아 조사를 자동 시작합니다. 조사 중에는 Datadog의 Remote MCP Server(mcp.datadoghq.com 등)를 연결해 telemetry를 introspect할 수 있습니다. Datadog API를 직접 호출하거나 DQL(Datadog Query Language) 쿼리를 실행하는 것은 Datadog MCP 서버가 제공하는 도구 범위 내에서만 가능합니다.
+
+**EKS**는 클러스터 introspection, pod 로그, cluster events를 공식 지원합니다. Public과 Private EKS 환경 모두에서 동작하며, AWS 서비스 API를 통해 접근합니다. 단, `kubectl exec` 수준의 직접 디버깅은 지원하지 않습니다.
+
+**Splunk**는 멀티클라우드와 온프레미스 로그를 교차 분석하는 데 사용됩니다. T-Mobile 사례에서 Splunk 통합으로 로그 교차 분석을 수행한 것이 확인됩니다.
+
+**Alertmanager는 네이티브 지원 통합이 아닙니다.** 공식 문서의 지원 통합 목록에 Alertmanager가 없으며, Prometheus 자체도 Grafana의 데이터 소스로만 접근 가능합니다. Alertmanager 알럿을 트리거로 사용하려면 Generic Webhook을 통해 간접적으로 연결해야 합니다. Alertmanager의 webhook receiver를 DevOps Agent의 generic webhook endpoint로 설정하면 기술적으로 조사를 시작할 수 있지만, 공식적으로 문서화된 통합은 아닙니다.
+
+Bitbucket, 온프레미스 서비스, 자체 티켓팅 시스템 등 built-in 통합에 포함되지 않는 도구는 MCP 서버를 통해 연결합니다. Azure는 Microsoft Entra ID(구 Azure AD)를 경유해 native로 연결되며, EventBridge 통합으로 조사 이벤트를 다운스트림 자동화 파이프라인으로 전송할 수 있고, Private Connections 기능으로 VPC 내 private 서비스에 안전하게 연결할 수 있습니다.
 
 ---
 
 ## 4. MCP, ACP, A2A로 built-in 통합 외부를 연결합니다
 
-Bitbucket을 소스 제어 도구로 사용하는 조직은 built-in 코드 리포지토리 통합(GitHub, GitLab, Azure DevOps)에 포함되지 않습니다. MCP(Model Context Protocol) 서버를 통해 Bitbucket 연동을 직접 구축해야 하며, 조직의 커스텀 도구, 전용 플랫폼, 자체 티켓팅 시스템과의 통합에도 같은 방식을 사용합니다.
+built-in 통합에 포함되지 않는 도구는 세 가지 프로토콜로 연결합니다.
 
-ACP(Agent Communication Protocol)와 A2A(Agent-to-Agent)는 자체 에이전트를 안전하게 연결해 DevOps Agent의 조사 범위를 확장하는 프로토콜입니다. 조직 내부의 보안 스캐닝 에이전트를 A2A로 연결하면, 인시던트 조사 과정에서 보안 컨텍스트를 자동으로 참조할 수 있습니다.
+**MCP(Model Context Protocol)** 서버는 private 또는 remote로 연결할 수 있습니다. Bitbucket 연동, 조직의 커스텀 도구, 전용 플랫폼, 자체 티켓팅 시스템과의 통합에 사용합니다. Datadog과 Grafana도 각자의 Remote MCP Server를 통해 연결되므로, MCP는 사실상 DevOps Agent의 확장 스펙 역할을 합니다.
+
+**ACP(Agent Communication Protocol)** 와 **A2A(Agent-to-Agent)** 는 자체 에이전트를 안전하게 연결해 DevOps Agent의 조사 범위를 확장합니다. 예를 들어 조직 내부의 보안 스캐닝 에이전트를 A2A로 연결하면, 인시던트 조사 과정에서 보안 컨텍스트를 자동으로 참조할 수 있습니다.
 
 ---
 
@@ -100,7 +113,9 @@ Release Management Preview의 경우 TP ICAP가 28개국 5,200명 직원의 클�
 
 ## 9. 에이전트가 하지 못하는 것
 
-DevOps Agent는 완화 조치를 "제안"하지만, 사용자 명시적 승인 없이 프로덕션 리소스를 자동 변경하지 않습니다. CloudWatch Container Insights를 통한 EKS 간접 분석은 가능하지만, `kubectl exec` 수준의 직접 디버깅은 공식적으로 지원하지 않습니다. 에이전트가 사용하는 LLM은 Amazon Bedrock foundation models로 AWS가 관리하며, 사용자가 모델을 지정하거나 교체할 수 없습니다. 인시던트 리포트는 자유 텍스트 형식으로 전달되므로, severity 기반 자동 라우팅이나 티켓 시스템의 필드 매핑을 에이전트 출력에서 직접 수행하기는 어렵습니다.
+DevOps Agent는 완화 조치를 "제안"하지만, 사용자 명시적 승인 없이 프로덕션 리소스를 자동 변경하지 않습니다. EKS 클러스터, pod 로그, cluster events는 introspection할 수 있지만 `kubectl exec` 수준의 직접 디버깅은 지원하지 않습니다. Grafana 통합은 read-only로만 동작하며 대시보드나 알럿의 생성/수정/삭제가 불가능합니다. Datadog 통합은 1-way로 양방향이 아닙니다.
+
+에이전트가 사용하는 LLM은 Amazon Bedrock foundation models로 AWS가 관리하며, 사용자가 모델을 지정하거나 교체할 수 없습니다. 인시던트 리포트는 자유 텍스트 형식으로 전달되므로, severity 기반 자동 라우팅이나 티켓 시스템의 필드 매핑을 에이전트 출력에서 직접 수행하기는 어렵습니다.
 
 데이터는 Agent Space를 생성한 리전에 저장됩니다. GA 기준 지원 리전은 us-east-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-2, ap-northeast-1(Tokyo) 6개입니다. Seoul(ap-northeast-2)은 포함되지 않았으므로, 한국 리전에서 데이터를 저장해야 하는 규제 요건이 있다면 현재 버전에서는 조건을 만족할 수 없습니다. 에이전트는 여러 리전의 데이터를 수집하지만, 저장과 처리는 Agent Space가 있는 리전에서 이루어집니다.
 
