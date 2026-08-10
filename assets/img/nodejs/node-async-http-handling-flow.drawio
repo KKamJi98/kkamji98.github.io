@@ -23,10 +23,10 @@
           <mxGeometry x="750" y="320" width="160" height="80" as="geometry" />
         </mxCell>
         <mxCell id="response-owner" value="writeResponse()" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="970" y="320" width="160" height="80" as="geometry" />
+          <mxGeometry x="1210" y="320" width="160" height="80" as="geometry" />
         </mxCell>
         <mxCell id="upstream" value="Upstream HTTP service" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="1190" y="320" width="180" height="80" as="geometry" />
+          <mxGeometry x="970" y="320" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="error-boundary" value="error boundary" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=1.25;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;" vertex="1" parent="1">
           <mxGeometry x="520" y="490" width="170" height="70" as="geometry" />
@@ -52,12 +52,12 @@
         <mxCell id="call-upstream" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="fetch-json" target="upstream">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fulfilled" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="upstream" target="response-owner">
+        <mxCell id="fulfilled" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="upstream" target="response-owner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="response-owner" target="client">
+        <mxCell id="response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.75;exitY=1;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="response-owner" target="client">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1050" y="630" /><mxPoint x="140" y="630" /></Array>
+            <Array as="points"><mxPoint x="1330" y="650" /><mxPoint x="140" y="650" /></Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="pending" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="fetch-json" target="promise">
@@ -66,9 +66,9 @@
         <mxCell id="rejected" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0;exitY=0.5;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="promise" target="error-boundary">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="safe-response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="error-boundary" target="response-owner">
+        <mxCell id="safe-response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.25;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="error-boundary" target="response-owner">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="900" y="525" /><mxPoint x="1050" y="525" /></Array>
+            <Array as="points"><mxPoint x="605" y="600" /><mxPoint x="1250" y="600" /></Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="client-disconnect" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="client" target="timeout">
