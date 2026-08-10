@@ -26,19 +26,19 @@
         <mxCell id="response" parent="1" vertex="1" value="Client response" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
           <mxGeometry x="250" y="700" width="260" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="request" target="hm" value="HTTP request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e1" parent="1" edge="1" source="request" target="hm" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="hm" target="ha" value="matched handler" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e2" parent="1" edge="1" source="hm" target="ha" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="ha" target="csr" value="invoke" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e3" parent="1" edge="1" source="ha" target="csr" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="csr" target="ret" value="return value" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e4" parent="1" edge="1" source="csr" target="ret" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" parent="1" edge="1" source="ret" target="response" value="HTTP response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e5" parent="1" edge="1" source="ret" target="response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

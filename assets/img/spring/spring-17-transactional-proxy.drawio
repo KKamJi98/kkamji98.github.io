@@ -26,7 +26,7 @@
         <mxCell id="note" parent="1" vertex="1" value="self-invocation: a @Transactional method called via this.other() bypasses the proxy -> the advice does not run -> no new transaction" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#F9AB00;fontStyle=2;">
           <mxGeometry x="60" y="450" width="900" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="caller" target="begin" value="call" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e1" parent="1" edge="1" source="caller" target="begin" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e2" parent="1" edge="1" source="begin" target="method" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
@@ -35,7 +35,7 @@
         <mxCell id="e3" parent="1" edge="1" source="method" target="end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="method" target="db" value="SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;endSize=7;">
+        <mxCell id="e4" parent="1" edge="1" source="method" target="db" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

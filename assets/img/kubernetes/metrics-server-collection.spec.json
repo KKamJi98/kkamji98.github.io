@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "metrics-server-collection",
+  "title": "Metrics Server serves one API that both the HPA and kubectl top read",
+  "subtitle": "kubectl top is a peer consumer of the Metrics API, not a step after autoscaling.",
+  "diagram_type": "dataflow",
+  "layout": {
+    "node_w": 240,
+    "node_h": 88,
+    "col_gap": 120,
+    "row_gap": 70
+  },
+  "nodes": [
+    {
+      "id": "kubelet",
+      "label": "kubelet on nodes",
+      "detail": "cAdvisor summary",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "metrics-server",
+      "label": "Metrics Server",
+      "detail": "in-memory, not durable",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "metrics-api",
+      "label": "Metrics API",
+      "detail": "metrics.k8s.io",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "hpa",
+      "label": "HPA controller",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "top",
+      "label": "kubectl top",
+      "role": "external",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "scrape",
+      "source": "kubelet",
+      "target": "metrics-server"
+    },
+    {
+      "id": "serves",
+      "source": "metrics-server",
+      "target": "metrics-api"
+    },
+    {
+      "id": "hpa-reads",
+      "source": "metrics-api",
+      "target": "hpa"
+    },
+    {
+      "id": "top-reads",
+      "source": "metrics-api",
+      "target": "top"
+    }
+  ]
+}

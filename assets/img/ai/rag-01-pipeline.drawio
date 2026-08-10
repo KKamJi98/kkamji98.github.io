@@ -58,7 +58,7 @@
         <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="chunking" target="embedding">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" value="index" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="embedding" target="vectordb">
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="embedding" target="vectordb">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="685" y="240" />
@@ -66,7 +66,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e5" value="top-k" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="vectordb" target="retrieval">
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="vectordb" target="retrieval">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="userquery" target="queryembed">

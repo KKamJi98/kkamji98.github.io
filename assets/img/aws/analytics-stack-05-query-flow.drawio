@@ -26,16 +26,16 @@
           <mxGeometry x="600" y="360" width="210" height="60" as="geometry" />
         </mxCell>
 
-        <mxCell id="e1" value="1. SQL (StartQuery)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="user" target="athena">
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="user" target="athena">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" value="2. get metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;startArrow=block;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.3;entryY=1;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="glue">
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;startArrow=block;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.3;entryY=1;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="glue">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" value="3. scan (prune)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="s3">
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="s3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" value="4. write results" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="results">
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="results">
           <mxGeometry relative="1" as="geometry">
             <Array as="points"><mxPoint x="380" y="390" /><mxPoint x="370" y="390" /></Array>
           </mxGeometry>

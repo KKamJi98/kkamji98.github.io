@@ -1,36 +1,57 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="26.0.14">
-  <diagram id="bare-worktree-layout" name="Git bare worktree layout">
-    <mxGraphModel dx="1600" dy="700" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="850" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="bare-worktree-layout" name="Every branch is a peer worktree hanging off one bare database">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="740" pageHeight="638" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-bare-git-database" value="Bare Git database" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="title" value="Every branch is a peer worktree hanging off one bare database" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#202124;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="620" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-main-worktree" value="Main worktree" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="385" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="subtitle" value="No working directory is pinned to a branch, so a hotfix needs no stash." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5F6368;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="94" width="620" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-staging-worktree" value="Staging worktree" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="700" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="bare" value=".bare&#xa;Git database, no working tree" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="258" width="250" height="202" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-feature-worktree" value="Feature worktree" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1015" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="master" value="master/" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="140" width="250" height="84" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-agent-working-copy" value="Agent working copy" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="staging" value="staging/" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="258" width="250" height="84" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-bare-git-database-to-node-2-main-worktree" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-bare-git-database" target="node-2-main-worktree">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="feature" value="feat/login/" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="376" width="250" height="84" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-main-worktree-to-node-3-staging-worktree" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-main-worktree" target="node-3-staging-worktree">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="chore" value="chore/tooling/" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="494" width="250" height="84" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-staging-worktree-to-node-4-feature-worktree" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-staging-worktree" target="node-4-feature-worktree">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="to-master" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bare" target="master">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="359" />
+              <mxPoint x="370" y="182" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="edge-4-node-4-feature-worktree-to-node-5-agent-working-copy" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-feature-worktree" target="node-5-agent-working-copy">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="to-staging" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bare" target="staging">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="to-feature" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bare" target="feature">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="359" />
+              <mxPoint x="370" y="418" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="to-chore" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bare" target="chore">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="359" />
+              <mxPoint x="370" y="536" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

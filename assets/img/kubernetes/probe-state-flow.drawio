@@ -1,69 +1,69 @@
 <mxfile host="app.diagrams.net" type="device">
   <diagram id="probe-state-flow" name="Startup gates the other two probes; liveness and readiness then judge independently">
-    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1630" pageHeight="616" background="#FFFFFF" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="616" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="title" value="Startup gates the other two probes; liveness and readiness then judge independently" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#202124;fontSize=20;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="60" width="1510" height="30" as="geometry" />
+          <mxGeometry x="60" y="60" width="1360" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="A readiness failure only removes the Pod from the EndpointSlice. A liveness or startup failure restarts the container." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5F6368;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="60" y="94" width="1510" height="24" as="geometry" />
+          <mxGeometry x="60" y="94" width="1360" height="24" as="geometry" />
         </mxCell>
         <mxCell id="starting" value="Container starting" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="60" y="302" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="startup" value="Startup probe&#xa;blocks the other two until it first succeeds" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="480" y="302" width="250" height="92" as="geometry" />
+          <mxGeometry x="430" y="302" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="readiness" value="Readiness probe&#xa;can it take traffic now?" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="900" y="140" width="250" height="92" as="geometry" />
+          <mxGeometry x="800" y="140" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="liveness" value="Liveness probe&#xa;is it stuck beyond recovery?" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="900" y="464" width="250" height="92" as="geometry" />
+          <mxGeometry x="800" y="464" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="ready" value="In the EndpointSlice&#xa;Service sends traffic" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="1320" y="140" width="250" height="92" as="geometry" />
+          <mxGeometry x="1170" y="140" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="notready" value="Out of the EndpointSlice&#xa;process keeps running, kubelet retries" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="1320" y="302" width="250" height="92" as="geometry" />
+          <mxGeometry x="1170" y="302" width="250" height="92" as="geometry" />
         </mxCell>
         <mxCell id="restart" value="Container restart&#xa;restart policy applies" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="1320" y="464" width="250" height="92" as="geometry" />
+          <mxGeometry x="1170" y="464" width="250" height="92" as="geometry" />
         </mxCell>
-        <mxCell id="starts" value="kubelet starts it" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="starting" target="startup">
+        <mxCell id="starts" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="starting" target="startup">
           <mxGeometry relative="1" as="geometry">
           </mxGeometry>
         </mxCell>
-        <mxCell id="unblocks-readiness" value="after first success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="readiness">
+        <mxCell id="unblocks-readiness" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="readiness">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="815" y="348" />
-              <mxPoint x="815" y="186" />
+              <mxPoint x="740" y="348" />
+              <mxPoint x="740" y="186" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="unblocks-liveness" value="after first success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="liveness">
+        <mxCell id="unblocks-liveness" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="liveness">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="829" y="348" />
-              <mxPoint x="829" y="510" />
+              <mxPoint x="740" y="348" />
+              <mxPoint x="740" y="510" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="readiness-passes" value="passes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="ready">
+        <mxCell id="readiness-passes" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="ready">
           <mxGeometry relative="1" as="geometry">
           </mxGeometry>
         </mxCell>
-        <mxCell id="readiness-fails" value="fails" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="notready">
+        <mxCell id="readiness-fails" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="notready">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1235" y="186" />
-              <mxPoint x="1235" y="348" />
+              <mxPoint x="1110" y="186" />
+              <mxPoint x="1110" y="348" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="liveness-fails" value="fails past threshold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="liveness" target="restart">
+        <mxCell id="liveness-fails" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="liveness" target="restart">
           <mxGeometry relative="1" as="geometry">
           </mxGeometry>
         </mxCell>

@@ -47,54 +47,54 @@
         </mxCell>
 
         <!-- ===== EDGES: Main row horizontal flow ===== -->
-        <mxCell id="cli-environment" value="provide values" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="node-cli" target="environment">
+        <mxCell id="cli-environment" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="node-cli" target="environment">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="environment-main" value="load program" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="environment" target="main-module">
+        <mxCell id="environment-main" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="environment" target="main-module">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="main-config" value="static import" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="main-module" target="config-module">
+        <mxCell id="main-config" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="main-module" target="config-module">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="config-validation-edge" value="loadConfig()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="config-module" target="config-validation">
+        <mxCell id="config-validation-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="config-module" target="config-validation">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="validation-server" value="valid config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="config-validation" target="server-module">
+        <mxCell id="validation-server" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="config-validation" target="server-module">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="server-listener" value="register listener" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="server-module" target="error-listener">
+        <mxCell id="server-listener" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="server-module" target="error-listener">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="listener-listen" value="before bind" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="error-listener" target="listen">
+        <mxCell id="listener-listen" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="error-listener" target="listen">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="listen-ready" value="listening" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="listen" target="ready">
+        <mxCell id="listen-ready" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="listen" target="ready">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- ===== EDGES: Branch routes ===== -->
-        <mxCell id="main-server" value="static import" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="main-module" target="server-module">
+        <mxCell id="main-server" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="main-module" target="server-module">
           <mxGeometry relative="1" as="geometry">
             <Array as="points"><mxPoint x="555" y="70" /><mxPoint x="1225" y="70" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="main-module-failure" value="graph failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="main-module" target="module-failure">
+        <mxCell id="main-module-failure" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="main-module" target="module-failure">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="validation-error" value="invalid config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="config-validation" target="startup-error">
+        <mxCell id="validation-error" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="config-validation" target="startup-error">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- ===== EDGES: Error row horizontal ===== -->
-        <mxCell id="module-error" value="before validation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="module-failure" target="startup-error">
+        <mxCell id="module-error" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="module-failure" target="startup-error">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="startup-no-listener" value="exit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="startup-error" target="no-listener">
+        <mxCell id="startup-no-listener" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endSize=7;" edge="1" parent="1" source="startup-error" target="no-listener">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- ===== EDGES: Cross routes ===== -->
-        <mxCell id="listen-error" value="bind error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=1;endSize=7;" edge="1" parent="1" source="listen" target="startup-error">
+        <mxCell id="listen-error" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=1;endSize=7;" edge="1" parent="1" source="listen" target="startup-error">
           <mxGeometry relative="1" as="geometry">
             <Array as="points"><mxPoint x="1650" y="510" /><mxPoint x="995" y="510" /></Array>
           </mxGeometry>

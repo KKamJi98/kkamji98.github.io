@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "javascript-data-type-model",
+  "title": "Seven of the eight ECMAScript types are primitives; only Object is a reference",
+  "subtitle": "Primitives are immutable values. Objects, arrays and functions are all held by reference.",
+  "diagram_type": "architecture",
+  "layout": {
+    "node_w": 250,
+    "node_h": 92,
+    "col_gap": 120,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "values",
+      "label": "JavaScript values",
+      "detail": "8 ECMAScript language types",
+      "role": "process",
+      "col": 0,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "primitive",
+      "label": "Primitive values",
+      "detail": "Undefined, Null, Boolean, String, Symbol, Number, BigInt",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "reference",
+      "label": "Reference values",
+      "detail": "Object",
+      "role": "compute",
+      "col": 1,
+      "row": 2,
+      "rowspan": 2
+    },
+    {
+      "id": "object",
+      "label": "Object and array",
+      "role": "surface",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "function",
+      "label": "Function",
+      "detail": "a callable object",
+      "role": "surface",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "to-primitive",
+      "source": "values",
+      "target": "primitive"
+    },
+    {
+      "id": "to-reference",
+      "source": "values",
+      "target": "reference"
+    },
+    {
+      "id": "to-object",
+      "source": "reference",
+      "target": "object"
+    },
+    {
+      "id": "to-function",
+      "source": "reference",
+      "target": "function"
+    }
+  ]
+}

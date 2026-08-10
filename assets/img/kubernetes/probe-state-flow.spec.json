@@ -8,7 +8,7 @@
   "layout": {
     "node_w": 250,
     "node_h": 92,
-    "col_gap": 170,
+    "col_gap": 120,
     "row_gap": 70
   },
   "nodes": [
@@ -72,38 +72,32 @@
     {
       "id": "starts",
       "source": "starting",
-      "target": "startup",
-      "label": "kubelet starts it"
+      "target": "startup"
     },
     {
       "id": "unblocks-readiness",
       "source": "startup",
-      "target": "readiness",
-      "label": "after first success"
+      "target": "readiness"
     },
     {
       "id": "unblocks-liveness",
       "source": "startup",
-      "target": "liveness",
-      "label": "after first success"
+      "target": "liveness"
     },
     {
       "id": "readiness-passes",
       "source": "readiness",
-      "target": "ready",
-      "label": "passes"
+      "target": "ready"
     },
     {
       "id": "readiness-fails",
       "source": "readiness",
-      "target": "notready",
-      "label": "fails"
+      "target": "notready"
     },
     {
       "id": "liveness-fails",
       "source": "liveness",
       "target": "restart",
-      "label": "fails past threshold",
       "emphasis": true
     }
   ]

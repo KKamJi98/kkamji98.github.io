@@ -47,22 +47,22 @@
           <mxGeometry x="380" y="45" width="240" height="55" as="geometry" />
         </mxCell>
 
-        <mxCell id="e_user_athena" value="SQL query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="user" target="athena">
+        <mxCell id="e_user_athena" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="user" target="athena">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_athena_catalog" value="get metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="glue_catalog">
+        <mxCell id="e_athena_catalog" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="glue_catalog">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_catalog_s3" value="data location" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="glue_catalog" target="s3">
+        <mxCell id="e_catalog_s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="glue_catalog" target="s3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_catalog_s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="glue_catalog" target="s3tables">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_iam_engines" value="API authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="iam" target="engines_lane">
+        <mxCell id="e_iam_engines" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="iam" target="engines_lane">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_lf_storage" value="data authz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="lakeformation" target="s3tables">
+        <mxCell id="e_lf_storage" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="lakeformation" target="s3tables">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

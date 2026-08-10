@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "bare-worktree-layout",
+  "title": "Every branch is a peer worktree hanging off one bare database",
+  "subtitle": "No working directory is pinned to a branch, so a hotfix needs no stash.",
+  "diagram_type": "architecture",
+  "layout": {
+    "node_w": 250,
+    "node_h": 84,
+    "col_gap": 120,
+    "row_gap": 34
+  },
+  "nodes": [
+    {
+      "id": "bare",
+      "label": ".bare",
+      "detail": "Git database, no working tree",
+      "role": "store",
+      "col": 0,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "master",
+      "label": "master/",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "staging",
+      "label": "staging/",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "feature",
+      "label": "feat/login/",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "chore",
+      "label": "chore/tooling/",
+      "role": "process",
+      "col": 1,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "to-master",
+      "source": "bare",
+      "target": "master"
+    },
+    {
+      "id": "to-staging",
+      "source": "bare",
+      "target": "staging"
+    },
+    {
+      "id": "to-feature",
+      "source": "bare",
+      "target": "feature"
+    },
+    {
+      "id": "to-chore",
+      "source": "bare",
+      "target": "chore"
+    }
+  ]
+}

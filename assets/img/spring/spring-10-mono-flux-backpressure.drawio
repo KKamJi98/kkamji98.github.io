@@ -20,13 +20,13 @@
         <mxCell id="note2" parent="1" vertex="1" value="Backpressure: the Subscriber signals demand with request(n), so a fast Publisher cannot overwhelm a slow consumer (bounded)." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="60" y="360" width="860" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="f1" parent="1" edge="1" source="pub" target="ops" value="emit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="f1" parent="1" edge="1" source="pub" target="ops" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f2" parent="1" edge="1" source="ops" target="sub" value="transformed data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="f2" parent="1" edge="1" source="ops" target="sub" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bp" parent="1" edge="1" source="sub" target="pub" value="request(n) : demand (backpressure)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="bp" parent="1" edge="1" source="sub" target="pub" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points"><mxPoint x="830" y="280" /><mxPoint x="800" y="280" /><mxPoint x="180" y="280" /></Array>
           </mxGeometry>

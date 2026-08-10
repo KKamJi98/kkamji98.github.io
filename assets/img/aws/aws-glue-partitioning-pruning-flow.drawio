@@ -28,16 +28,16 @@
         <mxCell id="note" value="For Athena queries, use Catalog metadata or projection rules.&#xa;Other engines (Redshift Spectrum, Athena for Spark, EMR) may need registered partitions." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9aa0a6;fontColor=#202124;fontSize=13;arcSize=12;spacingTop=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="200" y="760" width="1200" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e-query" value="partition predicate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="query" target="planner">
+        <mxCell id="e-query" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="query" target="planner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-catalog" value="registered metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="catalog" target="planner">
+        <mxCell id="e-catalog" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="catalog" target="planner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-projection" value="candidate prefixes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="projection" target="planner">
+        <mxCell id="e-projection" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="projection" target="planner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-s3" value="selected prefixes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="planner" target="s3">
+        <mxCell id="e-s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="planner" target="s3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

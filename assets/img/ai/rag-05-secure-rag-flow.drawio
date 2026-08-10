@@ -58,20 +58,20 @@
         <mxCell id="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;endSize=7;" edge="1" parent="1" source="tag" target="emb">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="s4" value="index" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="emb" target="vdb">
+        <mxCell id="s4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="emb" target="vdb">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="835" y="245" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="s5" value="top-k" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="vdb" target="retr">
+        <mxCell id="s5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="vdb" target="retr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="s6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;endSize=7;" edge="1" parent="1" source="userq" target="retr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="s7" value="by role" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;endSize=7;" edge="1" parent="1" source="retr" target="perm">
+        <mxCell id="s7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="retr" target="perm">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="s8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;endSize=7;" edge="1" parent="1" source="perm" target="inj">

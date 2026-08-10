@@ -26,13 +26,13 @@
 <mxCell id="webflux-exec" value="event loop worker" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
 <mxGeometry x="1330" y="520" width="340" height="80" as="geometry" />
 </mxCell>
-<mxCell id="node-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="node" target="node-exec">
+<mxCell id="node-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="node" target="node-exec">
 <mxGeometry relative="1" as="geometry" />
 </mxCell>
-<mxCell id="mvc-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="mvc" target="mvc-exec">
+<mxCell id="mvc-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="mvc" target="mvc-exec">
 <mxGeometry relative="1" as="geometry" />
 </mxCell>
-<mxCell id="webflux-edge" value="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="webflux" target="webflux-exec">
+<mxCell id="webflux-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="webflux" target="webflux-exec">
 <mxGeometry relative="1" as="geometry" />
 </mxCell>
 </root>

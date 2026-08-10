@@ -20,7 +20,7 @@
         <mxCell id="note" parent="1" vertex="1" value="Direct buffers live OUTSIDE the heap. = Series 2 off-heap -> -XX:MaxDirectMemorySize, buildpack 'Direct Memory' subtraction. This is why container memory must exceed -Xmx." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
           <mxGeometry x="60" y="392" width="820" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="io" parent="1" edge="1" source="net" target="direct" value="native I/O (no heap copy)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=#FFFFFF;startArrow=block;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="io" parent="1" edge="1" source="net" target="direct" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;startArrow=block;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
