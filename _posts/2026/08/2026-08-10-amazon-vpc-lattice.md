@@ -11,7 +11,7 @@ image:
 
 마이크로서비스가 여러 VPC와 AWS 계정에 흩어져 있으면 서비스 간 연결이 복잡해집니다. 팀 A의 서비스는 계정 X에, 팀 B의 서비스는 계정 Y에 배포되고, 두 서비스가 통신하려면 VPC Peering이나 Transit Gateway를 설정하고 보안 그룹을 조정하고 DNS를 구성해야 합니다. 서비스가 늘어날수록 이 연결망은 거미줄처럼 얽히고, 한쪽 IP 대역이 바뀌면 연쇄적으로 수정해야 합니다.
 
-Amazon VPC Lattice는 이 문제를 application networking 계층에서 해결합니다. 서비스를 논리적으로 등록하고, 정책으로 접근을 제어하고, cross-VPC/cross-account 연결을 자동 관리하는 fully managed 서비스입니다. Sidecar proxy 없이 service mesh 수준의 기능을 제공하며, 2023년 3월 31일에 일반 available(GA)되었습니다. 서울(ap-northeast-2) 리전을 포함한 29개 리전에서 사용할 수 있습니다.
+Amazon VPC Lattice는 이 문제를 application networking 계층에서 해결합니다. 서비스를 논리적으로 등록하고, 정책으로 접근을 제어하고, cross-VPC/cross-account 연결을 자동 관리하는 fully managed 서비스입니다. Sidecar proxy 없이 service mesh 수준의 기능을 제공하며, 2023년 3월 31일에 일반 available(GA)되었습니다. 서울(ap-northeast-2) 리전을 포함한 30개 리전에서 사용할 수 있습니다.
 
 ---
 
