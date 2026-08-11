@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "spring-15-persistence-context",
+  "title": "The persistence context is a per-transaction cache with identity guarantees",
+  "subtitle": "A second find for the same id inside one transaction returns the same instance without touching the database.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "pc",
+      "kind": "plain",
+      "label": "Persistence context: first-level cache, transaction scoped",
+      "members": [
+        "mc",
+        "dc",
+        "hit"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "app",
+      "kind": "box",
+      "label": "Application code",
+      "col": 0,
+      "row": 0,
+      "detail": "a @Transactional method",
+      "rowspan": 3,
+      "w": 240
+    },
+    {
+      "id": "mc",
+      "kind": "box",
+      "label": "Managed entities",
+      "col": 1,
+      "row": 0,
+      "detail": "one instance per id",
+      "role": "process",
+      "w": 420
+    },
+    {
+      "id": "dc",
+      "kind": "box",
+      "label": "Dirty checking",
+      "col": 1,
+      "row": 1,
+      "detail": "the snapshot is compared at flush",
+      "role": "compute",
+      "w": 420
+    },
+    {
+      "id": "hit",
+      "kind": "box",
+      "label": "Second find(id) in the same transaction",
+      "col": 1,
+      "row": 2,
+      "detail": "cache hit, no database round trip",
+      "role": "store",
+      "w": 420
+    },
+    {
+      "id": "db",
+      "kind": "box",
+      "label": "Database",
+      "col": 2,
+      "row": 0,
+      "rowspan": 3,
+      "w": 200
+    }
+  ],
+  "edges": [
+    {
+      "id": "app-to-mc",
+      "source": "app",
+      "target": "mc"
+    },
+    {
+      "id": "mc-to-db",
+      "source": "mc",
+      "target": "db"
+    }
+  ]
+}

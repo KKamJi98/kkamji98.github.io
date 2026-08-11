@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "kubernetes-fqdn-resolution",
+  "title": "A short service name resolves through the search domains in the pod's resolv.conf",
+  "subtitle": "The search list and ndots setting are what let svc, svc.ns and the full name all resolve to the same record.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "pod",
+      "kind": "service",
+      "label": "Pod",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "/etc/resolv.conf search list",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "coredns",
+      "kind": "box",
+      "label": "CoreDNS",
+      "col": 1,
+      "row": 0,
+      "detail": "the cluster DNS server",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc",
+      "kind": "service",
+      "label": "Service",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:svc",
+      "detail": "the record being looked up",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ns",
+      "kind": "service",
+      "label": "Namespace",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:ns",
+      "detail": "second label of the FQDN",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cluster",
+      "kind": "box",
+      "label": "svc.cluster.local",
+      "col": 4,
+      "row": 0,
+      "detail": "the cluster domain suffix",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pod-to-coredns",
+      "source": "pod",
+      "target": "coredns"
+    },
+    {
+      "id": "coredns-to-svc",
+      "source": "coredns",
+      "target": "svc"
+    },
+    {
+      "id": "svc-to-ns",
+      "source": "svc",
+      "target": "ns"
+    },
+    {
+      "id": "ns-to-cluster",
+      "source": "ns",
+      "target": "cluster"
+    }
+  ]
+}

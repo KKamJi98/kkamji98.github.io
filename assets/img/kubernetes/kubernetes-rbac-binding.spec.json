@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "kubernetes-rbac-binding",
+  "title": "The binding is what connects a subject to a set of verbs",
+  "subtitle": "A Role on its own grants nothing. The RoleBinding is the object the API server evaluates on each request.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "subject",
+      "kind": "service",
+      "label": "User or ServiceAccount",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:sa",
+      "detail": "the subject of the binding",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "role",
+      "kind": "service",
+      "label": "Role or ClusterRole",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:role",
+      "detail": "verbs on resources",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "binding",
+      "kind": "service",
+      "label": "RoleBinding",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:rb",
+      "detail": "joins the subject to the role",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "label": "API server",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:api",
+      "detail": "authorizes every request",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "allowed",
+      "kind": "box",
+      "label": "Allowed resource action",
+      "col": 4,
+      "row": 0,
+      "detail": "denied by default otherwise",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "subject-to-role",
+      "source": "subject",
+      "target": "role"
+    },
+    {
+      "id": "role-to-binding",
+      "source": "role",
+      "target": "binding"
+    },
+    {
+      "id": "binding-to-api",
+      "source": "binding",
+      "target": "api"
+    },
+    {
+      "id": "api-to-allowed",
+      "source": "api",
+      "target": "allowed"
+    }
+  ]
+}

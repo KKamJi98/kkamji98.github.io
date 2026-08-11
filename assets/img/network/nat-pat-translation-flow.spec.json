@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "nat-pat-translation-flow",
+  "title": "PAT lets many private hosts share one public address by rewriting the port",
+  "subtitle": "The translation table is what makes the return traffic routable back to the right internal host.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "label": "Private client",
+      "col": 0,
+      "row": 0,
+      "service": "client",
+      "detail": "10.0.0.10:49152",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "nat",
+      "kind": "service",
+      "label": "NAT or PAT gateway",
+      "col": 1,
+      "row": 0,
+      "service": "nat_gateway",
+      "detail": "rewrites source address and port",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "mapping",
+      "kind": "box",
+      "label": "Translation table entry",
+      "col": 2,
+      "row": 0,
+      "detail": "one entry per flow, keyed by address and port",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "server",
+      "kind": "service",
+      "label": "External server",
+      "col": 3,
+      "row": 0,
+      "service": "server",
+      "detail": "198.51.100.20:443, sees only the public address",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-nat",
+      "source": "client",
+      "target": "nat"
+    },
+    {
+      "id": "nat-to-mapping",
+      "source": "nat",
+      "target": "mapping"
+    },
+    {
+      "id": "mapping-to-server",
+      "source": "mapping",
+      "target": "server"
+    }
+  ]
+}

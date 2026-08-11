@@ -1,39 +1,44 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="gcp-region-zone" name="GCP region and zone">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="gcp-region-zone" name="A zone is a failure domain; a region is a group of them">
+    <mxGraphModel dx="897" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="897" pageHeight="480" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="backbone" parent="1" vertex="1" value="Google global network (Premium Tier backbone connects regions)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="60" y="40" width="880" height="56" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="873.4" height="456.0" as="geometry" />
         </mxCell>
-        <mxCell id="r1" parent="1" vertex="1" value="Region: asia-northeast3 (Seoul)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="80" y="150" width="380" height="220" as="geometry" />
+        <mxCell id="title" value="A zone is a failure domain; a region is a group of them" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="829.4" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="r1a" parent="1" vertex="1" value="zone -a" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="110" y="195" width="320" height="45" as="geometry" />
+        <mxCell id="subtitle" value="Spreading across zones survives one zone failing. Spreading across regions is what survives a regional outage." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="829.4" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="r1b" parent="1" vertex="1" value="zone -b" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="110" y="252" width="320" height="45" as="geometry" />
+        <mxCell id="seoul" value="Region: asia-northeast3 (Seoul)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="153.7" y="104" width="590" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="r1c" parent="1" vertex="1" value="zone -c" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="110" y="309" width="320" height="45" as="geometry" />
+        <mxCell id="iowa" value="Region: us-central1 (Iowa)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="153.7" y="263" width="590" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="r2" parent="1" vertex="1" value="Region: us-central1 (Iowa)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="540" y="150" width="380" height="220" as="geometry" />
+        <mxCell id="s-a" value="zone -a" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="226.7" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="r2a" parent="1" vertex="1" value="zone -a" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="570" y="195" width="320" height="45" as="geometry" />
+        <mxCell id="s-b" value="zone -b" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="424.7" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="r2b" parent="1" vertex="1" value="zone -b" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="570" y="252" width="320" height="45" as="geometry" />
+        <mxCell id="s-c" value="zone -c" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="622.7" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="r2c" parent="1" vertex="1" value="zone -c" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="570" y="309" width="320" height="45" as="geometry" />
+        <mxCell id="i-a" value="zone -a" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="226.7" y="305" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Region = independent geographic area; Zone = isolated failure domain inside a Region. Spread across zones for HA." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="60" y="392" width="880" height="40" as="geometry" />
+        <mxCell id="i-b" value="zone -b" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="424.7" y="305" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="i-c" value="zone -c" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="622.7" y="305" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="backbone" value="Google global network: the Premium Tier backbone carries traffic between regions." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="175.7" y="422" width="568" height="24" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

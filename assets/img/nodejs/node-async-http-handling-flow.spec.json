@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "id": "node-async-http-handling-flow",
+  "title": "One place owns the response, and every failure path goes through it",
+  "subtitle": "Solid lines are the work and the single terminal response. Dashed lines are a timeout or a client disconnect cancelling downstream work; a rejected Promise is not itself an HTTP response.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 22
+  },
+  "containers": [
+    {
+      "id": "error-boundary",
+      "kind": "plain",
+      "label": "Error boundary: one owner for the response",
+      "members": [
+        "handler",
+        "fetch-json",
+        "response-owner"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 0,
+      "row": 1,
+      "w": 200
+    },
+    {
+      "id": "request-event",
+      "kind": "box",
+      "label": "request event",
+      "col": 1,
+      "row": 1,
+      "detail": "the server emits it",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 240
+    },
+    {
+      "id": "handler",
+      "kind": "box",
+      "label": "handleRequest()",
+      "col": 2,
+      "row": 1,
+      "detail": "no waiting of its own",
+      "role": "process",
+      "step": 2,
+      "step_at": "bottom-left",
+      "w": 240
+    },
+    {
+      "id": "fetch-json",
+      "kind": "box",
+      "label": "fetchJson()",
+      "col": 3,
+      "row": 1,
+      "detail": "awaits the upstream call",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 240
+    },
+    {
+      "id": "upstream",
+      "kind": "box",
+      "label": "Upstream HTTP service",
+      "col": 4,
+      "row": 1,
+      "detail": "may be slow or never answer",
+      "role": "external",
+      "w": 240
+    },
+    {
+      "id": "promise",
+      "kind": "box",
+      "label": "Promise pending",
+      "col": 3,
+      "row": 2,
+      "detail": "a rejection is not a response;\nthe boundary maps it to one",
+      "role": "queue",
+      "w": 240
+    },
+    {
+      "id": "timeout",
+      "kind": "box",
+      "label": "timeout",
+      "col": 4,
+      "row": 0,
+      "detail": "turns a stall into an error",
+      "role": "danger",
+      "w": 240
+    },
+    {
+      "id": "abort-controller",
+      "kind": "box",
+      "label": "AbortController",
+      "col": 4,
+      "row": 2,
+      "detail": "releases the socket and the promise",
+      "role": "danger",
+      "w": 240
+    },
+    {
+      "id": "response-owner",
+      "kind": "box",
+      "label": "writeResponse()",
+      "col": 2,
+      "row": 2,
+      "detail": "the only writer, success or failure",
+      "role": "store",
+      "w": 240
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Without a timeout and an abort signal the promise stays pending, the socket stays open, and the client waits forever.",
+      "col": 0,
+      "row": 3,
+      "colspan": 5
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-request-event",
+      "source": "client",
+      "target": "request-event"
+    },
+    {
+      "id": "request-event-to-handler",
+      "source": "request-event",
+      "target": "handler"
+    },
+    {
+      "id": "handler-to-fetch-json",
+      "source": "handler",
+      "target": "fetch-json"
+    },
+    {
+      "id": "fetch-json-to-upstream",
+      "source": "fetch-json",
+      "target": "upstream"
+    },
+    {
+      "id": "handler-to-response-owner",
+      "source": "handler",
+      "target": "response-owner"
+    },
+    {
+      "id": "timeout-to-fetch-json",
+      "source": "timeout",
+      "target": "fetch-json",
+      "dashed": true
+    },
+    {
+      "id": "abort-controller-to-fetch-json",
+      "source": "abort-controller",
+      "target": "fetch-json",
+      "dashed": true
+    },
+    {
+      "id": "promise-to-response-owner",
+      "source": "promise",
+      "target": "response-owner",
+      "dashed": true
+    }
+  ]
+}

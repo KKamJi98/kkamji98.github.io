@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "terraform-helm-provider-flow",
+  "title": "The Helm provider makes a release part of the Terraform state",
+  "subtitle": "Terraform then owns the release lifecycle, which is why a manual helm upgrade shows up as drift.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "config",
+      "kind": "box",
+      "label": "Terraform configuration",
+      "col": 0,
+      "row": 0,
+      "detail": "helm_release resource",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "provider",
+      "kind": "box",
+      "label": "Helm provider",
+      "col": 1,
+      "row": 0,
+      "detail": "runs the Helm SDK in-process",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "chart",
+      "kind": "box",
+      "label": "Helm chart",
+      "col": 2,
+      "row": 0,
+      "detail": "chart plus the values you pass",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "label": "Kubernetes API",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:api",
+      "detail": "manifests applied",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "release",
+      "kind": "service",
+      "label": "Release resources",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "tracked in Terraform state",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "config-to-provider",
+      "source": "config",
+      "target": "provider"
+    },
+    {
+      "id": "provider-to-chart",
+      "source": "provider",
+      "target": "chart"
+    },
+    {
+      "id": "chart-to-api",
+      "source": "chart",
+      "target": "api"
+    },
+    {
+      "id": "api-to-release",
+      "source": "api",
+      "target": "release"
+    }
+  ]
+}

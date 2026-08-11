@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "jvm-09-gc-tuning-params",
+  "title": "Five knobs, and only one of them is a goal rather than a limit",
+  "subtitle": "MaxGCPauseMillis states an intent and lets G1 size the young generation; the others pin values and remove that freedom.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "p1",
+      "kind": "box",
+      "label": "-Xms and -Xmx",
+      "col": 0,
+      "row": 0,
+      "detail": "initial and maximum heap",
+      "role": "process",
+      "w": 560
+    },
+    {
+      "id": "p2",
+      "kind": "box",
+      "label": "-XX:MaxGCPauseMillis  (default 200)",
+      "col": 0,
+      "row": 1,
+      "detail": "a pause goal; G1 sizes the young generation to meet it",
+      "role": "compute",
+      "w": 560
+    },
+    {
+      "id": "p3",
+      "kind": "box",
+      "label": "-XX:MaxNewSize or -Xmn",
+      "col": 0,
+      "row": 2,
+      "detail": "caps the young generation; Oracle warns that pinning it\nturns off pause-time control",
+      "role": "queue",
+      "w": 560
+    },
+    {
+      "id": "p4",
+      "kind": "box",
+      "label": "-XX:InitiatingHeapOccupancyPercent",
+      "col": 0,
+      "row": 3,
+      "detail": "when concurrent marking starts, adaptive by default",
+      "role": "queue",
+      "w": 560
+    },
+    {
+      "id": "p5",
+      "kind": "box",
+      "label": "-Xlog:gc* and JFR",
+      "col": 0,
+      "row": 4,
+      "detail": "how you observe any of the above",
+      "role": "store",
+      "w": 560
+    }
+  ]
+}

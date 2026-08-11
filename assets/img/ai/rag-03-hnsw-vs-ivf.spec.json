@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "id": "rag-03-hnsw-vs-ivf",
+  "title": "HNSW walks a graph; IVF narrows to a few clusters first",
+  "subtitle": "The trade is memory against tuning: HNSW holds a graph in RAM, IVF holds centroids and makes nprobe your recall dial.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 18
+  },
+  "containers": [
+    {
+      "id": "hnsw",
+      "kind": "plain",
+      "label": "HNSW (graph based)",
+      "members": [
+        "l2",
+        "l1",
+        "l0",
+        "hnote"
+      ]
+    },
+    {
+      "id": "ivf",
+      "kind": "plain",
+      "label": "IVF (cluster based)",
+      "members": [
+        "q",
+        "cent",
+        "probe",
+        "scan",
+        "inote"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "l2",
+      "kind": "box",
+      "label": "Layer 2 (sparse)",
+      "col": 0,
+      "row": 0,
+      "detail": "long hops; ef_search sets how wide the walk is",
+      "role": "compute"
+    },
+    {
+      "id": "l1",
+      "kind": "box",
+      "label": "Layer 1",
+      "col": 0,
+      "row": 1,
+      "detail": "shorter hops",
+      "role": "compute"
+    },
+    {
+      "id": "l0",
+      "kind": "box",
+      "label": "Layer 0 (all vectors)",
+      "col": 0,
+      "row": 2,
+      "detail": "the full graph",
+      "role": "store"
+    },
+    {
+      "id": "hnote",
+      "kind": "text",
+      "label": "high recall at low latency, higher memory; ef_search is the search knob",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "q",
+      "kind": "box",
+      "label": "Query",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "cent",
+      "kind": "box",
+      "label": "Centroids",
+      "col": 1,
+      "row": 1,
+      "detail": "coarse quantizer",
+      "role": "process"
+    },
+    {
+      "id": "probe",
+      "kind": "box",
+      "label": "Probe top-nprobe lists",
+      "col": 1,
+      "row": 2,
+      "detail": "how many clusters to open",
+      "role": "queue"
+    },
+    {
+      "id": "scan",
+      "kind": "box",
+      "label": "Scan candidates",
+      "col": 1,
+      "row": 3,
+      "detail": "exact distance inside the lists"
+    },
+    {
+      "id": "inote",
+      "kind": "text",
+      "label": "memory efficient, recall is tuned with nprobe",
+      "col": 1,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "l2-to-l1",
+      "source": "l2",
+      "target": "l1"
+    },
+    {
+      "id": "l1-to-l0",
+      "source": "l1",
+      "target": "l0"
+    },
+    {
+      "id": "q-to-cent",
+      "source": "q",
+      "target": "cent"
+    },
+    {
+      "id": "cent-to-probe",
+      "source": "cent",
+      "target": "probe"
+    },
+    {
+      "id": "probe-to-scan",
+      "source": "probe",
+      "target": "scan"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "elasticsearch-eck-flow",
+  "title": "ECK turns an Elasticsearch spec into a running cluster with its own storage",
+  "subtitle": "The operator owns the reconciliation, so cluster topology changes are declarative rather than manual.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "operator",
+      "kind": "service",
+      "label": "ECK operator",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:crd",
+      "detail": "watches the Elasticsearch CRD",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cluster",
+      "kind": "box",
+      "label": "Elasticsearch cluster",
+      "col": 1,
+      "row": 0,
+      "detail": "node sets from the spec",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "nodes",
+      "kind": "service",
+      "label": "Data nodes",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:sts",
+      "detail": "one StatefulSet per node set",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "storage",
+      "kind": "service",
+      "label": "Persistent storage",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:pvc",
+      "detail": "a claim per data node",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "index",
+      "kind": "box",
+      "label": "Search index",
+      "col": 4,
+      "row": 0,
+      "detail": "shards land on the data nodes",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "operator-to-cluster",
+      "source": "operator",
+      "target": "cluster"
+    },
+    {
+      "id": "cluster-to-nodes",
+      "source": "cluster",
+      "target": "nodes"
+    },
+    {
+      "id": "nodes-to-storage",
+      "source": "nodes",
+      "target": "storage"
+    },
+    {
+      "id": "storage-to-index",
+      "source": "storage",
+      "target": "index"
+    }
+  ]
+}

@@ -1,51 +1,61 @@
-<mxfile host="app.diagrams.net" type="device">
-  <diagram id="metrics-server-collection" name="Metrics Server serves one API that both the HPA and kubectl top read">
-    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1440" pageHeight="604" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="metrics-server-collection" name="Metrics Server serves one API that several consumers read independently">
+    <mxGraphModel dx="1010" dy="338" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1010" pageHeight="338" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="Metrics Server serves one API that both the HPA and kubectl top read" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#202124;fontSize=20;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="60" width="1320" height="30" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="986.54" height="314.0" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="kubectl top is a peer consumer of the Metrics API, not a step after autoscaling." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5F6368;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="60" y="94" width="1320" height="24" as="geometry" />
+        <mxCell id="title" value="Metrics Server serves one API that several consumers read independently" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="942.54" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="kubelet" value="kubelet on nodes&#xa;cAdvisor summary" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="60" y="298" width="240" height="88" as="geometry" />
+        <mxCell id="subtitle" value="The two arrows out of the Metrics API are not a sequence. The HPA controller and kubectl top do not go through each other." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="942.54" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="metrics-server" value="Metrics Server&#xa;in-memory, not durable" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="420" y="298" width="240" height="88" as="geometry" />
+        <mxCell id="kubelet" value="kubelet on nodes&#xa;cAdvisor summary" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=kubelet;" vertex="1" parent="1">
+          <mxGeometry x="101" y="134" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="metrics-api" value="Metrics API&#xa;metrics.k8s.io" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="780" y="298" width="240" height="88" as="geometry" />
+        <mxCell id="metrics-server" value="Metrics Server&#xa;in-memory, not durable" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="274" y="150" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="hpa" value="HPA controller" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="140" width="240" height="88" as="geometry" />
+        <mxCell id="metrics-api" value="Metrics API&#xa;metrics.k8s.io" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="508" y="150" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="top" value="kubectl top" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="456" width="240" height="88" as="geometry" />
+        <mxCell id="hpa" value="HPA controller&#xa;scales workloads" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=hpa;" vertex="1" parent="1">
+          <mxGeometry x="835" y="134" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="scrape" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kubelet" target="metrics-server">
-          <mxGeometry relative="1" as="geometry">
-          </mxGeometry>
+        <mxCell id="top" value="kubectl top&#xa;an operator reading current usage" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="742" y="250" width="235" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="serves" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-server" target="metrics-api">
-          <mxGeometry relative="1" as="geometry">
-          </mxGeometry>
+        <mxCell id="kubelet-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="67" y="104" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="hpa-reads" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="hpa">
-          <mxGeometry relative="1" as="geometry">
+        <mxCell id="metrics-server-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="metrics-api-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="474" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kubelet-to-metrics-server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kubelet" target="metrics-server">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="metrics-server-to-metrics-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-server" target="metrics-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="metrics-api-to-hpa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="hpa">
+          <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1080" y="342" />
-              <mxPoint x="1080" y="184" />
+              <mxPoint x="703.33" y="163.5" />
+              <mxPoint x="703.33" y="158.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="top-reads" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="top">
-          <mxGeometry relative="1" as="geometry">
+        <mxCell id="metrics-api-to-top" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="top">
+          <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1080" y="342" />
-              <mxPoint x="1080" y="500" />
+              <mxPoint x="722.67" y="190.5" />
+              <mxPoint x="722.67" y="277.0" />
             </Array>
           </mxGeometry>
         </mxCell>

@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "id": "spring-08-fatjar-layout",
+  "title": "The launcher, not your main class, is what java -jar starts",
+  "subtitle": "Nested jars are not on the normal classpath, so a custom classloader has to open them first.",
+  "layout": {
+    "col_gap": 50,
+    "row_gap": 14
+  },
+  "containers": [
+    {
+      "id": "jar",
+      "kind": "plain",
+      "label": "app.jar (executable fat jar)",
+      "members": [
+        "manifest",
+        "loader",
+        "classes",
+        "lib"
+      ]
+    },
+    {
+      "id": "exec",
+      "kind": "plain",
+      "label": "Execution path",
+      "members": [
+        "ex1",
+        "ex2",
+        "ex3",
+        "ex4"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "manifest",
+      "kind": "box",
+      "label": "META-INF/MANIFEST.MF",
+      "col": 0,
+      "row": 0,
+      "detail": "Main-Class: JarLauncher, Start-Class: yours",
+      "role": "process",
+      "w": 420
+    },
+    {
+      "id": "loader",
+      "kind": "box",
+      "label": "org/springframework/boot/loader/",
+      "col": 0,
+      "row": 1,
+      "detail": "the loader classes themselves",
+      "role": "compute",
+      "w": 420
+    },
+    {
+      "id": "classes",
+      "kind": "box",
+      "label": "BOOT-INF/classes/",
+      "col": 0,
+      "row": 2,
+      "detail": "your code",
+      "role": "store",
+      "w": 420
+    },
+    {
+      "id": "lib",
+      "kind": "box",
+      "label": "BOOT-INF/lib/",
+      "col": 0,
+      "row": 3,
+      "detail": "dependency jars: tomcat, spring, jackson",
+      "role": "store",
+      "w": 420
+    },
+    {
+      "id": "ex1",
+      "kind": "box",
+      "label": "java -jar app.jar",
+      "col": 1,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left",
+      "w": 420
+    },
+    {
+      "id": "ex2",
+      "kind": "box",
+      "label": "JarLauncher runs",
+      "col": 1,
+      "row": 1,
+      "detail": "it is the Main-Class",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 420
+    },
+    {
+      "id": "ex3",
+      "kind": "box",
+      "label": "Nested-jar classloader",
+      "col": 1,
+      "row": 2,
+      "detail": "opens BOOT-INF/lib/*.jar",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 420
+    },
+    {
+      "id": "ex4",
+      "kind": "box",
+      "label": "Calls Start-Class main",
+      "col": 1,
+      "row": 3,
+      "detail": "your application finally starts",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 420
+    }
+  ],
+  "edges": [
+    {
+      "id": "ex1-to-ex2",
+      "source": "ex1",
+      "target": "ex2"
+    },
+    {
+      "id": "ex2-to-ex3",
+      "source": "ex2",
+      "target": "ex3"
+    },
+    {
+      "id": "ex3-to-ex4",
+      "source": "ex3",
+      "target": "ex4"
+    }
+  ]
+}

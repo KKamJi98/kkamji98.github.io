@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-10-iceberg-metadata-layers",
+  "title": "An Iceberg read walks four metadata hops before it touches a row",
+  "subtitle": "The catalog only holds a pointer; everything about which files to open lives in the metadata tree.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "catalog",
+      "kind": "box",
+      "label": "Catalog",
+      "col": 0,
+      "row": 0,
+      "detail": "holds the pointer to the current metadata file",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "metadata",
+      "kind": "box",
+      "label": "metadata file",
+      "col": 1,
+      "row": 0,
+      "detail": "*.metadata.json\ncurrent schema, partition specs, snapshot list",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "mlist",
+      "kind": "box",
+      "label": "manifest list",
+      "col": 2,
+      "row": 0,
+      "detail": "snap-*.avro = one snapshot\nthe manifest files it points to",
+      "role": "process",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "mfile",
+      "kind": "box",
+      "label": "manifest file",
+      "col": 3,
+      "row": 0,
+      "detail": "*-m*.avro, one row per data or delete file\ncolumn stats: min/max, null counts",
+      "role": "process",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "datafile",
+      "kind": "box",
+      "label": "data file",
+      "col": 4,
+      "row": 0,
+      "detail": "*.parquet, the actual rows",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "deletefile",
+      "kind": "box",
+      "label": "delete file",
+      "col": 4,
+      "row": 1,
+      "detail": "row-level delete markers",
+      "role": "danger"
+    }
+  ],
+  "edges": [
+    {
+      "id": "catalog-to-metadata",
+      "source": "catalog",
+      "target": "metadata"
+    },
+    {
+      "id": "metadata-to-mlist",
+      "source": "metadata",
+      "target": "mlist"
+    },
+    {
+      "id": "mlist-to-mfile",
+      "source": "mlist",
+      "target": "mfile"
+    },
+    {
+      "id": "mfile-to-datafile",
+      "source": "mfile",
+      "target": "datafile"
+    },
+    {
+      "id": "mfile-to-deletefile",
+      "source": "mfile",
+      "target": "deletefile"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "id": "node-event-loop-scheduling-flow",
+  "title": "nextTick and microtasks drain before the loop moves to the next phase",
+  "subtitle": "Both queues run to exhaustion between phases, so a recursive nextTick can starve the poll phase entirely.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 18
+  },
+  "containers": [
+    {
+      "id": "boundary",
+      "kind": "plain",
+      "label": "Between phases: both queues drain completely",
+      "members": [
+        "nexttick",
+        "microtask"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "sync",
+      "kind": "box",
+      "label": "Synchronous callback",
+      "col": 0,
+      "row": 0,
+      "detail": "runs to completion first",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "nexttick",
+      "kind": "box",
+      "label": "process.nextTick queue",
+      "col": 1,
+      "row": 0,
+      "detail": "drained first, and fully",
+      "role": "danger",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "microtask",
+      "kind": "box",
+      "label": "V8 microtasks",
+      "col": 1,
+      "row": 1,
+      "detail": "promise continuations",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "timers",
+      "kind": "box",
+      "label": "timers phase",
+      "col": 2,
+      "row": 0,
+      "detail": "setTimeout and setInterval",
+      "role": "compute",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "poll",
+      "kind": "box",
+      "label": "poll phase",
+      "col": 2,
+      "row": 1,
+      "detail": "I/O callbacks",
+      "role": "compute",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "check",
+      "kind": "box",
+      "label": "check phase",
+      "col": 2,
+      "row": 2,
+      "detail": "setImmediate",
+      "role": "compute",
+      "step": 6,
+      "step_at": "top-left",
+      "w": 280
+    },
+    {
+      "id": "continuation",
+      "kind": "box",
+      "label": "JavaScript continuation",
+      "col": 3,
+      "row": 1,
+      "detail": "the next turn of the loop",
+      "role": "store",
+      "w": 280
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "In an ES module the top-level body is already a microtask context, so promise continuations run before the first timer.",
+      "col": 0,
+      "row": 3,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "sync-to-nexttick",
+      "source": "sync",
+      "target": "nexttick"
+    },
+    {
+      "id": "nexttick-to-microtask",
+      "source": "nexttick",
+      "target": "microtask"
+    },
+    {
+      "id": "microtask-to-timers",
+      "source": "microtask",
+      "target": "timers"
+    },
+    {
+      "id": "timers-to-poll",
+      "source": "timers",
+      "target": "poll"
+    },
+    {
+      "id": "poll-to-check",
+      "source": "poll",
+      "target": "check"
+    },
+    {
+      "id": "check-to-continuation",
+      "source": "check",
+      "target": "continuation"
+    }
+  ]
+}

@@ -1,41 +1,68 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-13-mvc-vs-webflux" name="MVC vs WebFlux">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-13-mvc-vs-webflux" name="The two stacks differ in what a waiting request costs">
+    <mxGraphModel dx="1002" dy="506" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1002" pageHeight="506" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="mvc" parent="1" vertex="1" value="Spring MVC (thread-per-request)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="40" y="60" width="440" height="430" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="978.0" height="482.0" as="geometry" />
         </mxCell>
-        <mxCell id="m1" parent="1" vertex="1" value="Execution: synchronous / imperative" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="110" width="380" height="75" as="geometry" />
+        <mxCell id="title" value="The two stacks differ in what a waiting request costs" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="934.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="m2" parent="1" vertex="1" value="Threads: one per request (hundreds)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="200" width="380" height="75" as="geometry" />
+        <mxCell id="subtitle" value="MVC pays a thread and works with blocking libraries; WebFlux pays a subscription and requires non-blocking ones." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="934.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="m3" parent="1" vertex="1" value="Blocking libraries: JPA / JDBC work as-is" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="290" width="390" height="75" as="geometry" />
+        <mxCell id="spring-13-mvc-vs-webflux-l" value="Spring MVC (thread-per-request)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="444" height="328" as="geometry" />
         </mxCell>
-        <mxCell id="m4" parent="1" vertex="1" value="Fit: most common apps, easy to debug" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="70" y="380" width="380" height="75" as="geometry" />
+        <mxCell id="spring-13-mvc-vs-webflux-r" value="Spring WebFlux (event loop)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="524" y="104" width="444" height="328" as="geometry" />
         </mxCell>
-        <mxCell id="wf" parent="1" vertex="1" value="Spring WebFlux (event loop)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="520" y="60" width="440" height="430" as="geometry" />
+        <mxCell id="m1" value="Execution&#xa;synchronous and imperative" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w1" parent="1" vertex="1" value="Execution: asynchronous / non-blocking / declarative" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="110" width="490" height="75" as="geometry" />
+        <mxCell id="m2" value="Threads&#xa;one per request, hundreds" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="216" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w2" parent="1" vertex="1" value="Threads: small fixed pool (~ number of CPU cores)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="200" width="470" height="75" as="geometry" />
+        <mxCell id="m3" value="Blocking libraries&#xa;JPA and JDBC work as they are" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="286" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w3" parent="1" vertex="1" value="Blocking libraries: need non-blocking (R2DBC / WebClient)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="290" width="540" height="75" as="geometry" />
+        <mxCell id="m4" value="Fit&#xa;most applications, easiest to debug" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="356" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w4" parent="1" vertex="1" value="Fit: high-concurrency I/O-bound, streaming" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="550" y="380" width="400" height="75" as="geometry" />
+        <mxCell id="w1" value="Execution&#xa;asynchronous, non-blocking, declarative" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="If a Spring MVC application works fine, there is no need to change (Spring docs). Choose by dependencies, concurrency needs, and team." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="40" y="505" width="920" height="40" as="geometry" />
+        <mxCell id="w2" value="Threads&#xa;a small fixed pool near the core count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="216" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" value="Blocking libraries&#xa;need R2DBC or WebClient instead" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="286" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" value="Fit&#xa;high-concurrency I/O-bound work and streaming" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="356" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spring-13-mvc-vs-webflux-note" value="If a Spring MVC application already performs adequately, switching stacks buys nothing." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="56" y="448" width="890" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="m1-to-m2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m1" target="m2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m2-to-m3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m2" target="m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m3-to-m4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m3" target="m4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w1-to-w2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="w1" target="w2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w2-to-w3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="w2" target="w3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w3-to-w4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="w3" target="w4">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

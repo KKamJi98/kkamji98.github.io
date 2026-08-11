@@ -1,35 +1,53 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-10-mono-flux-backpressure" name="Reactive Streams Backpressure">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="440" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-10-mono-flux-backpressure" name="Nothing runs until subscribe, and the subscriber sets the pace">
+    <mxGraphModel dx="1144" dy="298" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1144" pageHeight="298" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="pub" parent="1" vertex="1" value="Publisher&#xa;(Mono 0..1 / Flux 0..N)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="60" y="120" width="240" height="80" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1120.38" height="274.0" as="geometry" />
         </mxCell>
-        <mxCell id="ops" parent="1" vertex="1" value="operators&#xa;(map / filter / flatMap)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="380" y="120" width="240" height="80" as="geometry" />
+        <mxCell id="title" value="Nothing runs until subscribe, and the subscriber sets the pace" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1076.38" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="sub" parent="1" vertex="1" value="Subscriber&#xa;(onNext / onComplete / onError)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="680" y="120" width="300" height="80" as="geometry" />
+        <mxCell id="subtitle" value="Operators only build a plan. Demand flows upstream through request(n), which is what makes backpressure part of the contract." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1076.38" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="note1" parent="1" vertex="1" value="subscribe() triggers the flow - operators do nothing until then (lazy)." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="60" y="40" width="860" height="35" as="geometry" />
+        <mxCell id="pub" value="Publisher&#xa;Mono 0..1 or Flux 0..N" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="68" y="134" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note2" parent="1" vertex="1" value="Backpressure: the Subscriber signals demand with request(n), so a fast Publisher cannot overwhelm a slow consumer (bounded)." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="60" y="360" width="860" height="32" as="geometry" />
+        <mxCell id="ops" value="Operators&#xa;map, filter, flatMap: plan only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="294" y="134" width="222" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="f1" parent="1" edge="1" source="pub" target="ops" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="sub" value="Subscriber&#xa;onNext, onComplete, onError" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="914" y="134" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spring-10-mono-flux-backpressure-note" value="subscribe() triggers the flow. The subscriber signals demand with request(n), and the publisher may not exceed it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="68" y="240" width="796" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="subscription" value="Subscription&#xa;the contract carrying request(n) and cancel" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="566" y="134" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pub-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ops-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="260" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sub-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="880" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="subscription-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="532" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="pub-to-ops" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pub" target="ops">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f2" parent="1" edge="1" source="ops" target="sub" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="ops-to-subscription" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ops" target="subscription">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bp" parent="1" edge="1" source="sub" target="pub" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="830" y="280" /><mxPoint x="800" y="280" /><mxPoint x="180" y="280" /></Array>
-          </mxGeometry>
+        <mxCell id="subscription-to-sub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="subscription" target="sub">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

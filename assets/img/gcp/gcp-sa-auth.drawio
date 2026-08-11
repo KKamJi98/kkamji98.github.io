@@ -1,53 +1,58 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="gcp-sa-auth" name="GCP Service Account Auth">
-    <mxGraphModel dx="1024" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="840" pageHeight="400" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="gcp-sa-auth" name="Attach a service account to the workload instead of shipping a key file">
+    <mxGraphModel dx="1186" dy="468" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1186" pageHeight="468" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="panel-keyless" parent="1" vertex="1" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="55" width="750" height="130" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1162.54" height="444.0" as="geometry" />
         </mxCell>
-        <mxCell id="panel-key" parent="1" vertex="1" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="225" width="750" height="140" as="geometry" />
+        <mxCell id="title" value="Attach a service account to the workload instead of shipping a key file" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1118.54" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="hdr1" parent="1" vertex="1" value="Keyless (recommended)" style="text;html=0;align=left;verticalAlign=middle;fontColor=#34A853;fontSize=11;fontStyle=1;">
-          <mxGeometry x="55" y="60" width="250" height="20" as="geometry" />
+        <mxCell id="subtitle" value="The keyless path has no secret to leak or rotate; the key file path creates a credential that outlives the workload." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1118.54" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="wl1" parent="1" vertex="1" value="Workload(GCE / GKE)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="60" y="92" width="160" height="70" as="geometry" />
+        <mxCell id="keyless" value="Keyless: attached service account (recommended)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="69" y="104" width="1084" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="sa1" parent="1" vertex="1" value="Service Account" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="370" y="92" width="160" height="70" as="geometry" />
+        <mxCell id="keyfile" value="Key file: a long-lived credential on disk (avoid)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="284" width="1112" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="res1" parent="1" vertex="1" value="Resource" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="640" y="92" width="120" height="70" as="geometry" />
+        <mxCell id="wl1" value="Workload&#xa;GCE or GKE" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="155" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="hdr2" parent="1" vertex="1" value="Key file (avoid)" style="text;html=0;align=left;verticalAlign=middle;fontColor=#EA4335;fontSize=11;fontStyle=1;">
-          <mxGeometry x="55" y="230" width="250" height="20" as="geometry" />
+        <mxCell id="sa1" value="Service account&#xa;metadata server mints short-lived tokens" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#EA4335;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_iam;" vertex="1" parent="1">
+          <mxGeometry x="467" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="wl2" parent="1" vertex="1" value="Workload(GCE / GKE)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="60" y="262" width="160" height="70" as="geometry" />
+        <mxCell id="res1" value="Resource&#xa;IAM binding on the resource" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#FBBC04;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_storage;" vertex="1" parent="1">
+          <mxGeometry x="1012" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="sa2" parent="1" vertex="1" value="Service Account" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="370" y="262" width="160" height="70" as="geometry" />
+        <mxCell id="wl2" value="Workload&#xa;anywhere, including off Google Cloud" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.compute_engine;" vertex="1" parent="1">
+          <mxGeometry x="155" y="326" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="res2" parent="1" vertex="1" value="Resource" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="640" y="262" width="120" height="70" as="geometry" />
+        <mxCell id="key" value="JSON key file&#xa;leak and rotation risk" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="403" y="342" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="key-note" parent="1" vertex="1" value="leak / rotation risk" style="text;html=0;align=left;verticalAlign=middle;fontColor=#EA4335;fontSize=11;fontStyle=2;">
-          <mxGeometry x="370" y="338" width="300" height="20" as="geometry" />
+        <mxCell id="sa2" value="Service account&#xa;same identity, weaker handling" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#EA4335;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_iam;" vertex="1" parent="1">
+          <mxGeometry x="761" y="326" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="e-wl1-sa1" parent="1" edge="1" source="wl1" target="sa1" value="" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="res2" value="Resource" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#FBBC04;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_storage;" vertex="1" parent="1">
+          <mxGeometry x="1012" y="326" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="wl1-to-sa1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wl1" target="sa1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-sa1-res1" parent="1" edge="1" source="sa1" target="res1" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="sa1-to-res1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sa1" target="res1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-wl2-sa2" parent="1" edge="1" source="wl2" target="sa2" value="" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="wl2-to-key" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wl2" target="key">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-sa2-res2" parent="1" edge="1" source="sa2" target="res2" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="key-to-sa2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="key" target="sa2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa2-to-res2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sa2" target="res2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

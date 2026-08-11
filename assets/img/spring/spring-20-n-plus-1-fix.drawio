@@ -1,34 +1,43 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-20-n-plus-1-fix" name="N+1 solutions">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-20-n-plus-1-fix" name="Fetch the children with the parents, or fetch them in batches">
+    <mxGraphModel dx="1002" dy="366" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1002" pageHeight="366" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="lf" parent="1" vertex="1" value="Solution A: JOIN FETCH (recommended)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="40" y="50" width="470" height="300" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="978.0" height="342.0" as="geometry" />
         </mxCell>
-        <mxCell id="la" parent="1" vertex="1" value="SELECT o FROM Order o&#xa;JOIN FETCH o.items" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="75" y="110" width="400" height="80" as="geometry" />
+        <mxCell id="title" value="Fetch the children with the parents, or fetch them in batches" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="934.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="lr" parent="1" vertex="1" value="= 1 query (parent + children joined)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="75" y="230" width="400" height="65" as="geometry" />
+        <mxCell id="subtitle" value="JOIN FETCH collapses it to one query; @BatchSize keeps the extra queries but bounds how many there are." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="934.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="rf" parent="1" vertex="1" value="Solution B: batch fetching (@BatchSize = k)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="540" y="50" width="470" height="300" as="geometry" />
+        <mxCell id="spring-20-n-plus-1-fix-l" value="Solution A: JOIN FETCH (usually preferred)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="444" height="188" as="geometry" />
         </mxCell>
-        <mxCell id="ra" parent="1" vertex="1" value="1 parent query, then child queries:&#xa;... WHERE order_id IN (?, ?, ... k)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="575" y="110" width="400" height="80" as="geometry" />
+        <mxCell id="spring-20-n-plus-1-fix-r" value="Solution B: batch fetching (@BatchSize = k)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="524" y="104" width="444" height="188" as="geometry" />
         </mxCell>
-        <mxCell id="rr" parent="1" vertex="1" value="= 1 + ceil(N / k) queries" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="575" y="230" width="400" height="65" as="geometry" />
+        <mxCell id="la" value="SELECT o FROM Order o JOIN FETCH o.items" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Also: @EntityGraph (declare fetch in Spring Data JPA), DTO projection. Caveat: collection JOIN FETCH + pagination paginates in memory." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="40" y="375" width="970" height="40" as="geometry" />
+        <mxCell id="lr" value="one query&#xa;parent and children joined" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="216" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="le" parent="1" edge="1" source="la" target="lr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="ra" value="One parent query, then WHERE order_id IN (...)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="146" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rr" value="1 + ceil(N / k) queries&#xa;bounded rather than eliminated" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="216" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spring-20-n-plus-1-fix-note" value="@EntityGraph declares the same fetch in Spring Data JPA, and a DTO projection avoids loading the entities at all." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="56" y="308" width="890" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="la-to-lr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="la" target="lr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="re" parent="1" edge="1" source="ra" target="rr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="ra-to-rr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ra" target="rr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

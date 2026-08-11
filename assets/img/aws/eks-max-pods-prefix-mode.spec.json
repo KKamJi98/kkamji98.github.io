@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "eks-max-pods-prefix-mode",
+  "title": "Prefix mode multiplies the IPs an ENI can hand out",
+  "subtitle": "Without prefix delegation each ENI assigns single IPs; with it, each slot becomes a /28 prefix and max-pods rises accordingly.",
+  "layout": {
+    "icon_cell_w": 176,
+    "col_gap": 58
+  },
+  "containers": [
+    {
+      "id": "node",
+      "kind": "plain",
+      "label": "EKS worker node",
+      "members": [
+        "podreq",
+        "cni",
+        "eni",
+        "capacity",
+        "maxpods"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "podreq",
+      "kind": "box",
+      "label": "Pod requests an IP",
+      "col": 0,
+      "row": 0,
+      "detail": "scheduler placed the pod",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cni",
+      "kind": "box",
+      "label": "Amazon VPC CNI",
+      "col": 1,
+      "row": 0,
+      "detail": "ipamd allocates from the warm pool",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "eni",
+      "kind": "service",
+      "service": "eni",
+      "label": "ENI prefix",
+      "col": 2,
+      "row": 0,
+      "detail": "/28 prefix per slot\ninstead of one IP",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "capacity",
+      "kind": "box",
+      "label": "Node IP capacity",
+      "col": 3,
+      "row": 0,
+      "detail": "ENIs x slots x 16",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "maxpods",
+      "kind": "box",
+      "label": "max-pods",
+      "col": 4,
+      "row": 0,
+      "detail": "kubelet admission limit",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "podreq-to-cni",
+      "source": "podreq",
+      "target": "cni"
+    },
+    {
+      "id": "cni-to-eni",
+      "source": "cni",
+      "target": "eni"
+    },
+    {
+      "id": "eni-to-capacity",
+      "source": "eni",
+      "target": "capacity"
+    },
+    {
+      "id": "capacity-to-maxpods",
+      "source": "capacity",
+      "target": "maxpods"
+    }
+  ]
+}

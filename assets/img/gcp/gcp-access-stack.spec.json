@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "gcp-access-stack",
+  "title": "Console, gcloud and the SDKs are all front-ends over the same API",
+  "subtitle": "Anything one of them can do is an API call, which is why IAM and audit logs see them identically.",
+  "layout": {
+    "icon_cell_w": 190,
+    "col_gap": 60,
+    "row_gap": 22
+  },
+  "containers": [
+    {
+      "id": "frontends",
+      "kind": "plain",
+      "label": "Front-ends",
+      "members": [
+        "console",
+        "gcloud",
+        "shell",
+        "libs"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "console",
+      "kind": "box",
+      "label": "Cloud Console",
+      "col": 0,
+      "row": 0,
+      "detail": "the web UI"
+    },
+    {
+      "id": "gcloud",
+      "kind": "box",
+      "label": "gcloud CLI",
+      "col": 0,
+      "row": 1,
+      "detail": "local shell"
+    },
+    {
+      "id": "shell",
+      "kind": "service",
+      "service": "gcp:cloud_shell",
+      "label": "Cloud Shell",
+      "col": 0,
+      "row": 2,
+      "detail": "browser terminal"
+    },
+    {
+      "id": "libs",
+      "kind": "box",
+      "label": "Client libraries",
+      "col": 0,
+      "row": 3,
+      "detail": "your own code"
+    },
+    {
+      "id": "api",
+      "kind": "box",
+      "label": "Google Cloud API",
+      "col": 1,
+      "row": 0,
+      "detail": "REST and gRPC",
+      "rowspan": 4,
+      "role": "process"
+    },
+    {
+      "id": "services",
+      "kind": "service",
+      "service": "gcp:service",
+      "label": "Google Cloud services",
+      "col": 2,
+      "row": 0,
+      "detail": "Compute Engine, Cloud Storage,\nBigQuery, IAM and the rest",
+      "rowspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "console-to-api",
+      "source": "console",
+      "target": "api"
+    },
+    {
+      "id": "gcloud-to-api",
+      "source": "gcloud",
+      "target": "api"
+    },
+    {
+      "id": "shell-to-api",
+      "source": "shell",
+      "target": "api"
+    },
+    {
+      "id": "libs-to-api",
+      "source": "libs",
+      "target": "api"
+    },
+    {
+      "id": "api-to-services",
+      "source": "api",
+      "target": "services"
+    }
+  ]
+}

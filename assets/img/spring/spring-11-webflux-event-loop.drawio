@@ -1,30 +1,51 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-11-webflux-event-loop" name="WebFlux Event Loop">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-11-webflux-event-loop" name="A handful of event loop threads serve many connections">
+    <mxGraphModel dx="1025" dy="406" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1025" pageHeight="406" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="conns" parent="1" vertex="1" value="Many connections&#xa;(A, B, C, D, E, F, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="190" width="230" height="120" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1001.58" height="382.0" as="geometry" />
         </mxCell>
-        <mxCell id="pool" parent="1" vertex="1" value="Netty event loop pool (threads ~ number of CPU cores)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="330" y="80" width="500" height="340" as="geometry" />
+        <mxCell id="title" value="A handful of event loop threads serve many connections" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="957.58" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="el1" parent="1" vertex="1" value="event-loop-1  ->  serves A, C, E ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="360" y="130" width="370" height="56" as="geometry" />
+        <mxCell id="subtitle" value="While one connection waits on I/O, the same thread serves another, which is why the pool tracks CPU cores rather than requests." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="957.58" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="el2" parent="1" vertex="1" value="event-loop-2  ->  serves B, D, F ...  (never blocks)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="360" y="200" width="370" height="56" as="geometry" />
+        <mxCell id="pool" value="Netty event loop pool (threads track the CPU core count)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="414.79" y="104" width="464" height="188" as="geometry" />
         </mxCell>
-        <mxCell id="elnote" parent="1" vertex="1" value="while one connection's I/O is pending, the thread serves another (non-blocking)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="360" y="272" width="370" height="40" as="geometry" />
+        <mxCell id="conns" value="Many connections&#xa;A, B, C, D, E, F, ..." style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="146.79" y="146" width="220" height="146" as="geometry" />
         </mxCell>
-        <mxCell id="cmp" parent="1" vertex="1" value="vs thread-per-request (Spring MVC): ~200 threads, each blocked during I/O" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#F9AB00;fontStyle=2;">
-          <mxGeometry x="60" y="452" width="840" height="35" as="geometry" />
+        <mxCell id="el1" value="event-loop-1 serves A, C, E&#xa;never blocks" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="436.79" y="146" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="conns" target="el1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="el2" value="event-loop-2 serves B, D, F&#xa;never blocks" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="436.79" y="216" width="420" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="elnote" value="While one connection's I/O is pending the thread picks up another connection instead of waiting." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="146.79" y="308" width="732" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp" value="Spring MVC would need one blocked thread per in-flight request for the same work." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="146.79" y="348" width="732" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="conns-to-el1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el1">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="390.12" y="182.5" />
+              <mxPoint x="390.12" y="173.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conns-to-el2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="413.46" y="255.5" />
+              <mxPoint x="413.46" y="243.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "github-actions-workflow-flow",
+  "title": "An event starts a run; jobs inside it are scheduled onto runners separately",
+  "subtitle": "Jobs are independent unless they declare a dependency, which is what lets test and lint run at the same time.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "event",
+      "kind": "box",
+      "label": "GitHub event",
+      "col": 0,
+      "row": 0,
+      "detail": "push, pull_request, schedule",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "run",
+      "kind": "box",
+      "label": "Workflow run",
+      "col": 1,
+      "row": 0,
+      "detail": "one run per matching event",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "jobs",
+      "kind": "box",
+      "label": "Test and lint jobs",
+      "col": 2,
+      "row": 0,
+      "detail": "parallel unless they need each other",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "runner",
+      "kind": "box",
+      "label": "Runner and steps",
+      "col": 3,
+      "row": 0,
+      "detail": "a fresh environment per job",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "deploy",
+      "kind": "box",
+      "label": "Deploy job",
+      "col": 4,
+      "row": 0,
+      "detail": "gated on the earlier jobs passing",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "event-to-run",
+      "source": "event",
+      "target": "run"
+    },
+    {
+      "id": "run-to-jobs",
+      "source": "run",
+      "target": "jobs"
+    },
+    {
+      "id": "jobs-to-runner",
+      "source": "jobs",
+      "target": "runner"
+    },
+    {
+      "id": "runner-to-deploy",
+      "source": "runner",
+      "target": "deploy"
+    }
+  ]
+}

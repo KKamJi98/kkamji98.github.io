@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "default-gateway-forwarding",
+  "title": "A host sends anything outside its own subnet to the default gateway",
+  "subtitle": "The gateway has to sit on the host's own subnet, and the host still needs its link-layer address before a frame can be built.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "host",
+      "kind": "box",
+      "label": "Host",
+      "col": 0,
+      "row": 0,
+      "detail": "compares the destination to its subnet mask",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "gateway",
+      "kind": "service",
+      "label": "Default gateway",
+      "col": 1,
+      "row": 0,
+      "service": "router",
+      "detail": "its MAC is resolved with ARP on IPv4,\nor NDP on IPv6",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "next",
+      "kind": "box",
+      "label": "Next network",
+      "col": 2,
+      "row": 0,
+      "detail": "forwarded hop by hop",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "remote",
+      "kind": "service",
+      "label": "Remote server",
+      "col": 3,
+      "row": 0,
+      "service": "server",
+      "detail": "replies along the reverse path",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "host-to-gateway",
+      "source": "host",
+      "target": "gateway"
+    },
+    {
+      "id": "gateway-to-next",
+      "source": "gateway",
+      "target": "next"
+    },
+    {
+      "id": "next-to-remote",
+      "source": "next",
+      "target": "remote"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "sftp-file-transfer-flow",
+  "title": "SFTP is a subsystem of SSH, not a separate protocol on its own port",
+  "subtitle": "The same credentials and the same port as SSH apply, which is why disabling SSH also disables SFTP.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "label": "SFTP client",
+      "col": 0,
+      "row": 0,
+      "service": "client",
+      "detail": "sftp or a GUI client",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ssh",
+      "kind": "box",
+      "label": "SSH connection",
+      "col": 1,
+      "row": 0,
+      "detail": "authentication and encryption",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "server",
+      "kind": "service",
+      "label": "SFTP server",
+      "col": 2,
+      "row": 0,
+      "service": "server",
+      "detail": "the sftp subsystem process",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "fs",
+      "kind": "box",
+      "label": "Filesystem",
+      "col": 3,
+      "row": 0,
+      "detail": "permissions are the OS's, not the protocol's",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "file",
+      "kind": "box",
+      "label": "Transferred file",
+      "col": 4,
+      "row": 0,
+      "detail": "ownership follows the login user",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-ssh",
+      "source": "client",
+      "target": "ssh"
+    },
+    {
+      "id": "ssh-to-server",
+      "source": "ssh",
+      "target": "server"
+    },
+    {
+      "id": "server-to-fs",
+      "source": "server",
+      "target": "fs"
+    },
+    {
+      "id": "fs-to-file",
+      "source": "fs",
+      "target": "file"
+    }
+  ]
+}

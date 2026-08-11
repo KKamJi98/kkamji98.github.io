@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "terminating-pod-troubleshooting",
+  "title": "A pod stuck Terminating is waiting on a finalizer or a volume, not on the kubelet",
+  "subtitle": "The API server keeps the object until every finalizer clears, so a deletionTimestamp alone never removes it.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "request",
+      "kind": "box",
+      "label": "Pod deletion request",
+      "col": 0,
+      "row": 0,
+      "detail": "deletionTimestamp is set",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "label": "API server",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:api",
+      "detail": "waits for finalizers to clear",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kubelet",
+      "kind": "service",
+      "label": "Node kubelet",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:kubelet",
+      "detail": "SIGTERM, then SIGKILL at the grace period",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "volume",
+      "kind": "service",
+      "label": "Volume detach",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:pv",
+      "detail": "unmount and detach must both succeed",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "removal",
+      "kind": "service",
+      "label": "Pod object removed",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "only after every step completes",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "request-to-api",
+      "source": "request",
+      "target": "api"
+    },
+    {
+      "id": "api-to-kubelet",
+      "source": "api",
+      "target": "kubelet"
+    },
+    {
+      "id": "kubelet-to-volume",
+      "source": "kubelet",
+      "target": "volume"
+    },
+    {
+      "id": "volume-to-removal",
+      "source": "volume",
+      "target": "removal"
+    }
+  ]
+}

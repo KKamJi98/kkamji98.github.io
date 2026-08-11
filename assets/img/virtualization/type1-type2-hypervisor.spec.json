@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "type1-type2-hypervisor",
+  "title": "Type 1 runs on the hardware; type 2 runs on a host operating system",
+  "subtitle": "The extra layer under a type 2 hypervisor is what costs it performance and gains it convenience.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "t1",
+      "kind": "plain",
+      "label": "Type 1 (bare metal)",
+      "members": [
+        "t1-vm",
+        "t1-hv",
+        "t1-hw"
+      ]
+    },
+    {
+      "id": "t2",
+      "kind": "plain",
+      "label": "Type 2 (hosted)",
+      "members": [
+        "t2-vm",
+        "t2-hv",
+        "t2-os",
+        "t2-hw"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "t1-vm",
+      "kind": "box",
+      "label": "Virtual machines",
+      "col": 0,
+      "row": 0,
+      "w": 300,
+      "role": "process"
+    },
+    {
+      "id": "t1-hv",
+      "kind": "box",
+      "label": "Type 1 hypervisor",
+      "detail": "ESXi, Hyper-V, KVM",
+      "col": 0,
+      "row": 1,
+      "w": 300,
+      "role": "compute"
+    },
+    {
+      "id": "t1-hw",
+      "kind": "box",
+      "label": "Hardware",
+      "col": 0,
+      "row": 3,
+      "w": 300,
+      "role": "store"
+    },
+    {
+      "id": "t2-vm",
+      "kind": "box",
+      "label": "Virtual machines",
+      "col": 1,
+      "row": 0,
+      "w": 300,
+      "role": "process"
+    },
+    {
+      "id": "t2-hv",
+      "kind": "box",
+      "label": "Type 2 hypervisor",
+      "detail": "VirtualBox, VMware Workstation",
+      "col": 1,
+      "row": 1,
+      "w": 300,
+      "role": "compute"
+    },
+    {
+      "id": "t2-os",
+      "kind": "box",
+      "label": "Host operating system",
+      "detail": "the extra layer",
+      "col": 1,
+      "row": 2,
+      "w": 300,
+      "role": "queue"
+    },
+    {
+      "id": "t2-hw",
+      "kind": "box",
+      "label": "Hardware",
+      "col": 1,
+      "row": 3,
+      "w": 300,
+      "role": "store"
+    }
+  ]
+}

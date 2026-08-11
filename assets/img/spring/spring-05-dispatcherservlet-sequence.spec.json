@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "id": "spring-05-dispatcherservlet-sequence",
+  "title": "DispatcherServlet coordinates; it does not do the work itself",
+  "subtitle": "Each step is a delegate it looks up, which is what makes every one of them replaceable.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 14
+  },
+  "containers": [
+    {
+      "id": "dispatcher-box",
+      "kind": "plain",
+      "label": "DispatcherServlet (front controller): coordinates delegates",
+      "members": [
+        "hm",
+        "ha",
+        "csr",
+        "ret"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "kind": "box",
+      "label": "Client request",
+      "col": 0,
+      "row": 0,
+      "detail": "GET /orders/42",
+      "w": 500
+    },
+    {
+      "id": "hm",
+      "kind": "box",
+      "label": "HandlerMapping",
+      "col": 0,
+      "row": 1,
+      "detail": "match the request to a handler",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 500
+    },
+    {
+      "id": "ha",
+      "kind": "box",
+      "label": "HandlerAdapter",
+      "col": 0,
+      "row": 2,
+      "detail": "invoke it, bind the arguments",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 500
+    },
+    {
+      "id": "csr",
+      "kind": "box",
+      "label": "Controller, Service, Repository",
+      "col": 0,
+      "row": 3,
+      "detail": "your beans",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 500
+    },
+    {
+      "id": "ret",
+      "kind": "box",
+      "label": "Return value handling",
+      "col": 0,
+      "row": 4,
+      "detail": "HttpMessageConverter or view resolution",
+      "role": "process",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 500
+    },
+    {
+      "id": "response",
+      "kind": "box",
+      "label": "Client response",
+      "col": 0,
+      "row": 5,
+      "role": "store",
+      "w": 500
+    }
+  ],
+  "edges": [
+    {
+      "id": "request-to-hm",
+      "source": "request",
+      "target": "hm"
+    },
+    {
+      "id": "hm-to-ha",
+      "source": "hm",
+      "target": "ha"
+    },
+    {
+      "id": "ha-to-csr",
+      "source": "ha",
+      "target": "csr"
+    },
+    {
+      "id": "csr-to-ret",
+      "source": "csr",
+      "target": "ret"
+    },
+    {
+      "id": "ret-to-response",
+      "source": "ret",
+      "target": "response"
+    }
+  ]
+}

@@ -2,103 +2,114 @@
   "schema_version": 1,
   "id": "probe-state-flow",
   "title": "Startup gates the other two probes; liveness and readiness then judge independently",
-  "subtitle": "A readiness failure only removes the Pod from the EndpointSlice. A liveness or startup failure restarts the container.",
-  "diagram_type": "lifecycle",
-  "profile": "product-runtime",
+  "subtitle": "A readiness failure only removes the Pod from the EndpointSlice. A liveness failure restarts the container.",
   "layout": {
-    "node_w": 250,
-    "node_h": 92,
-    "col_gap": 120,
-    "row_gap": 70
+    "icon_cell_w": 190,
+    "col_gap": 58,
+    "row_gap": 26
   },
   "nodes": [
     {
       "id": "starting",
+      "kind": "service",
+      "service": "k8s:pod",
       "label": "Container starting",
-      "role": "process",
+      "detail": "process is up, not yet judged",
       "col": 0,
-      "row": 1
+      "row": 1,
+      "step": 1,
+      "step_at": "top-left"
     },
     {
       "id": "startup",
+      "kind": "box",
       "label": "Startup probe",
       "detail": "blocks the other two until it first succeeds",
-      "role": "process",
       "col": 1,
-      "row": 1
+      "row": 1,
+      "step": 2,
+      "step_at": "top-left"
     },
     {
       "id": "readiness",
+      "kind": "box",
       "label": "Readiness probe",
       "detail": "can it take traffic now?",
-      "role": "process",
       "col": 2,
-      "row": 0
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
     },
     {
       "id": "liveness",
+      "kind": "box",
       "label": "Liveness probe",
       "detail": "is it stuck beyond recovery?",
-      "role": "process",
       "col": 2,
-      "row": 2
+      "row": 2,
+      "step": 4,
+      "step_at": "top-left"
     },
     {
       "id": "ready",
+      "kind": "box",
       "label": "In the EndpointSlice",
-      "detail": "Service sends traffic",
-      "role": "store",
+      "detail": "the Service sends traffic",
       "col": 3,
-      "row": 0
+      "row": 0,
+      "role": "store"
     },
     {
       "id": "notready",
+      "kind": "box",
       "label": "Out of the EndpointSlice",
-      "detail": "process keeps running, kubelet retries",
-      "role": "queue",
+      "detail": "the process keeps running, kubelet retries",
       "col": 3,
-      "row": 1
+      "row": 1,
+      "role": "queue"
     },
     {
       "id": "restart",
+      "kind": "box",
       "label": "Container restart",
-      "detail": "restart policy applies",
-      "role": "danger",
+      "detail": "the restart policy applies",
       "col": 3,
-      "row": 2
+      "row": 2,
+      "role": "danger"
     }
   ],
   "edges": [
     {
-      "id": "starts",
+      "id": "starting-to-startup",
       "source": "starting",
       "target": "startup"
     },
     {
-      "id": "unblocks-readiness",
+      "id": "startup-to-readiness",
       "source": "startup",
       "target": "readiness"
     },
     {
-      "id": "unblocks-liveness",
+      "id": "startup-to-liveness",
       "source": "startup",
       "target": "liveness"
     },
     {
-      "id": "readiness-passes",
+      "id": "readiness-to-ready",
       "source": "readiness",
       "target": "ready"
     },
     {
-      "id": "readiness-fails",
+      "id": "readiness-to-notready",
       "source": "readiness",
-      "target": "notready"
+      "target": "notready",
+      "dashed": true
     },
     {
-      "id": "liveness-fails",
+      "id": "liveness-to-restart",
       "source": "liveness",
       "target": "restart",
-      "emphasis": true
+      "dashed": true
     }
   ]
 }

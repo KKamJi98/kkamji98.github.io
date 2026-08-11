@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "horizontal-pod-autoscaling",
+  "title": "The HPA loop reads metrics, computes a replica count, and patches the workload",
+  "subtitle": "Metrics Server has to be installed and reporting; without it the HPA shows unknown targets and never scales.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "metrics",
+      "kind": "box",
+      "label": "Metrics Server",
+      "col": 0,
+      "row": 0,
+      "detail": "serves metrics.k8s.io",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "hpa",
+      "kind": "service",
+      "label": "HPA controller",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:hpa",
+      "detail": "recomputes on a fixed interval",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "deploy",
+      "kind": "service",
+      "label": "Deployment",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:deploy",
+      "detail": "its scale subresource is patched",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "count",
+      "kind": "box",
+      "label": "Desired replica count",
+      "col": 3,
+      "row": 0,
+      "detail": "current replicas x current/target",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pods",
+      "kind": "service",
+      "label": "Pods",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "added or removed",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "metrics-to-hpa",
+      "source": "metrics",
+      "target": "hpa"
+    },
+    {
+      "id": "hpa-to-deploy",
+      "source": "hpa",
+      "target": "deploy"
+    },
+    {
+      "id": "deploy-to-count",
+      "source": "deploy",
+      "target": "count"
+    },
+    {
+      "id": "count-to-pods",
+      "source": "count",
+      "target": "pods"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "id": "aws-waf-request-flow",
+  "title": "AWS WAF evaluates a request at the entry point, not at the origin",
+  "subtitle": "Rules run in priority order; the Web ACL default action decides anything no rule matched.",
+  "layout": {
+    "icon_cell_w": 186,
+    "col_gap": 62,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "aws-cloud",
+      "kind": "aws_cloud",
+      "label": "AWS Cloud",
+      "members": [
+        "entry",
+        "webacl",
+        "origin",
+        "blocked"
+      ]
+    },
+    {
+      "id": "protected",
+      "kind": "plain",
+      "label": "Protected entry point",
+      "members": [
+        "entry",
+        "webacl"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "service": "client",
+      "label": "Client",
+      "detail": "HTTP(S) request",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "entry",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront, ALB\nor API Gateway",
+      "detail": "a supported entry point;\nEC2, NLB and EKS Pods cannot take a Web ACL directly",
+      "col": 1,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "webacl",
+      "kind": "service",
+      "service": "waf",
+      "label": "AWS WAF Web ACL",
+      "detail": "rules by priority\nAllow, Block, Count, CAPTCHA",
+      "col": 2,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "origin",
+      "kind": "service",
+      "service": "ec2",
+      "label": "Application origin",
+      "detail": "EC2, NLB, EKS\nmust be reachable only through the entry point",
+      "col": 3,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "blocked",
+      "kind": "box",
+      "label": "Blocked",
+      "detail": "403 without reaching the origin",
+      "role": "danger",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-request",
+      "source": "client",
+      "target": "entry"
+    },
+    {
+      "id": "inspect",
+      "source": "entry",
+      "target": "webacl",
+      "emphasis": true
+    },
+    {
+      "id": "allow",
+      "source": "webacl",
+      "target": "origin",
+      "emphasis": true
+    },
+    {
+      "id": "block",
+      "source": "webacl",
+      "target": "blocked",
+      "dashed": true
+    }
+  ]
+}

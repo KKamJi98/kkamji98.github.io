@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "spring-03-ioc-before-after",
+  "title": "The container owning construction is what removes the coupling",
+  "subtitle": "The classes do not change shape. What changes is who calls new, and that is enough to make each one testable alone.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-03-ioc-before-after-l",
+      "kind": "plain",
+      "label": "Before: manual new (tight coupling)",
+      "members": [
+        "ctrl-before",
+        "svc-before",
+        "repo-before"
+      ]
+    },
+    {
+      "id": "spring-03-ioc-before-after-r",
+      "kind": "plain",
+      "label": "After: IoC container (loose coupling)",
+      "members": [
+        "ctrl-after",
+        "svc-after",
+        "repo-after"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ctrl-before",
+      "kind": "box",
+      "label": "OrderController",
+      "col": 0,
+      "row": 0,
+      "detail": "news its own OrderService",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "svc-before",
+      "kind": "box",
+      "label": "OrderService",
+      "col": 0,
+      "row": 1,
+      "detail": "news its own OrderRepository",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "repo-before",
+      "kind": "box",
+      "label": "OrderRepository",
+      "col": 0,
+      "row": 2,
+      "detail": "concrete type baked in",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "ctrl-after",
+      "kind": "box",
+      "label": "OrderController (bean)",
+      "col": 1,
+      "row": 0,
+      "detail": "receives OrderService",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "svc-after",
+      "kind": "box",
+      "label": "OrderService (bean)",
+      "col": 1,
+      "row": 1,
+      "detail": "receives OrderRepository",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "repo-after",
+      "kind": "box",
+      "label": "OrderRepository (bean)",
+      "col": 1,
+      "row": 2,
+      "detail": "swappable behind its type",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "spring-03-ioc-before-after-note",
+      "kind": "text",
+      "label": "Construction baked into the code is the coupling. The container building and injecting is what breaks it.",
+      "col": 0,
+      "row": 3,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "ctrl-before-to-svc-before",
+      "source": "ctrl-before",
+      "target": "svc-before"
+    },
+    {
+      "id": "svc-before-to-repo-before",
+      "source": "svc-before",
+      "target": "repo-before"
+    },
+    {
+      "id": "ctrl-after-to-svc-after",
+      "source": "ctrl-after",
+      "target": "svc-after"
+    },
+    {
+      "id": "svc-after-to-repo-after",
+      "source": "svc-after",
+      "target": "repo-after"
+    }
+  ]
+}

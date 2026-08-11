@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "spring-06-thread-per-request",
+  "title": "One worker fully occupies one request, blocking included",
+  "subtitle": "Concurrency is bounded by the pool size, so slow I/O turns into a queue rather than into more throughput.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 14
+  },
+  "containers": [
+    {
+      "id": "pool",
+      "kind": "plain",
+      "label": "Tomcat thread pool (max around 200)",
+      "members": [
+        "w1",
+        "w2",
+        "w3",
+        "overflow"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "reqA",
+      "kind": "box",
+      "label": "Request A",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "reqB",
+      "kind": "box",
+      "label": "Request B",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "reqC",
+      "kind": "box",
+      "label": "Request C",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "reqMore",
+      "kind": "box",
+      "label": "Request D, E, ...",
+      "col": 0,
+      "row": 3,
+      "role": "queue"
+    },
+    {
+      "id": "w1",
+      "kind": "box",
+      "label": "worker-1 serves Request A",
+      "col": 1,
+      "row": 0,
+      "detail": "blocked on I/O, still held",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "w2",
+      "kind": "box",
+      "label": "worker-2 serves Request B",
+      "col": 1,
+      "row": 1,
+      "detail": "blocked on I/O, still held",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "w3",
+      "kind": "box",
+      "label": "worker-3 serves Request C",
+      "col": 1,
+      "row": 2,
+      "detail": "blocked on I/O, still held",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "overflow",
+      "kind": "box",
+      "label": "Pool full",
+      "col": 1,
+      "row": 3,
+      "detail": "wait queue, then reject or time out",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "note-stack",
+      "kind": "text",
+      "label": "Each worker carries its own call stack in native memory, which is why the pool size also costs memory.",
+      "col": 0,
+      "row": 4,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "reqA-to-w1",
+      "source": "reqA",
+      "target": "w1"
+    },
+    {
+      "id": "reqB-to-w2",
+      "source": "reqB",
+      "target": "w2"
+    },
+    {
+      "id": "reqC-to-w3",
+      "source": "reqC",
+      "target": "w3"
+    },
+    {
+      "id": "reqMore-to-overflow",
+      "source": "reqMore",
+      "target": "overflow"
+    }
+  ]
+}

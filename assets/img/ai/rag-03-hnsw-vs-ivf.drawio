@@ -1,58 +1,64 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram id="rag-03-hnsw-ivf" name="HNSW vs IVF">
-    <mxGraphModel background="#FFFFFF" dx="900" dy="500" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="460" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="rag-03-hnsw-vs-ivf" name="HNSW walks a graph; IVF narrows to a few clusters first">
+    <mxGraphModel dx="966" dy="536" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="966" pageHeight="536" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="hHNSW" value="HNSW (graph-based)" style="rounded=1;fillColor=#E8F0FE;strokeColor=#1A73E8;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#202124;shadow=0;strokeWidth=1.25;html=0;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="340" height="40" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="942.08" height="512.0" as="geometry" />
         </mxCell>
-        <mxCell id="l2" value="Layer 2 (sparse)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="140" y="104" width="140" height="40" as="geometry" />
+        <mxCell id="title" value="HNSW walks a graph; IVF narrows to a few clusters first" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="898.08" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="l1" value="Layer 1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="174" width="220" height="40" as="geometry" />
+        <mxCell id="subtitle" value="The trade is memory against tuning: HNSW holds a graph in RAM, IVF holds centroids and makes nprobe your recall dial." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="898.08" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="l0" value="Layer 0 (all vectors)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="60" y="244" width="300" height="40" as="geometry" />
+        <mxCell id="hnsw" value="HNSW (graph based)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="509" height="319" as="geometry" />
         </mxCell>
-        <mxCell id="hnote" value="high recall, low latency / higher memory" style="text;html=0;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
-          <mxGeometry x="40" y="300" width="340" height="24" as="geometry" />
+        <mxCell id="ivf" value="IVF (cluster based)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="589" y="104" width="343" height="398" as="geometry" />
         </mxCell>
-        <mxCell id="hd1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="l2" target="l1">
+        <mxCell id="l2" value="Layer 2 (sparse)&#xa;long hops; ef_search sets how wide the walk is" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="130" y="146" width="317" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" value="Layer 1&#xa;shorter hops" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="200" y="218" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" value="Layer 0 (all vectors)&#xa;the full graph" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="200" y="290" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hnote" value="high recall at low latency, higher memory; ef_search is the search knob" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="56" y="377" width="465" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="q" value="Query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="673" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cent" value="Centroids&#xa;coarse quantizer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="673" y="218" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="probe" value="Probe top-nprobe lists&#xa;how many clusters to open" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="669" y="290" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="scan" value="Scan candidates&#xa;exact distance inside the lists" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="650" y="362" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="inote" value="memory efficient, recall is tuned with nprobe" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="611" y="456" width="299" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-to-l1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4984;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l2" target="l1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hd2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="l1" target="l0">
+        <mxCell id="l1-to-l0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l1" target="l0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="hIVF" value="IVF (cluster-based)" style="rounded=1;fillColor=#E6F4EA;strokeColor=#34A853;verticalAlign=middle;align=center;fontStyle=1;fontSize=13;fontColor=#202124;shadow=0;strokeWidth=1.25;html=0;" vertex="1" parent="1">
-          <mxGeometry x="500" y="40" width="340" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="q" value="Query" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="600" y="104" width="140" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="cent" value="Centroids (coarse quantizer)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="560" y="174" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="probe" value="Probe top-nprobe lists" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="560" y="244" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="scan" value="Scan candidates" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="560" y="314" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="inote" value="memory efficient / tune nprobe" style="text;html=0;align=center;fontSize=11;fontColor=#34A853;" vertex="1" parent="1">
-          <mxGeometry x="500" y="366" width="340" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="id1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="q" target="cent">
+        <mxCell id="q-to-cent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q" target="cent">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="id2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="cent" target="probe">
+        <mxCell id="cent-to-probe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cent" target="probe">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="id3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="probe" target="scan">
+        <mxCell id="probe-to-scan" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="probe" target="scan">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

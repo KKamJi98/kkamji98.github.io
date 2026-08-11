@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "monitoring-observability-flow",
+  "title": "Monitoring tells you a threshold moved; observability is what lets you ask why",
+  "subtitle": "Monitoring is an operational activity over conditions you already chose. Observability is a property of the system that decides whether a new question can be answered at all.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "signal",
+      "kind": "box",
+      "label": "Monitoring signal",
+      "col": 0,
+      "row": 0,
+      "detail": "a known metric crossing a threshold",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "alert",
+      "kind": "box",
+      "label": "Alert or dashboard",
+      "col": 1,
+      "row": 0,
+      "detail": "the first thing a human sees",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "telemetry",
+      "kind": "box",
+      "label": "Logs, metrics, traces",
+      "col": 2,
+      "row": 0,
+      "detail": "the three signals available to query",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "investigation",
+      "kind": "box",
+      "label": "Investigation",
+      "col": 3,
+      "row": 0,
+      "detail": "asking questions the alert did not encode",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "mitigation",
+      "kind": "box",
+      "label": "Mitigation and prevention",
+      "col": 4,
+      "row": 0,
+      "detail": "a new signal usually comes out of this",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "signal-to-alert",
+      "source": "signal",
+      "target": "alert"
+    },
+    {
+      "id": "alert-to-telemetry",
+      "source": "alert",
+      "target": "telemetry"
+    },
+    {
+      "id": "telemetry-to-investigation",
+      "source": "telemetry",
+      "target": "investigation"
+    },
+    {
+      "id": "investigation-to-mitigation",
+      "source": "investigation",
+      "target": "mitigation"
+    }
+  ]
+}

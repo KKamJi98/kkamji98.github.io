@@ -1,73 +1,73 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" modified="2026-08-02T21:10:00.000Z" version="26.0.14" type="device">
-  <diagram id="aws-waf-challenge-token-flow" name="AWS WAF Challenge Browser Flow">
-    <mxGraphModel dx="1600" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="aws-waf-challenge-token-flow" name="A WAF Challenge only completes on a route that can run the interstitial">
+    <mxGraphModel dx="1790" dy="345" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1790" pageHeight="345" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="AWS WAF Challenge Browser Flow" style="text;html=0;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#202124;" vertex="1" parent="1">
-          <mxGeometry x="80" y="55" width="790" height="45" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1766.26" height="321.0" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="Protect browser navigation first, then let the token reach protected fetches" style="text;html=0;align=left;verticalAlign=middle;fontSize=13;fontColor=#5f6368;" vertex="1" parent="1">
-          <mxGeometry x="80" y="103" width="850" height="30" as="geometry" />
+        <mxCell id="title" value="A WAF Challenge only completes on a route that can run the interstitial" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1722.26" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="browser" value="Browser&#xa;navigation" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="90" y="305" width="200" height="70" as="geometry" />
+        <mxCell id="subtitle" value="The 202 challenge needs a browser navigation to execute the JavaScript; a POST or OPTIONS request has nowhere to run it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1722.26" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="html" value="HTML GET&#xa;/signin" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e8f0fe;strokeColor=#1A73E8;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="300" y="305" width="200" height="70" as="geometry" />
+        <mxCell id="browser" value="Browser navigation&#xa;HTML GET /signin" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="96" y="134" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="waf" value="AWS WAF&#xa;Challenge rule" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fef7e0;strokeColor=#F9AB00;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="525" y="305" width="200" height="70" as="geometry" />
+        <mxCell id="waf" value="AWS WAF Challenge rule&#xa;evaluates the token cookie" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;" vertex="1" parent="1">
+          <mxGeometry x="323" y="134" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="absent" value="No valid token&#xa;202 challenge" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="775" y="195" width="200" height="70" as="geometry" />
+        <mxCell id="absent" value="No valid token&#xa;202 challenge response" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="488" y="150" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="js" value="WAF JavaScript&#xa;get token" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e6f4ea;strokeColor=#34A853;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="775" y="410" width="200" height="70" as="geometry" />
+        <mxCell id="js" value="WAF JavaScript&#xa;solves the challenge in the page" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="714" y="150" width="228" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="cookie" value="aws-waf-token&#xa;HTTPS cookie" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e8f0fe;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="410" width="200" height="70" as="geometry" />
+        <mxCell id="cookie" value="aws-waf-token&#xa;HTTPS cookie, reused on later requests" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="992" y="150" width="266" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="valid" value="Valid token&#xa;continue rules" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e6f4ea;strokeColor=#34A853;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="305" width="200" height="70" as="geometry" />
+        <mxCell id="valid" value="Valid token&#xa;remaining rules continue to run" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1308" y="150" width="222" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="app" value="Application&#xa;response" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#5F6368;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1285" y="305" width="200" height="70" as="geometry" />
+        <mxCell id="app" value="Application response&#xa;the origin is reached" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="150" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="api" value="POST and OPTIONS&#xa;no interstitial target" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=13;dashed=1;arcSize=12;spacingTop=5;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="478" y="480" width="264" height="60" as="geometry" />
+        <mxCell id="api" value="POST and CORS preflight OPTIONS&#xa;matched requests are still challenged, but a non-HTML route&#xa;cannot run the interstitial that acquires the token" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="488" y="248" width="1268" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="note" value="Observe in Count, narrow the HTML scope, then switch only the verified browser route to Challenge." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=13;arcSize=12;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="90" y="735" width="1375" height="55" as="geometry" />
+        <mxCell id="browser-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="62" y="104" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="e-browser-html" edge="1" parent="1" source="browser" target="html" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="waf-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="289" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="absent-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="454" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="js-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cookie-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="958" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="browser-to-waf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="browser" target="waf">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-html-waf" edge="1" parent="1" source="html" target="waf" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="waf-to-absent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="waf" target="absent">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-waf-absent" edge="1" parent="1" source="waf" target="absent" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="735" y="340" />
-              <mxPoint x="735" y="230" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e-absent-js" edge="1" parent="1" source="absent" target="js" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+        <mxCell id="absent-to-js" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="absent" target="js">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-js-cookie" edge="1" parent="1" source="js" target="cookie" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="js-to-cookie" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="js" target="cookie">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-cookie-valid" edge="1" parent="1" source="cookie" target="valid" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="valid-to-app" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="valid" target="app">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-valid-app" edge="1" parent="1" source="valid" target="app" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=classic;endFill=1;endSize=7;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e-api-waf" edge="1" parent="1" source="api" target="waf" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;dashed=1;endArrow=none;strokeWidth=1.25;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="cookie-to-valid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cookie" target="valid">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

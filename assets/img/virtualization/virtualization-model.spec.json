@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "virtualization-model",
+  "title": "The hypervisor is the layer that makes one machine look like several",
+  "subtitle": "Each guest gets its own kernel, which is the line between a virtual machine and a container.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 16
+  },
+  "nodes": [
+    {
+      "id": "app",
+      "kind": "box",
+      "label": "Application",
+      "col": 0,
+      "row": 0,
+      "w": 380,
+      "role": "process"
+    },
+    {
+      "id": "guest",
+      "kind": "box",
+      "label": "Guest operating system",
+      "detail": "its own kernel",
+      "col": 0,
+      "row": 1,
+      "w": 380,
+      "role": "process"
+    },
+    {
+      "id": "vm",
+      "kind": "box",
+      "label": "Virtual machine",
+      "detail": "virtual CPU, memory, disk and NIC",
+      "col": 0,
+      "row": 2,
+      "w": 380,
+      "role": "compute"
+    },
+    {
+      "id": "hypervisor",
+      "kind": "box",
+      "label": "Hypervisor",
+      "detail": "schedules and isolates the guests",
+      "col": 0,
+      "row": 3,
+      "w": 380,
+      "role": "queue"
+    },
+    {
+      "id": "hw",
+      "kind": "box",
+      "label": "Physical hardware",
+      "detail": "CPU, memory, storage, network",
+      "col": 0,
+      "row": 4,
+      "w": 380,
+      "role": "store"
+    }
+  ]
+}

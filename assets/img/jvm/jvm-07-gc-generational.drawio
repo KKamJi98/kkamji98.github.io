@@ -1,38 +1,43 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="jvm-07-gc-generational" name="Generational GC">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="400" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="jvm-07-gc-generational" name="Most objects die young, which is what makes minor GC cheap">
+    <mxGraphModel dx="1089" dy="256" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1089" pageHeight="256" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="young-panel" parent="1" vertex="1" value="Young generation  -  Minor GC (frequent, cheap)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="210" y="100" width="460" height="200" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1065.92" height="232.0" as="geometry" />
         </mxCell>
-        <mxCell id="old-panel" parent="1" vertex="1" value="Old generation  -  Major / Mixed GC (expensive)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="700" y="100" width="450" height="200" as="geometry" />
+        <mxCell id="title" value="Most objects die young, which is what makes minor GC cheap" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1021.92" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="newobj" parent="1" vertex="1" value="new object" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="180" width="140" height="60" as="geometry" />
+        <mxCell id="subtitle" value="Only what survives repeated minor collections is promoted, so the expensive collection sees far less garbage." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1021.92" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="eden" parent="1" vertex="1" value="Eden&#xa;(new objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="240" y="170" width="170" height="80" as="geometry" />
+        <mxCell id="young-panel" value="Young generation: minor GC, frequent and cheap" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="706" height="118" as="geometry" />
         </mxCell>
-        <mxCell id="survivor" parent="1" vertex="1" value="Survivor&#xa;(S0 / S1, aging)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="460" y="170" width="180" height="80" as="geometry" />
+        <mxCell id="old-panel" value="Old generation: mixed or major GC, expensive" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="790" y="104" width="266" height="118" as="geometry" />
         </mxCell>
-        <mxCell id="old" parent="1" vertex="1" value="Old&#xa;(long-lived)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="730" y="170" width="180" height="80" as="geometry" />
+        <mxCell id="newobj" value="new object&#xa;allocated here first" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Most objects die in young (collected quickly by minor GC). Aged survivors are promoted to Old; Old fills slower and its collection is heavier." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="60" y="320" width="880" height="40" as="geometry" />
+        <mxCell id="eden" value="Eden&#xa;where allocation happens" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="282" y="146" width="177" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="g1" parent="1" edge="1" source="newobj" target="eden" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="survivor" value="Survivor S0 and S1&#xa;aged across minor collections" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="509" y="146" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="old" value="Old generation&#xa;promoted after enough survivals" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="812" y="146" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="newobj-to-eden" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="newobj" target="eden">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g2" parent="1" edge="1" source="eden" target="survivor" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="eden-to-survivor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eden" target="survivor">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g3" parent="1" edge="1" source="survivor" target="old" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="survivor-to-old" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="survivor" target="old">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

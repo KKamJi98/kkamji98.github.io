@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "mysql-kubernetes-deployment",
+  "title": "Config, secret and volume are wired to the MySQL pod before it can serve",
+  "subtitle": "The Secret holds the password and the PVC holds the data directory, so neither is baked into the pod spec.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "config",
+      "kind": "service",
+      "label": "ConfigMap and Secret",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:cm",
+      "detail": "server config and credentials",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pvc",
+      "kind": "service",
+      "label": "PersistentVolumeClaim",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:pvc",
+      "detail": "the MySQL data directory",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pod",
+      "kind": "service",
+      "label": "MySQL Pod",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "mounts both",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc",
+      "kind": "service",
+      "label": "Service",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:svc",
+      "detail": "a stable address for clients",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 4,
+      "row": 0,
+      "detail": "connects by service name",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "config-to-pvc",
+      "source": "config",
+      "target": "pvc"
+    },
+    {
+      "id": "pvc-to-pod",
+      "source": "pvc",
+      "target": "pod"
+    },
+    {
+      "id": "pod-to-svc",
+      "source": "pod",
+      "target": "svc"
+    },
+    {
+      "id": "svc-to-client",
+      "source": "svc",
+      "target": "client"
+    }
+  ]
+}

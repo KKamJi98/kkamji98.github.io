@@ -1,70 +1,88 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-01-request-flow" name="HTTP Request Lifecycle">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="1000" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-01-request-flow" name="One worker thread is held for the whole request, blocking included">
+    <mxGraphModel dx="897" dy="770" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="897" pageHeight="770" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="jvm-proc" parent="1" vertex="1" value="JVM Process ( java -jar app.jar )" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="110" y="96" width="540" height="824" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="873.4" height="746.0" as="geometry" />
         </mxCell>
-        <mxCell id="client" parent="1" vertex="1" value="Client" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="290" y="20" width="180" height="44" as="geometry" />
+        <mxCell id="title" value="One worker thread is held for the whole request, blocking included" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="829.4" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tomcat-connector" parent="1" vertex="1" value="Embedded Tomcat&#xa;Connector (:8080)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="140" width="320" height="60" as="geometry" />
+        <mxCell id="subtitle" value="Everything from the connector to the repository runs on that one thread, which is what bounds MVC concurrency." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="829.4" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="servlet-container" parent="1" vertex="1" value="Servlet Container&#xa;(assigns 1 worker thread)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="234" width="320" height="64" as="geometry" />
+        <mxCell id="jvm-proc" value="JVM process: java -jar app.jar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="177.6" y="172" width="564" height="526" as="geometry" />
         </mxCell>
-        <mxCell id="filter-chain" parent="1" vertex="1" value="Filter Chain&#xa;(security / logging / encoding)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="338" width="320" height="60" as="geometry" />
+        <mxCell id="client" value="Client&#xa;HTTP request" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="104" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="dispatcher" parent="1" vertex="1" value="DispatcherServlet&#xa;(front controller, mapped to /)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="220" y="436" width="320" height="64" as="geometry" />
+        <mxCell id="connector" value="Embedded Tomcat connector&#xa;accepts on :8080" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="214" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="handler" parent="1" vertex="1" value="HandlerMapping → HandlerAdapter&#xa;(find &amp; invoke controller method)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="540" width="320" height="56" as="geometry" />
+        <mxCell id="container" value="Servlet container&#xa;assigns one worker thread" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="282" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="csr" parent="1" vertex="1" value="Controller → Service → Repository&#xa;(all are Beans, live in heap)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="636" width="320" height="64" as="geometry" />
+        <mxCell id="filters" value="Filter chain&#xa;security, logging, encoding" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="350" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="converter" parent="1" vertex="1" value="HttpMessageConverter&#xa;(return object → JSON)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="220" y="740" width="320" height="58" as="geometry" />
+        <mxCell id="dispatcher" value="DispatcherServlet&#xa;the front controller, mapped to /" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="418" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="worker-note" parent="1" vertex="1" value="1 worker thread is held&#xa;for the whole request&#xa;(even while blocking on I/O)" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#F9AB00;fontStyle=2;">
-          <mxGeometry x="14" y="234" width="186" height="64" as="geometry" />
+        <mxCell id="handler" value="HandlerMapping and HandlerAdapter&#xa;find the handler, bind the arguments" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="486" width="520" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="client" target="tomcat-connector" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="csr" value="Controller, Service, Repository&#xa;all beans, all on the same thread" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="554" width="520" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="converter" value="HttpMessageConverter&#xa;return value serialised to JSON" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="199.6" y="622" width="520" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="worker-note" value="The worker thread is held for the entire request, including the time spent waiting on I/O." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="166.6" y="712" width="586" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="connector-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="184" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="container-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="252" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="filters-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="320" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dispatcher-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="388" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="handler-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="456" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="csr-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="524" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="converter-step" value="7" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="165.6" y="592" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-connector" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="connector">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="tomcat-connector" target="servlet-container" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="connector-to-container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="connector" target="container">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="servlet-container" target="filter-chain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="container-to-filters" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="container" target="filters">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="filter-chain" target="dispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="filters-to-dispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="filters" target="dispatcher">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" parent="1" edge="1" source="dispatcher" target="handler" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="dispatcher-to-handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dispatcher" target="handler">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e6" parent="1" edge="1" source="handler" target="csr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="handler-to-csr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="handler" target="csr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e7" parent="1" edge="1" source="csr" target="converter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e8" parent="1" edge="1" source="converter" target="client" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="700" y="769" />
-              <mxPoint x="700" y="42" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e9" parent="1" edge="1" source="worker-note" target="servlet-container" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=open;endSize=7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="csr-to-converter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="csr" target="converter">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

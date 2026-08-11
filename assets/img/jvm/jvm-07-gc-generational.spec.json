@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "jvm-07-gc-generational",
+  "title": "Most objects die young, which is what makes minor GC cheap",
+  "subtitle": "Only what survives repeated minor collections is promoted, so the expensive collection sees far less garbage.",
+  "layout": {
+    "col_gap": 50,
+    "row_gap": 24
+  },
+  "containers": [
+    {
+      "id": "young-panel",
+      "kind": "plain",
+      "label": "Young generation: minor GC, frequent and cheap",
+      "members": [
+        "newobj",
+        "eden",
+        "survivor"
+      ]
+    },
+    {
+      "id": "old-panel",
+      "kind": "plain",
+      "label": "Old generation: mixed or major GC, expensive",
+      "members": [
+        "old"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "newobj",
+      "kind": "box",
+      "label": "new object",
+      "col": 0,
+      "row": 0,
+      "detail": "allocated here first"
+    },
+    {
+      "id": "eden",
+      "kind": "box",
+      "label": "Eden",
+      "col": 1,
+      "row": 0,
+      "detail": "where allocation happens",
+      "role": "process"
+    },
+    {
+      "id": "survivor",
+      "kind": "box",
+      "label": "Survivor S0 and S1",
+      "col": 2,
+      "row": 0,
+      "detail": "aged across minor collections",
+      "role": "compute"
+    },
+    {
+      "id": "old",
+      "kind": "box",
+      "label": "Old generation",
+      "col": 3,
+      "row": 0,
+      "detail": "promoted after enough survivals",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "newobj-to-eden",
+      "source": "newobj",
+      "target": "eden"
+    },
+    {
+      "id": "eden-to-survivor",
+      "source": "eden",
+      "target": "survivor"
+    },
+    {
+      "id": "survivor-to-old",
+      "source": "survivor",
+      "target": "old"
+    }
+  ]
+}

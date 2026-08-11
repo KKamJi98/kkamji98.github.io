@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "ec2-jenkins-server-flow",
+  "title": "Jenkins on EC2 turns a commit into an artifact and hands it to a deploy target",
+  "subtitle": "The controller schedules the job; the artifact, not the workspace, is what moves to the next stage.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "repo",
+      "kind": "box",
+      "label": "Source repository",
+      "col": 0,
+      "row": 0,
+      "detail": "webhook or poll",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "jenkins",
+      "kind": "service",
+      "label": "Jenkins on EC2",
+      "col": 1,
+      "row": 0,
+      "service": "ec2",
+      "detail": "controller and executors",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "job",
+      "kind": "box",
+      "label": "Build job",
+      "col": 2,
+      "row": 0,
+      "detail": "compile, test, package",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "artifact",
+      "kind": "service",
+      "label": "Artifact or image",
+      "col": 3,
+      "row": 0,
+      "service": "ecr",
+      "detail": "the versioned output",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "target",
+      "kind": "box",
+      "label": "Deployment target",
+      "col": 4,
+      "row": 0,
+      "detail": "consumes the artifact",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "repo-to-jenkins",
+      "source": "repo",
+      "target": "jenkins"
+    },
+    {
+      "id": "jenkins-to-job",
+      "source": "jenkins",
+      "target": "job"
+    },
+    {
+      "id": "job-to-artifact",
+      "source": "job",
+      "target": "artifact"
+    },
+    {
+      "id": "artifact-to-target",
+      "source": "artifact",
+      "target": "target"
+    }
+  ]
+}

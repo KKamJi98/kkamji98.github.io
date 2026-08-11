@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "id": "spring-10-mono-flux-backpressure",
+  "title": "Nothing runs until subscribe, and the subscriber sets the pace",
+  "subtitle": "Operators only build a plan. Demand flows upstream through request(n), which is what makes backpressure part of the contract.",
+  "layout": {
+    "col_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "pub",
+      "kind": "box",
+      "label": "Publisher",
+      "col": 0,
+      "row": 0,
+      "detail": "Mono 0..1 or Flux 0..N",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ops",
+      "kind": "box",
+      "label": "Operators",
+      "col": 1,
+      "row": 0,
+      "detail": "map, filter, flatMap: plan only",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "sub",
+      "kind": "box",
+      "label": "Subscriber",
+      "col": 3,
+      "row": 0,
+      "detail": "onNext, onComplete, onError",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "spring-10-mono-flux-backpressure-note",
+      "kind": "text",
+      "label": "subscribe() triggers the flow. The subscriber signals demand with request(n), and the publisher may not exceed it.",
+      "col": 0,
+      "row": 1,
+      "colspan": 3
+    },
+    {
+      "id": "subscription",
+      "kind": "box",
+      "label": "Subscription",
+      "detail": "the contract carrying request(n) and cancel",
+      "col": 2,
+      "row": 0,
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pub-to-ops",
+      "source": "pub",
+      "target": "ops"
+    },
+    {
+      "id": "ops-to-subscription",
+      "source": "ops",
+      "target": "subscription"
+    },
+    {
+      "id": "subscription-to-sub",
+      "source": "subscription",
+      "target": "sub"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "spring-24-authn-authz",
+  "title": "먼저 인증으로 누구인지 확정하고, 그다음 인가로 허용 여부를 판단한다",
+  "subtitle": "인증 결과가 SecurityContext에 저장되어야 인가 단계가 비교할 권한을 갖는다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-24-authn-authz-l",
+      "kind": "plain",
+      "label": "Authentication (인증: 누구인가)",
+      "members": [
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    {
+      "id": "spring-24-authn-authz-r",
+      "kind": "plain",
+      "label": "Authorization (인가: 무엇을 허용)",
+      "members": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "a1",
+      "kind": "box",
+      "label": "credentials",
+      "col": 0,
+      "row": 0,
+      "detail": "Authentication 입력",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "a2",
+      "kind": "box",
+      "label": "AuthenticationManager",
+      "col": 0,
+      "row": 1,
+      "detail": "인증 수행",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "a3",
+      "kind": "box",
+      "label": "인증된 Authentication",
+      "col": 0,
+      "row": 2,
+      "detail": "principal과 authorities를 SecurityContext에 저장",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "b1",
+      "kind": "box",
+      "label": "AuthorizationFilter",
+      "col": 1,
+      "row": 0,
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "b2",
+      "kind": "box",
+      "label": "authorities와 접근 규칙 비교",
+      "col": 1,
+      "row": 1,
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "b3",
+      "kind": "box",
+      "label": "허용 또는 거부",
+      "col": 1,
+      "row": 2,
+      "detail": "거부 시 403 Forbidden",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "spring-24-authn-authz-note",
+      "kind": "text",
+      "label": "인증이 먼저 끝나야 인가가 비교할 권한이 존재한다. 순서가 뒤집히면 인가는 판단 근거를 갖지 못한다.",
+      "col": 0,
+      "row": 3,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1-to-a2",
+      "source": "a1",
+      "target": "a2"
+    },
+    {
+      "id": "a2-to-a3",
+      "source": "a2",
+      "target": "a3"
+    },
+    {
+      "id": "b1-to-b2",
+      "source": "b1",
+      "target": "b2"
+    },
+    {
+      "id": "b2-to-b3",
+      "source": "b2",
+      "target": "b3"
+    }
+  ]
+}

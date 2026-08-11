@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-03-distributed-sql-mpp",
+  "title": "An MPP engine splits one query across workers that each scan a slice",
+  "subtitle": "A single-node engine parses, scans and computes in one process, so it is bounded by one machine.",
+  "layout": {
+    "icon_cell_w": 170,
+    "col_gap": 58,
+    "row_gap": 24
+  },
+  "containers": [
+    {
+      "id": "engine",
+      "kind": "plain",
+      "label": "Distributed SQL engine (Trino, Presto, Athena)",
+      "members": [
+        "coord",
+        "w1",
+        "w2",
+        "w3"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "service": "client",
+      "label": "Client",
+      "col": 0,
+      "row": 1,
+      "detail": "submits SQL"
+    },
+    {
+      "id": "coord",
+      "kind": "box",
+      "label": "Coordinator",
+      "col": 1,
+      "row": 1,
+      "detail": "parse, plan, schedule"
+    },
+    {
+      "id": "w1",
+      "kind": "box",
+      "label": "Worker 1",
+      "col": 2,
+      "row": 0,
+      "detail": "executes tasks"
+    },
+    {
+      "id": "w2",
+      "kind": "box",
+      "label": "Worker 2",
+      "col": 2,
+      "row": 1,
+      "detail": "executes tasks"
+    },
+    {
+      "id": "w3",
+      "kind": "box",
+      "label": "Worker 3",
+      "col": 2,
+      "row": 2,
+      "detail": "executes tasks"
+    },
+    {
+      "id": "sources",
+      "kind": "box",
+      "label": "Data sources",
+      "col": 3,
+      "row": 1,
+      "detail": "S3, MySQL, Kafka\nreached through connectors",
+      "role": "store"
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Adding workers adds scan and compute capacity; the coordinator stays single and only plans.",
+      "col": 0,
+      "row": 3,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-coord",
+      "source": "client",
+      "target": "coord"
+    },
+    {
+      "id": "coord-to-w1",
+      "source": "coord",
+      "target": "w1"
+    },
+    {
+      "id": "coord-to-w2",
+      "source": "coord",
+      "target": "w2"
+    },
+    {
+      "id": "coord-to-w3",
+      "source": "coord",
+      "target": "w3"
+    },
+    {
+      "id": "w1-to-sources",
+      "source": "w1",
+      "target": "sources"
+    },
+    {
+      "id": "w2-to-sources",
+      "source": "w2",
+      "target": "sources"
+    },
+    {
+      "id": "w3-to-sources",
+      "source": "w3",
+      "target": "sources"
+    }
+  ]
+}

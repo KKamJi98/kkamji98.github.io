@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "hubble-exporter-flow",
+  "title": "The Hubble exporter is what makes flow data outlive the agent's ring buffer",
+  "subtitle": "Flow events are observed in eBPF and held in memory, so anything that must persist has to be exported.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "agent",
+      "kind": "service",
+      "label": "Cilium agent",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:ds",
+      "detail": "one DaemonSet pod per node",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "events",
+      "kind": "box",
+      "label": "Hubble flow events",
+      "col": 1,
+      "row": 0,
+      "detail": "eBPF observation points",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "exporter",
+      "kind": "box",
+      "label": "Hubble exporter",
+      "col": 2,
+      "row": 0,
+      "detail": "filters and formats the flows",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "endpoint",
+      "kind": "box",
+      "label": "Metrics endpoint",
+      "col": 3,
+      "row": 0,
+      "detail": "scrapeable on the agent",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "prom",
+      "kind": "box",
+      "label": "Prometheus",
+      "col": 4,
+      "row": 0,
+      "detail": "scrapes and stores",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "agent-to-events",
+      "source": "agent",
+      "target": "events"
+    },
+    {
+      "id": "events-to-exporter",
+      "source": "events",
+      "target": "exporter"
+    },
+    {
+      "id": "exporter-to-endpoint",
+      "source": "exporter",
+      "target": "endpoint"
+    },
+    {
+      "id": "endpoint-to-prom",
+      "source": "endpoint",
+      "target": "prom"
+    }
+  ]
+}

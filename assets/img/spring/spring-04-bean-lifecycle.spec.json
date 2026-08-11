@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "id": "spring-04-bean-lifecycle",
+  "title": "A singleton bean is built once and then occupies the heap for the process lifetime",
+  "subtitle": "The init callback runs after injection, not after instantiation, which is why a dependency is safe to use there.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "Container start",
+      "col": 0,
+      "row": 0,
+      "detail": "component scan",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "Register BeanDefinition",
+      "col": 0,
+      "row": 1,
+      "detail": "metadata only, no instance yet",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "Instantiate bean",
+      "col": 0,
+      "row": 2,
+      "detail": "constructor runs",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s4",
+      "kind": "box",
+      "label": "Inject dependencies",
+      "col": 0,
+      "row": 3,
+      "detail": "constructor or field injection",
+      "role": "compute",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s5",
+      "kind": "box",
+      "label": "@PostConstruct",
+      "col": 0,
+      "row": 4,
+      "detail": "init callback, dependencies available",
+      "role": "queue",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s6",
+      "kind": "box",
+      "label": "Bean ready",
+      "col": 0,
+      "row": 5,
+      "detail": "one shared singleton in the heap",
+      "role": "store",
+      "step": 6,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s7",
+      "kind": "box",
+      "label": "@PreDestroy",
+      "col": 0,
+      "row": 6,
+      "detail": "on container shutdown",
+      "role": "queue",
+      "step": 7,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s8",
+      "kind": "box",
+      "label": "Bean destroyed",
+      "col": 0,
+      "row": 7,
+      "role": "external",
+      "step": 8,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "spring-04-bean-lifecycle-note",
+      "kind": "text",
+      "label": "One shared instance serves every request, so the bean graph is part of the baseline heap occupancy.",
+      "col": 0,
+      "row": 8
+    }
+  ],
+  "edges": [
+    {
+      "id": "s1-to-s2",
+      "source": "s1",
+      "target": "s2"
+    },
+    {
+      "id": "s2-to-s3",
+      "source": "s2",
+      "target": "s3"
+    },
+    {
+      "id": "s3-to-s4",
+      "source": "s3",
+      "target": "s4"
+    },
+    {
+      "id": "s4-to-s5",
+      "source": "s4",
+      "target": "s5"
+    },
+    {
+      "id": "s5-to-s6",
+      "source": "s5",
+      "target": "s6"
+    },
+    {
+      "id": "s6-to-s7",
+      "source": "s6",
+      "target": "s7"
+    },
+    {
+      "id": "s7-to-s8",
+      "source": "s7",
+      "target": "s8"
+    }
+  ]
+}

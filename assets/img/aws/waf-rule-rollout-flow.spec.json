@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "waf-rule-rollout-flow",
+  "title": "Ship a WAF rule in Count first, narrow it, then Block with an expiry",
+  "subtitle": "Every step stays reversible. Edge propagation means Block and rollback cannot be judged in the same short observation window.",
+  "layout": {
+    "icon_cell_w": 180,
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "evidence",
+      "kind": "box",
+      "label": "Evidence and owner",
+      "col": 0,
+      "row": 0,
+      "detail": "the request pattern to stop",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "count",
+      "kind": "box",
+      "label": "Count mode",
+      "col": 1,
+      "row": 0,
+      "detail": "inspects and bills, never blocks",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "observe",
+      "kind": "service",
+      "service": "cloudwatch",
+      "label": "Metrics and logs",
+      "col": 2,
+      "row": 0,
+      "detail": "sampled requests\nlabel and rule name",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "exception",
+      "kind": "box",
+      "label": "Scope exception",
+      "col": 3,
+      "row": 0,
+      "detail": "IP set exception or scope-down, not a wider block",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "block",
+      "kind": "service",
+      "service": "waf",
+      "label": "Gradual Block",
+      "col": 4,
+      "row": 0,
+      "detail": "one route at a time, with an expiry date",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "propagation",
+      "kind": "text",
+      "label": "A CloudFront Web ACL change needs time to reach the global edge, so the effect of Block and of a rollback must be observed in separate windows.",
+      "col": 0,
+      "row": 1,
+      "colspan": 5
+    }
+  ],
+  "edges": [
+    {
+      "id": "evidence-to-count",
+      "source": "evidence",
+      "target": "count"
+    },
+    {
+      "id": "count-to-observe",
+      "source": "count",
+      "target": "observe"
+    },
+    {
+      "id": "observe-to-exception",
+      "source": "observe",
+      "target": "exception"
+    },
+    {
+      "id": "exception-to-block",
+      "source": "exception",
+      "target": "block"
+    }
+  ]
+}

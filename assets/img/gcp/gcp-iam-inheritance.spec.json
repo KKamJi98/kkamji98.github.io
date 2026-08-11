@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "gcp-iam-inheritance",
+  "title": "IAM grants accumulate down the hierarchy; they never subtract",
+  "subtitle": "The effective policy on a resource is the union of every binding above it, so a broad grant high up cannot be narrowed lower down.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "org",
+      "kind": "box",
+      "label": "Organization",
+      "col": 0,
+      "row": 0,
+      "detail": "grant: Viewer",
+      "role": "process"
+    },
+    {
+      "id": "folder",
+      "kind": "box",
+      "label": "Folder: engineering",
+      "col": 0,
+      "row": 1,
+      "detail": "no binding of its own"
+    },
+    {
+      "id": "project",
+      "kind": "box",
+      "label": "Project: app-prod",
+      "col": 0,
+      "row": 2,
+      "detail": "grant: Editor",
+      "role": "process"
+    },
+    {
+      "id": "result",
+      "kind": "box",
+      "label": "Effective on app-prod",
+      "col": 0,
+      "row": 3,
+      "detail": "Viewer + Editor, the union of both",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "org-to-folder",
+      "source": "org",
+      "target": "folder"
+    },
+    {
+      "id": "folder-to-project",
+      "source": "folder",
+      "target": "project"
+    },
+    {
+      "id": "project-to-result",
+      "source": "project",
+      "target": "result"
+    }
+  ]
+}

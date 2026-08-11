@@ -1,56 +1,58 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-06-thread-per-request" name="Thread Per Request">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="920" pageHeight="520" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-06-thread-per-request" name="One worker fully occupies one request, blocking included">
+    <mxGraphModel dx="859" dy="498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="859" pageHeight="498" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="pool" parent="1" vertex="1" value="Tomcat thread pool (max ~200)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="260" y="80" width="380" height="290" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="835.7" height="474.0" as="geometry" />
         </mxCell>
-        <mxCell id="reqA" parent="1" vertex="1" value="Request A" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="120" width="140" height="44" as="geometry" />
+        <mxCell id="title" value="One worker fully occupies one request, blocking included" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="791.7" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="reqB" parent="1" vertex="1" value="Request B" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="180" width="140" height="44" as="geometry" />
+        <mxCell id="subtitle" value="Concurrency is bounded by the pool size, so slow I/O turns into a queue rather than into more throughput." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="791.7" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="reqC" parent="1" vertex="1" value="Request C" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="240" width="140" height="44" as="geometry" />
+        <mxCell id="pool" value="Tomcat thread pool (max around 200)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="329.47" y="104" width="444" height="322" as="geometry" />
         </mxCell>
-        <mxCell id="reqMore" parent="1" vertex="1" value="Request D, E, ..." style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="405" width="180" height="44" as="geometry" />
+        <mxCell id="reqA" value="Request A" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="86.47" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w1" parent="1" vertex="1" value="worker-1  ->  Request A  (blocked on I/O)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="290" y="120" width="320" height="44" as="geometry" />
+        <mxCell id="reqB" value="Request B" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="86.47" y="214" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w2" parent="1" vertex="1" value="worker-2  ->  Request B  (blocked on I/O)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="290" y="180" width="320" height="44" as="geometry" />
+        <mxCell id="reqC" value="Request C" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="86.47" y="282" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="w3" parent="1" vertex="1" value="worker-3  ->  Request C  (blocked on I/O)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="290" y="240" width="320" height="44" as="geometry" />
+        <mxCell id="reqMore" value="Request D, E, ..." style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="86.47" y="350" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="wdots" parent="1" vertex="1" value="...  (1 worker fully occupies 1 request, blocking included)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="290" y="300" width="320" height="40" as="geometry" />
+        <mxCell id="w1" value="worker-1 serves Request A&#xa;blocked on I/O, still held" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="351.47" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="overflow" parent="1" vertex="1" value="pool full -> wait queue -> reject / timeout" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="260" y="402" width="380" height="50" as="geometry" />
+        <mxCell id="w2" value="worker-2 serves Request B&#xa;blocked on I/O, still held" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="351.47" y="214" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note-stack" parent="1" vertex="1" value="each worker = its own call stack&#xa;in native memory (~0.5-1MB, -Xss)&#xa;-> off-heap, counts toward container memory" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#34A853;fontStyle=2;">
-          <mxGeometry x="664" y="120" width="240" height="80" as="geometry" />
+        <mxCell id="w3" value="worker-3 serves Request C&#xa;blocked on I/O, still held" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="351.47" y="282" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="a1" parent="1" edge="1" source="reqA" target="w1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="overflow" value="Pool full&#xa;wait queue, then reject or time out" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="351.47" y="350" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="note-stack" value="Each worker carries its own call stack in native memory, which is why the pool size also costs memory." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="76.47" y="440" width="707" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="reqA-to-w1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reqA" target="w1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a2" parent="1" edge="1" source="reqB" target="w2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="reqB-to-w2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reqB" target="w2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a3" parent="1" edge="1" source="reqC" target="w3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="reqC-to-w3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reqC" target="w3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a4" parent="1" edge="1" source="reqMore" target="overflow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a-note" parent="1" edge="1" source="note-stack" target="pool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=open;endSize=7;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.2;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="reqMore-to-overflow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reqMore" target="overflow">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

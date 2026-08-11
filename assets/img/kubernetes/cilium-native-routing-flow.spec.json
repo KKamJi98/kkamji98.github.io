@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "cilium-native-routing-flow",
+  "title": "Native routing only works if the underlay already knows every Pod CIDR",
+  "subtitle": "There is no encapsulation to hide the Pod address, so a missing route drops the packet. A static route or BGP is what supplies it.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "src-pod",
+      "kind": "service",
+      "label": "Source Pod",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "packet leaves with the pod IP",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "routing-table",
+      "kind": "box",
+      "label": "Cilium routing table",
+      "col": 1,
+      "row": 0,
+      "detail": "pod CIDR per node",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "node-route",
+      "kind": "box",
+      "label": "Static route or BGP",
+      "col": 2,
+      "row": 0,
+      "detail": "without it the packet is dropped, not tunnelled",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "remote-node",
+      "kind": "service",
+      "label": "Remote node",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "receives an unencapsulated packet",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "dst-pod",
+      "kind": "service",
+      "label": "Destination Pod",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "source IP preserved end to end",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "src-pod-to-routing-table",
+      "source": "src-pod",
+      "target": "routing-table"
+    },
+    {
+      "id": "routing-table-to-node-route",
+      "source": "routing-table",
+      "target": "node-route"
+    },
+    {
+      "id": "node-route-to-remote-node",
+      "source": "node-route",
+      "target": "remote-node"
+    },
+    {
+      "id": "remote-node-to-dst-pod",
+      "source": "remote-node",
+      "target": "dst-pod"
+    }
+  ]
+}

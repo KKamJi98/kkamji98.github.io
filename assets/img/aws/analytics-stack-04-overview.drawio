@@ -1,69 +1,101 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram name="AWS Analytics Stack" id="aws-analytics-overview">
-    <mxGraphModel background="#FFFFFF" dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="470" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="analytics-stack-04-overview" name="Athena, Glue and S3 each own one job in the AWS analytics stack">
+    <mxGraphModel dx="1096" dy="584" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1096" pageHeight="584" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="user" value="Query Author" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="40" y="120" width="110" height="60" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1072.26" height="560.0" as="geometry" />
         </mxCell>
-
-        <mxCell id="engines_lane" value="Query Engines" style="swimlane;rounded=1;arcSize=12;html=0;fillColor=#1A73E8;fontColor=#FFFFFF;swimlaneFillColor=#E8F0FE;strokeColor=#1A73E8;startSize=28;shadow=0;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="210" y="50" width="180" height="190" as="geometry" />
+        <mxCell id="title" value="Athena, Glue and S3 each own one job in the AWS analytics stack" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1028.26" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="athena" value="Amazon Athena" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="engines_lane">
-          <mxGeometry x="20" y="48" width="140" height="55" as="geometry" />
+        <mxCell id="subtitle" value="Engines run SQL, the catalog holds schema and location, S3 holds bytes, and two permission gates sit across all of it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1028.26" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="redshift" value="Redshift Spectrum" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;dashed=1;strokeWidth=1.25;" vertex="1" parent="engines_lane">
-          <mxGeometry x="20" y="118" width="140" height="55" as="geometry" />
+        <mxCell id="engines" value="Query engines" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="104" width="224" height="266" as="geometry" />
         </mxCell>
-
-        <mxCell id="catalog_lane" value="Metadata" style="swimlane;rounded=1;arcSize=12;html=0;fillColor=#F9AB00;fontColor=#FFFFFF;swimlaneFillColor=#FEF7E0;strokeColor=#F9AB00;startSize=28;shadow=0;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="450" y="50" width="180" height="190" as="geometry" />
+        <mxCell id="metadata" value="Metadata" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="550" y="173" width="224" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="glue_catalog" value="Glue Data Catalog" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="catalog_lane">
-          <mxGeometry x="20" y="60" width="140" height="80" as="geometry" />
+        <mxCell id="storage" value="Storage" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="830" y="104" width="232" height="266" as="geometry" />
         </mxCell>
-
-        <mxCell id="storage_lane" value="Storage" style="swimlane;rounded=1;arcSize=12;html=0;fillColor=#34A853;fontColor=#FFFFFF;swimlaneFillColor=#E6F4EA;strokeColor=#34A853;startSize=28;shadow=0;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="690" y="50" width="200" height="190" as="geometry" />
+        <mxCell id="gates" value="Permission gates (both must allow)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="400" width="504" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="s3" value="Amazon S3" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="storage_lane">
-          <mxGeometry x="20" y="48" width="160" height="50" as="geometry" />
+        <mxCell id="user" value="Query author" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" vertex="1" parent="1">
+          <mxGeometry x="100" y="222" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="s3tables" value="S3 Tables (Iceberg)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="storage_lane">
-          <mxGeometry x="20" y="113" width="160" height="55" as="geometry" />
+        <mxCell id="athena" value="Amazon Athena&#xa;serverless SQL" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
+          <mxGeometry x="358" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-
-        <mxCell id="perm_lane" value="Permission Gates" style="swimlane;rounded=1;arcSize=12;html=0;fillColor=#EA4335;fontColor=#FFFFFF;swimlaneFillColor=#FCE8E6;strokeColor=#EA4335;startSize=28;shadow=0;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="210" y="300" width="680" height="120" as="geometry" />
+        <mxCell id="redshift" value="Redshift Spectrum&#xa;external tables" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.redshift;" vertex="1" parent="1">
+          <mxGeometry x="358" y="262" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="iam" value="IAM&#xa;(API authorization)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="perm_lane">
-          <mxGeometry x="60" y="45" width="240" height="55" as="geometry" />
+        <mxCell id="glue" value="Glue Data Catalog&#xa;schema + S3 LOCATION" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
+          <mxGeometry x="638" y="215" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="lakeformation" value="Lake Formation&#xa;(data authorization)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#FFFFFF;strokeColor=#EA4335;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="perm_lane">
-          <mxGeometry x="380" y="45" width="240" height="55" as="geometry" />
+        <mxCell id="s3" value="Amazon S3&#xa;objects and prefixes" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="922" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_user_athena" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="user" target="athena">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="s3tables" value="S3 Tables&#xa;Iceberg, managed compaction" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="922" y="262" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="e_athena_catalog" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="athena" target="glue_catalog">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="iam" value="IAM&#xa;API authorization" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="358" y="442" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="e_catalog_s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="glue_catalog" target="s3">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="lf" value="Lake Formation&#xa;data authorization" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lake_formation;" vertex="1" parent="1">
+          <mxGeometry x="638" y="442" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="e_catalog_s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;fontColor=#202124;strokeColor=#232F3E;endArrow=block;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="glue_catalog" target="s3tables">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="user-to-athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="athena">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="218.0" y="234.0" />
+              <mxPoint x="218.0" y="170.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e_iam_engines" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="iam" target="engines_lane">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="user-to-redshift" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="redshift">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="288.0" y="258.0" />
+              <mxPoint x="288.0" y="286.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e_lf_storage" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=open;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="lakeformation" target="s3tables">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="athena-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="athena" target="glue">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="483.33" y="170.0" />
+              <mxPoint x="483.33" y="227.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="redshift-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="redshift" target="glue">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="560.67" y="286.0" />
+              <mxPoint x="560.67" y="251.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="glue-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="764.67" y="227.0" />
+              <mxPoint x="764.67" y="170.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="glue-to-s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3tables">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="843.33" y="251.0" />
+              <mxPoint x="843.33" y="286.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,23 +1,34 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="jvm-02-stack-vs-heap" name="Stack vs Heap">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="430" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="jvm-02-stack-vs-heap" name="The frame holds the reference; the heap holds the object">
+    <mxGraphModel dx="1006" dy="262" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1006" pageHeight="262" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="code" parent="1" vertex="1" value="void process() {&#xa;    int count = 10;&#xa;    Order order = new Order();&#xa;}  // returns" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;strokeWidth=1.25;">
-          <mxGeometry x="40" y="100" width="380" height="150" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="982.0" height="238.0" as="geometry" />
         </mxCell>
-        <mxCell id="stackr" parent="1" vertex="1" value="Stack  (process() frame, per-thread)&#xa;&#xa;count = 10&#xa;order = [reference]" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="480" y="84" width="350" height="116" as="geometry" />
+        <mxCell id="title" value="The frame holds the reference; the heap holds the object" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="938.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="heapr" parent="1" vertex="1" value="Heap  (shared)&#xa;&#xa;Order object" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="480" y="250" width="240" height="92" as="geometry" />
+        <mxCell id="subtitle" value="Returning from a method pops the local and the reference. The object stays until no reference reaches it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="938.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="On return: count and 'order' (the reference) pop with the frame. The Order object stays on the heap until GC reclaims it." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="40" y="270" width="746" height="60" as="geometry" />
+        <mxCell id="code" value="void process() {&#xa;    int count = 10;&#xa;    Order order = new Order();&#xa;}" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="300" height="78" as="geometry" />
         </mxCell>
-        <mxCell id="ref" parent="1" edge="1" source="stackr" target="heapr" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;fontColor=#202124;strokeColor=#232F3E;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="stackr" value="Stack: the process() frame&#xa;count = 10&#xa;order = a reference" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="388" y="112" width="280" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="heapr" value="Heap (shared)&#xa;the Order object itself" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="722" y="116" width="250" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="On return, count and the reference pop with the frame. The Order object survives until it is unreachable." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="204" width="938" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="code-to-stackr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5064;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="code" target="stackr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="stackr-to-heapr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.4921;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="stackr" target="heapr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-11-iceberg-cow-vs-mor",
+  "title": "Copy-on-Write pays at write time, Merge-on-Read pays at read time",
+  "subtitle": "Both produce the same query result; they differ in which side of the workload absorbs the cost.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 26
+  },
+  "containers": [
+    {
+      "id": "c-cow",
+      "kind": "plain",
+      "label": "Copy-on-Write",
+      "members": [
+        "cow-src",
+        "cow-new",
+        "cow-cap"
+      ]
+    },
+    {
+      "id": "c-mor",
+      "kind": "plain",
+      "label": "Merge-on-Read",
+      "members": [
+        "mor-src",
+        "mor-del",
+        "mor-merge",
+        "mor-cap"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cow-src",
+      "kind": "box",
+      "label": "data file A",
+      "col": 0,
+      "row": 0,
+      "detail": "rows 1..n",
+      "role": "store"
+    },
+    {
+      "id": "cow-new",
+      "kind": "box",
+      "label": "new data file A'",
+      "col": 1,
+      "row": 0,
+      "detail": "rewritten; the old file leaves the snapshot",
+      "role": "process"
+    },
+    {
+      "id": "cow-cap",
+      "kind": "text",
+      "label": "Fast reads, costly writes. Suits read-heavy tables.",
+      "col": 0,
+      "row": 1,
+      "colspan": 2
+    },
+    {
+      "id": "mor-src",
+      "kind": "box",
+      "label": "data file A",
+      "col": 2,
+      "row": 0,
+      "detail": "kept as it is",
+      "role": "store"
+    },
+    {
+      "id": "mor-del",
+      "kind": "box",
+      "label": "delete file",
+      "col": 3,
+      "row": 0,
+      "detail": "position or equality deletes",
+      "role": "danger"
+    },
+    {
+      "id": "mor-merge",
+      "kind": "box",
+      "label": "read = data file merged with delete file",
+      "col": 2,
+      "row": 1,
+      "detail": "DELETE and UPDATE only append a delete file",
+      "role": "process",
+      "colspan": 2
+    },
+    {
+      "id": "mor-cap",
+      "kind": "text",
+      "label": "Fast writes, merge cost on read. Suits frequent updates and CDC.",
+      "col": 2,
+      "row": 2,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "cow-src-to-cow-new",
+      "source": "cow-src",
+      "target": "cow-new"
+    },
+    {
+      "id": "mor-src-to-mor-merge",
+      "source": "mor-src",
+      "target": "mor-merge"
+    },
+    {
+      "id": "mor-del-to-mor-merge",
+      "source": "mor-del",
+      "target": "mor-merge"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "jvm-05-fatjar-to-container",
+  "title": "A buildpack turns a fat jar into an image without a Dockerfile",
+  "subtitle": "The buildpack picks the JRE and adds a launcher; the launcher is what sets -Xmx at start-up.",
+  "layout": {
+    "col_gap": 54
+  },
+  "nodes": [
+    {
+      "id": "b1",
+      "kind": "box",
+      "label": "fat jar (app.jar)",
+      "col": 0,
+      "row": 0,
+      "detail": "the Gradle or Maven output",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "b2",
+      "kind": "box",
+      "label": "Paketo buildpack",
+      "col": 1,
+      "row": 0,
+      "detail": "bootBuildImage",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "b3",
+      "kind": "box",
+      "label": "OCI image",
+      "col": 2,
+      "row": 0,
+      "detail": "JRE plus jar plus launcher",
+      "role": "process",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "b4",
+      "kind": "box",
+      "label": "container run",
+      "col": 3,
+      "row": 0,
+      "detail": "the launcher's memory calculator sets -Xmx",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "No Dockerfile is involved. The JRE choice and the -Xmx decision both belong to the buildpack.",
+      "col": 0,
+      "row": 1,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "b1-to-b2",
+      "source": "b1",
+      "target": "b2"
+    },
+    {
+      "id": "b2-to-b3",
+      "source": "b2",
+      "target": "b3"
+    },
+    {
+      "id": "b3-to-b4",
+      "source": "b3",
+      "target": "b4"
+    }
+  ]
+}

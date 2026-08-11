@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "helm-hook-lifecycle",
+  "title": "Helm hooks run as separate resources around the release, not inside it",
+  "subtitle": "Each hook is applied and waited on before the next phase starts, so a failing hook stops the install.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "cmd",
+      "kind": "box",
+      "label": "helm install",
+      "col": 0,
+      "row": 0,
+      "detail": "or helm upgrade",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pre",
+      "kind": "service",
+      "label": "Pre-install hook",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:job",
+      "detail": "must succeed before the chart is applied",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "resources",
+      "kind": "box",
+      "label": "Release resources",
+      "col": 2,
+      "row": 0,
+      "detail": "the chart manifests",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "post",
+      "kind": "service",
+      "label": "Post-install hook",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:job",
+      "detail": "runs once the resources are in",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ready",
+      "kind": "box",
+      "label": "Release deployed",
+      "col": 4,
+      "row": 0,
+      "detail": "hook resources are not part of the release",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "cmd-to-pre",
+      "source": "cmd",
+      "target": "pre"
+    },
+    {
+      "id": "pre-to-resources",
+      "source": "pre",
+      "target": "resources"
+    },
+    {
+      "id": "resources-to-post",
+      "source": "resources",
+      "target": "post"
+    },
+    {
+      "id": "post-to-ready",
+      "source": "post",
+      "target": "ready"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "route-selection-order",
+  "title": "Longest prefix wins first; only then do distance and metric break the tie",
+  "subtitle": "A more specific route beats a better metric, which is why a stray /32 can override an entire routing policy.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "dest",
+      "kind": "box",
+      "label": "Destination IP",
+      "col": 0,
+      "row": 0,
+      "detail": "of the packet being forwarded",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "prefix",
+      "kind": "box",
+      "label": "Longest prefix match",
+      "col": 1,
+      "row": 0,
+      "detail": "the most specific route wins",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "candidates",
+      "kind": "box",
+      "label": "Still more than one?",
+      "col": 2,
+      "row": 0,
+      "detail": "same prefix from several sources",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "distance",
+      "kind": "box",
+      "label": "Administrative distance",
+      "col": 3,
+      "row": 0,
+      "detail": "a local preference between sources;\nit is not advertised in RIP or OSPF packets",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "metric",
+      "kind": "box",
+      "label": "Metric and next hop",
+      "col": 4,
+      "row": 0,
+      "detail": "RIP counts hops, OSPF sums link cost",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "dest-to-prefix",
+      "source": "dest",
+      "target": "prefix"
+    },
+    {
+      "id": "prefix-to-candidates",
+      "source": "prefix",
+      "target": "candidates"
+    },
+    {
+      "id": "candidates-to-distance",
+      "source": "candidates",
+      "target": "distance"
+    },
+    {
+      "id": "distance-to-metric",
+      "source": "distance",
+      "target": "metric"
+    }
+  ]
+}

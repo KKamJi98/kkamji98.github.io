@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "aws-glue-partitioning-pruning-flow",
+  "title": "Partition pruning decides how many S3 prefixes Athena opens",
+  "subtitle": "The partition list comes from either the Glue catalog or projection rules; the planner uses whichever one is configured.",
+  "layout": {
+    "icon_cell_w": 180,
+    "col_gap": 56,
+    "row_gap": 30
+  },
+  "nodes": [
+    {
+      "id": "query",
+      "kind": "box",
+      "label": "SQL query",
+      "col": 0,
+      "row": 0,
+      "detail": "WHERE dt, region, hour",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "catalog",
+      "kind": "service",
+      "service": "glue",
+      "label": "Glue Data Catalog",
+      "col": 1,
+      "row": 0,
+      "detail": "registered partitions",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "projection",
+      "kind": "box",
+      "label": "Partition projection",
+      "col": 1,
+      "row": 1,
+      "detail": "date, enum and integer rules\nno catalog round trip",
+      "role": "compute"
+    },
+    {
+      "id": "planner",
+      "kind": "service",
+      "service": "athena",
+      "label": "Athena planning",
+      "col": 2,
+      "row": 0,
+      "detail": "selects the S3 prefixes to scan",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 prefixes scanned",
+      "col": 3,
+      "row": 0,
+      "detail": "only the selected locations",
+      "step": 4,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Projection is an Athena feature. Other engines such as Redshift Spectrum read partitions from the catalog only.",
+      "col": 0,
+      "row": 2,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "query-to-catalog",
+      "source": "query",
+      "target": "catalog"
+    },
+    {
+      "id": "query-to-projection",
+      "source": "query",
+      "target": "projection"
+    },
+    {
+      "id": "catalog-to-planner",
+      "source": "catalog",
+      "target": "planner"
+    },
+    {
+      "id": "projection-to-planner",
+      "source": "projection",
+      "target": "planner"
+    },
+    {
+      "id": "planner-to-s3",
+      "source": "planner",
+      "target": "s3",
+      "emphasis": true
+    }
+  ]
+}

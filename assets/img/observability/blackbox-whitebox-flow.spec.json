@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "blackbox-whitebox-flow",
+  "title": "A blackbox check tells you something is wrong; whitebox telemetry tells you what",
+  "subtitle": "Symptom and cause are relative to the layer you own, so this split is a starting point rather than a classification.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "probe",
+      "kind": "service",
+      "label": "User or synthetic check",
+      "col": 0,
+      "row": 0,
+      "service": "users",
+      "detail": "the outside view",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "symptom",
+      "kind": "box",
+      "label": "Blackbox symptom",
+      "col": 1,
+      "row": 0,
+      "detail": "latency, error rate, availability",
+      "role": "danger",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "alert",
+      "kind": "box",
+      "label": "Symptom alert",
+      "col": 2,
+      "row": 0,
+      "detail": "pages on user impact, not on causes",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "telemetry",
+      "kind": "box",
+      "label": "Whitebox telemetry",
+      "col": 3,
+      "row": 0,
+      "detail": "logs, metrics and traces from inside",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "decision",
+      "kind": "box",
+      "label": "Recovery decision",
+      "col": 4,
+      "row": 0,
+      "detail": "compare the user journey SLI and the internal signals\non one incident timeline",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "probe-to-symptom",
+      "source": "probe",
+      "target": "symptom"
+    },
+    {
+      "id": "symptom-to-alert",
+      "source": "symptom",
+      "target": "alert"
+    },
+    {
+      "id": "alert-to-telemetry",
+      "source": "alert",
+      "target": "telemetry"
+    },
+    {
+      "id": "telemetry-to-decision",
+      "source": "telemetry",
+      "target": "decision"
+    }
+  ]
+}

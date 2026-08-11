@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "spring-20-n-plus-1-fix",
+  "title": "Fetch the children with the parents, or fetch them in batches",
+  "subtitle": "JOIN FETCH collapses it to one query; @BatchSize keeps the extra queries but bounds how many there are.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-20-n-plus-1-fix-l",
+      "kind": "plain",
+      "label": "Solution A: JOIN FETCH (usually preferred)",
+      "members": [
+        "la",
+        "lr"
+      ]
+    },
+    {
+      "id": "spring-20-n-plus-1-fix-r",
+      "kind": "plain",
+      "label": "Solution B: batch fetching (@BatchSize = k)",
+      "members": [
+        "ra",
+        "rr"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "la",
+      "kind": "box",
+      "label": "SELECT o FROM Order o JOIN FETCH o.items",
+      "col": 0,
+      "row": 0,
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "lr",
+      "kind": "box",
+      "label": "one query",
+      "col": 0,
+      "row": 1,
+      "detail": "parent and children joined",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "ra",
+      "kind": "box",
+      "label": "One parent query, then WHERE order_id IN (...)",
+      "col": 1,
+      "row": 0,
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "rr",
+      "kind": "box",
+      "label": "1 + ceil(N / k) queries",
+      "col": 1,
+      "row": 1,
+      "detail": "bounded rather than eliminated",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "spring-20-n-plus-1-fix-note",
+      "kind": "text",
+      "label": "@EntityGraph declares the same fetch in Spring Data JPA, and a DTO projection avoids loading the entities at all.",
+      "col": 0,
+      "row": 2,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "la-to-lr",
+      "source": "la",
+      "target": "lr"
+    },
+    {
+      "id": "ra-to-rr",
+      "source": "ra",
+      "target": "rr"
+    }
+  ]
+}

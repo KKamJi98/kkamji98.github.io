@@ -5,6 +5,8 @@ author: kkamji
 categories: [Frontend, DevOps]
 tags: [vite, frontend, bundler, esm, rolldown, build-tool, javascript]
 comments: true
+image:
+  path: /assets/img/javascript/vite/vite.webp
 ---
 
 프로젝트가 커질수록 dev server 시작이 느려집니다. webpack 기반 dev server는 애플리케이션 전체를 사전에 번들링한 뒤 브라우저에 서빙하므로, 모듈이 수백 개를 넘어가면 `npm run dev` 한 번에 수십 초를 기다려야 합니다. 파일 하나를 저장할 때마다 HMR이 전체 번들을 다시 만들지는 않지만, dependency graph를 순회하고 변경 영향 범위를 계산하는 데 시간이 걸립니다.

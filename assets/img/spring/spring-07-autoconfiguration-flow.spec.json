@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "spring-07-autoconfiguration-flow",
+  "title": "Auto-configuration backs off as soon as you define the bean yourself",
+  "subtitle": "Each candidate is evaluated against its conditions, so your own definition wins without any opt-out flag.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 24
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "Application start",
+      "col": 0,
+      "row": 0,
+      "detail": "@SpringBootApplication",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "Load AutoConfiguration candidates",
+      "col": 1,
+      "row": 0,
+      "detail": "@EnableAutoConfiguration",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "Are the conditions met?",
+      "col": 2,
+      "row": 0,
+      "detail": "OnClass, OnMissingBean, OnProperty",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "s4yes",
+      "kind": "box",
+      "label": "Register the auto-config beans",
+      "col": 3,
+      "row": 0,
+      "detail": "embedded Tomcat, DispatcherServlet, converters",
+      "role": "store"
+    },
+    {
+      "id": "s4no",
+      "kind": "box",
+      "label": "Skip: back off",
+      "col": 3,
+      "row": 1,
+      "detail": "your own bean already covers it",
+      "role": "external"
+    },
+    {
+      "id": "note-loop",
+      "kind": "text",
+      "label": "This runs once per candidate, which is why one explicit bean only disables that one piece.",
+      "col": 0,
+      "row": 2,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "s1-to-s2",
+      "source": "s1",
+      "target": "s2"
+    },
+    {
+      "id": "s2-to-s3",
+      "source": "s2",
+      "target": "s3"
+    },
+    {
+      "id": "s3-to-s4yes",
+      "source": "s3",
+      "target": "s4yes"
+    },
+    {
+      "id": "s3-to-s4no",
+      "source": "s3",
+      "target": "s4no",
+      "dashed": true
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "microk8s-worker-join",
+  "title": "A MicroK8s worker joins with a token minted by the control plane",
+  "subtitle": "The token is short-lived, so a stale join command fails at registration rather than later at workload time.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "cp",
+      "kind": "service",
+      "label": "MicroK8s control plane",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:master",
+      "detail": "microk8s add-node",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cmd",
+      "kind": "box",
+      "label": "Join command",
+      "col": 1,
+      "row": 0,
+      "detail": "carries a short-lived token",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "worker",
+      "kind": "service",
+      "label": "Worker node",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "microk8s join",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "register",
+      "kind": "box",
+      "label": "Cluster registration",
+      "col": 3,
+      "row": 0,
+      "detail": "the Node object appears",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "workloads",
+      "kind": "service",
+      "label": "Scheduled workloads",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "the node becomes schedulable",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "cp-to-cmd",
+      "source": "cp",
+      "target": "cmd"
+    },
+    {
+      "id": "cmd-to-worker",
+      "source": "cmd",
+      "target": "worker"
+    },
+    {
+      "id": "worker-to-register",
+      "source": "worker",
+      "target": "register"
+    },
+    {
+      "id": "register-to-workloads",
+      "source": "register",
+      "target": "workloads"
+    }
+  ]
+}

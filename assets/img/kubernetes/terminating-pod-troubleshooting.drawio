@@ -1,35 +1,58 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="26.0.14">
-  <diagram id="terminating-pod-troubleshooting" name="Terminating Pod troubleshooting flow">
-    <mxGraphModel dx="1600" dy="700" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="850" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="terminating-pod-troubleshooting" name="A pod stuck Terminating is waiting on a finalizer or a volume, not on the kubelet">
+    <mxGraphModel dx="1441" dy="254" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1441" pageHeight="254" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-pod-deletion-request" value="Pod deletion request" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1417.18" height="230.0" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-api-server" value="API server" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="385" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="title" value="A pod stuck Terminating is waiting on a finalizer or a volume, not on the kubelet" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1373.18" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-node-kubelet" value="Node kubelet" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="700" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="subtitle" value="The API server keeps the object until every finalizer clears, so a deletionTimestamp alone never removes it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1373.18" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-volume-detach" value="Volume detach" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1015" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="request" value="Pod deletion request&#xa;deletionTimestamp is set" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="68" y="150" width="177" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-pod-removal" value="Pod removal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1330" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="api" value="API server&#xa;waits for finalizers to clear" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=api;" vertex="1" parent="1">
+          <mxGeometry x="378" y="134" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-pod-deletion-request-to-node-2-api-server" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-pod-deletion-request" target="node-2-api-server">
+        <mxCell id="kubelet" value="Node kubelet&#xa;SIGTERM, then SIGKILL at the grace period" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=kubelet;" vertex="1" parent="1">
+          <mxGeometry x="673" y="134" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="volume" value="Volume detach&#xa;unmount and detach must both succeed" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pv;" vertex="1" parent="1">
+          <mxGeometry x="991" y="134" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="removal" value="Pod object removed&#xa;only after every step completes" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pod;" vertex="1" parent="1">
+          <mxGeometry x="1276" y="134" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="request-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="120" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="api-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="344" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kubelet-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="639" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="volume-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="957" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="removal-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1242" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="request-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="request" target="api">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-api-server-to-node-3-node-kubelet" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-api-server" target="node-3-node-kubelet">
+        <mxCell id="api-to-kubelet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="kubelet">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-node-kubelet-to-node-4-volume-detach" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-node-kubelet" target="node-4-volume-detach">
+        <mxCell id="kubelet-to-volume" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kubelet" target="volume">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-4-node-4-volume-detach-to-node-5-pod-removal" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-volume-detach" target="node-5-pod-removal">
+        <mxCell id="volume-to-removal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="volume" target="removal">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

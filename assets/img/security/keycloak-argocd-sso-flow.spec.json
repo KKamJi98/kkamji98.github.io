@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "keycloak-argocd-sso-flow",
+  "title": "Argo CD trusts Keycloak for identity and maps groups to RBAC",
+  "subtitle": "The group claim has to be in the token; without it every user lands on the default policy.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "browser",
+      "kind": "box",
+      "label": "Browser",
+      "col": 0,
+      "row": 0,
+      "detail": "opens the Argo CD UI",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "keycloak",
+      "kind": "box",
+      "label": "Keycloak login",
+      "col": 1,
+      "row": 0,
+      "detail": "the OIDC provider",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "token",
+      "kind": "box",
+      "label": "OIDC token",
+      "col": 2,
+      "row": 0,
+      "detail": "carries the groups claim",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "argocd",
+      "kind": "box",
+      "label": "Argo CD",
+      "col": 3,
+      "row": 0,
+      "detail": "validates the token",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "rbac",
+      "kind": "box",
+      "label": "Group-based access",
+      "col": 4,
+      "row": 0,
+      "detail": "policy maps a group to a role",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "browser-to-keycloak",
+      "source": "browser",
+      "target": "keycloak"
+    },
+    {
+      "id": "keycloak-to-token",
+      "source": "keycloak",
+      "target": "token"
+    },
+    {
+      "id": "token-to-argocd",
+      "source": "token",
+      "target": "argocd"
+    },
+    {
+      "id": "argocd-to-rbac",
+      "source": "argocd",
+      "target": "rbac"
+    }
+  ]
+}

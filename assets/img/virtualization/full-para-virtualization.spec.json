@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "full-para-virtualization",
+  "title": "Full virtualization emulates the hardware; paravirtualization asks the guest to cooperate",
+  "subtitle": "A paravirtualized guest needs a modified kernel, which is what buys it the cheaper hypercall path.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 18
+  },
+  "containers": [
+    {
+      "id": "full",
+      "kind": "plain",
+      "label": "Full virtualization",
+      "members": [
+        "f-guest",
+        "f-trap"
+      ]
+    },
+    {
+      "id": "para",
+      "kind": "plain",
+      "label": "Paravirtualization",
+      "members": [
+        "p-guest",
+        "p-call"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "f-guest",
+      "kind": "box",
+      "label": "Unmodified guest OS",
+      "detail": "believes it owns the hardware",
+      "col": 0,
+      "row": 0,
+      "w": 320,
+      "role": "process"
+    },
+    {
+      "id": "f-trap",
+      "kind": "box",
+      "label": "Trap and emulate",
+      "detail": "privileged instructions are intercepted",
+      "col": 0,
+      "row": 1,
+      "w": 320,
+      "role": "queue"
+    },
+    {
+      "id": "p-guest",
+      "kind": "box",
+      "label": "Modified guest OS",
+      "detail": "knows it is virtualized",
+      "col": 1,
+      "row": 0,
+      "w": 320,
+      "role": "process"
+    },
+    {
+      "id": "p-call",
+      "kind": "box",
+      "label": "Hypercall",
+      "detail": "the guest asks directly, no emulation",
+      "col": 1,
+      "row": 1,
+      "w": 320,
+      "role": "compute"
+    },
+    {
+      "id": "hv",
+      "kind": "box",
+      "label": "Hypervisor",
+      "detail": "serves both models",
+      "col": 0,
+      "row": 2,
+      "colspan": 2,
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "f-guest-to-f-trap",
+      "source": "f-guest",
+      "target": "f-trap"
+    },
+    {
+      "id": "p-guest-to-p-call",
+      "source": "p-guest",
+      "target": "p-call"
+    },
+    {
+      "id": "f-trap-to-hv",
+      "source": "f-trap",
+      "target": "hv"
+    },
+    {
+      "id": "p-call-to-hv",
+      "source": "p-call",
+      "target": "hv"
+    }
+  ]
+}

@@ -1,94 +1,86 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram name="Data Architecture History" id="architecture-history">
-    <mxGraphModel background="#FFFFFF" dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="700" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="analytics-stack-01-architecture-history" name="Each analytics generation answers the limit of the one before it">
+    <mxGraphModel dx="1071" dy="882" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1071" pageHeight="882" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="title" value="Evolution of data analytics architectures" style="text;html=0;align=left;verticalAlign=middle;fontColor=#202124;fontStyle=1;fontSize=20;" vertex="1" parent="1">
-          <mxGeometry x="20" y="16" width="860" height="30" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1047.42" height="858.0" as="geometry" />
         </mxCell>
-
-        <mxCell id="lhdr" value="streaming / organizational" style="text;html=0;align=center;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="20" y="52" width="365" height="20" as="geometry" />
+        <mxCell id="title" value="Each analytics generation answers the limit of the one before it" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1003.42" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="rhdr" value="storage / engine evolution" style="text;html=0;align=center;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="515" y="52" width="365" height="20" as="geometry" />
+        <mxCell id="subtitle" value="The storage and engine line runs on the right; the streaming and organizational line runs on the left." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1003.42" height="22" as="geometry" />
         </mxCell>
-
-        <mxCell id="y1" value="1990s" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="78" width="90" height="44" as="geometry" />
+        <mxCell id="hdr-l" value="Streaming and organizational patterns" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="248" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="r1" value="Data Warehouse&#xa;(schema-on-write, ETL)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="78" width="365" height="44" as="geometry" />
+        <mxCell id="hdr-y" value="Year" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="104" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y2" value="2000s" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="134" width="90" height="44" as="geometry" />
+        <mxCell id="hdr-r" value="Storage and engine evolution" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="104" width="191" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="r2" value="OLAP cubes / MPP appliances&#xa;(Teradata, Netezza, Greenplum)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="134" width="365" height="44" as="geometry" />
+        <mxCell id="y1" value="1990s" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="161" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y3" value="2006" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="190" width="90" height="44" as="geometry" />
+        <mxCell id="e1" value="Data Warehouse&#xa;schema-on-write, ETL" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="r3" value="Hadoop / Big Data&#xa;(HDFS + MapReduce)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="190" width="365" height="44" as="geometry" />
+        <mxCell id="y2" value="2000s" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="233" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y4" value="2010" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="246" width="90" height="44" as="geometry" />
+        <mxCell id="e2" value="OLAP cubes and MPP appliances&#xa;Teradata, Netezza, Greenplum" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="691" y="218" width="209" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="r4" value="Data Lake term coined&#xa;(schema-on-read)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="246" width="365" height="44" as="geometry" />
+        <mxCell id="y3" value="2006" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="305" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y5" value="2011" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="302" width="90" height="44" as="geometry" />
+        <mxCell id="e3" value="Hadoop&#xa;HDFS + MapReduce" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708" y="290" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="l5" value="Lambda architecture&#xa;(batch + speed layer)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="20" y="302" width="365" height="44" as="geometry" />
+        <mxCell id="y4" value="2010" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="377" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y6" value="2012" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="358" width="90" height="44" as="geometry" />
+        <mxCell id="e4" value="&quot;Data Lake&quot; coined&#xa;schema-on-read" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708" y="362" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="r6" value="Cloud Data Warehouse&#xa;(Redshift; storage/compute split)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="358" width="365" height="44" as="geometry" />
+        <mxCell id="y5" value="2011" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="449" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y7" value="2014" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="414" width="90" height="44" as="geometry" />
+        <mxCell id="e5" value="Lambda architecture&#xa;batch layer + speed layer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="66" y="434" width="184" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="l7" value="Kappa architecture&#xa;(single stream processor)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="20" y="414" width="365" height="44" as="geometry" />
+        <mxCell id="y6" value="2012" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="521" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y8" value="2017-19" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="470" width="90" height="44" as="geometry" />
+        <mxCell id="e6" value="Cloud data warehouse&#xa;Redshift as a managed warehouse; Snowflake separates storage and compute" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="554" y="506" width="483" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="r8" value="Open table formats&#xa;(Iceberg, Delta Lake, Hudi)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="470" width="365" height="44" as="geometry" />
+        <mxCell id="y7" value="2014" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="593" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y9" value="2019" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="526" width="90" height="44" as="geometry" />
+        <mxCell id="e7" value="Kappa architecture&#xa;one stream processor" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="70" y="578" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="l9" value="Data Mesh&#xa;(domain-oriented, decentralized)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="20" y="526" width="365" height="44" as="geometry" />
+        <mxCell id="y8" value="2017-19" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="665" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="y10" value="2021" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="405" y="582" width="90" height="44" as="geometry" />
+        <mxCell id="e8" value="Open table formats&#xa;Iceberg, Delta Lake, Hudi" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="704" y="650" width="184" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="r10" value="Lakehouse&#xa;(CIDR 2021 paper)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="515" y="582" width="365" height="44" as="geometry" />
+        <mxCell id="y9" value="2019" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="737" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="legend" value="blue = warehouse era  ·  green = lake era  ·  purple = lakehouse era  ·  amber = streaming / organizational" style="text;html=0;align=left;verticalAlign=middle;fontColor=#5F6368;fontStyle=2;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="20" y="638" width="860" height="22" as="geometry" />
+        <mxCell id="e9" value="Data Mesh&#xa;domain-oriented, decentralized" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="50" y="722" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="y10" value="2021" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="809" width="176" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="Lakehouse&#xa;CIDR 2021 paper" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708" y="794" width="176" height="54" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

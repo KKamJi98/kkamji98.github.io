@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "spring-19-n-plus-1",
+  "title": "One query for the parents, then one more for every parent",
+  "subtitle": "The extra queries come from touching a lazy collection inside a loop, not from the original query.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "q1",
+      "kind": "box",
+      "label": "Query 1",
+      "col": 0,
+      "row": 0,
+      "detail": "SELECT * FROM orders, returning N rows",
+      "role": "process",
+      "w": 560
+    },
+    {
+      "id": "loop",
+      "kind": "box",
+      "label": "Then, once per order",
+      "col": 0,
+      "row": 1,
+      "detail": "SELECT * FROM items WHERE order_id = ?, as the lazy collection is touched",
+      "role": "danger",
+      "w": 560
+    },
+    {
+      "id": "total",
+      "kind": "box",
+      "label": "1 + N queries",
+      "col": 0,
+      "row": 2,
+      "detail": "the N+1 selects problem",
+      "role": "queue",
+      "w": 560
+    },
+    {
+      "id": "spring-19-n-plus-1-note",
+      "kind": "text",
+      "label": "Nothing about the mapping is wrong. The access pattern is what multiplies the query count.",
+      "col": 0,
+      "row": 3
+    }
+  ]
+}

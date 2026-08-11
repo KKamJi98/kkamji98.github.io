@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "irsa-web-identity-flow",
+  "title": "IRSA: a projected ServiceAccount token becomes AWS credentials",
+  "subtitle": "No node instance profile and no static access key. STS trusts the cluster OIDC provider registered in IAM.",
+  "layout": { "icon_cell_w": 178, "col_gap": 62, "row_gap": 44 },
+  "containers": [
+    {
+      "id": "eks-cluster",
+      "kind": "plain",
+      "label": "Amazon EKS cluster",
+      "members": ["pod"]
+    },
+    { "id": "pod", "kind": "plain", "label": "Pod", "members": ["sa", "token"] },
+    { "id": "iam-scope", "kind": "plain", "label": "AWS IAM", "members": ["oidc", "role"] }
+  ],
+  "nodes": [
+    {
+      "id": "sa",
+      "kind": "box",
+      "label": "ServiceAccount",
+      "detail": "annotation\neks.amazonaws.com/role-arn",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "token",
+      "kind": "box",
+      "label": "Projected SA token",
+      "detail": "aud: sts.amazonaws.com\nsigned by the cluster",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "sts",
+      "kind": "service",
+      "service": "sts",
+      "label": "AWS STS",
+      "detail": "AssumeRoleWithWebIdentity",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "role",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "IAM role",
+      "detail": "temporary credentials\nscoped to the pod",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "oidc",
+      "kind": "service",
+      "service": "iam",
+      "label": "IAM OIDC provider",
+      "detail": "cluster issuer URL\nverifies the signature",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "id": "sa-mounts-token", "source": "sa", "target": "token" },
+    { "id": "sdk-calls-sts", "source": "token", "target": "sts", "emphasis": true },
+    { "id": "sts-issues", "source": "sts", "target": "role", "emphasis": true },
+    { "id": "sts-verifies", "source": "sts", "target": "oidc", "dashed": true }
+  ]
+}

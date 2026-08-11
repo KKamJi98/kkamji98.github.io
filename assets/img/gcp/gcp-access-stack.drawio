@@ -1,45 +1,68 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="gcp-access-stack" name="GCP access stack">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="gcp-access-stack" name="Console, gcloud and the SDKs are all front-ends over the same API">
+    <mxGraphModel dx="882" dy="516" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="882" pageHeight="516" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="c1" parent="1" vertex="1" value="Cloud Console (web)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="40" width="205" height="60" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="858.32" height="492.0" as="geometry" />
         </mxCell>
-        <mxCell id="c2" parent="1" vertex="1" value="gcloud CLI" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="265" y="40" width="205" height="60" as="geometry" />
+        <mxCell id="title" value="Console, gcloud and the SDKs are all front-ends over the same API" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="814.32" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="c3" parent="1" vertex="1" value="Cloud Shell" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="490" y="40" width="205" height="60" as="geometry" />
+        <mxCell id="subtitle" value="Anything one of them can do is an API call, which is why IAM and audit logs see them identically." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="814.32" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="c4" parent="1" vertex="1" value="Client Libraries (SDK)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="715" y="40" width="205" height="60" as="geometry" />
+        <mxCell id="frontends" value="Front-ends" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="72.46" y="104" width="234" height="378" as="geometry" />
         </mxCell>
-        <mxCell id="api" parent="1" vertex="1" value="Google Cloud API (REST / gRPC)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="90" y="200" width="830" height="70" as="geometry" />
+        <mxCell id="console" value="Cloud Console&#xa;the web UI" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="101.46" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="svc" parent="1" vertex="1" value="GCP services (Compute Engine, Cloud Storage, BigQuery, IAM, ...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="90" y="340" width="830" height="80" as="geometry" />
+        <mxCell id="gcloud" value="gcloud CLI&#xa;local shell" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="101.46" y="222" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="c1" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="shell" value="Cloud Shell&#xa;browser terminal" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_computer;" vertex="1" parent="1">
+          <mxGeometry x="165.46" y="298" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="libs" value="Client libraries&#xa;your own code" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="101.46" y="406" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="Google Cloud API&#xa;REST and gRPC" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="366.46" y="146" width="176" height="336" as="geometry" />
+        </mxCell>
+        <mxCell id="services" value="Google Cloud services&#xa;Compute Engine, Cloud Storage,&#xa;BigQuery, IAM and the rest" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#4285F4;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.service;" vertex="1" parent="1">
+          <mxGeometry x="682.46" y="264" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="console-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.1667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="console" target="api">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="289.96" y="173.0" />
+              <mxPoint x="289.96" y="202.01" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gcloud-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.3333;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gcloud" target="api">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="251.71" y="249.0" />
+              <mxPoint x="251.71" y="257.99" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="shell-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.3333;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="shell" target="api">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="c2" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="libs-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="libs" target="api">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="328.21" y="433.0" />
+              <mxPoint x="328.21" y="398.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="c3" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="api-to-services" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.4226;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="services">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e4" parent="1" edge="1" source="c4" target="api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e5" parent="1" edge="1" source="api" target="svc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Console / gcloud / Cloud Shell / Client Library are all front-ends over the same Cloud API." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="90" y="120" width="830" height="24" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "spring-22-dependency-bom",
+  "title": "The BOM decides the versions you left out",
+  "subtitle": "버전을 직접 적지 않아도 BOM이 호환되는 버전 집합으로 맞춰 주므로 버전 충돌과 불일치를 예방한다.",
+  "layout": {
+    "col_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "decl",
+      "kind": "box",
+      "label": "declared dependencies",
+      "col": 0,
+      "row": 0,
+      "detail": "version omitted: spring-boot-starter-web and friends",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "bom",
+      "kind": "box",
+      "label": "spring-boot-dependencies BOM",
+      "col": 1,
+      "row": 0,
+      "detail": "controls versions through properties",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "res",
+      "kind": "box",
+      "label": "resolved dependency tree",
+      "col": 2,
+      "row": 0,
+      "detail": "a consistent, mutually compatible set",
+      "role": "store",
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "decl-to-bom",
+      "source": "decl",
+      "target": "bom"
+    },
+    {
+      "id": "bom-to-res",
+      "source": "bom",
+      "target": "res"
+    }
+  ]
+}

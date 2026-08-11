@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "spring-21-build-pipeline",
+  "title": "The Boot plugin repackages a plain jar into an executable one",
+  "subtitle": "Compile and test are ordinary build steps. The repackage step is what adds the launcher and the nested layout.",
+  "layout": {
+    "col_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "src",
+      "kind": "box",
+      "label": "src/main/java and the build file",
+      "col": 0,
+      "row": 0,
+      "detail": "Gradle or Maven",
+      "role": "external",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ct",
+      "kind": "box",
+      "label": "compile and test",
+      "col": 1,
+      "row": 0,
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pkg",
+      "kind": "box",
+      "label": "package: Spring Boot plugin",
+      "col": 2,
+      "row": 0,
+      "detail": "bootJar or repackage",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "jar",
+      "kind": "box",
+      "label": "executable fat jar",
+      "col": 3,
+      "row": 0,
+      "detail": "BOOT-INF/classes, BOOT-INF/lib, JarLauncher",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "run",
+      "kind": "box",
+      "label": "java -jar app.jar",
+      "col": 4,
+      "row": 0,
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "spring-21-build-pipeline-note",
+      "kind": "text",
+      "label": "A fat jar carries the application and every dependency in one archive, which is why it needs its own classloader.",
+      "col": 0,
+      "row": 1,
+      "colspan": 5
+    }
+  ],
+  "edges": [
+    {
+      "id": "src-to-ct",
+      "source": "src",
+      "target": "ct"
+    },
+    {
+      "id": "ct-to-pkg",
+      "source": "ct",
+      "target": "pkg"
+    },
+    {
+      "id": "pkg-to-jar",
+      "source": "pkg",
+      "target": "jar"
+    },
+    {
+      "id": "jar-to-run",
+      "source": "jar",
+      "target": "run"
+    }
+  ]
+}

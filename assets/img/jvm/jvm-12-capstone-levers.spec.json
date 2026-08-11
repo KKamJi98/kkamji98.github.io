@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "jvm-12-capstone-levers",
+  "title": "원인이 누수가 아닐 때 쓸 수 있는 조정 수단",
+  "subtitle": "구체적 수치는 워크로드별로 측정해 정한다. 단일 정답값이 아니라 baseline과의 비교 관측이 기준이다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "causes",
+      "kind": "plain",
+      "label": "관찰된 원인 (누수 아님)",
+      "members": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    {
+      "id": "levers",
+      "kind": "plain",
+      "label": "처방 (levers)",
+      "members": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "c1",
+      "kind": "box",
+      "label": "JDK 업그레이드와 adaptive IHOP",
+      "col": 0,
+      "row": 0,
+      "detail": "같은 워크로드에서 Old 점유 baseline이 달라진다",
+      "role": "queue",
+      "w": 430
+    },
+    {
+      "id": "c2",
+      "kind": "box",
+      "label": "G1의 점진 회수",
+      "col": 0,
+      "row": 1,
+      "detail": "IHOP 전까지 Old를 높게 유지한다 (설계상 정상)",
+      "role": "queue",
+      "w": 430
+    },
+    {
+      "id": "c3",
+      "kind": "box",
+      "label": "off-heap은 -Xmx 바깥",
+      "col": 0,
+      "row": 2,
+      "detail": "netty direct memory는 heap만 보면 드러나지 않는다",
+      "role": "danger",
+      "w": 430
+    },
+    {
+      "id": "p1",
+      "kind": "box",
+      "label": "MaxNewSize",
+      "col": 1,
+      "row": 0,
+      "detail": "young 상한으로 Old 증가 속도와 승격을 관리",
+      "role": "process",
+      "w": 430
+    },
+    {
+      "id": "p2",
+      "kind": "box",
+      "label": "IHOP 하향",
+      "col": 1,
+      "row": 1,
+      "detail": "mixed GC를 조기 트리거해 Old 회수를 앞당김",
+      "role": "process",
+      "w": 430
+    },
+    {
+      "id": "p3",
+      "kind": "box",
+      "label": "MaxDirectMemorySize 명시",
+      "col": 1,
+      "row": 2,
+      "detail": "off-heap 상한을 코드 밖에서 고정",
+      "role": "process",
+      "w": 430
+    },
+    {
+      "id": "p4",
+      "kind": "box",
+      "label": "컨테이너 메모리 >= heap + off-heap",
+      "col": 1,
+      "row": 3,
+      "detail": "buildpack 계산과 실제 사용량을 함께 본다",
+      "role": "store",
+      "w": 430
+    }
+  ]
+}

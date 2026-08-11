@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "fluent-bit-log-pipeline",
+  "title": "Fluent Bit tails container logs on the node and ships them onward",
+  "subtitle": "It runs as a DaemonSet so every node forwards its own logs; nothing is collected from inside the application.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "logs",
+      "kind": "box",
+      "label": "Container logs",
+      "col": 0,
+      "row": 0,
+      "detail": "stdout and stderr on the node",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "fluentbit",
+      "kind": "service",
+      "label": "Fluent Bit",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:ds",
+      "detail": "one DaemonSet pod per node",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "es",
+      "kind": "box",
+      "label": "Elasticsearch",
+      "col": 2,
+      "row": 0,
+      "detail": "parses, enriches and indexes",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kibana",
+      "kind": "box",
+      "label": "Kibana",
+      "col": 3,
+      "row": 0,
+      "detail": "queries the indices",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "search",
+      "kind": "box",
+      "label": "Log search",
+      "col": 4,
+      "row": 0,
+      "detail": "what an operator actually reads",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "logs-to-fluentbit",
+      "source": "logs",
+      "target": "fluentbit"
+    },
+    {
+      "id": "fluentbit-to-es",
+      "source": "fluentbit",
+      "target": "es"
+    },
+    {
+      "id": "es-to-kibana",
+      "source": "es",
+      "target": "kibana"
+    },
+    {
+      "id": "kibana-to-search",
+      "source": "kibana",
+      "target": "search"
+    }
+  ]
+}

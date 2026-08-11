@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "tcp-3-way-handshake",
+  "title": "Three segments are what move both sides into ESTABLISHED",
+  "subtitle": "Each side has to see its own sequence number acknowledged, which is why two segments are not enough.",
+  "layout": {
+    "icon_cell_w": 180,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "syn",
+      "kind": "box",
+      "label": "SYN  (client to server)",
+      "detail": "client seq = x\nclient enters SYN-SENT",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "synack",
+      "kind": "box",
+      "label": "SYN, ACK  (server to client)",
+      "detail": "server seq = y, ack = x + 1\nserver enters SYN-RECEIVED",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ack",
+      "kind": "box",
+      "label": "ACK  (client to server)",
+      "detail": "ack = y + 1\nclient enters ESTABLISHED",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "established",
+      "kind": "box",
+      "label": "Both sides ESTABLISHED",
+      "detail": "bidirectional data transfer can start",
+      "col": 3,
+      "row": 0,
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "syn-to-synack",
+      "source": "syn",
+      "target": "synack"
+    },
+    {
+      "id": "synack-to-ack",
+      "source": "synack",
+      "target": "ack"
+    },
+    {
+      "id": "ack-to-established",
+      "source": "ack",
+      "target": "established"
+    }
+  ]
+}

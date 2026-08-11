@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "id": "datadog-rum-01-data-model",
+  "title": "RUM 데이터는 Session > View > Event 세 단계로 쌓인다",
+  "subtitle": "Session이 사용자 여정을, View가 화면 단위를 묶고, 개별 이벤트는 항상 어떤 View에 속한다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 18
+  },
+  "nodes": [
+    {
+      "id": "session",
+      "kind": "box",
+      "label": "Session (session.id)",
+      "detail": "사용자 여정 전체\n최대 4시간, 15분 비활동 시 만료",
+      "col": 0,
+      "row": 0,
+      "rowspan": 5,
+      "role": "process"
+    },
+    {
+      "id": "view",
+      "kind": "box",
+      "label": "View (view.id)",
+      "detail": "페이지 또는 화면 단위\ninitial load 또는 route change",
+      "col": 1,
+      "row": 0,
+      "rowspan": 5,
+      "role": "compute"
+    },
+    {
+      "id": "ev-action",
+      "kind": "box",
+      "label": "Action",
+      "detail": "click, tap, frustration signal",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "ev-resource",
+      "kind": "box",
+      "label": "Resource",
+      "detail": "XHR, fetch, 단계별 타이밍",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "ev-error",
+      "kind": "box",
+      "label": "Error",
+      "detail": "JS error, crash, stack trace",
+      "col": 2,
+      "row": 2,
+      "role": "danger"
+    },
+    {
+      "id": "ev-longtask",
+      "kind": "box",
+      "label": "Long Task",
+      "detail": "main thread 50ms 이상 블록",
+      "col": 2,
+      "row": 3,
+      "role": "queue"
+    },
+    {
+      "id": "ev-vital",
+      "kind": "box",
+      "label": "Vital",
+      "detail": "Core Web Vitals, custom vital",
+      "col": 2,
+      "row": 4,
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "session-to-view",
+      "source": "session",
+      "target": "view"
+    },
+    {
+      "id": "view-to-ev-action",
+      "source": "view",
+      "target": "ev-action"
+    },
+    {
+      "id": "view-to-ev-resource",
+      "source": "view",
+      "target": "ev-resource"
+    },
+    {
+      "id": "view-to-ev-error",
+      "source": "view",
+      "target": "ev-error"
+    },
+    {
+      "id": "view-to-ev-longtask",
+      "source": "view",
+      "target": "ev-longtask"
+    },
+    {
+      "id": "view-to-ev-vital",
+      "source": "view",
+      "target": "ev-vital"
+    }
+  ]
+}

@@ -1,88 +1,92 @@
-<mxfile host="app.diagrams.net" modified="2026-08-09T00:00:00.000Z" version="26.0.14" type="device">
-  <diagram id="node-async-http-flow" name="Node Async HTTP Handling">
-    <mxGraphModel background="#FFFFFF" dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="node-async-http-handling-flow" name="One place owns the response, and every failure path goes through it">
+    <mxGraphModel dx="1477" dy="463" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1477" pageHeight="463" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="Node.js Async HTTP Handling" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#202124;" vertex="1" parent="1">
-          <mxGeometry x="60" y="30" width="800" height="34" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1453.98" height="439.0" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="One request owns one terminal response" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#5F6368;" vertex="1" parent="1">
-          <mxGeometry x="62" y="68" width="600" height="24" as="geometry" />
+        <mxCell id="title" value="One place owns the response, and every failure path goes through it" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1409.98" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="client" value="Client" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="60" y="320" width="160" height="80" as="geometry" />
+        <mxCell id="subtitle" value="Solid lines are the work and the single terminal response. Dashed lines are a timeout or a client disconnect cancelling downstream work; a rejected Promise is not itself an HTTP response." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1409.98" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="request-event" value="request event" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="290" y="320" width="160" height="80" as="geometry" />
+        <mxCell id="error-boundary" value="Error boundary: one owner for the response" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="576.99" y="180" width="570" height="198" as="geometry" />
         </mxCell>
-        <mxCell id="handler" value="handleRequest()" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="520" y="320" width="170" height="80" as="geometry" />
+        <mxCell id="client" value="Client" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="44.99" y="222" width="200" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="fetch-json" value="fetchJson()" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="750" y="320" width="160" height="80" as="geometry" />
+        <mxCell id="request-event" value="request event&#xa;the server emits it" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="290.99" y="222" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="response-owner" value="writeResponse()" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="1210" y="320" width="160" height="80" as="geometry" />
+        <mxCell id="handler" value="handleRequest()&#xa;no waiting of its own" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="598.99" y="222" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="upstream" value="Upstream HTTP service" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontColor=#202124;fontSize=16;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="970" y="320" width="180" height="80" as="geometry" />
+        <mxCell id="fetch-json" value="fetchJson()&#xa;awaits the upstream call" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="884.99" y="222" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="error-boundary" value="error boundary" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;strokeWidth=1.25;fontColor=#202124;fontSize=13;fontStyle=1;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="520" y="490" width="170" height="70" as="geometry" />
+        <mxCell id="upstream" value="Upstream HTTP service&#xa;may be slow or never answer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1192.99" y="222" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="promise" value="Promise pending" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=13;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="750" y="490" width="160" height="70" as="geometry" />
+        <mxCell id="promise" value="Promise pending&#xa;a rejection is not a response;&#xa;the boundary maps it to one" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="884.99" y="298" width="240" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="timeout" value="timeout" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=13;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="290" y="160" width="120" height="55" as="geometry" />
+        <mxCell id="timeout" value="timeout&#xa;turns a stall into an error" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1192.99" y="104" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="abort-controller" value="AbortController" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=13;arcSize=12;" vertex="1" parent="1">
-          <mxGeometry x="520" y="160" width="170" height="55" as="geometry" />
+        <mxCell id="abort-controller" value="AbortController&#xa;releases the socket and the promise" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1192.99" y="302" width="240" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="client-request" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="client" target="request-event">
+        <mxCell id="response-owner" value="writeResponse()&#xa;the only writer, success or failure" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="598.99" y="302" width="240" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Without a timeout and an abort signal the promise stays pending, the socket stays open, and the client waits forever." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="44.99" y="405" width="1388" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="request-event-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="256.99" y="192" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="handler-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="564.99" y="280" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fetch-json-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="850.99" y="192" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-request-event" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="request-event">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="invoke-handler" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="request-event" target="handler">
+        <mxCell id="request-event-to-handler" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="request-event" target="handler">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="start-fetch" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="handler" target="fetch-json">
+        <mxCell id="handler-to-fetch-json" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="handler" target="fetch-json">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="call-upstream" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="fetch-json" target="upstream">
+        <mxCell id="fetch-json-to-upstream" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fetch-json" target="upstream">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fulfilled" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="upstream" target="response-owner">
+        <mxCell id="handler-to-response-owner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="handler" target="response-owner">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.75;exitY=1;exitPerimeter=1;entryX=0.5;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="response-owner" target="client">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1330" y="650" /><mxPoint x="140" y="650" /></Array>
+        <mxCell id="timeout-to-fetch-json" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="timeout" target="fetch-json">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1004.99" y="131.0" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="pending" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="fetch-json" target="promise">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="rejected" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0;exitY=0.5;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="promise" target="error-boundary">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="safe-response" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.25;entryY=1;entryPerimeter=1;" edge="1" parent="1" source="error-boundary" target="response-owner">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="605" y="600" /><mxPoint x="1250" y="600" /></Array>
+        <mxCell id="abort-controller-to-fetch-json" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="abort-controller" target="fetch-json">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1158.99" y="329.0" />
+              <mxPoint x="1158.99" y="249.0" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="client-disconnect" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="client" target="timeout">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="140" y="110" /><mxPoint x="250" y="110" /><mxPoint x="250" y="187.5" /></Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="timeout-abort" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="timeout" target="abort-controller">
+        <mxCell id="promise-to-response-owner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.4921;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="promise" target="response-owner">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="abort-fetch" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;dashPattern=6 6;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="abort-controller" target="fetch-json">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="830" y="187.5" /></Array>
-          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

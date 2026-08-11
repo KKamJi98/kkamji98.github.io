@@ -1,47 +1,38 @@
-<mxfile host="app.diagrams.net" version="26.0.14">
-  <diagram id="osi-seven-layer-stack" name="OSI seven layer stack">
-    <mxGraphModel dx="2000" dy="700" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2050" pageHeight="850" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="osi-seven-layer-stack" name="The OSI stack orders the questions, not the code">
+    <mxGraphModel dx="859" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="859" pageHeight="600" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="node-1-l7-application" value="L7 Application" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="70" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="835.7" height="576.0" as="geometry" />
         </mxCell>
-        <mxCell id="node-2-l6-presentation" value="L6 Presentation" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="350" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="title" value="The OSI stack orders the questions, not the code" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="791.7" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="node-3-l5-session" value="L5 Session" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="630" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="subtitle" value="Real stacks collapse several of these layers, but the order is what tells you which layer owns a symptom." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="791.7" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="node-4-l4-transport" value="L4 Transport" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="910" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="l7" value="L7 Application&#xa;HTTP, DNS, TLS handshake payloads" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="104" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="node-5-l3-network" value="L3 Network" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1190" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="l6" value="L6 Presentation&#xa;encoding, serialisation, encryption" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="172" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="node-6-l2-data-link" value="L2 Data Link" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1470" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="l5" value="L5 Session&#xa;dialogue setup and teardown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="240" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="node-7-l1-physical" value="L1 Physical" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;spacing=8;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="1750" y="250" width="220" height="96" as="geometry" />
+        <mxCell id="l4" value="L4 Transport&#xa;TCP and UDP: ports, segments" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="308" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="edge-1-node-1-l7-application-to-node-2-l6-presentation" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-1-l7-application" target="node-2-l6-presentation">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="l3" value="L3 Network&#xa;IP: addresses, packets, routing" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="376" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="edge-2-node-2-l6-presentation-to-node-3-l5-session" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-2-l6-presentation" target="node-3-l5-session">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="l2" value="L2 Data Link&#xa;Ethernet: MAC addresses, frames" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="444" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="edge-3-node-3-l5-session-to-node-4-l4-transport" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-3-l5-session" target="node-4-l4-transport">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="edge-4-node-4-l4-transport-to-node-5-l3-network" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-4-l4-transport" target="node-5-l3-network">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="edge-5-node-5-l3-network-to-node-6-l2-data-link" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-5-l3-network" target="node-6-l2-data-link">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="edge-6-node-6-l2-data-link-to-node-7-l1-physical" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=block;endFill=1;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="node-6-l2-data-link" target="node-7-l1-physical">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="l1" value="L1 Physical&#xa;electrical, optical and radio signals" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="219.85" y="512" width="420" height="54" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

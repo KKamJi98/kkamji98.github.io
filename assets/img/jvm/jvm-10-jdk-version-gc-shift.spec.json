@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "id": "jvm-10-jdk-version-gc-shift",
+  "title": "A faster G1 raises the Old generation baseline without any leak",
+  "subtitle": "Same pause goal, shorter pauses, so G1 grows Eden, collects young less often, and promotes more.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "Newer JDK: G1 pauses get shorter",
+      "col": 0,
+      "row": 0,
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "Same pause goal means G1 grows Eden",
+      "col": 0,
+      "row": 1,
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "Fewer minor collections",
+      "col": 0,
+      "row": 2,
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s4",
+      "kind": "box",
+      "label": "Adaptive IHOP defers concurrent marking",
+      "col": 0,
+      "row": 3,
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s5",
+      "kind": "box",
+      "label": "More promotion into Old",
+      "col": 0,
+      "row": 4,
+      "role": "queue",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "s6",
+      "kind": "box",
+      "label": "Old stays high, then drops on mixed GC: a sawtooth",
+      "col": 0,
+      "row": 5,
+      "role": "danger",
+      "step": 6,
+      "step_at": "top-left",
+      "w": 560
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "This is a GC behaviour shift, not a memory leak. It is more pronounced when the heap is generous relative to the live set.",
+      "col": 0,
+      "row": 6
+    },
+    {
+      "id": "fix",
+      "kind": "text",
+      "label": "The lever is capping the young generation, which lowers promotion but also gives up adaptive sizing.",
+      "col": 0,
+      "row": 7
+    }
+  ],
+  "edges": [
+    {
+      "id": "s1-to-s2",
+      "source": "s1",
+      "target": "s2"
+    },
+    {
+      "id": "s2-to-s3",
+      "source": "s2",
+      "target": "s3"
+    },
+    {
+      "id": "s3-to-s4",
+      "source": "s3",
+      "target": "s4"
+    },
+    {
+      "id": "s4-to-s5",
+      "source": "s4",
+      "target": "s5"
+    },
+    {
+      "id": "s5-to-s6",
+      "source": "s5",
+      "target": "s6"
+    }
+  ]
+}

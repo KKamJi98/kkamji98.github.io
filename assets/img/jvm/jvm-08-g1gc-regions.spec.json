@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "id": "jvm-08-g1gc-regions",
+  "title": "G1 splits the heap into equal regions and assigns a role per region",
+  "subtitle": "A generation is a set of regions rather than a contiguous range. The cycle runs young, then concurrent marking from IHOP, then mixed.",
+  "layout": {
+    "col_gap": 12,
+    "row_gap": 12
+  },
+  "containers": [
+    {
+      "id": "grid",
+      "kind": "plain",
+      "label": "Heap: equally sized regions",
+      "members": [
+        "r00",
+        "r01",
+        "r02",
+        "r03",
+        "r04",
+        "r10",
+        "r11",
+        "r12",
+        "r13",
+        "r14",
+        "r20",
+        "r21",
+        "r22",
+        "r23",
+        "r24",
+        "r30",
+        "r31",
+        "r32",
+        "r33",
+        "r34"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r00",
+      "kind": "box",
+      "label": "E",
+      "col": 0,
+      "row": 0,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r01",
+      "kind": "box",
+      "label": "E",
+      "col": 1,
+      "row": 0,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r02",
+      "kind": "box",
+      "label": "S",
+      "col": 2,
+      "row": 0,
+      "role": "compute",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r03",
+      "kind": "box",
+      "label": "O",
+      "col": 3,
+      "row": 0,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r04",
+      "kind": "box",
+      "label": "O",
+      "col": 4,
+      "row": 0,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r10",
+      "kind": "box",
+      "label": "O",
+      "col": 0,
+      "row": 1,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r11",
+      "kind": "box",
+      "label": "E",
+      "col": 1,
+      "row": 1,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r12",
+      "kind": "box",
+      "label": "H",
+      "col": 2,
+      "row": 1,
+      "role": "danger",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r13",
+      "kind": "box",
+      "label": "O",
+      "col": 3,
+      "row": 1,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r14",
+      "kind": "box",
+      "label": "E",
+      "col": 4,
+      "row": 1,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r20",
+      "kind": "box",
+      "label": "S",
+      "col": 0,
+      "row": 2,
+      "role": "compute",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r21",
+      "kind": "box",
+      "label": "O",
+      "col": 1,
+      "row": 2,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r22",
+      "kind": "box",
+      "label": "E",
+      "col": 2,
+      "row": 2,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r23",
+      "kind": "box",
+      "label": "E",
+      "col": 3,
+      "row": 2,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r24",
+      "kind": "box",
+      "label": "O",
+      "col": 4,
+      "row": 2,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r30",
+      "kind": "box",
+      "label": "O",
+      "col": 0,
+      "row": 3,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r31",
+      "kind": "box",
+      "label": "H",
+      "col": 1,
+      "row": 3,
+      "role": "danger",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r32",
+      "kind": "box",
+      "label": "O",
+      "col": 2,
+      "row": 3,
+      "role": "store",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r33",
+      "kind": "box",
+      "label": "S",
+      "col": 3,
+      "row": 3,
+      "role": "compute",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "r34",
+      "kind": "box",
+      "label": "E",
+      "col": 4,
+      "row": 3,
+      "role": "process",
+      "w": 60,
+      "h": 48
+    },
+    {
+      "id": "legend",
+      "kind": "text",
+      "label": "E Eden    S Survivor    O Old    H Humongous (an object larger than half a region)",
+      "col": 0,
+      "row": 4,
+      "colspan": 5
+    },
+    {
+      "id": "cy1",
+      "kind": "box",
+      "label": "young collection",
+      "detail": "evacuate Eden and Survivor",
+      "col": 0,
+      "row": 5,
+      "colspan": 2,
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cy2",
+      "kind": "box",
+      "label": "concurrent marking",
+      "detail": "starts at IHOP",
+      "col": 2,
+      "row": 5,
+      "colspan": 2,
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cy3",
+      "kind": "box",
+      "label": "mixed collection",
+      "detail": "reclaims Old incrementally",
+      "col": 4,
+      "row": 5,
+      "role": "store",
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "cy1-to-cy2",
+      "source": "cy1",
+      "target": "cy2"
+    },
+    {
+      "id": "cy2-to-cy3",
+      "source": "cy2",
+      "target": "cy3"
+    }
+  ]
+}

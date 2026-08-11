@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "jvm-01-process-memory-layout",
+  "title": "Stack and heap grow towards each other in one process address space",
+  "subtitle": "Conventional x86 layout. Growth direction and placement vary by architecture and by loader.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 12
+  },
+  "nodes": [
+    {
+      "id": "hi",
+      "kind": "text",
+      "label": "higher address",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "stack",
+      "kind": "box",
+      "label": "stack",
+      "col": 0,
+      "row": 1,
+      "detail": "call frames, locals, one per thread",
+      "role": "compute",
+      "w": 460
+    },
+    {
+      "id": "free",
+      "kind": "box",
+      "label": "free space",
+      "col": 0,
+      "row": 2,
+      "detail": "the stack grows down, the heap grows up",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "heap",
+      "kind": "box",
+      "label": "heap",
+      "col": 0,
+      "row": 3,
+      "detail": "dynamic allocation: new and malloc",
+      "role": "process",
+      "w": 460
+    },
+    {
+      "id": "bss",
+      "kind": "box",
+      "label": "bss",
+      "col": 0,
+      "row": 4,
+      "detail": "uninitialised static data",
+      "role": "store",
+      "w": 460
+    },
+    {
+      "id": "data",
+      "kind": "box",
+      "label": "data",
+      "col": 0,
+      "row": 5,
+      "detail": "initialised static data",
+      "role": "store",
+      "w": 460
+    },
+    {
+      "id": "text",
+      "kind": "box",
+      "label": "text",
+      "col": 0,
+      "row": 6,
+      "detail": "code, read-only",
+      "role": "external",
+      "w": 460
+    },
+    {
+      "id": "lo",
+      "kind": "text",
+      "label": "lower address",
+      "col": 0,
+      "row": 7
+    }
+  ]
+}

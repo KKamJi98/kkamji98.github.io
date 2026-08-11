@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "jvm-02-stack-vs-heap",
+  "title": "The frame holds the reference; the heap holds the object",
+  "subtitle": "Returning from a method pops the local and the reference. The object stays until no reference reaches it.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 22
+  },
+  "nodes": [
+    {
+      "id": "code",
+      "kind": "box",
+      "label": "void process() {",
+      "col": 0,
+      "row": 0,
+      "detail": "    int count = 10;\n    Order order = new Order();\n}",
+      "role": "external",
+      "w": 300
+    },
+    {
+      "id": "stackr",
+      "kind": "box",
+      "label": "Stack: the process() frame",
+      "col": 1,
+      "row": 0,
+      "detail": "count = 10\norder = a reference",
+      "role": "compute",
+      "w": 280
+    },
+    {
+      "id": "heapr",
+      "kind": "box",
+      "label": "Heap (shared)",
+      "col": 2,
+      "row": 0,
+      "detail": "the Order object itself",
+      "role": "process",
+      "w": 250
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "On return, count and the reference pop with the frame. The Order object survives until it is unreachable.",
+      "col": 0,
+      "row": 1,
+      "colspan": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "code-to-stackr",
+      "source": "code",
+      "target": "stackr"
+    },
+    {
+      "id": "stackr-to-heapr",
+      "source": "stackr",
+      "target": "heapr"
+    }
+  ]
+}

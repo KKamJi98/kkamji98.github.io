@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "id": "eks-token-cache-flow",
+  "title": "Every kubectl call mints a new EKS token unless a wrapper caches it",
+  "subtitle": "The kubeconfig exec block runs on each invocation, so the fix is to point it at a script that reuses a token until it is close to expiry.",
+  "layout": {
+    "icon_cell_w": 176,
+    "col_gap": 54,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "kubectl",
+      "kind": "box",
+      "label": "kubectl",
+      "detail": "reads the exec block in ~/.kube/config",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "exec",
+      "kind": "box",
+      "label": "kubeconfig exec credential",
+      "detail": "runs on every single invocation",
+      "col": 1,
+      "row": 0,
+      "rowspan": 2,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "script",
+      "kind": "box",
+      "label": "eks-token-cache.sh",
+      "detail": "caches per cluster and profile,\nchecks remaining validity",
+      "col": 2,
+      "row": 0,
+      "rowspan": 2,
+      "step": 3,
+      "step_at": "top-left",
+      "role": "compute"
+    },
+    {
+      "id": "hit",
+      "kind": "box",
+      "label": "Cache still valid",
+      "detail": "the token is reused, no AWS call",
+      "col": 3,
+      "row": 0,
+      "role": "store"
+    },
+    {
+      "id": "sts",
+      "kind": "service",
+      "service": "sts",
+      "label": "aws eks get-token",
+      "detail": "only on a miss or near expiry",
+      "col": 3,
+      "row": 1,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "service": "eks",
+      "label": "EKS API server",
+      "detail": "verifies the token and applies RBAC",
+      "col": 4,
+      "row": 0,
+      "rowspan": 2,
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "kubectl-to-exec",
+      "source": "kubectl",
+      "target": "exec"
+    },
+    {
+      "id": "exec-to-script",
+      "source": "exec",
+      "target": "script"
+    },
+    {
+      "id": "script-to-hit",
+      "source": "script",
+      "target": "hit"
+    },
+    {
+      "id": "script-to-sts",
+      "source": "script",
+      "target": "sts"
+    },
+    {
+      "id": "hit-to-api",
+      "source": "hit",
+      "target": "api"
+    },
+    {
+      "id": "sts-to-api",
+      "source": "sts",
+      "target": "api"
+    }
+  ]
+}

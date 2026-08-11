@@ -1,75 +1,79 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram id="rag-07-variants" name="RAG Variants">
-    <mxGraphModel background="#FFFFFF" dx="1020" dy="410" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1020" pageHeight="410" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="rag-07-rag-variants" name="The three RAG shapes differ in what happens between query and generation">
+    <mxGraphModel dx="1027" dy="448" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1027" pageHeight="448" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="col1" value="Vector RAG" style="rounded=1;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;verticalAlign=top;align=center;fontStyle=1;fontSize=13;fontColor=#202124;spacingTop=10;shadow=0;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="280" height="290" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1003.92" height="424.0" as="geometry" />
         </mxCell>
-        <mxCell id="a1" value="Query" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="80" y="94" width="200" height="48" as="geometry" />
+        <mxCell id="title" value="The three RAG shapes differ in what happens between query and generation" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="959.92" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="a2" value="Retrieve" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="80" y="170" width="200" height="56" as="geometry" />
+        <mxCell id="subtitle" value="Vector RAG retrieves once, GraphRAG traverses relationships, and agentic RAG loops until it has enough." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="959.92" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="a3" value="Generate" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="80" y="254" width="200" height="48" as="geometry" />
+        <mxCell id="vec" value="Vector RAG" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="220" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="an1" value="single-hop, fast" style="text;html=0;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
-          <mxGeometry x="40" y="346" width="280" height="24" as="geometry" />
+        <mxCell id="graph" value="GraphRAG" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="104" width="318" height="310" as="geometry" />
         </mxCell>
-
-        <mxCell id="col2" value="GraphRAG" style="rounded=1;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;verticalAlign=top;align=center;fontStyle=1;fontSize=13;fontColor=#202124;spacingTop=10;shadow=0;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="370" y="40" width="280" height="290" as="geometry" />
+        <mxCell id="agent" value="Agentic RAG" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="664" y="104" width="330" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="b1" value="Query" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="410" y="94" width="200" height="48" as="geometry" />
+        <mxCell id="a1" value="Query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="b2" value="Graph Traversal" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="410" y="170" width="200" height="56" as="geometry" />
+        <mxCell id="a2" value="Retrieve&#xa;one shot" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="220" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="b3" value="Generate" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="410" y="254" width="200" height="48" as="geometry" />
+        <mxCell id="a3" value="Generate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="294" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="an2" value="multi-hop / relational, high build cost" style="text;html=0;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
-          <mxGeometry x="370" y="346" width="280" height="24" as="geometry" />
+        <mxCell id="an1" value="single hop, fastest" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="56" y="368" width="176" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="col3" value="Agentic RAG" style="rounded=1;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;verticalAlign=top;align=center;fontStyle=1;fontSize=13;fontColor=#202124;spacingTop=10;shadow=0;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="700" y="40" width="280" height="290" as="geometry" />
+        <mxCell id="b1" value="Query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="371" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="c1" value="Query" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="740" y="94" width="200" height="48" as="geometry" />
+        <mxCell id="b2" value="Graph traversal&#xa;follow relationships" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="371" y="220" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="c2" value="Agent Loop&#xa;(plan -&gt; retrieve -&gt; reflect)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="740" y="170" width="200" height="56" as="geometry" />
+        <mxCell id="b3" value="Generate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="371" y="294" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="c3" value="Generate" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="740" y="254" width="200" height="48" as="geometry" />
+        <mxCell id="an2" value="multi-hop and relational, high build cost" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="322" y="368" width="274" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="an3" value="adaptive, higher overhead" style="text;html=0;align=center;fontSize=11;fontColor=#1A73E8;" vertex="1" parent="1">
-          <mxGeometry x="700" y="346" width="280" height="24" as="geometry" />
+        <mxCell id="c1" value="Query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="741" y="146" width="176" height="54" as="geometry" />
         </mxCell>
-
-        <mxCell id="v1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="a1" target="a2">
+        <mxCell id="c2" value="Agent loop&#xa;plan, retrieve, reflect, repeat" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="718" y="220" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="Generate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="741" y="294" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="an3" value="adaptive depth, hardest to bound in latency" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="686" y="368" width="286" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="a1-to-a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a1" target="a2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="a2" target="a3">
+        <mxCell id="a2-to-a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a2" target="a3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="b1" target="b2">
+        <mxCell id="b1-to-b2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="b1" target="b2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="b2" target="b3">
+        <mxCell id="b2-to-b3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="b2" target="b3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="c1" target="c2">
+        <mxCell id="c1-to-c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c1" target="c2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=7;" edge="1" parent="1" source="c2" target="c3">
+        <mxCell id="c2-to-c3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c2" target="c3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

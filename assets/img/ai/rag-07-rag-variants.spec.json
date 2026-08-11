@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "id": "rag-07-rag-variants",
+  "title": "The three RAG shapes differ in what happens between query and generation",
+  "subtitle": "Vector RAG retrieves once, GraphRAG traverses relationships, and agentic RAG loops until it has enough.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 20
+  },
+  "containers": [
+    {
+      "id": "vec",
+      "kind": "plain",
+      "label": "Vector RAG",
+      "members": [
+        "a1",
+        "a2",
+        "a3",
+        "an1"
+      ]
+    },
+    {
+      "id": "graph",
+      "kind": "plain",
+      "label": "GraphRAG",
+      "members": [
+        "b1",
+        "b2",
+        "b3",
+        "an2"
+      ]
+    },
+    {
+      "id": "agent",
+      "kind": "plain",
+      "label": "Agentic RAG",
+      "members": [
+        "c1",
+        "c2",
+        "c3",
+        "an3"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "a1",
+      "kind": "box",
+      "label": "Query",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "a2",
+      "kind": "box",
+      "label": "Retrieve",
+      "col": 0,
+      "row": 1,
+      "detail": "one shot",
+      "role": "process"
+    },
+    {
+      "id": "a3",
+      "kind": "box",
+      "label": "Generate",
+      "col": 0,
+      "row": 2,
+      "role": "store"
+    },
+    {
+      "id": "an1",
+      "kind": "text",
+      "label": "single hop, fastest",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "b1",
+      "kind": "box",
+      "label": "Query",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "b2",
+      "kind": "box",
+      "label": "Graph traversal",
+      "col": 1,
+      "row": 1,
+      "detail": "follow relationships",
+      "role": "compute"
+    },
+    {
+      "id": "b3",
+      "kind": "box",
+      "label": "Generate",
+      "col": 1,
+      "row": 2,
+      "role": "store"
+    },
+    {
+      "id": "an2",
+      "kind": "text",
+      "label": "multi-hop and relational, high build cost",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "c1",
+      "kind": "box",
+      "label": "Query",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "c2",
+      "kind": "box",
+      "label": "Agent loop",
+      "col": 2,
+      "row": 1,
+      "detail": "plan, retrieve, reflect, repeat",
+      "role": "queue"
+    },
+    {
+      "id": "c3",
+      "kind": "box",
+      "label": "Generate",
+      "col": 2,
+      "row": 2,
+      "role": "store"
+    },
+    {
+      "id": "an3",
+      "kind": "text",
+      "label": "adaptive depth, hardest to bound in latency",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1-to-a2",
+      "source": "a1",
+      "target": "a2"
+    },
+    {
+      "id": "a2-to-a3",
+      "source": "a2",
+      "target": "a3"
+    },
+    {
+      "id": "b1-to-b2",
+      "source": "b1",
+      "target": "b2"
+    },
+    {
+      "id": "b2-to-b3",
+      "source": "b2",
+      "target": "b3"
+    },
+    {
+      "id": "c1-to-c2",
+      "source": "c1",
+      "target": "c2"
+    },
+    {
+      "id": "c2-to-c3",
+      "source": "c2",
+      "target": "c3"
+    }
+  ]
+}

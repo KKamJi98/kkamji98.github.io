@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "agentic-development-workspace",
+  "title": "cmux owns attention; tmux only appears when a process has to outlive the pane",
+  "subtitle": "One workspace points at one task and one worktree, and the agent CLI runs directly in the cmux terminal rather than in a desktop app.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "dev",
+      "kind": "box",
+      "label": "Developer",
+      "detail": "states the task, reviews the result",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cmux",
+      "kind": "box",
+      "label": "cmux",
+      "detail": "control plane: find a task, allocate attention",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left",
+      "role": "process"
+    },
+    {
+      "id": "workspace",
+      "kind": "box",
+      "label": "Workspace",
+      "detail": "one task, one worktree",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "agent",
+      "kind": "box",
+      "label": "Agent CLI",
+      "detail": "runs in the cmux terminal, keeps its native session and resume",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left",
+      "role": "store"
+    },
+    {
+      "id": "tmux",
+      "kind": "box",
+      "label": "tmux",
+      "detail": "one level below, only for an explicit process lifetime",
+      "col": 2,
+      "row": 1,
+      "role": "queue"
+    },
+    {
+      "id": "ghostty",
+      "kind": "box",
+      "label": "Ghostty",
+      "detail": "independent terminal for cmux failure and recovery",
+      "col": 1,
+      "row": 1,
+      "role": "danger"
+    }
+  ],
+  "edges": [
+    {
+      "id": "dev-to-cmux",
+      "source": "dev",
+      "target": "cmux"
+    },
+    {
+      "id": "cmux-to-workspace",
+      "source": "cmux",
+      "target": "workspace"
+    },
+    {
+      "id": "workspace-to-agent",
+      "source": "workspace",
+      "target": "agent"
+    },
+    {
+      "id": "workspace-to-tmux",
+      "source": "workspace",
+      "target": "tmux",
+      "dashed": true
+    },
+    {
+      "id": "ghostty-to-cmux",
+      "source": "ghostty",
+      "target": "cmux",
+      "dashed": true
+    }
+  ]
+}

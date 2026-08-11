@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "id": "cloudfront-vpc-origins-flow",
+  "title": "CloudFront VPC Origins: the origin never leaves the private subnet",
+  "subtitle": "CloudFront creates a service-managed ENI inside the subnet and reaches the origin over the AWS backbone.",
+  "layout": {
+    "icon_cell_w": 182,
+    "col_gap": 66,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "aws-cloud",
+      "kind": "aws_cloud",
+      "label": "AWS Cloud",
+      "members": [
+        "cf",
+        "region"
+      ]
+    },
+    {
+      "id": "region",
+      "kind": "region",
+      "label": "AWS Region",
+      "members": [
+        "vpc"
+      ]
+    },
+    {
+      "id": "vpc",
+      "kind": "vpc",
+      "label": "VPC",
+      "members": [
+        "private-subnet"
+      ]
+    },
+    {
+      "id": "private-subnet",
+      "kind": "private_subnet",
+      "label": "Private subnet  (no route to an internet gateway)",
+      "members": [
+        "eni",
+        "origin"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "viewer",
+      "kind": "service",
+      "service": "users",
+      "label": "Viewer",
+      "detail": "public internet",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "cf",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "Amazon CloudFront",
+      "detail": "edge location\nWAF and TLS terminate here",
+      "col": 1,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "eni",
+      "kind": "service",
+      "service": "eni",
+      "label": "VPC origin ENI",
+      "detail": "service-managed, needs one\nfree IPv4 address in the subnet",
+      "col": 2,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "origin",
+      "kind": "service",
+      "service": "alb",
+      "label": "Origin",
+      "detail": "internal ALB, NLB or EC2; the service-managed\nCloudFront-VPCOrigins SG is created for it",
+      "col": 3,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "viewer-request",
+      "source": "viewer",
+      "target": "cf"
+    },
+    {
+      "id": "backbone",
+      "source": "cf",
+      "target": "eni",
+      "emphasis": true
+    },
+    {
+      "id": "to-origin",
+      "source": "eni",
+      "target": "origin",
+      "emphasis": true
+    }
+  ]
+}

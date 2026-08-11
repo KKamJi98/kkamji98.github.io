@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-04-overview",
+  "title": "Athena, Glue and S3 each own one job in the AWS analytics stack",
+  "subtitle": "Engines run SQL, the catalog holds schema and location, S3 holds bytes, and two permission gates sit across all of it.",
+  "layout": {
+    "icon_cell_w": 180,
+    "col_gap": 56,
+    "row_gap": 30
+  },
+  "containers": [
+    {
+      "id": "engines",
+      "kind": "plain",
+      "label": "Query engines",
+      "members": [
+        "athena",
+        "redshift"
+      ]
+    },
+    {
+      "id": "metadata",
+      "kind": "plain",
+      "label": "Metadata",
+      "members": [
+        "glue"
+      ]
+    },
+    {
+      "id": "storage",
+      "kind": "plain",
+      "label": "Storage",
+      "members": [
+        "s3",
+        "s3tables"
+      ]
+    },
+    {
+      "id": "gates",
+      "kind": "plain",
+      "label": "Permission gates (both must allow)",
+      "members": [
+        "iam",
+        "lf"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "service",
+      "service": "users",
+      "label": "Query author",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "athena",
+      "kind": "service",
+      "service": "athena",
+      "label": "Amazon Athena",
+      "col": 1,
+      "row": 0,
+      "detail": "serverless SQL"
+    },
+    {
+      "id": "redshift",
+      "kind": "service",
+      "service": "redshift",
+      "label": "Redshift Spectrum",
+      "col": 1,
+      "row": 1,
+      "detail": "external tables"
+    },
+    {
+      "id": "glue",
+      "kind": "service",
+      "service": "glue",
+      "label": "Glue Data Catalog",
+      "col": 2,
+      "row": 0,
+      "detail": "schema + S3 LOCATION",
+      "rowspan": 2
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "Amazon S3",
+      "col": 3,
+      "row": 0,
+      "detail": "objects and prefixes"
+    },
+    {
+      "id": "s3tables",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 Tables",
+      "col": 3,
+      "row": 1,
+      "detail": "Iceberg, managed compaction"
+    },
+    {
+      "id": "iam",
+      "kind": "service",
+      "service": "iam",
+      "label": "IAM",
+      "col": 1,
+      "row": 2,
+      "detail": "API authorization"
+    },
+    {
+      "id": "lf",
+      "kind": "service",
+      "service": "lake_formation",
+      "label": "Lake Formation",
+      "col": 2,
+      "row": 2,
+      "detail": "data authorization"
+    }
+  ],
+  "edges": [
+    {
+      "id": "user-to-athena",
+      "source": "user",
+      "target": "athena"
+    },
+    {
+      "id": "user-to-redshift",
+      "source": "user",
+      "target": "redshift"
+    },
+    {
+      "id": "athena-to-glue",
+      "source": "athena",
+      "target": "glue"
+    },
+    {
+      "id": "redshift-to-glue",
+      "source": "redshift",
+      "target": "glue"
+    },
+    {
+      "id": "glue-to-s3",
+      "source": "glue",
+      "target": "s3"
+    },
+    {
+      "id": "glue-to-s3tables",
+      "source": "glue",
+      "target": "s3tables"
+    }
+  ]
+}

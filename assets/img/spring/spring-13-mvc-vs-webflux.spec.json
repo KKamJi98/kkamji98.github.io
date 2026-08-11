@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "spring-13-mvc-vs-webflux",
+  "title": "The two stacks differ in what a waiting request costs",
+  "subtitle": "MVC pays a thread and works with blocking libraries; WebFlux pays a subscription and requires non-blocking ones.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-13-mvc-vs-webflux-l",
+      "kind": "plain",
+      "label": "Spring MVC (thread-per-request)",
+      "members": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ]
+    },
+    {
+      "id": "spring-13-mvc-vs-webflux-r",
+      "kind": "plain",
+      "label": "Spring WebFlux (event loop)",
+      "members": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "m1",
+      "kind": "box",
+      "label": "Execution",
+      "col": 0,
+      "row": 0,
+      "detail": "synchronous and imperative",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "m2",
+      "kind": "box",
+      "label": "Threads",
+      "col": 0,
+      "row": 1,
+      "detail": "one per request, hundreds",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "m3",
+      "kind": "box",
+      "label": "Blocking libraries",
+      "col": 0,
+      "row": 2,
+      "detail": "JPA and JDBC work as they are",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "m4",
+      "kind": "box",
+      "label": "Fit",
+      "col": 0,
+      "row": 3,
+      "detail": "most applications, easiest to debug",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "w1",
+      "kind": "box",
+      "label": "Execution",
+      "col": 1,
+      "row": 0,
+      "detail": "asynchronous, non-blocking, declarative",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "w2",
+      "kind": "box",
+      "label": "Threads",
+      "col": 1,
+      "row": 1,
+      "detail": "a small fixed pool near the core count",
+      "role": "compute",
+      "w": 400
+    },
+    {
+      "id": "w3",
+      "kind": "box",
+      "label": "Blocking libraries",
+      "col": 1,
+      "row": 2,
+      "detail": "need R2DBC or WebClient instead",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "w4",
+      "kind": "box",
+      "label": "Fit",
+      "col": 1,
+      "row": 3,
+      "detail": "high-concurrency I/O-bound work and streaming",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "spring-13-mvc-vs-webflux-note",
+      "kind": "text",
+      "label": "If a Spring MVC application already performs adequately, switching stacks buys nothing.",
+      "col": 0,
+      "row": 4,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "m1-to-m2",
+      "source": "m1",
+      "target": "m2"
+    },
+    {
+      "id": "m2-to-m3",
+      "source": "m2",
+      "target": "m3"
+    },
+    {
+      "id": "m3-to-m4",
+      "source": "m3",
+      "target": "m4"
+    },
+    {
+      "id": "w1-to-w2",
+      "source": "w1",
+      "target": "w2"
+    },
+    {
+      "id": "w2-to-w3",
+      "source": "w2",
+      "target": "w3"
+    },
+    {
+      "id": "w3-to-w4",
+      "source": "w3",
+      "target": "w4"
+    }
+  ]
+}

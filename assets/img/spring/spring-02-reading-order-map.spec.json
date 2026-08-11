@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "spring-02-reading-order-map",
+  "title": "The series builds from one request outward to a real incident",
+  "subtitle": "Each series answers a question the previous one raised, which is why the capstone can be read only at the end.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "Series 1: the path of a request",
+      "col": 0,
+      "row": 0,
+      "detail": "HTTP arrives, the container dispatches, your beans run",
+      "role": "process",
+      "w": 560
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "Series 2: under the app, JVM and memory",
+      "col": 0,
+      "row": 1,
+      "detail": "process memory, heap versus native, container limits",
+      "role": "compute",
+      "w": 560
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "Series 3: two concurrency paths",
+      "col": 0,
+      "row": 2,
+      "detail": "thread-per-request against the event loop",
+      "role": "compute",
+      "w": 560
+    },
+    {
+      "id": "s4",
+      "kind": "box",
+      "label": "Series 4: the data layer",
+      "col": 0,
+      "row": 3,
+      "detail": "persistence context, entity states, N+1",
+      "role": "process",
+      "w": 560
+    },
+    {
+      "id": "s5",
+      "kind": "box",
+      "label": "Series 5 (optional): build and security",
+      "col": 0,
+      "row": 4,
+      "detail": "fat jar, BOM, filter chain, authn and authz",
+      "role": "queue",
+      "w": 560
+    },
+    {
+      "id": "capstone",
+      "kind": "box",
+      "label": "Capstone: a real incident",
+      "col": 0,
+      "row": 5,
+      "detail": "Boot 4 on JDK 25 with G1: is a high Old generation a leak?",
+      "role": "store",
+      "w": 560
+    }
+  ]
+}

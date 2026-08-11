@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "markdown-rendering-flow",
+  "title": "Markdown is parsed in two passes: blocks first, then inline spans",
+  "subtitle": "Block structure is decided before any emphasis or link is looked at, which is why indentation wins over inline syntax.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "kind": "box",
+      "label": "Markdown source",
+      "col": 0,
+      "row": 0,
+      "detail": "plain text",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "block",
+      "kind": "box",
+      "label": "Block parsing",
+      "col": 1,
+      "row": 0,
+      "detail": "paragraphs, lists, code fences",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "inline",
+      "kind": "box",
+      "label": "Inline parsing",
+      "col": 2,
+      "row": 0,
+      "detail": "emphasis, links, code spans",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "html",
+      "kind": "box",
+      "label": "HTML output",
+      "col": 3,
+      "row": 0,
+      "detail": "the rendered document",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "source-to-block",
+      "source": "source",
+      "target": "block"
+    },
+    {
+      "id": "block-to-inline",
+      "source": "block",
+      "target": "inline"
+    },
+    {
+      "id": "inline-to-html",
+      "source": "inline",
+      "target": "html"
+    }
+  ]
+}

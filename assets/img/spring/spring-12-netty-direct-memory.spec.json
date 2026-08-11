@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "spring-12-netty-direct-memory",
+  "title": "Netty's socket buffers live outside the heap, so -Xmx does not bound them",
+  "subtitle": "Netty pools these buffers instead of reallocating them, and GC never reclaims the pool, so a one-way rise in direct memory is often normal retention rather than a leak.",
+  "layout": {
+    "col_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "heap",
+      "kind": "box",
+      "label": "JVM heap  (-Xmx)",
+      "col": 0,
+      "row": 0,
+      "detail": "objects, GC managed",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "direct",
+      "kind": "box",
+      "label": "Direct memory (off-heap)",
+      "col": 1,
+      "row": 0,
+      "detail": "Netty socket I/O buffers, pooled by PooledByteBufAllocator",
+      "role": "danger",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "net",
+      "kind": "box",
+      "label": "Network socket",
+      "col": 2,
+      "row": 0,
+      "detail": "the OS kernel",
+      "role": "store",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "spring-12-netty-direct-memory-note",
+      "kind": "text",
+      "label": "Because direct buffers are native, a WebFlux process can exceed its container limit while the heap still looks healthy.",
+      "col": 0,
+      "row": 1,
+      "colspan": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "heap-to-direct",
+      "source": "heap",
+      "target": "direct"
+    },
+    {
+      "id": "direct-to-net",
+      "source": "direct",
+      "target": "net"
+    }
+  ]
+}

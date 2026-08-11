@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "osi-seven-layer-stack",
+  "title": "The OSI stack orders the questions, not the code",
+  "subtitle": "Real stacks collapse several of these layers, but the order is what tells you which layer owns a symptom.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "l7",
+      "kind": "box",
+      "label": "L7 Application",
+      "detail": "HTTP, DNS, TLS handshake payloads",
+      "col": 0,
+      "row": 0,
+      "w": 420,
+      "role": "process"
+    },
+    {
+      "id": "l6",
+      "kind": "box",
+      "label": "L6 Presentation",
+      "detail": "encoding, serialisation, encryption",
+      "col": 0,
+      "row": 1,
+      "w": 420,
+      "role": "process"
+    },
+    {
+      "id": "l5",
+      "kind": "box",
+      "label": "L5 Session",
+      "detail": "dialogue setup and teardown",
+      "col": 0,
+      "row": 2,
+      "w": 420,
+      "role": "process"
+    },
+    {
+      "id": "l4",
+      "kind": "box",
+      "label": "L4 Transport",
+      "detail": "TCP and UDP: ports, segments",
+      "col": 0,
+      "row": 3,
+      "w": 420,
+      "role": "compute"
+    },
+    {
+      "id": "l3",
+      "kind": "box",
+      "label": "L3 Network",
+      "detail": "IP: addresses, packets, routing",
+      "col": 0,
+      "row": 4,
+      "w": 420,
+      "role": "compute"
+    },
+    {
+      "id": "l2",
+      "kind": "box",
+      "label": "L2 Data Link",
+      "detail": "Ethernet: MAC addresses, frames",
+      "col": 0,
+      "row": 5,
+      "w": 420,
+      "role": "store"
+    },
+    {
+      "id": "l1",
+      "kind": "box",
+      "label": "L1 Physical",
+      "detail": "electrical, optical and radio signals",
+      "col": 0,
+      "row": 6,
+      "w": 420,
+      "role": "store"
+    }
+  ]
+}

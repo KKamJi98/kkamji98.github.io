@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "rag-04-hybrid-rerank",
+  "title": "Hybrid retrieval fuses two rankings before anything is reranked",
+  "subtitle": "Dense retrieval catches paraphrase and BM25 catches exact terms; RRF merges them without tuning a weight per query.",
+  "layout": {
+    "col_gap": 50,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "query",
+      "kind": "box",
+      "label": "User query",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "dense",
+      "kind": "box",
+      "label": "Dense retrieval",
+      "col": 1,
+      "row": 0,
+      "detail": "vector similarity, over-retrieve on purpose",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "bm25",
+      "kind": "box",
+      "label": "Sparse retrieval",
+      "col": 1,
+      "row": 1,
+      "detail": "BM25 lexical match, over-retrieve on purpose"
+    },
+    {
+      "id": "rrf",
+      "kind": "box",
+      "label": "RRF fusion",
+      "col": 2,
+      "row": 0,
+      "detail": "reciprocal rank fusion",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "rerank",
+      "kind": "box",
+      "label": "Reranking",
+      "col": 3,
+      "row": 0,
+      "detail": "cross-encoder over the shortlist",
+      "step": 4,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "topn",
+      "kind": "box",
+      "label": "Top-N",
+      "col": 4,
+      "row": 0,
+      "detail": "what the model actually sees",
+      "role": "queue",
+      "step": 5,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "llm",
+      "kind": "box",
+      "label": "LLM generation",
+      "col": 5,
+      "row": 0,
+      "detail": "grounded answer",
+      "role": "store",
+      "step": 6,
+      "step_at": "top-left",
+      "rowspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "query-to-dense",
+      "source": "query",
+      "target": "dense"
+    },
+    {
+      "id": "query-to-bm25",
+      "source": "query",
+      "target": "bm25"
+    },
+    {
+      "id": "dense-to-rrf",
+      "source": "dense",
+      "target": "rrf"
+    },
+    {
+      "id": "bm25-to-rrf",
+      "source": "bm25",
+      "target": "rrf"
+    },
+    {
+      "id": "rrf-to-rerank",
+      "source": "rrf",
+      "target": "rerank"
+    },
+    {
+      "id": "rerank-to-topn",
+      "source": "rerank",
+      "target": "topn"
+    },
+    {
+      "id": "topn-to-llm",
+      "source": "topn",
+      "target": "llm"
+    }
+  ]
+}

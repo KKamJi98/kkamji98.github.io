@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "usb-serial-bridge-flow",
+  "title": "The bridge chip is what turns USB into the UART the main MCU speaks",
+  "subtitle": "The main MCU has no USB peripheral, so serial monitor traffic goes through a second microcontroller.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "pc",
+      "kind": "box",
+      "label": "PC terminal",
+      "col": 0,
+      "row": 0,
+      "detail": "USB CDC serial port",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "bridge",
+      "kind": "box",
+      "label": "ATmega16U2 bridge",
+      "col": 1,
+      "row": 0,
+      "detail": "USB to UART",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "mcu",
+      "kind": "box",
+      "label": "ATmega328P main MCU",
+      "col": 2,
+      "row": 0,
+      "detail": "the sketch runs here",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "uart",
+      "kind": "box",
+      "label": "External UART device",
+      "col": 3,
+      "row": 0,
+      "detail": "shares the same pins",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pc-to-bridge",
+      "source": "pc",
+      "target": "bridge"
+    },
+    {
+      "id": "bridge-to-mcu",
+      "source": "bridge",
+      "target": "mcu"
+    },
+    {
+      "id": "mcu-to-uart",
+      "source": "mcu",
+      "target": "uart"
+    }
+  ]
+}

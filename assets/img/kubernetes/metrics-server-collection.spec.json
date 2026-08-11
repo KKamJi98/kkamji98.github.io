@@ -1,73 +1,81 @@
 {
   "schema_version": 1,
   "id": "metrics-server-collection",
-  "title": "Metrics Server serves one API that both the HPA and kubectl top read",
-  "subtitle": "kubectl top is a peer consumer of the Metrics API, not a step after autoscaling.",
-  "diagram_type": "dataflow",
+  "title": "Metrics Server serves one API that several consumers read independently",
+  "subtitle": "The two arrows out of the Metrics API are not a sequence. The HPA controller and kubectl top do not go through each other.",
   "layout": {
-    "node_w": 240,
-    "node_h": 88,
-    "col_gap": 120,
-    "row_gap": 70
+    "icon_cell_w": 182,
+    "col_gap": 58,
+    "row_gap": 30
   },
   "nodes": [
     {
       "id": "kubelet",
+      "kind": "service",
+      "service": "k8s:kubelet",
       "label": "kubelet on nodes",
       "detail": "cAdvisor summary",
-      "role": "process",
       "col": 0,
-      "row": 1
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
     },
     {
       "id": "metrics-server",
+      "kind": "box",
       "label": "Metrics Server",
       "detail": "in-memory, not durable",
-      "role": "process",
       "col": 1,
-      "row": 1
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
     },
     {
       "id": "metrics-api",
+      "kind": "box",
       "label": "Metrics API",
       "detail": "metrics.k8s.io",
-      "role": "process",
       "col": 2,
-      "row": 1
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
     },
     {
       "id": "hpa",
+      "kind": "service",
+      "service": "k8s:hpa",
       "label": "HPA controller",
-      "role": "process",
+      "detail": "scales workloads",
       "col": 3,
       "row": 0
     },
     {
       "id": "top",
+      "kind": "box",
       "label": "kubectl top",
-      "role": "external",
+      "detail": "an operator reading current usage",
       "col": 3,
-      "row": 2
+      "row": 1
     }
   ],
   "edges": [
     {
-      "id": "scrape",
+      "id": "kubelet-to-metrics-server",
       "source": "kubelet",
       "target": "metrics-server"
     },
     {
-      "id": "serves",
+      "id": "metrics-server-to-metrics-api",
       "source": "metrics-server",
       "target": "metrics-api"
     },
     {
-      "id": "hpa-reads",
+      "id": "metrics-api-to-hpa",
       "source": "metrics-api",
       "target": "hpa"
     },
     {
-      "id": "top-reads",
+      "id": "metrics-api-to-top",
       "source": "metrics-api",
       "target": "top"
     }

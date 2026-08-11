@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "id": "spring-18-propagation",
+  "title": "REQUIRED joins one transaction; REQUIRES_NEW creates a second one",
+  "subtitle": "Under REQUIRED an inner rollback marks the whole transaction rollback-only, which is what surprises callers.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-18-propagation-l",
+      "kind": "plain",
+      "label": "PROPAGATION_REQUIRED (default)",
+      "members": [
+        "lo",
+        "li",
+        "lr",
+        "ln"
+      ]
+    },
+    {
+      "id": "spring-18-propagation-r",
+      "kind": "plain",
+      "label": "PROPAGATION_REQUIRES_NEW",
+      "members": [
+        "ro",
+        "ri",
+        "rr",
+        "rn"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "lo",
+      "kind": "box",
+      "label": "outer @Transactional",
+      "col": 0,
+      "row": 0,
+      "detail": "starts the physical transaction",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "li",
+      "kind": "box",
+      "label": "inner @Transactional (REQUIRED)",
+      "col": 0,
+      "row": 1,
+      "detail": "joins the existing one",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "lr",
+      "kind": "box",
+      "label": "one physical transaction",
+      "col": 0,
+      "row": 2,
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "ln",
+      "kind": "box",
+      "label": "inner rollback",
+      "col": 0,
+      "row": 3,
+      "detail": "marks the whole transaction rollback-only",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "ro",
+      "kind": "box",
+      "label": "outer @Transactional",
+      "col": 1,
+      "row": 0,
+      "detail": "suspended while the inner runs",
+      "role": "queue",
+      "w": 400
+    },
+    {
+      "id": "ri",
+      "kind": "box",
+      "label": "inner @Transactional (REQUIRES_NEW)",
+      "col": 1,
+      "row": 1,
+      "detail": "its own physical transaction",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "rr",
+      "kind": "box",
+      "label": "two independent transactions",
+      "col": 1,
+      "row": 2,
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "rn",
+      "kind": "box",
+      "label": "inner commits or rolls back",
+      "col": 1,
+      "row": 3,
+      "detail": "independently of the outer one",
+      "role": "store",
+      "w": 400
+    }
+  ],
+  "edges": [
+    {
+      "id": "lo-to-li",
+      "source": "lo",
+      "target": "li"
+    },
+    {
+      "id": "li-to-lr",
+      "source": "li",
+      "target": "lr"
+    },
+    {
+      "id": "lr-to-ln",
+      "source": "lr",
+      "target": "ln"
+    },
+    {
+      "id": "ro-to-ri",
+      "source": "ro",
+      "target": "ri"
+    },
+    {
+      "id": "ri-to-rr",
+      "source": "ri",
+      "target": "rr"
+    },
+    {
+      "id": "rr-to-rn",
+      "source": "rr",
+      "target": "rn"
+    }
+  ]
+}

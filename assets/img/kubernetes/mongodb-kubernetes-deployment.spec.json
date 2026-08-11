@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "mongodb-kubernetes-deployment",
+  "title": "A StatefulSet gives each MongoDB pod a stable name and its own volume",
+  "subtitle": "The volumeClaimTemplate keeps data bound to a specific ordinal across restarts and reschedules.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "helm",
+      "kind": "box",
+      "label": "Helm release",
+      "col": 0,
+      "row": 0,
+      "detail": "values drive the topology",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "sts",
+      "kind": "service",
+      "label": "StatefulSet",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:sts",
+      "detail": "ordered, stable identities",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pod",
+      "kind": "service",
+      "label": "MongoDB Pod",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "mongodb-0, mongodb-1, and so on",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pvc",
+      "kind": "service",
+      "label": "PersistentVolumeClaim",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:pvc",
+      "detail": "one per replica, kept on delete",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc",
+      "kind": "service",
+      "label": "Client service",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:svc",
+      "detail": "headless, for member discovery",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "helm-to-sts",
+      "source": "helm",
+      "target": "sts"
+    },
+    {
+      "id": "sts-to-pod",
+      "source": "sts",
+      "target": "pod"
+    },
+    {
+      "id": "pod-to-pvc",
+      "source": "pod",
+      "target": "pvc"
+    },
+    {
+      "id": "pvc-to-svc",
+      "source": "pvc",
+      "target": "svc"
+    }
+  ]
+}

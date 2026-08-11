@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "rag-02-contextual-retrieval",
+  "title": "Prepending generated context is what makes a chunk retrievable on its own",
+  "subtitle": "The original document and the chunk go into the model together, and the context it returns is prepended before either index sees the text.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "doc",
+      "kind": "box",
+      "label": "Original document",
+      "col": 0,
+      "row": 0,
+      "detail": "the whole source, reused across chunks",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 1
+    },
+    {
+      "id": "chunk",
+      "kind": "box",
+      "label": "Chunk",
+      "col": 0,
+      "row": 1,
+      "detail": "a fragment with no context of its own",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 1
+    },
+    {
+      "id": "llm",
+      "kind": "box",
+      "label": "LLM context generation",
+      "col": 1,
+      "row": 0,
+      "detail": "one or two sentences situating the chunk",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "ctxchunk",
+      "kind": "box",
+      "label": "Contextualized chunk",
+      "col": 2,
+      "row": 0,
+      "detail": "context + chunk",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "embindex",
+      "kind": "box",
+      "label": "Embedding index",
+      "col": 3,
+      "row": 0,
+      "detail": "dense retrieval"
+    },
+    {
+      "id": "bm25index",
+      "kind": "box",
+      "label": "BM25 index",
+      "col": 3,
+      "row": 1,
+      "detail": "lexical retrieval"
+    }
+  ],
+  "edges": [
+    {
+      "id": "doc-to-llm",
+      "source": "doc",
+      "target": "llm"
+    },
+    {
+      "id": "chunk-to-llm",
+      "source": "chunk",
+      "target": "llm"
+    },
+    {
+      "id": "llm-to-ctxchunk",
+      "source": "llm",
+      "target": "ctxchunk"
+    },
+    {
+      "id": "ctxchunk-to-embindex",
+      "source": "ctxchunk",
+      "target": "embindex"
+    },
+    {
+      "id": "ctxchunk-to-bm25index",
+      "source": "ctxchunk",
+      "target": "bm25index"
+    }
+  ]
+}

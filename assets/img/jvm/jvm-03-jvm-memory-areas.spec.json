@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "jvm-03-jvm-memory-areas",
+  "title": "-Xmx caps the heap only; everything else is native memory",
+  "subtitle": "This is why a JVM can stay inside its heap limit and still be killed by a container memory limit.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 14
+  },
+  "containers": [
+    {
+      "id": "heap-panel",
+      "kind": "plain",
+      "label": "Heap: shared, GC managed, capped by -Xmx",
+      "members": [
+        "young",
+        "old"
+      ]
+    },
+    {
+      "id": "nh-panel",
+      "kind": "plain",
+      "label": "Non-heap and native: outside -Xmx",
+      "members": [
+        "meta",
+        "stacks",
+        "codecache",
+        "direct"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "young",
+      "kind": "box",
+      "label": "Young generation",
+      "col": 0,
+      "row": 0,
+      "detail": "Eden plus survivor spaces S0 and S1",
+      "role": "process",
+      "w": 380
+    },
+    {
+      "id": "old",
+      "kind": "box",
+      "label": "Old generation",
+      "col": 0,
+      "row": 1,
+      "detail": "long-lived and promoted objects",
+      "role": "process",
+      "w": 380
+    },
+    {
+      "id": "meta",
+      "kind": "box",
+      "label": "Metaspace",
+      "col": 1,
+      "row": 0,
+      "detail": "class metadata, native since JDK 8",
+      "role": "compute",
+      "w": 380
+    },
+    {
+      "id": "stacks",
+      "kind": "box",
+      "label": "Thread stacks",
+      "col": 1,
+      "row": 1,
+      "detail": "-Xss per thread, times the thread count",
+      "role": "compute",
+      "w": 380
+    },
+    {
+      "id": "codecache",
+      "kind": "box",
+      "label": "Code cache",
+      "col": 1,
+      "row": 2,
+      "detail": "JIT compiled machine code",
+      "role": "compute",
+      "w": 380
+    },
+    {
+      "id": "direct",
+      "kind": "box",
+      "label": "Direct memory",
+      "col": 1,
+      "row": 3,
+      "detail": "off-heap buffers: NIO and Netty",
+      "role": "danger",
+      "w": 380
+    }
+  ]
+}

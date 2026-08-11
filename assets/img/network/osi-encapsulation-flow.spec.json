@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "osi-encapsulation-flow",
+  "title": "Each layer adds its own header and hands the whole thing down",
+  "subtitle": "The receiving side strips them in the opposite order, which is why a layer only ever parses its own header.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "app",
+      "kind": "box",
+      "label": "Application data",
+      "col": 0,
+      "row": 0,
+      "detail": "the payload",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "transport",
+      "kind": "box",
+      "label": "Transport header + data",
+      "col": 1,
+      "row": 0,
+      "detail": "segment: ports and sequence",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "network",
+      "kind": "box",
+      "label": "IP header + segment",
+      "col": 2,
+      "row": 0,
+      "detail": "packet: source and destination address",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "link",
+      "kind": "box",
+      "label": "Ethernet frame",
+      "col": 3,
+      "row": 0,
+      "detail": "frame: MAC addresses and trailer",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "phy",
+      "kind": "box",
+      "label": "Bits on the medium",
+      "col": 4,
+      "row": 0,
+      "detail": "what actually travels",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "app-to-transport",
+      "source": "app",
+      "target": "transport"
+    },
+    {
+      "id": "transport-to-network",
+      "source": "transport",
+      "target": "network"
+    },
+    {
+      "id": "network-to-link",
+      "source": "network",
+      "target": "link"
+    },
+    {
+      "id": "link-to-phy",
+      "source": "link",
+      "target": "phy"
+    }
+  ]
+}

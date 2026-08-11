@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-05-query-flow",
+  "title": "Athena holds no data: it asks Glue, scans S3, and writes to the results bucket",
+  "subtitle": "The three arrows out of Athena are not a sequence of hops between them. Athena drives each one, and the result lands in S3 before the client reads it.",
+  "layout": {
+    "icon_cell_w": 176,
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "service",
+      "service": "users",
+      "label": "Query author",
+      "col": 0,
+      "row": 1,
+      "detail": "submits SQL",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "athena",
+      "kind": "service",
+      "service": "athena",
+      "label": "Amazon Athena",
+      "col": 1,
+      "row": 1,
+      "detail": "query engine, holds no data",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "glue",
+      "kind": "service",
+      "service": "glue",
+      "label": "Glue Data Catalog",
+      "col": 2,
+      "row": 0,
+      "detail": "schema, S3 LOCATION, partitions",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "Amazon S3",
+      "col": 2,
+      "row": 1,
+      "detail": "data files scanned",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "results",
+      "kind": "box",
+      "label": "Results bucket (S3)",
+      "col": 2,
+      "row": 2,
+      "detail": "the client reads the result from here,\nnot from Athena",
+      "step": 4,
+      "step_at": "top-left",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "user-to-athena",
+      "source": "user",
+      "target": "athena"
+    },
+    {
+      "id": "athena-to-glue",
+      "source": "athena",
+      "target": "glue"
+    },
+    {
+      "id": "athena-to-s3",
+      "source": "athena",
+      "target": "s3"
+    },
+    {
+      "id": "athena-to-results",
+      "source": "athena",
+      "target": "results"
+    }
+  ]
+}

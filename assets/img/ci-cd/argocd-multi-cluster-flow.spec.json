@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "argocd-multi-cluster-flow",
+  "title": "One Argo CD reaches other clusters through stored cluster credentials",
+  "subtitle": "The two arrows out of the credential store are not a sequence. Each Application names its own destination cluster.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "repo",
+      "kind": "box",
+      "label": "Git repository",
+      "col": 0,
+      "row": 0,
+      "detail": "one source of truth",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "argocd",
+      "kind": "box",
+      "label": "Argo CD",
+      "col": 1,
+      "row": 0,
+      "detail": "runs in a single management cluster",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "creds",
+      "kind": "service",
+      "label": "Cluster credentials",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:secret",
+      "detail": "one Secret per registered cluster",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "clustera",
+      "kind": "service",
+      "label": "Cluster A workload",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "destination A",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "clusterb",
+      "kind": "service",
+      "label": "Cluster B workload",
+      "col": 3,
+      "row": 1,
+      "service": "k8s:pod",
+      "detail": "destination B",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "repo-to-argocd",
+      "source": "repo",
+      "target": "argocd"
+    },
+    {
+      "id": "argocd-to-creds",
+      "source": "argocd",
+      "target": "creds"
+    },
+    {
+      "id": "creds-to-clustera",
+      "source": "creds",
+      "target": "clustera"
+    },
+    {
+      "id": "creds-to-clusterb",
+      "source": "creds",
+      "target": "clusterb"
+    }
+  ]
+}

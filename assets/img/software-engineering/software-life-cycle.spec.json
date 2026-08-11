@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "software-life-cycle",
+  "title": "Each phase feeds the next, and operation feeds back into requirements",
+  "subtitle": "Treating it as a loop rather than a line is what makes production feedback count as input.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "req",
+      "kind": "box",
+      "label": "Requirements",
+      "detail": "what the software has to do",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "design",
+      "kind": "box",
+      "label": "Design",
+      "detail": "how it will be structured",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "impl",
+      "kind": "box",
+      "label": "Implementation",
+      "detail": "the code itself",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "test",
+      "kind": "box",
+      "label": "Testing",
+      "detail": "does it do what was asked",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ops",
+      "kind": "box",
+      "label": "Operation",
+      "detail": "what production teaches you next",
+      "col": 4,
+      "row": 0,
+      "step": 5,
+      "step_at": "top-left",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "req-to-design",
+      "source": "req",
+      "target": "design"
+    },
+    {
+      "id": "design-to-impl",
+      "source": "design",
+      "target": "impl"
+    },
+    {
+      "id": "impl-to-test",
+      "source": "impl",
+      "target": "test"
+    },
+    {
+      "id": "test-to-ops",
+      "source": "test",
+      "target": "ops"
+    }
+  ]
+}

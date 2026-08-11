@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "influxdb-migration-flow",
+  "title": "Migrating InfluxDB is an export, a reshape, and an import",
+  "subtitle": "The transform step exists because bucket, measurement and tag naming rarely survive a version change unchanged.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "kind": "service",
+      "label": "Source InfluxDB",
+      "col": 0,
+      "row": 0,
+      "service": "generic_database",
+      "detail": "the version being left",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "export",
+      "kind": "box",
+      "label": "Export data",
+      "col": 1,
+      "row": 0,
+      "detail": "line protocol or a backup",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "transform",
+      "kind": "box",
+      "label": "Transform data",
+      "col": 2,
+      "row": 0,
+      "detail": "rename buckets, tags and fields",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "import",
+      "kind": "box",
+      "label": "Import data",
+      "col": 3,
+      "row": 0,
+      "detail": "written to the new instance",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "target",
+      "kind": "service",
+      "label": "Target InfluxDB",
+      "col": 4,
+      "row": 0,
+      "service": "generic_database",
+      "detail": "verify counts before cutting over",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "source-to-export",
+      "source": "source",
+      "target": "export"
+    },
+    {
+      "id": "export-to-transform",
+      "source": "export",
+      "target": "transform"
+    },
+    {
+      "id": "transform-to-import",
+      "source": "transform",
+      "target": "import"
+    },
+    {
+      "id": "import-to-target",
+      "source": "import",
+      "target": "target"
+    }
+  ]
+}

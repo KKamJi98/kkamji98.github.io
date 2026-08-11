@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "karpenter-provisioning-flow",
+  "title": "Karpenter answers an unschedulable Pod by launching a node that fits it",
+  "subtitle": "It reads the pending pod's requirements and picks the instance type from them, instead of scaling a fixed node group.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "pending",
+      "kind": "service",
+      "label": "Pending Pods",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "unschedulable: insufficient capacity",
+      "role": "queue",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "karpenter",
+      "kind": "box",
+      "label": "Karpenter controller",
+      "col": 1,
+      "row": 0,
+      "detail": "batches the pending pods",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "nodeclaim",
+      "kind": "service",
+      "label": "NodeClaim",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:crd",
+      "detail": "the requirements a node must satisfy",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ec2",
+      "kind": "service",
+      "label": "EC2 capacity",
+      "col": 3,
+      "row": 0,
+      "service": "ec2",
+      "detail": "instance type chosen from the claim",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "scheduled",
+      "kind": "service",
+      "label": "Scheduled Pods",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "bound to the new node",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pending-to-karpenter",
+      "source": "pending",
+      "target": "karpenter"
+    },
+    {
+      "id": "karpenter-to-nodeclaim",
+      "source": "karpenter",
+      "target": "nodeclaim"
+    },
+    {
+      "id": "nodeclaim-to-ec2",
+      "source": "nodeclaim",
+      "target": "ec2"
+    },
+    {
+      "id": "ec2-to-scheduled",
+      "source": "ec2",
+      "target": "scheduled"
+    }
+  ]
+}

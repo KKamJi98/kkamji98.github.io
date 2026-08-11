@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "node-http-request-lifecycle-flow",
+  "title": "The request event fires only after the parser has a complete head",
+  "subtitle": "Solid lines are the data path. The dashed line is process termination control from the container runtime, not a request.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 20
+  },
+  "containers": [
+    {
+      "id": "container",
+      "kind": "plain",
+      "label": "Container boundary",
+      "members": [
+        "process",
+        "socket",
+        "parser",
+        "reqevent",
+        "handler"
+      ]
+    },
+    {
+      "id": "process",
+      "kind": "plain",
+      "label": "Node.js process (PID 1)",
+      "members": [
+        "socket",
+        "parser",
+        "reqevent",
+        "handler"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 0,
+      "row": 0,
+      "detail": "opens a TCP connection",
+      "w": 220
+    },
+    {
+      "id": "socket",
+      "kind": "box",
+      "label": "Accepted TCP socket",
+      "col": 1,
+      "row": 0,
+      "detail": "libuv hands it to the server",
+      "role": "compute",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "parser",
+      "kind": "box",
+      "label": "HTTP parser",
+      "col": 2,
+      "row": 0,
+      "detail": "method, path and headers",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "reqevent",
+      "kind": "box",
+      "label": "request event",
+      "col": 3,
+      "row": 0,
+      "detail": "emitted once the head is complete",
+      "role": "process",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "handler",
+      "kind": "box",
+      "label": "Application handler",
+      "col": 4,
+      "row": 0,
+      "detail": "your code runs here",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "runtime",
+      "kind": "box",
+      "label": "kubelet or container runtime",
+      "col": 0,
+      "row": 1,
+      "detail": "sends the stop signal to PID 1",
+      "role": "queue",
+      "w": 300
+    },
+    {
+      "id": "signal-note",
+      "kind": "text",
+      "label": "Which signal arrives depends on the runtime and the image entrypoint, which is what decides whether graceful shutdown runs at all.",
+      "col": 0,
+      "row": 2,
+      "colspan": 5
+    },
+    {
+      "id": "drain",
+      "kind": "box",
+      "label": "Graceful shutdown",
+      "detail": "stop accepting, drain in-flight requests",
+      "col": 1,
+      "row": 1,
+      "colspan": 2,
+      "role": "queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-socket",
+      "source": "client",
+      "target": "socket"
+    },
+    {
+      "id": "socket-to-parser",
+      "source": "socket",
+      "target": "parser"
+    },
+    {
+      "id": "parser-to-reqevent",
+      "source": "parser",
+      "target": "reqevent"
+    },
+    {
+      "id": "reqevent-to-handler",
+      "source": "reqevent",
+      "target": "handler"
+    },
+    {
+      "id": "runtime-to-drain",
+      "source": "runtime",
+      "target": "drain",
+      "dashed": true
+    },
+    {
+      "id": "drain-to-socket",
+      "source": "drain",
+      "target": "socket",
+      "dashed": true
+    }
+  ]
+}

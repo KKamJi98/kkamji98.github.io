@@ -1,76 +1,77 @@
 {
   "schema_version": 1,
   "id": "javascript-data-type-model",
-  "title": "Seven of the eight ECMAScript types are primitives; only Object is a reference",
-  "subtitle": "Primitives are immutable values. Objects, arrays and functions are all held by reference.",
-  "diagram_type": "architecture",
+  "title": "Every JavaScript value is either a primitive or an object reference",
+  "subtitle": "Assignment copies the value for a primitive and the reference for an object, which is the whole of the mutation difference.",
   "layout": {
-    "node_w": 250,
-    "node_h": 92,
-    "col_gap": 120,
-    "row_gap": 44
+    "col_gap": 54,
+    "row_gap": 22
   },
   "nodes": [
     {
       "id": "values",
+      "kind": "box",
       "label": "JavaScript values",
-      "detail": "8 ECMAScript language types",
-      "role": "process",
+      "detail": "eight ECMAScript language types",
       "col": 0,
-      "row": 1,
-      "rowspan": 2
+      "row": 0,
+      "rowspan": 3
     },
     {
       "id": "primitive",
+      "kind": "box",
       "label": "Primitive values",
-      "detail": "Undefined, Null, Boolean, String, Symbol, Number, BigInt",
-      "role": "store",
+      "detail": "Undefined, Null, Boolean, Number,\nBigInt, String, Symbol",
       "col": 1,
-      "row": 0
+      "row": 0,
+      "role": "process"
     },
     {
       "id": "reference",
-      "label": "Reference values",
+      "kind": "box",
+      "label": "Reference value",
       "detail": "Object",
-      "role": "compute",
       "col": 1,
       "row": 2,
-      "rowspan": 2
+      "role": "compute"
     },
     {
       "id": "object",
+      "kind": "box",
       "label": "Object and array",
-      "role": "surface",
+      "detail": "mutable, compared by reference",
       "col": 2,
-      "row": 2
+      "row": 1,
+      "role": "compute"
     },
     {
       "id": "function",
+      "kind": "box",
       "label": "Function",
       "detail": "a callable object",
-      "role": "surface",
       "col": 2,
-      "row": 3
+      "row": 2,
+      "role": "compute"
     }
   ],
   "edges": [
     {
-      "id": "to-primitive",
+      "id": "values-to-primitive",
       "source": "values",
       "target": "primitive"
     },
     {
-      "id": "to-reference",
+      "id": "values-to-reference",
       "source": "values",
       "target": "reference"
     },
     {
-      "id": "to-object",
+      "id": "reference-to-object",
       "source": "reference",
       "target": "object"
     },
     {
-      "id": "to-function",
+      "id": "reference-to-function",
       "source": "reference",
       "target": "function"
     }

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "id": "aws-waf-challenge-token-flow",
+  "title": "A WAF Challenge only completes on a route that can run the interstitial",
+  "subtitle": "The 202 challenge needs a browser navigation to execute the JavaScript; a POST or OPTIONS request has nowhere to run it.",
+  "layout": {
+    "icon_cell_w": 172,
+    "col_gap": 50,
+    "row_gap": 28
+  },
+  "nodes": [
+    {
+      "id": "browser",
+      "kind": "service",
+      "service": "client",
+      "label": "Browser navigation",
+      "col": 0,
+      "row": 0,
+      "detail": "HTML GET /signin",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "waf",
+      "kind": "service",
+      "service": "waf",
+      "label": "AWS WAF Challenge rule",
+      "col": 1,
+      "row": 0,
+      "detail": "evaluates the token cookie",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "absent",
+      "kind": "box",
+      "label": "No valid token",
+      "col": 2,
+      "row": 0,
+      "detail": "202 challenge response",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "js",
+      "kind": "box",
+      "label": "WAF JavaScript",
+      "col": 3,
+      "row": 0,
+      "detail": "solves the challenge in the page",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cookie",
+      "kind": "box",
+      "label": "aws-waf-token",
+      "col": 4,
+      "row": 0,
+      "detail": "HTTPS cookie, reused on later requests",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "valid",
+      "kind": "box",
+      "label": "Valid token",
+      "col": 5,
+      "row": 0,
+      "detail": "remaining rules continue to run",
+      "role": "process"
+    },
+    {
+      "id": "app",
+      "kind": "box",
+      "label": "Application response",
+      "col": 6,
+      "row": 0,
+      "detail": "the origin is reached",
+      "role": "store"
+    },
+    {
+      "id": "api",
+      "kind": "box",
+      "label": "POST and CORS preflight OPTIONS",
+      "col": 2,
+      "row": 1,
+      "detail": "matched requests are still challenged, but a non-HTML route\ncannot run the interstitial that acquires the token",
+      "role": "danger",
+      "colspan": 5
+    }
+  ],
+  "edges": [
+    {
+      "id": "browser-to-waf",
+      "source": "browser",
+      "target": "waf",
+      "emphasis": true
+    },
+    {
+      "id": "waf-to-absent",
+      "source": "waf",
+      "target": "absent"
+    },
+    {
+      "id": "absent-to-js",
+      "source": "absent",
+      "target": "js"
+    },
+    {
+      "id": "js-to-cookie",
+      "source": "js",
+      "target": "cookie"
+    },
+    {
+      "id": "valid-to-app",
+      "source": "valid",
+      "target": "app",
+      "emphasis": true
+    },
+    {
+      "id": "cookie-to-valid",
+      "source": "cookie",
+      "target": "valid"
+    }
+  ]
+}

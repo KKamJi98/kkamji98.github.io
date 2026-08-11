@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-02-warehouse-lake-lakehouse",
+  "title": "Lakehouse = data lake storage with data warehouse guarantees",
+  "subtitle": "The dividing line is when the schema is enforced and whether the storage layer supports transactions.",
+  "layout": {
+    "icon_cell_w": 250,
+    "col_gap": 52,
+    "row_gap": 30
+  },
+  "containers": [
+    {
+      "id": "c-wh",
+      "kind": "plain",
+      "label": "Data Warehouse",
+      "members": [
+        "wh-icon",
+        "wh-trait"
+      ]
+    },
+    {
+      "id": "c-lk",
+      "kind": "plain",
+      "label": "Data Lake",
+      "members": [
+        "lk-icon",
+        "lk-trait"
+      ]
+    },
+    {
+      "id": "c-lh",
+      "kind": "plain",
+      "label": "Data Lakehouse",
+      "members": [
+        "lh-icon",
+        "lh-trait"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "wh-icon",
+      "kind": "service",
+      "service": "redshift",
+      "label": "Amazon Redshift",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "wh-trait",
+      "kind": "box",
+      "label": "schema-on-write",
+      "col": 0,
+      "row": 1,
+      "detail": "structured data only\n+ fast queries and governance\n- storage cost, rigid schema",
+      "role": "process"
+    },
+    {
+      "id": "lk-icon",
+      "kind": "service",
+      "service": "s3",
+      "label": "Amazon S3 + Glue + Athena",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "lk-trait",
+      "kind": "box",
+      "label": "schema-on-read",
+      "col": 1,
+      "row": 1,
+      "detail": "raw data, any format\n+ cheap and flexible\n- weak governance (data swamp)",
+      "role": "store"
+    },
+    {
+      "id": "lh-icon",
+      "kind": "service",
+      "service": "lake_formation",
+      "label": "S3 Tables + Athena\n+ Lake Formation",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "lh-trait",
+      "kind": "box",
+      "label": "lake storage + warehouse features",
+      "col": 2,
+      "row": 1,
+      "detail": "ACID, schema evolution, transactions\ntable format: Apache Iceberg",
+      "role": "compute"
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Lakehouse keeps the cheap open-format storage of a lake and adds the ACID and schema guarantees of a warehouse, through the table format rather than a new storage engine.",
+      "col": 0,
+      "row": 2,
+      "colspan": 3
+    }
+  ]
+}

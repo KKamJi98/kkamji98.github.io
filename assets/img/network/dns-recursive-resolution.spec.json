@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "dns-recursive-resolution",
+  "title": "The recursive resolver does the walking; the stub only asks once",
+  "subtitle": "A cached answer ends the walk immediately. Only a cache miss follows the delegation chain from the root down.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "stub",
+      "kind": "service",
+      "label": "Browser or stub resolver",
+      "col": 0,
+      "row": 0,
+      "service": "client",
+      "detail": "one question, one answer",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "recursive",
+      "kind": "box",
+      "label": "Recursive resolver",
+      "col": 1,
+      "row": 0,
+      "detail": "walks the delegation chain",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "root",
+      "kind": "box",
+      "label": "Root name server",
+      "col": 2,
+      "row": 1,
+      "detail": "refers to the TLD servers",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "tld",
+      "kind": "box",
+      "label": "TLD name server",
+      "col": 3,
+      "row": 1,
+      "detail": "refers to the zone's name servers",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "auth",
+      "kind": "box",
+      "label": "Authoritative server",
+      "col": 4,
+      "row": 1,
+      "detail": "returns the actual record",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cachehit",
+      "kind": "box",
+      "label": "Cache hit",
+      "detail": "answered without leaving the resolver",
+      "col": 2,
+      "row": 0,
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "stub-to-recursive",
+      "source": "stub",
+      "target": "recursive"
+    },
+    {
+      "id": "recursive-to-cachehit",
+      "source": "recursive",
+      "target": "cachehit"
+    },
+    {
+      "id": "recursive-to-root",
+      "source": "recursive",
+      "target": "root"
+    },
+    {
+      "id": "root-to-tld",
+      "source": "root",
+      "target": "tld"
+    },
+    {
+      "id": "tld-to-auth",
+      "source": "tld",
+      "target": "auth"
+    }
+  ]
+}

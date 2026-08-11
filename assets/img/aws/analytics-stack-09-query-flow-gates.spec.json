@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-09-query-flow-gates",
+  "title": "Athena 쿼리의 길목마다 권한 게이트가 선다",
+  "subtitle": "Athena는 데이터를 들고 있지 않다. 메타데이터는 Glue, 데이터는 S3에 있고 각 구간에서 IAM과 Lake Formation이 따로 평가된다.",
+  "layout": {
+    "icon_cell_w": 186,
+    "col_gap": 54,
+    "row_gap": 24
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "service": "client",
+      "label": "Client",
+      "col": 0,
+      "row": 0,
+      "detail": "SQL 제출"
+    },
+    {
+      "id": "s1",
+      "kind": "service",
+      "service": "athena",
+      "label": "StartQueryExecution",
+      "col": 1,
+      "row": 0,
+      "detail": "workgroup 결과 위치\n스캔 한도 정책  [IAM]",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "s2",
+      "kind": "service",
+      "service": "glue",
+      "label": "Glue Data Catalog 조회",
+      "col": 2,
+      "row": 0,
+      "detail": "스키마 + S3 LOCATION + 파티션\n[IAM (+ Lake Formation)]",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "s3scan",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 / S3 Tables 데이터 스캔",
+      "col": 3,
+      "row": 0,
+      "detail": "파티션 필터로 스캔량 축소\n[IAM (+ S3 Tables는 LF)]",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "s4",
+      "kind": "service",
+      "service": "s3",
+      "label": "query result location (S3)",
+      "col": 4,
+      "row": 0,
+      "detail": "결과 기록 후 반환  [IAM]",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "각 길목의 게이트가 모두 Allow여야 쿼리가 끝까지 진행된다.",
+      "col": 0,
+      "row": 1,
+      "colspan": 5
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-s1",
+      "source": "client",
+      "target": "s1"
+    },
+    {
+      "id": "s1-to-s2",
+      "source": "s1",
+      "target": "s2"
+    },
+    {
+      "id": "s2-to-s3scan",
+      "source": "s2",
+      "target": "s3scan"
+    },
+    {
+      "id": "s3scan-to-s4",
+      "source": "s3scan",
+      "target": "s4"
+    }
+  ]
+}

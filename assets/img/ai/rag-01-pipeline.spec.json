@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "id": "rag-01-pipeline",
+  "title": "Indexing happens once offline; the query path only reads what it produced",
+  "subtitle": "Everything expensive is on the top lane. The bottom lane is what a user actually waits for.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 34
+  },
+  "containers": [
+    {
+      "id": "offline",
+      "kind": "plain",
+      "label": "Offline indexing",
+      "members": [
+        "sources",
+        "ingestion",
+        "chunking",
+        "embedding",
+        "vectordb"
+      ]
+    },
+    {
+      "id": "online",
+      "kind": "plain",
+      "label": "Online query",
+      "members": [
+        "userquery",
+        "queryembed",
+        "retrieval",
+        "reranking",
+        "generation",
+        "answer"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "sources",
+      "kind": "box",
+      "label": "Sources",
+      "col": 0,
+      "row": 0,
+      "detail": "PDF, Confluence, wiki"
+    },
+    {
+      "id": "ingestion",
+      "kind": "box",
+      "label": "Ingestion and parsing",
+      "col": 1,
+      "row": 0,
+      "detail": "text plus structure"
+    },
+    {
+      "id": "chunking",
+      "kind": "box",
+      "label": "Chunking",
+      "col": 2,
+      "row": 0,
+      "detail": "the unit that gets retrieved",
+      "role": "compute"
+    },
+    {
+      "id": "embedding",
+      "kind": "box",
+      "label": "Embedding",
+      "col": 3,
+      "row": 0,
+      "detail": "one vector per chunk"
+    },
+    {
+      "id": "vectordb",
+      "kind": "box",
+      "label": "Vector index",
+      "col": 4,
+      "row": 0,
+      "detail": "vectors plus metadata",
+      "role": "store"
+    },
+    {
+      "id": "userquery",
+      "kind": "box",
+      "label": "User query",
+      "col": 0,
+      "row": 1,
+      "detail": "natural language"
+    },
+    {
+      "id": "queryembed",
+      "kind": "box",
+      "label": "Query embedding",
+      "col": 1,
+      "row": 1,
+      "detail": "same model as indexing"
+    },
+    {
+      "id": "retrieval",
+      "kind": "box",
+      "label": "Retrieval",
+      "col": 2,
+      "row": 1,
+      "detail": "approximate nearest neighbours"
+    },
+    {
+      "id": "reranking",
+      "kind": "box",
+      "label": "Reranking",
+      "col": 3,
+      "row": 1,
+      "detail": "cross-encoder over the shortlist",
+      "role": "compute"
+    },
+    {
+      "id": "generation",
+      "kind": "box",
+      "label": "LLM generation",
+      "col": 4,
+      "row": 1,
+      "detail": "grounded on the retrieved chunks"
+    },
+    {
+      "id": "answer",
+      "kind": "box",
+      "label": "Answer with citations",
+      "col": 5,
+      "row": 1,
+      "detail": "traceable to a chunk",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "sources-to-ingestion",
+      "source": "sources",
+      "target": "ingestion"
+    },
+    {
+      "id": "ingestion-to-chunking",
+      "source": "ingestion",
+      "target": "chunking"
+    },
+    {
+      "id": "chunking-to-embedding",
+      "source": "chunking",
+      "target": "embedding"
+    },
+    {
+      "id": "embedding-to-vectordb",
+      "source": "embedding",
+      "target": "vectordb"
+    },
+    {
+      "id": "userquery-to-queryembed",
+      "source": "userquery",
+      "target": "queryembed"
+    },
+    {
+      "id": "queryembed-to-retrieval",
+      "source": "queryembed",
+      "target": "retrieval"
+    },
+    {
+      "id": "retrieval-to-reranking",
+      "source": "retrieval",
+      "target": "reranking"
+    },
+    {
+      "id": "reranking-to-generation",
+      "source": "reranking",
+      "target": "generation"
+    },
+    {
+      "id": "generation-to-answer",
+      "source": "generation",
+      "target": "answer"
+    },
+    {
+      "id": "vectordb-to-retrieval",
+      "source": "vectordb",
+      "target": "retrieval",
+      "dashed": true
+    }
+  ]
+}

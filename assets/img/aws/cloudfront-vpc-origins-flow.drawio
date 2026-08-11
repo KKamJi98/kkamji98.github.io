@@ -1,43 +1,58 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="cloudfront-vpc-origins-flow" name="CloudFront VPC Origins Flow">
-    <mxGraphModel dx="1024" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="520" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="cloudfront-vpc-origins-flow" name="CloudFront VPC Origins: the origin never leaves the private subnet">
+    <mxGraphModel dx="1322" dy="495" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1322" pageHeight="495" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="aws-cloud" parent="1" vertex="1" value="AWS Cloud" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=11;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;strokeColor=#232F3E;fillColor=none;fontColor=#202124;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;verticalAlign=top;align=left;spacingLeft=30;dashed=0;">
-          <mxGeometry x="200" y="70" width="810" height="420" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1298.88" height="471.0" as="geometry" />
         </mxCell>
-        <mxCell id="region" parent="1" vertex="1" value="Region (ap-northeast-2)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=11;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;verticalAlign=top;align=left;spacingLeft=30;dashed=1;">
-          <mxGeometry x="420" y="110" width="560" height="340" as="geometry" />
+        <mxCell id="title" value="CloudFront VPC Origins: the origin never leaves the private subnet" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1254.88" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vpc" parent="1" vertex="1" value="Virtual private cloud (VPC)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=11;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;verticalAlign=top;align=left;spacingLeft=30;dashed=0;">
-          <mxGeometry x="460" y="150" width="480" height="270" as="geometry" />
+        <mxCell id="subtitle" value="CloudFront creates a service-managed ENI inside the subnet and reaches the origin over the AWS backbone." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1254.88" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="private-subnet" parent="1" vertex="1" value="Private subnet - no public IP" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=11;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;strokeColor=#147EBA;fillColor=#E6F2F8;fontColor=#202124;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;verticalAlign=top;align=left;spacingLeft=30;dashed=0;">
-          <mxGeometry x="500" y="200" width="400" height="180" as="geometry" />
+        <mxCell id="aws-cloud" value="AWS Cloud" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="282" y="104" width="1007" height="357" as="geometry" />
         </mxCell>
-        <mxCell id="user" parent="1" vertex="1" value="Users" style="sketch=0;outlineConnect=0;fontColor=#202124;gradientColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=0;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.users;">
-          <mxGeometry x="40" y="258" width="48" height="48" as="geometry" />
+        <mxCell id="region" value="AWS Region" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="552" y="146" width="715" height="293" as="geometry" />
         </mxCell>
-        <mxCell id="cloudfront-edge" parent="1" vertex="1" value="CloudFront (Edge)" style="sketch=0;outlineConnect=0;fontColor=#202124;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=0;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;">
-          <mxGeometry x="301" y="243" width="78" height="78" as="geometry" />
+        <mxCell id="vpc" value="VPC" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="574" y="188" width="671" height="229" as="geometry" />
         </mxCell>
-        <mxCell id="eni" parent="1" vertex="1" value="Service-managed&#xa;ENI" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#A142F4;fontColor=#202124;fontSize=11;verticalAlign=middle;align=center;strokeWidth=1.25;">
-          <mxGeometry x="560" y="258" width="200" height="48" as="geometry" />
+        <mxCell id="private-subnet" value="Private subnet  (no route to an internet gateway)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;strokeColor=#00A4A6;fillColor=#E7F5F5;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="596" y="230" width="627" height="165" as="geometry" />
         </mxCell>
-        <mxCell id="origin" parent="1" vertex="1" value="Origin (ALB / NLB / EC2)" style="sketch=0;outlineConnect=0;fontColor=#202124;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=0;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;">
-          <mxGeometry x="780" y="243" width="78" height="78" as="geometry" />
+        <mxCell id="viewer" value="Viewer&#xa;public internet" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" vertex="1" parent="1">
+          <mxGeometry x="101" y="272" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="e-user-cf" parent="1" edge="1" source="user" target="cloudfront-edge" value="" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="cf" value="Amazon CloudFront&#xa;edge location&#xa;WAF and TLS terminate here" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="371" y="272" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="eni" value="VPC origin ENI&#xa;service-managed, needs one&#xa;free IPv4 address in the subnet" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_network_interface;" vertex="1" parent="1">
+          <mxGeometry x="701" y="272" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="origin" value="Origin&#xa;internal ALB, NLB or EC2; the service-managed&#xa;CloudFront-VPCOrigins SG is created for it" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="272" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cf-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="337" y="242" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="eni-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="667" y="242" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="991" y="242" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="viewer-request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="viewer" target="cf">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-cf-eni" parent="1" edge="1" source="cloudfront-edge" target="eni" value="" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" x="-40" y="0" />
-          </mxGeometry>
+        <mxCell id="backbone" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cf" target="eni">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-eni-origin" parent="1" edge="1" source="eni" target="origin" value="" style="edgeStyle=orthogonalEdgeStyle;html=0;rounded=0;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=7;">
+        <mxCell id="to-origin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eni" target="origin">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

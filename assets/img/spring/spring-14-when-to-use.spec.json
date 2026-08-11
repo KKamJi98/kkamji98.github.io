@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "spring-14-when-to-use",
+  "title": "Three questions decide it, and the first one usually ends the discussion",
+  "subtitle": "A working MVC application is a reason not to migrate; a blocking dependency makes the choice for you.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 22
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "kind": "box",
+      "label": "Choose MVC or WebFlux",
+      "col": 0,
+      "row": 1,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "q1",
+      "kind": "box",
+      "label": "Does an existing MVC app already work?",
+      "col": 1,
+      "row": 1,
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "a1",
+      "kind": "box",
+      "label": "Keep Spring MVC",
+      "col": 2,
+      "row": 0,
+      "detail": "no reason to change",
+      "role": "store"
+    },
+    {
+      "id": "q2",
+      "kind": "box",
+      "label": "Are the core dependencies blocking?",
+      "col": 2,
+      "row": 1,
+      "detail": "JPA, JDBC",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "a2",
+      "kind": "box",
+      "label": "Spring MVC",
+      "col": 3,
+      "row": 0,
+      "detail": "blocking libraries need a thread",
+      "role": "store"
+    },
+    {
+      "id": "q3",
+      "kind": "box",
+      "label": "High-concurrency I/O-bound, and able to adopt a non-blocking stack?",
+      "col": 3,
+      "row": 1,
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "a3",
+      "kind": "box",
+      "label": "Spring WebFlux",
+      "col": 4,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "a4",
+      "kind": "box",
+      "label": "Start with MVC",
+      "col": 4,
+      "row": 1,
+      "detail": "adopt a non-blocking WebClient only where it pays",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-to-q1",
+      "source": "start",
+      "target": "q1"
+    },
+    {
+      "id": "q1-to-a1",
+      "source": "q1",
+      "target": "a1"
+    },
+    {
+      "id": "q1-to-q2",
+      "source": "q1",
+      "target": "q2"
+    },
+    {
+      "id": "q2-to-a2",
+      "source": "q2",
+      "target": "a2"
+    },
+    {
+      "id": "q2-to-q3",
+      "source": "q2",
+      "target": "q3"
+    },
+    {
+      "id": "q3-to-a3",
+      "source": "q3",
+      "target": "a3"
+    },
+    {
+      "id": "q3-to-a4",
+      "source": "q3",
+      "target": "a4"
+    }
+  ]
+}

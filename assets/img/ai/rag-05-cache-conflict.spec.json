@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "rag-05-cache-conflict",
+  "title": "A semantic cache keyed on the query alone leaks across roles",
+  "subtitle": "Two users can send the same question and be entitled to different documents, so the role has to be part of the key.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "userA",
+      "kind": "box",
+      "label": "User A (role: HR)",
+      "col": 0,
+      "row": 0,
+      "detail": "entitled to HR documents"
+    },
+    {
+      "id": "userB",
+      "kind": "box",
+      "label": "User B (role: Eng)",
+      "col": 0,
+      "row": 1,
+      "detail": "not entitled to them"
+    },
+    {
+      "id": "cache",
+      "kind": "box",
+      "label": "Semantic cache",
+      "col": 1,
+      "row": 0,
+      "detail": "key = query embedding",
+      "role": "queue",
+      "rowspan": 2
+    },
+    {
+      "id": "out1",
+      "kind": "box",
+      "label": "Shared key",
+      "col": 2,
+      "row": 0,
+      "detail": "User B receives User A's HR documents",
+      "role": "danger"
+    },
+    {
+      "id": "out2",
+      "kind": "box",
+      "label": "Per-role key",
+      "col": 2,
+      "row": 1,
+      "detail": "isolated and safe, at a lower hit rate",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "userA-to-cache",
+      "source": "userA",
+      "target": "cache"
+    },
+    {
+      "id": "userB-to-cache",
+      "source": "userB",
+      "target": "cache"
+    },
+    {
+      "id": "cache-to-out1",
+      "source": "cache",
+      "target": "out1",
+      "dashed": true
+    },
+    {
+      "id": "cache-to-out2",
+      "source": "cache",
+      "target": "out2"
+    }
+  ]
+}

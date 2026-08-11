@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "route53-dns-record-resolution",
+  "title": "A record only resolves once the registrar delegates to the hosted zone",
+  "subtitle": "Creating a hosted zone is not enough; the registrar NS records must point at that zone's four name servers.",
+  "layout": {
+    "icon_cell_w": 180,
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "registrar",
+      "kind": "box",
+      "label": "Domain registrar",
+      "col": 0,
+      "row": 0,
+      "detail": "authoritative NS delegation",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "zone",
+      "kind": "service",
+      "service": "route53_hosted_zone",
+      "label": "Route 53 hosted zone",
+      "col": 1,
+      "row": 0,
+      "detail": "four assigned name servers",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "delegation",
+      "kind": "box",
+      "label": "NS delegation matches",
+      "col": 2,
+      "row": 0,
+      "detail": "registrar NS = zone NS",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "record",
+      "kind": "box",
+      "label": "DNS record",
+      "col": 3,
+      "row": 0,
+      "detail": "A, AAAA or ALIAS",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "endpoint",
+      "kind": "service",
+      "service": "alb",
+      "label": "Application endpoint",
+      "col": 4,
+      "row": 0,
+      "detail": "ALB, CloudFront or S3 website",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "registrar-to-zone",
+      "source": "registrar",
+      "target": "zone"
+    },
+    {
+      "id": "zone-to-delegation",
+      "source": "zone",
+      "target": "delegation"
+    },
+    {
+      "id": "delegation-to-record",
+      "source": "delegation",
+      "target": "record"
+    },
+    {
+      "id": "record-to-endpoint",
+      "source": "record",
+      "target": "endpoint"
+    }
+  ]
+}

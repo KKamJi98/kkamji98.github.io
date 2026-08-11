@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "jvm-04-container-memory-breakdown",
+  "title": "The container limit has to cover the heap plus five native regions",
+  "subtitle": "Sizing only -Xmx against the container limit leaves the native regions unaccounted for.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 12
+  },
+  "nodes": [
+    {
+      "id": "heapseg",
+      "kind": "box",
+      "label": "Heap  (-Xmx)",
+      "col": 0,
+      "row": 0,
+      "detail": "the only slice -Xmx controls",
+      "role": "process",
+      "w": 460
+    },
+    {
+      "id": "metaseg",
+      "kind": "box",
+      "label": "Metaspace",
+      "col": 0,
+      "row": 1,
+      "detail": "class metadata",
+      "role": "compute",
+      "w": 460
+    },
+    {
+      "id": "stackseg",
+      "kind": "box",
+      "label": "Thread stacks",
+      "col": 0,
+      "row": 2,
+      "detail": "-Xss times the thread count",
+      "role": "compute",
+      "w": 460
+    },
+    {
+      "id": "codeseg",
+      "kind": "box",
+      "label": "Code cache",
+      "col": 0,
+      "row": 3,
+      "detail": "JIT output",
+      "role": "compute",
+      "w": 460
+    },
+    {
+      "id": "directseg",
+      "kind": "box",
+      "label": "Direct memory",
+      "col": 0,
+      "row": 4,
+      "detail": "off-heap buffers",
+      "role": "danger",
+      "w": 460
+    },
+    {
+      "id": "headseg",
+      "kind": "box",
+      "label": "Headroom and other native",
+      "col": 0,
+      "row": 5,
+      "detail": "allocator, GC structures, JNI",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Container limit = heap + metaspace + thread stacks + code cache + direct memory + headroom.",
+      "col": 0,
+      "row": 6
+    }
+  ]
+}

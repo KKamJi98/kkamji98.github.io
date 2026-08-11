@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "gcp-iam-model",
+  "title": "A binding is one principal, one role, attached to one resource",
+  "subtitle": "The policy lives on the resource, not on the principal, which is where GCP IAM differs from an identity-attached policy model.",
+  "layout": {
+    "icon_cell_w": 186,
+    "col_gap": 58,
+    "row_gap": 24
+  },
+  "containers": [
+    {
+      "id": "binding",
+      "kind": "plain",
+      "label": "Binding",
+      "members": [
+        "principal",
+        "role"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "principal",
+      "kind": "box",
+      "label": "Principal",
+      "col": 0,
+      "row": 0,
+      "detail": "user, group or service account"
+    },
+    {
+      "id": "role",
+      "kind": "box",
+      "label": "Role",
+      "col": 1,
+      "row": 0,
+      "detail": "predefined or custom set of permissions"
+    },
+    {
+      "id": "resource",
+      "kind": "service",
+      "service": "gcp:cloud_storage",
+      "label": "Resource",
+      "col": 2,
+      "row": 0,
+      "detail": "the set of bindings here is its Allow Policy,\ninherited downward as a union"
+    }
+  ],
+  "edges": [
+    {
+      "id": "principal-to-role",
+      "source": "principal",
+      "target": "role"
+    },
+    {
+      "id": "role-to-resource",
+      "source": "role",
+      "target": "resource"
+    }
+  ]
+}

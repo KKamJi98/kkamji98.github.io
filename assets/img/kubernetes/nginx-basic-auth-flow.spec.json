@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "nginx-basic-auth-flow",
+  "title": "The ingress controller checks basic auth before the request reaches a backend",
+  "subtitle": "Credentials live in a Secret referenced by an annotation, so the backend never handles the Authorization header.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "browser",
+      "kind": "box",
+      "label": "Browser",
+      "col": 0,
+      "row": 0,
+      "detail": "prompts after a 401",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "header",
+      "kind": "box",
+      "label": "Authorization header",
+      "col": 1,
+      "row": 0,
+      "detail": "Basic credentials",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "nginx",
+      "kind": "service",
+      "label": "NGINX ingress controller",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:ing",
+      "detail": "auth-type and auth-secret annotations",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "secret",
+      "kind": "service",
+      "label": "Auth Secret",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:secret",
+      "detail": "htpasswd formatted",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "backend",
+      "kind": "service",
+      "label": "Backend service",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:svc",
+      "detail": "reached only after a match",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "browser-to-header",
+      "source": "browser",
+      "target": "header"
+    },
+    {
+      "id": "header-to-nginx",
+      "source": "header",
+      "target": "nginx"
+    },
+    {
+      "id": "nginx-to-secret",
+      "source": "nginx",
+      "target": "secret"
+    },
+    {
+      "id": "secret-to-backend",
+      "source": "secret",
+      "target": "backend"
+    }
+  ]
+}

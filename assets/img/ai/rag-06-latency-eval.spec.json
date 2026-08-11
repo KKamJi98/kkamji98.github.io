@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "id": "rag-06-latency-eval",
+  "title": "The latency budget is the sum of the stages you chose to keep",
+  "subtitle": "A cache hit skips retrieval and generation and goes straight to the answer. Everything else accumulates into p99.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "query",
+      "kind": "box",
+      "label": "User query",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cache",
+      "kind": "box",
+      "label": "Semantic cache",
+      "col": 1,
+      "row": 0,
+      "detail": "a hit returns here",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "retr",
+      "kind": "box",
+      "label": "Retrieval (ANN)",
+      "col": 2,
+      "row": 0,
+      "detail": "t_retrieve",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "rerank",
+      "kind": "box",
+      "label": "Reranking",
+      "col": 3,
+      "row": 0,
+      "detail": "t_rerank",
+      "role": "compute",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "gen",
+      "kind": "box",
+      "label": "LLM generation",
+      "col": 4,
+      "row": 0,
+      "detail": "t_generate, usually the largest",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ans",
+      "kind": "box",
+      "label": "Answer",
+      "col": 4,
+      "row": 1,
+      "role": "store",
+      "step": 6,
+      "step_at": "top-left"
+    },
+    {
+      "id": "budget",
+      "kind": "text",
+      "label": "latency budget = t_retrieve + t_rerank + t_generate, managed at p99 rather than at the mean",
+      "col": 0,
+      "row": 2,
+      "colspan": 6
+    },
+    {
+      "id": "eval",
+      "kind": "box",
+      "label": "Ragas evaluation",
+      "detail": "faithfulness and context precision",
+      "col": 5,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "query-to-cache",
+      "source": "query",
+      "target": "cache"
+    },
+    {
+      "id": "cache-to-retr",
+      "source": "cache",
+      "target": "retr"
+    },
+    {
+      "id": "retr-to-rerank",
+      "source": "retr",
+      "target": "rerank"
+    },
+    {
+      "id": "rerank-to-gen",
+      "source": "rerank",
+      "target": "gen"
+    },
+    {
+      "id": "gen-to-ans",
+      "source": "gen",
+      "target": "ans"
+    },
+    {
+      "id": "cache-to-ans",
+      "source": "cache",
+      "target": "ans",
+      "dashed": true
+    },
+    {
+      "id": "ans-to-eval",
+      "source": "ans",
+      "target": "eval",
+      "dashed": true
+    }
+  ]
+}

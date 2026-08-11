@@ -1,52 +1,96 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram id="rag-04-hybrid" name="Hybrid + Rerank">
-    <mxGraphModel background="#FFFFFF" dx="1360" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1360" pageHeight="340" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="rag-04-hybrid-rerank" name="Hybrid retrieval fuses two rankings before anything is reranked">
+    <mxGraphModel dx="1615" dy="302" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1615" pageHeight="302" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="query" value="User Query" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="40" y="142" width="140" height="56" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1591.52" height="278.0" as="geometry" />
         </mxCell>
-        <mxCell id="dense" value="Dense Retrieval (vector)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="250" y="60" width="180" height="56" as="geometry" />
+        <mxCell id="title" value="Hybrid retrieval fuses two rankings before anything is reranked" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1547.52" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="bm25" value="Sparse Retrieval (BM25)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="250" y="224" width="180" height="56" as="geometry" />
+        <mxCell id="subtitle" value="Dense retrieval catches paraphrase and BM25 catches exact terms; RRF merges them without tuning a weight per query." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1547.52" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="rrf" value="RRF Fusion" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=11;fontColor=#202124;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="510" y="142" width="150" height="56" as="geometry" />
+        <mxCell id="query" value="User query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="68" y="134" width="176" height="134" as="geometry" />
         </mxCell>
-        <mxCell id="rerank" value="Reranking (cross-encoder)" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="740" y="142" width="190" height="56" as="geometry" />
+        <mxCell id="dense" value="Dense retrieval&#xa;vector similarity, over-retrieve on purpose" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="297" y="134" width="298" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="topn" value="Top-N" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;shadow=0;fontSize=11;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1010" y="142" width="110" height="56" as="geometry" />
+        <mxCell id="bm25" value="Sparse retrieval&#xa;BM25 lexical match, over-retrieve on purpose" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="294" y="214" width="305" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="llm" value="LLM Generation" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;shadow=0;fontSize=11;fontColor=#202124;fontStyle=1;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="142" width="150" height="56" as="geometry" />
+        <mxCell id="rrf" value="RRF fusion&#xa;reciprocal rank fusion" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="649" y="134" width="176" height="134" as="geometry" />
         </mxCell>
-
-        <mxCell id="q1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="query" target="dense">
+        <mxCell id="rerank" value="Reranking&#xa;cross-encoder over the shortlist" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="875" y="134" width="228" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="topn" value="Top-N&#xa;what the model actually sees" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1153" y="134" width="203" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" value="LLM generation&#xa;grounded answer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1406" y="134" width="176" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="query-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dense-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="263" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rrf-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="615" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="841" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="topn-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1119" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="llm-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1372" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="query-to-dense" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="dense">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="260.67" y="167.5" />
+              <mxPoint x="260.67" y="161.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="query-to-bm25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="bm25">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="277.33" y="234.5" />
+              <mxPoint x="277.33" y="241.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dense-to-rrf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dense" target="rrf">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="613.0" y="161.0" />
+              <mxPoint x="613.0" y="167.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bm25-to-rrf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bm25" target="rrf">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="631.0" y="241.0" />
+              <mxPoint x="631.0" y="234.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rrf-to-rerank" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rrf" target="rerank">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="q2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="query" target="bm25">
+        <mxCell id="rerank-to-topn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rerank" target="topn">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="q3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="dense" target="rrf">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="q4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="bm25" target="rrf">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="q5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;fontSize=11;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="rrf" target="rerank">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="q6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="rerank" target="topn">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="q7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;endSize=7;" edge="1" parent="1" source="topn" target="llm">
+        <mxCell id="topn-to-llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="topn" target="llm">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

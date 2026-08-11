@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "id": "rag-02-chunking-strategies",
+  "title": "Chunking decides what a retriever is even able to return",
+  "subtitle": "Fixed size is cheap and ignores meaning; structure and semantics cost more and keep a chunk answerable on its own.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 18
+  },
+  "containers": [
+    {
+      "id": "fixed",
+      "kind": "plain",
+      "label": "Fixed size",
+      "members": [
+        "f1",
+        "f2",
+        "f3",
+        "fnote"
+      ]
+    },
+    {
+      "id": "structure",
+      "kind": "plain",
+      "label": "Structure aware",
+      "members": [
+        "s1",
+        "s2",
+        "s3",
+        "snote"
+      ]
+    },
+    {
+      "id": "semantic",
+      "kind": "plain",
+      "label": "Semantic",
+      "members": [
+        "m1",
+        "m2",
+        "m3",
+        "mnote"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "f1",
+      "kind": "box",
+      "label": "Chunk 1",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "f2",
+      "kind": "box",
+      "label": "Chunk 2",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "f3",
+      "kind": "box",
+      "label": "Chunk 3",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "fnote",
+      "kind": "text",
+      "label": "equal size with overlap, cuts through meaning",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "Section 1",
+      "col": 1,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "Section 2",
+      "col": 1,
+      "row": 1,
+      "role": "process"
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "Section 3",
+      "col": 1,
+      "row": 2,
+      "role": "process"
+    },
+    {
+      "id": "snote",
+      "kind": "text",
+      "label": "split on headings and clauses",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "m1",
+      "kind": "box",
+      "label": "Topic A",
+      "col": 2,
+      "row": 0,
+      "role": "compute"
+    },
+    {
+      "id": "m2",
+      "kind": "box",
+      "label": "Topic B",
+      "col": 2,
+      "row": 1,
+      "role": "compute"
+    },
+    {
+      "id": "m3",
+      "kind": "box",
+      "label": "Topic C",
+      "col": 2,
+      "row": 2,
+      "role": "compute"
+    },
+    {
+      "id": "mnote",
+      "kind": "text",
+      "label": "split where the embedding distance jumps",
+      "col": 2,
+      "row": 3
+    }
+  ]
+}

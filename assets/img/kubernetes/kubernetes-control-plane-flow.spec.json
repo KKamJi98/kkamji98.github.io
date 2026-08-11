@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "kubernetes-control-plane-flow",
+  "title": "Every change enters through the API server and is reconciled outward",
+  "subtitle": "It is a hub-and-spoke design: no other control plane component offers a remote API, so every request and state change goes through the API server.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "users",
+      "kind": "service",
+      "label": "Users and automation",
+      "col": 0,
+      "row": 0,
+      "service": "users",
+      "detail": "kubectl, CI, operators",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "label": "API server and etcd",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:api",
+      "detail": "the only writer to cluster state",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "controllers",
+      "kind": "service",
+      "label": "Controllers and scheduler",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:sched",
+      "detail": "reconcile desired against actual",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kubelet",
+      "kind": "service",
+      "label": "kubelet on nodes",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:kubelet",
+      "detail": "watches for pods bound to it",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "runtime",
+      "kind": "service",
+      "label": "Container runtime and Pods",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "where containers actually start",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-to-api",
+      "source": "users",
+      "target": "api"
+    },
+    {
+      "id": "api-to-controllers",
+      "source": "api",
+      "target": "controllers"
+    },
+    {
+      "id": "controllers-to-kubelet",
+      "source": "controllers",
+      "target": "kubelet"
+    },
+    {
+      "id": "kubelet-to-runtime",
+      "source": "kubelet",
+      "target": "runtime"
+    }
+  ]
+}

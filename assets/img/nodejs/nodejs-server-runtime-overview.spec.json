@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "id": "nodejs-server-runtime-overview",
+  "title": "Application code never waits; the runtime does the waiting for it",
+  "subtitle": "The process boundary is what a supervisor restarts, and the OS readiness signal is what wakes the loop.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 22
+  },
+  "containers": [
+    {
+      "id": "process-boundary",
+      "kind": "plain",
+      "label": "Node.js process",
+      "members": [
+        "runtime",
+        "application",
+        "workload"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 0,
+      "row": 1,
+      "detail": "HTTP request",
+      "w": 200
+    },
+    {
+      "id": "os",
+      "kind": "box",
+      "label": "OS I/O readiness",
+      "col": 1,
+      "row": 1,
+      "detail": "epoll or kqueue reports a socket is ready",
+      "role": "queue",
+      "w": 260
+    },
+    {
+      "id": "runtime",
+      "kind": "box",
+      "label": "Node runtime",
+      "col": 2,
+      "row": 1,
+      "detail": "libuv event loop plus V8",
+      "role": "compute",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "application",
+      "kind": "box",
+      "label": "Application code",
+      "col": 3,
+      "row": 1,
+      "detail": "one JavaScript flow, no waiting",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 260
+    },
+    {
+      "id": "workload",
+      "kind": "box",
+      "label": "I/O or CPU work",
+      "col": 3,
+      "row": 2,
+      "detail": "I/O returns to the loop, CPU blocks it",
+      "role": "danger",
+      "w": 260
+    },
+    {
+      "id": "deployment",
+      "kind": "box",
+      "label": "Process supervisor",
+      "col": 2,
+      "row": 0,
+      "detail": "systemd, PM2 or a container runtime",
+      "role": "store",
+      "w": 260
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "CPU-bound work is the exception: it occupies the single loop, so it delays every other connection.",
+      "col": 0,
+      "row": 3,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-os",
+      "source": "client",
+      "target": "os"
+    },
+    {
+      "id": "os-to-runtime",
+      "source": "os",
+      "target": "runtime"
+    },
+    {
+      "id": "runtime-to-application",
+      "source": "runtime",
+      "target": "application"
+    },
+    {
+      "id": "application-to-workload",
+      "source": "application",
+      "target": "workload"
+    },
+    {
+      "id": "deployment-to-runtime",
+      "source": "deployment",
+      "target": "runtime",
+      "dashed": true
+    }
+  ]
+}

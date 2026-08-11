@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "jvm-11-capstone-diagnosis",
+  "title": "Old 점유가 높다는 관측만으로는 누수와 정상 동작을 구분할 수 없다",
+  "subtitle": "mixed GC 이후 live set이 계속 우상향하는지, heap 여유가 있는데도 컨테이너가 죽는지 두 가지를 먼저 나눈다.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 24
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "kind": "box",
+      "label": "Old generation이 높게 유지됨",
+      "col": 0,
+      "row": 1,
+      "detail": "컨테이너 메모리 압박",
+      "role": "danger",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "q1",
+      "kind": "box",
+      "label": "mixed GC 후에도 live set이 계속 우상향하는가",
+      "col": 1,
+      "row": 1,
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "leak",
+      "kind": "box",
+      "label": "메모리 누수 의심",
+      "col": 2,
+      "row": 0,
+      "detail": "heap dump로 지배 객체 확인",
+      "role": "danger"
+    },
+    {
+      "id": "q2",
+      "kind": "box",
+      "label": "heap은 여유인데 컨테이너가 OOMKill되는가",
+      "col": 2,
+      "row": 1,
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "offheap",
+      "kind": "box",
+      "label": "off-heap 확인",
+      "col": 3,
+      "row": 1,
+      "detail": "direct memory, metaspace, thread stack",
+      "role": "compute"
+    },
+    {
+      "id": "normal",
+      "kind": "box",
+      "label": "G1의 지연 회수: 설계상 정상",
+      "col": 3,
+      "row": 2,
+      "detail": "IHOP 전까지 Old를 점유하고 mixed GC로 점진 회수한다",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-to-q1",
+      "source": "start",
+      "target": "q1"
+    },
+    {
+      "id": "q1-to-leak",
+      "source": "q1",
+      "target": "leak"
+    },
+    {
+      "id": "q1-to-q2",
+      "source": "q1",
+      "target": "q2"
+    },
+    {
+      "id": "q2-to-offheap",
+      "source": "q2",
+      "target": "offheap"
+    },
+    {
+      "id": "q2-to-normal",
+      "source": "q2",
+      "target": "normal",
+      "dashed": true
+    }
+  ]
+}

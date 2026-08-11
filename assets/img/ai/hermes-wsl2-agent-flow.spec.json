@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "hermes-wsl2-agent-flow",
+  "title": "Provider and runtime are separate choices, not one setting",
+  "subtitle": "The provider decides how the model is authenticated and called. The runtime decides which loop handles a turn. A systemd service keeps the gateway alive inside WSL2.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "box",
+      "label": "User",
+      "detail": "one session, two entry points",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "terminal",
+      "kind": "box",
+      "label": "Terminal",
+      "detail": "inside WSL2",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "telegram",
+      "kind": "box",
+      "label": "Telegram gateway",
+      "detail": "reaching the agent from outside the terminal",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "runtime",
+      "kind": "box",
+      "label": "Hermes runtime",
+      "detail": "standard chat loop, or the Codex app-server path",
+      "col": 2,
+      "row": 0,
+      "rowspan": 2,
+      "step": 3,
+      "step_at": "top-left",
+      "role": "compute"
+    },
+    {
+      "id": "provider",
+      "kind": "box",
+      "label": "openai-codex provider",
+      "detail": "authentication and model call path",
+      "col": 3,
+      "row": 0,
+      "rowspan": 2,
+      "step": 4,
+      "step_at": "top-left",
+      "role": "process"
+    },
+    {
+      "id": "model",
+      "kind": "box",
+      "label": "Model turn",
+      "detail": "tool loop runs under the chosen runtime",
+      "col": 4,
+      "row": 0,
+      "rowspan": 2,
+      "role": "store"
+    },
+    {
+      "id": "systemd",
+      "kind": "box",
+      "label": "systemd service",
+      "detail": "supervises the gateway process in WSL2",
+      "col": 1,
+      "row": 2,
+      "role": "queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "user-to-terminal",
+      "source": "user",
+      "target": "terminal"
+    },
+    {
+      "id": "user-to-telegram",
+      "source": "user",
+      "target": "telegram"
+    },
+    {
+      "id": "terminal-to-runtime",
+      "source": "terminal",
+      "target": "runtime"
+    },
+    {
+      "id": "telegram-to-runtime",
+      "source": "telegram",
+      "target": "runtime"
+    },
+    {
+      "id": "runtime-to-provider",
+      "source": "runtime",
+      "target": "provider"
+    },
+    {
+      "id": "provider-to-model",
+      "source": "provider",
+      "target": "model"
+    },
+    {
+      "id": "systemd-to-telegram",
+      "source": "systemd",
+      "target": "telegram",
+      "dashed": true
+    }
+  ]
+}

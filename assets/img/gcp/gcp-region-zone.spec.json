@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "gcp-region-zone",
+  "title": "A zone is a failure domain; a region is a group of them",
+  "subtitle": "Spreading across zones survives one zone failing. Spreading across regions is what survives a regional outage.",
+  "layout": {
+    "icon_cell_w": 150,
+    "col_gap": 48,
+    "row_gap": 24
+  },
+  "containers": [
+    {
+      "id": "seoul",
+      "kind": "plain",
+      "label": "Region: asia-northeast3 (Seoul)",
+      "members": [
+        "s-a",
+        "s-b",
+        "s-c"
+      ]
+    },
+    {
+      "id": "iowa",
+      "kind": "plain",
+      "label": "Region: us-central1 (Iowa)",
+      "members": [
+        "i-a",
+        "i-b",
+        "i-c"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "s-a",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -a",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "s-b",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -b",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "s-c",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -c",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "i-a",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -a",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "i-b",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -b",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "i-c",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "zone -c",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "backbone",
+      "kind": "text",
+      "label": "Google global network: the Premium Tier backbone carries traffic between regions.",
+      "col": 0,
+      "row": 2,
+      "colspan": 3
+    }
+  ]
+}

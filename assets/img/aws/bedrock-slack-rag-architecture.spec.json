@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "id": "bedrock-slack-rag-architecture",
+  "title": "Google Docs become citable answers in a Slack thread",
+  "subtitle": "One parse produces both the Markdown body and the citation metadata, which is what makes a deep link back to the source possible.",
+  "layout": {
+    "icon_cell_w": 156,
+    "col_gap": 42,
+    "row_gap": 30
+  },
+  "containers": [
+    {
+      "id": "lane-ingest",
+      "kind": "plain",
+      "label": "1. Document ingestion",
+      "members": [
+        "gdocs",
+        "apps-script",
+        "n8n-sync",
+        "docs-api",
+        "parser",
+        "citation",
+        "s3-artifacts",
+        "kb",
+        "s3-vectors"
+      ]
+    },
+    {
+      "id": "lane-query",
+      "kind": "plain",
+      "label": "2. Slack query runtime",
+      "members": [
+        "mention",
+        "n8n-chat",
+        "retrieve",
+        "rerank",
+        "gate",
+        "llm",
+        "reply",
+        "eval"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "gdocs",
+      "kind": "box",
+      "label": "Google Docs",
+      "col": 0,
+      "row": 0,
+      "detail": "source of truth",
+      "role": "external"
+    },
+    {
+      "id": "apps-script",
+      "kind": "box",
+      "label": "Apps Script",
+      "col": 1,
+      "row": 0,
+      "detail": "trigger only"
+    },
+    {
+      "id": "n8n-sync",
+      "kind": "box",
+      "label": "n8n sync workflow",
+      "col": 2,
+      "row": 0,
+      "detail": "AssumeRole"
+    },
+    {
+      "id": "docs-api",
+      "kind": "box",
+      "label": "Docs API",
+      "col": 3,
+      "row": 0,
+      "detail": "tabs and field mask"
+    },
+    {
+      "id": "parser",
+      "kind": "box",
+      "label": "Python parser",
+      "col": 4,
+      "row": 0,
+      "detail": "sections and tables",
+      "role": "compute"
+    },
+    {
+      "id": "citation",
+      "kind": "box",
+      "label": "headingId, section path, source URL",
+      "col": 4,
+      "row": 1,
+      "detail": "the citation sidecar",
+      "role": "queue"
+    },
+    {
+      "id": "s3-artifacts",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 artifacts",
+      "col": 5,
+      "row": 0,
+      "detail": "Markdown + sidecar"
+    },
+    {
+      "id": "kb",
+      "kind": "service",
+      "service": "bedrock",
+      "label": "Bedrock KB",
+      "col": 6,
+      "row": 0,
+      "detail": "Cohere embed"
+    },
+    {
+      "id": "s3-vectors",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 Vectors",
+      "col": 7,
+      "row": 0,
+      "detail": "vector index"
+    },
+    {
+      "id": "mention",
+      "kind": "box",
+      "label": "Slack mention",
+      "col": 0,
+      "row": 2,
+      "detail": "app_mention",
+      "role": "external"
+    },
+    {
+      "id": "n8n-chat",
+      "kind": "box",
+      "label": "n8n chat workflow",
+      "col": 1,
+      "row": 2,
+      "detail": "ack and status"
+    },
+    {
+      "id": "retrieve",
+      "kind": "box",
+      "label": "KB retrieve",
+      "col": 2,
+      "row": 2,
+      "detail": "top 25 candidates from the S3 Vectors index",
+      "role": "process"
+    },
+    {
+      "id": "rerank",
+      "kind": "box",
+      "label": "Cohere rerank",
+      "col": 3,
+      "row": 2,
+      "detail": "top 5 evidence",
+      "role": "compute"
+    },
+    {
+      "id": "gate",
+      "kind": "box",
+      "label": "Evidence gate",
+      "col": 4,
+      "row": 2,
+      "detail": "score threshold, else Unknown",
+      "role": "danger"
+    },
+    {
+      "id": "llm",
+      "kind": "box",
+      "label": "External LLM",
+      "col": 5,
+      "row": 2,
+      "detail": "grounded answer only"
+    },
+    {
+      "id": "reply",
+      "kind": "box",
+      "label": "Thread reply",
+      "col": 6,
+      "row": 2,
+      "detail": "answer with deep links",
+      "role": "store"
+    },
+    {
+      "id": "eval",
+      "kind": "box",
+      "label": "Evaluation",
+      "col": 7,
+      "row": 2,
+      "detail": "hit, answer, citation, unknown",
+      "role": "queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "gdocs-to-apps-script",
+      "source": "gdocs",
+      "target": "apps-script"
+    },
+    {
+      "id": "apps-script-to-n8n-sync",
+      "source": "apps-script",
+      "target": "n8n-sync"
+    },
+    {
+      "id": "n8n-sync-to-docs-api",
+      "source": "n8n-sync",
+      "target": "docs-api"
+    },
+    {
+      "id": "docs-api-to-parser",
+      "source": "docs-api",
+      "target": "parser"
+    },
+    {
+      "id": "parser-to-s3-artifacts",
+      "source": "parser",
+      "target": "s3-artifacts"
+    },
+    {
+      "id": "s3-artifacts-to-kb",
+      "source": "s3-artifacts",
+      "target": "kb"
+    },
+    {
+      "id": "kb-to-s3-vectors",
+      "source": "kb",
+      "target": "s3-vectors"
+    },
+    {
+      "id": "mention-to-n8n-chat",
+      "source": "mention",
+      "target": "n8n-chat"
+    },
+    {
+      "id": "n8n-chat-to-retrieve",
+      "source": "n8n-chat",
+      "target": "retrieve"
+    },
+    {
+      "id": "retrieve-to-rerank",
+      "source": "retrieve",
+      "target": "rerank"
+    },
+    {
+      "id": "rerank-to-gate",
+      "source": "rerank",
+      "target": "gate"
+    },
+    {
+      "id": "gate-to-llm",
+      "source": "gate",
+      "target": "llm"
+    },
+    {
+      "id": "llm-to-reply",
+      "source": "llm",
+      "target": "reply"
+    },
+    {
+      "id": "reply-to-eval",
+      "source": "reply",
+      "target": "eval"
+    },
+    {
+      "id": "parser-to-citation",
+      "source": "parser",
+      "target": "citation"
+    }
+  ]
+}

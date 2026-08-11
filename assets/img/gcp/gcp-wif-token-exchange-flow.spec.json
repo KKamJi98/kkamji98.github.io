@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "id": "gcp-wif-token-exchange-flow",
+  "title": "Workload Identity Federation trades an OIDC token for a Google credential",
+  "subtitle": "The attribute condition is the security boundary: without it, any repository presenting a valid token from that issuer is accepted.",
+  "layout": {
+    "icon_cell_w": 168,
+    "col_gap": 50,
+    "row_gap": 28
+  },
+  "containers": [
+    {
+      "id": "external",
+      "kind": "plain",
+      "label": "External CI (GitHub Actions)",
+      "members": [
+        "token"
+      ]
+    },
+    {
+      "id": "gcloud",
+      "kind": "plain",
+      "label": "Google Cloud",
+      "members": [
+        "pool",
+        "provider",
+        "condition",
+        "sts",
+        "federated",
+        "direct",
+        "sa",
+        "resource"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "token",
+      "kind": "box",
+      "label": "OIDC token",
+      "col": 0,
+      "row": 0,
+      "detail": "issued to the workflow run",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "pool",
+      "kind": "box",
+      "label": "Workload identity pool",
+      "col": 1,
+      "row": 0,
+      "detail": "the trust container",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "provider",
+      "kind": "box",
+      "label": "OIDC provider",
+      "col": 2,
+      "row": 0,
+      "detail": "issuer URL and attribute mapping",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "condition",
+      "kind": "box",
+      "label": "Attribute condition",
+      "col": 2,
+      "row": 1,
+      "detail": "restricts to one org and repository",
+      "role": "danger"
+    },
+    {
+      "id": "sts",
+      "kind": "service",
+      "service": "gcp:iam",
+      "label": "Security Token Service",
+      "col": 3,
+      "row": 0,
+      "detail": "validates and exchanges",
+      "step": 4,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "federated",
+      "kind": "box",
+      "label": "Federated token",
+      "col": 4,
+      "row": 0,
+      "detail": "short-lived",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left",
+      "rowspan": 2
+    },
+    {
+      "id": "direct",
+      "kind": "box",
+      "label": "Direct resource access",
+      "col": 5,
+      "row": 0,
+      "detail": "IAM binding on the principal set"
+    },
+    {
+      "id": "sa",
+      "kind": "box",
+      "label": "Service account impersonation",
+      "col": 5,
+      "row": 1,
+      "detail": "when a service account identity is required"
+    },
+    {
+      "id": "resource",
+      "kind": "service",
+      "service": "gcp:cloud_storage",
+      "label": "Target resource",
+      "col": 6,
+      "row": 0,
+      "detail": "least-privilege role",
+      "rowspan": 2
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "No long-lived service account key exists anywhere in this flow.",
+      "col": 0,
+      "row": 2,
+      "colspan": 7
+    }
+  ],
+  "edges": [
+    {
+      "id": "token-to-pool",
+      "source": "token",
+      "target": "pool"
+    },
+    {
+      "id": "pool-to-provider",
+      "source": "pool",
+      "target": "provider"
+    },
+    {
+      "id": "pool-to-condition",
+      "source": "pool",
+      "target": "condition"
+    },
+    {
+      "id": "provider-to-sts",
+      "source": "provider",
+      "target": "sts"
+    },
+    {
+      "id": "condition-to-sts",
+      "source": "condition",
+      "target": "sts"
+    },
+    {
+      "id": "sts-to-federated",
+      "source": "sts",
+      "target": "federated"
+    },
+    {
+      "id": "federated-to-direct",
+      "source": "federated",
+      "target": "direct"
+    },
+    {
+      "id": "federated-to-sa",
+      "source": "federated",
+      "target": "sa"
+    },
+    {
+      "id": "direct-to-resource",
+      "source": "direct",
+      "target": "resource"
+    },
+    {
+      "id": "sa-to-resource",
+      "source": "sa",
+      "target": "resource"
+    }
+  ]
+}

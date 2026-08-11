@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "spring-11-webflux-event-loop",
+  "title": "A handful of event loop threads serve many connections",
+  "subtitle": "While one connection waits on I/O, the same thread serves another, which is why the pool tracks CPU cores rather than requests.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "pool",
+      "kind": "plain",
+      "label": "Netty event loop pool (threads track the CPU core count)",
+      "members": [
+        "el1",
+        "el2"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "conns",
+      "kind": "box",
+      "label": "Many connections",
+      "col": 0,
+      "row": 0,
+      "detail": "A, B, C, D, E, F, ...",
+      "rowspan": 2,
+      "w": 220
+    },
+    {
+      "id": "el1",
+      "kind": "box",
+      "label": "event-loop-1 serves A, C, E",
+      "col": 1,
+      "row": 0,
+      "detail": "never blocks",
+      "role": "compute",
+      "w": 420
+    },
+    {
+      "id": "el2",
+      "kind": "box",
+      "label": "event-loop-2 serves B, D, F",
+      "col": 1,
+      "row": 1,
+      "detail": "never blocks",
+      "role": "compute",
+      "w": 420
+    },
+    {
+      "id": "elnote",
+      "kind": "text",
+      "label": "While one connection's I/O is pending the thread picks up another connection instead of waiting.",
+      "col": 0,
+      "row": 2,
+      "colspan": 2
+    },
+    {
+      "id": "cmp",
+      "kind": "text",
+      "label": "Spring MVC would need one blocked thread per in-flight request for the same work.",
+      "col": 0,
+      "row": 3,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "conns-to-el1",
+      "source": "conns",
+      "target": "el1"
+    },
+    {
+      "id": "conns-to-el2",
+      "source": "conns",
+      "target": "el2"
+    }
+  ]
+}

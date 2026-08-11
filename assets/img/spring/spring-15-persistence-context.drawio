@@ -1,35 +1,40 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-15-persistence-context" name="Persistence Context">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1020" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-15-persistence-context" name="The persistence context is a per-transaction cache with identity guarantees">
+    <mxGraphModel dx="1068" dy="396" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1068" pageHeight="396" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="app" parent="1" vertex="1" value="Application code&#xa;(@Transactional method)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="40" y="200" width="230" height="100" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1044.0" height="372.0" as="geometry" />
         </mxCell>
-        <mxCell id="pc" parent="1" vertex="1" value="Persistence Context = 1st-level cache (transaction scope)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="330" y="60" width="540" height="380" as="geometry" />
+        <mxCell id="title" value="The persistence context is a per-transaction cache with identity guarantees" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1000.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="mc" parent="1" vertex="1" value="managed entities&#xa;(id -> entity, unique per id)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="360" y="120" width="370" height="80" as="geometry" />
+        <mxCell id="subtitle" value="A second find for the same id inside one transaction returns the same instance without touching the database." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1000.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="dc" parent="1" vertex="1" value="dirty checking&#xa;(snapshot compared at flush)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="360" y="230" width="370" height="80" as="geometry" />
+        <mxCell id="pc" value="Persistence context: first-level cache, transaction scoped" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="322" y="104" width="464" height="258" as="geometry" />
         </mxCell>
-        <mxCell id="hit" parent="1" vertex="1" value="2nd find(id) in same tx -> cache hit (no DB round-trip)" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="360" y="350" width="370" height="50" as="geometry" />
+        <mxCell id="app" value="Application code&#xa;a @Transactional method" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="146" width="240" height="216" as="geometry" />
         </mxCell>
-        <mxCell id="db" parent="1" vertex="1" value="Database" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="850" y="200" width="130" height="100" as="geometry" />
+        <mxCell id="mc" value="Managed entities&#xa;one instance per id" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="344" y="146" width="420" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e1" parent="1" edge="1" source="app" target="pc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;">
+        <mxCell id="dc" value="Dirty checking&#xa;the snapshot is compared at flush" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="344" y="216" width="420" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hit" value="Second find(id) in the same transaction&#xa;cache hit, no database round trip" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="344" y="286" width="420" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="Database" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="834" y="146" width="200" height="216" as="geometry" />
+        </mxCell>
+        <mxCell id="app-to-mc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.125;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app" target="mc">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" parent="1" edge="1" source="db" target="pc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e3" parent="1" edge="1" source="pc" target="db" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="mc-to-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.125;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mc" target="db">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

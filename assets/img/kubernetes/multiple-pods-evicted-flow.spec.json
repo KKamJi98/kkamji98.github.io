@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "multiple-pods-evicted-flow",
+  "title": "Disk pressure makes the kubelet evict pods before the node turns unhealthy",
+  "subtitle": "Eviction is a node-local decision, so pods disappear without the scheduler or a controller asking for it.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "pressure",
+      "kind": "service",
+      "label": "Node disk pressure",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "nodefs or imagefs past the threshold",
+      "role": "danger",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "evict",
+      "kind": "service",
+      "label": "kubelet eviction",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:kubelet",
+      "detail": "ranks candidates by QoS class and usage",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "evicted",
+      "kind": "service",
+      "label": "Evicted Pods",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "phase Failed, reason Evicted",
+      "role": "danger",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "impact",
+      "kind": "box",
+      "label": "Workload impact",
+      "col": 3,
+      "row": 0,
+      "detail": "controllers recreate, capacity may not exist",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cleanup",
+      "kind": "box",
+      "label": "Cleanup and recovery",
+      "col": 4,
+      "row": 0,
+      "detail": "reclaim disk, then raise the threshold",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pressure-to-evict",
+      "source": "pressure",
+      "target": "evict"
+    },
+    {
+      "id": "evict-to-evicted",
+      "source": "evict",
+      "target": "evicted"
+    },
+    {
+      "id": "evicted-to-impact",
+      "source": "evicted",
+      "target": "impact"
+    },
+    {
+      "id": "impact-to-cleanup",
+      "source": "impact",
+      "target": "cleanup"
+    }
+  ]
+}

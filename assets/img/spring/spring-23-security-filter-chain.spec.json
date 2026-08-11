@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "spring-23-security-filter-chain",
+  "title": "보안은 컨트롤러 앞단의 필터 체인에서 끝난다",
+  "subtitle": "거부된 요청은 DispatcherServlet까지 도달하지 않으므로 애플리케이션 코드는 실행되지 않는다.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "req",
+      "kind": "box",
+      "label": "HTTP 요청",
+      "col": 0,
+      "row": 0,
+      "w": 540
+    },
+    {
+      "id": "sc",
+      "kind": "box",
+      "label": "서블릿 컨테이너 필터 체인",
+      "col": 0,
+      "row": 1,
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 540
+    },
+    {
+      "id": "dfp",
+      "kind": "box",
+      "label": "DelegatingFilterProxy",
+      "col": 0,
+      "row": 2,
+      "detail": "서블릿 컨테이너와 Spring ApplicationContext를 잇는다",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 540
+    },
+    {
+      "id": "fcp",
+      "kind": "box",
+      "label": "FilterChainProxy",
+      "col": 0,
+      "row": 3,
+      "detail": "요청에 맞는 SecurityFilterChain을 고른다",
+      "role": "compute",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 540
+    },
+    {
+      "id": "sfc",
+      "kind": "box",
+      "label": "SecurityFilterChain",
+      "col": 0,
+      "row": 4,
+      "detail": "보안 필터들: 인증 다음 인가",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 540
+    },
+    {
+      "id": "ds",
+      "kind": "box",
+      "label": "통과 시 DispatcherServlet과 컨트롤러",
+      "col": 0,
+      "row": 5,
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 540
+    }
+  ],
+  "edges": [
+    {
+      "id": "req-to-sc",
+      "source": "req",
+      "target": "sc"
+    },
+    {
+      "id": "sc-to-dfp",
+      "source": "sc",
+      "target": "dfp"
+    },
+    {
+      "id": "dfp-to-fcp",
+      "source": "dfp",
+      "target": "fcp"
+    },
+    {
+      "id": "fcp-to-sfc",
+      "source": "fcp",
+      "target": "sfc"
+    },
+    {
+      "id": "sfc-to-ds",
+      "source": "sfc",
+      "target": "ds"
+    }
+  ]
+}

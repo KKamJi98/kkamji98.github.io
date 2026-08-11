@@ -1,35 +1,41 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="jvm-03-jvm-memory-areas" name="JVM Memory Areas">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="470" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="jvm-03-jvm-memory-areas" name="-Xmx caps the heap only; everything else is native memory">
+    <mxGraphModel dx="960" dy="482" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="482" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="heap-panel" parent="1" vertex="1" value="Heap  (shared, GC-managed)  -  capped by -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="40" y="60" width="440" height="360" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="936.0" height="458.0" as="geometry" />
         </mxCell>
-        <mxCell id="young" parent="1" vertex="1" value="Young&#xa;Eden (new objects) + Survivor (S0 / S1)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="110" width="380" height="120" as="geometry" />
+        <mxCell id="title" value="-Xmx caps the heap only; everything else is native memory" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="892.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="old" parent="1" vertex="1" value="Old&#xa;(long-lived / promoted objects)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="250" width="380" height="130" as="geometry" />
+        <mxCell id="subtitle" value="This is why a JVM can stay inside its heap limit and still be killed by a container memory limit." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="892.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="nh-panel" parent="1" vertex="1" value="Non-heap / Native  -  outside -Xmx" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="520" y="60" width="440" height="360" as="geometry" />
+        <mxCell id="heap-panel" value="Heap: shared, GC managed, capped by -Xmx" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="424" height="186" as="geometry" />
         </mxCell>
-        <mxCell id="meta" parent="1" vertex="1" value="Metaspace  (class metadata, JDK8+, native)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="110" width="400" height="58" as="geometry" />
+        <mxCell id="nh-panel" value="Non-heap and native: outside -Xmx" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="502" y="104" width="424" height="344" as="geometry" />
         </mxCell>
-        <mxCell id="stacks" parent="1" vertex="1" value="Thread Stacks  (-Xss x N, per-thread)  = ch.1 stack" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="180" width="480" height="58" as="geometry" />
+        <mxCell id="young" value="Young generation&#xa;Eden plus survivor spaces S0 and S1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="380" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="codecache" parent="1" vertex="1" value="Code Cache  (JIT machine code)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="250" width="380" height="58" as="geometry" />
+        <mxCell id="old" value="Old generation&#xa;long-lived and promoted objects" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="214" width="380" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="direct" parent="1" vertex="1" value="Direct Memory  (off-heap, NIO / netty)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="320" width="380" height="58" as="geometry" />
+        <mxCell id="meta" value="Metaspace&#xa;class metadata, native since JDK 8" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="524" y="146" width="380" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="-Xmx caps the Heap only. Everything on the right is native memory, outside -Xmx." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="40" y="426" width="920" height="35" as="geometry" />
+        <mxCell id="stacks" value="Thread stacks&#xa;-Xss per thread, times the thread count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="524" y="214" width="380" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="codecache" value="Code cache&#xa;JIT compiled machine code" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="524" y="304" width="380" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct" value="Direct memory&#xa;off-heap buffers: NIO and Netty" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="524" y="372" width="380" height="54" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

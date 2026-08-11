@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "nodejs-spring-server-stacks",
+  "title": "Three server models differ in what holds a request while it waits",
+  "subtitle": "These three columns are not a performance ranking. They show which execution unit a blocking call occupies, and therefore where CPU work has to be moved.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 20
+  },
+  "containers": [
+    {
+      "id": "c-node",
+      "kind": "plain",
+      "label": "Node.js core HTTP",
+      "members": [
+        "n-exec",
+        "n-wait"
+      ]
+    },
+    {
+      "id": "c-mvc",
+      "kind": "plain",
+      "label": "Spring Boot MVC",
+      "members": [
+        "m-exec",
+        "m-wait"
+      ]
+    },
+    {
+      "id": "c-flux",
+      "kind": "plain",
+      "label": "Spring Boot WebFlux",
+      "members": [
+        "w-exec",
+        "w-wait"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n-exec",
+      "kind": "box",
+      "label": "Main JavaScript flow",
+      "detail": "one thread runs application code",
+      "col": 0,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "n-wait",
+      "kind": "box",
+      "label": "Waiting costs a callback",
+      "detail": "the loop moves on to other work",
+      "col": 0,
+      "row": 1,
+      "role": "store"
+    },
+    {
+      "id": "m-exec",
+      "kind": "box",
+      "label": "Servlet request thread",
+      "detail": "one thread per in-flight request",
+      "col": 1,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "m-wait",
+      "kind": "box",
+      "label": "Waiting costs a thread",
+      "detail": "the pool size bounds concurrency",
+      "col": 1,
+      "row": 1,
+      "role": "queue"
+    },
+    {
+      "id": "w-exec",
+      "kind": "box",
+      "label": "Event loop worker",
+      "detail": "a small fixed set of threads",
+      "col": 2,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "w-wait",
+      "kind": "box",
+      "label": "Waiting costs a subscription",
+      "detail": "backpressure is part of the contract",
+      "col": 2,
+      "row": 1,
+      "role": "store"
+    }
+  ]
+}

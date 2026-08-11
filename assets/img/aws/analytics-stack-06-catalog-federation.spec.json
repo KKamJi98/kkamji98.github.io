@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-06-catalog-federation",
+  "title": "S3 Tables nest one catalog level deeper than a regular Glue database",
+  "subtitle": "The extra level shows up in every ARN, which is why a policy that works for logs_db fails for a table bucket.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "defcat",
+      "kind": "box",
+      "label": "Default catalog",
+      "col": 0,
+      "row": 0,
+      "detail": "AwsDataCatalog",
+      "rowspan": 2
+    },
+    {
+      "id": "logsdb",
+      "kind": "box",
+      "label": "logs_db",
+      "col": 1,
+      "row": 0,
+      "detail": "regular Glue database",
+      "role": "process"
+    },
+    {
+      "id": "s3tcat",
+      "kind": "box",
+      "label": "s3tablescatalog",
+      "col": 1,
+      "row": 1,
+      "detail": "federated catalog",
+      "role": "compute"
+    },
+    {
+      "id": "bucket",
+      "kind": "box",
+      "label": "amzn-s3-demo-bucket",
+      "col": 2,
+      "row": 1,
+      "detail": "table bucket",
+      "role": "compute"
+    },
+    {
+      "id": "nstable",
+      "kind": "box",
+      "label": "sales_db > orders",
+      "col": 3,
+      "row": 1,
+      "detail": "namespace > table",
+      "role": "compute"
+    },
+    {
+      "id": "arn1",
+      "kind": "text",
+      "label": "Regular database ARN:  arn:aws:glue:REGION:ACCOUNT:database/logs_db",
+      "col": 0,
+      "row": 2,
+      "colspan": 4
+    },
+    {
+      "id": "arn2",
+      "kind": "text",
+      "label": "S3 Tables ARN:  arn:aws:glue:REGION:ACCOUNT:catalog/s3tablescatalog/{bucket}/{db}  and  table/{bucket}/{db}/{table}",
+      "col": 0,
+      "row": 3,
+      "colspan": 4
+    },
+    {
+      "id": "arnnote",
+      "kind": "text",
+      "label": "Deeper federation means a deeper ARN path, so a policy has to grant the ancestor ARNs as well as the target.",
+      "col": 0,
+      "row": 4,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "defcat-to-logsdb",
+      "source": "defcat",
+      "target": "logsdb"
+    },
+    {
+      "id": "defcat-to-s3tcat",
+      "source": "defcat",
+      "target": "s3tcat"
+    },
+    {
+      "id": "s3tcat-to-bucket",
+      "source": "s3tcat",
+      "target": "bucket"
+    },
+    {
+      "id": "bucket-to-nstable",
+      "source": "bucket",
+      "target": "nstable"
+    }
+  ]
+}

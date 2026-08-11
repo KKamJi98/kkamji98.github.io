@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "id": "spring-01-request-flow",
+  "title": "One worker thread is held for the whole request, blocking included",
+  "subtitle": "Everything from the connector to the repository runs on that one thread, which is what bounds MVC concurrency.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 14
+  },
+  "containers": [
+    {
+      "id": "jvm-proc",
+      "kind": "plain",
+      "label": "JVM process: java -jar app.jar",
+      "members": [
+        "connector",
+        "container",
+        "filters",
+        "dispatcher",
+        "handler",
+        "csr",
+        "converter"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 0,
+      "row": 0,
+      "detail": "HTTP request",
+      "w": 520
+    },
+    {
+      "id": "connector",
+      "kind": "box",
+      "label": "Embedded Tomcat connector",
+      "col": 0,
+      "row": 1,
+      "detail": "accepts on :8080",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "container",
+      "kind": "box",
+      "label": "Servlet container",
+      "col": 0,
+      "row": 2,
+      "detail": "assigns one worker thread",
+      "role": "compute",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "filters",
+      "kind": "box",
+      "label": "Filter chain",
+      "col": 0,
+      "row": 3,
+      "detail": "security, logging, encoding",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "dispatcher",
+      "kind": "box",
+      "label": "DispatcherServlet",
+      "col": 0,
+      "row": 4,
+      "detail": "the front controller, mapped to /",
+      "role": "process",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "handler",
+      "kind": "box",
+      "label": "HandlerMapping and HandlerAdapter",
+      "col": 0,
+      "row": 5,
+      "detail": "find the handler, bind the arguments",
+      "role": "process",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "csr",
+      "kind": "box",
+      "label": "Controller, Service, Repository",
+      "col": 0,
+      "row": 6,
+      "detail": "all beans, all on the same thread",
+      "role": "compute",
+      "step": 6,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "converter",
+      "kind": "box",
+      "label": "HttpMessageConverter",
+      "col": 0,
+      "row": 7,
+      "detail": "return value serialised to JSON",
+      "role": "store",
+      "step": 7,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "worker-note",
+      "kind": "text",
+      "label": "The worker thread is held for the entire request, including the time spent waiting on I/O.",
+      "col": 0,
+      "row": 8
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-connector",
+      "source": "client",
+      "target": "connector"
+    },
+    {
+      "id": "connector-to-container",
+      "source": "connector",
+      "target": "container"
+    },
+    {
+      "id": "container-to-filters",
+      "source": "container",
+      "target": "filters"
+    },
+    {
+      "id": "filters-to-dispatcher",
+      "source": "filters",
+      "target": "dispatcher"
+    },
+    {
+      "id": "dispatcher-to-handler",
+      "source": "dispatcher",
+      "target": "handler"
+    },
+    {
+      "id": "handler-to-csr",
+      "source": "handler",
+      "target": "csr"
+    },
+    {
+      "id": "csr-to-converter",
+      "source": "csr",
+      "target": "converter"
+    }
+  ]
+}

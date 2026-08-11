@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "id": "node-esm-startup-config-flow",
+  "title": "Config is validated before the server binds, so a bad value fails at start-up",
+  "subtitle": "The CLI supplies the environment, then the ESM graph loads. Only a valid configuration reaches the error listener and listen(), and a resolve failure never gets that far.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 22
+  },
+  "nodes": [
+    {
+      "id": "node-cli",
+      "kind": "box",
+      "label": "Node CLI",
+      "col": 0,
+      "row": 1,
+      "detail": "node main.mjs",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "environment",
+      "kind": "box",
+      "label": "Environment",
+      "col": 1,
+      "row": 1,
+      "detail": "--env-file and process.env",
+      "role": "external",
+      "w": 250,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "main-module",
+      "kind": "box",
+      "label": "main.mjs",
+      "col": 2,
+      "row": 1,
+      "detail": "bootstrap entry point",
+      "role": "process",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "config-module",
+      "kind": "box",
+      "label": "config.mjs",
+      "col": 3,
+      "row": 1,
+      "detail": "imported before the server",
+      "role": "process",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "config-validation",
+      "kind": "box",
+      "label": "Parse and validate config",
+      "col": 4,
+      "row": 1,
+      "detail": "fail here, not at first request",
+      "role": "compute",
+      "step": 5,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "server-module",
+      "kind": "box",
+      "label": "server.mjs",
+      "col": 5,
+      "row": 1,
+      "detail": "createServer",
+      "role": "process",
+      "step": 6,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "error-listener",
+      "kind": "box",
+      "label": "error listener",
+      "col": 6,
+      "row": 1,
+      "detail": "registered before listen(), never after",
+      "role": "queue",
+      "w": 250,
+      "step": 7
+    },
+    {
+      "id": "listen",
+      "kind": "box",
+      "label": "server.listen()",
+      "col": 7,
+      "row": 1,
+      "detail": "the port is bound here",
+      "role": "process",
+      "step": 8,
+      "step_at": "top-left",
+      "w": 250
+    },
+    {
+      "id": "ready",
+      "kind": "box",
+      "label": "Ready: HTTP 200",
+      "col": 8,
+      "row": 1,
+      "detail": "the readiness probe can pass",
+      "role": "store",
+      "w": 250
+    },
+    {
+      "id": "module-failure",
+      "kind": "box",
+      "label": "Module failure",
+      "col": 3,
+      "row": 2,
+      "detail": "resolve or evaluate error",
+      "role": "danger",
+      "w": 250
+    },
+    {
+      "id": "startup-error",
+      "kind": "box",
+      "label": "Startup error",
+      "col": 4,
+      "row": 2,
+      "detail": "logged without secrets",
+      "role": "danger",
+      "w": 250
+    },
+    {
+      "id": "no-listener",
+      "kind": "box",
+      "label": "No listener",
+      "col": 5,
+      "row": 2,
+      "detail": "non-zero exit, nothing bound",
+      "role": "danger",
+      "w": 250
+    }
+  ],
+  "edges": [
+    {
+      "id": "node-cli-to-environment",
+      "source": "node-cli",
+      "target": "environment"
+    },
+    {
+      "id": "environment-to-main-module",
+      "source": "environment",
+      "target": "main-module"
+    },
+    {
+      "id": "main-module-to-config-module",
+      "source": "main-module",
+      "target": "config-module"
+    },
+    {
+      "id": "config-module-to-config-validation",
+      "source": "config-module",
+      "target": "config-validation"
+    },
+    {
+      "id": "config-validation-to-server-module",
+      "source": "config-validation",
+      "target": "server-module"
+    },
+    {
+      "id": "server-module-to-error-listener",
+      "source": "server-module",
+      "target": "error-listener"
+    },
+    {
+      "id": "error-listener-to-listen",
+      "source": "error-listener",
+      "target": "listen"
+    },
+    {
+      "id": "listen-to-ready",
+      "source": "listen",
+      "target": "ready"
+    },
+    {
+      "id": "config-module-to-module-failure",
+      "source": "config-module",
+      "target": "module-failure",
+      "dashed": true
+    },
+    {
+      "id": "module-failure-to-startup-error",
+      "source": "module-failure",
+      "target": "startup-error"
+    },
+    {
+      "id": "startup-error-to-no-listener",
+      "source": "startup-error",
+      "target": "no-listener"
+    }
+  ]
+}

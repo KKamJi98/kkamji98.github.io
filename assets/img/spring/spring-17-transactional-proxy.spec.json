@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "id": "spring-17-transactional-proxy",
+  "title": "@Transactional is a proxy, so a self-call skips it entirely",
+  "subtitle": "The interceptor lives on the proxy. Calling the method through this bypasses the proxy and the transaction with it.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 14
+  },
+  "nodes": [
+    {
+      "id": "caller",
+      "kind": "box",
+      "label": "Caller",
+      "col": 0,
+      "row": 0,
+      "detail": "holds a reference to the proxy",
+      "w": 520
+    },
+    {
+      "id": "proxy",
+      "kind": "box",
+      "label": "AOP proxy with TransactionInterceptor",
+      "col": 0,
+      "row": 1,
+      "detail": "the only place the annotation is honoured",
+      "role": "compute",
+      "step": 1,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "begin",
+      "kind": "box",
+      "label": "begin transaction",
+      "col": 0,
+      "row": 2,
+      "detail": "PlatformTransactionManager",
+      "role": "process",
+      "step": 2,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "method",
+      "kind": "box",
+      "label": "@Transactional method",
+      "col": 0,
+      "row": 3,
+      "detail": "the persistence context is active here",
+      "role": "process",
+      "step": 3,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "end",
+      "kind": "box",
+      "label": "commit or rollback",
+      "col": 0,
+      "row": 4,
+      "detail": "rollback on RuntimeException and Error",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left",
+      "w": 520
+    },
+    {
+      "id": "db",
+      "kind": "box",
+      "label": "Database",
+      "col": 0,
+      "row": 5,
+      "role": "store",
+      "w": 520
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "A @Transactional method called as this.other() runs with no transaction, because the call never leaves the object.",
+      "col": 0,
+      "row": 6
+    }
+  ],
+  "edges": [
+    {
+      "id": "caller-to-proxy",
+      "source": "caller",
+      "target": "proxy"
+    },
+    {
+      "id": "proxy-to-begin",
+      "source": "proxy",
+      "target": "begin"
+    },
+    {
+      "id": "begin-to-method",
+      "source": "begin",
+      "target": "method"
+    },
+    {
+      "id": "method-to-end",
+      "source": "method",
+      "target": "end"
+    },
+    {
+      "id": "end-to-db",
+      "source": "end",
+      "target": "db"
+    }
+  ]
+}

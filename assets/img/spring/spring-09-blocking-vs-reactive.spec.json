@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "id": "spring-09-blocking-vs-reactive",
+  "title": "Blocking holds a thread through the wait; non-blocking hands it back",
+  "subtitle": "The declarative style is not the point. Releasing the thread during I/O is.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 16
+  },
+  "containers": [
+    {
+      "id": "spring-09-blocking-vs-reactive-l",
+      "kind": "plain",
+      "label": "Blocking (imperative)",
+      "members": [
+        "lb1",
+        "lb2",
+        "lb3"
+      ]
+    },
+    {
+      "id": "spring-09-blocking-vs-reactive-r",
+      "kind": "plain",
+      "label": "Non-blocking (event driven)",
+      "members": [
+        "rb1",
+        "rb2",
+        "rb3"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "lb1",
+      "kind": "box",
+      "label": "call db.query()",
+      "col": 0,
+      "row": 0,
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "lb2",
+      "kind": "box",
+      "label": "thread blocked",
+      "col": 0,
+      "row": 1,
+      "detail": "held for the whole wait, doing nothing",
+      "role": "danger",
+      "w": 400
+    },
+    {
+      "id": "lb3",
+      "kind": "box",
+      "label": "use(result)",
+      "col": 0,
+      "row": 2,
+      "detail": "resumes on the same thread",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "rb1",
+      "kind": "box",
+      "label": "declare the stream",
+      "col": 1,
+      "row": 0,
+      "detail": "query().map(...).subscribe(...)",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "rb2",
+      "kind": "box",
+      "label": "thread released",
+      "col": 1,
+      "row": 1,
+      "detail": "free to serve another request",
+      "role": "store",
+      "w": 400
+    },
+    {
+      "id": "rb3",
+      "kind": "box",
+      "label": "data arrives, onNext runs",
+      "col": 1,
+      "row": 2,
+      "detail": "possibly on a different thread",
+      "role": "process",
+      "w": 400
+    },
+    {
+      "id": "spring-09-blocking-vs-reactive-note",
+      "kind": "text",
+      "label": "Blocking spends a thread on waiting. Non-blocking spends a callback, which is why a small pool can carry many connections.",
+      "col": 0,
+      "row": 3,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "lb1-to-lb2",
+      "source": "lb1",
+      "target": "lb2"
+    },
+    {
+      "id": "lb2-to-lb3",
+      "source": "lb2",
+      "target": "lb3"
+    },
+    {
+      "id": "rb1-to-rb2",
+      "source": "rb1",
+      "target": "rb2"
+    },
+    {
+      "id": "rb2-to-rb3",
+      "source": "rb2",
+      "target": "rb3"
+    }
+  ]
+}

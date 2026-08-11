@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "id": "stateless-stateful-firewall",
+  "title": "A stateless filter needs a return rule; a stateful one already knows the flow",
+  "subtitle": "Connection tracking is what removes the second rule, and what makes the return path implicit.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "stateless",
+      "kind": "box",
+      "label": "Stateless firewall",
+      "col": 0,
+      "row": 0,
+      "detail": "evaluates each packet on its own",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "returnrule",
+      "kind": "box",
+      "label": "Separate return rule",
+      "col": 1,
+      "row": 0,
+      "detail": "must be written by hand",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "stateful",
+      "kind": "box",
+      "label": "Stateful firewall",
+      "col": 2,
+      "row": 0,
+      "detail": "evaluates the first packet of a flow",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "tracked",
+      "kind": "box",
+      "label": "Tracked connection state",
+      "col": 3,
+      "row": 0,
+      "detail": "the return traffic is allowed implicitly",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "stateless-to-returnrule",
+      "source": "stateless",
+      "target": "returnrule"
+    },
+    {
+      "id": "returnrule-to-stateful",
+      "source": "returnrule",
+      "target": "stateful"
+    },
+    {
+      "id": "stateful-to-tracked",
+      "source": "stateful",
+      "target": "tracked"
+    }
+  ]
+}

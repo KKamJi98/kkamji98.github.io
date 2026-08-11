@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "gcp-org-tree",
+  "title": "Folders group projects so one policy can cover a whole branch",
+  "subtitle": "Folders can nest up to ten levels, and they exist only under an Organization. Projects remain the billing and quota boundary.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 22
+  },
+  "nodes": [
+    {
+      "id": "org",
+      "kind": "box",
+      "label": "Organization",
+      "col": 0,
+      "row": 0,
+      "detail": "example.com",
+      "rowspan": 3
+    },
+    {
+      "id": "folder-eng",
+      "kind": "box",
+      "label": "Folder: engineering",
+      "col": 1,
+      "row": 0,
+      "rowspan": 2,
+      "detail": "nestable, policy applies to everything below"
+    },
+    {
+      "id": "folder-fin",
+      "kind": "box",
+      "label": "Folder: finance",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "app-prod",
+      "kind": "box",
+      "label": "Project: app-prod",
+      "col": 2,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "app-staging",
+      "kind": "box",
+      "label": "Project: app-staging",
+      "col": 2,
+      "row": 1,
+      "role": "process"
+    },
+    {
+      "id": "billing",
+      "kind": "box",
+      "label": "Project: billing-system",
+      "col": 2,
+      "row": 2,
+      "role": "process"
+    }
+  ],
+  "edges": [
+    {
+      "id": "org-to-folder-eng",
+      "source": "org",
+      "target": "folder-eng"
+    },
+    {
+      "id": "org-to-folder-fin",
+      "source": "org",
+      "target": "folder-fin"
+    },
+    {
+      "id": "folder-eng-to-app-prod",
+      "source": "folder-eng",
+      "target": "app-prod"
+    },
+    {
+      "id": "folder-eng-to-app-staging",
+      "source": "folder-eng",
+      "target": "app-staging"
+    },
+    {
+      "id": "folder-fin-to-billing",
+      "source": "folder-fin",
+      "target": "billing"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "spring-16-entity-states",
+  "title": "Four entity states, and only one of them is tracked",
+  "subtitle": "EntityManager calls drive every transition. Changes to a detached instance are not written anywhere.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 22
+  },
+  "nodes": [
+    {
+      "id": "transient",
+      "kind": "box",
+      "label": "transient (new)",
+      "col": 0,
+      "row": 1,
+      "detail": "not in any persistence context"
+    },
+    {
+      "id": "managed",
+      "kind": "box",
+      "label": "managed (persistent)",
+      "col": 1,
+      "row": 1,
+      "detail": "in the context, changes tracked",
+      "role": "process",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "detached",
+      "kind": "box",
+      "label": "detached",
+      "col": 2,
+      "row": 0,
+      "detail": "has an id, no longer tracked",
+      "role": "queue"
+    },
+    {
+      "id": "removed",
+      "kind": "box",
+      "label": "removed",
+      "col": 2,
+      "row": 2,
+      "detail": "scheduled for DELETE at flush",
+      "role": "danger"
+    },
+    {
+      "id": "db",
+      "kind": "box",
+      "label": "Database",
+      "col": 1,
+      "row": 3,
+      "detail": "flush writes what the context tracked",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "transient-to-managed",
+      "source": "transient",
+      "target": "managed"
+    },
+    {
+      "id": "managed-to-detached",
+      "source": "managed",
+      "target": "detached",
+      "dashed": true
+    },
+    {
+      "id": "managed-to-removed",
+      "source": "managed",
+      "target": "removed"
+    },
+    {
+      "id": "managed-to-db",
+      "source": "managed",
+      "target": "db"
+    }
+  ]
+}

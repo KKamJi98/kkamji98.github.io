@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "harbor-image-push-flow",
+  "title": "A push writes blobs first and the manifest last",
+  "subtitle": "The manifest is what makes a tag resolvable, so an interrupted push leaves blobs behind but no usable tag.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Docker client",
+      "col": 0,
+      "row": 0,
+      "detail": "docker push",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "project",
+      "kind": "box",
+      "label": "Harbor project",
+      "col": 1,
+      "row": 0,
+      "detail": "auth, quota and policy live here",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "registry",
+      "kind": "service",
+      "label": "Registry",
+      "col": 2,
+      "row": 0,
+      "service": "ecr",
+      "detail": "distribution API",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "blobs",
+      "kind": "service",
+      "label": "Blob storage",
+      "col": 3,
+      "row": 0,
+      "service": "s3",
+      "detail": "layers deduplicated by digest",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pull",
+      "kind": "box",
+      "label": "Image pull",
+      "col": 4,
+      "row": 0,
+      "detail": "manifest resolves the tag to digests",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-project",
+      "source": "client",
+      "target": "project"
+    },
+    {
+      "id": "project-to-registry",
+      "source": "project",
+      "target": "registry"
+    },
+    {
+      "id": "registry-to-blobs",
+      "source": "registry",
+      "target": "blobs"
+    },
+    {
+      "id": "blobs-to-pull",
+      "source": "blobs",
+      "target": "pull"
+    }
+  ]
+}

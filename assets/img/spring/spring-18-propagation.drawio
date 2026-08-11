@@ -1,49 +1,64 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-18-propagation" name="Transaction propagation">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="540" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-18-propagation" name="REQUIRED joins one transaction; REQUIRES_NEW creates a second one">
+    <mxGraphModel dx="1002" dy="466" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1002" pageHeight="466" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="lf" parent="1" vertex="1" value="PROPAGATION_REQUIRED (default)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="40" y="50" width="440" height="420" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="978.0" height="442.0" as="geometry" />
         </mxCell>
-        <mxCell id="lo" parent="1" vertex="1" value="outer @Transactional" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="105" width="380" height="55" as="geometry" />
+        <mxCell id="title" value="REQUIRED joins one transaction; REQUIRES_NEW creates a second one" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="934.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="li" parent="1" vertex="1" value="inner @Transactional (REQUIRED)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="195" width="380" height="55" as="geometry" />
+        <mxCell id="subtitle" value="Under REQUIRED an inner rollback marks the whole transaction rollback-only, which is what surprises callers." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="934.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="lr" parent="1" vertex="1" value="= 1 physical transaction (inner joins outer)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="70" y="285" width="420" height="60" as="geometry" />
+        <mxCell id="spring-18-propagation-l" value="PROPAGATION_REQUIRED (default)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="444" height="328" as="geometry" />
         </mxCell>
-        <mxCell id="ln" parent="1" vertex="1" value="inner rollback marks the whole transaction rollback-only" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#EA4335;fontStyle=2;">
-          <mxGeometry x="70" y="375" width="380" height="40" as="geometry" />
+        <mxCell id="spring-18-propagation-r" value="PROPAGATION_REQUIRES_NEW" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="524" y="104" width="444" height="328" as="geometry" />
         </mxCell>
-        <mxCell id="rf" parent="1" vertex="1" value="PROPAGATION_REQUIRES_NEW" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#34A853;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="520" y="50" width="440" height="420" as="geometry" />
+        <mxCell id="lo" value="outer @Transactional&#xa;starts the physical transaction" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="ro" parent="1" vertex="1" value="outer @Transactional (suspended)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="105" width="380" height="55" as="geometry" />
+        <mxCell id="li" value="inner @Transactional (REQUIRED)&#xa;joins the existing one" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="216" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="ri" parent="1" vertex="1" value="inner @Transactional (REQUIRES_NEW)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="550" y="195" width="380" height="55" as="geometry" />
+        <mxCell id="lr" value="one physical transaction" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="286" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="rr" parent="1" vertex="1" value="= 2 independent physical transactions" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="550" y="285" width="380" height="60" as="geometry" />
+        <mxCell id="ln" value="inner rollback&#xa;marks the whole transaction rollback-only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="356" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="rn" parent="1" vertex="1" value="inner commits / rolls back independently of outer" style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#34A853;fontStyle=2;">
-          <mxGeometry x="550" y="375" width="380" height="40" as="geometry" />
+        <mxCell id="ro" value="outer @Transactional&#xa;suspended while the inner runs" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="le1" parent="1" edge="1" source="lo" target="li" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="ri" value="inner @Transactional (REQUIRES_NEW)&#xa;its own physical transaction" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="216" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rr" value="two independent transactions" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="286" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rn" value="inner commits or rolls back&#xa;independently of the outer one" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="356" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lo-to-li" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo" target="li">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="le2" parent="1" edge="1" source="li" target="lr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="li-to-lr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="li" target="lr">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="re1" parent="1" edge="1" source="ro" target="ri" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="lr-to-ln" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lr" target="ln">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="re2" parent="1" edge="1" source="ri" target="rr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;endSize=7;fontColor=#202124;">
+        <mxCell id="ro-to-ri" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ro" target="ri">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ri-to-rr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ri" target="rr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rr-to-rn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rr" target="rn">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

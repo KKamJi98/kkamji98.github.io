@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-08-lf-permissions",
+  "title": "Every catalog layer needs its own IAM action and its own Lake Formation grant",
+  "subtitle": "Adding one permission at a time moves the error down a layer, which is what makes the failure readable.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 22
+  },
+  "containers": [
+    {
+      "id": "matrix",
+      "kind": "plain",
+      "label": "Permission matrix: two axes across three layers",
+      "members": [
+        "h-layer",
+        "h-iam",
+        "h-lf",
+        "l-cat",
+        "iam-cat",
+        "lf-cat",
+        "l-db",
+        "iam-db",
+        "lf-db",
+        "l-tbl",
+        "iam-tbl",
+        "lf-tbl"
+      ]
+    },
+    {
+      "id": "timeline",
+      "kind": "plain",
+      "label": "Debugging timeline: each added permission advances the symptom",
+      "members": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "h-layer",
+      "kind": "text",
+      "label": "Layer",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "h-iam",
+      "kind": "text",
+      "label": "IAM (API authorization)",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "h-lf",
+      "kind": "text",
+      "label": "Lake Formation (data authorization)",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "l-cat",
+      "kind": "box",
+      "label": "catalog",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "iam-cat",
+      "kind": "box",
+      "label": "glue:GetCatalog, GetCatalogs",
+      "col": 1,
+      "row": 1,
+      "detail": "+ catalog/s3tablescatalog/{bucket} ARN",
+      "role": "process"
+    },
+    {
+      "id": "lf-cat",
+      "kind": "box",
+      "label": "DESCRIBE",
+      "col": 2,
+      "row": 1,
+      "detail": "on s3tablescatalog/{bucket}",
+      "role": "compute"
+    },
+    {
+      "id": "l-db",
+      "kind": "box",
+      "label": "database",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "iam-db",
+      "kind": "box",
+      "label": "glue:GetDatabase, GetDatabases",
+      "col": 1,
+      "row": 2,
+      "detail": "+ database/s3tablescatalog/{bucket}/{db} ARN",
+      "role": "process"
+    },
+    {
+      "id": "lf-db",
+      "kind": "box",
+      "label": "DESCRIBE",
+      "col": 2,
+      "row": 2,
+      "detail": "on {db}",
+      "role": "compute"
+    },
+    {
+      "id": "l-tbl",
+      "kind": "box",
+      "label": "table",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "iam-tbl",
+      "kind": "box",
+      "label": "glue:GetTable, GetTables",
+      "col": 1,
+      "row": 3,
+      "detail": "+ table/s3tablescatalog/{bucket}/{db}/* ARN",
+      "role": "process"
+    },
+    {
+      "id": "lf-tbl",
+      "kind": "box",
+      "label": "SELECT, DESCRIBE",
+      "col": 2,
+      "row": 3,
+      "detail": "on the table",
+      "role": "compute"
+    },
+    {
+      "id": "gda",
+      "kind": "text",
+      "label": "lakeformation:GetDataAccess on the query principal is what enables credential vending.",
+      "col": 0,
+      "row": 4,
+      "colspan": 3
+    },
+    {
+      "id": "t1",
+      "kind": "box",
+      "label": "CATALOG_NOT_FOUND",
+      "col": 0,
+      "row": 5,
+      "detail": "TABLE_NOT_FOUND",
+      "role": "danger"
+    },
+    {
+      "id": "t2",
+      "kind": "box",
+      "label": "glue:GetDatabases",
+      "col": 1,
+      "row": 5,
+      "detail": "AccessDenied",
+      "role": "danger"
+    },
+    {
+      "id": "t3",
+      "kind": "box",
+      "label": "glue:GetTable",
+      "col": 2,
+      "row": 5,
+      "detail": "AccessDenied",
+      "role": "danger"
+    },
+    {
+      "id": "t4",
+      "kind": "box",
+      "label": "query succeeds",
+      "col": 3,
+      "row": 5,
+      "detail": "short name resolves",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "t1-to-t2",
+      "source": "t1",
+      "target": "t2"
+    },
+    {
+      "id": "t2-to-t3",
+      "source": "t2",
+      "target": "t3"
+    },
+    {
+      "id": "t3-to-t4",
+      "source": "t3",
+      "target": "t4"
+    }
+  ]
+}

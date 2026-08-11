@@ -1,41 +1,46 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" modified="2026-07-29T10:30:00.000Z" version="30.2.6">
-<diagram id="node-spring-stacks" name="Server Stack Boundaries">
-<mxGraphModel background="#FFFFFF" dx="1800" dy="900" grid="1" gridSize="10">
-<root>
-<mxCell id="0" />
-<mxCell id="1" parent="0" />
-<mxCell id="title" value="SERVER STACK BOUNDARIES" style="fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;html=0;" vertex="1" parent="1">
-<mxGeometry x="560" y="80" width="680" height="55" as="geometry" />
-</mxCell>
-<mxCell id="node" value="NODE.JS CORE HTTP" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="100" y="250" width="400" height="160" as="geometry" />
-</mxCell>
-<mxCell id="mvc" value="SPRING BOOT MVC" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="700" y="250" width="400" height="160" as="geometry" />
-</mxCell>
-<mxCell id="webflux" value="SPRING BOOT WEBFLUX" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="1300" y="250" width="400" height="160" as="geometry" />
-</mxCell>
-<mxCell id="node-exec" value="main JavaScript flow" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="130" y="520" width="340" height="80" as="geometry" />
-</mxCell>
-<mxCell id="mvc-exec" value="servlet request thread" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="730" y="520" width="340" height="80" as="geometry" />
-</mxCell>
-<mxCell id="webflux-exec" value="event loop worker" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontColor=#202124;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
-<mxGeometry x="1330" y="520" width="340" height="80" as="geometry" />
-</mxCell>
-<mxCell id="node-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="node" target="node-exec">
-<mxGeometry relative="1" as="geometry" />
-</mxCell>
-<mxCell id="mvc-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="mvc" target="mvc-exec">
-<mxGeometry relative="1" as="geometry" />
-</mxCell>
-<mxCell id="webflux-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;fontColor=#202124;fontSize=11;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="webflux" target="webflux-exec">
-<mxGeometry relative="1" as="geometry" />
-</mxCell>
-</root>
-</mxGraphModel>
-</diagram>
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="nodejs-spring-server-stacks" name="Three server models differ in what holds a request while it waits">
+    <mxGraphModel dx="1221" dy="330" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1221" pageHeight="330" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1197.62" height="306.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Three server models differ in what holds a request while it waits" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1153.62" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="These three columns are not a performance ranking. They show which execution unit a blocking call occupies, and therefore where CPU work has to be moved." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1153.62" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c-node" value="Node.js core HTTP" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="141.81" y="104" width="272" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="c-mvc" value="Spring Boot MVC" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="461.81" y="104" width="272" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="c-flux" value="Spring Boot WebFlux" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="781.81" y="104" width="298" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="n-exec" value="Main JavaScript flow&#xa;one thread runs application code" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="163.81" y="146" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="n-wait" value="Waiting costs a callback&#xa;the loop moves on to other work" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="166.81" y="220" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="m-exec" value="Servlet request thread&#xa;one thread per in-flight request" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="483.81" y="146" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="m-wait" value="Waiting costs a thread&#xa;the pool size bounds concurrency" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="483.81" y="220" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="w-exec" value="Event loop worker&#xa;a small fixed set of threads" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="829.81" y="146" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="w-wait" value="Waiting costs a subscription&#xa;backpressure is part of the contract" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="803.81" y="220" width="254" height="54" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>

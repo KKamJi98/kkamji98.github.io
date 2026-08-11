@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "ansible-control-flow",
+  "title": "Ansible pushes over SSH; nothing runs on the managed host in advance",
+  "subtitle": "The control node holds the inventory and the playbook, so a host needs no agent to be managed.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "inventory",
+      "kind": "box",
+      "label": "Inventory",
+      "col": 0,
+      "row": 0,
+      "detail": "which hosts, in which groups",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "control",
+      "kind": "box",
+      "label": "Ansible control node",
+      "col": 1,
+      "row": 0,
+      "detail": "where ansible-playbook runs",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "playbook",
+      "kind": "box",
+      "label": "Playbook and modules",
+      "col": 2,
+      "row": 0,
+      "detail": "tasks in order, mostly idempotent",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ssh",
+      "kind": "box",
+      "label": "SSH",
+      "col": 3,
+      "row": 0,
+      "detail": "the only channel needed",
+      "role": "queue",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "hosts",
+      "kind": "service",
+      "label": "Managed hosts",
+      "col": 4,
+      "row": 0,
+      "service": "server",
+      "detail": "modules execute and report back",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "inventory-to-control",
+      "source": "inventory",
+      "target": "control"
+    },
+    {
+      "id": "control-to-playbook",
+      "source": "control",
+      "target": "playbook"
+    },
+    {
+      "id": "playbook-to-ssh",
+      "source": "playbook",
+      "target": "ssh"
+    },
+    {
+      "id": "ssh-to-hosts",
+      "source": "ssh",
+      "target": "hosts"
+    }
+  ]
+}

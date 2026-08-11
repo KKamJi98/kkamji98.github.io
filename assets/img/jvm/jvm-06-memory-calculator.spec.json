@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "jvm-06-memory-calculator",
+  "title": "The heap is what remains after the native regions are subtracted",
+  "subtitle": "The calculator reads the cgroup limit at start-up, so a thread-count change moves -Xmx without any config change.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 12
+  },
+  "nodes": [
+    {
+      "id": "total",
+      "kind": "box",
+      "label": "Container memory limit",
+      "col": 0,
+      "row": 0,
+      "detail": "read from the cgroup at start-up",
+      "role": "external",
+      "w": 460
+    },
+    {
+      "id": "sub1",
+      "kind": "box",
+      "label": "minus headroom",
+      "col": 0,
+      "row": 1,
+      "detail": "0 percent by default",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "sub2",
+      "kind": "box",
+      "label": "minus direct memory",
+      "col": 0,
+      "row": 2,
+      "detail": "10M by default",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "sub3",
+      "kind": "box",
+      "label": "minus metaspace",
+      "col": 0,
+      "row": 3,
+      "detail": "scales with the class count",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "sub4",
+      "kind": "box",
+      "label": "minus reserved code cache",
+      "col": 0,
+      "row": 4,
+      "detail": "240M by default",
+      "role": "queue",
+      "w": 460
+    },
+    {
+      "id": "sub5",
+      "kind": "box",
+      "label": "minus thread stacks",
+      "col": 0,
+      "row": 5,
+      "detail": "1M times the configured thread count",
+      "role": "danger",
+      "w": 460
+    },
+    {
+      "id": "result",
+      "kind": "box",
+      "label": "equals heap  (-Xmx)",
+      "col": 0,
+      "row": 6,
+      "detail": "whatever is left",
+      "role": "process",
+      "w": 460
+    },
+    {
+      "id": "note",
+      "kind": "text",
+      "label": "Thread count is the biggest lever: it is multiplied by the stack size before the heap gets anything.",
+      "col": 0,
+      "row": 7
+    }
+  ]
+}

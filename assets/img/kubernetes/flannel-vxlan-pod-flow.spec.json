@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "flannel-vxlan-pod-flow",
+  "title": "Flannel VXLAN wraps pod traffic in a UDP tunnel between nodes",
+  "subtitle": "The underlay only ever sees node-to-node UDP, so it never needs a route to the pod CIDR.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "src-pod",
+      "kind": "service",
+      "label": "Source Pod",
+      "col": 0,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "leaves through the cni0 bridge",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "src-node",
+      "kind": "service",
+      "label": "Source node",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "flannel.1 VTEP encapsulates",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "vxlan",
+      "kind": "box",
+      "label": "VXLAN tunnel",
+      "col": 2,
+      "row": 0,
+      "detail": "UDP port 8472 between nodes",
+      "role": "queue",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "remote-node",
+      "kind": "service",
+      "label": "Remote node",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "decapsulates the frame",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "dst-pod",
+      "kind": "service",
+      "label": "Destination Pod",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "delivered on the local bridge",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "src-pod-to-src-node",
+      "source": "src-pod",
+      "target": "src-node"
+    },
+    {
+      "id": "src-node-to-vxlan",
+      "source": "src-node",
+      "target": "vxlan"
+    },
+    {
+      "id": "vxlan-to-remote-node",
+      "source": "vxlan",
+      "target": "remote-node"
+    },
+    {
+      "id": "remote-node-to-dst-pod",
+      "source": "remote-node",
+      "target": "dst-pod"
+    }
+  ]
+}

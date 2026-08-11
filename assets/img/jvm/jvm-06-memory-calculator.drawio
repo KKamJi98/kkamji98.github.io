@@ -1,38 +1,41 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="jvm-06-memory-calculator" name="Memory Calculator">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="660" pageHeight="600" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="jvm-06-memory-calculator" name="The heap is what remains after the native regions are subtracted">
+    <mxGraphModel dx="920" dy="624" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="920" pageHeight="624" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="total" parent="1" vertex="1" value="Container memory limit  (total)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="150" y="40" width="360" height="50" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="896.02" height="600.0" as="geometry" />
         </mxCell>
-        <mxCell id="sub1" parent="1" vertex="1" value="-  Headroom  (default 0%)" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="108" width="360" height="40" as="geometry" />
+        <mxCell id="title" value="The heap is what remains after the native regions are subtracted" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="852.02" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="sub2" parent="1" vertex="1" value="-  Direct Memory  (default 10M)" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="152" width="360" height="40" as="geometry" />
+        <mxCell id="subtitle" value="The calculator reads the cgroup limit at start-up, so a thread-count change moves -Xmx without any config change." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="852.02" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="sub3" parent="1" vertex="1" value="-  Metaspace  (5.8KB x class count + 14MB)" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="196" width="400" height="40" as="geometry" />
+        <mxCell id="total" value="Container memory limit&#xa;read from the cgroup at start-up" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="104" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub4" parent="1" vertex="1" value="-  Reserved Code Cache  (default 240M)" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="240" width="360" height="40" as="geometry" />
+        <mxCell id="sub1" value="minus headroom&#xa;0 percent by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="170" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub5" parent="1" vertex="1" value="-  Thread Stacks  (1M x 250 threads = ~250M)" style="rounded=0;whiteSpace=wrap;html=0;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontStyle=1;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="284" width="420" height="44" as="geometry" />
+        <mxCell id="sub2" value="minus direct memory&#xa;10M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="236" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="rule" parent="1" vertex="1" value="" style="line;strokeWidth=1.25;html=0;strokeColor=#5F6368;fontColor=#202124;">
-          <mxGeometry x="150" y="340" width="360" height="10" as="geometry" />
+        <mxCell id="sub3" value="minus metaspace&#xa;scales with the class count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="302" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="result" parent="1" vertex="1" value="=  Heap  (-Xmx)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;align=left;spacingLeft=16;strokeWidth=1.25;">
-          <mxGeometry x="150" y="362" width="360" height="56" as="geometry" />
+        <mxCell id="sub4" value="minus reserved code cache&#xa;240M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="368" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note-lever" parent="1" vertex="1" value="biggest lever" style="text;html=0;align=left;verticalAlign=middle;fontSize=11;fontColor=#F9AB00;fontStyle=2;">
-          <mxGeometry x="522" y="294" width="120" height="30" as="geometry" />
+        <mxCell id="sub5" value="minus thread stacks&#xa;1M times the configured thread count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="434" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Runs at container startup (reads cgroup memory limit). Setting -Xss / -XX:MaxDirectMemorySize / thread count shifts the split, so -Xmx auto-recomputes." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="40" y="440" width="1016" height="50" as="geometry" />
+        <mxCell id="result" value="equals heap  (-Xmx)&#xa;whatever is left" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="230.01" y="500" width="460" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Thread count is the biggest lever: it is multiplied by the stack size before the heap gets anything." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="135.01" y="566" width="650" height="24" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

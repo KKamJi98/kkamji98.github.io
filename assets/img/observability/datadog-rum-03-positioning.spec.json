@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "id": "datadog-rum-03-positioning",
+  "title": "RUM, Synthetic, APM은 관측 지점이 서로 다르다",
+  "subtitle": "Synthetic으로 선제 검증하고, RUM으로 실사용자 영향을 재고, APM으로 근본 원인을 추적한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 26
+  },
+  "containers": [
+    {
+      "id": "client",
+      "kind": "plain",
+      "label": "Client-side (사용자 단)",
+      "members": [
+        "rum",
+        "synthetic"
+      ]
+    },
+    {
+      "id": "server",
+      "kind": "plain",
+      "label": "Server-side (서버 단)",
+      "members": [
+        "apm"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "rum",
+      "kind": "box",
+      "label": "RUM (Real User Monitoring)",
+      "detail": "실제 사용자 세션을 수동 관측\n성능, 에러, 사용자 행동",
+      "col": 0,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "synthetic",
+      "kind": "box",
+      "label": "Synthetic Monitoring",
+      "detail": "스케줄된 스크립트 테스트\n선제적 회귀 탐지와 가용성 검증",
+      "col": 1,
+      "row": 0,
+      "role": "queue"
+    },
+    {
+      "id": "apm",
+      "kind": "box",
+      "label": "APM (Application Performance Monitoring)",
+      "detail": "분산 추적으로 백엔드와 DB 병목을 추적",
+      "col": 0,
+      "row": 1,
+      "colspan": 2,
+      "role": "compute"
+    }
+  ],
+  "edges": [
+    {
+      "id": "rum-to-apm",
+      "source": "rum",
+      "target": "apm"
+    },
+    {
+      "id": "synthetic-to-apm",
+      "source": "synthetic",
+      "target": "apm"
+    }
+  ]
+}

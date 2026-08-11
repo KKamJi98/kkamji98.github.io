@@ -1,72 +1,76 @@
 {
   "schema_version": 1,
   "id": "bare-worktree-layout",
-  "title": "Every branch is a peer worktree hanging off one bare database",
-  "subtitle": "No working directory is pinned to a branch, so a hotfix needs no stash.",
-  "diagram_type": "architecture",
+  "title": "One bare repository, one directory per branch",
+  "subtitle": "The .bare directory holds the object database; each worktree is a checkout that shares it.",
   "layout": {
-    "node_w": 250,
-    "node_h": 84,
-    "col_gap": 120,
-    "row_gap": 34
+    "col_gap": 58,
+    "row_gap": 18
   },
   "nodes": [
     {
       "id": "bare",
-      "label": ".bare",
+      "kind": "box",
+      "label": ".bare/",
       "detail": "Git database, no working tree",
-      "role": "store",
       "col": 0,
-      "row": 1,
-      "rowspan": 2
+      "row": 0,
+      "rowspan": 4,
+      "role": "store"
     },
     {
       "id": "master",
+      "kind": "box",
       "label": "master/",
-      "role": "process",
+      "detail": "worktree",
       "col": 1,
       "row": 0
     },
     {
       "id": "staging",
+      "kind": "box",
       "label": "staging/",
-      "role": "process",
+      "detail": "worktree",
       "col": 1,
       "row": 1
     },
     {
       "id": "feature",
-      "label": "feat/login/",
-      "role": "process",
+      "kind": "box",
+      "label": "feat-login/",
+      "detail": "worktree for feat/login",
       "col": 1,
-      "row": 2
+      "row": 2,
+      "role": "process"
     },
     {
       "id": "chore",
-      "label": "chore/tooling/",
-      "role": "process",
+      "kind": "box",
+      "label": "chore-tooling/",
+      "detail": "worktree for chore/tooling",
       "col": 1,
-      "row": 3
+      "row": 3,
+      "role": "process"
     }
   ],
   "edges": [
     {
-      "id": "to-master",
+      "id": "bare-to-master",
       "source": "bare",
       "target": "master"
     },
     {
-      "id": "to-staging",
+      "id": "bare-to-staging",
       "source": "bare",
       "target": "staging"
     },
     {
-      "id": "to-feature",
+      "id": "bare-to-feature",
       "source": "bare",
       "target": "feature"
     },
     {
-      "id": "to-chore",
+      "id": "bare-to-chore",
       "source": "bare",
       "target": "chore"
     }

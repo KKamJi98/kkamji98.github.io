@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "vpc-lattice-cross-vpc-flow",
+  "title": "VPC Lattice: one Service Network spans three accounts",
+  "subtitle": "VPC Association replaces VPC Peering and Transit Gateway. Overlapping CIDRs are translated automatically.",
+  "layout": { "icon_cell_w": 168, "col_gap": 64, "row_gap": 44 },
+  "containers": [
+    {
+      "id": "service-network",
+      "kind": "plain",
+      "label": "VPC Lattice Service Network  (shared with AWS RAM)",
+      "members": ["lattice", "svc-a", "svc-b"]
+    },
+    { "id": "account-1", "kind": "account", "label": "Account 1", "members": ["vpc-a"] },
+    { "id": "vpc-a", "kind": "vpc", "label": "VPC A", "members": ["client"] },
+    { "id": "account-2", "kind": "account", "label": "Account 2", "members": ["vpc-b"] },
+    { "id": "vpc-b", "kind": "vpc", "label": "VPC B", "members": ["tg-a"] },
+    { "id": "account-3", "kind": "account", "label": "Account 3", "members": ["vpc-c"] },
+    { "id": "vpc-c", "kind": "vpc", "label": "VPC C", "members": ["tg-b"] }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "service",
+      "service": "ec2",
+      "label": "Client EC2 instance",
+      "detail": "curl service-a-xxx\n.vpc-lattice-aws.com",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "lattice",
+      "kind": "service",
+      "service": "vpc_lattice",
+      "label": "Amazon VPC Lattice",
+      "detail": "Route 53 Resolver returns\nthe link-local endpoint",
+      "col": 1,
+      "row": 0,
+      "rowspan": 2,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc-a",
+      "kind": "box",
+      "label": "Service A (billing)",
+      "detail": "listener HTTP :80\nrule /api/* to Target Group A",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc-b",
+      "kind": "box",
+      "label": "Service B (payment)",
+      "detail": "listener HTTPS :443\nrule /pay/* to Target Group B",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "tg-a",
+      "kind": "service",
+      "service": "ec2",
+      "label": "Target Group A",
+      "detail": "EC2 targets (billing)\nAZ affinity, round robin",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "tg-b",
+      "kind": "service",
+      "service": "ec2",
+      "label": "Target Group B",
+      "detail": "EC2 targets (payment)\noverlapping CIDR, auto NAT",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "id": "client-request", "source": "client", "target": "lattice", "emphasis": true },
+    { "id": "listener-a", "source": "lattice", "target": "svc-a", "emphasis": true },
+    { "id": "listener-b", "source": "lattice", "target": "svc-b" },
+    { "id": "targets-a", "source": "svc-a", "target": "tg-a", "emphasis": true },
+    { "id": "targets-b", "source": "svc-b", "target": "tg-b" }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "ansible-kubernetes-bootstrap",
+  "title": "The same playbook builds the control plane first, then joins the workers",
+  "subtitle": "Worker join needs a token produced while the control plane initialises, which is what fixes the order.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "inventory",
+      "kind": "box",
+      "label": "Inventory",
+      "col": 0,
+      "row": 0,
+      "detail": "control plane and worker groups",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "control",
+      "kind": "box",
+      "label": "Ansible control node",
+      "col": 1,
+      "row": 0,
+      "detail": "runs the bootstrap play",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cp",
+      "kind": "service",
+      "label": "Control plane",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:master",
+      "detail": "initialised first, emits a join token",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "workers",
+      "kind": "service",
+      "label": "Worker nodes",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "join with that token",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cluster",
+      "kind": "service",
+      "label": "Kubernetes cluster",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "ready to schedule workloads",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "inventory-to-control",
+      "source": "inventory",
+      "target": "control"
+    },
+    {
+      "id": "control-to-cp",
+      "source": "control",
+      "target": "cp"
+    },
+    {
+      "id": "cp-to-workers",
+      "source": "cp",
+      "target": "workers"
+    },
+    {
+      "id": "workers-to-cluster",
+      "source": "workers",
+      "target": "cluster"
+    }
+  ]
+}

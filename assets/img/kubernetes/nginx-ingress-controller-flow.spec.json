@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "nginx-ingress-controller-flow",
+  "title": "The Ingress object is configuration; the controller is what proxies",
+  "subtitle": "An Ingress with no controller running is a resource that no traffic ever touches.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "Client",
+      "col": 0,
+      "row": 0,
+      "detail": "HTTP request",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ingress",
+      "kind": "service",
+      "label": "Ingress resource",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:ing",
+      "detail": "host and path rules",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "controller",
+      "kind": "service",
+      "label": "NGINX controller",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:deploy",
+      "detail": "watches the rules and reloads",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "svc",
+      "kind": "service",
+      "label": "Service",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:svc",
+      "detail": "resolves to endpoints",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "pod",
+      "kind": "service",
+      "label": "Pod",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "receives the request",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-ingress",
+      "source": "client",
+      "target": "ingress"
+    },
+    {
+      "id": "ingress-to-controller",
+      "source": "ingress",
+      "target": "controller"
+    },
+    {
+      "id": "controller-to-svc",
+      "source": "controller",
+      "target": "svc"
+    },
+    {
+      "id": "svc-to-pod",
+      "source": "svc",
+      "target": "pod"
+    }
+  ]
+}

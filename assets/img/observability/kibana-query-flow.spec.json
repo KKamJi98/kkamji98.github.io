@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "kibana-query-flow",
+  "title": "Kibana holds no data; every panel is an Elasticsearch query",
+  "subtitle": "The index pattern decides which indices a query touches, which is what makes a wide time range expensive.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "service",
+      "label": "User",
+      "col": 0,
+      "row": 0,
+      "service": "users",
+      "detail": "a dashboard or a search",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kibana",
+      "kind": "box",
+      "label": "Kibana",
+      "col": 1,
+      "row": 0,
+      "detail": "builds the query",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "es",
+      "kind": "box",
+      "label": "Elasticsearch",
+      "col": 2,
+      "row": 0,
+      "detail": "executes across shards",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "indices",
+      "kind": "box",
+      "label": "Log indices",
+      "col": 3,
+      "row": 0,
+      "detail": "selected by the index pattern",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "results",
+      "kind": "box",
+      "label": "Search results",
+      "col": 4,
+      "row": 0,
+      "detail": "returned to the panel",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "user-to-kibana",
+      "source": "user",
+      "target": "kibana"
+    },
+    {
+      "id": "kibana-to-es",
+      "source": "kibana",
+      "target": "es"
+    },
+    {
+      "id": "es-to-indices",
+      "source": "es",
+      "target": "indices"
+    },
+    {
+      "id": "indices-to-results",
+      "source": "indices",
+      "target": "results"
+    }
+  ]
+}

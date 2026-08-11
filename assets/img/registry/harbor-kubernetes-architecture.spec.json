@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "harbor-kubernetes-architecture",
+  "title": "Harbor on Kubernetes is a portal, a registry and storage behind one ingress",
+  "subtitle": "The portal and the registry API share a hostname, which is why the ingress routing has to split them by path.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "service",
+      "label": "User",
+      "col": 0,
+      "row": 0,
+      "service": "users",
+      "detail": "browser or docker CLI",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ingress",
+      "kind": "service",
+      "label": "Ingress",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:ing",
+      "detail": "TLS and path routing",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "portal",
+      "kind": "service",
+      "label": "Harbor portal",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:deploy",
+      "detail": "UI and core API",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "registry",
+      "kind": "service",
+      "label": "Registry service",
+      "col": 3,
+      "row": 0,
+      "service": "k8s:deploy",
+      "detail": "distribution API",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "storage",
+      "kind": "service",
+      "label": "Image storage",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pvc",
+      "detail": "object storage or a PVC",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "user-to-ingress",
+      "source": "user",
+      "target": "ingress"
+    },
+    {
+      "id": "ingress-to-portal",
+      "source": "ingress",
+      "target": "portal"
+    },
+    {
+      "id": "portal-to-registry",
+      "source": "portal",
+      "target": "registry"
+    },
+    {
+      "id": "registry-to-storage",
+      "source": "registry",
+      "target": "storage"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-01-architecture-history",
+  "title": "Each analytics generation answers the limit of the one before it",
+  "subtitle": "The storage and engine line runs on the right; the streaming and organizational line runs on the left.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 18
+  },
+  "nodes": [
+    {
+      "id": "hdr-l",
+      "kind": "text",
+      "label": "Streaming and organizational patterns",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "hdr-y",
+      "kind": "text",
+      "label": "Year",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "hdr-r",
+      "kind": "text",
+      "label": "Storage and engine evolution",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "y1",
+      "kind": "text",
+      "label": "1990s",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "e1",
+      "kind": "box",
+      "label": "Data Warehouse",
+      "col": 2,
+      "row": 1,
+      "detail": "schema-on-write, ETL",
+      "role": "process"
+    },
+    {
+      "id": "y2",
+      "kind": "text",
+      "label": "2000s",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "e2",
+      "kind": "box",
+      "label": "OLAP cubes and MPP appliances",
+      "col": 2,
+      "row": 2,
+      "detail": "Teradata, Netezza, Greenplum",
+      "role": "process"
+    },
+    {
+      "id": "y3",
+      "kind": "text",
+      "label": "2006",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "e3",
+      "kind": "box",
+      "label": "Hadoop",
+      "col": 2,
+      "row": 3,
+      "detail": "HDFS + MapReduce",
+      "role": "store"
+    },
+    {
+      "id": "y4",
+      "kind": "text",
+      "label": "2010",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "e4",
+      "kind": "box",
+      "label": "\"Data Lake\" coined",
+      "col": 2,
+      "row": 4,
+      "detail": "schema-on-read",
+      "role": "store"
+    },
+    {
+      "id": "y5",
+      "kind": "text",
+      "label": "2011",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "e5",
+      "kind": "box",
+      "label": "Lambda architecture",
+      "col": 0,
+      "row": 5,
+      "detail": "batch layer + speed layer",
+      "role": "queue"
+    },
+    {
+      "id": "y6",
+      "kind": "text",
+      "label": "2012",
+      "col": 1,
+      "row": 6
+    },
+    {
+      "id": "e6",
+      "kind": "box",
+      "label": "Cloud data warehouse",
+      "col": 2,
+      "row": 6,
+      "detail": "Redshift as a managed warehouse; Snowflake separates storage and compute",
+      "role": "process"
+    },
+    {
+      "id": "y7",
+      "kind": "text",
+      "label": "2014",
+      "col": 1,
+      "row": 7
+    },
+    {
+      "id": "e7",
+      "kind": "box",
+      "label": "Kappa architecture",
+      "col": 0,
+      "row": 7,
+      "detail": "one stream processor",
+      "role": "queue"
+    },
+    {
+      "id": "y8",
+      "kind": "text",
+      "label": "2017-19",
+      "col": 1,
+      "row": 8
+    },
+    {
+      "id": "e8",
+      "kind": "box",
+      "label": "Open table formats",
+      "col": 2,
+      "row": 8,
+      "detail": "Iceberg, Delta Lake, Hudi",
+      "role": "compute"
+    },
+    {
+      "id": "y9",
+      "kind": "text",
+      "label": "2019",
+      "col": 1,
+      "row": 9
+    },
+    {
+      "id": "e9",
+      "kind": "box",
+      "label": "Data Mesh",
+      "col": 0,
+      "row": 9,
+      "detail": "domain-oriented, decentralized",
+      "role": "queue"
+    },
+    {
+      "id": "y10",
+      "kind": "text",
+      "label": "2021",
+      "col": 1,
+      "row": 10
+    },
+    {
+      "id": "e10",
+      "kind": "box",
+      "label": "Lakehouse",
+      "col": 2,
+      "row": 10,
+      "detail": "CIDR 2021 paper",
+      "role": "compute"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "gcp-sa-auth",
+  "title": "Attach a service account to the workload instead of shipping a key file",
+  "subtitle": "The keyless path has no secret to leak or rotate; the key file path creates a credential that outlives the workload.",
+  "layout": {
+    "icon_cell_w": 176,
+    "col_gap": 54,
+    "row_gap": 30
+  },
+  "containers": [
+    {
+      "id": "keyless",
+      "kind": "plain",
+      "label": "Keyless: attached service account (recommended)",
+      "members": [
+        "wl1",
+        "sa1",
+        "res1"
+      ]
+    },
+    {
+      "id": "keyfile",
+      "kind": "plain",
+      "label": "Key file: a long-lived credential on disk (avoid)",
+      "members": [
+        "wl2",
+        "key",
+        "sa2",
+        "res2"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "wl1",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "Workload",
+      "col": 0,
+      "row": 0,
+      "detail": "GCE or GKE"
+    },
+    {
+      "id": "sa1",
+      "kind": "service",
+      "service": "gcp:iam",
+      "label": "Service account",
+      "col": 1,
+      "row": 0,
+      "detail": "metadata server mints short-lived tokens"
+    },
+    {
+      "id": "res1",
+      "kind": "service",
+      "service": "gcp:cloud_storage",
+      "label": "Resource",
+      "col": 3,
+      "row": 0,
+      "detail": "IAM binding on the resource"
+    },
+    {
+      "id": "wl2",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "Workload",
+      "col": 0,
+      "row": 1,
+      "detail": "anywhere, including off Google Cloud"
+    },
+    {
+      "id": "key",
+      "kind": "box",
+      "label": "JSON key file",
+      "col": 1,
+      "row": 1,
+      "detail": "leak and rotation risk",
+      "role": "danger"
+    },
+    {
+      "id": "sa2",
+      "kind": "service",
+      "service": "gcp:iam",
+      "label": "Service account",
+      "col": 2,
+      "row": 1,
+      "detail": "same identity, weaker handling"
+    },
+    {
+      "id": "res2",
+      "kind": "service",
+      "service": "gcp:cloud_storage",
+      "label": "Resource",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "wl1-to-sa1",
+      "source": "wl1",
+      "target": "sa1"
+    },
+    {
+      "id": "sa1-to-res1",
+      "source": "sa1",
+      "target": "res1"
+    },
+    {
+      "id": "wl2-to-key",
+      "source": "wl2",
+      "target": "key"
+    },
+    {
+      "id": "key-to-sa2",
+      "source": "key",
+      "target": "sa2"
+    },
+    {
+      "id": "sa2-to-res2",
+      "source": "sa2",
+      "target": "res2"
+    }
+  ]
+}

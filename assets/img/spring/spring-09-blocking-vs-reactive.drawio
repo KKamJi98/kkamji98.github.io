@@ -1,46 +1,55 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-09-blocking-vs-reactive" name="Blocking vs Reactive">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-09-blocking-vs-reactive" name="Blocking holds a thread through the wait; non-blocking hands it back">
+    <mxGraphModel dx="1002" dy="436" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1002" pageHeight="436" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="lp" parent="1" vertex="1" value="Blocking (imperative)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#9AA0A6;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="40" y="60" width="420" height="380" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="978.0" height="412.0" as="geometry" />
         </mxCell>
-        <mxCell id="rp" parent="1" vertex="1" value="Non-blocking (event-driven)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FFFFFF;strokeColor=#1A73E8;fontColor=#202124;fontStyle=1;verticalAlign=top;align=center;dashed=1;spacingTop=8;strokeWidth=1.25;">
-          <mxGeometry x="540" y="60" width="420" height="380" as="geometry" />
+        <mxCell id="title" value="Blocking holds a thread through the wait; non-blocking hands it back" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="934.0" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="lb1" parent="1" vertex="1" value="call db.query()" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="110" width="360" height="56" as="geometry" />
+        <mxCell id="subtitle" value="The declarative style is not the point. Releasing the thread during I/O is." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="934.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="lb2" parent="1" vertex="1" value="thread BLOCKED, waiting for I/O&#xa;(held, doing nothing)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="70" y="190" width="360" height="64" as="geometry" />
+        <mxCell id="spring-09-blocking-vs-reactive-l" value="Blocking (imperative)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="444" height="258" as="geometry" />
         </mxCell>
-        <mxCell id="lb3" parent="1" vertex="1" value="use(result)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="70" y="288" width="360" height="56" as="geometry" />
+        <mxCell id="spring-09-blocking-vs-reactive-r" value="Non-blocking (event driven)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="524" y="104" width="444" height="258" as="geometry" />
         </mxCell>
-        <mxCell id="rb1" parent="1" vertex="1" value="declare stream:&#xa;query().map(...).subscribe(...)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="570" y="110" width="360" height="64" as="geometry" />
+        <mxCell id="lb1" value="call db.query()" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="rb2" parent="1" vertex="1" value="thread NOT held&#xa;(freed for other requests)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="570" y="198" width="360" height="64" as="geometry" />
+        <mxCell id="lb2" value="thread blocked&#xa;held for the whole wait, doing nothing" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="216" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="rb3" parent="1" vertex="1" value="data arrives -> handle (onNext)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="570" y="296" width="360" height="56" as="geometry" />
+        <mxCell id="lb3" value="use(result)&#xa;resumes on the same thread" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="286" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" vertex="1" value="Blocking holds the thread during I/O. Non-blocking declares a pipeline; the thread is freed and handles data when ready." style="text;html=0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#5F6368;fontStyle=2;">
-          <mxGeometry x="60" y="452" width="880" height="32" as="geometry" />
+        <mxCell id="rb1" value="declare the stream&#xa;query().map(...).subscribe(...)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="146" width="400" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="la" parent="1" edge="1" source="lb1" target="lb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="rb2" value="thread released&#xa;free to serve another request" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="216" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rb3" value="data arrives, onNext runs&#xa;possibly on a different thread" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="546" y="286" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spring-09-blocking-vs-reactive-note" value="Blocking spends a thread on waiting. Non-blocking spends a callback, which is why a small pool can carry many connections." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="56" y="378" width="890" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lb1-to-lb2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lb1" target="lb2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lb" parent="1" edge="1" source="lb2" target="lb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="lb2-to-lb3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lb2" target="lb3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ra" parent="1" edge="1" source="rb1" target="rb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="rb1-to-rb2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rb1" target="rb2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rbk" parent="1" edge="1" source="rb2" target="rb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="rb2-to-rb3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rb2" target="rb3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

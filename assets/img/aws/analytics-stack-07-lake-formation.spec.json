@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "id": "analytics-stack-07-lake-formation",
+  "title": "IAM and Lake Formation are two separate gates on the same query",
+  "subtitle": "An IAM Allow with no Lake Formation grant still ends in AccessDenied, because the data gate is evaluated on its own.",
+  "layout": {
+    "icon_cell_w": 172,
+    "col_gap": 52,
+    "row_gap": 26
+  },
+  "nodes": [
+    {
+      "id": "principal",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "analytics-workload-role",
+      "col": 0,
+      "row": 0,
+      "detail": "the query principal",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "athena",
+      "kind": "service",
+      "service": "athena",
+      "label": "Amazon Athena",
+      "col": 1,
+      "row": 0,
+      "detail": "query engine",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "iamgate",
+      "kind": "service",
+      "service": "iam",
+      "label": "IAM gate",
+      "col": 2,
+      "row": 0,
+      "detail": "API authorization",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "lfgate",
+      "kind": "service",
+      "service": "lake_formation",
+      "label": "Lake Formation gate",
+      "col": 3,
+      "row": 0,
+      "detail": "data authorization",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "regrole",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "Registered role",
+      "col": 4,
+      "row": 0,
+      "detail": "Lake Formation assumes it",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "s3data",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 Tables data",
+      "col": 5,
+      "row": 0,
+      "detail": "the underlying objects",
+      "step": 6,
+      "step_at": "top-left"
+    },
+    {
+      "id": "fn1",
+      "kind": "text",
+      "label": "IAM (API authorization):  athena:*,  glue:Get* on the target and every ancestor ARN,  lakeformation:GetDataAccess",
+      "col": 0,
+      "row": 1,
+      "colspan": 6
+    },
+    {
+      "id": "fn2",
+      "kind": "text",
+      "label": "Lake Formation (data authorization):  SELECT and DESCRIBE granted on the database and table by a data lake administrator",
+      "col": 0,
+      "row": 2,
+      "colspan": 6
+    },
+    {
+      "id": "fn3",
+      "kind": "text",
+      "label": "Both gates must allow. IAM Allow plus a missing Lake Formation grant still returns AccessDenied.",
+      "col": 0,
+      "row": 3,
+      "colspan": 6
+    }
+  ],
+  "edges": [
+    {
+      "id": "principal-to-athena",
+      "source": "principal",
+      "target": "athena"
+    },
+    {
+      "id": "athena-to-iamgate",
+      "source": "athena",
+      "target": "iamgate"
+    },
+    {
+      "id": "iamgate-to-lfgate",
+      "source": "iamgate",
+      "target": "lfgate"
+    },
+    {
+      "id": "lfgate-to-regrole",
+      "source": "lfgate",
+      "target": "regrole"
+    },
+    {
+      "id": "regrole-to-s3data",
+      "source": "regrole",
+      "target": "s3data"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "id": "gcp-resource-hierarchy",
+  "title": "Every resource sits under a project, and policy flows down the chain",
+  "subtitle": "IAM bindings and organization policies set at one level apply to everything below it.",
+  "layout": {
+    "icon_cell_w": 160,
+    "col_gap": 56,
+    "row_gap": 24
+  },
+  "containers": [
+    {
+      "id": "resources",
+      "kind": "plain",
+      "label": "Resources",
+      "members": [
+        "gce",
+        "gcs",
+        "gke"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "org",
+      "kind": "box",
+      "label": "Organization",
+      "col": 0,
+      "row": 0,
+      "detail": "the root node",
+      "step": 1,
+      "step_at": "top-left",
+      "rowspan": 3
+    },
+    {
+      "id": "folder",
+      "kind": "box",
+      "label": "Folder",
+      "col": 1,
+      "row": 0,
+      "detail": "nestable, optional",
+      "step": 2,
+      "step_at": "top-left",
+      "rowspan": 3
+    },
+    {
+      "id": "project",
+      "kind": "box",
+      "label": "Project",
+      "col": 2,
+      "row": 0,
+      "detail": "billing and quota boundary",
+      "step": 3,
+      "step_at": "top-left",
+      "rowspan": 3
+    },
+    {
+      "id": "gce",
+      "kind": "service",
+      "service": "gcp:compute_engine",
+      "label": "Compute Engine",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "gcs",
+      "kind": "service",
+      "service": "gcp:cloud_storage",
+      "label": "Cloud Storage",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "gke",
+      "kind": "service",
+      "service": "gcp:gke",
+      "label": "GKE",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "inherit",
+      "kind": "text",
+      "label": "IAM bindings and organization policies are inherited from every level above.",
+      "col": 0,
+      "row": 3,
+      "colspan": 4
+    }
+  ],
+  "edges": [
+    {
+      "id": "org-to-folder",
+      "source": "org",
+      "target": "folder"
+    },
+    {
+      "id": "folder-to-project",
+      "source": "folder",
+      "target": "project"
+    },
+    {
+      "id": "project-to-gce",
+      "source": "project",
+      "target": "gce"
+    },
+    {
+      "id": "project-to-gcs",
+      "source": "project",
+      "target": "gcs"
+    },
+    {
+      "id": "project-to-gke",
+      "source": "project",
+      "target": "gke"
+    }
+  ]
+}

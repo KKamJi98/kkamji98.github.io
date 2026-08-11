@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "bedrock-kb-architecture",
+  "title": "Bedrock Knowledge Bases splits into a managed ingestion path and a query path",
+  "subtitle": "Ingestion turns documents into vectors ahead of time; the query path retrieves and grounds an answer with citations.",
+  "layout": {
+    "icon_cell_w": 168,
+    "col_gap": 48,
+    "row_gap": 34
+  },
+  "containers": [
+    {
+      "id": "lane-ingest",
+      "kind": "plain",
+      "label": "1. Managed ingestion",
+      "members": [
+        "sources",
+        "kb-ingest",
+        "embed",
+        "vectors",
+        "controls"
+      ]
+    },
+    {
+      "id": "lane-query",
+      "kind": "plain",
+      "label": "2. Query and grounding",
+      "members": [
+        "client",
+        "runtime",
+        "filter",
+        "search",
+        "fm",
+        "answer"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "sources",
+      "kind": "service",
+      "service": "s3",
+      "label": "Data sources",
+      "col": 0,
+      "row": 0,
+      "detail": "S3 and connectors",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kb-ingest",
+      "kind": "service",
+      "service": "bedrock",
+      "label": "Bedrock KB",
+      "col": 1,
+      "row": 0,
+      "detail": "fetch, parse, chunk",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "embed",
+      "kind": "service",
+      "service": "bedrock",
+      "label": "Embedding model",
+      "col": 2,
+      "row": 0,
+      "detail": "Titan or Cohere",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "vectors",
+      "kind": "service",
+      "service": "s3",
+      "label": "Vector store",
+      "col": 3,
+      "row": 0,
+      "detail": "managed, or a store you run\n(OpenSearch, Aurora, S3 Vectors)",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "controls",
+      "kind": "box",
+      "label": "Ingestion controls",
+      "col": 4,
+      "row": 0,
+      "detail": "chunking, metadata, sync schedule",
+      "role": "queue"
+    },
+    {
+      "id": "client",
+      "kind": "service",
+      "service": "users",
+      "label": "User or app",
+      "col": 0,
+      "row": 1,
+      "detail": "natural language query",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "runtime",
+      "kind": "service",
+      "service": "bedrock",
+      "label": "Agent runtime",
+      "col": 1,
+      "row": 1,
+      "detail": "Retrieve or RetrieveAndGenerate",
+      "step": 6,
+      "step_at": "top-left"
+    },
+    {
+      "id": "filter",
+      "kind": "box",
+      "label": "Access filter",
+      "col": 2,
+      "row": 1,
+      "detail": "IAM plus metadata filters",
+      "role": "danger",
+      "step": 7,
+      "step_at": "top-left"
+    },
+    {
+      "id": "search",
+      "kind": "box",
+      "label": "Vector search",
+      "col": 3,
+      "row": 1,
+      "detail": "top-k chunks",
+      "role": "process",
+      "step": 8,
+      "step_at": "top-left"
+    },
+    {
+      "id": "fm",
+      "kind": "service",
+      "service": "bedrock",
+      "label": "Foundation model",
+      "col": 4,
+      "row": 1,
+      "detail": "grounded generation",
+      "step": 9,
+      "step_at": "top-left"
+    },
+    {
+      "id": "answer",
+      "kind": "box",
+      "label": "Answer with citations",
+      "col": 5,
+      "row": 1,
+      "detail": "traceable back to the source",
+      "role": "store",
+      "step": 10,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "sources-to-kb-ingest",
+      "source": "sources",
+      "target": "kb-ingest"
+    },
+    {
+      "id": "kb-ingest-to-embed",
+      "source": "kb-ingest",
+      "target": "embed"
+    },
+    {
+      "id": "embed-to-vectors",
+      "source": "embed",
+      "target": "vectors"
+    },
+    {
+      "id": "client-to-runtime",
+      "source": "client",
+      "target": "runtime"
+    },
+    {
+      "id": "runtime-to-filter",
+      "source": "runtime",
+      "target": "filter"
+    },
+    {
+      "id": "filter-to-search",
+      "source": "filter",
+      "target": "search"
+    },
+    {
+      "id": "search-to-fm",
+      "source": "search",
+      "target": "fm"
+    },
+    {
+      "id": "fm-to-answer",
+      "source": "fm",
+      "target": "answer"
+    },
+    {
+      "id": "vectors-to-search",
+      "source": "vectors",
+      "target": "search",
+      "dashed": true
+    }
+  ]
+}

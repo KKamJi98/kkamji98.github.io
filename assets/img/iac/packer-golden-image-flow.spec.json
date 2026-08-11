@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "packer-golden-image-flow",
+  "title": "Packer boots a temporary instance, provisions it, and snapshots the result",
+  "subtitle": "Everything the provisioner does is baked in, so instances launched later do not repeat that work at boot.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "template",
+      "kind": "box",
+      "label": "Packer template",
+      "col": 0,
+      "row": 0,
+      "detail": "builders and provisioners",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "builder",
+      "kind": "service",
+      "label": "Builder",
+      "col": 1,
+      "row": 0,
+      "service": "ec2",
+      "detail": "launches a temporary instance",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "provisioner",
+      "kind": "box",
+      "label": "Provisioner",
+      "col": 2,
+      "row": 0,
+      "detail": "scripts, packages, configuration",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ami",
+      "kind": "box",
+      "label": "Golden AMI",
+      "col": 3,
+      "row": 0,
+      "detail": "the snapshot that gets shared",
+      "role": "store",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "instance",
+      "kind": "service",
+      "label": "EC2 instance",
+      "col": 4,
+      "row": 0,
+      "service": "ec2",
+      "detail": "boots ready to serve",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "template-to-builder",
+      "source": "template",
+      "target": "builder"
+    },
+    {
+      "id": "builder-to-provisioner",
+      "source": "builder",
+      "target": "provisioner"
+    },
+    {
+      "id": "provisioner-to-ami",
+      "source": "provisioner",
+      "target": "ami"
+    },
+    {
+      "id": "ami-to-instance",
+      "source": "ami",
+      "target": "instance"
+    }
+  ]
+}

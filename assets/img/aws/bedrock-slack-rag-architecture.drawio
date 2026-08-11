@@ -1,49 +1,120 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram id="bedrock-slack-rag" name="Bedrock Slack RAG Architecture">
-    <mxGraphModel background="#FFFFFF" dx="1800" dy="730" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="730" math="0" shadow="0">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="bedrock-slack-rag-architecture" name="Google Docs become citable answers in a Slack thread">
+    <mxGraphModel dx="2047" dy="520" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2047" pageHeight="520" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ingestion-lane" value="1. Document Ingestion" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#E8F0FE;swimlaneFillColor=#F8FBFF;strokeColor=#1A73E8;strokeWidth=1.25;fontSize=16;fontStyle=1;fontColor=#202124;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="35" y="30" width="1730" height="270" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="2023.04" height="496.0" as="geometry" />
         </mxCell>
-        <mxCell id="query-lane" value="2. Slack Query Runtime" style="swimlane;html=0;rounded=1;startSize=42;fillColor=#FCE8E6;swimlaneFillColor=#FFF8F7;strokeColor=#EA4335;strokeWidth=1.25;fontSize=16;fontStyle=1;fontColor=#202124;shadow=0;" vertex="1" parent="1">
-          <mxGeometry x="35" y="350" width="1730" height="300" as="geometry" />
+        <mxCell id="title" value="Google Docs become citable answers in a Slack thread" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1979.04" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="google-docs" value="Google Docs&#xa;Source of truth" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#1A73E8;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="65" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="apps-script" value="Apps Script&#xa;Trigger only" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="275" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="n8n-sync" value="n8n Sync&#xa;AssumeRole" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="485" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="docs-api" value="Docs API&#xa;Tabs + field mask" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#1A73E8;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="695" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="python-parser" value="Python Parser&#xa;Sections + tables" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="905" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="s3-artifacts" value="S3 Artifacts&#xa;Markdown + sidecar" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="1115" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="bedrock-kb" value="Bedrock KB&#xa;Cohere Embed" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1"><mxGeometry x="1325" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="s3-vectors" value="S3 Vectors&#xa;Vector index" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="1535" y="130" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="citation-metadata" value="headingId | section path | source URL" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="930" y="225" width="325" height="38" as="geometry" /></mxCell>
-        <mxCell id="slack-mention" value="Slack Mention&#xa;app_mention" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#EA4335;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="65" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="n8n-chat" value="n8n Chat&#xa;Ack + status" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="275" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="kb-retrieve" value="KB Retrieve&#xa;Top 25 candidates" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1"><mxGeometry x="485" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="cohere-rerank" value="Cohere Rerank&#xa;Top 5 evidence" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="695" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="evidence-gate" value="Evidence Gate&#xa;Score threshold" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#EA4335;strokeColor=#EA4335;strokeWidth=1.25;fontSize=11;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1"><mxGeometry x="905" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="external-llm" value="External LLM&#xa;Grounded answer" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#232F3E;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#FFFFFF;shadow=0;" vertex="1" parent="1"><mxGeometry x="1115" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="thread-reply" value="Thread Reply&#xa;Answer + deep links" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="1325" y="470" width="200" height="70" as="geometry" /></mxCell>
-        <mxCell id="evaluation" value="Evaluation&#xa;Hit + Answer&#xa;Citation + Unknown" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;strokeWidth=1.25;fontSize=11;fontColor=#202124;shadow=0;" vertex="1" parent="1"><mxGeometry x="1535" y="465" width="200" height="80" as="geometry" /></mxCell>
-        <mxCell id="ingest-trigger" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="google-docs" target="apps-script"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-webhook" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="apps-script" target="n8n-sync"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-fetch" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="n8n-sync" target="docs-api"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-json" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="docs-api" target="python-parser"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-parse" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="python-parser" target="s3-artifacts"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-sync" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="s3-artifacts" target="bedrock-kb"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ingest-index" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="bedrock-kb" target="s3-vectors"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="metadata-output" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.2;entryY=0;endSize=7;" edge="1" parent="1" source="python-parser" target="citation-metadata"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1005" y="214" /><mxPoint x="987.5" y="214" /><mxPoint x="995" y="214" /></Array></mxGeometry></mxCell>
-        <mxCell id="query-mention" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="slack-mention" target="n8n-chat"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-retrieve" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="n8n-chat" target="kb-retrieve"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-rerank" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="kb-retrieve" target="cohere-rerank"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-gate" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="cohere-rerank" target="evidence-gate"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-generate" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="evidence-gate" target="external-llm"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-reply" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="external-llm" target="thread-reply"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="query-evaluate" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;endSize=7;" edge="1" parent="1" source="thread-reply" target="evaluation"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="vector-query" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;startArrow=block;endArrow=block;dashed=1;strokeColor=#232F3E;strokeWidth=1.25;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endSize=7;" edge="1" parent="1" source="s3-vectors" target="kb-retrieve"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1635" y="325" /><mxPoint x="1617.5" y="325" /><mxPoint x="567.5" y="325" /><mxPoint x="585" y="325" /></Array></mxGeometry></mxCell>
+        <mxCell id="subtitle" value="One parse produces both the Markdown body and the citation metadata, which is what makes a deep link back to the source possible." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1979.04" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-ingest" value="1. Document ingestion" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="1949" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-query" value="2. Slack query runtime" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="368" width="1979" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="gdocs" value="Google Docs&#xa;source of truth" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="162" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-script" value="Apps Script&#xa;trigger only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="274" y="162" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="n8n-sync" value="n8n sync workflow&#xa;AssumeRole" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="553" y="162" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="docs-api" value="Docs API&#xa;tabs and field mask" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="832" y="162" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="parser" value="Python parser&#xa;sections and tables" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1086" y="162" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="citation" value="headingId, section path, source URL&#xa;the citation sidecar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="262" width="247" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-artifacts" value="S3 artifacts&#xa;Markdown + sidecar" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1404" y="146" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="kb" value="Bedrock KB&#xa;Cohere embed" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.bedrock;" vertex="1" parent="1">
+          <mxGeometry x="1622" y="146" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-vectors" value="S3 Vectors&#xa;vector index" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1859" y="146" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="mention" value="Slack mention&#xa;app_mention" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="n8n-chat" value="n8n chat workflow&#xa;ack and status" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="274" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="retrieve" value="KB retrieve&#xa;top 25 candidates from the S3 Vectors index" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="492" y="410" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank" value="Cohere rerank&#xa;top 5 evidence" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="832" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gate" value="Evidence gate&#xa;score threshold, else Unknown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1069" y="410" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" value="External LLM&#xa;grounded answer only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="reply" value="Thread reply&#xa;answer with deep links" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="eval" value="Evaluation&#xa;hit, answer, citation, unknown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1776" y="410" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gdocs-to-apps-script" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gdocs" target="apps-script">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="apps-script-to-n8n-sync" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="apps-script" target="n8n-sync">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n8n-sync-to-docs-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n8n-sync" target="docs-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="docs-api-to-parser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docs-api" target="parser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="parser-to-s3-artifacts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="parser" target="s3-artifacts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-artifacts-to-kb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3-artifacts" target="kb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kb-to-s3-vectors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kb" target="s3-vectors">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mention-to-n8n-chat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mention" target="n8n-chat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n8n-chat-to-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n8n-chat" target="retrieve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="retrieve-to-rerank" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="retrieve" target="rerank">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank-to-gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rerank" target="gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gate-to-llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="llm-to-reply" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="llm" target="reply">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="reply-to-eval" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reply" target="eval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="parser-to-citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.502;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="parser" target="citation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

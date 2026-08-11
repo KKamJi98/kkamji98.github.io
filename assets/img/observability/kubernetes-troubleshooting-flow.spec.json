@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "kubernetes-troubleshooting-flow",
+  "title": "Read the events and the previous container's logs before forming a theory",
+  "subtitle": "A restarted container has discarded its current logs, so the evidence is in the previous ones. Running on its own does not mean the Pod can take traffic.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "events",
+      "kind": "box",
+      "label": "Events and Pod state",
+      "col": 0,
+      "row": 0,
+      "detail": "kubectl describe first",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "restarted",
+      "kind": "service",
+      "label": "Restarted container",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "restartCount and last state",
+      "role": "danger",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "prevlogs",
+      "kind": "box",
+      "label": "Previous logs",
+      "col": 2,
+      "row": 0,
+      "detail": "kubectl logs --previous",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "noderes",
+      "kind": "service",
+      "label": "Node resources",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:node",
+      "detail": "pressure, allocatable, evictions",
+      "role": "queue",
+      "step": 5,
+      "step_at": "top-left"
+    },
+    {
+      "id": "hypothesis",
+      "kind": "box",
+      "label": "Hypothesis and telemetry",
+      "col": 5,
+      "row": 0,
+      "detail": "confirm against metrics before changing anything",
+      "role": "store",
+      "step": 6,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ready",
+      "kind": "box",
+      "label": "Ready condition",
+      "detail": "Running alone does not put a Pod in the EndpointSlice",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left",
+      "role": "queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "events-to-restarted",
+      "source": "events",
+      "target": "restarted"
+    },
+    {
+      "id": "restarted-to-prevlogs",
+      "source": "restarted",
+      "target": "prevlogs"
+    },
+    {
+      "id": "prevlogs-to-ready",
+      "source": "prevlogs",
+      "target": "ready"
+    },
+    {
+      "id": "ready-to-noderes",
+      "source": "ready",
+      "target": "noderes"
+    },
+    {
+      "id": "noderes-to-hypothesis",
+      "source": "noderes",
+      "target": "hypothesis"
+    }
+  ]
+}

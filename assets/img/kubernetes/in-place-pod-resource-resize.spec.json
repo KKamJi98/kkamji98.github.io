@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "in-place-pod-resource-resize",
+  "title": "In-place resize changes container resources without recreating the Pod",
+  "subtitle": "The kubelet applies the new values to the running container, so the pod keeps its name, node and IP.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "patch",
+      "kind": "box",
+      "label": "Resource patch",
+      "col": 0,
+      "row": 0,
+      "detail": "the resize subresource",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "label": "API server",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:api",
+      "detail": "validates the resize policy",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "kubelet",
+      "kind": "service",
+      "label": "kubelet",
+      "col": 2,
+      "row": 0,
+      "service": "k8s:kubelet",
+      "detail": "actuates the change on the node",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cgroup",
+      "kind": "box",
+      "label": "Container resources",
+      "col": 3,
+      "row": 0,
+      "detail": "cgroup limits updated in place",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "running",
+      "kind": "service",
+      "label": "Pod keeps running",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "no restart and no reschedule",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "patch-to-api",
+      "source": "patch",
+      "target": "api"
+    },
+    {
+      "id": "api-to-kubelet",
+      "source": "api",
+      "target": "kubelet"
+    },
+    {
+      "id": "kubelet-to-cgroup",
+      "source": "kubelet",
+      "target": "cgroup"
+    },
+    {
+      "id": "cgroup-to-running",
+      "source": "cgroup",
+      "target": "running"
+    }
+  ]
+}

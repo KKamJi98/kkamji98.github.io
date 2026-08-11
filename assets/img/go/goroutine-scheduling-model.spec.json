@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "goroutine-scheduling-model",
+  "title": "The Go scheduler multiplexes many goroutines onto a few OS threads",
+  "subtitle": "A blocking syscall parks the thread, and the scheduler hands the remaining goroutines to another one.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "program",
+      "kind": "box",
+      "label": "Go program",
+      "col": 0,
+      "row": 0,
+      "detail": "spawns goroutines freely",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "goroutines",
+      "kind": "box",
+      "label": "Goroutines",
+      "col": 1,
+      "row": 0,
+      "detail": "a few KB of stack each",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "scheduler",
+      "kind": "box",
+      "label": "Go scheduler",
+      "col": 2,
+      "row": 0,
+      "detail": "G, M and P: work stealing",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "threads",
+      "kind": "box",
+      "label": "OS threads",
+      "col": 3,
+      "row": 0,
+      "detail": "far fewer than goroutines",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cpus",
+      "kind": "box",
+      "label": "CPU cores",
+      "col": 4,
+      "row": 0,
+      "detail": "GOMAXPROCS bounds parallelism",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "program-to-goroutines",
+      "source": "program",
+      "target": "goroutines"
+    },
+    {
+      "id": "goroutines-to-scheduler",
+      "source": "goroutines",
+      "target": "scheduler"
+    },
+    {
+      "id": "scheduler-to-threads",
+      "source": "scheduler",
+      "target": "threads"
+    },
+    {
+      "id": "threads-to-cpus",
+      "source": "threads",
+      "target": "cpus"
+    }
+  ]
+}

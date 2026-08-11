@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "argocd-declarative-application",
+  "title": "The Application object is what tells Argo CD which repo maps to which cluster path",
+  "subtitle": "Argo CD never receives a deploy command. It compares the repo against the cluster and reconciles the difference.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "repo",
+      "kind": "box",
+      "label": "Git repository",
+      "col": 0,
+      "row": 0,
+      "detail": "the desired state",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "appmanifest",
+      "kind": "service",
+      "label": "Application manifest",
+      "col": 1,
+      "row": 0,
+      "service": "k8s:crd",
+      "detail": "source repo, path, destination",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "api",
+      "kind": "box",
+      "label": "Argo CD API server",
+      "col": 2,
+      "row": 0,
+      "detail": "validates and stores the Application",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "controller",
+      "kind": "box",
+      "label": "Application controller",
+      "col": 3,
+      "row": 0,
+      "detail": "diffs desired against live",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "cluster",
+      "kind": "service",
+      "label": "Cluster resources",
+      "col": 4,
+      "row": 0,
+      "service": "k8s:pod",
+      "detail": "synced, or reported OutOfSync",
+      "role": "store",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "repo-to-appmanifest",
+      "source": "repo",
+      "target": "appmanifest"
+    },
+    {
+      "id": "appmanifest-to-api",
+      "source": "appmanifest",
+      "target": "api"
+    },
+    {
+      "id": "api-to-controller",
+      "source": "api",
+      "target": "controller"
+    },
+    {
+      "id": "controller-to-cluster",
+      "source": "controller",
+      "target": "cluster"
+    }
+  ]
+}

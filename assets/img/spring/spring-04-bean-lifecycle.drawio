@@ -1,59 +1,88 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram id="spring-04-bean-lifecycle" name="Bean Lifecycle">
-    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="740" pageHeight="820" math="0" shadow="0" background="#FFFFFF">
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spring-04-bean-lifecycle" name="A singleton bean is built once and then occupies the heap for the process lifetime">
+    <mxGraphModel dx="1095" dy="736" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1095" pageHeight="736" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="s1" parent="1" vertex="1" value="Container start (component scan)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="40" width="320" height="50" as="geometry" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1071.3" height="712.0" as="geometry" />
         </mxCell>
-        <mxCell id="s2" parent="1" vertex="1" value="Register BeanDefinition" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="130" width="320" height="50" as="geometry" />
+        <mxCell id="title" value="A singleton bean is built once and then occupies the heap for the process lifetime" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1027.3" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="s3" parent="1" vertex="1" value="Instantiate bean" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="220" width="320" height="50" as="geometry" />
+        <mxCell id="subtitle" value="The init callback runs after injection, not after instantiation, which is why a dependency is safe to use there." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1027.3" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="s4" parent="1" vertex="1" value="Inject dependencies (DI)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="310" width="320" height="50" as="geometry" />
+        <mxCell id="s1" value="Container start&#xa;component scan" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="134" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="s5" parent="1" vertex="1" value="@PostConstruct (init callback)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="400" width="320" height="50" as="geometry" />
+        <mxCell id="s2" value="Register BeanDefinition&#xa;metadata only, no instance yet" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="202" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="s6" parent="1" vertex="1" value="Bean ready (singleton in heap)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#34A853;strokeColor=#34A853;fontColor=#FFFFFF;fontStyle=1;strokeWidth=1.25;">
-          <mxGeometry x="140" y="492" width="320" height="60" as="geometry" />
+        <mxCell id="s3" value="Instantiate bean&#xa;constructor runs" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="270" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="s7" parent="1" vertex="1" value="@PreDestroy (on shutdown)" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="604" width="320" height="50" as="geometry" />
+        <mxCell id="s4" value="Inject dependencies&#xa;constructor or field injection" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="338" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="s8" parent="1" vertex="1" value="Bean destroyed" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;shadow=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;strokeWidth=1.25;">
-          <mxGeometry x="140" y="694" width="320" height="50" as="geometry" />
+        <mxCell id="s5" value="@PostConstruct&#xa;init callback, dependencies available" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="406" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="note-shared" parent="1" vertex="1" value="one shared instance for all requests&#xa;-> baseline heap occupancy" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#34A853;fontStyle=2;">
-          <mxGeometry x="498" y="492" width="220" height="60" as="geometry" />
+        <mxCell id="s6" value="Bean ready&#xa;one shared singleton in the heap" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="474" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="l1" parent="1" edge="1" source="s1" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s7" value="@PreDestroy&#xa;on container shutdown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="542" width="560" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" value="Bean destroyed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="267.84" y="610" width="560" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spring-04-bean-lifecycle-note" value="One shared instance serves every request, so the bean graph is part of the baseline heap occupancy." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="225.84" y="678" width="644" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="s1-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="104" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s2-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="172" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="240" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s4-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="308" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s5-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="376" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s6-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="444" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s7-step" value="7" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="512" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s8-step" value="8" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="233.84" y="580" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s1-to-s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s1" target="s2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l2" parent="1" edge="1" source="s2" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s2-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s2" target="s3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l3" parent="1" edge="1" source="s3" target="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s3-to-s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3" target="s4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l4" parent="1" edge="1" source="s4" target="s5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s4-to-s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s4" target="s5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l5" parent="1" edge="1" source="s5" target="s6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s5-to-s6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s5" target="s6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l6" parent="1" edge="1" source="s6" target="s7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
+        <mxCell id="s6-to-s7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s6" target="s7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l7" parent="1" edge="1" source="s7" target="s8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=1.25;endSize=7;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="l-note" parent="1" edge="1" source="note-shared" target="s6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;dashed=1;strokeColor=#232F3E;fontColor=#202124;labelBackgroundColor=none;endArrow=open;endSize=7;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.25;">
+        <mxCell id="s7-to-s8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s7" target="s8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
