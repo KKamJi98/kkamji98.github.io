@@ -330,7 +330,8 @@
 
       loadDataset().then((entries) => {
         if (searchInput.value.trim().toLowerCase() !== query) {
-          return; // input changed while loading; a later run handles it
+          /* input changed while loading; a later run handles it */
+          return;
         }
 
         const matches = entries.filter((entry) => entry._haystack.includes(query));
