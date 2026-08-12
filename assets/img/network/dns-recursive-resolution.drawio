@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="dns-recursive-resolution" name="The recursive resolver does the walking; the stub only asks once">
-    <mxGraphModel dx="1337" dy="328" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1337" pageHeight="328" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1337" dy="354" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1337" pageHeight="354" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1313.98" height="304.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1313.98" height="330.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The recursive resolver does the walking; the stub only asks once" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1269.98" height="30" as="geometry" />
@@ -14,54 +14,54 @@
           <mxGeometry x="34" y="64" width="1269.98" height="22" as="geometry" />
         </mxCell>
         <mxCell id="stub" value="Browser or stub resolver&#xa;one question, one answer" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
-          <mxGeometry x="99" y="171" width="48" height="48" as="geometry" />
+          <mxGeometry x="99" y="183" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="recursive" value="Recursive resolver&#xa;walks the delegation chain" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="268" y="134" width="190" height="160" as="geometry" />
+          <mxGeometry x="268" y="132" width="190" height="188" as="geometry" />
         </mxCell>
         <mxCell id="root" value="Root name server&#xa;refers to the TLD servers" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="552" y="240" width="184" height="54" as="geometry" />
+          <mxGeometry x="552" y="266" width="184" height="54" as="geometry" />
         </mxCell>
         <mxCell id="tld" value="TLD name server&#xa;refers to the zone's name servers" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="830" y="240" width="235" height="54" as="geometry" />
+          <mxGeometry x="830" y="266" width="235" height="54" as="geometry" />
         </mxCell>
         <mxCell id="auth" value="Authoritative server&#xa;returns the actual record" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="240" width="184" height="54" as="geometry" />
+          <mxGeometry x="1120" y="266" width="184" height="54" as="geometry" />
         </mxCell>
         <mxCell id="cachehit" value="Cache hit&#xa;answered without leaving the resolver" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="514" y="134" width="260" height="54" as="geometry" />
+          <mxGeometry x="514" y="132" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="stub-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="65" y="141" width="26" height="26" as="geometry" />
+          <mxGeometry x="79" y="163" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="recursive-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="234" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="248" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="root-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="518" y="210" width="26" height="26" as="geometry" />
+          <mxGeometry x="532" y="246" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="tld-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="796" y="210" width="26" height="26" as="geometry" />
+          <mxGeometry x="810" y="246" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="auth-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1086" y="210" width="26" height="26" as="geometry" />
+          <mxGeometry x="1100" y="246" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="stub-to-recursive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.3812;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="stub" target="recursive">
+        <mxCell id="stub-to-recursive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.3989;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="stub" target="recursive">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="recursive-to-cachehit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="cachehit">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="476.67" y="174.0" />
-              <mxPoint x="476.67" y="161.0" />
+              <mxPoint x="476.67" y="179.0" />
+              <mxPoint x="476.67" y="159.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="recursive-to-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="root">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="495.33" y="254.0" />
-              <mxPoint x="495.33" y="267.0" />
+              <mxPoint x="495.33" y="273.0" />
+              <mxPoint x="495.33" y="293.0" />
             </Array>
           </mxGeometry>
         </mxCell>

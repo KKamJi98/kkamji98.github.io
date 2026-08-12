@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="flannel-vxlan-pod-flow" name="Flannel VXLAN wraps pod traffic in a UDP tunnel between nodes">
-    <mxGraphModel dx="1262" dy="254" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1262" pageHeight="254" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1262" dy="252" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1262" pageHeight="252" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1238.94" height="230.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1238.94" height="228.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Flannel VXLAN wraps pod traffic in a UDP tunnel between nodes" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1194.94" height="30" as="geometry" />
@@ -14,34 +14,34 @@
           <mxGeometry x="34" y="64" width="1194.94" height="22" as="geometry" />
         </mxCell>
         <mxCell id="src-pod" value="Source Pod&#xa;leaves through the cni0 bridge" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pod;" vertex="1" parent="1">
-          <mxGeometry x="114" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="114" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="src-node" value="Source node&#xa;flannel.1 VTEP encapsulates" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=node;" vertex="1" parent="1">
-          <mxGeometry x="368" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="368" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="vxlan" value="VXLAN tunnel&#xa;UDP port 8472 between nodes" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="542" y="150" width="196" height="54" as="geometry" />
+          <mxGeometry x="542" y="148" width="196" height="54" as="geometry" />
         </mxCell>
         <mxCell id="remote-node" value="Remote node&#xa;decapsulates the frame" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=node;" vertex="1" parent="1">
-          <mxGeometry x="859" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="859" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="dst-pod" value="Destination Pod&#xa;delivered on the local bridge" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pod;" vertex="1" parent="1">
-          <mxGeometry x="1104" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="1104" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="src-pod-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="80" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="94" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="src-node-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="334" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="348" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vxlan-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="508" y="120" width="26" height="26" as="geometry" />
+          <mxGeometry x="522" y="128" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="remote-node-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="825" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="839" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="dst-pod-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1084" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="src-pod-to-src-node" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src-pod" target="src-node">
           <mxGeometry relative="1" as="geometry" />

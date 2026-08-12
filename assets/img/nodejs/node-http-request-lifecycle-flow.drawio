@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="node-http-request-lifecycle-flow" name="The request event fires only after the parser has a complete head">
-    <mxGraphModel dx="1680" dy="438" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="438" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1680" dy="466" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="466" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1656.0" height="414.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1656.0" height="442.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The request event fires only after the parser has a complete head" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1612.0" height="30" as="geometry" />
@@ -14,46 +14,46 @@
           <mxGeometry x="34" y="64" width="1612.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="container" value="Container boundary" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="380" y="104" width="1266" height="182" as="geometry" />
+          <mxGeometry x="360" y="112" width="1286" height="202" as="geometry" />
         </mxCell>
         <mxCell id="process" value="Node.js process (PID 1)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="402" y="146" width="1222" height="118" as="geometry" />
+          <mxGeometry x="382" y="154" width="1242" height="138" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Client&#xa;opens a TCP connection" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="74" y="188" width="220" height="54" as="geometry" />
+          <mxGeometry x="74" y="216" width="220" height="54" as="geometry" />
         </mxCell>
         <mxCell id="socket" value="Accepted TCP socket&#xa;libuv hands it to the server" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="424" y="188" width="260" height="54" as="geometry" />
+          <mxGeometry x="424" y="216" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="parser" value="HTTP parser&#xa;method, path and headers" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="730" y="188" width="260" height="54" as="geometry" />
+          <mxGeometry x="730" y="216" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="reqevent" value="request event&#xa;emitted once the head is complete" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1036" y="188" width="260" height="54" as="geometry" />
+          <mxGeometry x="1036" y="216" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="handler" value="Application handler&#xa;your code runs here" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1342" y="188" width="260" height="54" as="geometry" />
+          <mxGeometry x="1342" y="216" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="runtime" value="kubelet or container runtime&#xa;sends the stop signal to PID 1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="34" y="306" width="300" height="54" as="geometry" />
+          <mxGeometry x="34" y="334" width="300" height="54" as="geometry" />
         </mxCell>
         <mxCell id="signal-note" value="Which signal arrives depends on the runtime and the image entrypoint, which is what decides whether graceful shutdown runs at all." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="380" width="1612" height="24" as="geometry" />
+          <mxGeometry x="34" y="408" width="1612" height="24" as="geometry" />
         </mxCell>
         <mxCell id="drain" value="Graceful shutdown&#xa;stop accepting, drain in-flight requests" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="424" y="306" width="566" height="54" as="geometry" />
+          <mxGeometry x="424" y="334" width="566" height="54" as="geometry" />
         </mxCell>
         <mxCell id="socket-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="390" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="404" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="parser-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="696" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="710" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="reqevent-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1002" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="1016" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="handler-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1308" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="1322" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-to-socket" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="socket">
           <mxGeometry relative="1" as="geometry" />

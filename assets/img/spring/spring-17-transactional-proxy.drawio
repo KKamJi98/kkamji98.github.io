@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-17-transactional-proxy" name="@Transactional is a proxy, so a self-call skips it entirely">
-    <mxGraphModel dx="935" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="935" pageHeight="570" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="935" dy="682" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="935" pageHeight="682" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="911.1" height="546.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="911.1" height="658.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="@Transactional is a proxy, so a self-call skips it entirely" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="867.1" height="30" as="geometry" />
@@ -17,34 +17,34 @@
           <mxGeometry x="207.89" y="104" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="proxy" value="AOP proxy with TransactionInterceptor&#xa;the only place the annotation is honoured" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="207.89" y="172" width="520" height="54" as="geometry" />
+          <mxGeometry x="207.89" y="200" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="begin" value="begin transaction&#xa;PlatformTransactionManager" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="207.89" y="240" width="520" height="54" as="geometry" />
+          <mxGeometry x="207.89" y="296" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="method" value="@Transactional method&#xa;the persistence context is active here" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="207.89" y="308" width="520" height="54" as="geometry" />
+          <mxGeometry x="207.89" y="392" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="end" value="commit or rollback&#xa;rollback on RuntimeException and Error" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="207.89" y="376" width="520" height="54" as="geometry" />
+          <mxGeometry x="207.89" y="488" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="db" value="Database" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="207.89" y="444" width="520" height="54" as="geometry" />
+          <mxGeometry x="207.89" y="556" width="520" height="54" as="geometry" />
         </mxCell>
         <mxCell id="note" value="A @Transactional method called as this.other() runs with no transaction, because the call never leaves the object." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="97.89" y="512" width="739" height="24" as="geometry" />
+          <mxGeometry x="97.89" y="624" width="739" height="24" as="geometry" />
         </mxCell>
         <mxCell id="proxy-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="173.89" y="142" width="26" height="26" as="geometry" />
+          <mxGeometry x="187.89" y="180" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="begin-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="173.89" y="210" width="26" height="26" as="geometry" />
+          <mxGeometry x="187.89" y="276" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="method-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="173.89" y="278" width="26" height="26" as="geometry" />
+          <mxGeometry x="187.89" y="372" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="end-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="173.89" y="346" width="26" height="26" as="geometry" />
+          <mxGeometry x="187.89" y="468" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="caller-to-proxy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="caller" target="proxy">
           <mxGeometry relative="1" as="geometry" />

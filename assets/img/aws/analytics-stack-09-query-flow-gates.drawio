@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="analytics-stack-09-query-flow-gates" name="Athena 쿼리의 길목마다 권한 게이트가 선다">
-    <mxGraphModel dx="1214" dy="317" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1214" pageHeight="317" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1214" dy="315" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1214" pageHeight="315" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1190.0" height="293.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1190.0" height="291.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Athena 쿼리의 길목마다 권한 게이트가 선다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1146.0" height="30" as="geometry" />
@@ -14,34 +14,34 @@
           <mxGeometry x="34" y="64" width="1146.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Client&#xa;SQL 제출" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
-          <mxGeometry x="103" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="103" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s1" value="StartQueryExecution&#xa;workgroup 결과 위치&#xa;스캔 한도 정책  [IAM]" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
-          <mxGeometry x="343" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="343" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s2" value="Glue Data Catalog 조회&#xa;스키마 + S3 LOCATION + 파티션&#xa;[IAM (+ Lake Formation)]" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
-          <mxGeometry x="583" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="583" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s3scan" value="S3 / S3 Tables 데이터 스캔&#xa;파티션 필터로 스캔량 축소&#xa;[IAM (+ S3 Tables는 LF)]" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-          <mxGeometry x="823" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="823" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s4" value="query result location (S3)&#xa;결과 기록 후 반환  [IAM]" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-          <mxGeometry x="1063" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="1063" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="note" value="각 길목의 게이트가 모두 Allow여야 쿼리가 끝까지 진행된다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="259" width="1146" height="24" as="geometry" />
+          <mxGeometry x="34" y="257" width="1146" height="24" as="geometry" />
         </mxCell>
         <mxCell id="s1-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="309" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="323" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s2-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="549" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="563" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s3scan-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="789" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="803" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s4-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1029" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1043" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-to-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="s1">
           <mxGeometry relative="1" as="geometry" />

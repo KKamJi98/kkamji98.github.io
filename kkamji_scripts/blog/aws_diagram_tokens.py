@@ -266,6 +266,7 @@ ICON_LABEL_H = 34  # two label lines under a 48px icon at fontSize 11
 BOX_W = 176
 BOX_H = 54
 STEP = 26  # numbered step badge
+STEP_OVERLAP = 6  # how far the badge sits over the element's corner
 GROUP_PAD = 22  # left/right/bottom padding inside a container
 GROUP_HEADER = 42  # top padding: clears the 24px corner icon and its label
 COL_GAP = 56

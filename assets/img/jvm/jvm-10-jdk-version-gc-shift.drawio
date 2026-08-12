@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="jvm-10-jdk-version-gc-shift" name="A faster G1 raises the Old generation baseline without any leak">
-    <mxGraphModel dx="858" dy="638" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="858" pageHeight="638" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="858" dy="776" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="858" pageHeight="776" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="834.36" height="614.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="834.36" height="752.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="A faster G1 raises the Old generation baseline without any leak" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="790.36" height="30" as="geometry" />
@@ -14,46 +14,46 @@
           <mxGeometry x="34" y="64" width="790.36" height="22" as="geometry" />
         </mxCell>
         <mxCell id="s1" value="Newer JDK: G1 pauses get shorter" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="134" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="132" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s2" value="Same pause goal means G1 grows Eden" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="202" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="228" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s3" value="Fewer minor collections" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="270" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="324" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s4" value="Adaptive IHOP defers concurrent marking" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="338" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="420" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s5" value="More promotion into Old" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="406" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="516" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s6" value="Old stays high, then drops on mixed GC: a sawtooth" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="149" y="474" width="560" height="54" as="geometry" />
+          <mxGeometry x="149" y="612" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="note" value="This is a GC behaviour shift, not a memory leak. It is more pronounced when the heap is generous relative to the live set." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="542" width="790" height="24" as="geometry" />
+          <mxGeometry x="34" y="680" width="790" height="24" as="geometry" />
         </mxCell>
         <mxCell id="fix" value="The lever is capping the young generation, which lowers promotion but also gives up adaptive sizing." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="104" y="580" width="650" height="24" as="geometry" />
+          <mxGeometry x="104" y="718" width="650" height="24" as="geometry" />
         </mxCell>
         <mxCell id="s1-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s2-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="172" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="208" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s3-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="240" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="304" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s4-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="308" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="400" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s5-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="376" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="496" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s6-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="115" y="444" width="26" height="26" as="geometry" />
+          <mxGeometry x="129" y="592" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s1-to-s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s1" target="s2">
           <mxGeometry relative="1" as="geometry" />

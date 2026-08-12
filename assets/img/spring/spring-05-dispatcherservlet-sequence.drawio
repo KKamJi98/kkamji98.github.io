@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-05-dispatcherservlet-sequence" name="DispatcherServlet coordinates; it does not do the work itself">
-    <mxGraphModel dx="832" dy="596" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="832" pageHeight="596" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="832" dy="708" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="832" pageHeight="708" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="808.21" height="572.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="808.21" height="684.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="DispatcherServlet coordinates; it does not do the work itself" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="764.21" height="30" as="geometry" />
@@ -14,37 +14,37 @@
           <mxGeometry x="34" y="64" width="764.21" height="22" as="geometry" />
         </mxCell>
         <mxCell id="dispatcher-box" value="DispatcherServlet (front controller): coordinates delegates" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="150.1" y="172" width="544" height="322" as="geometry" />
+          <mxGeometry x="134.1" y="180" width="564" height="426" as="geometry" />
         </mxCell>
         <mxCell id="request" value="Client request&#xa;GET /orders/42" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="104" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="104" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="hm" value="HandlerMapping&#xa;match the request to a handler" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="214" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="242" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ha" value="HandlerAdapter&#xa;invoke it, bind the arguments" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="282" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="338" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="csr" value="Controller, Service, Repository&#xa;your beans" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="350" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="434" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ret" value="Return value handling&#xa;HttpMessageConverter or view resolution" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="418" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="530" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="response" value="Client response" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="172.1" y="508" width="500" height="54" as="geometry" />
+          <mxGeometry x="176.1" y="620" width="500" height="54" as="geometry" />
         </mxCell>
         <mxCell id="hm-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="138.1" y="184" width="26" height="26" as="geometry" />
+          <mxGeometry x="156.1" y="222" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ha-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="138.1" y="252" width="26" height="26" as="geometry" />
+          <mxGeometry x="156.1" y="318" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="csr-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="138.1" y="320" width="26" height="26" as="geometry" />
+          <mxGeometry x="156.1" y="414" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ret-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="138.1" y="388" width="26" height="26" as="geometry" />
+          <mxGeometry x="156.1" y="510" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="request-to-hm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="request" target="hm">
           <mxGeometry relative="1" as="geometry" />

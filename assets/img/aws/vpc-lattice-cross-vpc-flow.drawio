@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="vpc-lattice-cross-vpc-flow" name="VPC Lattice: one Service Network spans three accounts">
-    <mxGraphModel dx="1214" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1214" pageHeight="640" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1214" dy="668" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1214" pageHeight="668" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1190.4" height="616.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1190.4" height="644.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="VPC Lattice: one Service Network spans three accounts" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1146.4" height="30" as="geometry" />
@@ -14,55 +14,55 @@
           <mxGeometry x="34" y="64" width="1146.4" height="22" as="geometry" />
         </mxCell>
         <mxCell id="service-network" value="VPC Lattice Service Network  (shared with AWS RAM)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="354" y="165" width="493" height="400" as="geometry" />
+          <mxGeometry x="354" y="173" width="493" height="420" as="geometry" />
         </mxCell>
         <mxCell id="account-1" value="Account 1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#E7157B;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="34" y="240" width="256" height="229" as="geometry" />
+          <mxGeometry x="34" y="248" width="256" height="249" as="geometry" />
         </mxCell>
         <mxCell id="account-2" value="Account 2" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#E7157B;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="917" y="104" width="257" height="229" as="geometry" />
+          <mxGeometry x="917" y="112" width="257" height="249" as="geometry" />
         </mxCell>
         <mxCell id="account-3" value="Account 3" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#E7157B;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="911" y="377" width="270" height="229" as="geometry" />
+          <mxGeometry x="911" y="405" width="270" height="229" as="geometry" />
         </mxCell>
         <mxCell id="vpc-a" value="VPC A" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="56" y="282" width="212" height="165" as="geometry" />
+          <mxGeometry x="56" y="290" width="212" height="185" as="geometry" />
         </mxCell>
         <mxCell id="vpc-b" value="VPC B" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="939" y="146" width="213" height="165" as="geometry" />
+          <mxGeometry x="939" y="154" width="213" height="185" as="geometry" />
         </mxCell>
         <mxCell id="vpc-c" value="VPC C" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="933" y="419" width="226" height="165" as="geometry" />
+          <mxGeometry x="933" y="447" width="226" height="165" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Client EC2 instance&#xa;curl service-a-xxx&#xa;.vpc-lattice-aws.com" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
-          <mxGeometry x="138" y="324" width="48" height="48" as="geometry" />
+          <mxGeometry x="138" y="352" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="lattice" value="Amazon VPC Lattice&#xa;Route 53 Resolver returns&#xa;the link-local endpoint" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.vpc_lattice;" vertex="1" parent="1">
-          <mxGeometry x="440" y="324" width="48" height="48" as="geometry" />
+          <mxGeometry x="440" y="352" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="svc-a" value="Service A (billing)&#xa;listener HTTP :80&#xa;rule /api/* to Target Group A" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="616" y="207" width="209" height="63" as="geometry" />
+          <mxGeometry x="616" y="235" width="209" height="63" as="geometry" />
         </mxCell>
         <mxCell id="svc-b" value="Service B (payment)&#xa;listener HTTPS :443&#xa;rule /pay/* to Target Group B" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="616" y="480" width="209" height="63" as="geometry" />
+          <mxGeometry x="616" y="508" width="209" height="63" as="geometry" />
         </mxCell>
         <mxCell id="tg-a" value="Target Group A&#xa;EC2 targets (billing)&#xa;AZ affinity, round robin" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
-          <mxGeometry x="1021" y="188" width="48" height="48" as="geometry" />
+          <mxGeometry x="1021" y="216" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="tg-b" value="Target Group B&#xa;EC2 targets (payment)&#xa;overlapping CIDR, auto NAT" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
-          <mxGeometry x="1021" y="461" width="48" height="48" as="geometry" />
+          <mxGeometry x="1021" y="489" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="client-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="104" y="294" width="26" height="26" as="geometry" />
+          <mxGeometry x="118" y="332" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="lattice-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="406" y="294" width="26" height="26" as="geometry" />
+          <mxGeometry x="420" y="332" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="svc-a-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="582" y="177" width="26" height="26" as="geometry" />
+          <mxGeometry x="596" y="215" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="tg-a-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="987" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="1001" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="lattice">
           <mxGeometry relative="1" as="geometry" />
@@ -70,16 +70,16 @@
         <mxCell id="listener-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lattice" target="svc-a">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="530.67" y="336.0" />
-              <mxPoint x="530.67" y="238.5" />
+              <mxPoint x="530.67" y="364.0" />
+              <mxPoint x="530.67" y="266.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="listener-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lattice" target="svc-b">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="573.33" y="360.0" />
-              <mxPoint x="573.33" y="511.5" />
+              <mxPoint x="573.33" y="388.0" />
+              <mxPoint x="573.33" y="539.5" />
             </Array>
           </mxGeometry>
         </mxCell>

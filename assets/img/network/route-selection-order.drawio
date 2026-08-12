@@ -1,47 +1,47 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="route-selection-order" name="Longest prefix wins first; only then do distance and metric break the tie">
-    <mxGraphModel dx="1517" dy="231" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1517" pageHeight="231" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1503" dy="229" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1503" pageHeight="229" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1493.84" height="207.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1479.84" height="205.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Longest prefix wins first; only then do distance and metric break the tie" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1449.84" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1435.84" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="A more specific route beats a better metric, which is why a stray /32 can override an entire routing policy." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1449.84" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1435.84" height="22" as="geometry" />
         </mxCell>
         <mxCell id="dest" value="Destination IP&#xa;of the packet being forwarded" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="138" width="209" height="54" as="geometry" />
+          <mxGeometry x="54" y="136" width="209" height="54" as="geometry" />
         </mxCell>
         <mxCell id="prefix" value="Longest prefix match&#xa;the most specific route wins" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="333" y="138" width="203" height="54" as="geometry" />
+          <mxGeometry x="319" y="136" width="203" height="54" as="geometry" />
         </mxCell>
         <mxCell id="candidates" value="Still more than one?&#xa;same prefix from several sources" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="592" y="138" width="228" height="54" as="geometry" />
+          <mxGeometry x="578" y="136" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="distance" value="Administrative distance&#xa;a local preference between sources;&#xa;it is not advertised in RIP or OSPF packets" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="876" y="134" width="298" height="63" as="geometry" />
+          <mxGeometry x="862" y="132" width="298" height="63" as="geometry" />
         </mxCell>
         <mxCell id="metric" value="Metric and next hop&#xa;RIP counts hops, OSPF sums link cost" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1230" y="138" width="254" height="54" as="geometry" />
+          <mxGeometry x="1216" y="136" width="254" height="54" as="geometry" />
         </mxCell>
         <mxCell id="dest-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="108" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="116" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="prefix-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="299" y="108" width="26" height="26" as="geometry" />
+          <mxGeometry x="299" y="116" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="candidates-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="558" y="108" width="26" height="26" as="geometry" />
+          <mxGeometry x="558" y="116" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="distance-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="842" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="842" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="metric-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1196" y="108" width="26" height="26" as="geometry" />
+          <mxGeometry x="1196" y="116" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="dest-to-prefix" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dest" target="prefix">
           <mxGeometry relative="1" as="geometry" />

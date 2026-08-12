@@ -1,47 +1,47 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="priority-queue-heap-flow" name="A binary heap keeps only the top element ordered, which is all a priority queue needs">
-    <mxGraphModel dx="1478" dy="222" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1478" pageHeight="222" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1464" dy="220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1464" pageHeight="220" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1454.44" height="198.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1440.44" height="196.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="A binary heap keeps only the top element ordered, which is all a priority queue needs" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1410.44" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1396.44" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Insert and pop are logarithmic because the heap repairs one path from the root, not the whole array." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1410.44" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1396.44" height="22" as="geometry" />
         </mxCell>
         <mxCell id="input" value="Input items&#xa;each with a priority" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="heap" value="Binary heap&#xa;parent always outranks its children" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="300" y="134" width="247" height="54" as="geometry" />
+          <mxGeometry x="286" y="132" width="247" height="54" as="geometry" />
         </mxCell>
         <mxCell id="top" value="Highest priority at the root&#xa;readable in constant time" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="603" y="134" width="203" height="54" as="geometry" />
+          <mxGeometry x="589" y="132" width="203" height="54" as="geometry" />
         </mxCell>
         <mxCell id="pop" value="Pop&#xa;move the last item up, then sift down" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="862" y="134" width="260" height="54" as="geometry" />
+          <mxGeometry x="848" y="132" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="next" value="Next item surfaces&#xa;one path repaired, not the whole array" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1178" y="134" width="266" height="54" as="geometry" />
+          <mxGeometry x="1164" y="132" width="266" height="54" as="geometry" />
         </mxCell>
         <mxCell id="input-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="heap-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="266" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="266" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="top-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="569" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="569" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="pop-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="828" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="828" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="next-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1144" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1144" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="input-to-heap" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="input" target="heap">
           <mxGeometry relative="1" as="geometry" />

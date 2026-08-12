@@ -255,8 +255,8 @@ class Layout:
         self._size_grid()
         self._reserve_container_padding()
         self._place(spec)
-        self._build_container_rects()
         self._build_badges()
+        self._build_container_rects()
         self._fit_to_content()
 
     # -- membership -------------------------------------------------------
@@ -387,6 +387,24 @@ class Layout:
         self.pad_top = lane_max(2, cols, T.GROUP_HEADER, False)
         self.pad_bottom = lane_max(3, cols, T.GROUP_PAD, False)
 
+        # A step badge sits above its node, so the row needs that height on top
+        # of any container header. Without it the badge lands on the label.
+        above, below = set(), set()
+        for node in self.nodes.values():
+            if node.get("step") is None:
+                continue
+            if "bottom" in node.get("step_at", "top-left"):
+                below.add(node["row"] + node.get("rowspan", 1) - 1)
+            else:
+                above.add(node["row"])
+        for row in above:
+            self.pad_top[row] = self.pad_top.get(row, 0) + T.STEP - T.STEP_OVERLAP + 8
+        for row in below:
+            self.pad_bottom[row] = max(
+                self.pad_bottom.get(row, 0),
+                T.GROUP_PAD + T.STEP - T.STEP_OVERLAP + 8,
+            )
+
     def _place(self, spec: dict) -> None:
         top = self.margin
         if spec.get("title"):
@@ -454,6 +472,9 @@ class Layout:
         self.crect: dict[str, Rect] = {}
         for cid in sorted(self.containers, key=lambda c: -self.depth[c]):
             parts = [self.block[nid] for nid in self.leaves[cid]]
+            # Wrap the badges too, so the container label ends up above them
+            # instead of underneath one.
+            parts += [self.badge[n] for n in self.leaves[cid] if n in self.badge]
             parts += [
                 self.crect[other]
                 for other, parent in self.parent.items()
@@ -476,12 +497,13 @@ class Layout:
                 continue
             rect = self.shape[nid]
             where = node.get("step_at", "top-left")
-            # Sits just outside the corner rather than straddling the edge:
-            # a badge overlapping the node's own row band would block the side
-            # an incoming arrow needs.
-            dx = -T.STEP - 8 if "left" in where else rect.w + 8
-            dy = -T.STEP - 4 if "top" in where else rect.h + 4
-            self.badge[nid] = Rect(rect.x + dx, rect.y + dy, T.STEP, T.STEP)
+            # Pinned to the element's top-left corner, overlapping it slightly,
+            # the way the AWS deck places them. One rule for every node, so the
+            # badges of a row line up. The badge clears the element's mid-height,
+            # which is where incoming arrows land.
+            over = T.STEP - T.STEP_OVERLAP
+            dy = rect.h - T.STEP_OVERLAP if "bottom" in where else -over
+            self.badge[nid] = Rect(rect.x - over, rect.y + dy, T.STEP, T.STEP)
 
     def _fit_to_content(self) -> None:
         """Shift everything so nothing sits outside the margin.

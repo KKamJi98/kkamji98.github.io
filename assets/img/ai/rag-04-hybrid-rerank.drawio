@@ -1,86 +1,86 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="rag-04-hybrid-rerank" name="Hybrid retrieval fuses two rankings before anything is reranked">
-    <mxGraphModel dx="1615" dy="302" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1615" pageHeight="302" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1601" dy="300" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1601" pageHeight="300" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1591.52" height="278.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1577.52" height="276.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Hybrid retrieval fuses two rankings before anything is reranked" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1547.52" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1533.52" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Dense retrieval catches paraphrase and BM25 catches exact terms; RRF merges them without tuning a weight per query." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1547.52" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1533.52" height="22" as="geometry" />
         </mxCell>
         <mxCell id="query" value="User query" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="176" height="134" as="geometry" />
+          <mxGeometry x="54" y="132" width="176" height="134" as="geometry" />
         </mxCell>
         <mxCell id="dense" value="Dense retrieval&#xa;vector similarity, over-retrieve on purpose" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="297" y="134" width="298" height="54" as="geometry" />
+          <mxGeometry x="283" y="132" width="298" height="54" as="geometry" />
         </mxCell>
         <mxCell id="bm25" value="Sparse retrieval&#xa;BM25 lexical match, over-retrieve on purpose" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="294" y="214" width="305" height="54" as="geometry" />
+          <mxGeometry x="280" y="212" width="305" height="54" as="geometry" />
         </mxCell>
         <mxCell id="rrf" value="RRF fusion&#xa;reciprocal rank fusion" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="649" y="134" width="176" height="134" as="geometry" />
+          <mxGeometry x="635" y="132" width="176" height="134" as="geometry" />
         </mxCell>
         <mxCell id="rerank" value="Reranking&#xa;cross-encoder over the shortlist" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="875" y="134" width="228" height="134" as="geometry" />
+          <mxGeometry x="861" y="132" width="228" height="134" as="geometry" />
         </mxCell>
         <mxCell id="topn" value="Top-N&#xa;what the model actually sees" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1153" y="134" width="203" height="134" as="geometry" />
+          <mxGeometry x="1139" y="132" width="203" height="134" as="geometry" />
         </mxCell>
         <mxCell id="llm" value="LLM generation&#xa;grounded answer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1406" y="134" width="176" height="134" as="geometry" />
+          <mxGeometry x="1392" y="132" width="176" height="134" as="geometry" />
         </mxCell>
         <mxCell id="query-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="dense-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="263" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="263" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="rrf-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="615" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="615" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="rerank-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="841" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="841" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="topn-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1119" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1119" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="llm-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1372" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1372" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="query-to-dense" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="dense">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="260.67" y="167.5" />
-              <mxPoint x="260.67" y="161.0" />
+              <mxPoint x="246.67" y="165.5" />
+              <mxPoint x="246.67" y="159.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="query-to-bm25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="bm25">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="277.33" y="234.5" />
-              <mxPoint x="277.33" y="241.0" />
+              <mxPoint x="263.33" y="232.5" />
+              <mxPoint x="263.33" y="239.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="dense-to-rrf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dense" target="rrf">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="613.0" y="161.0" />
-              <mxPoint x="613.0" y="167.5" />
+              <mxPoint x="599.0" y="159.0" />
+              <mxPoint x="599.0" y="165.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="bm25-to-rrf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bm25" target="rrf">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="631.0" y="241.0" />
-              <mxPoint x="631.0" y="234.5" />
+              <mxPoint x="617.0" y="239.0" />
+              <mxPoint x="617.0" y="232.5" />
             </Array>
           </mxGeometry>
         </mxCell>

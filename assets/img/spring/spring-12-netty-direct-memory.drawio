@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-12-netty-direct-memory" name="Netty's socket buffers live outside the heap, so -Xmx does not bound them">
-    <mxGraphModel dx="1334" dy="298" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1334" pageHeight="298" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1334" dy="296" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1334" pageHeight="296" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1310.72" height="274.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1310.72" height="272.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Netty's socket buffers live outside the heap, so -Xmx does not bound them" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1266.72" height="30" as="geometry" />
@@ -14,25 +14,25 @@
           <mxGeometry x="34" y="64" width="1266.72" height="22" as="geometry" />
         </mxCell>
         <mxCell id="heap" value="JVM heap  (-Xmx)&#xa;objects, GC managed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="261.34" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="254.34" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="direct" value="Direct memory (off-heap)&#xa;Netty socket I/O buffers, pooled by PooledByteBufAllocator" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="487.34" y="134" width="394" height="54" as="geometry" />
+          <mxGeometry x="480.34" y="132" width="394" height="54" as="geometry" />
         </mxCell>
         <mxCell id="net" value="Network socket&#xa;the OS kernel" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="931.34" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="924.34" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="spring-12-netty-direct-memory-note" value="Because direct buffers are native, a WebFlux process can exceed its container limit while the heap still looks healthy." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="261.34" y="240" width="846" height="24" as="geometry" />
+          <mxGeometry x="254.34" y="238" width="846" height="24" as="geometry" />
         </mxCell>
         <mxCell id="heap-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="227.34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="234.34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="direct-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="453.34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="460.34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="net-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="897.34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="904.34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="heap-to-direct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="heap" target="direct">
           <mxGeometry relative="1" as="geometry" />

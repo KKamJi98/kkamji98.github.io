@@ -1,50 +1,50 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="eks-max-pods-prefix-mode" name="Prefix mode multiplies the IPs an ENI can hand out">
-    <mxGraphModel dx="1302" dy="303" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1302" pageHeight="303" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1310" dy="331" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1310" pageHeight="331" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1278.04" height="279.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1286.04" height="307.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Prefix mode multiplies the IPs an ENI can hand out" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1234.04" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1242.04" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Without prefix delegation each ENI assigns single IPs; with it, each slot becomes a /28 prefix and max-pods rises accordingly." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1234.04" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1242.04" height="22" as="geometry" />
         </mxCell>
         <mxCell id="node" value="EKS worker node" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="46" y="104" width="1222" height="165" as="geometry" />
+          <mxGeometry x="34" y="112" width="1242" height="185" as="geometry" />
         </mxCell>
         <mxCell id="podreq" value="Pod requests an IP&#xa;scheduler placed the pod" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="170" width="177" height="54" as="geometry" />
+          <mxGeometry x="76" y="198" width="177" height="54" as="geometry" />
         </mxCell>
         <mxCell id="cni" value="Amazon VPC CNI&#xa;ipamd allocates from the warm pool" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="303" y="170" width="241" height="54" as="geometry" />
+          <mxGeometry x="311" y="198" width="241" height="54" as="geometry" />
         </mxCell>
         <mxCell id="eni" value="ENI prefix&#xa;/28 prefix per slot&#xa;instead of one IP" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_network_interface;" vertex="1" parent="1">
-          <mxGeometry x="666" y="146" width="48" height="48" as="geometry" />
+          <mxGeometry x="674" y="174" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="capacity" value="Node IP capacity&#xa;ENIs x slots x 16" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="836" y="170" width="176" height="54" as="geometry" />
+          <mxGeometry x="844" y="198" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="maxpods" value="max-pods&#xa;kubelet admission limit" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="170" width="176" height="54" as="geometry" />
+          <mxGeometry x="1078" y="198" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="podreq-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="140" width="26" height="26" as="geometry" />
+          <mxGeometry x="56" y="178" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="cni-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="269" y="140" width="26" height="26" as="geometry" />
+          <mxGeometry x="291" y="178" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="eni-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="632" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="654" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="capacity-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="802" y="140" width="26" height="26" as="geometry" />
+          <mxGeometry x="824" y="178" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="maxpods-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1036" y="140" width="26" height="26" as="geometry" />
+          <mxGeometry x="1058" y="178" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="podreq-to-cni" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="podreq" target="cni">
           <mxGeometry relative="1" as="geometry" />

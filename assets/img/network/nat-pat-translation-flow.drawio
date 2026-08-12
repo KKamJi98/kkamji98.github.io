@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="nat-pat-translation-flow" name="PAT lets many private hosts share one public address by rewriting the port">
-    <mxGraphModel dx="1261" dy="254" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1261" pageHeight="254" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1261" dy="252" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1261" pageHeight="252" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1237.12" height="230.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1237.12" height="228.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="PAT lets many private hosts share one public address by rewriting the port" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1193.12" height="30" as="geometry" />
@@ -14,28 +14,28 @@
           <mxGeometry x="34" y="64" width="1193.12" height="22" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Private client&#xa;10.0.0.10:49152" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
-          <mxGeometry x="99" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="99" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="nat" value="NAT or PAT gateway&#xa;rewrites source address and port" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" vertex="1" parent="1">
-          <mxGeometry x="354" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="354" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="mapping" value="Translation table entry&#xa;one entry per flow, keyed by address and port" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="544" y="150" width="311" height="54" as="geometry" />
+          <mxGeometry x="544" y="148" width="311" height="54" as="geometry" />
         </mxCell>
         <mxCell id="server" value="External server&#xa;198.51.100.20:443, sees only the public address" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.traditional_server;" vertex="1" parent="1">
-          <mxGeometry x="1045" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="1045" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="client-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="65" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="79" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="nat-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="320" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="334" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="mapping-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="510" y="120" width="26" height="26" as="geometry" />
+          <mxGeometry x="524" y="128" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="server-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1011" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1025" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-to-nat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="nat">
           <mxGeometry relative="1" as="geometry" />

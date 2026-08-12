@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="nodejs-server-runtime-overview" name="Application code never waits; the runtime does the waiting for it">
-    <mxGraphModel dx="1236" dy="454" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1236" pageHeight="454" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1236" dy="482" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1236" pageHeight="482" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1212.0" height="430.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1212.0" height="458.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Application code never waits; the runtime does the waiting for it" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1168.0" height="30" as="geometry" />
@@ -14,34 +14,34 @@
           <mxGeometry x="34" y="64" width="1168.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="process-boundary" value="Node.js process" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="590" y="180" width="612" height="194" as="geometry" />
+          <mxGeometry x="570" y="188" width="632" height="214" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Client&#xa;HTTP request" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="34" y="222" width="200" height="54" as="geometry" />
+          <mxGeometry x="34" y="250" width="200" height="54" as="geometry" />
         </mxCell>
         <mxCell id="os" value="OS I/O readiness&#xa;epoll or kqueue reports a socket is ready" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="282" y="222" width="260" height="54" as="geometry" />
+          <mxGeometry x="282" y="250" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="runtime" value="Node runtime&#xa;libuv event loop plus V8" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="612" y="222" width="260" height="54" as="geometry" />
+          <mxGeometry x="612" y="250" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="application" value="Application code&#xa;one JavaScript flow, no waiting" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="920" y="222" width="260" height="54" as="geometry" />
+          <mxGeometry x="920" y="250" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="workload" value="I/O or CPU work&#xa;I/O returns to the loop, CPU blocks it" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="920" y="298" width="260" height="54" as="geometry" />
+          <mxGeometry x="920" y="326" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="deployment" value="Process supervisor&#xa;systemd, PM2 or a container runtime" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="612" y="104" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="note" value="CPU-bound work is the exception: it occupies the single loop, so it delays every other connection." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="396" width="1168" height="24" as="geometry" />
+          <mxGeometry x="34" y="424" width="1168" height="24" as="geometry" />
         </mxCell>
         <mxCell id="runtime-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="578" y="192" width="26" height="26" as="geometry" />
+          <mxGeometry x="592" y="230" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="application-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="886" y="192" width="26" height="26" as="geometry" />
+          <mxGeometry x="900" y="230" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-to-os" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="os">
           <mxGeometry relative="1" as="geometry" />

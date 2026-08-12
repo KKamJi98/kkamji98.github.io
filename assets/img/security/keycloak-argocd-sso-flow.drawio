@@ -1,47 +1,47 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="keycloak-argocd-sso-flow" name="Argo CD trusts Keycloak for identity and maps groups to RBAC">
-    <mxGraphModel dx="1240" dy="222" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="222" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1226" dy="220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1226" pageHeight="220" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1216.14" height="198.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1202.14" height="196.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Argo CD trusts Keycloak for identity and maps groups to RBAC" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1172.14" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1158.14" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The group claim has to be in the token; without it every user lands on the default policy." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1172.14" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1158.14" height="22" as="geometry" />
         </mxCell>
         <mxCell id="browser" value="Browser&#xa;opens the Argo CD UI" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="keycloak" value="Keycloak login&#xa;the OIDC provider" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="300" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="286" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="token" value="OIDC token&#xa;carries the groups claim" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="532" y="134" width="177" height="54" as="geometry" />
+          <mxGeometry x="518" y="132" width="177" height="54" as="geometry" />
         </mxCell>
         <mxCell id="argocd" value="Argo CD&#xa;validates the token" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="765" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="751" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="rbac" value="Group-based access&#xa;policy maps a group to a role" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="997" y="134" width="209" height="54" as="geometry" />
+          <mxGeometry x="983" y="132" width="209" height="54" as="geometry" />
         </mxCell>
         <mxCell id="browser-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="keycloak-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="266" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="266" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="token-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="498" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="498" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="argocd-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="731" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="731" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="rbac-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="963" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="963" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="browser-to-keycloak" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="browser" target="keycloak">
           <mxGeometry relative="1" as="geometry" />

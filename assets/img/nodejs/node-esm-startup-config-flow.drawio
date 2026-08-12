@@ -1,77 +1,77 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="node-esm-startup-config-flow" name="Config is validated before the server binds, so a bad value fails at start-up">
-    <mxGraphModel dx="2704" dy="298" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2704" pageHeight="298" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="2690" dy="296" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2690" pageHeight="296" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="2680.0" height="274.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="2666.0" height="272.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Config is validated before the server binds, so a bad value fails at start-up" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="2636.0" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="2622.0" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The CLI supplies the environment, then the ESM graph loads. Only a valid configuration reaches the error listener and listen(), and a resolve failure never gets that far." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="2636.0" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="2622.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="node-cli" value="Node CLI&#xa;node main.mjs" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="environment" value="Environment&#xa;--env-file and process.env" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="362" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="348" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="main-module" value="main.mjs&#xa;bootstrap entry point" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="656" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="642" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="config-module" value="config.mjs&#xa;imported before the server" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="950" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="936" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="config-validation" value="Parse and validate config&#xa;fail here, not at first request" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1244" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="1230" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="server-module" value="server.mjs&#xa;createServer" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1538" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="1524" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="error-listener" value="error listener&#xa;registered before listen(), never after" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1832" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="1818" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="listen" value="server.listen()&#xa;the port is bound here" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="2126" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="2112" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ready" value="Ready: HTTP 200&#xa;the readiness probe can pass" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="2420" y="134" width="250" height="54" as="geometry" />
+          <mxGeometry x="2406" y="132" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="module-failure" value="Module failure&#xa;resolve or evaluate error" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="950" y="210" width="250" height="54" as="geometry" />
+          <mxGeometry x="936" y="208" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="startup-error" value="Startup error&#xa;logged without secrets" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1244" y="210" width="250" height="54" as="geometry" />
+          <mxGeometry x="1230" y="208" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="no-listener" value="No listener&#xa;non-zero exit, nothing bound" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1538" y="210" width="250" height="54" as="geometry" />
+          <mxGeometry x="1524" y="208" width="250" height="54" as="geometry" />
         </mxCell>
         <mxCell id="node-cli-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="environment-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="328" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="328" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="main-module-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="622" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="622" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="config-module-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="916" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="916" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="config-validation-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1210" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1210" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="server-module-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1504" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1504" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="error-listener-step" value="7" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1798" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1798" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="listen-step" value="8" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="2092" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="2092" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="node-cli-to-environment" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="node-cli" target="environment">
           <mxGeometry relative="1" as="geometry" />

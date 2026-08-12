@@ -1,50 +1,50 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="waf-rule-rollout-flow" name="Ship a WAF rule in Count first, narrow it, then Block with an expiry">
-    <mxGraphModel dx="1546" dy="345" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1546" pageHeight="345" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1532" dy="343" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1532" pageHeight="343" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1522.24" height="321.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1508.24" height="319.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Ship a WAF rule in Count first, narrow it, then Block with an expiry" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1478.24" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1464.24" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Every step stays reversible. Edge propagation means Block and rollback cannot be judged in the same short observation window." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1478.24" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1464.24" height="22" as="geometry" />
         </mxCell>
         <mxCell id="evidence" value="Evidence and owner&#xa;the request pattern to stop" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="158" width="196" height="54" as="geometry" />
+          <mxGeometry x="54" y="156" width="196" height="54" as="geometry" />
         </mxCell>
         <mxCell id="count" value="Count mode&#xa;inspects and bills, never blocks" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="322" y="158" width="228" height="54" as="geometry" />
+          <mxGeometry x="308" y="156" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="observe" value="Metrics and logs&#xa;sampled requests&#xa;label and rule name" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="1">
-          <mxGeometry x="674" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="660" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="exception" value="Scope exception&#xa;IP set exception or scope-down, not a wider block" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="846" y="158" width="337" height="54" as="geometry" />
+          <mxGeometry x="832" y="156" width="337" height="54" as="geometry" />
         </mxCell>
         <mxCell id="block" value="Gradual Block&#xa;one route at a time, with an expiry date" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;" vertex="1" parent="1">
-          <mxGeometry x="1353" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="1339" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="propagation" value="A CloudFront Web ACL change needs time to reach the global edge, so the effect of Block and of a rollback must be observed in separate windows." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="68" y="287" width="1444" height="24" as="geometry" />
+          <mxGeometry x="54" y="285" width="1444" height="24" as="geometry" />
         </mxCell>
         <mxCell id="evidence-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="128" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="136" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="count-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="288" y="128" width="26" height="26" as="geometry" />
+          <mxGeometry x="288" y="136" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="observe-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="640" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="640" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="exception-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="812" y="128" width="26" height="26" as="geometry" />
+          <mxGeometry x="812" y="136" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="block-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1319" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1319" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="evidence-to-count" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="evidence" target="count">
           <mxGeometry relative="1" as="geometry" />

@@ -1,67 +1,67 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="argocd-multi-cluster-flow" name="One Argo CD reaches other clusters through stored cluster credentials">
-    <mxGraphModel dx="1097" dy="392" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1097" pageHeight="392" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1083" dy="418" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1083" pageHeight="418" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1073.84" height="368.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1059.84" height="394.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="One Argo CD reaches other clusters through stored cluster credentials" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1029.84" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1015.84" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The two arrows out of the credential store are not a sequence. Each Application names its own destination cluster." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1029.84" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1015.84" height="22" as="geometry" />
         </mxCell>
         <mxCell id="repo" value="Git repository&#xa;one source of truth" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="176" height="224" as="geometry" />
+          <mxGeometry x="54" y="132" width="176" height="252" as="geometry" />
         </mxCell>
         <mxCell id="argocd" value="Argo CD&#xa;runs in a single management cluster" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="300" y="134" width="247" height="224" as="geometry" />
+          <mxGeometry x="286" y="132" width="247" height="252" as="geometry" />
         </mxCell>
         <mxCell id="creds" value="Cluster credentials&#xa;one Secret per registered cluster" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=secret;" vertex="1" parent="1">
-          <mxGeometry x="693" y="203" width="48" height="48" as="geometry" />
+          <mxGeometry x="679" y="215" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="clustera" value="Cluster A workload&#xa;destination A" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pod;" vertex="1" parent="1">
-          <mxGeometry x="951" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="937" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="clusterb" value="Cluster B workload&#xa;destination B" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#326CE5;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.kubernetes.icon;prIcon=pod;" vertex="1" parent="1">
-          <mxGeometry x="951" y="272" width="48" height="48" as="geometry" />
+          <mxGeometry x="937" y="298" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="repo-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="argocd-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="266" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="266" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="creds-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="659" y="173" width="26" height="26" as="geometry" />
+          <mxGeometry x="659" y="195" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="clustera-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="917" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="917" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="clusterb-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="917" y="242" width="26" height="26" as="geometry" />
+          <mxGeometry x="917" y="278" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="repo-to-argocd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="repo" target="argocd">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="argocd-to-creds" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.4152;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="argocd" target="creds">
+        <mxCell id="argocd-to-creds" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.4246;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="argocd" target="creds">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="creds-to-clustera" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="creds" target="clustera">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="811.0" y="215.0" />
-              <mxPoint x="811.0" y="158.0" />
+              <mxPoint x="797.0" y="227.0" />
+              <mxPoint x="797.0" y="156.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="creds-to-clusterb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="creds" target="clusterb">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="881.0" y="239.0" />
-              <mxPoint x="881.0" y="296.0" />
+              <mxPoint x="867.0" y="251.0" />
+              <mxPoint x="867.0" y="322.0" />
             </Array>
           </mxGeometry>
         </mxCell>

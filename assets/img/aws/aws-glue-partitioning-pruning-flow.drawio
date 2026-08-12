@@ -1,77 +1,77 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="aws-glue-partitioning-pruning-flow" name="Partition pruning decides how many S3 prefixes Athena opens">
-    <mxGraphModel dx="1050" dy="401" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="401" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1036" dy="399" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1036" pageHeight="399" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1026.68" height="377.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1012.68" height="375.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Partition pruning decides how many S3 prefixes Athena opens" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="982.68" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="968.68" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The partition list comes from either the Glue catalog or projection rules; the planner uses whichever one is configured." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="982.68" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="968.68" height="22" as="geometry" />
         </mxCell>
         <mxCell id="query" value="SQL query&#xa;WHERE dt, region, hour" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="176" height="179" as="geometry" />
+          <mxGeometry x="54" y="132" width="176" height="179" as="geometry" />
         </mxCell>
         <mxCell id="catalog" value="Glue Data Catalog&#xa;registered partitions" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
-          <mxGeometry x="377" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="363" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="projection" value="Partition projection&#xa;date, enum and integer rules&#xa;no catalog round trip" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="300" y="250" width="203" height="63" as="geometry" />
+          <mxGeometry x="286" y="248" width="203" height="63" as="geometry" />
         </mxCell>
         <mxCell id="planner" value="Athena planning&#xa;selects the S3 prefixes to scan" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
-          <mxGeometry x="642" y="180" width="48" height="48" as="geometry" />
+          <mxGeometry x="628" y="178" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s3" value="S3 prefixes scanned&#xa;only the selected locations" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-          <mxGeometry x="899" y="180" width="48" height="48" as="geometry" />
+          <mxGeometry x="885" y="178" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="note" value="Projection is an Athena feature. Other engines such as Redshift Spectrum read partitions from the catalog only." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="68" y="343" width="949" height="24" as="geometry" />
+          <mxGeometry x="54" y="341" width="949" height="24" as="geometry" />
         </mxCell>
         <mxCell id="query-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="catalog-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="343" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="343" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="planner-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="608" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="608" y="158" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s3-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="865" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="865" y="158" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="query-to-catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="catalog">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="262.67" y="178.75" />
-              <mxPoint x="262.67" y="158.0" />
+              <mxPoint x="248.67" y="176.75" />
+              <mxPoint x="248.67" y="156.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="query-to-projection" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="projection">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="281.33" y="268.25" />
-              <mxPoint x="281.33" y="281.5" />
+              <mxPoint x="267.33" y="266.25" />
+              <mxPoint x="267.33" y="279.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="catalog-to-planner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="catalog" target="planner">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="497.33" y="158.0" />
-              <mxPoint x="497.33" y="192.0" />
+              <mxPoint x="483.33" y="156.0" />
+              <mxPoint x="483.33" y="190.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="projection-to-planner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="projection" target="planner">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="569.67" y="281.5" />
-              <mxPoint x="569.67" y="216.0" />
+              <mxPoint x="555.67" y="279.5" />
+              <mxPoint x="555.67" y="214.0" />
             </Array>
           </mxGeometry>
         </mxCell>

@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-08-fatjar-layout" name="The launcher, not your main class, is what java -jar starts">
-    <mxGraphModel dx="1046" dy="460" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1046" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1046" dy="572" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1046" pageHeight="572" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1022.0" height="436.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1022.0" height="548.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The launcher, not your main class, is what java -jar starts" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="978.0" height="30" as="geometry" />
@@ -14,46 +14,46 @@
           <mxGeometry x="34" y="64" width="978.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="jar" value="app.jar (executable fat jar)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="464" height="322" as="geometry" />
+          <mxGeometry x="34" y="132" width="464" height="406" as="geometry" />
         </mxCell>
         <mxCell id="exec" value="Execution path" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="548" y="104" width="464" height="322" as="geometry" />
+          <mxGeometry x="528" y="112" width="484" height="426" as="geometry" />
         </mxCell>
         <mxCell id="manifest" value="META-INF/MANIFEST.MF&#xa;Main-Class: JarLauncher, Start-Class: yours" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="56" y="146" width="420" height="54" as="geometry" />
+          <mxGeometry x="56" y="174" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="loader" value="org/springframework/boot/loader/&#xa;the loader classes themselves" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="56" y="214" width="420" height="54" as="geometry" />
+          <mxGeometry x="56" y="270" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="classes" value="BOOT-INF/classes/&#xa;your code" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="56" y="282" width="420" height="54" as="geometry" />
+          <mxGeometry x="56" y="366" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="lib" value="BOOT-INF/lib/&#xa;dependency jars: tomcat, spring, jackson" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="56" y="350" width="420" height="54" as="geometry" />
+          <mxGeometry x="56" y="462" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ex1" value="java -jar app.jar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="570" y="146" width="420" height="54" as="geometry" />
+          <mxGeometry x="570" y="174" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ex2" value="JarLauncher runs&#xa;it is the Main-Class" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="570" y="214" width="420" height="54" as="geometry" />
+          <mxGeometry x="570" y="270" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ex3" value="Nested-jar classloader&#xa;opens BOOT-INF/lib/*.jar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="570" y="282" width="420" height="54" as="geometry" />
+          <mxGeometry x="570" y="366" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ex4" value="Calls Start-Class main&#xa;your application finally starts" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="570" y="350" width="420" height="54" as="geometry" />
+          <mxGeometry x="570" y="462" width="420" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ex1-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="536" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="550" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ex2-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="536" y="184" width="26" height="26" as="geometry" />
+          <mxGeometry x="550" y="250" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ex3-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="536" y="252" width="26" height="26" as="geometry" />
+          <mxGeometry x="550" y="346" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ex4-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="536" y="320" width="26" height="26" as="geometry" />
+          <mxGeometry x="550" y="442" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ex1-to-ex2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ex1" target="ex2">
           <mxGeometry relative="1" as="geometry" />

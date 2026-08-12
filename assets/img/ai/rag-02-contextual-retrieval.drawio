@@ -1,61 +1,61 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="rag-02-contextual-retrieval" name="Prepending generated context is what makes a chunk retrievable on its own">
-    <mxGraphModel dx="1155" dy="302" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1155" pageHeight="302" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1141" dy="328" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1141" pageHeight="328" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1131.64" height="278.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1117.64" height="304.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Prepending generated context is what makes a chunk retrievable on its own" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1087.64" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1073.64" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The original document and the chunk go into the model together, and the context it returns is prepended before either index sees the text." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1087.64" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1073.64" height="22" as="geometry" />
         </mxCell>
         <mxCell id="doc" value="Original document&#xa;the whole source, reused across chunks" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="266" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="266" height="54" as="geometry" />
         </mxCell>
         <mxCell id="chunk" value="Chunk&#xa;a fragment with no context of its own" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="71" y="214" width="260" height="54" as="geometry" />
+          <mxGeometry x="57" y="240" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="llm" value="LLM context generation&#xa;one or two sentences situating the chunk" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="386" y="134" width="279" height="134" as="geometry" />
+          <mxGeometry x="372" y="132" width="279" height="162" as="geometry" />
         </mxCell>
         <mxCell id="ctxchunk" value="Contextualized chunk&#xa;context + chunk" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="718" y="134" width="176" height="134" as="geometry" />
+          <mxGeometry x="704" y="132" width="176" height="162" as="geometry" />
         </mxCell>
         <mxCell id="embindex" value="Embedding index&#xa;dense retrieval" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="946" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="932" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="bm25index" value="BM25 index&#xa;lexical retrieval" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="946" y="214" width="176" height="54" as="geometry" />
+          <mxGeometry x="932" y="240" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="doc-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="chunk-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="37" y="184" width="26" height="26" as="geometry" />
+          <mxGeometry x="37" y="220" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="llm-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="352" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="352" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ctxchunk-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="684" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="684" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="doc-to-llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="doc" target="llm">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="349.33" y="161.0" />
-              <mxPoint x="349.33" y="167.5" />
+              <mxPoint x="335.33" y="159.0" />
+              <mxPoint x="335.33" y="172.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="chunk-to-llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="chunk" target="llm">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="367.67" y="241.0" />
-              <mxPoint x="367.67" y="234.5" />
+              <mxPoint x="353.67" y="267.0" />
+              <mxPoint x="353.67" y="253.5" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -65,16 +65,16 @@
         <mxCell id="ctxchunk-to-embindex" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ctxchunk" target="embindex">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="911.33" y="167.5" />
-              <mxPoint x="911.33" y="161.0" />
+              <mxPoint x="897.33" y="172.5" />
+              <mxPoint x="897.33" y="159.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="ctxchunk-to-bm25index" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ctxchunk" target="bm25index">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="928.67" y="234.5" />
-              <mxPoint x="928.67" y="241.0" />
+              <mxPoint x="914.67" y="253.5" />
+              <mxPoint x="914.67" y="267.0" />
             </Array>
           </mxGeometry>
         </mxCell>

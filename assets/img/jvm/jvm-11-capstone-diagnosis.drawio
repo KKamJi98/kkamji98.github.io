@@ -1,44 +1,44 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="jvm-11-capstone-diagnosis" name="Old 점유가 높다는 관측만으로는 누수와 정상 동작을 구분할 수 없다">
-    <mxGraphModel dx="1112" dy="348" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1112" pageHeight="348" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1098" dy="376" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1098" pageHeight="376" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1088.86" height="324.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1074.86" height="352.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Old 점유가 높다는 관측만으로는 누수와 정상 동작을 구분할 수 없다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1044.86" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1030.86" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="mixed GC 이후 live set이 계속 우상향하는지, heap 여유가 있는데도 컨테이너가 죽는지 두 가지를 먼저 나눈다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1044.86" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1030.86" height="22" as="geometry" />
         </mxCell>
         <mxCell id="start" value="Old generation이 높게 유지됨&#xa;컨테이너 메모리 압박" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="182" width="176" height="54" as="geometry" />
+          <mxGeometry x="54" y="210" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="q1" value="mixed GC 후에도 live set이 계속 우상향하는가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="292" y="182" width="228" height="54" as="geometry" />
+          <mxGeometry x="278" y="210" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="leak" value="메모리 누수 의심&#xa;heap dump로 지배 객체 확인" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="578" y="104" width="176" height="54" as="geometry" />
+          <mxGeometry x="564" y="104" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="q2" value="heap은 여유인데 컨테이너가 OOMKill되는가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="568" y="182" width="196" height="54" as="geometry" />
+          <mxGeometry x="554" y="210" width="196" height="54" as="geometry" />
         </mxCell>
         <mxCell id="offheap" value="off-heap 확인&#xa;direct memory, metaspace, thread stack" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="812" y="182" width="266" height="54" as="geometry" />
+          <mxGeometry x="798" y="210" width="266" height="54" as="geometry" />
         </mxCell>
         <mxCell id="normal" value="G1의 지연 회수: 설계상 정상&#xa;IHOP 전까지 Old를 점유하고 mixed GC로 점진 회수한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="819" y="260" width="254" height="54" as="geometry" />
+          <mxGeometry x="805" y="288" width="254" height="54" as="geometry" />
         </mxCell>
         <mxCell id="start-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="152" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="190" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="q1-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="258" y="152" width="26" height="26" as="geometry" />
+          <mxGeometry x="258" y="190" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="q2-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="534" y="152" width="26" height="26" as="geometry" />
+          <mxGeometry x="534" y="190" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="start-to-q1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="start" target="q1">
           <mxGeometry relative="1" as="geometry" />
@@ -46,8 +46,8 @@
         <mxCell id="q1-to-leak" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q1" target="leak">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="524" y="195.5" />
-              <mxPoint x="524" y="131.0" />
+              <mxPoint x="530.0" y="223.5" />
+              <mxPoint x="530.0" y="131.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -60,8 +60,8 @@
         <mxCell id="q2-to-normal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q2" target="normal">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="788.0" y="222.5" />
-              <mxPoint x="788.0" y="287.0" />
+              <mxPoint x="774.0" y="250.5" />
+              <mxPoint x="774.0" y="315.0" />
             </Array>
           </mxGeometry>
         </mxCell>

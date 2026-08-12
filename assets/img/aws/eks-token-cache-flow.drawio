@@ -1,50 +1,50 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="eks-token-cache-flow" name="Every kubectl call mints a new EKS token unless a wrapper caches it">
-    <mxGraphModel dx="1495" dy="334" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1495" pageHeight="334" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1481" dy="360" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1481" pageHeight="360" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1471.46" height="310.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1457.46" height="336.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Every kubectl call mints a new EKS token unless a wrapper caches it" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1427.46" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1413.46" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The kubeconfig exec block runs on each invocation, so the fix is to point it at a script that reuses a token until it is close to expiry." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1427.46" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1413.46" height="22" as="geometry" />
         </mxCell>
         <mxCell id="kubectl" value="kubectl&#xa;reads the exec block in ~/.kube/config" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="266" height="166" as="geometry" />
+          <mxGeometry x="54" y="132" width="266" height="194" as="geometry" />
         </mxCell>
         <mxCell id="exec" value="kubeconfig exec credential&#xa;runs on every single invocation" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="388" y="134" width="222" height="166" as="geometry" />
+          <mxGeometry x="374" y="132" width="222" height="194" as="geometry" />
         </mxCell>
         <mxCell id="script" value="eks-token-cache.sh&#xa;caches per cluster and profile,&#xa;checks remaining validity" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="664" y="134" width="222" height="166" as="geometry" />
+          <mxGeometry x="650" y="132" width="222" height="194" as="geometry" />
         </mxCell>
         <mxCell id="hit" value="Cache still valid&#xa;the token is reused, no AWS call" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="940" y="134" width="228" height="54" as="geometry" />
+          <mxGeometry x="926" y="132" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="sts" value="aws eks get-token&#xa;only on a miss or near expiry" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sts;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="214" width="48" height="48" as="geometry" />
+          <mxGeometry x="1016" y="240" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="api" value="EKS API server&#xa;verifies the token and applies RBAC" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eks;" vertex="1" parent="1">
-          <mxGeometry x="1318" y="174" width="48" height="48" as="geometry" />
+          <mxGeometry x="1304" y="186" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="kubectl-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="exec-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="354" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="354" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="script-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="630" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="630" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="sts-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="996" y="184" width="26" height="26" as="geometry" />
+          <mxGeometry x="996" y="220" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="api-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1284" y="144" width="26" height="26" as="geometry" />
+          <mxGeometry x="1284" y="166" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="kubectl-to-exec" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kubectl" target="exec">
           <mxGeometry relative="1" as="geometry" />
@@ -55,32 +55,32 @@
         <mxCell id="script-to-hit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="script" target="hit">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="904.0" y="175.5" />
-              <mxPoint x="904.0" y="161.0" />
+              <mxPoint x="890.0" y="180.5" />
+              <mxPoint x="890.0" y="159.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="script-to-sts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="script" target="sts">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="922.0" y="258.5" />
-              <mxPoint x="922.0" y="238.0" />
+              <mxPoint x="908.0" y="277.5" />
+              <mxPoint x="908.0" y="264.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="hit-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hit" target="api">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1158.0" y="161.0" />
-              <mxPoint x="1158.0" y="186.0" />
+              <mxPoint x="1144.0" y="159.0" />
+              <mxPoint x="1144.0" y="198.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="sts-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sts" target="api">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1238.0" y="238.0" />
-              <mxPoint x="1238.0" y="210.0" />
+              <mxPoint x="1224.0" y="264.0" />
+              <mxPoint x="1224.0" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>

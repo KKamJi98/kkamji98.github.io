@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="analytics-stack-07-lake-formation" name="IAM and Lake Formation are two separate gates on the same query">
-    <mxGraphModel dx="1363" dy="404" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1363" pageHeight="404" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1363" dy="402" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1363" pageHeight="402" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1339.5" height="380.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1339.5" height="378.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="IAM and Lake Formation are two separate gates on the same query" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1295.5" height="30" as="geometry" />
@@ -14,49 +14,49 @@
           <mxGeometry x="34" y="64" width="1295.5" height="22" as="geometry" />
         </mxCell>
         <mxCell id="principal" value="analytics-workload-role&#xa;the query principal" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" vertex="1" parent="1">
-          <mxGeometry x="96" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="96" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="athena" value="Amazon Athena&#xa;query engine" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
-          <mxGeometry x="320" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="320" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="iamgate" value="IAM gate&#xa;API authorization" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
-          <mxGeometry x="544" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="544" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="lfgate" value="Lake Formation gate&#xa;data authorization" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lake_formation;" vertex="1" parent="1">
-          <mxGeometry x="768" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="768" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="regrole" value="Registered role&#xa;Lake Formation assumes it" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" vertex="1" parent="1">
-          <mxGeometry x="994" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="994" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s3data" value="S3 Tables data&#xa;the underlying objects" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-          <mxGeometry x="1220" y="134" width="48" height="48" as="geometry" />
+          <mxGeometry x="1220" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="fn1" value="IAM (API authorization):  athena:*,  glue:Get* on the target and every ancestor ARN,  lakeformation:GetDataAccess" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="246" width="1296" height="24" as="geometry" />
+          <mxGeometry x="34" y="244" width="1296" height="24" as="geometry" />
         </mxCell>
         <mxCell id="fn2" value="Lake Formation (data authorization):  SELECT and DESCRIBE granted on the database and table by a data lake administrator" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="296" width="1296" height="24" as="geometry" />
+          <mxGeometry x="34" y="294" width="1296" height="24" as="geometry" />
         </mxCell>
         <mxCell id="fn3" value="Both gates must allow. IAM Allow plus a missing Lake Formation grant still returns AccessDenied." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="346" width="1296" height="24" as="geometry" />
+          <mxGeometry x="34" y="344" width="1296" height="24" as="geometry" />
         </mxCell>
         <mxCell id="principal-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="62" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="76" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="athena-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="286" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="300" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="iamgate-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="510" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="524" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="lfgate-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="734" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="748" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="regrole-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="960" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="974" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="s3data-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1186" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1200" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="principal-to-athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="principal" target="athena">
           <mxGeometry relative="1" as="geometry" />

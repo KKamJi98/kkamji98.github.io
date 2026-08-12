@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-16-entity-states" name="Four entity states, and only one of them is tracked">
-    <mxGraphModel dx="848" dy="420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="848" pageHeight="420" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="848" dy="448" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="848" pageHeight="448" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="824.48" height="396.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="824.48" height="424.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Four entity states, and only one of them is tracked" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="780.48" height="30" as="geometry" />
@@ -14,22 +14,22 @@
           <mxGeometry x="34" y="64" width="780.48" height="22" as="geometry" />
         </mxCell>
         <mxCell id="transient" value="transient (new)&#xa;not in any persistence context" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="34" y="180" width="215" height="54" as="geometry" />
+          <mxGeometry x="34" y="208" width="215" height="54" as="geometry" />
         </mxCell>
         <mxCell id="managed" value="managed (persistent)&#xa;in the context, changes tracked" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="317" y="180" width="222" height="54" as="geometry" />
+          <mxGeometry x="317" y="208" width="222" height="54" as="geometry" />
         </mxCell>
         <mxCell id="detached" value="detached&#xa;has an id, no longer tracked" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="609" y="104" width="203" height="54" as="geometry" />
         </mxCell>
         <mxCell id="removed" value="removed&#xa;scheduled for DELETE at flush" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="605" y="256" width="209" height="54" as="geometry" />
+          <mxGeometry x="605" y="284" width="209" height="54" as="geometry" />
         </mxCell>
         <mxCell id="db" value="Database&#xa;flush writes what the context tracked" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="297" y="332" width="260" height="54" as="geometry" />
+          <mxGeometry x="297" y="360" width="260" height="54" as="geometry" />
         </mxCell>
         <mxCell id="managed-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="283" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="297" y="188" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="transient-to-managed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="transient" target="managed">
           <mxGeometry relative="1" as="geometry" />
@@ -37,14 +37,14 @@
         <mxCell id="managed-to-detached" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="managed" target="detached">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="710.5" y="207.0" />
+              <mxPoint x="710.5" y="235.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="managed-to-removed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="managed" target="removed">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="709.5" y="207.0" />
+              <mxPoint x="709.5" y="235.0" />
             </Array>
           </mxGeometry>
         </mxCell>

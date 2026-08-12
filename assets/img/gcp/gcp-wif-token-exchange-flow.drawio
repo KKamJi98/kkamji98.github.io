@@ -1,68 +1,68 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="gcp-wif-token-exchange-flow" name="Workload Identity Federation trades an OIDC token for a Google credential">
-    <mxGraphModel dx="1891" dy="390" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1891" pageHeight="390" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1899" dy="418" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1899" pageHeight="418" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1867.52" height="366.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1875.52" height="394.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Workload Identity Federation trades an OIDC token for a Google credential" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1823.52" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1831.52" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="The attribute condition is the security boundary: without it, any repository presenting a valid token from that issuer is accepted." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1823.52" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1831.52" height="22" as="geometry" />
         </mxCell>
         <mxCell id="external" value="External CI (GitHub Actions)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="46" y="104" width="234" height="222" as="geometry" />
+          <mxGeometry x="34" y="112" width="254" height="242" as="geometry" />
         </mxCell>
         <mxCell id="gcloud" value="Google Cloud" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="330" y="104" width="1528" height="222" as="geometry" />
+          <mxGeometry x="318" y="112" width="1548" height="242" as="geometry" />
         </mxCell>
         <mxCell id="token" value="OIDC token&#xa;issued to the workflow run" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="146" width="190" height="158" as="geometry" />
+          <mxGeometry x="76" y="174" width="190" height="158" as="geometry" />
         </mxCell>
         <mxCell id="pool" value="Workload identity pool&#xa;the trust container" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="352" y="146" width="176" height="158" as="geometry" />
+          <mxGeometry x="360" y="174" width="176" height="158" as="geometry" />
         </mxCell>
         <mxCell id="provider" value="OIDC provider&#xa;issuer URL and attribute mapping" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="587" y="146" width="228" height="54" as="geometry" />
+          <mxGeometry x="595" y="174" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="condition" value="Attribute condition&#xa;restricts to one org and repository" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="578" y="228" width="247" height="54" as="geometry" />
+          <mxGeometry x="586" y="256" width="247" height="54" as="geometry" />
         </mxCell>
         <mxCell id="sts" value="Security Token Service&#xa;validates and exchanges" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#EA4335;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_iam;" vertex="1" parent="1">
-          <mxGeometry x="935" y="182" width="48" height="48" as="geometry" />
+          <mxGeometry x="943" y="210" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="federated" value="Federated token&#xa;short-lived" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1093" y="146" width="176" height="158" as="geometry" />
+          <mxGeometry x="1101" y="174" width="176" height="158" as="geometry" />
         </mxCell>
         <mxCell id="direct" value="Direct resource access&#xa;IAM binding on the principal set" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1354" y="146" width="228" height="54" as="geometry" />
+          <mxGeometry x="1362" y="174" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="sa" value="Service account impersonation&#xa;when a service account identity is required" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1319" y="228" width="298" height="54" as="geometry" />
+          <mxGeometry x="1327" y="256" width="298" height="54" as="geometry" />
         </mxCell>
         <mxCell id="resource" value="Target resource&#xa;least-privilege role" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#FBBC04;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.gcp2.cloud_storage;" vertex="1" parent="1">
-          <mxGeometry x="1728" y="182" width="48" height="48" as="geometry" />
+          <mxGeometry x="1736" y="210" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="note" value="No long-lived service account key exists anywhere in this flow." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="68" y="332" width="1768" height="24" as="geometry" />
+          <mxGeometry x="76" y="360" width="1768" height="24" as="geometry" />
         </mxCell>
         <mxCell id="token-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="56" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="pool-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="318" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="340" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="provider-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="553" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="575" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="sts-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="901" y="152" width="26" height="26" as="geometry" />
+          <mxGeometry x="923" y="190" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="federated-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1059" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="1081" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="token-to-pool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="token" target="pool">
           <mxGeometry relative="1" as="geometry" />
@@ -70,32 +70,32 @@
         <mxCell id="pool-to-provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pool" target="provider">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="544.67" y="185.5" />
-              <mxPoint x="544.67" y="173.0" />
+              <mxPoint x="552.67" y="213.5" />
+              <mxPoint x="552.67" y="201.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="pool-to-condition" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pool" target="condition">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="561.33" y="264.5" />
-              <mxPoint x="561.33" y="255.0" />
+              <mxPoint x="569.33" y="292.5" />
+              <mxPoint x="569.33" y="283.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="provider-to-sts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="provider" target="sts">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="855.0" y="173.0" />
-              <mxPoint x="855.0" y="194.0" />
+              <mxPoint x="863.0" y="201.0" />
+              <mxPoint x="863.0" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="condition-to-sts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="condition" target="sts">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="895.0" y="255.0" />
-              <mxPoint x="895.0" y="218.0" />
+              <mxPoint x="903.0" y="283.0" />
+              <mxPoint x="903.0" y="246.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -105,32 +105,32 @@
         <mxCell id="federated-to-direct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="federated" target="direct">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1285.67" y="185.5" />
-              <mxPoint x="1285.67" y="173.0" />
+              <mxPoint x="1293.67" y="213.5" />
+              <mxPoint x="1293.67" y="201.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="federated-to-sa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="federated" target="sa">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1302.33" y="264.5" />
-              <mxPoint x="1302.33" y="255.0" />
+              <mxPoint x="1310.33" y="292.5" />
+              <mxPoint x="1310.33" y="283.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="direct-to-resource" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="direct" target="resource">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1630.67" y="173.0" />
-              <mxPoint x="1630.67" y="194.0" />
+              <mxPoint x="1638.67" y="201.0" />
+              <mxPoint x="1638.67" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="sa-to-resource" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sa" target="resource">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1679.33" y="255.0" />
-              <mxPoint x="1679.33" y="218.0" />
+              <mxPoint x="1687.33" y="283.0" />
+              <mxPoint x="1687.33" y="246.0" />
             </Array>
           </mxGeometry>
         </mxCell>

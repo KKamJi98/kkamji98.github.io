@@ -1,62 +1,62 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="node-event-loop-scheduling-flow" name="nextTick and microtasks drain before the loop moves to the next phase">
-    <mxGraphModel dx="1404" dy="442" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1404" pageHeight="442" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1390" dy="526" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="526" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1380.0" height="418.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1366.0" height="502.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="nextTick and microtasks drain before the loop moves to the next phase" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1336.0" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1322.0" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Both queues run to exhaustion between phases, so a recursive nextTick can starve the poll phase entirely." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1336.0" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1322.0" height="22" as="geometry" />
         </mxCell>
         <mxCell id="boundary" value="Between phases: both queues drain completely" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="394" y="104" width="324" height="190" as="geometry" />
+          <mxGeometry x="360" y="112" width="344" height="238" as="geometry" />
         </mxCell>
         <mxCell id="sync" value="Synchronous callback&#xa;runs to completion first" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="146" width="280" height="54" as="geometry" />
+          <mxGeometry x="54" y="174" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="nexttick" value="process.nextTick queue&#xa;drained first, and fully" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="416" y="146" width="280" height="54" as="geometry" />
+          <mxGeometry x="402" y="174" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="microtask" value="V8 microtasks&#xa;promise continuations" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="416" y="218" width="280" height="54" as="geometry" />
+          <mxGeometry x="402" y="274" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="timers" value="timers phase&#xa;setTimeout and setInterval" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="764" y="146" width="280" height="54" as="geometry" />
+          <mxGeometry x="750" y="174" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="poll" value="poll phase&#xa;I/O callbacks" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="764" y="218" width="280" height="54" as="geometry" />
+          <mxGeometry x="750" y="274" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="check" value="check phase&#xa;setImmediate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="764" y="312" width="280" height="54" as="geometry" />
+          <mxGeometry x="750" y="396" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="continuation" value="JavaScript continuation&#xa;the next turn of the loop" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="218" width="280" height="54" as="geometry" />
+          <mxGeometry x="1076" y="274" width="280" height="54" as="geometry" />
         </mxCell>
         <mxCell id="note" value="In an ES module the top-level body is already a microtask context, so promise continuations run before the first timer." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="68" y="384" width="1302" height="24" as="geometry" />
+          <mxGeometry x="54" y="468" width="1302" height="24" as="geometry" />
         </mxCell>
         <mxCell id="sync-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="nexttick-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="382" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="382" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="microtask-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="382" y="188" width="26" height="26" as="geometry" />
+          <mxGeometry x="382" y="254" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="timers-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="730" y="116" width="26" height="26" as="geometry" />
+          <mxGeometry x="730" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="poll-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="730" y="188" width="26" height="26" as="geometry" />
+          <mxGeometry x="730" y="254" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="check-step" value="6" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="730" y="282" width="26" height="26" as="geometry" />
+          <mxGeometry x="730" y="376" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="sync-to-nexttick" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sync" target="nexttick">
           <mxGeometry relative="1" as="geometry" />
@@ -67,8 +67,8 @@
         <mxCell id="microtask-to-timers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="microtask" target="timers">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="730.0" y="245.0" />
-              <mxPoint x="730.0" y="173.0" />
+              <mxPoint x="716.0" y="301.0" />
+              <mxPoint x="716.0" y="201.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -81,7 +81,7 @@
         <mxCell id="check-to-continuation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="check" target="continuation">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1230.0" y="339.0" />
+              <mxPoint x="1216.0" y="423.0" />
             </Array>
           </mxGeometry>
         </mxCell>

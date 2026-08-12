@@ -1,50 +1,50 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-21-build-pipeline" name="The Boot plugin repackages a plain jar into an executable one">
-    <mxGraphModel dx="1376" dy="298" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1376" pageHeight="298" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1362" dy="296" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1362" pageHeight="296" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1352.76" height="274.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1338.76" height="272.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The Boot plugin repackages a plain jar into an executable one" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1308.76" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1294.76" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Compile and test are ordinary build steps. The repackage step is what adds the launcher and the nested layout." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1308.76" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1294.76" height="22" as="geometry" />
         </mxCell>
         <mxCell id="src" value="src/main/java and the build file&#xa;Gradle or Maven" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="134" width="228" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ct" value="compile and test" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="346" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="332" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="pkg" value="package: Spring Boot plugin&#xa;bootJar or repackage" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="572" y="134" width="196" height="54" as="geometry" />
+          <mxGeometry x="558" y="132" width="196" height="54" as="geometry" />
         </mxCell>
         <mxCell id="jar" value="executable fat jar&#xa;BOOT-INF/classes, BOOT-INF/lib, JarLauncher" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="818" y="134" width="298" height="54" as="geometry" />
+          <mxGeometry x="804" y="132" width="298" height="54" as="geometry" />
         </mxCell>
         <mxCell id="run" value="java -jar app.jar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1167" y="134" width="176" height="54" as="geometry" />
+          <mxGeometry x="1153" y="132" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="spring-21-build-pipeline-note" value="A fat jar carries the application and every dependency in one archive, which is why it needs its own classloader." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="68" y="240" width="1275" height="24" as="geometry" />
+          <mxGeometry x="54" y="238" width="1275" height="24" as="geometry" />
         </mxCell>
         <mxCell id="src-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ct-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="312" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="312" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="pkg-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="538" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="538" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="jar-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="784" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="784" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="run-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1133" y="104" width="26" height="26" as="geometry" />
+          <mxGeometry x="1133" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="src-to-ct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src" target="ct">
           <mxGeometry relative="1" as="geometry" />

@@ -1,53 +1,53 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="spring-14-when-to-use" name="Three questions decide it, and the first one usually ends the discussion">
-    <mxGraphModel dx="1771" dy="268" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1771" pageHeight="268" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1757" dy="296" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1757" pageHeight="296" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1747.82" height="244.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1733.82" height="272.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Three questions decide it, and the first one usually ends the discussion" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="1703.82" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1689.82" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="A working MVC application is a reason not to migrate; a blocking dependency makes the choice for you." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="1703.82" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1689.82" height="22" as="geometry" />
         </mxCell>
         <mxCell id="start" value="Choose MVC or WebFlux" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="68" y="180" width="176" height="54" as="geometry" />
+          <mxGeometry x="54" y="208" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="q1" value="Does an existing MVC app already work?" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="292" y="180" width="266" height="54" as="geometry" />
+          <mxGeometry x="278" y="208" width="266" height="54" as="geometry" />
         </mxCell>
         <mxCell id="a1" value="Keep Spring MVC&#xa;no reason to change" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="642" y="104" width="176" height="54" as="geometry" />
+          <mxGeometry x="628" y="104" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="q2" value="Are the core dependencies blocking?&#xa;JPA, JDBC" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="606" y="180" width="247" height="54" as="geometry" />
+          <mxGeometry x="592" y="208" width="247" height="54" as="geometry" />
         </mxCell>
         <mxCell id="a2" value="Spring MVC&#xa;blocking libraries need a thread" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1013" y="104" width="228" height="54" as="geometry" />
+          <mxGeometry x="999" y="104" width="228" height="54" as="geometry" />
         </mxCell>
         <mxCell id="q3" value="High-concurrency I/O-bound, and able to adopt a non-blocking stack?" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="902" y="180" width="451" height="54" as="geometry" />
+          <mxGeometry x="888" y="208" width="451" height="54" as="geometry" />
         </mxCell>
         <mxCell id="a3" value="Spring WebFlux" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1482" y="104" width="176" height="54" as="geometry" />
+          <mxGeometry x="1468" y="104" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="a4" value="Start with MVC&#xa;adopt a non-blocking WebClient only where it pays" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1401" y="180" width="337" height="54" as="geometry" />
+          <mxGeometry x="1387" y="208" width="337" height="54" as="geometry" />
         </mxCell>
         <mxCell id="start-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="188" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="q1-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="258" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="258" y="188" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="q2-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="572" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="572" y="188" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="q3-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="868" y="150" width="26" height="26" as="geometry" />
+          <mxGeometry x="868" y="188" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="start-to-q1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="start" target="q1">
           <mxGeometry relative="1" as="geometry" />
@@ -55,8 +55,8 @@
         <mxCell id="q1-to-a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q1" target="a1">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="562" y="193.5" />
-              <mxPoint x="562" y="131.0" />
+              <mxPoint x="568.0" y="221.5" />
+              <mxPoint x="568.0" y="131.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -66,8 +66,8 @@
         <mxCell id="q2-to-a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q2" target="a2">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="858" y="193.5" />
-              <mxPoint x="858" y="131.0" />
+              <mxPoint x="863.5" y="221.5" />
+              <mxPoint x="863.5" y="131.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -77,8 +77,8 @@
         <mxCell id="q3-to-a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q3" target="a3">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="1377.0" y="193.5" />
-              <mxPoint x="1377.0" y="131.0" />
+              <mxPoint x="1363.0" y="221.5" />
+              <mxPoint x="1363.0" y="131.0" />
             </Array>
           </mxGeometry>
         </mxCell>

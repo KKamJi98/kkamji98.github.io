@@ -1,11 +1,11 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="aws-waf-request-flow" name="AWS WAF evaluates a request at the entry point, not at the origin">
-    <mxGraphModel dx="1379" dy="480" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1379" pageHeight="480" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1379" dy="508" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1379" pageHeight="508" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1355.88" height="456.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1355.88" height="484.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="AWS WAF evaluates a request at the entry point, not at the origin" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="34" width="1311.88" height="30" as="geometry" />
@@ -14,34 +14,34 @@
           <mxGeometry x="34" y="64" width="1311.88" height="22" as="geometry" />
         </mxCell>
         <mxCell id="aws-cloud" value="AWS Cloud" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="282" y="104" width="1064" height="342" as="geometry" />
+          <mxGeometry x="282" y="112" width="1064" height="362" as="geometry" />
         </mxCell>
         <mxCell id="protected" value="Protected entry point" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
-          <mxGeometry x="304" y="146" width="648" height="180" as="geometry" />
+          <mxGeometry x="304" y="154" width="648" height="200" as="geometry" />
         </mxCell>
         <mxCell id="client" value="Client&#xa;HTTP(S) request" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
-          <mxGeometry x="103" y="188" width="48" height="48" as="geometry" />
+          <mxGeometry x="103" y="216" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="entry" value="CloudFront, ALB&#xa;or API Gateway&#xa;a supported entry point;&#xa;EC2, NLB and EKS Pods cannot take a Web ACL directly" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
-          <mxGeometry x="476" y="188" width="48" height="48" as="geometry" />
+          <mxGeometry x="476" y="216" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="webacl" value="AWS WAF Web ACL&#xa;rules by priority&#xa;Allow, Block, Count, CAPTCHA" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;" vertex="1" parent="1">
-          <mxGeometry x="809" y="188" width="48" height="48" as="geometry" />
+          <mxGeometry x="809" y="216" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="origin" value="Application origin&#xa;EC2, NLB, EKS&#xa;must be reachable only through the entry point" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
-          <mxGeometry x="1145" y="188" width="48" height="48" as="geometry" />
+          <mxGeometry x="1145" y="216" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="blocked" value="Blocked&#xa;403 without reaching the origin" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="1058" y="370" width="222" height="54" as="geometry" />
+          <mxGeometry x="1058" y="398" width="222" height="54" as="geometry" />
         </mxCell>
         <mxCell id="entry-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="442" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="456" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="webacl-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="775" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="789" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="origin-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1111" y="158" width="26" height="26" as="geometry" />
+          <mxGeometry x="1125" y="196" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="client-request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="entry">
           <mxGeometry relative="1" as="geometry" />
@@ -55,8 +55,8 @@
         <mxCell id="block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="webacl" target="blocked">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="957.5" y="224.0" />
-              <mxPoint x="957.5" y="397.0" />
+              <mxPoint x="957.5" y="252.0" />
+              <mxPoint x="957.5" y="425.0" />
             </Array>
           </mxGeometry>
         </mxCell>
