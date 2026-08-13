@@ -13,13 +13,13 @@
         <mxCell id="subtitle" value="The same credentials and the same port as SSH apply, which is why disabling SSH also disables SFTP." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="64" width="1325.78" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="client" value="SFTP client&#xa;sftp or a GUI client" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
+        <mxCell id="client" value="SFTP client&#xa;sftp or a GUI client" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.client;" vertex="1" parent="1">
           <mxGeometry x="99" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="ssh" value="SSH connection&#xa;authentication and encryption" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="268" y="148" width="209" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="server" value="SFTP server&#xa;the sftp subsystem process" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.traditional_server;" vertex="1" parent="1">
+        <mxCell id="server" value="SFTP server&#xa;the sftp subsystem process" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.traditional_server;" vertex="1" parent="1">
           <mxGeometry x="600" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="fs" value="Filesystem&#xa;permissions are the OS's, not the protocol's" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">

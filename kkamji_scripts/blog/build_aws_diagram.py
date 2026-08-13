@@ -890,8 +890,16 @@ def service_style(service: str) -> str:
         shape = f"shape=mxgraph.gcp2.{stencil}"
     else:
         res_icon, category = T.SERVICES[service]
-        shape = f"shape=mxgraph.aws4.resourceIcon;resIcon={res_icon}"
         colour = T.CATEGORY[category]
+        if category == "general":
+            # The general-resource marks are line drawings, not white glyphs on
+            # a coloured tile. Wrapping one in a resourceIcon paints a dark
+            # square behind a dark outline and the icon disappears, so these
+            # are drawn straight onto the canvas the way the AWS deck does.
+            shape = f"shape={res_icon}"
+        else:
+            shape = f"shape=mxgraph.aws4.resourceIcon;resIcon={res_icon}"
+
     return (
         "sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;"
         f"fontSize={T.FONT_DETAIL};fontStyle=0;fontColor={T.INK};"

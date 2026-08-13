@@ -13,7 +13,7 @@
         <mxCell id="subtitle" value="Athena는 데이터를 들고 있지 않다. 메타데이터는 Glue, 데이터는 S3에 있고 각 구간에서 IAM과 Lake Formation이 따로 평가된다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="64" width="1146.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="client" value="Client&#xa;SQL 제출" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.client;" vertex="1" parent="1">
+        <mxCell id="client" value="Client&#xa;SQL 제출" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.client;" vertex="1" parent="1">
           <mxGeometry x="103" y="132" width="48" height="48" as="geometry" />
         </mxCell>
         <mxCell id="s1" value="StartQueryExecution&#xa;workgroup 결과 위치&#xa;스캔 한도 정책  [IAM]" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
