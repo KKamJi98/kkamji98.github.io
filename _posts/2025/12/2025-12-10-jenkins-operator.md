@@ -1,5 +1,5 @@
 ---
-title: Jenkins Operator란?
+title: "Jenkins Operator: Kubernetes에서 Jenkins를 선언적으로 운영하기"
 date: 2025-12-10 19:50:12 +0900
 author: kkamji
 categories: [DevOps]
@@ -9,55 +9,61 @@ image:
   path: /assets/img/ci-cd/jenkins/jenkins.webp
 ---
 
-**Jenkins Operator는 Kubernetes 환경에서 Jenkins 인스턴스를 관리하고 운영하기 위한 도구**입니다. Jenkins는 오픈 소스 자동화 서버로, 소프트웨어 개발 프로세스를 자동화하는 데 널리 사용됩니다. Jenkins Operator는 Kubernetes의 Operator 패턴을 활용하여 Jenkins의 배포, 구성, 업그레이드 및 유지 관리를 간소화합니다.
-
-일반적으로 Jenkins를 Kubernetes에 배포하려면 Pod, Service, PVC, ConfigMap 등을 각각 정의하고 관리해야 하는데, Jenkins Operator는 이 모든 과정을 자동화해서 사용자는 원하는 Jenkins 설정만 CRD(Custom Resource Definition)로 선언적으로 정의하면 됩니다. Jenkins Operator는 이러한 선언적 정의를 기반으로 Jenkins 인스턴스를 생성하고 관리합니다.
-
-> **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd, jenkins, jenkins-operator이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-{: .prompt-info}
+Kubernetes에 Jenkins를 올리는 가장 단순한 방법은 Helm chart로 Deployment 하나를 띄우는 것입니다. 그러나 운영이 시작되면 관리할 상태는 Pod 하나가 아닙니다. 설정 변경마다 재시작할지 판단해야 하고, 플러그인 목록과 버전을 추적해야 하고, 접속 credential을 Secret으로 관리해야 하고, Jenkins가 살아있는지 확인하고 죽으면 복구해야 합니다. Jenkins Operator는 이 일련의 운영 작업을 Kubernetes의 Operator 패턴으로 자동화합니다. Jenkins 커스텀 리소스에 원하는 상태를 선언하면 Operator가 나머지를 조정합니다.
 
 ---
 
-## 1. Architecture & Design
+## 1. Operator 패턴이 푸는 문제
 
-Jenkins Operator 설계에는 다음과 같은 개념이 포함되어 있습니다.
+Kubernetes의 Deployment는 "컨테이너 N개 띄우기"라는 단일 상태만 관리합니다. Jenkins처럼 내부 상태가 큰 애플리케이션은 그보다 훨씬 많은 조정이 필요합니다. 설정이 바뀌면 어느 범위까지 재시작 없이 반영되는지, 플러그인 설치가 실패하면 어떻게 복구하는지, 백업을 언제 어떻게 수행하는지를 사람이 일일이 판단하는 대신, Operator가 커스텀 리소스(CR)의 spec을 읽어 현재 상태를 원하는 상태로 계속 맞춥니다.
 
-- 매니페스트의 모든 변경 사항을 감시하고, 배포된 커스텀 리소스 매니페스트에 정의된 원하는(desired) 상태를 유지
-- 베이스(Base) 루프와 사용자(User) 루프라는 두 개의 더 작은 조정(Reconciliation) 루프로 구성된 메인 조정 루프를 구현
-
-![Jenkins Operator Reconcile Process](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-process.webp)
-> Jenkins Operator Reconcile Process  
-
-![Detailed Jenkins Operator Reconcile Process](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-process-detailed.webp)
-> Detailed Jenkins Operator Reconcile Process  
-
-### 1.1. Base Reconciliation Loop
-
-**Base reconciliation loop**는 Jenkins의 기본(Basic) 구성 요소를 원하는 상태로 유지(Reconcile)하는 역할을 담당하며, 다음을 포함합니다.
-
-- **Ensure Manifests**: Manifests의 변경 사항을 지속적으로 감시하고 일관된 상태 유지
-- **Ensure Jenkins Pod**: Jenkins 마스터 Pod를 생성하고 해당 Pod가 정상적으로 동작하는지 상태 검증
-- **Ensure Jenkins Configuration**: Jenkins 인스턴스를 설정하고 보안 강화(Hardening), 플러그인의 초기 설정 등 Jenkins가 기본적으로 동작하기 위한 초기 구성 적용
-- **Ensure Jenkins API Token**: Jenkins API 토큰을 생성하고 Jenkins API Client를 초기화
-
-### 1.2. User Reconciliation Loop
-
-**User Reconciliation Loop**는 사용자가 제공한 설정(User-provided configuration)을 원하는 상태로 유지(Reconcile) 하는 역할을 담당하며, 다음을 포함합니다.
-
-- **Ensure Restore Job**: Restore Job을 생성하고 복구가 정상적으로 완료되었는지 확인
-- **Ensure Seed Jobs**: Seed Job(초기 job 생성 작업)을 생성하고, 모든 Seed Job이 정상적으로 실행되었는지 확인
-- **Ensure User Configuration**: Groovy Script나 Configuration as Code, 플러그인 설정 등 사용자가 제공한 설정을 실행
-- **Ensure Backup Job**: Backup Job을 생성하고 백업이 정상적으로 수행되었는지 확인
-
-### 1.3. Operator State
-
-Operator의 상태를 Custom Resource(CR)의 status 필드에 저장되며, 여기에는 Operator가 관리하는 각종 설정 이벤트(configuration events) 또는 작업(Job)들의 상태가 기록됩니다. 이를 통해 Operator나 Jenkins가 재시작되더라도, 원래 의도한 Desired State를 유지하거나 복구할 수 있습니다.
+Operator는 CRD(Custom Resource Definition)와 컨트롤러로 구성됩니다. CRD는 "Jenkins라는 리소스 종류가 있다"라고 Kubernetes API에 등록하고, 컨트롤러는 그 리소스를 감시(watch)하다가 변화가 생기면 조정(reconcile)을 수행합니다. 선언한 spec과 실제 클러스터 상태가 어긋나면 다시 맞추려고 하므로, GitOps 도구와 조합하면 Jenkins 구성 자체를 Git으로 관리할 수 있습니다.
 
 ---
 
-## 2. Installing the Jenkins Operator
+## 2. Jenkins CR 하나가 관리하는 것들
+
+Jenkins Operator가 조정하는 대상은 Jenkins CR의 spec으로 선언합니다.
+
+- **master Pod**: 이미지, 리소스, 환경 변수, 컨테이너 설정
+- **basePlugins**: Operator 동작에 필요한 필수 플러그인과 버전 고정
+- **plugins**: 사용자가 추가하는 플러그인
+- **configurationAsCode**: JCasC로 적용할 설정
+- **groovyScripts**: 초기화 시 실행할 Groovy 스크립트
+- **seedJobs**: Job DSL로 파이프라인을 심는 seed job 정의
+- **backup/restore**: 백업 수행 방법과 주기
+
+Operator는 이 선언을 읽어 Namespace, RBAC, Service, Secret, ConfigMap, master Pod를 생성하고, Jenkins 기동 후 API 토큰을 발급받아 플러그인 설치와 설정 적용을 진행합니다.
+
+![Jenkins Operator reconcile loop](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-loop.webp)
+> Jenkins Operator reconcile loop  
+
+조정(reconcile)은 두 단계로 진행됩니다. Base reconciliation loop가 namespace, RBAC, master Pod, API 토큰, 보안 강화 스크립트처럼 Jenkins가 동작하기 위한 기본 요소를 먼저 확보합니다. User reconciliation loop가 그 위에 JCasC 설정, seed job, Groovy 스크립트, 백업 잡처럼 사용자가 선언한 구성을 적용합니다. 각 단계가 완료된 시각은 CR의 status 필드에 기록되며, 동일한 에러가 10회 반복되면 ReconcileLoopFailed로 조정을 멈춥니다. base 단계가 실패하면 user 단계는 실행되지 않으므로, 설정이 반영되지 않는 문제를 디버깅할 때는 어느 단계에서 멈췄는지 status와 Operator 로그를 먼저 확인합니다.
+
+설정 변경 반영 방식에도 순서가 있습니다. JCasC YAML처럼 user configuration에 해당하는 변경은 재시작 없이 live Jenkins에 적용되지만, master 이미지나 basePlugins처럼 base configuration의 변경은 master Pod 재생성으로 이어집니다. 운영 중인 Jenkins에서 이 구분을 모르고 base 설정을 건드리면 실행 중인 빌드와 함께 재시작이 발생할 수 있습니다.
+
+---
+
+## 3. 이름이 같은 다른 Operator들 구분하기
+
+검색하다 보면 "Jenkins Operator"라는 이름의 프로젝트가 여러 개 나옵니다. 2026년 8월 기준으로 정리하면 다음과 같습니다.
+
+| 프로젝트 | 상태 |
+| :--- | :--- |
+| jenkinsci/kubernetes-operator | 유지보수 지속. stable v0.8.1 (2024-07), 최신 prerelease v0.9.0-beta2 (2025-12) |
+| openshift/jenkins-operator (Red Hat) | 저장소 삭제됨 |
+| redhat-developer/openshift-jenkins-operator | 보관 처리(archived) |
+| jenkinsci/jenkins-automation-operator | 2021-06 이후 방치 상태 |
+
+이 글의 대상은 jenkinsci/kubernetes-operator입니다. 2019년 VirtusLab에서 시작해 jenkinsci 조직으로 이관된 프로젝트로, 2026-08 기준 archived가 아니고 이슈 활동도 이어지고 있으나, 릴리스 주기가 느리고 핵심 유지보수자가 사실상 한 명이라 커뮤니티 건전성은 활발하다고 보기 어렵습니다. GitHub의 저장소 최신 활동 시각만 보고 판단하면 안 됩니다. 자동화 봇이 관리하는 브랜치 푸시가 활동처럼 보이는 경우가 있으므로, 실제 사람 커밋과 릴리스 이력을 기준으로 평가해야 합니다.
+
+참고로 이 Operator는 2021년 1월 OLM(OperatorHub) community-operators에서 제거되었습니다. 현재 설치 경로는 Helm chart 또는 YAML 매니페스트입니다. OpenShift 쪽 Jenkins 이미지는 별개 이야기로, 공식 문서 기준 maintenance mode입니다.
+
+---
+
+## 4. 설치 실습
+
+실습 환경은 Kubernetes 클러스터와 helm, kubectl입니다.
 
 ```shell
 ##############################################################
@@ -102,32 +108,11 @@ jenkins:
     port: 8080
     nodePort: 30003
 EOF
-helm upgrade -i -n jenkins jenkins . -f custom_values.yaml 
-
-# NAME: jenkins
-# LAST DEPLOYED: Wed Dec 10 23:18:32 2025
-# NAMESPACE: jenkins
-# STATUS: deployed
-# REVISION: 1
-# TEST SUITE: None
-# NOTES:
-# 1. Watch Jenkins instance being created:
-# $ kubectl --namespace jenkins get pods -w
-
-# 2. Get Jenkins credentials:
-# $ kubectl --namespace jenkins get secret jenkins-operator-credentials-jenkins -o 'jsonpath={.data.user}' | base64 -d
-# $ kubectl --namespace jenkins get secret jenkins-operator-credentials-jenkins -o 'jsonpath={.data.password}' | base64 -d
-
-# 3. Connect to Jenkins (actual Kubernetes cluster):
-# $ kubectl --namespace jenkins port-forward jenkins-jenkins 8080:8080
-
-# Now open the browser and enter http://localhost:8080
+helm upgrade -i -n jenkins jenkins . -f custom_values.yaml
 
 ##############################################################
 # Jenkins Operator 설치 확인
 ##############################################################
-# get-all krew 미설치시 설치 (kubectl krew install get-all)
-kubectl get-all | grep -i jenkins
 kubectl get crds | grep -i jenkins
 # jenkins.jenkins.io                             2025-12-10T14:02:11Z
 
@@ -152,16 +137,38 @@ kubectl --namespace jenkins get secret jenkins-operator-credentials-jenkins -o '
 open http://localhost:30003
 ```
 
+master Pod를 보면 컨테이너가 2개입니다. 하나는 Jenkins 자체이고, 다른 하나는 Operator가 설정 적용과 상태 확인에 사용하는 jam (jenkins-api-client) 컨테이너입니다. Operator가 Jenkins REST API를 호출해 플러그인을 설치하고 Groovy 스크립트를 실행하는 통로가 이 사이드카입니다.
+
 ![Jenkins Instance Login Page](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-instance-login-page.webp)
 ![Jenkins Instance Main Page](/assets/img/ci-cd/jenkins/jenkins-operator/jenkins-instance-main-page.webp)
 
+접속 계정은 Operator가 생성한 secret에서 확인합니다. 초기 관리자 비밀번호를 별도 파일에서 찾는 일반적인 Jenkins 초기화 과정과 다르게, Operator가 credential을 발급하고 관리하는 것이 이 구성의 특징입니다.
+
 ---
 
-## 3. References
+## 5. 운영 관점에서 알아야 할 제약
+
+**master는 기본으로 bare Pod로 실행됩니다.** Deployment가 아니므로 롤링 업데이트가 없고, 재시작은 Pod 삭제 후 재생성으로 이루어집니다. Deployment로 바꾸려면 Jenkins CR의 master에 `jenkins.io/use-deployment: "true"` 어노테이션을 지정합니다.
+
+**spec.master의 변경은 매번 재시작을 유발합니다.** 이미지, 리소스, 환경 변수 등 master 정의를 바꾸면 Pod가 재생성됩니다. 앞서 설명한 user configuration과 base configuration의 반영 방식 차이와 함께 기억해야 하는 운영 규칙입니다.
+
+**적용된 Groovy 스크립트는 해시로 추적됩니다.** Operator는 적용 완료된 스크립트의 해시를 기록해 두고, 해시가 바뀌지 않으면 재실행하지 않습니다. 덕분에 reconcile이 반복돼도 설정이 멱등하게 유지됩니다.
+
+**백업은 별도 provider로 동작합니다.** 기본 제공되는 pvc provider는 지정한 시각에 backup Pod를 띄워 jenkins-home을 압축해 PVC에 저장합니다. 백업 대상에서 일부 디렉터리와 최상위 config.xml은 제외되므로, 전체 복제가 아니라 상태 복구용이라는 점을 이해하고 사용해야 합니다.
+
+**API 버전이 v1alpha2입니다.** 2019년 출시 이후 지금까지 alpha 단계에서 벗어나지 않았습니다. 스펙이 안정적이지 않을 수 있다는 점은 도입 검토 시 고려해야 합니다.
+
+---
+
+## 6. Reference
 
 - [Jenkins GitHub - kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator)
 - [Jenkins Docs - Architecture and Design](https://jenkinsci.github.io/kubernetes-operator/docs/how-it-works/architecture-and-design/)
 - [Jenkins Docs - Installing the Operator](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/installing-the-operator/)
+- [Jenkins Docs - CRD Schema](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/schema/)
+- [Jenkins Docs - Configuring Seed Jobs and Pipelines](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/configuring-seed-jobs-and-pipelines/)
+- [Jenkins Docs - Configuring Backup and Restore](https://jenkinsci.github.io/kubernetes-operator/docs/getting-started/latest/configuring-backup-and-restore/)
+- [Jenkins GitHub - Source jenkins_controller.go](https://github.com/jenkinsci/kubernetes-operator/blob/master/internal/controller/jenkins_controller.go)
 
 ---
 
