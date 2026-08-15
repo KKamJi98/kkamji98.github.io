@@ -241,15 +241,19 @@ INK_INVERSE = "#FFFFFF"
 EDGE_STROKE = "#232F3E"
 STEP_FILL = "#1A73E8"
 
+# The queue, external and group strokes were darkened in 2026-08 so every role
+# clears WCAG 2.1 AA against the white canvas (3:1 for graphical objects). The
+# gate lives in the skill's test_diagram_tooling.py; these values must track
+# drawio_tokens.ROLES or a rebuild silently undoes the contrast fix.
 ROLES = {
     "process": ("#E8F0FE", "#1A73E8"),
     "store": ("#E6F4EA", "#34A853"),
-    "queue": ("#FEF7E0", "#F9AB00"),
+    "queue": ("#FEF7E0", "#B06000"),
     "danger": ("#FCE8E6", "#EA4335"),
     "compute": ("#F3E8FD", "#A142F4"),
-    "external": ("#E8EAED", "#9AA0A6"),
+    "external": ("#E8EAED", "#6B7280"),
     "surface": ("#FFFFFF", "#5F6368"),
-    "group": ("#F8F9FA", "#9AA0A6"),
+    "group": ("#F8F9FA", "#6B7280"),
 }
 
 # Type scale. Only these four sizes may appear in a published diagram.

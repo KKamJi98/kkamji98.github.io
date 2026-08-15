@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="1410.56" height="228.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Helm hooks run as separate resources around the release, not inside it" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -28,19 +28,19 @@
         <mxCell id="ready" value="Release deployed&#xa;hook resources are not part of the release" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1109" y="148" width="292" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="cmd-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="cmd-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="34" y="128" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="pre-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="pre-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="378" y="112" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="resources-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="resources-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="593" y="128" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="post-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="post-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="905" y="112" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="ready-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="ready-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1089" y="128" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="cmd-to-pre" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cmd" target="pre">

@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="771.28" height="276.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="RUM Resource와 백엔드 trace를 같은 trace_id로 잇는다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -25,13 +25,13 @@
         <mxCell id="note" value="allowedTracingUrls에 백엔드 origin이 등록되어 있어야 헤더가 주입된다. 등록이 빠지면 두 데이터가 각각 남고 연결되지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="54" y="242" width="707" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="browser-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="browser-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="34" y="124" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="backend-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="backend-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="293" y="128" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="db-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="db-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="622" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="browser-to-backend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.4921;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="browser" target="backend">

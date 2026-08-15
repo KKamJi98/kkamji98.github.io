@@ -28,7 +28,7 @@
       "members": [
         "client",
         "runtime",
-        "filter",
+        "access-filter",
         "search",
         "fm",
         "answer"
@@ -112,7 +112,7 @@
       "step_at": "top-left"
     },
     {
-      "id": "filter",
+      "id": "access-filter",
       "kind": "box",
       "label": "Access filter",
       "col": 2,
@@ -180,11 +180,11 @@
     {
       "id": "runtime-to-filter",
       "source": "runtime",
-      "target": "filter"
+      "target": "access-filter"
     },
     {
       "id": "filter-to-search",
-      "source": "filter",
+      "source": "access-filter",
       "target": "search"
     },
     {

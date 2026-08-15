@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="986.54" height="312.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Metrics Server serves one API that several consumers read independently" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -28,13 +28,13 @@
         <mxCell id="top" value="kubectl top&#xa;an operator reading current usage" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="742" y="248" width="235" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="kubelet-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="kubelet-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="81" y="112" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="metrics-server-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="metrics-server-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="254" y="128" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="metrics-api-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="metrics-api-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="488" y="128" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="kubelet-to-metrics-server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kubelet" target="metrics-server">

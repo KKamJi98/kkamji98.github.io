@@ -21,6 +21,12 @@ for spec in $specs; do
   if ! python3 "$HERE/build_aws_diagram.py" "$spec" -o "$target" >/dev/null; then
     echo "BUILD FAIL  $name"; fails=$((fails + 1)); continue
   fi
+  # aws_diagram_tokens.py is a hand-kept mirror of the skill's drawio_tokens.py.
+  # Normalising here means a skill token change lands on the next rebuild instead
+  # of waiting for someone to notice the mirror has gone stale.
+  if ! python3 "$SKILL/scripts/normalize-drawio.py" --write "$target" >/dev/null; then
+    echo "NORMALIZE FAIL  $name"; fails=$((fails + 1)); continue
+  fi
   margins=$(bash "$HERE/export_diagram.sh" "$target" 2 110 2>&1 | tail -1)
   verdict=$(bash "$SKILL/scripts/validate-drawio.sh" "$target" 2>&1 | grep -cE "FAIL: [1-9]")
   if [ "$verdict" != "0" ] || [ "$margins" != "equal margins: OK" ]; then

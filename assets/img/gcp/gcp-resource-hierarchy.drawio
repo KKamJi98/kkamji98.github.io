@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="977.88" height="515.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Every resource sits under a project, and policy flows down the chain" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -37,16 +37,16 @@
         <mxCell id="inherit" value="IAM bindings and organization policies are inherited from every level above." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="54" y="481" width="914" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="org-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="org-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="34" y="154" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="folder-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="folder-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="266" y="154" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="project-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="project-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="498" y="154" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="gce-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="gce-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="822" y="154" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="org-to-folder" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="org" target="folder">

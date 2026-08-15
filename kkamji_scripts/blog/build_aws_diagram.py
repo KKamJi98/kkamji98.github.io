@@ -969,6 +969,7 @@ def step_style() -> str:
         "rounded=0;whiteSpace=wrap;html=0;"
         f"fillColor={T.STEP_FILL};strokeColor={T.STEP_FILL};fontColor={T.INK_INVERSE};"
         f"fontSize={T.FONT_BODY};fontStyle=1;align=center;verticalAlign=middle;"
+        "strokeWidth=1.25;"
     )
 
 
@@ -1030,7 +1031,7 @@ def compile_spec(spec: dict) -> str:
         cell(
             "frame",
             "",
-            f"rounded=0;html=0;fillColor=none;strokeColor={T.EDGE_STROKE};"
+            f"rounded=0;html=0;fillColor=none;strokeColor={T.PLAIN_GROUP_STROKE};"
             f"fontColor={T.INK};strokeWidth=1.25;",
             Rect(12, 12, width - 24, height - 24),
         )
