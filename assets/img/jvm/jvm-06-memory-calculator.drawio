@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="896.02" height="600.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The heap is what remains after the native regions are subtracted" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -13,19 +13,19 @@
         <mxCell id="subtitle" value="The calculator reads the cgroup limit at start-up, so a thread-count change moves -Xmx without any config change." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="64" width="852.02" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="total" value="Container memory limit&#xa;read from the cgroup at start-up" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="total" value="Container memory limit&#xa;read from the cgroup at start-up" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="230.01" y="104" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub1" value="minus headroom&#xa;0 percent by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="sub1" value="minus headroom&#xa;0 percent by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="230.01" y="170" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub2" value="minus direct memory&#xa;10M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="sub2" value="minus direct memory&#xa;10M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="230.01" y="236" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub3" value="minus metaspace&#xa;scales with the class count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="sub3" value="minus metaspace&#xa;scales with the class count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="230.01" y="302" width="460" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="sub4" value="minus reserved code cache&#xa;240M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="sub4" value="minus reserved code cache&#xa;240M by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="230.01" y="368" width="460" height="54" as="geometry" />
         </mxCell>
         <mxCell id="sub5" value="minus thread stacks&#xa;1M times the configured thread count" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">

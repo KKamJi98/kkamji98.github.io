@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="2023.04" height="496.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Google Docs become citable answers in a Slack thread" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -19,7 +19,7 @@
         <mxCell id="lane-query" value="2. Slack query runtime" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
           <mxGeometry x="34" y="368" width="1979" height="118" as="geometry" />
         </mxCell>
-        <mxCell id="gdocs" value="Google Docs&#xa;source of truth" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="gdocs" value="Google Docs&#xa;source of truth" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="56" y="162" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="apps-script" value="Apps Script&#xa;trigger only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
@@ -34,7 +34,7 @@
         <mxCell id="parser" value="Python parser&#xa;sections and tables" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1086" y="162" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="citation" value="headingId, section path, source URL&#xa;the citation sidecar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="citation" value="headingId, section path, source URL&#xa;the citation sidecar" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1050" y="262" width="247" height="54" as="geometry" />
         </mxCell>
         <mxCell id="s3-artifacts" value="S3 artifacts&#xa;Markdown + sidecar" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
@@ -46,7 +46,7 @@
         <mxCell id="s3-vectors" value="S3 Vectors&#xa;vector index" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
           <mxGeometry x="1859" y="146" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="mention" value="Slack mention&#xa;app_mention" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="mention" value="Slack mention&#xa;app_mention" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="56" y="410" width="176" height="54" as="geometry" />
         </mxCell>
         <mxCell id="n8n-chat" value="n8n chat workflow&#xa;ack and status" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
@@ -67,7 +67,7 @@
         <mxCell id="reply" value="Thread reply&#xa;answer with deep links" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1558" y="410" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="eval" value="Evaluation&#xa;hit, answer, citation, unknown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="eval" value="Evaluation&#xa;hit, answer, citation, unknown" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="1776" y="410" width="215" height="54" as="geometry" />
         </mxCell>
         <mxCell id="gdocs-to-apps-script" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gdocs" target="apps-script">

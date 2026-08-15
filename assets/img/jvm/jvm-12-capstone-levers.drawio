@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="1038.0" height="464.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="원인이 누수가 아닐 때 쓸 수 있는 조정 수단" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -19,10 +19,10 @@
         <mxCell id="levers" value="처방 (levers)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
           <mxGeometry x="554" y="104" width="474" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="c1" value="JDK 업그레이드와 adaptive IHOP&#xa;같은 워크로드에서 Old 점유 baseline이 달라진다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="c1" value="JDK 업그레이드와 adaptive IHOP&#xa;같은 워크로드에서 Old 점유 baseline이 달라진다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="56" y="146" width="430" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="c2" value="G1의 점진 회수&#xa;IHOP 전까지 Old를 높게 유지한다 (설계상 정상)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="c2" value="G1의 점진 회수&#xa;IHOP 전까지 Old를 높게 유지한다 (설계상 정상)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="56" y="216" width="430" height="54" as="geometry" />
         </mxCell>
         <mxCell id="c3" value="off-heap은 -Xmx 바깥&#xa;netty direct memory는 heap만 보면 드러나지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">

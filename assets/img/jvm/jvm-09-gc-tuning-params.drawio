@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="941.26" height="449.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Five knobs, and only one of them is a goal rather than a limit" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -19,10 +19,10 @@
         <mxCell id="p2" value="-XX:MaxGCPauseMillis  (default 200)&#xa;a pause goal; G1 sizes the young generation to meet it" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="202.63" y="172" width="560" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="p3" value="-XX:MaxNewSize or -Xmn&#xa;caps the young generation; Oracle warns that pinning it&#xa;turns off pause-time control" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="p3" value="-XX:MaxNewSize or -Xmn&#xa;caps the young generation; Oracle warns that pinning it&#xa;turns off pause-time control" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="202.63" y="240" width="560" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="p4" value="-XX:InitiatingHeapOccupancyPercent&#xa;when concurrent marking starts, adaptive by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="p4" value="-XX:InitiatingHeapOccupancyPercent&#xa;when concurrent marking starts, adaptive by default" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="202.63" y="317" width="560" height="54" as="geometry" />
         </mxCell>
         <mxCell id="p5" value="-Xlog:gc* and JFR&#xa;how you observe any of the above" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">

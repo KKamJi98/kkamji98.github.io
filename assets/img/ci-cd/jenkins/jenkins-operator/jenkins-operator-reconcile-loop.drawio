@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="1176" height="676" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Jenkins Operator reconcile: base configuration first, then user configuration" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -28,7 +28,7 @@
         <mxCell id="master" value="Jenkins master Pod&#xa;jenkins/jenkins:2.541.2-lts&#xa;base and user config applied" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="760" y="360" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="status" value="CR status fields&#xa;provision and configuration timestamps" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#F9AB00;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="status" value="CR status fields&#xa;provision and configuration timestamps" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="760" y="500" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="giveup" value="ReconcileLoopFailed&#xa;same error 10 times" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">

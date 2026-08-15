@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#232F3E;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="12" y="12" width="982.0" height="238.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="The frame holds the reference; the heap holds the object" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -13,7 +13,7 @@
         <mxCell id="subtitle" value="Returning from a method pops the local and the reference. The object stays until no reference reaches it." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="64" width="938.0" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="code" value="void process() {&#xa;    int count = 10;&#xa;    Order order = new Order();&#xa;}" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#9AA0A6;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+        <mxCell id="code" value="void process() {&#xa;    int count = 10;&#xa;    Order order = new Order();&#xa;}" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="34" y="104" width="300" height="78" as="geometry" />
         </mxCell>
         <mxCell id="stackr" value="Stack: the process() frame&#xa;count = 10&#xa;order = a reference" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
