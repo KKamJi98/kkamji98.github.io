@@ -1,10 +1,20 @@
 <!--
-  Search loader with data-driven pagination.
+  Search loader with relevance ranking and data-driven pagination.
 
   Replaces the default SimpleJekyllSearch DOM rendering: the search index is
   fetched once into a JS array, queries are matched in memory (debounced), and
   only the current page of results is rendered to the DOM. This avoids building
   every matching post (full body) on each keystroke, which caused typing jank.
+
+  A query is split on whitespace and every token must appear in the post, so
+  multi-word queries no longer require the words to be adjacent. Matches are
+  ranked by field (title, then categories/tags, then body) instead of being
+  listed newest-first. Each token is also expanded through the synonym groups
+  in `_data/search_synonyms.yml`, which is how a Korean query reaches posts
+  written only in English.
+
+  NOTE: production builds collapse this page onto one line, so a `//` comment
+  would swallow the rest of the script. Use block comments only.
 -->
 
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
@@ -19,7 +29,27 @@
     const JSON_URL = '{{ '/assets/js/data/search.json' | relative_url }}';
     const NO_RESULTS_HTML = '{{ not_found | strip_newlines }}';
     const SNIPPET_LENGTH = 150;
+    const SNIPPET_LEAD = 60;
     const DEBOUNCE_MS = 250;
+    const PAGE_WINDOW = 2;
+    const WEIGHT_TITLE = 10;
+    const WEIGHT_META = 4;
+    const WEIGHT_CONTENT = 1;
+    const CONTENT_HIT_CAP = 3;
+    const PHRASE_TITLE_BONUS = 15;
+    const PHRASE_CONTENT_BONUS = 5;
+    const SYNONYM_GROUPS = {{ site.data.search_synonyms | jsonify }};
+
+    /* term -> every equivalent spelling, so one lookup covers both directions */
+    const SYNONYMS = new Map();
+
+    (SYNONYM_GROUPS || []).forEach((group) => {
+      const terms = (group || []).map((term) => String(term).toLowerCase());
+
+      terms.forEach((term) => {
+        SYNONYMS.set(term, terms);
+      });
+    });
 
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('search-results');
@@ -39,14 +69,16 @@
         this.currentPage = 1;
         this.totalPages = 0;
         this.items = [];
+        this.tokens = [];
 
         if (this.paginationList) {
           this.paginationList.addEventListener('click', (event) => this.handleClick(event));
         }
       }
 
-      setItems(items) {
+      setItems(items, tokens) {
         this.items = items || [];
+        this.tokens = tokens || [];
 
         if (this.items.length === 0) {
           this.clear();
@@ -121,46 +153,70 @@
         article.appendChild(header);
 
         const summary = document.createElement('p');
-        summary.textContent = this.snippet(item.content);
+        summary.textContent = this.snippet(item.content, this.tokens);
         article.appendChild(summary);
 
         return article;
       }
 
-      snippet(text) {
+      /* Show the text around the first matched token so the reason a post
+         matched is visible, instead of always showing the post's opening. */
+      snippet(text, tokens) {
         const value = (text || '').trim();
-        return value.length > SNIPPET_LENGTH ? `${value.slice(0, SNIPPET_LENGTH)}...` : value;
+
+        if (!value) {
+          return '';
+        }
+
+        const lower = value.toLowerCase();
+        let hit = -1;
+
+        for (let i = 0; i < (tokens || []).length; i += 1) {
+          const index = lower.indexOf(tokens[i]);
+
+          if (index !== -1 && (hit === -1 || index < hit)) {
+            hit = index;
+          }
+        }
+
+        if (hit <= SNIPPET_LEAD) {
+          return value.length > SNIPPET_LENGTH ? `${value.slice(0, SNIPPET_LENGTH)}...` : value;
+        }
+
+        const start = hit - SNIPPET_LEAD;
+        const end = Math.min(start + SNIPPET_LENGTH, value.length);
+        const tail = end < value.length ? '...' : '';
+
+        return `...${value.slice(start, end)}${tail}`;
       }
 
+      /* Always show the first and last page plus a window around the current
+         one. A gap of a single page is filled with that page; a wider gap
+         becomes an ellipsis that jumps to the middle of the skipped range. */
       buildVisiblePages() {
+        const shown = new Set([1, this.totalPages]);
+
+        for (let i = this.currentPage - PAGE_WINDOW; i <= this.currentPage + PAGE_WINDOW; i += 1) {
+          if (i >= 1 && i <= this.totalPages) {
+            shown.add(i);
+          }
+        }
+
+        const numbers = Array.from(shown).sort((a, b) => a - b);
         const sequence = [];
-        let leftEllipsisAdded = false;
-        let rightEllipsisAdded = false;
+        let previous = 0;
 
-        for (let i = 1; i <= this.totalPages; i += 1) {
-          let show = false;
+        for (let i = 0; i < numbers.length; i += 1) {
+          const page = numbers[i];
 
-          if (this.currentPage === 1) {
-            show = i <= 3 || i === this.totalPages;
-          } else if (this.currentPage === this.totalPages) {
-            show = i === 1 || i >= this.totalPages - 2;
-          } else if (
-            i === 1 ||
-            i === this.totalPages ||
-            (i >= this.currentPage - 1 && i <= this.currentPage + 1)
-          ) {
-            show = true;
+          if (previous && page - previous === 2) {
+            sequence.push({ type: 'page', number: previous + 1 });
+          } else if (previous && page - previous > 2) {
+            sequence.push({ type: 'ellipsis', number: Math.floor((previous + page) / 2) });
           }
 
-          if (show) {
-            sequence.push(i);
-          } else if (i < this.currentPage && !leftEllipsisAdded) {
-            sequence.push('ellipsis');
-            leftEllipsisAdded = true;
-          } else if (i > this.currentPage && !rightEllipsisAdded) {
-            sequence.push('ellipsis');
-            rightEllipsisAdded = true;
-          }
+          sequence.push({ type: 'page', number: page });
+          previous = page;
         }
 
         return sequence;
@@ -179,24 +235,32 @@
         this.paginationNav.classList.remove('d-none');
         this.paginationList.innerHTML = '';
 
+        this.paginationList.appendChild(this.createArrowItem('first'));
         this.paginationList.appendChild(this.createArrowItem('prev'));
 
         this.buildVisiblePages().forEach((item) => {
-          if (item === 'ellipsis') {
-            this.paginationList.appendChild(this.createEllipsisItem());
+          if (item.type === 'ellipsis') {
+            this.paginationList.appendChild(this.createEllipsisItem(item.number));
           } else {
-            this.paginationList.appendChild(this.createPageItem(item));
+            this.paginationList.appendChild(this.createPageItem(item.number));
           }
         });
 
-        this.paginationList.appendChild(this.createMobileIndex());
         this.paginationList.appendChild(this.createArrowItem('next'));
+        this.paginationList.appendChild(this.createArrowItem('last'));
       }
 
       createArrowItem(direction) {
-        const isPrev = direction === 'prev';
-        const isDisabled = isPrev ? this.currentPage === 1 : this.currentPage === this.totalPages;
-        const targetPage = isPrev ? this.currentPage - 1 : this.currentPage + 1;
+        const arrows = {
+          first: { page: 1, icon: 'fa-angles-left', label: 'first-page', backward: true },
+          prev: { page: this.currentPage - 1, icon: 'fa-angle-left', label: 'previous-page', backward: true },
+          next: { page: this.currentPage + 1, icon: 'fa-angle-right', label: 'next-page', backward: false },
+          last: { page: this.totalPages, icon: 'fa-angles-right', label: 'last-page', backward: false }
+        };
+        const arrow = arrows[direction];
+        const isDisabled = arrow.backward
+          ? this.currentPage === 1
+          : this.currentPage === this.totalPages;
 
         const li = document.createElement('li');
         li.className = `page-item${isDisabled ? ' disabled' : ''}`;
@@ -204,14 +268,14 @@
         const anchor = document.createElement('a');
         anchor.className = 'page-link';
         anchor.href = '#';
-        anchor.setAttribute('aria-label', isPrev ? 'previous-page' : 'next-page');
+        anchor.setAttribute('aria-label', arrow.label);
 
         const icon = document.createElement('i');
-        icon.className = `fas ${isPrev ? 'fa-angle-left' : 'fa-angle-right'}`;
+        icon.className = `fas ${arrow.icon}`;
         anchor.appendChild(icon);
 
         if (!isDisabled) {
-          anchor.dataset.page = targetPage;
+          anchor.dataset.page = arrow.page;
         }
 
         li.appendChild(anchor);
@@ -232,22 +296,18 @@
         return li;
       }
 
-      createEllipsisItem() {
+      createEllipsisItem(targetPage) {
         const li = document.createElement('li');
-        li.className = 'page-item disabled';
+        li.className = 'page-item';
 
-        const span = document.createElement('span');
-        span.className = 'page-link';
-        span.textContent = '...';
+        const anchor = document.createElement('a');
+        anchor.className = 'page-link';
+        anchor.href = '#';
+        anchor.dataset.page = targetPage;
+        anchor.setAttribute('aria-label', `jump-to-page-${targetPage}`);
+        anchor.textContent = '...';
 
-        li.appendChild(span);
-        return li;
-      }
-
-      createMobileIndex() {
-        const li = document.createElement('li');
-        li.className = 'page-index align-middle';
-        li.innerHTML = `<span>${this.currentPage}</span><span class="text-muted">/ ${this.totalPages}</span>`;
+        li.appendChild(anchor);
         return li;
       }
 
@@ -306,7 +366,9 @@
           .then((response) => response.json())
           .then((entries) => {
             dataset = entries.slice(0, SEARCH_LIMIT).map((entry) => {
-              entry._haystack = `${entry.title} ${entry.categories} ${entry.tags} ${entry.content}`.toLowerCase();
+              entry._title = (entry.title || '').toLowerCase();
+              entry._meta = `${entry.categories || ''} ${entry.tags || ''}`.toLowerCase();
+              entry._content = (entry.content || '').toLowerCase();
               return entry;
             });
             return dataset;
@@ -320,28 +382,103 @@
       return loadPromise;
     }
 
-    function runSearch() {
-      const query = searchInput.value.trim().toLowerCase();
+    function countOccurrences(haystack, needle, cap) {
+      let count = 0;
+      let index = haystack.indexOf(needle);
 
-      if (!query) {
+      while (index !== -1 && count < cap) {
+        count += 1;
+        index = haystack.indexOf(needle, index + needle.length);
+      }
+
+      return count;
+    }
+
+    /* Every token must appear somewhere in the post (AND), and where it
+       appears decides the rank. A token is satisfied by any of its synonyms.
+       Returns 0 for a post that does not match. */
+    function scoreEntry(entry, variants, phrase) {
+      let score = 0;
+
+      for (let i = 0; i < variants.length; i += 1) {
+        const forms = variants[i];
+        let inTitle = false;
+        let inMeta = false;
+        let contentHits = 0;
+
+        for (let j = 0; j < forms.length; j += 1) {
+          const form = forms[j];
+
+          inTitle = inTitle || entry._title.includes(form);
+          inMeta = inMeta || entry._meta.includes(form);
+          contentHits = Math.max(
+            contentHits,
+            countOccurrences(entry._content, form, CONTENT_HIT_CAP)
+          );
+        }
+
+        if (!inTitle && !inMeta && contentHits === 0) {
+          return 0;
+        }
+
+        if (inTitle) {
+          score += WEIGHT_TITLE;
+        }
+
+        if (inMeta) {
+          score += WEIGHT_META;
+        }
+
+        score += contentHits * WEIGHT_CONTENT;
+      }
+
+      if (entry._title.includes(phrase)) {
+        score += PHRASE_TITLE_BONUS;
+      } else if (variants.length > 1 && entry._content.includes(phrase)) {
+        score += PHRASE_CONTENT_BONUS;
+      }
+
+      return score;
+    }
+
+    function runSearch() {
+      const phrase = searchInput.value.trim().toLowerCase();
+
+      if (!phrase) {
         paginator.clear();
         return;
       }
 
+      const tokens = phrase.split(/\s+/).filter(Boolean);
+      const variants = tokens.map((token) => SYNONYMS.get(token) || [token]);
+      const forms = variants.reduce((all, group) => all.concat(group), []);
+
       loadDataset().then((entries) => {
-        if (searchInput.value.trim().toLowerCase() !== query) {
+        if (searchInput.value.trim().toLowerCase() !== phrase) {
           /* input changed while loading; a later run handles it */
           return;
         }
 
-        const matches = entries.filter((entry) => entry._haystack.includes(query));
+        const matches = [];
+
+        for (let i = 0; i < entries.length; i += 1) {
+          const score = scoreEntry(entries[i], variants, phrase);
+
+          if (score > 0) {
+            matches.push({ entry: entries[i], score: score });
+          }
+        }
 
         if (matches.length === 0) {
           paginator.showNoResults(NO_RESULTS_HTML);
           return;
         }
 
-        paginator.setItems(matches);
+        /* Array.prototype.sort is stable, so equal scores keep the index
+           order, which is newest-first. */
+        matches.sort((a, b) => b.score - a.score);
+
+        paginator.setItems(matches.map((match) => match.entry), forms);
       });
     }
 

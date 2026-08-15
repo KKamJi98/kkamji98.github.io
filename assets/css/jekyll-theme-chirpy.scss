@@ -25,5 +25,21 @@
   .pagination {
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+
+    /* The theme's `.pagination` rule (_sass/pages/_home.scss) is not scoped to
+       the post list, and below 992px it hides every item except the first and
+       last, leaving only the two arrows. A search can span twenty-odd pages,
+       so the numbers have to stay reachable on narrow screens as well. */
+    .page-item:not(:first-child):not(:last-child) {
+      display: list-item;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .pagination {
+      column-gap: 0.3rem;
+    }
   }
 }

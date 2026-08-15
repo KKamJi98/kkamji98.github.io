@@ -1,0 +1,76 @@
+# Query-time synonym groups for the site search.
+#
+# Consumed by `_includes/search-loader.html`: every term in a group matches the
+# others, so searching "쿠버네티스" finds posts that only ever write
+# "Kubernetes", and "k8s" finds them too. Adding a group here applies to every
+# existing post at once, which is why this lives in one file instead of in each
+# post's tags.
+#
+# Rules for adding a term:
+#   - lower-case only; a query token is matched against a group exactly
+#   - matching inside a post is substring-based, so avoid short English terms
+#     that hide inside common words ("log" would match "blog", "auth" would
+#     match "author"). Keep the distinctive spelling instead.
+
+- [kubernetes, k8s, 쿠버네티스, 쿠버]
+- [docker, 도커]
+- [container, 컨테이너]
+- [terraform, 테라폼]
+- [jenkins, 젠킨스]
+- [spring, 스프링]
+- [java, 자바]
+- [python, 파이썬]
+- [golang, 고랭]
+- [linux, 리눅스]
+- [network, networking, 네트워크, 네트워킹]
+- [security, 보안]
+- [monitoring, 모니터링]
+- [observability, 관측, 관측가능성]
+- [logging, 로그, 로깅]
+- [database, 데이터베이스]
+- [redis, 레디스]
+- [kafka, 카프카]
+- [elasticsearch, 엘라스틱서치, 엘라스틱]
+- [github, 깃허브]
+- [pipeline, 파이프라인]
+- [deployment, 배포]
+- [cluster, 클러스터]
+- [helm, 헬름]
+- [argocd, 아르고]
+- [gitops, 깃옵스]
+- [prometheus, 프로메테우스]
+- [grafana, 그라파나]
+- [istio, 이스티오]
+- [cilium, 실리움]
+- [ingress, 인그레스]
+- [certificate, 인증서]
+- [domain, 도메인]
+- [cache, caching, 캐시, 캐싱]
+- [queue, 큐]
+- [loadbalancer, load-balancer, 로드밸런서, 부하분산]
+- [backup, 백업]
+- [authentication, 인증]
+- [authorization, 인가, 권한]
+- [serverless, 서버리스]
+- [microservice, 마이크로서비스, msa]
+- [performance, 성능]
+- [troubleshooting, 트러블슈팅, 장애]
+- [memory, 메모리]
+- [storage, 스토리지]
+- [volume, 볼륨]
+- [scaling, autoscaling, 스케일링, 오토스케일링]
+- [firewall, 방화벽]
+- [proxy, 프록시]
+- [gateway, 게이트웨이]
+- [encryption, 암호화]
+- [vulnerability, 취약점]
+- [terminal, 터미널]
+- [testing, 테스트]
+- [migration, 마이그레이션]
+- [rollback, 롤백]
+- [session, 세션]
+- [token, 토큰]
+- [permission, 퍼미션]
+- [namespace, 네임스페이스]
+- [schedule, scheduling, 스케줄, 스케줄링]
+- [restore, 복구]

@@ -1,0 +1,47 @@
+---
+layout: compress
+swcache: true
+---
+
+{%- comment -%}
+  Overrides the theme's search index (gem: assets/js/data/search.json).
+
+  The theme indexes the whole rendered post, so every fenced code block ends up
+  in the index. On this blog that is 47% of the markdown: it doubles the payload
+  the browser downloads before the first search, and it makes queries match YAML
+  keys, log dumps and terminal output instead of prose.
+
+  Here the <pre> blocks are dropped before the text is extracted. Inline <code>
+  is kept, so a flag or command name mentioned in a sentence still matches. The
+  rest of the pipeline mirrors the theme's `post-summary.html full_text=true`,
+  minus its line-number workaround, which is unnecessary once <pre> is gone.
+{%- endcomment -%}
+
+[
+  {% for post in site.posts %}
+  {%- assign segments = post.content | split: '<pre' -%}
+  {%- assign prose = segments[0] -%}
+  {%- for segment in segments offset: 1 -%}
+    {%- assign tail = segment | split: '</pre>' -%}
+    {%- if tail.size > 1 -%}
+      {%- assign prose = prose | append: tail[1] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign prose = prose
+    | markdownify
+    | strip_html
+    | newline_to_br
+    | replace: '<br />', ' '
+    | strip_newlines
+    | strip
+  -%}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "categories": {{ post.categories | join: ', ' | jsonify }},
+    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "content": {{ prose | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
