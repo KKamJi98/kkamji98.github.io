@@ -2,7 +2,7 @@
 title: "Node.js 이벤트 루프 - 콜백 실행 순서와 스케줄링"
 date: 2026-07-30 00:05:00 +0900
 author: kkamji
-categories: [Node.js, JavaScript]
+categories: [Backend, Node.js]
 tags: [nodejs, event-loop, microtask, process-nexttick, setimmediate, timers]
 comments: true
 image:

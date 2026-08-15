@@ -2,7 +2,7 @@
 title: External Secrets와 AWS Secrets Manager, SSM Parameter Store 연동하기
 date: 2025-03-01 15:39:01 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Security]
 tags: [kubernetes, secrets-manager, ssm, parameter-store, rbac, on-premise]     # TAG names should always be lowercase
 comments: true
 image:

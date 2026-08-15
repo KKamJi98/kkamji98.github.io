@@ -2,7 +2,7 @@
 title: "Vite Overview - Native ESM과 Rolldown 빌드 도구"
 date: 2026-08-10 09:00:00 +0900
 author: kkamji
-categories: [Frontend, DevOps]
+categories: [Frontend, Build Tool]
 tags: [vite, frontend, bundler, esm, rolldown, build-tool, javascript]
 comments: true
 image:

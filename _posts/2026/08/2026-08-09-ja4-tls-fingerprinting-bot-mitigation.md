@@ -2,7 +2,7 @@
 title: "JA4 TLS Fingerprinting 알아보기 - 봇 트래픽 식별과 차단"
 date: 2026-08-09 19:00:00 +0900
 author: kkamji
-categories: [Cloud, Security]
+categories: [Cloud, AWS]
 tags: [ja4, tls, fingerprinting, waf, bot, aws, cloudflare, security]
 comments: true
 image:

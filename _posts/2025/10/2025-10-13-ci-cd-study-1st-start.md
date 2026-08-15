@@ -2,7 +2,7 @@
 title: CI/CD + ArgoCD + Vault Study Start!
 date: 2025-10-13 02:12:31 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, GitOps]
 tags: [devops, argocd, gitops, ci-cd, vault, cloudnet, gasida, ci-cd-study]
 comments: true
 content_kind: announcement

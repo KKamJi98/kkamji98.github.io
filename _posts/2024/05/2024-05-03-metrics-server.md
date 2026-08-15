@@ -2,7 +2,7 @@
 title: Metrics-Server란? (구축 방법)
 date: 2024-05-03 23:35:15 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, k8s, k8s-cluster, cluster, microk8s, aws, ec2, metric, metrics-server, worker-node, monitoring]     # TAG names should always be lowercase
 comments: true
 image:

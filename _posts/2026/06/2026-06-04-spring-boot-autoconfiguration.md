@@ -2,7 +2,7 @@
 title: Spring Boot 자동설정, 스타터, fat jar 동작 원리
 date: 2026-06-04 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, spring-boot, auto-configuration, starter, fat-jar]
 comments: true
 image:

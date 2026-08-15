@@ -2,7 +2,7 @@
 title: GC 기초와 G1GC - 동작 원리와 튜닝 손잡이
 date: 2026-06-17 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, JVM]
 tags: [java, jvm, gc, g1gc, garbage-collection, memory]
 comments: true
 image:

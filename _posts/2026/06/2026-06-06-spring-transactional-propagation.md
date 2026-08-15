@@ -2,7 +2,7 @@
 title: Spring @Transactional과 트랜잭션 전파 - 프록시, 롤백 규칙, REQUIRED vs REQUIRES_NEW
 date: 2026-06-06 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, spring-data-jpa, transaction, aop, jpa]
 comments: true
 image:

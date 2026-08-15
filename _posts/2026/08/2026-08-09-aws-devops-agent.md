@@ -2,7 +2,7 @@
 title: "AWS DevOps Agent Overview"
 date: 2026-08-09 20:00:00 +0900
 author: kkamji
-categories: [Cloud, DevOps]
+categories: [Cloud, AWS]
 tags: [aws, devops, ai-agent, incident-response, release-management, sre, observability]
 comments: true
 image:

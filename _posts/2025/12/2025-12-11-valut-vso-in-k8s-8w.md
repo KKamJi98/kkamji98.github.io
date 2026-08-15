@@ -2,7 +2,7 @@
 title: HashiCorp Vault/VSO in Kubernetes
 date: 2025-12-11 19:42:33 +0900
 author: kkamji
-categories: [DevOps]
+categories: [DevOps, Vault]
 tags: [devops, ci-cd-study, ci-cd-study-8w, gitops, kubernetes, vault, vso, hashicorp]
 comments: true
 image:

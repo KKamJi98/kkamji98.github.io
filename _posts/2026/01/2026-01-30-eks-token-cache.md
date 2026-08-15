@@ -2,7 +2,7 @@
 title: EKS kubectl 토큰 캐싱으로 응답 속도 개선하기
 date: 2026-01-30 12:00:00 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, EKS]
 tags: [kubernetes, eks, kubectl, aws, token, cache, performance]
 comments: true
 image:

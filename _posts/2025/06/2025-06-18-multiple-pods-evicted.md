@@ -2,7 +2,7 @@
 title: Multiple Pods Evicted 문제 Trouble Shooting
 date: 2025-06-18 20:43:04 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, devops, deployment, pod, garbage-collection, disk-pressure, evicted]     # TAG names should always be lowercase
 comments: true
 image:

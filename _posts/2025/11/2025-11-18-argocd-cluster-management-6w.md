@@ -2,7 +2,7 @@
 title: Argo CD Multi Cluster Management
 date: 2025-11-18 21:33:18 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, ArgoCD]
 tags: [devops, ci-cd-study, ci-cd-study-6w, gitops, kubernetes, argocd, cluster-management]
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: JVM 메모리 모델 - Heap과 Non-heap, -Xmx가 제한하는 영역
 date: 2026-06-15 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, JVM]
 tags: [java, jvm, memory, heap, metaspace, off-heap]
 comments: true
 image:

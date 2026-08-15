@@ -2,7 +2,7 @@
 title: MicroK8s로 클러스터 구축하기 세션 진행 - AWS 강의실 온라인 세미나
 date: 2024-06-05 23:53:31 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Cluster]
 tags: [microk8s, aws, seminar, presentation, kubernetes, ec2]     # TAG names should always be lowercase
 comments: true
 content_kind: announcement

@@ -2,7 +2,7 @@
 title: Argo CD in Practice (4) - 접근제어
 date: 2025-11-10 23:51:44 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, ArgoCD]
 tags: [devops, ci-cd-study, ci-cd-study-5w, gitops, kubernetes, argocd, rbac]
 comments: true
 image:

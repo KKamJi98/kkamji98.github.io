@@ -2,7 +2,7 @@
 title: JPA 영속성 컨텍스트 - 1차 캐시, 엔티티 상태, dirty checking
 date: 2026-06-07 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, spring-data-jpa, jpa, hibernate, persistence-context]
 comments: true
 image:

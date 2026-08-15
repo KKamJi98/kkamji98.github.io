@@ -2,7 +2,7 @@
 title: EKS Pod Identity 개념, PoC
 date: 2025-04-16 22:49:55 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, EKS]
 tags: [kubernetes, eks, irsa, pod-identity, iam]
 comments: true
 image:

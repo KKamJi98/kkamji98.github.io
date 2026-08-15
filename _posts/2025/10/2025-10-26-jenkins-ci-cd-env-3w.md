@@ -2,7 +2,7 @@
 title: Jenkins + ArgoCD 실습 환경 구축
 date: 2025-10-26 23:25:51 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, Jenkins]
 tags: [devops, ci-cd-study, ci-cd-study-3w, jenkins, gogs, kind, docker]
 comments: true
 image:

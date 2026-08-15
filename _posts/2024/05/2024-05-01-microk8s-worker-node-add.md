@@ -2,7 +2,7 @@
 title: MicroK8s에 Worker Node 추가하기
 date: 2024-05-01 23:41:11 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Cluster]
 tags: [kubernetes, k8s, k8s-cluster, cluster, microk8s, aws, ec2, tls, ssl, kubeconfig, worker-node]     # TAG names should always be lowercase
 comments: true
 content_kind: lab

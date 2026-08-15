@@ -2,7 +2,7 @@
 title: GitOps 소개
 date: 2025-10-16 06:22:31 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, GitOps]
 tags: [devops, argocd, gitops, ci-cd, vault, cloudnet, gasida, ci-cd-study, ci-cd-study-1w]
 comments: true
 image:

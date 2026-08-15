@@ -2,7 +2,7 @@
 title: Helm 소개
 date: 2025-10-23 23:42:31 +0900
 author: kkamji
-categories: [DevOps]
+categories: [Kubernetes, Helm]
 tags: [devops, ci-cd-study, ci-cd-study-2w, helm]
 comments: true
 image:

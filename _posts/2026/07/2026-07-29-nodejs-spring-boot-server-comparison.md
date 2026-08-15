@@ -2,7 +2,7 @@
 title: "Node.js와 Spring Boot 서버 비교 - 실행 스택 중심으로"
 date: 2026-07-29 19:00:00 +0900
 author: kkamji
-categories: [Node.js, Spring, System]
+categories: [Backend, Node.js]
 tags: [nodejs, spring-boot, spring-mvc, spring-webflux, servlet, reactor-netty, server, architecture]
 comments: true
 image:

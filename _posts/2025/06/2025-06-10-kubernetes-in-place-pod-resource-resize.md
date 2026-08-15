@@ -2,7 +2,7 @@
 title: In-Place Pod Resource Resize 소개 및 PoC
 date: 2025-06-10 21:52:33 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, pod, resource, resize, in-place, devops, eks]     # TAG names should always be lowercase
 comments: true
 image:

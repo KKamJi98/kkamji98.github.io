@@ -2,7 +2,7 @@
 title: GC 튜닝과 JDK 버전별 G1 거동 변화
 date: 2026-06-18 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, JVM]
 tags: [java, jvm, gc, g1gc, tuning, jdk]
 comments: true
 image:

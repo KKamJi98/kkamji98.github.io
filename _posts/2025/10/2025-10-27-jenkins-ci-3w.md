@@ -2,7 +2,7 @@
 title: Jenkins CI with Kubernetes
 date: 2025-10-27 22:52:51 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, Jenkins]
 tags: [devops, ci-cd-study, ci-cd-study-3w, jenkins, gogs, kind, docker, jenkins-ci]
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: Argo CD App of Apps & ApplicationSet
 date: 2025-11-21 22:19:02 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, ArgoCD]
 tags: [devops, ci-cd-study, ci-cd-study-6w, gitops, kubernetes, argocd, applicationset, app-of-apps]
 comments: true
 image:

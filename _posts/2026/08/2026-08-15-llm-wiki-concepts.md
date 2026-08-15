@@ -2,7 +2,7 @@
 title: "LLM Wiki 개념 - AI가 읽는 지식 베이스란 무엇인가 [LLM Wiki 1]"
 date: 2026-08-15 13:00:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, Knowledge Base]
 tags: [ai, llm, knowledge-base, wiki, rag, obsidian, markdown]
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: Secret 안전하게 관리하기 - etcd 암호화
 date: 2024-09-01 22:51:41 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Security]
 tags: [kubernetes, secrets, secret, etcd]     # TAG names should always be lowercase
 comments: true
 image:

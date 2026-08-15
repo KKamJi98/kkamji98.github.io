@@ -2,7 +2,7 @@
 title: Argo CD Rollout 소개 및 실습
 date: 2025-11-13 22:18:29 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, ArgoCD]
 tags: [devops, ci-cd-study, ci-cd-study-5w, gitops, kubernetes, argocd, argo-rollouts, blue-green, canary]
 comments: true
 image:

@@ -2,7 +2,7 @@
 title: 프로세스 메모리 레이아웃과 stack vs heap
 date: 2026-06-20 11:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, JVM]
 tags: [java, jvm, memory, stack, heap, cs]
 comments: true
 image:

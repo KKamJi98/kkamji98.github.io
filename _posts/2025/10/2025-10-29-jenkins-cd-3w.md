@@ -2,7 +2,7 @@
 title: Jenkins CD with Kubernetes
 date: 2025-10-29 01:30:31 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, Jenkins]
 tags: [devops, ci-cd-study, ci-cd-study-3w, jenkins, gogs, kind, docker, jenkins-cd, blue-green]
 comments: true
 image:

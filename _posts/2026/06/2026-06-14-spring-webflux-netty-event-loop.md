@@ -2,7 +2,7 @@
 title: Spring WebFlux와 netty event loop - 적은 스레드, 그리고 off-heap 메모리
 date: 2026-06-14 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, webflux, netty, event-loop, off-heap]
 comments: true
 image:

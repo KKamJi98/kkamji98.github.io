@@ -2,7 +2,7 @@
 title: Kubernetes에 MongoDB 배포하기
 date: 2024-11-12 19:15:30 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, mongodb, helm]     # TAG names should always be lowercase
 comments: true
 image:

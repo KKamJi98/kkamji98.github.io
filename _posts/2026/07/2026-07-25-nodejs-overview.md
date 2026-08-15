@@ -2,7 +2,7 @@
 title: "Node.js 서버 Overview - 무엇 위에서 동작하는가"
 date: 2026-07-25 09:00:00 +0900
 author: kkamji
-categories: [Node.js, System]
+categories: [Backend, Node.js]
 tags: [nodejs, javascript-runtime, server, asynchronous-io, event-driven, libuv, http]
 comments: true
 image:

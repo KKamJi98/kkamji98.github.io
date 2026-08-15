@@ -2,7 +2,7 @@
 title: 빌드 도구와 의존성 관리 - Gradle/Maven과 Spring Boot 패키징
 date: 2026-06-05 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, spring-boot, gradle, maven, build]
 comments: true
 image:

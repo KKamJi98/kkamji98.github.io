@@ -2,7 +2,7 @@
 title: EKS Max-Pods Limit과 Prefix Mode PoC
 date: 2025-05-03 20:35:43 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, EKS]
 tags: [kubernetes, eks, vpc-cni, prefix-delegation, networking, max-pods, prefix-mode, nitro]
 comments: true
 image:

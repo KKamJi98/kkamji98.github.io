@@ -2,7 +2,7 @@
 title: EC2위에 Kubernetes Cluster 구축하기 (MicroK8s)
 date: 2024-04-25 22:54:32 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Cluster]
 tags: [kubernetes, k8s, k8s-cluster, cluster, microk8s, aws, ec2]     # TAG names should always be lowercase
 comments: true
 image:

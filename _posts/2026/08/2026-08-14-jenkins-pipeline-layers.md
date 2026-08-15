@@ -2,7 +2,7 @@
 title: "Jenkins 파이프라인 알아보기 - Jenkinsfile, Multibranch, Shared Library [Jenkins 4]"
 date: 2026-08-14 21:30:00 +0900
 author: kkamji
-categories: [DevOps]
+categories: [CI/CD, Jenkins]
 tags: [devops, ci-cd, jenkins, jenkinsfile, pipeline, multibranch, shared-library, seed-job]
 comments: true
 image:

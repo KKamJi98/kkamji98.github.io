@@ -2,7 +2,7 @@
 title: Nginx Ingress Controller 구축하기
 date: 2024-09-16 20:20:45 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Networking]
 tags: [kubernetes, nginx-ingress-controller]     # TAG names should always be lowercase
 comments: true
 image:

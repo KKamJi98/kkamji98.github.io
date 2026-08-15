@@ -2,7 +2,7 @@
 title: Pod가 계속 종료되지 않음 + EBS Volume 확장
 date: 2024-05-05 21:46:52 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, k8s, k8s-cluster, cluster, api-server, terminating, ebs, volume, kubelet, aws, ec2, ubuntu]     # TAG names should always be lowercase
 comments: true
 image:

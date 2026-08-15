@@ -2,7 +2,7 @@
 title: "LLM Wiki 구축하기 - Obsidian Vault와 검색 계층 [LLM Wiki 2]"
 date: 2026-08-15 13:10:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, Knowledge Base]
 tags: [ai, llm, knowledge-base, wiki, rag, bm25, hybrid-search, obsidian, git]
 comments: true
 image:

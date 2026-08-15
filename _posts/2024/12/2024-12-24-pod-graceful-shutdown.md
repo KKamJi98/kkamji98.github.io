@@ -2,7 +2,7 @@
 title: Kubernetes Graceful Shutdown이란?
 date: 2024-12-24 22:05:51 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Workload]
 tags: [kubernetes, pod, shutdown, graceful, graceful-shutdown, pod-graceful-shutdown]     # TAG names should always be lowercase
 comments: true
 image:

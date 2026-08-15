@@ -2,7 +2,7 @@
 title: buildpack과 JVM Memory Calculator
 date: 2026-06-19 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, JVM]
 tags: [java, jvm, buildpack, paketo, memory, container]
 comments: true
 image:

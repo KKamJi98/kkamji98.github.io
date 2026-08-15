@@ -2,7 +2,7 @@
 title: "Node.js ESM 모듈 경계와 Startup Configuration Validation"
 date: 2026-07-28 13:57:00 +0900
 author: kkamji
-categories: [Node.js, System]
+categories: [Backend, Node.js]
 tags: [nodejs, esm, modules, configuration, startup, environment-variables, validation]
 comments: true
 image:

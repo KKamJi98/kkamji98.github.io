@@ -2,7 +2,7 @@
 title: RAG 벡터 DB와 인덱스 - HNSW/IVF와 pgvector vs Qdrant [RAG 3]
 date: 2026-06-24 09:00:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, RAG]
 tags: [rag, vector-database, pgvector, qdrant, hnsw, ivf, ann, vector-search, ai]     # TAG names should always be lowercase
 comments: true
 image:

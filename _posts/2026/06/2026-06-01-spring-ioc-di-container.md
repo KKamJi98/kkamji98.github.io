@@ -2,7 +2,7 @@
 title: Spring IoC/DI와 Bean 개념
 date: 2026-06-01 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, ioc, dependency-injection, bean]
 comments: true
 image:

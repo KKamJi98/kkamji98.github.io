@@ -2,7 +2,7 @@
 title: RAG 보안과 접근제어 - RBAC, PII, Prompt Injection과 캐시-권한 충돌 [RAG 5]
 date: 2026-06-27 09:00:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, RAG]
 tags: [rag, security, access-control, rbac, pii, prompt-injection, owasp, devsecops, ai]     # TAG names should always be lowercase
 comments: true
 image:

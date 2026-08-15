@@ -2,7 +2,7 @@
 title: Kubernetes v1.33 Endpoints API Deprecated
 date: 2025-06-28 01:01:29 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Networking]
 tags: [kubernetes, devops, endpoint, endpoint-slice, kubernetes-api]     # TAG names should always be lowercase
 comments: true
 image:

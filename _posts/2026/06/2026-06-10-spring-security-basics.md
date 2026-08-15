@@ -2,7 +2,7 @@
 title: Spring Security 기초 - 보안 필터 체인, 인증과 인가
 date: 2026-06-10 09:00:00 +0900
 author: kkamji
-categories: [Programming Language, Java]
+categories: [Backend, Spring]
 tags: [java, spring, spring-security, security, authentication, authorization]
 comments: true
 image:

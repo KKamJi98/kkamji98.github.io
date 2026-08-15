@@ -2,7 +2,7 @@
 title: Kubernetes 환경에서 TLS 인증서 적용하기 - (2)
 date: 2024-10-20 01:44:21 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, Networking]
 tags: [kubernetes, harbor, jenkins, tls, ssl, cert-manager, ingress-controller]     # TAG names should always be lowercase
 comments: true
 image:

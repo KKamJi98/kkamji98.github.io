@@ -2,7 +2,7 @@
 title: EKS에서 AWS Secret Manager Secret 사용하기
 date: 2024-07-27 04:42:41 +0900
 author: kkamji
-categories: [Kubernetes]
+categories: [Kubernetes, EKS]
 tags: [kubernetes, aws, eks, secrets-manager, secrets store, helm, secret-provider-class]     # TAG names should always be lowercase
 comments: true
 image:

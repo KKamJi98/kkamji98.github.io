@@ -2,7 +2,7 @@
 title: RAG LLM API 연동과 고급 기법 - Citation, GraphRAG, Agentic RAG [RAG 7]
 date: 2026-06-30 09:00:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, RAG]
 tags: [rag, citation, grounding, graphrag, agentic-rag, llm-api, ai]     # TAG names should always be lowercase
 comments: true
 image:

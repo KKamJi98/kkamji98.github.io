@@ -2,7 +2,7 @@
 title: "LLM Wiki 고도화 - 검색 품질 측정과 지식 그래프 [LLM Wiki 3]"
 date: 2026-08-15 13:20:00 +0900
 author: kkamji
-categories: [AI]
+categories: [AI, Knowledge Base]
 tags: [ai, llm, knowledge-base, wiki, rag, bm25, knowledge-graph, evaluation, obsidian]
 comments: true
 image:
