@@ -1,5 +1,5 @@
 ---
-title: AWS Bedrock Knowledge Base로 관리형 RAG 구축하기 - 데이터 소스부터 Retrieve API, 접근제어까지
+title: AWS Bedrock Knowledge Base로 관리형 RAG 구축하기
 date: 2026-07-02 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

@@ -1,5 +1,5 @@
 ---
-title: Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 운영하기 - Google Docs 파싱부터 멘션 봇, 실측 함정까지
+title: Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 구축하기
 date: 2026-07-03 01:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]
