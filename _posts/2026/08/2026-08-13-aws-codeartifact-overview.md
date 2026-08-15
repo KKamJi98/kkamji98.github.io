@@ -5,6 +5,8 @@ author: kkamji
 categories: [Cloud, DevOps]
 tags: [aws, codeartifact, package, registry, npm, pypi, maven, supply-chain, security]
 comments: true
+image:
+  path: /assets/img/aws/aws.webp
 ---
 
 npm install로 lodash를 설치하는데 갑자기 404가 떨어진다. npmjs.com에서 패키지가 삭제됐거나 maintainer가 계정을 바꿨을 수 있다. 실제로 2016년 left-pad 사건처럼 단일 패키지 삭제가 수천 개 프로젝트의 빌드를 멈춘 사례가 있다. 팀이 internal하게 공유하는 사내 패키지는 공개 registry에 올릴 수 없고, public 패키지와 private 패키지를 같은 빌드에서 사용하려면 두 개의 registry를 오가야 한다.

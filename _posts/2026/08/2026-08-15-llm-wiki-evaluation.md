@@ -5,6 +5,8 @@ author: kkamji
 categories: [AI]
 tags: [ai, llm, knowledge-base, wiki, rag, bm25, knowledge-graph, evaluation, obsidian]
 comments: true
+image:
+  path: /assets/img/ai/rag-04-hybrid-rerank.webp
 ---
 
 2주 전까지 위키 검색 평가셋의 Recall@5는 0.96이었습니다. 문서 540개에서 636개로 18% 늘어난 뒤 같은 평가셋을 돌리니 0.88이 나왔습니다. 노트는 쌓았는데 검색은 나빠진 것입니다. 어디서부터 무너졌고, 무엇을 기준으로 복구할지를 수치로 따라가 봅니다.
