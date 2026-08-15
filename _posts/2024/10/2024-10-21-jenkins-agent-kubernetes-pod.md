@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Pod로 Jenkins Agent 구성하기
+title: "Kubernetes Pod로 Jenkins Agent 구성하기 [Jenkins 2]"
 date: 2024-10-21 00:30:21 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

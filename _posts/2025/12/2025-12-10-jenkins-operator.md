@@ -1,5 +1,5 @@
 ---
-title: "Jenkins Operator: Kubernetes에서 Jenkins를 선언적으로 운영하기"
+title: "Jenkins Operator 알아보기 - Kubernetes 선언적 운영 [Jenkins 3]"
 date: 2025-12-10 19:50:12 +0900
 author: kkamji
 categories: [DevOps]

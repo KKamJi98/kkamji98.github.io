@@ -1,6 +1,6 @@
 ---
 title: "Jenkins Operator 심화 - Reconcile 루프와 소스 코드 [Jenkins 5]"
-date: 2026-08-14 21:30:00 +0900
+date: 2026-08-14 22:00:00 +0900
 author: kkamji
 categories: [DevOps]
 tags: [devops, ci-cd, jenkins, jenkins-operator, kubernetes, controller-runtime]

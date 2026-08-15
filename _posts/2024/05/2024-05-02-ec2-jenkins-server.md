@@ -1,5 +1,5 @@
 ---
-title: EC2 위에 Jenkins Server 구축하기
+title: "EC2 위에 Jenkins Server 구축하기 [Jenkins 1]"
 date: 2024-05-02 22:42:36 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]
