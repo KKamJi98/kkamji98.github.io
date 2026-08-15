@@ -79,7 +79,7 @@ _색인 파이프라인은 Google Docs를 파서가 섹션별 Markdown으로 바
 | Slack | n8n Slack Trigger (app_mention) | Lambda + Slash Command -> 제거 |
 | 자동화 | n8n workflow 2개 | Lambda wrapper -> n8n 단독(boto3) |
 
-n8n 배포 자체는 이 글의 범위가 아닙니다(이미 운영 중이라고 가정). 이 글은 문서 파싱 품질, 벡터스토어 선택, 검색/생성 분리, Slack UX, IAM 격리, 그리고 그 과정에서 실측으로 밟은 함정들에 집중합니다.
+n8n은 이미 운영 중인 인스턴스를 그대로 사용합니다. 여기서는 문서 파싱 품질, 벡터스토어 선택, 검색/생성 분리, Slack UX, IAM 격리를 실측 위주로 정리합니다.
 
 ---
 

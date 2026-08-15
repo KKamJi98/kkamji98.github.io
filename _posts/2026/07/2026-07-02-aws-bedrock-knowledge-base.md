@@ -11,7 +11,7 @@ image:
 
 [RAG 시리즈](/posts/rag-overview-concept-and-pipeline/)에서 chunking, 임베딩, 벡터 DB, hybrid search, 보안까지 RAG 파이프라인을 직접 구성하는 관점으로 다뤘습니다. Amazon Bedrock Knowledge Bases는 이 중 데이터 수집, 파싱, 청킹, 임베딩, 색인, 검색을 서비스 API로 연결해 주는 선택지입니다. 현재 Bedrock은 저장소와 검색 인프라까지 Bedrock이 운영하는 **Managed Knowledge Base**와, 사용자가 벡터스토어를 선택하고 운영하는 **Customer-managed Knowledge Base**를 구분합니다. 이 글의 OpenSearch Serverless, Aurora, S3 Vectors 예시는 후자입니다. ingestion과 retrieval API는 Bedrock이 관리하지만 벡터스토어의 선택, 용량, 접근 정책은 사용자가 책임집니다.
 
-이 글은 Bedrock Knowledge Base 자체를 이해하기 위한 기본편입니다. Google Docs 파싱, S3 Vectors, n8n workflow, Slack 멘션 봇까지 묶어 실제로 구축하며 밟은 함정들은 [Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 운영하기](/posts/bedrock-kb-slack-rag-chatbot/)에서 이어서 다룹니다.
+Google Docs 파싱, S3 Vectors, n8n workflow, Slack 멘션 봇까지 묶어 실제로 구축한 구성과 그 과정의 함정은 [Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 구축하기](/posts/bedrock-kb-slack-rag-chatbot/)에서 다룹니다.
 
 ---
 
