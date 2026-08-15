@@ -43,21 +43,11 @@
         <mxCell id="s3-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="865" y="158" width="26" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="query-to-catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="catalog">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="248.67" y="176.75" />
-              <mxPoint x="248.67" y="156.0" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="query-to-catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.1341;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="catalog">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="query-to-projection" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="projection">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="267.33" y="266.25" />
-              <mxPoint x="267.33" y="279.5" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="query-to-projection" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.824;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="query" target="projection">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="catalog-to-planner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="catalog" target="planner">
           <mxGeometry relative="1" as="geometry" >

@@ -28,37 +28,17 @@
         <mxCell id="out2" value="Per-role key&#xa;isolated and safe, at a lower hit rate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="562.77" y="184" width="266" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="userA-to-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="userA" target="cache">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="300.1" y="131.0" />
-              <mxPoint x="300.1" y="137.5" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="userA-to-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.2015;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="userA" target="cache">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="userB-to-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="userB" target="cache">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="317.44" y="211.0" />
-              <mxPoint x="317.44" y="204.5" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="userB-to-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.7985;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="userB" target="cache">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cache-to-out1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cache" target="out1">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="528.1" y="137.5" />
-              <mxPoint x="528.1" y="131.0" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="cache-to-out1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.2015;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cache" target="out1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cache-to-out2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cache" target="out2">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="545.44" y="204.5" />
-              <mxPoint x="545.44" y="211.0" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="cache-to-out2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.7985;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cache" target="out2">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -805,13 +805,25 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
                     x = shifted
                 return x
 
-            # A spoke on the hub's own line stays a straight arrow. Only the
-            # ones that have to turn get a lane, otherwise the straight arrow
-            # picks up an 8px jog for no reason.
+            def shared_band_y(spoke: Rect) -> float | None:
+                """The y of one horizontal that sits inside both hub and spoke.
+
+                None when the two boxes share no vertical band wide enough to
+                hold a line, which is the only case that needs a lane.
+                """
+                lo = max(hub_rect.y, spoke.y)
+                hi = min(hub_rect.y2, spoke.y2)
+                return (lo + hi) / 2 if hi - lo > 12 else None
+
+            # A spoke the hub can reach without turning stays a straight arrow.
+            # A tall hub covers the height of every spoke beside it, so each one
+            # leaves at its own line; forcing those into lanes buys a few pixels
+            # of separation and costs every arrow a visible kink.
             above, below, aligned = [], [], []
             for k, spoke in enumerate(spokes):
-                if abs(spoke.cy - hub_rect.cy) < 12:
-                    aligned.append(k)
+                band_y = shared_band_y(spoke)
+                if band_y is not None:
+                    aligned.append((k, band_y))
                 elif spoke.cy < hub_rect.cy:
                     above.append(k)
                 else:
@@ -822,18 +834,18 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
             if not turning:
                 continue
 
-            for k in aligned:
+            for k, y in aligned:
                 edge = routed[members[k]][0]
                 pair = {edge["source"], edge["target"]}
-                y = hub_rect.cy
+                spoke = spokes[k]
                 if _blocked(gutter_start, y, gutter_end, y, lay.obstacles(pair)):
                     continue  # keep whatever the router worked out
-                spoke = spokes[k]
+                hub_frac = round(min(1.0, max(0.0, (y - hub_rect.y) / hub_rect.h)), 4)
                 spoke_frac = round(min(1.0, max(0.0, (y - spoke.y) / spoke.h)), 4)
                 if role == "source":
                     anchors = {
                         "exitX": 1 if rightward else 0,
-                        "exitY": 0.5,
+                        "exitY": hub_frac,
                         "entryX": 0 if rightward else 1,
                         "entryY": spoke_frac,
                     }
@@ -843,7 +855,7 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
                         "exitX": 0 if rightward else 1,
                         "exitY": spoke_frac,
                         "entryX": 1 if rightward else 0,
-                        "entryY": 0.5,
+                        "entryY": hub_frac,
                     }
                 routed[members[k]][1] = anchors
                 routed[members[k]][2] = []

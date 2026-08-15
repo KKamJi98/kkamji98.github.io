@@ -31,21 +31,11 @@
         <mxCell id="cmp" value="Spring MVC would need one blocked thread per in-flight request for the same work." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="146.79" y="348" width="732" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="conns-to-el1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el1">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="390.12" y="182.5" />
-              <mxPoint x="390.12" y="173.0" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="conns-to-el1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.1849;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="conns-to-el2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el2">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="413.46" y="255.5" />
-              <mxPoint x="413.46" y="243.0" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="conns-to-el2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6644;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conns" target="el2">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
