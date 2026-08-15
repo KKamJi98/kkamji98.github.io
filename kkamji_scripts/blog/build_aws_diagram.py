@@ -749,12 +749,13 @@ def route(
 
 
 def separate_lanes(routed: list, lay: "Layout") -> None:
-    """Give every arrow of a fan-out (or fan-in) its own corridor.
+    """Route a fan-out (or fan-in) as one trunk that forks.
 
-    Two arrows leaving one icon for two boxes in the same column would otherwise
-    share both legs and render as a single line with an arrowhead at each end.
-    Each gets its own exit height and its own vertical leg in the gutter, so the
-    branch is legible as two arrows.
+    Every arrow of the fan meets the hub at the same anchor, runs out to one
+    shared corridor in the gutter and branches off it into its own spoke. A
+    separate anchor and corridor per arrow instead draws N unrelated lines into
+    one box, and on a 48px service icon the exits sit 8px apart and fray the
+    edge of the icon.
     """
     for role, other in (("source", "target"), ("target", "source")):
         groups: dict[str, list[int]] = {}
@@ -817,6 +818,13 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
             ys = [hub_rect.cy] + [s.cy for s in spokes]
             trunk = clear_corridor(gutter_start + span / 2, min(ys), max(ys))
             for k, spoke in enumerate(spokes):
+                edge = routed[members[k]][0]
+                blockers = lay.obstacles({edge["source"], edge["target"]})
+                spoke_edge = spoke.x if rightward else spoke.x2
+                if _blocked(hub_rect.cx, hub_rect.cy, trunk, hub_rect.cy, blockers) or (
+                    _blocked(trunk, spoke.cy, spoke_edge, spoke.cy, blockers)
+                ):
+                    continue  # a box sits on the way; keep the router's answer
                 if role == "source":
                     anchors = {
                         "exitX": 1 if rightward else 0,
@@ -833,8 +841,14 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
                         "entryY": 0.5,
                     }
                     points = [(trunk, spoke.cy), (trunk, hub_rect.cy)]
-                if abs(spoke.cy - hub_rect.cy) < 1:
-                    points = []  # already on the hub's line, no trunk to take
+                # Near enough to the hub's line that a trunk would buy nothing
+                # but a few pixels of vertical step. Meet the spoke on the hub's
+                # own line instead, which keeps the arrow straight and still
+                # leaves it sharing the hub anchor with the rest of the fan.
+                if abs(spoke.cy - hub_rect.cy) < 12 and spoke.y < hub_rect.cy < spoke.y2:
+                    frac = round((hub_rect.cy - spoke.y) / spoke.h, 4)
+                    anchors["entryY" if role == "source" else "exitY"] = frac
+                    points = []
                 routed[members[k]][1] = anchors
                 routed[members[k]][2] = points
 
