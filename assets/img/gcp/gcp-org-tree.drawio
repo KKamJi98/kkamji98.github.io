@@ -31,17 +31,37 @@
         <mxCell id="billing" value="Project: billing-system" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="715.89" y="256" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="org-to-folder-eng" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.3155;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="org" target="folder-eng">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="org-to-folder-eng" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="org" target="folder-eng">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="323.89" y="207.0" />
+              <mxPoint x="323.89" y="169.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="org-to-folder-fin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.8689;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="org" target="folder-fin">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="org-to-folder-fin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="org" target="folder-fin">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="323.89" y="207.0" />
+              <mxPoint x="323.89" y="283.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="folder-eng-to-app-prod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2077;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="folder-eng" target="app-prod">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="folder-eng-to-app-prod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="folder-eng" target="app-prod">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="686.89" y="169.0" />
+              <mxPoint x="686.89" y="131.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="folder-eng-to-app-staging" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.7923;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="folder-eng" target="app-staging">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="folder-eng-to-app-staging" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="folder-eng" target="app-staging">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="686.89" y="169.0" />
+              <mxPoint x="686.89" y="207.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="folder-fin-to-billing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="folder-fin" target="billing">
           <mxGeometry relative="1" as="geometry" />

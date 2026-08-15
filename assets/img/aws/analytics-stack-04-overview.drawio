@@ -49,51 +49,51 @@
         <mxCell id="lf" value="Lake Formation&#xa;data authorization" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lake_formation;" vertex="1" parent="1">
           <mxGeometry x="638" y="442" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="user-to-athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="athena">
+        <mxCell id="user-to-athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="athena">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="218.0" y="234.0" />
-              <mxPoint x="218.0" y="170.0" />
+              <mxPoint x="253.0" y="246.0" />
+              <mxPoint x="253.0" y="170.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="user-to-redshift" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="redshift">
+        <mxCell id="user-to-redshift" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="redshift">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="288.0" y="258.0" />
-              <mxPoint x="288.0" y="286.0" />
+              <mxPoint x="253.0" y="246.0" />
+              <mxPoint x="253.0" y="286.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="athena-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="athena" target="glue">
+        <mxCell id="athena-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="athena" target="glue">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="483.33" y="170.0" />
-              <mxPoint x="483.33" y="227.0" />
+              <mxPoint x="522.0" y="170.0" />
+              <mxPoint x="522.0" y="239.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="redshift-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="redshift" target="glue">
+        <mxCell id="redshift-to-glue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="redshift" target="glue">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="560.67" y="286.0" />
-              <mxPoint x="560.67" y="251.0" />
+              <mxPoint x="522.0" y="286.0" />
+              <mxPoint x="522.0" y="239.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="glue-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3">
+        <mxCell id="glue-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="764.67" y="227.0" />
-              <mxPoint x="764.67" y="170.0" />
+              <mxPoint x="804.0" y="239.0" />
+              <mxPoint x="804.0" y="170.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="glue-to-s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3tables">
+        <mxCell id="glue-to-s3tables" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="glue" target="s3tables">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="843.33" y="251.0" />
-              <mxPoint x="843.33" y="286.0" />
+              <mxPoint x="804.0" y="239.0" />
+              <mxPoint x="804.0" y="286.0" />
             </Array>
           </mxGeometry>
         </mxCell>

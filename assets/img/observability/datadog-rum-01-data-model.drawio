@@ -37,20 +37,40 @@
         <mxCell id="session-to-view" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="session" target="view">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="view-to-ev-action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.0789;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-action">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="view-to-ev-action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-action">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="497.0" y="275.0" />
+              <mxPoint x="497.0" y="131.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="view-to-ev-resource" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2895;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-resource">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="view-to-ev-resource" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-resource">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="497.0" y="275.0" />
+              <mxPoint x="497.0" y="203.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="view-to-ev-error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-error">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="view-to-ev-longtask" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.7105;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-longtask">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="view-to-ev-longtask" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-longtask">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="497.0" y="275.0" />
+              <mxPoint x="497.0" y="347.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="view-to-ev-vital" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.9211;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-vital">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="view-to-ev-vital" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="view" target="ev-vital">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="497.0" y="275.0" />
+              <mxPoint x="497.0" y="419.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

@@ -49,11 +49,21 @@
         <mxCell id="stub-to-recursive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.3989;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="stub" target="recursive">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="recursive-to-cachehit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.1436;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="cachehit">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="recursive-to-cachehit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="cachehit">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="486.0" y="226.0" />
+              <mxPoint x="486.0" y="159.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="recursive-to-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.8564;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="root">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="recursive-to-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="recursive" target="root">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="486.0" y="226.0" />
+              <mxPoint x="486.0" y="293.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="root-to-tld" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="root" target="tld">
           <mxGeometry relative="1" as="geometry" />

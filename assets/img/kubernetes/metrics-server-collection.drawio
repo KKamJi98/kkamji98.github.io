@@ -43,13 +43,18 @@
         <mxCell id="metrics-server-to-metrics-api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-server" target="metrics-api">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="metrics-api-to-hpa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="hpa">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="metrics-api-to-top" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="top">
+        <mxCell id="metrics-api-to-hpa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="hpa">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="713.0" y="188.5" />
+              <mxPoint x="713.0" y="175.0" />
+              <mxPoint x="713.0" y="156.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="metrics-api-to-top" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metrics-api" target="top">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="713.0" y="175.0" />
               <mxPoint x="713.0" y="275.0" />
             </Array>
           </mxGeometry>

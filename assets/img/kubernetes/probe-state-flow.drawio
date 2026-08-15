@@ -49,29 +49,29 @@
         <mxCell id="starting-to-startup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="starting" target="startup">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="startup-to-readiness" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="readiness">
+        <mxCell id="startup-to-readiness" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="readiness">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="617.33" y="269.5" />
-              <mxPoint x="617.33" y="159.0" />
+              <mxPoint x="627.0" y="283.0" />
+              <mxPoint x="627.0" y="159.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="startup-to-liveness" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="liveness">
+        <mxCell id="startup-to-liveness" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="startup" target="liveness">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="626" y="296.5" />
-              <mxPoint x="626" y="407.0" />
+              <mxPoint x="627.0" y="283.0" />
+              <mxPoint x="627.0" y="407.0" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="readiness-to-ready" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="ready">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="readiness-to-notready" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.75;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="notready">
+        <mxCell id="readiness-to-notready" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="readiness" target="notready">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="880.5" y="172.5" />
+              <mxPoint x="880.5" y="159.0" />
               <mxPoint x="880.5" y="283.0" />
             </Array>
           </mxGeometry>

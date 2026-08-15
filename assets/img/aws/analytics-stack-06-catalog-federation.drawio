@@ -37,11 +37,21 @@
         <mxCell id="arnnote" value="Deeper federation means a deeper ARN path, so a policy has to grant the ancestor ARNs as well as the target." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="34" y="364" width="866" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="defcat-to-logsdb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2015;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="defcat" target="logsdb">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="defcat-to-logsdb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="defcat" target="logsdb">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="237.0" y="171.0" />
+              <mxPoint x="237.0" y="131.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="defcat-to-s3tcat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.7985;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="defcat" target="s3tcat">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="defcat-to-s3tcat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="defcat" target="s3tcat">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="237.0" y="171.0" />
+              <mxPoint x="237.0" y="211.0" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="s3tcat-to-bucket" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3tcat" target="bucket">
           <mxGeometry relative="1" as="geometry" />

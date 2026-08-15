@@ -28,16 +28,26 @@
         <mxCell id="function" value="Function&#xa;a callable object" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
           <mxGeometry x="691.85" y="265" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="values-to-primitive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.1465;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="values" target="primitive">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="values-to-reference" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.8744;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="values" target="reference">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="reference-to-object" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.25;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reference" target="object">
+        <mxCell id="values-to-primitive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="values" target="primitive">
           <mxGeometry relative="1" as="geometry" >
             <Array as="points">
-              <mxPoint x="630.35" y="278.5" />
+              <mxPoint x="356.85" y="211.5" />
+              <mxPoint x="356.85" y="135.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="values-to-reference" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="values" target="reference">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="356.85" y="211.5" />
+              <mxPoint x="356.85" y="292.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reference-to-object" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reference" target="object">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="630.35" y="292.0" />
               <mxPoint x="630.35" y="216.0" />
             </Array>
           </mxGeometry>

@@ -777,7 +777,10 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
             badged = [
                 lay.badge[e[other]] for e in edges_of if e[other] in lay.badge
             ] + ([lay.badge[hub]] if hub in lay.badge else [])
-            gutter_start = hub_rect.x2 if rightward else min(s.x2 for s in spokes)
+            # The corridor has to clear every spoke, so it starts past the widest
+            # one. A service icon is only 48px wide next to a full box, so taking
+            # the narrowest here would put the corridor on top of the others.
+            gutter_start = hub_rect.x2 if rightward else max(s.x2 for s in spokes)
             gutter_end = min(s.x for s in spokes) if rightward else hub_rect.x
             span = gutter_end - gutter_start
             if span < 40:
@@ -805,86 +808,33 @@ def separate_lanes(routed: list, lay: "Layout") -> None:
                     x = shifted
                 return x
 
-            def shared_band_y(spoke: Rect) -> float | None:
-                """The y of one horizontal that sits inside both hub and spoke.
-
-                None when the two boxes share no vertical band wide enough to
-                hold a line, which is the only case that needs a lane.
-                """
-                lo = max(hub_rect.y, spoke.y)
-                hi = min(hub_rect.y2, spoke.y2)
-                return (lo + hi) / 2 if hi - lo > 12 else None
-
-            # A spoke the hub can reach without turning stays a straight arrow.
-            # A tall hub covers the height of every spoke beside it, so each one
-            # leaves at its own line; forcing those into lanes buys a few pixels
-            # of separation and costs every arrow a visible kink.
-            above, below, aligned = [], [], []
+            # One trunk for the whole fan. Every arrow meets the hub at the same
+            # point, runs out to a single shared corridor and branches off it
+            # into its own spoke, so the picture reads as one flow that forks or
+            # converges. The alternative - a separate anchor and a separate
+            # corridor per arrow - draws N unrelated lines into one box, and on a
+            # 48px service icon the exits land 8px apart and fray its edge.
+            ys = [hub_rect.cy] + [s.cy for s in spokes]
+            trunk = clear_corridor(gutter_start + span / 2, min(ys), max(ys))
             for k, spoke in enumerate(spokes):
-                band_y = shared_band_y(spoke)
-                if band_y is not None:
-                    aligned.append((k, band_y))
-                elif spoke.cy < hub_rect.cy:
-                    above.append(k)
-                else:
-                    below.append(k)
-            above.sort(key=lambda k: -spokes[k].cy)
-            below.sort(key=lambda k: spokes[k].cy)
-            turning = above + below
-            if not turning:
-                continue
-
-            for k, y in aligned:
-                edge = routed[members[k]][0]
-                pair = {edge["source"], edge["target"]}
-                spoke = spokes[k]
-                if _blocked(gutter_start, y, gutter_end, y, lay.obstacles(pair)):
-                    continue  # keep whatever the router worked out
-                hub_frac = round(min(1.0, max(0.0, (y - hub_rect.y) / hub_rect.h)), 4)
-                spoke_frac = round(min(1.0, max(0.0, (y - spoke.y) / spoke.h)), 4)
                 if role == "source":
                     anchors = {
                         "exitX": 1 if rightward else 0,
-                        "exitY": hub_frac,
+                        "exitY": 0.5,
                         "entryX": 0 if rightward else 1,
-                        "entryY": spoke_frac,
+                        "entryY": 0.5,
                     }
+                    points = [(trunk, hub_rect.cy), (trunk, spoke.cy)]
                 else:
-                    # The hub is the arrow's target, so the spoke owns the exit.
-                    anchors = {
-                        "exitX": 0 if rightward else 1,
-                        "exitY": spoke_frac,
-                        "entryX": 1 if rightward else 0,
-                        "entryY": hub_frac,
-                    }
-                routed[members[k]][1] = anchors
-                routed[members[k]][2] = []
-
-            for lane, k in enumerate(turning):
-                spoke = spokes[k]
-                side = above if k in above else below
-                rank = side.index(k) + 1
-                half = 0.5 / (len(side) + 1)
-                frac = 0.5 - rank * half if k in above else 0.5 + rank * half
-                frac = round(frac, 4)
-                hub_y = hub_rect.y + hub_rect.h * frac
-                mid = gutter_start + span * (lane + 1) / (len(turning) + 1)
-                mid = clear_corridor(mid, hub_y, spoke.cy)
-                anchors = {
-                    "exitX": 1 if rightward else 0,
-                    "exitY": frac,
-                    "entryX": 0 if rightward else 1,
-                    "entryY": 0.5,
-                }
-                points = [(mid, hub_y), (mid, spoke.cy)]
-                if role == "target":
                     anchors = {
                         "exitX": 0 if rightward else 1,
                         "exitY": 0.5,
                         "entryX": 1 if rightward else 0,
-                        "entryY": frac,
+                        "entryY": 0.5,
                     }
-                    points = [(mid, spoke.cy), (mid, hub_y)]
+                    points = [(trunk, spoke.cy), (trunk, hub_rect.cy)]
+                if abs(spoke.cy - hub_rect.cy) < 1:
+                    points = []  # already on the hub's line, no trunk to take
                 routed[members[k]][1] = anchors
                 routed[members[k]][2] = points
 
