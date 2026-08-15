@@ -1,5 +1,5 @@
 ---
-title: "AWS Glue 파티셔닝 운영: Athena의 S3 스캔량을 줄이는 Catalog와 Projection 설계"
+title: "AWS Glue 파티셔닝 운영하기 - Catalog, Projection, S3 스캔 최소화"
 date: 2026-08-03 02:20:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

@@ -1,5 +1,5 @@
 ---
-title: "Jenkins Operator reconcile 루프를 소스 코드로 따라가기"
+title: "Jenkins Operator 심화 - Reconcile 루프와 소스 코드 [Jenkins 5]"
 date: 2026-08-14 21:30:00 +0900
 author: kkamji
 categories: [DevOps]

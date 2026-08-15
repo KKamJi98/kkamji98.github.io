@@ -1,5 +1,5 @@
 ---
-title: "AWS CodeArtifact Overview: 프라이빗 패키지 저장소의 구조와 보안"
+title: "AWS CodeArtifact Overview - 프라이빗 패키지 저장소 구조와 보안"
 date: 2026-08-13 14:00:00 +0900
 author: kkamji
 categories: [Cloud, DevOps]

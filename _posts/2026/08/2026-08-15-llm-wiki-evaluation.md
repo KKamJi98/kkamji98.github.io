@@ -1,6 +1,6 @@
 ---
-title: "LLM Wiki를 수치로 검증하기: 회귀 측정과 지식 그래프 실험"
-date: 2026-08-15 12:10:00 +0900
+title: "LLM Wiki 고도화 - 검색 품질 측정과 지식 그래프 [LLM Wiki 3]"
+date: 2026-08-15 13:20:00 +0900
 author: kkamji
 categories: [AI]
 tags: [ai, llm, knowledge-base, wiki, rag, bm25, knowledge-graph, evaluation, obsidian]

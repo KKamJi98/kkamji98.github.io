@@ -1,5 +1,5 @@
 ---
-title: "JA4 TLS Fingerprinting: TLS 핸드셰이크로 봇 트래픽을 식별하는 방법"
+title: "JA4 TLS Fingerprinting 알아보기 - 봇 트래픽 식별과 차단"
 date: 2026-08-09 19:00:00 +0900
 author: kkamji
 categories: [Cloud, Security]

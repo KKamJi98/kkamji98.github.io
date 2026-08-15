@@ -1,5 +1,5 @@
 ---
-title: 여러 AI 코딩 에이전트를 위한 Agentic Development Environment 구축하기
+title: "Agentic Development Environment 구축하기 - AI 코딩 에이전트 인프라"
 date: 2026-07-12 02:31:00 +0900
 author: kkamji
 categories: [AI, Development Environment]

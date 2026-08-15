@@ -1,5 +1,5 @@
 ---
-title: "Vite Overview: Native ESM과 Rolldown으로 프론트엔드 빌드를 다시 정의하다"
+title: "Vite Overview - Native ESM과 Rolldown 빌드 도구"
 date: 2026-08-10 09:00:00 +0900
 author: kkamji
 categories: [Frontend, DevOps]

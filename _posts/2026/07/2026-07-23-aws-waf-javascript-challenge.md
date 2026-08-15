@@ -1,5 +1,5 @@
 ---
-title: "AWS WAF Challenge Action: 브라우저 토큰과 SPA 요청 경계를 이해하기"
+title: "AWS WAF Challenge Action - 브라우저 토큰과 SPA 요청 경계"
 date: 2026-07-23 18:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

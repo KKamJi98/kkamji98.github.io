@@ -1,5 +1,5 @@
 ---
-title: "Node.js HTTP 서버의 요청 경로: HTTP, TCP, 프로세스, 컨테이너의 경계"
+title: "Node.js HTTP 서버 요청 경로 - HTTP, TCP, 프로세스, 컨테이너"
 date: 2026-07-26 09:00:00 +0900
 author: kkamji
 categories: [Node.js, System]

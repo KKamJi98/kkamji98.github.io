@@ -1,5 +1,5 @@
 ---
-title: "Node.js 서버는 무엇 위에서 동작하는가"
+title: "Node.js 서버 Overview - 무엇 위에서 동작하는가"
 date: 2026-07-25 09:00:00 +0900
 author: kkamji
 categories: [Node.js, System]

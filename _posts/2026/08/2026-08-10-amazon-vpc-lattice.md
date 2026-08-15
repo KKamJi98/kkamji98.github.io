@@ -1,5 +1,5 @@
 ---
-title: "Amazon VPC Lattice: Service-to-Service 통신을 단순화하는 Application Networking"
+title: "Amazon VPC Lattice 알아보기 - Service Network와 서비스 간 통신"
 date: 2026-08-10 20:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

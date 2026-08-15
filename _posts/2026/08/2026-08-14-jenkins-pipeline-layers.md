@@ -1,5 +1,5 @@
 ---
-title: "Jenkins 파이프라인 정의의 계층: UI 스크립트에서 Shared Library까지"
+title: "Jenkins 파이프라인 알아보기 - Jenkinsfile, Multibranch, Shared Library [Jenkins 4]"
 date: 2026-08-14 22:00:00 +0900
 author: kkamji
 categories: [DevOps]

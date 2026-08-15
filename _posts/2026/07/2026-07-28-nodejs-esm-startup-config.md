@@ -1,5 +1,5 @@
 ---
-title: "Node.js ESM 모듈 경계와 startup configuration validation"
+title: "Node.js ESM 모듈 경계와 Startup Configuration Validation"
 date: 2026-07-28 13:57:00 +0900
 author: kkamji
 categories: [Node.js, System]

@@ -1,5 +1,5 @@
 ---
-title: "Node.js 서버와 Spring Boot 서버 비교: 런타임보다 실행 스택을 먼저 구분하기"
+title: "Node.js와 Spring Boot 서버 비교 - 실행 스택 중심으로"
 date: 2026-07-29 19:00:00 +0900
 author: kkamji
 categories: [Node.js, Spring, System]

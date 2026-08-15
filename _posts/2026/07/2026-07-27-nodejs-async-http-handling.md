@@ -1,5 +1,5 @@
 ---
-title: "Node.js 비동기 HTTP 처리: Promise, async/await, 오류 경계"
+title: "Node.js 비동기 HTTP 처리 - Promise, async/await, 오류 경계"
 date: 2026-07-27 20:30:00 +0900
 author: kkamji
 categories: [Node.js, System]

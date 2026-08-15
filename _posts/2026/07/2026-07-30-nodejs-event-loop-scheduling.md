@@ -1,5 +1,5 @@
 ---
-title: Node.js 이벤트 루프에서 다음 콜백이 실행되는 순서
+title: "Node.js 이벤트 루프 - 콜백 실행 순서와 스케줄링"
 date: 2026-07-30 00:05:00 +0900
 author: kkamji
 categories: [Node.js, JavaScript]
