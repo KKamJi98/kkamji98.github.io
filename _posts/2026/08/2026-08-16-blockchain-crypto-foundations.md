@@ -6,7 +6,7 @@ categories: [Security]
 tags: [blockchain, cryptography, hash, digital-signature, merkle-tree, secp256k1, study]
 comments: true
 image:
-  path: /assets/img/blockchain/blockchain-series.webp
+  path: /assets/img/blockchain/blockchain.webp
 ---
 
 "블록체인은 암호화되어서 안전하다"는 설명을 자주 봅니다. 그런데 Bitcoin 트랜잭션을 블록 탐색기에서 열어보면 송금액, 수신자, 잔액이 전부 평문으로 보입니다. 암호화가 핵심이라면 이 내용은 왜 숨겨져 있지 않을까요.
@@ -25,6 +25,8 @@ import hashlib
 a = hashlib.sha256(b"Send 100 BTC to Alice").hexdigest()
 b = hashlib.sha256(b"Send 100 BTC to Alise").hexdigest()  # 1글자만 변경
 diff = sum(x != y for x, y in zip(a, b))
+print("해시 A:", a)
+print("해시 B:", b)
 print(f"64자 중 다른 자리: {diff}/64 ({diff*100//64}%)")
 ```
 
@@ -56,7 +58,7 @@ print(tampered == block1)  # False
 
 ## 2. 디지털 서명 - 소유 증명
 
-Bitcoin과 Ethereum은 secp256k1이라는 타원곡선으로 서명합니다. 개인키는 1 이상 2^256 미만의 정수 하나이고, 공개키는 개인키에서 곱 연산으로 파생됩니다. 지갑을 만든다는 것의 실체는 이 난수 하나를 안전하게 생성하고 보관하는 일입니다.
+Bitcoin과 Ethereum은 secp256k1이라는 타원곡선으로 서명합니다. 개인키는 1 이상 곡선 차수 n 미만의 정수 하나이고(n은 2^256보다 약간 작습니다), 공개키는 그 정수를 곡선의 기준점에 곱해 얻습니다. 지갑을 만든다는 것의 실체는 이 난수 하나를 안전하게 생성하고 보관하는 일입니다.
 
 ```python
 from cryptography.hazmat.primitives.asymmetric import ec
@@ -76,25 +78,31 @@ pub.verify(sig, msg, ec.ECDSA(hashes.SHA256()))  # 통과
 
 ### 2.1. 변조와 위조는 어떻게 걸리는가
 
-세 가지 실험을 실행해 봤습니다.
+검증 실패는 반환값이 아니라 `InvalidSignature` 예외로 나옵니다. 세 가지 실험을 이어서 실행하려면 예외를 받아야 합니다.
 
 ```python
+from cryptography.exceptions import InvalidSignature
+
+def verifies(signature, message):
+    try:
+        pub.verify(signature, message, ec.ECDSA(hashes.SHA256()))
+        return True
+    except InvalidSignature:
+        return False
+
 # 실험 1: 서명 후 수신자 이름 1글자 변경
-tampered = b"Send 100 BTC to Alise"
-pub.verify(sig, tampered, ec.ECDSA(hashes.SHA256()))
-# InvalidSignature
+print(verifies(sig, b"Send 100 BTC to Alise"))  # False
 
 # 실험 2: 같은 메시지를 다른 키로 서명
 other_sig = ec.generate_private_key(ec.SECP256K1()).sign(msg, ec.ECDSA(hashes.SHA256()))
-pub.verify(other_sig, msg, ec.ECDSA(hashes.SHA256()))
-# InvalidSignature
+print(verifies(other_sig, msg))  # False
 
 # 실험 3: 같은 키로 같은 메시지를 다시 서명
 sig2 = priv.sign(msg, ec.ECDSA(hashes.SHA256()))
 print(sig == sig2)  # False
 ```
 
-수신자를 1글자 바꾸면 서명이 무효화됩니다. 남의 서명도 내 공개키로는 검증되지 않습니다. 같은 키로 같은 메시지를 서명해도 결과가 매번 다른데, ECDSA가 서명마다 무작위 nonce를 사용하기 때문입니다. 이 nonce가 서명의 변화를 만들지만, 재사용되는 순간 개인키가 노출되는 것으로 유명한 함정이기도 합니다. 서명 라이브러리의 난수 품질이 실제 사고로 이어진 사례가 있는 이유입니다.
+수신자를 1글자 바꾸면 서명이 무효화됩니다. 남의 서명도 내 공개키로는 검증되지 않습니다. 같은 키로 같은 메시지를 서명해도 결과가 매번 다른데, ECDSA가 서명마다 무작위 nonce를 사용하기 때문입니다. 이 nonce가 서명의 변화를 만들지만, 재사용되는 순간 개인키가 노출되는 것으로 유명한 함정이기도 합니다. 서명 라이브러리의 난수 품질이 실제 사고로 이어진 사례가 있는 이유입니다. RFC 6979는 난수 대신 개인키와 메시지 해시에서 nonce를 결정론적으로 유도해 이 위험을 제거하는 방식을 규정합니다.
 
 정리하면 신원은 공개키(주소), 소유 증명은 서명, 비밀은 개인키입니다. 개인키가 유출되면 자산을 이동할 권한 전체가 유출되며, 백업해야 할 대상도 개인키 하나입니다.
 
@@ -152,20 +160,33 @@ def verify_proof(tx_hash: bytes, proof: list[tuple[bytes, str]], root: bytes) ->
         cur = h(cur + sibling) if direction == "R" else h(sibling + cur)
     return cur == root
 
-proof = merkle_proof([h(t) for t in txs], 3)
+txs = [f"tx{i}: Alice->Bob:{i+1} BTC".encode() for i in range(6)]  # 앞 절의 변조 복원
+tx_hashes = [h(t) for t in txs]
+root = merkle_root(tx_hashes)
+
+proof = merkle_proof(tx_hashes, 3)
 print(len(proof))  # 3단계
 print(verify_proof(h(txs[3]), proof, root))  # True
 ```
 
 6건 트랜잭션 예제에서는 3단계, 형제 해시 3개(96바이트)만으로 Root와 대조 검증이 됩니다. 트랜잭션이 4,000건인 블록이라도 경로는 12단계, 384바이트로 늘어날 뿐입니다. 트랜잭션 전체를 내려받지 않고 블록 헤더 80바이트와 증명 경로만으로 자기 거래의 포함 여부를 확인하는 방식이 Bitcoin 라이트 지갑(SPV)의 동작 원리입니다.
 
-변조된 트랜잭션을 원본 경로로 검증하면 당연히 실패합니다. 경로의 형제 해시들이 원본 트랜잭션 기준으로 계산된 값이기 때문에, 다른 트랜잭션을 끼워 넣으면 Root와 맞을 수 없습니다.
+같은 경로에 변조된 트랜잭션을 넣으면 검증이 실패합니다.
+
+```python
+print(verify_proof(h(b"tx3: Alice->Bob:999999 BTC"), proof, root))  # False
+```
+
+경로의 형제 해시들은 원본 트랜잭션 기준으로 계산된 값입니다. 다른 트랜잭션을 끼워 넣으면 재계산된 Root가 헤더의 Root와 맞을 수 없습니다.
 
 ---
 
 ## 4. 세 조각이 맞물리는 지점
 
 여기까지 확인한 세 요소를 블록 수준에서 합치면 다음과 같습니다.
+
+![블록 헤더가 직전 블록 해시와 Merkle Root를 함께 담는 구조](/assets/img/blockchain/blockchain-series.webp)
+_각 블록은 직전 블록의 해시로 순서를 고정하고, Merkle Root로 그 블록에 담긴 트랜잭션 전체를 고정합니다. 개별 트랜잭션의 이동 권한은 서명이 증명합니다._
 
 | 요소 | 역할 | 깨는 방법 |
 |---|---|---|
@@ -177,16 +198,16 @@ print(verify_proof(h(txs[3]), proof, root))  # True
 
 마지막으로 흔한 오해로 돌아가면, 블록체인은 데이터를 숨기지 않습니다. 오히려 누구나 읽을 수 있게 공개하고, 그 대신 누가 승인했는지(서명)와 바뀌지 않았는지(해시)를 수학적으로 검증 가능하게 만듭니다. 기밀성이 필요한 영역은 별도의 계층(영지식 증명, 프라이버시 체인 등)이 담당합니다.
 
-실습에 사용한 전체 코드는 세 스크립트로 정리되어 있으며, Python 3와 cryptography 라이브러리만 있으면 어디서든 재현할 수 있습니다. 해시 15줄, 서명 20줄, Merkle 40줄로 블록체인의 검증 구조 전체를 손으로 확인할 수 있습니다.
+위 코드는 Python 3 표준 라이브러리와 cryptography 하나만 있으면 그대로 재현됩니다. 해시 부분은 표준 라이브러리만으로 돌아가고, 서명 부분만 `pip install cryptography`가 필요합니다. 세 절을 합쳐 100줄이 되지 않는 분량으로 블록체인의 검증 구조를 손으로 확인할 수 있습니다.
 
 ---
 
 ## 5. Reference
 
-- [NIST - SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- [NIST FIPS 180-4 - Secure Hash Standard (SHA-256)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
 - [SEC 2 - Recommended Elliptic Curve Domain Parameters (secp256k1)](https://www.secg.org/sec2-v2.pdf)
-- [Bitcoin Developer Reference - Block Chain](https://developer.bitcoin.org/reference/block-chain.html)
-- [Bitcoin Developer Reference - Merkle Trees](https://developer.bitcoin.org/reference/transactions.html#merkle-trees)
+- [Bitcoin Developer Reference - Block Chain](https://developer.bitcoin.org/reference/block_chain.html)
+- [Bitcoin Developer Reference - Merkle Trees](https://developer.bitcoin.org/reference/block_chain.html#merkle-trees)
 - [RFC 6979 - Deterministic DSA/ECDSA](https://datatracker.ietf.org/doc/html/rfc6979)
 - [Python cryptography library](https://cryptography.io/)
 
