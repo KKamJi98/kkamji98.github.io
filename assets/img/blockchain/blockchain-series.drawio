@@ -1,0 +1,37 @@
+<mxfile host="Electron" modified="2026-08-16T13:30:00.000Z" agent="herwin" version="24.7.5" type="device">
+  <diagram id="blockchain-series-cover" name="cover">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="500" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Blockchain" style="text;html=0;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="480" y="40" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="blk1" value="Block 87&#xa;tx: A to B" style="rounded=1;arcSize=12;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="220" y="170" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="blk2" value="Block 88&#xa;tx: B to C" style="rounded=1;arcSize=12;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="520" y="170" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="blk3" value="Block 89&#xa;tx: C to D" style="rounded=1;arcSize=12;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="820" y="170" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="blk1" target="blk2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="blk2" target="blk3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sig" value="Signature&#xa;secp256k1" style="rounded=1;arcSize=12;html=0;fillColor=#FEF7E0;strokeColor=#B06000;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="220" y="330" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="merkle" value="Merkle Root&#xa;32 bytes" style="rounded=1;arcSize=12;html=0;fillColor=#E6F4EA;strokeColor=#34A853;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="520" y="330" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="hashbox" value="SHA-256&#xa;hash chain" style="rounded=1;arcSize=12;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;strokeWidth=1.25;fontColor=#202124;fontSize=13;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="820" y="330" width="160" height="88" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
