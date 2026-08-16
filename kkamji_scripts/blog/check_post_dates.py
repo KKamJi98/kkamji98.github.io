@@ -2,9 +2,14 @@
 """Check Jekyll post date hygiene.
 
 Fails when:
-- Two or more posts share the same filename date.
+- Two or more posts share the same front matter timestamp.
 - A filename date is later than today.
 - Front matter date does not match the filename date.
+
+Several posts may share a filename date. Jekyll and check_series_order.py both
+order on the full front matter timestamp, so a day that carries three posts at
+13:00, 13:10 and 13:20 has an unambiguous order. Only an identical timestamp
+leaves the order undefined, and that is what fails here.
 """
 
 from __future__ import annotations
@@ -30,12 +35,13 @@ def frontmatter_date(path: Path) -> str:
     match = FM_DATE_RE.search(parts[1])
     if not match:
         return ""
-    return match.group(1).strip().strip('"\'')
+    return match.group(1).strip().strip("\"'")
 
 
 def main() -> None:
     today = date.today()
-    by_date: dict[str, list[str]] = defaultdict(list)
+    by_timestamp: dict[str, list[str]] = defaultdict(list)
+    total = 0
     failures: list[str] = []
 
     for path in sorted(POSTS_DIR.glob("**/*.md")):
@@ -44,19 +50,27 @@ def main() -> None:
             continue
         filename_date = match.group(1)
         rel = path.relative_to(ROOT).as_posix()
-        by_date[filename_date].append(rel)
+        total += 1
 
         parsed_date = date.fromisoformat(filename_date)
         if parsed_date > today:
-            failures.append(f"future filename date: {rel} ({filename_date} > {today.isoformat()})")
+            failures.append(
+                f"future filename date: {rel} ({filename_date} > {today.isoformat()})"
+            )
 
         fm_date = frontmatter_date(path)
         if fm_date and not fm_date.startswith(filename_date):
-            failures.append(f"frontmatter date mismatch: {rel} filename={filename_date} frontmatter={fm_date}")
+            failures.append(
+                f"frontmatter date mismatch: {rel} filename={filename_date} frontmatter={fm_date}"
+            )
 
-    for filename_date, rels in sorted(by_date.items()):
+        # A post with no front matter date falls back to the filename date, so
+        # two of those on one day still collide.
+        by_timestamp[fm_date or filename_date].append(rel)
+
+    for timestamp, rels in sorted(by_timestamp.items()):
         if len(rels) > 1:
-            failures.append(f"duplicate filename date: {filename_date}")
+            failures.append(f"duplicate post timestamp: {timestamp}")
             failures.extend(f"  - {rel}" for rel in rels)
 
     if failures:
@@ -65,7 +79,9 @@ def main() -> None:
             print(failure)
         raise SystemExit(1)
 
-    print(f"Post date hygiene passed: {sum(len(v) for v in by_date.values())} posts, no duplicates, no future dates")
+    print(
+        f"Post date hygiene passed: {total} posts, no duplicate timestamps, no future dates"
+    )
 
 
 if __name__ == "__main__":

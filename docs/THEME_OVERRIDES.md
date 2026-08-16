@@ -57,7 +57,7 @@ bash tools/run.sh    # 로컬 미리보기
 
 - **설정**: `_config.yml`의 `search.per_page`(페이지당 개수), `search.limit`(전체 fetch 상한, 빈값=전체 글).
 - **인라인 스크립트 제약**: production은 `compress_html`로 페이지를 한 줄로 접기 때문에 이 loader 안에서는 `//` 주석을 쓸 수 없다(뒤 코드가 전부 주석에 먹혀 `SyntaxError`). 블록 주석만 사용하고, 빌드 후 `python3 kkamji_scripts/blog/check_inline_scripts.py <site>`로 검증한다.
-- **rollback 조건**: PR #2584가 upstream에 머지되고 gem을 해당 버전 이상으로 올리더라도, 아래 3의 랭킹·점프 개선은 upstream에 없으므로 되돌리면 검색 품질이 함께 후퇴한다. 롤백은 페이지네이션 기본 동작 한정으로 판단하고, 3의 변경은 별도로 유지 여부를 결정한다. gem 버전 bump 시 include 2개가 gem 신규 변경을 못 받으므로 재검토 필요.
+- **rollback 조건**: PR #2584가 upstream에 머지되고 gem을 해당 버전 이상으로 올리더라도, 아래 3의 랭킹/점프 개선은 upstream에 없으므로 되돌리면 검색 품질이 함께 후퇴한다. 롤백은 페이지네이션 기본 동작 한정으로 판단하고, 3의 변경은 별도로 유지 여부를 결정한다. gem 버전 bump 시 include 2개가 gem 신규 변경을 못 받으므로 재검토 필요.
 
 ### 3. 검색 관련도 랭킹과 페이지 점프
 
@@ -88,11 +88,11 @@ bash tools/run.sh    # 로컬 미리보기
 - 그룹에 넣을 영어 표기는 **substring으로 흔한 단어에 숨지 않는 것만** 고른다. `log`(blog), `auth`(author), `cert`(certain)는 의도적으로 제외했다. 파일 상단 주석에 이 규칙을 적어두었다.
 - 질의 문자열 그대로가 제목에 있으면 붙는 구절 보너스는 확장 대상이 아니다. 그래서 `k8s`와 `kubernetes`는 결과 집합이 같고 상위 순서만 다르다(질의 철자와 정확히 일치하는 제목이 우선).
 
-**인덱스 크기**: 테마 인덱스는 렌더된 본문 전체를 담아 코드블록(이 블로그 마크다운의 47%)까지 들어갔다. 크기 문제이자 YAML 키·로그 출력이 매칭되는 정밀도 문제였다.
+**인덱스 크기**: 테마 인덱스는 렌더된 본문 전체를 담아 코드블록(이 블로그 마크다운의 47%)까지 들어갔다. 크기 문제이자 YAML 키/로그 출력이 매칭되는 정밀도 문제였다.
 
 | 파일 | 변경 내용 |
 | :--- | :--- |
-| `assets/js/data/search.json` | 신규 override. `post.content`를 `<pre`로 split해 `</pre>` 뒤만 이어붙여 코드블록을 제거한 뒤 gem과 동일한 `markdownify | strip_html | ...` 파이프라인 적용. 인라인 `<code>`는 유지하므로 문장 속 명령어·플래그는 그대로 검색된다 |
+| `assets/js/data/search.json` | 신규 override. `post.content`를 `<pre`로 split해 `</pre>` 뒤만 이어붙여 코드블록을 제거한 뒤 gem과 동일한 `markdownify | strip_html | ...` 파이프라인 적용. 인라인 `<code>`는 유지하므로 문장 속 명령어/플래그는 그대로 검색된다 |
 
 - **효과(실측)**: raw 2,493,928 B -> **878,420 B**, gzip 731,250 B -> **263,344 B** (64% 감소). 본문 길이 중앙값 6,179자 -> 1,749자.
 - **트레이드오프**: 코드블록에만 등장하는 문자열은 더 이상 검색되지 않는다. 확인된 예로 `apiversion`, `imagepullpolicy`는 0건이 된다. 반면 산문에서도 언급되는 `kubectl` 같은 용어는 그대로 걸린다.

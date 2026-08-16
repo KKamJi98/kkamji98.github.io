@@ -860,13 +860,13 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
         <span class="cv-period">2025.11 ~ 현재</span>
       </span>
     </header>
-    <p class="cv-card-meta">Project Lead · AI · Kubernetes · Observability</p>
+    <p class="cv-card-meta">Project Lead / AI / Kubernetes / Observability</p>
     <p class="cv-card-desc">AI 기반 Kubernetes 장애 분석 및 RCA 자동화 플랫폼</p>
     <ul>
       <li>AI Agent 기반 Kubernetes 장애 분석 및 근본 원인(Root Cause) 자동 추론</li>
       <li>Dashboard 기반 Alert / Incident History 관리 기능 제공</li>
       <li>Chaos Mesh 기반 장애 시나리오 주입 및 검증 환경 구성</li>
-      <li>Prometheus / Tempo / Grafana 기반 Metric · Trace 통합 관측</li>
+      <li>Prometheus / Tempo / Grafana 기반 Metric과 Trace 통합 관측</li>
       <li>Istio Service Mesh 환경에서 트래픽 / 정책 데이터 활용</li>
     </ul>
     <ul class="cv-card-tech">
@@ -888,8 +888,8 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
         <span class="cv-period">2025.04</span>
       </span>
     </header>
-    <p class="cv-card-meta">Infra · Frontend · Backend</p>
-    <p class="cv-card-desc">청년 주택청약 알리미 Web App · Students @ AI - Seoul Hackathon Winner</p>
+    <p class="cv-card-meta">Infra / Frontend / Backend</p>
+    <p class="cv-card-desc">청년 주택청약 알리미 Web App / Students @ AI - Seoul Hackathon Winner</p>
     <ul>
       <li>Streamlit 기반 사용자 Frontend UI 개발</li>
       <li>Bedrock Knowledge Base 기반 특정 청약 정보의 대화형 조회 구현</li>
@@ -910,7 +910,7 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
         <span class="cv-period">2024.11 ~ 2024.12</span>
       </span>
     </header>
-    <p class="cv-card-meta">Infra · DevOps Lead</p>
+    <p class="cv-card-meta">Infra / DevOps Lead</p>
     <p class="cv-card-desc">서버리스(AWS Lambda) 기반 영단어 암기 Web App</p>
     <ul>
       <li>Terraform(HCP Terraform) 기반 Cloud Infra IaC</li>
@@ -936,7 +936,7 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
         <span class="cv-period">2024.07 ~ 2024.08</span>
       </span>
     </header>
-    <p class="cv-card-meta">Project Lead · Infra Lead</p>
+    <p class="cv-card-meta">Project Lead / Infra Lead</p>
     <p class="cv-card-desc">EKS / Bedrock 기반 문제 풀이 Web App</p>
     <ul>
       <li>Team Lead 및 Cloud Infra 설계, 구축, 운영</li>
@@ -971,8 +971,8 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
         <span class="cv-period">2024.01 ~ 2024.03</span>
       </span>
     </header>
-    <p class="cv-card-meta">Cloud Architecture · Infra · Backend</p>
-    <p class="cv-card-desc">AI 기반 사진 앨범 서비스 (MSA · 3-Tier Architecture)</p>
+    <p class="cv-card-meta">Cloud Architecture / Infra / Backend</p>
+    <p class="cv-card-desc">AI 기반 사진 앨범 서비스 (MSA / 3-Tier Architecture)</p>
     <ul>
       <li>AWS 클라우드 상에서 MSA, 3-Tier Architecture 기반 구축 및 배포</li>
       <li>Cloud Architecture 설계, AWS 인프라 구축 및 운영</li>
@@ -1072,42 +1072,42 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
     <span class="cv-cert-dot hashicorp" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">Terraform Associate (003)</span>
-      <span class="cv-cert-meta">HashiCorp · 2025.07</span>
+      <span class="cv-cert-meta">HashiCorp / 2025.07</span>
     </div>
   </div>
   <div class="cv-cert">
     <span class="cv-cert-dot aws" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">AWS DevOps Engineer - Professional</span>
-      <span class="cv-cert-meta">AWS · 2024.12</span>
+      <span class="cv-cert-meta">AWS / 2024.12</span>
     </div>
   </div>
   <div class="cv-cert">
     <span class="cv-cert-dot kubernetes" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">CKA: Certified Kubernetes Administrator</span>
-      <span class="cv-cert-meta">CNCF · 2024.07</span>
+      <span class="cv-cert-meta">CNCF / 2024.07</span>
     </div>
   </div>
   <div class="cv-cert">
     <span class="cv-cert-dot aws" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">AWS Solutions Architect - Associate</span>
-      <span class="cv-cert-meta">AWS · 2024.02</span>
+      <span class="cv-cert-meta">AWS / 2024.02</span>
     </div>
   </div>
   <div class="cv-cert">
     <span class="cv-cert-dot kr" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">정보처리기사</span>
-      <span class="cv-cert-meta">한국산업인력공단 · 2023.09</span>
+      <span class="cv-cert-meta">한국산업인력공단 / 2023.09</span>
     </div>
   </div>
   <div class="cv-cert">
     <span class="cv-cert-dot aws" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">AWS Cloud Practitioner</span>
-      <span class="cv-cert-meta">AWS · 2023.05</span>
+      <span class="cv-cert-meta">AWS / 2023.05</span>
     </div>
   </div>
 </div>

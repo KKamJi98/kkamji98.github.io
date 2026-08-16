@@ -8,9 +8,12 @@
 #
 # Rules for adding a term:
 #   - lower-case only; a query token is matched against a group exactly
-#   - matching inside a post is substring-based, so avoid short English terms
-#     that hide inside common words ("log" would match "blog", "auth" would
-#     match "author"). Keep the distinctive spelling instead.
+#   - titles are matched on whole words for English terms, so "java" no longer
+#     scores a JavaScript post on its title
+#   - categories, tags and body are still substring-matched, so a short English
+#     term hidden inside a common word ("log" inside "blog", "auth" inside
+#     "author") still drags in posts it does not belong to. Keep the
+#     distinctive spelling instead.
 
 - [kubernetes, k8s, 쿠버네티스, 쿠버]
 - [docker, 도커]

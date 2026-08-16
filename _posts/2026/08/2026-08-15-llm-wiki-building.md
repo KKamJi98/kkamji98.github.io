@@ -131,6 +131,10 @@ rg -l "어드미션 컨트롤" wiki/
 
 ## 8. Reference
 
-- [Karpathy - LLM Wiki](https://github.com/karpathy/llm-wiki)
+- [Karpathy - LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
 - [Obsidian - Internal link](https://help.obsidian.md/Linking+notes+and+files/Internal+links)
 - [BM25 - Wikipedia](https://en.wikipedia.org/wiki/Okapi_BM25)
+
+> **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
+> **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
+{: .prompt-info}

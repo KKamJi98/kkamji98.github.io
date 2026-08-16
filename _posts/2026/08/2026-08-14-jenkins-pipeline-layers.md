@@ -159,7 +159,7 @@ Shared Library의 trusted 등급은 이 체계의 일부입니다. 신뢰 라이
 ## 7. Reference
 
 - [Jenkins Docs - Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
-- [Jenkins Docs - Using a Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/using-jenkinsfile/)
+- [Jenkins Docs - Using a Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
 - [Jenkins Docs - Branches and Pull Requests](https://www.jenkins.io/doc/book/pipeline/multibranch/)
 - [Jenkins Docs - Shared Libraries](https://www.jenkins.io/doc/book/pipeline/shared-libraries/)
 - [Jenkins Docs - Pipeline Steps](https://www.jenkins.io/doc/pipeline/steps/)

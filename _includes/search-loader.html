@@ -13,6 +13,10 @@
   in `_data/search_synonyms.yml`, which is how a Korean query reaches posts
   written only in English.
 
+  Titles are matched on whole words for latin terms and on substrings for
+  Korean; categories, tags and body stay on substrings throughout. See
+  matchesTitle below for why.
+
   NOTE: production builds collapse this page onto one line, so a `//` comment
   would swallow the rest of the script. Use block comments only.
 -->
@@ -330,12 +334,15 @@
       }
 
       handleClick(event) {
-        const target = event.target.closest('a[data-page]');
+        const target = event.target.closest('a.page-link');
 
         if (!target) {
           return;
         }
 
+        /* Cancel before reading data-page: a disabled arrow has no data-page
+           but still has href="#", so returning early would let the browser
+           jump to the top of the page and push a history entry. */
         event.preventDefault();
 
         const page = Number(target.dataset.page);
@@ -382,6 +389,34 @@
       return loadPromise;
     }
 
+    /* Title weight is the difference between a post ranking first and ranking
+       nowhere, so it demands a whole-word hit for latin forms. Without this,
+       "java" scores every JavaScript post on its title and buries the Spring
+       and JVM series, which only carry "java" in their tags. Korean forms keep
+       substring matching because Korean queries have no such word breaks.
+       The boundary is spelled out instead of using \b so forms ending in "+",
+       "#" or "." behave. */
+    const LATIN_FORM = /^[a-z0-9][a-z0-9.+#-]*$/;
+    const wholeWordCache = new Map();
+
+    function wholeWordMatcher(form) {
+      let matcher = wholeWordCache.get(form);
+
+      if (!matcher) {
+        const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        matcher = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`);
+        wholeWordCache.set(form, matcher);
+      }
+
+      return matcher;
+    }
+
+    function matchesTitle(title, form) {
+      return LATIN_FORM.test(form)
+        ? wholeWordMatcher(form).test(title)
+        : title.includes(form);
+    }
+
     function countOccurrences(haystack, needle, cap) {
       let count = 0;
       let index = haystack.indexOf(needle);
@@ -409,7 +444,7 @@
         for (let j = 0; j < forms.length; j += 1) {
           const form = forms[j];
 
-          inTitle = inTitle || entry._title.includes(form);
+          inTitle = inTitle || matchesTitle(entry._title, form);
           inMeta = inMeta || entry._meta.includes(form);
           contentHits = Math.max(
             contentHits,

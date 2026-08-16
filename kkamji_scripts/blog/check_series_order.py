@@ -55,12 +55,25 @@ SERIES: dict[str, list[str]] = {
         "gc-basics-g1gc",
         "gc-tuning-jdk-versions",
         "buildpack-memory-calculator",
+        "process-memory-layout",
         "jvm-spring-capstone",
     ],
     "GCP Basics": [
         "what-is-gcp",
         "gcp-resource-hierarchy",
         "gcp-iam",
+    ],
+    "Jenkins": [
+        "ec2-jenkins-server",
+        "jenkins-agent-kubernetes-pod",
+        "jenkins-operator",
+        "jenkins-pipeline-layers",
+        "jenkins-operator-reconcile-deep-dive",
+    ],
+    "LLM Wiki": [
+        "llm-wiki-concepts",
+        "llm-wiki-building",
+        "llm-wiki-evaluation",
     ],
 }
 
@@ -75,8 +88,12 @@ def post_info(path: Path) -> tuple[str, datetime, str]:
     date_match = DATE_RE.search(text)
     if not title_match or not date_match:
         raise ValueError(f"missing title or date: {path.relative_to(ROOT).as_posix()}")
-    date_text = date_match.group(1).strip().strip('"\'')
-    return title_match.group(1).strip(), datetime.strptime(date_text, DATETIME_FORMAT), date_text
+    date_text = date_match.group(1).strip().strip("\"'")
+    return (
+        title_match.group(1).strip(),
+        datetime.strptime(date_text, DATETIME_FORMAT),
+        date_text,
+    )
 
 
 def main() -> None:
@@ -126,7 +143,9 @@ def main() -> None:
             print(failure)
         raise SystemExit(1)
 
-    print(f"Series order check passed: {len(SERIES)} curated series, old-to-new dates are correct")
+    print(
+        f"Series order check passed: {len(SERIES)} curated series, old-to-new dates are correct"
+    )
 
 
 if __name__ == "__main__":

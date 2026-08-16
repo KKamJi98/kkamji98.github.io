@@ -40,7 +40,7 @@ cp custom/init.lua ~/.config/nvim/init.lua
 
 - 주요 특징:
   - `lazy.nvim` 기반 플러그인 관리.
-  - AWS·Python 개발을 위한 LSP 기본값 제공.
+  - AWS/Python 개발을 위한 LSP 기본값 제공.
   - OSC52 클립보드 연동, tokyonight 테마 등 UI 개선.
 
 ## AWS SG 감사 스크립트 공통 옵션
