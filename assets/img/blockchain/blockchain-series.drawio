@@ -1,47 +1,47 @@
 <mxfile host="kkamji-blog" type="device">
   <diagram id="blockchain-series" name="Signing says who moved the asset; hashing says the record has not changed since">
-    <mxGraphModel dx="1057" dy="354" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1057" pageHeight="354" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1347" dy="354" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1347" pageHeight="354" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1033.71" height="330.0" as="geometry" />
+          <mxGeometry x="12" y="12" width="1323.28" height="330.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="Signing says who moved the asset; hashing says the record has not changed since" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="989.71" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1279.28" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Bitcoin publishes every amount in the clear. The cryptography protects integrity and authenticity, not secrecy." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="989.71" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1279.28" height="22" as="geometry" />
         </mxCell>
         <mxCell id="tx" value="Transaction&#xa;sender, receiver, amount, all readable" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="60.68" y="132" width="266" height="54" as="geometry" />
+          <mxGeometry x="54" y="132" width="266" height="54" as="geometry" />
         </mxCell>
         <mxCell id="signature" value="ECDSA signature&#xa;secp256k1 over the transaction hash" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="402.68" y="132" width="247" height="54" as="geometry" />
+          <mxGeometry x="376" y="132" width="247" height="54" as="geometry" />
         </mxCell>
         <mxCell id="merkle" value="Merkle root&#xa;32 bytes standing for every tx in the block" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="721.68" y="132" width="298" height="54" as="geometry" />
+          <mxGeometry x="680" y="132" width="298" height="54" as="geometry" />
         </mxCell>
         <mxCell id="block-n" value="Block N&#xa;previous block hash and the Merkle root" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="57.68" y="266" width="273" height="54" as="geometry" />
+          <mxGeometry x="692" y="266" width="273" height="54" as="geometry" />
         </mxCell>
         <mxCell id="block-n1" value="Block N+1&#xa;commits to Block N by hashing its header" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="386.68" y="266" width="279" height="54" as="geometry" />
+          <mxGeometry x="1034" y="266" width="279" height="54" as="geometry" />
         </mxCell>
         <mxCell id="tx-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="40.68" y="112" width="26" height="26" as="geometry" />
+          <mxGeometry x="34" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="signature-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="382.68" y="112" width="26" height="26" as="geometry" />
+          <mxGeometry x="356" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="merkle-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="701.68" y="112" width="26" height="26" as="geometry" />
+          <mxGeometry x="660" y="112" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="block-n-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="37.68" y="246" width="26" height="26" as="geometry" />
+          <mxGeometry x="672" y="246" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="block-n1-step" value="5" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="366.68" y="246" width="26" height="26" as="geometry" />
+          <mxGeometry x="1014" y="246" width="26" height="26" as="geometry" />
         </mxCell>
         <mxCell id="tx-to-signature" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tx" target="signature">
           <mxGeometry relative="1" as="geometry" />
@@ -49,14 +49,8 @@
         <mxCell id="signature-to-merkle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="signature" target="merkle">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="merkle-to-block-n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="merkle" target="block-n">
-          <mxGeometry relative="1" as="geometry" >
-            <Array as="points">
-              <mxPoint x="697.68" y="159.0" />
-              <mxPoint x="697.68" y="216" />
-              <mxPoint x="194.18" y="216" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="merkle-to-block-n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4983;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="merkle" target="block-n">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="block-n-to-block-n1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="block-n" target="block-n1">
           <mxGeometry relative="1" as="geometry" />
