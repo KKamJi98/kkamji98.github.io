@@ -49,7 +49,8 @@ created: 2026-05-02
 updated: 2026-08-01
 type: concept          # concept | runbook | query | decision | ...
 tags: [kubernetes, security]
-sources: [k8s-docs]
+sources:                 # 출처는 slug가 아니라 되짚어갈 수 있는 URL로 적습니다
+  - https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 source_status: official  # official | primary | compiled-research | verified-operation | none
 confidence: high         # high | medium | low
 ---
@@ -67,7 +68,7 @@ confidence: high         # high | medium | low
 - 이름이 중복될 수 있으면 경로까지 작성합니다 (`[[runbooks/eks-auth]]`).
 - 문서 끝에 "관련 문서" 절을 두고 2~5개 링크를 겁니다. 그 이상은 목록이 되고, 그 이하는 고립됩니다.
 
-사람 손으로만 이 규칙을 지키면 반드시 깨진 링크가 쌓입니다. 그래서 **pre-commit 훅으로 깨진 링크 감지를 자동화**합니다. git hook에서 전체 `[[...]]`를 추출해 파일 존재를 검사하고, 하나라도 풀리지 않으면 커밋을 차단합니다. 간단한 스크립트 40줄이면 충분하고, 이 훅 하나로 위키 링크 건전성이 계속 유지됩니다.
+사람 손으로만 이 규칙을 지키면 반드시 깨진 링크가 쌓입니다. 그래서 **pre-commit 훅으로 깨진 링크 감지를 자동화**합니다. git hook에서 전체 `[[...]]`를 추출해 파일 존재를 검사하고, 하나라도 풀리지 않으면 커밋을 차단합니다. 깨진 링크 검사만 놓고 보면 40줄 남짓으로 시작할 수 있습니다. 다만 실제로 운영하다 보면 모호한 링크 판별, frontmatter 필수 필드, 원문 체크섬, 고아 문서 탐지가 차례로 붙습니다. 제 경우 이 lint는 255줄까지 자랐습니다. 처음부터 크게 만들 필요는 없고, 깨진 링크 하나만 막는 데서 시작하면 충분합니다.
 
 ---
 

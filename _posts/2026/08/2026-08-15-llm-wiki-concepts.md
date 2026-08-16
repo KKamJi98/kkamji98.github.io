@@ -27,7 +27,7 @@ Confluence나 Notion 같은 위키는 사람 독자를 전제로 설계되었습
 
 ## 2. LLM Wiki의 정의
 
-LLM Wiki는 **LLM이 질의 시점에 검색해 읽을 수 있게 구조화된 마크다운 지식 베이스**입니다. Karpathy가 2026년 초에 제안한 패턴으로, 핵심 주장은 지식을 매번 모델이 다시 유추하게 하지 말고 **ingestion 시점에 한 번 정리해서 위키로 컴파일**하는 것입니다.
+LLM Wiki는 **LLM이 질의 시점에 검색해 읽을 수 있게 구조화된 마크다운 지식 베이스**입니다. Karpathy가 2026년 4월에 공개한 패턴으로, 핵심 주장은 지식을 매번 모델이 다시 유추하게 하지 말고 **ingestion 시점에 한 번 정리해서 위키로 컴파일**하는 것입니다.
 
 이 관점에서 RAG와 LLM Wiki를 구분해 볼 수 있습니다. RAG는 원문 코퍼스를 그대로 두고 질의 시점에 검색해 조각을 가져옵니다. 원문은 흩어져 있고, 정리는 질의할 때마다 모델에게 맡깁니다. LLM Wiki는 그 반대로, ingestion 시점에 사람과 에이전트가 원문을 정리해서 교차 참조와 모순 표시가 포함된 문서로 만들어 둡니다. 질의 시점에는 검색만 하면 됩니다.
 
@@ -40,6 +40,8 @@ LLM Wiki는 **LLM이 질의 시점에 검색해 읽을 수 있게 구조화된 �
 | 갱신 | 원문 교체 | 문서 갱신 + 이력 기록 |
 
 둘은 대체재가 아니라 계층 관계입니다. RAG가 원문 검색 계층이라면 LLM Wiki는 그 위에 있는 정리된 지식 계층입니다.
+
+한 가지 덧붙이면, 비슷한 시기에 Google Cloud도 마크다운 기반 지식 포맷인 OKF(Open Knowledge Format)를 공개했습니다. 겉모습이 닮아서 LLM Wiki의 표준화판으로 소개되는 경우가 있는데, 실제로는 다른 문제를 푸는 규격입니다. 이 차이와 개인 위키에 채택할지 여부는 [4편](/posts/llm-wiki-okf/)에서 따로 다룹니다.
 
 ---
 
@@ -81,7 +83,8 @@ created: 2026-05-02
 updated: 2026-08-01
 type: concept
 tags: [kubernetes, security]
-sources: [k8s-docs]
+sources:
+  - https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 source_status: official
 confidence: high
 ---
@@ -112,6 +115,7 @@ LLM Wiki는 기존 위키에 다음 세 가지를 추가합니다.
 ## 6. Reference
 
 - [Karpathy - LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [Open Knowledge Format v0.2 - SPEC.md](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 - [Obsidian](https://obsidian.md/)
 - [BM25 - Wikipedia](https://en.wikipedia.org/wiki/Okapi_BM25)
 
