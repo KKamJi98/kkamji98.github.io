@@ -11,6 +11,13 @@ image:
 
 Jenkins Item을 만들면서 Pipeline script 박스에 Groovy를 붙여넣은 적이 있다면, 그 스크립트가 지금 어디에 있는지 한 번 생각해 보아야 합니다. Jenkins 컨테이너 안의 설정 파일 안에 있습니다. git으로 관리되지 않고, 코드 리뷰를 거치지 않으며, Jenkins를 재구축하면 사라집니다. 파이프라인을 고치려면 Jenkins UI에 들어가야 하고, 같은 수정을 서비스 30개에 적용하려면 30번 붙여넣어야 합니다. 이 글은 파이프라인 정의를 Jenkins 안에서 꺼내 리포지토리로 옮기는 계층별 방법을 정리합니다.
 
+> **TL;DR**  
+> - Pipeline script는 Jenkins 잡 설정 안에 남는다. **Pipeline script from SCM**으로 바꾸면 파이프라인이 git으로 넘어가 PR 리뷰와 revert 롤백이 가능해진다.  
+> - Multibranch Pipeline은 리포지토리를 색인해 브랜치와 PR마다 하위 잡을 만들고, 각 잡은 그 브랜치의 Jenkinsfile을 읽는다. 트리거는 polling보다 webhook이 권장된다.  
+> - Shared Library의 `vars/` 아래 파일 하나가 곧 호출 가능한 단계가 된다. trusted로 등록하면 샌드박스 밖에서 실행되므로 **라이브러리 저장소의 쓰기 권한이 곧 강력한 권한**이다.  
+> - Job DSL과 seed job은 잡 정의 자체를 코드로 만든다. 중앙 DSL이 Multibranch 잡을 만들고, 그 잡이 Jenkinsfile을 읽고, Jenkinsfile이 Shared Library를 로드하는 구조가 된다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Declarative와 Scripted, 두 가지 파이프라인 문법

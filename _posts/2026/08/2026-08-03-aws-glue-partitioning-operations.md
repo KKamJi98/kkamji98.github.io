@@ -13,6 +13,13 @@ image:
 
 앞선 [Athena와 Glue Data Catalog 글](/posts/aws-athena-glue-catalog/)은 Athena가 Catalog에서 테이블 정의를 받고 S3를 읽는 큰 흐름을 다뤘습니다. 여기서는 같은 흐름을 파티션 운영자의 시선으로 좁힙니다. 파티션 디렉터리, Catalog metadata, projection 규칙, 쿼리 predicate가 어떤 계약을 맺어야 실제 S3 scan 후보가 줄어드는지 살펴봅니다.
 
+> **TL;DR**  
+> - `WHERE`에 partition column을 직접 남겨도, 그 값이 **등록된 partition location 또는 projection template과 대응하지 않으면** S3 scan 후보는 줄지 않는다.  
+> - partition 인식 전략은 `ADD PARTITION`, `MSCK REPAIR TABLE`, Glue Crawler, projection 네 가지다. `MSCK`는 Hive style 복구 도구이지 매 ingestion의 기본 운영 방식이 아니다.  
+> - `projection.enabled=true`인 table을 Athena로 읽으면 **Catalog에 등록된 partition metadata는 무시된다.** 같은 table을 Redshift Spectrum이나 EMR로도 읽는다면 등록형 metadata를 따로 유지해야 한다.  
+> - projected partition의 절반 이상이 비어 있는 sparse layout이면 projection이 손해다. partition index는 metadata access path만 바꾸며, `glue:GetPartitions`가 빠지면 S3 read 권한이 있어도 실패한다.  
+{: .prompt-info}
+
 ---
 
 ## 1. `WHERE` 절이 S3 scan 후보를 줄이는 조건

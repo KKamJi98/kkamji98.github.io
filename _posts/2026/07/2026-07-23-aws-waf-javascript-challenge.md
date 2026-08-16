@@ -13,6 +13,13 @@ image:
 
 핵심은 Challenge가 authentication이나 authorization이 아니라는 점입니다. token은 로그인한 사용자나 사람을 식별하는 application credential이 아닙니다. JavaScript를 실행할 수 있는 browser flow에 한정해 자동화 요청을 구분하는 신호이며, token을 얻기 전과 얻은 뒤 request가 어떻게 달라지는지 이해해야 rule scope를 안전하게 잡을 수 있습니다.
 
+> **TL;DR**  
+> - Challenge는 authentication이 아니다. 유효 token이 있으면 `Count`처럼 다음 rule로 넘길 뿐이고, 뒤 priority의 Block rule과 default action은 그대로 적용된다.  
+> - token이 없거나 immunity time이 지나면 Web ACL 평가가 끝나고 `202`와 `x-amzn-waf-action: challenge`가 돌아온다. JSON API가 받은 `202`를 파싱해 복구하려 하면 안 된다.  
+> - Web ACL의 **token domain list는 cookie의 `Domain` 속성이 아니다.** WAF가 그 token을 받아들일지 판단하는 별도 allowlist다.  
+> - token을 얻는 HTML `GET` route와 보호 API route를 분리하고, 새 rule은 HTML navigation으로 scope를 좁혀 `Count`부터 관찰한다. rollback도 action을 `Count`로 되돌리는 쪽이 안전하다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Challenge는 조용한 browser 검증을 위한 WAF rule action입니다

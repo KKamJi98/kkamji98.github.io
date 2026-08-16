@@ -13,6 +13,13 @@ WAF에서 IP 기반 rate limit, managed rules, JavaScript Challenge를 차례로
 
 AWS WAF는 2025년 3월부터 JA4 fingerprint를 request component로 지원하며, rate-based rule의 aggregation key로도 사용할 수 있다. Cloudflare, CloudFront, Google Cloud Armor 등 주요 플랫폼에서도 JA4를 지원한다. 이 글에서는 JA4가 어떻게 핑거프린트를 생성하고, 기존 봇 완화 기법과 어떻게 조합하는지를 공식 문서와 실제 설정 기준으로 정리한다.
 
+> **TL;DR**  
+> - JA3는 Client Hello의 순서를 보존해 해시했기 때문에 2023년 Chrome의 extension 순서 난수화로 무력화됐다. JA4는 **cipher와 extension을 hex 기준으로 정렬한 뒤** 해시해 이 문제를 피한다.  
+> - 핑거프린트는 사람이 읽는 prefix와 cipher, extension 두 해시로 나뉜다. extension 해시에서 SNI와 ALPN을 빼는 이유는 연결 대상이 아니라 클라이언트 소프트웨어를 식별하기 위해서다.  
+> - AWS WAF는 2025-03부터 JA4를 request component와 **rate-based rule의 aggregation key**로 지원한다. IP를 순환하는 봇 팜에는 IP 기반 rate limit보다 정확하다.  
+> - session resumption과 평문 HTTP에서는 핑거프린트가 계산되지 않고 uTLS로 위조도 가능하다. 판정 기준이 아니라 하나의 신호이므로 `Count`로 분포를 관찰한 뒤 적용한다.  
+{: .prompt-info}
+
 ---
 
 ## 1. JA3에서 JA4로: 왜 새로운 핑거프린팅이 필요했는가
@@ -107,7 +114,7 @@ Match statement:
 
 ### 4.2. rate-based rule aggregation key
 
-rate-based rule에서 aggregation key를 IP가 아닌 JA4 fingerprint로 지정하면, 동일한 TLS 핑거프린트를 가진 요청을 하나의 그룹으로 묶어 rate limit을 적용할 수 있다. NAT나 프로xy 뒤에서 여러 IP로 분산되는 봇 팜을 IP 기반 rate limit로 잡기 어려울 때 특히 유용하다.
+rate-based rule에서 aggregation key를 IP가 아닌 JA4 fingerprint로 지정하면, 동일한 TLS 핑거프린트를 가진 요청을 하나의 그룹으로 묶어 rate limit을 적용할 수 있다. NAT나 프록시 뒤에서 여러 IP로 분산되는 봇 팜을 IP 기반 rate limit로 잡기 어려울 때 특히 유용하다.
 
 IP 기반 rate limit가 "하나의 IP에서 100 req/min"을 감지한다면, JA4 기반 aggregation은 "알려진 봇 도구 핑거프린트에서 오는 모든 요청이 100 req/min"을 감지한다. 봇이 IP를 순환하더라도 핑거프린트가 같으면 같은 그룹으로 집계된다.
 

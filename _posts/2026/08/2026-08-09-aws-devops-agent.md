@@ -11,6 +11,13 @@ image:
 
 인시던트가 발생하면 CloudWatch 지표, APM 트레이스, 로그, 배포 기록을 번갈아 확인하며 원인을 좁혀나가는 과정에 시간이 걸립니다. AWS DevOps Agent는 알림이 감지된 순간 이 조사를 자율적으로 수행하고, 근본 원인과 완화 조치를 Slack이나 PagerDuty에 정리해 전달합니다. Production Operations는 2026년 3월 31일에 GA 되었고, 코드 변경을 배포 전에 검증하는 Release Management는 Preview 단계입니다.
 
+> **TL;DR**  
+> - 알림이 감지되면 사람 개입 없이 조사를 시작해 근본 원인과 완화 조치를 Slack, PagerDuty, ServiceNow에 붙인다. Production Operations는 2026-03-31 GA, Release Management는 아직 Preview다.  
+> - 기존 관측 도구를 대체하지 않고 상위에서 소비한다. **Grafana는 read-only, Datadog은 1-way**이며, Alertmanager는 네이티브 통합이 아니라 generic webhook을 거쳐야 한다.  
+> - 완화 조치를 제안할 뿐 승인 없이 프로덕션 리소스를 바꾸지 않는다. EKS는 introspection만 되고 `kubectl exec`은 지원하지 않으며, Bedrock 모델은 교체할 수 없다.  
+> - agent-second당 $0.0083 종량제다. 데이터는 Agent Space를 만든 리전에 저장되는데 **GA 리전 6곳에 서울(ap-northeast-2)은 없다.**  
+{: .prompt-info}
+
 ---
 
 ## 1. 두 가지 역할을 하나의 에이전트가 처리합니다

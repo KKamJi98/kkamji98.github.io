@@ -11,6 +11,13 @@ image:
 
 Kubernetes에 Jenkins를 올리는 가장 단순한 방법은 Helm chart로 Deployment 하나를 띄우는 것입니다. 그러나 운영이 시작되면 관리할 상태는 Pod 하나가 아닙니다. 설정 변경마다 재시작할지 판단해야 하고, 플러그인 목록과 버전을 추적해야 하고, 접속 credential을 Secret으로 관리해야 하고, Jenkins가 살아있는지 확인하고 죽으면 복구해야 합니다. Jenkins Operator는 이 일련의 운영 작업을 Kubernetes의 Operator 패턴으로 자동화합니다. Jenkins 커스텀 리소스에 원하는 상태를 선언하면 Operator가 나머지를 조정합니다.
 
+> **TL;DR**  
+> - Jenkins CR 하나에 master Pod, basePlugins, JCasC, seed job, 백업을 선언하면 Operator가 나머지를 조정한다.  
+> - reconcile은 **base와 user 두 단계**다. base가 실패하면 user는 실행되지 않고, 같은 에러가 10회 쌓이면 `ReconcileLoopFailed`로 멈춘다.  
+> - JCasC 같은 user configuration은 재시작 없이 반영되지만, master 이미지나 basePlugins 같은 **base configuration은 master Pod 재생성**으로 이어진다.  
+> - "Jenkins Operator"라는 이름의 프로젝트가 여럿이다. 살아 있는 것은 `jenkinsci/kubernetes-operator` 하나이고, API는 2019년 이후 계속 `v1alpha2`다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Operator 패턴이 푸는 문제

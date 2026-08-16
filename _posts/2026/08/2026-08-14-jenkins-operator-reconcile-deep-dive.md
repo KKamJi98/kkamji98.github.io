@@ -11,6 +11,13 @@ image:
 
 Jenkins Operator를 운영하다 보면 이런 상황을 만납니다. JCasC 설정을 변경했는데 Jenkins에 반영되지 않습니다. Operator 로그를 보면 같은 에러가 반복되다가 어느 순간 조용해집니다. CR을 지우고 다시 만들면 동작합니다. 왜 그런지 이해하려면 Operator가 한 패스(pass)에서 무엇을 어떤 순서로 수행하는지 소스 코드 수준에서 볼 필요가 있습니다. 이 글은 jenkinsci/kubernetes-operator의 reconcile 루프를 jenkins_controller.go부터 따라가는 심화 편입니다.
 
+> **TL;DR**  
+> - 한 패스는 `base.Validate`, `base.Reconcile`, `waitForJenkins`, `user.ReconcileCasc`, `user.ReconcileOthers` 순서다. **CR status의 타임스탬프가 어디까지 찍혔는지** 보면 실패 지점이 좁혀진다.  
+> - `reconcileFailLimit = 10`이라 같은 에러가 10번 쌓이면 조정을 멈춘다. **로그가 조용해진 것은 해결이 아니라 포기 신호**일 수 있고, 이때는 Operator Pod를 재시작해야 한다.  
+> - Groovy 스크립트는 해시로 추적되어 변경된 것만 다시 적용된다. master가 bare Pod인 덕분에 Operator가 Pod를 직접 조정 대상으로 삼는다.  
+> - pvc 백업은 workspace와 최상위 `config.xml`을 제외하므로 전체 복제가 아니라 상태 복구용이다. 플러그인 데이터 호스트가 2026-02에 바뀌어 구버전이 403으로 크래시 루프에 빠진 사례(#1162)가 있다.  
+{: .prompt-info}
+
 ---
 
 ## 1. reconcile 진입점: 함수 호출 순서
@@ -59,7 +66,7 @@ Deployment로 전환할 수 있습니다. Jenkins CR의 master에 `jenkins.io/us
 
 ## 5. seed-job-agent: Job DSL 실행 구조
 
-user 단계의 seed job 처리는 별도 컴테이너로 분리되어 있습니다. seed-job-agent Deployment가 job-dsl 스크립트를 실행하고, Operator는 에이전트가 준비될 때까지 기다린 뒤 진행합니다. master Pod 안에서 직접 실행하지 않는 이유는 Job DSL 실행이 Jenkins 프로세스와 독립적인 작업이기 때문입니다. 에이전트가 실패해도 master의 가용성과 분리됩니다.
+user 단계의 seed job 처리는 별도 컨테이너로 분리되어 있습니다. seed-job-agent Deployment가 job-dsl 스크립트를 실행하고, Operator는 에이전트가 준비될 때까지 기다린 뒤 진행합니다. master Pod 안에서 직접 실행하지 않는 이유는 Job DSL 실행이 Jenkins 프로세스와 독립적인 작업이기 때문입니다. 에이전트가 실패해도 master의 가용성과 분리됩니다.
 
 이 구조는 앞선 글에서 다룬 "중앙 파이프라인 저장소" 패턴과 만납니다. CR에 선언한 seed job이 중앙 저장소의 Job DSL을 실행하면, Operator 입장에서는 CR이 곧 Job 목록의 선언적 원본이 됩니다.
 

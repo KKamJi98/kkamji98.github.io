@@ -16,6 +16,13 @@ Amazon VPC Lattice는 이 문제를 application networking 계층에서 해결�
 ![VPC Lattice cross-VPC connectivity](/assets/img/aws/vpc-lattice-cross-vpc-flow.webp)
 _세 개의 서로 다른 AWS 계정에 있는 VPC가 하나의 Service Network를 통해 연결됩니다. VPC Peering이나 Transit Gateway 없이 VPC Association만으로 cross-VPC 통신이 가능합니다._
 
+> **TL;DR**  
+> - Service Network에 VPC를 association하면 VPC Peering이나 Transit Gateway 없이 cross-VPC 통신이 되고 overlapping CIDR도 자동 처리된다. 단 **cross-Region은 지원하지 않는다.**  
+> - 데이터플레인이 AWS 관리 전용이라 App Mesh와 달리 **Envoy sidecar가 필요 없다.** 대신 circuit breaker, retry 같은 Envoy 수준의 제어도 없다.  
+> - 접근 제어는 association, security group, service network auth policy, service auth policy 4계층이다. auth policy는 IAM resource policy라 identity-based policy와 **양쪽 모두 explicit allow**가 있어야 한다.  
+> - 외부 진입점을 대체하지 않는다. ALB, API Gateway, CloudFront는 그대로 두고 그 뒷단의 service-to-service 통신을 맡는다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 서비스 간 통신 복잡성: VPC Lattice가 해결하는 문제

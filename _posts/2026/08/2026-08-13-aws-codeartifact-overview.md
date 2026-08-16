@@ -13,6 +13,13 @@ npm install로 lodash를 설치하는데 갑자기 404가 떨어진다. npmjs.co
 
 AWS CodeArtifact는 이 문제를 풀기 위한 fully managed artifact repository service입니다. private 패키지를 저장하고, public registry를 proxy하고, npm, pip, Maven, NuGet, RubyGems, Cargo, Swift를 하나의 repository에서 처리합니다. 패키지 개수나 총 크기에 제한이 없으며, 자체 artifact 서버를 운영할 필요가 없습니다.
 
+> **TL;DR**  
+> - Domain이 KMS 암호화와 asset 중복 제거를 맡고 그 아래 repository가 패키지를 담는다. 하나의 repository는 polyglot이라 npm, PyPI, Maven을 함께 넣을 수 있다.  
+> - External connection으로 public registry 10곳을 proxy하며, 이때 자동 생성되는 `-store` repository를 거친다. **public에서 fetch하는 요청도 request 과금에 포함된다.**  
+> - Package origin controls가 dependency confusion을 막고, 원본 publish timestamp가 보존되므로 갓 올라온 버전을 거르는 quarantine window를 CI에 걸 수 있다.  
+> - **서울(ap-northeast-2)은 지원 리전 13곳에 없고** cross-region 복제도 없다. CodeCommit과 달리 deprecation 발표는 없으며 Swift와 Cargo 지원이 최근 추가됐다.  
+{: .prompt-info}
+
 ---
 
 ## 1. Domain과 Repository: 두 계층으로 구성된 저장 구조
