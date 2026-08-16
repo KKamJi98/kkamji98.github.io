@@ -11,7 +11,7 @@ set -euo pipefail
 
 SRC="${1:?usage: export_diagram.sh <file.drawio> [scale] [pad]}"
 SCALE="${2:-2}"
-PAD="${3:-110}"
+PAD="${3:-40}"
 OUT="${SRC%.drawio}.webp"
 TMP="$(mktemp -t drawio-export-XXXXXX).png"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

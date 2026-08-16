@@ -77,8 +77,8 @@ python3 kkamji_scripts/blog/renumber_headers.py --min-level 3
 - **사용 예**
 
 ```bash
-# 트림 + 사방 110px 균등 패딩 후 webp 저장
-uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py in.png out.webp --pad 110
+# 트림 + 사방 40px 균등 패딩 후 webp 저장
+uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py in.png out.webp --pad 40
 
 # 결과 이미지의 사방 여백 측정 (L/R/T/B 가 같아야 함, 1px 오차 허용)
 uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py out.webp --verify

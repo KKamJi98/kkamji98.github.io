@@ -10,8 +10,8 @@ drawio 등에서 export 한 이미지는 `-b`/`--crop` 옵션을 써도 border/s
   2. 그 영역만 잘라낸 뒤, 사방에 동일한 픽셀 패딩을 둔 흰 캔버스 중앙에 배치한다.
 
 사용 (Pillow 필요 -> uv 권장):
-  # 트림 + 사방 110px 균등 패딩 후 webp 저장
-  uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py in.png out.webp --pad 110
+  # 트림 + 사방 40px 균등 패딩 후 webp 저장
+  uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py in.png out.webp --pad 40
 
   # 결과 이미지의 사방 여백을 측정만 (L/R/T/B 가 같아야 함)
   uv run --with pillow python kkamji_scripts/blog/pad_diagram_margins.py out.webp --verify
@@ -106,7 +106,7 @@ def main() -> int:
     ap.add_argument(
         "dst", nargs="?", help="출력 이미지 경로(.webp 권장). --verify 시 생략"
     )
-    ap.add_argument("--pad", type=int, default=110, help="사방 패딩 픽셀 (기본 110)")
+    ap.add_argument("--pad", type=int, default=40, help="사방 패딩 픽셀 (기본 40)")
     ap.add_argument("--verify", action="store_true", help="여백 측정만 수행")
     args = ap.parse_args()
 

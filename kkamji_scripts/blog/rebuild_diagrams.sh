@@ -33,7 +33,7 @@ for target in $targets; do
   if ! python3 "$SKILL/scripts/normalize-drawio.py" --write "$target" >/dev/null; then
     echo "NORMALIZE FAIL  $name"; fails=$((fails + 1)); continue
   fi
-  margins=$(bash "$HERE/export_diagram.sh" "$target" 2 110 2>&1 | tail -1)
+  margins=$(bash "$HERE/export_diagram.sh" "$target" 2 40 2>&1 | tail -1)
   verdict=$(bash "$SKILL/scripts/validate-drawio.sh" "$target" 2>&1 | grep -cE "FAIL: [1-9]")
   if [ "$verdict" != "0" ] || [ "$margins" != "equal margins: OK" ]; then
     echo "CHECK FAIL  $name  ($margins)"; fails=$((fails + 1)); continue
