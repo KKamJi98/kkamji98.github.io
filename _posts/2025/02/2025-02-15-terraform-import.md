@@ -14,8 +14,8 @@ Cloud 환경에서 Terraform을 사용하여 인프라를 관리하다 보면, �
 `terraform import` 의 기본 개념과 사용 방법, 그리고 `terraform state show` 명령어를 통해 코드와 리소스를 쉽게 매칭시키는 방법에 대해 알아봅니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 terraform, import, ec2이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - `terraform import`는 콘솔에서 수동으로 만든 리소스를 `.tfstate`에 등록해 이후부터 코드로 관리할 수 있게 합니다.  
+> - import는 state만 채우고 HCL은 만들어주지 않습니다. `terraform state show`로 실제 속성을 출력해 코드에 옮겨 적어야 다음 plan에서 변경이 잡히지 않습니다.  
 {: .prompt-info}
 
 ---

@@ -21,7 +21,9 @@ image:
 ![alt text](/assets/img/kubernetes/network-policy.webp)
 
 > **TL;DR**  
-> - 주요 키워드는 network-policy, 3-tier-architecture, web이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - web, was, db 3계층을 namespace로 나누고 NetworkPolicy로 허용 방향만 남기는 실습입니다.  
+> - `namespaceSelector`가 동작하지 않은 원인은 CNI가 아니라 namespace에 label이 자동으로 붙지 않는다는 점이었습니다. Calico를 Cilium으로 바꿔도 증상은 그대로였습니다.  
+> - label을 붙인 뒤에도 Pod 사이 DNS 이름 조회가 실패했는데, egress 정책이 kube-dns로 향하는 53번 포트를 막고 있었기 때문입니다.  
 {: .prompt-info}
 
 ---

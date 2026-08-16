@@ -17,9 +17,10 @@ image:
 {: .prompt-tip}
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, vagrant, virtual-box이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Vagrant로 VM 3대(cilium-m1, cilium-w1, cilium-w2)를 띄우고 kubeadm으로 클러스터를 구성합니다. CNI는 일부러 설치하지 않아 노드가 NotReady로 남습니다.  
+> - VirtualBox NAT 모드라 모든 VM의 eth0가 10.0.2.15로 같습니다. VM 간 통신은 Private Network인 eth1(192.168.10.0/24)이 담당합니다.  
+> - kubelet은 default route가 걸린 인터페이스의 IP를 INTERNAL-IP로 고릅니다. 그래서 worker가 eth0의 10.0.2.15를 잡으므로, `JoinConfiguration`에 node IP를 명시해 join해야 합니다.  
+> - `config.ssh.insert_key = false`를 넣으면 VM들이 같은 key-pair를 공유해 WSL에서 `~/.ssh/config`로 바로 접속할 수 있습니다.  
 {: .prompt-info}
 
 ---

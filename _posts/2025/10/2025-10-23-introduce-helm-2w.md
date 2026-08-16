@@ -14,8 +14,9 @@ image:
 *O'Reilly GitOps Cookbook* 의 4장에 해당 하는 **Helm**에 대해 알아봅니다.
 
 > **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-2w, helm이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Helm은 Kubernetes manifest를 템플릿화해 환경별 값만 바꿔 재사용할 수 있게 합니다. Chart 구조와 template, values, helpers의 역할을 차례로 다룹니다.  
+> - template 사이에서 반복을 줄이는 방법, chart를 패키징해 저장소에 배포하는 방법, dependency를 가진 chart를 배포하는 방법까지 이어집니다.  
+> - ConfigMap 내용이 바뀌었을 때 Pod를 자동으로 다시 굴리려면 checksum annotation으로 rolling update를 유발해야 합니다.  
 {: .prompt-info}
 
 ---

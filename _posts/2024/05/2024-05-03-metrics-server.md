@@ -16,8 +16,9 @@ _Metrics API에서 갈라지는 두 화살표는 순서가 아니라 같은 API�
 {: .prompt-info}
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 수집 경로는 kubelet 내장 cAdvisor가 Node와 Pod 사용량을 모으고, `/metrics/resource` 엔드포인트로 노출하면 Metrics Server가 주기적으로 pull하는 순서입니다.  
+> - HPA 컨트롤러와 `kubectl top`은 서로를 거치지 않고 각각 Metrics API를 읽는 별개의 소비자입니다.  
+> - Metrics Server는 수집한 값을 저장하지 않는 단기 메모리 기반이므로, 장기 추세를 보려면 Prometheus 같은 별도 저장소가 필요합니다.  
 {: .prompt-info}
 
 ---

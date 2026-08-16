@@ -22,7 +22,9 @@ Kubernetes Secret을 안전하게 사용하기 위해서 대표적으로 다음�
 해당 포스트에서는 저장된 Secret에 대한 암호화 활성화 방법을 다루도록 하겠습니다.
 
 > **TL;DR**  
-> - 주요 키워드는 secrets, secret, etcd이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Kubernetes Secret은 기본적으로 etcd에 Base64 인코딩만 된 채로 저장됩니다. `etcdctl`로 키를 직접 읽으면 값이 그대로 보입니다.  
+> - `EncryptionConfiguration`에 `aescbc` provider와 32바이트 키를 정의하고, kube-apiserver에 `--encryption-provider-config`를 추가하면 이후 저장되는 Secret이 암호화됩니다.  
+> - 설정만으로는 이미 저장된 Secret이 바뀌지 않습니다. `kubectl get secrets --all-namespaces -o json | kubectl replace -f -`로 전부 다시 써야 기존 값까지 암호화됩니다.  
 {: .prompt-info}
 
 ---

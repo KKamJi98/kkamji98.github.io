@@ -14,8 +14,9 @@ image:
 Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instance로 마이그레이션 하는 방법에 대해 정리해보았습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 influxdb, ec2, tsdb이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - InfluxDB 1.x를 다른 EC2로 옮길 때 CSV로 export하면 사람이 읽기는 편해도 그대로 import할 수 없습니다. `influx_inspect export -lponly`로 얻는 Line Protocol이 timestamp와 tag, field를 그대로 보존하는 native 포맷입니다.  
+> - 검증은 세 가지 시나리오로 진행했습니다. Measurement 전체 삭제 후 복원, 특정 시간 구간을 지운 뒤 그 구멍이 메워지는지, 그리고 이상한 값을 덮어쓴 구간이 원본으로 되돌아오는지입니다.  
+> - Old와 New 양쪽에 1분 간격 더미 데이터를 쌓고 Grafana 대시보드에서 두 DataSource를 나란히 비교해 확인했습니다.  
 {: .prompt-info}
 
 ---

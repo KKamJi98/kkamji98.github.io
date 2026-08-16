@@ -15,9 +15,9 @@ image:
 > Hubble UI - <https://docs.cilium.io/en/latest/observability/hubble/hubble-ui/>  
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 hubble, hubble-relay, cilium이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Hubble API는 기본적으로 각 노드의 cilium-agent 범위에서만 동작하므로, 클러스터 전체 흐름을 보려면 Hubble Relay가 각 노드의 4244 포트를 모아야 합니다.  
+> - Relay는 `hubble-peer` Service를 통해 노드들을 찾고, 자신은 4245 포트로 응답합니다.  
+> - hubble CLI는 기본값이 `localhost:4245`라 원격 클러스터에서는 연결이 거부됩니다. `hubble config set port-forward true`로 자동 포트포워딩을 켜두면 매번 `-P`를 붙이지 않아도 됩니다.  
 {: .prompt-info}
 
 ---

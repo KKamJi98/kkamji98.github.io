@@ -27,8 +27,9 @@ image:
 {: .prompt-tip}
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - MicroK8s는 4GB 메모리를 권장하지만, 실습은 그보다 낮은 t4g.small(2 vCPU, 2GB RAM)에서 진행합니다. t2.micro에서는 Minikube가 설치 자체를 거부하고 MicroK8s는 CPU가 계속 100%에 머뭅니다.  
+> - `snap install microk8s --classic` 이후 `microk8s status --wait-ready`가 통과할 때까지 기다려야 addon 활성화가 실패하지 않습니다.  
+> - dashboard addon은 기본적으로 클러스터 내부에서만 열리므로, 외부 브라우저로 보려면 10443 포트를 Security Group에서 열고 토큰을 입력해야 합니다.  
 {: .prompt-info}
 
 ---

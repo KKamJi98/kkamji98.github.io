@@ -14,7 +14,9 @@ image:
 Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유로 pod가 언제든 종료될 수 있습니다. 따라서 앞선 문제를 피하기 위해 **Graceful Shutdown**을 통해 pod가 안전하게 종료되도록 처리하는 것이 중요합니다.
 
 > **TL;DR**  
-> - 주요 키워드는 pod, shutdown, graceful이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Pod가 정리 작업 없이 죽으면 이미 종료된 Pod로 트래픽이 흘러 500 에러가 나고, DB 트랜잭션과 로그가 유실될 수 있습니다.  
+> - 종료 시점에 kube-proxy가 Pod IP를 Service 엔드포인트에서 빼는 동작과 `preStop` 훅, `SIGTERM` 처리가 함께 맞물려야 기존 연결을 안전하게 닫을 수 있습니다.  
+> - `terminationGracePeriodSeconds`는 최대 대기 시간이며, 그 안에 정리가 끝나지 않으면 `SIGKILL`로 강제 종료됩니다.  
 {: .prompt-info}
 
 ---

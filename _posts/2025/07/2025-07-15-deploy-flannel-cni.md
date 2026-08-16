@@ -14,9 +14,8 @@ image:
 이번 포스트에서는 `Flannel CNI`를 Kubernetes Cluster에 배포해보도록 하겠습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 flannel, cilium, cilium-study이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Flannel을 배포해 NotReady 상태이던 노드를 Ready로 만들고 Pod 간 통신을 확인합니다.  
+> - 기본값으로 두면 Flannel이 NAT 인터페이스인 eth0를 잡으므로, VM 간 통신용 eth1을 쓰도록 인터페이스를 지정해야 합니다.  
 {: .prompt-info}
 
 ---

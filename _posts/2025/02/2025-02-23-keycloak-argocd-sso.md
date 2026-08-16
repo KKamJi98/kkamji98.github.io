@@ -14,8 +14,9 @@ image:
 저번 시간에([Keycloak 개념, Helm으로 배포하기]({% post_url 2025/02/2025-02-22-keycloak %})) Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 keycloak, sso, realm이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Keycloak에 ArgoCD용 Client를 만들고 PKCE를 S256으로 설정한 뒤, argocd-cm과 argocd-rbac-cm을 연결해 SSO 로그인을 구성합니다.  
+> - ArgoCD가 사용자의 그룹을 알려면 Client Scope에 Group Membership mapper를 만들어 Default로 지정해야 합니다. 이 mapper가 없으면 로그인은 되지만 RBAC이 걸리지 않습니다.  
+> - 실습 환경은 Kubernetes v1.32.0, Keycloak v26.1.2, ArgoCD v2.14.2입니다.  
 {: .prompt-info}
 
 ---

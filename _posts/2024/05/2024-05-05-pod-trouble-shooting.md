@@ -15,8 +15,9 @@ image:
 {: .prompt-info}
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Pod가 45시간 동안 `Terminating`에 머문 원인은 finalizer가 아니라 worker node의 ephemeral-storage 고갈이었습니다.  
+> - `kubectl describe`의 kubelet 이벤트에 `The node was low on resource: ephemeral-storage. Threshold quantity: 1Gi`가 26시간 동안 2,334회 반복 기록되어 있었습니다.  
+> - EBS 볼륨을 늘린 뒤에는 `growpart /dev/xvda 1`로 파티션을, `resize2fs /dev/xvda1`로 파일시스템을 각각 확장해야 `df -h`에 반영됩니다.  
 {: .prompt-info}
 
 ---

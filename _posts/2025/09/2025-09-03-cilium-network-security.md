@@ -12,9 +12,9 @@ image:
 Cilium은 **Identity-Based(Layer3)**, **Port Level(Layer4)**, **Application protocol Level(Layer7)** 보안을 제공합니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-8w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Cilium 정책은 세션 기반 프로토콜에 대해 stateful하게 동작합니다. A에서 B로 여는 연결을 허용하면 응답 패킷은 자동으로 통과하지만, B가 먼저 여는 연결은 별도로 허용해야 합니다.  
+> - 정책이 하나도 없으면 전부 허용이지만, 첫 정책이 로드되는 순간 해당 엔드포인트는 allowlist 방식으로 바뀝니다. L4 정책을 하나라도 붙이면 명시하지 않은 포트는 모두 막힙니다.  
+> - Cilium은 IP가 아니라 label에서 파생한 Identity로 통신 주체를 식별합니다. 같은 보안 label 집합을 가진 Pod들은 같은 Identity를 공유하며 이 Identity는 클러스터 전역에서 유효합니다.  
 {: .prompt-info}
 
 ---

@@ -14,7 +14,9 @@ image:
 쿠버네티스 환경에서 이미지를 변환해주는 웹 사이트 <https://image-converter.kkamji.net> 를 로컬 클러스터에서 운영하던 도중 **여러 Pod가 동시에 Evicted 되는 문제가 발생**했습니다. 당시 상황과 원인을 분석하고 해결 방법과 재발 방지 방법에 대해 알아봅니다.
 
 > **TL;DR**  
-> - 주요 키워드는 deployment, pod, garbage-collection이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - ArgoCD가 3분 간격으로 Sync 알림을 보내기 시작했고, 확인해보니 63개 Pod가 Degraded 상태에서 Evicted와 ContainerStatusUnknown으로 남아 있었습니다.  
+> - 원인은 디스크였습니다. image filesystem 사용량이 high threshold(85%)를 넘어 kubelet이 이미지 GC를 시도했지만 회수할 이미지가 없었고(`Attempted to free 1290842112 bytes, but only found 0 bytes eligible`), DiskPressure로 Pod를 쫓아내면 ReplicaSet이 다시 만들어 디스크를 더 쓰는 순환이 생겼습니다.  
+> - 재발 방지는 디스크 확장에 더해 Pod에 `ephemeral-storage` 제한을 걸고, DiskPressure와 Eviction을 Prometheus로 감시하며, CronJob으로 주기적으로 이미지를 정리하는 조합입니다.  
 {: .prompt-info}
 
 ---

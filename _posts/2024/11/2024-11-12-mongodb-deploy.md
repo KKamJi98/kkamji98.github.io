@@ -18,8 +18,9 @@ image:
 MongoDB를 사용하는 대표적인 방법에는 **MongoDB Atlas**, **MongoDB Enterprise**, **MongoDB Community Edition**이 있습니다. 이번 과정에서는 **MongoDB Community Edition**을 **Helm**으로 배포합니다.
 
 > **TL;DR**  
-> - IaC와 배포 자동화 도구를 사용할 때 필요한 구성 흐름과 주의사항을 정리합니다.  
-> - 주요 키워드는 mongodb, helm, #이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 단어 하나에 여러 뜻이 붙는 데이터를 관계형으로 풀면 테이블 분리와 join이 필요하지만, MongoDB는 단일 문서에 배열로 담을 수 있어 구조가 단순해집니다.  
+> - Helm으로 MongoDB Operator를 먼저 배포한 뒤, MongoDB Custom Resource를 정의해 실제 인스턴스를 띄우는 순서입니다.  
+> - 실습 환경은 Helm v3.16.2, Kubernetes v1.29.6, StorageClass는 rancher/local-path-provisioner입니다.  
 {: .prompt-info}
 
 ---

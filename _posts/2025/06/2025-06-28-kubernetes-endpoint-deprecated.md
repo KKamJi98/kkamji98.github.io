@@ -25,7 +25,9 @@ You can find more in KEP-4974: Deprecate v1.Endpoints.
 따라서 **Endpoints API**를 사용하는 Application이나 Kubernetes Resource들을 확인하고 해당 리소스들을 **EndpointSlice API**로 전환하기 위해 도움이 될 내용들에 대해 다루도록 하겠습니다.
 
 > **TL;DR**  
-> - 주요 키워드는 endpoint, endpoint-slice, kubernetes-api이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Kubernetes v1.33에서 Endpoints API(core/v1)가 deprecated 됐고 EndpointSlice API(discovery.k8s.io/v1)가 권장됩니다.  
+> - Endpoints는 한 Service의 모든 Pod IP를 하나의 객체에 나열하지만, EndpointSlice는 기본 100개 단위 slice로 쪼개 변경된 slice만 kube-proxy에 patch합니다. 여기에 dual-stack과 topology 정보가 더해집니다.  
+> - 전환 시 점검할 곳은 구버전 Ingress Controller나 Service Mesh, `kubectl get endpoints`에 의존하는 스크립트, `kube_endpoint_*` 메트릭을 쓰는 대시보드, 그리고 RBAC의 `endpoints` 권한입니다.  
 {: .prompt-info}
 
 ---

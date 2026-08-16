@@ -16,8 +16,9 @@ image:
 해당 포스트에서는 **Elasticsearch**에 대해 알아보고 구축해보도록 하겠습니다. **Elasticsearch**를 구축하는 방법은 **AWS OpenSearch**, **Elastic Cloud**, **Elastic Cloud on Kubernetes(ECK)** 등이 존재합니다. 현재 **Weasel**에서는 EKS를 사용 중이었으므로, 쿠버네티스 환경에 Elasticsearch를 구축하는 방법인 **ECK**를 선택했습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 eks, elasticsearch, elk이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - EFK 스택에서 Fluent Bit이 보낸 로그를 받아 저장하고 검색하는 계층이 Elasticsearch입니다.  
+> - Elasticsearch를 올리는 선택지는 AWS OpenSearch, Elastic Cloud, Elastic Cloud on Kubernetes(ECK)이며, 이미 EKS를 쓰고 있어 ECK를 선택했습니다.  
+> - 배포 직후 Pod가 잠깐 Pending에 머무는 것은 정상입니다. PVC가 요구하는 PV가 아직 없기 때문이며, init container를 거쳐 기동합니다.  
 {: .prompt-info}
 
 ---

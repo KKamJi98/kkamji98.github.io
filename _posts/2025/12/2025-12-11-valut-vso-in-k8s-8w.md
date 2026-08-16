@@ -14,8 +14,9 @@ image:
 HashiCorp Vault/VSO에 대해 알아봅니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-8w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Helm으로 Vault를 Raft 스토리지 기반으로 배포하고, Kubernetes 인증 방식을 붙여 Pod가 ServiceAccount 토큰으로 Vault에 인증하게 만듭니다.  
+> - Vault Secrets Operator(VSO)는 Vault의 값을 Kubernetes Secret으로 동기화합니다. 애플리케이션은 Vault SDK 없이 평소처럼 Secret만 읽으면 됩니다.  
+> - Static Secret은 저장해둔 값을 그대로 내려주고, Dynamic Secret은 요청 시점에 짧은 수명의 자격 증명을 새로 발급합니다. 두 경우를 각각 실습합니다.  
 {: .prompt-info}
 
 ---

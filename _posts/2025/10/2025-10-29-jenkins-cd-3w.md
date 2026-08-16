@@ -16,8 +16,8 @@ image:
 실습 환경은 [Jenkins + ArgoCD 실습 환경 구축]({% post_url 2025/10/2025-10-26-jenkins-ci-cd-env-3w %}) 의 실습환경을 사용합니다.
 
 > **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-3w, jenkins이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Jenkins 컨테이너 안에 kubectl과 helm을 설치하고 kubeconfig를 credential로 등록해, 파이프라인에서 클러스터를 조작할 수 있게 만듭니다.  
+> - blue-green 배포는 두 벌의 Deployment를 두고 Service의 selector를 전환하는 방식으로 구성합니다. 전환 자체가 파이프라인 단계가 됩니다.  
 {: .prompt-info}
 
 ---

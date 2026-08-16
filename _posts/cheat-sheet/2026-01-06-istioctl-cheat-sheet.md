@@ -12,8 +12,9 @@ image:
 Istio를 운영하면서 숙지해야 할 istioctl 명령어들을 정리합니다.
 
 > **TL;DR**  
-> - 자주 사용하는 명령과 옵션을 빠르게 찾아볼 수 있도록 정리합니다.  
-> - 주요 키워드는 istio, istioctl, service-mesh이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - `istioctl` 명령을 상태 확인, 설치와 업그레이드, 사이드카 관리, 구성 분석과 검증 순으로 모았습니다.  
+> - 디버깅 쪽은 `proxy-config`로 Envoy 설정을 들여다보는 방법, xDS 동기화 상태 확인, mTLS 인증 문제 추적으로 나뉩니다.  
+> - Ambient Mesh의 Waypoint 프록시 관리와 `istioctl x` 실험적 명령어도 포함했습니다.  
 {: .prompt-info}
 
 ---

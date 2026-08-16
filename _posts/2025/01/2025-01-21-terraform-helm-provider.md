@@ -20,8 +20,9 @@ Terraform 환경에서 Helm을 활용하면, Kubernetes 애플리케이션의 �
 Terraform Helm Provider를 활용해 Kubernetes 애플리케이션을 배포하는 방법에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - IaC와 배포 자동화 도구를 사용할 때 필요한 구성 흐름과 주의사항을 정리합니다.  
-> - 주요 키워드는 terraform, helm, helm-provider이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Helm Provider가 클러스터에 접근하는 방법은 `config_path`로 kubeconfig를 가리키거나, cluster credential을 직접 넣는 두 가지입니다.  
+> - `helm_release` 리소스에 name, repository, chart, version, namespace, values를 지정해 chart를 배포합니다. version을 생략하면 최신 버전이 잡힙니다.  
+> - EKS라면 `aws_eks_cluster_auth` data source나 exec plugin으로 동적 토큰을 발급해 연결할 수 있습니다.  
 {: .prompt-info}
 
 ---

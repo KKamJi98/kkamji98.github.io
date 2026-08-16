@@ -14,8 +14,9 @@ image:
 Istio의 **Fault Injection** 기능을 사용하면 네트워크 지연이나 오류 응답을 의도적으로 발생시켜, 애플리케이션의 **복원력**과 **에러 처리 로직**을 사전에 검증할 수 있습니다.
 
 > **TL;DR**  
-> - Istio 서비스 메시 구성과 트래픽 제어 관점을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 istio, fault-injection, delay이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Istio Fault Injection은 애플리케이션 코드를 고치지 않고 VirtualService에 지연이나 오류 응답을 주입해 복원력을 검증합니다.  
+> - Bookinfo에서 ratings에 4초 지연을 넣으면 reviews의 2.5초 timeout에 걸려 별점이 사라지고, 2초로 낮추면 정상 응답합니다. 두 값의 관계가 곧 장애 조건입니다.  
+> - 애플리케이션 로그만으로는 원인을 짚기 어렵습니다. Envoy access log의 `res_code: 0`이 upstream 실패나 timeout을 가리키며, 로그 포맷에 `%DURATION%`을 추가하면 실제 지연 시간을 timeout 설정과 정량 비교할 수 있습니다.  
 {: .prompt-info}
 
 ---

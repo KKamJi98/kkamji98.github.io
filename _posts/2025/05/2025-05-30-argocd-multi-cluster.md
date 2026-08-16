@@ -15,8 +15,9 @@ _Argo CD는 Git의 원하는 상태를 읽고 클러스터 자격증명을 통�
 ArgoCD를 활용해 여러 Kubernetes Cluster에 애플리케이션을 배포하는 방법을 살펴봅니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 argocd, argocd-cli, metrics-server이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 중앙 관리용 클러스터 하나에 ArgoCD를 설치하고 배포 대상 클러스터를 등록하면, Git 하나로 여러 클러스터에 동시에 배포할 수 있습니다.  
+> - 클러스터를 등록하면 대상 클러스터의 kube-system에 `argocd-manager` ServiceAccount가 생깁니다.  
+> - 다른 클러스터로 보내는 Application은 `destination.server`를 `https://kubernetes.default.svc`가 아니라 등록한 클러스터 이름으로 지정해야 합니다.  
 {: .prompt-info}
 
 ---

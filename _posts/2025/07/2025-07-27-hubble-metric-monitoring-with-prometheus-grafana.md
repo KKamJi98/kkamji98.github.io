@@ -16,9 +16,9 @@ image:
 - [Cilium Docs - Monitoring & Metrics](https://docs.cilium.io/en/stable/observability/metrics/)
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 monitoring, observability, sli이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Cilium metric과 Hubble metric은 성격이 다릅니다. 앞은 agent와 operator 자체의 상태를, 뒤는 관측한 network flow를 집계한 값을 냅니다.  
+> - Hubble metric은 기본으로 꺼져 있어 `hubble.metrics.enabled`로 dns, drop, tcp, flow, port-distribution, icmp, httpV2 같은 종류를 골라 켜야 합니다.  
+> - `labelsContext`로 source와 destination의 ip, namespace, workload, traffic direction을 붙여야 대시보드에서 흐름을 구분할 수 있습니다.  
 {: .prompt-info}
 
 ---

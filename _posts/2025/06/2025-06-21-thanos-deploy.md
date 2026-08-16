@@ -23,8 +23,9 @@ image:
 | 멀티 클러스터 한계    | 다수 클러스터에서의 통합 모니터링 구성이 복잡하고 별도 솔루션 필요        |
 
 > **TL;DR**  
-> - 모니터링과 Observability 관점에서 수집, 시각화, 문제 분석 흐름을 정리합니다.  
-> - 주요 키워드는 monitoring, observability, prometheus이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Prometheus는 데이터를 로컬에만 쌓아 장기 보관과 여러 인스턴스 통합 조회가 어렵습니다. Thanos는 Sidecar로 객체 스토리지에 블록을 올려 이 한계를 풉니다.  
+> - Querier가 여러 Prometheus의 중복 데이터를 하나로 합치고, Store Gateway가 객체 스토리지의 과거 데이터를 같은 PromQL로 조회할 수 있게 합니다. Compactor는 오래된 데이터를 압축하고 다운샘플링합니다.  
+> - 실습은 Bitnami Thanos chart를 기존 MinIO에 붙이고, kube-prometheus-stack에서 `thanosService`를 켜 Sidecar용 Service를 만드는 구성입니다.  
 {: .prompt-info}
 
 ---

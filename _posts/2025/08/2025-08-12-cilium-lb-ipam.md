@@ -19,9 +19,9 @@ image:
 > [Cilium Docs - LoadBalancer IP Address Management (LB IPAM)](https://docs.cilium.io/en/stable/network/lb-ipam/)  
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-5w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - LB IPAM은 `LoadBalancer` 타입 Service에 쓸 외부 IP를 Cilium이 IP Pool에서 자동 할당하는 기능입니다. 노드 대역이 아닌 주소도 쓸 수 있습니다.  
+> - 할당받은 IP를 외부에서 찾아가려면 BGP로 광고해야 합니다. LB IPAM과 BGP advertisement가 짝을 이룹니다.  
+> - `externalTrafficPolicy`가 `Cluster`이면 어느 노드로 들어와도 되지만 SNAT 때문에 원본 IP가 사라지고, `Local`이면 원본 IP는 남지만 해당 Pod가 있는 노드만 광고 대상이 됩니다.  
 {: .prompt-info}
 
 ---

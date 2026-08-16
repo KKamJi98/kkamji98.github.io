@@ -16,8 +16,9 @@ On-Premise와 연결된 Kubernetes Cluster를 사용하는 것과 EKS 환경에�
 이 문제의 원인을 파악하고, 토큰 캐싱 스크립트를 통해 해결하는 방법을 다룹니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 eks, kubectl, token이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - `aws eks update-kubeconfig`가 만드는 kubeconfig는 exec 인증이라, `kubectl`을 실행할 때마다 `aws eks get-token`을 호출해 매번 토큰 발급 시간이 붙습니다.  
+> - EKS 토큰은 발급 후 15분간 유효합니다. `status.expirationTimestamp`를 파싱해 파일에 캐싱하고 만료 60초 전에 갱신하면 대부분의 호출이 캐시 히트가 됩니다.  
+> - 측정 결과 응답 시간이 1.847초에서 0.312초로 약 83% 줄었습니다. 캐시 디렉터리는 700, 파일은 600 권한으로 두고 클러스터명과 프로파일 조합을 캐시 키로 씁니다.  
 {: .prompt-info}
 
 ---

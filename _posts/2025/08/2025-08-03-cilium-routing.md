@@ -12,9 +12,9 @@ image:
 지난 포스트에서는 Cilium의 IPAM Mode에 대해 살펴보았습니다. 이번 글에서는 **Cilium이 제공하는 두 가지 Routing 모델, Encapsulation Mode와 Native Routing Mode를 비교하며 각각의 특징과 장단점을 이해**해보겠습니다. Cilium은 eBPF를 활용하여 클러스터 간 트래픽을 전달하는 방식을 세밀하게 제어할 수 있습니다. 기본값으로는 `VXLAN`/`GENEVE` 기반의 Overlay(Encapsulation) 방식을 사용하지만, 네트워크 환경에 따라 Native Routing을 사용할 수도 있습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-3w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Encapsulation Mode는 노드끼리 VXLAN이나 GENEVE 터널 메시를 만들어 Pod 트래픽을 캡슐화합니다. 노드가 IP와 UDP로 닿기만 하면 되므로 하부 네트워크에 요구사항이 거의 없고, 그래서 기본값입니다.  
+> - Native Routing Mode는 리눅스 커널 라우팅 테이블로 직접 전달합니다. 캡슐화 오버헤드가 없는 대신 하부 네트워크가 Pod CIDR 경로를 알고 있어야 합니다.  
+> - Encapsulation은 IPv6 only 클러스터에서만 IPv6 언더레이를 쓸 수 있고 듀얼 스택은 지원하지 않습니다. 터널 포트도 방화벽에서 열어야 합니다.  
 {: .prompt-info}
 
 ---

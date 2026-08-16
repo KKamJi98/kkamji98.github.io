@@ -14,9 +14,9 @@ image:
 이번 시간에는 Kind를 사용해 2개의 Kubernetes Cluster를 배포하고, Cluster Mesh로 연결한 뒤, 통신이 되는 것을 확인해보도록 하겠습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-5w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Cluster Mesh를 붙이려면 모든 클러스터가 같은 datapath 모드(Encapsulation 또는 Native Routing)여야 하고, PodCIDR이 서로 겹치지 않아야 합니다.  
+> - 노드들이 InternalIP로 서로 닿아야 하므로 보통 VPC Peering이나 VPN 터널이 전제됩니다.  
+> - Native Routing 모드라면 모든 클러스터의 PodCIDR을 포괄하는 Native Routing CIDR을 따로 지정해야 합니다.  
 {: .prompt-info}
 
 ---

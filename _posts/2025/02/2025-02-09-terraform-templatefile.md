@@ -16,8 +16,8 @@ templatefile() 함수는 Terraform에서 제공하는 함수 중 하나로, **�
 아래에서 `templatefile()` 함수의 사용 방법과 예시에 대해 알아보도록 하겠습니다.
 
 > **TL;DR**  
-> - IaC와 배포 자동화 도구를 사용할 때 필요한 구성 흐름과 주의사항을 정리합니다.  
-> - 주요 키워드는 terraform, templatefile, ec2이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - `templatefile()`은 파일을 읽어 변수를 치환한 문자열을 반환합니다. EC2 user data 스크립트나 Prometheus, Node Exporter 설정처럼 긴 텍스트를 HCL 밖으로 빼낼 때 씁니다.  
+> - 설정 파일을 분리해두면 환경별로 Terraform 변수만 바꿔 같은 템플릿을 재사용할 수 있습니다.  
 {: .prompt-info}
 
 ---

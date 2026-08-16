@@ -16,8 +16,9 @@ image:
 이를 해결하기 위해 선언적 구성 방식을 활용하여 자동화를 구현할 수 있습니다. ArgoCD를 활용하여 애플리케이션을 선언적으로 구성하고 배포하는 방법에 대해 소개합니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 argocd, argocd-cli, metrics-server이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - ArgoCD Application을 Web UI, CLI, YAML 세 가지 방식으로 각각 만들어 차이를 비교합니다.  
+> - Web UI는 직관적이지만 애플리케이션이 늘수록 반복 작업과 실수가 늘고, CLI는 빠르지만 여전히 수동입니다. YAML 선언은 Git에 남아 여러 환경에 같은 배포를 반복할 수 있습니다.  
+> - `sync-option CreateNamespace=true`를 주면 대상 namespace를 미리 만들어두지 않아도 됩니다.  
 {: .prompt-info}
 
 ---

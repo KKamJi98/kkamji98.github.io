@@ -17,9 +17,9 @@ image:
 - [Grafana Docs - Grafana Alloy](https://grafana.com/docs/alloy/latest/)
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 monitoring, observability, sli이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Loki는 로그 본문 전체를 인덱싱하지 않고 각 스트림의 label 메타데이터만 인덱싱합니다. 그래서 인덱스가 작고 청크 압축률이 높아 Elasticsearch 대비 저장 비용이 낮습니다.  
+> - 읽기 경로와 쓰기 경로를 따로 확장할 수 있고, 모놀리식과 마이크로서비스 모드를 모두 지원합니다. 테넌트는 `X-Scope-OrgID` 헤더로 구분합니다.  
+> - LogQL은 PromQL과 문법이 비슷해 `rate()`나 `count_over_time()`으로 로그를 메트릭처럼 집계할 수 있습니다.  
 {: .prompt-info}
 
 ---

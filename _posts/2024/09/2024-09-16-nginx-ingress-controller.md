@@ -14,7 +14,8 @@ image:
 **Nginx Ingress Controller**는 Kubernetes Cluster에서 Ingress 리소스를 처리하여 외부 트래픽을 서비스로 라우팅하는 역할을 합니다. 해당 포스트에서는 **Helm**을 사용해 **Nginx Ingress Controller**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - 주요 키워드는 nginx-ingress-controller, #, TAG이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Helm으로 NGINX Ingress Controller를 설치하고 Ingress 리소스로 외부 트래픽을 Service까지 라우팅하는 과정입니다.  
+> - 설치 직후 확인할 지점은 controller Pod의 기동 여부와 LoadBalancer Service에 외부 주소가 할당됐는지입니다.  
 {: .prompt-info}
 
 ---

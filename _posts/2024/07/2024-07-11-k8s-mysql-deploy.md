@@ -18,7 +18,9 @@ image:
 {: .prompt-info}
 
 > **TL;DR**  
-> - 주요 키워드는 mysql, pv, pvc이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - RDS를 띄우기 전 개발과 테스트용으로 쓸 MySQL을 Kubernetes에 올리는 과정입니다.  
+> - PV와 PVC로 데이터를 보존하고, 설정은 ConfigMap으로, 계정 정보는 Secret으로 분리합니다.  
+> - Deployment로 배포한 뒤 Service로 노출해 클러스터 안에서 접근할 수 있게 합니다.  
 {: .prompt-info}
 
 ---

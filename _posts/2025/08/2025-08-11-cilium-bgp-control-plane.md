@@ -14,9 +14,9 @@ image:
 이번 시간에는 실제로 **PodCIDR 간 라우팅이 설정되지 않았을 때 어떤 문제가 발생하는지**를 실습 환경에서 확인하고, `tcpdump`로 그 흐름을 분석한 뒤 **Static Route와 BGP를 통한 해결 방법**을 다뤄보겠습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-5w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Cilium BGP Control Plane을 쓰면 각 노드가 자기 PodCIDR을 BGP로 광고하므로, 라우터에 static route를 손으로 넣지 않아도 됩니다.  
+> - 실습 구성은 k8s-ctr과 k8s-w1이 192.168.10.0/24에, k8s-w0가 192.168.20.0/24에 있고, 두 대역 사이를 클러스터에 join되지 않은 FRR 라우터가 잇는 형태입니다.  
+> - Vagrantfile은 `KKamJi98/cilium-lab` 저장소에 있습니다.  
 {: .prompt-info}
 
 ---

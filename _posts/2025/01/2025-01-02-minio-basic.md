@@ -16,8 +16,9 @@ image:
 포스트를 2개로 나눠 **Minio**가 무엇인지 알아보고, 설치 과정과 함께 **Object Storage**로 사용하는 방법에 대해 알아보고 다음 포스트에서는 **Kubernetes PV**로 사용할 수 있는 방법에 대해 다루도록 하겠습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 minio, object-storage, s3이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - MinIO는 S3 호환 API를 제공하므로 AWS SDK와 `s3cmd`, `mc` 같은 기존 도구를 그대로 쓸 수 있습니다.  
+> - 단일 노드로도 띄울 수 있고, Distributed MinIO로 여러 노드를 묶어 내결함성을 높일 수도 있습니다.  
+> - 이 글은 Windows에 설치해 Object Storage로 쓰는 데까지 다루고, Kubernetes PV로 쓰는 방법은 다음 글에서 이어집니다.  
 {: .prompt-info}
 
 ---

@@ -17,8 +17,9 @@ image:
 {: .prompt-tip}
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 k8s, k8s-cluster, cluster이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - MicroK8s가 만들어주는 kubeconfig의 `server` 주소는 EC2 private IP(`10.0.0.35:16443`)라, 그대로 로컬에 복사하면 `dial tcp ... i/o timeout`이 납니다.  
+> - 주소를 public IP로 바꾸면 이번에는 API server 인증서에 그 IP가 없어 TLS 검증에서 막힙니다.  
+> - MicroK8s는 인증서를 직접 만들어 넣는 방식이 통하지 않습니다. `/var/snap/microk8s/current/certs/csr.conf.template`에 `IP.4`로 public IP를 추가한 뒤 인증서를 갱신해야 반영됩니다.  
 {: .prompt-info}
 
 ---

@@ -14,8 +14,8 @@ image:
 *O'Reilly GitOps Cookbook* 의 1장에 해당 하는 **GitOps**에 대해 알아봅니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 argocd, gitops, ci-cd이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - GitOps는 Git에 선언된 상태를 클러스터의 실제 상태와 계속 맞추는 방식입니다. 배포 파이프라인이 클러스터에 push하는 대신, 클러스터 안의 에이전트가 Git을 pull합니다.  
+> - Kubernetes의 컨트롤러가 이미 선언된 상태로 수렴하는 구조라, GitOps는 그 위에 Git을 상태의 원본으로 얹는 셈입니다.  
 {: .prompt-info}
 
 ---

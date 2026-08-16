@@ -16,7 +16,9 @@ image:
 이전에 진행했던 **Weasel** 프로젝트를 클라우드에서 로컬 Kubernetes로 마이그레이션하는 작업을 시작하며 컨테이너 이미지를 ECR이 아닌 온프레미스에서 관리해볼까? 라는 생각에 여러가지 솔루션을 고민하였습니다. [Line Engineering](https://engineering.linecorp.com/ko/blog/harbor-for-private-docker-registry)과 [SKT Enterprise](https://www.sktenterprise.com/bizInsight/blogDetail/dev/6171) 기술 블로그를 보고 오픈소스 기반, 강력한 보안 기능을 갖춘 **Harbor**에 매력을 느끼게 되었고, 도입을 확정하게 되었습니다. 해당 포스트에서는 Kubernetes에서 **Harbor**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - 주요 키워드는 harbor, #, TAG이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 클라우드에서 온프레미스 Kubernetes로 옮기면서 컨테이너 이미지를 ECR 대신 직접 관리하기 위해 Harbor를 선택했습니다.  
+> - 공식 문서가 요구하는 사전 조건은 Kubernetes 1.10 이상, Helm 2.8.0 이상, 고가용 Ingress Controller, 고가용 PostgreSQL과 Redis, 그리고 PVC 또는 외부 오브젝트 스토리지입니다.  
+> - 실습은 Kubernetes v1.29.6, Helm v3.15.3, NGINX Ingress Controller, Local Path Provisioner 환경에서 진행합니다.  
 {: .prompt-info}
 
 ---

@@ -14,8 +14,8 @@ image:
 로컬 환경에서 `kind`를 사용하여 관리용(Management), 운영용(Production), 개발용(Development) 클러스터를 구축하고, `Argo CD`를 이용해 중앙에서 멀티 클러스터에 애플리케이션을 배포하는 과정을 정리합니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-6w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Argo CD 하나로 3개 클러스터에 각각 nginx를 배포하며 멀티 클러스터 관리 흐름을 확인합니다.  
+> - chart는 GitHub에 올려 원본으로 두고, 클러스터별로 destination만 달리한 Application을 정의합니다.  
 {: .prompt-info}
 
 ---

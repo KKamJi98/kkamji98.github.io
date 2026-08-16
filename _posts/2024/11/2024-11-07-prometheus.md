@@ -19,8 +19,9 @@ image:
 4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동]({% post_url 2025/06/2025-06-21-thanos-deploy %})
 
 > **TL;DR**  
-> - 모니터링과 Observability 관점에서 수집, 시각화, 문제 분석 흐름을 정리합니다.  
-> - 주요 키워드는 monitoring, observability, prometheus이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Prometheus는 2012년 SoundCloud에서 시작해 현재 CNCF가 관리하며, 모든 메트릭을 이름과 label로 식별되는 시계열로 저장합니다.  
+> - 수집은 대상에서 직접 끌어오는 Pull 방식이 기본입니다. 짧게 살다 사라지는 Job은 Pull로 잡히지 않으므로 Push Gateway를 거칩니다.  
+> - 구성요소는 Prometheus Server, Node를 DaemonSet으로 덮는 Node Exporter, Push Gateway, Alert Manager, 그리고 PromQL을 실행하는 Web UI입니다.  
 {: .prompt-info}
 
 ---

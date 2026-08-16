@@ -14,9 +14,9 @@ image:
 > - [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 hubble, hubble-relay, cilium이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Star Wars Demo는 `deathstar`, `tiefighter`, `xwing` 세 서비스로 구성됩니다. deathstar는 80번 포트 HTTP 서버이고 두 replica로 로드밸런싱됩니다.  
+> - L3/L4 정책으로는 제국 소속 라벨을 가진 tiefighter만 통과시키고 xwing을 막습니다. L7 정책을 얹으면 같은 tiefighter라도 허용된 HTTP 경로만 통과합니다.  
+> - 어떤 정책이 흐름을 허용하고 거부했는지는 Hubble로 확인합니다.  
 {: .prompt-info}
 
 ---

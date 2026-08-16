@@ -19,8 +19,9 @@ Kubernetes v1.33에서 In-Place Pod Resource Resize 기능이 베타로 승격�
 해당 기능의 개념을 설명하고, PoC를 통해 실제로 개념에 맞게 동작하는지를 확인해보도록 하겠습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 pod, resource, resize이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Kubernetes v1.33에서 In-Place Pod Resource Resize가 베타로 올라가, Pod를 재생성하지 않고 CPU와 메모리 requests, limits를 바꿀 수 있게 됐습니다.  
+> - Memory limits를 줄이는 변경은 resize policy를 `RestartContainer`로 지정하지 않으면 무중단으로 적용되지 않습니다.  
+> - PoC는 EKS v1.33에서 `InPlacePodVerticalScaling` feature gate가 켜진 상태를 확인한 뒤, nginx Pod의 리소스를 바꾸고 재시작 횟수가 그대로인지로 검증합니다.  
 {: .prompt-info}
 
 ---

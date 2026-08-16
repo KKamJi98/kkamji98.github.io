@@ -20,8 +20,9 @@ image:
 {: .prompt-tip}
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 lambda, elk, log-stash이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 2024년 11월부터 12월까지 진행한 서버리스 단어 암기 서비스 프로젝트 회고입니다. 인프라 담당으로 프로비저닝, CI/CD, 로그 분석 환경을 맡았습니다.  
+> - HCP Terraform을 GitHub와 연동해 코드 변경이 곧 인프라 변경이 되도록 구성하고, VPC부터 Lambda, API Gateway, S3, CloudFront까지 코드로 정의했습니다.  
+> - 서버리스 MSA에서 가장 크게 체감한 문제는 로그가 함수마다 흩어진다는 점이었고, CloudWatch Logs Subscription Filter로 Logstash와 Elasticsearch에 모아 Kibana에서 함께 보도록 해결했습니다.  
 {: .prompt-info}
 
 ---

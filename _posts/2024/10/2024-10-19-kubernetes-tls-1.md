@@ -16,8 +16,8 @@ TLS는 애플리케이션과 사용자의 통신을 암호화하여 중간자 �
 해당 포스트에서 **TLS**란 무엇인지, **TLS** 인증 과정에 대해 알아보고 다음 글에서는 Kubernetes에서 **TLS 인증서** 관리는 어떻게 하는지, **Nginx Ingress Controller**에 **TLS** 설정은 어떻게 하는지에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 harbor, jenkins, tls이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - TLS는 SSL의 취약점을 개선한 후속 프로토콜입니다. SSL은 POODLE과 downgrade attack 등으로 더 이상 사용되지 않습니다.  
+> - TLS Handshake는 Client Hello와 Server Hello로 시작해 서버 인증과 키 교환을 거쳐 세션 키를 만들고, Change Cipher Spec 이후 실제 통신으로 넘어갑니다.  
 {: .prompt-info}
 
 ---

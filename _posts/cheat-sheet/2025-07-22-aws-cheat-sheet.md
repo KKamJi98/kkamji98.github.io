@@ -12,8 +12,8 @@ image:
 AWS CLI를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 > **TL;DR**  
-> - 자주 사용하는 명령과 옵션을 빠르게 찾아볼 수 있도록 정리합니다.  
-> - 주요 키워드는 cli, cloud, aws-cli이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - AWS CLI 명령을 서비스별로 모았습니다. EC2, S3, IAM, VPC, EKS, CloudFormation, CloudWatch, Lambda, RDS 순입니다.  
+> - 앞부분에 profile과 리전 전환, 디버깅 방법을 두고 마지막에 `--query`와 `--output`으로 필요한 필드만 추리는 패턴을 정리했습니다.  
 {: .prompt-info}
 
 ---

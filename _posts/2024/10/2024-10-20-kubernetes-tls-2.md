@@ -15,8 +15,9 @@ image:
 {: .prompt-tip}
 
 > **TL;DR**  
-> - Jenkins 기반 CI/CD 파이프라인 구성과 Kubernetes 연동 흐름을 정리합니다.  
-> - 주요 키워드는 harbor, jenkins, tls이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - cert-manager를 설치하고 ClusterIssuer로 Let's Encrypt 발급 정보를 정의한 뒤, Ingress에 TLS 설정을 붙이면 인증서가 자동 발급됩니다.  
+> - ACME는 Let's Encrypt가 만든 프로토콜로, 클라이언트와 인증 기관 사이의 발급과 갱신 절차를 자동화합니다.  
+> - 필요한 사전 조건은 Kubernetes 1.22 이상, Helm, 실제 소유한 도메인, 그리고 Ingress Controller입니다.  
 {: .prompt-info}
 
 ---

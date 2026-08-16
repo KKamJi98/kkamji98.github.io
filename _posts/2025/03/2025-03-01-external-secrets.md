@@ -14,8 +14,9 @@ image:
 이를 통해 Application에서 사용하는 API URL이나 DB 정보 등의 변화가 생겼을 때 코드를 수정하지 않고, 외부에 저장된 시크릿을 가져와 환경변수나 볼륨으로 사용할 수 있습니다. 이를 통해 **운영 우수성**과 **보안성**을 높일 수 있고, 휴먼 에러의 가능성을 낮출 수 있습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 secrets-manager, ssm, parameter-store이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - External Secrets Operator는 AWS Secrets Manager나 SSM Parameter Store 같은 외부 저장소의 값을 주기적으로 읽어 Kubernetes Secret으로 동기화합니다.  
+> - CRD는 범위로 나뉩니다. SecretStore와 ExternalSecret은 namespace 범위이고, ClusterSecretStore와 ClusterExternalSecret은 클러스터 범위입니다.  
+> - 실무에서는 Access Key 대신 IRSA를 쓰는 편이 낫고, 이때 `auth.jwt`와 `serviceAccountRef`를 빠뜨리면 인증이 실패합니다. 키가 많으면 `.data[]` 대신 `.dataFrom`이나 `.template`으로 통째로 가져올 수 있습니다.  
 {: .prompt-info}
 
 ---

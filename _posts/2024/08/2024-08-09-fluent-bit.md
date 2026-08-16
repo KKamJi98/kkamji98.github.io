@@ -16,8 +16,9 @@ image:
 두 스택 모두 실시간 분산 검색 및 분석 엔진으로 **Elasticsearch**를 사용하고 **Kibana**를 사용해 **Elasticsearch**에서 저장된 데이터를 시각화합니다. 그렇다면 **Logstash**와 **Fluent Bit**는 무엇일까요? 정답은 바로 로그 데이터를 수집, 처리, 전송을 위한 오픈 소스 도구입니다. 개인적으로 로그 분석의 시작은 로그 데이터를 수집하는 작업부터라고 생각합니다. 해당 포스트에서는 로그 데이터를 수집하는 Fluent Bit에 대해 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 eks, elasticsearch, fluent-bit이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Fluent Bit은 C로 작성된 경량 로그 프로세서로, 임베디드와 게이트웨이처럼 리소스가 제한된 환경을 목표로 Fluentd 팀이 2014년에 시작한 프로젝트입니다.  
+> - Fluent Bit이 다루는 모든 데이터는 Timestamp, Key/Value Metadata, Payload 세 부분으로 이루어진 Event입니다.  
+> - Helm chart 기본값에 Docker parsing, systemd 로그 수집, Kubernetes metadata 추가, Elasticsearch 출력이 이미 들어 있어 `values.yaml`만 조정하면 됩니다.  
 {: .prompt-info}
 
 ---

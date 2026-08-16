@@ -18,8 +18,10 @@ image:
 {: .prompt-info}
 
 > **TL;DR**  
-> - 모니터링과 Observability 관점에서 수집, 시각화, 문제 분석 흐름을 정리합니다.  
-> - 주요 키워드는 datadog, rum, real-user-monitoring이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 백엔드가 200 OK를 빠르게 돌려줘도 사용자는 느리다고 느낄 수 있습니다. 느린 렌더링, 레이아웃 이동, 브라우저 JS 에러는 server-side 신호에 잡히지 않습니다.  
+> - RUM 데이터는 Session 아래 View가 있고 나머지 이벤트가 수집 시점의 active View에 귀속되는 트리 구조입니다. Core Web Vitals도 View 이벤트에 자동으로 붙습니다.  
+> - Google은 2024년에 인터랙티비티 지표를 FID에서 INP로 교체했습니다. Datadog은 INP를 SPA route change까지 포함해 측정하고 input delay와 processing duration, presentation delay로 분해합니다.  
+> - `clientToken`은 client-side에 노출돼도 안전한 write-only 토큰이라 프론트 코드에 그대로 넣습니다. Datadog API key와 혼동하면 안 됩니다.  
 {: .prompt-info}
 
 ---

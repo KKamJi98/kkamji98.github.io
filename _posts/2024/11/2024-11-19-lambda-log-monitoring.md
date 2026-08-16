@@ -16,8 +16,9 @@ image:
 해당 포스트에서는 로컬 Kubernetes 환경에 **Elasticsearch**, **Logstash**, **Kibana**를 배포하고 CloudWatch Logs에 쌓이는 로그 데이터를 **Amazon Data Firehose**로 전송하는 것을 다뤄보도록 하겠습니다.
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 lambda, subscription-filter, logstash이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Lambda 함수가 늘어나면 로그가 함수별 CloudWatch Log Group으로 흩어져 한 번에 검색할 수 없게 됩니다.  
+> - CloudWatch Logs Subscription Filter가 로그를 Lambda로 흘리고, 그 Lambda가 Logstash의 HTTP input(5044)으로 전달해 Elasticsearch에 적재하는 경로를 만듭니다.  
+> - Elasticsearch와 Kibana는 ECK 2.15.0 operator로, 버전 8.16.0을 배포합니다. `elastic` 계정의 초기 비밀번호는 `elasticsearch-es-elastic-user` Secret에 들어 있습니다.  
 {: .prompt-info}
 
 ---

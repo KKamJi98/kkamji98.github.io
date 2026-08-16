@@ -19,8 +19,9 @@ image:
 2. 선언적 API와 파일, 폴더, Git Repository에서 리소스를 어떻게 적용할 수 있는지
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-4w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - GitOps라는 말은 Flux를 만든 Weaveworks가 2017년에 처음 썼고, 벤더 중립적인 정의는 CNCF의 GitOps Working Group(OpenGitOps)이 정리했습니다.  
+> - OpenGitOps 원칙은 선언적 구성, 버전이 제어되는 불변 저장소, 자동 pull, 지속적인 조정입니다. 선언적이라는 것은 컨테이너 3개를 만들라고 명령하는 대신 3개를 쓰겠다고 선언하면 에이전트가 그 수를 맞춘다는 뜻입니다.  
+> - 명령형 API와 선언형 API의 차이를 짚고, 간단한 GitOps Operator를 직접 만들어 조정 루프가 무엇인지 확인합니다.  
 {: .prompt-info}
 
 ---

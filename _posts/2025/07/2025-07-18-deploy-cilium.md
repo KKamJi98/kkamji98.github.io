@@ -12,9 +12,9 @@ image:
 저번 시간에 **Cilium**에 대해 알아보았습니다. 이번에는 **Cilium**의 구성요소에 대해 알아본 뒤, Helm을 통해 **Cilium**을 배포하면서 kube-proxy를 대체해 사용해보도록 하겠습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-1w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Cilium은 클러스터 단위 작업(IPAM, 노드 간 라우팅, kvstore 연동)을 맡는 Operator, 각 노드에서 eBPF 프로그램과 맵을 구성하는 Agent, Client, Hubble, DataStore로 나뉩니다.  
+> - 최소 요구사항은 AMD64 또는 AArch64 아키텍처와 5.4 이상 커널입니다. `/boot/config-$(uname -r)`에서 필요한 커널 옵션이 켜져 있는지도 확인해야 합니다.  
+> - kube-proxy 없이 배포하면 Cilium이 Service 처리를 eBPF로 대체하므로 iptables 규칙 체인을 거치지 않습니다.  
 {: .prompt-info}
 
 ---

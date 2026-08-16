@@ -16,9 +16,9 @@ image:
 - [Cilium Docs - Configuring Hubble exporter](https://docs.cilium.io/en/stable/observability/hubble/configuration/export/#dynamic-exporter-configuration)
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, hubble, hubble-exporter이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Hubble Exporter는 cilium-agent가 network flow를 노드의 로그 파일로 내보내는 기능이며, file rotation과 size limit, filter, field mask를 지원합니다.  
+> - 쓰임새는 감사와 규제용 장기 보관, Loki나 Elasticsearch 같은 외부 파이프라인 연계, latency나 TCP flag처럼 특정 필드만 추려 성능 분석하는 경우입니다.  
+> - Static 방식은 Helm 값으로 고정 설정을 넣고, Dynamic 방식은 재시작 없이 설정을 바꿀 수 있습니다.  
 {: .prompt-info}
 
 ---

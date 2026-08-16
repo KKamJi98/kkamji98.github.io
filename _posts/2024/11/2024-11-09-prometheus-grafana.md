@@ -19,8 +19,8 @@ image:
 4. [Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동]({% post_url 2025/06/2025-06-21-thanos-deploy %})
 
 > **TL;DR**  
-> - 모니터링과 Observability 관점에서 수집, 시각화, 문제 분석 흐름을 정리합니다.  
-> - 주요 키워드는 monitoring, observability, prometheus이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Grafana에 Prometheus를 Data Source로 등록할 때는 클러스터 내부에서 접근할 수 있는 Service 주소를 URL로 넣습니다.  
+> - 대시보드는 직접 만들지 않고 Grafana Labs 공식 대시보드 목록에서 ID로 import하면 Kubernetes 리소스 지표를 바로 볼 수 있습니다.  
 {: .prompt-info}
 
 ---

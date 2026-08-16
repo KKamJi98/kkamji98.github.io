@@ -22,8 +22,9 @@ image:
 | 제약      | OIDC Provider 관리 필요                            | Linux EC2 노드만 지원, SA당 Role 1개            |
 
 > **TL;DR**  
-> - AWS 서비스의 핵심 개념과 실제 구성 시 주의할 지점을 정리합니다.  
-> - 주요 키워드는 eks, irsa, pod-identity이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - Pod Identity는 IRSA와 달리 클러스터마다 OIDC Provider를 만들고 신뢰 정책을 관리할 필요가 없습니다. 신뢰 주체가 항상 `pods.eks.amazonaws.com` 하나라 IAM Role을 여러 클러스터에서 재사용할 수 있습니다.  
+> - STS를 Pod마다 호출하지 않고 노드의 Pod Identity Agent가 노드당 한 번 호출하므로, 대규모 배치나 ML 워크로드에서 호출량이 튀지 않습니다.  
+> - 현재 Linux EC2 노드에서만 동작하며 Fargate와 Windows는 지원되지 않습니다.  
 {: .prompt-info}
 
 ---

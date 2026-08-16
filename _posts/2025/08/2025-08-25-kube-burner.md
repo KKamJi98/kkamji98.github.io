@@ -17,9 +17,9 @@ Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의
 > [Kube-burner GitHub](https://github.com/kube-burner/kube-burner)  
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-7w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Kube-burner는 Kubernetes 성능과 확장성 테스트를 오케스트레이션하는 도구입니다. 리소스를 대량으로 생성, 삭제, 조회, 패치하면서 Prometheus 메트릭을 수집하고 색인합니다.  
+> - 단순 부하 생성기가 아니라 measurement와 alerting을 함께 제공하므로, 부하 중 지표가 임계를 넘었는지 판정까지 한 번에 볼 수 있습니다.  
+> - 실습은 Kind 클러스터와 모니터링 스택을 먼저 올린 뒤 진행합니다.  
 {: .prompt-info}
 
 ---

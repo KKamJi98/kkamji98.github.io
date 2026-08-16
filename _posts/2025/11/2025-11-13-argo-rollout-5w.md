@@ -14,8 +14,9 @@ image:
 **Argo Rollouts**에 대해 다루겠습니다.
 
 > **TL;DR**  
-> - Argo CD와 GitOps 운영에서 필요한 구성 요소와 권한 흐름을 정리합니다.  
-> - 주요 키워드는 ci-cd-study, ci-cd-study-5w, gitops이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - 기본 Deployment의 `RollingUpdate`는 롤아웃 속도를 제어하기 어렵고, 새 버전으로 가는 트래픽 비중을 조절할 수 없으며, 외부 메트릭으로 검증하거나 자동 롤백할 수단이 없습니다.  
+> - Argo Rollouts는 Deployment를 대체하는 `Rollout` CRD로 Blue-Green과 Canary를 지원하고, 가중치 기반 트래픽 전환을 세분화해 다룹니다.  
+> - Ingress Controller나 Service Mesh와 연동해 트래픽을 나누고, 메트릭 분석 결과에 따라 자동으로 승격하거나 롤백할 수 있습니다.  
 {: .prompt-info}
 
 ---

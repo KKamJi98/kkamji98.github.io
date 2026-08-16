@@ -12,9 +12,9 @@ image:
 저번 시간까지 Cilium의 Hubble을 비롯한 운영/모니터링 기능을 살펴보았습니다. 이번 시간에는 Cilium의 IP Address Management(IPAM) 개념을 알아보고, Kubernetes Host Scope와 Cluster Scope 두 가지 IPAM 모드의 동작 차이를 실습을 통해 확인해보겠습니다.
 
 > **TL;DR**  
-> - Cilium 기반 네트워킹, 관측, 정책 구성 흐름을 실습 중심으로 정리합니다.  
-> - 주요 키워드는 cilium, cilium-study, cilium-3w이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
-> - 운영 관점에서는 버전, 권한, 네트워크, 보안, 장애 시 확인 지점을 함께 점검하는 것이 중요합니다.  
+> - Kubernetes 기본 방식은 컨트롤 플레인이 노드마다 Pod CIDR을 미리 잘라주고 kubelet이 그 안에서 IP를 배정하는 구조입니다. Cilium은 자체 IPAM으로 이 역할을 대신할 수 있습니다.  
+> - Cilium의 IPAM 모드는 노드의 Pod CIDR을 그대로 쓰는 Kubernetes Host Scope, Cilium이 직접 풀을 관리하는 Cluster Scope(기본값), 그리고 베타인 Multi-Pool로 나뉩니다.  
+> - Host Scope에서 Cluster Scope로 옮기는 실습을 포함합니다.  
 {: .prompt-info}
 
 ---

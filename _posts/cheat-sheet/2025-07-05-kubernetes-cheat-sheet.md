@@ -12,8 +12,8 @@ image:
 Kubernetes를 사용하며 알게 된 CLI 명령어들을 공유합니다.
 
 > **TL;DR**  
-> - 자주 사용하는 명령과 옵션을 빠르게 찾아볼 수 있도록 정리합니다.  
-> - 주요 키워드는 kubectl, cheat-sheet, k8s이며, 글의 예제와 명령을 따라가며 전체 흐름을 확인할 수 있습니다.  
+> - kubectl을 쓰면서 반복적으로 찾게 되는 명령을 리소스 종류별로 모았습니다. 컨텍스트와 네임스페이스부터 Pod, Deployment, Service, ConfigMap, Volume, Ingress, Node까지 이어집니다.  
+> - 뒤쪽에는 모니터링과 디버깅, 라벨 기반 필터링, `kubectl api-resources`를 활용한 고급 쿼리, 그리고 자주 쓰는 alias를 정리했습니다.  
 {: .prompt-info}
 
 ---

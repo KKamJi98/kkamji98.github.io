@@ -9,9 +9,9 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-npm install로 lodash를 설치하는데 갑자기 404가 떨어진다. npmjs.com에서 패키지가 삭제됐거나 maintainer가 계정을 바꿨을 수 있다. 실제로 2016년 left-pad 사건처럼 단일 패키지 삭제가 수천 개 프로젝트의 빌드를 멈춘 사례가 있다. 팀이 internal하게 공유하는 사내 패키지는 공개 registry에 올릴 수 없고, public 패키지와 private 패키지를 같은 빌드에서 사용하려면 두 개의 registry를 오가야 한다.
+팀이 공유하는 사내 라이브러리는 공개 registry에 올릴 수 없습니다. 그런데 같은 빌드가 npm과 PyPI에서 공개 패키지도 함께 가져옵니다. 사내 패키지용 저장소를 따로 세우면 빌드마다 두 곳의 endpoint와 인증 정보를 관리해야 하고, 사용하는 언어가 늘어날수록 그 저장소도 언어별로 늘어납니다. 공개 registry에서 받아온 패키지가 어느 시점에 어떤 버전으로 들어왔는지 조직이 통제하지 못한다는 문제도 남습니다.
 
-AWS CodeArtifact는 이 문제를 풀기 위한 fully managed artifact repository service입니다. private 패키지를 저장하고, public registry를 proxy하고, npm, pip, Maven, NuGet, RubyGems, Cargo, Swift를 하나의 repository에서 처리합니다. 패키지 개수나 총 크기에 제한이 없으며, 자체 artifact 서버를 운영할 필요가 없습니다.
+AWS CodeArtifact는 이 문제를 fully managed artifact repository로 해결합니다. private 패키지를 저장하고, public registry를 proxy하고, npm, PyPI, Maven, NuGet, RubyGems, Cargo, Swift를 하나의 repository에서 처리합니다. 패키지 개수와 총 크기에 제한이 없고, 자체 artifact 서버를 운영할 필요가 없습니다. 다만 13개 리전에서만 제공되며 서울(ap-northeast-2)은 여기에 포함되지 않습니다.
 
 > **TL;DR**  
 > - Domain이 KMS 암호화와 asset 중복 제거를 맡고 그 아래 repository가 패키지를 담는다. 하나의 repository는 polyglot이라 npm, PyPI, Maven을 함께 넣을 수 있다.  
