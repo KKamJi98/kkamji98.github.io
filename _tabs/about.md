@@ -1010,8 +1010,8 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
     <div class="cv-mini-title"><i class="fab fa-github"></i> ssh-connector</div>
     <p class="cv-mini-desc">SSH Config 파일의 설정을 기반으로 동작하는 서버 접근 관리 Tool</p>
   </a>
-  <a class="cv-mini-card" href="https://github.com/KKamJi98/aws-pick" target="_blank" rel="noopener">
-    <div class="cv-mini-title"><i class="fab fa-github"></i> aws-pick</div>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/aws-profile-pick" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> awspick (aws-profile-pick)</div>
     <p class="cv-mini-desc">AWS CLI 사용에 적용되는 Default Profile 전환 Tool</p>
   </a>
   <a class="cv-mini-card" href="https://github.com/KKamJi98/kubernetes-monitoring-python" target="_blank" rel="noopener">
@@ -1042,8 +1042,8 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
     <div class="cv-mini-title"><i class="fab fa-github"></i> eks-token-cache</div>
     <p class="cv-mini-desc">EKS 토큰 캐싱으로 kubectl 응답 지연 제거</p>
   </a>
-  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/git-worktree-tool" target="_blank" rel="noopener">
-    <div class="cv-mini-title"><i class="fab fa-github"></i> wt (git-worktree-tool)</div>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/wtree" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> wt (wtree)</div>
     <p class="cv-mini-desc">Git bare repo 기반 worktree 일괄 관리 CLI</p>
   </a>
   <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/swagger-loadgen" target="_blank" rel="noopener">
@@ -1054,8 +1054,8 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
     <div class="cv-mini-title"><i class="fab fa-github"></i> drt (domain-resource-tracer)</div>
     <p class="cv-mini-desc">AWS 도메인 패턴으로 연결된 리소스를 한 번에 추적</p>
   </a>
-  <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools/pull-request-jump" target="_blank" rel="noopener">
-    <div class="cv-mini-title"><i class="fab fa-github"></i> prj (pull-request-jump)</div>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/prjump" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> prj (prjump)</div>
     <p class="cv-mini-desc">GitHub / Bitbucket PR 페이지를 CLI에서 바로 열기</p>
   </a>
   <a class="cv-mini-card" href="https://github.com/KKamJi98/kkamji-lab/tree/main/tools" target="_blank" rel="noopener">
