@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "blockchain-series",
+  "title": "Signing says who moved the asset; hashing says the record has not changed since",
+  "subtitle": "Bitcoin publishes every amount in the clear. The cryptography protects integrity and authenticity, not secrecy.",
+  "layout": {
+    "icon_cell_w": 178,
+    "col_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "tx",
+      "kind": "box",
+      "label": "Transaction",
+      "col": 0,
+      "row": 0,
+      "detail": "sender, receiver, amount, all readable",
+      "role": "surface",
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "signature",
+      "kind": "box",
+      "label": "ECDSA signature",
+      "col": 1,
+      "row": 0,
+      "detail": "secp256k1 over the transaction hash",
+      "role": "queue",
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "merkle",
+      "kind": "box",
+      "label": "Merkle root",
+      "col": 2,
+      "row": 0,
+      "detail": "32 bytes standing for every tx in the block",
+      "role": "store",
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "block-n",
+      "kind": "box",
+      "label": "Block N",
+      "col": 0,
+      "row": 1,
+      "detail": "previous block hash and the Merkle root",
+      "role": "process",
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "block-n1",
+      "kind": "box",
+      "label": "Block N+1",
+      "col": 1,
+      "row": 1,
+      "detail": "commits to Block N by hashing its header",
+      "role": "process",
+      "step": 5,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "tx-to-signature",
+      "source": "tx",
+      "target": "signature"
+    },
+    {
+      "id": "signature-to-merkle",
+      "source": "signature",
+      "target": "merkle"
+    },
+    {
+      "id": "merkle-to-block-n",
+      "source": "merkle",
+      "target": "block-n"
+    },
+    {
+      "id": "block-n-to-block-n1",
+      "source": "block-n",
+      "target": "block-n1"
+    }
+  ]
+}
