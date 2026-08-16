@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 5 1편](/posts/gradle-maven-build/)에서 빌드와 의존성을 봤습니다. 의존성에 `spring-boot-starter-security`를 더하면 갑자기 로그인 화면이 뜨고 권한 없는 요청은 막힙니다. 이 동작의 정체는 무엇일까요. 정답은 **컨트롤러 앞단에 서는 필터 체인**입니다. Spring Security의 구조(필터 체인), 그리고 **인증(누구인가)**과 **인가(무엇을 허용)**의 차이를 정리합니다. 커리큘럼의 마지막 글입니다.
+[Series 5 1편](/posts/gradle-maven-build/)에서 빌드와 의존성을 봤습니다. 의존성에 `spring-boot-starter-security`를 더하면 갑자기 로그인 화면이 뜨고 권한 없는 요청은 막힙니다. 이 동작의 정체는 무엇일까요? 정답은 **컨트롤러 앞단에 서는 필터 체인**입니다. Spring Security의 구조(필터 체인), 그리고 **인증(누구인가)**과 **인가(무엇을 허용)**의 차이를 정리합니다. 커리큘럼의 마지막 글입니다.
 
 > **TL;DR**  
 > - Spring Security는 **servlet Filter**로 동작한다. `DelegatingFilterProxy`(Servlet <-> Spring 브리지) -> `FilterChainProxy` -> `SecurityFilterChain`(보안 필터들) 순서로, [Series 1의 DispatcherServlet](/posts/spring-mvc-dispatcherservlet/) **앞단**에서 처리된다.  

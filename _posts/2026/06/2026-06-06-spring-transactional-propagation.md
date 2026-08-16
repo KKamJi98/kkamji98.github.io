@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 4 1편](/posts/jpa-persistence-context/)에서 영속성 컨텍스트의 수명이 트랜잭션에 묶인다고 했습니다. 그 트랜잭션을 거는 도구가 `@Transactional`인데, 메서드에 한 줄 붙이면 트랜잭션이 시작되고 끝납니다. 그런데 정확히 어떻게 동작할까요. 언제 롤백되고, 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출하면 어떻게 될까요. `@Transactional`의 동작(AOP 프록시), 롤백 규칙, 그리고 **트랜잭션 전파(propagation)**를 정리합니다.
+[Series 4 1편](/posts/jpa-persistence-context/)에서 영속성 컨텍스트의 수명이 트랜잭션에 묶인다고 했습니다. 그 트랜잭션을 거는 도구가 `@Transactional`인데, 메서드에 한 줄 붙이면 트랜잭션이 시작되고 끝납니다. 그런데 정확히 어떻게 동작할까요? 언제 롤백되고, 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출하면 어떻게 될까요? `@Transactional`의 동작(AOP 프록시), 롤백 규칙, 그리고 **트랜잭션 전파(propagation)**를 정리합니다.
 
 > **TL;DR**  
 > - `@Transactional`은 **AOP 프록시**로 동작한다. 프록시가 메서드 호출을 가로채 트랜잭션을 begin/commit/rollback으로 감싼다.  

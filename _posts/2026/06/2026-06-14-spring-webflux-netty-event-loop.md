@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브는 "블로킹을 하지 않는다"는 데까지 봤습니다. 그런데 블로킹을 하지 않으면 서버 스레드는 구체적으로 어떻게 동작할까요. "적은 스레드로 많은 요청을 처리한다"는 말의 실체는 무엇이고, netty가 쓰는 메모리는 왜 JVM 힙 바깥(off-heap)에 있을까요. Spring WebFlux의 실행 모델인 **event loop**와 netty의 **direct memory**를 살펴봅니다. 앞의 [Series 1 3편 thread-per-request](/posts/spring-mvc-dispatcherservlet/)와 [Series 2의 JVM 메모리 구조](/posts/jvm-memory-model/)가 여기서 다시 만납니다.
+[Series 3 1편](/posts/reactive-reactor-basics/)에서 리액티브는 "블로킹을 하지 않는다"는 데까지 봤습니다. 그런데 블로킹을 하지 않으면 서버 스레드는 구체적으로 어떻게 동작할까요? "적은 스레드로 많은 요청을 처리한다"는 말의 실체는 무엇이고, netty가 쓰는 메모리는 왜 JVM 힙 바깥(off-heap)에 있을까요? Spring WebFlux의 실행 모델인 **event loop**와 netty의 **direct memory**를 살펴봅니다. 앞의 [Series 1 3편 thread-per-request](/posts/spring-mvc-dispatcherservlet/)와 [Series 2의 JVM 메모리 구조](/posts/jvm-memory-model/)가 여기서 다시 만납니다.
 
 > **TL;DR**  
 > - Spring WebFlux의 기본 서버는 **Netty**이고, thread-per-request가 아니라 **event loop** 모델로 동작한다.  
@@ -26,7 +26,7 @@ image:
 
 [Series 3 1편](/posts/reactive-reactor-basics/)에서는 그 반대 모델을 봤습니다. 리액티브는 "조회하면 이렇게 처리하라"는 파이프라인을 **선언**할 뿐이고, `subscribe()` 전에는 아무것도 흐르지 않으며, I/O를 기다리며 스레드를 붙잡지 않습니다.
 
-그렇다면 자연스러운 질문이 생깁니다. **블로킹을 하지 않으면 서버는 스레드를 몇 개나 쓸까요.** 요청이 많아질 때 스레드도 같이 늘어날까요. 이번 글은 이 질문에 답하는 WebFlux의 실행 모델을 다룹니다.
+그렇다면 자연스러운 질문이 생깁니다. **블로킹을 하지 않으면 서버는 스레드를 몇 개나 쓸까요?** 요청이 많아질 때 스레드도 같이 늘어날까요? 이번 글은 이 질문에 답하는 WebFlux의 실행 모델을 다룹니다.
 
 ---
 
@@ -96,7 +96,7 @@ _event loop 스레드 수는 CPU 코어 수 수준. 한 커넥션의 I/O가 진�
 
 적은 스레드 모델의 대가는 명확합니다. event loop 스레드 하나가 **블로킹**되면, 그 스레드가 담당하던 수많은 커넥션이 **전부 함께 멈춥니다.** thread-per-request에서는 블로킹이 그 요청 하나만 느리게 하지만, event loop에서는 한 번의 블로킹이 광범위한 영향을 줍니다. 그래서 WebFlux의 황금률은 "event loop를 블로킹하지 마라"입니다.
 
-그렇다면 블로킹 라이브러리를 꼭 써야 할 때는 어떻게 할까요. 공식 문서는 다른 스레드로 처리를 옮기는 탈출구를 제시합니다.
+그렇다면 블로킹 라이브러리를 꼭 써야 할 때는 어떻게 할까요? 공식 문서는 다른 스레드로 처리를 옮기는 탈출구를 제시합니다.
 
 > What if you do need to use a blocking library? Both Reactor and RxJava provide the publishOn operator to continue processing on a different thread. That means there is an easy escape hatch. Keep in mind, however, that blocking APIs are not a good fit for this concurrency model.  
 > _- Spring Framework Reference, Concurrency Model_  
@@ -129,7 +129,7 @@ Mono<Order> best = r2dbcRepo.findById(id);
 
 ## 5. netty와 direct memory - 왜 off-heap인가
 
-이제 메모리로 넘어갑니다. netty는 소켓에서 바이트를 읽고 씁니다. 이때 쓰는 I/O 버퍼를 JVM 힙이 아니라 **direct memory(off-heap)**에 둡니다. 왜일까요.
+이제 메모리로 넘어갑니다. netty는 소켓에서 바이트를 읽고 씁니다. 이때 쓰는 I/O 버퍼를 JVM 힙이 아니라 **direct memory(off-heap)**에 둡니다. 왜일까요?
 
 핵심은 **native I/O**입니다. OS의 `read`/`write` 같은 시스템 콜은 메모리 주소가 고정된 버퍼를 필요로 합니다. 그런데 JVM 힙의 객체는 GC가 정리하면서 위치를 옮길 수 있어, 커널에 직접 넘기기 어렵습니다. 그래서 힙 버퍼를 쓰면 한 번 더 복사가 일어납니다. **direct buffer**는 GC가 옮기지 않는 native 메모리라 이 복사를 피할 수 있습니다.
 

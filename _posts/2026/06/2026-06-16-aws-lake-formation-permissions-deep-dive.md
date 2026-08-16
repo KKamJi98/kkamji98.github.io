@@ -87,8 +87,8 @@ AccessDeniedException: Insufficient Lake Formation permission(s): Required Descr
 
 ![Lake Formation 권한 매트릭스와 디버깅 타임라인](/assets/img/aws/analytics-stack-08-lf-permissions.webp)
 
-- **축 1 - IAM (API authorization)**: Glue/Athena API를 호출할 수 있는가. federated 리소스의 ARN과 glue action이 여기에 해당합니다.
-- **축 2 - Lake Formation (data authorization)**: 그 데이터에 실제로 접근할 grant가 있는가. catalog/database/table에 대한 DESCRIBE/SELECT grant입니다.
+- **축 1 - IAM (API authorization)**: Glue/Athena API를 호출할 수 있는가? federated 리소스의 ARN과 glue action이 여기에 해당합니다.
+- **축 2 - Lake Formation (data authorization)**: 그 데이터에 실제로 접근할 grant가 있는가? catalog/database/table에 대한 DESCRIBE/SELECT grant입니다.
 
 그리고 각 축은 **catalog -> database -> table** 세 계층으로 나뉩니다. federated 카탈로그는 상위 계층을 거쳐야 하위로 내려갈 수 있으므로(navigation), 어느 한 계층이라도 비면 그 지점에서 막힙니다. 위 매트릭스의 여섯 칸(2축 x 3계층)에 더해, IAM 측에 `lakeformation:GetDataAccess`(credential vending을 승인하는 권한)가 함께 있어야 합니다.
 

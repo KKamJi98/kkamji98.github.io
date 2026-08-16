@@ -80,7 +80,7 @@ public class OrderController {
 
 > You can use the `@ResponseBody` annotation on a method to have the return serialized to the response body through an HttpMessageConverter.  
 
-그렇다면 같은 `OrderDto`가 JSON이 될지 XML이 될지는 누가 정하는가. Spring MVC는 요청의 **content negotiation** 결과(클라이언트가 받고 싶어하는 media type)에 맞는 컨버터를 고릅니다. 기본 전략은 요청의 `Accept` 헤더만 보는 것입니다.
+그렇다면 같은 `OrderDto`가 JSON이 될지 XML이 될지는 누가 정하는가? Spring MVC는 요청의 **content negotiation** 결과(클라이언트가 받고 싶어하는 media type)에 맞는 컨버터를 고릅니다. 기본 전략은 요청의 `Accept` 헤더만 보는 것입니다.
 
 > By default, only the `Accept` header is checked.  
 

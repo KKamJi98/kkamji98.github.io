@@ -9,7 +9,7 @@ image:
   path: /assets/img/spring/spring.webp
 ---
 
-매일 `./gradlew bootJar`나 `mvn package`를 치고, 만들어진 `app.jar`를 `java -jar`로 실행합니다. 그런데 그 사이에 무슨 일이 일어날까요. 의존성에 버전을 안 적었는데 어떻게 빌드가 되고, 하나의 jar 안에 라이브러리가 전부 들어가는 건 어떻게일까요. Series 5(빌드/보안)의 첫 글에서는 빌드 도구가 하는 일, 의존성 관리(BOM), 그리고 실행 가능 jar 패키징을 정리합니다.
+매일 `./gradlew bootJar`나 `mvn package`를 치고, 만들어진 `app.jar`를 `java -jar`로 실행합니다. 그런데 그 사이에 무슨 일이 일어날까요? 의존성에 버전을 안 적었는데 어떻게 빌드가 되고, 하나의 jar 안에 라이브러리가 전부 들어가는 건 어떻게 가능한 걸까요? Series 5(빌드/보안)의 첫 글에서는 빌드 도구가 하는 일, 의존성 관리(BOM), 그리고 실행 가능 jar 패키징을 정리합니다.
 
 > **TL;DR**  
 > - 빌드 도구(Gradle/Maven)는 **compile -> test -> package**와 **의존성 관리**를 담당한다. Gradle은 태스크 DAG + DSL, Maven은 phase 생명주기 + XML.  
