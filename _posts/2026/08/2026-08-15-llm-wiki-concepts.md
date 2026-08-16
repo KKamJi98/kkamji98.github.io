@@ -1,5 +1,5 @@
 ---
-title: "LLM Wiki 개념 - AI가 읽는 지식 베이스란 무엇인가 [LLM Wiki 1]"
+title: "LLM Wiki 개념 - AI가 읽는 지식 베이스 구조 [LLM Wiki 1]"
 date: 2026-08-15 13:00:00 +0900
 author: kkamji
 categories: [AI, Knowledge Base]
