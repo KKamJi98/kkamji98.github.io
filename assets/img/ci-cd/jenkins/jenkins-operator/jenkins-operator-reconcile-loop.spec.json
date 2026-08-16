@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "id": "jenkins-operator-reconcile-loop",
+  "title": "Jenkins Operator reconcile: base configuration first, then user configuration",
+  "subtitle": "Each pass validates the Jenkins CR, reconciles base resources, then applies user configuration. The same error ten times stops the loop.",
+  "nodes": [
+    {
+      "id": "base",
+      "kind": "box",
+      "label": "Base reconciliation loop",
+      "col": 2,
+      "row": 0,
+      "detail": "namespace, RBAC, master Pod,\nAPI token, groovy hardening",
+      "role": "process"
+    },
+    {
+      "id": "cr",
+      "kind": "box",
+      "label": "Jenkins CR",
+      "col": 0,
+      "row": 1,
+      "detail": "spec: master, plugins, seed jobs, casc",
+      "role": "process"
+    },
+    {
+      "id": "operator",
+      "kind": "box",
+      "label": "Jenkins Operator",
+      "col": 1,
+      "row": 1,
+      "detail": "watch, Validate, Reconcile",
+      "role": "compute"
+    },
+    {
+      "id": "userloop",
+      "kind": "box",
+      "label": "User reconciliation loop",
+      "col": 3,
+      "row": 2,
+      "detail": "CASC, seed jobs, groovy scripts,\nbackup and restore jobs",
+      "role": "process"
+    },
+    {
+      "id": "master",
+      "kind": "box",
+      "label": "Jenkins master Pod",
+      "col": 2,
+      "row": 3,
+      "detail": "jenkins/jenkins:2.541.2-lts\nbase and user config applied",
+      "role": "store"
+    },
+    {
+      "id": "giveup",
+      "kind": "box",
+      "label": "ReconcileLoopFailed",
+      "col": 0,
+      "row": 4,
+      "detail": "same error 10 times",
+      "role": "danger"
+    },
+    {
+      "id": "status",
+      "kind": "box",
+      "label": "CR status fields",
+      "col": 2,
+      "row": 4,
+      "detail": "provision and configuration timestamps",
+      "role": "queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-cr-op",
+      "source": "cr",
+      "target": "operator"
+    },
+    {
+      "id": "e-op-base",
+      "source": "operator",
+      "target": "base"
+    },
+    {
+      "id": "e-op-user",
+      "source": "operator",
+      "target": "userloop"
+    },
+    {
+      "id": "e-base-master",
+      "source": "base",
+      "target": "master"
+    },
+    {
+      "id": "e-user-master",
+      "source": "userloop",
+      "target": "master"
+    },
+    {
+      "id": "e-master-status",
+      "source": "master",
+      "target": "status"
+    },
+    {
+      "id": "e-status-giveup",
+      "source": "status",
+      "target": "giveup"
+    }
+  ]
+}

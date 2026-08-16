@@ -1,72 +1,68 @@
 <mxfile host="kkamji-blog" type="device">
-  <diagram id="jenkins-operator-reconcile-walkthrough" name="One pass through jenkins_controller.go reconcile">
-    <mxGraphModel dx="1024" dy="920" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1024" pageHeight="920" math="0" shadow="0" background="#FFFFFF">
+  <diagram id="jenkins-operator-reconcile-walkthrough" name="One pass through reconcile: base first, user configuration second">
+    <mxGraphModel dx="1093" dy="837" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1093" pageHeight="837" math="0" shadow="0" background="#FFFFFF">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="12" y="12" width="1000" height="896" as="geometry" />
+          <mxGeometry x="12" y="12" width="1069.44" height="813.0" as="geometry" />
         </mxCell>
         <mxCell id="title" value="One pass through reconcile: base first, user configuration second" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="34" width="956" height="30" as="geometry" />
+          <mxGeometry x="34" y="34" width="1025.44" height="30" as="geometry" />
         </mxCell>
         <mxCell id="subtitle" value="Function order in jenkins_controller.go. Every completed step records a timestamp in the CR status; a step that fails requeues the pass." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="34" y="64" width="956" height="22" as="geometry" />
+          <mxGeometry x="34" y="64" width="1025.44" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="m1" value="Watch event&#xa;Jenkins CR created or changed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="110" width="280" height="60" as="geometry" />
+        <mxCell id="m1" value="Watch event&#xa;Jenkins CR created or changed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="290.85" y="104" width="209" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="m2" value="base.Validate&#xa;validate the CR spec" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="210" width="280" height="60" as="geometry" />
+        <mxCell id="m2" value="base.Validate&#xa;validate the CR spec" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="306.85" y="210" width="176" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="m3" value="base.Reconcile&#xa;namespace, RBAC, secrets, master Pod,&#xa;API token, 7 hardening groovy scripts" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="310" width="280" height="90" as="geometry" />
+        <mxCell id="m3" value="base.Reconcile&#xa;namespace, RBAC, secrets, master Pod,&#xa;API token, 7 hardening groovy scripts" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="264.85" y="316" width="260" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="m4" value="waitForJenkins&#xa;poll readiness, requeue every 5s" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="440" width="280" height="60" as="geometry" />
+        <mxCell id="m4" value="waitForJenkins&#xa;poll readiness, requeue every 5s" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="280.85" y="431" width="228" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="m5" value="user.ReconcileCasc&#xa;apply JCasC and user groovy scripts" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="540" width="280" height="60" as="geometry" />
+        <mxCell id="e1" value="Not ready yet&#xa;requeue the pass after 5s" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="615.85" y="431" width="184" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="m6" value="user.ReconcileOthers&#xa;seed jobs, backup and restore jobs" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="640" width="280" height="80" as="geometry" />
+        <mxCell id="m5" value="user.ReconcileCasc&#xa;apply JCasC and user groovy scripts" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="271.85" y="537" width="247" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="m7" value="CR status update&#xa;provision, base, user completion times" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="100" y="760" width="280" height="80" as="geometry" />
+        <mxCell id="m6" value="user.ReconcileOthers&#xa;seed jobs, backup and restore jobs" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="274.85" y="643" width="241" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e1" value="Not ready yet&#xa;requeue the pass after 5s" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="560" y="435" width="280" height="70" as="geometry" />
+        <mxCell id="e2" value="Same error 10 times&#xa;ReconcileLoopFailed, operator stops" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="583.85" y="643" width="247" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="e2" value="Same error 10 times&#xa;ReconcileLoopFailed, operator stops" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
-          <mxGeometry x="560" y="645" width="280" height="70" as="geometry" />
+        <mxCell id="m7" value="CR status update&#xa;provision, base, user completion times" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="261.85" y="749" width="266" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m1" target="m2">
+        <mxCell id="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4976;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m1" target="m2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m2" target="m3">
+        <mxCell id="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m2" target="m3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m3" target="m4">
+        <mxCell id="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m3" target="m4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m4" target="m5">
+        <mxCell id="f4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.498;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m4" target="m5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m5" target="m6">
+        <mxCell id="f5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m5" target="m6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m6" target="m7">
+        <mxCell id="f6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5019;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m6" target="m7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m4" target="e1">
+        <mxCell id="f7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m4" target="e1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="f8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontColor=#202124;labelBackgroundColor=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e1" target="e2">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="700" y="620" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="f8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.502;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e1" target="e2">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "jenkins-operator-reconcile-walkthrough",
+  "title": "One pass through reconcile: base first, user configuration second",
+  "subtitle": "Function order in jenkins_controller.go. Every completed step records a timestamp in the CR status; a step that fails requeues the pass.",
+  "nodes": [
+    {
+      "id": "m1",
+      "kind": "box",
+      "label": "Watch event",
+      "col": 0,
+      "row": 0,
+      "detail": "Jenkins CR created or changed",
+      "role": "process"
+    },
+    {
+      "id": "m2",
+      "kind": "box",
+      "label": "base.Validate",
+      "col": 0,
+      "row": 1,
+      "detail": "validate the CR spec",
+      "role": "process"
+    },
+    {
+      "id": "m3",
+      "kind": "box",
+      "label": "base.Reconcile",
+      "col": 0,
+      "row": 2,
+      "detail": "namespace, RBAC, secrets, master Pod,\nAPI token, 7 hardening groovy scripts",
+      "role": "process"
+    },
+    {
+      "id": "m4",
+      "kind": "box",
+      "label": "waitForJenkins",
+      "col": 0,
+      "row": 3,
+      "detail": "poll readiness, requeue every 5s",
+      "role": "process"
+    },
+    {
+      "id": "e1",
+      "kind": "box",
+      "label": "Not ready yet",
+      "col": 1,
+      "row": 3,
+      "detail": "requeue the pass after 5s",
+      "role": "queue"
+    },
+    {
+      "id": "m5",
+      "kind": "box",
+      "label": "user.ReconcileCasc",
+      "col": 0,
+      "row": 4,
+      "detail": "apply JCasC and user groovy scripts",
+      "role": "process"
+    },
+    {
+      "id": "m6",
+      "kind": "box",
+      "label": "user.ReconcileOthers",
+      "col": 0,
+      "row": 5,
+      "detail": "seed jobs, backup and restore jobs",
+      "role": "process"
+    },
+    {
+      "id": "e2",
+      "kind": "box",
+      "label": "Same error 10 times",
+      "col": 1,
+      "row": 5,
+      "detail": "ReconcileLoopFailed, operator stops",
+      "role": "danger"
+    },
+    {
+      "id": "m7",
+      "kind": "box",
+      "label": "CR status update",
+      "col": 0,
+      "row": 6,
+      "detail": "provision, base, user completion times",
+      "role": "store"
+    }
+  ],
+  "edges": [
+    {
+      "id": "f1",
+      "source": "m1",
+      "target": "m2"
+    },
+    {
+      "id": "f2",
+      "source": "m2",
+      "target": "m3"
+    },
+    {
+      "id": "f3",
+      "source": "m3",
+      "target": "m4"
+    },
+    {
+      "id": "f4",
+      "source": "m4",
+      "target": "m5"
+    },
+    {
+      "id": "f5",
+      "source": "m5",
+      "target": "m6"
+    },
+    {
+      "id": "f6",
+      "source": "m6",
+      "target": "m7"
+    },
+    {
+      "id": "f7",
+      "source": "m4",
+      "target": "e1"
+    },
+    {
+      "id": "f8",
+      "source": "e1",
+      "target": "e2"
+    }
+  ]
+}

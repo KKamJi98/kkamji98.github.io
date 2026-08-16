@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "jenkins-pipeline-layers",
+  "title": "Where pipeline definitions live: three repositories, one Jenkins",
+  "subtitle": "A seed job executes Job DSL from the central repository to create multibranch jobs. Each multibranch job reads the Jenkinsfile from its service repository, and the Jenkinsfile loads shared library code.",
+  "nodes": [
+    {
+      "id": "central",
+      "kind": "box",
+      "label": "Central repository",
+      "col": 0,
+      "row": 0,
+      "detail": "Job DSL scripts, one entry\nper service repository",
+      "role": "process"
+    },
+    {
+      "id": "seed",
+      "kind": "box",
+      "label": "Seed job",
+      "col": 1,
+      "row": 0,
+      "detail": "executes the DSL and creates\nor updates Jenkins items",
+      "role": "compute"
+    },
+    {
+      "id": "multibranch",
+      "kind": "box",
+      "label": "Multibranch Pipeline job",
+      "col": 2,
+      "row": 0,
+      "detail": "one branch job per branch\nand pull request",
+      "role": "process"
+    },
+    {
+      "id": "sharedlib",
+      "kind": "box",
+      "label": "Shared library repository",
+      "col": 1,
+      "row": 1,
+      "detail": "vars, src, resources,\none version per branch or tag",
+      "role": "process"
+    },
+    {
+      "id": "service",
+      "kind": "box",
+      "label": "Service repository",
+      "col": 2,
+      "row": 1,
+      "detail": "Jenkinsfile at the root,\nversioned with the code",
+      "role": "process"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "central",
+      "target": "seed"
+    },
+    {
+      "id": "e2",
+      "source": "seed",
+      "target": "multibranch"
+    },
+    {
+      "id": "e3",
+      "source": "multibranch",
+      "target": "service"
+    },
+    {
+      "id": "e4",
+      "source": "service",
+      "target": "sharedlib"
+    }
+  ]
+}
