@@ -24,16 +24,16 @@ comments: true
 
 ## 2. 우선순위 큐와 힙
 
-일반 큐는 먼저 들어온 원소를 먼저 꺼내는 FIFO(first in, first out) 구조다. 반면 **우선순위 큐**는 각 원소의 우선순위를 비교해 다음 원소를 정한다. Python의 `heapq`에서는 값이 작을수록 먼저 나온다.
+일반 큐는 먼저 들어온 원소를 먼저 꺼내는 FIFO(first in, first out) 구조입니다. 반면 **우선순위 큐**는 각 원소의 우선순위를 비교해 다음 원소를 정합니다. Python의 `heapq`에서는 값이 작을수록 먼저 나옵니다.
 
-**힙(heap)** 은 부모와 자식 사이의 순서 규칙을 만족하는 완전 이진 트리를 리스트에 표현한 자료구조다. 최소 힙의 불변 조건은 다음과 같다.
+**힙(heap)** 은 부모와 자식 사이의 순서 규칙을 만족하는 완전 이진 트리를 리스트에 표현한 자료구조입니다. 최소 힙의 불변 조건은 다음과 같습니다.
 
 ```text
 heap[k] <= heap[2 * k + 1]
 heap[k] <= heap[2 * k + 2]
 ```
 
-인덱스가 존재하는 경우에만 비교한다. 이 조건은 부모가 자식보다 작거나 같다는 뜻이며, 전체 리스트가 정렬되어 있다는 뜻은 아니다. 따라서 가장 작은 원소는 `heap[0]`에서 즉시 확인할 수 있지만, 나머지 원소의 순서는 정렬된 결과가 아니다.
+인덱스가 존재하는 경우에만 비교합니다. 이 조건은 부모가 자식보다 작거나 같다는 뜻이며, 전체 리스트가 정렬되어 있다는 뜻은 아닙니다. 따라서 가장 작은 원소는 `heap[0]`에서 즉시 확인할 수 있지만, 나머지 원소의 순서는 정렬된 결과가 아닙니다.
 
 ```text
         1
@@ -43,7 +43,7 @@ heap[k] <= heap[2 * k + 2]
    7   8
 ```
 
-`heappush()`와 `heappop()`은 힙 높이만큼 원소를 이동하므로 보통 O(log n) 시간에 동작한다. `heapify()`는 기존 리스트를 제자리에서 최소 힙으로 바꾸며 O(n) 시간에 동작한다.
+`heappush()`와 `heappop()`은 힙 높이만큼 원소를 이동하므로 보통 O(log n) 시간에 동작합니다. `heapify()`는 기존 리스트를 제자리에서 최소 힙으로 바꾸며 O(n) 시간에 동작합니다.
 
 ---
 
@@ -57,13 +57,13 @@ heap[k] <= heap[2 * k + 2]
 | `heapq.heappushpop(heap, item)` | 추가 후 가장 작은 원소를 반환 | 빈 힙에서도 동작 |
 | `heapq.heapreplace(heap, item)` | 가장 작은 원소를 반환하고 새 원소 추가 | `IndexError` |
 
-`heappushpop()`과 `heapreplace()`는 비슷해 보이지만 반환 규칙이 다르다. `heappushpop()`은 새 원소와 기존 최솟값 중 작은 값을 반환하고 큰 값을 힙에 남긴다. `heapreplace()`는 기존 힙의 최솟값을 반드시 반환한 뒤 새 원소를 넣는다.
+`heappushpop()`과 `heapreplace()`는 비슷해 보이지만 반환 규칙이 다릅니다. `heappushpop()`은 새 원소와 기존 최솟값 중 작은 값을 반환하고 큰 값을 힙에 남깁니다. `heapreplace()`는 기존 힙의 최솟값을 반드시 반환한 뒤 새 원소를 넣습니다.
 
 ---
 
 ## 4. 안정적인 최소 우선순위 큐
 
-작업 자체가 비교 가능하지 않거나, 같은 우선순위의 삽입 순서를 보존해야 한다면 `(priority, sequence, task)`를 넣는다. 튜플은 첫 번째 값부터 순서대로 비교하므로 `sequence`이 동점 처리 기준이 된다.
+작업 자체가 비교 가능하지 않거나, 같은 우선순위의 삽입 순서를 보존해야 한다면 `(priority, sequence, task)`를 넣습니다. 튜플은 첫 번째 값부터 순서대로 비교하므로 `sequence`이 동점 처리 기준이 됩니다.
 
 ```python
 import heapq
@@ -92,13 +92,13 @@ while queue:
 # 2 backup
 ```
 
-단순히 `(priority, task)`만 넣으면 우선순위가 같은 경우 Python이 `task`끼리 비교하려 한다. `dict`처럼 비교할 수 없는 객체를 넣으면 `TypeError`가 발생할 수 있다.
+단순히 `(priority, task)`만 넣으면 우선순위가 같은 경우 Python이 `task`끼리 비교하려 합니다. `dict`처럼 비교할 수 없는 객체를 넣으면 `TypeError`가 발생할 수 있습니다.
 
 ---
 
 ## 5. 최대 우선순위가 먼저 필요한 경우
 
-최대 힙(max-heap)은 부모가 자식보다 크거나 같은 힙이다. Python 3.14부터 `heapify_max()`, `heappush_max()`, `heappop_max()` 같은 최대 힙 API를 제공한다.
+최대 힙(max-heap)은 부모가 자식보다 크거나 같은 힙입니다. Python 3.14부터 `heapify_max()`, `heappush_max()`, `heappop_max()` 같은 최대 힙 API를 제공합니다.
 
 ```python
 import heapq
@@ -111,7 +111,7 @@ heapq.heappush_max(queue, 3)
 print(heapq.heappop_max(queue))  # 5
 ```
 
-Python 3.13 이하를 지원해야 한다면 최소 힙에 음수 우선순위를 넣는 방식이 호환된다.
+Python 3.13 이하를 지원해야 한다면 최소 힙에 음수 우선순위를 넣는 방식이 호환됩니다.
 
 ```python
 import heapq
@@ -128,7 +128,7 @@ print(-priority, task)  # 5 urgent
 
 ## 6. `heapq`와 `queue.PriorityQueue`의 선택
 
-`heapq`는 리스트를 직접 다루는 저수준 API로, 단일 스레드 처리나 별도 동기화가 있는 코드에 적합하다. 여러 생산자와 소비자 스레드가 하나의 큐를 안전하게 공유해야 한다면 락을 제공하는 `queue.PriorityQueue`를 검토한다. 이 클래스도 가장 낮은 값부터 꺼낸다.
+`heapq`는 리스트를 직접 다루는 저수준 API로, 단일 스레드 처리나 별도 동기화가 있는 코드에 적합합니다. 여러 생산자와 소비자 스레드가 하나의 큐를 안전하게 공유해야 한다면 락을 제공하는 `queue.PriorityQueue`를 검토합니다. 이 클래스도 가장 낮은 값부터 꺼냅니다.
 
 ```python
 from queue import PriorityQueue
@@ -144,7 +144,7 @@ print(queue.get())  # (1, 'deploy')
 
 ## 7. 자료 범위와 한계
 
-이 글의 `heapq` API 설명은 Python 3.14 이상 공식 문서를 기준으로 한다. 특히 최대 힙 함수는 Python 3.14에 추가되었으므로, 실행 환경의 Python 버전을 먼저 확인해야 한다. 시간 복잡도는 힙 연산 자체의 특성이며, 작업 처리 시간이나 스레드 경합 시간까지 포함하지 않는다.
+이 글의 `heapq` API 설명은 Python 3.14 이상 공식 문서를 기준으로 합니다. 특히 최대 힙 함수는 Python 3.14에 추가되었으므로, 실행 환경의 Python 버전을 먼저 확인해야 합니다. 시간 복잡도는 힙 연산 자체의 특성이며, 작업 처리 시간이나 스레드 경합 시간까지 포함하지 않습니다.
 
 ---
 
