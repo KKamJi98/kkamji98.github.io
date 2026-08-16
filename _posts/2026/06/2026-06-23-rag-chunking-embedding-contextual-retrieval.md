@@ -6,7 +6,7 @@ categories: [AI, RAG]
 tags: [rag, chunking, embedding, contextual-retrieval, vector-search, metadata, llm, ai]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kkam-img/kkam.webp
+  path: /assets/img/ai/rag/rag.webp
 ---
 
 [RAG 1편](/posts/rag-overview-concept-and-pipeline/)에서 RAG 파이프라인의 큰 그림을 살펴봤습니다. 이제 오프라인 인덱싱이 온라인 답변에 어떤 영향을 주는지 보겠습니다. 문서를 어떻게 쪼개는지(chunking), 어떤 임베딩으로 벡터화하는지, 청킹에서 잃은 맥락을 어떻게 보강하는지(Contextual Retrieval)를 다룹니다. 검색 후보가 부실하면 근거 기반 답변도 부실해지므로, 인덱싱 설계는 검색 품질의 출발점입니다.

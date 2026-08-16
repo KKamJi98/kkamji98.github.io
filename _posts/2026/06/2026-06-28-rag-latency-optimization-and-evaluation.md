@@ -6,7 +6,7 @@ categories: [AI, RAG]
 tags: [rag, latency, semantic-cache, prompt-caching, ragas, evaluation, faithfulness, ai]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kkam-img/kkam.webp
+  path: /assets/img/ai/rag/rag.webp
 ---
 
 지금까지의 시리즈에서 검색 품질을 높이는 인덱싱, 벡터 DB, hybrid search와 접근제어를 다뤘습니다. 실제 서비스에 올리면 그다음으로 마주치는 문제는 **응답이 느리다**는 점입니다. RAG는 매 질문마다 검색과 생성을 모두 수행하므로 단계마다 지연이 쌓이고, 정확도를 높이려 붙인 reranking이나 접근제어가 다시 지연을 늘립니다. RAG의 지연을 어디서 줄이는지(캐싱, 인덱스 튜닝, top-k), 그리고 그렇게 줄이는 과정에서 정확도가 떨어지지 않는지를 어떻게 측정하는지(Ragas)를 살펴봅니다.

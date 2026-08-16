@@ -6,7 +6,7 @@ categories: [AI, RAG]
 tags: [rag, citation, grounding, graphrag, agentic-rag, llm-api, ai]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kkam-img/kkam.webp
+  path: /assets/img/ai/rag/rag.webp
 ---
 
 [RAG 1편](/posts/rag-overview-concept-and-pipeline/)부터 [6편](/posts/rag-latency-optimization-and-evaluation/)까지 검색 파이프라인을 인덱싱, 벡터 DB, 검색 정확도, 보안, 지연/평가 순으로 살펴봤습니다. 검색된 청크를 LLM에 넘겨 답을 만드는 **generation 단계**와, 이 단계에서 출처(citation)를 어떻게 보장하는지를 다룹니다. 이어서 표준 vector RAG를 넘어서는 고급 기법인 **GraphRAG**와 **Agentic RAG**를 정리하고, 사내 정책 문서 RAG 관점에서 어떤 이점과 한계가 있는지 정직하게 짚어봅니다. 마지막 편인 만큼 시리즈를 관통한 원칙도 함께 정리합니다.

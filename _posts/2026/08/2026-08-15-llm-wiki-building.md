@@ -6,7 +6,7 @@ categories: [AI, Knowledge Base]
 tags: [ai, llm, knowledge-base, wiki, rag, bm25, hybrid-search, obsidian, git]
 comments: true
 image:
-  path: /assets/img/ai/rag-04-hybrid-rerank.webp
+  path: /assets/img/ai/llm-wiki/llm-wiki.webp
 ---
 
 LLM Wiki의 개념을 이해했다면 다음 단계는 직접 구축하는 것입니다. 이 글에서는 마크다운 vault 하나를 검색 가능한 LLM Wiki로 만드는 과정을 정리합니다. 도구는 Obsidian과 git, 검색 스크립트면 충분하며 특정 SaaS 구독이나 벡터 DB 클러스터는 필요하지 않습니다.

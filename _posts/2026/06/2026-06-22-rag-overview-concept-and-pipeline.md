@@ -6,7 +6,7 @@ categories: [AI, RAG]
 tags: [rag, llm, retrieval-augmented-generation, embedding, vector-search, reranking, hallucination, ai]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kkam-img/kkam.webp
+  path: /assets/img/ai/rag/rag.webp
 ---
 
 사내 정책 문서를 찾는 상황을 떠올려 봅니다. "출장 규정에서 숙박비 한도가 얼마였지", "보안 정책상 외부 저장소 사용이 허용되는가" 같은 질문의 답은 대부분 어딘가의 문서에 이미 존재합니다. 하지만 문서는 PDF, Confluence 위키, 사내 위키 등 여러 곳에 흩어져 있고, 일반 LLM에게 물으면 그 문서를 보지 못한 채 그럴듯하지만 틀린 답을 낼 수 있습니다. 이 문제를 푸는 대표적인 방법이 RAG(Retrieval-Augmented Generation, 검색 증강 생성)입니다. RAG가 왜 필요한지, 전체 파이프라인이 어떻게 구성되는지, 그리고 실무에서 RAG를 만들 때 관통하는 세 가지 설계 목표인 정확도, 지연, 보안을 살펴봅니다.

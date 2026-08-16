@@ -6,7 +6,7 @@ categories: [AI, Knowledge Base]
 tags: [ai, llm, knowledge-base, wiki, rag, obsidian, markdown]
 comments: true
 image:
-  path: /assets/img/ai/rag-01-pipeline.webp
+  path: /assets/img/ai/llm-wiki/llm-wiki.webp
 ---
 
 AI 에이전트를 업무에 활용하면 문서와 지식을 어떻게 관리할지가 새로운 문제로 등장합니다. 사람이 읽기만 하면 되던 문서와 달리, LLM이 질의 시점에 검색해서 읽을 수 있어야 하기 때문입니다. LLM Wiki는 이 조건에 맞춰 지식 베이스를 설계하는 방법론입니다. 이 글에서는 LLM Wiki가 무엇인지, 왜 필요한지, 어떤 구조로 구성되는지를 정리합니다.

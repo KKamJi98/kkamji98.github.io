@@ -6,7 +6,7 @@ categories: [AI, RAG]
 tags: [rag, security, access-control, rbac, pii, prompt-injection, owasp, devsecops, ai]     # TAG names should always be lowercase
 comments: true
 image:
-  path: /assets/img/kkam-img/kkam.webp
+  path: /assets/img/ai/rag/rag.webp
 ---
 
 [RAG 2편](/posts/rag-chunking-embedding-contextual-retrieval/)부터 [4편](/posts/rag-hybrid-search-and-reranking/)까지 "어떻게 하면 잘 검색하는가"를 다뤘습니다. 하지만 사내 정책 문서를 대상으로 RAG를 만들면, 정확도보다 먼저 부딪히는 제약이 있습니다. 정책 문서는 부서마다 열람 권한이 다르고, 이름/연락처/주민번호 같은 PII를 품고 있으며, 검색된 문서가 그대로 LLM 프롬프트로 들어가는 구조라 기존 시스템에 없던 새로운 공격면이 생깁니다. 사내 문서 RAG를 DevSecOps 관점에서 어떻게 잠그는지, 특히 6편에서 다룰 지연 최적화와 정면으로 충돌하는 **캐시-권한 문제**까지 살펴봅니다.
