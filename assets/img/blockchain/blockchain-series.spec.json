@@ -1,89 +1,153 @@
 {
   "schema_version": 1,
   "id": "blockchain-series",
-  "title": "Signing says who moved the asset; hashing says the record has not changed since",
-  "subtitle": "Bitcoin publishes every amount in the clear. The cryptography protects integrity and authenticity, not secrecy.",
+  "title": "Each block commits to the one before it, and to every transaction inside it",
+  "subtitle": "The Merkle root stands in for the whole transaction set. The signature is what authorises a single transfer.",
   "layout": {
-    "icon_cell_w": 178,
-    "col_gap": 56
+    "col_gap": 28
   },
   "nodes": [
     {
-      "id": "tx",
+      "id": "blk1",
       "kind": "box",
-      "label": "Transaction",
+      "label": "Block N-1",
+      "detail": "Merkle root",
       "col": 0,
       "row": 0,
-      "detail": "sender, receiver, amount, all readable",
-      "role": "surface",
-      "step": 1,
-      "step_at": "top-left"
+      "colspan": 2,
+      "role": "process"
     },
     {
-      "id": "signature",
-      "kind": "box",
-      "label": "ECDSA signature",
-      "col": 1,
-      "row": 0,
-      "detail": "secp256k1 over the transaction hash",
-      "role": "queue",
-      "step": 2,
-      "step_at": "top-left"
-    },
-    {
-      "id": "merkle",
-      "kind": "box",
-      "label": "Merkle root",
-      "col": 2,
-      "row": 0,
-      "detail": "32 bytes standing for every tx in the block",
-      "role": "store",
-      "step": 3,
-      "step_at": "top-left"
-    },
-    {
-      "id": "block-n",
+      "id": "blk2",
       "kind": "box",
       "label": "Block N",
+      "detail": "Merkle root",
       "col": 2,
-      "row": 1,
-      "detail": "previous block hash and the Merkle root",
-      "role": "process",
-      "step": 4,
-      "step_at": "top-left"
+      "row": 0,
+      "colspan": 2,
+      "role": "process"
     },
     {
-      "id": "block-n1",
+      "id": "blk3",
       "kind": "box",
       "label": "Block N+1",
+      "detail": "Merkle root",
+      "col": 4,
+      "row": 0,
+      "colspan": 2,
+      "role": "process"
+    },
+    {
+      "id": "tx1",
+      "kind": "box",
+      "label": "tx A to B",
+      "col": 0,
+      "row": 1,
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "tx2",
+      "kind": "box",
+      "label": "tx B to C",
+      "col": 1,
+      "row": 1,
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "tx3",
+      "kind": "box",
+      "label": "tx C to D",
+      "col": 2,
+      "row": 1,
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "tx4",
+      "kind": "box",
+      "label": "tx D to E",
       "col": 3,
       "row": 1,
-      "detail": "commits to Block N by hashing its header",
-      "role": "process",
-      "step": 5,
-      "step_at": "top-left"
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "tx5",
+      "kind": "box",
+      "label": "tx E to F",
+      "col": 4,
+      "row": 1,
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "tx6",
+      "kind": "box",
+      "label": "tx F to G",
+      "col": 5,
+      "row": 1,
+      "role": "surface",
+      "w": 110
+    },
+    {
+      "id": "sig",
+      "kind": "box",
+      "label": "signed",
+      "detail": "secp256k1",
+      "col": 6,
+      "row": 1,
+      "role": "queue",
+      "w": 130
     }
   ],
   "edges": [
     {
-      "id": "tx-to-signature",
-      "source": "tx",
-      "target": "signature"
+      "id": "blk1-to-blk2",
+      "source": "blk1",
+      "target": "blk2"
     },
     {
-      "id": "signature-to-merkle",
-      "source": "signature",
-      "target": "merkle"
+      "id": "blk2-to-blk3",
+      "source": "blk2",
+      "target": "blk3"
     },
     {
-      "id": "merkle-to-block-n",
-      "source": "merkle",
-      "target": "block-n"
+      "id": "tx1-to-blk1",
+      "source": "tx1",
+      "target": "blk1"
     },
     {
-      "id": "block-n-to-block-n1",
-      "source": "block-n",
-      "target": "block-n1"
+      "id": "tx2-to-blk1",
+      "source": "tx2",
+      "target": "blk1"
+    },
+    {
+      "id": "tx3-to-blk2",
+      "source": "tx3",
+      "target": "blk2"
+    },
+    {
+      "id": "tx4-to-blk2",
+      "source": "tx4",
+      "target": "blk2"
+    },
+    {
+      "id": "tx5-to-blk3",
+      "source": "tx5",
+      "target": "blk3"
+    },
+    {
+      "id": "tx6-to-blk3",
+      "source": "tx6",
+      "target": "blk3"
+    },
+    {
+      "id": "sig-to-tx6",
+      "source": "sig",
+      "target": "tx6",
+      "dashed": true
     }
   ]
 }
