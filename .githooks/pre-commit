@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+#
+# 블로그 pre-commit 게이트.
+#
+# 이 저장소는 주인님과 Hermes agent만 커밋하므로 CI에 게이트를 두지 않는다.
+# 그래서 되돌아가면 곤란한 규칙을 여기서 막는다. 무거운 검사(jekyll build,
+# check_inline_scripts, 외부 링크)는 발행 절차인 pre_publish_check.sh에 남긴다.
+#
+# 클론마다 한 번 활성화한다:  git config core.hooksPath .githooks
+# 통째로 건너뛰려면:          git commit --no-verify
+set -uo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "${REPO_ROOT}"
+
+BLOG="${REPO_ROOT}/kkamji_scripts/blog"
+PY="${PYTHON_BIN:-python3}"
+
+# 런타임마다 스킬 설치 경로가 다르다. 명시 지정을 우선하고, 없으면 알려진 곳을 훑는다.
+SKILL="${DRAWIO_SKILL_DIR:-}"
+if [ -z "${SKILL}" ]; then
+  for candidate in "$HOME/.claude/skills/drawio-generate-diagram" \
+                   "$HOME/.hermes/skills/drawio-generate-diagram" \
+                   "$HOME/.codex/skills/drawio-generate-diagram"; do
+    [ -d "${candidate}" ] && { SKILL="${candidate}"; break; }
+  done
+fi
+
+fails=0
+step() { printf '\n=== %s ===\n' "$1"; }
+ok()   { printf 'ok   %s\n' "$1"; }
+bad()  { printf 'FAIL %s\n' "$1"; fails=$((fails + 1)); }
+
+staged_posts="$(git diff --cached --name-only --diff-filter=ACM -- '_posts' | grep '\.md$' || true)"
+staged_specs="$(git diff --cached --name-only --diff-filter=ACM -- 'assets/img' | grep '\.spec\.json$' || true)"
+
+# ---------------------------------------------------------------------------
+# 1. 마크다운 포매팅 (구분선, 헤더 번호, blockquote 공백)
+#
+# run_md_tools.sh 는 _posts 전체를 다시 쓴다. 실행 후 dirty 한 파일을 전부
+# re-stage 하면 작업 중이던 다른 글이 이 커밋에 실려 나간다. 그래서
+# "이미 staged 되어 있었고" AND "스크립트가 실제로 내용을 바꾼" 파일만 stage 한다.
+# ---------------------------------------------------------------------------
+posts_state() {
+  git ls-files -- '_posts' | grep '\.md$' | while IFS= read -r file; do
+    [ -f "${file}" ] || continue
+    printf '%s %s\n' "$(git hash-object -- "${file}")" "${file}"
+  done
+}
+
+if [ -n "${staged_posts}" ]; then
+  step "마크다운 포매팅"
+  BEFORE="$(mktemp)"; AFTER="$(mktemp)"; STAGED="$(mktemp)"
+  trap 'rm -f "${BEFORE}" "${AFTER}" "${STAGED}"' EXIT
+
+  echo "${staged_posts}" | sort > "${STAGED}"
+  posts_state | sort > "${BEFORE}"
+  if ! "${BLOG}/run_md_tools.sh" >/dev/null; then
+    bad "run_md_tools.sh"
+  fi
+  posts_state | sort > "${AFTER}"
+
+  changed="$(comm -13 "${BEFORE}" "${AFTER}" | sed 's/^[0-9a-f]* //' | sort)"
+  touched="$(comm -12 <(echo "${changed}") "${STAGED}")"
+  skipped="$(comm -23 <(echo "${changed}") "${STAGED}")"
+
+  if [ -n "${touched}" ]; then
+    echo "${touched}" | tr '\n' '\0' | xargs -0 git add --
+    echo "재스테이징:"; echo "${touched}" | sed 's/^/  /'
+  fi
+  if [ -n "${skipped}" ]; then
+    echo "이 커밋 대상이 아니라 unstaged 로 남김:"; echo "${skipped}" | sed 's/^/  /'
+  fi
+  [ -z "${touched}${skipped}" ] && ok "고칠 것 없음"
+fi
+
+# ---------------------------------------------------------------------------
+# 2. 포스트 게이트
+# ---------------------------------------------------------------------------
+if [ -n "${staged_posts}" ]; then
+  step "humanizer (staged 포스트)"
+  while IFS= read -r post; do
+    [ -f "${post}" ] || continue
+    if out="$("${PY}" "${BLOG}/audit_humanizer.py" --strict --file "${post}" 2>&1)"; then
+      ok "${post}"
+    else
+      bad "${post}"; echo "${out}" | grep -E 'HIGH|failed' | sed 's/^/     /'
+    fi
+  done <<< "${staged_posts}"
+
+  step "포스트 위생"
+  "${PY}" "${BLOG}/check_post_dates.py"   >/dev/null && ok "날짜 중복, 미래 날짜"   || bad "check_post_dates"
+  "${PY}" "${BLOG}/check_series_order.py" >/dev/null && ok "시리즈 날짜 순서"       || bad "check_series_order"
+
+  "${PY}" "${BLOG}/audit_blog_quality.py" >/dev/null 2>&1 || bad "audit_blog_quality"
+  "${PY}" "${BLOG}/check_high_impact_tldr.py" >/dev/null && ok "TL;DR 게이트" || bad "check_high_impact_tldr"
+
+  if out="$("${PY}" - <<'PY'
+import csv, sys
+from pathlib import Path
+rows = list(csv.DictReader(Path('.hermes/reports/blog-quality-audit.csv').open(encoding='utf-8')))
+blocking = ('missing frontmatter', 'missing image', 'missing internal post link',
+            'forbidden character', 'missing standard footer')
+bad = [(r['path'], k) for r in rows for k in blocking if k in r.get('issues', '')]
+for path, kind in bad[:20]:
+    print(f"{path}: {kind}")
+sys.exit(1 if bad else 0)
+PY
+)"; then
+    ok "frontmatter, 커버, 내부 링크, 금지 문자, footer"
+  else
+    bad "기계적 품질"; echo "${out}" | sed 's/^/     /'
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# 3. 다이어그램 게이트
+#
+# .spec.json 이 source of truth 이므로, spec 만 고치고 rebuild_diagrams.sh 를
+# 잊으면 .drawio 와 .webp 가 spec 과 어긋난 채 커밋된다. drawio export 는
+# 느려서 여기서 돌리지 않고, spec 을 compile + normalize 한 결과를 커밋된
+# .drawio 와 비교해 재빌드 누락만 잡는다.
+# ---------------------------------------------------------------------------
+if [ -n "${staged_specs}" ]; then
+  step "다이어그램 spec 드리프트"
+  if [ -z "${SKILL}" ] || [ ! -d "${SKILL}" ]; then
+    echo "     skip: drawio-generate-diagram 스킬을 찾지 못함. DRAWIO_SKILL_DIR 로 지정한다"
+  else
+    while IFS= read -r spec; do
+      [ -f "${spec}" ] || continue
+      drawio="${spec%.spec.json}.drawio"
+      webp="${spec%.spec.json}.webp"
+      tmp="$(mktemp -t drift-XXXXXX).drawio"
+      if ! "${PY}" "${BLOG}/build_aws_diagram.py" "${spec}" -o "${tmp}" >/dev/null 2>&1; then
+        bad "${spec} 컴파일 실패"; rm -f "${tmp}"; continue
+      fi
+      "${PY}" "${SKILL}/scripts/normalize-drawio.py" --write "${tmp}" >/dev/null 2>&1
+      if [ ! -f "${drawio}" ] || ! diff -q "${tmp}" "${drawio}" >/dev/null; then
+        bad "$(basename "${drawio}") 가 spec 과 다름 -> rebuild_diagrams.sh $(dirname "${spec}")"
+      elif [ ! -f "${webp}" ]; then
+        bad "$(basename "${webp}") 없음 -> rebuild_diagrams.sh $(dirname "${spec}")"
+      elif ! git diff --cached --quiet -- "${drawio}" "${webp}" 2>/dev/null; then
+        ok "$(basename "${spec}") (drawio, webp 함께 staged)"
+      else
+        echo "warn ${webp} 가 staged 아님. 이미지가 낡았을 수 있음"
+        ok "$(basename "${spec}")"
+      fi
+      rm -f "${tmp}"
+    done <<< "${staged_specs}"
+
+    "${PY}" "${BLOG}/audit_diagram_badges.py" >/dev/null && ok "step 배지 offset 통일" || bad "audit_diagram_badges"
+  fi
+fi
+
+if [ "${fails}" -ne 0 ]; then
+  printf '\n%s개 게이트 실패. 고친 뒤 다시 커밋하거나, 의도한 경우 --no-verify 로 우회한다.\n' "${fails}"
+  exit 1
+fi
+
+[ -n "${staged_posts}${staged_specs}" ] && printf '\n모든 게이트 통과.\n'
+exit 0
