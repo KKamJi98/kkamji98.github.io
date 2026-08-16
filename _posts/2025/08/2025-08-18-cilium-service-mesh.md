@@ -16,7 +16,7 @@ image:
 **Service Mesh**는 아래와 같은 요구사항을 충족 시키기 위한 기능들을 Application 바깥의 Infra 구성요소로 추상화해 모든 Application이 공통 기능을 재사용하도록 합니다.
 
 - **Resilient Connectivity** - Cloud, Cluster, On-Premise 등의 경계를 넘어 서비스 간 통신이 가능해야 하고, 통신은 복원력과 내결함성(FT)을 갖춰야 함
-- **L7 Traffic Management** - Load balancing, rate limiting, and resiliency must be L7-aware (`HTTP`, `REST`, `gRPC`, `WebSocket`, …).
+- **L7 Traffic Management** - Load balancing, rate limiting, and resiliency must be L7-aware (`HTTP`, `REST`, `gRPC`, `WebSocket`, ...).
 - **Identity-based Security** - 서비스간 통신에 있어, 네트워크 식별자를 기반으로 하는 인증 대신 Identities를 기반으로 서로 인증 할 수 있어야함
 - **Observability & Tracing** - Application 안정성, 성능 및 가용성을 이해하고, 모니터링하고, 문제를 해결하기 위해 추적 및 측정 형태로 관찰 가능해야 함
 - **Transparency** - Application Code를 변경하지 않고도 사용할 수 있어야 합

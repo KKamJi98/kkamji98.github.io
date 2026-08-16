@@ -63,7 +63,7 @@ E0428 18:14:30.919345    1268 memcache.go:265] couldn't get current server API g
 E0428 18:15:03.852532    1268 memcache.go:265] couldn't get current server API group list: Get "https://10.0.0.35:16443/api?timeout=32s": dial tcp 10.0.0.35:16443: i/o timeout
 ```
 
-> ????? 에러가 났다.. 로그를 확인해보니 주소가.. 이상한데..? 저건 EC2 Public 주소가 아닌 Private 주소이기 때문… 고쳐볼까??  
+> ????? 에러가 났다.. 로그를 확인해보니 주소가.. 이상한데..? 저건 EC2 Public 주소가 아닌 Private 주소이기 때문... 고쳐볼까??  
 {: .prompt-info}
 
 ```bash
@@ -77,7 +77,7 @@ E0428 18:19:13.224469    1348 memcache.go:265] couldn't get current server API g
 
 public IP로 수정
 
-> ????? 또 .. 에러가… 하지만 에러 내용이 다르다. TLS 인증서에 허가된 IP가 아닌 다른 IP에서 kube-apiserver에 명령을 내릴려고 했기 때문인 것 같다..  
+> ????? 또 .. 에러가... 하지만 에러 내용이 다르다. TLS 인증서에 허가된 IP가 아닌 다른 IP에서 kube-apiserver에 명령을 내릴려고 했기 때문인 것 같다..  
 > 테스트를 위해 TLS 검증을 비활성화 해서 kubectl 명령어를 날려볼까..??  
 {: .prompt-info}
 
@@ -90,7 +90,7 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   2/2     2            2           63m
 ```
 
-> 오.. TLS 검증을 비활성화 하면 접근이 가능하다 ㄷㄷ… 근데 보안상 좀 찜찜..한데.. 인증서를 재발급 받아볼까??  
+> 오.. TLS 검증을 비활성화 하면 접근이 가능하다 ㄷㄷ... 근데 보안상 좀 찜찜..한데.. 인증서를 재발급 받아볼까??  
 {: .prompt-info}
 
 ---

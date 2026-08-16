@@ -37,7 +37,7 @@ Container Image는 아래 그림과 같은 **계층 구조(layered structure)** 
 
 ![Container Image Layers](/assets/img/ci-cd/ci-cd-study/container-image-layers.webp)
 
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Container Image Layers - 3.1. 도커를 사용한 컨테이너 빌드 p.23  
 
 ### 1.3. Container Image Build 방식의 종류
@@ -585,7 +585,7 @@ docker rm -f myweb2
 
 ![Buildah Scratch](/assets/img/ci-cd/ci-cd-study/buildah-scratch.webp)
 
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Container Image Layers - 3.3. 빌다를 사용한 컨테이너 빌드 p.40  
 
 - Buildah 설치 방법 - <https://github.com/containers/buildah/blob/main/install.md>
@@ -1305,7 +1305,7 @@ cat ~/.kube/config
 
 ## 9. Reference
 
-- [O’Reilly GitOps Cookbook - Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
+- [O'Reilly GitOps Cookbook - Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
 - [Open Container Initiative - Home](https://opencontainers.org/)
 - [Docker - Home](https://www.docker.com/)
 - [Docker - GitHub](https://github.com/moby/moby)

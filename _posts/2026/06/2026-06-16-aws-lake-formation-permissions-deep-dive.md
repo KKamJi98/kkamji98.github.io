@@ -9,9 +9,9 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-이 글은 AWS 데이터 분석 스택 시리즈의 마지막 편입니다. 앞선 [AWS Lake Formation](/posts/aws-lake-formation/) 글에서 Lake Formation이 IAM 위에 얹히는 별도의 데이터 권한 게이트라는 점과 grant 모델, credential vending을 정리했습니다. 그 개념을 실제 트러블슈팅에 적용합니다.
+S3 Tables 레이크하우스로 옮긴 데이터베이스를 IAM role로 Athena에서 쿼리하는데 테이블이 `TABLE_NOT_FOUND` 또는 `CATALOG_NOT_FOUND`로 보이지 않습니다. IAM 정책에서 Glue와 Athena 권한은 충분히 열어 뒀고, 관리자 계정으로 같은 쿼리를 던지면 정상 동작합니다.
 
-상황은 이렇습니다. S3 Tables 레이크하우스로 옮겨진 데이터베이스를 IAM role로 Athena에서 쿼리하려는데, IAM 정책에서 Glue와 Athena 권한을 충분히 열어 줬는데도 테이블이 `TABLE_NOT_FOUND` 또는 `CATALOG_NOT_FOUND`로 보이지 않습니다. 관리자(admin) 계정으로 같은 쿼리를 실행하면 정상 동작합니다. 이 글에서는 세 가지 증상이 사실 하나의 뿌리에서 나온다는 점, 그리고 IAM 두 축과 Lake Formation 세 계층을 어떻게 진단하고 단계적으로 해소하는지를 다룹니다.
+[Lake Formation](/posts/aws-lake-formation/)이 IAM 위에 얹히는 별도의 데이터 권한 게이트이기 때문입니다. 서로 달라 보이는 세 가지 증상이 사실 하나의 뿌리에서 나오며, IAM 두 축과 Lake Formation 세 계층을 어떤 순서로 진단하고 해소하는지 정리합니다.
 
 > **TL;DR**  
 > - `TABLE_NOT_FOUND`와 `CATALOG_NOT_FOUND`는 쿼리 표기 방식만 다를 뿐, 보통 **catalog 레벨 권한 부재**라는 같은 원인입니다.  

@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-> 필자는 맥북과 윈도우 데스크탑 환경을 사용하고 있습니다. EKS Cluster의 context를 가져와 하나의 Kubernetes Cluster를 두 환경에서 공유해서 사용하고 있었으나….  
+> 필자는 맥북과 윈도우 데스크탑 환경을 사용하고 있습니다. EKS Cluster의 context를 가져와 하나의 Kubernetes Cluster를 두 환경에서 공유해서 사용하고 있었습니다.  
 > 문제는 EKS를 개인 실습용으로 지속적으로 사용하기에는 비용이.. ㅠㅠ 너무 비쌌습니다.  
 > 이를 해결하기 위해 Free-Tier인 t2.micro로 Minikube, K3s, MicroK8s 등을 구축하려 했으나..  
 > Minikube는 RAM이 4GB 이상이 아니면 애초에 설치가 불가능하였고, K3s는 실행 도중 크레딧을 다 쓰자 인스턴스가 종료되는 불상사가 발생했습니다.  

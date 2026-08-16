@@ -54,7 +54,7 @@ image:
 
 ## 2. Jenkins Pipeline 이란?
 
-**Jenkins Pipeline**(이하 “Pipeline”)은 Jenkins에서 **지속적 통합(Continuous Integration)** 과 **지속적 전달(Continuous Delivery)** 프로세스를 구현하기 위해 제공되는 **플러그인 모음(Suite of Plugins)** 입니다.
+**Jenkins Pipeline**(이하 "Pipeline")은 Jenkins에서 **지속적 통합(Continuous Integration)** 과 **지속적 전달(Continuous Delivery)** 프로세스를 구현하기 위해 제공되는 **플러그인 모음(Suite of Plugins)** 입니다.
 
 즉, 애플리케이션의 **빌드(Build) -> 테스트(Test) -> 배포(Deploy)** 과정을 코드 형태로 정의하고 자동화할 수 있는 도구 세트입니다.
 
@@ -81,7 +81,7 @@ image:
 - **post** : 빌드 후 조치, 일반적으로 stages 작업이 끝난 후 추가적인 steps/step
 - **Directive** : **environment**, **parameters**, triggers, input, **when** - [Docs](https://www.jenkins.io/doc/book/pipeline/syntax/#declarative-directives)
   - **environment (key=value)** : 파이프라인 내부에서 사용할 환경변수
-  - **parameters** : 입력 받아야할 변수를 정의 - Type(string, text, choice, password …)
+  - **parameters** : 입력 받아야할 변수를 정의 - Type(string, text, choice, password ...)
   - **when** : stage 를 실행 할 조건 설정
 
 ### 2.3. Jenkins Pipeline의 3가지 구성 형태
@@ -89,12 +89,12 @@ image:
 - Pipeline **script** : 일반적인 방식으로 Jenkins 파이프라인을 생성하여 Shell Script를 직접 생성하여 빌드하는 방식
   - [Through the classic UI](https://www.jenkins.io/doc/book/pipeline/getting-started/#through-the-classic-ui) - you can enter a basic Pipeline directly in Jenkins through the classic UI.
 - Pipeline script from **SCM** : 사전 작성한 JenkinsFile을 형상관리 저장소에 보관하고, 빌드 시작 시 파이프라인 프로젝트에서 호출 실행하는 방식
-  - [In SCM](https://www.jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm) - you can write a `Jenkinsfile` manually, which you can commit to your project’s source control repository.
+  - [In SCM](https://www.jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm) - you can write a `Jenkinsfile` manually, which you can commit to your project's source control repository.
 
 ![Jenkins Pipeline From SCM](/assets/img/ci-cd/ci-cd-study/jenkins-pipeline-from-scm.webp)
 
 - **Blue Ocean** 기반 : UI기반하여 시각적으로 파이프라인을 구성하면, JenkinsFile이 자동으로 생성되어 실행되는 방식
-  - [Through Blue Ocean](https://www.jenkins.io/doc/book/pipeline/getting-started/#through-blue-ocean) - after setting up a Pipeline project in Blue Ocean, the Blue Ocean UI helps you write your Pipeline’s `Jenkinsfile` and commit it to source control.
+  - [Through Blue Ocean](https://www.jenkins.io/doc/book/pipeline/getting-started/#through-blue-ocean) - after setting up a Pipeline project in Blue Ocean, the Blue Ocean UI helps you write your Pipeline's `Jenkinsfile` and commit it to source control.
 
 ![Blue Ocean](/assets/img/ci-cd/ci-cd-study/jenkins-pipeline-blue-ocean.webp)
 

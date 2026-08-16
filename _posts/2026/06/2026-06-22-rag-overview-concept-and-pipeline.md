@@ -148,17 +148,16 @@ RAG는 검색과 생성을 매 질문마다 수행하므로 단계마다 지연�
 
 ---
 
-## 7. 시리즈 맵
+## 7. 파이프라인 단계별 상세
 
-이 글은 RAG 시리즈의 첫 글입니다. 앞으로 다음 주제를 이어갈 예정입니다.
+위에서 훑은 각 단계는 그 자체로 설계 결정이 많아 별도 글로 나눠 다룹니다.
 
-- **(1) RAG 개념과 파이프라인 Overview** - LLM 한계, 파이프라인 전체 흐름, 세 가지 설계 목표 (현재 글)
-- (2) 청킹/임베딩과 Contextual Retrieval - 청킹 전략, 임베딩 모델 선택, 문맥 손실 보완, 메타데이터 설계
-- (3) 벡터 DB와 인덱스 - HNSW/IVF 개념, pgvector vs Qdrant, 메타데이터 필터링
-- (4) 검색 정확도 - Hybrid Search(BM25 + dense), RRF 융합, reranking
-- (5) 보안과 접근제어(DevSecOps) - RBAC/metadata filtering, PII 처리, prompt injection, 캐시-권한 충돌
-- (6) 지연 최적화와 평가 - 캐싱, 인덱스 튜닝, top-k, Ragas로 정확도 회귀 방지
-- (7) LLM API 연동과 고급 - citation/grounding, GraphRAG/Agentic RAG
+- 인덱싱 단계의 청킹 전략과 임베딩 모델 선택, 문맥 손실 보완은 [청킹과 임베딩, Contextual Retrieval](/posts/rag-chunking-embedding-contextual-retrieval/)에서 다룹니다.
+- 저장 계층의 HNSW와 IVF 인덱스, pgvector와 Qdrant 비교는 [벡터 DB와 인덱스](/posts/rag-vector-database-and-index/)에 있습니다.
+- 검색 단계의 BM25와 dense 결합, RRF 융합, reranking은 [검색 정확도](/posts/rag-hybrid-search-and-reranking/)에서 이어집니다.
+- 권한이 있는 문서만 검색되도록 만드는 문제는 [보안과 접근제어](/posts/rag-security-and-access-control/)에서 다룹니다. 캐시와 권한이 충돌하는 지점이 특히 까다롭습니다.
+- 응답 지연을 줄이는 방법과 Ragas로 정확도 회귀를 막는 방법은 [지연 최적화와 평가](/posts/rag-latency-optimization-and-evaluation/)에 정리했습니다.
+- citation과 grounding, GraphRAG와 Agentic RAG는 [LLM API 연동과 고급 기법](/posts/rag-llm-api-and-advanced/)에서 다룹니다.
 
 ---
 

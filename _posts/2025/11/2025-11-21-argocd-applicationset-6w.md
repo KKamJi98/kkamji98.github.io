@@ -29,7 +29,7 @@ Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이�
 
 ## 2. App of Apps Pattern이란?
 
-**App of Apps 패턴은 ‘하나의 Root Application이 여러 Child Application을 생성하고 관리’하도록 구성하는 Argo CD 구조적 패턴입니다.**
+**App of Apps 패턴은 '하나의 Root Application이 여러 Child Application을 생성하고 관리'하도록 구성하는 Argo CD 구조적 패턴입니다.**
 
 다시 말해, Root Application 하나만 배포해도 Root Application 내부에서 정의한 모든 하위 Application이 자동 생성됩니다.
 
@@ -561,7 +561,7 @@ argocd appset delete guestbook --yes
 
 ---
 
-#### 6.7.1. Cluster Generator – 모든 클러스터 대상 배포
+#### 6.7.1. Cluster Generator - 모든 클러스터 대상 배포
 
 {% raw %}
 ```bash
@@ -675,7 +675,7 @@ argocd appset delete guestbook --yes
 
 ![ApplicationSet Cluster Generator 실습 결과](/assets/img/ci-cd/ci-cd-study/argo-cd-applicationset-practice-cluster-generator-all.webp)
 
-#### 6.7.2. Cluster Generator – Label Selector로 특정 클러스터(dev)만 대상
+#### 6.7.2. Cluster Generator - Label Selector로 특정 클러스터(dev)만 대상
 
 이번에는 **dev 클러스터만 배포**되도록, Argo CD 클러스터 Secret에 레이블을 부여하고, Cluster Generator에서 해당 레이블만 선택하도록 구성합니다.
 

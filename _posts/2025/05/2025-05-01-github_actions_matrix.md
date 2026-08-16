@@ -9,7 +9,7 @@ image:
   path: /assets/img/github/github.webp
 ---
 
-지난 글([GitHub Actions 소개 및 구성 요소]({% post_url 2025/04/2025-04-27-github_actions_basic %}))에서 **GitHub Actions의 기본 개념과 구성 요소**에 대해 살펴보았습니다. 이번에는 **Matrix Strategy**라는 기능에 대해 알아보고 해당 기능을 활용해 여러 플랫폼 또는 환경에서 병렬로 작업을 수행하여 CI/CD 파이프라인의 성능을 향상시키는 방법에 대해 알아보도록 하겠습니다.
+amd64와 arm64 이미지를 하나의 Job에서 만들면 QEMU 에뮬레이션을 거치게 되고 빌드 시간이 크게 늘어납니다. OS나 런타임 버전 조합을 늘릴 때도 Job을 복사해 붙이면 워크플로우 파일이 같은 내용으로 불어납니다. Matrix Strategy는 조합을 선언하면 GitHub Actions가 Job을 병렬로 펼쳐주는 기능입니다.
 
 ---
 

@@ -66,7 +66,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit의 계산은 다음과 같이 이루어지게 됩니다.  
 
-`maxPods = ENIs × (IPv4PerENI – 1) + 2`  
+`maxPods = ENIs × (IPv4PerENI - 1) + 2`  
 
 `t4g.small`: 최대 3개의 ENI, ENI 당 최대 4개의 IPv4 주소 사용 가능  
 
@@ -98,7 +98,7 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 위에서 사용한 `max-pods-calculator` 스크립트를 통해 Prefix Mode를 켰을 때 t4g.small 인스턴스가 가질 수 있는 Max-Pod Limit을 다시 한번 확인해보도록 하겠습니다.  
 
-`maxPods = ENIs × ((IPv4PerENI – 1) × 16) + 2`
+`maxPods = ENIs × ((IPv4PerENI - 1) × 16) + 2`
 
 =>  `3 * ((4 - 1) * 16) + 2 = 146`
 

@@ -11,7 +11,7 @@ image:
 
 ![NGINX Ingress Controller flow](/assets/img/kubernetes/nginx-ingress-controller-flow.webp)
 
-**Nginx Ingress Controller**는 Kubernetes Cluster에서 Ingress 리소스를 처리하여 외부 트래픽을 서비스로 라우팅하는 역할을 합니다. 해당 포스트에서는 **Helm**을 사용해 **Nginx Ingress Controller**를 구축하는 과정에 대해 다뤄보도록 하겠습니다.
+Ingress 리소스를 만들어 두어도 트래픽은 흐르지 않습니다. Ingress는 라우팅 규칙을 적은 선언일 뿐이고, 그것을 읽어 실제 프록시 설정으로 바꾸는 컨트롤러가 클러스터에 있어야 합니다. NGINX Ingress Controller가 그 역할을 맡으며, Helm으로 설치하는 과정을 정리합니다.
 
 > **TL;DR**  
 > - Helm으로 NGINX Ingress Controller를 설치하고 Ingress 리소스로 외부 트래픽을 Service까지 라우팅하는 과정입니다.  

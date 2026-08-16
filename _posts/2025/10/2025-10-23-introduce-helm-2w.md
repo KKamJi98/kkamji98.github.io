@@ -639,7 +639,7 @@ helm uninstall my-db
 
 ![Music application overview](/assets/img/ci-cd/ci-cd-study/music-application-overview.webp)
 
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Music application overview - 5.6. Deploying a Chart with Dependency p.111  
 
 {% raw %}
@@ -1344,7 +1344,7 @@ curl localhost:8080;echo
 {: .prompt-tip}
 
 ![Greetings application with new configuration value](/assets/img/ci-cd/ci-cd-study/greetings-application-with-new-configuration-value.webp)
-> [O’Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
+> [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Greetings application with new configuration value - 5.7. Triggering a Rolling Update Automatically p.121  
 
 ### 9.3. sha256sum 함수를 사용해 ConfigMap 에 대한 변경사항 Rolling Update Triggering

@@ -166,7 +166,7 @@ var result = score >= 60 ? 'pass' : 'fail'; //score >= 60일 때 pass, 아닐 �
     - symbol
     - object
     - function
-- typeof 연산자로 null 값은 연산해 보면 “null”이 아닌 “object”를 반환하는 버그가 있다.
+- typeof 연산자로 null 값은 연산해 보면 "null"이 아닌 "object"를 반환하는 버그가 있다.
     - 따라서 값이 null타입인지 확인할 때는 typeof 연산자를 사용하지 말고 일치 연산자(===)를 사용해야 한다.
 
 ---

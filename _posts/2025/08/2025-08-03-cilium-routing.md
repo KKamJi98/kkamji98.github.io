@@ -1,5 +1,5 @@
 ---
-title: Cilium Network Routing 이해하기 – Encapsulation과 Native Routing 비교 [Cilium Study 3주차]
+title: Cilium Network Routing 이해하기 - Encapsulation과 Native Routing 비교 [Cilium Study 3주차]
 date: 2025-08-03 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]
@@ -44,14 +44,14 @@ Encapsulation Mode는 별도의 설정을 하지 않으면 Cilium이 자동으�
 
 ### 2.2. Encapsulation Mode의 장점
 
-1. **단순성(Simplicity)** – 네트워크가 PodCIDR을 인식할 필요가 없으며, 클러스터 노드는 여러 Routing 또는 링크 레이어 도메인을 생성할 수 있습니다. 네트워크 토폴로지에 관계없이 노드 간 연결만 확보되면 됩니다.
-2. **주소 공간(Addressing space)** – 기본 네트워크 제약에 의존하지 않기 때문에 PodCIDR 크기만 충분히 크게 설정하면 노드당 수천 개의 Pod를 실행할 수 있습니다.
-3. **자동 구성(Auto-configuration)** – Kubernetes와 함께 실행될 때 노드 목록과 할당 프리픽스가 각 에이전트에 자동으로 전달됩니다. 신규 노드가 추가되면 자동으로 터널 메시에 편입됩니다.
-4. **정체성 맥락(Identity context)** – 캡슐화 프로토콜은 패킷에 메타데이터를 함께 실어 보낼 수 있어 Cilium이 소스 보안 ID 등의 정보를 전송하는 데 활용합니다
+1. **단순성(Simplicity)** - 네트워크가 PodCIDR을 인식할 필요가 없으며, 클러스터 노드는 여러 Routing 또는 링크 레이어 도메인을 생성할 수 있습니다. 네트워크 토폴로지에 관계없이 노드 간 연결만 확보되면 됩니다.
+2. **주소 공간(Addressing space)** - 기본 네트워크 제약에 의존하지 않기 때문에 PodCIDR 크기만 충분히 크게 설정하면 노드당 수천 개의 Pod를 실행할 수 있습니다.
+3. **자동 구성(Auto-configuration)** - Kubernetes와 함께 실행될 때 노드 목록과 할당 프리픽스가 각 에이전트에 자동으로 전달됩니다. 신규 노드가 추가되면 자동으로 터널 메시에 편입됩니다.
+4. **정체성 맥락(Identity context)** - 캡슐화 프로토콜은 패킷에 메타데이터를 함께 실어 보낼 수 있어 Cilium이 소스 보안 ID 등의 정보를 전송하는 데 활용합니다
 
 ### 2.3. Encapsulation Mode의 단점
 
-1. **MTU 오버헤드** – 캡슐화 헤더(약 50바이트)가 추가되기 때문에 유효 MTU가 줄어들어 Native Routing보다 처리량이 낮을 수 있습니다. Jumbo Frame(예: `9000 Byte MTU`)을 활성화하면 이러한 오버헤드를 크게 완화할 수 있습니다.
+1. **MTU 오버헤드** - 캡슐화 헤더(약 50바이트)가 추가되기 때문에 유효 MTU가 줄어들어 Native Routing보다 처리량이 낮을 수 있습니다. Jumbo Frame(예: `9000 Byte MTU`)을 활성화하면 이러한 오버헤드를 크게 완화할 수 있습니다.
 
 > **MTU** - Maximum Transmission Unit (최대 전송 단위)  
 

@@ -48,7 +48,7 @@ Events:
   Warning  Evicted  4m50s (x2334 over 26h)  kubelet  (combined from similar events): The node was low on resource: ephemeral-storage. Threshold quantity: 1Gi, available: 925292Ki.
 ```
 
-> 용량이 부족하다…고?? 설마.. Worker node의 용량이 벌써 다 차버린 건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자  
+> 용량이 부족하다...고?? 설마.. Worker node의 용량이 벌써 다 차버린 건가..? 일단 해당 Pods를 강제로 지우고 문제를 해결해보자  
 {: .prompt-info}
 
 ```bash
@@ -87,7 +87,7 @@ shm              64M     0   64M   0% /var/snap/microk8s/common/run/containerd/i
 tmpfs            96M   12K   96M   1% /run/user/1000
 ```
 
-> 앗… 실제로 여유 공간이 1GB가 되지 않았다. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해 줘 Worker Node의 용량을 10GB로 설정했는데… ~~더 올리면 내 돈이…~~ 결국 용량을 추가해야 했다.  
+> 앗... 실제로 여유 공간이 1GB가 되지 않았다. AWS Free Tier에서 EBS를 30GB까지 무료로 제공해 줘 Worker Node의 용량을 10GB로 설정했는데... ~~더 올리면 내 돈이...~~ 결국 용량을 추가해야 했다.  
 {: .prompt-info}
 
 ---

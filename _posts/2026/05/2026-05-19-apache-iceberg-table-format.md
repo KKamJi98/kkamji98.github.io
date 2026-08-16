@@ -345,11 +345,11 @@ Iceberg가 특정 벤더에 묶이지 않는다는 점은, **하나의 테이블
 
 ---
 
-## 11. 정리와 다음 글
+## 11. 정리
 
-이번 편에서는 Apache Iceberg 테이블 포맷 자체를 메타데이터 계층, snapshot 기반 ACID, time travel, 스키마/파티션 진화, Copy-on-Write/Merge-on-Read, 유지보수 순으로 정리했습니다.
+Apache Iceberg 테이블 포맷을 메타데이터 계층, snapshot 기반 ACID, time travel, 스키마와 파티션 진화, Copy-on-Write와 Merge-on-Read, 유지보수 순으로 정리했습니다.
 
-다음 글에서는 이 Iceberg를 AWS가 관리형으로 감싼 **Amazon S3 Tables & Catalog Federation**을 다룹니다. table bucket이 무엇이고, 이 글에서 본 compaction/snapshot 관리를 어떻게 대신 처리하는지, 그리고 Glue Data Catalog 안에 `s3tablescatalog`로 어떻게 중첩되어 ARN이 깊어지는지를 이어서 풀어갑니다.
+여기서 다룬 compaction과 snapshot 관리를 직접 하지 않으려면 관리형 서비스를 쓰게 됩니다. AWS는 [S3 Tables & Catalog Federation](/posts/aws-s3-tables-catalog-federation/)으로 이 부분을 감쌉니다.
 
 ---
 

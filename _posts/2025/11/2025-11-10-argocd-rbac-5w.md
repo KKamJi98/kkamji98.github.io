@@ -534,7 +534,7 @@ Keycloak의 주요 특징은 다음과 같습니다.
   - 애플리케이션은 사용자 자격 증명에 직접 접근하지 않고, 필요한 정보에만 접근할 수 있는 **보안 토큰(JWT 등)**을 사용합니다.
 - **Single Sign-On(SSO) 및 세션 관리**
   - Keycloak은 SSO 기능을 제공하여 사용자가 한 번만 인증하면 여러 애플리케이션에 접근할 수 있습니다.
-  - 사용자와 관리자 모두 “현재 사용자가 어디에 로그인되어 있는지”를 확인할 수 있고, 필요 시 원격으로 세션을 종료할 수도 있습니다.
+  - 사용자와 관리자 모두 "현재 사용자가 어디에 로그인되어 있는지"를 확인할 수 있고, 필요 시 원격으로 세션을 종료할 수도 있습니다.
 - **표준 프로토콜 기반**
   - Keycloak은 **OAuth 2.0**, **OpenID Connect**, **SAML 2.0**과 같은 업계 표준 프로토콜을 기반으로 동작합니다.
   - 덕분에 다양한 언어,프레임워크,플랫폼에서 제공하는 표준 클라이언트 라이브러리를 활용해 쉽게 연동할 수 있습니다.
@@ -558,7 +558,7 @@ Keycloak의 주요 특징은 다음과 같습니다.
 
 Argo CD를 Keycloak과 직접 연동하면 다음과 같은 구조를 가지게 됩니다.
 
-- **User** — (브라우저) -> **Application(Argo CD, OAuth Client 역할)** —-> **Keycloak (Authorization Server, OpenID Provider)**
+- **User** - (브라우저) -> **Application(Argo CD, OAuth Client 역할)** --> **Keycloak (Authorization Server, OpenID Provider)**
 
 OpenID Connect의 **Authorization Code Flow**를 사용하면 다음과 같은 흐름으로 인증이 이루어집니다.
 

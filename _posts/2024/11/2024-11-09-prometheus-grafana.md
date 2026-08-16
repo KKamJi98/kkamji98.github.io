@@ -9,7 +9,7 @@ image:
   path: /assets/img/observability/grafana/grafana.webp
 ---
 
-이번 시간에는 **Prometheus**에서 수집한 지표를 **Grafana**를 사용해 시각화 하는 방법에 대해 알아보도록 하겠습니다.
+Prometheus와 Grafana를 각각 띄웠다고 해서 대시보드에 그래프가 나오지는 않습니다. Grafana가 Prometheus를 Data Source로 알고 있어야 하고, 그 위에 패널이 있어야 합니다. 두 단계를 연결하는 과정을 정리합니다.
 
 ### 관련 글
 

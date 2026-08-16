@@ -232,18 +232,7 @@ Datadog RUM은 **ingest된 세션 1,000개 단위(per 1,000 sessions)** 로 과�
 
 ---
 
-## 8. 시리즈 맵
-
-이 글은 Datadog observability 시리즈의 첫 글입니다. 앞으로 다음 주제를 이어갈 예정입니다.
-
-- **(1) Datadog RUM 알아보기** - 개념, 데이터 모델, 관측 항목, observability 향상 (현재 글)
-- (2) RUM 도입 실습 - Browser SDK 설정과 Session Replay, frustration signals 확인
-- (3) RUM + APM trace linking - frontend부터 backend까지 full-stack 추적
-- (4) RUM 기반 monitor와 SLO - 실사용자 중심 알림과 신뢰성 목표
-
----
-
-## 9. Reference
+## 8. Reference
 
 - [Datadog Docs - Real User Monitoring](https://docs.datadoghq.com/real_user_monitoring/)
 - [Datadog Docs - Understanding the RUM Event Hierarchy](https://docs.datadoghq.com/real_user_monitoring/guide/understanding-the-rum-event-hierarchy/)

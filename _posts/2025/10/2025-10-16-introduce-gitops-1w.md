@@ -148,7 +148,7 @@ DevOps가 협업과 자동화를 중심으로 소프트웨어 개발을 진화�
 
 ## 6. Reference
 
-- [O’Reilly GitOps Cookbook - Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
+- [O'Reilly GitOps Cookbook - Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)
 - [RedHat Developer - GitOps Cookbook: Kubernetes automation in practice](https://developers.redhat.com/articles/2022/12/20/gitops-cookbook-kubernetes-automation-practice)
 - [CNCF - Introduce OpenGitOps](https://www.cncf.io/projects/opengitops/)
 - [OpenGitOps - Official Site](https://opengitops.dev/)
