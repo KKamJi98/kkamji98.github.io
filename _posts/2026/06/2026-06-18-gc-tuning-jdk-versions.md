@@ -177,6 +177,8 @@ DevSecOps 비유: 런타임 업그레이드는 "성능 개선"이지만 GC 휴�
 - Oracle GC Tuning Guide (SE 21) - Garbage-First (G1) Garbage Collector (adaptive IHOP / IHOP 기본 45 / region size ergonomic / mixed): <https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html>
 - OpenJDK - JEP 248: Make G1 the Default Garbage Collector (JDK 9에서 default collector 교체): <https://openjdk.org/jeps/248>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

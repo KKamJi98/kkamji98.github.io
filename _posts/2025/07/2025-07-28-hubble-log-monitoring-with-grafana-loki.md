@@ -164,6 +164,8 @@ Grafana Alloy는 OpenTelemetry Collector 아키텍처를 기반으로 하며, **
 - [grafana.com - architecture](https://grafana.com/docs/loki/latest/get-started/architecture/)
 - [grafana.com - architecture](https://grafana.com/docs/loki/latest/get-started/architecture/#data-format)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

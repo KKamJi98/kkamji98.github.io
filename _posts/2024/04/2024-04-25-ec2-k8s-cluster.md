@@ -236,6 +236,15 @@ nginx-service   NodePort    10.152.183.56   <none>        80:30080/TCP   80s
 
 ## 9. Reference
 
+- [MicroK8s Docs - Getting started](https://microk8s.io/docs/getting-started)
+- [MicroK8s Docs - Addons](https://microk8s.io/docs/addons)
+- [MicroK8s Docs - Kubernetes dashboard](https://microk8s.io/docs/addon-dashboard)
+- [Snapcraft Docs - Installing snapd](https://snapcraft.io/docs/installing-snapd)
+- [Kubernetes Docs - Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+- [AWS Docs - Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+- [AWS Docs - Amazon EC2 security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
+
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

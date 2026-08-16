@@ -130,6 +130,8 @@ EC2에 Jenkins를 설치하는 작업은 package 설치에서 끝나지 않습�
 - [Jenkins Docs - Java Support Policy](https://www.jenkins.io/doc/book/platform-information/support-policy-java/)
 - [Jenkins Docs - Securing Jenkins](https://www.jenkins.io/doc/book/security/)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

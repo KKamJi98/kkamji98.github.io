@@ -120,7 +120,7 @@ USB CDC 포트인 Leonardo의 `Serial`에서는 `Serial.begin()`의 보드레이
 - [Arduino Leonardo](https://docs.arduino.cc/hardware/leonardo)
 - [USB-IF - Class Definitions for Communication Devices 1.2](https://www.usb.org/document-library/class-definitions-communication-devices-12)
 
-<br><br>
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

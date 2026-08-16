@@ -97,6 +97,8 @@ dig www.example.com A
 - [AWS Route 53 - Supported DNS record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 - [AWS Route 53 - Best practices for DNS](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/best-practices-dns.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

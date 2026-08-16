@@ -235,6 +235,8 @@ Amazon VPC CNI - <https://docs.aws.amazon.com/eks/latest/best-practices/vpc-cni.
 - [docs.aws.amazon.com - prefix mode linux](https://docs.aws.amazon.com/eks/latest/best-practices/prefix-mode-linux.html)
 - [docs.aws.amazon.com - vpc cni](https://docs.aws.amazon.com/eks/latest/best-practices/vpc-cni.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

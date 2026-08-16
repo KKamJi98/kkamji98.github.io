@@ -53,6 +53,8 @@ AWS Summit은 AWS에서 주최하는 국내 최대의 IT 클라우드 행사입�
 
 AWS Summit에 함께 참가해준 AWS Cloud School 1기 동기들에게 감사하며, 다음에는 회사의 이름을 대표하여 AWS Summit에서 만나자는 약속을 지키기 위해 노력해보겠습니다.
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

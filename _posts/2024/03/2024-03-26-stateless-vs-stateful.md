@@ -70,7 +70,7 @@ comments: true
 - EC2 인스턴스 측면에서 동작하는 가상의 방화벽입니다.
 - Stateful(상태 유지) 특성을 갖고 있습니다.
 
-<br><br>
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

@@ -144,6 +144,8 @@ re:Invent 2022와 GA 발표에서 공개된 고객 사례 중 Adways Inc.는 mul
 - [VPC Lattice User Guide - Target Groups](https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html)
 - [VPC Lattice User Guide - Quotas](https://docs.aws.amazon.com/vpc-lattice/latest/ug/quotas.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

@@ -114,6 +114,8 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 - [youtu.be - zg9rhHcf8w0](https://youtu.be/zg9rhHcf8w0?si=A6rGs7k0rcp9nD0u)
 - [youtu.be - S6AAgXVevEw](https://youtu.be/S6AAgXVevEw?si=OiLR3wfE36uTpHYU)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

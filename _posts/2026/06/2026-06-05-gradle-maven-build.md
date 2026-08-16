@@ -104,6 +104,8 @@ BOM과 version pinning은 재현 가능한 build의 기반이며, dependency tre
 - Spring Boot Gradle Plugin - Managing Dependencies (dependency management / BOM): <https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html>
 - Spring Boot Maven Plugin (repackage / 의존성 관리): <https://docs.spring.io/spring-boot/maven-plugin/>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

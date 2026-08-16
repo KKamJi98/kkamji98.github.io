@@ -198,6 +198,8 @@ server `error` listener는 `listen()`보다 먼저 등록합니다. startup log�
 - [Node.js Documentation - Test runner](https://nodejs.org/docs/latest-v26.x/api/test.html)
 - [ECMA-262 - HostLoadImportedModule](https://tc39.es/ecma262/#sec-hostloadimportedmodule)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

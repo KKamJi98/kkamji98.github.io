@@ -89,6 +89,8 @@ TCP와 UDP의 선택은 "신뢰성 대 속도"라는 한 문장으로 끝나지 
 - [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768.html)
 - [RFC 8085 - UDP Usage Guidelines](https://www.rfc-editor.org/rfc/rfc8085.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

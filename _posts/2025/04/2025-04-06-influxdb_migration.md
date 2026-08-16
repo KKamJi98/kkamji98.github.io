@@ -461,6 +461,14 @@ Date: Sun, 06 Apr 2025 14:38:59 GMT
 
 ## 11. Reference
 
+- [InfluxDB v1 Docs - Line protocol tutorial](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/)
+- [InfluxDB v1 Docs - influx_inspect](https://docs.influxdata.com/influxdb/v1/tools/influx_inspect/)
+- [InfluxDB v1 Docs - influx CLI](https://docs.influxdata.com/influxdb/v1/tools/shell/)
+- [InfluxDB v1 Docs - InfluxDB API](https://docs.influxdata.com/influxdb/v1/tools/api/)
+- [InfluxDB v1 Docs - Database management](https://docs.influxdata.com/influxdb/v1/query_language/manage-database/)
+- [Grafana Docs - InfluxDB data source](https://grafana.com/docs/grafana/latest/datasources/influxdb/)
+
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

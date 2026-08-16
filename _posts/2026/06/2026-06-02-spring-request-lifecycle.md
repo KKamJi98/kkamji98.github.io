@@ -176,6 +176,8 @@ _탑다운 학습 경로: 요청 흐름에서 시작해 JVM/메모리로 내려�
 - Spring Boot Reference - Running your application (`java -jar`): <https://docs.spring.io/spring-boot/reference/using/running-your-application.html>
 - Spring Boot - Executable jar structure(BOOT-INF): <https://docs.spring.io/spring-boot/how-to/build.html>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

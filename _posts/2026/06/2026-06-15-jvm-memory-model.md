@@ -219,6 +219,8 @@ trade-off는 이렇습니다.
 - The java Command (JVM 옵션: -Xmx / -Xss / -XX:MaxMetaspaceSize / -XX:ReservedCodeCacheSize / -XX:MaxDirectMemorySize / -XX:MaxRAMPercentage): <https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html>
 - Java Platform Troubleshooting Guide (Native Memory Tracking, jcmd VM.native_memory): <https://docs.oracle.com/en/java/javase/21/troubleshoot/diagnostic-tools.html>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

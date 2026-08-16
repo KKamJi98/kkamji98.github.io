@@ -137,6 +137,8 @@ worker 추가의 완료 기준은 조인 명령의 성공이 아니라 node가 `
 - [MicroK8s Docs - Services and ports](https://canonical.com/microk8s/docs/services-and-ports)
 - [Kubernetes Docs - Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

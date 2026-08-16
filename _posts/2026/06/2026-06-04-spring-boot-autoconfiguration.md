@@ -202,6 +202,8 @@ DevSecOps 관점에서 보면, auto-configuration은 Helm values의 합리적 �
 - Spring Boot - Executable Jar / Launching Executable Jars: <https://docs.spring.io/spring-boot/specification/executable-jar/launching.html>
 - Spring Boot Reference - Creating Your Own Auto-configuration: <https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

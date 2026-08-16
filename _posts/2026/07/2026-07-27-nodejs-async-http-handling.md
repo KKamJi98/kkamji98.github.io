@@ -211,6 +211,8 @@ timeout, client abort, upstream 오류, coding bug는 서로 다른 관측 조�
 - [MDN - Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 - [RFC 9110 - HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

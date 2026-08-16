@@ -105,6 +105,8 @@ DevSecOps 비유: 도구 선택의 원칙은 인프라와 똑같습니다. "최�
 - Spring Framework Reference - Web on Reactive Stack (Applicability: MVC vs WebFlux 선택 기준): <https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html>
 - Spring Framework Reference - Web on Servlet Stack (Spring MVC): <https://docs.spring.io/spring-framework/reference/web/webmvc.html>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

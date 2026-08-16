@@ -107,6 +107,8 @@ Pod 네트워크, NetworkPolicy 구현, DNS 같은 기능은 CNI 플러그인과
 - [Kubernetes Documentation - Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
 - [Kubernetes Documentation - Communication between Nodes and the Control Plane](https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

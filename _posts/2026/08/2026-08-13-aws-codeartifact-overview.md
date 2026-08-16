@@ -178,6 +178,8 @@ CodeArtifact는 AWS 인프라에 이미 투자한 조직, IAM 기반 접근 제�
 - [AWS CodeArtifact Pricing](https://aws.amazon.com/codeartifact/pricing/)
 - [AWS CodeArtifact Blog Posts](https://aws.amazon.com/blogs/devops/tag/codeartifact/)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

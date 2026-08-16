@@ -77,7 +77,7 @@ image:
 - 계약 협상보다 고객과 협업
 - 계획에 따르기보다 변화에 반응
 
-<br><br>
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  

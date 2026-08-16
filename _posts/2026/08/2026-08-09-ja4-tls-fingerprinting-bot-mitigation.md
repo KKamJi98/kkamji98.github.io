@@ -237,6 +237,8 @@ AWS WAF에서 JA4를 도입할 때 권장하는 접근은 차단부터 시작하
 - [HAProxy JA4 Lua Plugin by OXL](https://github.com/O-X-L/haproxy-ja4-fingerprint)
 - [Suricata JA Keywords Documentation](https://docs.suricata.io/en/latest/rules/ja-keywords.html)
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

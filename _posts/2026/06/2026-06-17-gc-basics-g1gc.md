@@ -143,6 +143,8 @@ DevSecOps 비유: GC pause는 짧은 stall, `MaxGCPauseMillis`는 수집기가 �
 - Oracle GC Tuning Guide (SE 21) - Garbage Collector Implementation (generational / minor / 승격): <https://docs.oracle.com/en/java/javase/21/gctuning/garbage-collector-implementation.html>
 - Oracle GC Tuning Guide (SE 21) - Garbage-First (G1) Garbage Collector (region / mixed / IHOP / pause 목표): <https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html>
 
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

@@ -182,6 +182,14 @@ data:
 
 ## 11. Reference
 
+- [Keycloak Docs - Server Administration Guide](https://www.keycloak.org/docs/latest/server_admin/)
+- [Argo CD Docs - Keycloak](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/)
+- [Argo CD Docs - User Management](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/)
+- [Argo CD Docs - RBAC Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/)
+- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+
+---
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
