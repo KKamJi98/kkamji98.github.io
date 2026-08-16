@@ -45,6 +45,7 @@ NODE_R = 13
 HUB_R = 16
 DOT_R = 5
 NODE_STROKE = 3
+BOX_STROKE = 3
 EDGE_W = 2
 
 FONT_WORDMARK = ("/System/Library/Fonts/HelveticaNeue.ttc", 10)  # Medium
@@ -55,6 +56,9 @@ _WIKI_NODES = [(0, -92), (-88, -34), (86, -40), (-72, 86), (74, 78)]
 _WIKI_HUB = (-14, 18)
 _RAG_HITS = [(-70, -52), (62, -38), (18, 74)]
 _RAG_QUERY = (0, 0)
+_CHAIN_BOX_W, _CHAIN_BOX_H = 178, 58
+_CHAIN_CENTRES = [(0, -88), (0, 0), (0, 88)]
+_CHAIN_HALF = _CHAIN_BOX_H / 2
 
 GLYPHS = {
     # A small knowledge graph: notes linked into one hub.
@@ -100,6 +104,21 @@ GLYPHS = {
         # fmt: on
         "edges": [(_RAG_QUERY, p) for p in _RAG_HITS],
     },
+    # A chain of blocks: each one links back to the block above it, and the
+    # newest block at the bottom is the tip.
+    "chain": {
+        "nodes": [],
+        "hubs": [],
+        "dots": [],
+        "boxes": [
+            (cx, cy, _CHAIN_BOX_W, _CHAIN_BOX_H, i == len(_CHAIN_CENTRES) - 1)
+            for i, (cx, cy) in enumerate(_CHAIN_CENTRES)
+        ],
+        "edges": [
+            ((a[0], a[1] + _CHAIN_HALF), (b[0], b[1] - _CHAIN_HALF))
+            for a, b in zip(_CHAIN_CENTRES, _CHAIN_CENTRES[1:])
+        ],
+    },
 }
 
 COVERS = {
@@ -114,6 +133,12 @@ COVERS = {
         "wordmark": "RAG",
         "caption": "검색 증강 생성 파이프라인",
         "out": "assets/img/ai/rag/rag.webp",
+    },
+    "blockchain": {
+        "glyph": "chain",
+        "wordmark": "BLOCKCHAIN",
+        "caption": "해시와 서명으로 검증하는 분산 원장",
+        "out": "assets/img/blockchain/blockchain.webp",
     },
 }
 
@@ -132,11 +157,22 @@ def glyph_bbox(glyph):
         + [(x, y, HUB_R) for x, y in glyph["hubs"]]
         + [(x, y, DOT_R) for x, y in glyph["dots"]]
     )
+    # A box contributes the same four extremes as a circle of its half-extent,
+    # so both shapes can be reduced to one min/max pass.
+    spans = [(x - r, y - r, x + r, y + r) for x, y, r in circles] + [
+        (
+            x - (w + BOX_STROKE) / 2,
+            y - (h + BOX_STROKE) / 2,
+            x + (w + BOX_STROKE) / 2,
+            y + (h + BOX_STROKE) / 2,
+        )
+        for x, y, w, h, _ in glyph.get("boxes", [])
+    ]
     return (
-        min(x - r for x, _, r in circles),
-        min(y - r for _, y, r in circles),
-        max(x + r for x, _, r in circles),
-        max(y + r for _, y, r in circles),
+        min(s[0] for s in spans),
+        min(s[1] for s in spans),
+        max(s[2] for s in spans),
+        max(s[3] for s in spans),
     )
 
 
@@ -153,6 +189,15 @@ def draw_glyph(draw, glyph, origin):
 
     for a, b in glyph["edges"]:
         draw.line([at(a), at(b)], fill=INK_FAINT, width=EDGE_W * SUPERSAMPLE)
+    for cx, cy, w, h, filled in glyph.get("boxes", []):
+        x0, y0 = at((cx - w / 2, cy - h / 2))
+        x1, y1 = at((cx + w / 2, cy + h / 2))
+        draw.rectangle(
+            [x0, y0, x1, y1],
+            fill=INK if filled else BG,
+            outline=INK,
+            width=BOX_STROKE * SUPERSAMPLE,
+        )
     for p in glyph["dots"]:
         circle(p, DOT_R, INK_FAINT, INK_FAINT, 0)
     for p in glyph["nodes"]:
