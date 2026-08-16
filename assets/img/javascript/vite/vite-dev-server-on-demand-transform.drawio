@@ -1,0 +1,79 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="vite-dev-server-on-demand-transform" name="Bundle-first waits for the whole graph, Vite waits for one module">
+    <mxGraphModel dx="1118" dy="546" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1118" pageHeight="546" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1094.96" height="522.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Bundle-first waits for the whole graph, Vite waits for one module" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1050.96" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Both paths end at the browser. The difference is what has to finish before the dev server can answer the first request." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1050.96" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legacy" value="Bundle-first dev server" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="128" width="1038" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="vite" value="Vite dev server" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="358" width="1051" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="src_a" value="Source modules&#xa;hundreds of files" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="190" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="bundle" value="Bundle everything&#xa;cost grows with app size" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="298" y="190" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="serve_bundle" value="Serve one bundle&#xa;first request waits for the whole graph" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="542" y="190" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="browser_a" value="Browser&#xa;bundle-first dev server" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="945" y="174" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="src_b" value="Source modules&#xa;same hundreds of files" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="420" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="prebundle" value="Pre-bundle dependencies&#xa;esbuild, node_modules only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="292" y="420" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="transform" value="Transform on request&#xa;one module per browser import" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="574" y="420" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="browser_b" value="Browser&#xa;native ESM, asks per module" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="945" y="404" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="bundle-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="278" y="170" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="serve_bundle-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="522" y="170" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="prebundle-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="272" y="400" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="transform-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="554" y="400" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src_a" target="bundle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bundle" target="serve_bundle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="serve_bundle" target="browser_a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src_b" target="prebundle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="prebundle" target="transform">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="transform" target="browser_b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

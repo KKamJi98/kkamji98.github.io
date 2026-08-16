@@ -37,10 +37,10 @@ Challenge는 "사람임을 증명"하거나 access 권한을 부여하지 않습
 Challenge를 우선 검토할 만한 경우는 다음과 같습니다.
 
 - browser에서 시작하는 로그인, 계정 생성, password reset 같은 민감한 HTML entry flow
-- JavaScript integration과 CSP를 제어할 수 있고, protected request보다 먼저 token을 획득할 수 있는 SPA
+- JavaScript integration과 CSP(Content Security Policy)를 제어할 수 있고, protected request보다 먼저 token을 획득할 수 있는 SPA
 - Challenge token 상태를 검토하는 managed rule group 또는 좁은 custom Challenge rule을 이미 Count로 관찰한 경우
 
-반대로 webhook, partner API, mobile app, server-to-server client처럼 JavaScript document를 실행하지 않는 client에는 적합하지 않습니다. `POST /api/orders`, CORS preflight `OPTIONS`, JSON-only API를 token 획득용 interstitial endpoint로 쓰는 것도 피해야 합니다. Challenge는 rule에 매칭된 각 request에서 동작하지만, token을 얻는 entry point는 browser가 HTML과 JavaScript를 처리할 수 있는 `GET` route로 분리하는 편이 안전합니다.
+반대로 webhook, partner API, mobile app, server-to-server client처럼 JavaScript document를 실행하지 않는 client에는 적합하지 않습니다. `POST /api/orders`, CORS(Cross-Origin Resource Sharing) preflight `OPTIONS`, JSON-only API를 token 획득용 interstitial endpoint로 쓰는 것도 피해야 합니다. Challenge는 rule에 매칭된 각 request에서 동작하지만, token을 얻는 entry point는 browser가 HTML과 JavaScript를 처리할 수 있는 `GET` route로 분리하는 편이 안전합니다.
 
 ![AWS WAF Challenge token flow](/assets/img/aws/aws-waf-challenge-token-flow.webp)
 _token이 없거나 만료 또는 무효일 때 WAF는 `202` response를 반환합니다. browser가 token을 획득해 재시도한 request는 남은 rule 평가로 진행합니다._

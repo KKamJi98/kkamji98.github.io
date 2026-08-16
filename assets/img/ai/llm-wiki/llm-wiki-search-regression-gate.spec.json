@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "llm-wiki-search-regression-gate",
+  "title": "Adding notes is a change that has to pass the same gate as code",
+  "subtitle": "Without the eval set the regression is only a feeling. Recall and MRR turn it into a number that can block a merge.",
+  "layout": {
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "add",
+      "kind": "box",
+      "label": "Add or restructure notes",
+      "detail": "the change under test",
+      "role": "surface",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "retriever",
+      "kind": "box",
+      "label": "Deterministic retriever",
+      "detail": "same input, same ranking",
+      "role": "process",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "evalset",
+      "kind": "box",
+      "label": "Eval set",
+      "detail": "50 real questions mapped to answer notes",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "score",
+      "kind": "box",
+      "label": "Recall@5 and MRR@5",
+      "detail": "compared against the last run",
+      "role": "queue",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "gate",
+      "kind": "box",
+      "label": "Gate",
+      "detail": "recall drops, the change is reverted or restructured",
+      "role": "danger",
+      "col": 3,
+      "row": 0,
+      "step": 4,
+      "step_at": "top-left"
+    },
+    {
+      "id": "orphan",
+      "kind": "box",
+      "label": "Unreachable notes",
+      "detail": "not linked from any hub, never a candidate",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "g1",
+      "source": "add",
+      "target": "retriever"
+    },
+    {
+      "id": "g2",
+      "source": "evalset",
+      "target": "retriever"
+    },
+    {
+      "id": "g3",
+      "source": "retriever",
+      "target": "score"
+    },
+    {
+      "id": "g4",
+      "source": "score",
+      "target": "gate"
+    },
+    {
+      "id": "g5",
+      "source": "add",
+      "target": "orphan",
+      "dashed": true
+    }
+  ]
+}

@@ -26,7 +26,7 @@ DevOps Agent는 배포 이후의 인시던트 조사(Production Operations)와 �
 
 Production Operations는 알림 감지 즉시 사람의 개입 없이 조사를 시작합니다. 관측 도구의 지표, 로그, 트레이스, 배포 기록을 교차 분석해 근본 원인을 식별하고, 완화 조치를 Slack이나 PagerDuty로 전달합니다. Release Management는 코드가 병합되기 전에 릴리스 준비도를 평가하고, 프로덕션 유사 환경에서 변경 사항에 특화된 테스트를 자율 생성합니다.
 
-GA 발표 시 AWS는 Preview 기간 동안 고객이 보고한 메트릭을 공유했습니다. MTTR 최대 75% 감소, 조사 속도 80% 향상, 근본 원인 정확도 94%입니다.
+GA 발표 시 AWS는 Preview 기간 동안 고객이 보고한 메트릭을 공유했습니다. MTTR(Mean Time To Resolution) 최대 75% 감소, 조사 속도 80% 향상, 근본 원인 정확도 94%입니다.
 
 ---
 
@@ -41,6 +41,9 @@ GA에서는 중복 인시던트를 식별해 LINKED 상태로 묶는 Triage Agen
 ---
 
 ## 3. 기존 관측 도구를 대체하지 않고 상위에서 소비합니다
+
+![DevOps Agent signal flow](/assets/img/aws/devops-agent/devops-agent-signal-flow.webp)
+_왼쪽 세 상자에서 모이는 화살표는 단계가 아니라 에이전트가 읽는 입력 종류다. Journal로 향하는 점선은 조사와 별개로 모든 단계가 기록된다는 뜻이다._
 
 DevOps Agent는 다음 관측 도구와 built-in 통합을 제공합니다.
 
@@ -152,7 +155,17 @@ DevOps Agent는 로그, 리소스 태그, 운영 데이터를 입력으로 소�
 
 ---
 
-## 12. Reference
+## 12. 정리
+
+DevOps Agent는 관측 도구를 대체하는 제품이 아니라 그 위에서 신호를 소비하는 계층입니다. CloudWatch와 X-Ray, Grafana, Datadog이 이미 수집하고 있는 데이터를 읽어 알림이 뜬 직후의 1차 조사를 대신합니다.
+
+도입을 검토할 때 먼저 확인할 조건은 세 가지입니다. 첫째, 데이터가 Agent Space를 만든 리전에 저장되므로 서울(ap-northeast-2)이 지원 리전 6곳에 없다는 점이 규제 요건에 걸리는지 봐야 합니다. 둘째, 완화 조치는 제안까지이고 프로덕션 변경에는 명시적 승인이 필요하므로 자동 복구를 기대하면 안 됩니다. 셋째, 인시던트 리포트가 자유 텍스트라 severity 기반 자동 라우팅이나 티켓 필드 매핑을 그 출력에 직접 걸기는 어렵습니다.
+
+Custom MCP 서버로 도구를 늘리면 그만큼 prompt injection 표면도 넓어집니다. 에이전트가 소비하는 외부 데이터에 누가 쓸 수 있는지를 제한하는 것은 공동 책임 모델에서 고객 몫입니다.
+
+---
+
+## 13. Reference
 
 - [AWS DevOps Agent 공식 페이지](https://aws.amazon.com/devops-agent/)
 - [AWS DevOps Agent 요금](https://aws.amazon.com/devops-agent/pricing/)

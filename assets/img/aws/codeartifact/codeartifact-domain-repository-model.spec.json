@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "codeartifact-domain-repository-model",
+  "title": "A domain owns the storage, repositories own the access path",
+  "subtitle": "Assets are deduplicated and encrypted once at the domain. An external connection inserts a -store repository that caches whatever is fetched from the public registry.",
+  "layout": { "col_gap": 60 },
+  "nodes": [
+    { "id": "build", "kind": "service", "service": "client", "label": "Build client", "detail": "npm, pip, mvn", "col": 0, "row": 0, "step": 1, "step_at": "top-left" },
+    { "id": "repo", "kind": "box", "label": "Repository", "detail": "one endpoint, all formats", "role": "process", "col": 1, "row": 0, "step": 2, "step_at": "top-left" },
+    { "id": "store", "kind": "box", "label": "-store repository", "detail": "created with the external connection", "role": "queue", "col": 2, "row": 0, "step": 3, "step_at": "top-left" },
+    { "id": "public", "kind": "service", "service": "internet", "label": "Public registry", "detail": "npmjs, PyPI, Maven Central", "role": "external", "col": 3, "row": 0, "step": 4, "step_at": "top-left" },
+    { "id": "assets", "kind": "box", "label": "Deduplicated assets", "detail": "encrypted with the domain KMS key, one copy per domain", "role": "store", "col": 1, "row": 1, "colspan": 2 }
+  ],
+  "containers": [
+    { "id": "domain", "kind": "plain", "label": "Domain", "members": ["repo", "store", "assets"] }
+  ],
+  "edges": [
+    { "id": "build-repo", "source": "build", "target": "repo" },
+    { "id": "repo-store", "source": "repo", "target": "store" },
+    { "id": "store-public", "source": "store", "target": "public" },
+    { "id": "repo-assets", "source": "repo", "target": "assets", "dashed": true },
+    { "id": "store-assets", "source": "store", "target": "assets", "dashed": true }
+  ]
+}

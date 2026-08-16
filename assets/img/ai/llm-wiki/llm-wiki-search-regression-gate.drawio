@@ -1,0 +1,64 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="llm-wiki-search-regression-gate" name="Adding notes is a change that has to pass the same gate as code">
+    <mxGraphModel dx="1377" dy="326" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1377" pageHeight="326" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1353.94" height="302.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Adding notes is a change that has to pass the same gate as code" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1309.94" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Without the eval set the regression is only a feeling. Recall and MRR turn it into a number that can block a merge." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1309.94" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="add" value="Add or restructure notes&#xa;the change under test" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="91" y="132" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="retriever" value="Deterministic retriever&#xa;same input, same ranking" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="435" y="132" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="evalset" value="Eval set&#xa;50 real questions mapped to answer notes" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="384" y="238" width="279" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="score" value="Recall@5 and MRR@5&#xa;compared against the last run" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="721" y="132" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gate" value="Gate&#xa;recall drops, the change is reverted or restructured" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="988" y="132" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="orphan" value="Unreachable notes&#xa;not linked from any hub, never a candidate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="238" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="add-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="71" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="retriever-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="415" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="score-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="701" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="gate-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="968" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="add" target="retriever">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="evalset" target="retriever">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="retriever" target="score">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="score" target="gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.4983;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="add" target="orphan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -11,6 +11,8 @@ comments: true
 
 ![Virtualization model](/assets/img/virtualization/virtualization-model.webp)
 
+가상화라는 말은 대개 서버 가상화를 가리키는 말로 쓰이지만, 실제로는 하드웨어부터 네트워크, 스토리지, 데스크탑, 애플리케이션, 데이터까지 계층마다 각각의 가상화가 있습니다. 계층이 다르면 얻는 것과 잃는 것도 달라집니다. 어떤 종류가 있고 각각 무엇을 추상화하는지 정리합니다.
+
 ---
 
 ## 1. 가상화란?
@@ -52,6 +54,13 @@ comments: true
 
 데이터 가상화는 여러 소스의 데이터를 단일 인터페이스 또는 "가상" 데이터베이스를 통해 통합 및 관리합니다.  
 이를 통해 사용자는 여러 데이터 소스를 직접 연결하지 않고도 필요한 정보에 접근할 수 있습니다. 데이터 가상화는 데이터 통합, 실시간 데이터 액세스, 데이터 품질 관리에 유용합니다.
+
+---
+
+## 3. Reference
+
+- [Red Hat - What is virtualization?](https://www.redhat.com/en/topics/virtualization/what-is-virtualization)
+- [IBM - What is virtualization?](https://www.ibm.com/think/topics/virtualization)
 
 ---
 

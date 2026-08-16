@@ -83,7 +83,7 @@ VPC Lattice는 4계층 접근 제어 모델을 사용합니다.
 
 Auth policy는 IAM resource policy입니다. Identity-based policy(사용자/역할에 부착)와 별개로 동작하며, 인가가 성공하려면 양쪽 모두에 explicit allow가 있어야 합니다. Resource configuration에는 auth policy를 적용할 수 없습니다.
 
-TLS는 세 가지 방식을 지원합니다. HTTPS listener에서 VPC Lattice가 관리하는 TLS 인증서를 자동 프로비저닝합니다. ACM 인증서로 custom domain name에 BYOC(Bring Your Own Certificate)를 사용할 수 있습니다. 2024년 5월에 추가된 TLS passthrough로 애플리케이션에서 end-to-end 인증을 수행할 수 있습니다. Native mTLS 종료는 공식적으로 제공하지 않으며, TLS passthrough를 통해 애플리케이션 단에서 mTLS 시나리오를 처리합니다.
+TLS는 세 가지 방식을 지원합니다. HTTPS listener에서 VPC Lattice가 관리하는 TLS 인증서를 자동 프로비저닝합니다. ACM(AWS Certificate Manager) 인증서로 custom domain name에 BYOC(Bring Your Own Certificate)를 사용할 수 있습니다. 2024년 5월에 추가된 TLS passthrough로 애플리케이션에서 end-to-end 인증을 수행할 수 있습니다. Native mTLS 종료는 공식적으로 제공하지 않으며, TLS passthrough를 통해 애플리케이션 단에서 mTLS 시나리오를 처리합니다.
 
 ---
 

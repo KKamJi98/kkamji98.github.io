@@ -11,6 +11,8 @@ image:
 
 ![Software life cycle](/assets/img/software-engineering/software-life-cycle.webp)
 
+개발 방법론을 고르는 문제는 결국 요구사항이 언제 확정되는지에 달려 있습니다. 시작 시점에 요구사항이 확정되고 이후 바뀌지 않는다면 단계를 순서대로 매듭짓는 편이 낫고, 개발 중에 계속 바뀐다면 짧은 주기로 결과물을 내놓고 반응을 받는 편이 낫습니다. 대표적인 네 가지 생명 주기 모형이 각각 어떤 전제 위에 서 있는지 정리합니다.
+
 ---
 
 ## 1. 소프트웨어 생명 주기 (Software Life Cycle)
@@ -76,6 +78,14 @@ image:
 - 방대한 문서보다 실행되는 SW
 - 계약 협상보다 고객과 협업
 - 계획에 따르기보다 변화에 반응
+
+---
+
+## 6. Reference
+
+- [Agile Manifesto - Manifesto for Agile Software Development](https://agilemanifesto.org/)
+- [Agile Manifesto - 애자일 소프트웨어 개발 선언](https://agilemanifesto.org/iso/ko/manifesto.html)
+- [Scrum Guides - The Scrum Guide](https://scrumguides.org/scrum-guide.html)
 
 ---
 

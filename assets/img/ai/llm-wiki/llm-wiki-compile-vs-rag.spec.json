@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "id": "llm-wiki-compile-vs-rag",
+  "title": "RAG infers at query time, an LLM wiki compiles once at ingestion",
+  "subtitle": "The retrieval step looks similar in both. What differs is whether cross-references and contradictions are worked out before the question arrives or after.",
+  "layout": {
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "src_a",
+      "kind": "box",
+      "label": "Raw sources",
+      "detail": "docs, tickets, threads",
+      "role": "surface",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "chunk",
+      "kind": "box",
+      "label": "Chunk and embed",
+      "detail": "no reading, no reconciling",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "retrieve_a",
+      "kind": "box",
+      "label": "Retrieve at query time",
+      "detail": "relevant fragments, unresolved",
+      "role": "process",
+      "col": 2,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "answer_a",
+      "kind": "box",
+      "label": "Model reconciles per query",
+      "detail": "same work repeated every time",
+      "role": "danger",
+      "col": 3,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "src_b",
+      "kind": "box",
+      "label": "Raw sources",
+      "detail": "same inputs",
+      "role": "surface",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "compile",
+      "kind": "box",
+      "label": "Compile into notes",
+      "detail": "cross-links and contradictions resolved once",
+      "role": "queue",
+      "col": 1,
+      "row": 1,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "wiki",
+      "kind": "box",
+      "label": "Markdown wiki",
+      "detail": "kept current, versioned in git",
+      "role": "store",
+      "col": 2,
+      "row": 1,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "answer_b",
+      "kind": "box",
+      "label": "Agent reads settled notes",
+      "detail": "no re-derivation per query",
+      "role": "process",
+      "col": 3,
+      "row": 1,
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "containers": [
+    {
+      "id": "rag",
+      "kind": "plain",
+      "label": "RAG over raw sources",
+      "members": [
+        "src_a",
+        "chunk",
+        "retrieve_a",
+        "answer_a"
+      ]
+    },
+    {
+      "id": "wikigroup",
+      "kind": "plain",
+      "label": "LLM wiki",
+      "members": [
+        "src_b",
+        "compile",
+        "wiki",
+        "answer_b"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "r1",
+      "source": "src_a",
+      "target": "chunk"
+    },
+    {
+      "id": "r2",
+      "source": "chunk",
+      "target": "retrieve_a"
+    },
+    {
+      "id": "r3",
+      "source": "retrieve_a",
+      "target": "answer_a"
+    },
+    {
+      "id": "w1",
+      "source": "src_b",
+      "target": "compile"
+    },
+    {
+      "id": "w2",
+      "source": "compile",
+      "target": "wiki"
+    },
+    {
+      "id": "w3",
+      "source": "wiki",
+      "target": "answer_b"
+    }
+  ]
+}

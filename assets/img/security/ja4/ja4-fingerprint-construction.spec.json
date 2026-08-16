@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "ja4-fingerprint-construction",
+  "title": "JA4 sorts before hashing, which is why extension shuffling stops mattering",
+  "subtitle": "JA3 hashed the Client Hello in wire order, so a browser that randomises extension order produced a new fingerprint on every connection.",
+  "layout": {
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "hello",
+      "kind": "box",
+      "label": "TLS Client Hello",
+      "detail": "version, ciphers, extensions, ALPN",
+      "role": "surface",
+      "col": 0,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "ja3",
+      "kind": "box",
+      "label": "JA3 hashes wire order",
+      "detail": "MD5 over the fields as they arrive",
+      "role": "queue",
+      "col": 1,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "unstable",
+      "kind": "box",
+      "label": "Fingerprint changes per connection",
+      "detail": "randomised extension order defeats it",
+      "role": "danger",
+      "col": 2,
+      "row": 0,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "sort",
+      "kind": "box",
+      "label": "JA4 sorts by hex value",
+      "detail": "GREASE, SNI and ALPN removed from the counts",
+      "role": "queue",
+      "col": 1,
+      "row": 1,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "hash",
+      "kind": "box",
+      "label": "SHA-256, first 12 chars",
+      "detail": "readable a_b_c sections, not one opaque digest",
+      "role": "process",
+      "col": 2,
+      "row": 1,
+      "step": 3,
+      "step_at": "top-left"
+    },
+    {
+      "id": "rule",
+      "kind": "service",
+      "service": "waf",
+      "label": "WAF rule",
+      "detail": "match, rate limit, or challenge",
+      "col": 3,
+      "row": 1,
+      "step": 4,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "j1",
+      "source": "hello",
+      "target": "ja3"
+    },
+    {
+      "id": "j2",
+      "source": "ja3",
+      "target": "unstable"
+    },
+    {
+      "id": "j3",
+      "source": "hello",
+      "target": "sort"
+    },
+    {
+      "id": "j4",
+      "source": "sort",
+      "target": "hash"
+    },
+    {
+      "id": "j5",
+      "source": "hash",
+      "target": "rule"
+    }
+  ]
+}

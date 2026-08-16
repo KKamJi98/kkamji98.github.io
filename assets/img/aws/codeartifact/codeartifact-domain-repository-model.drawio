@@ -1,0 +1,64 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="codeartifact-domain-repository-model" name="A domain owns the storage, repositories own the access path">
+    <mxGraphModel dx="1319" dy="422" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1319" pageHeight="422" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1295.64" height="398.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="A domain owns the storage, repositories own the access path" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1251.64" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Assets are deduplicated and encrypted once at the domain. An external connection inserts a -store repository that caches whatever is fetched from the public registry." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1251.64" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="domain" value="Domain" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="347.29" y="128" width="583" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="build" value="Build client&#xa;npm, pip, mvn" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.client;" vertex="1" parent="1">
+          <mxGeometry x="214.29" y="174" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="Repository&#xa;one endpoint, all formats" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="389.29" y="190" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="store" value="-store repository&#xa;created with the external connection" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="633.29" y="190" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="public" value="Public registry&#xa;npmjs, PyPI, Maven Central" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.internet_alt1;" vertex="1" parent="1">
+          <mxGeometry x="1035.29" y="174" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="assets" value="Deduplicated assets&#xa;encrypted with the domain KMS key, one copy per domain" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="389.29" y="312" width="519" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="build-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="194.29" y="154" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="369.29" y="170" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="store-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="613.29" y="170" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="public-step" value="4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1015.29" y="154" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="build-repo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-store" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="repo" target="store">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="store-public" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="store" target="public">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-assets" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.1773;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="repo" target="assets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="store-assets" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.7148;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="store" target="assets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

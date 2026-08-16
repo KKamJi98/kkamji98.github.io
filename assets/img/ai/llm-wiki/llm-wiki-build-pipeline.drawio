@@ -1,0 +1,64 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="llm-wiki-build-pipeline" name="A vault, an index, and a hook are the whole build">
+    <mxGraphModel dx="1010" dy="358" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1010" pageHeight="358" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="986.5" height="334.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="A vault, an index, and a hook are the whole build" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="942.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="No vector database and no SaaS. The commit hook is what keeps the index and the link graph from drifting away from the notes." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="942.5" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="sources" value="Sources&#xa;docs, logs, decisions" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="62.5" y="132" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vault" value="Obsidian vault&#xa;markdown plus frontmatter" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="296.5" y="132" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="index" value="BM25 index&#xa;title, tags, body" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="538.5" y="132" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" value="Agent and search CLI&#xa;the only consumers" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="772.5" y="132" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="git" value="git&#xa;history and review" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.source_code;" vertex="1" parent="1">
+          <mxGeometry x="364.5" y="238" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="hook" value="Commit hook&#xa;checks links, reindexes" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="538.5" y="254" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-step" value="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="276.5" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="index-step" value="2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="518.5" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-step" value="3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="752.5" y="112" width="26" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sources" target="vault">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vault" target="index">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="index" target="agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vault" target="git">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="git" target="hook">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hook" target="index">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

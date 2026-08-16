@@ -279,25 +279,15 @@ LIMIT 20;
 
 ---
 
-## 6. 시리즈 맵
+## 6. 정리
 
-이 시리즈는 **개념 토대**를 먼저 다지고, 그 위에서 **AWS 스택**을 깊이 들어갑니다. 추천 읽기 순서는 다음과 같습니다.
+AWS 데이터 분석 스택은 하나의 제품이 아니라 역할이 다른 계층이 겹쳐 있는 구조입니다. S3가 파일을 담고, Glue Data Catalog가 그 파일들이 어떤 테이블인지 기록하며, Athena나 Redshift가 그 정의를 읽어 쿼리를 실행합니다. 여기에 Lake Formation이 IAM과 별개의 권한 게이트로 얹힙니다.
 
-**개념 토대**
+이 구조를 알아야 하는 이유는 문제가 생겼을 때 어느 계층을 봐야 하는지가 달라지기 때문입니다. 파일은 있는데 테이블이 안 보이면 카탈로그 문제이고, 테이블은 보이는데 데이터가 안 읽히면 권한 문제이며, 둘 다 정상인데 쿼리가 느리면 파티셔닝과 파일 크기 문제입니다.
 
-1. [데이터 분석 아키텍처의 역사와 변천사](/posts/data-analytics-architecture-history/) - 웨어하우스 -> 레이크 -> 레이크하우스로 진화한 흐름
-2. [데이터 웨어하우스 vs 데이터 레이크 vs 레이크하우스](/posts/data-warehouse-lake-lakehouse/) - 세 패러다임의 차이
-3. [분산 SQL 엔진이란 - Trino/Presto](/posts/distributed-sql-engine-trino-presto/) - 쿼리 엔진의 동작 원리
+각 계층은 별도 글에서 이어집니다. 쿼리 엔진과 메타스토어는 [Amazon Athena & Glue Data Catalog](/posts/aws-athena-glue-catalog/), 관리형 Iceberg 레이크하우스는 [S3 Tables & Catalog Federation](/posts/aws-s3-tables-catalog-federation/), 데이터 권한 게이트는 [AWS Lake Formation](/posts/aws-lake-formation/)에서 다룹니다. 권한을 다 줬는데도 `CATALOG_NOT_FOUND`가 나오는 상황은 [Lake Formation 권한 Deep Dive](/posts/aws-lake-formation-permissions-deep-dive/)에 정리했습니다.
 
-**AWS 데이터 분석 스택**
-
-4. **(이번 글) AWS 데이터 분석 스택 Overview** - 구성요소와 전체 흐름
-5. **Amazon Athena & Glue Data Catalog** - 서버리스 쿼리 엔진과 메타스토어, fine-grained IAM
-6. **S3 Tables & Catalog Federation** - 관리형 Iceberg 레이크하우스, default vs federated 카탈로그
-7. **AWS Lake Formation** - IAM 위에 얹히는 데이터 접근 권한, grant와 credential vending
-8. **Lake Formation 권한 Deep Dive** - "권한을 다 줬는데 왜 `CATALOG_NOT_FOUND`일까" 실전 디버깅
-
-개념을 차곡차곡 쌓은 뒤, 마지막 편에서 **실제로 막히고 풀어낸 권한 트러블슈팅**으로 시리즈를 닫습니다. AWS 공식 문서에는 잘 안 나오는, 실무에서만 만나는 종류의 이야기입니다.
+배경 개념이 필요하다면 [데이터 분석 아키텍처의 역사](/posts/data-analytics-architecture-history/), [데이터 웨어하우스 vs 데이터 레이크 vs 레이크하우스](/posts/data-warehouse-lake-lakehouse/), [분산 SQL 엔진 Trino와 Presto](/posts/distributed-sql-engine-trino-presto/)를 먼저 보면 됩니다.
 
 ---
 

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "llm-wiki-build-pipeline",
+  "title": "A vault, an index, and a hook are the whole build",
+  "subtitle": "No vector database and no SaaS. The commit hook is what keeps the index and the link graph from drifting away from the notes.",
+  "layout": { "col_gap": 58 },
+  "nodes": [
+    { "id": "sources", "kind": "box", "label": "Sources", "detail": "docs, logs, decisions", "role": "surface", "col": 0, "row": 0 },
+    { "id": "vault", "kind": "box", "label": "Obsidian vault", "detail": "markdown plus frontmatter", "role": "store", "col": 1, "row": 0, "step": 1, "step_at": "top-left" },
+    { "id": "index", "kind": "box", "label": "BM25 index", "detail": "title, tags, body", "role": "process", "col": 2, "row": 0, "step": 2, "step_at": "top-left" },
+    { "id": "agent", "kind": "box", "label": "Agent and search CLI", "detail": "the only consumers", "role": "process", "col": 3, "row": 0, "step": 3, "step_at": "top-left" },
+    { "id": "git", "kind": "service", "service": "source_code", "label": "git", "detail": "history and review", "col": 1, "row": 1 },
+    { "id": "hook", "kind": "box", "label": "Commit hook", "detail": "checks links, reindexes", "role": "queue", "col": 2, "row": 1 }
+  ],
+  "edges": [
+    { "id": "e1", "source": "sources", "target": "vault" },
+    { "id": "e2", "source": "vault", "target": "index" },
+    { "id": "e3", "source": "index", "target": "agent" },
+    { "id": "e4", "source": "vault", "target": "git" },
+    { "id": "e5", "source": "git", "target": "hook" },
+    { "id": "e6", "source": "hook", "target": "index", "dashed": true }
+  ]
+}

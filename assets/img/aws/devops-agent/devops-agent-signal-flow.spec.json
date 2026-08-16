@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "devops-agent-signal-flow",
+  "title": "The agent sits above the tools that already collect the signals",
+  "subtitle": "It reads what CloudWatch, X-Ray and third-party tools have, then proposes. Changing production still needs an explicit approval.",
+  "layout": {
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "cw",
+      "kind": "service",
+      "service": "cloudwatch",
+      "label": "CloudWatch",
+      "detail": "metrics, logs, alarms",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "third",
+      "kind": "box",
+      "label": "Grafana and Datadog",
+      "detail": "read-only, one-way",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "infra",
+      "kind": "service",
+      "service": "eks",
+      "label": "Workloads",
+      "detail": "pod logs and cluster events, no exec",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "agent",
+      "kind": "box",
+      "label": "DevOps Agent",
+      "detail": "investigates as soon as an alarm fires",
+      "role": "process",
+      "col": 1,
+      "row": 1,
+      "rowspan": 1,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "journal",
+      "kind": "box",
+      "label": "Journal",
+      "detail": "every step recorded, entries immutable",
+      "role": "surface",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "report",
+      "kind": "box",
+      "label": "Incident report",
+      "detail": "free text, not typed fields",
+      "role": "surface",
+      "col": 2,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "approve",
+      "kind": "box",
+      "label": "Human approval",
+      "detail": "required before any production change",
+      "role": "danger",
+      "col": 2,
+      "row": 1,
+      "step": 3,
+      "step_at": "top-left"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d1",
+      "source": "cw",
+      "target": "agent"
+    },
+    {
+      "id": "d2",
+      "source": "third",
+      "target": "agent"
+    },
+    {
+      "id": "d3",
+      "source": "infra",
+      "target": "agent"
+    },
+    {
+      "id": "d4",
+      "source": "agent",
+      "target": "report"
+    },
+    {
+      "id": "d5",
+      "source": "agent",
+      "target": "approve"
+    },
+    {
+      "id": "d6",
+      "source": "agent",
+      "target": "journal",
+      "dashed": true
+    }
+  ]
+}

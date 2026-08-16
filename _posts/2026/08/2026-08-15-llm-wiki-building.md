@@ -74,6 +74,9 @@ confidence: high         # high | medium | low
 
 ## 4. 검색 계층 구축
 
+![Vault, index, and commit hook](/assets/img/ai/llm-wiki/llm-wiki-build-pipeline.webp)
+_커밋 훅에서 색인으로 가는 점선은 데이터 흐름이 아니라 갱신 트리거다. 이 훅이 없으면 색인과 링크 그래프가 노트에서 조용히 멀어진다._
+
 vault가 자라면 먼저 키워드 검색부터 추가합니다. 첫 단계는 grep, 즉 BM25 계열 풀텍스트 검색입니다.
 
 ```

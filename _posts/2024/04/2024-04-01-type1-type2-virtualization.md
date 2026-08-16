@@ -56,6 +56,13 @@ _Hardware에서 갈라지는 두 화살표는 단계가 아니라 서로 다른 
 
 ---
 
+## 4. Reference
+
+- [Red Hat - What is a hypervisor?](https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor)
+- [Red Hat - What is virtualization?](https://www.redhat.com/en/topics/virtualization/what-is-virtualization)
+
+---
+
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
 {: .prompt-info}

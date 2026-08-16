@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "vite-dev-server-on-demand-transform",
+  "title": "Bundle-first waits for the whole graph, Vite waits for one module",
+  "subtitle": "Both paths end at the browser. The difference is what has to finish before the dev server can answer the first request.",
+  "layout": {
+    "col_gap": 60
+  },
+  "nodes": [
+    {
+      "id": "src_a",
+      "kind": "box",
+      "label": "Source modules",
+      "detail": "hundreds of files",
+      "role": "surface",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "bundle",
+      "kind": "box",
+      "label": "Bundle everything",
+      "detail": "cost grows with app size",
+      "role": "queue",
+      "col": 1,
+      "row": 0,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "serve_bundle",
+      "kind": "box",
+      "label": "Serve one bundle",
+      "detail": "first request waits for the whole graph",
+      "role": "process",
+      "col": 2,
+      "row": 0,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "browser_a",
+      "kind": "service",
+      "service": "client",
+      "label": "Browser",
+      "detail": "bundle-first dev server",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "src_b",
+      "kind": "box",
+      "label": "Source modules",
+      "detail": "same hundreds of files",
+      "role": "surface",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "prebundle",
+      "kind": "box",
+      "label": "Pre-bundle dependencies",
+      "detail": "esbuild, node_modules only",
+      "role": "queue",
+      "col": 1,
+      "row": 1,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "transform",
+      "kind": "box",
+      "label": "Transform on request",
+      "detail": "one module per browser import",
+      "role": "process",
+      "col": 2,
+      "row": 1,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "browser_b",
+      "kind": "service",
+      "service": "client",
+      "label": "Browser",
+      "detail": "native ESM, asks per module",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "containers": [
+    {
+      "id": "legacy",
+      "kind": "plain",
+      "label": "Bundle-first dev server",
+      "members": [
+        "src_a",
+        "bundle",
+        "serve_bundle",
+        "browser_a"
+      ]
+    },
+    {
+      "id": "vite",
+      "kind": "plain",
+      "label": "Vite dev server",
+      "members": [
+        "src_b",
+        "prebundle",
+        "transform",
+        "browser_b"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1",
+      "source": "src_a",
+      "target": "bundle"
+    },
+    {
+      "id": "a2",
+      "source": "bundle",
+      "target": "serve_bundle"
+    },
+    {
+      "id": "a3",
+      "source": "serve_bundle",
+      "target": "browser_a"
+    },
+    {
+      "id": "b1",
+      "source": "src_b",
+      "target": "prebundle"
+    },
+    {
+      "id": "b2",
+      "source": "prebundle",
+      "target": "transform"
+    },
+    {
+      "id": "b3",
+      "source": "transform",
+      "target": "browser_b",
+      "bidirectional": true
+    }
+  ]
+}
