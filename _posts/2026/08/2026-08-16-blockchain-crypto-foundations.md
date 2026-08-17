@@ -185,9 +185,6 @@ print(verify_proof(h(b"tx3: Alice->Bob:999999 BTC"), proof, root))  # False
 
 여기까지 확인한 세 요소를 블록 수준에서 합치면 다음과 같습니다.
 
-![블록 헤더가 직전 블록 해시와 Merkle Root를 함께 담는 구조](/assets/img/blockchain/blockchain-series.webp)
-_각 블록은 직전 블록의 해시로 순서를 고정하고, Merkle Root로 그 블록에 담긴 트랜잭션 전체를 고정합니다. 개별 트랜잭션의 이동 권한은 서명이 증명합니다._
-
 | 요소 | 역할 | 깨는 방법 |
 |---|---|---|
 | 해시 체인 | 블록 순서와 내용 고정 | 과거 변경 시 이후 전체 재계산 필요 |

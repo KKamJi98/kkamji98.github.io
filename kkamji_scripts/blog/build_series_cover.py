@@ -143,19 +143,10 @@ COVERS = {
 }
 
 
-_FONT_FALLBACKS = {
-    FONT_WORDMARK[0]: ["/mnt/c/Windows/Fonts/arialbd.ttf"],
-    FONT_CAPTION[0]: ["/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"],
-}
-
-
 def load_font(spec, size):
     path, index = spec
     if not os.path.isfile(path):
-        for alt in _FONT_FALLBACKS.get(path, []):
-            if os.path.isfile(alt):
-                return ImageFont.truetype(alt, size * SUPERSAMPLE)
-        sys.exit(f"font not found: {path} (macOS fonts or the WSL fallbacks)")
+        sys.exit(f"font not found: {path} (this script needs macOS system fonts)")
     return ImageFont.truetype(path, size * SUPERSAMPLE, index=index)
 
 
