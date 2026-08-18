@@ -1,0 +1,49 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="utxo-reference-structure" name="A transaction consumes whole UTXOs and creates new ones; the fee exists in no output">
+    <mxGraphModel dx="1120" dy="286" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="286" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1096.35" height="262.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="A transaction consumes whole UTXOs and creates new ones; the fee exists in no output" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1052.35" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="The balance is derived by scanning the unspent output set, not stored anywhere." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1052.35" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="prev-utxo-a" value="UTXO 7396e66d...:0&#xa;coinbase 50 BTC, owner: alice" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="88.19" y="104" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="new-tx" value="New transaction 319d3776&#xa;consumes the whole output as its only input" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="414.19" y="104" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vout-payment" value="vout[0] payment&#xa;1.5 BTC to bob" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="843.19" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vout-change" value="vout[1] change&#xa;48.4999859 BTC back to alice" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="829.19" y="198" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fee-note" value="fee 0.0000141 BTC&#xa;inputs minus outputs; owned by no output, collected by the miner" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="353.19" y="210" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="utxo-to-tx" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="prev-utxo-a" target="new-tx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tx-to-payment" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new-tx" target="vout-payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tx-to-change" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new-tx" target="vout-change">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="736.19" y="131.0" />
+              <mxPoint x="736.19" y="178" />
+              <mxPoint x="930.69" y="178" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

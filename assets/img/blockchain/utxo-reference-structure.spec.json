@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "utxo-reference-structure",
+  "title": "A transaction consumes whole UTXOs and creates new ones; the fee exists in no output",
+  "subtitle": "The balance is derived by scanning the unspent output set, not stored anywhere.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "prev-utxo-a",
+      "kind": "box",
+      "label": "UTXO 7396e66d...:0",
+      "detail": "coinbase 50 BTC, owner: alice",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "new-tx",
+      "kind": "box",
+      "label": "New transaction 319d3776",
+      "detail": "consumes the whole output as its only input",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "vout-payment",
+      "kind": "box",
+      "label": "vout[0] payment",
+      "detail": "1.5 BTC to bob",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "vout-change",
+      "kind": "box",
+      "label": "vout[1] change",
+      "detail": "48.4999859 BTC back to alice",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "fee-note",
+      "kind": "text",
+      "label": "fee 0.0000141 BTC",
+      "detail": "inputs minus outputs; owned by no output, collected by the miner",
+      "role": "external",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "utxo-to-tx",
+      "source": "prev-utxo-a",
+      "target": "new-tx",
+      "emphasis": true
+    },
+    {
+      "id": "tx-to-payment",
+      "source": "new-tx",
+      "target": "vout-payment"
+    },
+    {
+      "id": "tx-to-change",
+      "source": "new-tx",
+      "target": "vout-change"
+    }
+  ]
+}
