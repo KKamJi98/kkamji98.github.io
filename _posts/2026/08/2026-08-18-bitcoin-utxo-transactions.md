@@ -1,5 +1,5 @@
 ---
-title: "비트코인 트랜잭션과 UTXO 알아보기 - 잔액의 실체, 수수료, 컨펌 [Blockchain 2]"
+title: "비트코인 트랜잭션 기초 - UTXO, 수수료, 컨펌 [Blockchain 2]"
 date: 2026-08-18 01:47:00 +0900
 author: kkamji
 categories: [Blockchain]
