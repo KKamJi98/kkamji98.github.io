@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "hd-mnemonic-three-addresses",
+  "title": "One public Anvil mnemonic derives three well-known addresses by index",
+  "subtitle": "Index 0 is 0xf39Fd6e5. Anyone who knows the phrase can recompute it.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "seed",
+      "kind": "box",
+      "label": "public mnemonic",
+      "detail": "12 words, Anvil default",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "i0",
+      "kind": "box",
+      "label": "index 0",
+      "detail": "0xf39Fd6e5",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "i1",
+      "kind": "box",
+      "label": "index 1",
+      "detail": "0x70997970",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "i2",
+      "kind": "box",
+      "label": "index 2",
+      "detail": "0x3C44CdDd",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "seed-to-0",
+      "source": "seed",
+      "target": "i0",
+      "emphasis": true
+    },
+    {
+      "id": "i0-to-1",
+      "source": "i0",
+      "target": "i1"
+    },
+    {
+      "id": "i1-to-2",
+      "source": "i1",
+      "target": "i2"
+    }
+  ]
+}

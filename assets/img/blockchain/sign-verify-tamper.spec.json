@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "sign-verify-tamper",
+  "title": "A signature verifies only for the exact message and address",
+  "subtitle": "132-character signature. Tampering the message fails verify.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "msg",
+      "kind": "box",
+      "label": "message",
+      "detail": "kkamji-week11-local-only",
+      "role": "queue",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "sig",
+      "kind": "box",
+      "label": "signature",
+      "detail": "132 hex chars",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ok",
+      "kind": "box",
+      "label": "verify original",
+      "detail": "succeeded",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "bad",
+      "kind": "box",
+      "label": "verify tampered",
+      "detail": "exit 1",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "msg-to-sig",
+      "source": "msg",
+      "target": "sig",
+      "emphasis": true
+    },
+    {
+      "id": "sig-to-ok",
+      "source": "sig",
+      "target": "ok"
+    },
+    {
+      "id": "sig-to-bad",
+      "source": "sig",
+      "target": "bad",
+      "dashed": true
+    }
+  ]
+}
