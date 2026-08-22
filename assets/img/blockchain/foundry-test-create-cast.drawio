@@ -1,0 +1,34 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="foundry-test-create-cast" name="forge test leaves no address; forge create writes bytecode; cast talks to that address">
+    <mxGraphModel dx="1145" dy="192" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1145" pageHeight="192" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1121.41" height="168.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="forge test leaves no address; forge create writes bytecode; cast talks to that address" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1077.41" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="The three commands share a binary. They do not share a state store." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1077.41" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="forge-test" value="forge test&#xa;in-process EVM, 2 passed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="235.07" y="104" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="forge-create" value="forge create&#xa;Anvil 0xe7f1725E, 964 hex" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="468.07" y="104" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cast" value="cast call / send&#xa;number 0 then increment to 1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708.07" y="104" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="test-to-create" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="forge-test" target="forge-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="create-to-cast" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="forge-create" target="cast">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

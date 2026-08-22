@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "foundry-test-create-cast",
+  "title": "forge test leaves no address; forge create writes bytecode; cast talks to that address",
+  "subtitle": "The three commands share a binary. They do not share a state store.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "forge-test",
+      "kind": "box",
+      "label": "forge test",
+      "detail": "in-process EVM, 2 passed",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "forge-create",
+      "kind": "box",
+      "label": "forge create",
+      "detail": "Anvil 0xe7f1725E, 964 hex",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "cast",
+      "kind": "box",
+      "label": "cast call / send",
+      "detail": "number 0 then increment to 1",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "test-to-create",
+      "source": "forge-test",
+      "target": "forge-create",
+      "emphasis": true
+    },
+    {
+      "id": "create-to-cast",
+      "source": "forge-create",
+      "target": "cast"
+    }
+  ]
+}
