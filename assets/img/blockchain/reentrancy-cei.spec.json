@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "reentrancy-cei",
+  "title": "Sending ether before clearing the balance lets the receiver withdraw again",
+  "subtitle": "Checks-effects-interactions updates storage first, so the nested call sees zero.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "withdraw",
+      "kind": "box",
+      "label": "withdraw()",
+      "detail": "balance still 1 ETH",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "extcall",
+      "kind": "box",
+      "label": "msg.sender.call",
+      "detail": "sends 1 ETH first",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "receive",
+      "kind": "box",
+      "label": "attacker receive",
+      "detail": "calls withdraw again",
+      "role": "external",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "secure",
+      "kind": "box",
+      "label": "CEI withdraw",
+      "detail": "zero storage, then send",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "w-to-call",
+      "source": "withdraw",
+      "target": "extcall",
+      "emphasis": true
+    },
+    {
+      "id": "call-to-recv",
+      "source": "extcall",
+      "target": "receive"
+    },
+    {
+      "id": "call-to-cei",
+      "source": "extcall",
+      "target": "secure",
+      "dashed": true
+    }
+  ]
+}

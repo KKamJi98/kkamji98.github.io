@@ -1,0 +1,40 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="reentrancy-cei" name="Sending ether before clearing the balance lets the receiver withdraw again">
+    <mxGraphModel dx="995" dy="294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="995" pageHeight="294" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="971.07" height="270.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Sending ether before clearing the balance lets the receiver withdraw again" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="927.07" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Checks-effects-interactions updates storage first, so the nested call sees zero." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="927.07" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="withdraw" value="withdraw()&#xa;balance still 1 ETH" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="177.54" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="extcall" value="msg.sender.call&#xa;sends 1 ETH first" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="409.54" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="receive" value="attacker receive&#xa;calls withdraw again" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="641.54" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="secure" value="CEI withdraw&#xa;zero storage, then send" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="409.54" y="206" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="w-to-call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="withdraw" target="extcall">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="call-to-recv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="extcall" target="receive">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="call-to-cei" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="extcall" target="secure">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
