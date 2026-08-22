@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "supply-pin-then-deploy",
+  "title": "A deploy gate checks the pinned compiler hash before forge create",
+  "subtitle": "foundry.toml solc 0.8.35 is the pin. The hash is the release artifact.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "pin",
+      "kind": "box",
+      "label": "foundry.toml",
+      "detail": "solc 0.8.35",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "build",
+      "kind": "box",
+      "label": "forge build",
+      "detail": "reproducible input",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "gate",
+      "kind": "box",
+      "label": "hash check",
+      "detail": "match d8f49804...",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "pin-to-build",
+      "source": "pin",
+      "target": "build",
+      "emphasis": true
+    },
+    {
+      "id": "build-to-gate",
+      "source": "build",
+      "target": "gate"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "solc-pin-two-hashes",
+  "title": "The same Escrow source yields two deployedBytecode hashes",
+  "subtitle": "Both are 5234 hex. sha256 differs between solc 0.8.35 and 0.8.28.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "c35",
+      "kind": "box",
+      "label": "solc 0.8.35",
+      "detail": "sha256 d8f49804...",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "h35",
+      "kind": "box",
+      "label": "bytecode A",
+      "detail": "5234 hex",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "c28",
+      "kind": "box",
+      "label": "solc 0.8.28",
+      "detail": "sha256 98a49743...",
+      "role": "queue",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "h28",
+      "kind": "box",
+      "label": "bytecode B",
+      "detail": "5234 hex, not A",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "c35-to-h35",
+      "source": "c35",
+      "target": "h35",
+      "emphasis": true
+    },
+    {
+      "id": "c28-to-h28",
+      "source": "c28",
+      "target": "h28"
+    }
+  ]
+}
