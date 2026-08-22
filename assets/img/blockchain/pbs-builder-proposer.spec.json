@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "pbs-builder-proposer",
+  "title": "PBS splits block building from block proposing",
+  "subtitle": "ethereum.org: validators still propose; builders assemble the payload.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "searcher",
+      "kind": "box",
+      "label": "searcher",
+      "detail": "private bundle",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "builder",
+      "kind": "box",
+      "label": "builder",
+      "detail": "assemble payload",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "proposer",
+      "kind": "box",
+      "label": "proposer",
+      "detail": "validator proposes",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "s-to-b",
+      "source": "searcher",
+      "target": "builder",
+      "emphasis": true
+    },
+    {
+      "id": "b-to-p",
+      "source": "builder",
+      "target": "proposer"
+    }
+  ]
+}

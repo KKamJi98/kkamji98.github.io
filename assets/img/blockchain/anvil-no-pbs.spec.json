@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "anvil-no-pbs",
+  "title": "Anvil mines locally with no builder market",
+  "subtitle": "miner is the zero address. txpool was empty. There is no relay.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "rpc",
+      "kind": "box",
+      "label": "cast send",
+      "detail": "local JSON-RPC",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "anvil",
+      "kind": "box",
+      "label": "Anvil",
+      "detail": "txpool pending 0",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "block",
+      "kind": "box",
+      "label": "local block",
+      "detail": "miner 0x000...000",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "rpc-to-anvil",
+      "source": "rpc",
+      "target": "anvil",
+      "emphasis": true
+    },
+    {
+      "id": "anvil-to-block",
+      "source": "anvil",
+      "target": "block"
+    }
+  ]
+}
