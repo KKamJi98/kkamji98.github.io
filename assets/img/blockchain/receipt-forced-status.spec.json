@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "receipt-forced-status",
+  "title": "A forced gas-limit writes a failed receipt into a block",
+  "subtitle": "status 0x0 still spends gas. This is the explorer failure screen.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "forced-send",
+      "kind": "box",
+      "label": "cast send --gas-limit 100000",
+      "detail": "skips estimate",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "anvil-block",
+      "kind": "box",
+      "label": "Anvil block 0x5",
+      "detail": "tx 0x5e5d58bb",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "receipt",
+      "kind": "box",
+      "label": "receipt status 0x0",
+      "detail": "gasUsed 21492, revert boom",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "send-to-block",
+      "source": "forced-send",
+      "target": "anvil-block",
+      "emphasis": true
+    },
+    {
+      "id": "block-to-receipt",
+      "source": "anvil-block",
+      "target": "receipt"
+    }
+  ]
+}

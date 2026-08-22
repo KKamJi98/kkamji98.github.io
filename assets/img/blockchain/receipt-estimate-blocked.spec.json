@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "receipt-estimate-blocked",
+  "title": "A reverting gas estimate produces no transaction hash",
+  "subtitle": "cast send boom() stops before Anvil writes a receipt.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "cast-send",
+      "kind": "box",
+      "label": "cast send boom()",
+      "detail": "Probe 0xCf7Ed3Ac",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "estimate",
+      "kind": "box",
+      "label": "gas estimate",
+      "detail": "execution reverted: boom",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "no-receipt",
+      "kind": "box",
+      "label": "no receipt",
+      "detail": "no tx hash, chain unchanged",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "send-to-estimate",
+      "source": "cast-send",
+      "target": "estimate",
+      "emphasis": true
+    },
+    {
+      "id": "estimate-to-none",
+      "source": "estimate",
+      "target": "no-receipt"
+    }
+  ]
+}

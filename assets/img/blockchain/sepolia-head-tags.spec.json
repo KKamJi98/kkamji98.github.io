@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "sepolia-head-tags",
+  "title": "On this Sepolia node, finalized sat 64 blocks behind latest",
+  "subtitle": "Read-only publicnode pull on 2026-08-23. No Sepolia deploy.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "latest",
+      "kind": "box",
+      "label": "latest 11545002",
+      "detail": "this node head",
+      "role": "queue",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "safe",
+      "kind": "box",
+      "label": "safe 11544969",
+      "detail": "33 behind latest",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "finalized",
+      "kind": "box",
+      "label": "finalized 11544938",
+      "detail": "64 behind latest",
+      "role": "store",
+      "col": 0,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "latest-to-safe",
+      "source": "latest",
+      "target": "safe",
+      "emphasis": true
+    },
+    {
+      "id": "safe-to-finalized",
+      "source": "safe",
+      "target": "finalized"
+    }
+  ]
+}
