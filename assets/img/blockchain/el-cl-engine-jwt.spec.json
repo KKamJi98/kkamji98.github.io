@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "id": "el-cl-engine-jwt",
+  "title": "A live node is two clients joined by an authenticated Engine API",
+  "subtitle": "User JSON-RPC stays on 8545. Consensus talks to execution on 8551 with JWT.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "wallet",
+      "kind": "box",
+      "label": "Wallet / indexer",
+      "detail": "eth_*, net_*",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "json-rpc",
+      "kind": "box",
+      "label": "JSON-RPC 8545",
+      "detail": "unauthenticated user API",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "execution-el",
+      "kind": "box",
+      "label": "Execution client",
+      "detail": "EVM, state, txpool",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "el-p2p",
+      "kind": "box",
+      "label": "EL P2P",
+      "detail": "transaction gossip",
+      "role": "external",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "engine-jwt",
+      "kind": "box",
+      "label": "Engine API 8551",
+      "detail": "JWT HS256, iat 60s",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "consensus-cl",
+      "kind": "box",
+      "label": "Consensus client",
+      "detail": "fork choice, finality",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "cl-p2p",
+      "kind": "box",
+      "label": "CL P2P",
+      "detail": "blocks, attestations",
+      "role": "external",
+      "col": 1,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "wallet-to-rpc",
+      "source": "wallet",
+      "target": "json-rpc",
+      "emphasis": true
+    },
+    {
+      "id": "rpc-to-el",
+      "source": "json-rpc",
+      "target": "execution-el"
+    },
+    {
+      "id": "el-to-p2p",
+      "source": "execution-el",
+      "target": "el-p2p"
+    },
+    {
+      "id": "el-to-engine",
+      "source": "execution-el",
+      "target": "engine-jwt",
+      "emphasis": true
+    },
+    {
+      "id": "engine-to-cl",
+      "source": "engine-jwt",
+      "target": "consensus-cl",
+      "emphasis": true
+    },
+    {
+      "id": "cl-to-p2p",
+      "source": "consensus-cl",
+      "target": "cl-p2p"
+    }
+  ]
+}

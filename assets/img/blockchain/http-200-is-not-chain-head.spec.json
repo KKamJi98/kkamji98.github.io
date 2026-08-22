@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "http-200-is-not-chain-head",
+  "title": "HTTP 200 answers the socket, not the chain head",
+  "subtitle": "Anvil returns 200 for a missing peer method and syncing false with no network.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "caller",
+      "kind": "box",
+      "label": "cast / curl",
+      "detail": "JSON-RPC client",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "http-ok",
+      "kind": "box",
+      "label": "HTTP 200",
+      "detail": "transport only",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "syncing-false",
+      "kind": "box",
+      "label": "eth_syncing false",
+      "detail": "Anvil and Sepolia",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "peer-missing",
+      "kind": "box",
+      "label": "net_peerCount",
+      "detail": "Anvil -32601, still 200",
+      "role": "danger",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "tag-lag",
+      "kind": "box",
+      "label": "latest vs finalized",
+      "detail": "Anvil 5 vs 0",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "caller-to-http",
+      "source": "caller",
+      "target": "http-ok",
+      "emphasis": true
+    },
+    {
+      "id": "http-to-peer",
+      "source": "http-ok",
+      "target": "peer-missing",
+      "emphasis": true
+    },
+    {
+      "id": "http-to-syncing",
+      "source": "http-ok",
+      "target": "syncing-false"
+    },
+    {
+      "id": "http-to-tags",
+      "source": "http-ok",
+      "target": "tag-lag",
+      "dashed": true
+    }
+  ]
+}

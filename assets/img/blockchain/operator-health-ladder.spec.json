@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "operator-health-ladder",
+  "title": "Operator health is a ladder, not a single HTTP check",
+  "subtitle": "Each step can pass while the next still says the node is not serving a usable head.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "step-http",
+      "kind": "box",
+      "label": "HTTP 200",
+      "detail": "socket and JSON body",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "step-sync",
+      "kind": "box",
+      "label": "eth_syncing",
+      "detail": "false or progress object",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "step-peers",
+      "kind": "box",
+      "label": "net_peerCount",
+      "detail": "EL peers, not CL peers",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "step-age",
+      "kind": "box",
+      "label": "latest timestamp",
+      "detail": "slot age, not just height",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "step-tags",
+      "kind": "box",
+      "label": "safe / finalized lag",
+      "detail": "gap is not a constant",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "step-engine",
+      "kind": "box",
+      "label": "Engine JWT path",
+      "detail": "CL still driving EL",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "http-to-sync",
+      "source": "step-http",
+      "target": "step-sync",
+      "emphasis": true
+    },
+    {
+      "id": "sync-to-peers",
+      "source": "step-sync",
+      "target": "step-peers"
+    },
+    {
+      "id": "peers-to-age",
+      "source": "step-peers",
+      "target": "step-age"
+    },
+    {
+      "id": "age-to-tags",
+      "source": "step-age",
+      "target": "step-tags"
+    },
+    {
+      "id": "tags-to-engine",
+      "source": "step-tags",
+      "target": "step-engine",
+      "dashed": true
+    }
+  ]
+}
