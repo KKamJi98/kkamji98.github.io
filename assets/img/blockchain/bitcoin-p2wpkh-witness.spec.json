@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "bitcoin-p2wpkh-witness",
+  "title": "A P2WPKH output is locked by Script and unlocked from the witness stack",
+  "subtitle": "scriptSig is empty. signature and pubkey sit in txinwitness.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "script-lock",
+      "kind": "box",
+      "label": "scriptPubKey",
+      "detail": "0 + 20-byte hash, P2WPKH",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "witness-stack",
+      "kind": "box",
+      "label": "txinwitness",
+      "detail": "signature, compressed pubkey",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "payment-out",
+      "kind": "box",
+      "label": "vout[0] 1.25 BTC",
+      "detail": "bob bcrt1qkdt5x...",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "lock-to-witness",
+      "source": "script-lock",
+      "target": "witness-stack",
+      "emphasis": true
+    },
+    {
+      "id": "witness-to-out",
+      "source": "witness-stack",
+      "target": "payment-out"
+    }
+  ]
+}

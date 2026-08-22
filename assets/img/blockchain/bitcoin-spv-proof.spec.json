@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "bitcoin-spv-proof",
+  "title": "Inclusion is proven by a 151-byte Merkle path, not the full block body",
+  "subtitle": "verifytxoutproof returns the same txid. nTx is 2.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "block-112",
+      "kind": "box",
+      "label": "block 112",
+      "detail": "20fcf935, nTx=2",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "txoutproof",
+      "kind": "box",
+      "label": "gettxoutproof",
+      "detail": "151 bytes",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "verified",
+      "kind": "box",
+      "label": "verifytxoutproof",
+      "detail": "b50a5a25...",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "merkle-root",
+      "kind": "box",
+      "label": "header merkleroot",
+      "detail": "38990380955e1609...",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "block-to-proof",
+      "source": "block-112",
+      "target": "txoutproof",
+      "emphasis": true
+    },
+    {
+      "id": "proof-to-verified",
+      "source": "txoutproof",
+      "target": "verified"
+    },
+    {
+      "id": "root-to-proof",
+      "source": "merkle-root",
+      "target": "txoutproof"
+    }
+  ]
+}

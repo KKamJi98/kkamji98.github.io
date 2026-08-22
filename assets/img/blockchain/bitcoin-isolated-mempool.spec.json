@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "bitcoin-isolated-mempool",
+  "title": "A local node parks a valid transaction in its mempool even with zero peers",
+  "subtitle": "unbroadcastcount is 1 because there is no neighbor to announce to.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "wallet-send",
+      "kind": "box",
+      "label": "wallet send 1.25 BTC",
+      "detail": "fee_rate 10 sat/vB, to bob",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "local-node",
+      "kind": "box",
+      "label": "regtest node",
+      "detail": "networkactive, peers=0",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "local-mempool",
+      "kind": "box",
+      "label": "mempool",
+      "detail": "size=1, unbroadcast=true",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "send-to-node",
+      "source": "wallet-send",
+      "target": "local-node",
+      "emphasis": true
+    },
+    {
+      "id": "node-to-pool",
+      "source": "local-node",
+      "target": "local-mempool"
+    }
+  ]
+}
