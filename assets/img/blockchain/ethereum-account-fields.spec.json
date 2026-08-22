@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "ethereum-account-fields",
+  "title": "An Ethereum address is a key into the state trie, not a Script lock name",
+  "subtitle": "This lab read code 0x, nonce 0, and a 10000 ETH starting balance.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "eoa-address",
+      "kind": "box",
+      "label": "address 0xf39Fd6e5",
+      "detail": "Anvil account 0, public test key",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "account-object",
+      "kind": "box",
+      "label": "account object",
+      "detail": "nonce, balance, codeHash, storageRoot",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "observed-fields",
+      "kind": "box",
+      "label": "observed fields",
+      "detail": "nonce 0, code 0x, 10000 ETH",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "addr-to-account",
+      "source": "eoa-address",
+      "target": "account-object",
+      "emphasis": true
+    },
+    {
+      "id": "account-to-fields",
+      "source": "account-object",
+      "target": "observed-fields"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "ethereum-gas-meter",
+  "title": "A simple transfer receipts 21000 gas and a type 0x2 success",
+  "subtitle": "Fee was 21000 times 1000000001 wei. The recipient gained exactly 1 ETH.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "type2-tx",
+      "kind": "box",
+      "label": "type 0x2 transfer",
+      "detail": "1 ETH, nonce 0",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "gas-meter",
+      "kind": "box",
+      "label": "gasUsed 21000",
+      "detail": "effectiveGasPrice 1.000000001 gwei",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "success-receipt",
+      "kind": "box",
+      "label": "receipt status 0x1",
+      "detail": "block 1, fee 21000000021000 wei",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "tx-to-gas",
+      "source": "type2-tx",
+      "target": "gas-meter",
+      "emphasis": true
+    },
+    {
+      "id": "gas-to-receipt",
+      "source": "gas-meter",
+      "target": "success-receipt"
+    }
+  ]
+}
