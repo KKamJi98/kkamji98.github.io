@@ -83,7 +83,7 @@ Stanford CS 251과 Shi의 합의 교재는 Bitcoin 앞에 Byzantine broadcast와
 - [Ethereum Docs - Proof-of-stake](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/)
 - [Bitcoin Developer Guide - Block Chain](https://developer.bitcoin.org/devguide/block_chain.html)
 - [Stanford CS 251](https://cs251.stanford.edu/)
-- [Shi - Foundations of Distributed Consensus and Blockchains](http://elaineshi.com/docs/blockchain-book.pdf)
+- [Shi - Foundations of Distributed Consensus and Blockchains](https://elaineshi.com/docs/blockchain-book.pdf)
 
 > **궁금하신 점이나 추가해야 할 부분은 댓글이나 아래의 링크를 통해 문의해주세요.**  
 > **Written with [KKamJi](https://www.linkedin.com/in/taejikim/)**  
