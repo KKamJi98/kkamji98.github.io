@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "eli5-plugin-three-files",
+  "title": "The published plugin is three files",
+  "subtitle": "No scripts, references, or templates. The skill body is one sentence.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "plugin",
+      "kind": "box",
+      "label": "plugin.json",
+      "detail": "name eli5, author Thariq",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "readme",
+      "kind": "box",
+      "label": "README.md",
+      "detail": "/eli5 how does DNS work",
+      "role": "external",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "skill",
+      "kind": "box",
+      "label": "SKILL.md",
+      "detail": "one line + $ARGUMENTS",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "p-to-r",
+      "source": "plugin",
+      "target": "readme"
+    },
+    {
+      "id": "r-to-s",
+      "source": "readme",
+      "target": "skill",
+      "emphasis": true
+    }
+  ]
+}
