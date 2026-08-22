@@ -5,7 +5,7 @@
   "subtitle": "Confirmation is the current tip, not a stored balance change.",
   "layout": {
     "col_gap": 56,
-    "row_gap": 40
+    "row_gap": 48
   },
   "nodes": [
     {
@@ -36,6 +36,15 @@
       "row": 0
     },
     {
+      "id": "active-tip",
+      "kind": "box",
+      "label": "active tip 113",
+      "detail": "6d72f32e after two new blocks",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
       "id": "invalid-tip",
       "kind": "box",
       "label": "invalid tip",
@@ -43,15 +52,6 @@
       "role": "external",
       "col": 2,
       "row": 1
-    },
-    {
-      "id": "active-tip",
-      "kind": "box",
-      "label": "active tip 113",
-      "detail": "6d72f32e after two new blocks",
-      "role": "store",
-      "col": 3,
-      "row": 0
     }
   ],
   "edges": [
@@ -67,15 +67,15 @@
       "target": "block-112"
     },
     {
-      "id": "block-to-invalid",
-      "source": "block-112",
-      "target": "invalid-tip",
-      "dashed": true
-    },
-    {
       "id": "pool-to-active",
       "source": "mempool",
       "target": "active-tip",
+      "dashed": true
+    },
+    {
+      "id": "block-to-invalid",
+      "source": "block-112",
+      "target": "invalid-tip",
       "dashed": true
     }
   ]
