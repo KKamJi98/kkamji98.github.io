@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "receipt-finality-tags",
+  "title": "A receipt status and a block tag answer different questions",
+  "subtitle": "status 0x0 is a failed execution. finalized is a later head than latest.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "rpc",
+      "kind": "box",
+      "label": "JSON-RPC",
+      "detail": "HTTP 200 is not enough",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "receipt",
+      "kind": "box",
+      "label": "receipt status 0x0",
+      "detail": "Anvil boom, gasUsed 21492",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "finalized",
+      "kind": "box",
+      "label": "finalized 11544938",
+      "detail": "Sepolia read-only, 64 behind latest",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "rpc-to-receipt",
+      "source": "rpc",
+      "target": "receipt",
+      "emphasis": true
+    },
+    {
+      "id": "rpc-to-finalized",
+      "source": "rpc",
+      "target": "finalized",
+      "dashed": true
+    }
+  ]
+}
