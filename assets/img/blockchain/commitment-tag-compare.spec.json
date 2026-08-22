@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "commitment-tag-compare",
+  "title": "Each chain names a different head object",
+  "subtitle": "Bitcoin counts the active tip. Ethereum and Solana expose finalized as a tag.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "btc",
+      "kind": "box",
+      "label": "Bitcoin",
+      "detail": "confirmations on active tip",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "eth",
+      "kind": "box",
+      "label": "Ethereum",
+      "detail": "latest / safe / finalized",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "sol",
+      "kind": "box",
+      "label": "Solana",
+      "detail": "processed / confirmed / finalized",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "btc-eth",
+      "source": "btc",
+      "target": "eth",
+      "emphasis": true
+    },
+    {
+      "id": "eth-sol",
+      "source": "eth",
+      "target": "sol"
+    }
+  ]
+}

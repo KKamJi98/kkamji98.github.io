@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "incident-runbook-ladder",
+  "title": "An incident walk starts at HTTP and ends at the compiler pin",
+  "subtitle": "Each step is a question this series already answered with a local observation.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "box",
+      "label": "HTTP / RPC error",
+      "detail": "W7 W8",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "s2",
+      "kind": "box",
+      "label": "receipt or estimate",
+      "detail": "W7",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "s3",
+      "kind": "box",
+      "label": "which tip or tag",
+      "detail": "W3 W10",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "s4",
+      "kind": "box",
+      "label": "which RPC",
+      "detail": "W13",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "s5",
+      "kind": "box",
+      "label": "bytecode hash",
+      "detail": "W15",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "s6",
+      "kind": "box",
+      "label": "which key",
+      "detail": "W11",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "a",
+      "source": "s1",
+      "target": "s2",
+      "emphasis": true
+    },
+    {
+      "id": "b",
+      "source": "s2",
+      "target": "s3"
+    },
+    {
+      "id": "c",
+      "source": "s3",
+      "target": "s4"
+    },
+    {
+      "id": "d",
+      "source": "s4",
+      "target": "s5"
+    },
+    {
+      "id": "e",
+      "source": "s5",
+      "target": "s6",
+      "dashed": true
+    }
+  ]
+}
