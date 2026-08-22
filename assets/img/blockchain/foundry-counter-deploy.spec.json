@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "foundry-counter-deploy",
+  "title": "Deploying a contract puts bytecode at an address; a later call changes storage",
+  "subtitle": "An EOA has code 0x. The Counter address does not.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "eoa",
+      "kind": "box",
+      "label": "EOA deployer",
+      "detail": "0xf39Fd6e5, code 0x",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "counter",
+      "kind": "box",
+      "label": "Counter 0xe7f1725E",
+      "detail": "bytecode at address, 964 hex",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "storage",
+      "kind": "box",
+      "label": "number storage",
+      "detail": "0 then increment to 1, gas 43482",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "eoa-to-counter",
+      "source": "eoa",
+      "target": "counter",
+      "emphasis": true
+    },
+    {
+      "id": "counter-to-storage",
+      "source": "counter",
+      "target": "storage"
+    }
+  ]
+}
