@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "rollup-l1-inbox-escape",
+  "title": "A user can submit on L1 so the sequencer cannot drop the transaction forever",
+  "subtitle": "ethereum.org: sequencer must include it within a time limit to keep producing valid blocks.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "box",
+      "label": "user",
+      "detail": "bypass sequencer RPC",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "inbox",
+      "kind": "box",
+      "label": "L1 inbox",
+      "detail": "queued until included",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "must",
+      "kind": "box",
+      "label": "sequencer include",
+      "detail": "time-limited or invalid",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "u-to-in",
+      "source": "user",
+      "target": "inbox",
+      "emphasis": true
+    },
+    {
+      "id": "in-to-must",
+      "source": "inbox",
+      "target": "must"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "rollup-sequencer-to-l1",
+  "title": "A sequencer executes off-chain then posts a batch to Ethereum",
+  "subtitle": "The batch lands as calldata or a blob. L1 finalized is the settlement clock.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "box",
+      "label": "user tx",
+      "detail": "sent to sequencer",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "seq",
+      "kind": "box",
+      "label": "sequencer",
+      "detail": "order and execute",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "l1",
+      "kind": "box",
+      "label": "L1 batch",
+      "detail": "calldata or blob",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "u-to-s",
+      "source": "user",
+      "target": "seq",
+      "emphasis": true
+    },
+    {
+      "id": "s-to-l1",
+      "source": "seq",
+      "target": "l1"
+    }
+  ]
+}
