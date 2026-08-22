@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "pos-inactivity-leak",
+  "title": "If checkpoints miss a two-thirds vote, Gasper stops finalizing then leaks inactive stake",
+  "subtitle": "ethereum.org: inactivity leak starts after more than four epochs without finality.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "vote",
+      "kind": "box",
+      "label": "checkpoint vote",
+      "detail": "needs two-thirds stake",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "stuck",
+      "kind": "box",
+      "label": "no new finalized",
+      "detail": "safe/finalized lag grows",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "leak",
+      "kind": "box",
+      "label": "inactivity leak",
+      "detail": "after more than 4 epochs",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "vote-to-stuck",
+      "source": "vote",
+      "target": "stuck",
+      "emphasis": true
+    },
+    {
+      "id": "stuck-to-leak",
+      "source": "stuck",
+      "target": "leak"
+    }
+  ]
+}

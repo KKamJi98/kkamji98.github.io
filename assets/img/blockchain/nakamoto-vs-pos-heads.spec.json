@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "nakamoto-vs-pos-heads",
+  "title": "A Bitcoin invalid tip and a Sepolia finalized tag answer different questions",
+  "subtitle": "Confirmation is tip-relative. finalized is a supermajority checkpoint.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "btc-active",
+      "kind": "box",
+      "label": "regtest active 114",
+      "detail": "branchlen 0",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "btc-invalid",
+      "kind": "box",
+      "label": "invalid tip 112",
+      "detail": "branchlen 1",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "eth-latest",
+      "kind": "box",
+      "label": "Sepolia latest",
+      "detail": "11545353",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "eth-final",
+      "kind": "box",
+      "label": "Sepolia finalized",
+      "detail": "11545279, lag 74",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "btc-down",
+      "source": "btc-active",
+      "target": "btc-invalid",
+      "dashed": true
+    },
+    {
+      "id": "eth-down",
+      "source": "eth-latest",
+      "target": "eth-final"
+    }
+  ]
+}
