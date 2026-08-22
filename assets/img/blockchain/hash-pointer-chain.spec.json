@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "hash-pointer-chain",
+  "title": "Each block header stores a hash pointer to the previous header",
+  "subtitle": "Changing one payload breaks every later pointer.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "genesis",
+      "kind": "box",
+      "label": "genesis header",
+      "detail": "hash(genesis)",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "block1",
+      "kind": "box",
+      "label": "block 1 header",
+      "detail": "prev = hash(genesis)",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "block2",
+      "kind": "box",
+      "label": "block 2 header",
+      "detail": "prev = hash(block 1)",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "g-to-1",
+      "source": "genesis",
+      "target": "block1",
+      "emphasis": true
+    },
+    {
+      "id": "1-to-2",
+      "source": "block1",
+      "target": "block2"
+    }
+  ]
+}

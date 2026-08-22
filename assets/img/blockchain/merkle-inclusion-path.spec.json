@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "merkle-inclusion-path",
+  "title": "An inclusion proof walks sibling hashes up to the Merkle Root",
+  "subtitle": "Six transactions needed three siblings. The header stores only the root.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "leaf",
+      "kind": "box",
+      "label": "tx hash",
+      "detail": "index 3, 32 bytes",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "parent",
+      "kind": "box",
+      "label": "parent hash",
+      "detail": "hash(leaf || sibling)",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "root",
+      "kind": "box",
+      "label": "Merkle Root",
+      "detail": "only this sits in the header",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "sibling",
+      "kind": "box",
+      "label": "sibling hash",
+      "detail": "one hop on the proof",
+      "role": "external",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "leaf-to-parent",
+      "source": "leaf",
+      "target": "parent",
+      "emphasis": true
+    },
+    {
+      "id": "parent-to-root",
+      "source": "parent",
+      "target": "root"
+    },
+    {
+      "id": "sib-to-parent",
+      "source": "sibling",
+      "target": "parent",
+      "dashed": true
+    }
+  ]
+}
