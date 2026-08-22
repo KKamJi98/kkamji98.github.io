@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "lock-and-mint-trust",
+  "title": "Lock-and-mint copies a number from one chain onto another",
+  "subtitle": "The mint is only as true as the verifier that saw the lock.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "lock",
+      "kind": "box",
+      "label": "lock on source",
+      "detail": "asset stays on chain A",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ver",
+      "kind": "box",
+      "label": "verifier",
+      "detail": "multisig, MPC, or oracle",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "mint",
+      "kind": "box",
+      "label": "mint on dest",
+      "detail": "new IOU on chain B",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "lock-to-ver",
+      "source": "lock",
+      "target": "ver",
+      "emphasis": true
+    },
+    {
+      "id": "ver-to-mint",
+      "source": "ver",
+      "target": "mint"
+    }
+  ]
+}

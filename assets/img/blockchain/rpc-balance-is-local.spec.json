@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "rpc-balance-is-local",
+  "title": "The same address has three balances depending on which node you ask",
+  "subtitle": "Anvil 8545, Anvil 8547, and Sepolia disagree. None is the universal ledger.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "a45",
+      "kind": "box",
+      "label": "Anvil 8545",
+      "detail": "latest 5, 9998.9997 ETH",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "addr",
+      "kind": "box",
+      "label": "EOA 0xf39Fd6e5",
+      "detail": "one public test key",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "sep",
+      "kind": "box",
+      "label": "Sepolia RPC",
+      "detail": "balance 0",
+      "role": "danger",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "a47",
+      "kind": "box",
+      "label": "Anvil 8547",
+      "detail": "latest 3, 9998.9992 ETH",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "addr-to-45",
+      "source": "addr",
+      "target": "a45"
+    },
+    {
+      "id": "addr-to-47",
+      "source": "addr",
+      "target": "a47",
+      "emphasis": true
+    },
+    {
+      "id": "addr-to-sep",
+      "source": "addr",
+      "target": "sep",
+      "dashed": true
+    }
+  ]
+}
