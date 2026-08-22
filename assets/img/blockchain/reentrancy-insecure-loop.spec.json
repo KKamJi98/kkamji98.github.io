@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "reentrancy-insecure-loop",
+  "title": "Sending ether before clearing the balance lets receive withdraw again",
+  "subtitle": "The outer withdraw has not yet written zero when the nested call starts.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "withdraw",
+      "kind": "box",
+      "label": "withdraw()",
+      "detail": "balance still 1 ETH",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "extcall",
+      "kind": "box",
+      "label": "msg.sender.call",
+      "detail": "sends 1 ETH first",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "receive",
+      "kind": "box",
+      "label": "attacker receive",
+      "detail": "vault.balance >= 1 ETH",
+      "role": "external",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "reenter",
+      "kind": "box",
+      "label": "withdraw again",
+      "detail": "mapping not yet zero",
+      "role": "danger",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "withdraw-to-call",
+      "source": "withdraw",
+      "target": "extcall",
+      "emphasis": true
+    },
+    {
+      "id": "call-to-receive",
+      "source": "extcall",
+      "target": "receive"
+    },
+    {
+      "id": "receive-to-reenter",
+      "source": "receive",
+      "target": "reenter"
+    }
+  ]
+}

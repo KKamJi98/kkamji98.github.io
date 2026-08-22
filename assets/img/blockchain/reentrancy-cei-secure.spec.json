@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "reentrancy-cei-secure",
+  "title": "Clearing storage first makes the nested withdraw revert",
+  "subtitle": "The inner call sees amount 0. The outer call then fails too.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "cei-withdraw",
+      "kind": "box",
+      "label": "CEI withdraw",
+      "detail": "require amount > 0",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "zero-storage",
+      "kind": "box",
+      "label": "balances = 0",
+      "detail": "effect before call",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "extcall",
+      "kind": "box",
+      "label": "msg.sender.call",
+      "detail": "send after storage",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "nested-revert",
+      "kind": "box",
+      "label": "nested withdraw",
+      "detail": "revert empty, then send failed",
+      "role": "danger",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "withdraw-to-zero",
+      "source": "cei-withdraw",
+      "target": "zero-storage",
+      "emphasis": true
+    },
+    {
+      "id": "zero-to-call",
+      "source": "zero-storage",
+      "target": "extcall"
+    },
+    {
+      "id": "call-to-nested",
+      "source": "extcall",
+      "target": "nested-revert"
+    }
+  ]
+}
