@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "wallet-to-confirmation",
+  "title": "A signed transaction sits in the mempool until a block admits its UTXO changes",
+  "subtitle": "Balance displays can move before confirmation. The UTXO set does not.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "wallet",
+      "kind": "box",
+      "label": "wallet",
+      "detail": "holds keys, not a balance field",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "select",
+      "kind": "box",
+      "label": "select UTXOs",
+      "detail": "cover amount plus fee",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "signed-tx",
+      "kind": "box",
+      "label": "signed transaction",
+      "detail": "vin, vout, signature",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "mempool",
+      "kind": "box",
+      "label": "mempool",
+      "detail": "confirmations = 0",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "block",
+      "kind": "box",
+      "label": "block",
+      "detail": "miner claims the fee",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "confirmed",
+      "kind": "box",
+      "label": "confirmed UTXOs",
+      "detail": "new outputs enter the set",
+      "role": "store",
+      "col": 5,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "wallet-to-select",
+      "source": "wallet",
+      "target": "select",
+      "emphasis": true
+    },
+    {
+      "id": "select-to-tx",
+      "source": "select",
+      "target": "signed-tx"
+    },
+    {
+      "id": "tx-to-mempool",
+      "source": "signed-tx",
+      "target": "mempool"
+    },
+    {
+      "id": "mempool-to-block",
+      "source": "mempool",
+      "target": "block"
+    },
+    {
+      "id": "block-to-confirmed",
+      "source": "block",
+      "target": "confirmed"
+    }
+  ]
+}

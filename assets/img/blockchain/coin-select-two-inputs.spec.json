@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "coin-select-two-inputs",
+  "title": "Coin selection spends whole UTXOs as separate inputs, then splits new outputs",
+  "subtitle": "Two selected UTXOs become two vins. Payment and change are new vouts.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "u30",
+      "kind": "box",
+      "label": "UTXO 30",
+      "detail": "selected",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "collect",
+      "kind": "box",
+      "label": "selected inputs",
+      "detail": "30 plus 25 covers send plus fee",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "tx",
+      "kind": "box",
+      "label": "new transaction",
+      "detail": "vin[0] and vin[1]",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "pay",
+      "kind": "box",
+      "label": "vout payment",
+      "detail": "amount sent to the recipient",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "u25",
+      "kind": "box",
+      "label": "UTXO 25",
+      "detail": "selected",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "change",
+      "kind": "box",
+      "label": "vout change",
+      "detail": "remainder minus fee, new outpoint",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "u30-to-collect",
+      "source": "u30",
+      "target": "collect",
+      "emphasis": true
+    },
+    {
+      "id": "collect-to-tx",
+      "source": "collect",
+      "target": "tx"
+    },
+    {
+      "id": "tx-to-pay",
+      "source": "tx",
+      "target": "pay"
+    },
+    {
+      "id": "u25-to-collect",
+      "source": "u25",
+      "target": "collect"
+    },
+    {
+      "id": "tx-to-change",
+      "source": "tx",
+      "target": "change"
+    }
+  ]
+}

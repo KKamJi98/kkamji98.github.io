@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "utxo-balance-scan",
+  "title": "A wallet balance is the running sum of unspent outputs, not a stored field",
+  "subtitle": "Adding a UTXO changes the sum. There is no account row to update.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "u50",
+      "kind": "box",
+      "label": "UTXO 50",
+      "detail": "owned by alice",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "s50",
+      "kind": "box",
+      "label": "running sum 50",
+      "detail": "first unspent output",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "u20",
+      "kind": "box",
+      "label": "UTXO 20",
+      "detail": "owned by alice",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "s70",
+      "kind": "box",
+      "label": "running sum 70",
+      "detail": "50 plus 20",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "u5",
+      "kind": "box",
+      "label": "UTXO 5",
+      "detail": "owned by alice",
+      "role": "store",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "bal",
+      "kind": "box",
+      "label": "derived balance 75",
+      "detail": "getbalance equals this sum",
+      "role": "external",
+      "col": 1,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "u50-to-s50",
+      "source": "u50",
+      "target": "s50",
+      "emphasis": true
+    },
+    {
+      "id": "s50-to-s70",
+      "source": "s50",
+      "target": "s70"
+    },
+    {
+      "id": "u20-to-s70",
+      "source": "u20",
+      "target": "s70"
+    },
+    {
+      "id": "s70-to-bal",
+      "source": "s70",
+      "target": "bal"
+    },
+    {
+      "id": "u5-to-bal",
+      "source": "u5",
+      "target": "bal"
+    }
+  ]
+}
