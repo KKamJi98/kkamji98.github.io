@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "escrow-deposit-release",
+  "title": "Buyer deposit locks one ETH; buyer release pays the seller",
+  "subtitle": "funded goes true then false. The seller balance rose by 1 ETH.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "buyer",
+      "kind": "box",
+      "label": "buyer 0xf39Fd6e5",
+      "detail": "deposit 1 ETH",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "escrow",
+      "kind": "box",
+      "label": "Escrow 0x5FbDB231",
+      "detail": "funded true, 5234 hex",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "seller",
+      "kind": "box",
+      "label": "seller 0x70997970",
+      "detail": "balance +1 ETH",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "buyer-to-escrow",
+      "source": "buyer",
+      "target": "escrow",
+      "emphasis": true
+    },
+    {
+      "id": "escrow-to-seller",
+      "source": "escrow",
+      "target": "seller"
+    }
+  ]
+}

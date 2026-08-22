@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "escrow-auth-deny",
+  "title": "A stranger deposit is rejected before a receipt exists",
+  "subtitle": "estimate reverts NotBuyer. The escrow stays unfunded.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "stranger",
+      "kind": "box",
+      "label": "stranger",
+      "detail": "cast send deposit 1 ETH",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "estimate",
+      "kind": "box",
+      "label": "gas estimate",
+      "detail": "revert NotBuyer",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "no-receipt",
+      "kind": "box",
+      "label": "no receipt",
+      "detail": "funded stays false",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "stranger-to-est",
+      "source": "stranger",
+      "target": "estimate",
+      "emphasis": true
+    },
+    {
+      "id": "est-to-none",
+      "source": "estimate",
+      "target": "no-receipt"
+    }
+  ]
+}
