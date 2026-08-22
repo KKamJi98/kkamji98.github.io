@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "ethereum-account-nonce",
+  "title": "An account stores a nonce and a balance; a transaction increments the nonce",
+  "subtitle": "There is no UTXO scan. The receipt records gas used for this state change.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "eoa",
+      "kind": "box",
+      "label": "EOA 0xf39Fd6e5",
+      "detail": "nonce 0, code 0x, Anvil account",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "tx",
+      "kind": "box",
+      "label": "transaction type 0x2",
+      "detail": "value 1 ETH, nonce 0",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "receipt",
+      "kind": "box",
+      "label": "receipt status 0x1",
+      "detail": "gasUsed 21000, nonce now 1",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "eoa-to-tx",
+      "source": "eoa",
+      "target": "tx",
+      "emphasis": true
+    },
+    {
+      "id": "tx-to-receipt",
+      "source": "tx",
+      "target": "receipt"
+    }
+  ]
+}
