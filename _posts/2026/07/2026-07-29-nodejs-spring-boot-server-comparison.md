@@ -9,7 +9,7 @@ image:
   path: /assets/img/nodejs/nodejs-logo-history-banner.png
 ---
 
-Node.js와 Spring Boot를 "싱글 스레드 대 멀티 스레드" 또는 "어느 쪽이 더 빠른가"로 비교하면 실행 모델을 잃기 쉽습니다. Node.js는 JavaScript runtime이고, Spring Boot는 Servlet 기반 MVC 또는 reactive WebFlux 같은 웹 스택을 구성합니다. 이 글은 같은 HTTP server라는 표면 아래에서 요청을 실행하는 단위와 블로킹의 비용을 구분합니다.
+Node.js와 Spring Boot를 "싱글 스레드 대 멀티 스레드" 또는 "어느 쪽이 더 빠른가"로 비교하면 실행 모델을 잃기 쉽습니다. Node.js는 JavaScript runtime이고 Spring Boot는 Servlet 기반 MVC 또는 reactive WebFlux 같은 웹 스택을 구성합니다. 같은 HTTP server로 보여도 요청을 실행하는 단위와 블로킹의 비용은 스택마다 다릅니다.
 
 > **TL;DR**<br>  
 > - 비교 대상은 Node.js core HTTP, Spring Boot MVC, Spring Boot WebFlux 세 가지입니다.<br>  
@@ -22,7 +22,7 @@ Node.js와 Spring Boot를 "싱글 스레드 대 멀티 스레드" 또는 "어느
 
 ## 1. 세 실행 스택을 같은 층위에서 비교하지 않기
 
-Node.js는 runtime이고 Spring Boot는 framework입니다. 따라서 서비스 선택을 논의할 때는 Node.js의 `node:http`, Spring Boot MVC, Spring Boot WebFlux를 각각의 실행 스택으로 분리해야 합니다.
+Node.js는 runtime이고 Spring Boot는 framework입니다. 서비스 선택을 논의할 때 비교 대상은 Node.js의 `node:http`, Spring Boot MVC, Spring Boot WebFlux라는 세 실행 스택입니다.
 
 세 stack에서 blocking dependency, I/O wait, CPU 작업이 어느 실행 단위를 점유하는지 보면, 단일 RPS 숫자보다 서비스에 필요한 관측 지점과 분리 전략이 먼저 드러납니다.
 
@@ -32,10 +32,10 @@ Node.js는 runtime이고 Spring Boot는 framework입니다. 따라서 서비스 
 
 Node.js core HTTP는 Node process에서 `http.Server`와 application handler를 조립합니다. 기본 JavaScript 실행 흐름에서 handler의 동기 코드가 실행되고, I/O 완료 뒤 callback 또는 Promise continuation이 이어집니다.
 
-Spring Boot MVC는 Servlet API와 servlet container 위에서 controller를 실행합니다. blocking 작업은 request thread를 점유할 수 있으므로 thread pool, queue, request latency를 함께 관찰해야 합니다. Spring Boot WebFlux는 non-blocking I/O와 Reactive Streams 계약을 전제로 하는 별도 웹 스택입니다. 기본 server 선택은 Reactor Netty이지만, WebFlux 자체와 Netty를 같은 개념으로 취급하면 안 됩니다.
+Spring Boot MVC는 Servlet API와 servlet container 위에서 controller를 실행합니다. blocking 작업은 request thread를 점유할 수 있으므로 thread pool, queue, request latency를 함께 관찰해야 합니다. Spring Boot WebFlux는 non-blocking I/O와 Reactive Streams 계약을 전제로 하는 별도 웹 스택입니다. 기본 server 선택은 Reactor Netty이지만 WebFlux 자체와 Netty는 같은 개념이 아닙니다.
 
 ![Node.js, Spring MVC, Spring WebFlux의 요청 실행 경계](/assets/img/server/nodejs-spring-server-stacks.webp)
-_세 칸은 성능 순위가 아니라 요청을 실행하는 책임 경계를 보여 줍니다. 블로킹 코드가 어느 실행 단위를 점유하는지와 CPU 작업을 어디로 분리할지를 각 stack의 계약 안에서 판단해야 합니다._
+_세 칸은 성능 순위가 아니라 요청을 실행하는 책임 경계다. 블로킹 코드가 어느 실행 단위를 점유하는지, CPU 작업을 어디로 분리할지는 각 stack의 계약 안에서 판단한다._
 
 ---
 
@@ -76,7 +76,7 @@ MVC의 request thread는 request lifecycle 동안 blocking 작업을 처리할 �
 
 `spring-boot-starter-web` 계열은 MVC servlet application을 구성합니다. `spring-boot-starter-webflux`는 reactive web application을 구성합니다. 두 starter가 함께 있으면 Spring Boot는 기본적으로 MVC를 자동 구성합니다. MVC application에서 `WebClient`를 사용하기 위해 WebFlux dependency를 추가하는 경우를 지원하기 위한 선택입니다.
 
-따라서 dependency graph만 보고 server stack을 추측하면 안 됩니다. startup log, ApplicationContext type, active server implementation, handler thread name을 실제 환경에서 확인해야 합니다. reactive return type을 controller에서 쓴다는 사실만으로 WebFlux server라고 결론 내릴 수도 없습니다.
+server stack은 dependency graph만으로 드러나지 않습니다. startup log, ApplicationContext type, active server implementation, handler thread name을 실제 환경에서 확인해야 합니다. reactive return type을 controller에서 쓴다는 사실만으로 WebFlux server라고 결론 내릴 수도 없습니다.
 
 ---
 
@@ -109,7 +109,7 @@ WebFlux: Tests run: 1, Failures: 0, Errors: 0
 
 ## 8. 선택 질문으로 정리하기
 
-다음 질문은 stack을 선택하기 전에 확인할 수 있습니다.
+stack을 고르기 전에 다음을 확인합니다.
 
 1. request path에 blocking JDBC, SDK, file I/O가 많은가
 2. 높은 동시성 I/O와 streaming이 핵심인가
@@ -117,7 +117,7 @@ WebFlux: Tests run: 1, Failures: 0, Errors: 0
 4. 팀이 JavaScript와 JVM 생태계 중 어느 쪽의 dependency와 observability를 운영할 수 있는가
 5. thread pool, scheduler, event loop delay, queue를 어떤 metric으로 검증할 것인가
 
-Node.js가 빠른지 Spring Boot가 빠른지를 먼저 묻기보다, 서비스가 어떤 작업을 기다리고 무엇을 block하며 어떤 실행 단위를 관측할 수 있는지부터 답해야 합니다. 다음 Node.js runtime 글에서는 Event Loop와 microtask 경계를 더 구체적으로 다룹니다.
+Node.js가 빠른지 Spring Boot가 빠른지를 먼저 묻기보다, 서비스가 어떤 작업을 기다리고 무엇을 block하며 어떤 실행 단위를 관측할 수 있는지부터 답해야 합니다.
 
 ---
 

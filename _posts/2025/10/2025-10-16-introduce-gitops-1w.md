@@ -11,7 +11,7 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study` 를 진행하며 학습한 내용을 공유합니다.
 
-*O'Reilly GitOps Cookbook* 의 1장에 해당 하는 **GitOps**에 대해 알아봅니다.
+*O'Reilly GitOps Cookbook* 의 1장에 해당하는 **GitOps**를 알아봅니다.
 
 > **TL;DR**  
 > - GitOps는 Git에 선언된 상태를 클러스터의 실제 상태와 계속 맞추는 방식입니다. 배포 파이프라인이 클러스터에 push하는 대신, 클러스터 안의 에이전트가 Git을 pull합니다.  
@@ -27,16 +27,16 @@ image:
 ### 1.1. GitOps의 장점
 
 - **표준 워크플로 (Standard workflow)**  
-  애플리케이션 개발팀이 이미 익숙한 **Git 도구와 워크플로**(Branch, Pull Request, Merge 등)를 그대로 활용할 수 있습니다. 이를 통해 개발과 운영 간의 경계가 줄어들고, CI/CD 파이프라인이 자연스럽게 Git 기반으로 통합됩니다.
+  애플리케이션 개발팀이 이미 익숙한 **Git 도구와 워크플로**(Branch, Pull Request, Merge 등)를 그대로 활용할 수 있습니다. 개발과 운영 간의 경계가 줄어들고 CI/CD 파이프라인이 자연스럽게 Git 기반으로 통합됩니다.
 
 - **강화된 보안 (Enhanced security)**  
-  모든 변경 사항은 **Git Commit과 Pull Request**를 통해 미리 검토되고 승인됩니다. 또한, 클러스터의 **예기치 않은 구성 변경(Drift)** 을 감지해 자동으로 복구(Reconcile)함으로써 보안성을 높입니다.
+  모든 변경 사항은 **Git Commit과 Pull Request**에서 미리 검토되고 승인됩니다. 클러스터의 **예기치 않은 구성 변경(Drift)** 을 감지해 자동으로 복구(Reconcile)함으로써 보안성을 높입니다.
 
 - **가시성 및 감사 (Visibility and audit)**  
-  Git 저장소의 변경 이력이 곧 시스템의 변경 이력이므로, 누가 언제 어떤 리소스를 수정했는지 한눈에 파악할 수 있습니다. 따라서 **감사(Audit)** 와 **문제 추적(RCA)** 이 용이합니다.
+  Git 저장소의 변경 이력이 곧 시스템의 변경 이력이므로 누가 언제 어떤 리소스를 수정했는지 한눈에 파악할 수 있습니다. **감사(Audit)** 와 **문제 추적(RCA)** 이 용이합니다.
 
 - **멀티클러스터 일관성 (Multicluster consistency)**  
-  여러 환경(개발,스테이징,운영)과 다수의 Kubernetes 클러스터에 대해, **동일한 선언적 정의를 반복 적용**함으로써 일관되고 안정적인 배포를 유지할 수 있습니다.
+  여러 환경(개발, 스테이징, 운영)과 다수의 Kubernetes 클러스터에 **동일한 선언적 정의를 반복 적용**함으로써 일관되고 안정적인 배포를 유지할 수 있습니다.
 
 ### 1.2. GitOps 3가지 원칙 (*O'Reilly GitOps Cookbook*)
 
@@ -68,7 +68,7 @@ image:
 
 CI(Continuous Integration, 지속적 통합)와 CD(Continuous Delivery, 지속적 배포)는 앱 개발의 각 단계를 자동화하여 더 빠르고 안정적인 배포를 가능하게 하는 방법론입니다. CI/CD 파이프라인은 GitOps의 대표적인 활용 사례 중 하나입니다.
 
-일반적인 CI/CD 파이프라인에서 CI 프로세스는 제출된 코드를 빌드하고 테스트하여 검증하며, CD 프로세스는 보안 정책, IaC(Infrastructure as Code), 애플리케이션 설정 등의 요구 사항을 자동으로 적용합니다. 이 과정에서 모든 변경 사항은 Git을 통해 버전 관리되므로, 변경 이력 추적과 롤백이 용이합니다. 이러한 Workflow는 아래와 같이 표현될 수 있습니다.
+일반적인 CI/CD 파이프라인에서 CI 프로세스는 제출된 코드를 빌드하고 테스트하여 검증하며 CD 프로세스는 보안 정책, IaC(Infrastructure as Code), 애플리케이션 설정 등의 요구 사항을 자동으로 적용합니다. 이 과정에서 모든 변경 사항은 Git으로 버전 관리되므로 변경 이력 추적과 롤백이 용이합니다. 이 Workflow는 아래와 같습니다.
 
 ![CI/CD Workflow text](/assets/img/ci-cd/ci-cd-study/ci-cd-workflow.webp)
 > CI/CD Workflow  
@@ -82,11 +82,11 @@ Kubernetes를 활용하면 클러스터 내부에 CI/CD 파이프라인을 아�
 
 ## 3. Kubernetes에서 GitOps를 접목한 앱 배포
 
-GitOps의 애플리케이션 배포 모델(Application Deployment Model)은 클러스터 내부(in-cluster)에 구축될 수도 있고 여러 클러스터(multi-cluster)에 걸친 공통 플랫폼 형태로 구축될 수 있습니다. GitOps 엔진은 CI/CD 파이프라인의 CD(Continuous Delivery)부분을 담당하여 네 가지 주요 작업으로 구성된 GitOps Lifecycle을 구현합니다,
+GitOps의 애플리케이션 배포 모델(Application Deployment Model)은 클러스터 내부(in-cluster)에 구축될 수도 있고 여러 클러스터(multi-cluster)에 걸친 공통 플랫폼 형태로 구축될 수 있습니다. GitOps 엔진은 CI/CD 파이프라인의 CD(Continuous Delivery)부분을 담당하여 네 가지 주요 작업으로 구성된 GitOps Lifecycle을 구현합니다.
 
 ### 3.1. Kubernetes에서 GitOps Lifecycle
 
-Kubernetes GitOps Lifecycle은 다음과 같은 순서로 구성되며, 모든 단계는 Git 저장소를 단일 신뢰 소스(Single Source of Truth) 로 사용하고 Git 워크플로(Git Workflow)를 통해 수행됩니다.
+Kubernetes GitOps Lifecycle은 다음과 같은 순서로 구성되며, 모든 단계는 Git 저장소를 단일 신뢰 소스(Single Source of Truth)로 사용하고 Git 워크플로로 수행됩니다.
 
 ![GitOps Lifecycle](/assets/img/ci-cd/ci-cd-study/gitops-lifecycle.webp)
 > GitOps Lifecycle  
@@ -127,22 +127,22 @@ Kubernetes에서 GitOps 접근법을 사용해 애플리케이션을 배포하�
 
 ## 4. 데브옵스 및 기민성(Agility)
 
-GitOps는 지속적 배포 및 인프라 운영을 위한 개발자 중심의 접근법이며, 프로세스 자동화를 위해 Git을 사용하는 개발자 Workflow 입니다. DevOps가 Agile Software Develop Process를 보완한다면, GitOps는 인프라 자동화 및 애플리케이션 Lifecycle 관리 측면에서 DevOps를 보완합니다.
+GitOps는 지속적 배포 및 인프라 운영을 위한 개발자 중심의 접근법이며 프로세스 자동화를 위해 Git을 사용하는 개발자 Workflow입니다. DevOps가 Agile Software Develop Process를 보완한다면, GitOps는 인프라 자동화 및 애플리케이션 Lifecycle 관리 측면에서 DevOps를 보완합니다.
 
-Agile 방법론의 가장 중요한 점 가운데 하나는 납기(lead time)을 줄이는 것입니다. 납기란 요구 사항을 식별하고 이를 충족하는데까지 걸리는 시간을 말하며, 납기를 줄이기 위해서는 IT 조직 문화와 개발 문화는 DevOps 및 GitOps 환경에 친화적으로 변화해야 합니다.
+Agile 방법론은 납기(lead time) 단축을 핵심 목표 가운데 하나로 둡니다. 납기란 요구 사항을 식별하고 이를 충족하는 데까지 걸리는 시간을 말하며, 납기를 줄이려면 IT 조직 문화와 개발 문화가 DevOps 및 GitOps 환경에 친화적으로 바뀌어야 합니다.
 
 - 애플리케이션을 실시간으로 배포하고 관찰할 수 있을 때, 개발자는 피드백 루프를 통해 코드를 빠르게 개선할 수 있습니다.
 - DevOps가 문화적 변화로 자리 잡았듯이, GitOps 역시 조직 문화 전반에 스며들어야 합니다.
 - 모든 애플리케이션 배포와 인프라 변경은 Git 워크플로를 통한 코드 기반 변경으로 수행되어야 하며,
-이를 통해 신뢰성과 재현성을 확보할 수 있습니다.
+그래야 신뢰성과 재현성을 확보할 수 있습니다.
 
 ---
 
 ## 5. 마무리
 
-GitOps는 단순한 배포 자동화 도구가 아니라, 개발과 운영 전반을 Git 기반으로 통합하는 문화적 접근 방식입니다. 모든 변경 사항을 Git으로 관리하고 선언적 상태를 지속적으로 동기화함으로써, 조직은 더 빠르고 안정적이며 감사 가능한 운영 체계를 구축할 수 있습니다.
+GitOps는 배포 자동화 도구에 머무르지 않고 개발과 운영 전반을 Git 기반으로 통합하는 문화적 접근 방식입니다. 모든 변경 사항을 Git으로 관리하고 선언적 상태를 지속적으로 동기화함으로써, 조직은 더 빠르고 안정적이며 감사 가능한 운영 체계를 구축할 수 있습니다.
 
-DevOps가 협업과 자동화를 중심으로 소프트웨어 개발을 진화시켰다면, GitOps는 그 철학을 인프라와 애플리케이션 운영 전반으로 확장시킨 모델이라 할 수 있습니다.
+GitOps는 협업과 자동화를 중심으로 소프트웨어 개발을 진화시킨 DevOps의 철학을 인프라와 애플리케이션 운영 전반으로 확장합니다.
 
 ---
 

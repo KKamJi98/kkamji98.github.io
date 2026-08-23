@@ -26,24 +26,7 @@ image:
 
 ---
 
-## 2. 이 글의 읽는 순서
-
-처음 구축한다면 **2 -> 3 -> 5 -> 6 -> 7 -> 9 -> 10 -> 12** 순서로 읽으면 됩니다. Google Docs를 이미 Markdown으로 내보낼 수 있다면 3-4는 건너뛰고, Slack UX만 필요하면 9부터, 검색 품질과 비용만 검토한다면 10, 13, 14를 보면 됩니다.
-
-이 글의 구성은 다음처럼 나뉩니다.
-
-| 관심사 | 섹션 | 얻는 결과 |
-| :--- | :--- | :--- |
-| 원본 문서와 색인 품질 | 3-8 | Docs를 citation 가능한 Markdown으로 만들고 ingestion을 확인하는 방법 |
-| Slack 챗봇 UX | 9 | 멘션 수신, 즉시 ack, 스레드 응답, 실패 표시 흐름 |
-| 검색과 답변 품질 | 10-11, 14 | Retrieve, rerank, 근거 게이트, 평가 기준 |
-| 권한과 비용 | 12-13 | 전용 role 체인과 workload 기준 비용 산정 |
-
-이 글은 Bedrock이 저장소와 retrieval까지 운영하는 Managed Knowledge Base가 아니라, S3 Vectors와 IAM을 직접 구성하는 Customer-managed Knowledge Base 실습입니다.
-
----
-
-## 3. 목표 아키텍처
+## 2. 목표 아키텍처
 
 전체 흐름은 색인(ingestion)과 질의(chat) 두 파이프라인으로 나뉩니다.
 
@@ -83,11 +66,11 @@ n8n은 이미 운영 중인 인스턴스를 그대로 사용합니다. 여기서
 
 ---
 
-## 4. 왜 PDF export를 버리고 자체 파서를 만들었나
+## 3. 왜 PDF export를 버리고 자체 파서를 만들었나
 
 설계 단계에서는 Google Docs를 PDF로 export해서 S3에 올리고, Bedrock Knowledge Base가 그 PDF를 그대로 ingest하는 구조를 계획했습니다. 협업 편집은 Docs가 편하고, PDF는 사용자가 실제로 보는 문서 형태와 가까워 Citation 설명이 쉽다는 이유였습니다. 실제로 구축하면서 이 방향을 버리고 **Docs API JSON을 자체 Python 파서로 섹션별 Markdown으로 변환**하는 구조로 바꿨습니다. PDF가 RAG 관점에서 세 가지를 만족하지 못했기 때문입니다.
 
-### 4.1. Citation 딥링크가 문서/페이지 단위에서 멈춘다
+### 3.1. Citation 딥링크가 문서/페이지 단위에서 멈춘다
 
 RAG 챗봇의 신뢰성은 "이 답변의 근거가 원문 어디인가"를 사용자가 직접 눌러 확인할 수 있느냐에 달려 있습니다. PDF를 ingest하면 Citation은 문서 단위 또는 페이지 번호 단위가 한계입니다. 사용자는 "3페이지 어딘가"를 다시 눈으로 찾아야 합니다.
 
@@ -99,26 +82,26 @@ https://docs.google.com/document/d/{docId}/edit#heading=h.abc123
 
 파서가 섹션마다 이 `headingId`를 보존해 Citation URL에 `#heading=<id>`로 심으면, 출처를 클릭했을 때 원문의 해당 섹션으로 바로 이동합니다. PDF 경로에서는 만들 수 없는 링크입니다.
 
-### 4.2. 정책 사실이 표 안에 있는데 PDF 표는 검색에서 죽는다
+### 3.2. 정책 사실이 표 안에 있는데 PDF 표는 검색에서 죽는다
 
 사내 정책 문서의 핵심 사실은 대부분 표 안에 있습니다. "휴가 종류별 부여 일수", "경비 항목별 한도" 같은 값이 행/열 구조로 들어 있습니다. PDF export나 기본 파서가 표를 처리하면 셀이 줄바꿈으로 흩어지거나 rowspan(병합 셀) 헤더가 사라져서, 임베딩과 생성 양쪽에서 "라벨과 값의 연결"이 끊어집니다. 검색으로 표의 특정 행을 찾아도 그 값이 어느 항목의 것인지 모델이 복원하지 못합니다.
 
-그래서 표를 **행 단위 사실 블록**으로 선형화했습니다. 각 데이터 행을 breadcrumb(섹션 경로)를 앞에 단 한 문장으로 펴서, 행 하나가 독립적으로 검색 가능한 사실이 되도록 만듭니다.
+그래서 표를 **행 단위 사실 블록**으로 선형화했습니다. 각 데이터 행을 breadcrumb(섹션 경로)를 앞에 단 한 문장으로 펴서, 행 하나가 독립적으로 검색 가능한 사실이 됩니다.
 
 ```text
 [경비 규정 > 3.2 항목별 한도] 식대 - 국내 출장: 1일 5만원
 [경비 규정 > 3.2 항목별 한도] 식대 - 해외 출장: 1일 8만원
 ```
 
-빈 라벨 셀은 이전 행 값을 물려받게(rowspan carry) 처리해서, 병합 셀 때문에 라벨이 비어도 각 행이 완결된 사실이 되도록 했습니다.
+빈 라벨 셀은 이전 행 값을 물려받게(rowspan carry) 처리했습니다. 병합 셀 때문에 라벨이 비어도 각 행이 완결된 사실로 남습니다.
 
-### 4.3. 실무 문서는 heading 스타일이 엉망이라 구조를 복원해야 한다
+### 3.3. 실무 문서는 heading 스타일이 엉망이라 구조를 복원해야 한다
 
 실제 사내 문서는 Word/Docs의 heading 스타일을 제대로 쓰지 않습니다. 챕터 번호를 굵은 본문 텍스트로 표기하거나, 같은 챕터 레벨인데 어떤 건 heading 스타일이고 어떤 건 그냥 문단인 경우가 흔합니다. 실측 대상 문서에서는 진짜 heading 스타일(`HEADING_1` 등)이 붙은 챕터가 3개뿐이었고, 나머지는 전부 번호로 시작하는 본문 문단이었습니다. 이 상태로 KB 청킹에 맡기면 문서에 챕터 구조 자체가 없는 것과 같습니다.
 
 파서에서 번호 패턴(`2.9`, `2.15`)을 heading으로 승격하고, 번호 깊이로 레벨을 정규화해 챕터 경계를 복원했습니다. 이 승격 휴리스틱이 오히려 사고를 냈던 경험은 섹션 파서 설계에서 다룹니다.
 
-### 4.4. Docs API 응답 축소 (n8n 러너 OOM 실측)
+### 3.4. Docs API 응답 축소 (n8n 러너 OOM 실측)
 
 파서 입력은 Docs API의 `documents.get`으로 가져옵니다. 탭 구조까지 받으려면 `includeTabsContent=true`가 필요합니다.
 
@@ -144,7 +127,7 @@ fields=tabs.tabProperties.title,tabs.documentTab.body.content(
 
 ---
 
-## 5. 섹션 파서 설계 (Python, n8n Code 노드에서 실행)
+## 4. 섹션 파서 설계 (Python, n8n Code 노드에서 실행)
 
 파서는 별도 서비스가 아니라 n8n의 Python Code 노드에서 실행됩니다. 전체 파이프라인은 다음과 같습니다.
 
@@ -157,7 +140,7 @@ Docs API JSON
   -> 섹션별 Markdown + metadata sidecar          # S3 적재 산출물
 ```
 
-### 5.1. n8n Python 러너 샌드박스 3제약 (실측)
+### 4.1. n8n Python 러너 샌드박스 3제약 (실측)
 
 n8n의 Python Code 노드는 일반 CPython이 아니라 제한된 샌드박스(task-runner-python)에서 실행됩니다. 파서를 옮기면서 소스로 확정한 제약이 세 가지입니다.
 
@@ -180,7 +163,7 @@ def section(path, heading_id, blocks, level):
     return {"path": path, "heading_id": heading_id, "blocks": blocks, "level": level}
 ```
 
-change detection용 해시도 `hashlib` 없이 순수 Python으로 구현했습니다. 정확한 암호학적 해시가 아니라 결정적(deterministic) 다이제스트면 충분하기 때문입니다.
+change detection용 해시도 `hashlib` 없이 순수 Python으로 구현했습니다. 암호학적 강도는 필요 없고 결정적(deterministic) 다이제스트면 충분하기 때문입니다.
 
 ```python
 # hashlib 부재 -> FNV-1a 64-bit. 변경 감지용이라 결정성만 있으면 됨
@@ -191,7 +174,7 @@ def content_hash(text):
     return format(h, "016x")
 ```
 
-### 5.2. 가짜 heading 승격 함정 (실측)
+### 4.2. 가짜 heading 승격 함정 (실측)
 
 번호로 시작하는 문단을 heading으로 승격하는 휴리스틱이 제대로 사고를 냈습니다.
 
@@ -220,7 +203,7 @@ def promote(blocks):
 
 수정 후 288개 섹션으로 챕터 2.1~5.3이 원본 목차대로 정상 분리됐고, Citation 오염 경로도 사라졌습니다.
 
-### 5.3. 섹션화
+### 4.3. 섹션화
 
 승격이 끝난 블록 스트림을 heading stack으로 순회하면서 leaf(하위 heading이 더 없는 지점) 단위로 섹션을 만듭니다. 상위 heading 아래에 첫 하위 heading이 나오기 전까지의 도입 문단은 그 레벨의 작은 섹션으로 따로 냅니다.
 
@@ -250,9 +233,9 @@ def build_sections(blocks):
 
 ---
 
-## 6. S3 레이아웃과 metadata sidecar
+## 5. S3 레이아웃과 metadata sidecar
 
-### 6.1. 계층 레이아웃 + inclusion_prefixes
+### 5.1. 계층 레이아웃 + inclusion_prefixes
 
 파서 산출물은 backend-neutral artifact로 S3에 남깁니다. 검색이 이상하면 S3의 실제 chunk를 열어 "임베딩에 뭐가 들어갔는지"를 바로 확인할 수 있고, 나중에 다른 벡터 backend로 교체할 때도 같은 artifact를 재사용할 수 있습니다.
 
@@ -277,7 +260,7 @@ Data source에는 `kb/` prefix만 inclusion prefix로 지정합니다.
 
 폴더 키를 title slug가 아니라 **docId(불변)**로 둔 이유도 있습니다. 문서 제목이 바뀌면 slug 기반 키는 구 키가 인덱스에 잔류해서 삭제되지 않은 유령 문서가 검색에 걸립니다. docId는 문서 수명 내내 바뀌지 않으므로 이 사고 경로를 원천 차단합니다.
 
-### 6.2. metadata sidecar = citation 3키 (S3 Vectors 한도 실측)
+### 5.2. metadata sidecar = citation 3키 (S3 Vectors 한도 실측)
 
 설계 글에서는 `type`과 `includeForEmbedding`을 명시한 typed schema(약 10KB)를 metadata sidecar로 계획했습니다. S3 Vectors를 벡터 스토어로 쓰면서 이 형식을 전부 버렸습니다.
 
@@ -301,7 +284,7 @@ S3 Vectors에서는 metadata sidecar를 작게 유지해야 합니다. sidecar �
 
 ---
 
-## 7. Terraform으로 KB 정의하기 (S3 Vectors)
+## 6. Terraform으로 KB 정의하기 (S3 Vectors)
 
 Knowledge Base 전체를 Terraform으로 정의합니다. 구성 요소는 S3 Vectors(vector bucket + index), KB service role, KB, S3 data source입니다. 아래는 마스킹한 예시명 기준 스니펫입니다.
 
@@ -367,11 +350,11 @@ resource "aws_bedrockagent_data_source" "docs_rag" {
 }
 ```
 
-### 7.1. hierarchical 1500 / 300 / 60을 고른 이유
+### 6.1. hierarchical 1500 / 300 / 60을 고른 이유
 
-청킹은 hierarchical로, parent 1500 / child 300 / overlap 60 토큰으로 설정했습니다. 검색은 좁게, 생성은 넓게 하기 위해서입니다. child(300)로 매칭 정밀도를 얻고, 반환은 parent(1500)로 받아 표나 조건 목록이 잘리지 않은 문맥을 생성 모델에 넘깁니다. 정책 문서는 "조건 나열 + 표" 구조라 작은 chunk만 주면 반쪽 답변이 됩니다. 파서가 이미 의미 단위(leaf 섹션)로 잘라 뒀으므로, 섹션 안에서의 추가 분할은 크기 기준으로 충분하고 semantic 청킹의 경계 탐지 이점은 중복입니다.
+청킹은 hierarchical로, parent 1500 / child 300 / overlap 60 토큰으로 설정했습니다. 검색은 좁게, 생성은 넓게 하기 위해서입니다. child(300)로 매칭 정밀도를 얻고, 반환은 parent(1500)로 받아 표나 조건 목록이 잘리지 않은 문맥을 생성 모델에 넘깁니다. 정책 문서는 "조건 나열 + 표" 구조라 작은 chunk만 주면 반쪽 답변이 됩니다. 파서가 이미 의미 단위(leaf 섹션)로 잘라 뒀으므로, 섹션 안을 더 나눌 때는 크기 기준으로 충분하고 semantic 청킹의 경계 탐지 이점은 중복입니다.
 
-### 7.2. 인덱스 immutable 함정 (실측)
+### 6.2. 인덱스 immutable 함정 (실측)
 
 - **증상**: metadata 실패(색인 파이프라인 섹션의 non-filterable 누락)를 고치려고 인덱스의 `non_filterable_metadata_keys`를 바꾼 뒤 `terraform apply`를 하자, s3vectors index 하나의 변경이 **KB와 data source까지 연쇄 replace**로 번졌습니다. apply 이후에는 data source가 404(`ResourceNotFoundException`)로 조회 자체가 안 됐습니다.
 - **원인**: S3 Vectors 인덱스는 사실상 immutable입니다. non-filterable 키 변경이 인덱스 replace를 유발하고, 그 인덱스를 참조하는 KB의 `index_arn`이 바뀌면서 KB가 destroy + create됩니다. KB가 destroy될 때 AWS가 하위 data source를 함께 삭제하는데, Terraform state에는 구 data source가 남아 있어 이후 update가 stale 404를 냅니다.
@@ -384,16 +367,16 @@ terraform apply   # data source 1개만 add
 
 교훈은 명확합니다. **인덱스 스키마(non-filterable 키 등)는 최초 생성 시 확정해야 합니다.** 나중에 바꾸면 KB/data source ID까지 바뀌어서, 그 ID를 참조하는 워크플로우와 권한 정책을 전부 갱신해야 하는 연쇄 작업이 따라옵니다.
 
-> 결과: S3 Vectors는 이 비용 구조에 잘 맞지만 semantic search만 지원합니다. hybrid search가 필수라면 이 설계가 아니라 다른 Customer-managed 벡터스토어를 선택해야 합니다.  
+> 결과: S3 Vectors는 이 비용 구조에 잘 맞지만 semantic search만 지원합니다. hybrid search가 필수라면 다른 Customer-managed 벡터스토어를 선택해야 합니다.  
 {: .prompt-info}
 
 ---
 
-## 8. n8n sync 워크플로우 (Lambda 없이)
+## 7. n8n sync 워크플로우 (Lambda 없이)
 
 설계에서는 n8n이 Bedrock을 호출하는 부분에 작은 Lambda wrapper를 두는 방식을 추천했습니다. IAM 권한과 재시도 로직을 Lambda에 몰아넣는다는 이유였습니다. 실제로는 **Lambda 없이 n8n 단독**으로 색인 파이프라인을 완성했습니다. n8n 러너 이미지에 boto3를 허용하고 IRSA를 붙이면 Lambda가 불필요했고, 오히려 n8n HTTP 노드의 SigV4가 특정 서비스에서 함정이 있어 boto3로 우회해야 했습니다.
 
-노드 체인은 다음과 같습니다.
+노드 체인은 이렇게 구성했습니다.
 
 ```text
 Sync Webhook (Header Auth)
@@ -406,7 +389,7 @@ Sync Webhook (Header Auth)
   -> Ingestion Done? (IF) -> Notify Slack
 ```
 
-### 8.1. n8n HTTP awsAssumeRole SigV4 함정 (실측)
+### 7.1. n8n HTTP awsAssumeRole SigV4 함정 (실측)
 
 n8n의 AWS credential(awsAssumeRole)로 SigV4 서명을 붙이는 HTTP 노드가 두 서비스에서 각각 다른 이유로 막혔습니다.
 
@@ -451,7 +434,7 @@ return [{"json": {"ingestionJobId": _job["ingestionJobId"], "status": _job["stat
 
 이 구조는 설계 글의 "Lambda wrapper 추천"을 뒤집는 근거가 됩니다. n8n에 boto3 허용과 IRSA만 있으면, 별도 배포 파이프라인/시크릿 관리/로그 조회를 새로 구성할 필요가 없습니다.
 
-### 8.2. Apps Script는 얇은 트리거로만
+### 7.2. Apps Script는 얇은 트리거로만
 
 문서 담당자가 색인을 갱신하는 진입점은 Google Docs 메뉴 버튼(Apps Script)입니다. 이 스크립트는 **문서 내용을 전송하지 않습니다.** `{docId, ts, triggeredBy}`만 웹훅으로 POST하고, 실제 추출은 n8n이 서비스 계정(SA)으로 Docs API를 호출해서 합니다.
 
@@ -465,9 +448,9 @@ Google Docs 메뉴 버튼 (Apps Script)
 
 ---
 
-## 9. ingestion 검증
+## 8. ingestion 검증
 
-### 9.1. ingestion statistics 읽는 법
+### 8.1. ingestion statistics 읽는 법
 
 `StartIngestionJob`은 비동기라 job이 끝날 때까지 상태를 폴링하고, 완료되면 통계를 확인합니다. `GetIngestionJob` 응답의 `statistics`가 핵심입니다.
 
@@ -479,11 +462,11 @@ Google Docs 메뉴 버튼 (Apps Script)
 
 최초 ingestion에서 `scanned`가 섹션 수 + 1이면 manifest가 딸려 들어간 것이고, `failed`가 전체 수와 같으면 metadata attributes 문제(S3 Vectors 한도)입니다. 두 증상 모두 앞선 섹션의 실측 사고와 직결됩니다.
 
-### 9.2. 증분 재색인 (실측)
+### 8.2. 증분 재색인 (실측)
 
-문서를 수정하고 재sync하면 전체가 아니라 **변경된 섹션만** 재색인됩니다. 실측에서 288개를 scanned했지만 재색인된 것은 147개였고, 경로가 바뀌지 않은 챕터는 자동으로 스킵됐습니다. S3 키가 docId 기반으로 안정적이고 섹션 경로가 유지되므로, Bedrock이 변경분만 감지해 임베딩 비용을 아낍니다. 전체 재임베딩 비용이 $0.1 미만인 작은 코퍼스라도, 증분 동작 덕에 잦은 문서 수정에서 색인이 빠르게 끝납니다.
+문서를 수정하고 재sync하면 **변경된 섹션만** 재색인됩니다. 실측에서 288개를 scanned했지만 재색인된 것은 147개였고, 경로가 바뀌지 않은 챕터는 자동으로 스킵됐습니다. S3 키가 docId 기반으로 안정적이고 섹션 경로가 유지되므로, Bedrock이 변경분만 감지해 임베딩 비용을 아낍니다. 전체 재임베딩 비용이 $0.1 미만인 작은 코퍼스라도, 증분 동작 덕에 잦은 문서 수정에서 색인이 빠르게 끝납니다.
 
-### 9.3. IF 폴링 regex 함정 (실측)
+### 8.3. IF 폴링 regex 함정 (실측)
 
 - **증상**: ingestion이 실제로는 이미 끝났는데 폴링 루프가 멈추지 않았고, 결국 "Task request timed out after 60 seconds"로 워크플로우가 죽었습니다.
 - **원인**: 완료 판정 IF 노드의 regex가 `COMPLETE,FAILED`(쉼표가 든 리터럴 문자열)였습니다. `FAILED` 상태를 매치하지 못해 Wait/Get 루프가 무한 반복했고, 러너가 고갈되어 timeout이 2차 증상으로 터졌습니다.
@@ -501,7 +484,7 @@ COMPLETE|FAILED
 
 ---
 
-## 10. Slack 연동: Slash Command 대신 멘션 + n8n Slack Trigger
+## 9. Slack 연동: Slash Command 대신 멘션 + n8n Slack Trigger
 
 기존 설계는 Slack Slash Command를 받아 3초 안에 ack를 반환하는 수신 Lambda를 두고, 서명 검증과 Bedrock 질의를 그 Lambda가 처리하는 구조였습니다. 실제로 구축하면서는 이 계층을 전부 걷어내고 n8n Slack Trigger 노드 하나로 대체했습니다.
 
@@ -519,7 +502,7 @@ n8n의 Slack Trigger 노드(`app_mention` 이벤트)는 이 세 가지를 노드
 @DocsBot 휴가는 며칠 전에 신청해야 하나요?
 ```
 
-### 10.1. 함정 1. 수동 webhook + 서명 검증은 구현 자체가 불가능
+### 9.1. 함정 1. 수동 webhook + 서명 검증은 구현 자체가 불가능
 
 - **증상**: 처음에는 범용 Webhook 노드로 Slack 이벤트를 받고, Python Code 노드에서 서명을 직접 검증하려 했습니다. Code 노드가 `import hmac`, `import hashlib`에서 바로 실패했습니다.
 - **원인**: n8n Python 러너 샌드박스는 stdlib import를 `datetime`, `json`, `time`만 허용합니다(task-runner-python 소스로 확정). HMAC-SHA256 서명 검증에 필요한 `hmac`, `hashlib`을 아예 import할 수 없습니다.
@@ -528,7 +511,7 @@ n8n의 Slack Trigger 노드(`app_mention` 이벤트)는 이 세 가지를 노드
 > Python Code 노드로 서명 검증을 직접 구현할 계획이라면, 러너 이미지의 허용 stdlib 목록부터 확인하세요. `hmac`/`hashlib`이 막혀 있으면 검증 로직 자체를 올릴 수 없습니다.  
 {: .prompt-warning}
 
-### 10.2. 리액션으로 처리 상태 노출
+### 9.2. 리액션으로 처리 상태 노출
 
 Slash Command의 응답 지연 대신, 멘션한 메시지에 봇이 리액션을 달아 처리 상태를 보여줍니다. 무응답 구간을 없애는 것이 목적입니다.
 
@@ -540,7 +523,7 @@ Slash Command의 응답 지연 대신, 멘션한 메시지에 봇이 리액션�
 
 접수 즉시 `:eyes:`를 달고, 답변을 스레드에 남긴 뒤 `:eyes:`를 제거하고 `:white_check_mark:`로 교체합니다. 중간에 어느 노드가 실패하면 `:eyes:`를 제거하고 `:x:`를 답니다.
 
-### 10.3. 함정 2. executionOrder v1은 병렬 분기 순서를 보장하지 않는다
+### 9.3. 함정 2. executionOrder v1은 병렬 분기 순서를 보장하지 않는다
 
 - **증상**: `:eyes:`와 `:white_check_mark:`가 동시에 남거나, `:eyes:` 제거가 동작하지 않는 것처럼 보였습니다.
 - **원인**: 처음에는 트리거 다음 노드에서 "Ack 리액션 분기"와 "Retrieve 분기"를 병렬로 뒀는데, n8n executionOrder v1은 분기 배열의 순서를 따르지 않습니다. Ack 분기가 전체 흐름이 끝난 뒤(+12초쯤) 맨 마지막에 실행돼, `:eyes:`가 붙기도 전에 제거 노드가 먼저 돌면서 지울 리액션이 없는 상태가 됐습니다.
@@ -572,7 +555,7 @@ Done Reaction (:white_check_mark: 추가)
 
 ---
 
-## 11. Retrieve + rerank + 외부 LLM
+## 10. Retrieve + rerank + 외부 LLM
 
 기존 설계는 `RetrieveAndGenerate` 한 번으로 검색과 생성을 함께 처리했습니다. 실제 구축에서는 이를 **Retrieve(검색 + rerank)** 와 **외부 LLM 생성**으로 분리했습니다.
 
@@ -581,11 +564,11 @@ Done Reaction (:white_check_mark: 추가)
 1. **생성 모델 자유**: `RetrieveAndGenerate`는 생성 모델이 Bedrock 모델로 묶입니다. 검색과 생성을 나누면 속도, 한국어 품질, 이미 보유한 유료 티어를 기준으로 생성 모델을 자유롭게 고를 수 있습니다.
 2. **근거 게이트 직접 제어**: 검색 점수가 임계에 못 미치면 생성을 아예 건너뛰고 "근거를 찾지 못했다"고 응답하는 로직을, 애플리케이션(Code 노드) 레벨에서 직접 넣을 수 있습니다.
 
-### 11.1. rerank가 필요한 이유
+### 10.1. rerank가 필요한 이유
 
 임베딩 cosine 점수만으로는 근거 임계 게이트를 세울 수 없습니다. 실측에서 cosine 상위 점수가 0.89~0.84로 좁게 뭉쳐, "이 질문은 답할 근거가 있다/없다"를 가르는 컷을 어디에 둘지 정할 수 없었습니다. rerank 점수축은 분별력이 큽니다. 같은 질의에서 rerank는 목표 섹션을 1위 0.89로 올리고 하위권을 0.30까지 떨어뜨려, 1위와 6위 사이가 0.59가량 벌어졌습니다. 근거 임계 게이트는 이 rerank 점수축에서만 의미가 있습니다.
 
-rerank는 별도 API 호출이 아니라 Retrieve 호출 안의 `rerankingConfiguration`으로 통합했습니다(모델 `cohere.rerank-v3-5`). 후보 25개를 뽑아 rerank로 상위 5개만 남깁니다.
+rerank는 Retrieve 호출 안의 `rerankingConfiguration`으로 통합했습니다(모델 `cohere.rerank-v3-5`). 후보 25개를 뽑아 rerank로 상위 5개만 남깁니다.
 
 | 파라미터 | 값 | 근거 |
 | :--- | :--- | :--- |
@@ -593,7 +576,7 @@ rerank는 별도 API 호출이 아니라 Retrieve 호출 안의 `rerankingConfig
 | `numberOfRerankedResults` (최종) | 5 | 최종 k는 LLM 입력 토큰과 직결 - 여기서 조절 |
 | 근거 임계 | rerank 1위 점수 기준 컷 | 컷 미달이면 생성 생략, 거절 응답 |
 
-### 11.2. 함정. rerank IAM 403 두 번
+### 10.2. 함정. rerank IAM 403 두 번
 
 - **증상 1**: 호출자 role(`docs-rag-role`)에 `bedrock:Rerank`를 줬는데도 403. CloudTrail의 세션명이 `BedrockReranking-*`였습니다.
 - **원인 1**: Retrieve에서 rerank를 쓸 때는 호출자 role과 **KB service role 모두** 권한이 필요합니다. 호출자 role에는 `bedrock:Retrieve`, `bedrock:Rerank`, `bedrock:InvokeModel`이, KB service role에는 `bedrock:Rerank`, `bedrock:InvokeModel`이 필요합니다. 호출자 role만 설정했으므로 Bedrock이 service role로 수행한 rerank에서 거부됐습니다.
@@ -660,11 +643,11 @@ _resp = _client.retrieve(
 
 ---
 
-## 12. 생성: 외부 LLM 호출과 thinking 함정
+## 11. 생성: 외부 LLM 호출과 thinking 함정
 
 생성 모델은 발췌 기반 QA에서 속도, 한국어 품질, 이미 보유한 유료 티어를 기준으로 골랐습니다. 여기서는 예시로 Gemini 3.5 Flash를 사용했지만, **어떤 LLM인지는 본질이 아닙니다.** 검색과 생성을 분리했기 때문에 Bedrock의 생성 모델로 바꿔도 동일한 구조가 그대로 성립합니다.
 
-### 12.1. 함정. thinking 토큰이 답변을 절단한다
+### 11.1. 함정. thinking 토큰이 답변을 절단한다
 
 - **증상**: 답변이 중간에 잘려 나왔습니다.
 - **원인**: thinking 모델은 사고 토큰이 `maxOutputTokens`를 잠식합니다. 실측에서 thinking에 983 토큰을 쓰고 답변은 37 토큰만 나온 채 `MAX_TOKENS`로 절단됐습니다.
@@ -683,16 +666,16 @@ _resp = _client.retrieve(
 > 발췌를 그대로 옮기는 QA처럼 추론 깊이가 얕은 작업에서는 thinking을 끄는 편이 낫습니다. thinking이 켜져 있으면 사고 토큰이 출력 한도를 먼저 소진해 답변이 잘립니다.  
 {: .prompt-tip}
 
-### 12.2. 프롬프트 원칙
+### 11.2. 프롬프트 원칙
 
 - 발췌 밖 내용은 추측하지 않고, 근거가 부족하면 "정책 문서에서 확인되지 않습니다"로 응답
 - 각 사실 뒤에 사용한 발췌 번호를 `[n]`으로 표기
 - 핵심 답 1~2문장 먼저, 이어서 조건/예외/한도 등 상세를 불릿으로
 - Slack 형식 지시(굵게 `*텍스트*`, 불릿 `- `). 다만 모델이 여전히 `**`를 뱉으므로 후처리에서 `replace`로 정리
 
-### 12.3. citation 조립과 링크 함정
+### 11.3. citation 조립과 링크 함정
 
-citation은 검색 결과 metadata의 `doc_url`(문서 heading 앵커 딥링크)과 `section_path`로 조립합니다. Slack 링크는 `<url|label>` 형식인데, label에 `>`가 들어가면 링크가 그 지점에서 조기 종료됩니다. `section_path`가 `상위 > 하위` 형태라 그대로 넣으면 링크가 깨져, 구분자를 middle dot으로 교체했습니다.
+citation은 검색 결과 metadata의 `doc_url`(문서 heading 앵커 딥링크)과 `section_path`로 조립합니다. Slack 링크는 `<url|label>` 형식인데, label에 `>`가 들어가면 링크가 그 지점에서 조기 종료됩니다. `section_path`가 `상위 > 하위` 형태라 그대로 넣으면 링크가 깨져, 구분자를 슬래시로 교체했습니다.
 
 ```python
 # section_path의 '>'가 Slack 링크를 끊으므로 구분자를 교체
@@ -704,7 +687,7 @@ _cites.append(f"[{_i2}] <{_h['doc_url']}|{_label}>")
 
 ---
 
-## 13. IAM 설계: 전용 role 체인
+## 12. IAM 설계: 전용 role 체인
 
 n8n은 여러 팀이 공용으로 쓰는 워크플로우 플랫폼입니다. n8n의 IRSA role에 Knowledge Base 권한을 직접 부여하면, 그 클러스터의 **모든 워크플로우가 KB를 호출할 수 있게** 됩니다. blast radius가 플랫폼 전체로 번지는 셈입니다.
 
@@ -738,9 +721,9 @@ AWS 자격증명은 정적 키 대신 IRSA + AssumeRole 체인으로만 흐르�
 
 ---
 
-## 14. 비용
+## 13. 비용
 
-비용 구조의 핵심은 **고정비가 작고 대부분 사용량에 비례**한다는 점입니다. S3 Vectors는 저장, 쓰기, query request, query 처리량, 반환 데이터에 각각 과금합니다. 현재 규모(수 MB, 작은 검색 결과)에서는 스토리지와 S3 Vectors query 비용이 작고, OpenSearch Serverless 같은 유휴 고정비가 없습니다.
+비용 구조는 **고정비가 작고 대부분이 사용량에 비례**합니다. S3 Vectors는 저장, 쓰기, query request, query 처리량, 반환 데이터에 각각 과금합니다. 현재 규모(수 MB, 작은 검색 결과)에서는 스토리지와 S3 Vectors query 비용이 작고, OpenSearch Serverless 같은 유휴 고정비가 없습니다.
 
 2026-07 단가 기준입니다.
 
@@ -775,7 +758,7 @@ AWS 자격증명은 정적 키 대신 IRSA + AssumeRole 체인으로만 흐르�
 
 ---
 
-## 15. 평가와 다음 단계
+## 14. 평가와 다음 단계
 
 정확도를 감으로 판단하지 않으려면 평가 질문셋이 필요합니다. 실사용 질문 10~20개로 골든 Q&A를 만들고, 다음 지표를 기록합니다.
 
@@ -786,7 +769,7 @@ AWS 자격증명은 정적 키 대신 IRSA + AssumeRole 체인으로만 흐르�
 | citation correctness | citation이 맞는 섹션을 가리킨 비율 |
 | unknown handling | 근거 없는 질문에 "확인되지 않습니다"로 답한 비율 |
 
-이 질문셋은 정확도 측정에서 그치지 않고 **실측 튜닝의 기준선**이 됩니다. 튜닝 대상은 다음과 같습니다.
+이 질문셋은 **실측 튜닝의 기준선**으로도 씁니다. 튜닝 대상은 다음과 같습니다.
 
 - top-k: 후보 수(`numberOfResults`)와 최종 수(`numberOfRerankedResults`)
 - 근거 임계값: rerank 점수 몇 점 아래를 거절 처리할지
@@ -794,11 +777,11 @@ AWS 자격증명은 정적 키 대신 IRSA + AssumeRole 체인으로만 흐르�
 
 ---
 
-## 16. 마무리
+## 15. 마무리
 
 설계 문서 시점의 그림과 완성 시점의 그림을 비교하면, 살아남은 것은 "Google Docs가 원본, S3가 배포 산출물, n8n이 자동화 계층"이라는 골격뿐입니다. PDF도 Lambda도 RetrieveAndGenerate도 구축 과정에서 실측에 밀려 사라졌습니다.
 
-이번 구축에서 얻은 교훈을 한 줄씩 남기면 다음과 같습니다.
+이번 구축에서 얻은 교훈을 한 줄씩 남깁니다.
 
 ```text
 문서 구조 품질이 검색 품질의 상한이다 - 파서는 보정 수단일 뿐
@@ -808,11 +791,9 @@ AWS 자격증명은 정적 키 대신 IRSA + AssumeRole 체인으로만 흐르�
 실행 플랫폼(n8n)의 제약은 문서가 아니라 실측으로 드러난다 - 작게 검증하며 전진
 ```
 
-평가 질문셋(골든 Q&A) 기반 튜닝 결과가 쌓이면 후속 글로 정리하겠습니다.
-
 ---
 
-## 17. Reference
+## 16. Reference
 
 - [AWS Docs - Amazon S3 Vectors with Bedrock Knowledge Bases](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-vectors-bedrock-kb.html)
 - [AWS Docs - Include metadata in a data source to improve knowledge base query](https://docs.aws.amazon.com/bedrock/latest/userguide/kb-metadata.html)

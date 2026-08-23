@@ -38,7 +38,7 @@ Claude Code, Codex, Hermes처럼 터미널에서 동작하는 Artificial Intelli
 - Hermes Desktop은 개인 작업 방식에 맞는 primary cockpit이 아니었습니다.
 - 승인 요청과 완료 알림이 여러 앱에 흩어져 중요한 신호가 묻힙니다.
 
-따라서 목표는 terminal emulator를 하나 더 고르는 것이 아닙니다. 다음 질문에 빠르게 답할 수 있는 운영 화면을 만드는 것입니다.
+그래서 목표를 terminal emulator 선택에서 운영 화면 설계로 옮겼습니다. 다음 질문에 빠르게 답하는 화면입니다.
 
 1. 지금 어떤 task가 실행 중입니까?
 2. 각 task의 repository, branch, worktree는 어디입니까?
@@ -46,7 +46,7 @@ Claude Code, Codex, Hermes처럼 터미널에서 동작하는 Artificial Intelli
 4. 어느 task가 파일을 쓸 권한을 갖고 있습니까?
 5. 앱이 닫히거나 MacBook이 재시작되면 무엇이 살아남고 무엇을 복구해야 합니까?
 
-이 글에서 **attention routing**은 사람이 다음 행동을 해야 하는 task만 빠르게 찾고, 그 task의 실제 작업 위치까지 안전하게 이동하는 운영 규칙을 뜻합니다. 단순 notification 수를 늘리는 방법이 아니라, task identity, write ownership, recovery evidence를 같은 흐름으로 연결하는 방법입니다.
+이 글에서 **attention routing**은 사람이 다음 행동을 해야 하는 task만 빠르게 찾고, 그 task의 실제 작업 위치까지 안전하게 이동하는 운영 규칙을 뜻합니다. notification 수를 늘리는 대신 task identity, write ownership, recovery evidence를 같은 흐름으로 연결합니다.
 
 이 관점에서는 Agentic Development Environment를 세 층으로 나누는 편이 명확합니다.
 
@@ -64,7 +64,7 @@ Claude Code, Codex, Hermes처럼 터미널에서 동작하는 Artificial Intelli
 
 ### 2.1. Task가 workspace의 기본 단위다
 
-agent 종류가 아니라 task를 기준으로 workspace를 만듭니다. 하나의 task workspace 안에서 필요한 agent, test shell, log pane을 함께 둡니다. Claude Code workspace와 Codex workspace를 별도로 만드는 방식은 도구 중심 분류이므로, 같은 task의 context가 다시 흩어질 수 있습니다.
+workspace는 agent 종류 대신 task를 기준으로 만듭니다. 하나의 task workspace 안에서 필요한 agent, test shell, log pane을 함께 둡니다. Claude Code workspace와 Codex workspace를 별도로 만드는 방식은 도구 중심 분류이므로, 같은 task의 context가 다시 흩어질 수 있습니다.
 
 ### 2.2. Attention 신호는 사람이 행동해야 할 때만 보낸다
 
@@ -88,44 +88,44 @@ workspace, group, tab, pane은 사람이 context를 정리하기 위한 UI 단�
 
 ## 3. 후보 도구와 trade-off
 
-이번 비교에서는 MacBook local environment만 다룹니다. Warp, JetBrains 계열 도구, iTerm2는 개인 선호에 따라 후보에서 제외했습니다. 이 제외는 기능의 우열에 대한 평가가 아니라 탐색 범위를 줄이기 위한 제약입니다.
+이번 비교에서는 MacBook local environment만 다룹니다. Warp, JetBrains 계열 도구, iTerm2는 개인 선호에 따라 후보에서 제외했습니다. 탐색 범위를 좁히려고 둔 제약이고, 기능을 평가한 결과는 아닙니다.
 
 ### 3.1. Ghostty 단독
 
 Ghostty는 macOS native UI, tab, split, secure input API를 지원합니다. 일상 shell과 fallback terminal로 사용하기에 적합합니다. 이미 Ghostty에 익숙하다면 별도의 terminal syntax를 학습하지 않고도 빠르게 작업할 수 있습니다.
 
-다만 이번 문제는 terminal rendering이 아니라 여러 agent의 task status와 attention routing입니다. Ghostty의 tab과 split만으로도 배치할 수 있지만, task가 늘면 tab 이름과 창 위치를 사람이 계속 관리해야 합니다. 따라서 Ghostty를 버리는 것이 아니라 역할을 fallback terminal로 좁혔습니다.
+다만 이번 문제는 terminal rendering보다 여러 agent의 task status와 attention routing에 걸려 있습니다. Ghostty의 tab과 split만으로도 배치할 수 있지만, task가 늘면 tab 이름과 창 위치를 사람이 계속 관리해야 합니다. 그래서 Ghostty는 버리지 않고 역할만 fallback terminal로 좁혔습니다.
 
 ### 3.2. cmux
 
-cmux는 Ghostty 기반 terminal에 vertical workspace sidebar, split pane, notification panel, command-line interface(CLI), socket application programming interface(API)를 결합한 macOS app입니다. workspace와 notification을 연결해 unread notification이 있는 workspace로 이동할 수 있다는 점이 이번 문제와 직접 맞닿아 있습니다. working directory와 Git branch는 workspace label이 아니라 terminal에서 확인해야 하는 실제 identity입니다.
+cmux는 Ghostty 기반 terminal에 vertical workspace sidebar, split pane, notification panel, command-line interface(CLI), socket application programming interface(API)를 결합한 macOS app입니다. workspace와 notification을 연결해 unread notification이 있는 workspace로 이동할 수 있다는 점이 이번 문제와 직접 맞닿아 있습니다. workspace label과 달리 working directory와 Git branch는 terminal에서 직접 확인하는 실제 identity입니다.
 
-선택 이유는 모든 기능이 더 우수해서가 아닙니다. task location과 attention signal을 한 화면에서 연결하는 비용이 가장 낮았기 때문입니다. 반대로 다음 trade-off도 있습니다.
+task location과 attention signal을 한 화면에서 연결하는 비용이 가장 낮아서 골랐습니다. 반대로 다음 trade-off도 있습니다.
 
 - macOS 전용이므로 cross-platform configuration을 그대로 재사용하기 어렵습니다.
 - 빠르게 개발되는 도구이므로 behavior와 shortcut은 version에 따라 달라질 수 있습니다.
 - workspace hierarchy와 session restore 개념을 정확히 이해하지 않으면 process persistence를 과대평가할 수 있습니다.
 - notification hook과 project-local command는 편리하지만, 실행되는 command와 노출되는 text를 검토해야 합니다.
 
-즉 cmux는 process supervisor나 security sandbox가 아니라 workspace와 attention을 관리하는 cockpit으로 채택합니다.
+cmux는 workspace와 attention을 관리하는 cockpit으로 채택합니다. process supervisor나 security sandbox 역할까지 맡기지는 않습니다.
 
 ### 3.3. tmux
 
 tmux는 terminal multiplexer server와 client를 분리합니다. client를 detach해도 server와 그 안의 program이 계속 실행되므로, terminal app을 닫아도 유지해야 하는 interactive process에 적합합니다.
 
-그러나 모든 agent를 tmux 안에 넣으면 cmux와 tmux 양쪽에 session, window, pane 개념이 생깁니다. shortcut layer가 겹치고 현재 위치를 파악하는 비용도 늘어납니다. 따라서 tmux는 다음 질문에 `yes`라고 답할 때만 사용합니다.
+그러나 모든 agent를 tmux 안에 넣으면 cmux와 tmux 양쪽에 session, window, pane 개념이 생깁니다. shortcut layer가 겹치고 현재 위치를 파악하는 비용도 늘어납니다. tmux는 다음 질문에 `yes`라고 답할 때만 사용합니다.
 
 > cmux를 지금 완전히 종료해도 이 interactive process가 반드시 계속 살아 있어야 합니까?  
 
 예를 들어 장시간 관찰해야 하는 local log tail, REPL, test watch, foreground dev server가 이에 해당할 수 있습니다. 반대로 native subagent, agent가 내부적으로 생성한 worker, 몇 분 안에 끝나는 one-shot analysis는 parent agent의 lifecycle과 task model로 관리하면 되므로 tmux가 필요하지 않습니다.
 
-tmux server도 local process입니다. MacBook이 reboot되거나 tmux server가 종료되면 session은 사라집니다. tmux는 app close boundary를 넘기기 위한 도구이지 reboot checkpoint가 아닙니다.
+tmux server도 local process입니다. MacBook이 reboot되거나 tmux server가 종료되면 session은 사라집니다. tmux는 app close boundary까지만 넘겨 줍니다. reboot checkpoint로는 쓸 수 없습니다.
 
 ### 3.4. Zellij
 
 Zellij는 session manager와 session resurrection을 기본 제공하고, layout, pane, tab, command를 serialize합니다. 종료된 session을 복원할 때 command를 자동 실행하지 않고 확인을 요구하는 기본 동작도 안전 측면에서 의미가 있습니다.
 
-그러나 resurrection은 process memory를 되살리는 것이 아니라 layout과 command를 기반으로 재구성하는 방식입니다. 이번 목표에서는 cmux의 macOS native sidebar와 agent attention 흐름을 우선했기 때문에 primary tool로 고르지 않았습니다. terminal 내부에서 더 풍부한 session UI와 declarative layout을 원하는 경우에는 충분히 검토할 대안입니다.
+그러나 resurrection은 process memory를 되살리지 않고 layout과 command로 화면을 다시 구성합니다. 이번 목표에서는 cmux의 macOS native sidebar와 agent attention 흐름을 우선했기 때문에 primary tool로 고르지 않았습니다. terminal 내부에서 더 풍부한 session UI와 declarative layout을 원하는 경우에는 충분히 검토할 대안입니다.
 
 ### 3.5. WezTerm
 
@@ -208,7 +208,7 @@ git status --short
 4. ownership을 나누기 어렵다면 별도 worktree와 branch를 만듭니다.
 5. writer가 바뀔 때는 현재 diff, 검증 결과, 남은 작업을 handoff한 뒤 기존 writer의 mutation을 중지합니다.
 
-native subagent는 parent agent가 관리하는 실행 단위입니다. 별도 tmux session을 강제하지 않습니다. one-shot worker도 결과를 반환하고 종료하는 것이 정상 lifecycle이므로 tmux를 추가하지 않습니다. tmux 사용 여부는 agent 종류가 아니라 process가 cmux 종료 이후에도 살아 있어야 하는지로 결정합니다.
+native subagent는 parent agent가 관리하는 실행 단위입니다. 별도 tmux session을 강제하지 않습니다. one-shot worker도 결과를 반환하고 종료하는 것이 정상 lifecycle이므로 tmux를 추가하지 않습니다. tmux 사용 여부는 process가 cmux 종료 이후에도 살아 있어야 하는지로 결정합니다.
 
 ### 5.3. Workspace group은 보안 경계가 아니다
 
@@ -320,7 +320,7 @@ Ghostty fallback에는 필요한 경우 macOS Secure Keyboard Entry를 사용합
 
 ## 8. 1주 practical pilot
 
-처음부터 모든 workflow를 이전하지 않고 1주 동안 실제 task로 검증합니다. pilot의 목적은 cmux 사용 시간을 늘리는 것이 아니라 task discovery time과 missed attention, writer collision을 줄이는지 측정하는 것입니다.
+처음부터 모든 workflow를 이전하지 않고 1주 동안 실제 task로 검증합니다. pilot에서는 task discovery time과 missed attention, writer collision이 줄어드는지 측정합니다.
 
 ### 8.1. Day 1: Baseline 수집
 
@@ -443,13 +443,13 @@ tmux ls
 
 ## 10. 마무리
 
-여러 AI 코딩 에이전트를 생산적으로 쓰기 위해 필요한 것은 더 많은 terminal pane이 아니라 명확한 task identity, attention routing, write ownership, recovery boundary입니다.
+여러 AI 코딩 에이전트를 생산적으로 쓰려면 terminal pane 개수보다 명확한 task identity, attention routing, write ownership, recovery boundary가 필요합니다.
 
 이번 MacBook local design에서는 cmux를 primary workspace와 attention cockpit으로 선택했습니다. Ghostty는 신뢰할 수 있는 fallback terminal로 남기고, tmux는 cmux 종료 후에도 유지해야 하는 장기 interactive process에만 사용합니다. native subagent와 one-shot worker에는 tmux를 요구하지 않습니다.
 
-가장 중요한 운영 원칙은 복원 기능을 과대평가하지 않는 것입니다. cmux는 layout과 metadata를 되살리고, 지원되는 agent는 native session을 resume할 수 있습니다. 그러나 임의의 live process를 checkpoint하지 않습니다. tmux도 local server가 살아 있는 동안만 process를 유지하며 MacBook reboot를 넘지 못합니다. agent resume은 context recovery이고 live execution checkpoint가 아닙니다.
+무엇보다 복원 기능을 과대평가하지 않아야 합니다. cmux는 layout과 metadata를 되살리고, 지원되는 agent는 native session을 resume할 수 있습니다. 그러나 임의의 live process를 checkpoint하지 않습니다. tmux도 local server가 살아 있는 동안만 process를 유지하며 MacBook reboot를 넘지 못합니다. agent resume은 context recovery이며 live execution checkpoint까지 대신하지 않습니다.
 
-마지막으로 workspace group, 이름, 색상은 실수를 줄이는 organization layer입니다. 보안 경계는 아닙니다. DevSecOps 관점의 Agentic Development Environment는 보기 좋은 cockpit에서 끝나지 않고, 최소 권한, secret 분리, single-writer rule, 검증 가능한 recovery runbook까지 포함할 때 비로소 운영 가능한 환경이 됩니다. 매 task를 시작할 때는 위치를 확인하고 writer를 지정하며, 사람이 행동해야 할 상태만 알리고, 종료할 때는 diff와 검증 결과를 기록합니다. 일주일 pilot의 측정값이 task discovery, missed attention, writer collision을 줄이지 못한다면 tool을 더 겹치기보다 구조를 단순화하는 편이 낫습니다.
+workspace group, 이름, 색상은 실수를 줄이는 organization layer입니다. 보안 경계는 아닙니다. DevSecOps 관점의 Agentic Development Environment는 보기 좋은 cockpit에서 끝나지 않고, 최소 권한, secret 분리, single-writer rule, 검증 가능한 recovery runbook까지 갖춰야 운영할 수 있습니다. task를 시작할 때는 위치를 확인하고 writer를 지정하며, 사람이 행동해야 할 상태만 알리고, 종료할 때는 diff와 검증 결과를 기록합니다. 일주일 pilot의 측정값이 task discovery, missed attention, writer collision을 줄이지 못한다면 tool을 더 겹치기보다 구조를 단순화하는 편이 낫습니다.
 
 ---
 

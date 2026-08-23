@@ -11,15 +11,15 @@ image:
 
 `CloudNet@` Gasida님이 진행하는 `CI/CD + ArgoCD + Vault Study` 를 진행하며 학습한 내용을 공유합니다.
 
-*O'Reilly GitOps Cookbook* 의 3장에 해당 하는 **Container 개념과 Container Image Build** 방식에 대해 알아봅니다.
+*O'Reilly GitOps Cookbook* 의 3장에 해당하는 **Container 개념과 Container Image Build** 방식을 알아봅니다.
 
 ---
 
 ## 1. Container란?
 
-Container는 **애플리케이션을 배포 목적으로 패키징**할 때 널리 사용되는 표준형식입니다. 즉, 실행에 필요한 코드, 라이브러리, 런타임, 설정 파일 등을 하나의 독립된 단위로 묶어, **어디서나 동일한 환경에서 실행되도록 보장하는 기술**입니다. 해당 기술은 과거 개발 환경과 운영 환경의 불일치로 인해 동일한 App이 개발 환경에서는 동작하지만, 운영 환경에서는 동작하지 않는 문제를 해결하기 위한 목적으로 만들어졌습니다.
+Container는 **애플리케이션을 배포 목적으로 패키징**할 때 널리 사용되는 표준형식입니다. 실행에 필요한 코드, 라이브러리, 런타임, 설정 파일 등을 하나의 독립된 단위로 묶어, **어디서나 동일한 환경에서 실행되도록 보장하는 기술**입니다. 해당 기술은 과거 개발 환경과 운영 환경의 불일치로 동일한 App이 개발 환경에서는 동작하지만 운영 환경에서는 동작하지 않는 문제를 해결하려고 만들어졌습니다.
 
-현재 대부분의 Container는 **OCI(Open Container Initiative) 표준**에 맞게 생성 됩니다. 따라서 서로 다른 운영체제, 공급업체, 플랫폼 또는 클라우드 사이에서의 이식성과 상호 운용성을 보장합니다. 즉 한번 빌드된 Container Image는 어떤 인프라 환경에서도 동일하게 동작합니다.
+현재 대부분의 Container는 **OCI(Open Container Initiative) 표준**에 맞게 생성됩니다. 이 표준이 서로 다른 운영체제, 공급업체, 플랫폼, 클라우드 사이에서 이식성과 상호 운용성을 보장하므로, 한번 빌드된 Container Image는 어떤 인프라 환경에서도 동일하게 동작합니다.
 
 ### 1.1. OCI(Open Container Initiative) 표준의 구성
 
@@ -31,7 +31,7 @@ Container는 **애플리케이션을 배포 목적으로 패키징**할 때 널�
 
 ### 1.2. Container Image Layers
 
-Container Image는 아래 그림과 같은 **계층 구조(layered structure)** 를 갖고 있으며, 새로운 변경이 적용될 때마다 해당 변경사항에 대한 Layer가 하나씩 추가로 커밋(commit) 됩니다. 즉, 각 명령(`RUN`, `COPY`, `ADD` 등)이 실행될 때마다 새로운 레이어가 생성되어 누적됩니다.
+Container Image는 아래 그림과 같은 **계층 구조(layered structure)** 를 이루며, 새로운 변경이 적용될 때마다 그 변경사항을 담은 Layer가 하나씩 추가로 커밋(commit) 됩니다. 명령(`RUN`, `COPY`, `ADD` 등)이 하나 실행될 때마다 레이어 하나가 생성되어 누적됩니다.
 
 이러한 구조 덕분에 컨테이너 이미지는 **효율적인 버전 관리와 재사용**이 가능합니다. 하위 레이어(Base Image 등)는 변경되지 않으면 다시 빌드할 필요가 없고, 변경된 부분만 새로운 레이어로 추가되어 최종 이미지를 구성합니다.
 
@@ -66,7 +66,7 @@ git clone https://github.com/gitops-cookbook/chapters
 
 ### 2.2. Docker Hub 계정 준비
 
-Docker Hub는 Docker Image 원격 저장소입니다. 사용 방법은 아래 링크를 통해 확인할 수 있습니다.
+Docker Hub는 Docker Image 원격 저장소입니다. 사용 방법은 아래 링크에서 확인합니다.
 
 - Docker Hub Quick Start - <https://docs.docker.com/docker-hub/quickstart/>
 
@@ -219,7 +219,7 @@ docker inspect kind | jq
 
 ## 3. Docker를 사용한 Container Image Build
 
-가장 널리 사용되는 컨테이너 엔진인 **Docker**를 사용해 기본 OS 위에 런타임, 라이브러리, 애플리케이션 등의 **레이어(layer)** 를 쌓아 올려 하나의 패키지로 묶는 방식입니다. 백그라운드에서 **Docker Daemon**이라는 프로세스가 실행되며, 사용자는 CLI나 SDK를 통해 이 데몬과 상호작용합니다. 컨테이너 이미지는 `Dockerfile`이라는 **manifest 파일**에 정의된 명령어(`FROM`, `RUN`, `COPY`, `CMD` 등)를 기반으로 빌드됩니다. Docker 방식은 직관적이고 친숙하지만, **데몬 권한이 필요한 구조**이므로 보안상 제약이 생길 수 있습니다.
+가장 널리 사용되는 컨테이너 엔진인 **Docker**를 사용해 기본 OS 위에 런타임, 라이브러리, 애플리케이션 등의 레이어(layer)를 쌓아 올려 하나의 패키지로 묶는 방식입니다. 백그라운드에서 Docker Daemon이라는 프로세스가 실행되며, 사용자는 CLI나 SDK로 이 데몬과 상호작용합니다. 컨테이너 이미지는 `Dockerfile`이라는 manifest 파일에 정의된 명령어(`FROM`, `RUN`, `COPY`, `CMD` 등)대로 빌드됩니다. Docker 방식은 직관적이고 친숙하지만 데몬 권한이 필요한 구조이므로 보안상 제약이 생길 수 있습니다.
 
 ### 3.1. Docker를 사용한 Container Image Build 흐름
 
@@ -402,11 +402,11 @@ docker rm -f myweb
 
 ## 4. Docker가 필요 없는 Jib을 사용한 Container Image Build (dockerless)
 
-**Jib**은 Google이 개발한 **Dockerless** 빌드 도구로, 로컬에 Docker Daemon을 설치하지 않아도 이미지를 만들 수 있습니다. Java 기반 애플리케이션을 대상으로 설계되어 **Maven** 또는 **Gradle** 플러그인으로 쉽게 통합할 수 있습니다. Jib은 애플리케이션을 직접 **OCI 이미지 포맷**으로 변환하여, **CI/CD 환경에서도 Docker 설치 없이** 레지스트리에 푸시할 수 있습니다. 즉, Jib은 **Java 개발자에게 최적화된 Dockerless 이미지 빌드 솔루션**입니다.
+**Jib**은 Google이 개발한 Dockerless 빌드 도구로, 로컬에 Docker Daemon을 설치하지 않아도 이미지를 만듭니다. Java 기반 애플리케이션을 대상으로 설계되어 Maven 또는 Gradle 플러그인으로 통합합니다. 애플리케이션을 곧바로 OCI 이미지 포맷으로 변환하므로, CI/CD 환경에서도 Docker 설치 없이 레지스트리에 푸시할 수 있습니다.
 
 ### 4.1. Docker가 필요 없는 Jib을 사용한 Container Image Build (dockerless) 빌드 흐름
 
-Jib의 경우, 아래와 같이 Dockerfile이 필요 없이 Build 단계에서 Container Image Registry로 Container Image Push까지 처리합니다. 따라서 개발자의 경우 개발에만 집중 할 수 있다는 장점이 있습니다. 또한 애플리케이션을 종속 항목, 리소스, 클래스 등 별개의 레이어로 구성하고 Docker Image Layer Caching을 활용하며 변경사항만 다시 빌드함으로써, 빌드를 빠르게 유지합니다. Jib 레이어 구성과 작은 기본 이미지는 전체 이미지를 작게 유지하여 성능과 휴대성을 향상시킵니다.
+Jib은 아래와 같이 Dockerfile 없이 Build 단계에서 Container Image Registry로 Container Image Push까지 처리하므로, 개발자는 개발에만 집중합니다. 애플리케이션을 종속 항목, 리소스, 클래스 등 별개의 레이어로 구성하고 Docker Image Layer Caching을 활용해 변경사항만 다시 빌드하므로 빌드가 빠릅니다. Jib 레이어 구성과 작은 기본 이미지는 전체 이미지를 작게 유지하여 성능과 이식성을 향상시킵니다.
 
 ![Docker Build Workflow](/assets/img/ci-cd/ci-cd-study/docker-build-workflow.webp)
 > Docker Build Workflow  
@@ -579,9 +579,9 @@ docker rm -f myweb2
 
 ## 5. Buildah를 사용한 Container Image Build (daemonless)
 
-**Buildah**는 Red Hat이 개발한 **Daemonless 빌드 도구**로, 백그라운드 프로세스 없이 직접 컨테이너 이미지를 생성할 수 있습니다. 특정 언어나 SDK에 종속되지 않으며, 명령형 CLI를 통해 이미지의 각 단계를 세밀하게 제어할 수 있습니다. `buildah bud` 명령을 사용하면 기존 Dockerfile로도 이미지를 빌드할 수 있습니다. **Rootless 모드**를 지원하므로 CI/CD나 보안이 중요한 환경에서 자주 사용됩니다.
+**Buildah**는 Red Hat이 개발한 Daemonless 빌드 도구로, 백그라운드 프로세스 없이 직접 컨테이너 이미지를 생성합니다. 특정 언어나 SDK에 종속되지 않으며, 명령형 CLI로 이미지의 각 단계를 세밀하게 제어합니다. `buildah bud` 명령을 사용하면 기존 Dockerfile로도 이미지를 빌드할 수 있습니다. Rootless 모드를 지원하므로 CI/CD나 보안이 중요한 환경에서 자주 사용됩니다.
 
-또한 Buildah는 Container Image를 처음부터 새로 만들 수도 있고, Dockerfile에서 생성할 수도 있습니다. 또한 Buildah는 Container Image를 밑바닥부터 새로 만드는 기능을 지원하므로, Dockerfile의 `From scratch` 실행 결과 와 비슷한 빈 레이어를 생성 할 수 있습니다. 해당 기능은 아래 그림과 같이 Application을 실행하는데 필요한 패키지만 포함하는 매우 가벼운 이미지를 만드는 데 유용합니다.
+Buildah는 Container Image를 처음부터 새로 만들 수도 있고, Dockerfile에서 생성할 수도 있습니다. 밑바닥부터 새로 만들 때는 Dockerfile의 `From scratch` 실행 결과와 비슷한 빈 레이어가 생깁니다. 해당 기능은 아래 그림과 같이 Application을 실행하는 데 필요한 패키지만 포함하는 가벼운 이미지를 만들 때 유용합니다.
 
 ![Buildah Scratch](/assets/img/ci-cd/ci-cd-study/buildah-scratch.webp)
 
@@ -813,7 +813,7 @@ buildah push docker.io/kkankkandev/gitops-website docker.io/kkankkandev/gitops-w
 
 ## 6. Buildpack을 사용한 Container Image Build (daemonless)
 
-**Buildpack**는 소스 코드를 분석하여 자동으로 컨테이너 이미지를 만들어주는 **Daemonless 도구**입니다. Dockerfile 없이도 동작하며, 언어별 런타임과 빌드 도구를 자동으로 감지합니다. 원래 `Heroku`에서 시작되어 **Cloud Native Buildpack (CNB)** 로 발전했으며, 현재 **Google**, **VMware**, **Salesforce** 등이 주도하고 있습니다. 대표 구현체로는 **Paketo Buildpack**와 **Google Buildpack**가 있습니다. Buildpack은 개발자가 Dockerfile을 직접 작성하지 않아도 되므로 **개발 생산성 향상**에 큰 도움이 됩니다.
+**Buildpack**는 소스 코드를 분석하여 자동으로 컨테이너 이미지를 만들어주는 Daemonless 도구입니다. Dockerfile 없이도 동작하며, 언어별 런타임과 빌드 도구를 자동으로 감지합니다. 원래 `Heroku`에서 시작되어 Cloud Native Buildpack(CNB)으로 발전했으며, 현재 Google, VMware, Salesforce 등이 주도하고 있습니다. 대표 구현체로는 Paketo Buildpack와 Google Buildpack가 있습니다. 개발자가 Dockerfile을 직접 작성하지 않으므로 개발 생산성이 올라갑니다.
 
 Buildpack은 Dockerfile 없이도 Application Source에서 OCI 호환 컨테이너 이미지를 생성할 수 있습니다.
 
@@ -823,7 +823,7 @@ Buildpack은 Dockerfile 없이도 Application Source에서 OCI 호환 컨테이�
 
 ### 6.1. Buildpack Mechanism
 
-Buildpack은 Mechanism은 아래 두 단계로 구성됩니다.
+Buildpack Mechanism은 아래 두 단계로 구성됩니다.
 
 - **탐지** Detection
   - Buildpack은 **소스 코드를 탐색**하여 어떤 프로그래밍 언어 또는 프레임워크가 사용되는지 파악하고 (가령 POM, NPM 파일, Python requirements 등) 해당 소스 코드 빌드에 **가장 적합한 Buildpack을 선정**한다.
@@ -945,7 +945,7 @@ docker rmi -f $(docker images -aq) 2>/dev/null || true
 
 ## 7. Shipwright와 Kaniko를 사용한 Kubernetes 기반 Container Image Build
 
-Kubernetes는 기본적으로 이미지 빌드 기능을 내장하고 있지 않지만, 외부 도구와 연동하여 빌드 기능을 확장할 수 있습니다. **Shipwright**는 Kubernetes에서 컨테이너 이미지를 빌드하기 위한 **오픈 소스 프레임워크**로, 다양한 빌드 엔진을 **추상화 계층(abstraction layer)** 으로 통합합니다. 내부적으로 **Kaniko**, **Buildah**, **Buildpack** 등을 백엔드 빌더로 활용할 수 있습니다. 특히 **Kaniko**는 Pod 내에서 **Docker Daemon 없이(Daemonless)** 이미지를 빌드할 수 있어, 완전한 **클라우드 네이티브 빌드 환경**을 제공합니다.
+Kubernetes는 이미지 빌드 기능을 내장하지 않지만, 외부 도구와 연동하여 빌드 기능을 확장할 수 있습니다. **Shipwright**는 Kubernetes에서 컨테이너 이미지를 빌드하는 오픈 소스 프레임워크로, 다양한 빌드 엔진을 추상화 계층(abstraction layer)으로 통합합니다. 내부적으로 Kaniko, Buildah, Buildpack 등을 백엔드 빌더로 활용합니다. 특히 Kaniko는 Pod 내에서 Docker Daemon 없이(Daemonless) 이미지를 빌드할 수 있어, 클라우드 네이티브 빌드 환경을 제공합니다.
 
 ### 7.1. Shipwright 과제 및 풀이
 

@@ -15,9 +15,9 @@ image:
 
 ## 1. Karpenter란?
 
-최근 **Weasel** 프로젝트를 진행하면서 **Elastic Kubernetes Service(EKS)**를 사용하게 되었고. **Horizontal Pod Autoscaler(HPA)**를 사용해 고가용성을 보완하려 노력했습니다. 하지만 **HPA**만 사용해서는 트래픽이 급증하고 Node의 리소스 사용량이 한계치에 다다르게 되면 더 이상 사용자에게 서비스를 원활하게 제공할 수 없을 것입니다. 따라서 **Weasel** 프로젝트에 AWS에서 개발한 오픈 소스의 고성능 **Kubernetes Cluster Autoscaler**인 **Karpenter**를 도입을 결정짓게 되었습니다.
+최근 Weasel 프로젝트에서 Elastic Kubernetes Service(EKS)를 사용하면서 Horizontal Pod Autoscaler(HPA)로 고가용성을 보완했습니다. 하지만 HPA만으로는 트래픽이 급증해 Node의 리소스 사용량이 한계치에 다다르면 사용자에게 서비스를 원활하게 제공할 수 없습니다. Weasel 프로젝트에 AWS가 개발한 오픈 소스 고성능 Kubernetes Cluster Autoscaler인 Karpenter를 도입하기로 결정했습니다.
 
-해당 포스트에서는 **Karpenter**를 **Weasel**에 어떻게 적용했고, 어떤 문제를 겪었으며 어떻게 해결했는지에 대해 다룹니다.
+Karpenter를 Weasel에 적용하는 과정에서 겪은 문제와 해결 방법을 정리했습니다.
 
 > **TL;DR**  
 > - HPA만으로는 Node 리소스가 한계에 닿는 순간 Pod를 더 띄울 자리가 없어지므로, Node 자체를 늘리는 계층이 따로 필요합니다.  
@@ -29,21 +29,21 @@ image:
 
 ## 2. Cluster Autoscaler(CA) VS Karpenter
 
-Kubernetes의 클러스터 오토스케일링은 클러스터 내의 리소스를 자동으로 관리하여 애플리케이션의 가용성과 성능을 유지하는 데 중요한 역할을 합니다. AWS에서는 두 가지 주요 오토스케일링 도구를 제공합니다. **Cluster Autoscaler(CA)**와 **Karpenter**입니다.
+Kubernetes의 클러스터 오토스케일링은 클러스터 리소스를 자동으로 관리해 애플리케이션의 가용성과 성능을 유지합니다. AWS 환경에서 쓰는 오토스케일링 도구는 Cluster Autoscaler(CA)와 Karpenter입니다.
 
 ### 2.1. Cluster Autoscaler(CA)
 
-**Cluster Autoscaler(CA)**는 Kubernetes 생태계에서 널리 사용되고 있습니다. 또한 안정성과 신뢰성이 높으며 **Auto Scaling Group(ASG)**과 통합되어 사용할 수 있다는 장점이 있습니다. **CA**는 **ASG** 기반으로 동작하며 Pod가 지속적으로 할당에 실패하면 **ASG**의 Desired Capacity 값을 수정하여 Worker Node의 개수를 증가시키는 방식으로 Auto Scaling이 이루어집니다. 하지만 **ASG**를 기반으로 동작하기 때문에 사전에 정의된 노드 그룹의 인스턴스 타입만을 사용해야 하며, 노드를 추가하거나 제거하는 데 시간이 오래 걸린다는 단점이 있습니다.
+**Cluster Autoscaler(CA)**는 Kubernetes 생태계에서 널리 쓰이며 안정성과 신뢰성이 높고 Auto Scaling Group(ASG)과 통합해 쓸 수 있습니다. CA는 ASG 기반으로 동작합니다. Pod가 지속적으로 할당에 실패하면 ASG의 Desired Capacity 값을 수정해 Worker Node 개수를 늘립니다. 다만 ASG에 사전 정의된 노드 그룹의 인스턴스 타입만 쓸 수 있고 노드를 추가하거나 제거하는 데 시간이 오래 걸립니다.
 
 ### 2.2. Karpenter
 
-**Karpenter**는 AWS에서 제공하는 Kubernetes Cluster의 자동 노드 프로비저닝 도구입니다. **Karpenter**는 Pod가 스케줄링에 실패할 시 즉시 새로운 노드를 프로비저닝하며 다양한 인스턴스 타입을 지원하며, 클러스터의 리소스 요구사항에 맞는 최적의 인스턴스 타입을 선택하여 비용 효율성을 높일 수 있습니다. 또한 필요에 따라 Spot 인스턴스, On-Demand 인스턴스를 선택할 수 있습니다. 하지만 **Karpenter**는 AWS에 종속적이며, **CA**에 비해 상대적으로 성숙도와 안정성이 부족할 수 있다는 단점이 있습니다.
+**Karpenter**는 AWS에서 제공하는 Kubernetes Cluster의 자동 노드 프로비저닝 도구입니다. Pod가 스케줄링에 실패하면 즉시 새 노드를 프로비저닝하고, 다양한 인스턴스 타입 중에서 클러스터의 리소스 요구사항에 맞는 타입을 골라 비용 효율성을 높입니다. Spot 인스턴스와 On-Demand 인스턴스도 필요에 따라 선택합니다. 다만 AWS에 종속적이고 CA보다 성숙도와 안정성이 떨어질 수 있습니다.
 
 ---
 
 ## 3. Karpenter 선택 이유
 
-**Weasel** 프로젝트에서는 현재 **EKS**를 사용하고 있으며 그 외 ECR, RDS, S3, Route53, CloudFront, NAT Gateway 등의 AWS 서비스를 사용하고 있습니다. 고가용성을 고려한 아키텍처 설계 및 구축도 중요하지만 고가용성을 고집하게 되면 계획보다 많은 클라우드 인프라 유지 비용이 발생하게 됩니다. 따라서 고가용성은 향상시키며 추가로 지출되는 비용을 최소로 해야 했고, Karpenter의 장점인 다양한 인스턴스 타입 지원, 클러스터의 리소스 요구사항에 맞는 최적의 인스턴스 타입 선택은 매력적으로 다가왔습니다. 추가로 안정적으로 서비스를 제공하기 위해서는 트래픽이 급증했을 때 무엇보다 노드가 확장되는 속도가 중요했기 때문에 **Cluster Autoscaler(CA)**와 **Karpenter** 중 **Karpenter를** 선택하게 되었습니다.
+Weasel 프로젝트는 EKS와 함께 ECR, RDS, S3, Route53, CloudFront, NAT Gateway 등의 AWS 서비스를 사용합니다. 고가용성을 고려한 아키텍처 설계와 구축도 중요하지만 고가용성만 고집하면 계획보다 많은 클라우드 인프라 유지 비용이 나갑니다. 고가용성은 올리면서 추가 지출은 최소로 잡아야 했고, 다양한 인스턴스 타입 지원과 클러스터의 리소스 요구사항에 맞는 최적의 인스턴스 타입 선택이라는 Karpenter의 장점이 여기에 들어맞았습니다. 트래픽이 급증했을 때 노드가 확장되는 속도도 중요했기 때문에 Cluster Autoscaler(CA)와 Karpenter 중 Karpenter를 선택했습니다.
 
 ---
 
@@ -51,7 +51,7 @@ Kubernetes의 클러스터 오토스케일링은 클러스터 내의 리소스�
 
 [Migrating from Cluster Autoscaler](https://karpenter.sh/docs/getting-started/migrating-from-cas/)
 
-Karpenter 공식 문서를 참고하여 최신 버전의 0.37.0 버전을 설치하는 과정을 공유하겠습니다.
+Karpenter 공식 문서를 참고해 최신 버전인 0.37.0을 설치합니다.
 
 ### 4.1. 준비 도구
 
@@ -463,7 +463,7 @@ spec:
     {"level":"INFO","time":"2024-08-07T19:23:44.052Z","logger":"controller","message":"registered nodeclaim","commit":"490ef94","controller":"nodeclaim.lifecycle","controllerGroup":"karpenter.sh","controllerKind":"NodeClaim","NodeClaim":{"name":"default-gqq5d"},"namespace":"","name":"default-gqq5d","reconcileID":"34f52f10-0570-4601-b4da-4db8900c2eae","provider-id":"aws:///us-east-1b/i-0cf1182591adb49e6","Node":{"name":"ip-10-10-210-178.ec2.internal"}}
     {"level":"INFO","time":"2024-08-07T19:23:56.783Z","logger":"controller","message":"initialized nodeclaim","commit":"490ef94","controller":"nodeclaim.lifecycle","controllerGroup":"karpenter.sh","controllerKind":"NodeClaim","NodeClaim":{"name":"default-gqq5d"},"namespace":"","name":"default-gqq5d","reconcileID":"b66732cf-5049-460e-887d-843893d425c7","provider-id":"aws:///us-east-1b/i-0cf1182591adb49e6","Node":{"name":"ip-10-10-210-178.ec2.internal"},"allocatable":{"cpu":"1930m","ephemeral-storage":"18242267924","hugepages-1Gi":"0","hugepages-2Mi":"0","memory":"3388300Ki","pods":"17"}}
     ```
-    > 로그를 통해 karpenter가 정상적으로 동작하는 것을 확인할 수 있으며, 다음과 같이 Karpenter가 노드를 프로비저닝하는 방식을 확인할 수 있습니다.
+    > 로그에서 karpenter가 정상 동작하는 것을 확인했습니다. Karpenter가 노드를 프로비저닝하는 순서는 다음과 같습니다.
     {: .prompt-info}
 
     1. 프로비저닝 가능한 Pod 발견
@@ -477,7 +477,7 @@ spec:
 
 ## 8. 마무리
 
-블로그, 과거 문서들을 참고하며 Karpenter를 구축하려 했지만, 해당 내용은 Helm Chart의 변수, Karpenter가 사용하는 정책 등이 달랐기 때문에 최신 버전의 Karpenter 구축에는 적합하지 않아 생각보다 많은 우여곡절이 있었습니다. 간편하게 누군가가 정리해놓은 글을 참고하여 원하는 작업을 수행할 수도 있지만, 가장 확실한 정답은 공식문서에 있다는 것을 다시 한번 상기시키게 되는 계기가 되었습니다. 무엇보다 해당 경험을 통해 Karpenter가 동작하는 데에는 어떤 구성요소가 필요한지, Karpenter는 어떤 방식으로 노드를 Scaling하는지 확인할 수 있었습니다.
+블로그와 과거 문서를 참고해 Karpenter를 구축하려 했지만 그 글들은 Helm Chart의 변수와 Karpenter가 사용하는 정책이 달라 최신 버전 구축에는 적합하지 않았습니다. 그래서 생각보다 많은 우여곡절을 겪었습니다. 누군가 정리해놓은 글을 참고해 원하는 작업을 끝낼 때도 있지만 가장 확실한 정답은 공식문서에 있었습니다. 이번 구축으로 Karpenter가 동작하는 데에는 어떤 구성요소가 필요한지, Karpenter가 어떤 방식으로 노드를 Scaling하는지 확인했습니다.
 
 ---
 

@@ -9,9 +9,9 @@ image:
   path: /assets/img/project/rememberme/rememberme_app.webp
 ---
 
-2024년 11월부터 12월까지 약 2개월간 **Remember Me** 프로젝트를 진행했습니다. 해당 서비스는 **AWS Lambda**와 **Amazon API Gateway**를 기반으로 동작하는 서버리스(Serverless) 환경에서, 사용자가 단어를 외우고 관리할 수 있는 웹 애플리케이션입니다.
+2024년 11월부터 12월까지 약 2개월간 **Remember Me** 프로젝트를 진행했습니다. 이 서비스는 AWS Lambda와 Amazon API Gateway 기반의 서버리스(Serverless) 웹 애플리케이션으로, 사용자가 단어를 외우고 관리합니다.
 
-인프라 팀원으로서 **HCP Terraform(Terraform Cloud)을 이용한 AWS 인프라 프로비저닝**, **GitHub Actions를 통한 CI/CD 파이프라인 구축**, 그리고 **로그 수집,분석 환경(ELK Stack) 설정**에 주력했습니다.
+인프라 팀원으로서 HCP Terraform(Terraform Cloud)으로 AWS 인프라를 프로비저닝하고, GitHub Actions로 CI/CD 파이프라인을 만들고, 로그 수집과 분석 환경(ELK Stack)을 설정하는 일을 맡았습니다.
 
 > **GitHub**: <https://github.com/vocaAppServerless>  
 > **Application Demo**: <https://youtu.be/y15djTDnXYg>  
@@ -53,13 +53,13 @@ image:
 
 ## 3. Infra
 
-HCP Terraform을 사용해 GitHub와 연동, Terraform Cloud 환경을 구축하여 Terraform 코드 변경 시 자동으로 인프라가 업데이트되도록 했습니다. 모든 AWS 리소스(VPC, Lambda, API Gateway, S3, CloudFront 등)를 코드로 정의해 관리 용이성과 일관성을 확보했습니다.
+HCP Terraform을 GitHub와 연동해 Terraform Cloud 환경을 구축했고 Terraform 코드가 변경되면 인프라가 자동으로 업데이트됩니다. 모든 AWS 리소스(VPC, Lambda, API Gateway, S3, CloudFront 등)를 코드로 정의해 관리하기 쉽고 설정도 일관되게 유지했습니다.
 
 ![Architecture](/assets/img/project/rememberme/architecture.webp)
 
 ### 3.1. Logging
 
-CloudWatch Logs Subscription Filter를 활용해 Lambda 로그를 실시간으로 Logstash -> Elasticsearch로 전송한 뒤 Kibana 대시보드를 통해 상태별, 로그그룹별 로그를 분석할 수 있도록 구현했습니다. 이를 통해 여러 Lambda에서 생성되는 Log Data를 한곳에서 관리할 수 있었고, 문제 발생 시 신속한 진단과 대응이 가능했습니다.
+CloudWatch Logs Subscription Filter로 Lambda 로그를 실시간으로 Logstash -> Elasticsearch로 전송한 뒤 Kibana 대시보드에서 상태별, 로그그룹별로 로그를 분석하도록 구현했습니다. 여러 Lambda가 남기는 Log Data를 한곳에서 관리하니 문제가 생겼을 때 원인을 빠르게 찾고 대응할 수 있었습니다.
 
 ![Logging Workflow](/assets/img/project/rememberme/log_monitoring.webp)
 
@@ -67,7 +67,7 @@ CloudWatch Logs Subscription Filter를 활용해 Lambda 로그를 실시간으�
 
 ### 3.2. Alarm
 
-AWS WAF의 규칙을 활용하여 비정상적으로 과도한 트래픽(예: 동일 IP에서 분당 300회 이상 요청)을 차단하였습니다. 또한, AWS Budgets와 CloudWatch를 연계하여 비용 초과 알림을 설정하고, Amazon SNS와 AWS Chatbot을 통해 Slack으로 실시간 알림을 받을 수 있도록 구성하였습니다.
+AWS WAF 규칙으로 과도한 트래픽(예: 동일 IP에서 분당 300회 이상 요청)을 차단했습니다. AWS Budgets와 CloudWatch를 연계해 비용 초과 알림을 설정하고 Amazon SNS와 AWS Chatbot으로 Slack에 실시간 알림이 오도록 구성했습니다.
 
 #### 3.2.1. WAF Alarm
 
@@ -98,13 +98,13 @@ GitHub Actions를 사용해 코드 변경 시 자동으로 빌드 및 배포가 
 
 ## 4. 회고
 
-이번 Remember Me 프로젝트를 진행하면서 **서버리스 기반 MSA(Microservices Architecture)**를 채택한 경험은 많은 도전과 배움을 제공했습니다. AWS Lambda와 API Gateway를 활용한 서버리스 환경에서의 개발은 인프라 관리의 부담을 크게 줄이는 장점이 있었지만, 동시에 MSA의 복잡성과 서버리스 아키텍처 특유의 한계도 경험할 수 있었습니다.
+이번 Remember Me 프로젝트에서는 서버리스 기반 MSA(Microservices Architecture)를 채택했고 그 과정에서 많이 부딪히고 배웠습니다. AWS Lambda와 API Gateway를 쓰는 서버리스 환경에서 개발하니 인프라 관리 부담이 크게 줄었지만 MSA의 복잡함과 서버리스 아키텍처 특유의 한계도 함께 겪었습니다.
 
-특히, 각 Lambda 함수에서 생성되는 로그가 CloudWatch Logs의 Log Group에 개별적으로 저장됨에 따라, 통합 로그 모니터링 시스템의 필요성과 중요성을 실감하게 되었습니다. 이를 해결하기 위해 Logstash, Elasticsearch, Kibana를 활용한 로그 분석 환경을 구축하며, 단순히 로그를 저장하는 것을 넘어 실시간 분석과 시각화의 가치를 배울 수 있었습니다.
+각 Lambda 함수의 로그가 CloudWatch Logs의 Log Group에 개별적으로 쌓이니 통합 로그 모니터링 시스템이 왜 필요한지 실감했습니다. Logstash, Elasticsearch, Kibana로 로그 분석 환경을 구축하면서 로그를 저장하는 데서 끝내지 않고 실시간 분석과 시각화까지 해 보며 그 가치를 배웠습니다.
 
-또한, 로그나 리소스 모니터링에 있어 **알림 시스템(Alarm)**이 단순한 선택이 아니라 필수적인 요소임을 깨달았습니다. 실시간 알림을 통해 문제가 발생했을 때 빠르게 대응할 수 있는 체계를 갖추는 것이 프로젝트의 안정성을 크게 향상시킨다는 것을 배웠습니다.
+로그와 리소스 모니터링에서 알림 시스템(Alarm)은 선택이 아니라 필수였습니다. 실시간 알림으로 문제를 바로 인지하고 대응하는 체계를 갖추면서 프로젝트 안정성이 크게 올라갔습니다.
 
-이번 프로젝트는 서버리스 아키텍처와 MSA의 장점뿐만 아니라 그 한계까지 체감할 수 있는 귀중한 경험이었습니다. 이를 통해 시스템 설계와 운영에서 더 깊이 있는 고민을 하게 되었고, 앞으로의 프로젝트에 적용할 중요한 교훈을 얻을 수 있었습니다.
+서버리스 아키텍처와 MSA의 장점과 한계를 모두 직접 확인한 프로젝트였습니다. 시스템을 설계하고 운영할 때 무엇을 먼저 따져야 하는지 감이 잡혔고, 앞으로 진행할 프로젝트에도 적용할 교훈을 얻었습니다.
 
 ---
 

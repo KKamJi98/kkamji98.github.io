@@ -11,7 +11,7 @@ image:
 
 ![EKS max Pods prefix mode](/assets/img/aws/eks-max-pods-prefix-mode.webp)
 
-AWS EKS를 사용하다 보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit에 의해 더 이상 pod가 프로비저닝되지 않은 문제를 직면하게 됩니다.  
+AWS EKS를 사용하다 보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit 때문에 pod가 더 이상 프로비저닝되지 않는 문제를 만나게 됩니다.  
 
 ```shell
 ❯ kubectl get po                                          
@@ -42,29 +42,29 @@ NAME                                          CAPACITY_PODS   ALLOCATE_PODS
 ip-10-0-1-5.ap-northeast-2.compute.internal   11              11
 ```
 
-그 이유는 AWS EKS에서 **한 노드에 생성할 수 있는 최대 Pod의 개수(max-pods)**는 인스턴스의 타입에 따라 보유할 수 있는 IP 주소 수가 달라지고 그와 비례하게 결정되기 때문입니다. 이 제한이 생기는 이유와 배경을 알아보고, `VPC CNI` 플러그인의 역할과 `Prefix Mode`(Prefix Delegation) 기능을 통해 어떻게 이 Limit을 조절할 수 있는지 알아보도록 하겠습니다.
+이 현상은 AWS EKS에서 **한 노드에 생성할 수 있는 최대 Pod의 개수(max-pods)**가 인스턴스 타입마다 달라지는 IP 주소 수에 비례해 결정되기 때문입니다.
 
 > **TL;DR**  
-> - 노드의 CPU와 메모리에 여유가 있어도 Pod가 더 뜨지 않는 이유는 VPC CNI의 IP 할당 한계입니다. 기본 Secondary IP 모드에서는 `maxPods = ENIs * (IPv4PerENI - 1) + 2`로 상한이 정해집니다.  
-> - `t4g.small`은 ENI 3개에 ENI당 IPv4 4개라 상한이 11개입니다. Kubernetes 권장 상한인 110개보다 훨씬 낮습니다.  
-> - Prefix Mode를 켜면 IP 대신 /28 접두사를 할당해 상한이 올라갑니다. `aws-node` 환경변수와 kubelet의 `maxPods`를 모두 바꾼 뒤 노드를 교체해야 실제로 반영됩니다.  
+> - 노드의 CPU와 메모리에 여유가 있어도 Pod가 더 뜨지 않는 이유는 VPC CNI의 IP 할당 한계다. 기본 Secondary IP 모드에서는 `maxPods = ENIs * (IPv4PerENI - 1) + 2`로 상한이 정해진다.  
+> - `t4g.small`은 ENI 3개에 ENI당 IPv4 4개라 상한이 11개다. Kubernetes 권장 상한인 110개보다 훨씬 낮다.  
+> - Prefix Mode를 켜면 IP 대신 /28 접두사를 할당해 상한이 올라간다. `aws-node` 환경변수와 kubelet의 `maxPods`를 모두 바꾼 뒤 노드를 교체해야 실제로 반영된다.  
 {: .prompt-info}
 
 ---
 
 ## 1. EKS Max-Pods Limit이란?
 
-Kubernetes 자체적으로도 **한 노드 당 110개의 Pod**를 권장 상한으로 설정하고 있지만, EKS에서는 그보다 더 낮은 숫자로 노드의 Pod 수를 제한하는 경우가 많습니다. 이 **max-pods** 제한은 주로 네트워킹 자원, 특히 **`ENI`(Elastic Network Interface)**와 **IP 주소 할당 한계** 때문에 존재합니다.  
+Kubernetes 자체적으로도 **한 노드 당 110개의 Pod**를 권장 상한으로 두지만 EKS에서는 그보다 낮은 숫자로 노드의 Pod 수를 제한하는 경우가 많습니다. 이 max-pods 제한은 주로 네트워킹 자원, 특히 `ENI`(Elastic Network Interface)와 IP 주소 할당 한계 때문에 존재합니다.  
 
-EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드(EC2 인스턴스)에 `AWS VPC`의 IP 주소들을 할당하여 Pod들이 VPC 네트워크 안에서 통신할 수 있게 합니다. 하지만 **EC2 인스턴스마다 연결할 수 있는 `ENI` 개수와 `ENI`당 IP 주소 개수가 한정**되어 있습니다. 노드가 가지고 있는 각 ENI의 기본(primary) IP 주소는 노드 자체에 사용되고, 나머지 보조(secondary) IP 주소들만 Pod들에게 할당될 수 있습니다​.  
+EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드(EC2 인스턴스)에 `AWS VPC`의 IP 주소들을 할당하여 Pod들이 VPC 네트워크 안에서 통신할 수 있게 합니다. 하지만 **EC2 인스턴스마다 연결할 수 있는 `ENI` 개수와 `ENI`당 IP 주소 개수가 한정**되어 있습니다. 각 ENI의 기본(primary) IP 주소는 노드 자체에 사용되고, 나머지 보조(secondary) IP 주소들만 Pod들에게 할당될 수 있습니다​.  
 
-결과적으로 노드에 사용 가능한 IP 주소를 모두 소진하면 CPU나 메모리가 남아 있어도 더 이상 새로운 Pod에 IP를 할당할 수 없기 때문에, Pod를 추가로 스케줄링할 수 없게 됩니다.  
+노드에 사용 가능한 IP 주소를 모두 소진하면 CPU나 메모리가 남아 있어도 새 Pod에 IP를 할당할 수 없고, 그래서 Pod를 추가로 스케줄링하지 못합니다.  
 
 ---
 
 ## 2. Max-Pods Calculator
 
-제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit의 계산은 다음과 같이 이루어지게 됩니다.  
+제가 테스트 환경에서 자주 사용하는 `t4g.small`(Graviton2, vCPU 2개) 타입의 EC2 노드를 기준으로 `Prefix Mode`를 사용하지 않았을 때 Max-Pods Limit은 다음과 같이 계산합니다.  
 
 `maxPods = ENIs × (IPv4PerENI - 1) + 2`  
 
@@ -90,13 +90,13 @@ EKS의 기본 CNI(Container Network Interface)인 `Amazon VPC CNI`는 각 노드
 
 ## 3. VPC CNI와 Prefix Mode로 Max Pods Limit 완화하기
 
-위와 같은 문제를 해결하기 위해서는 Max Pods Limit을 증가시키는 방법이 있습니다. 바로 `VPC CNI`의 `Prefix Mode` 기능을 활성화하는 것입니다. 우선 VPC CNI의 동작 방식에 대해 알아보도록 하겠습니다.  
+위와 같은 문제는 Max Pods Limit을 증가시켜 해결합니다. 바로 `VPC CNI`의 `Prefix Mode` 기능을 활성화하는 것입니다.  
 
 `VPC CNI`는 각 노드에서 Pod에 네트워크를 제공하기 위해 노드의 `VPC Subnet`에서 `ENI`를 추가로 할당하고, 보조 IP들을 미리 확보(warm pool)하여 관리합니다​. 기본 모드에서는 Pod 하나당 VPC의 IP 주소 한 개를 할당하는데, 이 동작 방식을 `Secondary IP` 모드라고 부릅니다​. `Secondary IP` 모드에서는 앞서 설명한 대로 인스턴스 유형별 ENI 개수 및 ENI당 IP 수의 한계가 곧 Pod 수 제한이 됩니다​. 때문에 작은 인스턴스에서는 수십 개 수준으로, 큰 인스턴스도 일반적으로 Kubernetes 권장치인 110개 이하로 제한됩니다.  
 
-이 한계를 완화하기 위해 나온 기술이 바로 `Prefix Mode(Prefix Delegation)`입니다. `Prefix Mode`는 ENI에 개별 IP 대신 한 번에 IP Block(Prefix)을 통째로 할당하는 방식입니다. `Prefix Mode`에서 IPv4에서 `/28` **Prefix**는 16개의 IP 주소를 가지며 이 하나의 **Prefix**를 하나의 `ENI`에 할당하게 됩니다. 즉, 기존에 ENI 하나에 보조 IP 1개를 붙이던 것 대신에 `/28` 네트워크 블록 1개를 붙여서 16개의 IP를 한번에 확보하게 됩니다. 따라서 **동일한 `ENI`당 확보할 수 있는 Pod용 IP 개수가 대폭 증가**합니다.  
+이 한계를 완화하기 위해 나온 기술이 바로 `Prefix Mode(Prefix Delegation)`입니다. `Prefix Mode`는 ENI에 개별 IP 대신 한 번에 IP Block(Prefix)을 통째로 할당하는 방식입니다. IPv4에서 `/28` Prefix 하나는 IP 주소 16개를 담고, 이 Prefix 하나가 `ENI` 하나에 붙습니다. 기존에 ENI 하나에 보조 IP 1개를 붙이던 자리에 `/28` 네트워크 블록 1개를 붙여서 16개의 IP를 한번에 확보하는 셈입니다. 같은 `ENI`에서 확보할 수 있는 Pod용 IP 개수는 그만큼 늘어납니다.  
 
-위에서 사용한 `max-pods-calculator` 스크립트를 통해 Prefix Mode를 켰을 때 t4g.small 인스턴스가 가질 수 있는 Max-Pod Limit을 다시 한번 확인해보도록 하겠습니다.  
+위에서 사용한 `max-pods-calculator` 스크립트로 Prefix Mode를 켰을 때 t4g.small 인스턴스의 Max-Pod Limit을 다시 확인합니다.  
 
 `maxPods = ENIs × ((IPv4PerENI - 1) × 16) + 2`
 
@@ -127,8 +127,7 @@ fi
 
 ### 3.1. 현재 max-pods 확인
 
-이제 현재 우리 EKS 노드의 max-pods 값이 얼마로 설정되어 있는지 확인하고, 이를 늘리는 방법을 알아봅니다.
-노드의 max-pods는 **Kubelet (노드의 Kubernetes 에이전트)**이 가지고 있는 설정으로, 노드가 Kubernetes에 등록될 때 그 값이 함께 설정됩니다. 노드 객체의 status를 보면 capacity에 pods 항목으로 이 최대 Pod 수를 확인할 수 있습니다.  
+노드의 max-pods는 **Kubelet (노드의 Kubernetes 에이전트)**이 관리하는 설정으로, 노드가 Kubernetes에 등록될 때 그 값이 함께 설정됩니다. 노드 객체의 status를 보면 capacity에 pods 항목으로 이 최대 Pod 수를 확인할 수 있습니다.  
 
 ```shell
 ❯ kubectl get nodes -o custom-columns=NAME:.metadata.name,CAPACITY_PODS:.status.capacity.pods,ALLOCATE_PODS:.status.allocatable.pods
@@ -210,9 +209,9 @@ ip-10-0-2-201.ap-northeast-2.compute.internal   110             110
 
 ## 5. 결론
 
-이상으로 EKS의 `max-pods` 제한이 생기는 원리와 이를 완화하는 방법에 대해 살펴보았습니다.  
-`ENI` 및 IP 한계로 인한 Pod 수에 제한이 존재하며 `VPC CNI`의 `Prefix Mode`를 활용하면 더 많은 Pod를 노드에 생성할 수 있습니다.  
-실무에서 사용이 필요한 경우 AWS 공식 문서와 Best Practice를 참조하여 안전하게 사용하시는 것을 추천드립니다.  
+EKS의 `max-pods` 제한은 `ENI` 개수와 ENI당 IP 주소 한계에서 나옵니다.  
+`VPC CNI`의 `Prefix Mode`를 활성화하면 이 상한이 올라가고, 한 노드에 더 많은 Pod를 띄울 수 있습니다.  
+실무에 적용할 때는 AWS 공식 문서와 Best Practice를 먼저 확인하시기 바랍니다.  
 
 ---
 

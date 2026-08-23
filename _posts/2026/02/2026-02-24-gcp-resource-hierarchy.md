@@ -10,8 +10,7 @@ image:
 ---
 
 GCP를 처음 공부하기 시작하면서 가장 먼저 마주친 개념이 리소스 계층(Resource Hierarchy)이었습니다. 클라우드 콘솔에 들어가 프로젝트를 만들려는 순간부터 `Organization`, `Folder`, `Project`라는 단어가 등장하는데, 이 구조를 이해하지 못하면 IAM 권한이나 결제(Billing), 조직 정책이 어디에 어떻게 적용되는지 감을 잡기 어렵습니다.
-GCP에서는 거의 모든 리소스와 권한이 이 계층에 상속(Inheritance) 형태로 붙기 때문에, 이 골격을 먼저 정리하는 것이 GCP 학습의 출발점이라고 생각합니다.
-GCP 리소스 계층의 4단계 구조와 각 단계의 역할, 권한이 상속되는 방식을 정리하고, gcloud로 프로젝트를 다뤄보는 것까지 알아봅니다.
+GCP에서는 거의 모든 리소스와 권한이 이 계층에 상속(Inheritance) 형태로 붙기 때문에, 이 골격이 GCP 학습의 출발점입니다.
 
 > **TL;DR**  
 > - GCP 리소스 계층은 `Organization > Folder > Project > Resource` 4단계로 구성됩니다.  
@@ -36,7 +35,7 @@ _Organization -> Folder -> Project -> Resource로 이어지는 GCP 리소스 계
 | Project      | 필수                   | 모든 리소스/결제/권한의 기본 경계         |
 | Resource     | -                      | 실제 서비스 리소스 (GCE, GCS, GKE 등)     |
 
-핵심은 **모든 리소스가 반드시 하나의 Project에 속한다**는 점과, **상위 노드에 적용한 권한/정책이 하위로 상속된다**는 점입니다. 이 두 가지만 기억하면 나머지 개념은 자연스럽게 따라옵니다.
+모든 리소스는 반드시 하나의 Project에 속하고, **상위 노드에 적용한 권한/정책은 하위로 상속됩니다**. 이 두 가지가 나머지 개념의 전제입니다.
 
 ---
 
@@ -44,11 +43,11 @@ _Organization -> Folder -> Project -> Resource로 이어지는 GCP 리소스 계
 
 `Organization`은 리소스 계층의 가장 위에 있는 노드로, 회사나 도메인 전체를 대표합니다. 예를 들어 `example.com` 도메인을 사용하는 조직이라면 그 도메인에 대응하는 하나의 Organization이 생성됩니다.
 
-Organization은 직접 "만드는" 것이 아니라, **Google Workspace** 또는 **Cloud Identity** 계정이 GCP와 연결될 때 자동으로 생성됩니다. 따라서 개인 Gmail 계정만으로는 Organization 노드가 존재하지 않습니다.
+Organization은 사용자가 직접 만들지 못합니다. **Google Workspace** 또는 **Cloud Identity** 계정이 GCP와 연결될 때 자동으로 생성됩니다. 개인 Gmail 계정만으로는 Organization 노드가 존재하지 않습니다.
 
 - 조직 전체에 공통으로 적용할 IAM 정책이나 조직 정책을 이 레벨에 설정합니다.
 - 여기에 설정한 권한은 산하의 모든 Folder와 Project로 상속됩니다.
-- 조직 관리자(Organization Admin)는 계층 전체에 대한 통제권을 가집니다.
+- 조직 관리자(Organization Admin)는 계층 전체를 통제합니다.
 
 > Organization 레벨에 부여한 권한은 하위 전체에 영향을 미치므로, 최소 권한 원칙(Least Privilege)에 따라 신중하게 부여해야 합니다.  
 {: .prompt-warning}
@@ -57,7 +56,7 @@ Organization은 직접 "만드는" 것이 아니라, **Google Workspace** 또는
 
 ## 3. Folder - 그룹화 단위
 
-`Folder`는 Organization 아래에서 여러 Project나 다른 Folder를 묶는 그룹화 단위입니다. AWS의 조직 구조에 익숙하다면 "묶음을 만들고 그 묶음 단위로 정책을 거는" 개념이 익숙할 텐데, GCP에서는 그 역할을 Folder가 담당합니다.
+`Folder`는 Organization 아래에서 여러 Project나 다른 Folder를 묶는 그룹화 단위입니다. AWS 조직 구조를 써봤다면 묶음 단위로 정책을 거는 방식이 익숙할 텐데, GCP에서는 Folder가 그 역할을 맡습니다.
 
 - 부서(`engineering`, `finance`)나 환경(`prod`, `staging`, `dev`) 단위로 구성하는 경우가 많습니다.
 - Folder는 다른 Folder를 포함할 수 있어 **중첩(Nesting)이 가능**합니다 (최대 10단계).
@@ -75,7 +74,7 @@ _Folder로 부서/환경을 묶고 그 아래 Project를 배치한 구성 예시
 
 `Project`는 GCP에서 가장 핵심적인 단위입니다. GCE 인스턴스, GCS 버킷, GKE 클러스터 등 **모든 리소스는 반드시 하나의 Project에 속하며**, API 활성화, 결제 계정 연결, 권한 부여가 모두 Project 단위로 이루어집니다.
 
-Project는 서로 다른 세 가지 식별자를 가집니다. 이 셋의 차이를 헷갈리기 쉬우니 정리하고 넘어가겠습니다.
+Project에는 서로 다른 식별자가 세 개 있습니다. 셋의 차이는 헷갈리기 쉽습니다.
 
 | 식별자         | 설명                              | 변경 가능        | 예시                      |
 | :------------- | :-------------------------------- | :--------------- | :------------------------ |
@@ -83,7 +82,7 @@ Project는 서로 다른 세 가지 식별자를 가집니다. 이 셋의 차이
 | Project ID     | 전역에서 고유, CLI/API에서 사용   | 불가 (생성 후 고정) | `my-first-project-461203` |
 | Project number | GCP가 자동 부여하는 고유 숫자     | 불가             | `123456789012`            |
 
-- **Project ID**는 전역(Global)에서 유일해야 하며, 6자 이상 30자 이하의 소문자/숫자/하이픈으로 구성됩니다. 더 정확히는 **반드시 문자로 시작**해야 하고, **하이픈으로 끝날 수 없으며**, `google`/`ssl` 같은 제한 문자열은 포함할 수 없습니다(`undefined`/`null` 같은 문자열도 피하는 것이 좋습니다). 한 번 정하면 바꿀 수 없으므로 생성 시 신중하게 정해야 합니다.
+- **Project ID**는 전역(Global)에서 유일해야 하며, 6자 이상 30자 이하의 소문자/숫자/하이픈으로 구성됩니다. 더 정확히는 **반드시 문자로 시작**해야 하고, **하이픈으로 끝날 수 없으며**, `google`/`ssl` 같은 제한 문자열은 포함할 수 없습니다(`undefined`/`null` 같은 문자열도 피하는 것이 좋습니다). 한 번 정하면 바꿀 수 없으므로 생성 시점에 확정해야 합니다.
 
   공식 문서가 명시하는 Project ID 요건은 다음과 같습니다.
 
@@ -99,13 +98,13 @@ Project는 서로 다른 세 가지 식별자를 가집니다. 이 셋의 차이
 
 > A Cloud Billing account defines who pays for a given set of resources, and it can be linked to one or more projects.  
 
-따라서 Project는 리소스/권한/API의 경계인 동시에 **비용 귀속의 경계**이기도 합니다. 워크로드별로 Project를 나누면 비용도 Project 단위로 깔끔하게 분리해서 볼 수 있습니다.
+Project는 리소스/권한/API의 경계이면서 **비용 귀속의 경계**입니다. 워크로드별로 Project를 나누면 비용도 Project 단위로 분리해서 볼 수 있습니다.
 
 ---
 
 ## 5. IAM과 정책 상속 (맛보기)
 
-리소스 계층을 이해해야 하는 가장 큰 이유는 **권한과 정책이 이 계층을 따라 상속되기 때문**입니다. 이 절에서는 핵심 개념만 짚고, 자세한 IAM 내용은 후속 글인 [GCP IAM 알아보기](/posts/gcp-iam/)에서 다룹니다.
+**권한과 정책이 이 계층을 따라 상속되기 때문에** 리소스 계층을 이해해야 합니다. 자세한 IAM 내용은 후속 글인 [GCP IAM 알아보기](/posts/gcp-iam/)에서 다룹니다.
 
 ### 5.1. IAM 정책 상속
 
@@ -118,7 +117,7 @@ _특정 리소스의 effective allow policy는 자기 정책과 상위 상속 �
 
 > The effective allow policy for a resource is the union of the allow policy set at that resource and the allow policy inherited from its parent.  
 
-GCP의 기본 IAM은 **허용(Allow) 기반이며 누적(Additive)** 됩니다. 즉 상위에서 부여된 권한을 하위에서 일반적인 방법으로 회수할 수는 없습니다. 다만 별도의 **IAM Deny 정책**으로 특정 권한 사용을 막을 수 있는데, 이 deny 정책은 위에서 설명한 allow 상속보다 우선 평가되어 상위에서 상속된 권한이라도 차단할 수 있습니다. 공식 문서도 이 점을 다음과 같이 명시합니다.
+GCP의 기본 IAM은 **허용(Allow) 기반이며 누적(Additive)** 됩니다. 상위에서 부여된 권한은 하위에서 일반적인 방법으로 회수할 수 없습니다. 다만 별도의 **IAM Deny 정책**으로 특정 권한 사용을 막을 수 있는데, 이 deny 정책은 위에서 설명한 allow 상속보다 우선 평가되어 상위에서 상속된 권한이라도 차단할 수 있습니다. 공식 문서도 이 점을 다음과 같이 명시합니다.
 
 > You can now use deny policies to prevent principals from using some permissions. Using deny policies might cause the features described on this page to work differently.  
 
@@ -128,17 +127,17 @@ GCP의 기본 IAM은 **허용(Allow) 기반이며 누적(Additive)** 됩니다. 
 
 IAM이 "누가 무엇을 할 수 있는가"를 다룬다면, **Organization Policy**는 "어떤 구성이 허용되는가"를 제한하는 가드레일(Guardrail)입니다. 예를 들어 "특정 리전에만 리소스 생성 허용", "외부 IP 부여 금지" 같은 제약을 설정합니다.
 
-Organization Policy 역시 상위 노드에 설정하면 하위로 상속되므로, 조직 전체에 일관된 보안/규정 정책을 강제할 때 사용합니다. 다만 IAM allow의 무조건 합집합 상속과 달리, 조직 정책은 하위에 설정한 정책이 **기본적으로 상위 정책을 대체**하고, `inheritFromParent = true`를 명시했을 때만 상위 정책과 병합/조정되어 상속됩니다. 공식 문서의 설명입니다.
+Organization Policy 역시 상위 노드에 설정하면 하위로 상속되므로, 조직 전체에 일관된 보안/규정 정책을 강제할 때 사용합니다. 다만 IAM allow의 무조건 합집합 상속과 달리, 조직 정책은 하위에 설정한 정책이 **기본적으로 상위 정책을 대체**하고, `inheritFromParent = true`를 명시했을 때만 상위 정책과 병합/조정되어 상속됩니다. 공식 문서는 이 동작을 이렇게 설명합니다.
 
 > A resource that has an organization policy set by default supersedes any policy set by its parent resources in the hierarchy. However, if a resource has set `inheritFromParent = true`, then the effective Policy of the parent resource is inherited, merged, and reconciled to evaluate the resulting effective policy.  
 
-list 제약을 병합할 때는 `DENY` 값이 항상 우선한다는 점("When evaluating organization policies with list rules, `DENY` values always take precedence.")도 함께 알아두면, 상위/하위 정책이 충돌할 때의 결과를 예측하기 쉽습니다.
+list 제약을 병합할 때는 `DENY` 값이 항상 우선합니다("When evaluating organization policies with list rules, `DENY` values always take precedence."). 이 규칙을 알아두면 상위/하위 정책이 충돌할 때 결과를 예측하기 쉽습니다.
 
 ---
 
 ## 6. gcloud로 프로젝트 다뤄보기
 
-개념을 정리했으니 `gcloud` CLI로 Project를 직접 다룹니다. 개인 계정에서도 Project 생성/조회/전환은 그대로 따라 할 수 있습니다.
+`gcloud` CLI로 Project를 직접 다뤄 봅니다. 개인 계정에서도 Project 생성/조회/전환은 그대로 따라 할 수 있습니다.
 
 ### 6.1. 프로젝트 생성과 조회
 
@@ -165,7 +164,7 @@ projectId: my-first-project-461203
 projectNumber: '123456789012'
 ```
 
-`projectId`, `projectNumber`, `name`이 앞서 설명한 세 가지 식별자에 그대로 대응하는 것을 확인할 수 있습니다.
+`projectId`, `projectNumber`, `name`이 앞서 설명한 세 가지 식별자에 그대로 대응합니다.
 
 ### 6.3. 작업 대상 프로젝트 설정
 
@@ -183,7 +182,7 @@ my-first-project-461203
 
 ### 6.4. Organization / Folder 조회 (조직 계정 한정)
 
-Organization과 Folder는 조직 계정에서만 조회됩니다. 개인 계정에서는 결과가 비어 있게 됩니다.
+Organization과 Folder는 조직 계정에서만 조회됩니다. 개인 계정에서는 결과가 비어 있습니다.
 
 ```bash
 # 조직 목록 (조직 계정에서만 결과 표시)
@@ -214,7 +213,7 @@ Project ID는 생성 후 변경이 불가능하고, **삭제한 프로젝트의 
 
 > It cannot be in use or previously used; this includes deleted projects.  
 
-따라서 처음 만들 때 의미 있는 네이밍 규칙(예: `회사-서비스-환경`)을 정해두는 것이 좋습니다. 7.3절의 삭제 유예 기간이 지나 프로젝트가 영구 삭제되더라도 그 ID는 다시 쓸 수 없으므로, 같은 ID를 재활용하려는 계획은 세우지 않는 편이 안전합니다.
+처음 만들 때 의미 있는 네이밍 규칙(예: `회사-서비스-환경`)을 정해두면 좋습니다. 7.3절의 삭제 유예 기간이 지나 프로젝트가 영구 삭제되더라도 그 ID는 다시 쓸 수 없으므로, 같은 ID를 재활용할 계획은 세우지 말아야 합니다.
 
 ### 7.3. 프로젝트 삭제는 30일 유예가 있다
 
@@ -232,7 +231,7 @@ Project ID는 생성 후 변경이 불가능하고, **삭제한 프로젝트의 
 
 ## 8. 참고: AWS 리소스 계층 대응
 
-AWS Organizations에 익숙하다면, 아래 대응표로 GCP 계층을 빠르게 매핑할 수 있습니다. 개념은 비슷하지만 GCP는 권한 상속 모델이 더 강하게 작동한다는 점이 다릅니다.
+AWS Organizations에 익숙하다면, 아래 대응표로 GCP 계층을 빠르게 매핑할 수 있습니다. 개념은 비슷하지만 GCP의 권한 상속 모델이 더 강하게 작동합니다.
 
 | GCP                 | AWS                              | 비고                                  |
 | :------------------ | :------------------------------- | :------------------------------------ |
@@ -243,7 +242,7 @@ AWS Organizations에 익숙하다면, 아래 대응표로 GCP 계층을 빠르�
 | Organization Policy | Service Control Policy (SCP)     | 둘 다 가드레일, 메커니즘은 다르다     |
 | Resource            | Resource                         | 실제 서비스 리소스                    |
 
-가장 큰 차이는 **Project의 가벼움**과 **권한 상속**입니다. AWS에서는 워크로드 분리를 위해 Account를 늘리는 일이 부담스럽지만, GCP에서는 Project를 손쉽게 만들고 지울 수 있어 워크로드 단위로 Project를 분리하는 패턴이 일반적입니다.
+가장 큰 차이는 **Project의 가벼움**과 권한 상속입니다. AWS에서는 워크로드 분리를 위해 Account를 늘리는 일이 부담스럽지만, GCP에서는 Project를 손쉽게 만들고 지울 수 있어 워크로드 단위로 Project를 분리하는 패턴이 일반적입니다.
 
 ---
 

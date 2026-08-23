@@ -9,9 +9,9 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-**External Secrets**는 쿠버네티스 클러스터에서 외부 시크릿 관리 시스템과 통합하여 시크릿을 관리해주는 오픈소스 도구입니다. AWS Secrets Manager, AWS SSM Parameter Store, HashiCorp Vault, Google Secret Manager 등의 **외부 시크릿 관리 서비스의 값을 가져와 Kubernetes Secret에 주입**하고 **주기적으로 외부 API를 호출하여 시크릿 값을 읽어오고 동기화**할 수 있습니다.
+**External Secrets**는 쿠버네티스 클러스터에서 외부 시크릿 관리 시스템과 통합해 시크릿을 관리하는 오픈소스 도구입니다. AWS Secrets Manager, AWS SSM Parameter Store, HashiCorp Vault, Google Secret Manager 같은 외부 시크릿 관리 서비스에서 값을 가져와 Kubernetes Secret에 주입하고, 주기적으로 외부 API를 호출해 시크릿 값을 다시 읽어 동기화합니다.
 
-이를 통해 Application에서 사용하는 API URL이나 DB 정보 등의 변화가 생겼을 때 코드를 수정하지 않고, 외부에 저장된 시크릿을 가져와 환경변수나 볼륨으로 사용할 수 있습니다. 이를 통해 **운영 우수성**과 **보안성**을 높일 수 있고, 휴먼 에러의 가능성을 낮출 수 있습니다.
+Application에서 사용하는 API URL이나 DB 정보가 바뀌어도 코드를 고치지 않고 외부에 저장된 시크릿을 가져와 환경변수나 볼륨으로 씁니다. 운영 우수성과 보안성이 올라가고 휴먼 에러 가능성도 줄어듭니다.
 
 > **TL;DR**  
 > - External Secrets Operator는 AWS Secrets Manager나 SSM Parameter Store 같은 외부 저장소의 값을 주기적으로 읽어 Kubernetes Secret으로 동기화합니다.  
@@ -23,28 +23,28 @@ image:
 
 ## 1. External Secrets CRDs
 
-External Secrets 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(Custom Resource Definition)**를 사용합니다. 주요 CRD로 **특정 네임스페이스 범위에서 동작**하는 **SecretStore**, **ExternalSecret**과 **클러스터 범위로 동작**하는 **ClusterSecretStore**, **ClusterExternalSecret**이 있습니다. 다음 다이어그램을 확인한 뒤, 아래 각 CRD에 대한 설명을 보시면 이해에 도움이 될 수 있습니다.
+External Secrets는 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(Custom Resource Definition)**를 사용합니다. 주요 CRD로는 네임스페이스 범위에서 동작하는 SecretStore, ExternalSecret과 클러스터 범위로 동작하는 ClusterSecretStore, ClusterExternalSecret이 있습니다.
 
 ![external-secret-diagram](/assets/img/kubernetes/external-secrets-diagram.webp)
 
 ### 1.1. SecretStore, ClusterSecretStore
 
-**SecretStore** - **외부 시크릿 서비스에 접근하기 위한 정보를 저장**하는 CRD입니다. 어떤 제공자(provider)를 사용할지, 인증 방식은 어떻게 할지 정의합니다. **SecretStore는 네임스페이스 범위에서 동작하며, 동일한 네임스페이스의 ExternalSecret만 참조**할 수 있습니다.  
+**SecretStore** - 외부 시크릿 서비스에 접근하기 위한 정보를 저장하는 CRD입니다. 어떤 제공자(provider)를 사용할지, 인증 방식은 어떻게 할지 정의합니다. SecretStore는 네임스페이스 범위에서 동작하므로 동일한 네임스페이스의 ExternalSecret만 참조할 수 있습니다.  
 
-**ClusterSecretStore** - **SecretStore**와 유사하지만 **클러스터 전역에서 사용할 수 있는 ClusterStore**입니다. 즉 **하나의 ClusterSecretStore를 생성하면 모든 네임스페이스의 ExternalSecret**에서 참조할 수 있습니다.
+**ClusterSecretStore** - SecretStore와 유사하지만 클러스터 전역에서 사용할 수 있는 ClusterStore입니다. 하나만 만들어 두면 모든 네임스페이스의 ExternalSecret에서 참조할 수 있습니다.
 
-> **SecretStore**는 주로 개별 팀/애플리케이션별로 격리된 자격증명을 갖도록 할 때 쓰이고, **ClusterSecretStore**는 모든 네임스페이스에서 공통으로 접근해야 하는 중앙 시크릿 관리 창구를 만들 때 사용합니다.  
+> **SecretStore**는 개별 팀이나 애플리케이션마다 자격증명을 격리할 때 씁니다. 모든 네임스페이스에서 공통으로 접근해야 하는 중앙 시크릿 관리 창구가 필요하면 **ClusterSecretStore**를 만듭니다.  
 >
-> 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 사용해야 한다면 **ClusterSecretStore**로 한 번 정의해두고 재사용할 수 있고, 반대로 네임스페이스를 팀별로 따로 사용하고, AWS IAM 자격 증명을 따로 사용해야 한다면 각 팀 네임스페이스에 SecretStore를 생성하여 사용할 수 있습니다.  
+> 예를 들어 여러 네임스페이스에서 같은 AWS Secrets Manager 자격 증명을 써야 한다면 ClusterSecretStore로 한 번 정의해두고 재사용합니다. 팀별로 네임스페이스와 AWS IAM 자격 증명을 나눠 써야 한다면 각 팀 네임스페이스에 SecretStore를 생성해 사용합니다.  
 {: .prompt-tip}
 
 ### 1.2. ExternalSecret, ClusterExternalSecret
 
-**ExternalSecret** - **외부 시크릿으로부터 실제 쿠버네티스 Secret을 동기화**하기 위한 설정을 담은 CRD입니다. 어떤 **SecretStore**을 참고할지, 외부 시크릿 관리 시스템에서 가져올 시크릿의 키/경로는 무엇인지, 생성될 Kubernetes Secret의 이름은 무엇인지 등을 정의합니다. **ExternalSecret**는 **네임스페이스 범위에서 동작**하며, 생성된 **ExternalSecret은 자신이 속한 네임스페이스에서만 Secret을 생성**합니다.  
+**ExternalSecret** - 외부 시크릿으로부터 실제 쿠버네티스 Secret을 동기화하기 위한 설정을 담은 CRD입니다. 어떤 SecretStore를 참고할지, 외부 시크릿 관리 시스템에서 가져올 시크릿의 키/경로는 무엇인지, 생성될 Kubernetes Secret의 이름은 무엇인지 등을 정의합니다. ExternalSecret은 네임스페이스 범위에서 동작하며 자신이 속한 네임스페이스에만 Secret을 생성합니다.  
 
-**ClusterExternalSecret** - **ExternalSecret**와 유사하지만 **클러스터 전역에서 사용할 수 있는 ExternalSecret**입니다. 즉 **하나의 ClusterExternalSecret은 다수의 네임스페이스에 동일한 ExternalSecret을 생성**해 줄 수 있습니다. `spec.namespaceSelector` 등을 사용하여 대상으로 할 네임스페이스들을 지정하면, 해당 네임스페이스마다 ExternalSecret이 자동 생성되어 동일한 시크릿이 배포됩니다.
+**ClusterExternalSecret** - ExternalSecret과 유사하지만 클러스터 전역에서 사용할 수 있는 ExternalSecret입니다. 하나로 여러 네임스페이스에 동일한 ExternalSecret을 생성해 줍니다. `spec.namespaceSelector` 등으로 대상 네임스페이스를 지정하면, 해당 네임스페이스마다 ExternalSecret이 자동 생성되어 동일한 시크릿이 배포됩니다.
 
-> **ExternalSecret**은 특정 애플리케이션 네임스페이스에서만 필요한 DB 비밀번호, API 키 등을 동기화할 때 사용하고, **ClusterExternalSecret**은 모든 네임스페이스에 공통으로 필요한 인증서, 공용 API 키 등을 배포할 때 유용합니다.  
+> **ExternalSecret**은 특정 애플리케이션 네임스페이스에서만 필요한 DB 비밀번호, API 키를 동기화할 때 씁니다. 모든 네임스페이스에 공통으로 필요한 인증서나 공용 API 키는 **ClusterExternalSecret**으로 배포합니다.  
 {: .prompt-tip}
 
 ---
@@ -96,7 +96,7 @@ webhooks.generators.external-secrets.io                 2025-03-02T05:13:57Z
 
 ## 3. AWS 접근을 위한 Access Key, Secret Access Key 설정
 
-> 간단한 테스트를 위해 `external-secret`이라는 IAM 유저를 생성하고 해당 유저에 AWS Secrets Manager, SSM Parameter Store에 접근할 수 있는 권한을 부여하여 사용했습니다. 실제 운영환경에서는 최소권한을 갖는 IAM Role을 사용하여 IRSA를 통해 접근하는 것이 좋습니다.  
+> 간단한 테스트를 위해 `external-secret`이라는 IAM 유저를 생성하고 해당 유저에 AWS Secrets Manager, SSM Parameter Store에 접근할 수 있는 권한을 부여하여 사용했습니다. 실제 운영환경에서는 최소권한 IAM Role을 IRSA로 연결해 접근하는 편이 안전합니다.  
 > \[[IRSA (IAM Role for Service Account)란? 사용 방법]({% post_url 2024/07/2024-07-17-irsa %})\]  
 {: .prompt-tip}
 
@@ -314,9 +314,9 @@ monitoring         clusterexternalsecret-secret             Opaque              
 
 ## 9. 마무리
 
-External Secrets Operator를 활용하여 쿠버네티스에서 AWS Secrets Manager와 SSM Parameter Store의 시크릿을 동기화하는 방법을 다뤄보았습니다. 이를 통해 Application에서 사용하는 민감한 값을 Git 등에 직접 노출하지 않고도 참조할 수 있게 되어 보안성과 편의성을 크게 향상시킬 수 있습니다.
+External Secrets Operator로 쿠버네티스에서 AWS Secrets Manager와 SSM Parameter Store의 시크릿을 동기화하는 방법을 다뤄보았습니다. Application에서 사용하는 민감한 값을 Git에 직접 올리지 않고도 참조하게 되면서 보안성과 편의성이 함께 올라갑니다.
 
-실무에서 적용할 때는 IRSA를 사용하는 것을 추천드리며 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹지 않도록 주의해야 합니다. 또한 복잡하거나 많은 키를 가진 시크릿을 사용해야 할 경우 `.data[]` 형식 외에도 `.dataFrom`, `.template` 형식을 사용해 여러 키를 가진 시크릿을 통째로 가져와 사용할 수도 있습니다.
+실무에서는 IRSA를 쓰시길 권하고, 이때 `auth.jwt` 필드나 `serviceAccountRef`를 빼먹으면 인증이 실패합니다. 키가 많거나 구조가 복잡한 시크릿은 `.data[]` 대신 `.dataFrom`이나 `.template`으로 통째로 가져올 수 있습니다.
 
 ---
 

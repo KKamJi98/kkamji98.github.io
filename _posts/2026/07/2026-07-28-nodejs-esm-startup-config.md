@@ -9,7 +9,7 @@ image:
   path: /assets/img/nodejs/nodejs-logo-history-banner.png
 ---
 
-HTTP handler의 Promise 오류 경계를 잘 설계해도, 잘못된 설정으로 포트를 먼저 열면 process startup은 안전하지 않습니다. 이 글은 Node.js v26에서 ESM module graph가 준비되는 범위와 application이 configuration을 검증하고 `server.listen()`을 호출하는 범위를 분리합니다.
+HTTP handler의 Promise 오류 경계를 잘 설계해도, 잘못된 설정으로 포트를 먼저 열면 process startup은 안전하지 않습니다. Node.js v26에서 ESM module graph가 준비되는 범위와 application이 configuration을 검증하고 `server.listen()`을 호출하는 범위는 서로 다릅니다.
 
 > **TL;DR**<br>  
 > - `package.json`의 `"type"`은 package scope 안의 `.js` 해석을 정합니다. `.mjs`는 항상 ESM이고 `.cjs`는 항상 CommonJS입니다.<br>  
@@ -22,11 +22,11 @@ HTTP handler의 Promise 오류 경계를 잘 설계해도, 잘못된 설정으�
 
 ## 1. Phase 1보다 앞선 startup 경계
 
-[Phase 1](/posts/nodejs-async-http-handling/)은 HTTP request가 handler에 들어온 뒤 Promise rejection, timeout, client disconnect를 response policy로 바꾸는 경계를 다뤘습니다. 이번 글의 대상은 request가 오기 전입니다. process가 module을 load하고, configuration을 parse하고, TCP port bind를 시도하는 과정입니다.
+[Phase 1](/posts/nodejs-async-http-handling/)은 HTTP request가 handler에 들어온 뒤 Promise rejection, timeout, client disconnect를 response policy로 바꾸는 경계를 다뤘습니다. request가 오기 전 구간은 이야기가 다릅니다. process가 module을 load하고, configuration을 parse하고, TCP port bind를 시도하는 과정입니다.
 
 request lifetime은 client가 request를 보내고 response가 끝날 때까지의 범위입니다. process startup lifetime은 Node CLI가 program을 시작해 `listening` 상태에 도달하거나 실패하고 종료할 때까지의 범위입니다. invalid configuration은 HTTP 500이 아닙니다. `listen()` 전이라면 client에 response를 보낼 HTTP server 자체가 없습니다.
 
-이 글은 native `node:http`와 Node.js v26의 ESM 규칙을 기준으로 합니다. Event Loop 내부 scheduling, Worker Pool, framework dependency injection, hot reload, secret manager 선택은 다음 주제입니다.
+기준은 native `node:http`와 Node.js v26의 ESM 규칙입니다. Event Loop 내부 scheduling, Worker Pool, framework dependency injection, hot reload, secret manager 선택은 이 경계 밖입니다.
 
 ---
 
@@ -35,7 +35,7 @@ request lifetime은 client가 request를 보내고 response가 끝날 때까지�
 ![Node.js ESM startup configuration flow](/assets/img/nodejs/node-esm-startup-config-flow.webp)
 _Node CLI가 environment 값을 제공한 뒤 ESM module graph를 load합니다. module graph가 통과하면 application이 configuration을 검증하고, valid configuration에서만 server error listener를 등록한 뒤 `listen()`을 호출합니다._
 
-그림의 핵심은 application validation이 모든 startup 오류의 첫 관문은 아니라는 점입니다. static import의 resolution 또는 module evaluation이 실패하면 `main.mjs`의 application code가 실행되기 전에 process가 실패할 수 있습니다. 반면 configuration failure와 port bind failure는 서로 다른 관측 지점과 대응이 필요합니다.
+application validation이 모든 startup 오류를 먼저 걸러내지는 않습니다. static import의 resolution 또는 module evaluation이 실패하면 `main.mjs`의 application code가 실행되기 전에 process가 실패할 수 있습니다. configuration failure와 port bind failure는 서로 다른 관측 지점과 대응이 필요합니다.
 
 | 발생 지점 | application code가 할 수 있는 일 | HTTP response |
 | --- | --- | --- |
@@ -50,7 +50,7 @@ startup error log에는 안정적인 error code와 필요한 실행 환경 식�
 
 ## 3. Node v26에서 module system을 명시합니다
 
-Node는 filename extension과 가장 가까운 `package.json`의 `"type"`으로 JavaScript file의 module system을 결정합니다. service source는 implicit default에 기대지 말고 package type 또는 extension을 명시하는 편이 경계를 읽기 쉽습니다.
+Node는 filename extension과 가장 가까운 `package.json`의 `"type"`으로 JavaScript file의 module system을 결정합니다. service source는 implicit default에 기대지 말고 package type 또는 extension을 명시하면 경계를 읽기 쉽습니다.
 
 | 입력 | Node의 해석 | 사용할 때 |
 | --- | --- | --- |
@@ -59,9 +59,9 @@ Node는 filename extension과 가장 가까운 `package.json`의 `"type"`으로 
 | `.js` + `"type": "module"` | ESM | ESM project의 일반 source file |
 | `.js` + `"type": "commonjs"` | CommonJS | CommonJS project의 일반 source file |
 
-`"type"`이 없는 `.js`는 Node v26의 ambiguous input 처리와 syntax detection 영향을 받을 수 있습니다. 따라서 "type 없는 `.js`는 언제나 CommonJS"라고 단정하지 않습니다. 교육용 또는 운영 service에는 `"type": "module"`이나 `"type": "commonjs"`를 package 경계에 명시합니다.
+`"type"`이 없는 `.js`는 Node v26의 ambiguous input 처리와 syntax detection 영향을 받으므로 언제나 CommonJS로 단정할 수 없습니다. 교육용 또는 운영 service에는 `"type": "module"`이나 `"type": "commonjs"`를 package 경계에 명시합니다.
 
-ECMAScript specification은 imported module을 가져오는 host operation을 정의합니다. relative extension, `package.json`, `node_modules`, `exports` 해석은 Node가 제공하는 host-specific resolver입니다. 브라우저와 Node에서 같은 source text를 쓰더라도 resolution 규칙까지 같다고 가정하면 안 됩니다.
+ECMAScript specification은 imported module을 가져오는 host operation을 정의합니다. relative extension, `package.json`, `node_modules`, `exports` 해석은 Node가 제공하는 host-specific resolver입니다. 브라우저와 Node에서 같은 source text를 써도 resolution 규칙은 서로 다릅니다.
 
 ---
 
@@ -75,9 +75,9 @@ import { loadConfig } from './config.mjs';
 import { createServer } from './server.mjs';
 ```
 
-library 또는 monorepo package는 `package.json`의 `exports`로 외부 소비자가 쓸 public entry point를 제한할 수 있습니다. `imports`는 `#`으로 시작하는 package 내부 alias를 위한 경계입니다. `imports`는 외부 consumer의 public API가 아닙니다. 이미 deep import를 사용하던 consumer는 `exports`를 추가한 뒤 path를 찾지 못할 수 있으므로 migration 전에 영향 범위를 확인합니다.
+library 또는 monorepo package는 `package.json`의 `exports`로 외부 소비자가 쓸 public entry point를 제한할 수 있습니다. `imports`는 `#`으로 시작하는 package 내부 alias 경계이며, 외부 consumer가 쓰는 public API는 아닙니다. 이미 deep import를 사용하던 consumer는 `exports`를 추가한 뒤 path를 찾지 못할 수 있으므로 migration 전에 영향 범위를 확인합니다.
 
-ESM에서 CommonJS를 import할 때 default export는 제공되지만, named export 감지는 static analysis에 의존합니다. 반대로 CommonJS `require()`가 ESM을 load하는 경우에는 top-level `await`가 없는 synchronous module graph 같은 조건이 있습니다. ESM과 CommonJS를 대칭적이고 자유롭게 섞을 수 있다고 설명하지 않습니다.
+ESM에서 CommonJS를 import할 때 default export는 제공되지만, named export 감지는 static analysis에 의존합니다. 반대로 CommonJS `require()`가 ESM을 load하는 경우에는 top-level `await`가 없는 synchronous module graph 같은 조건이 있습니다. ESM과 CommonJS의 interop은 방향에 따라 조건이 다릅니다.
 
 ---
 
@@ -85,7 +85,7 @@ ESM에서 CommonJS를 import할 때 default export는 제공되지만, named exp
 
 Node CLI의 `--env-file`은 file의 값을 `process.env`에 제공합니다. 값이 제공된 뒤에도 environment variable은 text입니다. 예를 들어 `APP_PORT=3000`은 number가 아니고 `DEBUG=false`도 boolean이 아닙니다. `Boolean(process.env.DEBUG)`는 문자열 `"false"`도 truthy로 처리하므로 configuration parser로 쓰면 안 됩니다.
 
-application은 startup에서 값을 읽고 required field, range, enum, URL, field 조합을 검증한 뒤 typed configuration object로 변환합니다. 이 검증은 Node가 자동으로 강제하는 schema가 아니라 service가 선택한 startup policy입니다.
+application은 startup에서 값을 읽고 required field, range, enum, URL, field 조합을 검증한 뒤 typed configuration object로 변환합니다. 이 검증은 service가 선택한 startup policy입니다. Node가 자동으로 강제하는 schema는 없습니다.
 
 ```js
 export class ConfigurationError extends Error {}
@@ -147,7 +147,7 @@ configuration validation은 module resolution failure를 가로채지 못합니�
 
 ## 7. 검증된 ESM startup lab
 
-이 글의 lab은 `/tmp/phase2-esm-startup-lab`에서 Node test runner로 직접 실행했습니다. `package.json`은 `"type": "module"`을 선언하고, entry file은 `./config.mjs`와 `./server.mjs`를 extension까지 포함해 import합니다. `server.mjs`는 transport만 만들고 module evaluation 중에는 socket을 열지 않습니다.
+lab은 `/tmp/phase2-esm-startup-lab`에서 Node test runner로 직접 실행했습니다. `package.json`은 `"type": "module"`을 선언하고, entry file은 `./config.mjs`와 `./server.mjs`를 extension까지 포함해 import합니다. `server.mjs`는 transport만 만들고 module evaluation 중에는 socket을 열지 않습니다.
 
 ```text
 $ npm run test
@@ -158,7 +158,7 @@ $ npm run test
 # fail 0
 ```
 
-첫 test는 `APP_GREETING`이 없는 child process를 실행합니다. process는 exit code `1`과 `CONFIG_ERROR missing required environment value: APP_GREETING`을 남기고, 예약했던 localhost port에는 connection을 받지 않습니다. 이는 invalid configuration이 port binding 전에 실패했다는 증거입니다.
+첫 test는 `APP_GREETING`이 없는 child process를 실행합니다. process는 exit code `1`과 `CONFIG_ERROR missing required environment value: APP_GREETING`을 남기고, 예약했던 localhost port에는 connection을 받지 않습니다. invalid configuration이 port binding 전에 실패했다는 증거입니다.
 
 둘째 test는 `APP_HOST=127.0.0.1`, `APP_PORT=0`, `APP_GREETING=hello-esm`으로 child process를 시작합니다. `READY 127.0.0.1 <ephemeral-port>`가 나온 뒤 HTTP request를 보내면 status `200`과 body `hello-esm\n`을 받습니다. response가 끝난 뒤 lab server가 close되고 child process도 exit code `0`으로 종료됩니다.
 
@@ -175,13 +175,13 @@ import './state.mjs?first';
 import './state.mjs?second';
 ```
 
-위처럼 URL identity가 달라지면 module-level state가 두 번 초기화될 수 있습니다. "module은 process 전체에서 언제나 한 번만 실행된다"는 보장은 아닙니다. test isolation, hot reload, cache invalidation은 loader identity와 side effect를 추가로 검토해야 하는 별도 주제입니다.
+위처럼 URL identity가 달라지면 module-level state가 두 번 초기화될 수 있습니다. module이 process 전체에서 언제나 한 번만 실행된다는 보장은 없습니다. test isolation, hot reload, cache invalidation은 loader identity와 side effect를 함께 검토해야 합니다.
 
 ---
 
 ## 9. startup에서 확인할 경계
 
-package boundary에서는 `"type"` 또는 `.mjs`, `.cjs` extension을 명시하고, ESM relative import에는 file extension을 포함해야 합니다. environment variable은 startup에서 parse하고 validation한 immutable configuration으로 한 번만 만들며, configuration failure는 `listen()` 전에 non-zero exit로 끝나는지 test로 확인하는 편이 안전합니다.
+package boundary에서는 `"type"` 또는 `.mjs`, `.cjs` extension을 명시하고, ESM relative import에는 file extension을 포함해야 합니다. environment variable은 startup에서 parse하고 validation한 immutable configuration으로 한 번만 만들며, configuration failure는 `listen()` 전에 non-zero exit로 끝나는지 test로 확인합니다.
 
 server `error` listener는 `listen()`보다 먼저 등록합니다. startup log는 운영자가 process가 왜 뜨지 않았는지 확인하는 channel이고, request error response는 client contract이므로 같은 오류 정보를 두 곳에 복사하지 않습니다.
 
