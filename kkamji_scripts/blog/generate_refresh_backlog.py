@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -57,7 +58,16 @@ def main() -> None:
     reference = [r for r in rows_by_score if "external links but no Reference" in r.get("issues", "")]
     tldr = [r for r in rows_by_score if "add TL;DR" in r.get("suggestions", "")]
 
+    # docs/ is governed by docs/_meta/docs_lint.py, which requires these four keys.
+    # Writing the body alone would strip them on every regeneration and break CI.
     lines = [
+        "---",
+        "title: Blog refresh backlog",
+        f"updated: {date.today().isoformat()}",
+        "type: evidence",
+        "status: current",
+        "---",
+        "",
         "# Blog Refresh Backlog",
         "",
         "이 문서는 `kkamji_scripts/blog/audit_blog_quality.py` 결과를 바탕으로 생성한 리프레시 우선순위다.",
