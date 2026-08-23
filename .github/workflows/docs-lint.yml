@@ -1,0 +1,45 @@
+name: "Docs lint"
+
+# pages-deploy.yml only runs on push, so the docs wiki needs its own workflow to
+# get a pull_request trigger. Coupling and freshness need a base ref to diff
+# against, and a pull request is the only place that base is meaningful here.
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "_includes/**"
+      - "assets/css/**"
+      - "kkamji_scripts/blog/**"
+      - ".github/workflows/docs-lint.yml"
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs-lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint repo docs wiki
+        env:
+          DOCS_BASE_REF: ${{ github.event_name == 'pull_request' && github.base_ref || '' }}
+        run: |
+          if [ -n "$DOCS_BASE_REF" ]; then
+            git fetch --no-tags origin "$DOCS_BASE_REF"
+            python3 docs/_meta/docs_lint.py --root . --base "origin/$DOCS_BASE_REF"
+          else
+            python3 docs/_meta/docs_lint.py --root .
+          fi

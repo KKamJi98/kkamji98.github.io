@@ -1,3 +1,10 @@
+---
+title: Blog content-quality harness
+updated: 2026-08-23
+type: architecture
+status: current
+---
+
 # Blog Content-Quality Harness
 
 이 문서는 `kkamji_scripts/blog/audit_content_depth.py`(콘텐츠 깊이 하네스)의 설계 의도와 사용법을 정리한다.
