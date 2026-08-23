@@ -1,3 +1,10 @@
+---
+title: Theme overrides registry
+updated: 2026-08-23
+type: architecture
+status: current
+---
+
 # Theme Overrides (Gem Customizations)
 
 이 블로그는 `jekyll-theme-chirpy`를 **gem**으로 사용합니다 (`Gemfile`: `~> 7.3`, 현재 설치 `7.4.1`).

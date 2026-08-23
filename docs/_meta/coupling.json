@@ -1,0 +1,16 @@
+{
+  "$comment": [
+    "파일 경로가 바뀐 PR에서 짝지어진 문서도 바뀌어야 한다는 매핑이다.",
+    "값은 fnmatch 글로브이고 repo 루트 기준 상대경로에 맞춘다.",
+    "실제로 존재하는 경로만 넣는다. 없는 경로를 미리 넣으면 아무것도 걸리지 않는 죽은 규칙이 된다.",
+    "_config.yml은 테마와 무관한 이유로도 자주 바뀌므로 제외한다.",
+    "blog-refresh-backlog.md는 생성 스크립트가 아니라 글이 바뀔 때 낡으므로 매핑하지 않는다."
+  ],
+  "docs/THEME_OVERRIDES.md": [
+    "_includes/*.html",
+    "assets/css/jekyll-theme-chirpy.scss"
+  ],
+  "docs/blog-content-quality-harness.md": [
+    "kkamji_scripts/blog/audit_content_depth.py"
+  ]
+}

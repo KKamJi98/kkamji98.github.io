@@ -6,6 +6,23 @@
 - Reference의 링크에서 링크드인, 실습에 사용된 개인 url은 절대 추가로 포함시키지 않음
 - 응답과 편집물에서 '·', '→' 문자는 절대 사용하지 않음 (금지)
 
+## Knowledge Layout
+
+- **현재 구조, 결정, 규칙**: `docs/`. 카탈로그는 `docs/index.md`다. 코드나 테마를 바꾸기 전에 읽는다.
+- **작업 일지, 백로그**: vault `workspaces/`. 날짜별 기록이다.
+- **교차 repo 지식**: vault `wiki/`, `shapes/`, `runbooks/`.
+
+이 파일은 라우팅만 담는다. 규칙 본문은 `docs/`에 쓴다.
+
+- frontmatter 필수 키 네 개: `title`, `updated`, `type`, `status`.
+- `type`: `architecture` | `decision` | `rule` | `runbook` | `evidence`
+- `status`: `current` | `superseded` | `archived`
+- 새 문서는 `docs/index.md`에 등록한다. 등록하지 않으면 CI가 막는다.
+- wikilink를 쓰지 않는다. 상대경로 markdown 링크만 쓴다.
+- `docs/_meta/coupling.json`에 매핑된 파일을 바꾸면 같은 PR에서 해당 문서도 바꾼다.
+- `docs/_meta/docs_lint.py`는 손으로 고치지 않는다. 정본은 `kkamji-settings/agents/docs-wiki/docs_lint.py`다.
+- 검증: `python3 docs/_meta/docs_lint.py --root .`
+
 ## Public Writing
 
 - 계획 카드의 독자, 도착 역량, 범위, 비범위, 연재 의존성, 검증 기준은 작성과 리뷰를 위한 내부 산출물이다. 독자가 필요한 기술적 전제와 한계만 본문 맥락에 자연스럽게 녹인다.

@@ -1,3 +1,10 @@
+---
+title: Blog refresh backlog
+updated: 2026-08-23
+type: evidence
+status: current
+---
+
 # Blog Refresh Backlog
 
 이 문서는 `kkamji_scripts/blog/audit_blog_quality.py` 결과를 바탕으로 생성한 리프레시 우선순위다.
