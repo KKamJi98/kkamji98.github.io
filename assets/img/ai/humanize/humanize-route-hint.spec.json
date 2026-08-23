@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "id": "humanize-route-hint",
+  "title": "A deterministic score picks the path, and the path picks the call count",
+  "subtitle": "The shim reads the prose before any model does. Well-written text exits after one call; only dense AI slop pays for three.",
+  "layout": {
+    "col_gap": 58
+  },
+  "nodes": [
+    {
+      "id": "prose",
+      "kind": "box",
+      "label": "Input prose",
+      "detail": "no model has seen it yet",
+      "role": "surface",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "shim",
+      "kind": "box",
+      "label": "prepare_monolith_input.py",
+      "detail": "counted tells plus risk band",
+      "role": "process",
+      "col": 1,
+      "row": 1,
+      "step": 1,
+      "step_at": "top-left"
+    },
+    {
+      "id": "light",
+      "kind": "box",
+      "label": "light: 1 call",
+      "detail": "counted tells 2 or fewer",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "standard",
+      "kind": "box",
+      "label": "standard: 2 calls",
+      "detail": "tells mixed with risk",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "heavy",
+      "kind": "box",
+      "label": "heavy: 3+ calls",
+      "detail": "tells 8 or more, or very long",
+      "role": "queue",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "gate",
+      "kind": "box",
+      "label": "verify_gates.py",
+      "detail": "warns at 30 percent, stops at 50",
+      "role": "danger",
+      "col": 3,
+      "row": 1,
+      "step": 2,
+      "step_at": "top-left"
+    },
+    {
+      "id": "final",
+      "kind": "box",
+      "label": "final.md",
+      "detail": "meaning unchanged",
+      "role": "surface",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "prose",
+      "target": "shim"
+    },
+    {
+      "id": "e2",
+      "source": "shim",
+      "target": "light"
+    },
+    {
+      "id": "e3",
+      "source": "shim",
+      "target": "standard"
+    },
+    {
+      "id": "e4",
+      "source": "shim",
+      "target": "heavy"
+    },
+    {
+      "id": "e5",
+      "source": "light",
+      "target": "gate"
+    },
+    {
+      "id": "e6",
+      "source": "standard",
+      "target": "gate"
+    },
+    {
+      "id": "e7",
+      "source": "heavy",
+      "target": "gate"
+    },
+    {
+      "id": "e8",
+      "source": "gate",
+      "target": "final"
+    }
+  ]
+}
