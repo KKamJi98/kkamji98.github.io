@@ -20,7 +20,7 @@
           <mxGeometry x="60" y="428" width="220" height="88" as="geometry" />
         </mxCell>
         <mxCell id="gateway" value="LLM Gateway&#xa;virtual keys, budgets, audit logs, guardrails, fallback routing" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="352" y="284" width="220" height="88" as="geometry" />
+          <mxGeometry x="352" y="140" width="220" height="376" as="geometry" />
         </mxCell>
         <mxCell id="p-openai" value="OpenAI" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="644" y="140" width="220" height="88" as="geometry" />
@@ -33,14 +33,14 @@
         </mxCell>
         <mxCell id="e-chat-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-chat" target="gateway">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="316" y="184" />
-              <mxPoint x="316" y="328" />
-            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-rag-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-rag" target="gateway">
           <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="316" y="328" />
+              <mxPoint x="316" y="328" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-agent-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-agent" target="gateway">
@@ -53,14 +53,14 @@
         </mxCell>
         <mxCell id="e-gw-openai" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-openai">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="608" y="328" />
-              <mxPoint x="608" y="184" />
-            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-gw-anthropic" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-anthropic">
           <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="608" y="328" />
+              <mxPoint x="608" y="328" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-gw-azure" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-azure">
