@@ -1,0 +1,52 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="graph-system-intelligence" name="Graph engineering organizes the whole system">
+    <mxGraphModel dx="818" dy="294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="818" pageHeight="294" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="794.7" height="270.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Graph engineering organizes the whole system" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="750.7" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Loops become nodes; task graph, state and ontology are shared structure." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="750.7" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g-loop-a" value="loop A&#xa;coding agent loop" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="g-loop-b" value="loop B&#xa;review and audit loop" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="206" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="g-task" value="task graph&#xa;tasks as nodes, dependencies as edges" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="266" y="104" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="g-state" value="shared state&#xa;who did what, where it lives" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="582" y="104" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="g-onto" value="ontology&#xa;shared vocabulary and relations" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="285" y="206" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="e-g-loop-a-to-g-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g-loop-a" target="g-task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-g-loop-b-to-g-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g-loop-b" target="g-task">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="234" y="233.0" />
+              <mxPoint x="234" y="182" />
+              <mxPoint x="396.0" y="182" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-g-task-to-g-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g-task" target="g-state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-g-onto-to-g-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="g-onto" target="g-task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

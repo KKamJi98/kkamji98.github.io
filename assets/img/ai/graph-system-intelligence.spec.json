@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "graph-system-intelligence",
+  "title": "Graph engineering organizes the whole system",
+  "subtitle": "Loops become nodes; task graph, state and ontology are shared structure.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "g-loop-a",
+      "kind": "box",
+      "label": "loop A",
+      "detail": "coding agent loop",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "g-loop-b",
+      "kind": "box",
+      "label": "loop B",
+      "detail": "review and audit loop",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "g-task",
+      "kind": "box",
+      "label": "task graph",
+      "detail": "tasks as nodes, dependencies as edges",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "g-state",
+      "kind": "box",
+      "label": "shared state",
+      "detail": "who did what, where it lives",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "g-onto",
+      "kind": "box",
+      "label": "ontology",
+      "detail": "shared vocabulary and relations",
+      "role": "external",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-g-loop-a-to-g-task",
+      "source": "g-loop-a",
+      "target": "g-task"
+    },
+    {
+      "id": "e-g-loop-b-to-g-task",
+      "source": "g-loop-b",
+      "target": "g-task"
+    },
+    {
+      "id": "e-g-task-to-g-state",
+      "source": "g-task",
+      "target": "g-state"
+    },
+    {
+      "id": "e-g-onto-to-g-task",
+      "source": "g-onto",
+      "target": "g-task"
+    }
+  ]
+}
