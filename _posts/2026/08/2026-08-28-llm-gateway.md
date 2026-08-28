@@ -1,6 +1,6 @@
 ---
 title: "LLM Gateway 알아보기 - 키, 비용, 감사의 관문 [AI Gateway 1]"
-date: 2026-08-29 01:17:00 +0900
+date: 2026-08-28 01:17:00 +0900
 author: kkamji
 categories: [AI, Infra]
 tags: [llm-gateway, ai-gateway, litellm, kong, higress, portkey, api-gateway, study]
