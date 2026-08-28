@@ -10,17 +10,17 @@
         <mxCell id="subtitle" value="Applications hold virtual keys; the gateway holds provider keys, budgets, audit, and routing." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#5F6368;fontSize=13;" vertex="1" parent="1">
           <mxGeometry x="60" y="94" width="804" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="app-chat" value="Chatbot&#10;team A, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+        <mxCell id="app-chat" value="Chatbot&#xa;team A, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="60" y="140" width="220" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="app-rag" value="RAG Service&#10;team B, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+        <mxCell id="app-rag" value="RAG Service&#xa;team B, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="60" y="284" width="220" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="app-agent" value="Agent&#10;team C, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+        <mxCell id="app-agent" value="Agent&#xa;team C, virtual key" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="60" y="428" width="220" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="gateway" value="LLM Gateway&#10;virtual keys, budgets, audit logs, guardrails, fallback routing" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
-          <mxGeometry x="352" y="140" width="220" height="376" as="geometry" />
+        <mxCell id="gateway" value="LLM Gateway&#xa;virtual keys, budgets, audit logs, guardrails, fallback routing" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#1A73E8;strokeColor=#1A73E8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="352" y="284" width="220" height="88" as="geometry" />
         </mxCell>
         <mxCell id="p-openai" value="OpenAI" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="644" y="140" width="220" height="88" as="geometry" />
@@ -31,32 +31,44 @@
         <mxCell id="p-azure" value="Azure OpenAI" style="rounded=1;whiteSpace=wrap;html=0;arcSize=12;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
           <mxGeometry x="644" y="428" width="220" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="e-chat-gw" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.117;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-chat" target="gateway">
+        <mxCell id="e-chat-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-chat" target="gateway">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="316" y="184" />
+              <mxPoint x="316" y="328" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-rag-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-rag" target="gateway">
           <mxGeometry relative="1" as="geometry">
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-rag-gw" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-rag" target="gateway">
+        <mxCell id="e-agent-gw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-agent" target="gateway">
           <mxGeometry relative="1" as="geometry">
-            
+            <Array as="points">
+              <mxPoint x="316" y="472" />
+              <mxPoint x="316" y="328" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-agent-gw" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.883;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app-agent" target="gateway">
+        <mxCell id="e-gw-openai" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-openai">
           <mxGeometry relative="1" as="geometry">
-            
+            <Array as="points">
+              <mxPoint x="608" y="328" />
+              <mxPoint x="608" y="184" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-gw-openai" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.117;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-openai">
+        <mxCell id="e-gw-anthropic" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-anthropic">
           <mxGeometry relative="1" as="geometry">
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-gw-anthropic" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-anthropic">
+        <mxCell id="e-gw-azure" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-azure">
           <mxGeometry relative="1" as="geometry">
-            
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e-gw-azure" value="" style="rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;exitX=1;exitY=0.883;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gateway" target="p-azure">
-          <mxGeometry relative="1" as="geometry">
-            
+            <Array as="points">
+              <mxPoint x="608" y="328" />
+              <mxPoint x="608" y="472" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
