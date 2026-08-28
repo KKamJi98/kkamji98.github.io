@@ -10,39 +10,35 @@
   "nodes": [
     {
       "id": "prompt",
-      "kind": "box",
       "label": "prompt engineering",
       "detail": "one instruction, one turn",
       "role": "process",
       "col": 0,
-      "row": 3
+      "row": 0
     },
     {
       "id": "context",
-      "kind": "box",
       "label": "context engineering",
       "detail": "curate what the model sees",
       "role": "process",
       "col": 0,
-      "row": 2
+      "row": 1
     },
     {
       "id": "loop",
-      "kind": "box",
       "label": "loop engineering",
       "detail": "a system prompts the agent",
       "role": "compute",
       "col": 0,
-      "row": 1
+      "row": 2
     },
     {
       "id": "graph",
-      "kind": "box",
       "label": "graph engineering",
       "detail": "tasks, agents, state as a graph",
       "role": "process",
       "col": 0,
-      "row": 0
+      "row": 3
     }
   ],
   "edges": [
