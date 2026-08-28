@@ -6,7 +6,7 @@ categories: [AI, Infra]
 tags: [llm-gateway, ai-gateway, litellm, kong, higress, portkey, api-gateway, study]
 comments: true
 image:
-  path: /assets/img/ai/llm-gateway-position.webp
+  path: /assets/img/ai/gateway/ai-gateway.webp
 ---
 
 기업에서 LLM API를 직접 쓰기 시작하면 처음 마주치는 문제는 모델 품질이 아닙니다. OpenAI 키가 슬랙으로 공유되고, 팀마다 따로 결제한 Azure 구독이 3개 생기고, "이번 달 LLM 비용이 얼마인데 팀별로 얼마씩 쓴 거지?"라는 질문에 답할 방법이 없는 상황입니다. 이 글에서는 이 문제들을 해결하는 LLM Gateway가 무엇을 관문으로 삼는지, 그리고 2026년 현재 어떤 선택지들이 있는지를 정리합니다.
