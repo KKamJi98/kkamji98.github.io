@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "loop-anatomy",
+  "title": "Anatomy of one agent loop",
+  "subtitle": "Find work, hand out, verify, record, decide next.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "stage-find",
+      "kind": "box",
+      "label": "find work",
+      "detail": "backlog, issue, diff scan",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "stage-handout",
+      "kind": "box",
+      "label": "hand out",
+      "detail": "prompt the agent with scope",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "stage-verify",
+      "kind": "box",
+      "label": "verify",
+      "detail": "tests, gates, review",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "step-record",
+      "kind": "box",
+      "label": "record",
+      "detail": "notes, logs, state",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "step-next",
+      "kind": "box",
+      "label": "decide next",
+      "detail": "continue or stop",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0-find-to-handout",
+      "source": "stage-find",
+      "target": "stage-handout"
+    },
+    {
+      "id": "e1-handout-to-verify",
+      "source": "stage-handout",
+      "target": "stage-verify"
+    },
+    {
+      "id": "e2-verify-to-record",
+      "source": "stage-verify",
+      "target": "step-record"
+    },
+    {
+      "id": "e3-record-to-next",
+      "source": "step-record",
+      "target": "step-next"
+    }
+  ]
+}
