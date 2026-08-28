@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "llm-gateway-position",
+  "title": "Where the LLM Gateway sits",
+  "subtitle": "Applications hold virtual keys; the gateway holds provider keys, budgets, audit, and routing.",
+  "layout": {
+    "col_gap": 72,
+    "row_gap": 56
+  },
+  "nodes": [
+    {
+      "id": "app-chat",
+      "label": "Chatbot",
+      "detail": "team A, virtual key",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "app-rag",
+      "label": "RAG Service",
+      "detail": "team B, virtual key",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "app-agent",
+      "label": "Agent",
+      "detail": "team C, virtual key",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "gateway",
+      "label": "LLM Gateway",
+      "detail": "virtual keys, budgets, audit logs, guardrails, fallback routing",
+      "role": "emphasis",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "p-openai",
+      "label": "OpenAI",
+      "role": "external",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "p-anthropic",
+      "label": "Anthropic",
+      "role": "external",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "p-azure",
+      "label": "Azure OpenAI",
+      "role": "external",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-chat-gw",
+      "source": "app-chat",
+      "target": "gateway"
+    },
+    {
+      "id": "e-rag-gw",
+      "source": "app-rag",
+      "target": "gateway"
+    },
+    {
+      "id": "e-agent-gw",
+      "source": "app-agent",
+      "target": "gateway"
+    },
+    {
+      "id": "e-gw-openai",
+      "source": "gateway",
+      "target": "p-openai"
+    },
+    {
+      "id": "e-gw-anthropic",
+      "source": "gateway",
+      "target": "p-anthropic"
+    },
+    {
+      "id": "e-gw-azure",
+      "source": "gateway",
+      "target": "p-azure"
+    }
+  ]
+}
