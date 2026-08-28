@@ -35,6 +35,18 @@ COVERS = {
         "caption": "키, 비용, 감사의 관문",
         "out": "assets/img/ai/gateway/ai-gateway.webp",
     },
+    "ai-agent-loop": {
+        "glyph": "loop",
+        "wordmark": "LOOP ENGINEERING",
+        "caption": "프롬프트 대신 루프를 설계한다",
+        "out": "assets/img/ai/agent/loop-engineering.webp",
+    },
+    "ai-agent-graph": {
+        "glyph": "graph",
+        "wordmark": "GRAPH ENGINEERING",
+        "caption": "루프를 시스템으로 조직한다",
+        "out": "assets/img/ai/agent/graph-engineering.webp",
+    },
 }
 
 
@@ -67,7 +79,49 @@ def gateway_glyph():
     }
 
 
-GLYPHS = {"gateway": gateway_glyph}
+def loop_glyph():
+    """A circular cycle of four node dots with an arrow-ish gap,
+    a verify box as the heaviest station on the ring."""
+    pts = [(230, 40), (360, 160), (230, 280), (100, 160)]
+    verify = (230, 160)
+    return {
+        "height": 320,
+        "nodes": pts,
+        "hubs": [(230, 160)],
+        "dots": [],
+        "boxes": [(verify[0], verify[1], 96, 56, False)],
+        "edges": [
+            (pts[0], pts[1]),
+            (pts[1], pts[2]),
+            (pts[2], pts[3]),
+            (pts[3], pts[0]),
+        ],
+    }
+
+
+def graph_glyph():
+    """Three small loop triangles connected through a central task hub,
+    with a state box below holding the shared record."""
+    a = (120, 80)
+    b = (280, 80)
+    c = (200, 170)
+    state = (200, 280)
+    return {
+        "height": 320,
+        "nodes": [a, b, c],
+        "hubs": [c],
+        "dots": [],
+        "boxes": [(state[0], state[1], 120, 52, False)],
+        "edges": [
+            (a, b),
+            (b, c),
+            (c, a),
+            (c, (state[0], state[1] - 26)),
+        ],
+    }
+
+
+GLYPHS = {"gateway": gateway_glyph, "loop": loop_glyph, "graph": graph_glyph}
 
 
 def render(spec) -> Image.Image:

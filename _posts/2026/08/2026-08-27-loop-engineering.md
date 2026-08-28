@@ -6,7 +6,7 @@ categories: [AI, Agent]
 tags: [ai-agent, loop-engineering, prompt-engineering, context-engineering, claude-code, study]
 comments: true
 image:
-  path: /assets/img/ai/loop-anatomy.webp
+  path: /assets/img/ai/agent/loop-engineering.webp
 ---
 
 "Boris Cherny가 프롬프트를 안 쓴다더라"는 이야기가 커뮤니티에 돌았습니다. Anthropic Claude Code를 이끄는 사람이 자기 제품에 프롬프트를 안 붙인다는 말이니 모순처럼 들립니다. 원문을 찾아보면 모순이 아니라 방향 전환에 대한 선언입니다.

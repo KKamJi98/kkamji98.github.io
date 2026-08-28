@@ -6,7 +6,7 @@ categories: [AI, Agent]
 tags: [ai-agent, graph-engineering, ontology, langgraph, multi-agent, study]
 comments: true
 image:
-  path: /assets/img/ai/graph-system-intelligence.webp
+  path: /assets/img/ai/agent/graph-engineering.webp
 ---
 
 루프 하나야 잘 돌아간다. 문제는 둘째부터입니다. 코딩 루프는 커밋을 만들고, 검토 루프는 그 커밋을 읽고, 문서 루프는 그 변경을 노트에 남깁니다. 각자의 루프가 각자의 상태를 들고 있으면, 누가 무엇을 했는지 아무도 모르는 상태가 됩니다.
