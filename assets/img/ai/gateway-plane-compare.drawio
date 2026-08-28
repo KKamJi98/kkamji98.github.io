@@ -1,0 +1,60 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="gateway-plane-compare" name="Two places to put an LLM gateway">
+    <mxGraphModel dx="794" dy="396" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="794" pageHeight="396" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="770.3" height="372.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Two places to put an LLM gateway" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="726.3" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="App-level Python service vs Envoy dataplane on the ingress path" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="726.3" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c-app" value="application&#xa;python app calls the gateway SDK" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c-litellm" value="LiteLLM proxy&#xa;app-level python service" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="60" y="206" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c-provider-a" value="OpenAI&#xa;provider API" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="581" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c-provider-b" value="Bedrock&#xa;provider API" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="581" y="206" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d-app" value="application&#xa;plain OpenAI-compatible calls" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="44" y="308" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d-envoy" value="Envoy AI Gateway&#xa;ext processor on Envoy Proxy" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="318" y="308" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d-provider" value="providers&#xa;any OpenAI-compatible API" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="577" y="308" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-app-to-c-litellm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5022;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c-app" target="c-litellm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-litellm-to-c-provider-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c-litellm" target="c-provider-a">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="409.0" y="233.0" />
+              <mxPoint x="409.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-c-litellm-to-c-provider-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c-litellm" target="c-provider-b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d-app-to-d-envoy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="d-app" target="d-envoy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d-envoy-to-d-provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="d-envoy" target="d-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

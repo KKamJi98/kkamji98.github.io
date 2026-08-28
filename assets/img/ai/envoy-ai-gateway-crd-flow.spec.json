@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "envoy-ai-gateway-crd-flow",
+  "title": "Envoy AI Gateway request path",
+  "subtitle": "CRDs shape the route; ext processor adds token-aware policy on the data plane",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "f-client",
+      "kind": "box",
+      "label": "client",
+      "detail": "OpenAI-compatible request",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "f-route",
+      "kind": "box",
+      "label": "AIGatewayRoute",
+      "detail": "model-name based routing",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "f-extproc",
+      "kind": "box",
+      "label": "ext processor",
+      "detail": "token usage, prompt cache, auth",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "f-quota",
+      "kind": "box",
+      "label": "quota policy",
+      "detail": "usage-based rate limit",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "f-backend",
+      "kind": "box",
+      "label": "BackendSecurityPolicy",
+      "detail": "provider credentials in one place",
+      "role": "store",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "f-provider",
+      "kind": "box",
+      "label": "LLM provider",
+      "detail": "OpenAI, Bedrock, Gemini",
+      "role": "external",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-f-client-to-f-route",
+      "source": "f-client",
+      "target": "f-route"
+    },
+    {
+      "id": "e-f-route-to-f-extproc",
+      "source": "f-route",
+      "target": "f-extproc"
+    },
+    {
+      "id": "e-f-quota-to-f-extproc",
+      "source": "f-quota",
+      "target": "f-extproc"
+    },
+    {
+      "id": "e-f-extproc-to-f-provider",
+      "source": "f-extproc",
+      "target": "f-provider"
+    },
+    {
+      "id": "e-f-backend-to-f-provider",
+      "source": "f-backend",
+      "target": "f-provider"
+    }
+  ]
+}

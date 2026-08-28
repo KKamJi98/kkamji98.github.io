@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "gateway-plane-compare",
+  "title": "Two places to put an LLM gateway",
+  "subtitle": "App-level Python service vs Envoy dataplane on the ingress path",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "c-app",
+      "kind": "box",
+      "label": "application",
+      "detail": "python app calls the gateway SDK",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "c-litellm",
+      "kind": "box",
+      "label": "LiteLLM proxy",
+      "detail": "app-level python service",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "c-provider-a",
+      "kind": "box",
+      "label": "OpenAI",
+      "detail": "provider API",
+      "role": "external",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "c-provider-b",
+      "kind": "box",
+      "label": "Bedrock",
+      "detail": "provider API",
+      "role": "external",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "d-app",
+      "kind": "box",
+      "label": "application",
+      "detail": "plain OpenAI-compatible calls",
+      "role": "process",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "d-envoy",
+      "kind": "box",
+      "label": "Envoy AI Gateway",
+      "detail": "ext processor on Envoy Proxy",
+      "role": "store",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "d-provider",
+      "kind": "box",
+      "label": "providers",
+      "detail": "any OpenAI-compatible API",
+      "role": "external",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-c-app-to-c-litellm",
+      "source": "c-app",
+      "target": "c-litellm"
+    },
+    {
+      "id": "e-c-litellm-to-c-provider-a",
+      "source": "c-litellm",
+      "target": "c-provider-a"
+    },
+    {
+      "id": "e-c-litellm-to-c-provider-b",
+      "source": "c-litellm",
+      "target": "c-provider-b"
+    },
+    {
+      "id": "e-d-app-to-d-envoy",
+      "source": "d-app",
+      "target": "d-envoy"
+    },
+    {
+      "id": "e-d-envoy-to-d-provider",
+      "source": "d-envoy",
+      "target": "d-provider"
+    }
+  ]
+}
