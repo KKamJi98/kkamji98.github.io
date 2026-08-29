@@ -30,7 +30,7 @@ image:
 
 LiteLLM 같은 앱 레벨 게이트웨이는 애플리케이션이 SDK나 HTTP로 호출하는 Python 서비스입니다. provider 지원 폭이 넓고 앱팀이 자기 배포물 안에서 바로 쓸 수 있는 게 장점입니다.
 
-Envoy AI Gateway는 인그레스 경로에 놓입니다. 애플리케이션은 OpenAI 호환 요청을 그냥 보내고, Envoy Proxy가 그 트래픽을 가로채 정책을 적용합니다. 확장 포인트가 Python 코드가 아니라 xDS 설정과 external processor라는 점이 근본적인 차이입니다. Kubernetes를 운영하는 팀 입장에서는 기존 인그레스·메시 운영 지식을 그대로 재사용할 수 있는 형태입니다.
+Envoy AI Gateway는 인그레스 경로에 놓입니다. 애플리케이션은 OpenAI 호환 요청을 그냥 보내고, Envoy Proxy가 그 트래픽을 가로채 정책을 적용합니다. 확장 포인트가 Python 코드가 아니라 xDS 설정과 external processor라는 점이 근본적인 차이입니다. Kubernetes를 운영하는 팀 입장에서는 기존 인그레스와 메시 운영 지식을 그대로 재사용할 수 있는 형태입니다.
 
 ---
 
