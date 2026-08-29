@@ -830,6 +830,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/istio/istio/pull/61512" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>istio/istio</span>
+      <span class="cv-oss-pr">PR #61512</span>
+    </div>
+    <p class="cv-oss-desc"><code>TestConvertResources</code> 서브테스트 병렬화로 테스트 실행 시간 약 50% 단축. Istio 첫 기여이며 Slow Unit Tests 우산 이슈 기여</p>
+  </a>
   <a class="cv-oss" href="https://github.com/aws-observability/helm-charts/pull/190" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
