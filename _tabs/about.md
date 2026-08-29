@@ -1220,6 +1220,10 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 
 <ul class="cv-activities">
   <li class="cv-activity speaker">
+    <span class="cv-activity-text"><span class="cv-activity-role">Speaker</span>Open Source Summit North America 2026 - Troubleshooting Like a Senior on Day 1: ReAct Agents With Real-Time Cluster Evidence</span>
+    <span class="cv-activity-date">2026.05</span>
+  </li>
+  <li class="cv-activity speaker">
     <span class="cv-activity-text"><span class="cv-activity-role">Speaker</span>AWS KRUG 마곡 소모임 - EKS Pod Identity로 더 간편하게 Kubernetes 서비스 권한 관리하기</span>
     <span class="cv-activity-date">2026.04</span>
   </li>
