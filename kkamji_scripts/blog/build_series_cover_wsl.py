@@ -47,6 +47,12 @@ COVERS = {
         "caption": "루프를 시스템으로 조직한다",
         "out": "assets/img/ai/agent/graph-engineering.webp",
     },
+    "litellm": {
+        "glyph": "keyring",
+        "wordmark": "LITELLM GATEWAY",
+        "caption": "키와 예산이 머무는 앱 레벨 관문",
+        "out": "assets/img/ai/gateway/litellm.webp",
+    },
 }
 
 
@@ -121,7 +127,26 @@ def graph_glyph():
     }
 
 
-GLYPHS = {"gateway": gateway_glyph, "loop": loop_glyph, "graph": graph_glyph}
+def keyring_glyph():
+    """One master key hub fanning to three virtual key nodes, a spend ledger box."""
+    master = (120, 160)
+    keys = [(260, 60), (260, 160), (260, 260)]
+    ledger = (390, 160)
+    return {
+        "height": 320,
+        "nodes": keys + [master],
+        "hubs": [master],
+        "dots": [],
+        "boxes": [(ledger[0], ledger[1], 110, 52, False)],
+        "edges": [
+            (master, keys[0]),
+            (master, keys[1]),
+            (master, keys[2]),
+            (keys[1], (ledger[0] - 55, ledger[1])),
+        ],
+    }
+
+GLYPHS = {"gateway": gateway_glyph, "loop": loop_glyph, "graph": graph_glyph, "keyring": keyring_glyph}
 
 
 def render(spec) -> Image.Image:

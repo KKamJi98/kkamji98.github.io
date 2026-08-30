@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "litellm-architecture",
+  "title": "LiteLLM proxy on Kubernetes",
+  "subtitle": "The database is the source of truth for keys, budgets and spend",
+  "layout": {
+    "col_gap": 72,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "a-app",
+      "kind": "box",
+      "label": "application",
+      "detail": "OpenAI-compatible calls",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "a-proxy",
+      "kind": "box",
+      "label": "litellm proxy",
+      "detail": "routing, auth, guardrails",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "a-pg",
+      "kind": "box",
+      "label": "PostgreSQL",
+      "detail": "keys, budgets, spend log",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "a-provider",
+      "kind": "box",
+      "label": "providers",
+      "detail": "OpenAI, Bedrock, Gemini",
+      "role": "external",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-a-app-to-a-proxy",
+      "source": "a-app",
+      "target": "a-proxy"
+    },
+    {
+      "id": "e-a-proxy-to-a-pg",
+      "source": "a-proxy",
+      "target": "a-pg"
+    },
+    {
+      "id": "e-a-proxy-to-a-provider",
+      "source": "a-proxy",
+      "target": "a-provider"
+    }
+  ]
+}

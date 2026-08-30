@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "litellm-virtual-key-flow",
+  "title": "Virtual key budget enforcement",
+  "subtitle": "Spend is tracked per key; an exhausted budget is refused at the gate",
+  "layout": {
+    "col_gap": 72,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "b-issue",
+      "kind": "box",
+      "label": "key/generate",
+      "detail": "master key issues the key",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "b-call",
+      "kind": "box",
+      "label": "chat/completions",
+      "detail": "client sends the virtual key",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "b-check",
+      "kind": "box",
+      "label": "budget check",
+      "detail": "spend vs max_budget",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "b-provider",
+      "kind": "box",
+      "label": "provider call",
+      "detail": "within budget: forwarded",
+      "role": "external",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "b-429",
+      "kind": "box",
+      "label": "429 refused",
+      "detail": "budget_exceeded",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "b-log",
+      "kind": "box",
+      "label": "spend log",
+      "detail": "tokens and cost recorded",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-b-issue-to-b-call",
+      "source": "b-issue",
+      "target": "b-call"
+    },
+    {
+      "id": "e-b-call-to-b-check",
+      "source": "b-call",
+      "target": "b-check"
+    },
+    {
+      "id": "e-b-check-to-b-provider",
+      "source": "b-check",
+      "target": "b-provider"
+    },
+    {
+      "id": "e-b-check-to-b-429",
+      "source": "b-check",
+      "target": "b-429"
+    },
+    {
+      "id": "e-b-provider-to-b-log",
+      "source": "b-provider",
+      "target": "b-log"
+    }
+  ]
+}
