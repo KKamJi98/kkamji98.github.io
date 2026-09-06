@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "id": "eks-compute-option-split",
+  "title": "EKS 컴퓨트는 포기할 수 없는 요구 하나가 선택을 확정한다",
+  "subtitle": "Windows 와 custom CNI 는 managed node group 으로, DaemonSet 불필요와 VM 격리는 Fargate 로 몰린다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "pod-demand",
+      "kind": "box",
+      "label": "Pod 배치 요구",
+      "detail": "포기할 수 없는 조건부터 확인한다",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "need-windows",
+      "kind": "box",
+      "label": "Windows, custom AMI 와 CNI, launch template 부트스트랩",
+      "detail": "Pod 별 security group(SGPP)은 Linux 전용; Local Zone은 Auto Mode도 지원",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "need-handsoff",
+      "kind": "box",
+      "label": "노드 운영을 AWS 에 넘긴다",
+      "detail": "오토스케일링과 CSI 와 CNI 를 직접 설치하지 않는다",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "need-isolation",
+      "kind": "box",
+      "label": "Pod 마다 VM 경계",
+      "detail": "DaemonSet 과 privileged container 가 필요 없다",
+      "role": "queue",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "need-onprem",
+      "kind": "box",
+      "label": "노드를 자체 하드웨어에 둔다",
+      "detail": "control plane 은 AWS 리전에 남긴다",
+      "role": "queue",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "mng",
+      "kind": "box",
+      "label": "managed node group",
+      "detail": "Windows, custom CNI, launch template 지원",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "auto-mode",
+      "kind": "box",
+      "label": "EKS Auto Mode",
+      "detail": "Karpenter 기반, SSH 와 SSM 차단, 노드 최대 21일 후 교체",
+      "role": "compute",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "eks-fargate",
+      "kind": "service",
+      "service": "fargate",
+      "label": "EKS Fargate",
+      "detail": "EBS mount, DaemonSet, GPU, Arm, Windows 불가",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "hybrid-nodes",
+      "kind": "box",
+      "label": "Hybrid Nodes",
+      "detail": "EBS, EFS, S3 Files, FSx CSI 전부 불가. NLB 는 target type ip 만",
+      "role": "compute",
+      "col": 2,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "pod-demand",
+      "target": "need-windows"
+    },
+    {
+      "source": "pod-demand",
+      "target": "need-handsoff"
+    },
+    {
+      "source": "pod-demand",
+      "target": "need-isolation"
+    },
+    {
+      "source": "pod-demand",
+      "target": "need-onprem"
+    },
+    {
+      "source": "need-windows",
+      "target": "mng",
+      "emphasis": true
+    },
+    {
+      "source": "need-handsoff",
+      "target": "auto-mode"
+    },
+    {
+      "source": "need-isolation",
+      "target": "eks-fargate"
+    },
+    {
+      "source": "need-onprem",
+      "target": "hybrid-nodes"
+    }
+  ]
+}

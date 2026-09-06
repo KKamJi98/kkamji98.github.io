@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "lambda-concurrency-gates",
+  "title": "요청이 스로틀되는 게이트는 세 군데다",
+  "subtitle": "rps 상한, 함수 동시성, 스케일 속도 중 먼저 걸리는 곳에서 429 가 난다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "incoming",
+      "kind": "box",
+      "label": "함수 호출",
+      "detail": "동기와 비동기 모두 같은 게이트를 지난다",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "rps-gate",
+      "kind": "box",
+      "label": "rps 게이트",
+      "detail": "동시성 쿼터의 10배. 기본 1,000 이면 10,000 rps",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "concurrency-gate",
+      "kind": "box",
+      "label": "함수 동시성",
+      "detail": "reserved 를 걸면 그 값이 상한이자 하한이다",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "scale-gate",
+      "kind": "box",
+      "label": "스케일 속도",
+      "detail": "함수당 10초에 실행 환경 1,000개",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "warm-env",
+      "kind": "box",
+      "label": "provisioned 실행 환경",
+      "detail": "초기화가 끝나 있다. 과금 대상이고 reserved 를 넘지 못한다",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "cold-env",
+      "kind": "box",
+      "label": "새 실행 환경",
+      "detail": "초기화부터 시작한다. 콜드 스타트가 여기서 난다",
+      "role": "store",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "throttled",
+      "kind": "box",
+      "label": "429 TooManyRequestsException",
+      "detail": "동기는 호출자에게, 비동기는 큐로 되돌려 6시간 재시도",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "unreserved-pool",
+      "kind": "box",
+      "label": "미예약 pool",
+      "detail": "Lambda 가 항상 100 을 남겨 예약 총량이 900 으로 묶인다",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "incoming",
+      "target": "rps-gate"
+    },
+    {
+      "source": "rps-gate",
+      "target": "concurrency-gate"
+    },
+    {
+      "source": "concurrency-gate",
+      "target": "scale-gate"
+    },
+    {
+      "source": "scale-gate",
+      "target": "warm-env",
+      "emphasis": true
+    },
+    {
+      "source": "scale-gate",
+      "target": "cold-env"
+    },
+    {
+      "source": "rps-gate",
+      "target": "throttled",
+      "dashed": true
+    },
+    {
+      "source": "concurrency-gate",
+      "target": "throttled",
+      "dashed": true
+    },
+    {
+      "source": "unreserved-pool",
+      "target": "concurrency-gate",
+      "dashed": true
+    }
+  ]
+}

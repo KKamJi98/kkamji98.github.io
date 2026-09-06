@@ -1,0 +1,101 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="ec2-purchase-option-decision" name="구매 옵션은 세 가지 질문에서 갈린다">
+    <mxGraphModel dx="1596" dy="576" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1596" pageHeight="576" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1572.76" height="552.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="구매 옵션은 세 가지 질문에서 갈린다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1528.76" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="중단 허용도, 약정 가능 기간, 라이선스 단위가 각각 다른 가지로 이어진다. 용량 보장은 이 셋과 별개의 축이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1528.76" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="workload" value="워크로드 요구&#xa;중단 허용도와 약정 기간과 라이선스 단위를 먼저 분리한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="200" width="222" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="q-license" value="물리 소켓과 코어 단위 라이선스인가&#xa;감사와 host affinity 가 필요한지 확인한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="313" y="104" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-interrupt" value="2분 통지로 중단을 견디는가&#xa;stateless 이고 체크포인트가 있는 작업인지 확인한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="304" y="296" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="dedicated-host" value="Dedicated Host&#xa;소켓과 코어와 host ID 가 보인다. placement group 에 넣을 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="634" y="104" width="330" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="dedicated-instance" value="Dedicated Instance&#xa;단일 테넌시만 필요할 때. BYOL 은 SQL Server License Mobility 와 Windows VDA 만" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="580" y="200" width="439" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spot" value="Spot&#xa;가격은 EC2 가 조정한다. 최대 가격을 지정하면 중단이 늘어난다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="672" y="296" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-commit" value="1년 또는 3년 지출을 약정할 수 있는가&#xa;약정은 구매 후 취소할 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="711" y="392" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="savings-plans" value="Savings Plans 또는 Reserved Instances&#xa;요금 할인만 준다. 어떤 형태로도 용량을 예약하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1191" y="392" width="247" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="on-demand" value="On-Demand&#xa;약정 없는 기준 가격. 변동분과 검증 구간이 여기 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1204" y="488" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity-axis" value="특정 AZ 용량 보장이 필요하면 별도로 겹친다&#xa;On-Demand Capacity Reservation 또는 zonal RI. ODCR 위에 Savings Plans 요금이 적용된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1067" y="200" width="496" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="workload-to-q-license" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="workload" target="q-license">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="280.0" y="275.0" />
+              <mxPoint x="280.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="workload-to-q-interrupt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="workload" target="q-interrupt">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="280.0" y="275.0" />
+              <mxPoint x="280.0" y="323.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q-license-to-dedicated-host" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-license" target="dedicated-host">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-license-to-dedicated-instance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-license" target="dedicated-instance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="551.0" y="131.0" />
+              <mxPoint x="551.0" y="227.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q-interrupt-to-spot" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-interrupt" target="spot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-interrupt-to-q-commit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-interrupt" target="q-commit">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="602.0" y="323.0" />
+              <mxPoint x="602.0" y="419.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q-commit-to-savings-plans" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-commit" target="savings-plans">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-commit-to-on-demand" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-commit" target="on-demand">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1039.0" y="419.0" />
+              <mxPoint x="1039.0" y="515.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="savings-plans-to-capacity-axis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=0;entryX=0.499;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="savings-plans" target="capacity-axis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

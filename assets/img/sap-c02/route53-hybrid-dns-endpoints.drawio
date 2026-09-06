@@ -1,0 +1,78 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="route53-hybrid-dns-endpoints" name="inbound와 outbound endpoint는 DNS 질의 방향이 서로 반대다">
+    <mxGraphModel dx="1412" dy="460" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1412" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1388.64" height="436.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="inbound와 outbound endpoint는 DNS 질의 방향이 서로 반대다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1344.64" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="온프레미스에서 VPC로 들어오는 질의와 VPC에서 온프레미스로 나가는 질의는 endpoint와 규칙이 다르다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1344.64" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-dns" value="온프레미스 DNS&#xa;VPC 이름을 조회한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="network-link" value="Direct Connect 또는 VPN&#xa;endpoint의 사설 IP까지 경로를 만든다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.direct_connect;" vertex="1" parent="1">
+          <mxGeometry x="322" y="238" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="inbound-endpoint" value="inbound endpoint&#xa;온프레미스 질의를 VPC Resolver로 받는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="482" y="120" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="private-zone" value="private hosted zone&#xa;VPC 내부 이름을 응답한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.hosted_zone;" vertex="1" parent="1">
+          <mxGeometry x="803" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc-workload" value="VPC workload&#xa;온프레미스 이름도 조회할 수 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="977" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="outbound-endpoint" value="outbound endpoint&#xa;forwarding rule이 지정한 경로로 보낸다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="726" y="372" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="forwarding-rule" value="Resolver forwarding rule&#xa;도메인별 target DNS를 지정한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="976" y="372" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-authoritative" value="온프레미스 authoritative DNS&#xa;corp.example.local을 관리한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1202" y="372" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-dns-to-network-link" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem-dns" target="network-link">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="346.0" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="network-link-to-inbound-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="network-link" target="inbound-endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="580.0" y="262.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="inbound-endpoint-to-private-zone" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="inbound-endpoint" target="private-zone">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="private-zone-to-vpc-workload" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="private-zone" target="vpc-workload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc-workload-to-outbound-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vpc-workload" target="outbound-endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="953" y="147.0" />
+              <mxPoint x="953" y="214" />
+              <mxPoint x="827.5" y="214" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="outbound-endpoint-to-forwarding-rule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="outbound-endpoint" target="forwarding-rule">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="forwarding-rule-to-onprem-authoritative" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="forwarding-rule" target="onprem-authoritative">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

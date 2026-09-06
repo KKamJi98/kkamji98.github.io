@@ -1,0 +1,80 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="shared-storage-az-boundary" name="EBS Multi-Attach 는 AZ 안에 갇히고 EFS 는 리전에 걸친다">
+    <mxGraphModel dx="1022" dy="528" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1022" pageHeight="528" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="998.94" height="504.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="EBS Multi-Attach 는 AZ 안에 갇히고 EFS 는 리전에 걸친다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="954.94" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="같은 볼륨을 여러 인스턴스가 붙는 구성은 AZ 하나와 Nitro 16 대가 상한이다. AZ 를 넘는 공유는 파일 계층으로 올라가야 한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="954.94" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="az-a" value="AZ-A" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_availability_zone;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="685" height="222" as="geometry" />
+        </mxCell>
+        <mxCell id="az-b" value="AZ-B" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_availability_zone;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="54" y="376" width="220" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-a1" value="Nitro 인스턴스 1&#xa;clustered file system 필요" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="146" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-a2" value="Nitro 인스턴스 2&#xa;인스턴스당 block device mapping 1 개" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="250" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vol-io2" value="io2 볼륨 Multi-Attach&#xa;io1 과 io2 전용, 최대 16 대, 부팅 볼륨 불가, I/O fencing 은 io2 만" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" vertex="1" parent="1">
+          <mxGeometry x="499" y="201" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-b1" value="다른 AZ 의 인스턴스&#xa;같은 io2 볼륨에 붙을 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="76" y="418" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="efs" value="Regional EFS&#xa;NFS, 수천 클라이언트 동시 마운트, 리전 안 전 AZ" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_file_system;" vertex="1" parent="1">
+          <mxGeometry x="858" y="234" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-a1-to-vol-io2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2-a1" target="vol-io2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="385.0" y="173.0" />
+              <mxPoint x="385.0" y="225.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ec2-a2-to-vol-io2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2-a2" target="vol-io2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="385.0" y="277.0" />
+              <mxPoint x="385.0" y="225.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ec2-a1-to-efs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2-a1" target="efs">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="882.0" y="173.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ec2-a2-to-efs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2-a2" target="efs">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="564.5" y="277.0" />
+              <mxPoint x="564.5" y="258.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ec2-b1-to-efs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2-b1" target="efs">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="276" y="445.0" />
+              <mxPoint x="276" y="351" />
+              <mxPoint x="882.0" y="351" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

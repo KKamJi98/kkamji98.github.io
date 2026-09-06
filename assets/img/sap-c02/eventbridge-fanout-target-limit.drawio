@@ -1,0 +1,113 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="eventbridge-fanout-target-limit" name="EventBridge rule 다섯 target 뒤에 SNS 팬아웃을 둔다">
+    <mxGraphModel dx="1119" dy="728" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1119" pageHeight="728" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1095.12" height="704.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="EventBridge rule 다섯 target 뒤에 SNS 팬아웃을 둔다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1051.12" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="rule당 target 5개는 조정할 수 없으므로 SNS를 한 슬롯에 연결하고 구독자가 각자 확장한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1051.12" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="event-source" value="Event source&#xa;custom event bus input" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="296" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="event-bus" value="Event bus&#xa;event pattern match" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
+          <mxGeometry x="307" y="280" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="routing-rule" value="Rule&#xa;5 target slots, fixed" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="452" y="296" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct-target-a" value="Direct target 1&#xa;slot 1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="680" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct-target-b" value="Direct target 2&#xa;slot 2" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="680" y="192" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct-target-c" value="Direct target 3&#xa;slot 3" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="680" y="296" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct-target-d" value="Direct target 4&#xa;slot 4" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="680" y="416" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fanout-topic" value="SNS topic&#xa;slot 5, many subscribers" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" vertex="1" parent="1">
+          <mxGeometry x="744" y="520" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="team-queue-a" value="Team queue A&#xa;team-owned subscription" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="1">
+          <mxGeometry x="973" y="400" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="team-queue-b" value="Team queue B&#xa;team-owned subscription" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="1">
+          <mxGeometry x="973" y="520" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="http-subscriber" value="HTTP/S subscriber&#xa;independent subscription" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="908" y="640" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="event-source-to-event-bus" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="event-source" target="event-bus">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="event-bus-to-routing-rule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="event-bus" target="routing-rule">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="routing-rule-to-direct-target-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="routing-rule" target="direct-target-a">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="654.0" y="323.0" />
+              <mxPoint x="654.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="routing-rule-to-direct-target-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="routing-rule" target="direct-target-b">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="654.0" y="323.0" />
+              <mxPoint x="654.0" y="219.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="routing-rule-to-direct-target-c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="routing-rule" target="direct-target-c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="routing-rule-to-direct-target-d" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="routing-rule" target="direct-target-d">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="654.0" y="323.0" />
+              <mxPoint x="654.0" y="443.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="routing-rule-to-fanout-topic" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="routing-rule" target="fanout-topic">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="654.0" y="323.0" />
+              <mxPoint x="654.0" y="544.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fanout-topic-to-team-queue-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fanout-topic" target="team-queue-a">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="816" y="544.0" />
+              <mxPoint x="816" y="503" />
+              <mxPoint x="997.0" y="503" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fanout-topic-to-team-queue-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fanout-topic" target="team-queue-b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fanout-topic-to-http-subscriber" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fanout-topic" target="http-subscriber">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="850.0" y="544.0" />
+              <mxPoint x="850.0" y="667.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

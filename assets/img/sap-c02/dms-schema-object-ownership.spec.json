@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "dms-schema-object-ownership",
+  "title": "DMS 는 데이터를 옮기고 변환 도구는 스키마를 옮긴다",
+  "subtitle": "타깃에 무엇이 생기는지가 도구마다 다르다. 한쪽만 쓰면 인덱스와 코드 오브젝트가 비어 있는 타깃이 남는다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "source-db",
+      "kind": "service",
+      "service": "generic_database",
+      "label": "소스 데이터베이스",
+      "detail": "Oracle, SQL Server, SAP ASE, Db2 등",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "dms-task",
+      "kind": "box",
+      "label": "DMS replication task",
+      "detail": "full load, full load + CDC, CDC only",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "conversion",
+      "kind": "box",
+      "label": "DMS Schema Conversion 또는 AWS SCT",
+      "detail": "스키마와 코드 오브젝트만 변환한다. 데이터는 옮기지 않는다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "secrets",
+      "kind": "service",
+      "service": "secrets_manager",
+      "label": "Secrets Manager",
+      "detail": "migration project 가 참조하는 DB 자격증명",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "dms-objects",
+      "kind": "box",
+      "label": "DMS 가 만드는 것",
+      "detail": "table, primary key, 경우에 따라 unique index",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "conversion-objects",
+      "kind": "box",
+      "label": "변환 도구가 만드는 것",
+      "detail": "secondary index, foreign key, sequence, stored procedure, trigger, view",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "target-db",
+      "kind": "service",
+      "service": "aurora",
+      "label": "타깃 데이터베이스",
+      "detail": "Aurora PostgreSQL, Aurora MySQL, RDS 등",
+      "col": 3,
+      "row": 0,
+      "rowspan": 2
+    }
+  ],
+  "edges": [
+    { "source": "source-db", "target": "dms-task" },
+    { "source": "source-db", "target": "conversion" },
+    { "source": "secrets", "target": "conversion", "dashed": true },
+    { "source": "dms-task", "target": "dms-objects" },
+    { "source": "conversion", "target": "conversion-objects" },
+    { "source": "dms-objects", "target": "target-db" },
+    { "source": "conversion-objects", "target": "target-db", "emphasis": true }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "modernization-container-hosting-boundaries",
+  "title": "컨테이너 이미지는 같아도 ECS와 EKS Fargate의 운영 경계가 다르다",
+  "subtitle": "ECR 이미지를 공통 공급 경로로 두고 오케스트레이터와 Fargate 제약에 맞춰 배치를 선택한다.",
+  "layout": {
+    "col_gap": 64,
+    "row_gap": 52
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "kind": "box",
+      "label": "애플리케이션 소스",
+      "detail": "Dockerfile과 런타임",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "ecr",
+      "kind": "service",
+      "service": "ecr",
+      "label": "Amazon ECR",
+      "detail": "이미지 버전과 스캔",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "ecs-choice",
+      "kind": "box",
+      "label": "ECS on Fargate",
+      "detail": "IP target, Spot 선택 가능",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "eks-choice",
+      "kind": "box",
+      "label": "EKS on Fargate",
+      "detail": "profile 매칭, private subnet",
+      "role": "compute",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "ecs-runtime",
+      "kind": "service",
+      "service": "fargate",
+      "label": "ECS Fargate 태스크",
+      "detail": "EBS와 Fargate Spot 가능",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "eks-runtime",
+      "kind": "service",
+      "service": "eks",
+      "label": "EKS Fargate Pod",
+      "detail": "DaemonSet, EBS, Spot 불가",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "service-endpoint",
+      "kind": "box",
+      "label": "IP target 서비스",
+      "detail": "awsvpc ENI로 연결",
+      "role": "surface",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "source": "source", "target": "ecr" },
+    { "source": "ecr", "target": "ecs-choice", "emphasis": true },
+    { "source": "ecr", "target": "eks-choice" },
+    { "source": "ecs-choice", "target": "ecs-runtime", "emphasis": true },
+    { "source": "eks-choice", "target": "eks-runtime" },
+    { "source": "ecs-runtime", "target": "service-endpoint" },
+    { "source": "eks-runtime", "target": "service-endpoint" }
+  ]
+}

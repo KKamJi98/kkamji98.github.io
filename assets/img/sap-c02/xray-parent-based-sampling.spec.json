@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "xray-parent-based-sampling",
+  "title": "sampling 결정은 trace 진입 서비스에서 한 번만 일어난다",
+  "subtitle": "하위 서비스는 자신의 rule 과 무관하게 부모 결정을 따른다. 하위에만 건 100퍼센트 rule 은 적용되지 않는다.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "rule-a",
+      "kind": "box",
+      "label": "진입 서비스에 매칭되는 sampling rule",
+      "detail": "기본 rule 은 reservoir 1 에 fixed rate 5퍼센트, priority 는 1에서 9999",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "request",
+      "kind": "box",
+      "label": "클라이언트 요청",
+      "detail": "trace 가 시작되는 지점",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "svc-a",
+      "kind": "box",
+      "label": "서비스 A (진입)",
+      "detail": "여기서 sampled 여부가 결정되고 하위로 전파된다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "svc-b",
+      "kind": "box",
+      "label": "서비스 B",
+      "detail": "부모 결정을 그대로 따른다",
+      "role": "compute",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "svc-c",
+      "kind": "box",
+      "label": "서비스 C",
+      "detail": "부모 결정을 그대로 따른다",
+      "role": "compute",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "rule-c",
+      "kind": "box",
+      "label": "C 에만 건 fixed rate 100퍼센트 rule",
+      "detail": "진입 결정이 이미 내려져 있어 수집 비율을 바꾸지 못한다",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "traces",
+      "kind": "box",
+      "label": "수집된 trace",
+      "detail": "진입 rule 이 정한 비율만큼만 남는다",
+      "role": "store",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "proxy",
+      "kind": "box",
+      "label": "CloudWatch agent sampling proxy",
+      "detail": "SDK 와 ADOT 가 TCP 2000 으로 sampling API 를 호출한다",
+      "role": "surface",
+      "col": 1,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "request",
+      "target": "svc-a"
+    },
+    {
+      "source": "rule-a",
+      "target": "svc-a",
+      "emphasis": true
+    },
+    {
+      "source": "proxy",
+      "target": "svc-a",
+      "dashed": true
+    },
+    {
+      "source": "svc-a",
+      "target": "svc-b"
+    },
+    {
+      "source": "svc-b",
+      "target": "svc-c"
+    },
+    {
+      "source": "svc-c",
+      "target": "traces"
+    },
+    {
+      "source": "rule-c",
+      "target": "svc-c",
+      "dashed": true
+    }
+  ]
+}

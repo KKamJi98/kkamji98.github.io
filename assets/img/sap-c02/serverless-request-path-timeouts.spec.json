@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "id": "serverless-request-path-timeouts",
+  "title": "같은 요청이 경로마다 다른 층에서 잘린다",
+  "subtitle": "API Gateway 와 Lambda 경로에는 상한이 두 개 겹쳐 있고, 컨테이너 경로에는 실행 시간 상한이 없다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "client-serverless",
+      "kind": "service",
+      "service": "client",
+      "label": "클라이언트 요청",
+      "detail": "서버리스 경로",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "apigw",
+      "kind": "box",
+      "label": "API Gateway",
+      "detail": "REST 29초 기본, HTTP API 30초; payload 10 MB",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "lambda-fn",
+      "kind": "box",
+      "label": "Lambda 함수",
+      "detail": "동기 payload 6 MB, 메모리 128 MB 에서 10,240 MB",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "verdict-serverless",
+      "kind": "box",
+      "label": "20분 배치는 두 번 잘린다",
+      "detail": "Step Functions 나 Fargate 로 분리한다",
+      "role": "danger",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "cut-29",
+      "kind": "box",
+      "label": "REST 기본 29초에서 504",
+      "detail": "Regional 과 private REST API 만 증설을 요청할 수 있다",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "cut-900",
+      "kind": "box",
+      "label": "900초에서 강제 종료",
+      "detail": "조정할 수 없는 하드 리밋",
+      "role": "danger",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "client-container",
+      "kind": "box",
+      "label": "같은 요청, 컨테이너 경로",
+      "detail": "비교 대상",
+      "role": "surface",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "alb",
+      "kind": "service",
+      "service": "alb",
+      "label": "Application Load Balancer",
+      "detail": "요청과 응답 각 1 MB, idle timeout 조정",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "ecs-task",
+      "kind": "box",
+      "label": "ECS 태스크",
+      "detail": "Fargate 는 조합표 안에서, EC2 는 0.125 에서 192 vCPU",
+      "role": "compute",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "verdict-container",
+      "kind": "box",
+      "label": "실행 시간 상한이 없다",
+      "detail": "대신 용량과 패치와 스케일 정책을 직접 정한다",
+      "role": "store",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "client-serverless",
+      "target": "apigw"
+    },
+    {
+      "source": "apigw",
+      "target": "lambda-fn"
+    },
+    {
+      "source": "lambda-fn",
+      "target": "verdict-serverless",
+      "emphasis": true
+    },
+    {
+      "source": "apigw",
+      "target": "cut-29",
+      "dashed": true
+    },
+    {
+      "source": "lambda-fn",
+      "target": "cut-900",
+      "dashed": true
+    },
+    {
+      "source": "client-container",
+      "target": "alb"
+    },
+    {
+      "source": "alb",
+      "target": "ecs-task"
+    },
+    {
+      "source": "ecs-task",
+      "target": "verdict-container",
+      "emphasis": true
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="aurora-global-switchover-failover" name="switchover 와 failover 는 같은 승격이 아니다">
+    <mxGraphModel dx="1338" dy="384" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1338" pageHeight="384" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1314.92" height="360.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="switchover 와 failover 는 같은 승격이 아니다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1270.92" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="secondary 동기화를 기다리는지가 RPO 를 가른다. 두 경로 모두 Global writer endpoint 값은 그대로 유지된다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1270.92" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="primary" value="primary 리전 클러스터&#xa;쓰기를 받는 리전 1 개" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="200" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="secondary" value="secondary 리전 클러스터&#xa;읽기 전용 최대 10 개 리전, 전용 인프라 복제, 통상 1 초 미만 지연" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="266" y="200" width="286" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="switchover" value="switchover&#xa;모든 클러스터가 정상일 때. 동기화를 기다린 뒤 승격하므로 RPO 0" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="681" y="104" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="failover" value="managed failover&#xa;리전 장애 대응. 동기화를 기다리지 않아 RPO 가 비영값, write fencing 은 best-effort" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="608" y="296" width="413" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="endpoint" value="Global writer endpoint&#xa;승격 후 새 primary 를 가리키고 값은 바뀌지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1077" y="200" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="primary-to-secondary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="primary" target="secondary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secondary-to-switchover" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="secondary" target="switchover">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="580.0" y="227.0" />
+              <mxPoint x="580.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="secondary-to-failover" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="secondary" target="failover">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="580.0" y="227.0" />
+              <mxPoint x="580.0" y="323.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="switchover-to-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="switchover" target="endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1049.0" y="131.0" />
+              <mxPoint x="1049.0" y="227.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="failover-to-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="failover" target="endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1049.0" y="323.0" />
+              <mxPoint x="1049.0" y="227.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

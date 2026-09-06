@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "dr-verification-loop",
+  "title": "복구 목표는 주입과 복원 검증을 거쳐야 숫자로 확인된다",
+  "subtitle": "격차는 문서가 아니라 실험 결과에서 나온다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "goal",
+      "kind": "box",
+      "label": "복구 목표 확정",
+      "detail": "워크로드마다 RTO 와 RPO 를 숫자로 고정한다",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "assess",
+      "kind": "box",
+      "label": "Resilience Hub 평가",
+      "detail": "목표 대비 현재 구성을 진단하고 Well-Architected 기반 개선을 권고한다",
+      "role": "queue",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "fis",
+      "kind": "box",
+      "label": "FIS 실험",
+      "detail": "actions, targets, stop conditions. 실제 리소스에 실제 액션을 수행한다",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "restore-test",
+      "kind": "service",
+      "service": "backup",
+      "label": "AWS Backup restore testing",
+      "detail": "스케줄 복원 뒤 자동 삭제. 검증은 API 로만 실행한다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "observe",
+      "kind": "box",
+      "label": "관측과 판정",
+      "detail": "stop condition alarm, 실제 소요 시간, 복원 성공 여부",
+      "role": "process",
+      "col": 2,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "gap",
+      "kind": "box",
+      "label": "목표 미달 격차",
+      "detail": "quota 미증설, 엔진 버전 불일치, 전환 미동작, 복원 실패",
+      "role": "danger",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "fix",
+      "kind": "box",
+      "label": "교정",
+      "detail": "quota 증설, 복제 구성 보완, 전환 절차 수정 후 같은 실험을 다시 돌린다",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "source": "goal", "target": "assess" },
+    { "source": "goal", "target": "fis" },
+    { "source": "assess", "target": "restore-test" },
+    { "source": "fis", "target": "observe" },
+    { "source": "restore-test", "target": "observe" },
+    { "source": "observe", "target": "gap", "emphasis": true },
+    { "source": "gap", "target": "fix" },
+    { "source": "fix", "target": "goal", "dashed": true }
+  ]
+}

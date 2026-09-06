@@ -1,0 +1,82 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="asg-instance-lifecycle-hooks" name="인스턴스가 warm pool 에서 종료까지 지나는 상태">
+    <mxGraphModel dx="1909" dy="474" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1909" pageHeight="474" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1885.76" height="450.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="인스턴스가 warm pool 에서 종료까지 지나는 상태" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1841.76" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="lifecycle hook 은 Pending 과 Terminating 두 자리에서만 대기를 만든다. Spot 중단은 그 자리를 거치지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1841.76" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-launch-result" value="launch hook 결과&#xa;CONTINUE 면 InService 로, ABANDON 이면 종료로 간다. 기본 heartbeat timeout 3600초" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="793" y="104" width="464" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-pool" value="warm pool&#xa;Stopped 가 기본 권장. 크기 기본값은 max capacity 빼기 desired capacity" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="198" width="388" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pending" value="Pending&#xa;scale out 또는 교체 시작" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="519" y="198" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pending-wait" value="Pending:Wait&#xa;launch lifecycle hook. 부트스트랩과 캐시 워밍을 여기서 끝낸다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="873" y="198" width="305" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="in-service" value="InService&#xa;health check grace period 는 콘솔 300초, CLI 와 SDK 0초" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1421" y="198" width="337" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="terminating" value="Terminating&#xa;scale in, unhealthy 교체, instance refresh, max instance lifetime 이 여기로 보낸다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="292" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="terminating-wait" value="Terminating:Wait&#xa;termination lifecycle hook. 연결 드레이닝과 로그 반출을 여기서 한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="853" y="292" width="343" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="terminated" value="Terminated&#xa;ELB 기본 deregistration delay 300초가 앞에 붙는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="468" y="292" width="279" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spot-interruption" value="Spot 중단&#xa;2분 통지 후 회수, hook 대기 없음" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="140" y="292" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-term-result" value="termination hook 결과&#xa;기본이 best effort 다. timeout 이나 ABANDON 이면 즉시 종료로 진행한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="847" y="386" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="health-sources" value="unhealthy 신호 소스&#xa;EC2 status check, Elastic Load Balancing, VPC Lattice, Amazon EBS, custom health check" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1303" y="386" width="573" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-pool-to-pending" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="warm-pool" target="pending">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pending-to-pending-wait" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pending" target="pending-wait">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pending-wait-to-in-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pending-wait" target="in-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pending-wait-to-hook-launch-result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=0;entryX=0.5011;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pending-wait" target="hook-launch-result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="in-service-to-terminating" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.499;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="in-service" target="terminating">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="terminating-to-terminating-wait" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="terminating" target="terminating-wait">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="terminating-wait-to-terminated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="terminating-wait" target="terminated">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="terminating-wait-to-hook-term-result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.4986;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="terminating-wait" target="hook-term-result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="health-sources-to-terminating" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5009;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="health-sources" target="terminating">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="spot-interruption-to-terminated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="spot-interruption" target="terminated">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

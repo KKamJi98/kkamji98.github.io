@@ -1,0 +1,70 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="dr-strategy-four-tiers" name="DR 전략 4 종은 추가 조치 없이 요청을 처리할 수 있는가에서 갈린다">
+    <mxGraphModel dx="1201" dy="356" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1201" pageHeight="356" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1177.4" height="332.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="DR 전략 4 종은 추가 조치 없이 요청을 처리할 수 있는가에서 갈린다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1133.4" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="오른쪽으로 갈수록 비용과 복잡도가 오르고 복구 시간이 내려간다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1133.4" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="needs-action" value="전환 후 추가 조치가 필요하다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="553" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="serves-now" value="추가 조치 없이 요청을 처리한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="627" y="104" width="540" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="bnr" value="backup and restore&#xa;복원 자체가 control plane operation 이다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pilot" value="pilot light&#xa;Elastic Disaster Recovery 가 쓰는 전략" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="331" y="146" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="warm" value="warm standby&#xa;축소 용량으로 즉시 트래픽을 받는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="650" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="multi" value="multi-site active/active&#xa;failover 라는 개념 자체가 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="917" y="146" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="bnr-state" value="DR 리전에 백업 사본만 있다&#xa;복원과 배포를 재해 이후에 시작한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="85" y="246" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pilot-state" value="데이터 복제와 꺼진 코어 인프라&#xa;서버 기동, 비핵심 인프라 배포, 확장이 남아 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="346" y="246" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-state" value="축소 규모가 상시 가동된다&#xa;확장은 필요하지만 요청 처리는 이미 가능하다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="649" y="246" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="multi-state" value="프로덕션 전량이 상시 가동된다&#xa;같은 규모를 active/passive 로 두면 hot standby 다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="866" y="246" width="279" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="bnr-to-pilot" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bnr" target="pilot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pilot-to-warm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pilot" target="warm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-to-multi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="warm" target="multi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bnr-to-bnr-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.4979;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bnr" target="bnr-state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pilot-to-pilot-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.4957;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pilot" target="pilot-state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-to-warm-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5028;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="warm" target="warm-state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="multi-to-multi-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="multi" target="multi-state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,76 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="tgw-route-table-isolation" name="association은 어느 route table을 볼지, propagation은 그 table에 무엇이 실릴지를 정한다">
+    <mxGraphModel dx="1404" dy="614" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1404" pageHeight="614" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1380.54" height="590.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="association은 어느 route table을 볼지, propagation은 그 table에 무엇이 실릴지를 정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1336.54" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="route table을 둘로 나누면 spoke는 shared services만 보고 서로는 보지 못한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1336.54" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="tgw" value="Transit Gateway (route table 20개까지)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="278" y="250" width="772" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="spoke-a" value="Spoke VPC A&#xa;개발 계정" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.vpc;" vertex="1" parent="1">
+          <mxGeometry x="98" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="spoke-b" value="Spoke VPC B&#xa;운영 계정" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.vpc;" vertex="1" parent="1">
+          <mxGeometry x="98" y="276" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-vpn" value="온프레미스 VPN attachment&#xa;dynamic routing이어야 ECMP" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="406" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rt-spoke" value="Spoke route table&#xa;association: spoke와 VPN. shared VPC 라우트만 보유" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="300" y="292" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="blackhole" value="Blackhole route&#xa;spoke 사이 CIDR을 드롭" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="361" y="504" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rt-shared" value="Shared route table&#xa;association: shared VPC. 모든 attachment 라우트를 propagate" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="666" y="292" width="362" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="shared-vpc" value="Shared services VPC&#xa;중앙 NAT, interface endpoint, 검사 어플라이언스" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.vpc;" vertex="1" parent="1">
+          <mxGeometry x="1221" y="276" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="spoke-a-to-rt-spoke" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="spoke-a" target="rt-spoke">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="255.0" y="128.0" />
+              <mxPoint x="255.0" y="319.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="spoke-b-to-rt-spoke" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="spoke-b" target="rt-spoke">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="255.0" y="300.0" />
+              <mxPoint x="255.0" y="319.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="onprem-vpn-to-rt-spoke" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem-vpn" target="rt-spoke">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="255.0" y="433.0" />
+              <mxPoint x="255.0" y="319.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rt-spoke-to-blackhole" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt-spoke" target="blackhole">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rt-spoke-to-rt-shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt-spoke" target="rt-shared">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rt-shared-to-shared-vpc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt-shared" target="shared-vpc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,77 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="spot-interruption-signals" name="Spot 이 보내는 신호 두 개는 도착 시점과 대응이 다르다">
+    <mxGraphModel dx="1590" dy="384" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1590" pageHeight="384" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1566.0" height="360.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Spot 이 보내는 신호 두 개는 도착 시점과 대응이 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1522.0" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="rebalance recommendation 은 선제 교체를 부르고, 2분 통지는 종료 직전 정리만 남긴다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1522.0" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity-reclaim" value="EC2 가 Spot 용량을 회수한다&#xa;사유는 capacity, price, constraints 세 가지다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="266" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rebalance-rec" value="rebalance recommendation&#xa;중단 위험이 높아졌다는 신호. 보통 2분 통지보다 먼저 온다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="405" y="104" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity-rebalancing" value="ASG Capacity Rebalancing&#xa;새 인스턴스가 health check 를 통과한 뒤 기존 인스턴스를 종료한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="759" y="104" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="replaced" value="선제 교체 완료&#xa;이 과정에서 그룹이 desired capacity 의 최대 10% 까지 일시 초과한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="104" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="interruption-notice" value="2분 중단 통지&#xa;stop 과 terminate 만 받는다. hibernate 는 즉시 시작되어 통지가 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="350" y="200" width="343" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="drain" value="EventBridge 이벤트와 메타데이터 폴링&#xa;instance-action 을 5초 주기로 읽는다. 통지는 best effort 다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="743" y="200" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="terminated" value="설정한 중단 동작 수행&#xa;terminate, stop, hibernate. persistent 요청에서는 Terminate 를 지정할 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1117" y="200" width="439" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="pool-strategy" value="pool 을 넓히는 쪽이 중단 빈도를 줄인다&#xa;attribute-based instance type selection 과 price-capacity-optimized. Capacity Rebalancing 자체는 중단율을 낮추지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="743" y="296" width="813" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity-reclaim-to-rebalance-rec" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="capacity-reclaim" target="rebalance-rec">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="325.0" y="179.0" />
+              <mxPoint x="325.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="capacity-reclaim-to-interruption-notice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="capacity-reclaim" target="interruption-notice">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="325.0" y="179.0" />
+              <mxPoint x="325.0" y="227.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rebalance-rec-to-capacity-rebalancing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rebalance-rec" target="capacity-rebalancing">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity-rebalancing-to-replaced" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="capacity-rebalancing" target="replaced">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="interruption-notice-to-drain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="interruption-notice" target="drain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="drain-to-terminated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="drain" target="terminated">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rebalance-rec-to-interruption-notice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5029;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rebalance-rec" target="interruption-notice">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pool-strategy-to-drain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.1993;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pool-strategy" target="drain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

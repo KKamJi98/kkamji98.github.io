@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "ecs-capacity-provider-placement",
+  "title": "launchType 과 capacityProviderStrategy 는 함께 지정할 수 없다",
+  "subtitle": "strategy 를 고르면 base 를 먼저 채우고 남은 태스크를 weight 비율로 나눈다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "run-task",
+      "kind": "box",
+      "label": "RunTask 와 CreateService",
+      "detail": "둘 다 생략하면 클러스터 기본 strategy 를 쓴다",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "launch-type",
+      "kind": "box",
+      "label": "launchType",
+      "detail": "EC2, FARGATE, EXTERNAL, MANAGED_INSTANCES. Spot 이 없다",
+      "role": "external",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "strategy",
+      "kind": "box",
+      "label": "capacityProviderStrategy",
+      "detail": "provider 최대 20개. launchType 을 생략해야 한다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "base-slot",
+      "kind": "box",
+      "label": "base 를 먼저 채운다",
+      "detail": "strategy 안에서 provider 하나만 가진다. 0 에서 100,000",
+      "role": "queue",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "weight-split",
+      "kind": "box",
+      "label": "남은 태스크를 weight 로 나눈다",
+      "detail": "0 에서 1,000. 전부 0 이면 호출이 실패한다",
+      "role": "queue",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "fargate-od",
+      "kind": "service",
+      "service": "fargate",
+      "label": "FARGATE",
+      "detail": "온디맨드 용량",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "fargate-spot",
+      "kind": "box",
+      "label": "FARGATE_SPOT",
+      "detail": "회수 시 2분 경고 후 태스크 중단",
+      "role": "danger",
+      "col": 4,
+      "row": 3
+    },
+    {
+      "id": "asg-provider",
+      "kind": "box",
+      "label": "ASG capacity provider",
+      "detail": "managed scaling 이 targetCapacity 로 ASG 를 조정한다",
+      "role": "compute",
+      "col": 3,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "run-task",
+      "target": "launch-type"
+    },
+    {
+      "source": "run-task",
+      "target": "strategy",
+      "emphasis": true
+    },
+    {
+      "source": "strategy",
+      "target": "base-slot"
+    },
+    {
+      "source": "base-slot",
+      "target": "weight-split"
+    },
+    {
+      "source": "weight-split",
+      "target": "fargate-od"
+    },
+    {
+      "source": "weight-split",
+      "target": "fargate-spot",
+      "emphasis": true
+    },
+    {
+      "source": "strategy",
+      "target": "asg-provider",
+      "dashed": true
+    }
+  ]
+}

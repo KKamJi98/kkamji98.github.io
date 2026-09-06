@@ -1,0 +1,77 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="rds-deployment-topologies" name="RDS 배포 세 가지는 대기 노드의 역할이 다르다">
+    <mxGraphModel dx="595" dy="753" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="595" pageHeight="753" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="571.8" height="729.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="RDS 배포 세 가지는 대기 노드의 역할이 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="527.8" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="자동 failover 여부, 복제 방식, 대기 노드가 읽기를 받는지가 세 축이다. 이 셋이 지문의 요구사항과 하나씩 맞물린다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="527.8" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c-instance" value="Multi-AZ DB instance" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="36.69" y="104" width="488" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="c-cluster" value="Multi-AZ DB cluster" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="36.69" y="267" width="524" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="c-replica" value="read replica" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="35.69" y="511" width="499" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="i-writer" value="writer&#xa;AZ 1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="58.69" y="150" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="i-standby" value="standby&#xa;동기 복제, 자동 failover&#xa;읽기 트래픽 처리 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="326.69" y="146" width="176" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="c-writer" value="writer&#xa;NVMe 로컬 스토리지 계열 지원" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="58.69" y="309" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c-reader1" value="reader 1&#xa;semisynchronous, 최소 1 개의 ack 를 요구한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="290.69" y="309" width="247" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="c-reader2" value="reader 2&#xa;읽기 가능, 3 개 AZ 에 분산" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="326.69" y="399" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="r-source" value="source DB instance&#xa;소스 삭제 시 같은 리전 replica 승격" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="57.69" y="553" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="r-replica1" value="read replica 1&#xa;비동기 복제, 자동 failover 대상이 아니다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="316.69" y="553" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="r-replica2" value="read replica 2&#xa;기본 쿼터 15개, 순환 복제 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="326.69" y="643" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="i-writer-to-i-standby" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.4921;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="i-writer" target="i-standby">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c-writer-to-c-reader1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c-writer" target="c-reader1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c-writer-to-c-reader2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c-writer" target="c-reader2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="262.69" y="336.0" />
+              <mxPoint x="262.69" y="426.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r-source-to-r-replica1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="r-source" target="r-replica1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r-source-to-r-replica2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="r-source" target="r-replica2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="275.69" y="580.0" />
+              <mxPoint x="275.69" y="670.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

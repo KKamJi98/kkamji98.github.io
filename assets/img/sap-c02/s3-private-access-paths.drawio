@@ -1,0 +1,96 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="s3-private-access-paths" name="S3에 도달하는 세 경로는 출발지가 VPC 안인지 밖인지에서 갈린다">
+    <mxGraphModel dx="1187" dy="620" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1187" pageHeight="620" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1163.16" height="596.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="S3에 도달하는 세 경로는 출발지가 VPC 안인지 밖인지에서 갈린다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1119.16" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="gateway endpoint는 VPC route table 안에서만 살아 있어 온프레미스에서 쓸 수 없다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1119.16" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc" value="VPC" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="570" height="282" as="geometry" />
+        </mxCell>
+        <mxCell id="gw-endpoint" value="Gateway endpoint&#xa;route table의 관리형 prefix list 라우트, 추가 요금 없음" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.endpoints;" vertex="1" parent="1">
+          <mxGeometry x="416" y="146" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2" value="EC2 인스턴스&#xa;private subnet" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="294" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="if-endpoint" value="Interface endpoint&#xa;서브넷 ENI의 private IP, AZ당 10에서 100 Gbps" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.privatelink;" vertex="1" parent="1">
+          <mxGeometry x="416" y="278" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Amazon S3&#xa;같은 리전 버킷" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="278" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem" value="온프레미스 서버&#xa;Direct Connect 또는 VPN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="432" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gw-blocked" value="온프레미스에서 gateway endpoint 사용 불가&#xa;route table 기반이라 VPC 밖에서 참조되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="323" y="432" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-public" value="S3 public endpoint&#xa;public VIF 경로. endpoint policy가 적용되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="670" y="532" width="279" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-to-gw-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=0;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2" target="gw-endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="144.0" y="170.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ec2-to-if-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2" target="if-endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="324.0" y="321.0" />
+              <mxPoint x="324.0" y="302.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gw-endpoint-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw-endpoint" target="s3">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1004.5" y="170.0" />
+              <mxPoint x="1004.5" y="302.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="if-endpoint-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="if-endpoint" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-to-if-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem" target="if-endpoint">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="277.5" y="459.0" />
+              <mxPoint x="277.5" y="302.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="onprem-to-gw-blocked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem" target="gw-blocked">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-to-s3-public" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem" target="s3-public">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="277.5" y="459.0" />
+              <mxPoint x="277.5" y="559.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s3-public-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3-public" target="s3">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1004.5" y="559.0" />
+              <mxPoint x="1004.5" y="302.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

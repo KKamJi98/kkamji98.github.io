@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "id": "ops-event-routing",
+  "title": "운영 신호는 네 곳에서 나와 EventBridge 한 곳으로 모인다",
+  "subtitle": "rule 하나에 붙일 수 있는 target 은 5개로 조정 불가다. 그 이상 팬아웃하려면 SNS 나 추가 rule 로 나눈다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "alarm",
+      "kind": "box",
+      "label": "CloudWatch 알람의 ALARM 전이",
+      "detail": "composite alarm 도 여기까지는 같다",
+      "role": "danger",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "config-violation",
+      "kind": "box",
+      "label": "Config rule NON_COMPLIANT",
+      "detail": "구성이 기준에서 벗어난 순간",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "health",
+      "kind": "box",
+      "label": "AWS Health 이벤트",
+      "detail": "EventBridge 수신은 모든 고객 무료, Health API 는 Business Support+ 이상",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "trail-event",
+      "kind": "box",
+      "label": "CloudTrail 이 기록한 API 호출",
+      "detail": "평균 약 5분 안에 전달되지만 보장 값은 아니다",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "eventbridge",
+      "kind": "box",
+      "label": "EventBridge rule",
+      "detail": "bus 당 rule 기본 300개, rule 당 target 5개 조정 불가, event pattern 최대 2,048자",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "automation",
+      "kind": "service",
+      "service": "systems_manager",
+      "label": "SSM Automation runbook",
+      "detail": "승인 단계와 rate control 을 넣어 무인 교정으로 잇는다",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "sns",
+      "kind": "service",
+      "service": "sns",
+      "label": "SNS 토픽",
+      "detail": "target 5개를 넘겨야 할 때 팬아웃 지점이 된다",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "opsitem",
+      "kind": "box",
+      "label": "OpsCenter OpsItem",
+      "detail": "Open, In progress, Resolved. related resource 는 최대 100개, deduplication string 으로 중복을 줄인다",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "alarm",
+      "target": "eventbridge"
+    },
+    {
+      "source": "config-violation",
+      "target": "eventbridge"
+    },
+    {
+      "source": "health",
+      "target": "eventbridge"
+    },
+    {
+      "source": "trail-event",
+      "target": "eventbridge"
+    },
+    {
+      "source": "eventbridge",
+      "target": "automation",
+      "emphasis": true
+    },
+    {
+      "source": "eventbridge",
+      "target": "sns"
+    },
+    {
+      "source": "eventbridge",
+      "target": "opsitem"
+    }
+  ]
+}

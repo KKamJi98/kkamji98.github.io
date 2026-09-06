@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "glue-catalog-lake-formation-access",
+  "title": "Lake Formation 권한은 분석 엔진별 지원 범위를 가진다",
+  "subtitle": "Glue crawler가 카탈로그를 채우고 Lake Formation이 권한을 평가하지만 모든 엔진이 row와 cell 수준 필터를 지원하지는 않는다.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "lake-data",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 data lake",
+      "detail": "objects and partitions",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "glue-crawler",
+      "kind": "service",
+      "service": "glue",
+      "label": "Glue crawler",
+      "detail": "schema inference",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "data-catalog",
+      "kind": "box",
+      "label": "Glue Data Catalog",
+      "detail": "database, table, partition metadata",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "lake-formation",
+      "kind": "service",
+      "service": "lake_formation",
+      "label": "Lake Formation",
+      "detail": "fine-grained authorization",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "athena-engine",
+      "kind": "service",
+      "service": "athena",
+      "label": "Athena SQL",
+      "detail": "table, column, row, cell reads",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "redshift-engine",
+      "kind": "service",
+      "service": "redshift",
+      "label": "Redshift Spectrum",
+      "detail": "table, column, row, cell reads",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "emr-engine",
+      "kind": "service",
+      "service": "emr",
+      "label": "EMR Spark",
+      "detail": "table, column, row, cell reads",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "unsupported-engine",
+      "kind": "box",
+      "label": "Unsupported engine",
+      "detail": "Athena Spark, EMR on EKS, EMR Serverless Hive",
+      "role": "danger",
+      "col": 4,
+      "row": 3
+    }
+  ],
+  "edges": [
+    { "source": "lake-data", "target": "glue-crawler", "emphasis": true },
+    { "source": "glue-crawler", "target": "data-catalog" },
+    { "source": "data-catalog", "target": "lake-formation", "emphasis": true },
+    { "source": "lake-formation", "target": "athena-engine" },
+    { "source": "lake-formation", "target": "redshift-engine" },
+    { "source": "lake-formation", "target": "emr-engine" },
+    { "source": "lake-formation", "target": "unsupported-engine", "dashed": true }
+  ]
+}

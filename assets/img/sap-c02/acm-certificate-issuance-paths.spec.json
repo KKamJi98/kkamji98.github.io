@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "id": "acm-certificate-issuance-paths",
+  "title": "인증서가 설치될 위치가 발급 경로와 private key 의 보유 주체를 정한다",
+  "subtitle": "AWS 통합 서비스에 붙일 것인지 서버에 설치할 것인지가 첫 갈림이고, 갱신 배포 책임이 두 번째 갈림이다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "requirement",
+      "kind": "box",
+      "label": "TLS 인증서가 설치될 위치",
+      "detail": "공인 신뢰가 필요한가, 내부 PKI 인가",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "acm-standard",
+      "kind": "service",
+      "service": "acm",
+      "label": "ACM 일반 공인 인증서",
+      "detail": "private key 를 AWS 가 단독 보유, 반출 불가",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "acm-exportable",
+      "kind": "service",
+      "service": "acm",
+      "label": "exportable public certificate",
+      "detail": "요청 시점에만 지정, 유효기간 198일, 인증서 자체 과금",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "acm-acme",
+      "kind": "box",
+      "label": "ACM ACME 경로",
+      "detail": "Certbot 이나 cert-manager 가 키를 생성하고 보유한다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "private-ca",
+      "kind": "box",
+      "label": "AWS Private CA",
+      "detail": "사설 CA 계층, 공인 신뢰 체인이 아니다",
+      "role": "process",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "aws-endpoint",
+      "kind": "box",
+      "label": "ELB 와 CloudFront 와 API Gateway",
+      "detail": "CloudFront 용은 us-east-1 필수, ACM 이 갱신과 재바인딩까지 한다",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "self-managed",
+      "kind": "box",
+      "label": "EC2 와 컨테이너와 온프레미스",
+      "detail": "passphrase 로 암호화된 key 를 export, 재배포는 사용자 몫",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "acme-target",
+      "kind": "box",
+      "label": "자체 관리 인프라",
+      "detail": "ACM 인벤토리에 보이지만 AWS 통합 서비스에 바인딩할 수 없다",
+      "role": "queue",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "internal-pki",
+      "kind": "box",
+      "label": "내부 서비스와 클라이언트 인증",
+      "detail": "사설 인증서 export 로 자체 배포",
+      "role": "queue",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "region-scope",
+      "kind": "box",
+      "label": "인증서는 리전 리소스다",
+      "detail": "리전 간 복사가 불가하므로 리전마다 요청하거나 임포트한다",
+      "role": "danger",
+      "col": 3,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": "requirement",
+      "target": "acm-standard"
+    },
+    {
+      "source": "requirement",
+      "target": "acm-exportable"
+    },
+    {
+      "source": "requirement",
+      "target": "acm-acme"
+    },
+    {
+      "source": "requirement",
+      "target": "private-ca"
+    },
+    {
+      "source": "acm-standard",
+      "target": "aws-endpoint",
+      "emphasis": true
+    },
+    {
+      "source": "acm-exportable",
+      "target": "self-managed"
+    },
+    {
+      "source": "acm-acme",
+      "target": "acme-target"
+    },
+    {
+      "source": "private-ca",
+      "target": "internal-pki"
+    },
+    {
+      "source": "aws-endpoint",
+      "target": "region-scope",
+      "dashed": true
+    }
+  ]
+}

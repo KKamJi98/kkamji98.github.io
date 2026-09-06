@@ -300,21 +300,21 @@ Overview 뒤로 15편이 이어지고, 20개 task statement 전부에 담당 편
 
 | 편 | 주제 | 주 도메인 | 다루는 범위 |
 | :--- | :--- | :--- | :--- |
-| 1 | 멀티 계정 거버넌스 | D1 | Organizations, SCP와 RCP, Control Tower, IAM Identity Center, RAM, StackSets, 조직 단위 비용 배분 |
-| 2 | IAM 심화와 페더레이션 | D1 | 정책 평가 로직, permission boundary, STS, SAML과 OIDC, Directory Service, Access Analyzer |
-| 3 | 하이브리드 네트워크 | D1 | VPC 설계, Transit Gateway, Direct Connect, VPN, PrivateLink, 전이 라우팅, 흐름 진단 도구 |
-| 4 | DNS와 글로벌 트래픽 | D1 | Route 53 라우팅 정책, Resolver 하이브리드 DNS, Global Accelerator, CloudFront |
-| 5 | 컴퓨트 선택과 확장 | D2 | 인스턴스 패밀리, 구매 옵션 6종, Placement Group, ASG 정책, Spot |
-| 6 | 컨테이너와 서버리스 | D2 | ECS, EKS, Fargate, ECR, Lambda 제약, ELB, API Gateway, 배포와 롤백 단위 |
-| 7 | 데이터 계층 선택 | D2 | RDS와 Aurora, DynamoDB, ElastiCache, S3 클래스, EBS와 EFS와 FSx, OpenSearch |
-| 8 | 디커플링과 데이터 파이프라인 | D2 | SQS, SNS, EventBridge, Kinesis, Step Functions, Glue, Athena, Redshift |
-| 9 | 보안 심화 | D3 | KMS와 CloudHSM, Secrets Manager, ACM, WAF와 Shield, GuardDuty와 Security Hub, 자동 교정 |
-| 10 | 가용성과 재해복구 | D3 | RTO와 RPO, DR 전략 4종, AWS Backup, 복제 수단별 RPO, ARC, 장애 주입 |
-| 11 | 관측성과 운영 자동화 | D3 | CloudWatch, CloudTrail, X-Ray, Config, Systems Manager, IaC와 배포 전략 |
-| 12 | 비용 최적화 | D3 | 태그와 Cost Categories, Cost Explorer와 CUR, Budgets, Savings Plans 커버리지, 데이터 전송 과금 |
-| 13 | 마이그레이션 전략 | D4 | 7R, 포트폴리오 평가, MGN, DMS와 SCT, 컷오버 실행 경로 |
-| 14 | 데이터 전송과 하이브리드 엣지 | D4 | DataSync, Transfer Family, Storage Gateway, Outposts, Wavelength, Local Zones |
-| 15 | 모더나이제이션 패턴 | D4 | 컴퓨트와 컨테이너와 데이터베이스 타깃 결정, strangler fig, 디커플링 판단 |
+| 1 | [멀티 계정 거버넌스](/posts/aws-sap-c02-multi-account-governance/) | D1 | Organizations, SCP와 RCP, Control Tower, IAM Identity Center, RAM, StackSets, 조직 단위 비용 배분 |
+| 2 | [IAM 심화와 페더레이션](/posts/aws-sap-c02-iam-federation/) | D1 | 정책 평가 로직, permission boundary, STS, SAML과 OIDC, Directory Service, Access Analyzer |
+| 3 | [하이브리드 네트워크](/posts/aws-sap-c02-hybrid-networking/) | D1 | VPC 설계, Transit Gateway, Direct Connect, VPN, PrivateLink, 전이 라우팅, 흐름 진단 도구 |
+| 4 | [DNS와 글로벌 트래픽](/posts/aws-sap-c02-dns-global-traffic/) | D1 | Route 53 라우팅 정책, Resolver 하이브리드 DNS, Global Accelerator, CloudFront |
+| 5 | [컴퓨트 선택과 확장](/posts/aws-sap-c02-compute-scaling/) | D2 | 인스턴스 패밀리, 구매 옵션 6종, Placement Group, ASG 정책, Spot |
+| 6 | [컨테이너와 서버리스](/posts/aws-sap-c02-container-serverless/) | D2 | ECS, EKS, Fargate, ECR, Lambda 제약, ELB, API Gateway, 배포와 롤백 단위 |
+| 7 | [데이터 계층 선택](/posts/aws-sap-c02-data-layer-selection/) | D2 | RDS와 Aurora, DynamoDB, ElastiCache, S3 클래스, EBS와 EFS와 FSx, OpenSearch |
+| 8 | [디커플링과 데이터 파이프라인](/posts/aws-sap-c02-decoupling-data-pipeline/) | D2 | SQS, SNS, EventBridge, Kinesis, Step Functions, Glue, Athena, Redshift |
+| 9 | [보안 심화](/posts/aws-sap-c02-security-deep-dive/) | D3 | KMS와 CloudHSM, Secrets Manager, ACM, WAF와 Shield, GuardDuty와 Security Hub, 자동 교정 |
+| 10 | [가용성과 재해복구](/posts/aws-sap-c02-availability-dr/) | D3 | RTO와 RPO, DR 전략 4종, AWS Backup, 복제 수단별 RPO, ARC, 장애 주입 |
+| 11 | [관측성과 운영 자동화](/posts/aws-sap-c02-observability-operations/) | D3 | CloudWatch, CloudTrail, X-Ray, Config, Systems Manager, IaC와 배포 전략 |
+| 12 | [비용 최적화](/posts/aws-sap-c02-cost-optimization/) | D3 | 태그와 Cost Categories, Cost Explorer와 CUR, Budgets, Savings Plans 커버리지, 데이터 전송 과금 |
+| 13 | [마이그레이션 전략](/posts/aws-sap-c02-migration-strategy/) | D4 | 7R, 포트폴리오 평가, MGN, DMS와 SCT, 컷오버 실행 경로 |
+| 14 | [데이터 전송과 하이브리드 엣지](/posts/aws-sap-c02-data-transfer-hybrid-edge/) | D4 | DataSync, Transfer Family, Storage Gateway, Outposts, Wavelength, Local Zones |
+| 15 | [모더나이제이션 패턴](/posts/aws-sap-c02-modernization-patterns/) | D4 | 컴퓨트와 컨테이너와 데이터베이스 타깃 결정, strangler fig, 디커플링 판단 |
 
 각 편은 개념 설명에서 끝나지 않고 세 가지를 추가로 담습니다. 시험에서 답을 가르는 하드 리밋과 동작 제약, 헷갈리는 서비스 짝의 비교표, 그리고 그럴듯하지만 서비스 제약 때문에 성립하지 않는 조합입니다. 마지막에 오리지널 시나리오 10문항과 해설을 붙여서, 정답 근거와 오답 세 개가 각각 어떤 제약 때문에 틀렸는지까지 확인할 수 있게 합니다.
 

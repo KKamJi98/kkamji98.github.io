@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "cloudfront-origin-failover-path",
+  "title": "CloudFront origin failover는 읽기 메서드와 지정 상태 코드에서만 작동한다",
+  "subtitle": "primary의 failover 상태 코드가 조건을 만족할 때 GET, HEAD, OPTIONS만 secondary로 전환된다.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "viewer",
+      "kind": "box",
+      "label": "viewer GET, HEAD, OPTIONS",
+      "detail": "origin group failover 대상 메서드",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "cloudfront",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront",
+      "detail": "항상 primary로 먼저 보낸다",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "primary-origin",
+      "kind": "box",
+      "label": "primary origin",
+      "detail": "응답 상태 코드와 timeout을 반환한다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "failover-condition",
+      "kind": "box",
+      "label": "failover 상태 코드",
+      "detail": "400, 403, 404, 416, 429, 500-504 중 설정값",
+      "role": "danger",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "secondary-origin",
+      "kind": "box",
+      "label": "secondary origin",
+      "detail": "조건을 만족한 읽기 요청만 받는다",
+      "role": "process",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "viewer-write",
+      "kind": "box",
+      "label": "viewer POST, PUT",
+      "detail": "origin failover 대상이 아니다",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "write-no-failover",
+      "kind": "box",
+      "label": "쓰기 경로 실패",
+      "detail": "origin group 대신 별도 이중화가 필요하다",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "viewer",
+      "target": "cloudfront",
+      "emphasis": true
+    },
+    {
+      "source": "cloudfront",
+      "target": "primary-origin",
+      "emphasis": true
+    },
+    {
+      "source": "primary-origin",
+      "target": "failover-condition",
+      "emphasis": true
+    },
+    {
+      "source": "failover-condition",
+      "target": "secondary-origin",
+      "emphasis": true
+    },
+    {
+      "source": "viewer-write",
+      "target": "write-no-failover",
+      "dashed": true
+    }
+  ]
+}

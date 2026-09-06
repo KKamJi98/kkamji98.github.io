@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "cloudwatch-logs-delivery-paths",
+  "title": "로그가 로그 그룹을 떠나는 경로는 네 가지이고 제약이 각각 다르다",
+  "subtitle": "실시간 조건이면 subscription filter 하나뿐이다. export 는 준비까지 최대 12시간이 걸리고 계정당 동시 1개다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "log-group",
+      "kind": "box",
+      "label": "CloudWatch Logs 로그 그룹",
+      "detail": "subscription filter 5개, metric filter 100개, 둘 다 조정 불가",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "subscription",
+      "kind": "box",
+      "label": "subscription filter",
+      "detail": "near-real-time push, base64 후 gzip, throttle 시 최대 24시간 재시도",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "kinesis",
+      "kind": "service",
+      "service": "kinesis",
+      "label": "Kinesis Data Streams",
+      "detail": "여러 소비자가 같은 데이터를 독립으로 읽는다",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "lambda",
+      "kind": "service",
+      "service": "lambda",
+      "label": "Lambda",
+      "detail": "이벤트 단위 변환",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "firehose",
+      "kind": "service",
+      "service": "kinesis_firehose",
+      "label": "Data Firehose",
+      "detail": "버퍼링 후 적재",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "opensearch",
+      "kind": "service",
+      "service": "opensearch",
+      "label": "OpenSearch Service",
+      "detail": "강의의 Amazon ES 가 현재 명칭이다",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "metric-filter",
+      "kind": "box",
+      "label": "metric filter",
+      "detail": "이미 들어온 로그에서 패턴을 세어 메트릭으로 만든다",
+      "role": "queue",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "cw-metric",
+      "kind": "service",
+      "service": "cloudwatch",
+      "label": "CloudWatch 메트릭과 알람",
+      "detail": "로그 발행 코드를 못 고칠 때의 경로다",
+      "col": 2,
+      "row": 4
+    },
+    {
+      "id": "export",
+      "kind": "box",
+      "label": "S3 export task",
+      "detail": "export 가능해지기까지 최대 12시간, 계정당 동시 1개, 24시간 뒤 timeout",
+      "role": "danger",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 버킷",
+      "detail": "AES-256 과 SSE-KMS 까지 지원하고 DSSE-KMS 는 지원하지 않는다",
+      "col": 2,
+      "row": 5
+    },
+    {
+      "id": "insights",
+      "kind": "box",
+      "label": "Logs Insights 쿼리",
+      "detail": "계정당 동시 100개, 60분 timeout, 결과 조회 7일",
+      "role": "store",
+      "col": 1,
+      "row": 6
+    }
+  ],
+  "edges": [
+    {
+      "source": "log-group",
+      "target": "subscription",
+      "emphasis": true
+    },
+    {
+      "source": "subscription",
+      "target": "kinesis"
+    },
+    {
+      "source": "subscription",
+      "target": "lambda"
+    },
+    {
+      "source": "subscription",
+      "target": "firehose"
+    },
+    {
+      "source": "subscription",
+      "target": "opensearch"
+    },
+    {
+      "source": "log-group",
+      "target": "metric-filter"
+    },
+    {
+      "source": "metric-filter",
+      "target": "cw-metric"
+    },
+    {
+      "source": "log-group",
+      "target": "export",
+      "dashed": true
+    },
+    {
+      "source": "export",
+      "target": "s3",
+      "dashed": true
+    },
+    {
+      "source": "log-group",
+      "target": "insights"
+    }
+  ]
+}

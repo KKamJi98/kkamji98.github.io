@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "migration-discovery-tool-ownership",
+  "title": "수집 도구마다 대답할 수 있는 질문이 다르다",
+  "subtitle": "돈 이야기, 기술 인벤토리, 진행 추적은 서로 다른 도구가 맡고 한 도구가 셋을 다 하지 않는다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "estate",
+      "kind": "box",
+      "label": "온프레미스 자산",
+      "detail": "VMware VM 과 물리 서버가 섞여 있다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "agentless",
+      "kind": "box",
+      "label": "ADS Agentless Collector",
+      "detail": "vCenter 에 OVA 1개, 약 60분 주기, VMware VM 전용, running process 수집 불가",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "agent",
+      "kind": "box",
+      "label": "ADS Discovery Agent",
+      "detail": "서버마다 설치, 약 15초 주기, 물리 서버 지원, running process 수집",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "evaluator",
+      "kind": "box",
+      "label": "Migration Evaluator collector",
+      "detail": "Windows Server VM 1대, WMI 와 SNMP 와 vSphere 와 T-SQL, 게스트 에이전트 없음",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "hub",
+      "kind": "box",
+      "label": "Migration Hub home Region",
+      "detail": "추적 데이터는 한 리전에만 저장된다. 대상 리전은 자유롭다",
+      "role": "surface",
+      "col": 2,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "business-case",
+      "kind": "box",
+      "label": "business case",
+      "detail": "EC2 와 EBS 와 OS 라이선스 비용, SQL Server 라이선스 분석, BYOL 모델링",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "dependency",
+      "kind": "box",
+      "label": "서버 그룹핑과 의존성 시각화",
+      "detail": "move group 을 만드는 근거",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "athena",
+      "kind": "service",
+      "service": "athena",
+      "label": "시계열 사용률과 network data 내보내기",
+      "detail": "Discovery Agent 만 Athena 와 CSV 로 내보낸다",
+      "col": 3,
+      "row": 3
+    }
+  ],
+  "edges": [
+    { "source": "estate", "target": "agentless" },
+    { "source": "estate", "target": "agent" },
+    { "source": "estate", "target": "evaluator" },
+    { "source": "agentless", "target": "hub" },
+    { "source": "agent", "target": "hub" },
+    { "source": "hub", "target": "dependency" },
+    { "source": "agent", "target": "athena", "emphasis": true },
+    { "source": "evaluator", "target": "business-case" }
+  ]
+}

@@ -1,0 +1,86 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="placement-group-boundaries" name="배치 전략마다 넘지 못하는 경계가 다르다">
+    <mxGraphModel dx="1399" dy="580" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1399" pageHeight="580" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1375.84" height="556.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="배치 전략마다 넘지 못하는 경계가 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1331.84" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="cluster 는 AZ 를 넘지 못하고, partition 은 AZ 당 7개까지, rack-level spread 는 AZ 당 running 7대까지다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1331.84" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="az-a" value="Availability Zone A" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_availability_zone;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="421" y="104" width="546" height="442" as="geometry" />
+        </mxCell>
+        <mxCell id="az-b" value="Availability Zone B" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_availability_zone;strokeColor=#00A4A6;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1017" y="240" width="349" height="306" as="geometry" />
+        </mxCell>
+        <mxCell id="need-latency" value="노드 간 저지연과 고대역&#xa;MPI, HPC, 대형 배치. EFA 를 붙이는 워크로드" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="91" y="146" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-rack" value="랙 단위 장애 격리&#xa;HDFS, HBase, Cassandra, Kafka 처럼 복제본을 분리하는 분산 시스템" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="282" width="337" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="need-host" value="인스턴스 단위 하드웨어 분리&#xa;소수의 핵심 인스턴스를 각각 다른 랙에 둔다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="114" y="470" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cluster-a" value="cluster placement group&#xa;그룹 안 single-flow 10 Gbps, 밖은 5 Gbps. Capacity Reservation 을 만들 수 있는 전략 중 하나" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="443" y="146" width="502" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="partition-a1" value="partition 1&#xa;독립 랙 집합. 인스턴스가 파티션 번호를 메타데이터로 읽는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="577" y="282" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="partition-a2" value="partition 2&#xa;AZ 당 최대 7 파티션. Dedicated Instances 를 쓰면 2개" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="548" y="376" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="spread-a" value="rack-level spread&#xa;AZ 당 running 인스턴스 7대. Dedicated Instances 를 지원하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="516" y="470" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="partition-b1" value="partition 1&#xa;같은 그룹의 파티션을 다른 AZ 에도 둘 수 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1039" y="282" width="305" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="spread-b" value="rack-level spread&#xa;AZ 3개 리전이면 그룹 전체로 21대" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1103" y="470" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cluster-blocked" value="cluster 는 여기까지 오지 못한다&#xa;단일 AZ 를 넘을 수 없다. 같은 리전의 peered VPC 는 걸칠 수 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1039" y="146" width="305" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-latency-to-cluster-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-latency" target="cluster-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="need-rack-to-partition-a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-rack" target="partition-a1">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="459.5" y="356.0" />
+              <mxPoint x="459.5" y="309.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="need-rack-to-partition-a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-rack" target="partition-a2">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="459.5" y="356.0" />
+              <mxPoint x="459.5" y="403.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="need-host-to-spread-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-host" target="spread-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="partition-a1-to-partition-b1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.1824;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="partition-a1" target="partition-b1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="spread-a-to-spread-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="spread-a" target="spread-b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cluster-a-to-cluster-blocked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cluster-a" target="cluster-blocked">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

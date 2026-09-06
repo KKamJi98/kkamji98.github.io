@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "id": "deployment-rollback-paths",
+  "title": "새 버전을 어디에 띄우는지가 롤백 동작과 노출 구간을 정한다",
+  "subtitle": "기존 인스턴스에 덮어쓰는 방식만 되돌리는 데 재배포가 필요하고, 실패한 버전이 트래픽을 받는 구간이 생긴다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "in-place",
+      "kind": "box",
+      "label": "기존 인스턴스에 덮어쓴다",
+      "detail": "Beanstalk All at once 와 Rolling, CodeDeploy EC2 의 OneAtATime 과 HalfAtATime",
+      "role": "danger",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "second-asg",
+      "kind": "box",
+      "label": "같은 환경 안에 두 번째 Auto Scaling group 을 띄운다",
+      "detail": "Beanstalk Immutable 과 Traffic splitting",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "second-env",
+      "kind": "box",
+      "label": "환경 자체를 하나 더 만든다",
+      "detail": "Beanstalk Blue/Green",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "second-tg",
+      "kind": "box",
+      "label": "두 번째 target group 에 새 task set 을 띄운다",
+      "detail": "CodeDeploy ECS blue/green. production listener 1개와 target group 2개가 필요하다",
+      "role": "process",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "redeploy",
+      "kind": "box",
+      "label": "이전 버전을 다시 배포한다",
+      "detail": "Rolling 과 Rolling with an additional batch 는 single-instance 환경을 지원하지 않는다",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "terminate-new",
+      "kind": "box",
+      "label": "새 인스턴스를 종료한다",
+      "detail": "인스턴스를 전부 교체하므로 누적된 EC2 burst balance 가 사라진다",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "url-swap",
+      "kind": "box",
+      "label": "URL 을 다시 swap 한다",
+      "detail": "공식 비교표에서 DNS 변경이 필요한 유일한 방식이다",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "listener-back",
+      "kind": "box",
+      "label": "listener 를 원래 target group 으로 되돌린다",
+      "detail": "NLB 를 쓰면 ECSAllAtOnce 만 지원하므로 점진 이동 자체가 없다",
+      "role": "store",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "exposed",
+      "kind": "box",
+      "label": "실패한 버전이 트래픽을 받는 구간이 있다",
+      "detail": "배치 하나가 서비스에서 빠진 상태로 남는다",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "not-exposed",
+      "kind": "box",
+      "label": "전환 전까지 사용자는 이전 버전만 본다",
+      "detail": "헬스체크와 알람으로 전환 여부를 판단할 시간이 생긴다",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "in-place",
+      "target": "redeploy",
+      "emphasis": true
+    },
+    {
+      "source": "second-asg",
+      "target": "terminate-new"
+    },
+    {
+      "source": "second-env",
+      "target": "url-swap"
+    },
+    {
+      "source": "second-tg",
+      "target": "listener-back"
+    },
+    {
+      "source": "redeploy",
+      "target": "exposed",
+      "emphasis": true
+    },
+    {
+      "source": "terminate-new",
+      "target": "not-exposed"
+    },
+    {
+      "source": "url-swap",
+      "target": "not-exposed"
+    },
+    {
+      "source": "listener-back",
+      "target": "not-exposed"
+    }
+  ]
+}

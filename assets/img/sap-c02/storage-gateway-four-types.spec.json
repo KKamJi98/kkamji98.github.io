@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "id": "storage-gateway-four-types",
+  "title": "온프레미스가 요구하는 인터페이스가 Storage Gateway 종류를 정한다",
+  "subtitle": "같은 게이트웨이 제품군이지만 프로토콜과 백엔드 저장 형태가 짝으로 고정돼 있다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "iface-file",
+      "kind": "box",
+      "label": "NFS 또는 SMB 파일 접근",
+      "detail": "파일을 객체로 후속 처리한다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "iface-smb-fsx",
+      "kind": "box",
+      "label": "SMB 접근에 Windows 원본이 필요",
+      "detail": "AD 통합 파일 서버를 그대로 쓴다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "iface-block",
+      "kind": "box",
+      "label": "iSCSI 블록 장치",
+      "detail": "애플리케이션이 블록에 직접 쓴다",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "iface-vtl",
+      "kind": "box",
+      "label": "iSCSI 가상 테이프 라이브러리",
+      "detail": "기존 백업 소프트웨어와 카탈로그 유지",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "gw-s3file",
+      "kind": "box",
+      "label": "S3 File Gateway",
+      "detail": "file share 하나가 버킷 하나. 파일 상한 5 TiB",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "gw-fsxfile",
+      "kind": "box",
+      "label": "Amazon FSx File Gateway",
+      "detail": "신규 고객에게 제공되지 않는다",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "gw-volume",
+      "kind": "box",
+      "label": "Volume Gateway",
+      "detail": "cached 32 TiB, stored 16 TiB",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "gw-tape",
+      "kind": "box",
+      "label": "Tape Gateway",
+      "detail": "테이프 100 GiB 에서 15 TiB",
+      "role": "process",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "be-s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 객체",
+      "detail": "파일이 객체로 1:1 저장된다",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "be-fsx",
+      "kind": "service",
+      "service": "fsx",
+      "label": "FSx for Windows File Server",
+      "detail": "직접 접근으로의 전환이 안내된다",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "be-ebs",
+      "kind": "service",
+      "service": "ebs",
+      "label": "EBS 스냅샷",
+      "detail": "S3 객체로 직접 소비할 수 없다",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "be-glacier",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3 Glacier 아카이브",
+      "detail": "Flexible Retrieval 또는 Deep Archive",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "iface-file",
+      "target": "gw-s3file"
+    },
+    {
+      "source": "iface-smb-fsx",
+      "target": "gw-fsxfile"
+    },
+    {
+      "source": "iface-block",
+      "target": "gw-volume"
+    },
+    {
+      "source": "iface-vtl",
+      "target": "gw-tape"
+    },
+    {
+      "source": "gw-s3file",
+      "target": "be-s3",
+      "emphasis": true
+    },
+    {
+      "source": "gw-fsxfile",
+      "target": "be-fsx"
+    },
+    {
+      "source": "gw-volume",
+      "target": "be-ebs",
+      "emphasis": true
+    },
+    {
+      "source": "gw-tape",
+      "target": "be-glacier",
+      "emphasis": true
+    }
+  ]
+}

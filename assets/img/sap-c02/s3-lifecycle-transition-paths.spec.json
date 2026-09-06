@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "s3-lifecycle-transition-paths",
+  "title": "lifecycle 전환은 한 방향으로만 흐른다",
+  "subtitle": "각 클래스 아래의 값이 최소 보관 기간이다. Deep Archive 에서는 어떤 클래스로도 lifecycle 전환이 불가능하다.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "standard",
+      "kind": "box",
+      "label": "S3 Standard",
+      "detail": "최소 보관 기간 없음",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "it",
+      "kind": "box",
+      "label": "Intelligent-Tiering",
+      "detail": "최소 보관 기간 없음, 최소 과금 객체 크기 없음",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "sia",
+      "kind": "box",
+      "label": "Standard-IA",
+      "detail": "최소 30일, 최소 과금 128 KB",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "ozia",
+      "kind": "box",
+      "label": "One Zone-IA",
+      "detail": "최소 30일, 단일 AZ, 설계 가용성 99.5%",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "gir",
+      "kind": "box",
+      "label": "Glacier Instant Retrieval",
+      "detail": "최소 90일, 최소 과금 128 KB, 밀리초 조회",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "gfr",
+      "kind": "box",
+      "label": "Glacier Flexible Retrieval",
+      "detail": "최소 90일, 객체당 40 KB 메타데이터 오버헤드",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "gda",
+      "kind": "box",
+      "label": "Glacier Deep Archive",
+      "detail": "최소 180일, 객체당 40 KB 메타데이터 오버헤드",
+      "role": "queue",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "deadend",
+      "kind": "box",
+      "label": "되돌리는 lifecycle 규칙은 없다",
+      "detail": "restore 로 임시 사본을 받은 뒤 copy 로 덮어써야 클래스가 바뀐다",
+      "role": "danger",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "standard",
+      "target": "it"
+    },
+    {
+      "source": "standard",
+      "target": "sia"
+    },
+    {
+      "source": "it",
+      "target": "gir"
+    },
+    {
+      "source": "sia",
+      "target": "ozia"
+    },
+    {
+      "source": "sia",
+      "target": "gir"
+    },
+    {
+      "source": "ozia",
+      "target": "gfr"
+    },
+    {
+      "source": "gir",
+      "target": "gfr"
+    },
+    {
+      "source": "gfr",
+      "target": "gda",
+      "emphasis": true
+    },
+    {
+      "source": "gda",
+      "target": "deadend",
+      "dashed": true
+    }
+  ]
+}

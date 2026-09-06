@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "modernization-strangler-route-switch",
+  "title": "strangler fig은 라우트를 바꾸는 동안 모놀리스를 롤백 지점으로 남긴다",
+  "subtitle": "transform에서 만든 새 서비스와 기존 기능을 coexist로 운영한 뒤 라우트를 되돌릴 수 있을 때 eliminate한다.",
+  "layout": {
+    "col_gap": 64,
+    "row_gap": 54
+  },
+  "nodes": [
+    {
+      "id": "caller",
+      "kind": "box",
+      "label": "외부 호출자",
+      "detail": "같은 HTTPS endpoint",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "proxy",
+      "kind": "box",
+      "label": "HTTP proxy",
+      "detail": "API Gateway 또는 facade",
+      "role": "surface",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "route-switch",
+      "kind": "box",
+      "label": "라우팅 결정",
+      "detail": "기존 기능 또는 새 서비스",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "monolith",
+      "kind": "box",
+      "label": "기존 모놀리스",
+      "detail": "coexist 동안 rollback 대상",
+      "role": "danger",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "new-service",
+      "kind": "box",
+      "label": "현대화 서비스",
+      "detail": "transform에서 만든 기능",
+      "role": "compute",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "new-store",
+      "kind": "box",
+      "label": "새 데이터 저장소",
+      "detail": "서비스별 소유 경계",
+      "role": "store",
+      "col": 4,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "caller", "target": "proxy" },
+    { "source": "proxy", "target": "route-switch", "emphasis": true },
+    { "source": "route-switch", "target": "monolith" },
+    { "source": "route-switch", "target": "new-service", "emphasis": true },
+    { "source": "new-service", "target": "new-store" }
+  ]
+}

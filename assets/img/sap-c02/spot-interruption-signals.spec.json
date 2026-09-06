@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "id": "spot-interruption-signals",
+  "title": "Spot 이 보내는 신호 두 개는 도착 시점과 대응이 다르다",
+  "subtitle": "rebalance recommendation 은 선제 교체를 부르고, 2분 통지는 종료 직전 정리만 남긴다.",
+  "layout": {
+    "col_gap": 50,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "capacity-reclaim",
+      "kind": "box",
+      "label": "EC2 가 Spot 용량을 회수한다",
+      "detail": "사유는 capacity, price, constraints 세 가지다",
+      "role": "danger",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "rebalance-rec",
+      "kind": "box",
+      "label": "rebalance recommendation",
+      "detail": "중단 위험이 높아졌다는 신호. 보통 2분 통지보다 먼저 온다",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "capacity-rebalancing",
+      "kind": "box",
+      "label": "ASG Capacity Rebalancing",
+      "detail": "새 인스턴스가 health check 를 통과한 뒤 기존 인스턴스를 종료한다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "replaced",
+      "kind": "box",
+      "label": "선제 교체 완료",
+      "detail": "이 과정에서 그룹이 desired capacity 의 최대 10% 까지 일시 초과한다",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "interruption-notice",
+      "kind": "box",
+      "label": "2분 중단 통지",
+      "detail": "stop 과 terminate 만 받는다. hibernate 는 즉시 시작되어 통지가 없다",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "drain",
+      "kind": "box",
+      "label": "EventBridge 이벤트와 메타데이터 폴링",
+      "detail": "instance-action 을 5초 주기로 읽는다. 통지는 best effort 다",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "terminated",
+      "kind": "box",
+      "label": "설정한 중단 동작 수행",
+      "detail": "terminate, stop, hibernate. persistent 요청에서는 Terminate 를 지정할 수 없다",
+      "role": "external",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "pool-strategy",
+      "kind": "box",
+      "label": "pool 을 넓히는 쪽이 중단 빈도를 줄인다",
+      "detail": "attribute-based instance type selection 과 price-capacity-optimized. Capacity Rebalancing 자체는 중단율을 낮추지 않는다",
+      "role": "surface",
+      "col": 2,
+      "row": 2,
+      "colspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "capacity-reclaim",
+      "target": "rebalance-rec"
+    },
+    {
+      "source": "capacity-reclaim",
+      "target": "interruption-notice"
+    },
+    {
+      "source": "rebalance-rec",
+      "target": "capacity-rebalancing",
+      "emphasis": true
+    },
+    {
+      "source": "capacity-rebalancing",
+      "target": "replaced"
+    },
+    {
+      "source": "interruption-notice",
+      "target": "drain"
+    },
+    {
+      "source": "drain",
+      "target": "terminated"
+    },
+    {
+      "source": "rebalance-rec",
+      "target": "interruption-notice",
+      "dashed": true
+    },
+    {
+      "source": "pool-strategy",
+      "target": "drain",
+      "dashed": true
+    }
+  ]
+}

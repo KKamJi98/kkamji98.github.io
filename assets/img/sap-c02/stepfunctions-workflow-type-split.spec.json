@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "stepfunctions-workflow-type-split",
+  "title": "Step Functions 실행 의미가 워크플로 타입을 가른다",
+  "subtitle": "Standard는 exactly-once와 긴 실행을, Express는 짧은 실행과 서로 다른 중복 의미를 제공한다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "workflow-trigger",
+      "kind": "box",
+      "label": "Workflow trigger",
+      "detail": "request or event",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "type-choice",
+      "kind": "box",
+      "label": "Choose workflow type",
+      "detail": "execution semantics first",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "standard-workflow",
+      "kind": "box",
+      "label": "Standard",
+      "detail": "exactly-once, 1 year, .sync and callback",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "async-express",
+      "kind": "box",
+      "label": "Asynchronous Express",
+      "detail": "at-least-once, 5 minutes",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "sync-express",
+      "kind": "box",
+      "label": "Synchronous Express",
+      "detail": "at-most-once, 5 minutes",
+      "role": "danger",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "standard-task",
+      "kind": "box",
+      "label": "Long or non-idempotent task",
+      "detail": ".sync or waitForTaskToken",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "async-task",
+      "kind": "box",
+      "label": "Idempotent task",
+      "detail": "high-rate event processing",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "sync-task",
+      "kind": "box",
+      "label": "Short request task",
+      "detail": "synchronous response",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "workflow-trigger", "target": "type-choice", "emphasis": true },
+    { "source": "type-choice", "target": "standard-workflow", "emphasis": true },
+    { "source": "type-choice", "target": "async-express" },
+    { "source": "type-choice", "target": "sync-express" },
+    { "source": "standard-workflow", "target": "standard-task" },
+    { "source": "async-express", "target": "async-task" },
+    { "source": "sync-express", "target": "sync-task" }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "regional-failover-trigger-layers",
+  "title": "리전 전환을 만드는 계층과 만들지 못하는 계층",
+  "subtitle": "control plane 조작에 의존하는 경로는 리전 장애 중에 신뢰할 수 없다.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 40
+  },
+  "containers": [
+    {
+      "id": "region-switch",
+      "kind": "plain",
+      "label": "리전 단위 전환을 만든다",
+      "members": ["r53-failover", "arc-routing"]
+    },
+    {
+      "id": "not-region-switch",
+      "kind": "plain",
+      "label": "리전 단위 전환 수단으로는 성립하지 않는다",
+      "members": ["ga-dial", "cf-origin"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "클라이언트 요청",
+      "detail": "primary 리전이 응답하지 않는 상태",
+      "role": "external",
+      "col": 0,
+      "row": 0,
+      "rowspan": 4
+    },
+    {
+      "id": "r53-failover",
+      "kind": "service",
+      "service": "route53",
+      "label": "Route 53 health check failover",
+      "detail": "data plane 동작이지만 클라이언트 DNS 캐시 TTL 의 영향을 받는다",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "arc-routing",
+      "kind": "box",
+      "label": "ARC routing control",
+      "detail": "RECOVERY_CONTROL 타입 health check 를 on/off 로 전환하는 data plane API",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "ga-dial",
+      "kind": "service",
+      "service": "global_accelerator",
+      "label": "Global Accelerator traffic dial",
+      "detail": "anycast IP 라 DNS 캐시는 없지만 dial 조정은 control plane operation 이다",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "cf-origin",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront origin failover",
+      "detail": "실패한 요청만 secondary 로 가고 이후 요청은 다시 primary 로 간다",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "dr-region",
+      "kind": "box",
+      "label": "DR 리전 엔드포인트",
+      "detail": "전환이 성립해야 트래픽이 도달한다",
+      "role": "store",
+      "col": 2,
+      "row": 0,
+      "rowspan": 4
+    }
+  ],
+  "edges": [
+    { "source": "client", "target": "r53-failover" },
+    { "source": "client", "target": "arc-routing" },
+    { "source": "client", "target": "ga-dial" },
+    { "source": "client", "target": "cf-origin" },
+    { "source": "r53-failover", "target": "dr-region" },
+    { "source": "arc-routing", "target": "dr-region", "emphasis": true },
+    { "source": "ga-dial", "target": "dr-region", "dashed": true },
+    { "source": "cf-origin", "target": "dr-region", "dashed": true }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "lambda-invocation-retry-paths",
+  "title": "재시도를 누가 하는지가 호출 모델마다 다르다",
+  "subtitle": "동기는 호출자, 비동기는 Lambda 내부 큐, 스트림은 event source mapping 이 책임진다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "sync-caller",
+      "kind": "box",
+      "label": "동기 호출자",
+      "detail": "API Gateway, ALB, SDK. 요청과 응답 각 6 MB",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "sync-exec",
+      "kind": "box",
+      "label": "함수 실행",
+      "detail": "RequestResponse",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "sync-error",
+      "kind": "box",
+      "label": "에러가 호출자에게 그대로 간다",
+      "detail": "Lambda 는 대신 재시도하지 않는다",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "async-source",
+      "kind": "box",
+      "label": "비동기 소스",
+      "detail": "S3 알림, SNS, EventBridge. payload 1 MB",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "async-queue",
+      "kind": "box",
+      "label": "Lambda 내부 이벤트 큐",
+      "detail": "202 를 즉시 돌려준다. eventually consistent 라 중복 전달이 있다",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "async-retry",
+      "kind": "box",
+      "label": "함수 에러 2회 재시도",
+      "detail": "1분 뒤, 다시 2분 뒤. 스로틀은 6시간까지 별도 재시도",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "failure-dest",
+      "kind": "service",
+      "service": "sqs",
+      "label": "DLQ 와 on-failure destination",
+      "detail": "재시도가 소진된 이벤트를 여기서 잡는다",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "stream-source",
+      "kind": "box",
+      "label": "스트림 소스",
+      "detail": "Kinesis, DynamoDB Streams",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "esm",
+      "kind": "box",
+      "label": "event source mapping",
+      "detail": "Lambda 가 폴링해 배치로 넘긴다",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "batch-retry",
+      "kind": "box",
+      "label": "배치 전체를 다시 시도한다",
+      "detail": "성공할 때까지 같은 샤드가 진행하지 못한다",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "iterator-age",
+      "kind": "box",
+      "label": "Iterator Age 상승",
+      "detail": "샤드 정체를 여기서 감시한다",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "sync-caller",
+      "target": "sync-exec"
+    },
+    {
+      "source": "sync-exec",
+      "target": "sync-error",
+      "emphasis": true
+    },
+    {
+      "source": "async-source",
+      "target": "async-queue"
+    },
+    {
+      "source": "async-queue",
+      "target": "async-retry"
+    },
+    {
+      "source": "async-retry",
+      "target": "failure-dest",
+      "emphasis": true
+    },
+    {
+      "source": "stream-source",
+      "target": "esm"
+    },
+    {
+      "source": "esm",
+      "target": "batch-retry"
+    },
+    {
+      "source": "batch-retry",
+      "target": "iterator-age",
+      "emphasis": true
+    }
+  ]
+}

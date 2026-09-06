@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "id": "transfer-family-endpoint-types",
+  "title": "Transfer Family 엔드포인트 타입이 쓸 수 있는 프로토콜을 정한다",
+  "subtitle": "FTP 를 열 수 있는 자리는 VPC 내부 접근 하나뿐이고, 소스 IP 제한과 고정 IP 도 VPC 타입에서만 성립한다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 42
+  },
+  "containers": [
+    {
+      "id": "endpoint-types",
+      "kind": "plain",
+      "label": "엔드포인트 타입",
+      "members": ["ep-public", "ep-vpc-facing", "ep-vpc-internal", "ep-legacy"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ep-public",
+      "kind": "box",
+      "label": "PUBLIC",
+      "detail": "security group 을 붙일 수 없고 Elastic IP 를 지정할 수 없다",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ep-vpc-facing",
+      "kind": "box",
+      "label": "VPC Internet Facing",
+      "detail": "서브넷마다 Elastic IP 를 지정한다. 최대 3개 AZ",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "ep-vpc-internal",
+      "kind": "box",
+      "label": "VPC Internal",
+      "detail": "custom hostname 을 지원하지 않는다",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "ep-legacy",
+      "kind": "box",
+      "label": "VPC_ENDPOINT",
+      "detail": "2021-05-19 부터 신규 생성 불가",
+      "role": "danger",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "proto-public",
+      "kind": "box",
+      "label": "FTP 를 열 수 없다",
+      "detail": "소스 IP 제한과 고정 IP 요구를 만족하지 못한다",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "proto-facing",
+      "kind": "box",
+      "label": "SFTP 와 FTPS 만",
+      "detail": "security group 으로 소스 IP 를 제한한다",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "proto-internal",
+      "kind": "box",
+      "label": "FTP 를 포함해 받는다",
+      "detail": "컨트롤 21, 데이터 8192 에서 8200",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "targets",
+      "kind": "box",
+      "label": "대상 스토리지",
+      "detail": "S3 와 EFS 뿐이다. FSx 는 대상이 아니다",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "ep-public",
+      "target": "proto-public"
+    },
+    {
+      "source": "ep-vpc-facing",
+      "target": "proto-facing",
+      "emphasis": true
+    },
+    {
+      "source": "ep-vpc-internal",
+      "target": "proto-internal",
+      "emphasis": true
+    },
+    {
+      "source": "proto-public",
+      "target": "targets"
+    },
+    {
+      "source": "proto-facing",
+      "target": "targets"
+    },
+    {
+      "source": "proto-internal",
+      "target": "targets"
+    }
+  ]
+}

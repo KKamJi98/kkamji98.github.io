@@ -1,0 +1,72 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="global-accelerator-cloudfront-paths" name="Global Accelerator는 고정 IP로 전달하고 CloudFront는 캐시한다">
+    <mxGraphModel dx="977" dy="574" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="977" pageHeight="574" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="953.28" height="550.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Global Accelerator는 고정 IP로 전달하고 CloudFront는 캐시한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="909.28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="두 엣지 서비스는 진입점과 오리진 요청 여부를 서로 다르게 결정한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="909.28" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="클라이언트&#xa;고정 IP 또는 배포 도메인으로 접속한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="242" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="global-accelerator" value="Global Accelerator&#xa;anycast static IP로 새 연결을 전달한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.global_accelerator;" vertex="1" parent="1">
+          <mxGeometry x="343" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ga-endpoint" value="리전 endpoint&#xa;NLB, ALB, EC2, EIP를 받을 수 있다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.network_load_balancer;" vertex="1" parent="1">
+          <mxGeometry x="593" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudfront" value="CloudFront&#xa;HTTP와 HTTPS 요청을 엣지에서 처리한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="343" y="348" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-cache" value="엣지 캐시&#xa;히트면 오리진에 요청하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="529" y="486" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudfront-origin" value="CloudFront origin&#xa;캐시 미스에서만 요청을 받는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="767" y="364" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-global-accelerator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="global-accelerator">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="276.5" y="269.0" />
+              <mxPoint x="276.5" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="global-accelerator-to-ga-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="global-accelerator" target="ga-endpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-cloudfront" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="cloudfront">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="276.5" y="269.0" />
+              <mxPoint x="276.5" y="372.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cloudfront-to-edge-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cloudfront" target="edge-cache">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="460.0" y="372.0" />
+              <mxPoint x="460.0" y="513.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cloudfront-to-cloudfront-origin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cloudfront" target="cloudfront-origin">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="460.0" y="372.0" />
+              <mxPoint x="460.0" y="391.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

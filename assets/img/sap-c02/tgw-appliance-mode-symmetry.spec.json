@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "tgw-appliance-mode-symmetry",
+  "title": "appliance mode를 켜지 않으면 응답이 다른 AZ의 어플라이언스로 돌아간다",
+  "subtitle": "같은 출발지와 목적지에서도 성공과 실패가 섞이는 증상의 원인이다.",
+  "layout": {
+    "col_gap": 66,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "mode-off",
+      "kind": "plain",
+      "label": "appliance mode 끔",
+      "members": ["off-src", "off-appl-a", "off-dst", "off-appl-b", "off-drop"]
+    },
+    {
+      "id": "mode-on",
+      "kind": "plain",
+      "label": "appliance mode 켬",
+      "members": ["on-src", "on-appl", "on-dst"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "off-src",
+      "kind": "box",
+      "label": "출발지 VPC AZ-a",
+      "detail": "요청 방향",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "off-appl-a",
+      "kind": "box",
+      "label": "검사 어플라이언스 AZ-a",
+      "detail": "여기서 세션이 생성된다",
+      "role": "surface",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "off-dst",
+      "kind": "box",
+      "label": "목적지 VPC",
+      "detail": "응답을 되돌려 보낸다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "off-appl-b",
+      "kind": "box",
+      "label": "검사 어플라이언스 AZ-b",
+      "detail": "세션 테이블에 없는 패킷",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "off-drop",
+      "kind": "box",
+      "label": "드롭",
+      "detail": "같은 조합인데 성공과 실패가 섞인다",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "on-src",
+      "kind": "box",
+      "label": "출발지 VPC AZ-a",
+      "detail": "요청과 응답이 같은 AZ",
+      "role": "process",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "on-appl",
+      "kind": "box",
+      "label": "검사 어플라이언스 AZ-a",
+      "detail": "flow 전체가 같은 AZ로 고정된다",
+      "role": "surface",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "on-dst",
+      "kind": "box",
+      "label": "목적지 VPC",
+      "detail": "TGW를 여러 개 두면 stickiness가 깨진다",
+      "role": "process",
+      "col": 2,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {"source": "off-src", "target": "off-appl-a", "emphasis": true},
+    {"source": "off-appl-a", "target": "off-dst", "emphasis": true},
+    {"source": "off-dst", "target": "off-appl-b", "dashed": true},
+    {"source": "off-appl-b", "target": "off-drop", "dashed": true},
+    {"source": "on-src", "target": "on-appl", "bidirectional": true, "emphasis": true},
+    {"source": "on-appl", "target": "on-dst", "bidirectional": true, "emphasis": true}
+  ]
+}

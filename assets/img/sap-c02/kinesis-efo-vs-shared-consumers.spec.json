@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "kinesis-efo-vs-shared-consumers",
+  "title": "EFO는 컨슈머별 샤드 처리량을 분리한다",
+  "subtitle": "공유 GetRecords는 샤드당 2 MB/s를 나누지만 EFO는 각 컨슈머에 2 MB/s와 약 70 ms 전파 지연을 준다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "stream-producer",
+      "kind": "box",
+      "label": "Producer",
+      "detail": "PutRecord or PutRecords",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "data-stream",
+      "kind": "service",
+      "service": "kinesis",
+      "label": "Kinesis Data Stream",
+      "detail": "shard is the capacity unit",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "shared-consumption",
+      "kind": "box",
+      "label": "Shared throughput",
+      "detail": "GetRecords pull, 2 MB/s per shard total",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "shared-consumer-one",
+      "kind": "box",
+      "label": "Consumer 1",
+      "detail": "shared read path",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "shared-consumer-five",
+      "kind": "box",
+      "label": "Consumer 5",
+      "detail": "about 1,000 ms propagation",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "efo-consumption",
+      "kind": "box",
+      "label": "Enhanced fan-out",
+      "detail": "SubscribeToShard HTTP/2 push",
+      "role": "process",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "efo-consumer-one",
+      "kind": "box",
+      "label": "Consumer 1",
+      "detail": "2 MB/s dedicated, about 70 ms",
+      "role": "process",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "id": "efo-consumer-five",
+      "kind": "box",
+      "label": "Consumer 5",
+      "detail": "2 MB/s dedicated, about 70 ms",
+      "role": "process",
+      "col": 3,
+      "row": 4
+    }
+  ],
+  "edges": [
+    { "source": "stream-producer", "target": "data-stream", "emphasis": true },
+    { "source": "data-stream", "target": "shared-consumption" },
+    { "source": "shared-consumption", "target": "shared-consumer-one" },
+    { "source": "shared-consumption", "target": "shared-consumer-five" },
+    { "source": "data-stream", "target": "efo-consumption", "emphasis": true },
+    { "source": "efo-consumption", "target": "efo-consumer-one" },
+    { "source": "efo-consumption", "target": "efo-consumer-five" }
+  ]
+}

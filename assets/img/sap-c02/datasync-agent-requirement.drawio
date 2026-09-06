@@ -1,0 +1,110 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="datasync-agent-requirement" name="DataSync 에이전트 필요 여부가 태스크 처리량 상한까지 결정한다">
+    <mxGraphModel dx="883" dy="884" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="883" pageHeight="884" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="859.46" height="860.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="DataSync 에이전트 필요 여부가 태스크 처리량 상한까지 결정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="815.46" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="소스와 대상의 조합이 에이전트 필요 여부를 정하고, 그 결과가 태스크당 10 Gbps 와 5 Gbps 로 갈린다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="815.46" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="need-group" value="에이전트가 필요한 조합" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="247" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="free-group" value="에이전트가 필요 없는 조합" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="47" y="544" width="220" height="306" as="geometry" />
+        </mxCell>
+        <mxCell id="need-onprem" value="온프레미스 스토리지와 AWS 스토리지 사이&#xa;NFS, SMB, HDFS, 자체관리 객체 스토리지" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-cloud-efs" value="타 클라우드 스토리지와 EFS 또는 FSx 사이&#xa;대상이 파일 시스템인 경우" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="62" y="240" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-cross" value="계정 간 전송에서 양쪽 모두 S3 가 아닌 경우&#xa;한쪽이라도 S3 면 이 칸이 아니다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="62" y="334" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-outposts" value="S3 on Outposts 와 리전 S3 사이&#xa;Basic mode 만 지원한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="66" y="428" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="free-same" value="같은 계정의 AWS 스토리지 서비스 사이&#xa;S3, EFS, FSx 조합 전부" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="69" y="586" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="free-s3-side" value="계정 간이라도 한쪽이 S3 인 경우&#xa;S3 가 한쪽에 있으면 직접 전송한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="69" y="680" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="free-cloud-s3" value="S3 와 타 클라우드 객체 스토리지 사이&#xa;Azure Blob 을 포함한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="69" y="774" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" value="DataSync 에이전트&#xa;VMware, KVM, Hyper-V, EC2. 위치 하나에 최대 4개" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="341" y="240" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="direct" value="서비스가 직접 읽고 쓴다&#xa;배포하고 운영할 VM 이 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="389" y="680" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-ten" value="태스크당 10 Gbps&#xa;서비스가 거는 상한, 조정 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="673" y="240" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-five" value="태스크당 5 Gbps&#xa;서비스가 거는 상한, 조정 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="673" y="680" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-onprem-to-agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-onprem" target="agent">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="300.0" y="173.0" />
+              <mxPoint x="300.0" y="267.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="need-cloud-efs-to-agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-cloud-efs" target="agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="need-cross-to-agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-cross" target="agent">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="300.0" y="361.0" />
+              <mxPoint x="300.0" y="267.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="need-outposts-to-agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need-outposts" target="agent">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="300.0" y="455.0" />
+              <mxPoint x="300.0" y="267.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="free-same-to-direct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="free-same" target="direct">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="317.0" y="613.0" />
+              <mxPoint x="317.0" y="707.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="free-s3-side-to-direct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="free-s3-side" target="direct">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="free-cloud-s3-to-direct" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="free-cloud-s3" target="direct">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="317.0" y="801.0" />
+              <mxPoint x="317.0" y="707.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="agent-to-cap-ten" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="cap-ten">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="direct-to-cap-five" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="direct" target="cap-five">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

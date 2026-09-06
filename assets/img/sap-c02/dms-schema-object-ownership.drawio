@@ -1,0 +1,81 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="dms-schema-object-ownership" name="DMS 는 데이터를 옮기고 변환 도구는 스키마를 옮긴다">
+    <mxGraphModel dx="1470" dy="424" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1470" pageHeight="424" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1446.02" height="400.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="DMS 는 데이터를 옮기고 변환 도구는 스키마를 옮긴다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1402.02" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="타깃에 무엇이 생기는지가 도구마다 다르다. 한쪽만 쓰면 인덱스와 코드 오브젝트가 비어 있는 타깃이 남는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1402.02" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="source-db" value="소스 데이터베이스&#xa;Oracle, SQL Server, SAP ASE, Db2 등" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.generic_database;" vertex="1" parent="1">
+          <mxGeometry x="126" y="138" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dms-task" value="DMS replication task&#xa;full load, full load + CDC, CDC only" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="327" y="104" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="conversion" value="DMS Schema Conversion 또는 AWS SCT&#xa;스키마와 코드 오브젝트만 변환한다. 데이터는 옮기지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="340" y="204" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="secrets" value="Secrets Manager&#xa;migration project 가 참조하는 DB 자격증명" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="430" y="304" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dms-objects" value="DMS 가 만드는 것&#xa;table, primary key, 경우에 따라 unique index" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="743" y="104" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="conversion-objects" value="변환 도구가 만드는 것&#xa;secondary index, foreign key, sequence, stored procedure, trigger, view" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="641" y="204" width="477" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="target-db" value="타깃 데이터베이스&#xa;Aurora PostgreSQL, Aurora MySQL, RDS 등" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.aurora;" vertex="1" parent="1">
+          <mxGeometry x="1283" y="138" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="source-db-to-dms-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source-db" target="dms-task">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="250.5" y="162.0" />
+              <mxPoint x="250.5" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="source-db-to-conversion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source-db" target="conversion">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="250.5" y="162.0" />
+              <mxPoint x="250.5" y="231.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="secrets-to-conversion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="secrets" target="conversion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dms-task-to-dms-objects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dms-task" target="dms-objects">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conversion-to-conversion-objects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conversion" target="conversion-objects">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dms-objects-to-target-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dms-objects" target="target-db">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1200.5" y="131.0" />
+              <mxPoint x="1200.5" y="162.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conversion-objects-to-target-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="conversion-objects" target="target-db">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1200.5" y="231.0" />
+              <mxPoint x="1200.5" y="162.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,92 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="migration-discovery-tool-ownership" name="수집 도구마다 대답할 수 있는 질문이 다르다">
+    <mxGraphModel dx="1452" dy="518" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1452" pageHeight="518" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1428.88" height="494.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="수집 도구마다 대답할 수 있는 질문이 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1384.88" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="돈 이야기, 기술 인벤토리, 진행 추적은 서로 다른 도구가 맡고 한 도구가 셋을 다 하지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1384.88" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="estate" value="온프레미스 자산&#xa;VMware VM 과 물리 서버가 섞여 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="202" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="agentless" value="ADS Agentless Collector&#xa;vCenter 에 OVA 1개, 약 60분 주기, VMware VM 전용, running process 수집 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="269" y="104" width="426" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" value="ADS Discovery Agent&#xa;서버마다 설치, 약 15초 주기, 물리 서버 지원, running process 수집" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="320" y="202" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluator" value="Migration Evaluator collector&#xa;Windows Server VM 1대, WMI 와 SNMP 와 vSphere 와 T-SQL, 게스트 에이전트 없음" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="269" y="300" width="426" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hub" value="Migration Hub home Region&#xa;추적 데이터는 한 리전에만 저장된다. 대상 리전은 자유롭다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="753" y="104" width="356" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="business-case" value="business case&#xa;EC2 와 EBS 와 OS 라이선스 비용, SQL Server 라이선스 분석, BYOL 모델링" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="753" y="300" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="dependency" value="서버 그룹핑과 의존성 시각화&#xa;move group 을 만드는 근거" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1205" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="athena" value="시계열 사용률과 network data 내보내기&#xa;Discovery Agent 만 Athena 와 CSV 로 내보낸다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.athena;" vertex="1" parent="1">
+          <mxGeometry x="1269" y="398" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="estate-to-agentless" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="estate" target="agentless">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="240.0" y="229.0" />
+              <mxPoint x="240.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="estate-to-agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="estate" target="agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="estate-to-evaluator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="estate" target="evaluator">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="240.0" y="229.0" />
+              <mxPoint x="240.0" y="327.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="agentless-to-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="agentless" target="hub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="724.0" y="131.0" />
+              <mxPoint x="724.0" y="180.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="agent-to-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="hub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="724.0" y="229.0" />
+              <mxPoint x="724.0" y="180.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hub-to-dependency" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.1776;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hub" target="dependency">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-to-athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="athena">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="698.5" y="229.0" />
+              <mxPoint x="698.5" y="422.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evaluator-to-business-case" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="evaluator" target="business-case">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

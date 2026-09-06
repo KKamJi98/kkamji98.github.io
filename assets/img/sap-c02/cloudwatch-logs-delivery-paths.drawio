@@ -1,0 +1,122 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="cloudwatch-logs-delivery-paths" name="로그가 로그 그룹을 떠나는 경로는 네 가지이고 제약이 각각 다르다">
+    <mxGraphModel dx="1231" dy="948" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1231" pageHeight="948" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1207.28" height="924.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="로그가 로그 그룹을 떠나는 경로는 네 가지이고 제약이 각각 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1163.28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="실시간 조건이면 subscription filter 하나뿐이다. export 는 준비까지 최대 12시간이 걸리고 계정당 동시 1개다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1163.28" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="log-group" value="CloudWatch Logs 로그 그룹&#xa;subscription filter 5개, metric filter 100개, 둘 다 조정 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="372" width="362" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="subscription" value="subscription filter&#xa;near-real-time push, base64 후 gzip, throttle 시 최대 24시간 재시도" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="448" y="246" width="394" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="kinesis" value="Kinesis Data Streams&#xa;여러 소비자가 같은 데이터를 독립으로 읽는다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.kinesis;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda" value="Lambda&#xa;이벤트 단위 변환" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda_function;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="230" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="firehose" value="Data Firehose&#xa;버퍼링 후 적재" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.kinesis_data_firehose;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="356" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="opensearch" value="OpenSearch Service&#xa;강의의 Amazon ES 가 현재 명칭이다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticsearch_service;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="482" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="metric-filter" value="metric filter&#xa;이미 들어온 로그에서 패턴을 세어 메트릭으로 만든다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="544" y="624" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cw-metric" value="CloudWatch 메트릭과 알람&#xa;로그 발행 코드를 못 고칠 때의 경로다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="608" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="export" value="S3 export task&#xa;export 가능해지기까지 최대 12시간, 계정당 동시 1개, 24시간 뒤 timeout" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="477" y="750" width="337" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="S3 버킷&#xa;AES-256 과 SSE-KMS 까지 지원하고 DSSE-KMS 는 지원하지 않는다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="734" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="insights" value="Logs Insights 쿼리&#xa;계정당 동시 100개, 60분 timeout, 결과 조회 7일" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="525" y="860" width="241" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="log-group-to-subscription" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="log-group" target="subscription">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="422.0" y="399.0" />
+              <mxPoint x="422.0" y="273.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subscription-to-kinesis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="subscription" target="kinesis">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="932.0" y="273.0" />
+              <mxPoint x="932.0" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subscription-to-lambda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="subscription" target="lambda">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="932.0" y="273.0" />
+              <mxPoint x="932.0" y="254.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subscription-to-firehose" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="subscription" target="firehose">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="932.0" y="273.0" />
+              <mxPoint x="932.0" y="380.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subscription-to-opensearch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="subscription" target="opensearch">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="932.0" y="273.0" />
+              <mxPoint x="932.0" y="506.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="log-group-to-metric-filter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="log-group" target="metric-filter">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="422.0" y="399.0" />
+              <mxPoint x="422.0" y="651.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="metric-filter-to-cw-metric" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="metric-filter" target="cw-metric">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="log-group-to-export" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="log-group" target="export">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="422.0" y="399.0" />
+              <mxPoint x="422.0" y="777.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="export-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="export" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="log-group-to-insights" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="log-group" target="insights">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="422.0" y="399.0" />
+              <mxPoint x="422.0" y="887.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

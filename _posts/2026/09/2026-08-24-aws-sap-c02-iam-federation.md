@@ -17,7 +17,7 @@ SAP-C02 Domain 1은 이 층에서 답이 갈리는 문항을 냅니다. 하나�
 
 > **TL;DR**  
 > - 평가 순서는 Deny evaluation, RCP, SCP, resource-based policy, identity-based policy, permissions boundary, session policy 일곱 단계다.  
-> - 기본값은 implicit deny이고 explicit deny가 모든 allow를 이긴다. 예외는 AWS account root user 하나다.  
+> - 요청은 기본적으로 implicit deny다. root user의 기본 권한은 이 기본 거부의 예외이며, 요청에 적용되는 explicit Deny가 있으면 거부된다. member account의 root user도 SCP의 제한을 받는다.  
 > - 같은 계정에서 identity-based policy와 resource-based policy는 합집합이고, identity-based policy와 permissions boundary는 교집합이다.  
 > - boundary의 implicit deny는 resource-based policy가 role ARN에 권한을 준 경우만 제한한다. IAM user ARN, role session ARN, federated user ARN에 직접 주면 제한하지 않는다.  
 > - role trust policy와 KMS key policy는 principal에 대한 explicit Allow가 반드시 있어야 접근이 성립한다.  
@@ -51,7 +51,7 @@ SCP와 RCP가 조직 트리의 어디에 붙고 OU를 어떻게 설계하는지�
 
 ## 2. 평가 순서 일곱 단계와 요청이 탈락하는 지점
 
-요청이 들어오면 AWS는 인증을 마친 뒤 request context를 만들고, 그 컨텍스트를 정책들에 대해 순서대로 평가합니다. 기본값은 implicit deny이고 어느 정책도 명시적으로 allow하지 않으면 거부됩니다. 예외는 AWS account root user 하나이고 이 principal만 full access를 가집니다.
+요청이 들어오면 AWS는 인증을 마친 뒤 request context를 만들고, 그 컨텍스트에 적용되는 정책들을 평가합니다. 기본값은 implicit deny이고 필요한 Allow가 있어야 접근이 성립합니다. AWS account root user는 별도 IAM 정책 없이 기본 권한을 갖지만, 요청에 적용되는 explicit Deny가 있으면 거부됩니다. 예를 들어 Organizations member account의 root user도 해당 계정에 적용되는 SCP의 제한을 받습니다.
 
 ![Deny evaluation부터 session policy까지 일곱 단계 평가 순서와 각 단계에서 요청이 탈락하는 지점](/assets/img/sap-c02/iam-policy-evaluation-order.webp)
 
@@ -186,7 +186,7 @@ boundary가 실무에서 쓰이는 대표 형태는 권한 위임입니다. 플�
 | 계정 B role의 trust policy에 계정 A 지정 | `AssumeRole` 호출이 거부된다. trust policy는 explicit Allow가 필수다 |
 | 계정 B role의 permission policy | 가정은 성공하고 이후 API 호출이 거부된다 |
 
-`AssumeRole`로 얻은 세션은 원래 principal의 권한을 **잃습니다.** 세션은 role의 권한만 가집니다. 계정 A의 버킷을 읽으면서 동시에 계정 B의 큐에 쓰는 작업을 한 세션 안에서 할 수 없고, 그러려면 role chaining이 필요합니다. 그리고 role chaining에는 뒤에서 볼 1시간 제약이 따라옵니다.
+`AssumeRole`로 얻은 세션은 **가정한 role의 권한**으로 동작합니다. 원래 principal의 권한이 세션에 합쳐지지는 않습니다. 계정 B의 role을 가정한 세션으로 계정 A의 버킷도 읽으려면, 그 role의 정책과 계정 A의 버킷 정책이 교차 계정 접근을 허용해야 합니다. 이 권한과 계정 B 큐 접근 권한이 함께 성립하면 같은 role 세션으로 두 계정의 리소스를 다룰 수 있습니다. role chaining은 이 세션이 다른 role을 다시 가정할 때 발생하고, 그때 뒤에서 볼 1시간 제약이 적용됩니다.
 
 CloudTrail 기록도 갈립니다. role을 가정하면 대상 계정의 로그에 role session name이 남고, 원래 누구였는지는 `sts:SourceIdentity`를 강제하지 않는 한 별도로 추적해야 합니다.
 
@@ -204,7 +204,7 @@ CloudTrail 기록도 갈립니다. role을 가정하면 대상 계정의 로그�
 | CloudTrail 기록 | 대상 계정에 role session name이 남는다 | 호출자 principal이 그대로 남는다 |
 | 세션 길이 | 900초에서 43,200초, chaining 시 1시간 | 해당 없음 |
 
-지문에 "원래 계정의 리소스와 상대 계정의 리소스를 한 작업에서 함께 다뤄야 한다"가 있으면 resource-based policy 경로가 답이고, "대상 계정에서 누가 접근했는지 세션 단위로 구분되어야 한다"거나 "해당 서비스가 리소스 정책을 지원하지 않는다"가 있으면 role 가정이 답입니다.
+지문에서 원래 principal의 권한을 그대로 사용하면서 상대 계정의 공유 리소스에도 접근해야 한다면 resource-based policy가 자연스러운 선택입니다. 가정한 role에 필요한 권한을 모아 관리하는 설계도 두 계정의 리소스를 함께 다룰 수 있으므로, 원래 권한을 유지해야 하는지가 판단 기준입니다. 해당 작업이 리소스 정책을 통한 위임을 지원하지 않으면 대상 계정의 role을 가정하는 경로를 검토합니다.
 
 resource-based policy를 지원하지 않는 서비스에서는 선택지가 아예 없습니다. EC2, RDS, Auto Scaling처럼 리소스 정책이 없는 서비스에 교차 계정 접근이 필요하면 role 가정이 유일한 경로입니다.
 
@@ -945,6 +945,8 @@ Cognito identity pool이 교차 계정 role을 가정하려면 그 role의 trust
 ## 25. Reference
 
 - [AWS IAM - Policy evaluation logic](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html)
+- [AWS Organizations - Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html)
+- [AWS IAM - Cross-account resource access](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html)
 - [AWS IAM - Determining whether a request is allowed or denied within an account](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-denyallow.html)
 - [AWS IAM - Request context](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-reqcontext.html)
 - [AWS IAM - Permissions boundaries for IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)

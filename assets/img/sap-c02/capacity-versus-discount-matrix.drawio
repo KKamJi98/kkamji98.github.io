@@ -1,0 +1,105 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="capacity-versus-discount-matrix" name="용량 확보와 요금 할인은 서로 다른 메커니즘이다">
+    <mxGraphModel dx="1395" dy="486" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1395" pageHeight="486" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1371.98" height="462.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="용량 확보와 요금 할인은 서로 다른 메커니즘이다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1327.98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="둘을 동시에 주는 것은 Zonal Reserved Instance 하나뿐이고, 나머지는 겹쳐 써야 둘 다 얻는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1327.98" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="need" value="워크로드 요구&#xa;무엇이 필요한지 먼저 나눈다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="202" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap" value="지정 AZ 의 용량 보장&#xa;중단되면 재실행 비용이 큰 작업" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="262" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="disc" value="요금 할인&#xa;장기간 안정적인 기본 부하" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="262" y="300" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="odcr" value="On-Demand Capacity Reservation&#xa;즉시 사용형은 약정 없이 언제든 취소. 할인은 없고 미사용 상태에서도 과금된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="528" y="104" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="zonal" value="Zonal Reserved Instance&#xa;지정 AZ 에 용량을 예약하고 할인도 준다. AZ 유연성과 size 유연성과 queuing 이 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="490" y="202" width="375" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sp" value="Savings Plans&#xa;시간당 금액 약정. 취소와 교환이 불가능하고 용량을 주지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="554" y="300" width="247" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rri" value="Regional Reserved Instance&#xa;AZ 유연성과 purchase queuing 이 있고 용량을 예약하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="531" y="398" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="combo" value="ODCR 위에 커밋을 겹친다&#xa;Capacity Reservation 이 용량을, Savings Plans 나 Regional RI 가 할인을 담당한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="917" y="202" width="445" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="need-to-cap" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need" target="cap">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="236.0" y="229.0" />
+              <mxPoint x="236.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="need-to-disc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="need" target="disc">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="236.0" y="229.0" />
+              <mxPoint x="236.0" y="327.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cap-to-odcr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cap" target="odcr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-to-zonal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cap" target="zonal">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="464.0" y="131.0" />
+              <mxPoint x="464.0" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="disc-to-zonal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="disc" target="zonal">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="464.0" y="327.0" />
+              <mxPoint x="464.0" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="disc-to-sp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="disc" target="sp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="disc-to-rri" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="disc" target="rri">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="464.0" y="327.0" />
+              <mxPoint x="464.0" y="425.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="odcr-to-combo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="odcr" target="combo">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="871.5" y="131.0" />
+              <mxPoint x="871.5" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sp-to-combo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sp" target="combo">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="871.5" y="327.0" />
+              <mxPoint x="871.5" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

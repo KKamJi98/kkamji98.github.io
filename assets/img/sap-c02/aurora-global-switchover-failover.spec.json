@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "aurora-global-switchover-failover",
+  "title": "switchover 와 failover 는 같은 승격이 아니다",
+  "subtitle": "secondary 동기화를 기다리는지가 RPO 를 가른다. 두 경로 모두 Global writer endpoint 값은 그대로 유지된다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "primary",
+      "kind": "box",
+      "label": "primary 리전 클러스터",
+      "detail": "쓰기를 받는 리전 1 개",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "secondary",
+      "kind": "box",
+      "label": "secondary 리전 클러스터",
+      "detail": "읽기 전용 최대 10 개 리전, 전용 인프라 복제, 통상 1 초 미만 지연",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "switchover",
+      "kind": "box",
+      "label": "switchover",
+      "detail": "모든 클러스터가 정상일 때. 동기화를 기다린 뒤 승격하므로 RPO 0",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "failover",
+      "kind": "box",
+      "label": "managed failover",
+      "detail": "리전 장애 대응. 동기화를 기다리지 않아 RPO 가 비영값, write fencing 은 best-effort",
+      "role": "danger",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "endpoint",
+      "kind": "box",
+      "label": "Global writer endpoint",
+      "detail": "승격 후 새 primary 를 가리키고 값은 바뀌지 않는다",
+      "role": "surface",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "source": "primary", "target": "secondary", "emphasis": true },
+    { "source": "secondary", "target": "switchover" },
+    { "source": "secondary", "target": "failover" },
+    { "source": "switchover", "target": "endpoint" },
+    { "source": "failover", "target": "endpoint", "dashed": true }
+  ]
+}

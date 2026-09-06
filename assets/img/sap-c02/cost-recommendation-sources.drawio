@@ -1,0 +1,79 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="cost-recommendation-sources" name="권고 도구는 서로 다른 입력을 쓰고 한 곳으로 모인다">
+    <mxGraphModel dx="1365" dy="424" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1365" pageHeight="424" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1341.26" height="400.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="권고 도구는 서로 다른 입력을 쓰고 한 곳으로 모인다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1297.26" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Cost Explorer rightsizing 은 Compute Optimizer 결과의 부분집합이고, Cost Optimization Hub 는 세 출처의 절감액에서 중복을 제거한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1297.26" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="cw" value="CloudWatch 지표&#xa;메모리는 CloudWatch agent 가 InstanceId dimension 과 함께 발행해야 수집된다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="1">
+          <mxGeometry x="206" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ceon" value="Cost Explorer 활성화&#xa;절감액 계산의 전제. 한 번 켜면 끌 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="138" y="236" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="co" value="Compute Optimizer&#xa;14종 리소스. 기본 lookback 14일, enhanced infrastructure metrics 를 켜면 93일" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="478" y="120" width="445" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cerr" value="Cost Explorer rightsizing&#xa;EC2 한정. 최대 CPU 1% 이하는 종료 권고, 추정 절감액 $0 이상만 제시" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="545" y="236" width="311" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sprec" value="Savings Plans 와 RI 구매 권고&#xa;과거 사용량 기준. 보유 중인 커밋을 반영해 계산한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="596" y="336" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hub" value="Cost Optimization Hub&#xa;계정과 리전에 걸쳐 모으고 중복 절감액을 제거한다. 계정의 실제 RI 와 SP 조건을 반영한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="976" y="236" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cw-to-co" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cw" target="co">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="400.0" y="128.0" />
+              <mxPoint x="400.0" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ceon-to-co" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ceon" target="co">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="346" y="263.0" />
+              <mxPoint x="346" y="213" />
+              <mxPoint x="700.5" y="213" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ceon-to-cerr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ceon" target="cerr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="co-to-cerr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="co" target="cerr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="co-to-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="co" target="hub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="949.5" y="147.0" />
+              <mxPoint x="949.5" y="263.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cerr-to-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cerr" target="hub">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sprec-to-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sprec" target="hub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="949.5" y="363.0" />
+              <mxPoint x="949.5" y="263.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "id": "detection-to-remediation-path",
+  "title": "탐지가 자동 교정으로 이어지려면 집계와 라우팅과 실행이 각각 다른 서비스에 있다",
+  "subtitle": "서비스마다 답하는 질문이 다르다. Detective 는 탐지하지 않고 조사하며, Config 는 rule 위반을 SSM Automation 으로 직접 닫는다.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "guardduty",
+      "kind": "service",
+      "service": "guardduty",
+      "label": "GuardDuty",
+      "detail": "지금 위협 행위가 있는가",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "inspector",
+      "kind": "box",
+      "label": "Amazon Inspector",
+      "detail": "EC2 와 ECR 과 Lambda 에 취약점과 노출 경로가 있는가",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "macie",
+      "kind": "box",
+      "label": "Amazon Macie",
+      "detail": "S3 의 어디에 민감 데이터가 있는가",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "config",
+      "kind": "service",
+      "service": "config",
+      "label": "AWS Config",
+      "detail": "기록된 구성이 rule 을 트리거한다",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "detective",
+      "kind": "box",
+      "label": "Detective",
+      "detail": "이 finding 이 어떻게 벌어졌는가, 최대 1년 이력",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "securityhub",
+      "kind": "box",
+      "label": "Security Hub CSPM",
+      "detail": "표준 대비 control 결과로 집계, Config 기록에 의존한다",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "securitylake",
+      "kind": "box",
+      "label": "Security Lake",
+      "detail": "OCSF 와 Parquet 로 내 계정 S3 에 적재",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "eventbridge",
+      "kind": "service",
+      "service": "eventbridge",
+      "label": "EventBridge",
+      "detail": "finding 을 rule 로 라우팅한다",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "config-remediation",
+      "kind": "box",
+      "label": "Config remediation",
+      "detail": "수동과 자동 중 선택, rule 에 직접 연결한다",
+      "role": "process",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "ssm",
+      "kind": "service",
+      "service": "systems_manager",
+      "label": "SSM Automation document",
+      "detail": "교정을 실제로 실행하는 유일한 수단",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "guardduty",
+      "target": "detective"
+    },
+    {
+      "source": "guardduty",
+      "target": "securityhub"
+    },
+    {
+      "source": "inspector",
+      "target": "securityhub"
+    },
+    {
+      "source": "macie",
+      "target": "securityhub"
+    },
+    {
+      "source": "config",
+      "target": "securityhub"
+    },
+    {
+      "source": "securityhub",
+      "target": "securitylake",
+      "dashed": true
+    },
+    {
+      "source": "securityhub",
+      "target": "eventbridge"
+    },
+    {
+      "source": "config",
+      "target": "config-remediation"
+    },
+    {
+      "source": "eventbridge",
+      "target": "ssm",
+      "emphasis": true
+    },
+    {
+      "source": "config-remediation",
+      "target": "ssm",
+      "emphasis": true
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "route53-health-check-private-endpoint",
+  "title": "VPC 밖 health checker는 사설 엔드포인트를 직접 검사하지 못한다",
+  "subtitle": "CloudWatch alarm data stream이 private endpoint 상태를 Route 53 failover에 전달한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "route53-checker",
+      "kind": "box",
+      "label": "Route 53 health checker",
+      "detail": "VPC 밖에서 공개 엔드포인트를 검사한다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "private-endpoint",
+      "kind": "box",
+      "label": "private endpoint",
+      "detail": "사설 IP만 있어 직접 연결할 수 없다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "direct-check-blocked",
+      "kind": "box",
+      "label": "직접 검사 불가",
+      "detail": "security group을 열어도 VPC 밖 경계는 바뀌지 않는다",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "application",
+      "kind": "box",
+      "label": "애플리케이션 상태",
+      "detail": "CloudWatch metric으로 게시한다",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "cloudwatch-alarm",
+      "kind": "box",
+      "label": "CloudWatch alarm",
+      "detail": "metric data stream으로 상태를 판정한다",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "alarm-health-check",
+      "kind": "box",
+      "label": "alarm health check",
+      "detail": "사설 대상을 간접적으로 감시한다",
+      "role": "process",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "failover-record",
+      "kind": "service",
+      "service": "route53",
+      "label": "Route 53 failover record",
+      "detail": "healthy 판정으로 응답 대상을 고른다",
+      "col": 5,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "route53-checker",
+      "target": "direct-check-blocked",
+      "emphasis": true
+    },
+    {
+      "source": "direct-check-blocked",
+      "target": "private-endpoint",
+      "dashed": true
+    },
+    {
+      "source": "private-endpoint",
+      "target": "application"
+    },
+    {
+      "source": "application",
+      "target": "cloudwatch-alarm",
+      "emphasis": true
+    },
+    {
+      "source": "cloudwatch-alarm",
+      "target": "alarm-health-check",
+      "emphasis": true
+    },
+    {
+      "source": "alarm-health-check",
+      "target": "failover-record",
+      "emphasis": true
+    }
+  ]
+}

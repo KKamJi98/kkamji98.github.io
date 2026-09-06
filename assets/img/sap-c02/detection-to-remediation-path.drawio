@@ -1,0 +1,119 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="detection-to-remediation-path" name="탐지가 자동 교정으로 이어지려면 집계와 라우팅과 실행이 각각 다른 서비스에 있다">
+    <mxGraphModel dx="1115" dy="576" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1115" pageHeight="576" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1091.5" height="552.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="탐지가 자동 교정으로 이어지려면 집계와 라우팅과 실행이 각각 다른 서비스에 있다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1047.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="서비스마다 답하는 질문이 다르다. Detective 는 탐지하지 않고 조사하며, Config 는 rule 위반을 SSM Automation 으로 직접 닫는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1047.5" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="guardduty" value="GuardDuty&#xa;지금 위협 행위가 있는가" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.guardduty;" vertex="1" parent="1">
+          <mxGeometry x="137" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="inspector" value="Amazon Inspector&#xa;EC2 와 ECR 과 Lambda 에 취약점과 노출 경로가 있는가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="232" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="macie" value="Amazon Macie&#xa;S3 의 어디에 민감 데이터가 있는가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="73" y="344" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="config" value="AWS Config&#xa;기록된 구성이 rule 을 트리거한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.config;" vertex="1" parent="1">
+          <mxGeometry x="137" y="456" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="detective" value="Detective&#xa;이 finding 이 어떻게 벌어졌는가, 최대 1년 이력" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="361" y="120" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="securityhub" value="Security Hub CSPM&#xa;표준 대비 control 결과로 집계, Config 기록에 의존한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="342" y="344" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="securitylake" value="Security Lake&#xa;OCSF 와 Parquet 로 내 계정 S3 에 적재" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="656" y="232" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="eventbridge" value="EventBridge&#xa;finding 을 rule 로 라우팅한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
+          <mxGeometry x="736" y="328" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="config-remediation" value="Config remediation&#xa;수동과 자동 중 선택, rule 에 직접 연결한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="662" y="472" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ssm" value="SSM Automation document&#xa;교정을 실제로 실행하는 유일한 수단" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.systems_manager;" vertex="1" parent="1">
+          <mxGeometry x="976" y="328" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="guardduty-to-detective" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="guardduty" target="detective">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="263.5" y="128.0" />
+              <mxPoint x="263.5" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="guardduty-to-securityhub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="guardduty" target="securityhub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="315.0" y="128.0" />
+              <mxPoint x="315.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="inspector-to-securityhub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="inspector" target="securityhub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="315.0" y="259.0" />
+              <mxPoint x="315.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="macie-to-securityhub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="macie" target="securityhub">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="config-to-securityhub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="config" target="securityhub">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="315.0" y="480.0" />
+              <mxPoint x="315.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="securityhub-to-securitylake" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="securityhub" target="securitylake">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="629.0" y="371.0" />
+              <mxPoint x="629.0" y="259.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="securityhub-to-eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="securityhub" target="eventbridge">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="629.0" y="371.0" />
+              <mxPoint x="629.0" y="352.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="config-to-config-remediation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="config" target="config-remediation">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="263.5" y="480.0" />
+              <mxPoint x="263.5" y="499.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eventbridge-to-ssm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="ssm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="config-remediation-to-ssm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="config-remediation" target="ssm">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="917.0" y="499.0" />
+              <mxPoint x="917.0" y="352.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,74 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="s3-replication-scope" name="live replication 과 Batch Replication 이 잡는 객체가 다르다">
+    <mxGraphModel dx="1223" dy="488" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1223" pageHeight="488" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1199.28" height="464.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="live replication 과 Batch Replication 이 잡는 객체가 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1155.28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="규칙을 켠 시점이 경계다. 그 이전 객체와 복제 실패 객체와 복제본의 복제는 Batch Replication 만 처리한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1155.28" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="src" value="원본 버킷&#xa;versioning 필수, Object Lock 을 켰으면 대상에도 켠다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="146" y="192" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="live" value="live replication (CRR, SRR)&#xa;규칙 설정 이후 생성되거나 갱신된 객체만, RTC 는 15 분 SLA" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="507" y="104" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="batch" value="S3 Batch Replication&#xa;기존 객체, 복제 실패 재시도, 복제본의 복제. RTC 가 적용되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="498" y="312" width="286" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="excluded" value="어느 쪽으로도 가지 않는 항목&#xa;version ID 를 지정한 DELETE, lifecycle 이 만든 액션과 delete marker, 버킷 레벨 서브리소스, Glacier 계열 객체" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="357" y="400" width="566" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="dst" value="대상 버킷&#xa;versioning 을 끄면 복제가 FAILED 가 된다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1058" y="192" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="src-to-live" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src" target="live">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="275.5" y="216.0" />
+              <mxPoint x="275.5" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="live-to-dst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="live" target="dst">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="921.0" y="131.0" />
+              <mxPoint x="921.0" y="216.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="src-to-batch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src" target="batch">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="275.5" y="216.0" />
+              <mxPoint x="275.5" y="339.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="batch-to-dst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="batch" target="dst">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="921.0" y="339.0" />
+              <mxPoint x="921.0" y="216.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="src-to-excluded" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="src" target="excluded">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="275.5" y="216.0" />
+              <mxPoint x="275.5" y="427.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

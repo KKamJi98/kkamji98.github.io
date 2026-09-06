@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "id": "kms-key-material-origin",
+  "title": "key material 을 어디서 만드느냐가 이후 선택지를 잠근다",
+  "subtitle": "origin 은 키 생성 시점에 결정되고 나중에 바꿀 수 없다. rotation 과 multi-Region key 의 가능 여부가 여기서 갈린다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "requirement",
+      "kind": "box",
+      "label": "키 소재를 누가 만들고 어디에 두는가",
+      "detail": "키 생성 시점에 한 번만 정한다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "origin-kms",
+      "kind": "box",
+      "label": "AWS_KMS origin",
+      "detail": "KMS 가 관리형 HSM 에서 생성한다",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "origin-external",
+      "kind": "box",
+      "label": "EXTERNAL origin",
+      "detail": "내가 만든 material 을 임포트한다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "origin-cloudhsm",
+      "kind": "box",
+      "label": "CloudHSM key store",
+      "detail": "내 계정의 전용 HSM cluster 안에 둔다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "cap-kms",
+      "kind": "box",
+      "label": "자동 rotation 90-2560일",
+      "detail": "on-demand rotation, multi-Region key, asymmetric, HMAC 전부 가능",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "cap-external",
+      "kind": "box",
+      "label": "자동 rotation 불가",
+      "detail": "on-demand rotation 키당 25회와 수동 교체만, multi-Region key 는 가능",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "cap-cloudhsm",
+      "kind": "box",
+      "label": "256-bit AES symmetric 만",
+      "detail": "rotation 과 multi-Region key 와 asymmetric 과 imported material 전부 불가",
+      "role": "danger",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "hsm-cluster",
+      "kind": "box",
+      "label": "서로 다른 AZ 의 active HSM 2개",
+      "detail": "키 생성 조건, 연결이 끊기면 암호 연산 자체가 멈춘다",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "kms-service",
+      "kind": "service",
+      "service": "kms",
+      "label": "AWS KMS API",
+      "detail": "origin 과 무관하게 호출 형태는 같다",
+      "col": 3,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": "requirement",
+      "target": "origin-kms"
+    },
+    {
+      "source": "requirement",
+      "target": "origin-external"
+    },
+    {
+      "source": "requirement",
+      "target": "origin-cloudhsm"
+    },
+    {
+      "source": "origin-kms",
+      "target": "cap-kms"
+    },
+    {
+      "source": "origin-external",
+      "target": "cap-external"
+    },
+    {
+      "source": "origin-cloudhsm",
+      "target": "cap-cloudhsm"
+    },
+    {
+      "source": "cap-kms",
+      "target": "kms-service"
+    },
+    {
+      "source": "cap-cloudhsm",
+      "target": "hsm-cluster",
+      "dashed": true
+    }
+  ]
+}

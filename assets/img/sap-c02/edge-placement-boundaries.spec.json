@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "id": "edge-placement-boundaries",
+  "title": "엣지 배치는 시설 소유자와 진입 게이트웨이로 갈린다",
+  "subtitle": "누가 시설을 운영하는지와 어떤 게이트웨이로 트래픽이 들어오는지가 배치 선택을 결정한다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 42
+  },
+  "containers": [
+    {
+      "id": "aws-sites",
+      "kind": "plain",
+      "label": "AWS 가 운영하는 위치",
+      "members": ["az", "lz"]
+    },
+    {
+      "id": "carrier-site",
+      "kind": "plain",
+      "label": "통신사 데이터센터",
+      "members": ["wl"]
+    },
+    {
+      "id": "customer-site",
+      "kind": "plain",
+      "label": "고객이 확보한 시설",
+      "members": ["outpost"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "internet-user",
+      "kind": "box",
+      "label": "인터넷 사용자",
+      "detail": "유선과 일반 모바일 회선",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "carrier-user",
+      "kind": "box",
+      "label": "통신사 네트워크 단말",
+      "detail": "5G 단말, 통신사 안에서만 진입",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "onprem-user",
+      "kind": "box",
+      "label": "시설 내부 시스템",
+      "detail": "공정 제어망, 데이터 레지던시 대상",
+      "role": "external",
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "az",
+      "kind": "box",
+      "label": "리전 가용 영역",
+      "detail": "internet gateway 로 진입한다",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "lz",
+      "kind": "box",
+      "label": "Local Zone",
+      "detail": "자체 인터넷과 Direct Connect; zone마다 서비스가 다르다",
+      "role": "compute",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "wl",
+      "kind": "box",
+      "label": "Wavelength Zone",
+      "detail": "carrier gateway 전용; 일반 인터넷 inbound 불가",
+      "role": "danger",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "outpost",
+      "kind": "box",
+      "label": "Outposts",
+      "detail": "LGW 또는 LNI 로 붙는다. 데이터가 시설을 벗어나지 않는다",
+      "role": "compute",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "parent-region",
+      "kind": "box",
+      "label": "부모 리전 control plane",
+      "detail": "네 배치 모두 리전에 묶여 관리된다",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "internet-user",
+      "target": "az"
+    },
+    {
+      "source": "internet-user",
+      "target": "lz",
+      "emphasis": true
+    },
+    {
+      "source": "carrier-user",
+      "target": "wl",
+      "emphasis": true
+    },
+    {
+      "source": "onprem-user",
+      "target": "outpost",
+      "emphasis": true
+    },
+    {
+      "source": "az",
+      "target": "parent-region"
+    },
+    {
+      "source": "lz",
+      "target": "parent-region"
+    },
+    {
+      "source": "wl",
+      "target": "parent-region"
+    },
+    {
+      "source": "outpost",
+      "target": "parent-region",
+      "dashed": true
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="migration-7r-decision-tree" name="7R 은 질문 다섯 개를 순서대로 통과한 결과다">
+    <mxGraphModel dx="1204" dy="780" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1204" pageHeight="780" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1180.24" height="756.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="7R 은 질문 다섯 개를 순서대로 통과한 결과다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1136.24" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="분류가 먼저 오는 것이 아니라 사용률, 등가물, 대체 가능성, 이동 단위, 변경 범위 순으로 걸러진다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1136.24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="assessment" value="포트폴리오 평가 완료&#xa;사용률, 의존성, 라이선스, 소유자 수집" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="149" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-used" value="아직 쓰이고 있는가&#xa;90일 평균 사용률과 inbound connection" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="130" y="202" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-retire" value="retire&#xa;5% 미만은 zombie, 5%에서 20%는 idle" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="587" y="202" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-equivalent" value="클라우드 등가물이 있는가&#xa;mainframe, mid-range, non-x86 Unix 여부" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="107" y="300" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-retain" value="retain&#xa;IBM AS/400, Oracle Solaris, 데이터 residency 규제" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="539" y="300" width="305" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-saas" value="상용 제품으로 대체할 수 있는가&#xa;라이선스에서 SaaS 로 이동 가능성" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="149" y="398" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-repurchase" value="repurchase&#xa;구매 뒤에 교육, 데이터 이전, AD 통합, 네트워킹이 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="571" y="398" width="241" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-unit" value="이동 단위가 서버인가 플랫폼인가&#xa;플랫폼 통째 또는 다른 VPC, Region, 계정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="136" y="496" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-relocate" value="relocate&#xa;아키텍처 변경 없음, 재구매와 재작성 없음" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="603" y="496" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="q-change" value="옮기면서 무엇을 바꾸는가&#xa;OS 와 애플리케이션 코드의 변경 범위" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="149" y="594" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-rehost" value="rehost&#xa;아무것도 바꾸지 않는다. MGN, Cloud Migration Factory, VM Import/Export" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="692" width="407" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-replatform" value="replatform&#xa;플랫폼만 바꾼다. SQL Server 를 RDS 로, Graviton 전환, App2Container" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="501" y="692" width="381" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="out-refactor" value="refactor&#xa;코드를 다시 쓴다. 대규모 마이그레이션에는 권장되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="942" y="692" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="assessment-to-q-used" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.4977;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="assessment" target="q-used">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-used-to-out-retire" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-used" target="out-retire">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-used-to-q-equivalent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5019;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-used" target="q-equivalent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-equivalent-to-out-retain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-equivalent" target="out-retain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-equivalent-to-q-saas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-equivalent" target="q-saas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-saas-to-out-repurchase" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-saas" target="out-repurchase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-saas-to-q-unit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.4975;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-saas" target="q-unit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-unit-to-out-relocate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-unit" target="out-relocate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-unit-to-q-change" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4975;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-unit" target="q-change">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-change-to-out-rehost" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.4988;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-change" target="out-rehost">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q-change-to-out-replatform" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-change" target="out-replatform">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="691.5" y="621.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q-change-to-out-refactor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="q-change" target="out-refactor">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1056.0" y="621.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

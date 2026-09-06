@@ -1,0 +1,102 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="data-transfer-charge-points" name="같은 바이트라도 어느 경로로 나가느냐에 따라 과금 항목이 바뀐다">
+    <mxGraphModel dx="1038" dy="704" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1038" pageHeight="704" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1014.26" height="680.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="같은 바이트라도 어느 경로로 나가느냐에 따라 과금 항목이 바뀐다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="970.26" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="private subnet 에서 출발한 트래픽이 통과하는 다섯 경로와 각 경로에 붙는 요금이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="970.26" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="source" value="private subnet 의 EC2 와 ECS&#xa;같은 AZ 안의 private IP 통신은 과금되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="228" height="566" as="geometry" />
+        </mxCell>
+        <mxCell id="nat" value="NAT Gateway&#xa;시간당 요금과 처리 GB 당 요금이 함께 붙는다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" vertex="1" parent="1">
+          <mxGeometry x="435" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="gwep" value="gateway endpoint&#xa;추가 요금 없음. route table 의 prefix list 로 라우팅된다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.endpoints;" vertex="1" parent="1">
+          <mxGeometry x="435" y="232" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ifep" value="interface endpoint&#xa;AZ 당 provisioned 시간 요금과 처리 GB 당 요금" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.privatelink;" vertex="1" parent="1">
+          <mxGeometry x="435" y="360" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="hop" value="다른 AZ 또는 다른 리전&#xa;AZ 경계와 리전 경계를 넘으면 전송 요금이 붙는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="358" y="488" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cf" value="CloudFront&#xa;AWS origin 에서 CloudFront 로 가는 전송은 면제된다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="435" y="584" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" value="인터넷&#xa;인터넷 egress 는 월 100 GB 무료. 중국과 GovCloud 는 제외" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.internet_alt1;" vertex="1" parent="1">
+          <mxGeometry x="806" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="같은 리전의 S3 와 DynamoDB&#xa;gateway endpoint 가 지원하는 유일한 두 서비스" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="806" y="232" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="other" value="그 밖의 AWS 서비스&#xa;ECR, Secrets Manager, KMS 등은 interface endpoint 대상이다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="806" y="360" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="crosscost" value="교차 AZ 와 리전 간 전송 요금&#xa;VPC peering 이 같은 리전에서 AZ 를 넘으면 양방향 모두 $0.01/GB 다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="665" y="488" width="330" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="viewer" value="뷰어&#xa;CloudFront 에서 뷰어로 나가는 전송은 과금된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="723" y="600" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="source-to-nat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="nat">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="310.0" y="387.0" />
+              <mxPoint x="310.0" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="source-to-gwep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="gwep">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="310.0" y="387.0" />
+              <mxPoint x="310.0" y="256.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="source-to-ifep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5625;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="ifep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="source-to-hop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="hop">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="310.0" y="387.0" />
+              <mxPoint x="310.0" y="515.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="source-to-cf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="cf">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="310.0" y="387.0" />
+              <mxPoint x="310.0" y="608.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nat-to-internet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nat" target="internet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gwep-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gwep" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ifep-to-other" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ifep" target="other">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hop-to-crosscost" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hop" target="crosscost">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cf-to-viewer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cf" target="viewer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

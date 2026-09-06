@@ -1,0 +1,84 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="outposts-rack-vs-server" name="Outposts rack 과 server 는 온프레미스 연결 경로부터 다르다">
+    <mxGraphModel dx="1518" dy="452" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1518" pageHeight="452" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1494.72" height="428.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Outposts rack 과 server 는 온프레미스 연결 경로부터 다르다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1450.72" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="rack 은 local gateway 로, server 는 local network interface 로 붙는다. 홈 리전과의 service link 는 둘 다 필요하다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1450.72" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="facility" value="고객이 확보하고 관리하는 시설" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="264" y="104" width="720" height="314" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem" value="온프레미스 네트워크&#xa;공장 제어망, 사내 네트워크" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="244" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lgw" value="local gateway (LGW)&#xa;rack 전용, IPv4 만 지원" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="312" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lni" value="local network interface (LNI)&#xa;server 전용, Outpost subnet 에서만 동작" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="286" y="342" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rack" value="Outposts rack&#xa;EC2, EBS, S3 on Outposts, EKS 노드, ECS, RDS, EMR, ALB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="587" y="146" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="server" value="Outposts server&#xa;EC2, ECS, VPC subnet 까지. EBS 없이 instance store 만. 신규 판매 중단" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="568" y="342" width="394" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="slink" value="service link&#xa;암호화된 VPN 집합. IPv6 를 지원하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1038" y="244" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="region" value="홈 리전 control plane&#xa;Route 53 resolver 도 여기에 있다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1295" y="244" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-to-lgw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem" target="lgw">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="248.0" y="271.0" />
+              <mxPoint x="248.0" y="173.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="onprem-to-lni" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem" target="lni">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="248.0" y="271.0" />
+              <mxPoint x="248.0" y="369.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lgw-to-rack" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lgw" target="rack">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lni-to-server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lni" target="server">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rack-to-slink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rack" target="slink">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1000.0" y="173.0" />
+              <mxPoint x="1000.0" y="271.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="server-to-slink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="server" target="slink">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1000.0" y="369.0" />
+              <mxPoint x="1000.0" y="271.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="slink-to-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="slink" target="region">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

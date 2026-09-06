@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "kinesis-firehose-replay-boundary",
+  "title": "재처리 경계는 Kinesis Data Streams 앞에 있다",
+  "subtitle": "Kinesis Data Streams는 원본을 24시간에서 365일 보존하지만 Firehose는 목적지로 전달하고 자체 replay를 제공하지 않는다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "pipeline-source",
+      "kind": "box",
+      "label": "Application source",
+      "detail": "events",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "retained-stream",
+      "kind": "service",
+      "service": "kinesis",
+      "label": "Kinesis Data Streams",
+      "detail": "retention 24 hours to 365 days",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "firehose-delivery",
+      "kind": "service",
+      "service": "kinesis_firehose",
+      "label": "Amazon Data Firehose",
+      "detail": "buffer interval 60 to 900 seconds",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "replay-consumer",
+      "kind": "box",
+      "label": "Replay consumer",
+      "detail": "reads retained stream records",
+      "role": "process",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "s3-destination",
+      "kind": "service",
+      "service": "s3",
+      "label": "Amazon S3",
+      "detail": "delivered objects",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "opensearch-destination",
+      "kind": "service",
+      "service": "opensearch",
+      "label": "OpenSearch Service",
+      "detail": "delivered index records",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "pipeline-source", "target": "retained-stream", "emphasis": true },
+    { "source": "retained-stream", "target": "firehose-delivery", "emphasis": true },
+    { "source": "retained-stream", "target": "replay-consumer" },
+    { "source": "firehose-delivery", "target": "s3-destination" },
+    { "source": "firehose-delivery", "target": "opensearch-destination" }
+  ]
+}

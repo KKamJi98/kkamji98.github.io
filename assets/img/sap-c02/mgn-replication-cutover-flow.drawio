@@ -1,0 +1,87 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="mgn-replication-cutover-flow" name="MGN 은 staging area 를 거쳐 test 와 cutover 로 갈라진다">
+    <mxGraphModel dx="1508" dy="602" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1508" pageHeight="602" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1484.04" height="578.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="MGN 은 staging area 를 거쳐 test 와 cutover 로 갈라진다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="64" y="64" width="1380.04" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="복제는 계속 돌고 있고, 컷오버는 lag 0 을 확인한 시점에 인스턴스를 한 번 더 기동하는 동작이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="64" y="94" width="1380.04" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="source-side" value="온프레미스 또는 기존 클라우드" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=1;dashPattern=6 6;" vertex="1" parent="1">
+          <mxGeometry x="64" y="150" width="438" height="388" as="geometry" />
+        </mxCell>
+        <mxCell id="staging" value="staging area subnet" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="150" width="550" height="266" as="geometry" />
+        </mxCell>
+        <mxCell id="target" value="타깃 VPC" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=0;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;fontColor=#202124;verticalAlign=top;align=left;spacingLeft=32;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="1204" y="134" width="226" height="282" as="geometry" />
+        </mxCell>
+        <mxCell id="source-server" value="소스 서버&#xa;물리, 가상, 클라우드. AWS Replication Agent 설치" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="150" y="192" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vcenter-client" value="MGN vCenter Client&#xa;agentless 경로. vCenter 6.7, 7.0, 8.0 에서 CBT 와 VDDK 로 스냅샷 전송" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="86" y="462" width="394" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="replication-server" value="replication server&#xa;t3.small, 볼륨 15개당 1대, IP 고정 불가, TCP 1500 수신" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="582" y="192" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="staging-volume" value="staging EBS 볼륨&#xa;소스 볼륨 크기; 스냅샷 5-7개 유지" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" vertex="1" parent="1">
+          <mxGeometry x="989" y="308" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="test-instance" value="test instance&#xa;인수 테스트용. 종료하고 다시 띄울 수 있다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="1293" y="176" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cutover-instance" value="cutover instance&#xa;lag 0 확인과 소스 서비스 정지 이후에 기동" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="1293" y="308" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="archive" value="source server archive&#xa;finalize cutover 이후 상태. 복제 리소스가 정리된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="462" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="source-server-to-replication-server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source-server" target="replication-server">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="replication-server-to-staging-volume" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="replication-server" target="staging-volume">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="934.5" y="219.0" />
+              <mxPoint x="934.5" y="332.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vcenter-client-to-staging-volume" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vcenter-client" target="staging-volume">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="934.5" y="489.0" />
+              <mxPoint x="934.5" y="332.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="staging-volume-to-test-instance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="staging-volume" target="test-instance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1165.0" y="332.0" />
+              <mxPoint x="1165.0" y="200.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="staging-volume-to-cutover-instance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="staging-volume" target="cutover-instance">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cutover-instance-to-archive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cutover-instance" target="archive">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1470" y="332.0" />
+              <mxPoint x="1470" y="489.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

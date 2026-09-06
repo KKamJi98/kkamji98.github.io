@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "lambda-vpc-reachability",
+  "title": "VPC 에 붙이는 순간 함수가 닿을 수 있는 곳이 바뀐다",
+  "subtitle": "미연결 함수는 퍼블릭 엔드포인트로 나가고, 연결 함수는 VPC 안에서 도달 가능한 것만 본다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "customer-vpc",
+      "kind": "vpc",
+      "label": "함수가 연결된 VPC",
+      "members": [
+        "hyperplane-eni",
+        "private-rds",
+        "nat-gw"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "fn-novpc",
+      "kind": "box",
+      "label": "VPC 미연결 함수",
+      "detail": "Lambda 소유 네트워크에서 실행된다",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "internet-direct",
+      "kind": "service",
+      "service": "internet",
+      "label": "퍼블릭 인터넷",
+      "detail": "기본으로 나간다",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "fn-vpc",
+      "kind": "box",
+      "label": "VPC 연결 함수",
+      "detail": "ENI 생성 중에는 Pending, 14일 유휴면 Inactive",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "hyperplane-eni",
+      "kind": "box",
+      "label": "Hyperplane ENI",
+      "detail": "subnet 과 SG 조합당 1개, 다른 함수와 공유한다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "private-rds",
+      "kind": "service",
+      "service": "rds",
+      "label": "프라이빗 RDS",
+      "detail": "VPC 안이라 도달한다",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "nat-gw",
+      "kind": "service",
+      "service": "nat_gateway",
+      "label": "NAT gateway",
+      "detail": "외부 호출에 별도로 필요하다",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "saas-api",
+      "kind": "box",
+      "label": "외부 SaaS API",
+      "detail": "경로를 만들지 않으면 타임아웃",
+      "role": "external",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "id": "public-subnet-myth",
+      "kind": "box",
+      "label": "퍼블릭 서브넷에 연결",
+      "detail": "퍼블릭 IP 도 인터넷 경로도 생기지 않는다",
+      "role": "danger",
+      "col": 1,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "fn-novpc",
+      "target": "internet-direct",
+      "emphasis": true
+    },
+    {
+      "source": "fn-vpc",
+      "target": "hyperplane-eni"
+    },
+    {
+      "source": "hyperplane-eni",
+      "target": "private-rds",
+      "emphasis": true
+    },
+    {
+      "source": "hyperplane-eni",
+      "target": "nat-gw"
+    },
+    {
+      "source": "nat-gw",
+      "target": "saas-api"
+    },
+    {
+      "source": "fn-vpc",
+      "target": "public-subnet-myth",
+      "dashed": true
+    }
+  ]
+}

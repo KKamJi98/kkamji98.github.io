@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "id": "asg-instance-lifecycle-hooks",
+  "title": "인스턴스가 warm pool 에서 종료까지 지나는 상태",
+  "subtitle": "lifecycle hook 은 Pending 과 Terminating 두 자리에서만 대기를 만든다. Spot 중단은 그 자리를 거치지 않는다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 40
+  },
+  "nodes": [
+    {
+      "id": "hook-launch-result",
+      "kind": "box",
+      "label": "launch hook 결과",
+      "detail": "CONTINUE 면 InService 로, ABANDON 이면 종료로 간다. 기본 heartbeat timeout 3600초",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "warm-pool",
+      "kind": "box",
+      "label": "warm pool",
+      "detail": "Stopped 가 기본 권장. 크기 기본값은 max capacity 빼기 desired capacity",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "pending",
+      "kind": "box",
+      "label": "Pending",
+      "detail": "scale out 또는 교체 시작",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "pending-wait",
+      "kind": "box",
+      "label": "Pending:Wait",
+      "detail": "launch lifecycle hook. 부트스트랩과 캐시 워밍을 여기서 끝낸다",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "in-service",
+      "kind": "box",
+      "label": "InService",
+      "detail": "health check grace period 는 콘솔 300초, CLI 와 SDK 0초",
+      "role": "compute",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "terminating",
+      "kind": "box",
+      "label": "Terminating",
+      "detail": "scale in, unhealthy 교체, instance refresh, max instance lifetime 이 여기로 보낸다",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "terminating-wait",
+      "kind": "box",
+      "label": "Terminating:Wait",
+      "detail": "termination lifecycle hook. 연결 드레이닝과 로그 반출을 여기서 한다",
+      "role": "queue",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "terminated",
+      "kind": "box",
+      "label": "Terminated",
+      "detail": "ELB 기본 deregistration delay 300초가 앞에 붙는다",
+      "role": "external",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "spot-interruption",
+      "kind": "box",
+      "label": "Spot 중단",
+      "detail": "2분 통지 후 회수, hook 대기 없음",
+      "role": "danger",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "hook-term-result",
+      "kind": "box",
+      "label": "termination hook 결과",
+      "detail": "기본이 best effort 다. timeout 이나 ABANDON 이면 즉시 종료로 진행한다",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "health-sources",
+      "kind": "box",
+      "label": "unhealthy 신호 소스",
+      "detail": "EC2 status check, Elastic Load Balancing, VPC Lattice, Amazon EBS, custom health check",
+      "role": "surface",
+      "col": 3,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "warm-pool",
+      "target": "pending"
+    },
+    {
+      "source": "pending",
+      "target": "pending-wait"
+    },
+    {
+      "source": "pending-wait",
+      "target": "in-service",
+      "emphasis": true
+    },
+    {
+      "source": "pending-wait",
+      "target": "hook-launch-result",
+      "dashed": true
+    },
+    {
+      "source": "in-service",
+      "target": "terminating"
+    },
+    {
+      "source": "terminating",
+      "target": "terminating-wait"
+    },
+    {
+      "source": "terminating-wait",
+      "target": "terminated"
+    },
+    {
+      "source": "terminating-wait",
+      "target": "hook-term-result",
+      "dashed": true
+    },
+    {
+      "source": "health-sources",
+      "target": "terminating"
+    },
+    {
+      "source": "spot-interruption",
+      "target": "terminated",
+      "dashed": true
+    }
+  ]
+}

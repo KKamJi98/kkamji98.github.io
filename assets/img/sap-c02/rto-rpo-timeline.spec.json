@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "rto-rpo-timeline",
+  "title": "RPO 는 재해 이전 구간이고 RTO 는 재해 이후 구간이다",
+  "subtitle": "두 값은 목표이고, 실제 상한은 복제 수단과 복구 절차가 정한다.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "last-point",
+      "kind": "box",
+      "label": "마지막 복구 가능 지점",
+      "detail": "복제나 백업이 확보한 마지막 일관 상태",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "rpo-window",
+      "kind": "box",
+      "label": "RPO 구간",
+      "detail": "허용하는 데이터 손실 시간",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "incident",
+      "kind": "box",
+      "label": "재해 발생",
+      "detail": "장애를 인지한 시점이 아니라 발생 시점",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "rto-window",
+      "kind": "box",
+      "label": "RTO 구간",
+      "detail": "허용하는 서비스 중단 시간",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "resume",
+      "kind": "box",
+      "label": "서비스 재개",
+      "detail": "정상 트래픽 처리 복귀",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "rpo-driver",
+      "kind": "box",
+      "label": "RPO 의 실제 상한",
+      "detail": "복제 수단이 정한다. Aurora Global 초 단위, S3 RTC 15 분 임계값, EFS replication 15 분, 백업 주기",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "rto-driver",
+      "kind": "box",
+      "label": "RTO 의 실제 상한",
+      "detail": "복구 절차가 정한다. 탐지와 판단, DNS 전파, 인스턴스 기동, 용량 확장의 합",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "last-point",
+      "target": "rpo-window"
+    },
+    {
+      "source": "rpo-window",
+      "target": "incident"
+    },
+    {
+      "source": "incident",
+      "target": "rto-window"
+    },
+    {
+      "source": "rto-window",
+      "target": "resume",
+      "emphasis": true
+    },
+    {
+      "source": "rpo-window",
+      "target": "rpo-driver",
+      "dashed": true
+    },
+    {
+      "source": "rto-window",
+      "target": "rto-driver",
+      "dashed": true
+    }
+  ]
+}

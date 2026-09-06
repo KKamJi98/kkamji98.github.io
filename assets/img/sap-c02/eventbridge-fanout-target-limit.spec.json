@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "id": "eventbridge-fanout-target-limit",
+  "title": "EventBridge rule 다섯 target 뒤에 SNS 팬아웃을 둔다",
+  "subtitle": "rule당 target 5개는 조정할 수 없으므로 SNS를 한 슬롯에 연결하고 구독자가 각자 확장한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 34
+  },
+  "nodes": [
+    {
+      "id": "event-source",
+      "kind": "box",
+      "label": "Event source",
+      "detail": "custom event bus input",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "event-bus",
+      "kind": "service",
+      "service": "eventbridge",
+      "label": "Event bus",
+      "detail": "event pattern match",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "routing-rule",
+      "kind": "box",
+      "label": "Rule",
+      "detail": "5 target slots, fixed",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "direct-target-a",
+      "kind": "box",
+      "label": "Direct target 1",
+      "detail": "slot 1",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "direct-target-b",
+      "kind": "box",
+      "label": "Direct target 2",
+      "detail": "slot 2",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "direct-target-c",
+      "kind": "box",
+      "label": "Direct target 3",
+      "detail": "slot 3",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "direct-target-d",
+      "kind": "box",
+      "label": "Direct target 4",
+      "detail": "slot 4",
+      "role": "process",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "id": "fanout-topic",
+      "kind": "service",
+      "service": "sns",
+      "label": "SNS topic",
+      "detail": "slot 5, many subscribers",
+      "col": 3,
+      "row": 4
+    },
+    {
+      "id": "team-queue-a",
+      "kind": "service",
+      "service": "sqs",
+      "label": "Team queue A",
+      "detail": "team-owned subscription",
+      "col": 4,
+      "row": 3
+    },
+    {
+      "id": "team-queue-b",
+      "kind": "service",
+      "service": "sqs",
+      "label": "Team queue B",
+      "detail": "team-owned subscription",
+      "col": 4,
+      "row": 4
+    },
+    {
+      "id": "http-subscriber",
+      "kind": "box",
+      "label": "HTTP/S subscriber",
+      "detail": "independent subscription",
+      "role": "external",
+      "col": 4,
+      "row": 5
+    }
+  ],
+  "edges": [
+    { "source": "event-source", "target": "event-bus", "emphasis": true },
+    { "source": "event-bus", "target": "routing-rule" },
+    { "source": "routing-rule", "target": "direct-target-a" },
+    { "source": "routing-rule", "target": "direct-target-b" },
+    { "source": "routing-rule", "target": "direct-target-c" },
+    { "source": "routing-rule", "target": "direct-target-d" },
+    { "source": "routing-rule", "target": "fanout-topic", "emphasis": true },
+    { "source": "fanout-topic", "target": "team-queue-a" },
+    { "source": "fanout-topic", "target": "team-queue-b" },
+    { "source": "fanout-topic", "target": "http-subscriber" }
+  ]
+}

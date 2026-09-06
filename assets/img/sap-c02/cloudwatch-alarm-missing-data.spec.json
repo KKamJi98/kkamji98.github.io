@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "id": "cloudwatch-alarm-missing-data",
+  "title": "결측 처리 설정은 데이터가 모자랄 때만 개입한다",
+  "subtitle": "알람은 evaluation periods 보다 넓은 범위에서 데이터포인트를 모은다. 실제 데이터가 충분하면 결측 처리 설정은 쓰이지 않는다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "datapoints",
+      "kind": "box",
+      "label": "메트릭 데이터포인트",
+      "detail": "period 는 고해상도 알람이면 10초 또는 30초, 그 외에는 60의 배수",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "range",
+      "kind": "box",
+      "label": "evaluation range 수집",
+      "detail": "evaluation periods 보다 넓은 구간에서 가져온다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "enough",
+      "kind": "box",
+      "label": "데이터포인트가 evaluation periods 이상인가",
+      "detail": "충분하면 결측 처리 설정은 무시된다",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "m-of-n",
+      "kind": "box",
+      "label": "M out of N 판정",
+      "detail": "가장 오래된 breaching 이 M 만큼 오래됐고 이후가 breaching 이나 missing 뿐이면 ALARM 이다",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "treatment",
+      "kind": "box",
+      "label": "결측 처리 설정",
+      "detail": "기본 missing, 그 외 notBreaching, breaching, ignore. DynamoDB 네임스페이스만 기본이 ignore 다",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "alarm",
+      "kind": "box",
+      "label": "ALARM",
+      "detail": "임계를 넘었다고 판정한 상태",
+      "role": "danger",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "ok",
+      "kind": "box",
+      "label": "OK",
+      "detail": "notBreaching 이면 데이터가 없어도 여기에 머문다",
+      "role": "store",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "insufficient",
+      "kind": "box",
+      "label": "INSUFFICIENT_DATA",
+      "detail": "기본값 missing 에서 범위가 전부 비면 도달한다",
+      "role": "queue",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "action",
+      "kind": "box",
+      "label": "알람 action",
+      "detail": "상태가 바뀔 때만 1회. Auto Scaling action 만 새 상태를 유지하는 동안 분당 반복한다",
+      "role": "store",
+      "col": 5,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": "datapoints",
+      "target": "range"
+    },
+    {
+      "source": "range",
+      "target": "enough"
+    },
+    {
+      "source": "enough",
+      "target": "m-of-n",
+      "emphasis": true
+    },
+    {
+      "source": "enough",
+      "target": "treatment",
+      "dashed": true
+    },
+    {
+      "source": "m-of-n",
+      "target": "alarm"
+    },
+    {
+      "source": "m-of-n",
+      "target": "ok"
+    },
+    {
+      "source": "treatment",
+      "target": "insufficient",
+      "dashed": true
+    },
+    {
+      "source": "treatment",
+      "target": "ok",
+      "dashed": true
+    },
+    {
+      "source": "alarm",
+      "target": "action",
+      "emphasis": true
+    }
+  ]
+}

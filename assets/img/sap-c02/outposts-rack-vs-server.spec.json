@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "id": "outposts-rack-vs-server",
+  "title": "Outposts rack 과 server 는 온프레미스 연결 경로부터 다르다",
+  "subtitle": "rack 은 local gateway 로, server 는 local network interface 로 붙는다. 홈 리전과의 service link 는 둘 다 필요하다.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "facility",
+      "kind": "plain",
+      "label": "고객이 확보하고 관리하는 시설",
+      "members": ["lgw", "rack", "lni", "server"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "onprem",
+      "kind": "box",
+      "label": "온프레미스 네트워크",
+      "detail": "공장 제어망, 사내 네트워크",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "lgw",
+      "kind": "box",
+      "label": "local gateway (LGW)",
+      "detail": "rack 전용, IPv4 만 지원",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "lni",
+      "kind": "box",
+      "label": "local network interface (LNI)",
+      "detail": "server 전용, Outpost subnet 에서만 동작",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "rack",
+      "kind": "box",
+      "label": "Outposts rack",
+      "detail": "EC2, EBS, S3 on Outposts, EKS 노드, ECS, RDS, EMR, ALB",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "server",
+      "kind": "box",
+      "label": "Outposts server",
+      "detail": "EC2, ECS, VPC subnet 까지. EBS 없이 instance store 만. 신규 판매 중단",
+      "role": "danger",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "slink",
+      "kind": "box",
+      "label": "service link",
+      "detail": "암호화된 VPN 집합. IPv6 를 지원하지 않는다",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "region",
+      "kind": "box",
+      "label": "홈 리전 control plane",
+      "detail": "Route 53 resolver 도 여기에 있다",
+      "role": "store",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "onprem",
+      "target": "lgw",
+      "bidirectional": true
+    },
+    {
+      "source": "onprem",
+      "target": "lni",
+      "bidirectional": true
+    },
+    {
+      "source": "lgw",
+      "target": "rack"
+    },
+    {
+      "source": "lni",
+      "target": "server"
+    },
+    {
+      "source": "rack",
+      "target": "slink",
+      "emphasis": true
+    },
+    {
+      "source": "server",
+      "target": "slink",
+      "emphasis": true
+    },
+    {
+      "source": "slink",
+      "target": "region",
+      "bidirectional": true
+    }
+  ]
+}

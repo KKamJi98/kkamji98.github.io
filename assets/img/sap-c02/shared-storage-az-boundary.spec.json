@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "shared-storage-az-boundary",
+  "title": "EBS Multi-Attach 는 AZ 안에 갇히고 EFS 는 리전에 걸친다",
+  "subtitle": "같은 볼륨을 여러 인스턴스가 붙는 구성은 AZ 하나와 Nitro 16 대가 상한이다. AZ 를 넘는 공유는 파일 계층으로 올라가야 한다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 34
+  },
+  "containers": [
+    {
+      "id": "az-a",
+      "kind": "az",
+      "label": "AZ-A",
+      "members": ["ec2-a1", "ec2-a2", "vol-io2"]
+    },
+    {
+      "id": "az-b",
+      "kind": "az",
+      "label": "AZ-B",
+      "members": ["ec2-b1"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ec2-a1",
+      "kind": "box",
+      "label": "Nitro 인스턴스 1",
+      "detail": "clustered file system 필요",
+      "role": "compute",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ec2-a2",
+      "kind": "box",
+      "label": "Nitro 인스턴스 2",
+      "detail": "인스턴스당 block device mapping 1 개",
+      "role": "compute",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "vol-io2",
+      "kind": "service",
+      "service": "ebs",
+      "label": "io2 볼륨 Multi-Attach",
+      "detail": "io1 과 io2 전용, 최대 16 대, 부팅 볼륨 불가, I/O fencing 은 io2 만",
+      "col": 1,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "ec2-b1",
+      "kind": "box",
+      "label": "다른 AZ 의 인스턴스",
+      "detail": "같은 io2 볼륨에 붙을 수 없다",
+      "role": "danger",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "efs",
+      "kind": "service",
+      "service": "efs",
+      "label": "Regional EFS",
+      "detail": "NFS, 수천 클라이언트 동시 마운트, 리전 안 전 AZ",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "source": "ec2-a1", "target": "vol-io2", "bidirectional": true },
+    { "source": "ec2-a2", "target": "vol-io2", "bidirectional": true },
+    { "source": "ec2-a1", "target": "efs" },
+    { "source": "ec2-a2", "target": "efs" },
+    { "source": "ec2-b1", "target": "efs", "emphasis": true }
+  ]
+}

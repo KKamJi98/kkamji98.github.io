@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "global-accelerator-cloudfront-paths",
+  "title": "Global Accelerator는 고정 IP로 전달하고 CloudFront는 캐시한다",
+  "subtitle": "두 엣지 서비스는 진입점과 오리진 요청 여부를 서로 다르게 결정한다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 52
+  },
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "클라이언트",
+      "detail": "고정 IP 또는 배포 도메인으로 접속한다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "global-accelerator",
+      "kind": "service",
+      "service": "global_accelerator",
+      "label": "Global Accelerator",
+      "detail": "anycast static IP로 새 연결을 전달한다",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ga-endpoint",
+      "kind": "service",
+      "service": "nlb",
+      "label": "리전 endpoint",
+      "detail": "NLB, ALB, EC2, EIP를 받을 수 있다",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "cloudfront",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront",
+      "detail": "HTTP와 HTTPS 요청을 엣지에서 처리한다",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "edge-cache",
+      "kind": "box",
+      "label": "엣지 캐시",
+      "detail": "히트면 오리진에 요청하지 않는다",
+      "role": "store",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "cloudfront-origin",
+      "kind": "box",
+      "label": "CloudFront origin",
+      "detail": "캐시 미스에서만 요청을 받는다",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "client",
+      "target": "global-accelerator",
+      "emphasis": true
+    },
+    {
+      "source": "global-accelerator",
+      "target": "ga-endpoint",
+      "emphasis": true
+    },
+    {
+      "source": "client",
+      "target": "cloudfront",
+      "emphasis": true
+    },
+    {
+      "source": "cloudfront",
+      "target": "edge-cache",
+      "emphasis": true
+    },
+    {
+      "source": "cloudfront",
+      "target": "cloudfront-origin",
+      "dashed": true
+    }
+  ]
+}

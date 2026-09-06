@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "s3-intelligent-tiering-tiers",
+  "title": "Intelligent-Tiering 은 미접근 일수로 내려가고 접근 한 번으로 돌아온다",
+  "subtitle": "Frequent 와 Infrequent 와 Archive Instant Access 는 자동 계층이고, Archive Access 와 Deep Archive Access 는 켜야 동작하는 선택 계층이다.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "frequent",
+      "kind": "box",
+      "label": "Frequent Access",
+      "detail": "기본 계층. 접근이 발생하면 어느 계층에서든 여기로 돌아온다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ia",
+      "kind": "box",
+      "label": "Infrequent Access",
+      "detail": "30일 연속 미접근",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "aia",
+      "kind": "box",
+      "label": "Archive Instant Access",
+      "detail": "90일 연속 미접근. 여기까지가 자동 계층이다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "small",
+      "kind": "box",
+      "label": "128 KB 미만 객체",
+      "detail": "모니터링과 자동 계층 이동 대상이 아니고 항상 Frequent Access 에 남는다",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "archive",
+      "kind": "box",
+      "label": "Archive Access",
+      "detail": "선택 계층. 최소 90일부터, 최대 730일까지 설정",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "deep",
+      "kind": "box",
+      "label": "Deep Archive Access",
+      "detail": "선택 계층. 최소 180일부터, 최대 730일까지 설정",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "restore",
+      "kind": "box",
+      "label": "restore 요청",
+      "detail": "계정당 리전당 최대 1,000 TPS. 객체가 실제로 Frequent Access 로 이동한다",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "frequent",
+      "target": "ia"
+    },
+    {
+      "source": "ia",
+      "target": "aia"
+    },
+    {
+      "source": "aia",
+      "target": "archive",
+      "dashed": true
+    },
+    {
+      "source": "archive",
+      "target": "deep",
+      "dashed": true
+    },
+    {
+      "source": "archive",
+      "target": "restore"
+    },
+    {
+      "source": "deep",
+      "target": "restore"
+    },
+    {
+      "source": "restore",
+      "target": "frequent",
+      "emphasis": true
+    },
+    {
+      "source": "small",
+      "target": "frequent",
+      "dashed": true
+    }
+  ]
+}

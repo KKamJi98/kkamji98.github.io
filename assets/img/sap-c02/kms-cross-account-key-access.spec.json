@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "id": "kms-cross-account-key-access",
+  "title": "교차 계정 SSE-KMS 접근은 key policy 의 위임이 있어야 성립한다",
+  "subtitle": "key policy 는 계정에 권한을 자동으로 주지 않는다. 위임 문장이 없으면 상대 계정 IAM policy 의 allow 는 무효다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "account-analytics",
+      "kind": "account",
+      "label": "분석 계정 222222222222",
+      "members": [
+        "analytics-role",
+        "iam-policy"
+      ]
+    },
+    {
+      "id": "account-data",
+      "kind": "account",
+      "label": "데이터 계정 111111111111",
+      "members": [
+        "bucket",
+        "bucket-policy",
+        "kms-key",
+        "key-policy"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "analytics-role",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "분석 role",
+      "detail": "GetObject 를 호출한다",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "iam-policy",
+      "kind": "box",
+      "label": "IAM policy",
+      "detail": "s3:GetObject 와 kms:Decrypt Allow",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "bucket",
+      "kind": "service",
+      "service": "s3",
+      "label": "SSE-KMS 버킷",
+      "detail": "객체마다 data key 로 암호화",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "bucket-policy",
+      "kind": "box",
+      "label": "bucket policy",
+      "detail": "분석 role 을 허용",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "kms-key",
+      "kind": "service",
+      "service": "kms",
+      "label": "customer managed key",
+      "detail": "Decrypt 호출을 받는다",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "key-policy",
+      "kind": "box",
+      "label": "key policy",
+      "detail": "222 계정에 위임하는 문장이 있어야 한다",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "allowed",
+      "kind": "box",
+      "label": "복호화 성공",
+      "detail": "key policy 위임과 IAM allow 가 모두 있을 때만",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "denied",
+      "kind": "box",
+      "label": "AccessDenied",
+      "detail": "위임 문장이 없으면 IAM allow 가 무효가 된다",
+      "role": "danger",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "iam-policy",
+      "target": "analytics-role"
+    },
+    {
+      "source": "analytics-role",
+      "target": "bucket"
+    },
+    {
+      "source": "bucket-policy",
+      "target": "bucket"
+    },
+    {
+      "source": "bucket",
+      "target": "kms-key"
+    },
+    {
+      "source": "key-policy",
+      "target": "kms-key"
+    },
+    {
+      "source": "kms-key",
+      "target": "allowed",
+      "emphasis": true
+    },
+    {
+      "source": "key-policy",
+      "target": "denied",
+      "dashed": true
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="kms-key-material-origin" name="key material 을 어디서 만드느냐가 이후 선택지를 잠근다">
+    <mxGraphModel dx="1262" dy="420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1262" pageHeight="420" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1238.36" height="396.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="key material 을 어디서 만드느냐가 이후 선택지를 잠근다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1194.36" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="origin 은 키 생성 시점에 결정되고 나중에 바꿀 수 없다. rotation 과 multi-Region key 의 가능 여부가 여기서 갈린다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1194.36" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement" value="키 소재를 누가 만들고 어디에 두는가&#xa;키 생성 시점에 한 번만 정한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="234" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-kms" value="AWS_KMS origin&#xa;KMS 가 관리형 HSM 에서 생성한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="273" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-external" value="EXTERNAL origin&#xa;내가 만든 material 을 임포트한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="273" y="234" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-cloudhsm" value="CloudHSM key store&#xa;내 계정의 전용 HSM cluster 안에 둔다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="266" y="332" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-kms" value="자동 rotation 90-2560일&#xa;on-demand rotation, multi-Region key, asymmetric, HMAC 전부 가능" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="531" y="120" width="407" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-external" value="자동 rotation 불가&#xa;on-demand rotation 키당 25회와 수동 교체만, multi-Region key 는 가능" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="544" y="234" width="381" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-cloudhsm" value="256-bit AES symmetric 만&#xa;rotation 과 multi-Region key 와 asymmetric 과 imported material 전부 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="512" y="332" width="445" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="hsm-cluster" value="서로 다른 AZ 의 active HSM 2개&#xa;키 생성 조건, 연결이 끊기면 암호 연산 자체가 멈춘다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1013" y="332" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="kms-service" value="AWS KMS API&#xa;origin 과 무관하게 호출 형태는 같다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.key_management_service;" vertex="1" parent="1">
+          <mxGeometry x="1097" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement-to-origin-kms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="origin-kms">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="261.0" />
+              <mxPoint x="238.0" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="requirement-to-origin-external" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="origin-external">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement-to-origin-cloudhsm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="origin-cloudhsm">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="261.0" />
+              <mxPoint x="238.0" y="359.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="origin-kms-to-cap-kms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="origin-kms" target="cap-kms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-external-to-cap-external" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="origin-external" target="cap-external">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="origin-cloudhsm-to-cap-cloudhsm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="origin-cloudhsm" target="cap-cloudhsm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-kms-to-kms-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cap-kms" target="kms-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cap-cloudhsm-to-hsm-cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cap-cloudhsm" target="hsm-cluster">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

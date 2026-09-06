@@ -20,6 +20,24 @@ DATE_RE = re.compile(r"^date:\s*(.+)$", re.M)
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S %z"
 
 SERIES: dict[str, list[str]] = {
+    "AWS SAP-C02": [
+        "aws-sap-c02-overview",
+        "aws-sap-c02-multi-account-governance",
+        "aws-sap-c02-iam-federation",
+        "aws-sap-c02-hybrid-networking",
+        "aws-sap-c02-dns-global-traffic",
+        "aws-sap-c02-compute-scaling",
+        "aws-sap-c02-container-serverless",
+        "aws-sap-c02-data-layer-selection",
+        "aws-sap-c02-decoupling-data-pipeline",
+        "aws-sap-c02-security-deep-dive",
+        "aws-sap-c02-availability-dr",
+        "aws-sap-c02-observability-operations",
+        "aws-sap-c02-cost-optimization",
+        "aws-sap-c02-migration-strategy",
+        "aws-sap-c02-data-transfer-hybrid-edge",
+        "aws-sap-c02-modernization-patterns",
+    ],
     "RAG": [
         "rag-overview-concept-and-pipeline",
         "rag-chunking-embedding-contextual-retrieval",

@@ -1,0 +1,111 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="worm-retention-decision" name="보존 대상이 객체인지 백업인지가 WORM 수단을 정하고, 모드가 되돌릴 창을 정한다">
+    <mxGraphModel dx="1363" dy="640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1363" pageHeight="640" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1339.94" height="616.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="보존 대상이 객체인지 백업인지가 WORM 수단을 정하고, 모드가 되돌릴 창을 정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1295.94" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="compliance mode 는 되돌릴 수 없다. Vault Lock 의 grace time 이 유일하게 남는 회수 창이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1295.94" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement" value="변경 불가 보존 요구&#xa;규제 기간과 우회 허용 여부를 먼저 확정한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="328" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="object-lock" value="S3 Object Lock&#xa;versioning 이 켜진 버킷에서만 동작한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="353" y="200" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-lock" value="Backup Vault Lock&#xa;vault 의 recovery point 를 대상으로 한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.backup;" vertex="1" parent="1">
+          <mxGeometry x="353" y="424" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-compliance" value="compliance mode&#xa;root user 도 기간 중 삭제 불가, 모드 변경과 기간 단축 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="585" y="104" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-governance" value="governance mode&#xa;s3:BypassGovernanceRetention 권한과 요청 헤더가 둘 다 있어야 우회된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="543" y="216" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="legal-hold" value="legal hold&#xa;만료일이 없고 보존 기간과 독립으로 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="633" y="328" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-compliance" value="compliance mode&#xa;ChangeableForDays 를 넣으면 이 모드다, grace time 최소 3일" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="559" y="440" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-governance" value="governance mode&#xa;ChangeableForDays 를 빼면 이 모드다, IAM 권한자가 lock 을 제거한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="550" y="552" width="343" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="no-return" value="되돌릴 수 없는 구간&#xa;grace time 이 끝나면 사용자도 AWS 도 vault 와 lock 을 바꾸거나 지울 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="955" y="440" width="375" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="delete-marker" value="막히지 않는 동작&#xa;새 버전 생성과 버전 ID 없는 DELETE 를 허용해 delete marker 를 남긴다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="971" y="104" width="343" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement-to-object-lock" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="object-lock">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="282.0" y="355.0" />
+              <mxPoint x="282.0" y="224.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="requirement-to-vault-lock" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="vault-lock">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="282.0" y="355.0" />
+              <mxPoint x="282.0" y="448.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="object-lock-to-s3-compliance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="object-lock" target="s3-compliance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="472.0" y="224.0" />
+              <mxPoint x="472.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="object-lock-to-s3-governance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="object-lock" target="s3-governance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="472.0" y="224.0" />
+              <mxPoint x="472.0" y="243.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="object-lock-to-legal-hold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="object-lock" target="legal-hold">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="472.0" y="224.0" />
+              <mxPoint x="472.0" y="355.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vault-lock-to-vault-compliance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vault-lock" target="vault-compliance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="475.5" y="448.0" />
+              <mxPoint x="475.5" y="467.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vault-lock-to-vault-governance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vault-lock" target="vault-governance">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="475.5" y="448.0" />
+              <mxPoint x="475.5" y="579.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vault-compliance-to-no-return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vault-compliance" target="no-return">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-compliance-to-delete-marker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3-compliance" target="delete-marker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

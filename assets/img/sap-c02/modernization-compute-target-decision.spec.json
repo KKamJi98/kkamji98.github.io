@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "modernization-compute-target-decision",
+  "title": "실행 시간과 상태 보유 여부가 서버리스 컴퓨트 타깃을 가른다",
+  "subtitle": "짧은 이벤트 함수와 장시간 컨테이너와 OS 제어가 필요한 워크로드는 서로 다른 경로를 택한다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "workload",
+      "kind": "box",
+      "label": "기존 워크로드",
+      "detail": "실행 시간, 상태, 런타임 요구",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "constraints",
+      "kind": "box",
+      "label": "제약 판정",
+      "detail": "15분, 메모리, OS 접근, 상시 실행",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "short-event",
+      "kind": "box",
+      "label": "짧은 이벤트 처리",
+      "detail": "무상태, 15분 이내",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "long-container",
+      "kind": "box",
+      "label": "장시간 또는 상태 보유",
+      "detail": "컨테이너, 15분 초과 가능",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "os-control",
+      "kind": "box",
+      "label": "OS 또는 특수 런타임",
+      "detail": "호스트 수준 제어 필요",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "lambda",
+      "kind": "service",
+      "service": "lambda",
+      "label": "AWS Lambda",
+      "detail": "이벤트 기반 함수",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "fargate",
+      "kind": "service",
+      "service": "fargate",
+      "label": "AWS Fargate",
+      "detail": "ECS 컨테이너",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "ec2",
+      "kind": "service",
+      "service": "ec2",
+      "label": "Amazon EC2",
+      "detail": "직접 관리하는 컴퓨트",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "workload", "target": "constraints" },
+    { "source": "constraints", "target": "short-event" },
+    { "source": "constraints", "target": "long-container", "emphasis": true },
+    { "source": "constraints", "target": "os-control" },
+    { "source": "short-event", "target": "lambda" },
+    { "source": "long-container", "target": "fargate", "emphasis": true },
+    { "source": "os-control", "target": "ec2" }
+  ]
+}

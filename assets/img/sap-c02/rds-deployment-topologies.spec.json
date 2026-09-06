@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "id": "rds-deployment-topologies",
+  "title": "RDS 배포 세 가지는 대기 노드의 역할이 다르다",
+  "subtitle": "자동 failover 여부, 복제 방식, 대기 노드가 읽기를 받는지가 세 축이다. 이 셋이 지문의 요구사항과 하나씩 맞물린다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 36
+  },
+  "containers": [
+    {
+      "id": "c-instance",
+      "kind": "plain",
+      "label": "Multi-AZ DB instance",
+      "members": [
+        "i-writer",
+        "i-standby"
+      ]
+    },
+    {
+      "id": "c-cluster",
+      "kind": "plain",
+      "label": "Multi-AZ DB cluster",
+      "members": [
+        "c-writer",
+        "c-reader1",
+        "c-reader2"
+      ]
+    },
+    {
+      "id": "c-replica",
+      "kind": "plain",
+      "label": "read replica",
+      "members": [
+        "r-source",
+        "r-replica1",
+        "r-replica2"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "i-writer",
+      "kind": "box",
+      "label": "writer",
+      "detail": "AZ 1",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "i-standby",
+      "kind": "box",
+      "label": "standby",
+      "detail": "동기 복제, 자동 failover\n읽기 트래픽 처리 불가",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "c-writer",
+      "kind": "box",
+      "label": "writer",
+      "detail": "NVMe 로컬 스토리지 계열 지원",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "c-reader1",
+      "kind": "box",
+      "label": "reader 1",
+      "detail": "semisynchronous, 최소 1 개의 ack 를 요구한다",
+      "role": "store",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "c-reader2",
+      "kind": "box",
+      "label": "reader 2",
+      "detail": "읽기 가능, 3 개 AZ 에 분산",
+      "role": "store",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "r-source",
+      "kind": "box",
+      "label": "source DB instance",
+      "detail": "소스 삭제 시 같은 리전 replica 승격",
+      "role": "process",
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "r-replica1",
+      "kind": "box",
+      "label": "read replica 1",
+      "detail": "비동기 복제, 자동 failover 대상이 아니다",
+      "role": "store",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "r-replica2",
+      "kind": "box",
+      "label": "read replica 2",
+      "detail": "기본 쿼터 15개, 순환 복제 불가",
+      "role": "store",
+      "col": 1,
+      "row": 6
+    }
+  ],
+  "edges": [
+    {
+      "source": "i-writer",
+      "target": "i-standby",
+      "emphasis": true
+    },
+    {
+      "source": "c-writer",
+      "target": "c-reader1",
+      "emphasis": true
+    },
+    {
+      "source": "c-writer",
+      "target": "c-reader2",
+      "emphasis": true
+    },
+    {
+      "source": "r-source",
+      "target": "r-replica1",
+      "dashed": true
+    },
+    {
+      "source": "r-source",
+      "target": "r-replica2",
+      "dashed": true
+    }
+  ]
+}

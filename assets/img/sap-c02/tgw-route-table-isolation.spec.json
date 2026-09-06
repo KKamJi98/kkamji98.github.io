@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "tgw-route-table-isolation",
+  "title": "association은 어느 route table을 볼지, propagation은 그 table에 무엇이 실릴지를 정한다",
+  "subtitle": "route table을 둘로 나누면 spoke는 shared services만 보고 서로는 보지 못한다.",
+  "layout": {
+    "col_gap": 68,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "tgw",
+      "kind": "plain",
+      "label": "Transit Gateway (route table 20개까지)",
+      "members": ["rt-spoke", "rt-shared", "blackhole"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "spoke-a",
+      "kind": "service",
+      "service": "vpc",
+      "label": "Spoke VPC A",
+      "detail": "개발 계정",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "spoke-b",
+      "kind": "service",
+      "service": "vpc",
+      "label": "Spoke VPC B",
+      "detail": "운영 계정",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "onprem-vpn",
+      "kind": "box",
+      "label": "온프레미스 VPN attachment",
+      "detail": "dynamic routing이어야 ECMP",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "rt-spoke",
+      "kind": "box",
+      "label": "Spoke route table",
+      "detail": "association: spoke와 VPN. shared VPC 라우트만 보유",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "blackhole",
+      "kind": "box",
+      "label": "Blackhole route",
+      "detail": "spoke 사이 CIDR을 드롭",
+      "role": "danger",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "rt-shared",
+      "kind": "box",
+      "label": "Shared route table",
+      "detail": "association: shared VPC. 모든 attachment 라우트를 propagate",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "shared-vpc",
+      "kind": "service",
+      "service": "vpc",
+      "label": "Shared services VPC",
+      "detail": "중앙 NAT, interface endpoint, 검사 어플라이언스",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {"source": "spoke-a", "target": "rt-spoke"},
+    {"source": "spoke-b", "target": "rt-spoke"},
+    {"source": "onprem-vpn", "target": "rt-spoke"},
+    {"source": "rt-spoke", "target": "blackhole", "dashed": true},
+    {"source": "rt-spoke", "target": "rt-shared", "bidirectional": true, "emphasis": true},
+    {"source": "rt-shared", "target": "shared-vpc"}
+  ]
+}

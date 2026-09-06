@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "id": "route53-hybrid-dns-endpoints",
+  "title": "inbound와 outbound endpoint는 DNS 질의 방향이 서로 반대다",
+  "subtitle": "온프레미스에서 VPC로 들어오는 질의와 VPC에서 온프레미스로 나가는 질의는 endpoint와 규칙이 다르다.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "onprem-dns",
+      "kind": "box",
+      "label": "온프레미스 DNS",
+      "detail": "VPC 이름을 조회한다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "network-link",
+      "kind": "service",
+      "service": "direct_connect",
+      "label": "Direct Connect 또는 VPN",
+      "detail": "endpoint의 사설 IP까지 경로를 만든다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "inbound-endpoint",
+      "kind": "box",
+      "label": "inbound endpoint",
+      "detail": "온프레미스 질의를 VPC Resolver로 받는다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "private-zone",
+      "kind": "service",
+      "service": "route53_hosted_zone",
+      "label": "private hosted zone",
+      "detail": "VPC 내부 이름을 응답한다",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "vpc-workload",
+      "kind": "box",
+      "label": "VPC workload",
+      "detail": "온프레미스 이름도 조회할 수 있다",
+      "role": "process",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "outbound-endpoint",
+      "kind": "box",
+      "label": "outbound endpoint",
+      "detail": "forwarding rule이 지정한 경로로 보낸다",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "forwarding-rule",
+      "kind": "box",
+      "label": "Resolver forwarding rule",
+      "detail": "도메인별 target DNS를 지정한다",
+      "role": "process",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "onprem-authoritative",
+      "kind": "box",
+      "label": "온프레미스 authoritative DNS",
+      "detail": "corp.example.local을 관리한다",
+      "role": "external",
+      "col": 5,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "onprem-dns",
+      "target": "network-link"
+    },
+    {
+      "source": "network-link",
+      "target": "inbound-endpoint",
+      "emphasis": true
+    },
+    {
+      "source": "inbound-endpoint",
+      "target": "private-zone",
+      "emphasis": true
+    },
+    {
+      "source": "private-zone",
+      "target": "vpc-workload",
+      "emphasis": true
+    },
+    {
+      "source": "vpc-workload",
+      "target": "outbound-endpoint",
+      "emphasis": true
+    },
+    {
+      "source": "outbound-endpoint",
+      "target": "forwarding-rule",
+      "emphasis": true
+    },
+    {
+      "source": "forwarding-rule",
+      "target": "onprem-authoritative",
+      "emphasis": true
+    }
+  ]
+}

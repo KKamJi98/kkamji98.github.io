@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "s3-private-access-paths",
+  "title": "S3에 도달하는 세 경로는 출발지가 VPC 안인지 밖인지에서 갈린다",
+  "subtitle": "gateway endpoint는 VPC route table 안에서만 살아 있어 온프레미스에서 쓸 수 없다.",
+  "layout": {
+    "col_gap": 66,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "vpc",
+      "kind": "vpc",
+      "label": "VPC",
+      "members": ["ec2", "gw-endpoint", "if-endpoint"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "gw-endpoint",
+      "kind": "service",
+      "service": "vpc_endpoint",
+      "label": "Gateway endpoint",
+      "detail": "route table의 관리형 prefix list 라우트, 추가 요금 없음",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ec2",
+      "kind": "box",
+      "label": "EC2 인스턴스",
+      "detail": "private subnet",
+      "role": "compute",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "if-endpoint",
+      "kind": "service",
+      "service": "privatelink",
+      "label": "Interface endpoint",
+      "detail": "서브넷 ENI의 private IP, AZ당 10에서 100 Gbps",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "Amazon S3",
+      "detail": "같은 리전 버킷",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "onprem",
+      "kind": "box",
+      "label": "온프레미스 서버",
+      "detail": "Direct Connect 또는 VPN",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "gw-blocked",
+      "kind": "box",
+      "label": "온프레미스에서 gateway endpoint 사용 불가",
+      "detail": "route table 기반이라 VPC 밖에서 참조되지 않는다",
+      "role": "danger",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "s3-public",
+      "kind": "box",
+      "label": "S3 public endpoint",
+      "detail": "public VIF 경로. endpoint policy가 적용되지 않는다",
+      "role": "surface",
+      "col": 2,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {"source": "ec2", "target": "gw-endpoint"},
+    {"source": "ec2", "target": "if-endpoint"},
+    {"source": "gw-endpoint", "target": "s3"},
+    {"source": "if-endpoint", "target": "s3", "emphasis": true},
+    {"source": "onprem", "target": "if-endpoint", "emphasis": true},
+    {"source": "onprem", "target": "gw-blocked", "dashed": true},
+    {"source": "onprem", "target": "s3-public"},
+    {"source": "s3-public", "target": "s3"}
+  ]
+}

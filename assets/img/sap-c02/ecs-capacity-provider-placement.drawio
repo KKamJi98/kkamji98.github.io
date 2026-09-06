@@ -1,0 +1,89 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="ecs-capacity-provider-placement" name="launchType 과 capacityProviderStrategy 는 함께 지정할 수 없다">
+    <mxGraphModel dx="1648" dy="616" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1648" pageHeight="616" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1624.6" height="592.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="launchType 과 capacityProviderStrategy 는 함께 지정할 수 없다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1580.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="strategy 를 고르면 base 를 먼저 채우고 남은 태스크를 weight 비율로 나눈다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1580.6" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="run-task" value="RunTask 와 CreateService&#xa;둘 다 생략하면 클러스터 기본 strategy 를 쓴다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="218" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="launch-type" value="launchType&#xa;EC2, FARGATE, EXTERNAL, MANAGED_INSTANCES. Spot 이 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="305" y="104" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="strategy" value="capacityProviderStrategy&#xa;provider 최대 20개. launchType 을 생략해야 한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="353" y="332" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="base-slot" value="base 를 먼저 채운다&#xa;strategy 안에서 provider 하나만 가진다. 0 에서 100,000" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="717" y="332" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="weight-split" value="남은 태스크를 weight 로 나눈다&#xa;0 에서 1,000. 전부 0 이면 호출이 실패한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1126" y="332" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fargate-od" value="FARGATE&#xa;온디맨드 용량" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;" vertex="1" parent="1">
+          <mxGeometry x="1503" y="202" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="fargate-spot" value="FARGATE_SPOT&#xa;회수 시 2분 경고 후 태스크 중단" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1439" y="430" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="asg-provider" value="ASG capacity provider&#xa;managed scaling 이 targetCapacity 로 ASG 를 조정한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1072" y="528" width="311" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="run-task-to-launch-type" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="run-task" target="launch-type">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="277.0" y="245.0" />
+              <mxPoint x="277.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="run-task-to-strategy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="run-task" target="strategy">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="277.0" y="245.0" />
+              <mxPoint x="277.0" y="359.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="strategy-to-base-slot" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="strategy" target="base-slot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="base-slot-to-weight-split" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="base-slot" target="weight-split">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="weight-split-to-fargate-od" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="weight-split" target="fargate-od">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1384.0" y="359.0" />
+              <mxPoint x="1384.0" y="226.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="weight-split-to-fargate-spot" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="weight-split" target="fargate-spot">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1384.0" y="359.0" />
+              <mxPoint x="1384.0" y="457.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="strategy-to-asg-provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="strategy" target="asg-provider">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="665.0" y="359.0" />
+              <mxPoint x="665.0" y="555.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

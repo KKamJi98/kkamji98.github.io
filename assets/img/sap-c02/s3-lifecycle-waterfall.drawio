@@ -1,0 +1,71 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="s3-lifecycle-waterfall" name="lifecycle 전환은 한 방향으로만 흐른다">
+    <mxGraphModel dx="1323" dy="294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1323" pageHeight="294" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1299.02" height="270.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="lifecycle 전환은 한 방향으로만 흐른다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1255.02" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="각 상자의 부제는 그 클래스의 최소 저장 기간이다. 되돌리는 경로는 lifecycle 규칙이 아니라 restore 후 덮어쓰기다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1255.02" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rule" value="lifecycle 규칙&#xa;object size filter 가 없으면 128 KB 미만 객체는 전환되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="206" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="standard" value="S3 Standard&#xa;최소 저장 기간 없음" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="108" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sia" value="Standard-IA&#xa;30 일, 최소 과금 128 KB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="398" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gir" value="Glacier Instant Retrieval&#xa;90 일, 밀리초 액세스 유지" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="620" y="104" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gfr" value="Glacier Flexible Retrieval&#xa;90 일, 복원 절차 필요" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="850" y="104" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="gda" value="Glacier Deep Archive&#xa;180 일, lifecycle 로 나갈 수 없는 종점" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="104" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="restore" value="RestoreObject 후 copy 로 덮어쓰기&#xa;상위 클래스로 되돌리는 유일한 경로" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="614" y="206" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rule-to-standard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rule" target="standard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="standard-to-sia" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="standard" target="sia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sia-to-gir" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sia" target="gir">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gir-to-gfr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gir" target="gfr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gfr-to-gda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gfr" target="gda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gda-to-restore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gda" target="restore">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1184.5" y="233.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="restore-to-standard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="restore" target="standard">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="590" y="233.0" />
+              <mxPoint x="590" y="182" />
+              <mxPoint x="196.0" y="182" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

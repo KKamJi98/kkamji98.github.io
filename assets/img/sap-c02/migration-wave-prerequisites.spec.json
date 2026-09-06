@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "migration-wave-prerequisites",
+  "title": "wave 1 이 넘어가기 전에 서 있어야 하는 것들",
+  "subtitle": "landing zone 과 domain controller 와 회선은 wave 의 내용이 아니라 wave 의 전제다.",
+  "layout": {
+    "col_gap": 62,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "landing-zone",
+      "kind": "box",
+      "label": "landing zone",
+      "detail": "계정 구조, 네트워크, 가드레일, 로깅",
+      "role": "surface",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "domain-controller",
+      "kind": "box",
+      "label": "클라우드 domain controller",
+      "detail": "AD 는 공통 의존성이라 move group 기준에서 뺀다",
+      "role": "surface",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "circuit",
+      "kind": "service",
+      "service": "direct_connect",
+      "label": "복제 회선",
+      "detail": "hosted connection 은 파트너가 만들고 사용자가 accept 한다",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "wave-plan",
+      "kind": "box",
+      "label": "wave plan",
+      "detail": "move group 을 wave 로 묶는다. 초기 wave 10대 미만, wave 상한 50대",
+      "role": "process",
+      "col": 1,
+      "row": 0,
+      "rowspan": 3
+    },
+    {
+      "id": "wave-exec",
+      "kind": "box",
+      "label": "wave 실행",
+      "detail": "MGN 연속 복제와 DMS full load + CDC 가 동시에 돈다",
+      "role": "compute",
+      "col": 2,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "dns-ttl",
+      "kind": "service",
+      "service": "route53",
+      "label": "DNS TTL 사전 인하",
+      "detail": "컷오버 전에 300초로 낮추고 확인 후 되돌린다",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "cutover",
+      "kind": "box",
+      "label": "컷오버 윈도우",
+      "detail": "lag 0 확인, 소스 서비스 정지, cutover instance 기동, finalize cutover",
+      "role": "danger",
+      "col": 3,
+      "row": 0,
+      "rowspan": 3
+    }
+  ],
+  "edges": [
+    { "source": "landing-zone", "target": "wave-plan" },
+    { "source": "domain-controller", "target": "wave-plan" },
+    { "source": "circuit", "target": "wave-plan" },
+    { "source": "wave-plan", "target": "wave-exec" },
+    { "source": "wave-exec", "target": "cutover", "emphasis": true },
+    { "source": "dns-ttl", "target": "cutover" }
+  ]
+}

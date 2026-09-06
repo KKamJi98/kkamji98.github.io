@@ -1,0 +1,74 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="s3-intelligent-tiering-tiers" name="Intelligent-Tiering 은 미접근 일수로 내려가고 접근 한 번으로 돌아온다">
+    <mxGraphModel dx="1271" dy="392" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1271" pageHeight="392" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1247.02" height="368.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Intelligent-Tiering 은 미접근 일수로 내려가고 접근 한 번으로 돌아온다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1203.02" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Frequent 와 Infrequent 와 Archive Instant Access 는 자동 계층이고, Archive Access 와 Deep Archive Access 는 켜야 동작하는 선택 계층이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1203.02" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="frequent" value="Frequent Access&#xa;기본 계층. 접근이 발생하면 어느 계층에서든 여기로 돌아온다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="79" y="104" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ia" value="Infrequent Access&#xa;30일 연속 미접근" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="402" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="aia" value="Archive Instant Access&#xa;90일 연속 미접근. 여기까지가 자동 계층이다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="708" y="104" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="small" value="128 KB 미만 객체&#xa;모니터링과 자동 계층 이동 대상이 아니고 항상 Frequent Access 에 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="204" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="archive" value="Archive Access&#xa;선택 계층. 최소 90일부터, 최대 730일까지 설정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="695" y="204" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="deep" value="Deep Archive Access&#xa;선택 계층. 최소 180일부터, 최대 730일까지 설정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1022" y="204" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="restore" value="restore 요청&#xa;계정당 리전당 최대 1,000 TPS. 객체가 실제로 Frequent Access 로 이동한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="622" y="304" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="frequent-to-ia" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="frequent" target="ia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ia-to-aia" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ia" target="aia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aia-to-archive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5024;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aia" target="archive">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="archive-to-deep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="archive" target="deep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="archive-to-restore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.4986;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="archive" target="restore">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deep-to-restore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="deep" target="restore">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1129.5" y="331.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="restore-to-frequent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="restore" target="frequent">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="598" y="331.0" />
+              <mxPoint x="598" y="181" />
+              <mxPoint x="196.5" y="181" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="small-to-frequent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5015;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="small" target="frequent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

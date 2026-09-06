@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "mgn-replication-cutover-flow",
+  "title": "MGN 은 staging area 를 거쳐 test 와 cutover 로 갈라진다",
+  "subtitle": "복제는 계속 돌고 있고, 컷오버는 lag 0 을 확인한 시점에 인스턴스를 한 번 더 기동하는 동작이다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 46,
+    "margin": 64
+  },
+  "containers": [
+    {
+      "id": "source-side",
+      "kind": "plain",
+      "label": "온프레미스 또는 기존 클라우드",
+      "members": [
+        "source-server",
+        "vcenter-client"
+      ],
+      "dashed": true
+    },
+    {
+      "id": "staging",
+      "kind": "plain",
+      "label": "staging area subnet",
+      "members": [
+        "replication-server",
+        "staging-volume"
+      ]
+    },
+    {
+      "id": "target",
+      "kind": "vpc",
+      "label": "타깃 VPC",
+      "members": [
+        "test-instance",
+        "cutover-instance"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source-server",
+      "kind": "box",
+      "label": "소스 서버",
+      "detail": "물리, 가상, 클라우드. AWS Replication Agent 설치",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "vcenter-client",
+      "kind": "box",
+      "label": "MGN vCenter Client",
+      "detail": "agentless 경로. vCenter 6.7, 7.0, 8.0 에서 CBT 와 VDDK 로 스냅샷 전송",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "replication-server",
+      "kind": "box",
+      "label": "replication server",
+      "detail": "t3.small, 볼륨 15개당 1대, IP 고정 불가, TCP 1500 수신",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "staging-volume",
+      "kind": "service",
+      "service": "ebs",
+      "label": "staging EBS 볼륨",
+      "detail": "소스 볼륨 크기; 스냅샷 5-7개 유지",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "test-instance",
+      "kind": "service",
+      "service": "ec2_instance",
+      "label": "test instance",
+      "detail": "인수 테스트용. 종료하고 다시 띄울 수 있다",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "cutover-instance",
+      "kind": "service",
+      "service": "ec2_instance",
+      "label": "cutover instance",
+      "detail": "lag 0 확인과 소스 서비스 정지 이후에 기동",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "archive",
+      "kind": "box",
+      "label": "source server archive",
+      "detail": "finalize cutover 이후 상태. 복제 리소스가 정리된다",
+      "role": "store",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "source-server",
+      "target": "replication-server"
+    },
+    {
+      "source": "replication-server",
+      "target": "staging-volume"
+    },
+    {
+      "source": "vcenter-client",
+      "target": "staging-volume",
+      "dashed": true
+    },
+    {
+      "source": "staging-volume",
+      "target": "test-instance"
+    },
+    {
+      "source": "staging-volume",
+      "target": "cutover-instance",
+      "emphasis": true
+    },
+    {
+      "source": "cutover-instance",
+      "target": "archive"
+    }
+  ]
+}

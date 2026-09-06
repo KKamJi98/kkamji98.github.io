@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "cost-recommendation-sources",
+  "title": "권고 도구는 서로 다른 입력을 쓰고 한 곳으로 모인다",
+  "subtitle": "Cost Explorer rightsizing 은 Compute Optimizer 결과의 부분집합이고, Cost Optimization Hub 는 세 출처의 절감액에서 중복을 제거한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "cw",
+      "kind": "service",
+      "service": "cloudwatch",
+      "label": "CloudWatch 지표",
+      "detail": "메모리는 CloudWatch agent 가 InstanceId dimension 과 함께 발행해야 수집된다",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ceon",
+      "kind": "box",
+      "label": "Cost Explorer 활성화",
+      "detail": "절감액 계산의 전제. 한 번 켜면 끌 수 없다",
+      "role": "queue",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "co",
+      "kind": "box",
+      "label": "Compute Optimizer",
+      "detail": "14종 리소스. 기본 lookback 14일, enhanced infrastructure metrics 를 켜면 93일",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "cerr",
+      "kind": "box",
+      "label": "Cost Explorer rightsizing",
+      "detail": "EC2 한정. 최대 CPU 1% 이하는 종료 권고, 추정 절감액 $0 이상만 제시",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "sprec",
+      "kind": "box",
+      "label": "Savings Plans 와 RI 구매 권고",
+      "detail": "과거 사용량 기준. 보유 중인 커밋을 반영해 계산한다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "hub",
+      "kind": "box",
+      "label": "Cost Optimization Hub",
+      "detail": "계정과 리전에 걸쳐 모으고 중복 절감액을 제거한다. 계정의 실제 RI 와 SP 조건을 반영한다",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "cw",
+      "target": "co"
+    },
+    {
+      "source": "ceon",
+      "target": "co"
+    },
+    {
+      "source": "ceon",
+      "target": "cerr"
+    },
+    {
+      "source": "co",
+      "target": "cerr",
+      "dashed": true
+    },
+    {
+      "source": "co",
+      "target": "hub",
+      "emphasis": true
+    },
+    {
+      "source": "cerr",
+      "target": "hub"
+    },
+    {
+      "source": "sprec",
+      "target": "hub"
+    }
+  ]
+}

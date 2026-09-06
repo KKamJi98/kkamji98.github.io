@@ -1,0 +1,94 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="ops-event-routing" name="운영 신호는 네 곳에서 나와 EventBridge 한 곳으로 모인다">
+    <mxGraphModel dx="1609" dy="544" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1609" pageHeight="544" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1585.32" height="520.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="운영 신호는 네 곳에서 나와 EventBridge 한 곳으로 모인다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1541.32" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="rule 하나에 붙일 수 있는 target 은 5개로 조정 불가다. 그 이상 팬아웃하려면 SNS 나 추가 rule 로 나눈다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1541.32" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="alarm" value="CloudWatch 알람의 ALARM 전이&#xa;composite alarm 도 여기까지는 같다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="139" y="120" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="config-violation" value="Config rule NON_COMPLIANT&#xa;구성이 기준에서 벗어난 순간" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="142" y="248" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="health" value="AWS Health 이벤트&#xa;EventBridge 수신은 모든 고객 무료, Health API 는 Business Support+ 이상" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="360" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="trail-event" value="CloudTrail 이 기록한 API 호출&#xa;평균 약 5분 안에 전달되지만 보장 값은 아니다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="139" y="456" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="eventbridge" value="EventBridge rule&#xa;bus 당 rule 기본 300개, rule 당 target 5개 조정 불가, event pattern 최대 2,048자" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="486" y="248" width="451" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="automation" value="SSM Automation runbook&#xa;승인 단계와 rate control 을 넣어 무인 교정으로 잇는다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.systems_manager;" vertex="1" parent="1">
+          <mxGeometry x="1259" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="sns" value="SNS 토픽&#xa;target 5개를 넘겨야 할 때 팬아웃 지점이 된다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" vertex="1" parent="1">
+          <mxGeometry x="1259" y="232" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="opsitem" value="OpsCenter OpsItem&#xa;Open, In progress, Resolved. related resource 는 최대 100개, deduplication string 으로 중복을 줄인다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="990" y="360" width="585" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="alarm-to-eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="alarm" target="eventbridge">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="460.0" y="147.0" />
+              <mxPoint x="460.0" y="275.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="config-violation-to-eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="config-violation" target="eventbridge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="health-to-eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="health" target="eventbridge">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="460.0" y="387.0" />
+              <mxPoint x="460.0" y="275.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trail-event-to-eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="trail-event" target="eventbridge">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="460.0" y="483.0" />
+              <mxPoint x="460.0" y="275.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eventbridge-to-automation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="automation">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="963.5" y="275.0" />
+              <mxPoint x="963.5" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eventbridge-to-sns" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="sns">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="963.5" y="275.0" />
+              <mxPoint x="963.5" y="256.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eventbridge-to-opsitem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="opsitem">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="963.5" y="275.0" />
+              <mxPoint x="963.5" y="387.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

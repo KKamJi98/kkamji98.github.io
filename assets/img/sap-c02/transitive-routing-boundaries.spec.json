@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "id": "transitive-routing-boundaries",
+  "title": "전이 라우팅은 peering에서 끊기고 Transit Gateway에서 이어진다",
+  "subtitle": "peer VPC의 게이트웨이를 빌려 쓰는 경로는 edge-to-edge routing 제약에 걸린다.",
+  "layout": {
+    "col_gap": 68,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "peering-lane",
+      "kind": "plain",
+      "label": "VPC peering 경유",
+      "members": ["onprem-a", "vpc-a", "vpc-b", "edge-block"]
+    },
+    {
+      "id": "tgw-lane",
+      "kind": "plain",
+      "label": "Transit Gateway 경유",
+      "members": ["onprem-b", "dxgw", "tgw", "vpc-c", "vpc-d", "central-nat"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "onprem-a",
+      "kind": "box",
+      "label": "온프레미스",
+      "detail": "private VIF로 VPC A에 도달",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "vpc-a",
+      "kind": "service",
+      "service": "vpc",
+      "label": "VPC A",
+      "detail": "peering 요청자",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "vpc-b",
+      "kind": "service",
+      "service": "vpc",
+      "label": "VPC B",
+      "detail": "IGW, NAT, gateway endpoint 보유",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "edge-block",
+      "kind": "box",
+      "label": "edge-to-edge routing 불가",
+      "detail": "peer의 IGW, NAT, VPN, DX, gateway endpoint를 쓸 수 없다",
+      "role": "danger",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "onprem-b",
+      "kind": "box",
+      "label": "온프레미스",
+      "detail": "transit VIF",
+      "role": "external",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "dxgw",
+      "kind": "box",
+      "label": "Direct Connect gateway",
+      "detail": "gateway당 TGW 6개",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "tgw",
+      "kind": "service",
+      "service": "transit_gateway",
+      "label": "Transit Gateway",
+      "detail": "route table이 허용한 attachment 사이만 전이",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "vpc-c",
+      "kind": "service",
+      "service": "vpc",
+      "label": "VPC C",
+      "detail": "AZ마다 attachment 서브넷 필요",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "vpc-d",
+      "kind": "service",
+      "service": "vpc",
+      "label": "VPC D",
+      "detail": "CIDR 중복 불가",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "central-nat",
+      "kind": "service",
+      "service": "nat_gateway",
+      "label": "중앙 NAT gateway",
+      "detail": "TGW 경유는 지원, VGW 경유는 미지원",
+      "col": 3,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {"source": "onprem-a", "target": "vpc-a"},
+    {"source": "vpc-a", "target": "vpc-b", "dashed": true},
+    {"source": "vpc-b", "target": "edge-block", "dashed": true},
+    {"source": "onprem-b", "target": "dxgw", "emphasis": true},
+    {"source": "dxgw", "target": "tgw", "emphasis": true},
+    {"source": "tgw", "target": "vpc-c"},
+    {"source": "tgw", "target": "vpc-d"},
+    {"source": "tgw", "target": "central-nat"}
+  ]
+}

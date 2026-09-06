@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "data-transfer-charge-points",
+  "title": "같은 바이트라도 어느 경로로 나가느냐에 따라 과금 항목이 바뀐다",
+  "subtitle": "private subnet 에서 출발한 트래픽이 통과하는 다섯 경로와 각 경로에 붙는 요금이다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "kind": "box",
+      "label": "private subnet 의 EC2 와 ECS",
+      "detail": "같은 AZ 안의 private IP 통신은 과금되지 않는다",
+      "role": "compute",
+      "col": 0,
+      "row": 0,
+      "rowspan": 5
+    },
+    {
+      "id": "nat",
+      "kind": "service",
+      "service": "nat_gateway",
+      "label": "NAT Gateway",
+      "detail": "시간당 요금과 처리 GB 당 요금이 함께 붙는다",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "gwep",
+      "kind": "service",
+      "service": "vpc_endpoint",
+      "label": "gateway endpoint",
+      "detail": "추가 요금 없음. route table 의 prefix list 로 라우팅된다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "ifep",
+      "kind": "service",
+      "service": "privatelink",
+      "label": "interface endpoint",
+      "detail": "AZ 당 provisioned 시간 요금과 처리 GB 당 요금",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "hop",
+      "kind": "box",
+      "label": "다른 AZ 또는 다른 리전",
+      "detail": "AZ 경계와 리전 경계를 넘으면 전송 요금이 붙는다",
+      "role": "process",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "cf",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront",
+      "detail": "AWS origin 에서 CloudFront 로 가는 전송은 면제된다",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "internet",
+      "kind": "service",
+      "service": "internet",
+      "label": "인터넷",
+      "detail": "인터넷 egress 는 월 100 GB 무료. 중국과 GovCloud 는 제외",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "같은 리전의 S3 와 DynamoDB",
+      "detail": "gateway endpoint 가 지원하는 유일한 두 서비스",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "other",
+      "kind": "service",
+      "service": "secrets_manager",
+      "label": "그 밖의 AWS 서비스",
+      "detail": "ECR, Secrets Manager, KMS 등은 interface endpoint 대상이다",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "crosscost",
+      "kind": "box",
+      "label": "교차 AZ 와 리전 간 전송 요금",
+      "detail": "VPC peering 이 같은 리전에서 AZ 를 넘으면 양방향 모두 $0.01/GB 다",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "viewer",
+      "kind": "box",
+      "label": "뷰어",
+      "detail": "CloudFront 에서 뷰어로 나가는 전송은 과금된다",
+      "role": "external",
+      "col": 2,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "source",
+      "target": "nat"
+    },
+    {
+      "source": "source",
+      "target": "gwep"
+    },
+    {
+      "source": "source",
+      "target": "ifep"
+    },
+    {
+      "source": "source",
+      "target": "hop"
+    },
+    {
+      "source": "source",
+      "target": "cf"
+    },
+    {
+      "source": "nat",
+      "target": "internet"
+    },
+    {
+      "source": "gwep",
+      "target": "s3",
+      "emphasis": true
+    },
+    {
+      "source": "ifep",
+      "target": "other"
+    },
+    {
+      "source": "hop",
+      "target": "crosscost",
+      "dashed": true
+    },
+    {
+      "source": "cf",
+      "target": "viewer"
+    }
+  ]
+}

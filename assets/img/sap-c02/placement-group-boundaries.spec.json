@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "placement-group-boundaries",
+  "title": "배치 전략마다 넘지 못하는 경계가 다르다",
+  "subtitle": "cluster 는 AZ 를 넘지 못하고, partition 은 AZ 당 7개까지, rack-level spread 는 AZ 당 running 7대까지다.",
+  "layout": {
+    "col_gap": 50,
+    "row_gap": 40
+  },
+  "containers": [
+    {
+      "id": "az-a",
+      "kind": "az",
+      "label": "Availability Zone A",
+      "members": [
+        "cluster-a",
+        "partition-a1",
+        "partition-a2",
+        "spread-a"
+      ]
+    },
+    {
+      "id": "az-b",
+      "kind": "az",
+      "label": "Availability Zone B",
+      "members": [
+        "partition-b1",
+        "spread-b"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "need-latency",
+      "kind": "box",
+      "label": "노드 간 저지연과 고대역",
+      "detail": "MPI, HPC, 대형 배치. EFA 를 붙이는 워크로드",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "need-rack",
+      "kind": "box",
+      "label": "랙 단위 장애 격리",
+      "detail": "HDFS, HBase, Cassandra, Kafka 처럼 복제본을 분리하는 분산 시스템",
+      "role": "external",
+      "col": 0,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "need-host",
+      "kind": "box",
+      "label": "인스턴스 단위 하드웨어 분리",
+      "detail": "소수의 핵심 인스턴스를 각각 다른 랙에 둔다",
+      "role": "external",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "cluster-a",
+      "kind": "box",
+      "label": "cluster placement group",
+      "detail": "그룹 안 single-flow 10 Gbps, 밖은 5 Gbps. Capacity Reservation 을 만들 수 있는 전략 중 하나",
+      "role": "compute",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "partition-a1",
+      "kind": "box",
+      "label": "partition 1",
+      "detail": "독립 랙 집합. 인스턴스가 파티션 번호를 메타데이터로 읽는다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "partition-a2",
+      "kind": "box",
+      "label": "partition 2",
+      "detail": "AZ 당 최대 7 파티션. Dedicated Instances 를 쓰면 2개",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "spread-a",
+      "kind": "box",
+      "label": "rack-level spread",
+      "detail": "AZ 당 running 인스턴스 7대. Dedicated Instances 를 지원하지 않는다",
+      "role": "queue",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "partition-b1",
+      "kind": "box",
+      "label": "partition 1",
+      "detail": "같은 그룹의 파티션을 다른 AZ 에도 둘 수 있다",
+      "role": "process",
+      "col": 2,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "spread-b",
+      "kind": "box",
+      "label": "rack-level spread",
+      "detail": "AZ 3개 리전이면 그룹 전체로 21대",
+      "role": "queue",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "cluster-blocked",
+      "kind": "box",
+      "label": "cluster 는 여기까지 오지 못한다",
+      "detail": "단일 AZ 를 넘을 수 없다. 같은 리전의 peered VPC 는 걸칠 수 있다",
+      "role": "danger",
+      "col": 2,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": "need-latency",
+      "target": "cluster-a",
+      "emphasis": true
+    },
+    {
+      "source": "need-rack",
+      "target": "partition-a1"
+    },
+    {
+      "source": "need-rack",
+      "target": "partition-a2"
+    },
+    {
+      "source": "need-host",
+      "target": "spread-a"
+    },
+    {
+      "source": "partition-a1",
+      "target": "partition-b1"
+    },
+    {
+      "source": "spread-a",
+      "target": "spread-b"
+    },
+    {
+      "source": "cluster-a",
+      "target": "cluster-blocked",
+      "dashed": true
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "id": "ec2-purchase-option-decision",
+  "title": "구매 옵션은 세 가지 질문에서 갈린다",
+  "subtitle": "중단 허용도, 약정 가능 기간, 라이선스 단위가 각각 다른 가지로 이어진다. 용량 보장은 이 셋과 별개의 축이다.",
+  "layout": {
+    "col_gap": 48,
+    "row_gap": 42
+  },
+  "nodes": [
+    {
+      "id": "workload",
+      "kind": "box",
+      "label": "워크로드 요구",
+      "detail": "중단 허용도와 약정 기간과 라이선스 단위를 먼저 분리한다",
+      "role": "external",
+      "col": 0,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "q-license",
+      "kind": "box",
+      "label": "물리 소켓과 코어 단위 라이선스인가",
+      "detail": "감사와 host affinity 가 필요한지 확인한다",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "q-interrupt",
+      "kind": "box",
+      "label": "2분 통지로 중단을 견디는가",
+      "detail": "stateless 이고 체크포인트가 있는 작업인지 확인한다",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "dedicated-host",
+      "kind": "box",
+      "label": "Dedicated Host",
+      "detail": "소켓과 코어와 host ID 가 보인다. placement group 에 넣을 수 없다",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "dedicated-instance",
+      "kind": "box",
+      "label": "Dedicated Instance",
+      "detail": "단일 테넌시만 필요할 때. BYOL 은 SQL Server License Mobility 와 Windows VDA 만",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "spot",
+      "kind": "box",
+      "label": "Spot",
+      "detail": "가격은 EC2 가 조정한다. 최대 가격을 지정하면 중단이 늘어난다",
+      "role": "compute",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "q-commit",
+      "kind": "box",
+      "label": "1년 또는 3년 지출을 약정할 수 있는가",
+      "detail": "약정은 구매 후 취소할 수 없다",
+      "role": "process",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "savings-plans",
+      "kind": "box",
+      "label": "Savings Plans 또는 Reserved Instances",
+      "detail": "요금 할인만 준다. 어떤 형태로도 용량을 예약하지 않는다",
+      "role": "queue",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "id": "on-demand",
+      "kind": "box",
+      "label": "On-Demand",
+      "detail": "약정 없는 기준 가격. 변동분과 검증 구간이 여기 남는다",
+      "role": "queue",
+      "col": 3,
+      "row": 4
+    },
+    {
+      "id": "capacity-axis",
+      "kind": "box",
+      "label": "특정 AZ 용량 보장이 필요하면 별도로 겹친다",
+      "detail": "On-Demand Capacity Reservation 또는 zonal RI. ODCR 위에 Savings Plans 요금이 적용된다",
+      "role": "danger",
+      "col": 3,
+      "row": 1,
+      "rowspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "workload",
+      "target": "q-license"
+    },
+    {
+      "source": "workload",
+      "target": "q-interrupt"
+    },
+    {
+      "source": "q-license",
+      "target": "dedicated-host"
+    },
+    {
+      "source": "q-license",
+      "target": "dedicated-instance"
+    },
+    {
+      "source": "q-interrupt",
+      "target": "spot"
+    },
+    {
+      "source": "q-interrupt",
+      "target": "q-commit"
+    },
+    {
+      "source": "q-commit",
+      "target": "savings-plans",
+      "emphasis": true
+    },
+    {
+      "source": "q-commit",
+      "target": "on-demand"
+    },
+    {
+      "source": "savings-plans",
+      "target": "capacity-axis",
+      "dashed": true
+    }
+  ]
+}

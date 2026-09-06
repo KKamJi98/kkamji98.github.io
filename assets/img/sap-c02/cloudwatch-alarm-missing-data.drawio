@@ -1,0 +1,93 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="cloudwatch-alarm-missing-data" name="결측 처리 설정은 데이터가 모자랄 때만 개입한다">
+    <mxGraphModel dx="2196" dy="388" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2196" pageHeight="388" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="2172.5" height="364.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="결측 처리 설정은 데이터가 모자랄 때만 개입한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="2128.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="알람은 evaluation periods 보다 넓은 범위에서 데이터포인트를 모은다. 실제 데이터가 충분하면 결측 처리 설정은 쓰이지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="2128.5" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="datapoints" value="메트릭 데이터포인트&#xa;period 는 고해상도 알람이면 10초 또는 30초, 그 외에는 60의 배수" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="202" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="range" value="evaluation range 수집&#xa;evaluation periods 보다 넓은 구간에서 가져온다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="378" y="202" width="241" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="enough" value="데이터포인트가 evaluation periods 이상인가&#xa;충분하면 결측 처리 설정은 무시된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="665" y="202" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="m-of-n" value="M out of N 판정&#xa;가장 오래된 breaching 이 M 만큼 오래됐고 이후가 breaching 이나 missing 뿐이면 ALARM 이다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="971" y="104" width="445" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="treatment" value="결측 처리 설정&#xa;기본 missing, 그 외 notBreaching, breaching, ignore. DynamoDB 네임스페이스만 기본이 ignore 다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="933" y="300" width="522" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="alarm" value="ALARM&#xa;임계를 넘었다고 판정한 상태" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1527" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ok" value="OK&#xa;notBreaching 이면 데이터가 없어도 여기에 머문다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1501" y="202" width="228" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="insufficient" value="INSUFFICIENT_DATA&#xa;기본값 missing 에서 범위가 전부 비면 도달한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="300" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="action" value="알람 action&#xa;상태가 바뀔 때만 1회. Auto Scaling action 만 새 상태를 유지하는 동안 분당 반복한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1775" y="104" width="388" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="datapoints-to-range" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="datapoints" target="range">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="range-to-enough" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="range" target="enough">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="enough-to-m-of-n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="enough" target="m-of-n">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="910.0" y="229.0" />
+              <mxPoint x="910.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="enough-to-treatment" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="enough" target="treatment">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="910.0" y="229.0" />
+              <mxPoint x="910.0" y="327.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-of-n-to-alarm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m-of-n" target="alarm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m-of-n-to-ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m-of-n" target="ok">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1478.0" y="131.0" />
+              <mxPoint x="1478.0" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="treatment-to-insufficient" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="treatment" target="insufficient">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="treatment-to-ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="treatment" target="ok">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1478.0" y="327.0" />
+              <mxPoint x="1478.0" y="229.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="alarm-to-action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="alarm" target="action">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,107 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="regional-failover-trigger-layers" name="리전 전환을 만드는 계층과 만들지 못하는 계층">
+    <mxGraphModel dx="985" dy="698" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="985" pageHeight="698" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="961.94" height="674.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="리전 전환을 만드는 계층과 만들지 못하는 계층" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="917.94" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="control plane 조작에 의존하는 경로는 리전 장애 중에 신뢰할 수 없다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="917.94" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="region-switch" value="리전 단위 전환을 만든다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="258" y="104" width="470" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="not-region-switch" value="리전 단위 전환 수단으로는 성립하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="272" y="388" width="443" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="클라이언트 요청&#xa;primary 리전이 응답하지 않는 상태" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="146" width="176" height="518" as="geometry" />
+        </mxCell>
+        <mxCell id="r53-failover" value="Route 53 health check failover&#xa;data plane 동작이지만 클라이언트 DNS 캐시 TTL 의 영향을 받는다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.route_53;" vertex="1" parent="1">
+          <mxGeometry x="469" y="146" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="arc-routing" value="ARC routing control&#xa;RECOVERY_CONTROL 타입 health check 를 on/off 로 전환하는 data plane API" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="280" y="272" width="426" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ga-dial" value="Global Accelerator traffic dial&#xa;anycast IP 라 DNS 캐시는 없지만 dial 조정은 control plane operation 이다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.global_accelerator;" vertex="1" parent="1">
+          <mxGeometry x="469" y="430" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cf-origin" value="CloudFront origin failover&#xa;실패한 요청만 secondary 로 가고 이후 요청은 다시 primary 로 간다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="469" y="556" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dr-region" value="DR 리전 엔드포인트&#xa;전환이 성립해야 트래픽이 도달한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="776" y="146" width="176" height="518" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-r53-failover" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="r53-failover">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="245.0" y="405.0" />
+              <mxPoint x="245.0" y="170.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="client-to-arc-routing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="arc-routing">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="245.0" y="405.0" />
+              <mxPoint x="245.0" y="299.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="client-to-ga-dial" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="ga-dial">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="245.0" y="405.0" />
+              <mxPoint x="245.0" y="454.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="client-to-cf-origin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="cf-origin">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="245.0" y="405.0" />
+              <mxPoint x="245.0" y="580.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r53-failover-to-dr-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="r53-failover" target="dr-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="741.0" y="170.0" />
+              <mxPoint x="741.0" y="405.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arc-routing-to-dr-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="arc-routing" target="dr-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="741.0" y="299.0" />
+              <mxPoint x="741.0" y="405.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ga-dial-to-dr-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga-dial" target="dr-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="741.0" y="454.0" />
+              <mxPoint x="741.0" y="405.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cf-origin-to-dr-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cf-origin" target="dr-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="741.0" y="580.0" />
+              <mxPoint x="741.0" y="405.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

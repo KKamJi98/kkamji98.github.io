@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "modernization-integration-choice-boundaries",
+  "title": "순서와 버퍼와 라우팅과 사람 승인이 통합 서비스를 갈라놓는다",
+  "subtitle": "모놀리스의 동기 호출을 분리할 때 각 요구가 큐와 토픽과 이벤트 버스와 워크플로 중 하나를 선택하게 한다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 50
+  },
+  "nodes": [
+    {
+      "id": "monolith",
+      "kind": "box",
+      "label": "모놀리스 모듈",
+      "detail": "기존 동기 호출",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "requirements",
+      "kind": "box",
+      "label": "분리 요구",
+      "detail": "순서, 처리 속도, 라우팅, 승인",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "ordered-buffer",
+      "kind": "box",
+      "label": "순서와 소비자별 버퍼",
+      "detail": "FIFO 토픽과 FIFO 큐",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "content-routing",
+      "kind": "box",
+      "label": "콘텐츠 기반 라우팅",
+      "detail": "이벤트 패턴과 대상",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "human-approval",
+      "kind": "box",
+      "label": "긴 대기와 콜백",
+      "detail": "비멱등 작업과 승인",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "sns",
+      "kind": "service",
+      "service": "sns",
+      "label": "SNS FIFO",
+      "detail": "팬아웃과 필터",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "sqs",
+      "kind": "service",
+      "service": "sqs",
+      "label": "SQS FIFO",
+      "detail": "소비자별 보존과 순서",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "eventbridge",
+      "kind": "service",
+      "service": "eventbridge",
+      "label": "Amazon EventBridge",
+      "detail": "rule 기반 라우팅",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "step-functions",
+      "kind": "service",
+      "service": "step_functions",
+      "label": "Step Functions Standard",
+      "detail": "긴 실행과 callback",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "monolith", "target": "requirements" },
+    { "source": "requirements", "target": "ordered-buffer", "emphasis": true },
+    { "source": "requirements", "target": "content-routing" },
+    { "source": "requirements", "target": "human-approval" },
+    { "source": "ordered-buffer", "target": "sns", "emphasis": true },
+    { "source": "sns", "target": "sqs", "emphasis": true },
+    { "source": "content-routing", "target": "eventbridge" },
+    { "source": "human-approval", "target": "step-functions" }
+  ]
+}

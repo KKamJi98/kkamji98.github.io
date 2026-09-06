@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "id": "data-store-access-pattern-matrix",
+  "title": "액세스 패턴이 데이터 계층을 고른다",
+  "subtitle": "서비스 이름이 아니라 지문에 적힌 액세스 패턴이 선지를 좁힌다. 각 상자의 부제가 그 선택을 강제하는 제약이다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 30
+  },
+  "nodes": [
+    {
+      "id": "p-key",
+      "kind": "box",
+      "label": "키 하나로 아이템 조회",
+      "detail": "초당 수십만 건, 스키마가 유동적",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "s-ddb",
+      "kind": "service",
+      "service": "dynamodb",
+      "label": "DynamoDB",
+      "detail": "아이템 400 KB, 1 MB 페이지, LSI 는 생성 시점에만",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "p-microsec",
+      "kind": "box",
+      "label": "같은 아이템에 읽기가 집중",
+      "detail": "마이크로초 지연, 코드 변경 최소화",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "s-dax",
+      "kind": "service",
+      "service": "dynamodb",
+      "label": "DAX",
+      "detail": "eventually consistent 읽기만 가속, VPC 전용",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "p-session",
+      "kind": "box",
+      "label": "세션과 리더보드, 복합 자료구조",
+      "detail": "여러 데이터 소스 앞단 캐싱",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "s-cache",
+      "kind": "service",
+      "service": "elasticache",
+      "label": "ElastiCache",
+      "detail": "cache-aside 로직은 애플리케이션이 쓴다",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "p-relational",
+      "kind": "box",
+      "label": "관계형 스키마와 조인, 읽기 확장",
+      "detail": "reader 를 여러 개 두고 failover 도 필요",
+      "role": "process",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "s-aurora",
+      "kind": "service",
+      "service": "aurora",
+      "label": "Aurora",
+      "detail": "reader 최대 15 개, 공유 클러스터 볼륨",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "p-engine",
+      "kind": "box",
+      "label": "엔진을 그대로 유지",
+      "detail": "커밋 손실 방지와 대기 노드 읽기",
+      "role": "process",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "s-rds",
+      "kind": "service",
+      "service": "rds",
+      "label": "RDS Multi-AZ DB cluster",
+      "detail": "reader 2 개, NVMe 계열 인스턴스만",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "p-posix",
+      "kind": "box",
+      "label": "여러 AZ 인스턴스가 같은 디렉터리 공유",
+      "detail": "표준 POSIX 인터페이스",
+      "role": "process",
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "s-efs",
+      "kind": "service",
+      "service": "efs",
+      "label": "EFS",
+      "detail": "Archive 는 Elastic throughput 에서만",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "p-block",
+      "kind": "box",
+      "label": "인스턴스 하나가 붙는 블록 I/O",
+      "detail": "IOPS 와 처리량을 수치로 요구",
+      "role": "process",
+      "col": 0,
+      "row": 6
+    },
+    {
+      "id": "s-ebs",
+      "kind": "service",
+      "service": "ebs",
+      "label": "EBS",
+      "detail": "gp3 는 80,000 IOPS 와 2,000 MiB/s 까지",
+      "col": 1,
+      "row": 6
+    },
+    {
+      "id": "p-object",
+      "kind": "box",
+      "label": "객체 보관과 수명주기",
+      "detail": "접근 빈도가 시간에 따라 떨어진다",
+      "role": "process",
+      "col": 0,
+      "row": 7
+    },
+    {
+      "id": "s-s3",
+      "kind": "service",
+      "service": "s3",
+      "label": "S3",
+      "detail": "최소 저장 기간과 최소 과금 크기가 선택을 가른다",
+      "col": 1,
+      "row": 7
+    }
+  ],
+  "edges": [
+    { "source": "p-key", "target": "s-ddb" },
+    { "source": "p-microsec", "target": "s-dax" },
+    { "source": "p-session", "target": "s-cache" },
+    { "source": "p-relational", "target": "s-aurora" },
+    { "source": "p-engine", "target": "s-rds" },
+    { "source": "p-posix", "target": "s-efs" },
+    { "source": "p-block", "target": "s-ebs" },
+    { "source": "p-object", "target": "s-s3" }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "id": "migration-7r-decision-tree",
+  "title": "7R 은 질문 다섯 개를 순서대로 통과한 결과다",
+  "subtitle": "분류가 먼저 오는 것이 아니라 사용률, 등가물, 대체 가능성, 이동 단위, 변경 범위 순으로 걸러진다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "assessment",
+      "kind": "box",
+      "label": "포트폴리오 평가 완료",
+      "detail": "사용률, 의존성, 라이선스, 소유자 수집",
+      "role": "surface",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "q-used",
+      "kind": "box",
+      "label": "아직 쓰이고 있는가",
+      "detail": "90일 평균 사용률과 inbound connection",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "out-retire",
+      "kind": "box",
+      "label": "retire",
+      "detail": "5% 미만은 zombie, 5%에서 20%는 idle",
+      "role": "danger",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "q-equivalent",
+      "kind": "box",
+      "label": "클라우드 등가물이 있는가",
+      "detail": "mainframe, mid-range, non-x86 Unix 여부",
+      "role": "process",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "out-retain",
+      "kind": "box",
+      "label": "retain",
+      "detail": "IBM AS/400, Oracle Solaris, 데이터 residency 규제",
+      "role": "danger",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "q-saas",
+      "kind": "box",
+      "label": "상용 제품으로 대체할 수 있는가",
+      "detail": "라이선스에서 SaaS 로 이동 가능성",
+      "role": "process",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "out-repurchase",
+      "kind": "box",
+      "label": "repurchase",
+      "detail": "구매 뒤에 교육, 데이터 이전, AD 통합, 네트워킹이 남는다",
+      "role": "queue",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "q-unit",
+      "kind": "box",
+      "label": "이동 단위가 서버인가 플랫폼인가",
+      "detail": "플랫폼 통째 또는 다른 VPC, Region, 계정",
+      "role": "process",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "out-relocate",
+      "kind": "box",
+      "label": "relocate",
+      "detail": "아키텍처 변경 없음, 재구매와 재작성 없음",
+      "role": "queue",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "q-change",
+      "kind": "box",
+      "label": "옮기면서 무엇을 바꾸는가",
+      "detail": "OS 와 애플리케이션 코드의 변경 범위",
+      "role": "process",
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "out-rehost",
+      "kind": "box",
+      "label": "rehost",
+      "detail": "아무것도 바꾸지 않는다. MGN, Cloud Migration Factory, VM Import/Export",
+      "role": "compute",
+      "col": 0,
+      "row": 6
+    },
+    {
+      "id": "out-replatform",
+      "kind": "box",
+      "label": "replatform",
+      "detail": "플랫폼만 바꾼다. SQL Server 를 RDS 로, Graviton 전환, App2Container",
+      "role": "compute",
+      "col": 1,
+      "row": 6
+    },
+    {
+      "id": "out-refactor",
+      "kind": "box",
+      "label": "refactor",
+      "detail": "코드를 다시 쓴다. 대규모 마이그레이션에는 권장되지 않는다",
+      "role": "danger",
+      "col": 2,
+      "row": 6
+    }
+  ],
+  "edges": [
+    { "source": "assessment", "target": "q-used" },
+    { "source": "q-used", "target": "out-retire" },
+    { "source": "q-used", "target": "q-equivalent" },
+    { "source": "q-equivalent", "target": "out-retain" },
+    { "source": "q-equivalent", "target": "q-saas" },
+    { "source": "q-saas", "target": "out-repurchase" },
+    { "source": "q-saas", "target": "q-unit" },
+    { "source": "q-unit", "target": "out-relocate" },
+    { "source": "q-unit", "target": "q-change" },
+    { "source": "q-change", "target": "out-rehost", "emphasis": true },
+    { "source": "q-change", "target": "out-replatform" },
+    { "source": "q-change", "target": "out-refactor", "dashed": true }
+  ]
+}

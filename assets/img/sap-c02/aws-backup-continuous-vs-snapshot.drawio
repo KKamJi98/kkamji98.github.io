@@ -1,0 +1,69 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="aws-backup-continuous-vs-snapshot" name="AWS Backup 의 두 rule 은 보존 기간에서 갈라져 다시 만나지 않는다">
+    <mxGraphModel dx="1348" dy="392" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1348" pageHeight="392" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1324.7" height="368.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="AWS Backup 의 두 rule 은 보존 기간에서 갈라져 다시 만나지 않는다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1280.7" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="continuous backup 은 35 일에서 끝나고 cold storage 로 내려갈 수 없다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1280.7" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="plan" value="backup plan&#xa;리소스 1 개는 continuous backup 을 1 개만 가진다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="continuous" value="continuous backup rule&#xa;1 초 정밀도, 최대 35 일. 전체 백업 1 회 뒤 트랜잭션 로그를 잇는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="351" y="104" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-only" value="warm storage 에 머문다&#xa;cold 전환은 최소 90 일 보관을 요구해 35 일 상한과 충돌한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="715" y="104" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rds-copy" value="RDS 는 사본을 만들 수 없다&#xa;트랜잭션 로그 복사를 허용하지 않아 snapshot 을 만들어 복사한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1042" y="104" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="snapshot" value="snapshot backup rule&#xa;최소 1 시간 주기, 최장 100 년 보존" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="409" y="204" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="copy" value="cross-Region 과 cross-account copy&#xa;첫 복사는 full, 같은 vault 와 같은 키면 이후 incremental" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="700" y="204" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cold" value="cold storage 전환&#xa;지원 리소스만 가능하다. RDS, Aurora, EC2, S3 는 지원 표시가 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="338" y="304" width="317" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="cold-nocopy" value="cold tier 는 복사 대상이 아니다&#xa;cross-Region copy 를 지원하지 않고 최소 90 일 보관이 걸린다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="700" y="304" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="plan-to-continuous" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="plan" target="continuous">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="plan-to-snapshot" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="plan" target="snapshot">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="322.5" y="131.0" />
+              <mxPoint x="322.5" y="231.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="continuous-to-warm-only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="continuous" target="warm-only">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warm-only-to-rds-copy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="warm-only" target="rds-copy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="snapshot-to-copy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="snapshot" target="copy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="snapshot-to-cold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0.5016;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="snapshot" target="cold">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cold-to-cold-nocopy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cold" target="cold-nocopy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

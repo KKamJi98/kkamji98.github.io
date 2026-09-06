@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "savings-plans-discount-order",
+  "title": "커밋 할인은 정해진 순서로 사용분을 채운다",
+  "subtitle": "EC2 Reserved Instances 가 먼저, 그다음 EC2 Instance Savings Plans, 마지막이 Compute Savings Plans 다. 어느 것도 덮지 못한 사용분만 On-Demand 요율로 남는다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "usage",
+      "kind": "box",
+      "label": "그 시간의 사용분",
+      "detail": "시간당 commitment 는 그 시간 안에서만 쓰이고 이월되지 않는다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "ri",
+      "kind": "box",
+      "label": "1. EC2 Reserved Instances",
+      "detail": "구성이 일치하는 사용분을 먼저 가져간다",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ec2sp",
+      "kind": "box",
+      "label": "2. EC2 Instance Savings Plans",
+      "detail": "Region 과 instance family 고정, 최대 72% off",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "computesp",
+      "kind": "box",
+      "label": "3. Compute Savings Plans",
+      "detail": "family, size, Region, OS, tenancy 무관. Fargate 와 Lambda 포함, 최대 66% off",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "ondemand",
+      "kind": "box",
+      "label": "남은 사용분",
+      "detail": "On-Demand 요율로 과금된다",
+      "role": "danger",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "excluded",
+      "kind": "box",
+      "label": "커밋 할인이 닿지 않는 항목",
+      "detail": "Spot 사용분, RI 가 이미 덮은 사용분, 데이터 전송, NAT Gateway 처리 요금, Dedicated Instance 의 리전당 시간당 요금",
+      "role": "danger",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "capacity",
+      "kind": "box",
+      "label": "용량은 별도 문제다",
+      "detail": "Savings Plans 는 capacity reservation 을 제공하지 않는다",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "usage",
+      "target": "ri"
+    },
+    {
+      "source": "ri",
+      "target": "ec2sp"
+    },
+    {
+      "source": "ec2sp",
+      "target": "computesp"
+    },
+    {
+      "source": "computesp",
+      "target": "ondemand",
+      "emphasis": true
+    },
+    {
+      "source": "usage",
+      "target": "excluded",
+      "dashed": true
+    },
+    {
+      "source": "computesp",
+      "target": "capacity",
+      "dashed": true
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "modernization-database-target-selection",
+  "title": "데이터 모델과 운영 제약이 관리형 데이터베이스 타깃을 결정한다",
+  "subtitle": "관계형 호환성, key-value 액세스 패턴, 검색 요구, OS 수준 제어를 순서대로 확인한다.",
+  "layout": {
+    "col_gap": 58,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "legacy-db",
+      "kind": "box",
+      "label": "기존 데이터베이스",
+      "detail": "엔진, 스키마, 액세스 패턴",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "model-check",
+      "kind": "box",
+      "label": "요구사항 판정",
+      "detail": "관계형, key-value, 검색, OS 제어",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "relational",
+      "kind": "box",
+      "label": "관계형 호환성이 핵심",
+      "detail": "조인과 트랜잭션을 유지",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "key-value",
+      "kind": "box",
+      "label": "액세스 패턴이 key-value",
+      "detail": "대규모 분산 처리",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "search",
+      "kind": "box",
+      "label": "검색과 분석이 핵심",
+      "detail": "문서와 검색 인덱스",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "os-control",
+      "kind": "box",
+      "label": "엔진 옵션과 OS 제어 필요",
+      "detail": "관리형 지원 범위 밖",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "rds",
+      "kind": "service",
+      "service": "rds",
+      "label": "RDS 또는 Aurora",
+      "detail": "replatform",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "dynamodb",
+      "kind": "service",
+      "service": "dynamodb",
+      "label": "Amazon DynamoDB",
+      "detail": "key-value 모델",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "opensearch",
+      "kind": "service",
+      "service": "opensearch",
+      "label": "Amazon OpenSearch",
+      "detail": "검색과 분석",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "self-managed",
+      "kind": "service",
+      "service": "ec2",
+      "label": "EC2 self-managed",
+      "detail": "rehost, 운영 부담 유지",
+      "col": 3,
+      "row": 3
+    }
+  ],
+  "edges": [
+    { "source": "legacy-db", "target": "model-check" },
+    { "source": "model-check", "target": "relational" },
+    { "source": "model-check", "target": "key-value", "emphasis": true },
+    { "source": "model-check", "target": "search" },
+    { "source": "model-check", "target": "os-control" },
+    { "source": "relational", "target": "rds" },
+    { "source": "key-value", "target": "dynamodb", "emphasis": true },
+    { "source": "search", "target": "opensearch" },
+    { "source": "os-control", "target": "self-managed" }
+  ]
+}

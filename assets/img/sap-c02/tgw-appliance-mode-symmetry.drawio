@@ -1,0 +1,71 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="tgw-appliance-mode-symmetry" name="appliance mode를 켜지 않으면 응답이 다른 AZ의 어플라이언스로 돌아간다">
+    <mxGraphModel dx="798" dy="520" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="798" pageHeight="520" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="774.64" height="496.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="appliance mode를 켜지 않으면 응답이 다른 AZ의 어플라이언스로 돌아간다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="730.64" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="같은 출발지와 목적지에서도 성공과 실패가 섞이는 증상의 원인이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="730.64" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="mode-off" value="appliance mode 끔" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="717" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="mode-on" value="appliance mode 켬" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="34" y="368" width="731" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="off-src" value="출발지 VPC AZ-a&#xa;요청 방향" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="off-appl-a" value="검사 어플라이언스 AZ-a&#xa;여기서 세션이 생성된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="298" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="off-dst" value="목적지 VPC&#xa;응답을 되돌려 보낸다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="553" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="off-appl-b" value="검사 어플라이언스 AZ-b&#xa;세션 테이블에 없는 패킷" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="298" y="246" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="off-drop" value="드롭&#xa;같은 조합인데 성공과 실패가 섞인다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="246" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="on-src" value="출발지 VPC AZ-a&#xa;요청과 응답이 같은 AZ" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="56" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="on-appl" value="검사 어플라이언스 AZ-a&#xa;flow 전체가 같은 AZ로 고정된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#5F6368;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="298" y="410" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="on-dst" value="목적지 VPC&#xa;TGW를 여러 개 두면 stickiness가 깨진다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="540" y="410" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="off-src-to-off-appl-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="off-src" target="off-appl-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="off-appl-a-to-off-dst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="off-appl-a" target="off-dst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="off-dst-to-off-appl-b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="off-dst" target="off-appl-b">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="641.0" y="273.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="off-appl-b-to-off-drop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="off-appl-b" target="off-drop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="on-src-to-on-appl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="on-src" target="on-appl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="on-appl-to-on-dst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;startArrow=classic;startFill=1;startSize=7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="on-appl" target="on-dst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

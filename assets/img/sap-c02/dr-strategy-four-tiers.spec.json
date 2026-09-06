@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "id": "dr-strategy-four-tiers",
+  "title": "DR 전략 4 종은 추가 조치 없이 요청을 처리할 수 있는가에서 갈린다",
+  "subtitle": "오른쪽으로 갈수록 비용과 복잡도가 오르고 복구 시간이 내려간다.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "needs-action",
+      "kind": "plain",
+      "label": "전환 후 추가 조치가 필요하다",
+      "members": ["bnr", "pilot", "bnr-state", "pilot-state"]
+    },
+    {
+      "id": "serves-now",
+      "kind": "plain",
+      "label": "추가 조치 없이 요청을 처리한다",
+      "members": ["warm", "multi", "warm-state", "multi-state"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "bnr",
+      "kind": "box",
+      "label": "backup and restore",
+      "detail": "복원 자체가 control plane operation 이다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "pilot",
+      "kind": "box",
+      "label": "pilot light",
+      "detail": "Elastic Disaster Recovery 가 쓰는 전략",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "warm",
+      "kind": "box",
+      "label": "warm standby",
+      "detail": "축소 용량으로 즉시 트래픽을 받는다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "multi",
+      "kind": "box",
+      "label": "multi-site active/active",
+      "detail": "failover 라는 개념 자체가 없다",
+      "role": "compute",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "bnr-state",
+      "kind": "box",
+      "label": "DR 리전에 백업 사본만 있다",
+      "detail": "복원과 배포를 재해 이후에 시작한다",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "pilot-state",
+      "kind": "box",
+      "label": "데이터 복제와 꺼진 코어 인프라",
+      "detail": "서버 기동, 비핵심 인프라 배포, 확장이 남아 있다",
+      "role": "store",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "warm-state",
+      "kind": "box",
+      "label": "축소 규모가 상시 가동된다",
+      "detail": "확장은 필요하지만 요청 처리는 이미 가능하다",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "multi-state",
+      "kind": "box",
+      "label": "프로덕션 전량이 상시 가동된다",
+      "detail": "같은 규모를 active/passive 로 두면 hot standby 다",
+      "role": "store",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "source": "bnr", "target": "pilot" },
+    { "source": "pilot", "target": "warm", "emphasis": true },
+    { "source": "warm", "target": "multi" },
+    { "source": "bnr", "target": "bnr-state", "dashed": true },
+    { "source": "pilot", "target": "pilot-state", "dashed": true },
+    { "source": "warm", "target": "warm-state", "dashed": true },
+    { "source": "multi", "target": "multi-state", "dashed": true }
+  ]
+}

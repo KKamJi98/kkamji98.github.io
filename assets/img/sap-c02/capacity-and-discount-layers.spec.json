@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "id": "capacity-and-discount-layers",
+  "title": "요금 할인과 용량 확보는 서로 다른 층이다",
+  "subtitle": "Savings Plans 와 regional RI 는 용량을 예약하지 않고, ODCR 은 요금을 깎지 않는다. 두 축을 모두 가진 것은 zonal RI 하나다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 40
+  },
+  "containers": [
+    {
+      "id": "layer-discount",
+      "kind": "plain",
+      "label": "요금 할인 수단  용량을 예약하지 않는다",
+      "members": [
+        "compute-sp",
+        "ec2-sp",
+        "convertible-ri",
+        "standard-ri",
+        "regional-ri"
+      ]
+    },
+    {
+      "id": "layer-capacity",
+      "kind": "plain",
+      "label": "용량 확보 수단  요금 할인이 없다",
+      "members": [
+        "odcr",
+        "capacity-block"
+      ]
+    },
+    {
+      "id": "layer-both",
+      "kind": "plain",
+      "label": "두 축을 동시에 가진 유일한 수단",
+      "members": [
+        "zonal-ri"
+      ],
+      "dashed": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "need-discount",
+      "kind": "box",
+      "label": "상시 baseline 지출을 줄인다",
+      "detail": "앞으로 1년 또는 3년 유지될 사용량",
+      "role": "external",
+      "col": 0,
+      "row": 1,
+      "rowspan": 2
+    },
+    {
+      "id": "need-capacity",
+      "kind": "box",
+      "label": "정해진 시각에 AZ 용량을 확보한다",
+      "detail": "InsufficientInstanceCapacity 를 만들지 않아야 하는 구간",
+      "role": "external",
+      "col": 0,
+      "row": 6,
+      "rowspan": 2
+    },
+    {
+      "id": "compute-sp",
+      "kind": "box",
+      "label": "Compute Savings Plans",
+      "detail": "최대 66%. family 와 size 와 Region 과 OS 와 tenancy 무관, Fargate 와 Lambda 포함",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ec2-sp",
+      "kind": "box",
+      "label": "EC2 Instance Savings Plans",
+      "detail": "최대 72%. 리전과 인스턴스 패밀리 고정, Fargate 와 Lambda 제외",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "convertible-ri",
+      "kind": "box",
+      "label": "Convertible Reserved Instance",
+      "detail": "최대 66%. exchange 가능, Marketplace 매도 불가",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "standard-ri",
+      "kind": "box",
+      "label": "Standard Reserved Instance",
+      "detail": "최대 72%. exchange 불가, Marketplace 매도 가능",
+      "role": "queue",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "regional-ri",
+      "kind": "box",
+      "label": "regional scope Reserved Instance",
+      "detail": "AZ 유연성과 size 유연성. 용량은 예약하지 않는다",
+      "role": "queue",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "odcr",
+      "kind": "box",
+      "label": "On-Demand Capacity Reservation",
+      "detail": "즉시형은 약정이 없고 언제든 취소된다. 미사용 상태에서도 On-Demand 한도를 소모한다",
+      "role": "store",
+      "col": 1,
+      "row": 6
+    },
+    {
+      "id": "capacity-block",
+      "kind": "box",
+      "label": "Capacity Blocks for ML",
+      "detail": "날짜가 정해진 GPU 클러스터 확보. placement group 을 지원하지 않는다",
+      "role": "store",
+      "col": 1,
+      "row": 7
+    },
+    {
+      "id": "zonal-ri",
+      "kind": "box",
+      "label": "zonal scope Reserved Instance",
+      "detail": "지정 AZ 에 용량을 예약하고 요금도 깎는다. AZ 유연성과 size 유연성은 없다",
+      "role": "compute",
+      "col": 1,
+      "row": 9
+    },
+    {
+      "id": "stacked",
+      "kind": "box",
+      "label": "ODCR 위에 Savings Plans 요금이 적용된다",
+      "detail": "zonal RI 할인은 ODCR 에 적용되지 않는다. Spot 사용분에는 Savings Plans 가 적용되지 않는다",
+      "role": "danger",
+      "col": 2,
+      "row": 6,
+      "rowspan": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "need-discount",
+      "target": "compute-sp"
+    },
+    {
+      "source": "need-discount",
+      "target": "ec2-sp"
+    },
+    {
+      "source": "need-discount",
+      "target": "convertible-ri"
+    },
+    {
+      "source": "need-discount",
+      "target": "standard-ri"
+    },
+    {
+      "source": "need-discount",
+      "target": "regional-ri"
+    },
+    {
+      "source": "need-capacity",
+      "target": "odcr",
+      "emphasis": true
+    },
+    {
+      "source": "need-capacity",
+      "target": "capacity-block"
+    },
+    {
+      "source": "need-capacity",
+      "target": "zonal-ri"
+    },
+    {
+      "source": "odcr",
+      "target": "stacked",
+      "dashed": true
+    }
+  ]
+}

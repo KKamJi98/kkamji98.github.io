@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "capacity-versus-discount-matrix",
+  "title": "용량 확보와 요금 할인은 서로 다른 메커니즘이다",
+  "subtitle": "둘을 동시에 주는 것은 Zonal Reserved Instance 하나뿐이고, 나머지는 겹쳐 써야 둘 다 얻는다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "need",
+      "kind": "box",
+      "label": "워크로드 요구",
+      "detail": "무엇이 필요한지 먼저 나눈다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "cap",
+      "kind": "box",
+      "label": "지정 AZ 의 용량 보장",
+      "detail": "중단되면 재실행 비용이 큰 작업",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "disc",
+      "kind": "box",
+      "label": "요금 할인",
+      "detail": "장기간 안정적인 기본 부하",
+      "role": "process",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "odcr",
+      "kind": "box",
+      "label": "On-Demand Capacity Reservation",
+      "detail": "즉시 사용형은 약정 없이 언제든 취소. 할인은 없고 미사용 상태에서도 과금된다",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "zonal",
+      "kind": "box",
+      "label": "Zonal Reserved Instance",
+      "detail": "지정 AZ 에 용량을 예약하고 할인도 준다. AZ 유연성과 size 유연성과 queuing 이 없다",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "sp",
+      "kind": "box",
+      "label": "Savings Plans",
+      "detail": "시간당 금액 약정. 취소와 교환이 불가능하고 용량을 주지 않는다",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "rri",
+      "kind": "box",
+      "label": "Regional Reserved Instance",
+      "detail": "AZ 유연성과 purchase queuing 이 있고 용량을 예약하지 않는다",
+      "role": "store",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "combo",
+      "kind": "box",
+      "label": "ODCR 위에 커밋을 겹친다",
+      "detail": "Capacity Reservation 이 용량을, Savings Plans 나 Regional RI 가 할인을 담당한다",
+      "role": "queue",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "need",
+      "target": "cap"
+    },
+    {
+      "source": "need",
+      "target": "disc"
+    },
+    {
+      "source": "cap",
+      "target": "odcr"
+    },
+    {
+      "source": "cap",
+      "target": "zonal"
+    },
+    {
+      "source": "disc",
+      "target": "zonal"
+    },
+    {
+      "source": "disc",
+      "target": "sp"
+    },
+    {
+      "source": "disc",
+      "target": "rri"
+    },
+    {
+      "source": "odcr",
+      "target": "combo",
+      "emphasis": true
+    },
+    {
+      "source": "sp",
+      "target": "combo",
+      "emphasis": true
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "data-transfer-online-vs-physical",
+  "title": "전송량과 회선과 허용 기간 세 값이 온라인 전송과 물리 전송을 가른다",
+  "subtitle": "회선 대역폭만으로는 결정되지 않는다. 사용률과 하루 가용 시간이 같은 자리의 입력값이다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "data-size",
+      "kind": "box",
+      "label": "DATA_SIZE",
+      "detail": "옮길 데이터 총량 bytes",
+      "role": "store",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "circuit",
+      "kind": "box",
+      "label": "CIRCUIT x NETWORK_UTILIZATION",
+      "detail": "회선 bps 와 실효 사용률",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "hours",
+      "kind": "box",
+      "label": "AVAILABLE_HOURS",
+      "detail": "하루에 전송에 쓸 수 있는 시간",
+      "role": "store",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "formula",
+      "kind": "box",
+      "label": "이론 최소 전송 일수",
+      "detail": "DATA_SIZE x 8 을 나머지 곱으로 나눈다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "cutover",
+      "kind": "box",
+      "label": "cutover 시간 보정",
+      "detail": "대규모 마이그레이션에서 전체의 최대 30% 를 차지한다",
+      "role": "danger",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "deadline",
+      "kind": "box",
+      "label": "허용 기간과 비교",
+      "detail": "보정한 값이 기한 안에 들어오는가",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "fit",
+      "kind": "box",
+      "label": "기한 안에 들어온다",
+      "detail": "현재 회선으로 충분하다",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "over",
+      "kind": "box",
+      "label": "기한을 넘긴다",
+      "detail": "회선을 늘리거나 물리 전송으로 간다",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "datasync",
+      "kind": "box",
+      "label": "DataSync 온라인 전송",
+      "detail": "스케줄, 재시도, 무결성 검증 포함",
+      "role": "compute",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "hosted",
+      "kind": "service",
+      "service": "direct_connect",
+      "label": "기간 한정 hosted connection",
+      "detail": "Partner 가 생성하고 사용자가 accept 한다",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "physical",
+      "kind": "box",
+      "label": "Data Transfer Terminal 또는 파트너",
+      "detail": "Snow Family 는 신규 고객 주문 불가",
+      "role": "external",
+      "col": 4,
+      "row": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "data-size",
+      "target": "formula"
+    },
+    {
+      "source": "circuit",
+      "target": "formula"
+    },
+    {
+      "source": "hours",
+      "target": "formula"
+    },
+    {
+      "source": "formula",
+      "target": "cutover",
+      "dashed": true
+    },
+    {
+      "source": "formula",
+      "target": "deadline"
+    },
+    {
+      "source": "deadline",
+      "target": "fit"
+    },
+    {
+      "source": "deadline",
+      "target": "over"
+    },
+    {
+      "source": "fit",
+      "target": "datasync",
+      "emphasis": true
+    },
+    {
+      "source": "over",
+      "target": "hosted",
+      "emphasis": true
+    },
+    {
+      "source": "over",
+      "target": "physical"
+    }
+  ]
+}

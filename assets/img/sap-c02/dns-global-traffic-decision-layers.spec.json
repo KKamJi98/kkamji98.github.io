@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "dns-global-traffic-decision-layers",
+  "title": "요청이 어디로 갈지는 세 계층에서 각각 결정된다",
+  "subtitle": "DNS 응답은 TTL에, 애니캐스트 IP는 연결 수명에, 엣지 캐시는 캐시 히트 여부에 묶인다.",
+  "layout": {
+    "col_gap": 54,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "layer-dns",
+      "kind": "plain",
+      "label": "1. DNS 응답 계층",
+      "members": ["dns-lever", "route53"]
+    },
+    {
+      "id": "layer-anycast",
+      "kind": "plain",
+      "label": "2. 애니캐스트 IP 계층",
+      "members": ["anycast-lever", "global-accelerator"]
+    },
+    {
+      "id": "layer-cache",
+      "kind": "plain",
+      "label": "3. 엣지 캐시 계층",
+      "members": ["cache-lever", "cloudfront"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "클라이언트 요청",
+      "detail": "이름 해석에서 시작한다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "dns-lever",
+      "kind": "box",
+      "label": "라우팅 정책과 health check",
+      "detail": "전환 지연은 TTL과 resolver 캐시가 만든다",
+      "role": "process",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "route53",
+      "kind": "service",
+      "service": "route53",
+      "label": "Route 53 응답",
+      "detail": "어느 리전의 주소를 줄지 정한다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "anycast-lever",
+      "kind": "box",
+      "label": "traffic dial과 endpoint weight",
+      "detail": "기존 연결은 idle timeout까지 유지된다",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "global-accelerator",
+      "kind": "service",
+      "service": "global_accelerator",
+      "label": "Global Accelerator",
+      "detail": "고정 IP로 받고 캐시하지 않는다",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "cache-lever",
+      "kind": "box",
+      "label": "캐시 키와 TTL과 origin group",
+      "detail": "minimum TTL이 오리진 지시를 덮는다",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "cloudfront",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront 엣지",
+      "detail": "히트면 오리진에 가지 않는다",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "origin",
+      "kind": "box",
+      "label": "리전 오리진",
+      "detail": "세 계층을 통과한 요청만 도달한다",
+      "role": "store",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "client", "target": "route53" },
+    { "id": "e2", "source": "route53", "target": "global-accelerator" },
+    { "id": "e3", "source": "global-accelerator", "target": "cloudfront" },
+    { "id": "e4", "source": "cloudfront", "target": "origin", "emphasis": true },
+    { "id": "e5", "source": "dns-lever", "target": "route53" },
+    { "id": "e6", "source": "anycast-lever", "target": "global-accelerator" },
+    { "id": "e7", "source": "cache-lever", "target": "cloudfront" }
+  ]
+}

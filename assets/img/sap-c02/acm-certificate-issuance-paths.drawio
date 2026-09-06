@@ -1,0 +1,96 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="acm-certificate-issuance-paths" name="인증서가 설치될 위치가 발급 경로와 private key 의 보유 주체를 정한다">
+    <mxGraphModel dx="1224" dy="550" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1224" pageHeight="550" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1200.08" height="526.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="인증서가 설치될 위치가 발급 경로와 private key 의 보유 주체를 정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1156.08" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="AWS 통합 서비스에 붙일 것인지 서버에 설치할 것인지가 첫 갈림이고, 갱신 배포 책임이 두 번째 갈림이다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1156.08" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement" value="TLS 인증서가 설치될 위치&#xa;공인 신뢰가 필요한가, 내부 PKI 인가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="250" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="acm-standard" value="ACM 일반 공인 인증서&#xa;private key 를 AWS 가 단독 보유, 반출 불가" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.certificate_manager_3;" vertex="1" parent="1">
+          <mxGeometry x="375" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="acm-exportable" value="exportable public certificate&#xa;요청 시점에만 지정, 유효기간 198일, 인증서 자체 과금" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.certificate_manager_3;" vertex="1" parent="1">
+          <mxGeometry x="375" y="234" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="acm-acme" value="ACM ACME 경로&#xa;Certbot 이나 cert-manager 가 키를 생성하고 보유한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="266" y="364" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="private-ca" value="AWS Private CA&#xa;사설 CA 계층, 공인 신뢰 체인이 아니다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="311" y="462" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="aws-endpoint" value="ELB 와 CloudFront 와 API Gateway&#xa;CloudFront 용은 us-east-1 필수, ACM 이 갱신과 재바인딩까지 한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="588" y="120" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="self-managed" value="EC2 와 컨테이너와 온프레미스&#xa;passphrase 로 암호화된 key 를 export, 재배포는 사용자 몫" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="604" y="250" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="acme-target" value="자체 관리 인프라&#xa;ACM 인벤토리에 보이지만 AWS 통합 서비스에 바인딩할 수 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="624" y="364" width="254" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-pki" value="내부 서비스와 클라이언트 인증&#xa;사설 인증서 export 로 자체 배포" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="662" y="462" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="region-scope" value="인증서는 리전 리소스다&#xa;리전 간 복사가 불가하므로 리전마다 요청하거나 임포트한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="968" y="120" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="requirement-to-acm-standard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="acm-standard">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="277.0" />
+              <mxPoint x="238.0" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="requirement-to-acm-exportable" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="acm-exportable">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="277.0" />
+              <mxPoint x="238.0" y="258.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="requirement-to-acm-acme" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="acm-acme">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="277.0" />
+              <mxPoint x="238.0" y="391.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="requirement-to-private-ca" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="requirement" target="private-ca">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="277.0" />
+              <mxPoint x="238.0" y="489.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="acm-standard-to-aws-endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="acm-standard" target="aws-endpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="acm-exportable-to-self-managed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="acm-exportable" target="self-managed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="acm-acme-to-acme-target" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="acm-acme" target="acme-target">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="private-ca-to-internal-pki" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="private-ca" target="internal-pki">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aws-endpoint-to-region-scope" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aws-endpoint" target="region-scope">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

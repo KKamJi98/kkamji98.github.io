@@ -1,0 +1,58 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="savings-plans-discount-order" name="커밋 할인은 정해진 순서로 사용분을 채운다">
+    <mxGraphModel dx="1908" dy="294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1908" pageHeight="294" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1884.46" height="270.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="커밋 할인은 정해진 순서로 사용분을 채운다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1840.46" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="EC2 Reserved Instances 가 먼저, 그다음 EC2 Instance Savings Plans, 마지막이 Compute Savings Plans 다. 어느 것도 덮지 못한 사용분만 On-Demand 요율로 남는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1840.46" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="usage" value="그 시간의 사용분&#xa;시간당 commitment 는 그 시간 안에서만 쓰이고 이월되지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="178" y="104" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ri" value="1. EC2 Reserved Instances&#xa;구성이 일치하는 사용분을 먼저 가져간다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="640" y="104" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2sp" value="2. EC2 Instance Savings Plans&#xa;Region 과 instance family 고정, 최대 72% off" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="869" y="104" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="computesp" value="3. Compute Savings Plans&#xa;family, size, Region, OS, tenancy 무관. Fargate 와 Lambda 포함, 최대 66% off" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1188" y="104" width="464" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ondemand" value="남은 사용분&#xa;On-Demand 요율로 과금된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1698" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="excluded" value="커밋 할인이 닿지 않는 항목&#xa;Spot 사용분, RI 가 이미 덮은 사용분, 데이터 전송, NAT Gateway 처리 요금, Dedicated Instance 의 리전당 시간당 요금" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="206" width="560" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity" value="용량은 별도 문제다&#xa;Savings Plans 는 capacity reservation 을 제공하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1258" y="206" width="324" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="usage-to-ri" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usage" target="ri">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ri-to-ec2sp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ri" target="ec2sp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2sp-to-computesp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ec2sp" target="computesp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="computesp-to-ondemand" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="computesp" target="ondemand">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="usage-to-excluded" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5009;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usage" target="excluded">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="computesp-to-capacity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="computesp" target="capacity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

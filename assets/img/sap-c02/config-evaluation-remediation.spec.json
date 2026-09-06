@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "id": "config-evaluation-remediation",
+  "title": "Config 는 구성 상태를 평가하고 교정은 SSM Automation 이 실행한다",
+  "subtitle": "proactive 평가는 배포를 막지 않고, aggregator 는 읽기만 한다. 교정 경로는 detective 평가에서만 이어진다.",
+  "layout": {
+    "col_gap": 46,
+    "row_gap": 44
+  },
+  "nodes": [
+    {
+      "id": "change",
+      "kind": "box",
+      "label": "리소스 구성 변경",
+      "detail": "생성, 수정, 삭제",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "recorder",
+      "kind": "service",
+      "service": "config",
+      "label": "configuration recorder",
+      "detail": "계정당 리전당 1개, continuous 또는 daily, global IAM 4종은 기본 제외",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "proactive",
+      "kind": "box",
+      "label": "proactive evaluation",
+      "detail": "배포 전에 평가만 한다",
+      "role": "process",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "rule",
+      "kind": "box",
+      "label": "Config rule 평가 (detective)",
+      "detail": "trigger 는 configuration change, periodic, hybrid",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "no-block",
+      "kind": "box",
+      "label": "차단도 교정도 하지 않는다",
+      "detail": "생성 자체를 막으려면 SCP 나 CloudFormation Hooks 가 필요하다",
+      "role": "danger",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "compliant",
+      "kind": "box",
+      "label": "COMPLIANT",
+      "detail": "나머지 결과는 ERROR 와 NOT_APPLICABLE",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "noncompliant",
+      "kind": "box",
+      "label": "NON_COMPLIANT",
+      "detail": "교정 경로가 여기서만 이어진다",
+      "role": "danger",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "aggregator",
+      "kind": "box",
+      "label": "Config aggregator",
+      "detail": "read-only 집계. 여기서 rule 을 배포하거나 snapshot 을 밀어넣을 수 없다",
+      "role": "process",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "automation",
+      "kind": "box",
+      "label": "SSM Automation document",
+      "detail": "재시도 횟수와 시간 창을 지정한다. 실행마다 Automation 요금이 붙는다",
+      "role": "process",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "fixed",
+      "kind": "box",
+      "label": "교정 완료",
+      "detail": "주기적 compliance 스냅샷 기준이라 이미 준수된 리소스에도 실행될 수 있다",
+      "role": "store",
+      "col": 5,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "change",
+      "target": "recorder"
+    },
+    {
+      "source": "recorder",
+      "target": "rule"
+    },
+    {
+      "source": "change",
+      "target": "proactive",
+      "dashed": true
+    },
+    {
+      "source": "proactive",
+      "target": "no-block",
+      "dashed": true
+    },
+    {
+      "source": "rule",
+      "target": "compliant"
+    },
+    {
+      "source": "rule",
+      "target": "noncompliant",
+      "emphasis": true
+    },
+    {
+      "source": "compliant",
+      "target": "aggregator",
+      "dashed": true
+    },
+    {
+      "source": "noncompliant",
+      "target": "automation",
+      "emphasis": true
+    },
+    {
+      "source": "automation",
+      "target": "fixed"
+    }
+  ]
+}

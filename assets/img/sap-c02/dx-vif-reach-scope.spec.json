@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "id": "dx-vif-reach-scope",
+  "title": "같은 회선 위의 VIF 세 종류가 도달하는 대상이 다르다",
+  "subtitle": "종단점이 달라서 MTU 상한, prefix 상한, SiteLink 가능 여부가 함께 갈린다.",
+  "layout": {
+    "col_gap": 62,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "onprem",
+      "kind": "corporate",
+      "label": "온프레미스",
+      "members": ["cgw"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cgw",
+      "kind": "box",
+      "label": "고객 라우터",
+      "detail": "VIF마다 BGP 세션 하나",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "dx",
+      "kind": "service",
+      "service": "direct_connect",
+      "label": "Direct Connect 연결",
+      "detail": "dedicated는 VIF 51개, hosted는 1개",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "private-vif",
+      "kind": "box",
+      "label": "private VIF",
+      "detail": "MTU 1500 또는 9001, 수신 prefix 기본 100",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "public-vif",
+      "kind": "box",
+      "label": "public VIF",
+      "detail": "jumbo 미지원, prefix 1,000 고정, SiteLink 미지원",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "transit-vif",
+      "kind": "box",
+      "label": "transit VIF",
+      "detail": "dedicated당 4개, MTU 1500 또는 8500",
+      "role": "process",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "vgw",
+      "kind": "service",
+      "service": "vpn_gateway",
+      "label": "Virtual private gateway",
+      "detail": "VPC 하나에만 attach",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "aws-public",
+      "kind": "box",
+      "label": "AWS public prefix 전체",
+      "detail": "S3, EC2 public IP, 서비스 API endpoint",
+      "role": "surface",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "dxgw",
+      "kind": "box",
+      "label": "Direct Connect gateway",
+      "detail": "VGW 20개 또는 TGW 6개",
+      "role": "process",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "vpc-one",
+      "kind": "service",
+      "service": "vpc",
+      "label": "VPC",
+      "detail": "private IP로 도달",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "tgw",
+      "kind": "service",
+      "service": "transit_gateway",
+      "label": "Transit Gateway",
+      "detail": "attachment 전체가 도달 범위",
+      "col": 4,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {"source": "cgw", "target": "dx", "emphasis": true},
+    {"source": "dx", "target": "private-vif"},
+    {"source": "dx", "target": "public-vif"},
+    {"source": "dx", "target": "transit-vif"},
+    {"source": "private-vif", "target": "vgw"},
+    {"source": "vgw", "target": "vpc-one"},
+    {"source": "public-vif", "target": "aws-public"},
+    {"source": "transit-vif", "target": "dxgw"},
+    {"source": "dxgw", "target": "tgw"}
+  ]
+}

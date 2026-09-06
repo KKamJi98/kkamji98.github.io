@@ -1,0 +1,83 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="deployment-rollback-paths" name="새 버전을 어디에 띄우는지가 롤백 동작과 노출 구간을 정한다">
+    <mxGraphModel dx="1366" dy="474" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1366" pageHeight="474" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1342.88" height="450.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="새 버전을 어디에 띄우는지가 롤백 동작과 노출 구간을 정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1298.88" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="기존 인스턴스에 덮어쓰는 방식만 되돌리는 데 재배포가 필요하고, 실패한 버전이 트래픽을 받는 구간이 생긴다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1298.88" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="in-place" value="기존 인스턴스에 덮어쓴다&#xa;Beanstalk All at once 와 Rolling, CodeDeploy EC2 의 OneAtATime 과 HalfAtATime" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="496" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="second-asg" value="같은 환경 안에 두 번째 Auto Scaling group 을 띄운다&#xa;Beanstalk Immutable 과 Traffic splitting" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="146" y="198" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="second-env" value="환경 자체를 하나 더 만든다&#xa;Beanstalk Blue/Green" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="194" y="292" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="second-tg" value="두 번째 target group 에 새 task set 을 띄운다&#xa;CodeDeploy ECS blue/green. production listener 1개와 target group 2개가 필요하다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="40" y="386" width="483" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="redeploy" value="이전 버전을 다시 배포한다&#xa;Rolling 과 Rolling with an additional batch 는 single-instance 환경을 지원하지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="582" y="104" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="terminate-new" value="새 인스턴스를 종료한다&#xa;인스턴스를 전부 교체하므로 누적된 EC2 burst balance 가 사라진다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="678" y="198" width="298" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="url-swap" value="URL 을 다시 swap 한다&#xa;공식 비교표에서 DNS 변경이 필요한 유일한 방식이다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="722" y="292" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="listener-back" value="listener 를 원래 target group 으로 되돌린다&#xa;NLB 를 쓰면 ECSAllAtOnce 만 지원하므로 점진 이동 자체가 없다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="681" y="386" width="292" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="exposed" value="실패한 버전이 트래픽을 받는 구간이 있다&#xa;배치 하나가 서비스에서 빠진 상태로 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="not-exposed" value="전환 전까지 사용자는 이전 버전만 본다&#xa;헬스체크와 알람으로 전환 여부를 판단할 시간이 생긴다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1124" y="292" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="in-place-to-redeploy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="in-place" target="redeploy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="second-asg-to-terminate-new" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="second-asg" target="terminate-new">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="second-env-to-url-swap" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="second-env" target="url-swap">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="second-tg-to-listener-back" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="second-tg" target="listener-back">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="redeploy-to-exposed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="redeploy" target="exposed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="terminate-new-to-not-exposed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="terminate-new" target="not-exposed">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1050.0" y="225.0" />
+              <mxPoint x="1050.0" y="319.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="url-swap-to-not-exposed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="url-swap" target="not-exposed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="listener-back-to-not-exposed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="listener-back" target="not-exposed">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="1050.0" y="413.0" />
+              <mxPoint x="1050.0" y="319.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

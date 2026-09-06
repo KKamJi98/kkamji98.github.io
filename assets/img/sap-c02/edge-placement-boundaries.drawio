@@ -1,0 +1,101 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="edge-placement-boundaries" name="엣지 배치는 시설 소유자와 진입 게이트웨이로 갈린다">
+    <mxGraphModel dx="852" dy="768" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="852" pageHeight="768" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="828.82" height="744.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="엣지 배치는 시설 소유자와 진입 게이트웨이로 갈린다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="784.82" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="누가 시설을 운영하는지와 어떤 게이트웨이로 트래픽이 들어오는지가 배치 선택을 결정한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="784.82" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="aws-sites" value="AWS 가 운영하는 위치" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="268" y="104" width="317" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="carrier-site" value="통신사 데이터센터" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="274" y="456" width="304" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="customer-site" value="고객이 확보한 시설" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="281" y="616" width="291" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="internet-user" value="인터넷 사용자&#xa;유선과 일반 모바일 회선" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="carrier-user" value="통신사 네트워크 단말&#xa;5G 단말, 통신사 안에서만 진입" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="498" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-user" value="시설 내부 시스템&#xa;공정 제어망, 데이터 레지던시 대상" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="658" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="az" value="리전 가용 영역&#xa;internet gateway 로 진입한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="338" y="146" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="lz" value="Local Zone&#xa;자체 인터넷과 Direct Connect; zone마다 서비스가 다르다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="290" y="242" width="273" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="wl" value="Wavelength Zone&#xa;carrier gateway 전용; 일반 인터넷 inbound 불가" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="296" y="498" width="260" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="outpost" value="Outposts&#xa;LGW 또는 LNI 로 붙는다. 데이터가 시설을 벗어나지 않는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F3E8FD;strokeColor=#A142F4;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="303" y="658" width="247" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="parent-region" value="부모 리전 control plane&#xa;네 배치 모두 리전에 묶여 관리된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="643" y="360" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="internet-user-to-az" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="internet-user" target="az">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="internet-user-to-lz" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="internet-user" target="lz">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="250.0" y="173.0" />
+              <mxPoint x="250.0" y="269.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="carrier-user-to-wl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="carrier-user" target="wl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-user-to-outpost" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem-user" target="outpost">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="az-to-parent-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="az" target="parent-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="603.0" y="173.0" />
+              <mxPoint x="603.0" y="387.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lz-to-parent-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lz" target="parent-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="603.0" y="269.0" />
+              <mxPoint x="603.0" y="387.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wl-to-parent-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wl" target="parent-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="603.0" y="525.0" />
+              <mxPoint x="603.0" y="387.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="outpost-to-parent-region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="outpost" target="parent-region">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="603.0" y="685.0" />
+              <mxPoint x="603.0" y="387.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

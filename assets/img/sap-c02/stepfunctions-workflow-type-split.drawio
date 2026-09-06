@@ -1,0 +1,74 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="stepfunctions-workflow-type-split" name="Step Functions 실행 의미가 워크플로 타입을 가른다">
+    <mxGraphModel dx="1076" dy="400" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1076" pageHeight="400" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1052.96" height="376.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Step Functions 실행 의미가 워크플로 타입을 가른다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1008.96" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Standard는 exactly-once와 긴 실행을, Express는 짧은 실행과 서로 다른 중복 의미를 제공한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1008.96" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="workflow-trigger" value="Workflow trigger&#xa;request or event" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="208" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="type-choice" value="Choose workflow type&#xa;execution semantics first" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="268" y="208" width="184" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="standard-workflow" value="Standard&#xa;exactly-once, 1 year, .sync and callback" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="510" y="104" width="279" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="async-express" value="Asynchronous Express&#xa;at-least-once, 5 minutes" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="561" y="208" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-express" value="Synchronous Express&#xa;at-most-once, 5 minutes" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="561" y="312" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="standard-task" value="Long or non-idempotent task&#xa;.sync or waitForTaskToken" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="847" y="104" width="196" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="async-task" value="Idempotent task&#xa;high-rate event processing" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="850" y="208" width="190" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-task" value="Short request task&#xa;synchronous response" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="857" y="312" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="workflow-trigger-to-type-choice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="workflow-trigger" target="type-choice">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="type-choice-to-standard-workflow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="type-choice" target="standard-workflow">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="481.0" y="235.0" />
+              <mxPoint x="481.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="type-choice-to-async-express" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="type-choice" target="async-express">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="type-choice-to-sync-express" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="type-choice" target="sync-express">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="481.0" y="235.0" />
+              <mxPoint x="481.0" y="339.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="standard-workflow-to-standard-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="standard-workflow" target="standard-task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="async-express-to-async-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="async-express" target="async-task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-express-to-sync-task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sync-express" target="sync-task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

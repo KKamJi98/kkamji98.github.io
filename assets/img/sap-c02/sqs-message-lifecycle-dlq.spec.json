@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "sqs-message-lifecycle-dlq",
+  "title": "SQS 실패 메시지는 maxReceiveCount 뒤에 DLQ로 이동한다",
+  "subtitle": "visibility timeout 만료는 재수신을 만들고, 성공 시 DeleteMessage가 제거하며, 반복 실패만 DLQ로 빠진다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "producer",
+      "kind": "box",
+      "label": "Producer",
+      "detail": "SendMessage",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "source-queue",
+      "kind": "service",
+      "service": "sqs",
+      "label": "Source queue",
+      "detail": "retention up to 14 days",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "in-flight",
+      "kind": "box",
+      "label": "In-flight",
+      "detail": "visibility timeout up to 12 hours",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "consumer",
+      "kind": "box",
+      "label": "Consumer",
+      "detail": "ReceiveMessage",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "deleted",
+      "kind": "box",
+      "label": "Deleted",
+      "detail": "DeleteMessage succeeds",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "retry",
+      "kind": "box",
+      "label": "Retry",
+      "detail": "visibility expires",
+      "role": "queue",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "dead-letter-queue",
+      "kind": "service",
+      "service": "sqs",
+      "label": "Dead-letter queue",
+      "detail": "maxReceiveCount reached",
+      "role": "danger",
+      "col": 5,
+      "row": 2
+    }
+  ],
+  "edges": [
+    { "source": "producer", "target": "source-queue", "emphasis": true },
+    { "source": "source-queue", "target": "in-flight" },
+    { "source": "in-flight", "target": "consumer" },
+    { "source": "consumer", "target": "deleted" },
+    { "source": "consumer", "target": "retry", "dashed": true },
+    { "source": "retry", "target": "source-queue", "dashed": true },
+    { "source": "consumer", "target": "dead-letter-queue", "dashed": true }
+  ]
+}
