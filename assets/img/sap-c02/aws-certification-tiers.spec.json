@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "aws-certification-tiers",
+  "title": "SAP-C02는 Professional 등급 셋 중 아키텍트 축이다",
+  "subtitle": "같은 열이 같은 직무 축이다. Associate에서 Professional로 올라가는 사다리가 열마다 다르다.",
+  "layout": {
+    "col_gap": 40,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "tier-specialty",
+      "kind": "plain",
+      "label": "Specialty  특정 기술 영역",
+      "members": [
+        "security-spec",
+        "networking-spec"
+      ]
+    },
+    {
+      "id": "tier-professional",
+      "kind": "plain",
+      "label": "Professional  권장 경험 2년 이상",
+      "members": [
+        "sa-pro",
+        "genai-pro",
+        "devops-pro"
+      ]
+    },
+    {
+      "id": "tier-associate",
+      "kind": "plain",
+      "label": "Associate  직무별 기술 역량",
+      "members": [
+        "sa-assoc",
+        "mle-assoc",
+        "data-assoc",
+        "cloudops-assoc",
+        "dev-assoc"
+      ]
+    },
+    {
+      "id": "tier-foundational",
+      "kind": "plain",
+      "label": "Foundational  사전 경험 불필요",
+      "members": [
+        "cloud-practitioner",
+        "ai-practitioner"
+      ]
+    },
+    {
+      "id": "tier-business",
+      "kind": "plain",
+      "label": "Business  구현이 아니라 도입 전략",
+      "members": [
+        "ai-business"
+      ],
+      "dashed": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "security-spec",
+      "kind": "box",
+      "label": "Security",
+      "detail": "SCS-C03",
+      "role": "compute",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "networking-spec",
+      "kind": "box",
+      "label": "Advanced Networking",
+      "detail": "ANS-C01, 2026-12-31 종료",
+      "role": "compute",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "sa-pro",
+      "kind": "box",
+      "label": "Solutions Architect",
+      "detail": "SAP-C02, 이 시리즈의 목표",
+      "role": "store",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "genai-pro",
+      "kind": "box",
+      "label": "Generative AI Developer",
+      "detail": "AIP-C01",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "devops-pro",
+      "kind": "box",
+      "label": "DevOps Engineer",
+      "detail": "DOP-C02",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "sa-assoc",
+      "kind": "box",
+      "label": "Solutions Architect",
+      "detail": "SAA-C03",
+      "role": "surface",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "mle-assoc",
+      "kind": "box",
+      "label": "Machine Learning Engineer",
+      "detail": "MLA-C01, MLA-C02 베타",
+      "role": "surface",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "data-assoc",
+      "kind": "box",
+      "label": "Data Engineer",
+      "detail": "DEA-C01",
+      "role": "surface",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "cloudops-assoc",
+      "kind": "box",
+      "label": "CloudOps Engineer",
+      "detail": "SOA-C03",
+      "role": "surface",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "dev-assoc",
+      "kind": "box",
+      "label": "Developer",
+      "detail": "DVA-C02",
+      "role": "surface",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "cloud-practitioner",
+      "kind": "box",
+      "label": "Cloud Practitioner",
+      "detail": "CLF-C02",
+      "role": "external",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "ai-practitioner",
+      "kind": "box",
+      "label": "AI Practitioner",
+      "detail": "AIF-C01",
+      "role": "external",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "ai-business",
+      "kind": "box",
+      "label": "AI Business Strategist",
+      "detail": "AIB-C01, 베타",
+      "role": "queue",
+      "col": 2,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "sa-assoc",
+      "target": "sa-pro",
+      "emphasis": true
+    },
+    {
+      "source": "dev-assoc",
+      "target": "devops-pro"
+    }
+  ]
+}

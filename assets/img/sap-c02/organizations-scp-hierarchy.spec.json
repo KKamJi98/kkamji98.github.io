@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "organizations-scp-hierarchy",
+  "title": "SCP는 경로의 모든 레벨에서 교집합으로 걸린다",
+  "subtitle": "Root, OU, 계정 어디에나 붙는다. management account의 principal만 SCP를 비켜간다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 52
+  },
+  "nodes": [
+    {
+      "id": "mgmt-account",
+      "kind": "box",
+      "label": "management account",
+      "detail": "SCP 적용 안 됨",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "org-root",
+      "kind": "box",
+      "label": "Root",
+      "detail": "조직 최상단, SCP 부착 지점",
+      "col": 1,
+      "row": 0,
+      "role": "process"
+    },
+    {
+      "id": "security-ou",
+      "kind": "box",
+      "label": "Security OU",
+      "detail": "SCP 부착 지점",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "workloads-ou",
+      "kind": "box",
+      "label": "Workloads OU",
+      "detail": "SCP 부착 지점",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "audit-account",
+      "kind": "box",
+      "label": "Audit 계정",
+      "detail": "SCP 적용",
+      "role": "store",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "log-archive",
+      "kind": "box",
+      "label": "Log archive 계정",
+      "detail": "SCP 적용",
+      "role": "store",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "prod-account",
+      "kind": "box",
+      "label": "Prod 계정",
+      "detail": "root user까지 SCP 적용",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "org-root",
+      "target": "mgmt-account",
+      "dashed": true
+    },
+    {
+      "source": "org-root",
+      "target": "security-ou"
+    },
+    {
+      "source": "org-root",
+      "target": "workloads-ou"
+    },
+    {
+      "source": "security-ou",
+      "target": "audit-account"
+    },
+    {
+      "source": "security-ou",
+      "target": "log-archive"
+    },
+    {
+      "source": "workloads-ou",
+      "target": "prod-account",
+      "emphasis": true
+    }
+  ]
+}

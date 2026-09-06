@@ -1,0 +1,61 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="identity-center-login-flow" name="permission set은 대상 계정의 IAM role로 구체화된다">
+    <mxGraphModel dx="1053" dy="362" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1053" pageHeight="362" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1029.98" height="338.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="permission set은 대상 계정의 IAM role로 구체화된다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="985.98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Identity Center는 신원을 한곳에 두고, 계정마다 role을 찍어낸다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="985.98" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="workforce-user" value="구성원&#xa;AWS access portal 로그인" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#232F3E;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.user;" vertex="1" parent="1">
+          <mxGeometry x="85" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="external-idp" value="외부 IdP&#xa;SAML 2.0 인증, SCIM 프로비저닝" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="236" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-center" value="IAM Identity Center&#xa;계정당 인스턴스 1개" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="509" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="permission-set" value="Permission set&#xa;정책 묶음 정의" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="654" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="role-prod" value="Prod 계정의 IAM role&#xa;provisioning된 결과" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" vertex="1" parent="1">
+          <mxGeometry x="927" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="role-dev" value="Dev 계정의 IAM role&#xa;같은 permission set" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" vertex="1" parent="1">
+          <mxGeometry x="927" y="242" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="workforce-user-to-external-idp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="workforce-user" target="external-idp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="external-idp-to-identity-center" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="external-idp" target="identity-center">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-center-to-permission-set" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="identity-center" target="permission-set">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="permission-set-to-role-prod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="permission-set" target="role-prod">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="878.5" y="147.0" />
+              <mxPoint x="878.5" y="128.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="permission-set-to-role-dev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.5;exitY=1;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="permission-set" target="role-dev">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="742.0" y="266.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

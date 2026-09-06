@@ -1,0 +1,70 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="control-tower-landing-zone" name="Control Tower가 만들어 주는 것은 Security OU와 계정 두 개다">
+    <mxGraphModel dx="983" dy="460" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="983" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="959.92" height="436.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Control Tower가 만들어 주는 것은 Security OU와 계정 두 개다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="915.92" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Infrastructure OU와 Workloads OU는 권장 구성일 뿐 자동 생성되지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="915.92" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="self-made" value="직접 만들어야 하는 OU" style="rounded=0;whiteSpace=wrap;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;strokeWidth=1.25;dashed=1;dashPattern=6 6;" vertex="1" parent="1">
+          <mxGeometry x="471" y="308" width="479" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="control-tower" value="AWS Control Tower&#xa;Organizations, Service Catalog, Identity Center를 오케스트레이션" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="381" height="156" as="geometry" />
+        </mxCell>
+        <mxCell id="security-ou" value="Security OU&#xa;자동 생성" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="507" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="sandbox-ou" value="Sandbox OU&#xa;생성 시 선택" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="507" y="206" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="log-archive" value="Log archive 계정&#xa;자동 생성" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="752" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="audit-account" value="Audit 계정&#xa;자동 생성" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="752" y="206" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-ou" value="Infrastructure OU&#xa;Network, Backup, Identity 계정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="493" y="350" width="203" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="workloads-ou" value="Workloads OU&#xa;Prod, Staging 계정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="752" y="350" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="control-tower-to-security-ou" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="control-tower" target="security-ou">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="461.0" y="182.0" />
+              <mxPoint x="461.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="control-tower-to-sandbox-ou" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="control-tower" target="sandbox-ou">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="461.0" y="182.0" />
+              <mxPoint x="461.0" y="233.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="security-ou-to-log-archive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="security-ou" target="log-archive">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="security-ou-to-audit-account" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="security-ou" target="audit-account">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="717.5" y="131.0" />
+              <mxPoint x="717.5" y="233.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

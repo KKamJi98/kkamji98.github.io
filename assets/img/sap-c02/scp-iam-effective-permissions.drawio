@@ -1,0 +1,72 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="scp-iam-effective-permissions" name="유효 권한은 세 정책의 교집합이다">
+    <mxGraphModel dx="716" dy="460" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="716" pageHeight="460" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="692.0" height="436.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="유효 권한은 세 정책의 교집합이다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="648.0" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="SCP는 한도를 정할 뿐 권한을 주지 않는다. 셋 중 하나라도 허용하지 않으면 요청은 거부된다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="648.0" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="scp-gate" value="SCP&#xa;조직이 정한 최대 한도" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.organizations;" vertex="1" parent="1">
+          <mxGeometry x="98" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary-gate" value="Permission boundary&#xa;principal의 최대 한도" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="238" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-gate" value="Identity policy&#xa;실제로 권한을 부여한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="98" y="340" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="effective" value="유효 권한&#xa;세 정책이 모두 허용한 것만 남는다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="270" y="238" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="allowed" value="허용&#xa;API 호출이 수행된다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="506" y="120" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="denied" value="암묵적 거부&#xa;하나라도 빠지면 차단" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="506" y="356" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="scp-gate-to-effective" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="scp-gate" target="effective">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="240.0" y="128.0" />
+              <mxPoint x="240.0" y="265.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="boundary-gate-to-effective" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="boundary-gate" target="effective">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-gate-to-effective" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="identity-gate" target="effective">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="240.0" y="364.0" />
+              <mxPoint x="240.0" y="265.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="effective-to-allowed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="effective" target="allowed">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="476.0" y="265.0" />
+              <mxPoint x="476.0" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="effective-to-denied" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="effective" target="denied">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="476.0" y="265.0" />
+              <mxPoint x="476.0" y="383.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

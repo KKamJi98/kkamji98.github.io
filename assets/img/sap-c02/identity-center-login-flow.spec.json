@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "identity-center-login-flow",
+  "title": "permission set은 대상 계정의 IAM role로 구체화된다",
+  "subtitle": "Identity Center는 신원을 한곳에 두고, 계정마다 role을 찍어낸다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 52
+  },
+  "nodes": [
+    {
+      "id": "workforce-user",
+      "kind": "service",
+      "service": "user",
+      "label": "구성원",
+      "detail": "AWS access portal 로그인",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "external-idp",
+      "kind": "box",
+      "label": "외부 IdP",
+      "detail": "SAML 2.0 인증, SCIM 프로비저닝",
+      "role": "external",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "identity-center",
+      "kind": "service",
+      "service": "iam",
+      "label": "IAM Identity Center",
+      "detail": "계정당 인스턴스 1개",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "permission-set",
+      "kind": "box",
+      "label": "Permission set",
+      "detail": "정책 묶음 정의",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "role-prod",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "Prod 계정의 IAM role",
+      "detail": "provisioning된 결과",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "role-dev",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "Dev 계정의 IAM role",
+      "detail": "같은 permission set",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "workforce-user",
+      "target": "external-idp"
+    },
+    {
+      "source": "external-idp",
+      "target": "identity-center"
+    },
+    {
+      "source": "identity-center",
+      "target": "permission-set"
+    },
+    {
+      "source": "permission-set",
+      "target": "role-prod",
+      "emphasis": true
+    },
+    {
+      "source": "permission-set",
+      "target": "role-dev",
+      "emphasis": true
+    }
+  ]
+}

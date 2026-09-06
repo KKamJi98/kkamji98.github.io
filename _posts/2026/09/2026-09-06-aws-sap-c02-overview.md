@@ -28,15 +28,19 @@ AWS는 이 시험이 검증하는 것을 `advanced technical skills and experien
 
 ## 1. AWS 인증 체계에서 SAP의 위치
 
-AWS 인증은 다섯 갈래로 나뉩니다. 기술 등급 네 개에 더해, 기술 구현이 아니라 도입 전략을 다루는 Business 갈래가 따로 있습니다.
+AWS 인증은 다섯 갈래로 나뉩니다. 기술 등급 네 개에 더해 Business 갈래가 따로 있습니다. Business는 클라우드와 AI를 비즈니스 성과로 연결하는 전략 역량을 검증하고 기술 경험을 요구하지 않아서, 솔루션을 직접 만들지 않는 사람을 대상으로 합니다.
+
+![AWS 자격증 등급 구조. Foundational, Associate, Professional, Specialty 네 등급과 Business 갈래로 나뉘며 같은 열이 같은 직무 축을 이룬다](/assets/img/sap-c02/aws-certification-tiers.webp)
+
+세로가 등급이고 가로가 직무 축입니다. 맨 왼쪽 열을 보면 Solutions Architect - Associate 위에 Solutions Architect - Professional이 놓입니다. 두 상자를 잇는 화살표가 이 시리즈가 오르려는 사다리이고, 오른쪽 끝의 Developer에서 DevOps Engineer로 향하는 화살표가 그에 대응하는 다른 축입니다. Professional 등급에서 데이터 열이 비어 있는 것은 아직 그 자리에 해당하는 자격증이 없기 때문입니다.
 
 | 등급 | 자격증 (시험 코드) |
 | :--- | :--- |
 | Business | AI Business Strategist (AIB-C01, 베타) |
-| Foundational | Cloud Practitioner (CLF-C02), AI Practitioner (AIF-C01) |
-| Associate | Solutions Architect (SAA-C03), Developer (DVA-C02), CloudOps Engineer (SOA-C03), Data Engineer (DEA-C01), Machine Learning Engineer (MLA-C01, MLA-C02 베타 진행 중) |
-| Professional | **Solutions Architect - Professional (SAP-C02)**, DevOps Engineer - Professional (DOP-C02), Generative AI Developer - Professional (AIP-C01) |
-| Specialty | Advanced Networking (ANS-C01, 2026-12-31 종료 예정), Security (SCS-C03) |
+| Foundational | Cloud Practitioner (CLF-C02)<br>AI Practitioner (AIF-C01) |
+| Associate | Solutions Architect (SAA-C03)<br>Developer (DVA-C02)<br>CloudOps Engineer (SOA-C03)<br>Data Engineer (DEA-C01)<br>Machine Learning Engineer (MLA-C01, MLA-C02 베타 진행 중) |
+| Professional | **Solutions Architect - Professional (SAP-C02)**<br>DevOps Engineer - Professional (DOP-C02)<br>Generative AI Developer - Professional (AIP-C01) |
+| Specialty | Advanced Networking (ANS-C01, 2026-12-31 종료 예정)<br>Security (SCS-C03) |
 
 Professional 등급은 셋이고 SAP가 그중 하나입니다. DevOps Engineer - Professional은 배포 파이프라인과 운영 자동화를 축으로 삼고, 2026년에 추가된 Generative AI Developer - Professional은 foundation model을 애플리케이션과 업무 흐름에 통합하는 일을 축으로 삼습니다. SAP는 아키텍처 설계 판단을 축으로 삼습니다.
 

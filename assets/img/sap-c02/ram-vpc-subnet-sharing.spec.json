@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "ram-vpc-subnet-sharing",
+  "title": "공유 subnet에서 owner와 participant가 만들 수 있는 것이 다르다",
+  "subtitle": "participant는 subnet 안에 ENI와 SG만 만든다. 라우팅과 게이트웨이는 owner 몫이다.",
+  "layout": {
+    "col_gap": 64,
+    "row_gap": 44
+  },
+  "containers": [
+    {
+      "id": "owner-account",
+      "kind": "account",
+      "label": "VPC owner 계정",
+      "members": [
+        "route-table",
+        "shared-subnet",
+        "nat-gw"
+      ]
+    },
+    {
+      "id": "participant-account",
+      "kind": "account",
+      "label": "participant 계정",
+      "members": [
+        "security-group",
+        "eni",
+        "flow-log"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "route-table",
+      "kind": "box",
+      "label": "Route table",
+      "detail": "participant는 조회만",
+      "role": "process",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "shared-subnet",
+      "kind": "service",
+      "service": "vpc",
+      "label": "Shared subnet",
+      "detail": "default VPC subnet은 공유 불가",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "nat-gw",
+      "kind": "service",
+      "service": "nat_gateway",
+      "label": "NAT gateway",
+      "detail": "participant는 조회도 불가",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "ram-share",
+      "kind": "service",
+      "service": "ram",
+      "label": "RAM resource share",
+      "detail": "조직 안 공유는 초대 없이 적용",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "security-group",
+      "kind": "box",
+      "label": "Security group",
+      "detail": "owner의 default SG는 못 쓴다",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "eni",
+      "kind": "service",
+      "service": "eni",
+      "label": "Network interface",
+      "detail": "participant 쿼터를 소모",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "flow-log",
+      "kind": "box",
+      "label": "Flow log",
+      "detail": "자기 ENI 것만",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "shared-subnet",
+      "target": "ram-share",
+      "emphasis": true
+    },
+    {
+      "source": "ram-share",
+      "target": "eni",
+      "emphasis": true
+    },
+    {
+      "source": "eni",
+      "target": "security-group"
+    },
+    {
+      "source": "eni",
+      "target": "flow-log"
+    }
+  ]
+}

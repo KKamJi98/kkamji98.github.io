@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "scp-iam-effective-permissions",
+  "title": "유효 권한은 세 정책의 교집합이다",
+  "subtitle": "SCP는 한도를 정할 뿐 권한을 주지 않는다. 셋 중 하나라도 허용하지 않으면 요청은 거부된다.",
+  "layout": {
+    "col_gap": 60,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "scp-gate",
+      "kind": "service",
+      "service": "organizations",
+      "label": "SCP",
+      "detail": "조직이 정한 최대 한도",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "boundary-gate",
+      "kind": "box",
+      "label": "Permission boundary",
+      "detail": "principal의 최대 한도",
+      "role": "queue",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "identity-gate",
+      "kind": "service",
+      "service": "iam",
+      "label": "Identity policy",
+      "detail": "실제로 권한을 부여한다",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "effective",
+      "kind": "box",
+      "label": "유효 권한",
+      "detail": "세 정책이 모두 허용한 것만 남는다",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "allowed",
+      "kind": "box",
+      "label": "허용",
+      "detail": "API 호출이 수행된다",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "denied",
+      "kind": "box",
+      "label": "암묵적 거부",
+      "detail": "하나라도 빠지면 차단",
+      "role": "danger",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "scp-gate",
+      "target": "effective"
+    },
+    {
+      "source": "boundary-gate",
+      "target": "effective"
+    },
+    {
+      "source": "identity-gate",
+      "target": "effective"
+    },
+    {
+      "source": "effective",
+      "target": "allowed",
+      "emphasis": true
+    },
+    {
+      "source": "effective",
+      "target": "denied",
+      "dashed": true
+    }
+  ]
+}

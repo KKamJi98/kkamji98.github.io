@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "id": "control-tower-landing-zone",
+  "title": "Control Tower가 만들어 주는 것은 Security OU와 계정 두 개다",
+  "subtitle": "Infrastructure OU와 Workloads OU는 권장 구성일 뿐 자동 생성되지 않는다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 48
+  },
+  "containers": [
+    {
+      "id": "self-made",
+      "kind": "plain",
+      "label": "직접 만들어야 하는 OU",
+      "members": [
+        "infra-ou",
+        "workloads-ou"
+      ],
+      "dashed": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "control-tower",
+      "kind": "box",
+      "label": "AWS Control Tower",
+      "detail": "Organizations, Service Catalog, Identity Center를 오케스트레이션",
+      "role": "process",
+      "col": 0,
+      "row": 0,
+      "rowspan": 2
+    },
+    {
+      "id": "security-ou",
+      "kind": "box",
+      "label": "Security OU",
+      "detail": "자동 생성",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "sandbox-ou",
+      "kind": "box",
+      "label": "Sandbox OU",
+      "detail": "생성 시 선택",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "log-archive",
+      "kind": "box",
+      "label": "Log archive 계정",
+      "detail": "자동 생성",
+      "role": "store",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "audit-account",
+      "kind": "box",
+      "label": "Audit 계정",
+      "detail": "자동 생성",
+      "role": "store",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "infra-ou",
+      "kind": "box",
+      "label": "Infrastructure OU",
+      "detail": "Network, Backup, Identity 계정",
+      "role": "external",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "workloads-ou",
+      "kind": "box",
+      "label": "Workloads OU",
+      "detail": "Prod, Staging 계정",
+      "role": "external",
+      "col": 2,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "control-tower",
+      "target": "security-ou",
+      "emphasis": true
+    },
+    {
+      "source": "control-tower",
+      "target": "sandbox-ou",
+      "dashed": true
+    },
+    {
+      "source": "security-ou",
+      "target": "log-archive"
+    },
+    {
+      "source": "security-ou",
+      "target": "audit-account"
+    }
+  ]
+}
