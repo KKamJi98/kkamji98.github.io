@@ -1,5 +1,5 @@
 ---
-title: "AWS Certified Solutions Architect Professional(SAP-C02) Overview - 시험 구조와 학습 로드맵"
+title: "AWS SAP-C02 박살내기 - 시험 구조와 4개 도메인, 7주 학습 로드맵"
 date: 2026-09-06 14:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]
