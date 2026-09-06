@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 마이그레이션 전략: 7R, MGN, DMS, Migration Hub"
+title: "SAP-C02 박살내기 13 - 마이그레이션 전략"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, migration, 7r, mgn, dms, sct, migration-hub, application-discovery]

@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 하이브리드 네트워크: VPC, Transit Gateway, Direct Connect, PrivateLink"
+title: "SAP-C02 박살내기 3 - 하이브리드 네트워크"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, vpc, transit-gateway, direct-connect, vpn, privatelink, networking]

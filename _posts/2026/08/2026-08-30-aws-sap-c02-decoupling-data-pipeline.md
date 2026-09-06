@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 디커플링과 데이터 파이프라인: SQS, SNS, EventBridge, Kinesis, Glue"
+title: "SAP-C02 박살내기 8 - 디커플링과 데이터 파이프라인"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, sqs, sns, eventbridge, kinesis, step-functions, glue, athena, redshift]

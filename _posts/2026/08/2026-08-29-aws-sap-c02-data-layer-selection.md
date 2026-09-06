@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 데이터 계층 선택: RDS, Aurora, DynamoDB, ElastiCache, S3, EFS"
+title: "SAP-C02 박살내기 7 - 데이터 계층 선택"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, rds, aurora, dynamodb, elasticache, s3, ebs, efs, fsx, caching]

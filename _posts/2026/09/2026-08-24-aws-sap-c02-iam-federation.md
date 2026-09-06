@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - IAM 심화와 페더레이션: 정책 평가 순서, STS, SAML, Directory Service"
+title: "SAP-C02 박살내기 2 - IAM과 페더레이션"
 date: 2026-08-24 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]

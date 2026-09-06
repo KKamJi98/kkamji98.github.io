@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 멀티 계정 거버넌스: Organizations, SCP, Control Tower, IAM Identity Center"
+title: "SAP-C02 박살내기 1 - 멀티 계정 거버넌스"
 date: 2026-08-23 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]

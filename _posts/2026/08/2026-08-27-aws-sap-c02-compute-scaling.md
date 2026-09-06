@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 컴퓨트 선택과 확장: EC2 구매 옵션, Placement Group, ASG, Spot"
+title: "SAP-C02 박살내기 5 - 컴퓨트 선택과 확장"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, ec2, auto-scaling, spot, savings-plans, placement-group, graviton]

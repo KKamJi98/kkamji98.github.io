@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 데이터 전송과 하이브리드 엣지: Snow Family, DataSync, Storage Gateway, Outposts"
+title: "SAP-C02 박살내기 14 - 데이터 전송과 하이브리드 엣지"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, snowball, datasync, transfer-family, storage-gateway, outposts, local-zones, wavelength]

@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 관측성과 운영 자동화: CloudWatch, X-Ray, Systems Manager, 배포 전략"
+title: "SAP-C02 박살내기 11 - 관측성과 운영 자동화"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, cloudwatch, cloudtrail, x-ray, systems-manager, cloudformation, codedeploy, observability]

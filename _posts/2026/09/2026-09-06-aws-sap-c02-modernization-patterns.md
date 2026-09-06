@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 모더나이제이션 패턴: strangler fig, 컨테이너화, 서버리스 전환"
+title: "SAP-C02 박살내기 15 - 모더나이제이션 패턴"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, modernization, strangler-fig, containerization, serverless, refactoring, microservices]

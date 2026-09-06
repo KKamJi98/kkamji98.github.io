@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - DNS와 글로벌 트래픽: Route 53, Resolver, Global Accelerator, CloudFront"
+title: "SAP-C02 박살내기 4 - DNS와 글로벌 트래픽"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, route53, dns, global-accelerator, cloudfront, failover, latency-routing]

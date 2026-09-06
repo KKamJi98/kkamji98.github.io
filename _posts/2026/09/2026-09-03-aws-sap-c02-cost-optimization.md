@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 비용 최적화: Savings Plans, Intelligent-Tiering, 데이터 전송 과금"
+title: "SAP-C02 박살내기 12 - 비용 최적화"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, cost-optimization, savings-plans, reserved-instances, data-transfer, budgets, trusted-advisor]

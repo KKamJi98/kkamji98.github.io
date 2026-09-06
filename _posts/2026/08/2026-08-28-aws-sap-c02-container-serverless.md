@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 컨테이너와 서버리스: ECS, EKS, Fargate, ECR, Lambda, API Gateway, AppSync"
+title: "SAP-C02 박살내기 6 - 컨테이너와 서버리스"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, ecs, eks, fargate, lambda, api-gateway, appsync, containers, serverless]

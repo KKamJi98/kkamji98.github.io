@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 가용성과 재해복구: RTO와 RPO, DR 4대 전략, 멀티 리전 설계"
+title: "SAP-C02 박살내기 10 - 가용성과 재해복구"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, disaster-recovery, rto, rpo, multi-region, aurora-global, aws-backup, resilience]

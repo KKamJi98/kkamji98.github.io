@@ -1,5 +1,5 @@
 ---
-title: "AWS SAP-C02 박살내기 - 보안 심화: KMS, CloudHSM, Secrets Manager, WAF, GuardDuty, Config"
+title: "SAP-C02 박살내기 9 - 보안 심화"
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, kms, cloudhsm, secrets-manager, acm, waf, shield, guardduty, config, security-hub]
