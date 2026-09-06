@@ -28,16 +28,19 @@ AWS는 이 시험이 검증하는 것을 `advanced technical skills and experien
 
 ## 1. AWS 인증 체계에서 SAP의 위치
 
-AWS 인증은 네 등급으로 나뉩니다.
+AWS 인증은 다섯 갈래로 나뉩니다. 기술 등급 네 개에 더해, 기술 구현이 아니라 도입 전략을 다루는 Business 갈래가 따로 있습니다.
 
-| 등급 | 자격증 |
+| 등급 | 자격증 (시험 코드) |
 | :--- | :--- |
-| Foundational | Cloud Practitioner, AI Practitioner |
-| Associate | Solutions Architect, Developer, CloudOps Engineer, Data Engineer, Machine Learning Engineer |
-| Professional | **Solutions Architect - Professional**, DevOps Engineer - Professional |
-| Specialty | Advanced Networking (2026-12-31 종료 예정), Security |
+| Business | AI Business Strategist (AIB-C01, 베타) |
+| Foundational | Cloud Practitioner (CLF-C02), AI Practitioner (AIF-C01) |
+| Associate | Solutions Architect (SAA-C03), Developer (DVA-C02), CloudOps Engineer (SOA-C03), Data Engineer (DEA-C01), Machine Learning Engineer (MLA-C01, MLA-C02 베타 진행 중) |
+| Professional | **Solutions Architect - Professional (SAP-C02)**, DevOps Engineer - Professional (DOP-C02), Generative AI Developer - Professional (AIP-C01) |
+| Specialty | Advanced Networking (ANS-C01, 2026-12-31 종료 예정), Security (SCS-C03) |
 
-Professional 등급은 두 개뿐이고 SAP가 그중 하나입니다. 나머지 하나인 DevOps Engineer - Professional이 배포 파이프라인과 운영 자동화를 축으로 삼는 반면, SAP는 아키텍처 설계 판단을 축으로 삼습니다.
+Professional 등급은 셋이고 SAP가 그중 하나입니다. DevOps Engineer - Professional은 배포 파이프라인과 운영 자동화를 축으로 삼고, 2026년에 추가된 Generative AI Developer - Professional은 foundation model을 애플리케이션과 업무 흐름에 통합하는 일을 축으로 삼습니다. SAP는 아키텍처 설계 판단을 축으로 삼습니다.
+
+Specialty가 둘뿐인 것도 최근 변화입니다. Machine Learning - Specialty가 2026년 3월 31일로 종료됐고 그 자리를 Machine Learning Engineer - Associate와 Generative AI Developer - Professional이 나눠 가졌습니다. Advanced Networking - Specialty도 2026년 12월 31일에 종료되므로, 네트워크 설계 역량을 증명하려면 SAP 쪽이 남는 선택지가 됩니다.
 
 기본 정보는 다음과 같습니다.
 
@@ -58,7 +61,7 @@ Professional 등급은 두 개뿐이고 SAP가 그중 하나입니다. 나머지
 
 다만 시험이 Associate 수준의 서비스 지식을 이미 갖춘 상태를 전제하고 출발한다는 점은 별개의 문제입니다. SAP 문항은 EC2가 무엇인지, S3 스토리지 클래스가 몇 종인지를 묻지 않습니다. 그것들을 아는 상태에서, 온프레미스 Active Directory를 그대로 둬야 하고 RPO는 15분이고 예산은 늘릴 수 없다는 조건이 동시에 걸렸을 때 무엇을 고를지를 묻습니다. 서비스 정의를 몰라서 틀리는 시험이 아니라 서비스 사이의 제약이 충돌하는 지점을 몰라서 틀리는 시험입니다.
 
-유효 기간 3년이 지나면 재인증이 필요합니다. 같은 시험을 다시 보거나, 상위 등급 자격증을 취득하면 하위 자격증이 함께 갱신됩니다.
+유효 기간 3년이 지나면 재인증이 필요합니다. 같은 시험을 다시 보는 것 말고 두 경로가 더 있습니다. 첫째, 지정된 상위 자격증에 합격하면 하위 자격증이 3년 연장됩니다. **SAP에 합격하면 Solutions Architect - Associate와 Cloud Practitioner가 함께 3년 연장됩니다.** 짝이 정해져 있어서 아무 상위 자격증이나 아무 하위 자격증을 갱신하지는 않습니다. 둘째, AWS Skill Builder의 maintenance 과정을 이수하면 1년이 연장됩니다. 연장 기산점은 만료일이 아니라 이수한 날입니다.
 
 ---
 
@@ -343,6 +346,8 @@ Overview 뒤로 15편이 이어지고, 20개 task statement 전부에 담당 편
 - [AWS Certification - Exam Guide SAA-C03](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html)
 - [AWS Certification - AWS Certified Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
 - [AWS Certification - Exam Guides Index](https://docs.aws.amazon.com/aws-certification/latest/examguides/aws-certification-exam-guides.html)
+- [AWS Certification - Recertification](https://aws.amazon.com/certification/recertification/)
+- [AWS Training and Certification Blog - AWS Expands AI Certification Portfolio](https://aws.amazon.com/blogs/training-and-certification/big-news-aws-expands-ai-certification-portfolio-and-updates-security-certification/)
 - [AWS Well-Architected Framework - The Pillars of the Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)
 - [AWS Training and Certification Blog - Certification Updates September 2026](https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/)
 - [AWS Certification - Coming Soon](https://aws.amazon.com/certification/coming-soon/)
