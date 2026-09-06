@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "saml-federation-paths",
+  "title": "같은 SAML assertion 이 콘솔과 API 에서 다른 엔드포인트로 간다",
+  "subtitle": "콘솔은 sign-in 엔드포인트가 sign-in token 을 만들고, API 는 STS 가 임시 자격 증명을 발급한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "corp-user",
+      "kind": "service",
+      "service": "user",
+      "label": "사내 사용자",
+      "detail": "온프레미스 신원",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "idp",
+      "kind": "box",
+      "label": "SAML 2.0 IdP",
+      "detail": "ADFS 등, assertion 을 서명한다",
+      "role": "external",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "assertion",
+      "kind": "box",
+      "label": "SAML assertion",
+      "detail": "base64 4자에서 100,000자",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "signin-endpoint",
+      "kind": "box",
+      "label": "AWS sign-in 엔드포인트",
+      "detail": "콘솔 경로",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "sts-saml",
+      "kind": "service",
+      "service": "sts",
+      "label": "AssumeRoleWithSAML",
+      "detail": "API 경로, unsigned 요청",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "console",
+      "kind": "box",
+      "label": "관리 콘솔 세션",
+      "detail": "브라우저로 리다이렉트",
+      "role": "store",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "temp-creds",
+      "kind": "box",
+      "label": "임시 자격 증명",
+      "detail": "DurationSeconds 와 SessionNotOnOrAfter 중 짧은 쪽",
+      "role": "store",
+      "col": 4,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "corp-user",
+      "target": "idp"
+    },
+    {
+      "source": "idp",
+      "target": "assertion"
+    },
+    {
+      "source": "assertion",
+      "target": "signin-endpoint"
+    },
+    {
+      "source": "assertion",
+      "target": "sts-saml"
+    },
+    {
+      "source": "signin-endpoint",
+      "target": "console",
+      "emphasis": true
+    },
+    {
+      "source": "sts-saml",
+      "target": "temp-creds",
+      "emphasis": true
+    }
+  ]
+}

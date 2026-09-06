@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "directory-service-selection",
+  "title": "사용자를 어디에 두는지가 Directory Service 선택을 가른다",
+  "subtitle": "Managed Microsoft AD 만 온프레미스와 trust 를 맺는다. AD Connector 는 저장하지 않고 프록시만 한다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "onprem-ad",
+      "kind": "box",
+      "label": "온프레미스 Active Directory",
+      "detail": "기존 사용자 저장소",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "managed-ad",
+      "kind": "box",
+      "label": "AWS Managed Microsoft AD",
+      "detail": "실제 Windows Server AD, trust 와 schema extension 지원",
+      "role": "store",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "ad-connector",
+      "kind": "box",
+      "label": "AD Connector",
+      "detail": "프록시, 캐싱 없음, 사용자는 온프레미스에만",
+      "role": "process",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "simple-ad",
+      "kind": "box",
+      "label": "Simple AD",
+      "detail": "Samba 4 기반, 신규 온보딩 중단",
+      "role": "external",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "rds-sql",
+      "kind": "service",
+      "service": "rds",
+      "label": "RDS for SQL Server",
+      "detail": "Managed Microsoft AD 만 지원",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "ec2-join",
+      "kind": "service",
+      "service": "ec2",
+      "label": "EC2 Windows domain join",
+      "detail": "세 방식 모두 가능",
+      "col": 2,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "onprem-ad",
+      "target": "managed-ad",
+      "dashed": true
+    },
+    {
+      "source": "onprem-ad",
+      "target": "ad-connector"
+    },
+    {
+      "source": "managed-ad",
+      "target": "rds-sql",
+      "emphasis": true
+    },
+    {
+      "source": "ad-connector",
+      "target": "ec2-join"
+    },
+    {
+      "source": "simple-ad",
+      "target": "ec2-join"
+    }
+  ]
+}

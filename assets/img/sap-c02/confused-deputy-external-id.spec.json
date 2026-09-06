@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "confused-deputy-external-id",
+  "title": "external ID 는 서드파티가 남의 계정 role 을 대신 가정하는 것을 막는다",
+  "subtitle": "고객마다 다른 값을 서드파티가 생성한다. 고객이 정하면 방어가 성립하지 않는다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "customer-a",
+      "kind": "box",
+      "label": "고객 A",
+      "detail": "서드파티에 role ARN 을 준다",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "attacker",
+      "kind": "box",
+      "label": "고객 A 의 ARN 을 아는 제3자",
+      "detail": "같은 서드파티의 다른 고객",
+      "role": "danger",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "third-party",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "서드파티 서비스",
+      "detail": "여러 고객 role 을 가정한다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "external-id",
+      "kind": "box",
+      "label": "external ID 조건",
+      "detail": "sts:ExternalId, 2자에서 1,224자, secret 아님",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "role-a",
+      "kind": "box",
+      "label": "고객 A 의 role",
+      "detail": "trust policy 가 external ID 일치를 요구",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "blocked",
+      "kind": "box",
+      "label": "가정 실패",
+      "detail": "값이 다르면 여기서 끊긴다",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "customer-a",
+      "target": "third-party"
+    },
+    {
+      "source": "attacker",
+      "target": "third-party",
+      "dashed": true
+    },
+    {
+      "source": "third-party",
+      "target": "external-id"
+    },
+    {
+      "source": "external-id",
+      "target": "role-a",
+      "emphasis": true
+    },
+    {
+      "source": "external-id",
+      "target": "blocked",
+      "dashed": true
+    }
+  ]
+}

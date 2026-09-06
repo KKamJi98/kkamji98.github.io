@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "sts-assume-role-cross-account",
+  "title": "trust policy 는 누가 가정할지를, permission policy 는 가정 후 무엇을 할지를 정한다",
+  "subtitle": "교차 계정 역할 가정은 두 정책이 모두 있어야 성립한다. 한쪽만으로는 어느 쪽도 열리지 않는다.",
+  "layout": {
+    "col_gap": 56,
+    "row_gap": 46
+  },
+  "containers": [
+    {
+      "id": "account-a",
+      "kind": "account",
+      "label": "계정 A  호출 측",
+      "members": [
+        "principal-a",
+        "assume-permission"
+      ]
+    },
+    {
+      "id": "account-b",
+      "kind": "account",
+      "label": "계정 B  역할 소유",
+      "members": [
+        "trust-policy",
+        "target-role",
+        "permission-policy",
+        "target-resource"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "principal-a",
+      "kind": "service",
+      "service": "iam",
+      "label": "계정 A 의 principal",
+      "detail": "user 또는 role",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "assume-permission",
+      "kind": "box",
+      "label": "sts:AssumeRole 권한",
+      "detail": "identity policy 에 있어야 한다",
+      "role": "process",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "sts",
+      "kind": "service",
+      "service": "sts",
+      "label": "AWS STS",
+      "detail": "임시 자격 증명 발급, 기본 1시간",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "trust-policy",
+      "kind": "box",
+      "label": "trust policy",
+      "detail": "계정 A 를 principal 로 명시한 explicit Allow 필수",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "target-role",
+      "kind": "service",
+      "service": "iam_role",
+      "label": "대상 role",
+      "detail": "maximum session duration 1시간에서 12시간",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "permission-policy",
+      "kind": "box",
+      "label": "permission policy",
+      "detail": "가정 후 할 수 있는 일",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "target-resource",
+      "kind": "service",
+      "service": "s3",
+      "label": "대상 리소스",
+      "detail": "session policy 로 더 좁힐 수 있다",
+      "role": "store",
+      "col": 3,
+      "row": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": "principal-a",
+      "target": "sts"
+    },
+    {
+      "source": "sts",
+      "target": "trust-policy",
+      "emphasis": true
+    },
+    {
+      "source": "trust-policy",
+      "target": "target-role"
+    },
+    {
+      "source": "target-role",
+      "target": "permission-policy"
+    },
+    {
+      "source": "permission-policy",
+      "target": "target-resource",
+      "emphasis": true
+    }
+  ]
+}

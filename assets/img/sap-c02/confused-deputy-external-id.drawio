@@ -1,0 +1,72 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="confused-deputy-external-id" name="external ID 는 서드파티가 남의 계정 role 을 대신 가정하는 것을 막는다">
+    <mxGraphModel dx="1050" dy="424" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="424" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1026.98" height="400.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="external ID 는 서드파티가 남의 계정 role 을 대신 가정하는 것을 막는다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="982.98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="고객마다 다른 값을 서드파티가 생성한다. 고객이 정하면 방어가 성립하지 않는다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="982.98" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="customer-a" value="고객 A&#xa;서드파티에 role ARN 을 준다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="104" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="attacker" value="고객 A 의 ARN 을 아는 제3자&#xa;같은 서드파티의 다른 고객" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="336" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="third-party" value="서드파티 서비스&#xa;여러 고객 role 을 가정한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" vertex="1" parent="1">
+          <mxGeometry x="311" y="204" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="external-id" value="external ID 조건&#xa;sts:ExternalId, 2자에서 1,224자, secret 아님" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FEF7E0;strokeColor=#B06000;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="460" y="220" width="266" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="role-a" value="고객 A 의 role&#xa;trust policy 가 external ID 일치를 요구" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="782" y="104" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="blocked" value="가정 실패&#xa;값이 다르면 여기서 끊긴다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="812" y="336" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="customer-a-to-third-party" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="customer-a" target="third-party">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="260.5" y="131.0" />
+              <mxPoint x="260.5" y="228.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="attacker-to-third-party" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="attacker" target="third-party">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="260.5" y="363.0" />
+              <mxPoint x="260.5" y="228.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="third-party-to-external-id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="third-party" target="external-id">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="external-id-to-role-a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="external-id" target="role-a">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="754.0" y="247.0" />
+              <mxPoint x="754.0" y="131.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="external-id-to-blocked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="external-id" target="blocked">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="754.0" y="247.0" />
+              <mxPoint x="754.0" y="363.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

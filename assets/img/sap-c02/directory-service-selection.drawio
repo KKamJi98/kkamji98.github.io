@@ -1,0 +1,67 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="directory-service-selection" name="사용자를 어디에 두는지가 Directory Service 선택을 가른다">
+    <mxGraphModel dx="868" dy="456" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="868" pageHeight="456" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="844.12" height="432.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="사용자를 어디에 두는지가 Directory Service 선택을 가른다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="800.12" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Managed Microsoft AD 만 온프레미스와 trust 를 맺는다. AD Connector 는 저장하지 않고 프록시만 한다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="800.12" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-ad" value="온프레미스 Active Directory&#xa;기존 사용자 저장소" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="252" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="managed-ad" value="AWS Managed Microsoft AD&#xa;실제 Windows Server AD, trust 와 schema extension 지원" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="266" y="120" width="337" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ad-connector" value="AD Connector&#xa;프록시, 캐싱 없음, 사용자는 온프레미스에만" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="346" y="252" width="177" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="simple-ad" value="Simple AD&#xa;Samba 4 기반, 신규 온보딩 중단" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="346" y="368" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="rds-sql" value="RDS for SQL Server&#xa;Managed Microsoft AD 만 지원" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="722" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-join" value="EC2 Windows domain join&#xa;세 방식 모두 가능" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="722" y="236" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="onprem-ad-to-managed-ad" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem-ad" target="managed-ad">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="238.0" y="279.0" />
+              <mxPoint x="238.0" y="147.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="onprem-ad-to-ad-connector" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="onprem-ad" target="ad-connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="managed-ad-to-rds-sql" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="managed-ad" target="rds-sql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ad-connector-to-ec2-join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ad-connector" target="ec2-join">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="622.5" y="279.0" />
+              <mxPoint x="622.5" y="260.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="simple-ad-to-ec2-join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="simple-ad" target="ec2-join">
+          <mxGeometry relative="1" as="geometry" >
+            <Array as="points">
+              <mxPoint x="622.5" y="395.0" />
+              <mxPoint x="622.5" y="260.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "session-tags-abac",
+  "title": "session tag 는 aws:PrincipalTag 가 되어 리소스 태그와 비교된다",
+  "subtitle": "정책을 사람마다 늘리지 않고 태그 일치로 접근을 정한다. sts:TagSession 권한이 없으면 가정 자체가 실패한다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "idp-attrs",
+      "kind": "box",
+      "label": "IdP 속성",
+      "detail": "SAML attribute 또는 JWT claim",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "tag-session",
+      "kind": "box",
+      "label": "sts:TagSession",
+      "detail": "trust policy 에 없으면 AssumeRole 실패",
+      "role": "queue",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "session-tag",
+      "kind": "box",
+      "label": "session tag",
+      "detail": "최대 50개, key 128자, value 256자",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "principal-tag",
+      "kind": "box",
+      "label": "aws:PrincipalTag",
+      "detail": "request context 에 들어간다",
+      "role": "process",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "policy-condition",
+      "kind": "service",
+      "service": "iam",
+      "label": "정책 Condition",
+      "detail": "PrincipalTag 와 ResourceTag 비교",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "resource-tag",
+      "kind": "box",
+      "label": "리소스 태그",
+      "detail": "aws:ResourceTag",
+      "role": "queue",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "granted",
+      "kind": "box",
+      "label": "접근 허용",
+      "detail": "두 태그가 일치할 때만",
+      "role": "store",
+      "col": 4,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "idp-attrs",
+      "target": "tag-session"
+    },
+    {
+      "source": "tag-session",
+      "target": "session-tag"
+    },
+    {
+      "source": "session-tag",
+      "target": "principal-tag"
+    },
+    {
+      "source": "principal-tag",
+      "target": "policy-condition"
+    },
+    {
+      "source": "resource-tag",
+      "target": "policy-condition"
+    },
+    {
+      "source": "policy-condition",
+      "target": "granted",
+      "emphasis": true
+    }
+  ]
+}

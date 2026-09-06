@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "id": "iam-policy-evaluation-order",
+  "title": "요청은 일곱 단계를 순서대로 통과해야 허용된다",
+  "subtitle": "첫 단계에서 explicit Deny 를 한 번에 훑고, 이후 단계는 순서대로 걸러낸다. 어느 단계에서든 떨어지면 거부다.",
+  "layout": {
+    "col_gap": 44,
+    "row_gap": 46
+  },
+  "nodes": [
+    {
+      "id": "request",
+      "kind": "box",
+      "label": "API 요청",
+      "detail": "기본값은 implicit deny",
+      "role": "external",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "deny-eval",
+      "kind": "box",
+      "label": "1. Deny evaluation",
+      "detail": "여섯 정책 타입 전체에서 explicit Deny 를 찾는다",
+      "role": "danger",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "rcp",
+      "kind": "box",
+      "label": "2. RCP",
+      "detail": "RCPFullAWSAccess 가 항상 붙어 있다",
+      "role": "queue",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "scp",
+      "kind": "box",
+      "label": "3. SCP",
+      "detail": "조직이 정한 상한",
+      "role": "queue",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "resource-policy",
+      "kind": "box",
+      "label": "4. resource-based policy",
+      "detail": "지목한 ARN 종류가 뒤 단계를 바꾼다",
+      "role": "process",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "identity-policy",
+      "kind": "box",
+      "label": "5. identity-based policy",
+      "detail": "권한을 실제로 부여한다",
+      "role": "process",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "boundary",
+      "kind": "box",
+      "label": "6. permissions boundary",
+      "detail": "user 와 role 만, 상한만",
+      "role": "queue",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "session-policy",
+      "kind": "box",
+      "label": "7. session policy",
+      "detail": "세션 principal 만 평가한다",
+      "role": "queue",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "allowed",
+      "kind": "box",
+      "label": "허용",
+      "detail": "일곱 단계를 모두 통과",
+      "role": "store",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "denied",
+      "kind": "box",
+      "label": "거부",
+      "detail": "explicit Deny 또는 어느 단계의 implicit deny",
+      "role": "danger",
+      "col": 3,
+      "row": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "request",
+      "target": "deny-eval"
+    },
+    {
+      "source": "deny-eval",
+      "target": "rcp"
+    },
+    {
+      "source": "rcp",
+      "target": "scp"
+    },
+    {
+      "source": "scp",
+      "target": "resource-policy"
+    },
+    {
+      "source": "resource-policy",
+      "target": "identity-policy"
+    },
+    {
+      "source": "identity-policy",
+      "target": "boundary"
+    },
+    {
+      "source": "boundary",
+      "target": "session-policy"
+    },
+    {
+      "source": "session-policy",
+      "target": "allowed",
+      "emphasis": true
+    },
+    {
+      "source": "deny-eval",
+      "target": "denied",
+      "dashed": true
+    }
+  ]
+}
