@@ -1,6 +1,6 @@
 ---
 title: "im-not-ai 스킬 알아보기"
-date: 2026-08-23 14:10:00 +0900
+date: 2026-07-06 14:10:00 +0900
 author: kkamji
 categories: [AI, Claude Code]
 tags: [claude-code, agent-skills, plugin, im-not-ai, humanizer, korean, technical-writing]

@@ -1,6 +1,6 @@
 ---
 title: "Graph engineering 기초 - 루프에서 시스템으로 [AI Agent 2]"
-date: 2026-08-27 02:17:00 +0900
+date: 2026-07-08 02:17:00 +0900
 author: kkamji
 categories: [AI, Agent]
 tags: [ai-agent, graph-engineering, ontology, langgraph, multi-agent, study]

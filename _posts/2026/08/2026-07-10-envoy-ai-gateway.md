@@ -1,6 +1,6 @@
 ---
 title: "Envoy AI Gateway 알아보기 - 데이터플레인 LLM 게이트웨이 [AI Gateway 2]"
-date: 2026-08-28 02:41:00 +0900
+date: 2026-07-10 02:41:00 +0900
 author: kkamji
 categories: [AI, Infra]
 tags: [envoy, ai-gateway, llm-gateway, kubernetes, api-gateway, study]

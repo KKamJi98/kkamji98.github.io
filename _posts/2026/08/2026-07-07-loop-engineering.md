@@ -1,6 +1,6 @@
 ---
 title: "Loop engineering 기초 - prompt, context, loop [AI Agent 1]"
-date: 2026-08-26 04:48:00 +0900
+date: 2026-07-07 04:48:00 +0900
 author: kkamji
 categories: [AI, Agent]
 tags: [ai-agent, loop-engineering, prompt-engineering, context-engineering, claude-code, study]

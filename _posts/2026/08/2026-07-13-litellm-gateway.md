@@ -1,6 +1,6 @@
 ---
 title: "LiteLLM 알아보기 - 앱 레벨 LLM 게이트웨이 실습 [AI Gateway 3]"
-date: 2026-08-29 01:47:00 +0900
+date: 2026-07-13 01:47:00 +0900
 author: kkamji
 categories: [AI, Infra]
 tags: [litellm, llm-gateway, ai-gateway, kubernetes, helm, study]

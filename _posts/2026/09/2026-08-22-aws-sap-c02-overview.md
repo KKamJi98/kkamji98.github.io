@@ -1,6 +1,6 @@
 ---
 title: "AWS SAP-C02 박살내기 - 시험 구조와 4개 도메인, 7주 학습 로드맵"
-date: 2026-09-04 14:00:00 +0900
+date: 2026-08-22 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, solutions-architect, exam, roadmap]
