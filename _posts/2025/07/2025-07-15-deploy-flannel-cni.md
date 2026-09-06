@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-![Flannel VXLAN Pod traffic flow](/assets/img/kubernetes/flannel-vxlan-pod-flow.webp)
+{% include diagrams/static/kubernetes/flannel-vxlan-pod-flow.html %}
 
 이번 포스트에서는 `Flannel CNI`를 Kubernetes Cluster에 배포해보도록 하겠습니다.
 

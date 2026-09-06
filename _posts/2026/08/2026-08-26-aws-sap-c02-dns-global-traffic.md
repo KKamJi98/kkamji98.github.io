@@ -39,7 +39,7 @@ SAP-C02 Domain 1의 DNS 문항은 이 층에서 답이 갈립니다. 사용자�
 
 글로벌 트래픽 설계 문항이 어려운 이유는 "어디로 보낼지"를 정하는 지점이 하나가 아니기 때문입니다. 클라이언트가 이름을 주소로 바꾸는 순간, 애니캐스트 IP가 가장 가까운 엣지를 고르는 순간, 엣지가 캐시를 줄지 오리진에 물어볼지 정하는 순간이 각각 다른 결정입니다.
 
-![DNS 응답과 애니캐스트 IP와 엣지 캐시 세 계층이 각각 어떤 결정을 내리는지 비교한 그림](/assets/img/sap-c02/dns-global-traffic-decision-layers.webp)
+{% include diagrams/static/sap-c02/dns-global-traffic-decision-layers.html %}
 
 세 계층이 각각 무엇을 입력으로 보고 무엇을 바꿀 수 있는지, 그리고 어느 계층이 캐싱과 고정 IP를 담당하는지를 정리한 그림입니다.
 
@@ -183,7 +183,7 @@ private hosted zone에서 health check를 연결할 수 있는 레코드는 fail
 
 private hosted zone으로 내부 API를 노출하고 멀티 리전 failover를 구성하는 설계에서 반드시 걸리는 제약입니다.
 
-![Route 53 health checker가 VPC 밖에 있어 사설 IP에 도달하지 못하는 경계와 CloudWatch alarm을 경유하는 대체 경로](/assets/img/sap-c02/route53-health-check-private-endpoint.webp)
+{% include diagrams/static/sap-c02/route53-health-check-private-endpoint.html %}
 
 health checker가 어느 경계 밖에 있는지, 직접 검사가 끊기는 지점이 어디인지, 그리고 CloudWatch metric과 alarm을 거치는 경로가 그 자리를 어떻게 대신하는지를 보여주는 그림입니다.
 
@@ -216,7 +216,7 @@ private hosted zone은 VPC 안에서만 보이는 이름 공간입니다. 사용
 
 하이브리드 DNS 문항의 첫 관문은 방향을 맞추는 것입니다. 두 endpoint는 이름이 비슷하지만 서로를 대체하지 못합니다.
 
-![온프레미스와 VPC 사이 DNS 질의 방향에 따라 inbound endpoint와 outbound endpoint가 나뉘는 구조](/assets/img/sap-c02/route53-hybrid-dns-endpoints.webp)
+{% include diagrams/static/sap-c02/route53-hybrid-dns-endpoints.html %}
 
 질의가 어느 쪽에서 출발하는지에 따라 어떤 endpoint가 그 질의를 받는지, 각 방향에 필요한 연결 수단과 규칙이 무엇인지를 보여주는 그림입니다.
 
@@ -382,7 +382,7 @@ security group과 AWS WAF 규칙은 accelerator를 앞에 붙여도 그대로 �
 
 두 서비스는 모두 "AWS 엣지 네트워크를 써서 빠르게 한다"고 설명되지만, 하는 일이 다릅니다.
 
-![Global Accelerator와 CloudFront가 각각 요청을 처리하는 경로와 캐시 유무의 차이](/assets/img/sap-c02/global-accelerator-cloudfront-paths.webp)
+{% include diagrams/static/sap-c02/global-accelerator-cloudfront-paths.html %}
 
 같은 클라이언트 요청이 두 서비스에서 각각 어떤 단계를 거쳐 백엔드에 도달하는지, 어느 쪽에 캐시 판정 단계가 있고 어느 쪽에 고정 IP 진입점이 있는지를 나란히 놓은 그림입니다.
 
@@ -439,7 +439,7 @@ viewer 인증과 오리진 보호는 층이 다릅니다.
 
 CloudFront origin group은 오리진 두 개를 primary와 secondary로 묶어 오리진 장애 시 자동 전환합니다. 제약이 촘촘합니다.
 
-![CloudFront origin group에서 primary 요청이 failover 조건을 만나 secondary로 넘어가는 경로와 그 경로를 타지 못하는 요청](/assets/img/sap-c02/cloudfront-origin-failover-path.webp)
+{% include diagrams/static/sap-c02/cloudfront-origin-failover-path.html %}
 
 캐시 판정 이후 요청이 primary origin으로 가는 경로와 failover 조건을 만났을 때 secondary로 넘어가는 경로, 그리고 이 전환 경로를 타지 못하는 요청 종류를 보여주는 그림입니다.
 

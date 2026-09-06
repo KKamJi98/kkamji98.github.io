@@ -1,0 +1,49 @@
+<figure class="sd sd--comparison" id="gcp-region-zone" aria-labelledby="gcp-region-zone-title">
+  <figcaption class="sd-title" id="gcp-region-zone-title">Region은 여러 Zone의 묶음이고 Zone은 하나의 장애 도메인입니다</figcaption>
+  <p class="sd-intro">여러 Zone에 복제하면 단일 Zone 장애를 견디고, 여러 Region에 복제해야 Region 전체 장애까지 분리할 수 있습니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-labelledby="gcp-region-zone-seoul-title">
+      <div class="sd-lane-title" id="gcp-region-zone-seoul-title">Region: asia-northeast3 (Seoul)</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">zone-a</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">zone-b</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">zone-c</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+      </div>
+      <p class="sd-note">한 Zone에 장애가 나도 같은 Region의 다른 Zone에 배치한 복제본은 남습니다.</p>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="gcp-region-zone-iowa-title">
+      <div class="sd-lane-title" id="gcp-region-zone-iowa-title">Region: us-central1 (Iowa)</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">zone-a</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">zone-b</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">zone-c</strong>
+          <span class="sd-detail">독립된 failure domain</span>
+        </div>
+      </div>
+      <p class="sd-note">Region을 분리하면 한 Region outage가 다른 Region의 복제본에 직접 영향을 주지 않습니다.</p>
+    </section>
+  </div>
+
+  <section class="sd-band sd-band--accent" aria-labelledby="gcp-region-zone-backbone-title">
+    <div class="sd-band-title" id="gcp-region-zone-backbone-title">Google global network: Premium Tier backbone</div>
+    <span class="sd-detail">Region 간 트래픽은 Google의 global network backbone을 통해 운반됩니다.</span>
+  </section>
+</figure>

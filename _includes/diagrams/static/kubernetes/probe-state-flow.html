@@ -1,0 +1,51 @@
+<figure class="sd sd--sequence" id="sd-kubernetes-probe-state-flow" aria-labelledby="sd-kubernetes-probe-state-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-probe-state-flow-title">Startup이 두 probe를 열고 readiness와 liveness가 독립적으로 판단한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Container starting</strong>
+      <span class="sd-detail">process는 실행 중이지만 아직 상태를 판정하지 않습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">먼저 startup probe 실행</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Startup probe</strong>
+      <span class="sd-detail">첫 성공 전까지 readiness와 liveness를 block합니다.</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">startup 성공 뒤 두 probe가 독립 실행</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Readiness probe 경로">
+      <div class="sd-lane-title">Readiness path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Readiness probe</strong>
+          <span class="sd-detail">지금 traffic을 받아도 되는지 판단합니다.</span>
+        </div>
+      </div>
+      <div class="sd-grid">
+        <article class="sd-node sd-node--accent">
+          <strong class="sd-label">성공</strong>
+          <span class="sd-detail">EndpointSlice에 들어가 Service traffic을 받습니다.</span>
+        </article>
+        <article class="sd-node sd-node--warning">
+          <strong class="sd-label">실패</strong>
+          <span class="sd-detail">EndpointSlice에서 빠지지만 process는 살아 있고 kubelet이 재시도합니다.</span>
+        </article>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Liveness probe 경로">
+      <div class="sd-lane-title">Liveness path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Liveness probe</strong>
+          <span class="sd-detail">stuck 상태라 재시작이 복구가 되는지 판단합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">failure threshold 도달</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Container restart</strong>
+          <span class="sd-detail">restart policy에 따라 container를 재시작합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Readiness 실패는 process를 종료하지 않고 traffic 대상만 바꿉니다. Startup이 계속 실패하면 container는 restart policy의 대상이 될 수 있습니다.</p>
+</figure>

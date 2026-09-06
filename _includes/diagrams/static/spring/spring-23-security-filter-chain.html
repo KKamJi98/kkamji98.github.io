@@ -1,0 +1,28 @@
+<figure class="sd sd--flow" id="sd-spring-23-security-filter-chain" aria-labelledby="sd-spring-23-title">
+  <figcaption class="sd-title" id="sd-spring-23-title">Spring Security는 컨트롤러 앞단의 필터 체인에서 끝납니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">HTTP 요청</strong></div>
+    <div class="sd-arrow"><span class="sd-edge-label">servlet 진입</span></div>
+    <div class="sd-node"><strong class="sd-label">서블릿 컨테이너 필터 체인</strong></div>
+    <div class="sd-arrow"><span class="sd-edge-label">위임</span></div>
+    <div class="sd-node"><strong class="sd-label">DelegatingFilterProxy</strong><span class="sd-detail">Servlet container와 Spring ApplicationContext를 연결</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">보안 필터 선택</span></div>
+    <div class="sd-node"><strong class="sd-label">FilterChainProxy</strong><span class="sd-detail">현재 요청에 맞는 SecurityFilterChain을 선택</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">필터 실행</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">SecurityFilterChain</strong><span class="sd-detail">보안 필터들, 인증 다음 인가</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-spring-23-pass-title">
+        <div class="sd-lane-title" id="sd-spring-23-pass-title">통과</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">DispatcherServlet과 컨트롤러</strong><span class="sd-detail">보안 검사를 통과한 요청만 앱 코드에 도달</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-spring-23-reject-title">
+        <div class="sd-lane-title" id="sd-spring-23-reject-title">거부</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning"><strong class="sd-label">요청 거부</strong><span class="sd-detail">401 또는 403 응답으로 종료, DispatcherServlet에 도달하지 않음</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

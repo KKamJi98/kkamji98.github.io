@@ -23,7 +23,7 @@ image:
 
 ## 1. 실습 환경
 
-![Lab Environment](/assets/img/kubernetes/cilium/5w-lab-environment.webp)
+{% include diagrams/static/kubernetes/cilium/5w-lab-environment.html %}
 
 - 기본 VM: k8s-ctr, k8s-w1, k8s-w0, router(FRR)
 - router: 192.168.10.0/24 ↔ 192.168.20.0/24 라우팅, 클러스터에 join되지 않은 독립 서버, FRR 설치로 BGP 실습 가능 (FRR Docs)
@@ -291,7 +291,7 @@ kubectl exec -n kube-system ds/cilium -- cilium-dbg map get cilium_ipcache_v2
 
 Cilium BGP Control Plane(BGPv2)는 Cilium의 Custom Resources로 BGP 구성을 선언적으로 관리합니다. 또한 Cilium BGP는 기본적으로 외부 경로를 커널 라우팅 테이블에 주입하지 않습니다.
 
-![Cilium Docs - Cilium BGP Control Plane v2 Architecture](/assets/img/kubernetes/cilium/5w-bgp-control-plane-v2-architecture.webp)
+{% include diagrams/static/kubernetes/cilium/5w-bgp-control-plane-v2-architecture.html %}
 
 > [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)  
 > [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)  

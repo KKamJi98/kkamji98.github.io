@@ -1,0 +1,38 @@
+<figure class="sd sd--comparison" id="vault-access-management-overview" aria-labelledby="vault-access-management-overview-title">
+  <figcaption class="sd-title" id="vault-access-management-overview-title">Vault 액세스 관리: 네 가지 질문으로 권한을 정의한다</figcaption>
+  <p class="sd-note">Vault는 신원을 확인한 뒤 대상, 허용 시간, 접근키 수명까지 함께 관리한다.</p>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">1 누구</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Identity</strong>
+        <span class="sd-detail">사람, 애플리케이션, 시스템, 머신의 신원을 인증한다.</span>
+      </div>
+      <p class="sd-note">인증 결과가 이후 정책 평가의 주체가 된다.</p>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">2 무엇에</div>
+      <div class="sd-node">
+        <strong class="sd-label">Target resource</strong>
+        <span class="sd-detail">Database, Web Server, S3, Cloud Console 같은 접근 대상을 지정한다.</span>
+      </div>
+      <p class="sd-note">정책은 identity와 resource path의 조합으로 접근 범위를 정한다.</p>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">3 얼마 동안</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">TTL and lease</strong>
+        <span class="sd-detail">임시 credential에 만료 시간과 lease를 부여해 허용 기간을 제한한다.</span>
+      </div>
+      <p class="sd-note">만료 시점이 지나면 같은 credential을 계속 사용할 수 없다.</p>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">4 라이프 사이클</div>
+      <div class="sd-node">
+        <strong class="sd-label">Create, renew, revoke</strong>
+        <span class="sd-detail">접근키를 생성하고 필요하면 갱신하며 사용이 끝나면 폐기한다.</span>
+      </div>
+      <p class="sd-note">자동화된 수명주기가 장기 고정키와 수동 회수 누락을 줄인다.</p>
+    </section>
+  </div>
+</figure>

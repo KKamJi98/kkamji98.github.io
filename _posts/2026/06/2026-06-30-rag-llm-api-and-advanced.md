@@ -88,7 +88,7 @@ Microsoft GraphRAG는 텍스트에서 엔터티, 관계, 핵심 claim을 추출�
 
 ---
 
-![Vector RAG vs GraphRAG vs Agentic RAG 비교 - Vector RAG는 Query에서 Retrieve, Generate로 이어지는 선형(single-hop, 빠름), GraphRAG는 Graph Traversal로 multi-hop(구축 비용 큼), Agentic RAG는 plan에서 retrieve, reflect로 도는 Agent Loop(적응적, overhead 큼)](/assets/img/ai/rag-07-rag-variants.webp)
+{% include diagrams/static/ai/rag-07-rag-variants.html %}
 
 ---
 

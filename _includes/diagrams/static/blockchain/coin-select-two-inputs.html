@@ -1,0 +1,43 @@
+<figure class="sd sd--flow" id="sd-coin-select-two-inputs" aria-labelledby="sd-title-coin-select-two-inputs">
+  <figcaption class="sd-title" id="sd-title-coin-select-two-inputs">coin selection은 UTXO를 통째로 입력으로 고릅니다</figcaption>
+  <div class="sd-grid">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">UTXO 30</strong>
+      <span class="sd-detail">selected</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">UTXO 25</strong>
+      <span class="sd-detail">selected</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">send + fee를 덮도록 선택</span></div>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">selected inputs</strong>
+      <span class="sd-detail">30 + 25가 필요한 금액과 fee를 충족</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">vin 생성</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">new transaction</strong>
+      <span class="sd-detail">vin[0]와 vin[1], 각 outpoint 전체 소비</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">새 vout 두 개로 분할</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="payment output">
+      <div class="sd-lane-title">payment</div>
+      <div class="sd-node">
+        <strong class="sd-label">vout payment</strong>
+        <span class="sd-detail">recipient에게 보내는 금액</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="change output">
+      <div class="sd-lane-title">change</div>
+      <div class="sd-node">
+        <strong class="sd-label">vout change</strong>
+        <span class="sd-detail">remainder - fee, 새 outpoint</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">선택하지 않은 UTXO는 그대로 남습니다. 30과 25는 coin selection 규칙을 설명하는 예시입니다.</p>
+</figure>

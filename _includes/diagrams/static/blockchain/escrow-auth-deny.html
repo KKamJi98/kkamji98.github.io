@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-escrow-auth-deny" aria-labelledby="sd-title-escrow-auth-deny">
+  <figcaption class="sd-title" id="sd-title-escrow-auth-deny">낯선 주소의 deposit은 receipt 전에 거부됩니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">stranger</strong>
+      <span class="sd-detail">cast send deposit 1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">gas estimate</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">revert NotBuyer</strong>
+      <span class="sd-detail">Error: Failed to estimate gas</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">receipt 생성 전 중단</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">no receipt</strong>
+      <span class="sd-detail">funded=false, chain state unchanged</span>
+    </div>
+  </div>
+  <p class="sd-note">권한 실패는 explorer에 transaction hash를 남기는 실패한 거래가 아니라, 전송 전 estimate 단계에서 멈춘 호출입니다.</p>
+</figure>

@@ -1,0 +1,15 @@
+<figure class="sd sd--flow" id="sd-kubernetes-6w-traditional-communication-structure" aria-labelledby="sd-kubernetes-6w-traditional-communication-structure-title">
+  <figcaption class="sd-title" id="sd-kubernetes-6w-traditional-communication-structure-title">Traditional 구조에서는 Application이 직접 통신한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Application A</strong>
+      <span class="sd-detail">공통 proxy나 정책 계층 없이 요청을 시작합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">direct connection</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Application B</strong>
+      <span class="sd-detail">호출을 직접 받아 처리합니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">이 경로만으로는 traffic control, observability, security policy를 모든 Application에 일관되게 적용하기 어렵습니다.</p>
+</figure>

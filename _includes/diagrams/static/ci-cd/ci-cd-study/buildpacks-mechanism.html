@@ -1,0 +1,27 @@
+<figure class="sd sd--flow" id="buildpacks-mechanism" aria-labelledby="buildpacks-mechanism-title">
+  <figcaption class="sd-title" id="buildpacks-mechanism-title">Cloud Native Buildpacks는 소스에서 OCI image를 자동으로 만듭니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Application source</strong>
+      <span class="sd-detail">Dockerfile 없이 소스와 의존성을 준비합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">지원 buildpack 탐색</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">detect</strong>
+      <span class="sd-detail">소스에 맞는 buildpack을 선택합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">선택된 빌드 단계 실행</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">build</strong>
+      <span class="sd-detail">runtime과 애플리케이션 layer를 구성합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">OCI image 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Container image</strong>
+      <span class="sd-detail">재사용 가능한 layer 묶음으로 registry에 push합니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">Buildpack은 daemonless 방식으로 동작하므로 Dockerfile과 Docker daemon을 직접 관리하지 않아도 됩니다.</p>
+</figure>

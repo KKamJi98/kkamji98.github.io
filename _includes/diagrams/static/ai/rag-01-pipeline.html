@@ -1,0 +1,69 @@
+<figure class="sd sd--comparison" id="rag-01-pipeline" aria-labelledby="rag-01-pipeline-title">
+  <figcaption class="sd-title" id="rag-01-pipeline-title">RAG의 offline indexing과 online query</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Offline indexing">
+      <div class="sd-lane-title">Offline indexing: 먼저 한 번 실행</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Sources</strong>
+          <span class="sd-detail">PDF, Confluence, wiki</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Ingestion and parsing</strong>
+          <span class="sd-detail">text와 structure를 추출하고 metadata를 수집</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Chunking</strong>
+          <span class="sd-detail">검색되는 최소 단위로 분할</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Embedding</strong>
+          <span class="sd-detail">chunk마다 하나의 vector를 생성</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Vector index</strong>
+          <span class="sd-detail">vector와 metadata를 저장</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Online query">
+      <div class="sd-lane-title">Online query: 사용자가 기다리는 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">User query</strong>
+          <span class="sd-detail">natural language 질문</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Query embedding</strong>
+          <span class="sd-detail">index와 같은 embedding model 사용</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Retrieval</strong>
+          <span class="sd-detail">Vector index에서 approximate nearest neighbours를 검색</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Reranking</strong>
+          <span class="sd-detail">shortlist를 cross-encoder로 재정렬</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">LLM generation</strong>
+          <span class="sd-detail">검색 chunk를 근거로 답변 생성</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Answer with citations</strong>
+          <span class="sd-detail">근거 chunk까지 추적 가능</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Offline lane이 만든 Vector index를 Online Retrieval이 공유합니다. 비싼 준비 작업은 offline에 두고, query path는 생성된 index를 읽습니다.</p>
+</figure>

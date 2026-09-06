@@ -1,0 +1,53 @@
+<figure class="sd sd--flow" id="sd-aws-aws-waf-challenge-token-flow" aria-labelledby="sd-title-aws-aws-waf-challenge-token-flow">
+  <figcaption class="sd-title" id="sd-title-aws-aws-waf-challenge-token-flow">WAF Challenge는 interstitial을 실행할 수 있는 route에서만 끝난다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Browser navigation</strong>
+      <span class="sd-detail">HTML GET /signin</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">request</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">AWS WAF Challenge rule</strong>
+      <span class="sd-detail">token cookie 상태 평가</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">조건별 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="No valid token on an HTML route">
+        <div class="sd-lane-title">No valid token plus HTML route</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">202 challenge response</strong>
+            <span class="sd-detail">token 없음, 만료 또는 무효</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">page에서 실행</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">WAF JavaScript</strong>
+            <span class="sd-detail">interstitial challenge 해결</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">cookie 저장</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">aws-waf-token</strong>
+            <span class="sd-detail">HTTPS cookie; 이후 request에서 재사용</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">유효 token</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Valid token</strong>
+            <span class="sd-detail">remaining WAF rules continue</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">origin 전달</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Application response</strong>
+            <span class="sd-detail">origin reached</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="POST or OPTIONS route">
+        <div class="sd-lane-title">POST or CORS preflight OPTIONS</div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Interstitial을 실행할 HTML이 없음</strong>
+          <span class="sd-detail">matched request가 202 challenge를 받아도 token 획득 route가 아님</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

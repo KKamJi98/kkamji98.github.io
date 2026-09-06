@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" id="kubernetes-cilium-ebpf-summary" aria-labelledby="kubernetes-cilium-ebpf-summary-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-ebpf-summary-title">eBPF는 security, tracing, networking, observability를 hook으로 확장한다</figcaption>
+  <p class="sd-note">네 영역은 같은 이름의 단일 pipeline이 아니라, 요구에 맞는 process와 kernel hook을 선택해 기능을 붙이는 사용 사례입니다.</p>
+
+  <div class="sd-grid" aria-label="eBPF 사용 사례 네 영역">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-summary-security-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-summary-security-title">Security</div>
+      <div class="sd-band">
+        <div class="sd-band-title">정책 hook</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Syscall과 device 경계</strong>
+          <span class="sd-detail">eBPF가 이벤트를 검사해 허용 또는 차단 결정을 내립니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-summary-tracing-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-summary-tracing-title">Tracing</div>
+      <div class="sd-band">
+        <div class="sd-band-title">실행 추적</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Process와 Kernel hook</strong>
+          <span class="sd-detail">eBPF가 stack trace와 함수 실행 지점을 수집합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-summary-networking-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-summary-networking-title">Networking</div>
+      <div class="sd-band">
+        <div class="sd-band-title">packet hook</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Network device와 kernel path</strong>
+          <span class="sd-detail">eBPF가 packet을 kernel 안에서 필터링하고 전달합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-summary-observability-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-summary-observability-title">Observability</div>
+      <div class="sd-band">
+        <div class="sd-band-title">measurement hook</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">VFS와 eBPF maps</strong>
+          <span class="sd-detail">metrics, histograms와 events를 기록하고 조회합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

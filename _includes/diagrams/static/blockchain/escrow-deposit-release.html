@@ -1,0 +1,25 @@
+<figure class="sd sd--sequence" id="sd-escrow-deposit-release" aria-labelledby="sd-title-escrow-deposit-release">
+  <figcaption class="sd-title" id="sd-title-escrow-deposit-release">Buyer deposit은 Escrow에 잠기고 release로 seller에게 갑니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">buyer 0xf39Fd6e5</strong>
+      <span class="sd-detail">deposit 1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">deposit 호출</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Escrow 0x5FbDB231</strong>
+      <span class="sd-detail">funded=true, balance 1 ETH, code 5234 hex</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">buyer가 release 호출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">seller 0x70997970</strong>
+      <span class="sd-detail">balance +1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">state after release</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Escrow emptied</strong>
+      <span class="sd-detail">funded=false, escrow balance 0</span>
+    </div>
+  </div>
+  <p class="sd-note">1 ETH는 deposit 뒤 Escrow에 머물고, release receipt 뒤에야 seller 잔액이 1 ETH 증가합니다.</p>
+</figure>

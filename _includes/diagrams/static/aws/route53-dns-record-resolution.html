@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-aws-route53-dns-record-resolution" aria-labelledby="sd-title-aws-route53-dns-record-resolution">
+  <figcaption class="sd-title" id="sd-title-aws-route53-dns-record-resolution">Registrar delegation이 맞아야 Route 53 record가 resolve된다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Domain registrar</strong>
+      <span class="sd-detail">authoritative NS delegation 설정</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">NS를 zone으로 위임</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Route 53 hosted zone</strong>
+      <span class="sd-detail">four assigned name servers</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">registrar NS = zone NS</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">NS delegation matches</strong>
+      <span class="sd-detail">이 zone이 public DNS의 authority가 됨</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">record 조회</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">DNS record</strong>
+      <span class="sd-detail">A, AAAA or ALIAS</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">endpoint 응답</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Application endpoint</strong>
+      <span class="sd-detail">ALB, CloudFront or S3 website</span>
+    </div>
+  </div>
+  <p class="sd-note">Hosted zone을 생성하는 것만으로는 충분하지 않습니다. Registrar의 NS가 zone의 네임서버 네 개를 가리켜야 합니다.</p>
+</figure>

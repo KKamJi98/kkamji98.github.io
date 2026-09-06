@@ -1,0 +1,35 @@
+<figure class="sd sd--flow" id="sd-observability-kubernetes-troubleshooting-flow" aria-labelledby="sd-title-observability-kubernetes-troubleshooting-flow">
+  <figcaption class="sd-title" id="sd-title-observability-kubernetes-troubleshooting-flow">가설보다 먼저 Event와 이전 Container log를 확인</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Events and Pod state</strong>
+      <span class="sd-detail"><code>kubectl describe</code>로 최근 상태 변화부터 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">restart 여부 확인</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Restarted container</strong>
+      <span class="sd-detail"><code>restartCount</code>와 last state 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">종료한 인스턴스의 증거 조회</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Previous logs</strong>
+      <span class="sd-detail"><code>kubectl logs --previous</code>로 직전 log 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">현재 트래픽 수용 조건 확인</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Ready condition</strong>
+      <span class="sd-detail">Running만으로는 EndpointSlice에 들어가지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Node 포화와 eviction 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Node resources</strong>
+      <span class="sd-detail">pressure, allocatable, evictions</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">metrics와 대조</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Hypothesis and telemetry</strong>
+      <span class="sd-detail">가설을 확인한 뒤에만 변경을 결정</span>
+    </div>
+  </div>
+  <p class="sd-note">Container가 재시작하면 현재 log가 버려질 수 있어 이전 log가 핵심 증거가 됩니다. <code>Running</code> 상태와 <code>Ready</code> condition은 별도로 확인합니다.</p>
+</figure>

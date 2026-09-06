@@ -1,0 +1,59 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-s3-lifecycle-waterfall" aria-labelledby="sd-title-s3-lifecycle-waterfall">
+  <figcaption class="sd-title" id="sd-title-s3-lifecycle-waterfall">S3 lifecycle 전환은 단방향이고 복원은 별도 경로입니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="lifecycle 전환 사슬">
+      <div class="sd-lane-title">lifecycle 전환 사슬</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">lifecycle 규칙</strong>
+          <span class="sd-detail">128 KB 미만은 size filter 없이는 전환되지 않음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">규칙 적용</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">S3 Standard</strong>
+          <span class="sd-detail">최소 저장 기간 없음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">30일 조건</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Standard-IA</strong>
+          <span class="sd-detail">최소 30일, 최소 과금 128 KB</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">90일 조건</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Glacier Instant Retrieval</strong>
+          <span class="sd-detail">최소 90일, 밀리초 액세스</span>
+        </div>
+          <div class="sd-arrow"><span class="sd-edge-label">다음 lifecycle 전환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Glacier Flexible Retrieval</strong>
+          <span class="sd-detail">최소 90일, archive read에는 restore 필요</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Deep Archive 전환만 가능</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Glacier Deep Archive</strong>
+          <span class="sd-detail">최소 180일, lifecycle 종점</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="상위 클래스로 복원하는 경로">
+      <div class="sd-lane-title">상위 클래스로 복원</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Glacier Deep Archive 객체</strong>
+          <span class="sd-detail">lifecycle 규칙으로 빠져나갈 수 없음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">RestoreObject</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">복원된 객체를 copy</strong>
+          <span class="sd-detail">상위 클래스로 덮어쓰는 별도 작업</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">대상 클래스 지정</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">S3 Standard</strong>
+          <span class="sd-detail">lifecycle 사슬과 별개의 복귀 결과</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">연속 전환은 각 클래스의 최소 저장 기간을 누적해 평가합니다. Deep Archive의 복귀는 restore 후 copy로만 만들 수 있습니다.</p>
+</figure>

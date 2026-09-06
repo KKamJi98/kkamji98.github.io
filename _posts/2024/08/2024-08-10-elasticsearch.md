@@ -9,7 +9,7 @@ image:
   path: /assets/img/observability/efk.png
 ---
 
-![Elasticsearch ECK flow](/assets/img/observability/elasticsearch-eck-flow.webp)
+{% include diagrams/static/observability/elasticsearch-eck-flow.html %}
 
 저번 포스트에서 시스템에서 로그를 수집 후 전송해주는 도구인 **Fluent Bit**을 설치했습니다. **EFK Stack**의 핵심인 분산형 검색 및 분석 엔진 입니다. **Fluent Bit**에서 수집된 로그는 **Elasticsearch**에 저장될 수 있으며, **Elasticsearch**는 다양한 유형의 데이터에 대해 거의 실시간 검색 및 분석을 제공합니다.
 

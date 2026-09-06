@@ -1,0 +1,36 @@
+<figure class="sd sd--comparison" id="sd-blockchain-nakamoto-vs-pos-heads" aria-labelledby="sd-title-blockchain-nakamoto-vs-pos-heads">
+  <figcaption class="sd-title" id="sd-title-blockchain-nakamoto-vs-pos-heads">Bitcoin confirmation과 Ethereum finalized는 다른 확정 질문</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Bitcoin Nakamoto 흐름">
+      <div class="sd-lane-title">Bitcoin Nakamoto</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">regtest active tip 114</strong>
+          <span class="sd-detail">branchlen 0</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">활성 체인 기준</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">invalid tip 112</strong>
+          <span class="sd-detail">branchlen 1</span>
+        </div>
+      </div>
+      <p class="sd-note">짧은 branch의 confirmation은 철회될 수 있습니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Ethereum proof of stake 흐름">
+      <div class="sd-lane-title">Ethereum proof of stake</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Sepolia latest</strong>
+          <span class="sd-detail">11545353</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">two-thirds checkpoint</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Sepolia finalized</strong>
+          <span class="sd-detail">11545279, lag 74</span>
+        </div>
+      </div>
+      <p class="sd-note">finalized는 checkpoint 투표가 만든 합의 head입니다.</p>
+    </section>
+  </div>
+  <p class="sd-note">Bitcoin의 active tip 깊이와 Sepolia의 finalized lag은 같은 확정 숫자가 아닙니다.</p>
+</figure>

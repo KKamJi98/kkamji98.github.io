@@ -1,0 +1,73 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-worm-retention-decision" aria-labelledby="sd-title-worm-retention-decision">
+  <figcaption class="sd-title" id="sd-title-worm-retention-decision">보존 대상이 객체인지 recovery point인지가 WORM 수단을 정합니다</figcaption>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">변경 불가 보존 요구</strong>
+    <span class="sd-detail">규제 기간과 운영자 우회 허용 여부를 먼저 결정</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">보존 대상 확인</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="S3 Object Lock 보존 경로">
+      <div class="sd-lane-title">S3 객체 버전</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">S3 Object Lock</strong>
+          <span class="sd-detail">versioning이 켜진 버킷의 object version 대상</span>
+        </div>
+      </div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">compliance mode</strong>
+          <span class="sd-detail">root도 삭제 불가, 모드 변경과 기간 단축 불가</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">governance mode</strong>
+          <span class="sd-detail">s3:BypassGovernanceRetention과 요청 header 필요</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">legal hold</strong>
+          <span class="sd-detail">만료일 없이 별도 해제까지 유지</span>
+        </div>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">새 버전은 별도 기록</span></div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">새 버전과 delete marker</strong>
+        <span class="sd-detail">version ID 없는 DELETE는 delete marker를 남길 수 있음</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="AWS Backup Vault Lock 보존 경로">
+      <div class="sd-lane-title">AWS Backup recovery point</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Backup Vault Lock</strong>
+          <span class="sd-detail">vault의 recovery point 대상</span>
+        </div>
+      </div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-label="Vault Lock compliance mode">
+          <div class="sd-lane-title">compliance mode</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">grace time</strong>
+              <span class="sd-detail">ChangeableForDays 지정, 최소 3일</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">grace 종료</span></div>
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">되돌릴 수 없는 구간</strong>
+              <span class="sd-detail">lock과 recovery point 변경 및 삭제 불가</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-label="Vault Lock governance mode">
+          <div class="sd-lane-title">governance mode</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">ChangeableForDays 생략</strong>
+              <span class="sd-detail">IAM 권한자가 lock을 제거할 수 있음</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">S3 객체의 WORM은 Object Lock, AWS Backup 사본의 조기 삭제 방지는 Vault Lock입니다. compliance mode는 grace time 뒤에 immutable 상태가 됩니다.</p>
+</figure>

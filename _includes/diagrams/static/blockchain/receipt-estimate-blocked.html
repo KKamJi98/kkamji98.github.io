@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-receipt-estimate-blocked" aria-labelledby="sd-title-blockchain-receipt-estimate-blocked">
+  <figcaption class="sd-title" id="sd-title-blockchain-receipt-estimate-blocked">reverting gas estimate는 transaction hash를 만들지 않습니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">cast send boom()</strong>
+      <span class="sd-detail">Probe 0xCf7Ed3Ac</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">전송 전 simulation</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">gas estimate</strong>
+      <span class="sd-detail">execution reverted: boom</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">revert로 중단</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">no receipt</strong>
+      <span class="sd-detail">tx hash 없음, chain 변경 없음</span>
+    </div>
+  </div>
+  <p class="sd-note">estimate 단계 실패는 chain을 갱신하지 않아 읽을 receipt가 없습니다.</p>
+</figure>

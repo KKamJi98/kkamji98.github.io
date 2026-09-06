@@ -1,0 +1,62 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-transitive-routing-boundaries" aria-labelledby="sd-title-transitive-routing-boundaries">
+  <figcaption class="sd-title" id="sd-title-transitive-routing-boundaries">전이 라우팅은 peering에서 끊기고 Transit Gateway에서 이어집니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="VPC peering 경로">
+      <div class="sd-lane-title">VPC peering 경유</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">온프레미스</strong>
+          <span class="sd-detail">private VIF로 VPC A에 도달</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">직접 연결</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">VPC A</strong>
+          <span class="sd-detail">peering 요청자</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">peering</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">VPC B</strong>
+          <span class="sd-detail">IGW, NAT, gateway endpoint 보유</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">edge-to-edge 제약</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">전이 라우팅 불가</strong>
+          <span class="sd-detail">peer의 IGW, NAT, VPN, DX, gateway endpoint 사용 불가</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Transit Gateway 경로">
+      <div class="sd-lane-title">Transit Gateway 경유</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">온프레미스</strong>
+          <span class="sd-detail">transit VIF</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Direct Connect</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Direct Connect gateway</strong>
+          <span class="sd-detail">gateway당 TGW 최대 6개</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">허용된 attachment로 전이</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Transit Gateway</strong>
+          <span class="sd-detail">route table이 허용한 경로만 전달</span>
+        </div>
+      </div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">VPC C</strong>
+          <span class="sd-detail">AZ마다 attachment subnet 필요</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">VPC D</strong>
+          <span class="sd-detail">CIDR 중복 불가</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">중앙 NAT gateway</strong>
+          <span class="sd-detail">TGW 경유 지원, VGW 경유 미지원</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="goroutine-scheduling-model" aria-labelledby="goroutine-scheduling-model-title">
+  <figcaption class="sd-title" id="goroutine-scheduling-model-title">Go scheduler는 많은 goroutine을 적은 OS thread에 배치합니다</figcaption>
+  <p class="sd-note">blocking syscall로 한 thread가 park되면 scheduler가 남은 goroutine을 다른 thread에 배치해 실행을 이어갑니다.</p>
+
+  <div class="sd-flow" aria-label="Go goroutine scheduling model">
+    <div class="sd-node">
+      <strong class="sd-label">Go program</strong>
+      <span class="sd-detail"><code>go</code> 키워드로 goroutine을 계속 생성합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">실행 단위 생성</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Goroutines</strong>
+      <span class="sd-detail">각각 작은 stack을 가진 많은 작업입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">G, M, P와 work stealing</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Go scheduler</strong>
+      <span class="sd-detail">goroutine을 실행 가능한 thread에 multiplex합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">blocking thread는 park</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">OS threads</strong>
+      <span class="sd-detail">goroutine 수보다 훨씬 적은 OS thread가 동작합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label"><code>GOMAXPROCS</code> 범위 안에서 병렬 실행</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">CPU cores</strong>
+      <span class="sd-detail">실제로 동시에 실행할 수 있는 core 수가 병렬성을 제한합니다.</span>
+    </div>
+  </div>
+</figure>

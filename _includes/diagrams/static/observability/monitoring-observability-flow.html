@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-observability-monitoring-observability-flow" aria-labelledby="sd-title-observability-monitoring-observability-flow">
+  <figcaption class="sd-title" id="sd-title-observability-monitoring-observability-flow">Monitoring은 threshold를 알리고 Observability는 이유를 묻게 한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Monitoring signal</strong>
+      <span class="sd-detail">이미 정한 metric이 threshold를 넘음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">운영자가 처음 보는 신호</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Alert or dashboard</strong>
+      <span class="sd-detail">조건을 알리고 현황을 보여줌</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">추가 신호 조회</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Logs, metrics, traces</strong>
+      <span class="sd-detail">alert에 미리 쓰지 않은 질문을 위한 세 가지 signal</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">상관관계와 원인 조사</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Investigation</strong>
+      <span class="sd-detail">배포, 의존성, 포화 중 원인 범위 좁히기</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">조치 후 기준 갱신</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Mitigation and prevention</strong>
+      <span class="sd-detail">완화, 복구, 재발 방지와 새 signal 설계</span>
+    </div>
+  </div>
+  <p class="sd-note">Monitoring은 선택한 조건을 계속 측정하는 운영 활동입니다. Observability는 외부 신호로 새로운 질문에 답할 수 있도록 시스템을 설계하는 성질입니다.</p>
+</figure>

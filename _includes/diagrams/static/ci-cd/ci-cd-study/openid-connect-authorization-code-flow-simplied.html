@@ -1,0 +1,39 @@
+<figure class="sd sd--sequence" id="openid-connect-authorization-code-flow-simplied" aria-labelledby="openid-connect-authorization-code-flow-simplied-title">
+  <figcaption class="sd-title" id="openid-connect-authorization-code-flow-simplied-title">OpenID Connect Authorization Code Flow</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">1. Application redirects the browser</strong>
+      <span class="sd-detail">Argo CD가 사용자를 Keycloak으로 보냄</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Application -&gt; User: redirect</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">2. Browser sends an authorization request</strong>
+      <span class="sd-detail">Keycloak의 Authorization Endpoint로 요청</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">User -&gt; Keycloak: authorization request</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">3. Keycloak authenticates the user</strong>
+      <span class="sd-detail">Authorization Server와 OpenID Provider 역할</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Keycloak -&gt; User: authentication</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">4. Keycloak returns an Authorization Code</strong>
+      <span class="sd-detail">code를 Application(Argo CD)으로 전달</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Keycloak -&gt; Application: Authorization Code</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">5. Application exchanges the code</strong>
+      <span class="sd-detail">ID Token과 Access Token을 발급받음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Application -&gt; Keycloak: Token Endpoint exchange</span></div>
+  </div>
+  <div class="sd-loop">
+    <div class="sd-flow">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">6. Application establishes a session</strong>
+        <span class="sd-detail">Application -&gt; Application: ID Token으로 사용자 신원을 확인하고 session 생성</span>
+      </div>
+    </div>
+  </div>
+  <p class="sd-note">Application은 자격 증명을 직접 보관하지 않고 Keycloak이 발급한 token을 사용해 SSO를 완성합니다.</p>
+</figure>

@@ -1,0 +1,47 @@
+<figure class="sd sd--flow" id="rag-04-hybrid-rerank" aria-labelledby="rag-04-hybrid-rerank-title">
+  <figcaption class="sd-title" id="rag-04-hybrid-rerank-title">Hybrid retrieval과 reranking의 다단계 흐름</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">User query</strong>
+      <span class="sd-detail">하나의 질문을 두 검색기로 보냄</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">dense와 sparse로 병렬 over-retrieve</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Dense retrieval">
+      <div class="sd-lane-title">Dense branch</div>
+      <div class="sd-node">
+        <strong class="sd-label">Dense retrieval</strong>
+        <span class="sd-detail">vector similarity로 paraphrase를 찾고 의도적으로 over-retrieve</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Sparse retrieval">
+      <div class="sd-lane-title">Sparse branch</div>
+      <div class="sd-node">
+        <strong class="sd-label">Sparse retrieval</strong>
+        <span class="sd-detail">BM25 lexical match로 exact term을 찾고 의도적으로 over-retrieve</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 ranking을 순위만으로 결합</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">RRF fusion</strong>
+    <span class="sd-detail">reciprocal rank fusion으로 하나의 후보 순위를 만듦</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Reranking</strong>
+    <span class="sd-detail">shortlist만 cross-encoder로 함께 읽고 재채점</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">Top-N</strong>
+    <span class="sd-detail">model context에 실제로 넣을 후보</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">LLM generation</strong>
+    <span class="sd-detail">선별된 context로 grounded answer를 생성</span>
+  </div>
+  <p class="sd-note">Dense와 sparse의 raw score는 서로 다른 척도이므로 RRF는 score가 아니라 rank를 합칩니다.</p>
+</figure>

@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-observability-elasticsearch-eck-flow" aria-labelledby="sd-title-observability-elasticsearch-eck-flow">
+  <figcaption class="sd-title" id="sd-title-observability-elasticsearch-eck-flow">ECK가 Elasticsearch spec을 실행 Cluster와 storage로 조정</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">ECK operator</strong>
+      <span class="sd-detail">Elasticsearch CRD를 watch하고 원하는 상태를 reconcile</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">node set 구성 반영</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Elasticsearch cluster</strong>
+      <span class="sd-detail">spec에 선언한 node set으로 구성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">node set마다 StatefulSet 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Data nodes</strong>
+      <span class="sd-detail">각 StatefulSet이 data Pod를 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">노드별 claim 연결</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Persistent storage</strong>
+      <span class="sd-detail">data node마다 PVC를 사용</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">shard 저장</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Search index</strong>
+      <span class="sd-detail">shard가 data node의 영속 storage에 배치</span>
+    </div>
+  </div>
+  <p class="sd-note">ECK operator가 CRD를 계속 조정하므로 Cluster topology 변경을 수동 명령 대신 선언으로 관리합니다.</p>
+</figure>

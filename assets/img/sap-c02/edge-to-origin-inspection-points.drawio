@@ -1,0 +1,73 @@
+<mxfile host="kkamji-blog" type="device">
+  <diagram id="edge-to-origin-inspection-points" name="web ACL 을 어느 리소스에 붙였는지가 검사할 수 있는 본문 크기를 정한다">
+    <mxGraphModel dx="1884" dy="358" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1884" pageHeight="358" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" value="" style="rounded=0;html=0;fillColor=none;strokeColor=#5F6368;fontColor=#202124;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="1860.0" height="334.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="web ACL 을 어느 리소스에 붙였는지가 검사할 수 있는 본문 크기를 정한다" style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#202124;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="34" width="1816.0" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="ALB 는 8 KB 고정이고 CloudFront 는 최대 64 KB 다. Firewall Manager 는 요청 경로가 아니라 정책 배포 축에 있다." style="text;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#5F6368;fontSize=13;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="34" y="64" width="1816.0" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-edge" value="web ACL, CLOUDFRONT scope&#xa;본문 검사 기본 16 KB, 설정으로 최대 64 KB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="662" y="120" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fms" value="Firewall Manager&#xa;Organizations 와 관리자 계정 지정과 AWS Config 가 전제" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.firewall_manager;" vertex="1" parent="1">
+          <mxGeometry x="1041" y="104" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-regional" value="web ACL, REGIONAL scope&#xa;ALB 와 AppSync 는 본문 검사 8 KB 고정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8F0FE;strokeColor=#1A73E8;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1259" y="120" width="209" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-logs" value="web ACL 로그&#xa;CloudWatch Logs 는 aws-waf-logs- 접두사와 같은 리전 같은 계정" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="120" width="330" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="인터넷 요청&#xa;정상 트래픽과 공격이 같은 경로로 들어온다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E8EAED;strokeColor=#6B7280;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="34" y="254" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="shield" value="Shield&#xa;Standard 는 무료 상시, Advanced 는 L7 자동 완화에 150 WCU 를 더한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.shield;" vertex="1" parent="1">
+          <mxGeometry x="412" y="238" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudfront" value="CloudFront&#xa;엣지에서 종단하고 검사한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
+          <mxGeometry x="742" y="238" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="alb" value="Application Load Balancer&#xa;리전 안에서 검사한다" style="sketch=0;outlineConnect=0;gradientColor=none;html=0;whiteSpace=nowrap;fontSize=11;fontStyle=0;fontColor=#202124;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelBackgroundColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.application_load_balancer;" vertex="1" parent="1">
+          <mxGeometry x="1339" y="238" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="origin" value="오리진 애플리케이션&#xa;검사를 통과한 요청만 도달한다" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#202124;fontSize=11;fontStyle=0;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;strokeWidth=1.25;" vertex="1" parent="1">
+          <mxGeometry x="1597" y="254" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="client-to-shield" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.2963;entryX=0;entryY=0.6667;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="shield">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="shield-to-cloudfront" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="shield" target="cloudfront">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudfront-to-alb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.5;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cloudfront" target="alb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="alb-to-origin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="alb" target="origin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-edge-to-cloudfront" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4976;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="waf-edge" target="cloudfront">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-regional-to-alb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=0.4976;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="waf-regional" target="alb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fms-to-waf-edge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=0;exitY=0.6667;entryX=1;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fms" target="waf-edge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fms-to-waf-regional" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;dashed=1;dashPattern=6 6;exitX=1;exitY=0.6667;entryX=0;entryY=0.2963;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fms" target="waf-regional">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waf-regional-to-waf-logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#232F3E;strokeWidth=1.25;endArrow=classic;endFill=1;endSize=7;fontSize=11;fontColor=#202124;labelBackgroundColor=none;jettySize=14;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="waf-regional" target="waf-logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,46 @@
+<figure class="sd sd--layers" id="kubernetes-cilium-problems-with-iptables" aria-labelledby="kubernetes-cilium-problems-with-iptables-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-problems-with-iptables-title">iptables rule 수가 늘면 latency, update 시간과 CPU overhead가 함께 커진다</figcaption>
+  <p class="sd-note">Test cluster는 3,800 nodes와 19,000 pods이고 node당 약 24,000 rules를 유지하는 measured example입니다.</p>
+
+  <div class="sd-band">
+    <div class="sd-band-title">Measured test cluster</div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">3,800 nodes, 19,000 pods</strong>
+      <span class="sd-detail">각 node에 약 24,000개의 iptables rules가 존재합니다.</span>
+    </div>
+  </div>
+
+  <div class="sd-grid sd-grid--three" aria-label="iptables overhead 측정치">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-problems-with-iptables-latency-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-problems-with-iptables-latency-title">Connection setup</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">+1.2 ms network latency</strong>
+        <span class="sd-detail">연결을 설정할 때 추가된 latency입니다.</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-problems-with-iptables-update-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-problems-with-iptables-update-title">Rule update</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">5분 초과</strong>
+        <span class="sd-detail">cluster iptables rules를 갱신하는 데 걸린 시간입니다.</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-problems-with-iptables-cpu-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-problems-with-iptables-cpu-title">CPU overhead</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">53% 초과</strong>
+        <span class="sd-detail">rule 처리로 추가된 CPU overhead입니다.</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-band">
+    <div class="sd-band-title">Why the path becomes expensive</div>
+    <div class="sd-node">
+      <strong class="sd-label">iptables chain traversal와 update churn</strong>
+      <span class="sd-detail"><code>FORWARD</code>, <code>POSTROUTING</code>, <code>mangle</code>, <code>nat</code> 같은 chain이 rule 수만큼 lookup과 갱신 작업을 늘립니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">같은 city와 ISP 안의 cloud gaming end-to-end RTT가 15 ms인 상황에서는 이 측정 overhead가 허용하기 어렵다는 비교가 붙습니다.</p>
+</figure>

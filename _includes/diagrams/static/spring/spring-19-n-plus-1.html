@@ -1,0 +1,11 @@
+<figure class="sd sd--flow" id="sd-spring-19-n-plus-1" aria-labelledby="sd-spring-19-title">
+  <figcaption class="sd-title" id="sd-spring-19-title">N+1 selects: 부모 조회 뒤 연관마다 추가 조회</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">Query 1</strong><span class="sd-detail">SELECT * FROM orders, 부모 주문 N건 반환</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">목록 순회</span></div>
+    <div class="sd-node sd-node--warning"><strong class="sd-label">Then, once per order</strong><span class="sd-detail">LAZY items 접근마다 SELECT * FROM items WHERE order_id = ?</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">주문마다 1회</span></div>
+    <div class="sd-node sd-node--warning"><strong class="sd-label">1 + N queries</strong><span class="sd-detail">부모 1회와 연관 N회의 N+1 selects</span></div>
+  </div>
+  <p class="sd-note">매핑 자체가 잘못된 것이 아니라, 반복문에서 lazy collection을 초기화하는 접근 패턴이 쿼리 수를 늘립니다.</p>
+</figure>

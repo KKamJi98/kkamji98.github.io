@@ -1,0 +1,38 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-data-transfer-online-vs-physical-title">
+  <figcaption class="sd-title" id="sap-c02-data-transfer-online-vs-physical-title">온라인 전송과 물리 전송을 가르는 계산</figcaption>
+  <div class="sd-flow">
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node"><strong class="sd-label">DATA_SIZE</strong><span class="sd-detail">옮길 데이터 총량, bytes</span></div>
+      <div class="sd-node"><strong class="sd-label">CIRCUIT x NETWORK_UTILIZATION</strong><span class="sd-detail">회선 bps와 실효 사용률</span></div>
+      <div class="sd-node"><strong class="sd-label">AVAILABLE_HOURS</strong><span class="sd-detail">하루에 전송할 수 있는 시간</span></div>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">세 입력을 대입</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">이론 최소 전송 일수</strong><span class="sd-detail">DATA_SIZE x 8을 회선, 사용률, 가용 시간의 곱으로 나눔</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">cutover 보정 포함</span></div>
+    <div class="sd-node sd-node--warning"><strong class="sd-label">cutover 시간 보정</strong><span class="sd-detail">대규모 migration에서는 전체 시간의 최대 30%</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node"><strong class="sd-label">허용 기간과 비교</strong><span class="sd-detail">보정한 전송 일수가 기한 안에 들어오는지 확인</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">결과에 따라 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="허용 기간 안에 들어오는 온라인 경로">
+        <div class="sd-lane-title">기한 안에 들어옴</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">현재 회선으로 충분</strong><span class="sd-detail">온라인 전송을 선택</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">DataSync 온라인 전송</strong><span class="sd-detail">스케줄, 재시도, 무결성 검증 포함</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="허용 기간을 넘기는 확장 또는 물리 경로">
+        <div class="sd-lane-title">기한을 넘김</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning"><strong class="sd-label">회선 증설 또는 물리 전송</strong><span class="sd-detail">온라인 조건을 바꾸거나 전용 장비를 선택</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-grid">
+            <div class="sd-node"><strong class="sd-label">기간 한정 hosted connection</strong><span class="sd-detail">Partner가 만들고 사용자가 accept</span></div>
+            <div class="sd-node"><strong class="sd-label">Data Transfer Terminal 또는 partner</strong><span class="sd-detail">Snow Family는 신규 고객 주문 불가</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

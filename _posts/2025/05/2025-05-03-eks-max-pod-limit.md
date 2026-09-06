@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-![EKS max Pods prefix mode](/assets/img/aws/eks-max-pods-prefix-mode.webp)
+{% include diagrams/static/aws/eks-max-pods-prefix-mode.html %}
 
 AWS EKS를 사용하다 보면 아래와 같이 종종 노드의 CPU, Memory에는 여유가 있지만 max-pods limit 때문에 pod가 더 이상 프로비저닝되지 않는 문제를 만나게 됩니다.  
 

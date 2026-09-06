@@ -1,0 +1,59 @@
+<figure class="sd sd--layers" id="sd-project-weasel-architecture" aria-labelledby="sd-title-project-weasel-architecture">
+  <figcaption class="sd-title" id="sd-title-project-weasel-architecture">Weasel의 public edge, EKS private fleet, data services</figcaption>
+  <section class="sd-band sd-band--accent">
+    <div class="sd-band-title"><strong>Public edge</strong></div>
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">Users</strong>
+        <span class="sd-detail">외부 traffic</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">DNS</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Route 53</strong>
+        <span class="sd-detail">도메인 라우팅</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">CloudFront와 WAF</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">CloudFront + WAF</strong>
+        <span class="sd-detail">edge cache and filtering</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">VPC 진입</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Application LoadBalancer</strong>
+        <span class="sd-detail">public load balancer</span>
+      </div>
+    </div>
+  </section>
+  <section class="sd-band">
+    <div class="sd-band-title"><strong>AWS Cloud / VPC</strong></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Availability Zone 1">
+        <div class="sd-lane-title"><strong>Availability Zone 1</strong></div>
+        <div class="sd-stack">
+          <section class="sd-band"><div class="sd-band-title"><strong>Public subnet</strong></div><div class="sd-node"><strong class="sd-label">Bastion Server</strong><span class="sd-detail">관리 접근</span></div></section>
+          <section class="sd-band sd-band--accent"><div class="sd-band-title"><strong>Private subnet / Spot Fleet</strong></div><div class="sd-node"><strong class="sd-label">EKS Worker Node</strong><span class="sd-detail">workload</span></div></section>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Availability Zone 2">
+        <div class="sd-lane-title"><strong>Availability Zone 2</strong></div>
+        <div class="sd-stack">
+          <section class="sd-band"><div class="sd-band-title"><strong>Public subnet</strong></div><div class="sd-node"><strong class="sd-label">NAT Gateway</strong><span class="sd-detail">private outbound</span></div></section>
+          <section class="sd-band sd-band--accent"><div class="sd-band-title"><strong>Private subnet / Spot Fleet</strong></div><div class="sd-node"><strong class="sd-label">EKS Worker Node</strong><span class="sd-detail">workload</span></div></section>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Availability Zone 3">
+        <div class="sd-lane-title"><strong>Availability Zone 3</strong></div>
+        <div class="sd-stack">
+          <section class="sd-band"><div class="sd-band-title"><strong>Public subnet</strong></div><p class="sd-note">표시된 component 없음</p></section>
+          <section class="sd-band sd-band--accent"><div class="sd-band-title"><strong>Private subnet / Spot Fleet</strong></div><div class="sd-node"><strong class="sd-label">EKS Worker Node</strong><span class="sd-detail">workload</span></div></section>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">worker nodes read and write</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="RDS data service"><div class="sd-lane-title"><strong>RDS</strong></div><div class="sd-node"><strong class="sd-label">RDS</strong><span class="sd-detail">relational data</span></div></section>
+      <section class="sd-lane" aria-label="S3 data service"><div class="sd-lane-title"><strong>S3</strong></div><div class="sd-node"><strong class="sd-label">S3</strong><span class="sd-detail">object data</span></div></section>
+    </div>
+  </section>
+  <p class="sd-note">Private subnet의 EKS worker nodes가 여러 Availability Zone에 분산되고 RDS와 S3를 사용합니다.</p>
+</figure>

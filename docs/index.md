@@ -1,6 +1,6 @@
 ---
 title: Docs index
-updated: 2026-08-23
+updated: 2026-09-07
 type: architecture
 status: current
 ---
@@ -15,6 +15,8 @@ status: current
 - [Blog content-quality harness](blog-content-quality-harness.md) - `kkamji_scripts/blog/audit_content_depth.py`의 설계 의도와 사용법.
 
 ## Rules
+
+- [Static diagrams](static-diagrams.md) - 정적 다이어그램 제작 기준, 검증과 원본 매핑.
 
 - [Technical post template](blog-post-template.md) - 신규 기술 글의 기본 구조와 유지해야 하는 섹션.
 

@@ -1,0 +1,82 @@
+<figure class="sd sd--layers" id="music-application-overview" aria-labelledby="music-application-overview-title">
+  <figcaption class="sd-title" id="music-application-overview-title">Helm dependency가 만든 Music application 구성</figcaption>
+  <section class="sd-band" aria-label="Kubernetes Cluster 경계">
+    <div class="sd-band-title">Kubernetes Cluster</div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Song service workload">
+        <div class="sd-lane-title">Song service</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Song service</strong>
+          <span class="sd-detail">애플리케이션 workload 진입점</span>
+        </div>
+        <div class="sd-grid">
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">Song service -&gt; Service</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Service: music</strong>
+              <span class="sd-detail">클라이언트가 접근하는 service</span>
+            </div>
+          </div>
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">Song service -&gt; Deployment</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Deployment: music</strong>
+              <span class="sd-detail">Song service pod를 관리</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Deployment -&gt; Pod</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Pod: music</strong>
+              <span class="sd-detail">quay.io/gitops-cookbook/music image</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="PostgreSQL workload">
+        <div class="sd-lane-title">PostgreSQL DB</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">PostgreSQL DB</strong>
+          <span class="sd-detail">Helm dependency workload</span>
+        </div>
+        <div class="sd-grid sd-grid--three">
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">DB -&gt; Service</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Service: music-db-postgresql</strong>
+              <span class="sd-detail">JDBC endpoint</span>
+            </div>
+          </div>
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">DB -&gt; Secret</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Secret: music-db-postgresql</strong>
+              <span class="sd-detail">postgresql-password 제공</span>
+            </div>
+          </div>
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">DB -&gt; headless Service</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Headless Service: music-db-postgresql-headless</strong>
+              <span class="sd-detail">StatefulSet pod discovery</span>
+            </div>
+          </div>
+          <div class="sd-flow">
+            <div class="sd-arrow"><span class="sd-edge-label">DB -&gt; StatefulSet</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">StatefulSet: music-db-postgresql</strong>
+              <span class="sd-detail">PostgreSQL pod를 관리</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">StatefulSet -&gt; Pod</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Pod: music-db-postgresql-0</strong>
+              <span class="sd-detail">PostgreSQL instance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow sd-arrow--both">
+      <span class="sd-edge-label">Song service -&gt; PostgreSQL DB: Get songs request</span>
+      <span class="sd-edge-label">PostgreSQL DB -&gt; Song service: JSON document response</span>
+    </div>
+  </section>
+</figure>

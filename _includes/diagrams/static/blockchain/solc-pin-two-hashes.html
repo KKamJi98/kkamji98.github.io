@@ -1,0 +1,41 @@
+<figure class="sd sd--comparison" id="sd-blockchain-solc-pin-two-hashes" aria-labelledby="sd-title-blockchain-solc-pin-two-hashes">
+  <figcaption class="sd-title" id="sd-title-blockchain-solc-pin-two-hashes">같은 Escrow source도 compiler version에 따라 bytecode hash가 달라집니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Escrow source</strong>
+      <span class="sd-detail">같은 Solidity 파일</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">compiler version 선택</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="solc 0.8.35 빌드">
+      <div class="sd-lane-title">solc 0.8.35</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">compile</strong>
+          <span class="sd-detail">고정한 compiler</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">deployedBytecode</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">bytecode A</strong>
+          <span class="sd-detail">5234 hex, sha256 d8f49804...</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="solc 0.8.28 빌드">
+      <div class="sd-lane-title">solc 0.8.28</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">compile</strong>
+          <span class="sd-detail">다른 compiler</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">deployedBytecode</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">bytecode B</strong>
+          <span class="sd-detail">5234 hex, sha256 98a49743..., A와 다름</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">두 결과의 길이는 같지만 sha256이 다르므로 같은 프로그램이라고 판단할 수 없습니다.</p>
+</figure>

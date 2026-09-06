@@ -1,0 +1,33 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-capacity-versus-discount-matrix-title">
+  <figcaption class="sd-title" id="sap-c02-capacity-versus-discount-matrix-title">용량 보장과 요금 할인 선택표</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">워크로드 요구</strong><span class="sd-detail">용량 보장과 장기 할인 중 필요한 축을 먼저 분리</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="용량 보장 선택">
+        <div class="sd-lane-title">지정 AZ 용량 보장</div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">On-Demand Capacity Reservation</strong><span class="sd-detail">할인 없이 즉시 용량 확보, 미사용도 과금</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="요금 할인 선택">
+        <div class="sd-lane-title">장기 요금 할인</div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">Savings Plans</strong><span class="sd-detail">시간당 금액 약정, 취소와 교환 불가, 용량 보장 없음</span></div>
+          <div class="sd-node"><strong class="sd-label">Regional Reserved Instance</strong><span class="sd-detail">AZ 유연성과 purchase queuing, 용량 예약 없음</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">두 축이 모두 필요하면 아래 중 하나</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Zonal Reserved Instance 단일 선택">
+        <div class="sd-lane-title">단일 선택</div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Zonal Reserved Instance</strong><span class="sd-detail">지정 AZ 용량과 할인, AZ와 size 고정, purchase queuing 없음</span></div>
+      </section>
+      <section class="sd-lane" aria-label="ODCR와 커밋 조합 선택">
+        <div class="sd-lane-title">조합 선택</div>
+        <div class="sd-node"><strong class="sd-label">ODCR 위에 커밋을 겹친다</strong><span class="sd-detail">Capacity Reservation이 용량을, Savings Plans 또는 Regional RI가 할인을 맡음</span></div>
+      </section>
+    </div>
+  </div>
+</figure>

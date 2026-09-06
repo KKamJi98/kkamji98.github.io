@@ -34,7 +34,7 @@ Cilium은 **Identity-Based(Layer3)**, **Port Level(Layer4)**, **Application prot
 
 ## 2. Cilium Identity
 
-![Cilium Network Security](/assets/img/kubernetes/cilium/8w-cilium-identity-management.webp)
+{% include diagrams/static/kubernetes/cilium/8w-cilium-identity-management.html %}
 
 Cilium은 IP 대신 **레이블에서 파생된 Identity**로 통신 주체를 식별하고 규칙을 적용합니다. 동일한 보안 관련 레이블 집합을 가진 파드들은 동일한 `Identity`를 공유하며, 해당 Identity는 클러스터 전역에 유효합니다.
 

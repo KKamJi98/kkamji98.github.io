@@ -1,0 +1,32 @@
+<figure class="sd sd--flow" id="litellm-architecture" aria-labelledby="litellm-architecture-title">
+  <figcaption class="sd-title" id="litellm-architecture-title">LiteLLM proxy의 Kubernetes 배포 구조</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Application</strong>
+      <span class="sd-detail">OpenAI-compatible call을 보냄</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">LiteLLM proxy</strong>
+      <span class="sd-detail">routing, auth, guardrails를 한곳에서 처리</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">proxy가 설정 저장소와 provider로 분기</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="설정과 비용 기록">
+      <div class="sd-lane-title">설정과 비용 기록</div>
+      <div class="sd-node">
+        <strong class="sd-label">PostgreSQL</strong>
+        <span class="sd-detail">virtual key, budget, spend log의 source of truth</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Provider upstream">
+      <div class="sd-lane-title">Provider upstream</div>
+      <div class="sd-node">
+        <strong class="sd-label">Providers</strong>
+        <span class="sd-detail">OpenAI, AWS Bedrock, Gemini로 요청을 전달</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">proxy는 PostgreSQL에서 key와 budget을 읽어 판정하고, 허용된 요청만 provider로 라우팅합니다.</p>
+</figure>

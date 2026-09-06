@@ -1,0 +1,61 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-cilium-l7-layer-policy" aria-labelledby="sd-kubernetes-cilium-l7-layer-policy-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-l7-layer-policy-title">L7 policy는 identity와 HTTP method, path를 함께 검사한다</figcaption>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-cilium-l7-layer-policy-namespace-title">
+    <div class="sd-band-title" id="sd-kubernetes-cilium-l7-layer-policy-namespace-title">namespace=default</div>
+    <p class="sd-note">Ingress Network Policy: tiefighter to deathstar allow tcp/80, HTTP POST /v1/request-landing</p>
+    <div class="sd-grid">
+      <section class="sd-lane sd-lane--accent" aria-label="Allowed L7 request">
+        <div class="sd-lane-title">Allowed request</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">tiefighter</strong>
+            <span class="sd-detail"><code>org=empire</code>, <code>class=tiefighter</code></span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">TCP/80 and POST path</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">HTTP POST /v1/request-landing</strong>
+            <span class="sd-detail">L7 rule이 method와 path를 모두 만족합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">allow</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">deathstar</strong>
+            <span class="sd-detail"><code>org=empire</code>, <code>class=deathstar</code></span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning" aria-label="Denied L7 requests">
+        <div class="sd-lane-title">Denied requests</div>
+        <div class="sd-grid">
+          <section class="sd-lane sd-lane--warning" aria-label="Denied method and path">
+            <div class="sd-lane-title">Method and path mismatch</div>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">tiefighter</strong>
+                <span class="sd-detail"><code>org=empire</code>, <code>class=tiefighter</code></span>
+              </div>
+              <div class="sd-arrow"><span class="sd-edge-label">HTTP PUT /v1/exhaust-port</span></div>
+              <div class="sd-node sd-node--warning">
+                <strong class="sd-label">deathstar: denied</strong>
+                <span class="sd-detail">method 또는 path가 허용 rule과 다릅니다.</span>
+              </div>
+            </div>
+          </section>
+          <section class="sd-lane sd-lane--warning" aria-label="Denied source identity">
+            <div class="sd-lane-title">Source identity mismatch</div>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">xwing</strong>
+                <span class="sd-detail"><code>org=alliance</code>, <code>class=xwing</code></span>
+              </div>
+              <div class="sd-arrow"><span class="sd-edge-label">TCP/80 request</span></div>
+              <div class="sd-node sd-node--warning">
+                <strong class="sd-label">deathstar: denied</strong>
+                <span class="sd-detail">source identity가 정책의 empire 조건과 다릅니다.</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </section>
+</figure>

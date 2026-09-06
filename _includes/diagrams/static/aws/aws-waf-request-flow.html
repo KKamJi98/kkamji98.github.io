@@ -1,0 +1,37 @@
+<figure class="sd sd--flow" id="sd-aws-aws-waf-request-flow" aria-labelledby="sd-title-aws-aws-waf-request-flow">
+  <figcaption class="sd-title" id="sd-title-aws-aws-waf-request-flow">AWS WAF는 origin이 아니라 entry point에서 request를 평가한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">HTTP(S) request</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">지원된 front door로 진입</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">CloudFront, ALB or API Gateway</strong>
+      <span class="sd-detail">Web ACL을 associate할 수 있는 entry point</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">priority 순서로 검사</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">AWS WAF Web ACL</strong>
+      <span class="sd-detail">Allow, Block, Count, CAPTCHA; 미종료 시 default action</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">action 결과</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Allowed request path">
+        <div class="sd-lane-title">Allow</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Application origin</strong>
+          <span class="sd-detail">EC2, NLB, EKS; entry point를 통해서만 도달</span>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Blocked request path">
+        <div class="sd-lane-title">Block</div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Blocked</strong>
+          <span class="sd-detail">origin에 도달하기 전 403</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">EC2, NLB, EKS Pod에는 Web ACL을 직접 연결할 수 없습니다. public origin이 entry point를 우회하지 않도록 제한해야 합니다.</p>
+</figure>

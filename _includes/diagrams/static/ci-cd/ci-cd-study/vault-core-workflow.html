@@ -1,0 +1,33 @@
+<figure class="sd sd--flow" id="vault-core-workflow" aria-labelledby="vault-core-workflow-title">
+  <figcaption class="sd-title" id="vault-core-workflow-title">Vault 요청은 Authenticate에서 Access까지 정책으로 이어진다</figcaption>
+  <section class="sd-lane">
+    <div class="sd-lane-title">Client to Vault core workflow</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Client</strong>
+        <span class="sd-detail">사람, 애플리케이션, 시스템이 identity와 credential을 제출한다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">identity 제출</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">1 Authenticate</strong>
+        <span class="sd-detail">LDAP, OIDC, Kubernetes, AWS IAM 같은 Auth Method가 신원을 확인한다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">trusted third-party 검증</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">2 Validate</strong>
+        <span class="sd-detail">Vault가 외부 신뢰 원천의 결과를 검증하고 policy 평가에 사용할 token을 준비한다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">policy 적용</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">3 Authorize</strong>
+        <span class="sd-detail">identity에 연결된 security policy가 요청 path와 허용 동작을 결정한다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">허용된 secret path 요청</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">4 Access</strong>
+        <span class="sd-detail">Secret Engine이 secret 또는 dynamic credential을 반환하고 lease를 발급한다.</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Audit Device는 요청과 응답을 기록하고 expiration manager는 lease 만료와 폐기를 처리한다.</p>
+</figure>

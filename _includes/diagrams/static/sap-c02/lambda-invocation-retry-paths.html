@@ -1,0 +1,43 @@
+<figure class="sd sd--comparison" id="lambda-invocation-retry-paths" aria-labelledby="lambda-invocation-retry-paths-title">
+  <figcaption class="sd-title" id="lambda-invocation-retry-paths-title">재시도를 누가 하는지가 호출 모델마다 다르다</figcaption>
+  <p class="sd-note">동기는 호출자, 비동기는 Lambda 내부 큐, 스트림은 event source mapping이 재시도를 책임집니다. 실패를 포착하는 위치도 각 경로에서 다릅니다.</p>
+
+  <div class="sd-grid sd-grid--three" aria-label="Lambda 호출 모델별 재시도">
+    <section class="sd-lane" aria-labelledby="lambda-invocation-retry-paths-sync-title">
+      <div class="sd-lane-title" id="lambda-invocation-retry-paths-sync-title">동기 호출</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">동기 호출자</strong><span class="sd-detail">API Gateway, ALB, SDK. 요청과 응답 각 6 MB</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">RequestResponse</span></div>
+        <div class="sd-node"><strong class="sd-label">함수 실행</strong><span class="sd-detail">Lambda를 동기 방식으로 호출합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">Lambda가 재시도하지 않음</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">에러가 호출자에게 그대로 간다</strong><span class="sd-detail">Lambda는 대신 재시도하지 않으며 호출자 코드가 429나 5xx를 처리합니다.</span></div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="lambda-invocation-retry-paths-async-title">
+      <div class="sd-lane-title" id="lambda-invocation-retry-paths-async-title">비동기 호출</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">비동기 소스</strong><span class="sd-detail">S3 알림, SNS, EventBridge. payload 1 MB</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">202 즉시 응답</span></div>
+        <div class="sd-node"><strong class="sd-label">Lambda 내부 이벤트 큐</strong><span class="sd-detail">eventually consistent라 중복 전달이 있을 수 있습니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">함수 에러 2회 재시도</span></div>
+        <div class="sd-node"><strong class="sd-label">1분 뒤와 2분 뒤 재시도</strong><span class="sd-detail">스로틀과 시스템 에러는 최대 6시간까지 별도로 재시도합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">재시도 소진</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">DLQ 와 on-failure destination</strong><span class="sd-detail">재시도가 소진된 이벤트를 여기서 포착합니다.</span></div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="lambda-invocation-retry-paths-stream-title">
+      <div class="sd-lane-title" id="lambda-invocation-retry-paths-stream-title">스트림 event source mapping</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">스트림 소스</strong><span class="sd-detail">Kinesis, DynamoDB Streams</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">Lambda가 폴링</span></div>
+        <div class="sd-node"><strong class="sd-label">event source mapping</strong><span class="sd-detail">레코드를 배치로 함수에 넘깁니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">배치 전체를 다시 시도한다</span></div>
+        <div class="sd-node"><strong class="sd-label">배치 전체를 다시 시도한다</strong><span class="sd-detail">성공할 때까지 같은 샤드가 진행하지 못합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">정체 관측</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">Iterator Age 상승</strong><span class="sd-detail">샤드가 막힌 시간을 모니터링합니다.</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

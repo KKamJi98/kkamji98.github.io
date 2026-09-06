@@ -1,0 +1,81 @@
+<figure class="sd sd--layers" id="kubernetes-architecture-overview" aria-labelledby="kubernetes-architecture-overview-title">
+  <figcaption class="sd-title" id="kubernetes-architecture-overview-title">Kubernetes control plane과 data plane</figcaption>
+  <section class="sd-band" aria-label="Control plane 경계">
+    <div class="sd-band-title">Control plane</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">API server</strong>
+        <span class="sd-detail">모든 구성요소와 client가 통신하는 REST API</span>
+      </div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-flow">
+          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Database (etcd)</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Database (etcd)</strong>
+            <span class="sd-detail">클러스터 상태 저장</span>
+          </div>
+        </div>
+        <div class="sd-flow">
+          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Scheduler</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Scheduler</strong>
+            <span class="sd-detail">Pod를 실행할 node 선택</span>
+          </div>
+        </div>
+        <div class="sd-flow">
+          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Controller Manager</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Controller Manager</strong>
+            <span class="sd-detail">desired state로 지속 조정</span>
+          </div>
+        </div>
+        <div class="sd-flow">
+          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Cloud Controller Manager</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Cloud Controller Manager</strong>
+            <span class="sd-detail">cloud provider 자원과 연동</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="sd-note">Scheduler와 controller는 API server를 통해 상태를 읽고 씁니다.</p>
+  </section>
+  <section class="sd-band" aria-label="Data plane 경계">
+    <div class="sd-band-title">Data plane nodes</div>
+    <div class="sd-arrow"><span class="sd-edge-label">API server -&gt; node group: scheduling과 control</span></div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node">
+        <strong class="sd-label">Node 1</strong>
+        <span class="sd-detail">container runtime, kubelet, kube-proxy</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Node 2</strong>
+        <span class="sd-detail">container runtime, kubelet, kube-proxy</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Node x</strong>
+        <span class="sd-detail">container runtime, kubelet, kube-proxy</span>
+      </div>
+    </div>
+  </section>
+  <section class="sd-band" aria-label="외부 client와 provider">
+    <div class="sd-band-title">External boundaries</div>
+    <div class="sd-grid">
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kubectl (User machine)</strong>
+          <span class="sd-detail">HTTPS로 API server를 호출</span>
+        </div>
+        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">kubectl &lt;-&gt; API server: HTTPS 요청과 응답</span></div>
+      </div>
+      <div class="sd-flow">
+        <div class="sd-arrow"><span class="sd-edge-label">Cloud Controller Manager -&gt; Cloud Provider API</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Cloud Provider API</strong>
+          <span class="sd-detail">Cloud Controller Manager가 호출하는 외부 API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Kubernetes 구성요소는 API server를 중심으로 상호작용하고, cloud 연동은 Cloud Controller Manager가 담당합니다.</p>
+</figure>

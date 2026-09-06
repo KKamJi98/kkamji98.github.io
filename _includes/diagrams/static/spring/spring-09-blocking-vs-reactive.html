@@ -1,0 +1,43 @@
+<figure class="sd sd--comparison" id="spring-09-blocking-vs-reactive" aria-labelledby="spring-09-blocking-vs-reactive-title">
+  <figcaption class="sd-title" id="spring-09-blocking-vs-reactive-title">Blocking과 non-blocking의 I/O 대기 차이</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Blocking 흐름">
+      <div class="sd-lane-title">Blocking</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">call db.query()</strong>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">I/O 대기</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">thread blocked 상태</strong>
+          <span class="sd-detail">전체 대기 동안 점유되고 아무 일도 하지 않음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">결과 도착</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">use(result)</strong>
+          <span class="sd-detail">같은 thread에서 재개</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Non-blocking 흐름">
+      <div class="sd-lane-title">Non-blocking</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">stream 선언</strong>
+          <span class="sd-detail">query().map(...).subscribe(...)</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">callback 대기</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">thread 반환</strong>
+          <span class="sd-detail">다른 요청을 처리할 수 있음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">data 준비</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">data 도착, onNext 실행</strong>
+          <span class="sd-detail">다른 thread에서 실행될 수 있음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Blocking은 기다리는 동안 thread를 쓰고, non-blocking은 callback으로 이어져 작은 pool이 많은 connection을 처리할 수 있습니다.</p>
+</figure>

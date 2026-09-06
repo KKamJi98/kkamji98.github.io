@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-kubernetes-fqdn-resolution" aria-labelledby="sd-kubernetes-kubernetes-fqdn-resolution-title">
+  <figcaption class="sd-title" id="sd-kubernetes-kubernetes-fqdn-resolution-title">Pod의 search domain이 짧은 Service 이름을 FQDN으로 확장한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Pod</strong>
+      <span class="sd-detail"><code>/etc/resolv.conf</code>의 search list와 <code>ndots</code>를 사용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">짧은 이름을 search domain으로 확장</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">CoreDNS</strong>
+      <span class="sd-detail">cluster DNS server가 이름을 조회합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Service record 조회</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Service</strong>
+      <span class="sd-detail">조회 대상 record의 service label입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">namespace label 결합</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Namespace</strong>
+      <span class="sd-detail">FQDN의 두 번째 label을 제공합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">cluster domain suffix 추가</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label"><code>svc.cluster.local</code></strong>
+      <span class="sd-detail"><code>svc</code>, <code>svc.ns</code>, full name이 같은 record로 이어집니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">예를 들어 <code>web-service</code>는 namespace와 Service suffix가 붙어 <code>web-service.&lt;namespace&gt;.svc.cluster.local</code>로 조회됩니다.</p>
+</figure>

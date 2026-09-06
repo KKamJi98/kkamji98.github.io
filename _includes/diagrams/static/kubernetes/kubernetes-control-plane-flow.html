@@ -1,0 +1,40 @@
+<figure class="sd sd--layers sd--flow" id="sd-kubernetes-control-plane-flow" aria-labelledby="sd-kubernetes-control-plane-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-control-plane-flow-title">모든 변경은 API server를 거쳐 node로 reconcile된다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Users and automation</strong>
+      <span class="sd-detail"><code>kubectl</code>, CI, operator가 요청을 보냅니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">모든 제어 요청은 API로 진입</span></div>
+  </div>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-control-plane-flow-control-title">
+    <div class="sd-band-title" id="sd-kubernetes-control-plane-flow-control-title">Control plane</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">API server and etcd</strong>
+        <span class="sd-detail">cluster state의 유일한 writer와 일관된 저장소입니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">desired state 관찰</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Controllers and scheduler</strong>
+        <span class="sd-detail">desired state와 actual state의 차이를 reconcile합니다.</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">binding과 상태를 API로 전달</span></div>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-control-plane-flow-node-title">
+    <div class="sd-band-title" id="sd-kubernetes-control-plane-flow-node-title">Worker node</div>
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">kubelet on nodes</strong>
+        <span class="sd-detail">자신에게 binding된 Pod를 watch합니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">container 실행 요청</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Container runtime and Pods</strong>
+        <span class="sd-detail">container가 실제로 시작되는 위치입니다.</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">그림은 논리적 책임 경계를 보여줍니다. Managed Kubernetes에서는 control plane process가 worker와 다른 infrastructure에서 실행될 수 있습니다.</p>
+</figure>

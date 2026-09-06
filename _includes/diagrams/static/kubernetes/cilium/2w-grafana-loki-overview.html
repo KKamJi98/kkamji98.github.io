@@ -1,0 +1,38 @@
+<figure class="sd sd--flow" id="grafana-loki-overview" aria-labelledby="grafana-loki-overview-title">
+  <figcaption class="sd-title" id="grafana-loki-overview-title">Agent가 여러 애플리케이션 로그를 Loki로 모으고 Grafana가 조회한다</figcaption>
+  <section class="sd-lane">
+    <div class="sd-lane-title">Application boundary</div>
+    <div class="sd-grid">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">App 1</strong>
+        <span class="sd-detail">로그와 label metadata를 생성한다.</span>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">App 2</strong>
+        <span class="sd-detail">같은 수집 경로로 로그를 내보낸다.</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">collect logs</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">Agent</strong>
+    <span class="sd-detail">애플리케이션 로그를 읽고 label을 붙여 Loki write endpoint로 전송한다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">write stream</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Grafana Loki</strong>
+    <span class="sd-detail">log body는 저장하고 label metadata를 index해 tenant별 stream을 관리한다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">query with LogQL</span></div>
+  <div class="sd-grid">
+    <div class="sd-node">
+      <strong class="sd-label">Grafana</strong>
+      <span class="sd-detail">대시보드와 LogQL query로 로그를 탐색한다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">LogCLI</strong>
+      <span class="sd-detail">CLI에서 같은 Loki query API를 호출한다.</span>
+    </div>
+  </div>
+  <p class="sd-note">Loki의 Read와 Write 경로는 독립적으로 확장할 수 있고 multi-tenant 요청은 tenant header로 분리한다.</p>
+</figure>

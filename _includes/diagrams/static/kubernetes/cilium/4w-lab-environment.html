@@ -1,0 +1,46 @@
+<figure class="sd sd--comparison" id="cilium-4w-lab-environment" aria-labelledby="cilium-4w-lab-environment-title">
+  <figcaption class="sd-title" id="cilium-4w-lab-environment-title">Cilium Native Routing 실습은 두 노드망과 Router VM 사이의 PodCIDR 경로를 확인합니다</figcaption>
+
+  <section class="sd-lane">
+    <div class="sd-lane-title">Kubernetes cluster</div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">k8s-ctr</strong>
+        <span class="sd-detail"><code>eth1</code> 192.168.10.100, control plane</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">k8s-w1</strong>
+        <span class="sd-detail"><code>eth1</code> worker on 192.168.10.0/24</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">k8s-w0</strong>
+        <span class="sd-detail"><code>enp0s8</code> 192.168.20.100, worker</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-lane">
+    <div class="sd-lane-title">Router VM</div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">eth1</strong>
+        <span class="sd-detail">192.168.10.200 on 192.168.10.0/24</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">eth2</strong>
+        <span class="sd-detail">192.168.20.200 on 192.168.20.0/24</span>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">loop1 and loop2</strong>
+        <span class="sd-detail">10.10.1.200/32 and 10.10.2.200/32</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">PodCIDR 172.20.0.0/16</strong>
+    <span class="sd-detail">노드별 /24 대역을 Cilium Native Routing으로 전달합니다.</span>
+  </div>
+
+  <p class="sd-note">Router가 172.20.2.0/24 경로를 모르면 기본 public route로 빠져 k8s-w0의 Pod 통신이 실패합니다. Static Route 또는 Cilium BGP Control Plane이 이 경로를 채웁니다.</p>
+</figure>

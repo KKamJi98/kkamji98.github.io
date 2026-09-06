@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" id="spring-08-fatjar-layout" aria-labelledby="spring-08-fatjar-layout-title">
+  <figcaption class="sd-title" id="spring-08-fatjar-layout-title">Executable fat jar의 내부와 실행 경로</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="app.jar 내부 구조">
+      <div class="sd-lane-title">app.jar 내부</div>
+      <div class="sd-stack">
+        <div class="sd-band">
+          <strong class="sd-band-title">META-INF/MANIFEST.MF</strong>
+          <span class="sd-detail">Main-Class: JarLauncher; Start-Class: yours</span>
+        </div>
+        <div class="sd-band">
+          <strong class="sd-band-title">org/springframework/boot/loader/</strong>
+          <span class="sd-detail">loader 클래스 자체</span>
+        </div>
+        <div class="sd-band">
+          <strong class="sd-band-title">BOOT-INF/classes/</strong>
+          <span class="sd-detail">애플리케이션 코드</span>
+        </div>
+        <div class="sd-band sd-band--accent">
+          <strong class="sd-band-title">BOOT-INF/lib/</strong>
+          <span class="sd-detail">의존성 jar: tomcat, spring, jackson</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="java -jar 실행 경로">
+      <div class="sd-lane-title">java -jar 실행</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">java -jar app.jar</strong>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Main-Class 시작</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">JarLauncher 실행</strong>
+          <span class="sd-detail">MANIFEST의 Main-Class</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">중첩 jar 탐색</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">중첩 jar classloader</strong>
+          <span class="sd-detail">BOOT-INF/lib/*.jar를 열어 로드</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Start-Class 호출</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Start-Class main 호출</strong>
+          <span class="sd-detail">애플리케이션 시작</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">java -jar가 먼저 실행하는 진입점은 application main이 아니라 MANIFEST의 JarLauncher입니다.</p>
+</figure>

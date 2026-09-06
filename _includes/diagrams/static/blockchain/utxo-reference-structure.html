@@ -1,0 +1,36 @@
+<figure class="sd sd--flow" id="sd-blockchain-utxo-reference-structure" aria-labelledby="sd-title-blockchain-utxo-reference-structure">
+  <figcaption class="sd-title" id="sd-title-blockchain-utxo-reference-structure">transaction은 UTXO를 통째로 소비하고 새 output을 만듭니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">UTXO 7396e66d...:0</strong>
+      <span class="sd-detail">coinbase 50 BTC, 소유자 alice</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">output 전체를 input으로 사용</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">New transaction 319d3776</strong>
+      <span class="sd-detail">output 전체를 유일한 input으로 소비</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">새 output으로 분기</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="수신 payment output">
+      <div class="sd-lane-title">vout[0] payment</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">1.5 BTC to bob</strong>
+          <span class="sd-detail">new UTXO</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="alice change output">
+      <div class="sd-lane-title">vout[1] change</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">48.4999859 BTC</strong>
+          <span class="sd-detail">alice에게 돌아가는 새 UTXO</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note"><strong>fee 0.0000141 BTC</strong>는 inputs minus outputs이며 어떤 output에도 없고 miner가 회수합니다.</p>
+</figure>

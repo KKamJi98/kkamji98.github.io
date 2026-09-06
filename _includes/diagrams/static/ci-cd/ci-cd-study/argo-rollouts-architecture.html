@@ -1,0 +1,80 @@
+<figure class="sd sd--layers" id="sd-ci-cd-study-argo-rollouts-architecture" aria-labelledby="sd-title-ci-cd-study-argo-rollouts-architecture">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-argo-rollouts-architecture">Argo Rollouts가 분석 결과와 traffic weight로 ReplicaSet을 조정</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-rollouts-control-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-rollouts-control-title">Control and analysis</div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-rollouts-controller-title">
+          <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-controller-title">Rollout control</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">Rollout Controller</strong>
+              <span class="sd-detail">Rollout CRD 변경을 watch하고 상태를 reconcile</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">desired state 반영</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Rollout</strong>
+              <span class="sd-detail">배포 단계와 traffic weight를 선언</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-rollouts-analysis-title">
+          <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-analysis-title">Metric analysis</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">AnalysisTemplate</strong>
+              <span class="sd-detail">성공과 실패를 판단할 query와 threshold 정의</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Rollout에 연결</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">AnalysisRun</strong>
+              <span class="sd-detail">특정 Rollout의 실제 분석 실행</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">metric provider 조회</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Metric providers</strong>
+              <span class="sd-detail">Prometheus, Wavefront, Kayenta, Kubernetes Job, Web</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">분석 결과에 따라 promote, pause 또는 rollback</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-rollouts-traffic-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-rollouts-traffic-title">Traffic plane</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Ingress</strong>
+          <span class="sd-detail">외부 사용자의 live traffic 진입점</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Service로 route</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Service</strong>
+          <span class="sd-detail">Canary와 Stable 대상에 weight 적용</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">20% / 80% traffic split</span></div>
+        <div class="sd-grid">
+          <section class="sd-lane sd-lane--accent" aria-labelledby="sd-ci-cd-study-argo-rollouts-canary-title">
+            <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-canary-title">Canary</div>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">Canary ReplicaSet</strong>
+                <span class="sd-detail">Canary Pod, 20% traffic</span>
+              </div>
+            </div>
+          </section>
+          <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-rollouts-stable-title">
+            <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-stable-title">Stable</div>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">Stable ReplicaSet</strong>
+                <span class="sd-detail">Stable Pod, 80% traffic</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Analysis는 선택 기능입니다. 메트릭 대신 API나 CLI의 수동 pause와 promote를 사용할 수 있으며, Rollout Controller가 ReplicaSet과 Service 상태를 함께 조정합니다.</p>
+</figure>

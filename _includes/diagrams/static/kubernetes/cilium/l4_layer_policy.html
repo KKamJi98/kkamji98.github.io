@@ -1,0 +1,42 @@
+<figure class="sd sd--comparison sd--layers" id="sd-kubernetes-l4-layer-policy" aria-labelledby="sd-kubernetes-l4-layer-policy-title">
+  <figcaption class="sd-title" id="sd-kubernetes-l4-layer-policy-title">L4 policy는 source identity와 TCP port를 검사한다</figcaption>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-l4-layer-policy-namespace-title">
+    <div class="sd-band-title" id="sd-kubernetes-l4-layer-policy-namespace-title">namespace=default</div>
+    <p class="sd-note">Ingress Network Policy: tiefighter to deathstar allow tcp/80</p>
+    <div class="sd-grid">
+      <section class="sd-lane sd-lane--accent" aria-label="Allowed L4 request">
+        <div class="sd-lane-title">Allowed</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">tiefighter</strong>
+            <span class="sd-detail"><code>org=empire</code>, <code>class=tiefighter</code></span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">TCP/80</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">deathstar</strong>
+            <span class="sd-detail"><code>org=empire</code>, <code>class=deathstar</code></span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">allow</span></div>
+          <div class="sd-node"><strong class="sd-label">Ingress accepted</strong><span class="sd-detail">L4 rule의 identity와 port 조건을 만족합니다.</span></div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning" aria-label="Denied L4 request">
+        <div class="sd-lane-title">Denied</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">xwing</strong>
+            <span class="sd-detail"><code>org=alliance</code>, <code>class=xwing</code></span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">TCP/80</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">deathstar</strong>
+            <span class="sd-detail"><code>org=empire</code>, <code>class=deathstar</code></span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">identity mismatch</span></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">Ingress blocked</strong><span class="sd-detail">port가 같아도 source identity가 rule과 다릅니다.</span></div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <p class="sd-note">L4 규칙은 HTTP method나 URL path를 검사하지 않으며, 이 조건은 L7 규칙에서 별도로 적용됩니다.</p>
+</figure>

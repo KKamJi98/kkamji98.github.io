@@ -1,0 +1,66 @@
+<figure class="sd sd--comparison" id="sd-project-weasel-cicd" aria-labelledby="sd-title-project-weasel-cicd">
+  <figcaption class="sd-title" id="sd-title-project-weasel-cicd">Code push부터 Kubernetes와 S3 배포까지</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Developer</strong>
+      <span class="sd-detail">code change</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Code Push</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">App Repository</strong>
+      <span class="sd-detail">GitHub source</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">GitHub Webhook</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Jenkins</strong>
+      <span class="sd-detail">build and publish artifacts</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">artifact path 분기</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Kubernetes backend 배포">
+      <div class="sd-lane-title"><strong>Kubernetes backend</strong></div>
+      <p class="sd-note">Jenkins에서 ECR image push와 Manifest Repository update로 독립 분기합니다.</p>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-label="ECR image push">
+          <div class="sd-lane-title">ECR image</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">ECR</strong>
+              <span class="sd-detail">Jenkins가 image push</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-label="Manifest Repository GitOps">
+          <div class="sd-lane-title">Manifest update</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">Manifest Repository</strong>
+              <span class="sd-detail">Jenkins가 manifest update</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">ArgoCD detects manifest</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">ArgoCD</strong>
+              <span class="sd-detail">desired state watcher</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Apply</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">K8s Deployment</strong>
+              <span class="sd-detail">cluster workload update</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Frontend S3 배포">
+      <div class="sd-lane-title"><strong>Frontend static hosting</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">S3</strong>
+          <span class="sd-detail">File update</span>
+        </div>
+      </div>
+      <p class="sd-note">Jenkins가 frontend build 결과를 정적 웹 호스팅 bucket에 반영합니다.</p>
+    </section>
+  </div>
+</figure>

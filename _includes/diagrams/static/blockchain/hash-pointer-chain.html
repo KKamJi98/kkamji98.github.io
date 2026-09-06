@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-hash-pointer-chain" aria-labelledby="sd-title-hash-pointer-chain">
+  <figcaption class="sd-title" id="sd-title-hash-pointer-chain">각 block header는 이전 header의 hash pointer를 저장합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">genesis header</strong>
+      <span class="sd-detail">hash(genesis)</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">prev = hash(genesis)</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">block 1 header</strong>
+      <span class="sd-detail">prev = hash(genesis)</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">prev = hash(block 1)</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">block 2 header</strong>
+      <span class="sd-detail">prev = hash(block 1)</span>
+    </div>
+  </div>
+  <p class="sd-note">block 1 payload가 바뀌면 block 1 hash가 달라지고, block 2의 prev pointer가 더 이상 맞지 않습니다.</p>
+</figure>

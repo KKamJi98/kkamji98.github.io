@@ -1,0 +1,25 @@
+<figure class="sd sd--flow" id="spring-10-mono-flux-backpressure" aria-labelledby="spring-10-mono-flux-backpressure-title">
+  <figcaption class="sd-title" id="spring-10-mono-flux-backpressure-title">Mono와 Flux의 lazy flow, 그리고 backpressure</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Publisher</strong>
+      <span class="sd-detail">Mono 0..1 or Flux 0..N</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">연산자 조립</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Operators</strong>
+      <span class="sd-detail">map, filter, flatMap: 계획만 구성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">subscription 계약</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Subscription</strong>
+      <span class="sd-detail">request(n)과 cancel을 전달하는 계약</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">signal 전달</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Subscriber</strong>
+      <span class="sd-detail">onNext, onComplete, onError</span>
+    </div>
+  </div>
+  <p class="sd-note">subscribe()가 flow를 시작합니다. demand upstream: Subscription -&gt; Publisher (request(n)); Subscriber는 cancel도 보냅니다.</p>
+</figure>

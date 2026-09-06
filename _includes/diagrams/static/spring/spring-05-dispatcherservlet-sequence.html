@@ -1,0 +1,39 @@
+<figure class="sd sd--sequence" id="spring-05-dispatcherservlet-sequence" aria-labelledby="spring-05-dispatcherservlet-sequence-title">
+  <figcaption class="sd-title" id="spring-05-dispatcherservlet-sequence-title">DispatcherServlet의 위임 순서</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client request</strong>
+      <span class="sd-detail">GET /orders/42</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">경로와 HTTP method 매칭</span></div>
+    <section class="sd-band" aria-label="DispatcherServlet delegates 경계">
+      <div class="sd-band-title">DispatcherServlet delegates</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">HandlerMapping</strong>
+          <span class="sd-detail">요청을 handler에 매핑</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">인자 바인딩과 호출</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">HandlerAdapter</strong>
+          <span class="sd-detail">handler 호출 후 인자 바인딩</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">실제 bean 작업</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Controller, Service, Repository</strong>
+          <span class="sd-detail">애플리케이션 bean 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">응답 표현 선택</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Return value handling</strong>
+          <span class="sd-detail">HttpMessageConverter 또는 view resolution</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">HTTP 응답</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Client response</strong>
+    </div>
+  </div>
+  <p class="sd-note">DispatcherServlet은 직접 일을 수행하지 않고 HandlerMapping과 HandlerAdapter에 처리를 위임합니다.</p>
+</figure>

@@ -1,0 +1,83 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-migration-7r-decision-tree-title">
+  <figcaption class="sd-title" id="sap-c02-migration-7r-decision-tree-title">7R 결정은 다섯 질문의 순서로 좁힌다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">포트폴리오 평가 완료</strong>
+      <span class="sd-detail">사용률, 의존성, 라이선스, 소유자를 수집한 뒤 평가를 시작한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">1. 아직 사용 중인가</span></div>
+    <section class="sd-lane">
+      <span class="sd-lane-title">1. 아직 쓰이고 있는가</span>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">retire</strong>
+          <span class="sd-detail">평균 CPU와 메모리 5% 미만 zombie, 5-20% idle 또는 최근 90일 inbound connection 없음.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">계속 평가</strong>
+          <span class="sd-detail">사용 중이면 클라우드 등가물 질문으로 간다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">retire가 아니면</span></div>
+    <section class="sd-lane">
+      <span class="sd-lane-title">클라우드 등가물</span>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">retain</strong>
+          <span class="sd-detail">mainframe, IBM AS/400, Oracle Solaris 또는 데이터 residency 규제.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">계속 평가</strong>
+          <span class="sd-detail">등가물이 있으면 상용 대체 가능성을 확인한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">retain이 아니면</span></div>
+    <section class="sd-lane">
+      <span class="sd-lane-title">상용 제품으로 대체 가능한가</span>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">repurchase</strong>
+          <span class="sd-detail">라이선스에서 SaaS로 바꾸며 교육, 데이터 이전, AD 통합, 네트워킹은 남는다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">계속 평가</strong>
+          <span class="sd-detail">대체하지 않으면 이동 단위를 확인한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">repurchase가 아니면</span></div>
+    <section class="sd-lane">
+      <span class="sd-lane-title">이동 단위가 서버인가 플랫폼인가</span>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">relocate</strong>
+          <span class="sd-detail">플랫폼 전체 또는 다른 VPC, Region, 계정으로 이동한다. 아키텍처는 그대로다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">계속 평가</strong>
+          <span class="sd-detail">서버 단위라면 변경 범위를 확인한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">서버 단위 이동</span></div>
+    <section class="sd-lane">
+      <span class="sd-lane-title">옮기면서 무엇을 바꾸는가</span>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">rehost</strong>
+          <span class="sd-detail">아무것도 바꾸지 않는다. MGN, Cloud Migration Factory, VM Import/Export.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">replatform</strong>
+          <span class="sd-detail">플랫폼만 바꾼다. SQL Server를 RDS로, Graviton 전환, App2Container.</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">refactor</strong>
+          <span class="sd-detail">코드를 다시 쓴다. 대규모 마이그레이션에서는 권장되지 않는다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

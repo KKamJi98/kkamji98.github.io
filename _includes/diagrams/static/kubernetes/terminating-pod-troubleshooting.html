@@ -1,0 +1,48 @@
+<figure class="sd sd--layers sd--flow" id="sd-kubernetes-terminating-pod-troubleshooting" aria-labelledby="sd-kubernetes-terminating-pod-troubleshooting-title">
+  <figcaption class="sd-title" id="sd-kubernetes-terminating-pod-troubleshooting-title">Terminating Pod은 finalizer와 volume 정리가 끝날 때까지 남는다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Pod deletion request</strong>
+      <span class="sd-detail"><code>deletionTimestamp</code>가 설정됩니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">API object는 즉시 지우지 않음</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">API server</strong>
+      <span class="sd-detail">모든 finalizer가 clear될 때까지 object를 유지합니다.</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 cleanup gate가 각각 완료되어야 함</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Node kubelet과 volume 정리 경로">
+      <div class="sd-lane-title">Node cleanup gate</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Node kubelet</strong>
+          <span class="sd-detail"><code>SIGTERM</code> 뒤 grace period에 <code>SIGKILL</code>을 처리합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">unmount와 detach</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Volume detach</strong>
+          <span class="sd-detail">unmount와 detach가 모두 성공해야 합니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="API finalizer 정리 경로">
+      <div class="sd-lane-title">API finalizer gate</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Finalizers clear</strong>
+          <span class="sd-detail">각 controller가 맡은 cleanup을 완료하고 finalizer를 제거합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">모든 gate 완료</span></div>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Pod object removed</strong>
+      <span class="sd-detail">모든 cleanup과 finalizer 처리가 끝난 뒤에만 삭제됩니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">deletionTimestamp만 설정된 상태에서는 object가 사라지지 않습니다. 본문 사례에서는 worker의 ephemeral-storage 부족이 kubelet과 volume cleanup을 지연시켰습니다.</p>
+</figure>

@@ -1,0 +1,70 @@
+<figure class="sd sd--comparison" id="sd-project-weasel-about-ci-cd" aria-labelledby="sd-title-project-weasel-about-ci-cd">
+  <figcaption class="sd-title" id="sd-title-project-weasel-about-ci-cd">Weasel CI/CD는 코드 변경을 이미지와 배포 상태로 전달합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Developer</strong>
+      <span class="sd-detail">애플리케이션 코드를 변경합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Code Push</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">App Repository</strong>
+      <span class="sd-detail">push를 저장하고 Jenkins webhook을 호출합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Webhook</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Jenkins</strong>
+      <span class="sd-detail">빌드를 실행하고 두 delivery 경로로 결과를 보냅니다.</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Image and GitOps deploy">
+      <div class="sd-lane-title"><strong>Image and GitOps deploy</strong></div>
+      <div class="sd-arrow"><span class="sd-edge-label">Jenkins independent branches</span></div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-label="Image push">
+          <div class="sd-lane-title"><strong>Image push</strong></div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">ECR</strong>
+              <span class="sd-detail">Jenkins가 container image를 push합니다.</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-label="Manifest update and deploy">
+          <div class="sd-lane-title"><strong>Manifest update and deploy</strong></div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">Manifest Repository</strong>
+              <span class="sd-detail">Jenkins가 deployment manifest를 업데이트합니다.</span>
+            </div>
+            <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">Detect</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Argo CD</strong>
+              <span class="sd-detail">Manifest Repository 변경을 감지합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Apply</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">K8s Deployment</strong>
+              <span class="sd-detail">클러스터에 desired state를 적용합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">target image pull</span></div>
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">ECR target image</strong>
+              <span class="sd-detail">배포 대상이 ECR에서 target image를 가져옵니다.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="File update">
+      <div class="sd-lane-title"><strong>File update</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">S3</strong>
+          <span class="sd-detail">Jenkins가 file을 업데이트합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Jenkins의 image push와 manifest update는 독립 branch입니다. Argo CD는 Manifest Repository를 감지하고, K8s Deployment는 적용된 target image를 ECR에서 pull합니다.</p>
+</figure>

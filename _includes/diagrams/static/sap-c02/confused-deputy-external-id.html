@@ -1,0 +1,31 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-confused-deputy-external-id-title">
+  <figcaption class="sd-title" id="sap-c02-confused-deputy-external-id-title">Confused deputy를 막는 external ID</figcaption>
+  <div class="sd-flow">
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="정상 고객 요청">
+        <div class="sd-lane-title">고객 A의 정상 요청</div>
+        <div class="sd-node"><strong class="sd-label">고객 A</strong><span class="sd-detail">서드파티에 고객 role ARN을 전달</span></div>
+      </section>
+      <section class="sd-lane" aria-label="다른 고객의 공격 시도">
+        <div class="sd-lane-title">제3자의 오용 시도</div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">고객 A ARN을 아는 제3자</strong><span class="sd-detail">같은 서드파티의 다른 고객이 ARN을 악용</span></div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">role ARN 전달</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">서드파티 서비스</strong><span class="sd-detail">여러 고객 role을 대신 가정하는 deputy</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node"><strong class="sd-label">external ID 조건</strong><span class="sd-detail">sts:ExternalId는 고객마다 다르게 생성하며 secret은 아님</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">trust policy 일치 검사</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="External ID가 일치한 정상 경로">
+        <div class="sd-lane-title">값이 일치함</div>
+        <div class="sd-node"><strong class="sd-label">고객 A의 role 가정</strong><span class="sd-detail">trust policy가 external ID 일치를 요구</span></div>
+      </section>
+      <section class="sd-lane" aria-label="External ID가 다른 차단 경로">
+        <div class="sd-lane-title">값이 다름</div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">가정 실패</strong><span class="sd-detail">role trust 조건에서 요청이 끊김</span></div>
+      </section>
+    </div>
+    <div class="sd-note">external ID 길이는 2자에서 1,224자 사이이며 고객이 값을 정하면 이 방어가 성립하지 않습니다.</div>
+  </div>
+</figure>

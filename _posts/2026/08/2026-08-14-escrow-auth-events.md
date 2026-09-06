@@ -57,7 +57,7 @@ Error: Failed to estimate gas
 execution reverted: NotBuyer
 ```
 
-![낯선 주소의 deposit가 estimate에서 NotBuyer로 막혀 receipt가 없는 흐름](/assets/img/blockchain/escrow-auth-deny.webp)
+{% include diagrams/static/blockchain/escrow-auth-deny.html %}
 _권한 실패는 체인을 갱신하지 않는다. funded는 false로 남는다._
 
 이 실패는 이전 글의 `boom()`과 같은 층입니다. revert가 예상되면 node는 gas를 배정하지 않습니다. explorer에 올라갈 hash도 없습니다. 권한이 없는 호출은 "실패한 거래"가 아니라 "거래가 되지 않은 호출"입니다.
@@ -96,7 +96,7 @@ escrow        0
 seller        10000 ETH -> 10001 ETH
 ```
 
-![buyer deposit가 Escrow를 잠그고 release가 seller에게 1 ETH를 보내는 흐름](/assets/img/blockchain/escrow-deposit-release.webp)
+{% include diagrams/static/blockchain/escrow-deposit-release.html %}
 _locked 이더는 Escrow address에 있다. release 뒤에야 seller 잔액이 1 ETH 오른다._
 
 `Released` event 하나가 receipt에 남습니다. 운영자가 나중에 추적할 때는 탐색기 잔액보다 이 log와 `funded()`를 먼저 봅니다. Anvil에서 `cast call funded()(bool)`이 false이면, 그 금고는 이미 비었습니다.

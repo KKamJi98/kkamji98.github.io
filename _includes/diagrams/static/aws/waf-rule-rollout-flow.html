@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-aws-waf-rule-rollout-flow" aria-labelledby="sd-title-aws-waf-rule-rollout-flow">
+  <figcaption class="sd-title" id="sd-title-aws-waf-rule-rollout-flow">WAF rule은 Count로 관찰하고 좁힌 뒤 만료가 있는 Block으로 전환한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Evidence and owner</strong>
+      <span class="sd-detail">막으려는 request pattern과 담당자 확정</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">reversible rollout</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Count mode</strong>
+      <span class="sd-detail">inspect와 billing만 수행; request를 block하지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">sample and label</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Metrics and logs</strong>
+      <span class="sd-detail">sampled requests, rule name, label 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">false positive 축소</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Scope exception</strong>
+      <span class="sd-detail">IP set exception 또는 scope-down</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">한 route씩 적용</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Gradual Block</strong>
+      <span class="sd-detail">expiry date를 둔 제한적 Block</span>
+    </div>
+  </div>
+  <p class="sd-note">CloudFront Web ACL 변경은 global edge로 전파되는 시간이 필요합니다. Block 효과와 rollback 효과는 서로 다른 observation window에서 판단합니다.</p>
+</figure>

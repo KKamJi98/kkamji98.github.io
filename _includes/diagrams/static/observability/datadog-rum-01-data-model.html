@@ -1,0 +1,38 @@
+<figure class="sd sd--layers" id="sd-observability-datadog-rum-01-data-model" aria-labelledby="sd-title-observability-datadog-rum-01-data-model">
+  <figcaption class="sd-title" id="sd-title-observability-datadog-rum-01-data-model">RUM 데이터는 Session &gt; View &gt; Event 계층으로 쌓인다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Session (<code>session.id</code>)</strong>
+      <span class="sd-detail">사용자 여정 전체, 최대 4시간, 15분 비활동 시 만료</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">페이지 또는 화면 단위로 묶음</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">View (<code>view.id</code>)</strong>
+      <span class="sd-detail">initial load 또는 route change마다 생성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">수집 시점의 active View에 귀속</span></div>
+    <div class="sd-grid sd-grid--three">
+      <article class="sd-node">
+        <strong class="sd-label">Action</strong>
+        <span class="sd-detail">click, tap, frustration signal</span>
+      </article>
+      <article class="sd-node">
+        <strong class="sd-label">Resource</strong>
+        <span class="sd-detail">XHR, fetch와 단계별 timing</span>
+      </article>
+      <article class="sd-node sd-node--warning">
+        <strong class="sd-label">Error</strong>
+        <span class="sd-detail">JS error, crash, stack trace</span>
+      </article>
+      <article class="sd-node">
+        <strong class="sd-label">Long Task</strong>
+        <span class="sd-detail">main thread를 50ms 이상 block</span>
+      </article>
+      <article class="sd-node">
+        <strong class="sd-label">Vital</strong>
+        <span class="sd-detail">Core Web Vitals와 custom vital</span>
+      </article>
+    </div>
+  </div>
+  <p class="sd-note">다섯 Event는 View에서 갈라지는 종류이며 서로의 실행 순서를 뜻하지 않습니다. 각 Event에는 당시 active View의 맥락이 붙습니다.</p>
+</figure>

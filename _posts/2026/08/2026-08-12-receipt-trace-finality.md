@@ -42,7 +42,7 @@ execution reverted: boom
 
 실패를 시뮬레이트한 것과 실패를 block에 넣는 것은 다른 객체입니다. 전자는 에러 문자열만 남고, 후자라야 `status`와 `gasUsed`를 읽을 수 있습니다.
 
-![cast send가 gas를 추정하다 boom으로 멈추면 receipt와 tx hash가 생기지 않는 흐름](/assets/img/blockchain/receipt-estimate-blocked.webp)
+{% include diagrams/static/blockchain/receipt-estimate-blocked.html %}
 _estimate 실패는 체인을 갱신하지 않는다. 읽을 receipt가 없다._
 
 ---
@@ -63,7 +63,7 @@ transactionHash     0x5e5d58bb...
 
 `status=0x0`은 상태 트리가 그 호출 이전으로 되돌아갔다는 뜻입니다. 그래도 `gasUsed`는 21492입니다. revert도 EVM 실행이고, 실행한 만큼 gas를 걷습니다. `logs`가 빈 배열인 이유는 이벤트를 emit하기 전에 되돌려졌기 때문입니다. `blockNumber=0x5`는 그 실패가 Anvil block 5에 들어갔다는 뜻입니다.
 
-![gas-limit을 준 boom 호출이 Anvil block에 들어가 receipt status 0x0을 남기는 흐름](/assets/img/blockchain/receipt-forced-status.webp)
+{% include diagrams/static/blockchain/receipt-forced-status.html %}
 _강제 전송이라야 실패가 block에 남는다. status 0x0이어도 gasUsed는 21492다._
 
 같은 hash를 `cast run`으로 다시 실행하면 opcode 단위가 아니라 호출 단위 트레이스가 나옵니다. 이건 새 거래가 아닙니다. 이미 있는 receipt를 로컬에서 재생한 것입니다.
@@ -90,7 +90,7 @@ finalized   11544938    (latest - 64)
 
 이 세 숫자는 Sepolia에 무엇을 deploy해서 얻은 값이 아닙니다. `eth_getBlockByNumber`에 태그 세 개를 읽은 결과입니다. faucet도 쓰지 않았고, 전용 testnet wallet도 없습니다.
 
-![같은 Sepolia node에서 latest 11545002, safe 11544969, finalized 11544938이 서로 다른 높이인 구조](/assets/img/blockchain/sepolia-head-tags.webp)
+{% include diagrams/static/blockchain/sepolia-head-tags.html %}
 _latest는 지금 이 node의 끝이다. finalized는 그보다 64block 뒤다. 이 간격은 그 시점의 공개 RPC 한 곳이다._
 
 `latest`는 지금 이 node가 보고 있는 끝입니다. `safe`는 그 node가 더 덜 흔들린다고 보는 높이입니다. `finalized`는 합의 관점에서 더 굳은 높이입니다. 64block 차이는 reorg 창이 아직 남아 있다는 뜻으로 읽습니다. indexer나 입금 confirmation 수를 `latest`에만 걸면, 그 창 안에서 같은 receipt가 다른 분기에 속할 수 있습니다.

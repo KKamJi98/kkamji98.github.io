@@ -18,7 +18,7 @@ image:
 > DB - 3306 포트로만 ingress, egress  
 {: .prompt-tip}
 
-![alt text](/assets/img/kubernetes/network-policy.webp)
+{% include diagrams/static/kubernetes/network-policy.html %}
 
 > **TL;DR**  
 > - web, was, db 3계층을 namespace로 나누고 NetworkPolicy로 허용 방향만 남기는 실습입니다.  

@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-ethereum-account-fields" aria-labelledby="sd-title-ethereum-account-fields">
+  <figcaption class="sd-title" id="sd-title-ethereum-account-fields">Ethereum address는 state trie의 account key입니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">address 0xf39Fd6e5</strong>
+      <span class="sd-detail">Anvil account 0, public test key</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">state trie lookup</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">account object</strong>
+      <span class="sd-detail">nonce, balance, codeHash, storageRoot</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">RPC 관측</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">observed fields</strong>
+      <span class="sd-detail">nonce 0, code 0x, 10000 ETH</span>
+    </div>
+  </div>
+  <p class="sd-note">address는 Script 잠금 이름이 아니라 상태 트리에서 account object를 찾는 key입니다. 이번 랩은 codeHash와 storageRoot 바이트 자체는 덤프하지 않았습니다.</p>
+</figure>

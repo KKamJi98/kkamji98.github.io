@@ -25,7 +25,7 @@ solc 0.8.28  hex 5234  sha256 98a49743f98699656707b37a4af24680cd357d59412d6bfb0e
 equal False
 ```
 
-![같은 소스가 solc 0.8.35와 0.8.28에서 서로 다른 bytecode 해시가 되는 구조](/assets/img/blockchain/solc-pin-two-hashes.webp)
+{% include diagrams/static/blockchain/solc-pin-two-hashes.html %}
 _바이트 수는 같다. 내용은 다르다. 길이만 보고 동일 프로그램이라고 하면 안 된다._
 
 9편 Anvil 배포본의 `cast code` 길이도 5234 hex였습니다. 그 길이만 맞춰 놓고 컴파일러를 바꾸면, explorer에 보이는 코드 길이는 같고 실행은 다른 프로그램입니다. 검증은 길이가 아니라 해시입니다.
@@ -36,7 +36,7 @@ _바이트 수는 같다. 내용은 다르다. 길이만 보고 동일 프로그
 
 week9 `foundry.toml`은 `solc = "0.8.35"`입니다. 이 한 줄이 없으면 CI와 노트북이 다른 solc를 받아 다른 해시를 만듭니다. 배포 runbook은 그 해시를 릴리스 산출물로 저장하고, `forge create` 전에 다시 빌드해 같은지 봅니다.
 
-![foundry.toml pin이 forge build를 거쳐 해시 대조로 이어지는 흐름](/assets/img/blockchain/supply-pin-then-deploy.webp)
+{% include diagrams/static/blockchain/supply-pin-then-deploy.html %}
 _배포 게이트는 소스 diff가 아니라 bytecode 해시다._
 
 RPC gateway가 여러 backend를 로드밸런싱하면, 같은 address 조회가 다른 체인을 볼 수 있습니다. 13편에서 8545와 8547이 같은 `chainId`로 다른 잔액을 줬습니다. 공급망 게이트를 통과한 바이너리를, 확인도 안 된 RPC에 올리면 그 게이트가 무의미해집니다. 이번 랩은 컴파일 해시만 대조했고 재배포하지 않았습니다.

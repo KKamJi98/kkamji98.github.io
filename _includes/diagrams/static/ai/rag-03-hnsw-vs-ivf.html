@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" id="rag-03-hnsw-vs-ivf" aria-labelledby="rag-03-hnsw-vs-ivf-title">
+  <figcaption class="sd-title" id="rag-03-hnsw-vs-ivf-title">HNSW와 IVF의 ANN 탐색 방식 비교</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="HNSW graph based">
+      <div class="sd-lane-title">HNSW: graph based</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Layer 2 (sparse)</strong>
+          <span class="sd-detail">long hop으로 넓게 이동</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Layer 1</strong>
+          <span class="sd-detail">더 짧은 이웃 hop</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Layer 0 (all vectors)</strong>
+          <span class="sd-detail">full graph에서 후보를 좁힘</span>
+        </div>
+      </div>
+      <p class="sd-note">낮은 latency에서 높은 recall을 얻지만 memory가 큽니다. 검색 폭은 ef_search로 조절합니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="IVF cluster based">
+      <div class="sd-lane-title">IVF: cluster based</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Query</strong>
+          <span class="sd-detail">입력 vector</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Centroids</strong>
+          <span class="sd-detail">coarse quantizer로 가까운 list를 찾음</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Probe top-nprobe lists</strong>
+          <span class="sd-detail">열어 볼 cluster 수를 결정</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Scan candidates</strong>
+          <span class="sd-detail">선택한 list 안에서 exact distance 계산</span>
+        </div>
+      </div>
+      <p class="sd-note">memory 효율이 높고 recall은 nprobe로 조정합니다. list 학습과 data 분포 변화도 함께 관리해야 합니다.</p>
+    </section>
+  </div>
+</figure>

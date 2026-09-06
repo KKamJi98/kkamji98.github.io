@@ -1,0 +1,35 @@
+<figure class="sd sd--flow" id="sd-blockchain-utxo-balance-scan" aria-labelledby="sd-title-blockchain-utxo-balance-scan">
+  <figcaption class="sd-title" id="sd-title-blockchain-utxo-balance-scan">wallet balance는 저장 필드가 아니라 unspent outputs의 running sum입니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">UTXO 50</strong>
+      <span class="sd-detail">alice 소유</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">합산</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">running sum 50</strong>
+      <span class="sd-detail">첫 unspent output</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">다음 unspent output</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">UTXO 20</strong>
+      <span class="sd-detail">alice 소유</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">합산</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">running sum 70</strong>
+      <span class="sd-detail">50 + 20</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">다음 unspent output</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">UTXO 5</strong>
+      <span class="sd-detail">alice 소유</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">합산</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">derived balance 75</strong>
+      <span class="sd-detail">getbalance가 이 합계와 같음</span>
+    </div>
+  </div>
+  <p class="sd-note">계좌 row를 수정하는 단계는 없고, wallet은 소유한 UTXO를 스캔해 balance를 계산합니다.</p>
+</figure>

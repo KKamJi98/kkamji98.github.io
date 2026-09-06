@@ -1,0 +1,30 @@
+<figure class="sd sd--layers sd--flow" id="sd-kubernetes-cluster-environment-arch" aria-labelledby="sd-kubernetes-cluster-environment-arch-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cluster-environment-arch-title">Kubernetes cluster node는 공통 underlay network에 연결된다</figcaption>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-cluster-environment-arch-underlay-title">
+    <div class="sd-band-title" id="sd-kubernetes-cluster-environment-arch-underlay-title">Underlay network 192.168.10.0/24</div>
+    <section class="sd-band sd-band--accent" aria-labelledby="sd-kubernetes-cluster-environment-arch-cluster-title">
+      <div class="sd-band-title" id="sd-kubernetes-cluster-environment-arch-cluster-title">Kubernetes cluster boundary</div>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">k8s-ctr</strong>
+          <span class="sd-detail"><code>eth1 192.168.10.100</code></span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">k8s-w1</strong>
+          <span class="sd-detail"><code>eth1 192.168.10.101</code></span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">same L2 underlay</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">router</strong>
+      <span class="sd-detail"><code>eth1 192.168.10.200</code>, cluster member가 아닌 외부 router입니다.</span>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">upstream corporate network</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">Corporate network 10.10.0.0/16</strong>
+    <span class="sd-detail">router가 cluster 밖의 상위 network와 연결합니다.</span>
+  </div>
+  <p class="sd-note"><code>192.168.20.0/24</code> interface는 구성되어 있지만 이 cluster 경로에서는 사용하지 않습니다.</p>
+</figure>

@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" id="litellm-virtual-key-flow" aria-labelledby="litellm-virtual-key-flow-title">
+  <figcaption class="sd-title" id="litellm-virtual-key-flow-title">Virtual key budget enforcement</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">/key/generate</strong>
+      <span class="sd-detail">master key가 virtual key를 발급</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node">
+      <strong class="sd-label">/v1/chat/completions</strong>
+      <span class="sd-detail">client가 virtual key로 요청</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Budget check</strong>
+      <span class="sd-detail">현재 spend와 max_budget을 비교</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="예산 안">
+      <div class="sd-lane-title">spend가 max_budget 안</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Provider call</strong>
+          <span class="sd-detail">요청을 provider로 forward</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Spend log</strong>
+          <span class="sd-detail">tokens와 cost를 key별로 기록</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="예산 초과">
+      <div class="sd-lane-title">spend가 max_budget 초과</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">HTTP 429 refused</strong>
+          <span class="sd-detail">budget_exceeded로 gate에서 거절하고 provider에는 전달하지 않음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">예산 판정은 provider 호출 전에 이뤄지며, 허용된 호출만 usage와 cost를 spend log에 남깁니다.</p>
+</figure>

@@ -11,7 +11,7 @@ image:
 
 **Service란 특정 비즈니스 기능을 제공하는 독립 배포 가능한 소프트웨어 단위**입니다. Micro Service Architecture는 수십 개 이상의 서비스가 상호 호출하며 전체 제품을 구성합니다. 이로 인해 각 서비스마다의 가용성 확보, Service 종단 간 암호화, 복잡해진 트래픽 흐름에 대한 가시성 확보 등의 추가적인 요구사항이 더욱 중요해졌습니다. 이런 문제를 해결하기 위해 초기에는 각 Application에 해당 기능의 역할을 수행하는 라이브러리를 사용해 해결했지만 규모가 커질수록 Code 중복과 일관성 저하 문제가 생기게 되었습니다.  
 
-![Micro Service Architecture Complexity](/assets/img/kubernetes/cilium/6w-micro-service-architecture-complexity.webp)
+{% include diagrams/static/kubernetes/cilium/6w-micro-service-architecture-complexity.html %}
 
 **Service Mesh**는 아래와 같은 요구사항을 충족 시키기 위한 기능들을 Application 바깥의 Infra 구성요소로 추상화해 모든 Application이 공통 기능을 재사용하도록 합니다.
 
@@ -31,7 +31,7 @@ image:
 
 ## 1. 실습 환경
 
-![Lab Environment](/assets/img/kubernetes/cilium/5w-lab-environment.webp)
+{% include diagrams/static/kubernetes/cilium/5w-lab-environment.html %}
 
 - k8s-ctr (192.168.10.100)
 - k8s-w1  (192.168.10.101)
@@ -51,14 +51,14 @@ image:
 
 ### 2.1. 기존 통신 환경 소개
 
-![Traditional Communication Structure](/assets/img/kubernetes/cilium/6w-traditional-communication-structure.webp)
+{% include diagrams/static/kubernetes/cilium/6w-traditional-communication-structure.html %}
 
 - Application <-> Application 간 별도의 제어 없이 직접 연결
 - 문제: 트래픽 제어,관찰,보안 정책 적용이 어려움
 
 ### 2.2. Proxy 도입을 통한 제어
 
-![Proxy Injected Communication](/assets/img/kubernetes/cilium/6w-proxy-injected.webp)
+{% include diagrams/static/kubernetes/cilium/6w-proxy-injected.html %}
 
 - 모든 Application 통신 사이에 Proxy를 두어 통신 흐름을 가로챔
 - Proxy는 파드 내 **Sidecar Container**로 주입되어 동작
@@ -67,7 +67,7 @@ image:
 
 ### 2.3. Control Plane을 통한 중앙 관리
 
-![Control Plane Managed Communication](/assets/img/kubernetes/cilium/6w-controlplane-managed.webp)
+{% include diagrams/static/kubernetes/cilium/6w-controlplane-managed.html %}
 
 - Proxy는 결국 **Data Plane**이므로 중앙에서 관리할 **Control Plane** 필요
 - Control Plane 역할
@@ -100,8 +100,8 @@ image:
 
 Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`은 내장 Envoy로 처리하는 Service Mesh를 제공합니다. `Sidecar`가 필요하지 않아 경량이며, Kubernetes 리소스와 Gateway API로 선언적으로 제어합니다.
 
-![eBPF Acceleration](/assets/img/kubernetes/cilium/6w-ebpf-acceleration.webp)
-![Embedded Envoy Proxy](/assets/img/kubernetes/cilium/6w-embedded-envoy-proxy.webp)
+{% include diagrams/static/kubernetes/cilium/6w-ebpf-acceleration.html %}
+{% include diagrams/static/kubernetes/cilium/6w-embedded-envoy-proxy.html %}
 
 - **Control Plane**
   - CiliumNetworkPolicy, ClusterwidePolicy로 `L3`~`L7` 접근 제어  
@@ -122,7 +122,7 @@ Cilium은 eBPF 기반 CNI에서 출발해 `L3`/`L4`은 `eBPF Data-Path`로, `L7`
   - Identity 기반 정책,관찰성 표준화  
   - Multi-Cluster 및 On-premise/Cloud 경계 회복성 있는 연결성 확보  
 
-![Ingress to Endpoint](/assets/img/kubernetes/cilium/6w-ingress-to-endpoint.webp)
+{% include diagrams/static/kubernetes/cilium/6w-ingress-to-endpoint.html %}
 > [Cilium Docs - Ingress to Endpoint](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/#ingress-to-endpoint)  
 
 - **트래픽 모니터링** : 요청의 '에러율, 레이턴시, 커넥션 개수, 요청 개수' 등 메트릭 모니터링, 특정 서비스간 혹은 특정 요청 경로로 필터링 -> 원인 파악에 용이
@@ -180,7 +180,7 @@ Cilium은 Kubernetes 표준 [Ingress](https://kubernetes.io/docs/concepts/servic
   - Envoy로 진입하면 `ingress` identity
   - 백엔드로 나갈 때는 해당 워크로드의 identity
 
-![Cilium Ingress Identity Flow](/assets/img/kubernetes/cilium/6w-cilium-ingress-identity.webp)
+{% include diagrams/static/kubernetes/cilium/6w-cilium-ingress-identity.html %}
 
 - 결과적으로 아래와 같은 두 단계의 정책 집행 지점이 존재
   1. world -> ingress  

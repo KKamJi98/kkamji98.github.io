@@ -1,0 +1,29 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-ram-vpc-subnet-sharing-title">
+  <figcaption class="sd-title" id="sap-c02-ram-vpc-subnet-sharing-title">공유 subnet에서 owner와 participant의 권한을 나눈다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-lane sd-lane--muted">
+      <span class="sd-lane-title">VPC owner 계정</span>
+      <div class="sd-grid">
+        <div class="sd-node"><strong class="sd-label">Route table</strong><span class="sd-detail">participant는 조회만 할 수 있다.</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Shared subnet</strong><span class="sd-detail">default VPC subnet은 공유할 수 없다.</span></div>
+        <div class="sd-node"><strong class="sd-label">NAT gateway</strong><span class="sd-detail">participant는 조회도 할 수 없다.</span></div>
+      </div>
+      <p class="sd-note">세 리소스의 생성과 라우팅 관리는 owner 계정에 남는다.</p>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">shared subnet을 RAM으로 공유</span></div>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">participant 계정</span>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent"><strong class="sd-label">RAM resource share</strong><span class="sd-detail">조직 안 공유는 초대 없이 적용된다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">shared subnet 안에서 생성</span></div>
+        <div class="sd-node"><strong class="sd-label">Network interface</strong><span class="sd-detail">participant 쿼터를 소모한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">ENI에 연결된 구성</span></div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">Security group</strong><span class="sd-detail">owner의 default SG는 사용할 수 없다.</span></div>
+          <div class="sd-node"><strong class="sd-label">Flow log</strong><span class="sd-detail">자기 ENI에 대해서만 만든다.</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">라우팅과 게이트웨이는 owner의 경계에 남고, participant는 ENI와 자기 보안 구성을 만든다.</p>
+</figure>

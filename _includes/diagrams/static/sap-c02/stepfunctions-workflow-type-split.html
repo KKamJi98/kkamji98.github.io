@@ -1,0 +1,60 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-stepfunctions-workflow-type-split" aria-labelledby="sd-title-stepfunctions-workflow-type-split">
+  <figcaption class="sd-title" id="sd-title-stepfunctions-workflow-type-split">Step Functions 실행 의미가 워크플로 타입을 가릅니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Workflow trigger</strong>
+      <span class="sd-detail">request 또는 event</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">execution semantics 우선</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">워크플로 타입 선택</strong>
+      <span class="sd-detail">state machine 생성 뒤에는 타입 변경 불가</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">세 실행 경로</span></div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Standard 워크플로">
+      <div class="sd-lane-title">Standard</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Standard 실행</strong>
+          <span class="sd-detail">exactly-once, 최대 1년, .sync와 callback</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">긴 작업 또는 비멱등</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Long or non-idempotent task</strong>
+          <span class="sd-detail">.sync 또는 waitForTaskToken</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Asynchronous Express 워크플로">
+      <div class="sd-lane-title">Asynchronous Express</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Asynchronous Express</strong>
+          <span class="sd-detail">at-least-once, 최대 5분</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">멱등 처리</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Idempotent task</strong>
+          <span class="sd-detail">high-rate event processing</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Synchronous Express 워크플로">
+      <div class="sd-lane-title">Synchronous Express</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Synchronous Express</strong>
+          <span class="sd-detail">at-most-once, 최대 5분</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">짧은 동기 응답</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Short request task</strong>
+          <span class="sd-detail">synchronous response</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">결제처럼 중복이 허용되지 않으면 Standard를 선택합니다. Express는 .sync와 waitForTaskToken 통합을 지원하지 않습니다.</p>
+</figure>

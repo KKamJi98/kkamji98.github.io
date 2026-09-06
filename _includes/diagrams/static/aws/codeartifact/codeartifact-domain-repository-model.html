@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="sd-aws-codeartifact-domain-repository-model" aria-labelledby="sd-title-aws-codeartifact-domain-repository-model">
+  <figcaption class="sd-title" id="sd-title-aws-codeartifact-domain-repository-model">Domain이 storage를 소유하고 Repository가 access path를 제공한다</figcaption>
+  <section class="sd-lane" aria-label="CodeArtifact domain">
+    <div class="sd-lane-title">CodeArtifact Domain</div>
+    <div class="sd-grid">
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Build client</strong>
+          <span class="sd-detail">npm, pip, mvn</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">one endpoint</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Repository</strong>
+          <span class="sd-detail">모든 package format을 받는 논리 단위</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">external connection</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">-store repository</strong>
+          <span class="sd-detail">public registry fetch를 cache</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">on-demand proxy</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Public registry</strong>
+          <span class="sd-detail">npmjs, PyPI, Maven Central</span>
+        </div>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Deduplicated assets</strong>
+        <span class="sd-detail">Domain KMS key로 암호화; Repository와 -store가 한 copy를 공유</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">External connection을 만들면 -store repository가 생깁니다. public registry에서 가져온 요청도 CodeArtifact request 과금에 포함됩니다.</p>
+</figure>

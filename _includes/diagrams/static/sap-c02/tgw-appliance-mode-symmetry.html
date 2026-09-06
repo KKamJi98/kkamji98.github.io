@@ -1,0 +1,54 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-tgw-appliance-mode-symmetry" aria-labelledby="sd-title-tgw-appliance-mode-symmetry">
+  <figcaption class="sd-title" id="sd-title-tgw-appliance-mode-symmetry">appliance mode가 요청과 응답의 AZ를 고정합니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="appliance mode를 끈 경우">
+      <div class="sd-lane-title">appliance mode 끔</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">출발지 VPC AZ-a</strong>
+          <span class="sd-detail">요청 방향</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">요청 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">검사 어플라이언스 AZ-a</strong>
+          <span class="sd-detail">여기서 세션 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">목적지로 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">목적지 VPC</strong>
+          <span class="sd-detail">응답을 되돌려 보냄</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">응답이 다른 AZ로 분산</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">검사 어플라이언스 AZ-b</strong>
+          <span class="sd-detail">세션 테이블에 없는 패킷</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">stateful 검사 실패</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">드롭</strong>
+          <span class="sd-detail">같은 조합에서 성공과 실패가 섞임</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="appliance mode를 켠 경우">
+      <div class="sd-lane-title">appliance mode 켬</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">출발지 VPC AZ-a</strong>
+          <span class="sd-detail">요청과 응답이 같은 AZ</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">flow 고정</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">검사 어플라이언스 AZ-a</strong>
+          <span class="sd-detail">전체 세션이 같은 AZ</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">대칭 경로</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">목적지 VPC</strong>
+          <span class="sd-detail">TGW를 여러 개 두면 stickiness가 깨질 수 있음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">stateful appliance가 있는 VPC attachment에는 appliance mode가 필요합니다. 여러 TGW로 방향을 나누면 flow state를 공유하지 않아 같은 문제가 다시 생깁니다.</p>
+</figure>

@@ -34,7 +34,7 @@ Cilium을 기반으로 동작하기 때문에 **eBPF의 강력한 가시성 기�
 
 **Hubble Relay**를 배포하면 클러스터 메시 시나리오에서 **전체 클러스터 또는 여러 클러스터에 대한 네트워크 가시성이 제공**됩니다. 이 모드에서는 Hubble CLI를 Hubble Relay 서비스로 안내하거나 Hubble UI를 통해 Hubble 데이터에 액세스할 수 있습니다. Hubble UI는 웹 인터페이스로, **L3/L4 및 심지어 L7 계층에서 서비스 종속성 그래프를 자동으로 검색**할 수 있게 하여 사용자 친화적인 시각화 및 서비스 맵으로서의 데이터 흐름 필터링을 가능하게 합니다.
 
-![Hubble Architecture](/assets/img/kubernetes/cilium/hubble-architecture.webp)
+{% include diagrams/static/kubernetes/cilium/hubble-architecture.html %}
 > Hubble Architecture - <https://github.com/cilium/hubble>  
 
 Hubble이 답할 수 있는 질문들은 다음과 같습니다.

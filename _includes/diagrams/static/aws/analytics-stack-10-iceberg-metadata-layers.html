@@ -1,0 +1,51 @@
+<figure class="sd sd--layers" id="sd-aws-analytics-stack-10-iceberg-metadata-layers" aria-labelledby="sd-title-aws-analytics-stack-10-iceberg-metadata-layers">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-10-iceberg-metadata-layers">Iceberg read는 row 전에 metadata 네 단계를 지난다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="Catalog layer">
+      <div class="sd-band-title">1. Catalog</div>
+      <div class="sd-node">
+        <strong class="sd-label">Catalog</strong>
+        <span class="sd-detail">현재 metadata file location pointer</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">current pointer</span></div>
+    <section class="sd-band" aria-label="Metadata file layer">
+      <div class="sd-band-title">2. Table state</div>
+      <div class="sd-node">
+        <strong class="sd-label">metadata file</strong>
+        <span class="sd-detail">*.metadata.json - schema, partition specs, snapshot list</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">current snapshot</span></div>
+    <section class="sd-band" aria-label="Manifest list layer">
+      <div class="sd-band-title">3. Snapshot index</div>
+      <div class="sd-node">
+        <strong class="sd-label">manifest list</strong>
+        <span class="sd-detail">snap-*.avro - one snapshot and its manifest files</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">manifest paths and summaries</span></div>
+    <section class="sd-band" aria-label="Manifest file layer">
+      <div class="sd-band-title">4. File index</div>
+      <div class="sd-node">
+        <strong class="sd-label">manifest file</strong>
+        <span class="sd-detail">*-m*.avro - one row per data or delete file; min/max and null counts</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">필요한 파일만 선택</span></div>
+    <section class="sd-band" aria-label="Data and delete files">
+      <div class="sd-band-title">실제 파일</div>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">data file</strong>
+          <span class="sd-detail">*.parquet - actual rows</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">delete file</strong>
+          <span class="sd-detail">row-level delete markers</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Catalog는 pointer만 보유합니다. 어떤 파일을 열지는 metadata tree의 snapshot과 manifest 통계가 결정합니다.</p>
+</figure>

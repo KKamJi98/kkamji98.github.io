@@ -1,0 +1,35 @@
+<figure class="sd sd--comparison sd--layers" id="sd-kubernetes-linux-kernel-network-flow" aria-labelledby="sd-kubernetes-linux-kernel-network-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-linux-kernel-network-flow-title">eBPF는 Linux kernel network path의 계층별 hook에서 동작한다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Traditional Linux network flow">
+      <div class="sd-lane-title">Traditional path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">User-Space Networking</strong>
+          <span class="sd-detail">application이 kernel API를 호출합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">process call</span></div>
+        <div class="sd-node"><strong class="sd-label">Process</strong><span class="sd-detail">network request를 생성합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">Syscall</span></div>
+        <div class="sd-node"><strong class="sd-label">Sockets</strong><span class="sd-detail">socket state와 connection을 처리합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">kernel network path</span></div>
+        <div class="sd-node"><strong class="sd-label">Network Device</strong><span class="sd-detail">device로 packet을 전달합니다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent" aria-label="eBPF Linux network flow">
+      <div class="sd-lane-title">eBPF path</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Process</strong><span class="sd-detail">같은 application request에서 시작합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">process to syscall</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Syscall</strong><span class="sd-detail">eBPF hook이 system call 지점에 붙습니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">network stack</span></div>
+        <div class="sd-node"><strong class="sd-label">Sockets</strong><span class="sd-detail">기존 socket 계층을 통과합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">transport path</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">TCP/IP</strong><span class="sd-detail">선택된 TCP/IP 지점에서 eBPF를 실행합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">device path</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Network Device</strong><span class="sd-detail">device 지점에서도 eBPF가 packet을 관찰합니다.</span></div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">eBPF는 기존 계층을 없애지 않고 Syscall, TCP/IP, Network Device 같은 선택 지점에 attach되어 policy 적용과 관측을 수행합니다.</p>
+</figure>

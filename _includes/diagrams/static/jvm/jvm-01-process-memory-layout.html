@@ -1,0 +1,43 @@
+<figure class="sd sd--layers" id="jvm-01-process-memory-layout" aria-labelledby="sd-title-jvm-01-process-memory-layout">
+  <figcaption class="sd-title" id="sd-title-jvm-01-process-memory-layout">프로세스 가상 주소공간의 전형적 배치</figcaption>
+
+  <div class="sd-stack">
+    <div class="sd-band">
+      <div class="sd-band-title">Higher address</div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Stack</strong>
+        <span class="sd-detail">call frames와 locals, thread마다 하나</span>
+      </div>
+    </div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Free space</strong>
+      <span class="sd-detail">x86 관례에서 stack은 아래로, heap은 위로 성장</span>
+    </div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Heap</strong>
+      <span class="sd-detail">실행 중 동적 할당: <code>new</code>와 <code>malloc</code></span>
+    </div>
+
+    <div class="sd-node">
+      <strong class="sd-label">BSS</strong>
+      <span class="sd-detail">초기화하지 않은 static data</span>
+    </div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Data</strong>
+      <span class="sd-detail">초기화된 static data</span>
+    </div>
+
+    <div class="sd-band">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Text</strong>
+        <span class="sd-detail">실행 코드, read-only</span>
+      </div>
+      <div class="sd-band-title">Lower address</div>
+    </div>
+  </div>
+
+  <p class="sd-note">배치와 성장 방향은 표준이 아닌 x86 기반 관례입니다. 아키텍처와 loader에 따라 달라지고, ASLR은 시작 주소를 무작위화합니다.</p>
+</figure>

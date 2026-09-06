@@ -1,0 +1,59 @@
+<figure class="sd sd--comparison" id="sd-aws-analytics-stack-08-lf-permissions" aria-labelledby="sd-title-aws-analytics-stack-08-lf-permissions">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-08-lf-permissions">Catalog 계층마다 IAM action과 Lake Formation grant가 필요하다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="Permission matrix">
+      <div class="sd-band-title">Permission matrix: catalog, database, table</div>
+      <table class="sd-table">
+        <thead>
+          <tr>
+            <th scope="col">Layer</th>
+            <th scope="col">IAM API authorization</th>
+            <th scope="col">Lake Formation data authorization</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">catalog</th>
+            <td><code>glue:GetCatalog</code>, <code>GetCatalogs</code><br>catalog/s3tablescatalog/{bucket} ARN</td>
+            <td><code>DESCRIBE</code><br>s3tablescatalog/{bucket}</td>
+          </tr>
+          <tr>
+            <th scope="row">database</th>
+            <td><code>glue:GetDatabase</code>, <code>GetDatabases</code><br>database/s3tablescatalog/{bucket}/{db} ARN</td>
+            <td><code>DESCRIBE</code><br>{db}</td>
+          </tr>
+          <tr>
+            <th scope="row">table</th>
+            <td><code>glue:GetTable</code>, <code>GetTables</code><br>table/s3tablescatalog/{bucket}/{db}/* ARN</td>
+            <td><code>SELECT</code>, <code>DESCRIBE</code><br>target table</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="sd-note"><code>lakeformation:GetDataAccess</code>는 query principal이 credential vending을 받을 수 있게 하는 IAM action입니다.</p>
+    </section>
+    <section class="sd-band" aria-label="Debugging timeline">
+      <div class="sd-band-title">Debugging timeline: 권한을 한 계층씩 추가</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">CATALOG_NOT_FOUND</strong>
+          <span class="sd-detail">TABLE_NOT_FOUND</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">catalog 권한 추가</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">glue:GetDatabases</strong>
+          <span class="sd-detail">AccessDenied</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">database 권한 추가</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">glue:GetTable</strong>
+          <span class="sd-detail">AccessDenied</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">table 권한 추가</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">query succeeds</strong>
+          <span class="sd-detail">short name resolves</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

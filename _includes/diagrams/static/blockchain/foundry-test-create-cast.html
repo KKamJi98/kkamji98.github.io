@@ -1,0 +1,48 @@
+<figure class="sd sd--comparison" id="sd-foundry-test-create-cast" aria-labelledby="sd-title-foundry-test-create-cast">
+  <figcaption class="sd-title" id="sd-title-foundry-test-create-cast">forge test, forge create, cast는 서로 다른 state를 봅니다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="forge test">
+      <div class="sd-lane-title">forge test</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">in-process EVM</strong>
+          <span class="sd-detail">2 passed, Anvil 없이 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">test 종료</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">address 없음</strong>
+          <span class="sd-detail">임시 인스턴스와 receipt가 사라짐</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent" aria-label="forge create">
+      <div class="sd-lane-title">forge create</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Anvil chainId 31337</strong>
+          <span class="sd-detail">0xe7f1725E, bytecode 964 hex</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">state에 deploy</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">deployed address</strong>
+          <span class="sd-detail">node 상태 트리에 코드 유지</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="cast">
+      <div class="sd-lane-title">cast call / send</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">deployed address 조회</strong>
+          <span class="sd-detail">cast call로 number() = 0</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">상태 변경 transaction</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">number() = 1</strong>
+          <span class="sd-detail">cast send increment()</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">세 명령은 같은 Counter binary를 사용해도 state store를 공유하지 않습니다. forge test 통과만으로 Anvil address가 생기지는 않습니다.</p>
+</figure>

@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" id="sd-kubernetes-metrics-server-collection" aria-labelledby="sd-kubernetes-metrics-server-collection-title">
+  <figcaption class="sd-title" id="sd-kubernetes-metrics-server-collection-title">Metrics API를 HPA와 kubectl top이 독립적으로 읽는다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">kubelet on nodes</strong>
+      <span class="sd-detail">내장 <code>cAdvisor</code>가 node와 Pod 사용량을 요약합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>/metrics/resource</code> 제공</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Metrics Server</strong>
+      <span class="sd-detail">각 kubelet을 주기적으로 pull하며 값은 memory에 둡니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>metrics.k8s.io</code> API 제공</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Metrics API</strong>
+      <span class="sd-detail"><code>metrics.k8s.io</code>를 하나의 읽기 경로로 노출합니다.</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">서로 독립적으로 조회</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="HPA controller 소비 경로">
+      <div class="sd-lane-title">HPA controller</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">HPA controller</strong>
+          <span class="sd-detail">현재 사용량을 읽고 workload를 scale합니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="kubectl top 소비 경로">
+      <div class="sd-lane-title">kubectl top</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kubectl top</strong>
+          <span class="sd-detail">operator가 현재 사용량을 확인합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">두 소비자는 서로를 거치지 않고 같은 Metrics API를 읽습니다. Metrics Server는 durable storage가 아니므로 장기 추세는 별도 저장소가 필요합니다.</p>
+</figure>

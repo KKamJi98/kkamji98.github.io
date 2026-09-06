@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="nat-pat-translation-flow" aria-labelledby="nat-pat-translation-flow-title">
+  <figcaption class="sd-title" id="nat-pat-translation-flow-title">PAT는 port를 바꿔 여러 private host가 public address를 공유하게 합니다</figcaption>
+  <p class="sd-intro">Gateway가 source address와 port를 바꾸고 translation table에 flow를 기록해야 응답을 올바른 내부 host로 되돌릴 수 있습니다.</p>
+
+  <div class="sd-flow" aria-label="Outbound NAT PAT translation 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">Private client</strong>
+      <span class="sd-detail"><code>10.0.0.10:49152</code>에서 외부 server로 연결 시작</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">outbound packet의 source tuple을 변환</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">NAT or PAT gateway</strong>
+      <span class="sd-detail">private IP와 source port를 public address와 port로 rewrite</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">변환된 tuple을 flow별로 기록</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Translation table entry</strong>
+      <span class="sd-detail">address와 port 조합으로 한 flow를 식별</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">public address로 외부에 전송</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">External server</strong>
+      <span class="sd-detail"><code>198.51.100.20:443</code>. private address는 보이지 않음</span>
+    </div>
+  </div>
+
+  <p class="sd-note">응답이 돌아오면 gateway는 destination tuple을 table에서 찾아 private address와 port로 역변환합니다. NAT는 주소 변환이며 방화벽 정책이나 인증을 대신하지 않습니다.</p>
+</figure>

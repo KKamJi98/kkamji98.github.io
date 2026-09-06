@@ -1,0 +1,35 @@
+<figure class="sd sd--sequence" id="sd-incident-runbook-ladder" aria-labelledby="sd-title-incident-runbook-ladder">
+  <figcaption class="sd-title" id="sd-title-incident-runbook-ladder">장애 점검은 HTTP에서 compiler pin까지 내려갑니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">HTTP / RPC error</strong>
+      <span class="sd-detail">W7 W8: transport와 JSON-RPC 본문 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">응답 종류 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">receipt or estimate</strong>
+      <span class="sd-detail">W7: status인지 revert인지</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">확정 기준 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">which tip or tag</strong>
+      <span class="sd-detail">W3 W10: invalid, latest, finalized 구분</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">endpoint 분리</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">which RPC</strong>
+      <span class="sd-detail">W13: 8545, 8547, Sepolia 비교</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">bytecode 비교</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">bytecode hash</strong>
+      <span class="sd-detail">W15: compiler pin과 sha256 대조</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">키 출처 확인</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">which key</strong>
+      <span class="sd-detail">W11: public mnemonic 여부</span>
+    </div>
+  </div>
+  <p class="sd-note">앞 단계가 통과해도 다음 경계는 남습니다. Anvil은 이 사다리의 peer, finality, Engine 일부를 구현하지 않습니다.</p>
+</figure>

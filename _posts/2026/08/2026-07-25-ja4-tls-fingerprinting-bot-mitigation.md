@@ -24,7 +24,7 @@ AWS WAF는 2025년 3월부터 JA4 fingerprint를 request component로 지원하�
 
 ## 1. JA3에서 JA4로: 왜 새로운 핑거프린팅이 필요했는가
 
-![JA3 wire-order hashing vs JA4 sorted hashing](/assets/img/security/ja4/ja4-fingerprint-construction.webp)
+{% include diagrams/static/security/ja4/ja4-fingerprint-construction.html %}
 _같은 Client Hello에서 갈라지는 두 경로다. 위쪽은 도착 순서 그대로 해시하고, 아래쪽은 hex 값으로 정렬한 뒤 해시한다._
 
 TLS 클라이언트 핑거프린팅은 Client Hello 패킷에 포함된 cipher suite, extension, TLS 버전 등의 조합으로 클라이언트를 식별하는 기법입니다. 최초의 널리 쓰인 구현체는 JA3로, 2017년 Salesforce의 John Althouse가 개발했습니다. JA3는 Client Hello의 cipher, extension, elliptic curve, elliptic curve point format을 나타나는 순서대로 이어 붙이고 MD5 해시를 생성했습니다.

@@ -80,7 +80,7 @@ Kubernetes API는 API 그룹으로 구성되어 있으며, 각 그룹은 독립�
 
 Endpoints와 EndpointSlice의 차이를 이해하기 쉽도록 그림을 그려봤습니다. EndpointSlice에는 그림의 정보에 추가적으로 `Address Type`과 `Topology Information`이 추가됩니다.
 
-![Endpoints VS EndpointSlice](/assets/img/kubernetes/endpoint_vs_endpointslice.webp)
+{% include diagrams/static/kubernetes/endpoint_vs_endpointslice.html %}
 
 ---
 

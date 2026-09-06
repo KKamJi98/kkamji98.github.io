@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-ops-event-routing-title">
+  <figcaption class="sd-title" id="sap-c02-ops-event-routing-title">운영 신호를 EventBridge 한 곳으로 모은다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-lane sd-lane--muted">
+      <span class="sd-lane-title">운영 신호의 출처</span>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">CloudWatch alarm</strong>
+          <span class="sd-detail">ALARM 전이. composite alarm도 같은 전이 신호를 낸다.</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Config rule</strong>
+          <span class="sd-detail">구성이 기준을 벗어난 NON_COMPLIANT 상태다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">AWS Health 이벤트</strong>
+          <span class="sd-detail">EventBridge 수신은 모든 고객에게 무료다. Health API는 Business Support+ 이상이다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">CloudTrail API 이벤트</strong>
+          <span class="sd-detail">평균 약 5분 안에 전달되지만 보장 지연은 아니다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">event pattern 매칭</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">EventBridge rule</strong>
+      <span class="sd-detail">bus당 기본 300개 rule, rule당 target 5개로 고정되며 pattern은 최대 2,048자다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">target으로 분기</span></div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node">
+        <strong class="sd-label">SSM Automation runbook</strong>
+        <span class="sd-detail">승인 단계와 rate control을 넣어 무인 교정으로 잇는다.</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">SNS 토픽</strong>
+        <span class="sd-detail">target 5개를 넘길 때 추가 팬아웃 지점이 된다.</span>
+      </div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">OpsCenter OpsItem</strong>
+        <span class="sd-detail">Open, In progress, Resolved 상태로 추적한다. related resource 최대 100개와 deduplication string을 지원한다.</span>
+      </div>
+    </div>
+  </div>
+</figure>

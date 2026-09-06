@@ -1,0 +1,46 @@
+<figure class="sd sd--layers" id="sd-ci-cd-study-docker-build-workflow{{include.instance}}" aria-labelledby="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}">Docker는 Project와 Dockerfile로 Build Context를 만들고 Image를 Push</figcaption>
+  <div class="sd-flow">
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-study-docker-project-title{{include.instance}}">
+        <div class="sd-lane-title" id="sd-ci-cd-study-docker-project-title{{include.instance}}">Project</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Application source</strong>
+            <span class="sd-detail">빌드에 포함할 코드와 파일</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-study-dockerfile-title{{include.instance}}">
+        <div class="sd-lane-title" id="sd-ci-cd-study-dockerfile-title{{include.instance}}">Dockerfile</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Dockerfile</strong>
+            <span class="sd-detail"><code>FROM</code>, <code>RUN</code>, <code>COPY</code> 등 build 명령</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>docker build</code>가 입력을 묶음</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-docker-installation-title{{include.instance}}">
+      <div class="sd-band-title" id="sd-ci-cd-study-docker-installation-title{{include.instance}}">Docker installation</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Build Context</strong>
+          <span class="sd-detail">Docker Daemon이 읽는 source와 Dockerfile의 범위</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">build와 layer cache</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Container Image (Docker cache)</strong>
+          <span class="sd-detail">명령 결과를 Layer로 쌓은 로컬 이미지</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">registry로 push</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Container Image (registry)</strong>
+      <span class="sd-detail">원격 Registry에 저장된 배포 이미지</span>
+    </div>
+  </div>
+  <p class="sd-note">Build Context에는 필요한 파일만 포함해야 합니다. Docker 방식은 Docker Daemon이 build와 cache를 맡고, 완성된 Image를 Registry로 push합니다.</p>
+</figure>

@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-microk8s-worker-join" aria-labelledby="sd-kubernetes-microk8s-worker-join-title">
+  <figcaption class="sd-title" id="sd-kubernetes-microk8s-worker-join-title">MicroK8s worker는 control plane이 만든 token으로 join한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">MicroK8s control plane</strong>
+      <span class="sd-detail"><code>microk8s add-node</code>로 join 정보를 발급합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">short-lived token 전달</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Join command</strong>
+      <span class="sd-detail"><code>microk8s join ... --worker</code>가 token을 운반합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">private network에서 registration 요청</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Worker node</strong>
+      <span class="sd-detail"><code>microk8s join</code>을 실행하고 workload 역할로 참여합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Node object 등록</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cluster registration</strong>
+      <span class="sd-detail">cluster에 Node object가 나타나고 Ready를 확인합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">scheduler가 node 사용</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Scheduled workloads</strong>
+      <span class="sd-detail">worker가 Pod 실행 capacity를 제공합니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">stale token은 registration 단계에서 실패합니다. worker 추가는 workload capacity를 늘리지만 control plane HA나 datastore quorum을 늘리지는 않습니다.</p>
+</figure>

@@ -35,7 +35,7 @@ s3://example-analytics-lake/orders/
 
 위 경로는 Hive style 예시입니다. `MSCK REPAIR TABLE`을 쓸 때에는 partition key와 `key=value` 경로가 대응해야 합니다. 등록형 metadata에서는 `ALTER TABLE ADD PARTITION ... LOCATION`으로 partition value와 location을 연결할 수 있고, 이 location이 Hive style 이름을 꼭 따를 필요는 없습니다. projection table에서는 `storage.location.template`이 같은 역할을 합니다. 핵심은 `dt`, `region`, `hour` predicate가 table의 partition definition과 location mapping을 함께 좁히는 것입니다.
 
-![Athena partition pruning에서 Catalog metadata와 projection 규칙이 S3 prefix 선택으로 이어지는 흐름](/assets/img/aws/aws-glue-partitioning-pruning-flow.webp)
+{% include diagrams/static/aws/aws-glue-partitioning-pruning-flow.html %}
 
 파티션 predicate가 만든 후보 수를 아주 작은 local fixture로 계산해 보겠습니다. 이 계산은 Athena engine이 실제로 pruning했다는 증명이 아닙니다. query predicate와 S3 layout이 일치할 때 선택 공간이 얼마나 줄어드는지 확인하는 장치입니다.
 

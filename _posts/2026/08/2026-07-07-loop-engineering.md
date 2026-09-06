@@ -26,7 +26,7 @@ image:
 
 ## 1. 계층 구조
 
-![AI agent engineering의 계층, prompt에서 graph까지](/assets/img/ai/agent-eng-layer-ladder.webp)
+{% include diagrams/static/ai/agent-eng-layer-ladder.html %}
 
 같은 에이전트를 다루는 일이라도 무엇을 설계 대상으로 삼는지에 따라 층이 나뉩니다.
 
@@ -52,7 +52,7 @@ Peter Steinberger의 표현도 같은 방향을 가리킵니다. "코딩 에이�
 
 ## 3. 루프 하나의 해부
 
-![한 개의 agent loop 구성](/assets/img/ai/loop-anatomy.webp)
+{% include diagrams/static/ai/loop-anatomy.html %}
 
 한 바퀴의 루프는 보통 다섯 단계로 묘사됩니다.
 

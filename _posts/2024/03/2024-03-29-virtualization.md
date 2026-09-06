@@ -9,7 +9,7 @@ comments: true
 # path: /assets/img/kkam-img/kkam.webp
 ---
 
-![Virtualization model](/assets/img/virtualization/virtualization-model.webp)
+{% include diagrams/static/virtualization/virtualization-model.html %}
 
 가상화라는 말은 대개 서버 가상화를 가리키는 말로 쓰이지만, 실제로는 하드웨어부터 네트워크, 스토리지, 데스크탑, 애플리케이션, 데이터까지 계층마다 각각의 가상화가 있습니다. 계층이 다르면 얻는 것과 잃는 것도 달라집니다. 어떤 종류가 있고 각각 무엇을 추상화하는지 정리합니다.
 

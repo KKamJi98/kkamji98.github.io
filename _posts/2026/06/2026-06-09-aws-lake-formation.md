@@ -63,7 +63,7 @@ LF grant는 SQL의 `GRANT ... ON ... TO ...`와 개념은 비슷하지만, 실�
 
 Lake Formation은 IAM 위에 얹히는 **별도의 데이터 권한 게이트**입니다. 아래 다이어그램에서 쿼리는 두 게이트를 차례로 통과합니다.
 
-![AWS Lake Formation 2층 권한 게이트와 credential vending](/assets/img/aws/analytics-stack-07-lake-formation.webp)
+{% include diagrams/static/aws/analytics-stack-07-lake-formation.html %}
 
 ### 2.1. 역할 분리
 

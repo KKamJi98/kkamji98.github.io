@@ -1,0 +1,50 @@
+<figure class="sd sd--flow" id="sd-spring-14-when-to-use" aria-labelledby="sd-spring-14-title">
+  <figcaption class="sd-title" id="sd-spring-14-title">MVC와 WebFlux를 고르는 결정 흐름</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">시작</strong><span class="sd-detail">Choose MVC or WebFlux</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">기존 상태 확인</span></div>
+    <div class="sd-node"><strong class="sd-label">기존 MVC 앱이 이미 잘 동작하는가?</strong></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-spring-14-q1-yes">
+        <div class="sd-lane-title" id="sd-spring-14-q1-yes">예</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">Spring MVC 유지</strong><span class="sd-detail">바꿀 이유가 없음</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-spring-14-q1-no">
+        <div class="sd-lane-title" id="sd-spring-14-q1-no">아니요</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">핵심 의존성이 블로킹인가?</strong><span class="sd-detail">JPA, JDBC</span></div>
+          <div class="sd-grid">
+            <section class="sd-lane" aria-labelledby="sd-spring-14-q2-yes">
+              <div class="sd-lane-title" id="sd-spring-14-q2-yes">예</div>
+              <div class="sd-flow">
+                <div class="sd-node sd-node--accent"><strong class="sd-label">Spring MVC 선택</strong><span class="sd-detail">블로킹 라이브러리는 스레드가 필요함</span></div>
+              </div>
+            </section>
+            <section class="sd-lane" aria-labelledby="sd-spring-14-q2-no">
+              <div class="sd-lane-title" id="sd-spring-14-q2-no">아니요</div>
+              <div class="sd-flow">
+                <div class="sd-node"><strong class="sd-label">고동시성 I/O bound이고 전체 논블로킹 도입이 가능한가?</strong></div>
+                <div class="sd-grid">
+                  <section class="sd-lane" aria-labelledby="sd-spring-14-q3-yes">
+                    <div class="sd-lane-title" id="sd-spring-14-q3-yes">예</div>
+                    <div class="sd-flow">
+                      <div class="sd-node sd-node--accent"><strong class="sd-label">Spring WebFlux 선택</strong></div>
+                    </div>
+                  </section>
+                  <section class="sd-lane" aria-labelledby="sd-spring-14-q3-no">
+                    <div class="sd-lane-title" id="sd-spring-14-q3-no">아니요</div>
+                    <div class="sd-flow">
+                      <div class="sd-node"><strong class="sd-label">MVC로 시작</strong><span class="sd-detail">효과가 확인되는 외부 호출에만 논블로킹 WebClient 부분 도입</span></div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

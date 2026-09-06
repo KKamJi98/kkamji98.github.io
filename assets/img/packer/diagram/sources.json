@@ -1,0 +1,28 @@
+{
+  "retrieved": "2026-09-07",
+  "note": "Unmodified vendor artwork pinned to upstream commits. Packer: HashiCorp Flight Icons. EC2 and AMI: AWS Labs AWS Icons for PlantUML.",
+  "sources": [
+    "https://github.com/hashicorp/design-system",
+    "https://github.com/awslabs/aws-icons-for-plantuml"
+  ],
+  "assets": [
+    {
+      "file": "packer.svg",
+      "source_url": "https://raw.githubusercontent.com/hashicorp/design-system/83cac84fdfca82148176f2535a198a6a6be26dbb/packages/flight-icons/svg/packer-color-24.svg",
+      "bytes": 347,
+      "sha256": "6127446cc63b9f543e11e8945ee23f69ffb4b0a072f039574059abd058e61726"
+    },
+    {
+      "file": "ec2.png",
+      "source_url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/e26e2c05daf8b6bc4c764669fc2be04c314ccb8c/dist/Compute/EC2.png",
+      "bytes": 693,
+      "sha256": "7cd2bef0daa55d3fc97c03707ae3ebf1c5953043969a94e65e0b66c4d533b0ed"
+    },
+    {
+      "file": "ami.png",
+      "source_url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/e26e2c05daf8b6bc4c764669fc2be04c314ccb8c/dist/Compute/EC2AMI.png",
+      "bytes": 1357,
+      "sha256": "96e816e75b0621852bdbdfae727ca87cec8525c1c82f68e604877c5cb339f6ce"
+    }
+  ]
+}

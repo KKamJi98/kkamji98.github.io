@@ -1,0 +1,29 @@
+<figure class="sd sd--layers sd--comparison" id="sd-observability-datadog-rum-03-positioning" aria-labelledby="sd-title-observability-datadog-rum-03-positioning">
+  <figcaption class="sd-title" id="sd-title-observability-datadog-rum-03-positioning">RUM, Synthetic, APM은 서로 다른 관측 지점을 보완</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-observability-datadog-rum-client-title">
+      <div class="sd-band-title" id="sd-observability-datadog-rum-client-title">Client-side (사용자 단)</div>
+      <div class="sd-grid">
+        <article class="sd-node sd-node--accent">
+          <strong class="sd-label">RUM (Real User Monitoring)</strong>
+          <span class="sd-detail">실제 사용자 session의 성능, error, 행동 관측</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">Synthetic Monitoring</strong>
+          <span class="sd-detail">예약된 script로 회귀와 availability를 선제 검증</span>
+        </article>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">사용자 결과와 요청 trace를 서버 원인과 상관</span></div>
+    <section class="sd-band" aria-labelledby="sd-observability-datadog-rum-server-title">
+      <div class="sd-band-title" id="sd-observability-datadog-rum-server-title">Server-side (서버 단)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">APM (Application Performance Monitoring)</strong>
+          <span class="sd-detail">분산 trace로 backend와 DB 병목의 근본 원인 추적</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Synthetic은 사용자가 겪기 전 회귀를 찾고, RUM은 실제 영향을 측정하며, APM은 server-side 원인을 좁힙니다.</p>
+</figure>

@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-foundry-counter-deploy" aria-labelledby="sd-title-foundry-counter-deploy">
+  <figcaption class="sd-title" id="sd-title-foundry-counter-deploy">EOA deploy가 Counter bytecode와 storage를 만듭니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">EOA deployer</strong>
+      <span class="sd-detail">0xf39Fd6e5, code 0x</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">contract-creation transaction</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Counter 0xe7f1725E</strong>
+      <span class="sd-detail">bytecode at address, 964 hex</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">increment() call</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">number storage</strong>
+      <span class="sd-detail">0 then increment to 1, gas 43482</span>
+    </div>
+  </div>
+  <p class="sd-note">EOA의 code는 0x이고 Counter address에는 실행 bytecode가 있습니다. increment()가 storage 값을 0에서 1로 바꿉니다.</p>
+</figure>

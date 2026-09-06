@@ -1,0 +1,45 @@
+<figure class="sd sd--layers sd--sequence" id="sd-ci-cd-study-ci-cd-workflow" aria-labelledby="sd-title-ci-cd-study-ci-cd-workflow">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-ci-cd-workflow">CI가 결과물을 만들고 CD가 Stage와 Prod로 전달</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-ci-workflow-ci-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-ci-workflow-ci-title">CI (Continuous Integration)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Image Build</strong>
+          <span class="sd-detail">애플리케이션 Container Image 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">검증 단계 1</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Test stage 1</strong>
+          <span class="sd-detail">첫 번째 Test 단계</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">검증 단계 2</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Test stage 2</strong>
+          <span class="sd-detail">두 번째 Test 단계</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">릴리스 준비</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Release</strong>
+          <span class="sd-detail">배포 가능한 결과물 확정</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">Release 결과를 CD로 전달</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-ci-workflow-cd-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-ci-workflow-cd-title">CD (Continuous Delivery)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Deploy (Stage)</strong>
+          <span class="sd-detail">검증 환경에 결과물을 적용</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">승인 또는 정책 gate</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Deploy (Prod)</strong>
+          <span class="sd-detail">운영 환경에 같은 결과물을 전달</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">CI는 Image Build, 두 검증 단계와 Release를 담당합니다. CD는 Release 결과를 Stage에서 Prod로 전달하고 승인 또는 정책 gate를 적용합니다.</p>
+</figure>

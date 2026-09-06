@@ -36,12 +36,11 @@
 
 ## Diagrams
 
-- `assets/img/**/*.spec.json`이 source of truth다. `.drawio`와 `.webp`는 빌드 산출물이므로 손으로 편집하지 않는다.
-- 다이어그램을 추가하거나 고칠 때는 spec을 쓴 뒤 `kkamji_scripts/blog/rebuild_diagrams.sh assets/img/<dir>`를 실행한다. 컴파일, 정규화, export, 검증이 한 번에 돈다. 실행 전 `export DRAWIO_SKILL_DIR="$HOME/.claude/skills/drawio-generate-diagram"` (Hermes는 `$HOME/.hermes/...`, Codex는 `$HOME/.codex/...`).
-- spec 없이 손으로 쓴 `.drawio`는 컴파일러와 validator를 둘 다 건너뛴다. 모든 `.drawio`의 첫 줄은 `host="kkamji-blog"`여야 한다. `host="Electron"`이면 손으로 쓴 파일이므로 spec으로 다시 만든다.
-- 노드 배치는 `col`, `row` 그리드다. 연결선이 이상하게 돌면 waypoint를 넣지 말고 노드를 옮긴다. 레이아웃이 해결책이고 waypoint는 증상이다.
-- edge를 쓰는 다이어그램에서 어떤 edge도 닿지 않는 fill 박스는 미완성으로 읽힌다. validator가 경고하면 연결하거나, 설명 대상 박스 안에 넣거나, fill을 빼서 캡션으로 만든다.
-- export한 실제 이미지를 눈으로 보기 전에는 검증됐다고 보고하지 않는다.
+- 설명용 다이어그램은 정적 HTML로 작성한다. 원본은 `_includes/diagrams/static/` 및 Packer/AWS 인증의 개별 include이며, 제작 기준과 원본 매핑은 `docs/static-diagrams.md`를 따른다.
+- 공통 스타일은 `assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이다. 버튼, 클릭, hover 의존 정보, 애니메이션, script를 그림에 추가하지 않는다. 제목 22px, 라벨 16px, 보조 텍스트 14px 이상을 유지한다.
+- 그림 안 이미지에는 `data-static-diagram="true"`를 붙여 테마의 확대 링크 생성을 건너뛴다. 실제 관계와 조건을 보존하고 상세 설명은 본문에 둔다.
+- 검증: `uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .` 실행 후 production build와 360px/본문 폭의 렌더링을 확인한다.
+- 기존 `assets/img/**/*.spec.json`, `.drawio`, `.webp`는 원본 증적과 rollback용으로 보존한다. 기존 Draw.io를 수정하는 경우에만 `rebuild_diagrams.sh`를 사용한다.
 
 ## Git Add, Commit, Push Convention
 

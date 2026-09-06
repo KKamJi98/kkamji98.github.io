@@ -24,7 +24,7 @@ AWS CodeArtifact는 이 문제를 fully managed artifact repository로 해결합
 
 ## 1. Domain과 Repository: 두 계층으로 구성된 저장 구조
 
-![CodeArtifact domain and repository model](/assets/img/aws/codeartifact/codeartifact-domain-repository-model.webp)
+{% include diagrams/static/aws/codeartifact/codeartifact-domain-repository-model.html %}
 _Domain에서 갈라지는 두 점선은 순서가 아니라 두 repository가 같은 asset 저장소를 공유한다는 뜻이다. 중복 제거와 KMS 암호화는 repository가 아니라 domain 계층에서 일어난다._
 
 CodeArtifact는 저장을 Domain이라는 상위 entity로 관리합니다. Domain은 KMS key로 모든 asset을 암호화하고, 동일한 asset은 domain 내에 한 번만 저장합니다(deduplication). 계정당 최대 10개 domain을 만들 수 있고, domain당 최대 1,000개 repository를 가질 수 있습니다.

@@ -1,0 +1,18 @@
+<figure class="sd sd--layers" id="spring-12-netty-direct-memory" aria-labelledby="spring-12-netty-direct-memory-title">
+  <figcaption class="sd-title" id="spring-12-netty-direct-memory-title">Netty socket I/O와 JVM heap 바깥의 direct memory</figcaption>
+  <div class="sd-stack">
+    <div class="sd-band">
+      <strong class="sd-band-title">JVM heap (-Xmx)</strong>
+      <span class="sd-detail">object, GC가 관리</span>
+    </div>
+    <div class="sd-band sd-band--accent">
+      <strong class="sd-band-title">Direct memory (off-heap)</strong>
+      <span class="sd-detail">Netty socket I/O buffer, PooledByteBufAllocator가 pool로 관리</span>
+    </div>
+    <div class="sd-band sd-band--muted">
+      <strong class="sd-band-title">Network socket</strong>
+      <span class="sd-detail">OS kernel</span>
+    </div>
+  </div>
+  <p class="sd-note">direct buffer는 native memory라 GC heap 밖에 있습니다. pool이 잡은 direct memory는 GC가 회수하지 않아 상승이 곧 leak은 아닙니다. 그래서 heap이 healthy해 보여도 WebFlux process가 container limit을 넘을 수 있습니다.</p>
+</figure>

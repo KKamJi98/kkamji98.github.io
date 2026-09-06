@@ -1,0 +1,22 @@
+<figure class="sd sd--flow" id="jvm-02-stack-vs-heap" aria-labelledby="sd-title-jvm-02-stack-vs-heap">
+  <figcaption class="sd-title" id="sd-title-jvm-02-stack-vs-heap">Stack frame은 reference를, Heap은 객체를 보관합니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label"><code>void process()</code></strong>
+      <span class="sd-detail"><code>int count = 10;</code><br><code>Order order = new Order();</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">호출 시 frame 생성</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Stack: the <code>process()</code> frame</strong>
+      <span class="sd-detail"><code>count = 10</code>, <code>order</code>는 reference</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>new Order()</code>가 가리키는 대상</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Heap (shared)</strong>
+      <span class="sd-detail">여러 thread가 접근할 수 있는 Order 객체</span>
+    </div>
+  </div>
+
+  <p class="sd-note">함수가 반환되면 <code>count</code>와 reference는 frame과 함께 사라집니다. Heap 객체는 더 이상 도달할 reference가 없을 때 GC 대상이 됩니다.</p>
+</figure>

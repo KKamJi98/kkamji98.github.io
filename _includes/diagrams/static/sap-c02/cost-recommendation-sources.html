@@ -1,0 +1,33 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-cost-recommendation-sources-title">
+  <figcaption class="sd-title" id="sap-c02-cost-recommendation-sources-title">비용 권고 도구의 입력과 집계</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Cost Explorer 활성화</strong><span class="sd-detail">절감액 계산의 공통 전제이며 한 번 켜면 끌 수 없음</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">각 도구가 다른 입력을 읽음</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Compute Optimizer 입력">
+        <div class="sd-lane-title">리소스 성능 권고</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">CloudWatch 지표</strong><span class="sd-detail">메모리는 agent가 InstanceId dimension과 함께 발행해야 수집</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">Compute Optimizer</strong><span class="sd-detail">14종 리소스, 기본 14일 lookback, enhanced metrics면 93일</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Cost Explorer rightsizing 입력">
+        <div class="sd-lane-title">EC2 rightsizing</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Cost Explorer rightsizing</strong><span class="sd-detail">EC2 한정, Compute Optimizer 결과의 부분집합</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">추정 절감액 권고</strong><span class="sd-detail">최대 CPU 1% 이하는 종료 권고, $0 이상만 표시</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Savings Plans와 RI 구매 권고 입력">
+        <div class="sd-lane-title">커밋 구매 권고</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Savings Plans와 RI 구매 권고</strong><span class="sd-detail">과거 사용량과 보유 커밋을 기준으로 계산</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">세 출처 집계</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Cost Optimization Hub</strong><span class="sd-detail">계정과 리전에 걸쳐 중복 제거, RI/SP 가격은 opt-in 후 실제 보유 조건 반영</span></div>
+  </div>
+</figure>

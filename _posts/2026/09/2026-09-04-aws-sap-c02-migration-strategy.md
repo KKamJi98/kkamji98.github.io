@@ -69,7 +69,7 @@ AWS는 서버 300대 이상을 옮기는 작업을 large migration으로 정의�
 
 7R은 retire, retain, rehost, relocate, repurchase, replatform, refactor(re-architect) 일곱 개입니다. 이름을 외우는 것보다 어떤 질문에서 갈리는지를 잡아 두는 편이 문항에 바로 쓰입니다.
 
-![포트폴리오 평가에서 시작해 사용 여부, 클라우드 등가물, 상용 대체 가능성, 이동 단위, 변경 범위 다섯 질문으로 7R이 갈리는 결정 트리](/assets/img/sap-c02/migration-7r-decision-tree.webp)
+{% include diagrams/static/sap-c02/migration-7r-decision-tree.html %}
 
 그림은 포트폴리오 평가 결과에서 출발해 질문 다섯 개를 통과하는 동안 일곱 개의 결과가 하나씩 떨어져 나가는 구조를 담았습니다. 각 질문 상자의 부제에 그 질문을 판정하는 근거가 적혀 있고, 마지막 질문에서 갈라진 세 결과는 옮기면서 무엇을 바꾸는지가 서로 다릅니다. refactor로 가는 경로가 점선인 것은 AWS가 대규모 마이그레이션에서 이 전략을 권장하지 않기 때문입니다.
 
@@ -157,7 +157,7 @@ repurchase는 drop and shop입니다. 전통 라이선스에서 SaaS로 이동�
 
 이사회에 낼 숫자를 만드는 일과 move group을 만드는 일은 다른 도구가 맡습니다. 문항이 "CFO가 승인 전에 비용을 보고받으려 한다"로 시작하면 답이 좁혀집니다.
 
-![온프레미스 자산에서 세 수집 도구로 갈라진 뒤 Migration Hub 추적, business case, Athena 내보내기로 각각 도달하는 책임 분할](/assets/img/sap-c02/migration-discovery-tool-ownership.webp)
+{% include diagrams/static/sap-c02/migration-discovery-tool-ownership.html %}
 
 그림은 같은 온프레미스 자산을 대상으로 세 가지 수집 경로가 각각 어떤 산출물에 도달하는지를 담았습니다. 각 수집 도구 상자의 부제에 배포 단위와 수집 주기와 대상 제약이 적혀 있고, 산출물 쪽 상자에는 그 산출물을 만들 수 있는 도구가 무엇인지가 함께 적혀 있습니다. Migration Evaluator에서 나가는 선과 Discovery Agent에서 나가는 선이 서로 다른 상자에 도착하는 것이 이 그림의 요점입니다.
 
@@ -269,7 +269,7 @@ wave plan 산출물에는 서버와 애플리케이션과 데이터베이스 목
 
 앞 절의 마지막 문장이 이 절의 주제입니다. wave 계획서에 타깃 서브넷과 보안 그룹과 계정 ID를 적으려면 그것들이 이미 존재해야 합니다.
 
-![landing zone과 domain controller와 회선이 wave plan의 전제로 들어가고, DNS TTL 인하가 컷오버 윈도우에 붙는 실행 순서](/assets/img/sap-c02/migration-wave-prerequisites.webp)
+{% include diagrams/static/sap-c02/migration-wave-prerequisites.html %}
 
 그림은 wave 계획과 실행 사이에 놓인 선행 조건들을 담았습니다. 왼쪽 세 상자는 wave 하나의 내용물이 아니라 모든 wave의 공통 전제이고, DNS TTL 인하 상자는 wave 실행 자체가 아니라 컷오버 윈도우에 붙습니다. 오른쪽 끝 컷오버 상자의 부제에 그 윈도우 안에서 순서대로 일어나는 동작이 적혀 있습니다.
 
@@ -289,7 +289,7 @@ hosted connection에는 traffic policing이 적용됩니다. 설정된 최대 �
 
 Application Migration Service는 2026년 6월 AWS Transform MGN으로 이름이 바뀌었고 API와 복제 엔진은 유지됩니다. 물리와 가상과 클라우드 서버를 대상으로 연속 블록 레벨 복제를 수행하는 rehost 도구입니다. 컷오버 윈도우는 통상 분 단위입니다. 동작은 replication, launch, post-launch 세 종류의 템플릿으로 제어하고, 서버를 application으로 묶고 application을 wave로 묶어 대량 조작합니다. wave 개념이 도구 안에도 있다는 점이 앞 절의 wave plan과 맞물립니다.
 
-![소스 서버에서 staging area의 replication server와 EBS 볼륨을 거쳐 test instance와 cutover instance로 갈라지고 archive로 끝나는 MGN 복제 경로](/assets/img/sap-c02/mgn-replication-cutover-flow.webp)
+{% include diagrams/static/sap-c02/mgn-replication-cutover-flow.html %}
 
 그림은 소스 쪽, staging area subnet, 타깃 VPC 세 경계를 각각 상자로 감싸고 그 사이를 지나는 복제 경로를 담았습니다. agentless 경로는 점선으로 따로 표시했고, staging 볼륨에서 갈라지는 두 인스턴스는 목적이 다릅니다. 각 상자의 부제에 인스턴스 타입과 볼륨 비율과 스냅샷 유지 개수가 적혀 있습니다.
 
@@ -450,7 +450,7 @@ DMS 소스로 지원되는 온프레미스와 EC2 엔진은 Oracle, SQL Server, 
 
 heterogeneous 마이그레이션 문항이 갈리는 지점이 여기입니다. **DMS가 타깃에 만드는 것은 table과 primary key, 그리고 경우에 따라 unique index뿐입니다.**
 
-![소스 데이터베이스에서 DMS task와 스키마 변환 도구로 갈라져 타깃에 서로 다른 오브젝트를 만드는 책임 분할](/assets/img/sap-c02/dms-schema-object-ownership.webp)
+{% include diagrams/static/sap-c02/dms-schema-object-ownership.html %}
 
 그림은 같은 소스 데이터베이스에 두 도구가 붙었을 때 타깃에 생기는 오브젝트가 어떻게 나뉘는지를 담았습니다. 가운데 두 상자가 각 도구의 역할이고, 그 오른쪽 두 상자에 각 도구가 실제로 만드는 오브젝트 목록이 들어 있습니다. Secrets Manager 상자는 migration project가 자격증명을 어디에서 읽는지를 표시한 것입니다.
 

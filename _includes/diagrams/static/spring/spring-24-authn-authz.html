@@ -1,0 +1,27 @@
+<figure class="sd sd--sequence" id="sd-spring-24-authn-authz" aria-labelledby="sd-spring-24-title">
+  <figcaption class="sd-title" id="sd-spring-24-title">Authentication 이후 Authorization을 판단하는 순서</figcaption>
+  <div class="sd-flow">
+    <section class="sd-lane" aria-labelledby="sd-spring-24-authn-title">
+      <div class="sd-lane-title" id="sd-spring-24-authn-title">Authentication: 누구인가</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">credentials</strong><span class="sd-detail">Authentication 입력</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">인증 요청</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">AuthenticationManager</strong><span class="sd-detail">인증 수행</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">성공</span></div>
+        <div class="sd-node"><strong class="sd-label">인증된 Authentication</strong><span class="sd-detail">principal과 authorities를 SecurityContext에 저장</span></div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">SecurityContext의 authorities 전달</span></div>
+    <section class="sd-lane" aria-labelledby="sd-spring-24-authz-title">
+      <div class="sd-lane-title" id="sd-spring-24-authz-title">Authorization: 무엇을 허용</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">AuthorizationFilter</strong></div>
+        <div class="sd-arrow"><span class="sd-edge-label">권한 비교</span></div>
+        <div class="sd-node"><strong class="sd-label">authorities와 접근 규칙 비교</strong></div>
+        <div class="sd-arrow"><span class="sd-edge-label">판단 결과</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">허용 또는 거부</strong><span class="sd-detail">거부 시 403 Forbidden</span></div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">인증이 먼저 완료되어야 Authorization이 비교할 권한을 얻습니다. 미인증은 401, 인증됐지만 권한이 없으면 403입니다.</p>
+</figure>

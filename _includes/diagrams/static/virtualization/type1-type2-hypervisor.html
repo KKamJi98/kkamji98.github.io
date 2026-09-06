@@ -1,0 +1,61 @@
+<figure class="sd sd--comparison" id="type1-type2-hypervisor" aria-labelledby="type1-type2-hypervisor-title">
+  <figcaption class="sd-title" id="type1-type2-hypervisor-title">Type 1은 hardware 위에, Type 2는 host OS 위에 놓입니다</figcaption>
+  <p class="sd-note">Type 2에만 host operating system layer가 추가되어 편의성을 얻는 대신 hardware 접근 경로가 길어집니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-labelledby="type1-title">
+      <div class="sd-lane-title" id="type1-title">Type 1 (bare metal)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Virtual machines</strong>
+          <span class="sd-detail">guest OS와 application을 실행합니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">직접 자원 중재</span></div>
+
+        <div class="sd-node">
+          <strong class="sd-label">Type 1 hypervisor</strong>
+          <span class="sd-detail">ESXi, Hyper-V, KVM처럼 hardware에 직접 설치됩니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">hardware access</span></div>
+
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Hardware</strong>
+          <span class="sd-detail">host OS를 거치지 않고 hypervisor가 관리합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="type2-title">
+      <div class="sd-lane-title" id="type2-title">Type 2 (hosted)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Virtual machines</strong>
+          <span class="sd-detail">hosted hypervisor가 실행을 관리합니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">hypervisor 요청</span></div>
+
+        <div class="sd-node">
+          <strong class="sd-label">Type 2 hypervisor</strong>
+          <span class="sd-detail">VirtualBox와 VMware Workstation처럼 OS 위에서 실행됩니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">추가 layer</span></div>
+
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Host operating system</strong>
+          <span class="sd-detail">hardware 자원 접근을 한 단계 더 중계합니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">hardware access</span></div>
+
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Hardware</strong>
+          <span class="sd-detail">host OS가 관리하는 물리 자원입니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

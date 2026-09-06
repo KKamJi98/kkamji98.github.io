@@ -1,0 +1,41 @@
+<figure class="sd sd--sequence" id="osi-encapsulation-flow" aria-labelledby="osi-encapsulation-flow-title">
+  <figcaption class="sd-title" id="osi-encapsulation-flow-title">각 OSI 계층은 header를 더해 전체 데이터를 아래 계층으로 넘깁니다</figcaption>
+  <p class="sd-intro">송신 측에서는 아래로 내려갈수록 제어 정보가 붙고, 수신 측에서는 반대 순서로 자기 header와 trailer를 해석합니다.</p>
+
+  <div class="sd-flow" aria-label="OSI encapsulation 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">Application data</strong>
+      <span class="sd-detail">응용이 만든 payload</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">Transport header 추가</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Transport header + data</strong>
+      <span class="sd-detail">segment: port와 sequence 정보</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">IP header 추가</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">IP header + segment</strong>
+      <span class="sd-detail">packet: source와 destination address</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">MAC 주소와 trailer 추가</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Ethernet frame</strong>
+      <span class="sd-detail">frame: link의 MAC address와 trailer</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">매체가 bits를 운반</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Bits on the medium</strong>
+      <span class="sd-detail">실제 link를 지나가는 신호</span>
+    </div>
+  </div>
+
+  <p class="sd-note">수신 측은 bits에서 frame, packet, segment를 차례로 벗겨 application data를 얻습니다. Router를 지날 때 Ethernet frame은 다음 link에 맞게 새로 만들어지고 MAC 주소도 바뀝니다.</p>
+</figure>

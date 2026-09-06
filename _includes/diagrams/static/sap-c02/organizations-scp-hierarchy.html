@@ -1,0 +1,42 @@
+<figure class="sd sd--layers" aria-labelledby="sap-c02-organizations-scp-hierarchy-title">
+  <figcaption class="sd-title" id="sap-c02-organizations-scp-hierarchy-title">SCP는 경로의 모든 레벨에서 교집합으로 적용된다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band sd-band--accent">
+      <span class="sd-band-title">조직 Root</span>
+      <div class="sd-node">
+        <strong class="sd-label">Root SCP</strong>
+        <span class="sd-detail">Root는 모든 OU와 계정에 내려가는 SCP 부착 지점이다.</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">Root에서 자식 경로로 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane sd-lane--muted">
+        <span class="sd-lane-title">management account 예외</span>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">management account</strong>
+          <span class="sd-detail">management account의 principal에는 SCP가 적용되지 않는다.</span>
+        </div>
+      </section>
+      <section class="sd-lane">
+        <span class="sd-lane-title">Security OU</span>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Security OU SCP</strong><span class="sd-detail">OU 경로에 정책을 부착한다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">계정에 상속</span></div>
+          <div class="sd-grid">
+            <div class="sd-node"><strong class="sd-label">Audit 계정</strong><span class="sd-detail">Root와 Security OU SCP가 모두 적용된다.</span></div>
+            <div class="sd-node"><strong class="sd-label">Log archive 계정</strong><span class="sd-detail">Root와 Security OU SCP가 모두 적용된다.</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning">
+        <span class="sd-lane-title">Workloads OU</span>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Workloads OU SCP</strong><span class="sd-detail">운영 계정의 추가 제약을 정의한다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">계정에 상속</span></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">Prod 계정</strong><span class="sd-detail">root user를 포함한 principal에도 SCP가 적용된다.</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">실행 가능 권한은 Root, OU, 계정에 붙은 정책의 교집합으로 결정된다.</p>
+</figure>

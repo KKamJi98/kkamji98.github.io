@@ -1,0 +1,54 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-cilium-native-routing-mode" aria-labelledby="sd-kubernetes-cilium-native-routing-mode-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-native-routing-mode-title">Cilium Native Routing은 node route table에서 remote PodCIDR를 찾는다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-label="Node 1 native routing path">
+      <div class="sd-lane-title">Node 1</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pods 10.10.10.1, 10.10.10.2</strong>
+          <span class="sd-detail">각 Pod의 virtual interface가 node 안으로 연결됩니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">lxc device</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">lxc1 / lxc2</strong>
+          <span class="sd-detail">Pod별 endpoint를 host network path에 붙입니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">eBPF datapath</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Routing table</strong>
+          <span class="sd-detail">local /32는 lxc로, 10.10.20.0/24는 192.168.1.2로 보냅니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay next hop</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">eth0 192.168.1.1</strong>
+          <span class="sd-detail">remote PodCIDR를 향한 host interface입니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Node 2 native routing path">
+      <div class="sd-lane-title">Node 2</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pods 10.10.20.1, 10.10.20.2</strong>
+          <span class="sd-detail">두 번째 PodCIDR의 endpoint입니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">lxc device</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">lxc1 / lxc2</strong>
+          <span class="sd-detail">Pod traffic을 host network path로 넘깁니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">eBPF datapath</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Routing table</strong>
+          <span class="sd-detail">local /32는 lxc로, 10.10.10.0/24는 192.168.1.1로 보냅니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay next hop</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">eth0 192.168.1.2</strong>
+          <span class="sd-detail">Node 1의 remote PodCIDR를 향한 host interface입니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Native Routing에서는 Cilium이 모든 node의 PodCIDR를 직접 캡슐화하지 않습니다. 각 node의 route table이 local /32와 remote /24 경로를 구분하고 underlay next hop을 선택합니다.</p>
+</figure>

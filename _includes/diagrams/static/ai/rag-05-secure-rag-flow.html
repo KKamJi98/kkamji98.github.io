@@ -1,0 +1,69 @@
+<figure class="sd sd--comparison" id="rag-05-secure-rag-flow" aria-labelledby="rag-05-secure-rag-flow-title">
+  <figcaption class="sd-title" id="rag-05-secure-rag-flow-title">Zero-trust RAG에서 ingestion과 query에 거는 경계</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Ingestion sanitize and tag">
+      <div class="sd-lane-title">Ingestion: sanitize and tag</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Documents</strong>
+          <span class="sd-detail">원문 source</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">PII redaction</strong>
+          <span class="sd-detail">어떤 embedding보다 먼저 민감정보를 정제</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Access tagging</strong>
+          <span class="sd-detail">각 chunk를 볼 수 있는 role을 기록</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Embedding</strong>
+          <span class="sd-detail">정제되고 tag된 text를 vector로 변환</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Vector index</strong>
+          <span class="sd-detail">text와 access tags를 함께 저장</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Query zero trust">
+      <div class="sd-lane-title">Query: zero trust</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">User query with role</strong>
+          <span class="sd-detail">질문과 현재 권한을 함께 전달</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Retrieval</strong>
+          <span class="sd-detail">Vector index에서 similarity 후보를 조회</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Permission filter</strong>
+          <span class="sd-detail">role이 볼 수 없는 chunk를 LLM 전에 제거</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Injection check</strong>
+          <span class="sd-detail">입력뿐 아니라 retrieved content도 검사</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">LLM generation</strong>
+          <span class="sd-detail">허용된 근거만 prompt에 주입</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Answer with citations</strong>
+          <span class="sd-detail">근거 위치를 함께 반환</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Access tags는 ingestion에서 쓰고 Permission filter는 query에서 다시 집행합니다. 태그가 없던 문서는 나중에 안전하게 걸러낼 수 없습니다.</p>
+</figure>

@@ -1,0 +1,63 @@
+<figure class="sd sd--comparison" id="rag-07-rag-variants" aria-labelledby="rag-07-rag-variants-title">
+  <figcaption class="sd-title" id="rag-07-rag-variants-title">Query와 generation 사이의 세 가지 RAG shape</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Vector RAG">
+      <div class="sd-lane-title">Vector RAG</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Query</strong>
+          <span class="sd-detail">질문 입력</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Retrieve</strong>
+          <span class="sd-detail">one shot vector search</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Generate</strong>
+          <span class="sd-detail">single hop, fastest</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="GraphRAG">
+      <div class="sd-lane-title">GraphRAG</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Query</strong>
+          <span class="sd-detail">질문 입력</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Graph traversal</strong>
+          <span class="sd-detail">relationship를 따라 multi-hop 탐색</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Generate</strong>
+          <span class="sd-detail">multi-hop and relational, high build cost</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Agentic RAG">
+      <div class="sd-lane-title">Agentic RAG</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Query</strong>
+          <span class="sd-detail">질문 입력</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Agent loop</strong>
+          <span class="sd-detail">plan, retrieve, reflect, repeat</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Generate</strong>
+          <span class="sd-detail">adaptive depth, hardest to bound in latency</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Vector RAG는 한 번 검색하고, GraphRAG는 관계를 따라가며, Agentic RAG는 충분한 근거를 얻을 때까지 제어 loop를 반복합니다.</p>
+</figure>

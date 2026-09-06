@@ -1,0 +1,73 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-s3-private-access-paths" aria-labelledby="sd-title-s3-private-access-paths">
+  <figcaption class="sd-title" id="sd-title-s3-private-access-paths">S3 접근 경로는 출발지와 endpoint 구현으로 갈립니다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="VPC에서 gateway endpoint로 접근">
+      <div class="sd-lane-title">VPC와 gateway endpoint</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">EC2 인스턴스</strong>
+          <span class="sd-detail">private subnet</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">route table prefix list</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Gateway endpoint</strong>
+          <span class="sd-detail">추가 요금 없음, S3 같은 리전만</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">endpoint route</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Amazon S3</strong>
+          <span class="sd-detail">같은 리전 버킷</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="VPC에서 interface endpoint로 접근">
+      <div class="sd-lane-title">VPC와 interface endpoint</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">EC2 인스턴스</strong>
+          <span class="sd-detail">private subnet</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">서브넷 ENI의 private IP</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Interface endpoint</strong>
+          <span class="sd-detail">AZ당 10에서 100 Gbps 자동 확장</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">PrivateLink 경로</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Amazon S3</strong>
+          <span class="sd-detail">endpoint policy 적용 가능</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="온프레미스에서 S3로 접근">
+      <div class="sd-lane-title">온프레미스 출발</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">온프레미스 서버</strong>
+          <span class="sd-detail">Direct Connect 또는 VPN</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">private IP 도달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Interface endpoint</strong>
+          <span class="sd-detail">VPC 밖 요청도 ENI로 수용</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">endpoint policy</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Amazon S3</strong>
+          <span class="sd-detail">같은 리전 버킷</span>
+        </div>
+      </div>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Gateway endpoint 불가</strong>
+          <span class="sd-detail">VPC 밖에서는 route table 경로를 참조하지 못함</span>
+        </div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">S3 public endpoint</strong>
+          <span class="sd-detail">public VIF로 도달하지만 endpoint policy는 없음</span>
+        </div>
+      </div>
+      <p class="sd-note">Gateway endpoint는 VPC route table 안에서만 동작합니다. public VIF의 S3 public endpoint에는 endpoint policy가 적용되지 않습니다.</p>
+    </section>
+  </div>
+</figure>

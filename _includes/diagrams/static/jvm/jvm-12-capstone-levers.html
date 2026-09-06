@@ -1,0 +1,48 @@
+<figure class="sd sd--comparison" id="jvm-12-capstone-levers" aria-labelledby="sd-title-jvm-12-capstone-levers">
+  <figcaption class="sd-title" id="sd-title-jvm-12-capstone-levers">누수가 아닐 때 관찰 원인과 조정 수단</figcaption>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">관찰된 원인 (누수 아님)</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">JDK 업그레이드와 adaptive IHOP</strong>
+          <span class="sd-detail">같은 workload에서도 Old baseline이 달라짐</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">G1의 점진 회수</strong>
+          <span class="sd-detail">IHOP 전까지 Old를 높게 유지하는 설계</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">off-heap은 <code>-Xmx</code> 바깥</strong>
+          <span class="sd-detail">Netty direct memory는 Heap 지표에 드러나지 않음</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">처방 (levers)</div>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">MaxNewSize</strong>
+          <span class="sd-detail">Young 상한으로 Old 증가와 promotion을 관리</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">IHOP 하향</strong>
+          <span class="sd-detail">Mixed GC를 일찍 시작해 Old 회수를 앞당김</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">MaxDirectMemorySize 명시</strong>
+          <span class="sd-detail">Direct memory 사용량을 코드 밖에서 제한</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Container memory >= Heap + off-heap</strong>
+          <span class="sd-detail">buildpack 계산과 실제 RSS를 함께 비교</span>
+        </div>
+      </div>
+      <p class="sd-note">각 lever는 원인과 측정 결과에 따라 선택합니다.</p>
+    </section>
+  </div>
+
+  <p class="sd-note">구체적인 수치는 workload별 baseline과 before-after 측정으로 결정합니다.</p>
+</figure>

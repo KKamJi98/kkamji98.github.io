@@ -24,7 +24,7 @@ image:
 
 ## 1. 배포 구조
 
-![LiteLLM proxy의 Kubernetes 배포 구조](/assets/img/ai/litellm-architecture.webp)
+{% include diagrams/static/ai/litellm-architecture.html %}
 
 LiteLLM proxy의 배포 단위는 세 가지로 묶입니다.
 
@@ -54,7 +54,7 @@ ESO가 Secret을 갱신해도 이미 띄운 pod의 환경변수는 바뀌지 않
 
 ## 3. virtual key와 예산
 
-![virtual key 발급부터 예산 거절까지의 흐름](/assets/img/ai/litellm-virtual-key-flow.webp)
+{% include diagrams/static/ai/litellm-virtual-key-flow.html %}
 
 master key로 `/key/generate`를 호출해 virtual key를 발급합니다. 실제 호출에 쓴 요청과 응답은 다음과 같습니다.
 

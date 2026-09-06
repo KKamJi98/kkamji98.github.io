@@ -1,0 +1,34 @@
+<figure class="sd sd--sequence" aria-labelledby="sap-c02-rto-rpo-timeline-title">
+  <figcaption class="sd-title" id="sap-c02-rto-rpo-timeline-title">RPO는 재해 이전이고 RTO는 재해 이후다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">마지막 복구 가능 지점</strong>
+      <span class="sd-detail">복제나 백업이 확보한 마지막 일관 상태다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">허용 데이터 손실 시간</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">RPO 구간</strong>
+      <span class="sd-detail">재해 이전에 잃어도 된다고 정한 시간이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">재해 발생 시점</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">재해 발생</strong>
+      <span class="sd-detail">장애를 인지한 시점이 아니라 실제 발생 시점이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">허용 서비스 중단 시간</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">RTO 구간</strong>
+      <span class="sd-detail">재해 이후 복구를 끝내야 하는 목표 시간이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">정상 트래픽 복귀</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">서비스 재개</strong>
+      <span class="sd-detail">정상 요청을 다시 처리한다.</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <div class="sd-node"><strong class="sd-label">RPO의 실제 상한</strong><span class="sd-detail">복제 수단이 정한다. Aurora Global은 초 단위, S3 RTC와 EFS replication은 15분 임계값, 백업은 주기를 따른다.</span></div>
+    <div class="sd-node"><strong class="sd-label">RTO의 실제 상한</strong><span class="sd-detail">탐지와 판단, DNS 전파, 인스턴스 기동, 용량 확장 절차의 합이다.</span></div>
+  </div>
+  <p class="sd-note">RPO 상자는 복제 수단과 연결되고 RTO 상자는 복구 절차와 연결된다.</p>
+</figure>

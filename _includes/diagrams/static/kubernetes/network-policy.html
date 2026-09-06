@@ -1,0 +1,31 @@
+<figure class="sd sd--flow" id="sd-kubernetes-network-policy" aria-labelledby="sd-title-kubernetes-network-policy">
+  <figcaption class="sd-title" id="sd-title-kubernetes-network-policy">NetworkPolicy가 외부 요청을 namespace 경계로 제한합니다</figcaption>
+  <p class="sd-note">Nginx, Tomcat, MySQL은 각각 <code>web</code>, <code>was</code>, <code>db</code> namespace에 있으며 허용된 포트와 방향만 통과합니다.</p>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">External request</strong>
+      <span class="sd-detail">K8sCluster 밖에서 들어오는 HTTP 요청</span>
+    </div>
+    <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 80, stateful reply</span></div>
+    <section class="sd-lane" aria-label="K8sCluster 내부 흐름">
+      <div class="sd-lane-title"><strong>K8sCluster</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Nginx</strong>
+          <span class="sd-detail"><code>web</code> namespace, 외부 요청 수신</span>
+        </div>
+        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 8080, stateful reply</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Tomcat</strong>
+          <span class="sd-detail"><code>was</code> namespace, 애플리케이션 요청 처리</span>
+        </div>
+        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 3306, stateful reply</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">MySQL</strong>
+          <span class="sd-detail"><code>db</code> namespace, 데이터베이스 연결</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">양방향 marker의 reply는 같은 연결에 대한 stateful 응답이며 reverse rule로 새로운 접근을 허용한다는 뜻은 아닙니다. 각 namespace에는 <code>namespaceSelector</code>가 찾을 label이 필요하고, 모든 Pod는 kube-dns에 UDP와 TCP 53 egress를 별도로 허용해야 합니다.</p>
+</figure>

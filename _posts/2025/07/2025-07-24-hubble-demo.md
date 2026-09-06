@@ -23,7 +23,7 @@ image:
 
 ## 1. Application Topology 개요
 
-![Star Wars Application Topology](/assets/img/kubernetes/cilium/star-wars-application-topology.webp)
+{% include diagrams/static/kubernetes/cilium/star-wars-application-topology.html %}
 > [Cilium Docs - Getting Started with the Star Wars Demo](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 - `deathstar`, `tiefighter`, `xwing` 세 가지 마이크로서비스로 구성됩니다.
@@ -293,7 +293,7 @@ Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend �
 
 ### 5.1. Cilium 및 Kubernetes를 사용한 L4 Network Policy 생성
 
-![L4 Layer Policy](/assets/img/kubernetes/cilium/l4_layer_policy.webp)
+{% include diagrams/static/kubernetes/cilium/l4_layer_policy.html %}
 > [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 ```shell
@@ -398,7 +398,7 @@ command terminated with exit code 28
 > L7 동작 처리는 cilium-envoy 데몬셋이 담당 합니다.  
 {: .prompt-danger}
 
-![Life of a Packet](/assets/img/kubernetes/cilium/life_of_a_packet_intgress.webp)
+{% include diagrams/static/kubernetes/cilium/life_of_a_packet_intgress.html %}
 
 > - [Cilium Docs - Life of a Packet](https://docs.cilium.io/en/stable/network/ebpf/lifeofapacket/)  
 
@@ -423,7 +423,7 @@ main.main()
 
 ### 6.2. L7 정책 YAML
 
-![L7 Layer Policy](/assets/img/kubernetes/cilium/cilium_l7_layer_policy.webp)
+{% include diagrams/static/kubernetes/cilium/cilium_l7_layer_policy.html %}
 > [L7 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
 **Cilium**은 HTTP 계층(L7 Layer) 정책을 적용하여 `tiefighter`가 접근할 수 있는 URL을 제한할 수 있습니다. 아래 정책은 기존 L3/L4 정책(rule1)을 확장하여, `tiefighter`가 `POST /v1/request-landing` 요청만 보낼 수 있도록 제한합니다. 다른 모든 HTTP 호출(ex: `PUT /v1/exhaust-port`)은 차단됩니다.

@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-cloudwatch-alarm-missing-data-title">
+  <figcaption class="sd-title" id="sap-c02-cloudwatch-alarm-missing-data-title">CloudWatch alarm의 결측 처리 지점</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">메트릭 데이터포인트</strong><span class="sd-detail">고해상도 period는 10초 또는 30초, 그 외에는 60초 배수</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node"><strong class="sd-label">Evaluation range 수집</strong><span class="sd-detail">evaluation periods보다 넓은 구간을 수집</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">실제 데이터가 충분한가</strong><span class="sd-detail">evaluation periods 이상이면 결측 처리 설정을 사용하지 않음</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="실측 데이터가 충분한 경로">
+        <div class="sd-lane-title">데이터포인트 충분</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">M out of N 판정</strong><span class="sd-detail">가장 오래된 breaching이 M기간 경과하고 이후 전부 breaching 또는 missing이면 ALARM, M개 미만도 가능</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-grid sd-grid--three">
+            <div class="sd-node sd-node--warning"><strong class="sd-label">ALARM</strong><span class="sd-detail">임계 초과 판정</span></div>
+            <div class="sd-node"><strong class="sd-label">OK</strong><span class="sd-detail">notBreaching 상태</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="결측 처리 설정 경로">
+        <div class="sd-lane-title">데이터포인트 부족</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">결측 처리 설정</strong><span class="sd-detail">missing, notBreaching, breaching, ignore 중 선택</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-grid sd-grid--three">
+            <div class="sd-node sd-node--warning"><strong class="sd-label">ALARM</strong><span class="sd-detail">breaching으로 채운 경우</span></div>
+            <div class="sd-node"><strong class="sd-label">OK</strong><span class="sd-detail">notBreaching으로 채운 경우</span></div>
+            <div class="sd-node sd-node--muted"><strong class="sd-label">INSUFFICIENT_DATA</strong><span class="sd-detail">기본 missing에서 전부 비었을 때</span></div>
+          </div>
+          <div class="sd-note">DynamoDB namespace만 기본값이 ignore입니다.</div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">ALARM 상태에서만</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Alarm action</strong><span class="sd-detail">상태 변경마다 1회, Auto Scaling action은 상태 유지 중 분당 반복</span></div>
+  </div>
+</figure>

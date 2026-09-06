@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-receipt-forced-status" aria-labelledby="sd-title-blockchain-receipt-forced-status">
+  <figcaption class="sd-title" id="sd-title-blockchain-receipt-forced-status">강제 gas limit은 실패한 receipt도 block에 기록합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">cast send --gas-limit 100000</strong>
+      <span class="sd-detail">estimate 생략</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">estimate 건너뜀</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Anvil block 0x5</strong>
+      <span class="sd-detail">tx 0x5e5d58bb</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">실패 실행도 포함</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">receipt status 0x0</strong>
+      <span class="sd-detail">gasUsed 21492, revert boom</span>
+    </div>
+  </div>
+  <p class="sd-note">status 0x0이어도 실제 실행에 사용한 gasUsed 21492는 지불됩니다.</p>
+</figure>

@@ -1,0 +1,49 @@
+<figure class="sd sd--comparison" id="sd-project-weasel-workflows" aria-labelledby="sd-title-project-weasel-workflows">
+  <figcaption class="sd-title" id="sd-title-project-weasel-workflows">Frontend, Backend, Bedrock 사이의 문제 풀이와 저장</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="문제 풀이 왕복 흐름">
+      <div class="sd-lane-title"><strong>문제 풀이</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Frontend</strong>
+          <span class="sd-detail">문제 입력</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">1. 문제 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Backend</strong>
+          <span class="sd-detail">요청 처리</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">2. API Call</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Bedrock</strong>
+          <span class="sd-detail">모델 추론</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">3. 해답, 풀이</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Backend</strong>
+          <span class="sd-detail">응답 조립</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">4. 결과 리턴</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Frontend</strong>
+          <span class="sd-detail">결과 표시</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="정보 저장 흐름">
+      <div class="sd-lane-title"><strong>정보 저장</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Backend</strong>
+          <span class="sd-detail">저장 요청</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">5. 정보 저장</span></div>
+        <div class="sd-grid">
+          <section class="sd-lane"><div class="sd-lane-title"><strong>Image Bucket</strong></div><div class="sd-node"><strong class="sd-label">S3</strong><span class="sd-detail">image data</span></div></section>
+          <section class="sd-lane"><div class="sd-lane-title"><strong>RDS</strong></div><div class="sd-node"><strong class="sd-label">RDS</strong><span class="sd-detail">application data</span></div></section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Backend는 Bedrock 응답을 Frontend로 돌려주고, 필요한 정보를 Image Bucket과 RDS에 저장합니다.</p>
+</figure>

@@ -85,7 +85,7 @@ AccessDeniedException: Insufficient Lake Formation permission(s): Required Descr
 
 증상의 뿌리를 잡으려면, federated 데이터에 필요한 권한의 전체 지도를 갖고 있어야 합니다. 핵심은 **두 개의 축과 세 개의 계층**입니다.
 
-![Lake Formation 권한 매트릭스와 디버깅 타임라인](/assets/img/aws/analytics-stack-08-lf-permissions.webp)
+{% include diagrams/static/aws/analytics-stack-08-lf-permissions.html %}
 
 - **축 1 - IAM (API authorization)**: Glue/Athena API를 호출할 수 있는가? federated 리소스의 ARN과 glue action이 여기에 해당합니다.
 - **축 2 - Lake Formation (data authorization)**: 그 데이터에 실제로 접근할 grant가 있는가? catalog/database/table에 대한 DESCRIBE/SELECT grant입니다.

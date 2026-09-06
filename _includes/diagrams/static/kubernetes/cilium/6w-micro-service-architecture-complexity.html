@@ -1,0 +1,47 @@
+<figure class="sd sd--comparison" id="sd-kubernetes-6w-micro-service-architecture-complexity" aria-labelledby="sd-kubernetes-6w-micro-service-architecture-complexity-title">
+  <figcaption class="sd-title" id="sd-kubernetes-6w-micro-service-architecture-complexity-title">Microservice가 늘수록 직접 연결의 운영 복잡도가 커진다</figcaption>
+  <p class="sd-note">아래 EXAMPLE A, B, C는 특정 workload가 아닌 개념 예시입니다. 직접 호출이 늘수록 각 service가 retry, auth, traffic control, telemetry를 반복해서 관리해야 합니다.</p>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning" aria-label="Application이 직접 통신하는 구조">
+      <div class="sd-lane-title">Application 직접 통신</div>
+      <div class="sd-grid sd-grid--three">
+        <article class="sd-node">
+          <strong class="sd-label">EXAMPLE A</strong>
+          <span class="sd-detail">다른 example service를 호출할 수 있습니다.</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">EXAMPLE B</strong>
+          <span class="sd-detail">여러 example service와 연결될 수 있습니다.</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">EXAMPLE C</strong>
+          <span class="sd-detail">호출 조합이 늘어날 수 있습니다.</span>
+        </article>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">many east-west calls</span></div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">운영 책임 분산</strong>
+        <span class="sd-detail">retry, auth, traffic control, telemetry를 service마다 반복합니다.</span>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent" aria-label="Service Mesh가 공통 기능을 맡는 구조">
+      <div class="sd-lane-title">공통 Service Mesh 계층</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Application traffic</strong>
+          <span class="sd-detail">기존 application code는 그대로 둡니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">공통 proxy와 data plane</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Service Mesh</strong>
+          <span class="sd-detail">resilient connectivity와 L7 traffic control을 공유합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">identity와 observability 적용</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">정책과 관측 결과</strong>
+          <span class="sd-detail">모든 service에 일관된 security와 tracing을 제공합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

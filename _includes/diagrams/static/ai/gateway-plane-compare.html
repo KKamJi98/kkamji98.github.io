@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" id="gateway-plane-compare" aria-labelledby="gateway-plane-compare-title">
+  <figcaption class="sd-title" id="gateway-plane-compare-title">LLM gateway를 둘 수 있는 두 위치</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="앱 레벨 gateway">
+      <div class="sd-lane-title">앱 레벨 Python service</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Application</strong>
+          <span class="sd-detail">gateway SDK를 호출하는 Python app</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">LiteLLM proxy</strong>
+          <span class="sd-detail">app 가까이에서 routing과 auth를 처리</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-grid sd-grid--three">
+          <div class="sd-node">
+            <strong class="sd-label">OpenAI</strong>
+            <span class="sd-detail">provider API</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Bedrock</strong>
+            <span class="sd-detail">provider API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="데이터플레인 gateway">
+      <div class="sd-lane-title">Envoy ingress data plane</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Application</strong>
+          <span class="sd-detail">plain OpenAI-compatible call</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Envoy AI Gateway</strong>
+          <span class="sd-detail">Envoy Proxy의 ext processor가 요청 경로에 정책을 적용</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Providers</strong>
+          <span class="sd-detail">any OpenAI-compatible API</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">LiteLLM은 앱팀의 Python service이고, Envoy AI Gateway는 플랫폼 ingress의 xDS와 external processor를 확장 지점으로 삼습니다.</p>
+</figure>

@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" id="sd-aws-eks-token-cache-flow" aria-labelledby="sd-title-aws-eks-token-cache-flow">
+  <figcaption class="sd-title" id="sd-title-aws-eks-token-cache-flow">Wrapper가 없으면 모든 kubectl 호출이 새 EKS token을 발급한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">kubectl</strong>
+      <span class="sd-detail">~/.kube/config의 exec block을 읽음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">매 invocation 실행</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">kubeconfig exec credential</strong>
+      <span class="sd-detail">기본값은 매번 AWS CLI 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">cache lookup</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">eks-token-cache.sh</strong>
+      <span class="sd-detail">cluster와 profile별 cache; remaining validity 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">유효성에 따라 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Cache hit">
+        <div class="sd-lane-title">Cache still valid</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Cached ExecCredential</strong>
+            <span class="sd-detail">expiration 전이면 token 재사용</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">AWS call 없음</span></div>
+          <div class="sd-node"><strong class="sd-label">EKS API server</strong><span class="sd-detail">token 검증 후 RBAC 적용</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Cache miss or near expiry">
+        <div class="sd-lane-title">Miss or near expiry</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">aws eks get-token</strong>
+            <span class="sd-detail">cache write; 만료 60초 전 갱신</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">새 token 전달</span></div>
+          <div class="sd-node"><strong class="sd-label">EKS API server</strong><span class="sd-detail">token 검증 후 RBAC 적용</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">EKS token은 발급 후 약 15분 유효합니다. Cache miss에서만 STS/EKS API 호출 비용과 지연이 발생합니다.</p>
+</figure>

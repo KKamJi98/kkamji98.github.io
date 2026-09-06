@@ -79,7 +79,7 @@ deployedTo   0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
 cast code    964 hex characters
 ```
 
-![forge test는 임시 EVM에서 끝나고, forge create는 Anvil address에 바이트코드를 남기며, cast가 그 address를 읽고 호출하는 흐름](/assets/img/blockchain/foundry-test-create-cast.webp)
+{% include diagrams/static/blockchain/foundry-test-create-cast.html %}
 _forge test는 통과만 남긴다. forge create가 코드를 address에 올리고, cast가 그 칸을 읽는다._
 
 `forge test`의 `new Counter()`와 `forge create`의 `deployedTo`는 같은 소스를 써도 같은 객체가 아닙니다. 한쪽은 테스트 러너의 메모리이고, 다른 쪽은 Anvil이 유지하는 상태 트리입니다. deploy 후에 소스를 고치면 이미 올라간 바이트코드는 그대로입니다.
@@ -96,7 +96,7 @@ increment()  status=0x1  gasUsed=43482 (0xa9da)
 number()     1
 ```
 
-![EOA가 Counter를 deploy하면 address에 바이트코드가 생기고 increment가 number를 1로 바꾸는 흐름](/assets/img/blockchain/foundry-counter-deploy.webp)
+{% include diagrams/static/blockchain/foundry-counter-deploy.html %}
 _EOA의 code는 0x다. Counter address에는 바이트코드가 있고, increment 호출 후 number는 1이다._
 
 receipt의 `status=0x1`은 실행이 되돌려지지 않았다는 뜻입니다. `gasUsed=43482`는 단순 이체 21000보다 큽니다. `increment`가 `number++`로 스토리지를 쓰기 때문입니다. 이 숫자 하나를 opcode 표로 분해하지는 않았습니다.

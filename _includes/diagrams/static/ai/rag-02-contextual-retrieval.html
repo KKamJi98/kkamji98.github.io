@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" id="rag-02-contextual-retrieval" aria-labelledby="rag-02-contextual-retrieval-title">
+  <figcaption class="sd-title" id="rag-02-contextual-retrieval-title">Contextual Retrieval이 chunk에 원문 맥락을 붙이는 흐름</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Original document input">
+      <div class="sd-lane-title">Original document</div>
+      <div class="sd-node">
+        <strong class="sd-label">전체 source</strong>
+        <span class="sd-detail">여러 chunk에 재사용</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Chunk input">
+      <div class="sd-lane-title">Chunk</div>
+      <div class="sd-node">
+        <strong class="sd-label">잘린 fragment</strong>
+        <span class="sd-detail">자체 context가 없는 원문 조각</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">document와 chunk를 함께 입력</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">LLM context generation</strong>
+    <span class="sd-detail">chunk가 속한 문서와 section을 한두 문장으로 설명</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">Contextualized chunk</strong>
+    <span class="sd-detail">생성된 context를 prepend한 context + chunk</span>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Dense index">
+      <div class="sd-lane-title">Dense retrieval</div>
+      <div class="sd-node">
+        <strong class="sd-label">Embedding index</strong>
+        <span class="sd-detail">contextualized text를 vector로 색인</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Lexical index">
+      <div class="sd-lane-title">Lexical retrieval</div>
+      <div class="sd-node">
+        <strong class="sd-label">BM25 index</strong>
+        <span class="sd-detail">같은 contextualized text를 lexical search에 사용</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">원문 context를 앞에 붙인 동일한 text가 Embedding index와 BM25 index 양쪽에 들어가므로 chunk만으로도 문서와 section 신호를 검색할 수 있습니다.</p>
+</figure>

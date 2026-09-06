@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-acm-certificate-issuance-paths-title">
+  <figcaption class="sd-title" id="sap-c02-acm-certificate-issuance-paths-title">인증서 설치 위치가 발급 경로를 가른다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">TLS 인증서가 설치될 위치</strong>
+      <span class="sd-detail">공인 신뢰와 내부 PKI 중 필요한 범위를 먼저 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">요구사항에 따라 선택</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="ACM 일반 공인 인증서 경로">
+        <div class="sd-lane-title">AWS 통합 서비스</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">ACM 일반 공인 인증서</strong><span class="sd-detail">private key는 AWS가 보유하며 반출 불가</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">ELB, CloudFront, API Gateway</strong><span class="sd-detail">CloudFront는 us-east-1 인증서 필요, 갱신과 재바인딩은 ACM 담당</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="자체 서버용 exportable 인증서 경로">
+        <div class="sd-lane-title">자체 관리 서버</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">exportable public certificate</strong><span class="sd-detail">요청 때만 지정, 유효기간 198일, 인증서 자체 과금</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">EC2, 컨테이너, 온프레미스</strong><span class="sd-detail">passphrase로 암호화된 key를 export하고 재배포는 사용자가 담당</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="ACME 경로">
+        <div class="sd-lane-title">ACME client</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">ACM ACME 경로</strong><span class="sd-detail">Certbot 또는 cert-manager가 key를 생성하고 보유</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">자체 관리 인프라</strong><span class="sd-detail">ACM inventory에는 보이지만 AWS 통합 서비스에 바인딩 불가</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Private CA 경로">
+        <div class="sd-lane-title">내부 PKI</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">AWS Private CA</strong><span class="sd-detail">사설 CA 계층이며 공인 신뢰 체인은 아님</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">내부 서비스와 client 인증</strong><span class="sd-detail">사설 인증서를 export해 자체 배포</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-note">인증서는 리전 리소스이므로 리전 간 복사가 되지 않습니다. 각 리전에서 요청하거나 import해야 합니다.</div>
+  </div>
+</figure>

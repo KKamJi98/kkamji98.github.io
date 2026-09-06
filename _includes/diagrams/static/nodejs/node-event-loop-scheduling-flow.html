@@ -1,0 +1,43 @@
+<figure class="sd sd--sequence" id="node-event-loop-scheduling-flow" aria-labelledby="sd-title-node-event-loop-scheduling-flow">
+  <figcaption class="sd-title" id="sd-title-node-event-loop-scheduling-flow">Callback 뒤에는 nextTick과 microtask가 먼저 drain됩니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Synchronous callback</strong>
+      <span class="sd-detail">현재 body가 끝날 때까지 먼저 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">callback 종료</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">process.nextTick queue</strong>
+      <span class="sd-detail">다음 phase 전에 먼저, 끝까지 drain</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">그 다음 queue</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">V8 microtasks</strong>
+      <span class="sd-detail">Promise continuation과 <code>queueMicrotask()</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">queues exhausted</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">timers phase</strong>
+      <span class="sd-detail"><code>setTimeout</code>, <code>setInterval</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">다음 phase</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">poll phase</strong>
+      <span class="sd-detail">I/O callbacks</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">check로 이동</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">check phase</strong>
+      <span class="sd-detail"><code>setImmediate</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">다음 turn</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">JavaScript continuation</strong>
+      <span class="sd-detail">다음 event loop turn</span>
+    </div>
+  </div>
+
+  <p class="sd-note">CommonJS script와 일반 callback boundary에서는 두 queue가 모두 소진될 때까지 다음 phase로 넘어가지 않습니다. recursive <code>nextTick</code>은 queue를 계속 채워 poll phase를 starvation시킬 수 있습니다.</p>
+  <p class="sd-note">ESM top-level 자체는 microtask context이므로 <code>nextTick</code>과 Promise 순서가 달라질 수 있습니다. <code>setTimeout(0)</code>과 <code>setImmediate()</code>의 top-level 우선순위도 고정 계약이 아닙니다.</p>
+</figure>

@@ -1,0 +1,51 @@
+<figure class="sd sd--comparison" id="sd-aws-analytics-stack-02-warehouse-lake-lakehouse" aria-labelledby="sd-title-aws-analytics-stack-02-warehouse-lake-lakehouse">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-02-warehouse-lake-lakehouse">Lakehouse는 lake storage에 warehouse 보장을 더한다</figcaption>
+  <p class="sd-note">세 패러다임의 경계는 스키마를 적용하는 시점과 storage layer의 transaction 지원입니다.</p>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Data Warehouse">
+      <div class="sd-lane-title">Data Warehouse</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Amazon Redshift</strong>
+          <span class="sd-detail">정형 분석용 columnar MPP</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">schema-on-write</strong>
+          <span class="sd-detail">구조화된 데이터만 적재; 빠른 쿼리와 강한 거버넌스</span>
+        </div>
+      </div>
+      <p class="sd-note">스토리지 비용과 스키마 변경의 경직성이 trade-off입니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Data Lake">
+      <div class="sd-lane-title">Data Lake</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Amazon S3 plus Glue plus Athena</strong>
+          <span class="sd-detail">원본을 다양한 형식으로 저장</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">schema-on-read</strong>
+          <span class="sd-detail">저비용과 유연성; 관리가 없으면 data swamp</span>
+        </div>
+      </div>
+      <p class="sd-note">파일 자체에는 ACID transaction과 강한 governance가 없습니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Data Lakehouse">
+      <div class="sd-lane-title">Data Lakehouse</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">S3 Tables plus Athena plus Lake Formation</strong>
+          <span class="sd-detail">관리형 Iceberg table storage와 governance</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">lake storage plus warehouse features</strong>
+          <span class="sd-detail">ACID, schema evolution, transactions</span>
+        </div>
+      </div>
+      <p class="sd-note">새 storage engine이 아니라 Apache Iceberg table format이 기능을 제공합니다.</p>
+    </section>
+  </div>
+</figure>

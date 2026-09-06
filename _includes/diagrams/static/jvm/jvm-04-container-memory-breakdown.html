@@ -1,0 +1,35 @@
+<figure class="sd sd--layers" id="jvm-04-container-memory-breakdown" aria-labelledby="sd-title-jvm-04-container-memory-breakdown">
+  <figcaption class="sd-title" id="sd-title-jvm-04-container-memory-breakdown">Container limit은 Heap과 다섯 native 영역의 합입니다</figcaption>
+
+  <div class="sd-stack">
+    <div class="sd-band">
+      <div class="sd-band-title">Container memory limit</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Heap (<code>-Xmx</code>)</strong>
+        <span class="sd-detail"><code>-Xmx</code>가 직접 제어하는 유일한 조각</span>
+      </div>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Metaspace</strong>
+      <span class="sd-detail">class metadata</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Thread stacks</strong>
+      <span class="sd-detail"><code>-Xss</code> x thread count</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Code cache</strong>
+      <span class="sd-detail">JIT output</span>
+    </div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Direct memory</strong>
+      <span class="sd-detail">off-heap buffer</span>
+    </div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Headroom and other native</strong>
+      <span class="sd-detail">allocator, GC structures, JNI</span>
+    </div>
+  </div>
+
+  <p class="sd-note">Container limit = heap + metaspace + thread stacks + code cache + direct memory + headroom. <code>-Xmx</code>만 limit까지 올리면 native 사용량을 위한 공간이 사라집니다.</p>
+</figure>

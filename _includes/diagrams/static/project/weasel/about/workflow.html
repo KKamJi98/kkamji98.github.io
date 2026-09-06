@@ -1,0 +1,55 @@
+<figure class="sd sd--comparison" id="sd-project-weasel-about-workflow" aria-labelledby="sd-title-project-weasel-about-workflow">
+  <figcaption class="sd-title" id="sd-title-project-weasel-about-workflow">Weasel 요청은 WAS에서 Bedrock을 호출하고 결과를 저장합니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="문제 풀이 왕복 흐름">
+      <div class="sd-lane-title"><strong>문제 풀이 왕복</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">WEB</strong>
+          <span class="sd-detail">문제를 입력하고 결과를 받습니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">1. 문제 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">WAS</strong>
+          <span class="sd-detail">요청을 처리하고 저장을 조정합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">2. API Call</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Bedrock</strong>
+          <span class="sd-detail">문제에 대한 추론을 수행합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">3. 해답, 풀이</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">WAS result</strong>
+          <span class="sd-detail">해답과 풀이를 응답으로 조립합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">4. 결과 리턴</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">WEB result</strong>
+          <span class="sd-detail">사용자에게 결과를 표시합니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="정보 저장 흐름">
+      <div class="sd-lane-title"><strong>정보 저장</strong></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">WAS</strong>
+          <span class="sd-detail">처리 중 필요한 정보를 저장합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">5. 정보 저장</span></div>
+        <div class="sd-grid">
+          <section class="sd-lane" aria-label="Image Bucket 저장">
+            <div class="sd-lane-title"><strong>Image Bucket</strong></div>
+            <div class="sd-node"><strong class="sd-label">S3</strong><span class="sd-detail">이미지 데이터를 보관합니다.</span></div>
+          </section>
+          <section class="sd-lane" aria-label="RDS 저장">
+            <div class="sd-lane-title"><strong>RDS</strong></div>
+            <div class="sd-node"><strong class="sd-label">RDS</strong><span class="sd-detail">애플리케이션 정보를 보관합니다.</span></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">WAS는 Bedrock의 해답을 WEB으로 반환하는 동안 Image Bucket과 RDS에 필요한 정보를 저장합니다.</p>
+</figure>

@@ -1,0 +1,30 @@
+<figure class="sd sd--layers sd--flow" id="sd-kubernetes-cilium-cluster-scope-ipam-mode" aria-labelledby="sd-kubernetes-cilium-cluster-scope-ipam-mode-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-cluster-scope-ipam-mode-title">Cluster Scope IPAM은 operator가 node별 PodCIDR을 나누고 agent가 Pod IP를 할당한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Cluster Scope IP Pool</strong>
+      <span class="sd-detail">cluster 전체 주소 풀에서 node별 subnet을 선택한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">operator allocation</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cilium Operator</strong>
+      <span class="sd-detail">node별 PodCIDR을 중앙에서 배정한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">update CiliumNode CRD</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">v2.CiliumNode: node1</strong>
+      <span class="sd-detail"><code>spec.ipam.podCIDRs: 10.1.1.0/24</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">agent reads node CIDR</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Cilium Agent</strong>
+      <span class="sd-detail">할당받은 node subnet 안에서 host-scope allocator를 실행한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">allocate Pod IPs</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Pods on node1</strong>
+      <span class="sd-detail"><code>10.1.1.1</code> and <code>10.1.1.2</code></span>
+    </div>
+  </div>
+  <p class="sd-note"><code>v2.CiliumNode</code>의 <code>podCIDRs</code>가 operator와 agent 사이의 allocation boundary다. 이 모드는 Kubernetes <code>v1.Node</code>의 PodCIDR 할당에 의존하지 않는다.</p>
+</figure>

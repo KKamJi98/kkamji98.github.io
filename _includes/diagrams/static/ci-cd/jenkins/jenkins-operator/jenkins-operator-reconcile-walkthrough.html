@@ -1,0 +1,75 @@
+<figure class="sd sd--flow sd--comparison" id="sd-ci-cd-jenkins-operator-reconcile-walkthrough" aria-labelledby="sd-title-ci-cd-jenkins-operator-reconcile-walkthrough">
+  <figcaption class="sd-title" id="sd-title-ci-cd-jenkins-operator-reconcile-walkthrough">한 번의 reconcile pass: base 이후 user 설정 적용</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Watch event</strong>
+      <span class="sd-detail">Jenkins CR 생성 또는 변경</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">reconcile 진입</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">base.Validate</strong>
+      <span class="sd-detail">CR spec의 유효성 검사</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">검증 통과</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">base.Reconcile</strong>
+      <span class="sd-detail">namespace, RBAC, Secret, master Pod, API token, 7개 보안 Groovy</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Jenkins API 준비 대기</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">waitForJenkins</strong>
+      <span class="sd-detail">readiness를 polling하고 준비 전에는 pass를 끝냄</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">준비 상태에 따라 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-jenkins-walkthrough-ready-title">
+        <div class="sd-lane-title" id="sd-ci-cd-jenkins-walkthrough-ready-title">Jenkins 준비됨</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">user.ReconcileCasc</strong>
+            <span class="sd-detail">JCasC와 user Groovy 적용</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">user resource 생성</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">user.ReconcileOthers</strong>
+            <span class="sd-detail">seed jobs, backup와 restore job 확인</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">단계 완료 시각 저장</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">CR status update</strong>
+            <span class="sd-detail">provision, base, user 완료 timestamp</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning" aria-labelledby="sd-ci-cd-jenkins-walkthrough-requeue-title">
+        <div class="sd-lane-title" id="sd-ci-cd-jenkins-walkthrough-requeue-title">아직 준비되지 않음</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Requeue</strong>
+            <span class="sd-detail">readiness가 될 때까지 5초 뒤 같은 pass를 다시 시도</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning" aria-labelledby="sd-ci-cd-jenkins-walkthrough-error-title">
+        <div class="sd-lane-title" id="sd-ci-cd-jenkins-walkthrough-error-title">어느 단계에서든 오류</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Reconcile step error</strong>
+            <span class="sd-detail">Validate, Reconcile, readiness 또는 user 단계</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">현재 pass 재큐</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Same error 10 times</strong>
+            <span class="sd-detail">같은 error가 반복 오류 한도에 도달</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">공통 종료 조건</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">ReconcileLoopFailed</strong>
+            <span class="sd-detail">CR status에 실패를 남기고 조정을 중단</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">각 단계 완료 시각이 CR status에 기록됩니다. waitForJenkins의 not-ready 경로는 readiness를 기다리는 5초 재큐이고, Validate, Reconcile, readiness 또는 user 단계의 오류는 공통 재큐 경로를 타며 같은 error가 10회 누적될 때만 ReconcileLoopFailed로 중단됩니다.</p>
+</figure>

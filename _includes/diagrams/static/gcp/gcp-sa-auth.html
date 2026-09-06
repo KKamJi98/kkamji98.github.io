@@ -1,0 +1,53 @@
+<figure class="sd sd--comparison" id="gcp-sa-auth" aria-labelledby="gcp-sa-auth-title">
+  <figcaption class="sd-title" id="gcp-sa-auth-title">Workload에는 Service Account를 붙이고 JSON key 파일은 배포하지 않습니다</figcaption>
+  <p class="sd-intro">Attached Service Account와 단기 token은 장기 secret을 만들지 않습니다. 디스크의 JSON key는 같은 identity라도 유출과 rotation 부담을 남깁니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-labelledby="gcp-sa-auth-keyless-title">
+      <div class="sd-lane-title" id="gcp-sa-auth-keyless-title">Keyless: attached Service Account</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Workload</strong>
+          <span class="sd-detail">GCE 또는 GKE에서 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">metadata server가 단기 token 발급</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Service Account</strong>
+          <span class="sd-detail">워크로드의 Google identity</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Resource의 IAM binding으로 권한 확인</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Resource</strong>
+          <span class="sd-detail">binding이 허용한 API 작업</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane sd-lane--warning" aria-labelledby="gcp-sa-auth-keyfile-title">
+      <div class="sd-lane-title" id="gcp-sa-auth-keyfile-title">Key file: 디스크에 남는 장기 credential</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Workload</strong>
+          <span class="sd-detail">Google Cloud 밖에서도 실행 가능</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">파일에 저장된 장기 credential 사용</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">JSON key file</strong>
+          <span class="sd-detail">leak와 rotation risk</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">같은 Service Account identity로 인증</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Service Account</strong>
+          <span class="sd-detail">identity는 같지만 credential 취급이 약함</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Resource의 IAM binding으로 권한 확인</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Resource</strong>
+          <span class="sd-detail">binding이 허용한 API 작업</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">외부 CI는 Workload Identity Federation, 사람의 임시 작업은 Service Account impersonation으로 keyless 경로를 유지할 수 있습니다.</p>
+</figure>

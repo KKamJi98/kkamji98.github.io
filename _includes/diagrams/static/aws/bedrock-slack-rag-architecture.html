@@ -1,0 +1,104 @@
+<figure class="sd sd--comparison" id="sd-aws-bedrock-slack-rag-architecture" aria-labelledby="sd-title-aws-bedrock-slack-rag-architecture">
+  <figcaption class="sd-title" id="sd-title-aws-bedrock-slack-rag-architecture">Google Docs가 citation 가능한 Slack 답변으로 변환된다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Document ingestion">
+      <div class="sd-lane-title">1. Document ingestion</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Google Docs</strong>
+          <span class="sd-detail">source of truth</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">trigger only</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Apps Script</strong>
+          <span class="sd-detail">문서 내용은 전송하지 않음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">AssumeRole</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">n8n sync workflow</strong>
+          <span class="sd-detail">동기화 orchestration</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">read-only fetch</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Docs API</strong>
+          <span class="sd-detail">tabs and field mask</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">parse sections and tables</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Python parser</strong>
+          <span class="sd-detail">한 번의 parse에서 본문과 citation metadata 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">두 산출물</span></div>
+        <div class="sd-grid">
+          <div class="sd-node">
+            <strong class="sd-label">S3 artifacts</strong>
+            <span class="sd-detail">section Markdown</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Citation sidecar</strong>
+            <span class="sd-detail">headingId, section path, source URL</span>
+          </div>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Markdown 색인</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Bedrock KB</strong>
+          <span class="sd-detail">Cohere embed</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">vector index</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">S3 Vectors</strong>
+          <span class="sd-detail">검색 index</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Slack query runtime">
+      <div class="sd-lane-title">2. Slack query runtime</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Slack mention</strong>
+          <span class="sd-detail">app_mention</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">ack and status</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">n8n chat workflow</strong>
+          <span class="sd-detail">3초 ack와 orchestration</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">top 25 candidates</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">KB retrieve</strong>
+          <span class="sd-detail">S3 Vectors index 조회</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">top 5 evidence</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Cohere rerank</strong>
+          <span class="sd-detail">후보 재정렬</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">score threshold</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Evidence gate</strong>
+          <span class="sd-detail">미달이면 Unknown</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">판정</span></div>
+        <div class="sd-grid">
+          <section class="sd-lane" aria-label="Evidence passes">
+            <div class="sd-lane-title">Pass</div>
+            <div class="sd-flow">
+              <div class="sd-node"><strong class="sd-label">External LLM</strong><span class="sd-detail">근거를 벗어나지 않게 생성</span></div>
+              <div class="sd-arrow"><span class="sd-edge-label">thread reply</span></div>
+              <div class="sd-node"><strong class="sd-label">Reply with deep links</strong><span class="sd-detail">원문 heading으로 이동</span></div>
+              <div class="sd-arrow"><span class="sd-edge-label">quality check</span></div>
+              <div class="sd-node sd-node--accent"><strong class="sd-label">Evaluation</strong><span class="sd-detail">hit, answer, citation</span></div>
+            </div>
+          </section>
+          <section class="sd-lane" aria-label="Evidence misses">
+            <div class="sd-lane-title">Below threshold</div>
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">Unknown</strong>
+              <span class="sd-detail">관련 근거가 부족하면 생성하지 않음</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

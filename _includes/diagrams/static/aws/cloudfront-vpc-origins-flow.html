@@ -1,0 +1,36 @@
+<figure class="sd sd--layers" id="sd-aws-cloudfront-vpc-origins-flow" aria-labelledby="sd-title-aws-cloudfront-vpc-origins-flow">
+  <figcaption class="sd-title" id="sd-title-aws-cloudfront-vpc-origins-flow">CloudFront VPC Origins는 origin을 private subnet 안에 둔다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Viewer</strong>
+      <span class="sd-detail">public internet</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">viewer request</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Amazon CloudFront</strong>
+      <span class="sd-detail">edge location; WAF와 TLS terminate</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">AWS backbone private path</span></div>
+    <section class="sd-lane" aria-label="AWS Region boundary">
+      <div class="sd-lane-title">AWS Region</div>
+      <section class="sd-lane" aria-label="VPC boundary">
+        <div class="sd-lane-title">VPC</div>
+        <section class="sd-lane" aria-label="Private subnet boundary">
+          <div class="sd-lane-title">Private subnet - no route to an internet gateway</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">VPC origin ENI</strong>
+              <span class="sd-detail">service-managed; free IPv4 address 1개 필요</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">private subnet 내부 전달</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Origin</strong>
+              <span class="sd-detail">internal ALB, NLB or EC2; service-managed SG가 연결됨</span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </div>
+  <p class="sd-note">Origin은 public IP 없이 동작합니다. Internet Gateway는 VPC 준비 조건일 뿐, CloudFront에서 origin으로 가는 경로에는 사용되지 않습니다.</p>
+</figure>

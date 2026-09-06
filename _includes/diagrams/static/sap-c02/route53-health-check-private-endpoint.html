@@ -1,0 +1,39 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-route53-health-check-private-endpoint-title">
+  <figcaption class="sd-title" id="sap-c02-route53-health-check-private-endpoint-title">VPC 밖 checker는 private endpoint를 직접 검사하지 못한다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">직접 검사 경로</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Route 53 health checker</strong>
+          <span class="sd-detail">VPC 밖에서 공개 엔드포인트를 검사한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">사설 IP 접근 시도</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">직접 검사 불가</strong>
+          <span class="sd-detail">security group을 열어도 VPC 밖 경계는 바뀌지 않는다.</span>
+        </div>
+        <p class="sd-note">private endpoint는 사설 IP만 가지므로 checker가 직접 연결할 수 없다.</p>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">CloudWatch alarm을 통한 간접 경로</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">private endpoint의 애플리케이션</strong>
+          <span class="sd-detail">애플리케이션 상태를 CloudWatch metric으로 게시한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">metric data stream</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">CloudWatch alarm</strong>
+          <span class="sd-detail">metric을 판정해 healthy 또는 unhealthy 상태를 만든다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">alarm health check</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Route 53 failover record</strong>
+          <span class="sd-detail">간접 health 판정으로 응답 대상을 고른다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

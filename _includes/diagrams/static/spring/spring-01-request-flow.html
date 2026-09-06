@@ -1,0 +1,50 @@
+<figure class="sd sd--flow" id="spring-01-request-flow" aria-labelledby="spring-01-request-flow-title">
+  <figcaption class="sd-title" id="spring-01-request-flow-title">Spring MVC 요청 한 건의 처리 경로</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">HTTP request</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">HTTP 전달</span></div>
+    <section class="sd-band" aria-label="JVM process 경계">
+      <div class="sd-band-title">JVM process: java -jar app.jar</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Embedded Tomcat connector</strong>
+          <span class="sd-detail">:8080에서 연결 수락</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">worker 1개 배정</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Servlet container</strong>
+          <span class="sd-detail">요청마다 worker thread 1개 할당</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">공통 전처리</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Filter chain</strong>
+          <span class="sd-detail">security, logging, encoding 처리</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">front controller 진입</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">DispatcherServlet</strong>
+          <span class="sd-detail">front controller, / 경로에 매핑</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">handler 탐색과 호출</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">HandlerMapping and HandlerAdapter</strong>
+          <span class="sd-detail">handler 탐색 후 인자 바인딩</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">bean 로직 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Controller, Service, Repository</strong>
+          <span class="sd-detail">모든 bean이 같은 thread에서 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">JSON 직렬화</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">HttpMessageConverter</strong>
+          <span class="sd-detail">반환 값을 JSON으로 직렬화</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">worker thread는 I/O 대기를 포함해 요청 전체가 끝날 때까지 점유됩니다.</p>
+</figure>

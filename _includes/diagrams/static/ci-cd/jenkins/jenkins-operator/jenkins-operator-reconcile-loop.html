@@ -1,0 +1,61 @@
+<figure class="sd sd--flow" id="sd-ci-cd-jenkins-operator-reconcile-loop" aria-labelledby="sd-title-ci-cd-jenkins-operator-reconcile-loop">
+  <figcaption class="sd-title" id="sd-title-ci-cd-jenkins-operator-reconcile-loop">Jenkins Operator는 base를 맞춘 뒤 user configuration을 적용</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Jenkins CR</strong>
+      <span class="sd-detail">master, plugins, seed jobs, CASC를 선언</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">watch 이벤트 수신</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Jenkins Operator</strong>
+      <span class="sd-detail">watch, Validate, Reconcile 수행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">pass 결과에 따라 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-jenkins-loop-success-title">
+        <div class="sd-lane-title" id="sd-ci-cd-jenkins-loop-success-title">정상 pass</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Base reconciliation loop</strong>
+            <span class="sd-detail">namespace, RBAC, master Pod, API token, 보안 Groovy</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">기본 자원 준비 완료</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">User reconciliation loop</strong>
+            <span class="sd-detail">CASC, seed jobs, user Groovy, backup와 restore job</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">사용자 설정 반영</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Jenkins master Pod</strong>
+            <span class="sd-detail">base와 user configuration이 적용된 실행 인스턴스</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">완료 시각 기록</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">CR status fields</strong>
+            <span class="sd-detail">provision과 configuration timestamp</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane sd-lane--warning" aria-labelledby="sd-ci-cd-jenkins-loop-failure-title">
+        <div class="sd-lane-title" id="sd-ci-cd-jenkins-loop-failure-title">반복 오류 경로</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Reconcile step error</strong>
+            <span class="sd-detail">Validate, base 또는 user 단계의 조정 실패</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">현재 pass 재시도</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Same error 10 times</strong>
+            <span class="sd-detail">같은 error가 한도까지 누적</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">반복 오류 한도 도달</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">ReconcileLoopFailed</strong>
+            <span class="sd-detail">CR status에 실패를 기록하고 조정 loop를 중단</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">정상 pass는 CR status fields에서 끝나고, Validate 또는 base 단계가 실패하면 user 단계는 실행되지 않습니다. 같은 error가 10회 누적될 때만 반복 오류 경로에서 ReconcileLoopFailed로 중단되며, status와 Operator log에서 완료 지점을 확인할 수 있습니다.</p>
+</figure>

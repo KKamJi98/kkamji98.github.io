@@ -27,7 +27,7 @@ Node.js는 OS process 안에서 JavaScript와 core API를 실행하는 runtime�
 
 "Node.js 서버"는 framework 이름 하나를 뜻하지 않습니다. application code가 Node.js runtime에서 실행되고, process가 OS socket을 listen하며, 배포 환경이 그 process의 lifecycle을 관리하는 상태를 함께 가리킵니다.
 
-![Node.js 서버의 실행 경계](/assets/img/nodejs/nodejs-server-runtime-overview.webp)
+{% include diagrams/static/nodejs/nodejs-server-runtime-overview.html %}
 _Node.js application은 OS process 안에서 core API를 호출합니다. network listener와 준비된 I/O callback은 runtime의 scheduling 경계를 거쳐 application code에 전달됩니다._
 
 application code는 route, domain rule, serialization처럼 제품 고유의 책임을 가집니다. Node.js process는 JavaScript와 `node:http` 같은 core API를 실행합니다. OS는 socket과 file descriptor를 제공합니다. 이 셋을 나누면 application bug, port bind failure, network 문제, deployment lifecycle 문제를 같은 오류로 묶지 않게 됩니다.

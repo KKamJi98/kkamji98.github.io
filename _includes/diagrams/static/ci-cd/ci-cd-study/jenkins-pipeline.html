@@ -1,0 +1,87 @@
+<figure class="sd sd--flow" id="jenkins-pipeline" aria-labelledby="jenkins-pipeline-title">
+  <figcaption class="sd-title" id="jenkins-pipeline-title">Jenkins Pipeline의 순차 stage와 병렬 작업</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Start</strong>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">SCM 이벤트</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">SCM Commit</strong>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">저장소와 branch 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Repo and Branch Name</strong>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">workflow 시작</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Workflow Start</strong>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">checkout</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Stage: SCM Checkout</strong>
+      <span class="sd-detail">source와 dependent repositories를 수집</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">parallel build</span></div>
+  <section class="sd-band" aria-label="Build and Launch stage">
+    <div class="sd-band-title">Stage: Build/Launch (Docker)</div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">Build/Launch Module 1</strong>
+        <span class="sd-detail">module image build</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Build/Launch Module N</strong>
+        <span class="sd-detail">다른 module과 병렬 실행</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">build 완료 후 parallel test</span></div>
+  <section class="sd-band" aria-label="Test stage">
+    <div class="sd-band-title">Stage: Test</div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node">
+        <strong class="sd-label">Integration Test Module 1</strong>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Integration Test Dependency N</strong>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Smoke Test</strong>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">End-to-End Test</strong>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">test results 집계</span></div>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Test Results</strong>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">deploy</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Stage: Deploy</strong>
+      <span class="sd-detail">검증된 결과를 production으로 전달</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">workflow 종료</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Workflow End</strong>
+    </div>
+  </div>
+  <section class="sd-band sd-band--muted" aria-label="catch/finally 예외 경로">
+    <div class="sd-band-title">Optional: catch/finally</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">catch/finally</strong>
+        <span class="sd-detail">예외 또는 종료 시 실행</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">Generate report</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">build-report.html</strong>
+        <span class="sd-detail">실행 결과 기록</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">예외가 나도 catch/finally 경로에서 build-report.html을 생성해 실행 결과를 남깁니다.</p>
+</figure>

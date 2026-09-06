@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" id="sd-aws-vpc-lattice-cross-vpc-flow" aria-labelledby="sd-title-aws-vpc-lattice-cross-vpc-flow">
+  <figcaption class="sd-title" id="sd-title-aws-vpc-lattice-cross-vpc-flow">VPC Lattice 하나가 세 account의 Service Network가 된다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client EC2</strong>
+      <span class="sd-detail">Account 1, VPC A; service-a FQDN 호출</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Route 53 Resolver</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Amazon VPC Lattice</strong>
+      <span class="sd-detail">Service Network; link-local endpoint로 진입</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">VPC Association으로 route</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Account 2 VPC B billing service">
+        <div class="sd-lane-title">Account 2 - VPC B</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Service A (billing)</strong>
+            <span class="sd-detail">HTTP :80; /api/* rule</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">listener rule</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Target Group A</strong>
+            <span class="sd-detail">EC2 targets; AZ affinity, round robin</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Account 3 VPC C payment service">
+        <div class="sd-lane-title">Account 3 - VPC C</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Service B (payment)</strong>
+            <span class="sd-detail">HTTPS :443; /pay/* rule</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">listener rule</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Target Group B</strong>
+            <span class="sd-detail">EC2 targets; overlapping CIDR는 auto NAT</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">AWS RAM으로 Service Network를 공유하고 각 VPC를 association합니다. VPC Peering과 Transit Gateway 없이 cross-account 연결이 됩니다.</p>
+</figure>

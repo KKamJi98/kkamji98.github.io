@@ -1,0 +1,58 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-cilium-5w-l3-announcement-over-bgp" aria-labelledby="sd-kubernetes-cilium-5w-l3-announcement-over-bgp-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-5w-l3-announcement-over-bgp-title">LoadBalancer 경로는 각 node의 BGP daemon을 거쳐 외부 router에 광고된다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-label="Node A BGP announcement">
+      <div class="sd-lane-title">Node A</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pods</strong>
+          <span class="sd-detail">node 안의 endpoint와 Service route가 이 경로에 들어온다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">route selection</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">BGP Daemon</strong>
+          <span class="sd-detail">선택된 LoadBalancer 외부 IP route를 IPv4와 IPv6 family로 준비한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">announce to peer</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Router-A</strong>
+          <span class="sd-detail">외부 BGP peer가 node의 광고를 수신한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Node B BGP announcement">
+      <div class="sd-lane-title">Node B</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pods</strong>
+          <span class="sd-detail">두 번째 node의 endpoint와 Service route가 이 경로에 들어온다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">route selection</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">BGP Daemon</strong>
+          <span class="sd-detail">선택된 LoadBalancer 외부 IP route를 IPv4와 IPv6 family로 준비한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">announce to peer</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Router-B</strong>
+          <span class="sd-detail">외부 BGP peer가 node의 광고를 수신한다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <section class="sd-lane" aria-label="Router BGP peering">
+    <div class="sd-lane-title">External BGP peering</div>
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">Router-A</strong>
+        <span class="sd-detail">Node A에서 받은 route를 peer session에 싣는다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">BGP session in both directions</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Router-B</strong>
+        <span class="sd-detail">Node B에서 받은 route와 peer route를 교환한다.</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Service 외부 IP route는 BGP를 통해 외부 peer에 광고된다. Ingress node 선택과 <code>externalTrafficPolicy</code> 동작은 별도의 결정이다.</p>
+</figure>

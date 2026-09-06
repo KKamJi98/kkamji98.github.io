@@ -32,7 +32,7 @@ Observability는 시스템이 낸 출력만으로 내부 상태를 얼마나 설
 | 필요한 설계 | 의미 있는 지표와 경보 기준 | 신호 간 공통 식별자, 적절한 맥락, 탐색 가능성 |
 | 관계 | 운영 활동 | 그 활동과 디버깅의 품질을 높이는 시스템 성질 |
 
-![Monitoring and observability flow](/assets/img/observability/monitoring-observability-flow.webp)
+{% include diagrams/static/observability/monitoring-observability-flow.html %}
 
 ---
 

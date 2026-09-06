@@ -1,0 +1,41 @@
+<figure class="sd sd--comparison" id="rag-05-cache-conflict" aria-labelledby="rag-05-cache-conflict-title">
+  <figcaption class="sd-title" id="rag-05-cache-conflict-title">Query-only semantic cache가 role 경계를 넘는 방식</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="User A">
+      <div class="sd-lane-title">User A</div>
+      <div class="sd-node">
+        <strong class="sd-label">Role: HR</strong>
+        <span class="sd-detail">HR documents를 볼 권한이 있음</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="User B">
+      <div class="sd-lane-title">User B</div>
+      <div class="sd-node">
+        <strong class="sd-label">Role: Eng</strong>
+        <span class="sd-detail">HR documents를 볼 권한이 없음</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">유사한 query가 같은 cache를 조회</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Semantic cache</strong>
+    <span class="sd-detail">기본 key = query embedding</span>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Shared key risk">
+      <div class="sd-lane-title">Shared key: leak</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">User B receives User A's HR documents</strong>
+        <span class="sd-detail">role을 key에서 빼면 cache hit가 인가를 우회</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Per role key">
+      <div class="sd-lane-title">Per-role key: isolate</div>
+      <div class="sd-node">
+        <strong class="sd-label">격리되고 안전함</strong>
+        <span class="sd-detail">role을 key에 포함하면 hit rate가 낮아짐</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">실제 cache namespace에는 role뿐 아니라 tenant, 문서 범위, policy version 등 현재 인가 문맥을 함께 반영해야 합니다.</p>
+</figure>

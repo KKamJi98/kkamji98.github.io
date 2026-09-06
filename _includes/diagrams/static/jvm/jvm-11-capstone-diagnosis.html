@@ -1,0 +1,47 @@
+<figure class="sd sd--flow" id="jvm-11-capstone-diagnosis" aria-labelledby="sd-title-jvm-11-capstone-diagnosis">
+  <figcaption class="sd-title" id="sd-title-jvm-11-capstone-diagnosis">Old 점유가 높을 때 누수와 정상 거동을 나누는 질문</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Old generation이 높게 유지됨</strong>
+      <span class="sd-detail">컨테이너 메모리 압박이 함께 관측됨</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">첫 질문</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Mixed GC 후에도 live set이 계속 상승하는가?</strong>
+      <span class="sd-detail">저점의 방향을 GC log와 JFR에서 비교</span>
+    </div>
+  </div>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">예: live set이 계속 상승</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">메모리 누수 의심</strong>
+        <span class="sd-detail">heap dump로 지배 객체와 reference chain 확인</span>
+      </div>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">아니오: 저점이 안정적</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Heap은 여유인데 container가 OOMKill되는가?</strong>
+          <span class="sd-detail">Heap 외부 사용량을 확인할 분기</span>
+        </div>
+        <div class="sd-grid">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">예: off-heap 확인</strong>
+            <span class="sd-detail">direct memory, Metaspace, thread stack</span>
+          </div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">아니오: G1의 지연 회수</strong>
+            <span class="sd-detail">IHOP 전 Old를 유지하고 mixed에서 점진 회수</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">Old가 높다는 한 가지 관측만으로 leak을 단정하지 않습니다. live set 추세와 Heap 밖 메모리를 각각 확인해야 합니다.</p>
+</figure>

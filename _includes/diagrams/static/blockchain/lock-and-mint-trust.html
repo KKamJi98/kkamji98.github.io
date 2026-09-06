@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-lock-and-mint-trust" aria-labelledby="sd-title-lock-and-mint-trust">
+  <figcaption class="sd-title" id="sd-title-lock-and-mint-trust">lock-and-mint에서 verifier가 trust 경계입니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">lock on source</strong>
+      <span class="sd-detail">asset stays on chain A</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">lock event 관측</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">verifier</strong>
+      <span class="sd-detail">multisig, MPC, or oracle</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">attestation accepted</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">mint on dest</strong>
+      <span class="sd-detail">new IOU on chain B</span>
+    </div>
+  </div>
+  <p class="sd-note">도착 체인의 mint는 source chain의 lock을 verifier가 정확히 봤다는 가정에 의존합니다. verifier가 추가 trust assumption입니다.</p>
+</figure>

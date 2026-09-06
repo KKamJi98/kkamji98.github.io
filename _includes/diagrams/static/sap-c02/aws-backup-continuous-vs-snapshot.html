@@ -1,0 +1,31 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-aws-backup-continuous-vs-snapshot-title">
+  <figcaption class="sd-title" id="sap-c02-aws-backup-continuous-vs-snapshot-title">AWS Backup rule별 보존 경로</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Backup plan</strong><span class="sd-detail">리소스 1개당 continuous backup rule은 1개</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">두 rule 중 선택</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Continuous backup 경로">
+        <div class="sd-lane-title">Continuous backup</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">continuous backup rule</strong><span class="sd-detail">1초 정밀도, 최대 35일, 최초 full 뒤 transaction log 연결</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">warm storage에 유지</strong><span class="sd-detail">35일 상한이 cold 전환 최소 90일 조건과 충돌</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">RDS는 continuous 사본 불가</strong><span class="sd-detail">transaction log 복사 대신 snapshot을 만들어 복사</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Snapshot backup 경로">
+        <div class="sd-lane-title">Snapshot backup</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">snapshot backup rule</strong><span class="sd-detail">최소 1시간 주기, 최장 100년 보존</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">cross-Region 및 cross-account copy</strong><span class="sd-detail">첫 복사는 full, 같은 vault와 key면 이후 incremental</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">cold storage 전환</strong><span class="sd-detail">지원 리소스에 한해 가능, RDS와 Aurora와 EC2와 S3는 지원 표시 없음</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">cold tier는 복사 불가</strong><span class="sd-detail">cross-Region copy 미지원, 최소 90일 보관</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

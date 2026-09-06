@@ -1,0 +1,56 @@
+<figure class="sd sd--comparison" id="star-wars-application-topology" aria-labelledby="star-wars-application-topology-title">
+  <figcaption class="sd-title" id="star-wars-application-topology-title">Star Wars Demo는 label 정책으로 착륙 요청을 나눕니다</figcaption>
+  <p class="sd-note">세 서비스는 모두 <code>namespace=default</code>에 있고, <code>deathstar</code> Service는 HTTP port 80에서 두 replica로 요청을 전달합니다.</p>
+
+  <section class="sd-lane">
+    <div class="sd-lane-title">namespace=default</div>
+    <div class="sd-grid">
+      <section class="sd-lane">
+        <div class="sd-lane-title">허용 경로: Empire</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">tiefighter</strong>
+              <span class="sd-detail"><code>org=empire</code>, <code>class=tiefighter</code></span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">request issued</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">HTTP landing request</strong>
+              <span class="sd-detail"><code>POST /v1/request-landing</code></span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">L3/L4 정책 일치</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">deathstar Service</strong>
+              <span class="sd-detail">selector가 <code>class=deathstar</code> Pod 두 개로 load balance합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Service port 80</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">deathstar replicas</strong>
+              <span class="sd-detail">두 Pod가 착륙 요청을 처리합니다.</span>
+            </div>
+          </div>
+        </section>
+
+      <section class="sd-lane">
+        <div class="sd-lane-title">차단 경로: Alliance</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">xwing</strong>
+              <span class="sd-detail"><code>org=alliance</code>, <code>class=xwing</code></span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">request issued</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">HTTP landing request</strong>
+              <span class="sd-detail"><code>POST /v1/request-landing</code></span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">정책 조건 불일치</span></div>
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">Cilium policy verdict</strong>
+              <span class="sd-detail">Empire label 조건을 만족하지 않아 <code>deathstar</code> 접근을 deny합니다.</span>
+            </div>
+          </div>
+      </section>
+    </div>
+  </section>
+
+  <p class="sd-note">L7 정책을 추가하면 허용된 <code>tiefighter</code>도 HTTP method나 path 조건을 더 확인할 수 있고, Hubble이 allow와 deny verdict를 관찰합니다.</p>
+</figure>

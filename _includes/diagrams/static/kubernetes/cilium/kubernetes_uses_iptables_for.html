@@ -1,0 +1,28 @@
+<figure class="sd sd--comparison" id="kubernetes-cilium-kubernetes-uses-iptables-for" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-title">Kubernetes 구성 요소는 Service와 NetworkPolicy에 iptables를 사용한다</figcaption>
+  <p class="sd-note">kube-proxy는 Service와 load balancing을 위해 DNAT rules를 만들고, CNI implementation은 NetworkPolicy enforcement에 iptables를 사용할 수 있습니다. 적용 범위는 implementation에 따라 달라집니다.</p>
+
+  <div class="sd-grid" aria-label="Kubernetes iptables 사용처">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-proxy-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-proxy-title">kube-proxy</div>
+      <div class="sd-band">
+        <div class="sd-band-title">Service와 load balancing</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">DNAT iptables rules</strong>
+          <span class="sd-detail">Service 주소를 backend Pod endpoint로 바꾸고 load balancing을 구현합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-cni-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-cni-title">대부분의 CNI plugins</div>
+      <div class="sd-band">
+        <div class="sd-band-title">NetworkPolicy</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">iptables policy rules</strong>
+          <span class="sd-detail">Calico, Flannel, Weave Net과 같은 CNI가 정책 enforcement에 사용합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

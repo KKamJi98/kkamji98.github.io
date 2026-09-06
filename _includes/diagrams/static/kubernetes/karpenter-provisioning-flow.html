@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-karpenter-provisioning-flow" aria-labelledby="sd-kubernetes-karpenter-provisioning-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-karpenter-provisioning-flow-title">Karpenter는 배치되지 못한 Pod에 맞는 node를 바로 만든다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Pending Pods</strong>
+      <span class="sd-detail">capacity 부족으로 unschedulable 상태입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">pending Pod를 batch</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Karpenter controller</strong>
+      <span class="sd-detail">모인 Pod 요구사항을 읽어 provisioning을 결정합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">requirements 기록</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">NodeClaim</strong>
+      <span class="sd-detail">새 node가 만족해야 할 조건을 선언합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">claim에 맞는 instance 선택</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">EC2 capacity</strong>
+      <span class="sd-detail">NodeClaim에서 instance type을 고릅니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">node 등록 후 schedule</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Scheduled Pods</strong>
+      <span class="sd-detail">새 node에 binding되어 실행됩니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">Karpenter는 고정 node group의 타입을 늘리는 대신 pending Pod의 requirements로 instance type을 선택합니다.</p>
+</figure>

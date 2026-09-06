@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" id="sd-sap-c02-savings-plans-discount-order" aria-labelledby="sd-title-savings-plans-discount-order">
+  <figcaption class="sd-title" id="sd-title-savings-plans-discount-order">커밋 할인은 정해진 순서로 사용분을 채웁니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">그 시간의 사용분</strong>
+      <span class="sd-detail">시간당 commitment는 다음 시간으로 이월되지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">1순위, 구성 일치</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">EC2 Reserved Instances</strong>
+      <span class="sd-detail">일치하는 사용분을 먼저 커버</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">2순위, 좁은 범위</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">EC2 Instance Savings Plans</strong>
+      <span class="sd-detail">Region과 instance family 고정, 최대 72% off</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">3순위, 넓은 범위</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Compute Savings Plans</strong>
+      <span class="sd-detail">family, size, Region, OS와 tenancy 무관, Fargate와 Lambda 포함, 최대 66% off</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">남은 사용분</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">On-Demand 요율</strong>
+      <span class="sd-detail">어느 커밋도 덮지 못한 사용분</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="커밋 할인이 닿지 않는 항목">
+      <div class="sd-lane-title">할인 사슬 밖의 항목</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Spot과 이미 커버된 사용분</strong>
+        <span class="sd-detail">데이터 전송, NAT Gateway 처리, Dedicated Instance 시간당 요금도 제외</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="용량 확보는 별도">
+      <div class="sd-lane-title">용량은 별도 축</div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Capacity reservation</strong>
+        <span class="sd-detail">Savings Plans는 용량을 예약하지 않음</span>
+      </div>
+    </section>
+  </div>
+</figure>

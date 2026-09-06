@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-rollup-l1-inbox-escape" aria-labelledby="sd-title-blockchain-rollup-l1-inbox-escape">
+  <figcaption class="sd-title" id="sd-title-blockchain-rollup-l1-inbox-escape">L1 inbox 제출은 sequencer 검열을 피하는 탈출 경로입니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">user</strong>
+      <span class="sd-detail">sequencer RPC 우회</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">L1에 직접 제출</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">L1 inbox</strong>
+      <span class="sd-detail">포함될 때까지 대기</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">제한 시간 내 포함</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">sequencer include</strong>
+      <span class="sd-detail">제한 시간 내 포함 또는 무효</span>
+    </div>
+  </div>
+  <p class="sd-note">sequencer RPC가 침묵해도 L1 inbox 기록은 남고, sequencer는 제한 시간 안에 처리해야 합니다.</p>
+</figure>

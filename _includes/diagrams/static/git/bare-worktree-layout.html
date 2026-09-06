@@ -1,0 +1,35 @@
+<figure class="sd sd--comparison" id="bare-worktree-layout" aria-labelledby="bare-worktree-layout-title">
+  <figcaption class="sd-title" id="bare-worktree-layout-title">하나의 bare repository가 브랜치별 worktree를 공유합니다</figcaption>
+  <p class="sd-note"><code>.bare/</code>에는 Git object database만 두고, 각 디렉터리는 같은 저장소를 공유하는 독립 checkout입니다.</p>
+
+  <div class="sd-flow" aria-label="bare repository에서 worktree로 나뉘는 구조">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label"><code>.bare/</code></strong>
+      <span class="sd-detail">working tree 없이 Git database를 보관합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">공유 object database를 참조</span></div>
+
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label"><code>master/</code></strong>
+        <span class="sd-detail">master branch의 worktree</span>
+      </div>
+
+      <div class="sd-node">
+        <strong class="sd-label"><code>staging/</code></strong>
+        <span class="sd-detail">staging branch의 worktree</span>
+      </div>
+
+      <div class="sd-node">
+        <strong class="sd-label"><code>feat-login/</code></strong>
+        <span class="sd-detail"><code>feat/login</code> 작업용 worktree</span>
+      </div>
+
+      <div class="sd-node">
+        <strong class="sd-label"><code>chore-tooling/</code></strong>
+        <span class="sd-detail"><code>chore/tooling</code> 작업용 worktree</span>
+      </div>
+    </div>
+  </div>
+</figure>

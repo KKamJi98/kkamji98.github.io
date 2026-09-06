@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-observability-datadog-rum-02-trace-linking" aria-labelledby="sd-title-observability-datadog-rum-02-trace-linking">
+  <figcaption class="sd-title" id="sd-title-observability-datadog-rum-02-trace-linking">RUM Resource와 backend trace를 같은 trace_id로 연결</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Browser + RUM Browser SDK</strong>
+      <span class="sd-detail">click 뒤 fetch 또는 XHR을 만들고 request header에 <code>trace_id</code> 주입</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">trace context 전달</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Backend service + APM tracer</strong>
+      <span class="sd-detail">받은 <code>trace_id</code>를 이어받아 span 생성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">DB 호출 span 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Database</strong>
+      <span class="sd-detail">느린 SQL이 backend 병목으로 드러나는 지점</span>
+    </div>
+  </div>
+  <p class="sd-note">연결 조건: <code>allowedTracingUrls</code>에 backend origin이 있어야 header가 주입됩니다. 등록이 빠지면 RUM Resource와 backend trace가 각각 남고 한 흐름으로 연결되지 않습니다.</p>
+</figure>

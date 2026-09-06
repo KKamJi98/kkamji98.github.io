@@ -1,0 +1,58 @@
+<figure class="sd sd--comparison" id="kubernetes-cilium-standard-vs-cilium-ebpf-networking" aria-labelledby="kubernetes-cilium-standard-vs-cilium-ebpf-networking-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-standard-vs-cilium-ebpf-networking-title">Standard networking은 host iptables를 거치고 Cilium eBPF는 host routing hook을 사용한다</figcaption>
+  <p class="sd-note">두 lane 모두 Pod 안의 process와 socket에서 시작합니다. 차이는 host 쪽의 forwarding, NAT와 rule traversal을 누가 맡는지입니다.</p>
+
+  <div class="sd-grid" aria-label="Standard와 Cilium eBPF container networking 비교">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-standard-vs-cilium-ebpf-networking-standard-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-standard-vs-cilium-ebpf-networking-standard-title">Standard Container Networking</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pod process와 socket</strong>
+          <span class="sd-detail">Pod 내부 network namespace에서 packet을 시작합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">pod-side hooks</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">iptables INPUT와 Linux routing</strong>
+          <span class="sd-detail">Pod namespace의 입력과 routing을 처리합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">veth pair</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Host iptables chains</strong>
+          <span class="sd-detail"><code>FORWARD</code>, <code>POSTROUTING</code>, <code>PREROUTING</code>의 mangle와 nat를 통과합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">host egress</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">eth0</strong>
+          <span class="sd-detail">물리 network interface로 나갑니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">많은 rule lookup과 context switch가 host path의 iptables overhead를 만듭니다.</p>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-standard-vs-cilium-ebpf-networking-cilium-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-standard-vs-cilium-ebpf-networking-cilium-title">Cilium eBPF Container Networking</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pod process와 socket</strong>
+          <span class="sd-detail">같은 Pod network namespace에서 packet을 시작합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">veth 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Pod-side INPUT와 PREROUTING</strong>
+          <span class="sd-detail">Pod 안의 필요한 hook은 남을 수 있습니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">in-kernel host routing</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Cilium eBPF host routing</strong>
+          <span class="sd-detail">eBPF가 host forwarding과 service path를 kernel 안에서 처리합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">host chain 우회</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">eth0</strong>
+          <span class="sd-detail">host iptables FORWARD와 NAT chain을 크게 줄인 뒤 나갑니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">Cilium은 host iptables forwarding과 NAT traversal을 크게 줄이며, Pod-side hook은 남을 수 있습니다.</p>
+    </section>
+  </div>
+</figure>

@@ -1,0 +1,34 @@
+<figure class="sd sd--layers" id="agent-eng-layer-ladder" aria-labelledby="agent-eng-layer-ladder-title">
+  <figcaption class="sd-title" id="agent-eng-layer-ladder-title">Agent engineering 설계 범위</figcaption>
+  <div class="sd-stack">
+    <div class="sd-band">
+      <strong class="sd-band-title">1. prompt engineering</strong>
+      <div class="sd-node">
+        <strong class="sd-label">한 instruction, 한 turn</strong>
+        <span class="sd-detail">질문 하나와 답 하나의 품질을 다듬음</span>
+      </div>
+    </div>
+    <div class="sd-band">
+      <strong class="sd-band-title">2. context engineering</strong>
+      <div class="sd-node">
+        <strong class="sd-label">모델이 볼 context를 큐레이션</strong>
+        <span class="sd-detail">검색, memory, 문서 주입을 매 turn에 선택</span>
+      </div>
+    </div>
+    <div class="sd-band">
+      <strong class="sd-band-title">3. loop engineering</strong>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">에이전트를 대신 prompt하는 system</strong>
+        <span class="sd-detail">한 작업을 완료할 때까지 반복 절차를 설계</span>
+      </div>
+    </div>
+    <div class="sd-band">
+      <strong class="sd-band-title">4. graph engineering</strong>
+      <div class="sd-node">
+        <strong class="sd-label">task, agent, state를 graph로 조직</strong>
+        <span class="sd-detail">여러 loop 사이의 의존성과 조정을 구조화</span>
+      </div>
+    </div>
+  </div>
+  <p class="sd-note">아래에서 위로 갈수록 설계 대상이 문장과 context에서 작업, 여러 loop의 관계로 넓어집니다.</p>
+</figure>

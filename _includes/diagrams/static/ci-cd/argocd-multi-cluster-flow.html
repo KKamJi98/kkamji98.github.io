@@ -1,0 +1,41 @@
+<figure class="sd sd--flow sd--comparison" id="sd-ci-cd-argocd-multi-cluster-flow" aria-labelledby="sd-title-ci-cd-argocd-multi-cluster-flow">
+  <figcaption class="sd-title" id="sd-title-ci-cd-argocd-multi-cluster-flow">하나의 Argo CD가 등록한 Cluster별로 Application을 동기화</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Git repository</strong>
+      <span class="sd-detail">여러 대상의 desired state를 한 곳에서 관리</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Application 정의를 읽음</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Argo CD</strong>
+      <span class="sd-detail">하나의 management Cluster에서 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">등록된 대상 자격증명 조회</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Cluster credentials</strong>
+      <span class="sd-detail">등록한 Cluster마다 Kubernetes Secret 하나</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Application의 destination에 따라 분기</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-argocd-cluster-a-title">
+        <div class="sd-lane-title" id="sd-ci-cd-argocd-cluster-a-title">Destination A</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Cluster A workload</strong>
+            <span class="sd-detail">등록된 Cluster A에 동기화</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-argocd-cluster-b-title">
+        <div class="sd-lane-title" id="sd-ci-cd-argocd-cluster-b-title">Destination B</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Cluster B workload</strong>
+            <span class="sd-detail">등록된 Cluster B에 동기화</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">두 대상에 대한 화살표는 순서가 아니라 각 Application의 destination이 선택한 별도 경로입니다. 다른 Cluster는 먼저 Argo CD에 등록하고 권한을 부여해야 합니다.</p>
+</figure>

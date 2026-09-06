@@ -1,0 +1,45 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-deployment-rollback-paths-title">
+  <figcaption class="sd-title" id="sap-c02-deployment-rollback-paths-title">배포 위치가 롤백과 노출 구간을 결정한다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="기존 인스턴스 덮어쓰기 배포">
+      <div class="sd-lane-title">기존 인스턴스에 덮어쓰기</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning"><strong class="sd-label">In-place 배포</strong><span class="sd-detail">Beanstalk All at once와 Rolling, CodeDeploy EC2 OneAtATime와 HalfAtATime</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">이전 버전을 다시 배포</strong><span class="sd-detail">되돌리려면 재배포 필요, Rolling 계열은 single-instance 미지원</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">실패 버전 노출 구간 있음</strong><span class="sd-detail">배치 하나가 서비스에서 빠진 상태가 남을 수 있음</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="두 번째 Auto Scaling group 배포">
+      <div class="sd-lane-title">두 번째 Auto Scaling group</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Immutable 또는 Traffic splitting</strong><span class="sd-detail">같은 환경에 새 group을 별도로 생성</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">새 인스턴스 종료</strong><span class="sd-detail">전부 교체하며 burst balance도 사라짐</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">실패 버전 노출 없음</strong><span class="sd-detail">헬스체크와 알람 후 전환</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="두 번째 환경 배포">
+      <div class="sd-lane-title">두 번째 환경</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Beanstalk Blue/Green</strong><span class="sd-detail">환경 자체를 하나 더 생성</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">URL을 다시 swap</strong><span class="sd-detail">공식 비교표에서 DNS 변경이 필요한 유일한 방식</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">실패 버전 노출 없음</strong><span class="sd-detail">전환 전까지 이전 버전 유지</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="두 번째 ECS target group 배포">
+      <div class="sd-lane-title">두 번째 target group</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">CodeDeploy ECS blue/green</strong><span class="sd-detail">새 task set, production listener 1개와 target group 2개 필요</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">listener를 원래 group으로 복귀</strong><span class="sd-detail">NLB에서는 ECSAllAtOnce만 지원</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node"><strong class="sd-label">실패 버전 노출 없음</strong><span class="sd-detail">점진 이동 전 헬스 확인 가능</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

@@ -1,0 +1,74 @@
+<figure class="sd sd--comparison" id="edge-to-origin-inspection-points" aria-labelledby="edge-to-origin-inspection-points-title">
+  <figcaption class="sd-title" id="edge-to-origin-inspection-points-title">web ACL을 어느 리소스에 붙였는지가 검사할 본문 크기를 정한다</figcaption>
+  <p class="sd-note">CloudFront scope는 엣지에서 최대 64 KB를 검사하고 REGIONAL scope는 ALB와 AppSync에서 8 KB로 고정됩니다. Firewall Manager는 요청 경로가 아니라 정책 배포 축입니다.</p>
+
+  <div class="sd-flow" aria-label="웹 요청의 실제 전달 경로">
+    <div class="sd-node">
+      <strong class="sd-label">인터넷 요청</strong>
+      <span class="sd-detail">정상 트래픽과 공격이 같은 경로로 들어옵니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">DDoS 보호</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Shield</strong>
+      <span class="sd-detail">Standard는 무료 상시 보호이고 Advanced는 L7 자동 완화를 제공합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">엣지 종단</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">CloudFront</strong>
+      <span class="sd-detail">엣지에서 요청을 종단하고 리전 오리진으로 전달합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">리전 전달</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Application Load Balancer</strong>
+      <span class="sd-detail">REGIONAL web ACL 검사를 통과한 요청을 받습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">허용된 요청</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">오리진 애플리케이션</strong>
+      <span class="sd-detail">검사를 통과한 요청만 도달합니다.</span>
+    </div>
+  </div>
+
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="edge-to-origin-inspection-points-edge-title">
+      <div class="sd-lane-title" id="edge-to-origin-inspection-points-edge-title">CLOUDFRONT scope에서의 검사</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">web ACL, CLOUDFRONT scope</strong>
+          <span class="sd-detail">본문 검사 기본 16 KB, 설정으로 최대 64 KB</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">CloudFront에 부착</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">CloudFront 엣지 검사</strong>
+          <span class="sd-detail">엣지에서 검사한 뒤 통과한 요청을 다음 경로로 보냅니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="edge-to-origin-inspection-points-regional-title">
+      <div class="sd-lane-title" id="edge-to-origin-inspection-points-regional-title">REGIONAL scope에서의 검사</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">web ACL, REGIONAL scope</strong>
+          <span class="sd-detail">ALB와 AppSync 본문 검사는 8 KB로 고정됩니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">ALB에 부착</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Application Load Balancer 검사</strong>
+          <span class="sd-detail">리전 안에서 검사하고 통과한 요청을 오리진으로 전달합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-grid">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Firewall Manager</strong>
+      <span class="sd-detail">Organizations 관리자 계정 지정과 AWS Config가 전제이며 두 scope의 web ACL 정책을 배포합니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">web ACL 로그</strong>
+      <span class="sd-detail">REGIONAL web ACL의 요청 로그를 남깁니다. CloudWatch Logs는 aws-waf-logs- 접두사와 같은 리전과 계정이 필요합니다.</span>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,65 @@
+<figure class="sd sd--layers" id="dns-global-traffic-decision-layers" aria-labelledby="dns-global-traffic-decision-layers-title">
+  <figcaption class="sd-title" id="dns-global-traffic-decision-layers-title">요청이 어디로 갈지는 세 계층에서 각각 결정된다</figcaption>
+  <p class="sd-note">이름 해석, 애니캐스트 연결, 엣지 캐시가 순서대로 다른 입력을 보고 다음 목적지를 정합니다.</p>
+
+  <div class="sd-flow" aria-label="DNS, 애니캐스트 IP, 엣지 캐시를 거치는 요청">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">클라이언트 요청</strong>
+      <span class="sd-detail">이름 해석에서 시작합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">세 계층의 결정</span></div>
+  </div>
+
+  <div class="sd-stack" aria-label="DNS, 애니캐스트 IP, 엣지 캐시 결정 계층">
+    <section class="sd-band" aria-labelledby="dns-global-traffic-decision-layers-dns">
+      <div class="sd-band-title" id="dns-global-traffic-decision-layers-dns">1. DNS 응답 계층</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">라우팅 정책과 health check</strong>
+          <span class="sd-detail">전환 지연은 TTL과 resolver 캐시가 만듭니다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Route 53 응답</strong>
+          <span class="sd-detail">어느 리전의 주소를 응답할지 정합니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">클라이언트 요청은 이름 해석에서 시작합니다.</p>
+    </section>
+
+    <section class="sd-band" aria-labelledby="dns-global-traffic-decision-layers-anycast">
+      <div class="sd-band-title" id="dns-global-traffic-decision-layers-anycast">2. 애니캐스트 IP 계층</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">traffic dial과 endpoint weight</strong>
+          <span class="sd-detail">기존 연결은 TCP idle timeout까지 현재 endpoint에 머뭅니다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Global Accelerator</strong>
+          <span class="sd-detail">고정 IP로 받고 캐시하지 않습니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-band" aria-labelledby="dns-global-traffic-decision-layers-cache">
+      <div class="sd-band-title" id="dns-global-traffic-decision-layers-cache">3. 엣지 캐시 계층</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">캐시 키와 TTL과 origin group</strong>
+          <span class="sd-detail">minimum TTL이 오리진 지시를 덮을 수 있습니다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">CloudFront 엣지</strong>
+          <span class="sd-detail">캐시 히트면 오리진에 가지 않습니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">세 계층을 통과한 캐시 미스만 리전 오리진에 도달합니다.</p>
+    </section>
+  </div>
+  <div class="sd-flow">
+    <div class="sd-arrow"><span class="sd-edge-label">캐시 미스 이후</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">리전 오리진</strong>
+      <span class="sd-detail">세 계층을 통과한 요청만 도달합니다.</span>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,44 @@
+<figure class="sd sd--flow" id="llm-gateway-position" aria-labelledby="llm-gateway-position-title">
+  <figcaption class="sd-title" id="llm-gateway-position-title">LLM Gateway가 애플리케이션과 provider 사이에 서는 위치</figcaption>
+  <section class="sd-lane" aria-label="애플리케이션">
+    <div class="sd-lane-title">Applications: virtual key만 보유</div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node">
+        <strong class="sd-label">Chatbot</strong>
+        <span class="sd-detail">team A, virtual key</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">RAG Service</strong>
+        <span class="sd-detail">team B, virtual key</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Agent</strong>
+        <span class="sd-detail">team C, virtual key</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">모든 호출을 한 관문으로 집중</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">LLM Gateway</strong>
+    <span class="sd-detail">virtual keys, budgets, audit logs, guardrails, fallback routing</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">gateway만 실제 provider key를 사용</span></div>
+  <section class="sd-lane" aria-label="LLM providers">
+    <div class="sd-lane-title">LLM Providers</div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node">
+        <strong class="sd-label">OpenAI</strong>
+        <span class="sd-detail">provider API</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Anthropic</strong>
+        <span class="sd-detail">provider API</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Azure OpenAI</strong>
+        <span class="sd-detail">provider API</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">애플리케이션은 가상 키만 관리하고, gateway가 원본 provider key와 비용, 감사, fallback 정책을 중앙에서 관리합니다.</p>
+</figure>

@@ -1,0 +1,73 @@
+<figure class="sd sd--comparison" id="eks-compute-option-split" aria-labelledby="eks-compute-option-split-title">
+  <figcaption class="sd-title" id="eks-compute-option-split-title">EKS 컴퓨트는 포기할 수 없는 요구 하나가 선택을 확정한다</figcaption>
+  <p class="sd-note">Windows와 custom CNI는 managed node group으로, 노드 운영 위임은 Auto Mode로, Pod별 VM 격리는 Fargate로, 자체 하드웨어는 Hybrid Nodes로 이어집니다.</p>
+
+  <div class="sd-flow" aria-label="EKS 컴퓨트 선택">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Pod 배치 요구</strong>
+      <span class="sd-detail">포기할 수 없는 조건부터 확인합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">요구별 경로</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-labelledby="eks-compute-option-split-windows-title">
+        <div class="sd-lane-title" id="eks-compute-option-split-windows-title">Windows와 custom CNI</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Windows, custom AMI 와 CNI, launch template 부트스트랩</strong>
+            <span class="sd-detail">Pod별 security group(SGPP)은 Linux 전용입니다. Local Zone은 Auto Mode도 지원합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">지원 기능</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">managed node group</strong>
+            <span class="sd-detail">Windows, custom CNI, launch template을 지원합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="eks-compute-option-split-handoff-title">
+        <div class="sd-lane-title" id="eks-compute-option-split-handoff-title">노드 운영을 AWS에 위임</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">노드 운영을 AWS 에 넘긴다</strong>
+            <span class="sd-detail">오토스케일링과 CSI와 CNI를 직접 설치하지 않습니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">관리형 노드</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">EKS Auto Mode</strong>
+            <span class="sd-detail">Karpenter 기반이며 SSH와 SSM이 차단되고 노드는 최대 21일 후 교체됩니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="eks-compute-option-split-isolation-title">
+        <div class="sd-lane-title" id="eks-compute-option-split-isolation-title">Pod마다 VM 경계</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Pod 마다 VM 경계</strong>
+            <span class="sd-detail">DaemonSet과 privileged container가 필요 없어야 합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">노드 없이 실행</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">EKS Fargate</strong>
+            <span class="sd-detail">EBS mount, DaemonSet, GPU, Arm, Windows를 지원하지 않습니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="eks-compute-option-split-onprem-title">
+        <div class="sd-lane-title" id="eks-compute-option-split-onprem-title">노드를 자체 하드웨어에 둠</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">노드를 자체 하드웨어에 둔다</strong>
+            <span class="sd-detail">control plane은 AWS 리전에 남습니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">외부 노드 등록</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Hybrid Nodes</strong>
+            <span class="sd-detail">EBS, EFS, S3 Files, FSx CSI가 모두 불가하며 NLB는 target type ip만 됩니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,38 @@
+<figure class="sd sd--flow" id="sd-aws-devops-agent-signal-flow" aria-labelledby="sd-title-aws-devops-agent-signal-flow">
+  <figcaption class="sd-title" id="sd-title-aws-devops-agent-signal-flow">DevOps Agent는 신호를 모으는 도구 위에서 조사한다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <div class="sd-node">
+      <strong class="sd-label">CloudWatch</strong>
+      <span class="sd-detail">metrics, logs, alarms</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Grafana and Datadog</strong>
+      <span class="sd-detail">read-only, one-way telemetry</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Workloads</strong>
+      <span class="sd-detail">pod logs and cluster events; kubectl exec 없음</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">alarm과 telemetry 입력</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">DevOps Agent</strong>
+    <span class="sd-detail">alarm이 발생하면 영향 범위와 근본 원인을 조사</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">조사 결과와 제안</span></div>
+  <div class="sd-grid">
+    <div class="sd-node">
+      <strong class="sd-label">Incident report</strong>
+      <span class="sd-detail">free text; typed fields 아님</span>
+    </div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Human approval</strong>
+      <span class="sd-detail">production change 전에 명시적 승인 필요</span>
+    </div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Journal</strong>
+      <span class="sd-detail">모든 단계 기록; entries immutable</span>
+    </div>
+  </div>
+  <p class="sd-note">Journal은 조사 결과와 별도로 모든 추론과 행동을 기록하는 audit path입니다.</p>
+</figure>

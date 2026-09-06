@@ -36,7 +36,7 @@ loop engineering이 "하나의 반복을 끝까지 돌게 만드는 것"이라�
 
 ## 2. 그래프가 조직하는 것
 
-![graph engineering이 시스템 전체를 조직하는 구조](/assets/img/ai/graph-system-intelligence.webp)
+{% include diagrams/static/ai/graph-system-intelligence.html %}
 
 survey는 그래프가 조직하는 대상을 네 가지로 정리합니다.
 

@@ -1,0 +1,80 @@
+<figure class="sd sd--flow" id="gcp-wif-token-exchange-flow" aria-labelledby="gcp-wif-token-exchange-flow-title">
+  <figcaption class="sd-title" id="gcp-wif-token-exchange-flow-title">WIF는 외부 OIDC token을 단기 Google credential로 교환합니다</figcaption>
+  <p class="sd-intro">Provider의 attribute condition이 신뢰 경계를 정합니다. 이를 통과한 workload만 STS에서 교환한 credential로 target resource에 접근합니다.</p>
+
+  <section class="sd-band" aria-labelledby="gcp-wif-token-exchange-flow-external-title">
+    <div class="sd-band-title" id="gcp-wif-token-exchange-flow-external-title">External CI: GitHub Actions</div>
+    <div class="sd-node">
+      <strong class="sd-label">OIDC token</strong>
+      <span class="sd-detail">workflow run이 발급한 외부 assertion</span>
+    </div>
+  </section>
+
+  <div class="sd-arrow"><span class="sd-edge-label">Google Cloud의 trust container로 전달</span></div>
+
+  <div class="sd-node">
+    <strong class="sd-label">Workload identity pool</strong>
+    <span class="sd-detail">외부 workload identity를 담는 신뢰 경계</span>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">issuer와 claim을 검증할 두 규칙으로 분기</span></div>
+
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="gcp-wif-token-exchange-flow-provider-title">
+      <div class="sd-lane-title" id="gcp-wif-token-exchange-flow-provider-title">OIDC provider</div>
+      <div class="sd-node">
+        <strong class="sd-label">Issuer URL and attribute mapping</strong>
+        <span class="sd-detail"><code>google.subject</code>와 repository claim을 IAM attribute로 변환</span>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning" aria-labelledby="gcp-wif-token-exchange-flow-condition-title">
+      <div class="sd-lane-title" id="gcp-wif-token-exchange-flow-condition-title">Attribute condition</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">허용할 조직과 repository만 통과</strong>
+        <span class="sd-detail">shared issuer의 다른 workload는 거부</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">mapping과 condition을 모두 통과하면 token exchange</span></div>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Security Token Service</strong>
+    <span class="sd-detail">외부 assertion을 검증하고 short-lived federated token을 발급</span>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">short-lived credential 생성</span></div>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Federated token</strong>
+    <span class="sd-detail">장기 Service Account key 대신 사용하는 단기 token</span>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">resource 직접 접근 또는 Service Account impersonation 선택</span></div>
+
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="gcp-wif-token-exchange-flow-direct-title">
+      <div class="sd-lane-title" id="gcp-wif-token-exchange-flow-direct-title">Direct resource access</div>
+      <div class="sd-node">
+        <strong class="sd-label">Direct resource access</strong>
+        <span class="sd-detail">federated principalSet에 target resource role을 직접 부여</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="gcp-wif-token-exchange-flow-impersonation-title">
+      <div class="sd-lane-title" id="gcp-wif-token-exchange-flow-impersonation-title">Service Account impersonation</div>
+      <div class="sd-node">
+        <strong class="sd-label">Service Account impersonation</strong>
+        <span class="sd-detail">Service Account가 필요할 때 <code>roles/iam.workloadIdentityUser</code>를 좁은 principalSet에만 부여</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">선택한 principal 경로로 target resource 호출</span></div>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Target resource</strong>
+    <span class="sd-detail">least-privilege role로 필요한 작업만 허용</span>
+  </div>
+
+  <p class="sd-note">이 흐름에는 long-lived Service Account key가 존재하지 않습니다. 조직 ID와 repository ID 같은 좁은 claim을 condition과 IAM binding에 함께 사용해야 합니다.</p>
+</figure>

@@ -22,7 +22,7 @@ image:
 
 아래 그림이 세 패러다임의 핵심 차이와 AWS 매핑을 한눈에 보여 줍니다.
 
-![데이터 웨어하우스, 레이크, 레이크하우스 비교](/assets/img/aws/analytics-stack-02-warehouse-lake-lakehouse.webp)
+{% include diagrams/static/aws/analytics-stack-02-warehouse-lake-lakehouse.html %}
 _세 패러다임의 스키마 적용 시점(schema-on-write vs schema-on-read), 데이터 형식, 트랜잭션 지원과 AWS 서비스 매핑 비교_
 
 ---

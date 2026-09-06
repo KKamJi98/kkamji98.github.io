@@ -1,0 +1,33 @@
+<figure class="sd sd--flow" id="sd-spring-16-entity-states" aria-labelledby="sd-spring-16-title">
+  <figcaption class="sd-title" id="sd-spring-16-title">JPA 엔티티의 네 상태와 전이</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">transient (new)</strong><span class="sd-detail">어떤 persistence context에도 속하지 않음</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">persist()</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">managed (persistent)</strong><span class="sd-detail">context가 추적하며 변경이 dirty checking 대상</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-labelledby="sd-spring-16-flush-title">
+        <div class="sd-lane-title" id="sd-spring-16-flush-title">추적된 변경</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">flush</strong><span class="sd-detail">context가 추적한 상태를 Database에 INSERT, UPDATE로 기록</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">동기화</span></div>
+          <div class="sd-node"><strong class="sd-label">Database</strong><span class="sd-detail">트랜잭션 commit 전까지 rollback 가능</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-spring-16-detach-title">
+        <div class="sd-lane-title" id="sd-spring-16-detach-title">context에서 분리</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--muted"><strong class="sd-label">detached</strong><span class="sd-detail">id는 있지만 더 이상 추적되지 않음</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">merge()</span></div>
+          <div class="sd-node"><strong class="sd-label">managed copy</strong><span class="sd-detail">merge()가 반환한 인스턴스만 다시 context에서 추적</span></div>
+          <div class="sd-note">detach(), clear(), close(), 트랜잭션 종료로 detached가 됩니다. 원래 detached 인스턴스를 수정해도 dirty checking이 작동하지 않습니다.</div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-spring-16-remove-title">
+        <div class="sd-lane-title" id="sd-spring-16-remove-title">삭제 예약</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning"><strong class="sd-label">removed</strong><span class="sd-detail">remove() 호출 후 flush 시 DELETE 예약</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

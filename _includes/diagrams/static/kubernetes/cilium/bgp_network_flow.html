@@ -1,0 +1,63 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-bgp-network-flow" aria-labelledby="sd-kubernetes-bgp-network-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-bgp-network-flow-title">eBPF hook은 Linux networking stack의 여러 지점에 붙는다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Linux networking stack 순서">
+      <div class="sd-lane-title">Linux networking stack</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Process</strong><span class="sd-detail">여러 user process가 network call을 만듭니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">system call</span></div>
+        <div class="sd-node"><strong class="sd-label">System Call Interface</strong><span class="sd-detail">user space와 kernel 경계입니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">socket API</span></div>
+        <div class="sd-node"><strong class="sd-label">Sockets</strong><span class="sd-detail">connection과 socket state를 다룹니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">transport 처리</span></div>
+        <div class="sd-node"><strong class="sd-label">TCP / UDP / Raw</strong><span class="sd-detail">transport protocol별 처리를 거칩니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">packet filter</span></div>
+        <div class="sd-node"><strong class="sd-label">Netfilter</strong><span class="sd-detail">kernel packet filtering 계층입니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">IP routing</span></div>
+        <div class="sd-node"><strong class="sd-label">IPv4 / IPv6</strong><span class="sd-detail">network layer에서 주소를 처리합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">link 처리</span></div>
+        <div class="sd-node"><strong class="sd-label">Ethernet</strong><span class="sd-detail">frame을 link layer로 내립니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">traffic control</span></div>
+        <div class="sd-node"><strong class="sd-label">Traffic Shaping</strong><span class="sd-detail">전송 traffic을 제어합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">device path</span></div>
+        <div class="sd-node"><strong class="sd-label">Netdevice / Drivers</strong><span class="sd-detail">network device와 driver로 전달합니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">hardware 전달</span></div>
+        <div class="sd-node sd-node--muted"><strong class="sd-label">HW / Bridge / OVS</strong><span class="sd-detail">물리 장치와 virtual switch입니다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent" aria-label="eBPF hook 위치">
+      <div class="sd-lane-title">eBPF hook points</div>
+      <table class="sd-table">
+        <thead>
+          <tr>
+            <th scope="col">Attachment layer</th>
+            <th scope="col">eBPF hook</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong class="sd-label">System Call Interface</strong></td>
+            <td><strong class="sd-label">BPF System calls</strong><span class="sd-detail">system call을 관찰하거나 제어합니다.</span></td>
+          </tr>
+          <tr>
+            <td><strong class="sd-label">Sockets</strong></td>
+            <td><strong class="sd-label">BPF Sockmap and Sockops</strong><span class="sd-detail">socket 경로와 connection 동작에 개입합니다.</span></td>
+          </tr>
+          <tr>
+            <td><strong class="sd-label">cgroup boundary</strong></td>
+            <td><strong class="sd-label">BPF cGroups</strong><span class="sd-detail">cgroup 기준으로 network policy를 적용합니다.</span></td>
+          </tr>
+          <tr>
+            <td><strong class="sd-label">Traffic Shaping</strong></td>
+            <td><strong class="sd-label">BPF TC hooks</strong><span class="sd-detail">TC 계층에서 packet을 처리합니다.</span></td>
+          </tr>
+          <tr>
+            <td><strong class="sd-label">Netdevice / Drivers</strong></td>
+            <td><strong class="sd-label">BPF XDP</strong><span class="sd-detail">device와 driver에 가까운 지점입니다.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <p class="sd-note">각 eBPF hook은 대응하는 계층에 독립적으로 부착됩니다. 표의 행은 attachment 위치를 매핑하며 hook들이 서로 순차 실행된다는 뜻은 아닙니다.</p>
+</figure>

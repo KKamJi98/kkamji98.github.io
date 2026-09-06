@@ -1,0 +1,40 @@
+<figure class="sd sd--flow" id="packer-golden-image" aria-labelledby="packer-golden-image-title">
+  <figcaption class="sd-title" id="packer-golden-image-title">Packer가 Golden AMI를 만드는 흐름</figcaption>
+
+  <section class="sd-band" aria-labelledby="packer-build-title">
+    <div class="sd-band-title" id="packer-build-title"><strong>1. 이미지 빌드</strong></div>
+    <div class="sd-flow" aria-label="이미지 빌드 흐름">
+      <div class="sd-node">
+        <strong class="sd-label"><img class="sd-icon" data-static-diagram="true" src="{{ '/assets/img/packer/diagram/packer.svg' | relative_url }}" alt="" width="32" height="32">HCL 템플릿</strong>
+        <span class="sd-detail"><code>source "amazon-ebs"</code>와 <code>provisioner "shell"</code> 정의</span>
+      </div>
+
+      <div class="sd-arrow"><span class="sd-edge-label">Builder가 임시 EC2 생성</span></div>
+
+      <div class="sd-node">
+        <strong class="sd-label"><img class="sd-icon" data-static-diagram="true" src="{{ '/assets/img/packer/diagram/ec2.png' | relative_url }}" alt="" width="32" height="32">임시 EC2</strong>
+        <span class="sd-detail"><strong>Provisioner:</strong> Nginx 설치와 설정 저장</span>
+      </div>
+
+      <div class="sd-arrow"><span class="sd-edge-label">구성된 디스크 상태 캡처</span></div>
+
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label"><img class="sd-icon" data-static-diagram="true" src="{{ '/assets/img/packer/diagram/ami.png' | relative_url }}" alt="" width="32" height="32">Golden AMI</strong>
+        <span class="sd-detail">설치 결과를 담은 재사용 가능한 머신 이미지</span>
+      </div>
+    </div>
+    <p class="sd-note">빌드가 끝나면 임시 인스턴스와 빌드 리소스를 정리합니다.</p>
+  </section>
+
+  <div class="sd-arrow"><span class="sd-edge-label">Golden AMI를 배포에서 참조</span></div>
+
+  <section class="sd-band" aria-labelledby="packer-use-title">
+    <div class="sd-band-title" id="packer-use-title"><strong>2. 이미지 사용</strong></div>
+    <div class="sd-flow" aria-label="Golden AMI 사용 흐름">
+      <div class="sd-node">
+        <strong class="sd-label"><img class="sd-icon" data-static-diagram="true" src="{{ '/assets/img/packer/diagram/ec2.png' | relative_url }}" alt="" width="32" height="32">새 EC2 인스턴스들</strong>
+        <span class="sd-detail">Golden AMI의 Ubuntu, Nginx, 설정 파일을 포함해 부팅합니다.</span>
+      </div>
+    </div>
+  </section>
+</figure>

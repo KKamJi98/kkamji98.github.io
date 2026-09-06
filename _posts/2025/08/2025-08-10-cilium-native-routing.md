@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/cilium/cilium.webp
 ---
 
-![Cilium native routing flow](/assets/img/kubernetes/cilium-native-routing-flow.webp)
+{% include diagrams/static/kubernetes/cilium-native-routing-flow.html %}
 
 지난 글 [Cilium Network Routing 이해하기 - Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/08/2025-08-03-cilium-routing %})에서는 Native Routing 모드에서 **각 노드/라우터가 다른 노드의 PodCIDR 경로를 알고 있어야 한다**는 점을 살펴봤습니다.  
 
@@ -25,7 +25,7 @@ image:
 
 ## 1. 실습 환경
 
-![4W Lab Environment](/assets/img/kubernetes/cilium/4w-lab-environment.webp)
+{% include diagrams/static/kubernetes/cilium/4w-lab-environment.html %}
 
 - ControlPlane: `k8s-ctr`
 - Worker Node: `k8s-w0`, `k8s-w1` (서로 다른 네트워크 대역)

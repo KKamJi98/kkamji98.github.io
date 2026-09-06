@@ -1,0 +1,34 @@
+<figure class="sd sd--layers" aria-labelledby="sap-c02-control-tower-landing-zone-title">
+  <figcaption class="sd-title" id="sap-c02-control-tower-landing-zone-title">Control Tower landing zone이 만드는 범위</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">AWS Control Tower</strong><span class="sd-detail">Organizations, Service Catalog, IAM Identity Center를 오케스트레이션</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">landing zone 배포</span></div>
+    <div class="sd-stack">
+      <section class="sd-band" aria-label="자동 생성되는 영역">
+        <div class="sd-band-title">자동 생성</div>
+        <div class="sd-grid">
+          <section class="sd-lane" aria-label="Security OU와 계정">
+            <div class="sd-lane-title">Security OU</div>
+            <div class="sd-flow">
+              <div class="sd-node sd-node--accent"><strong class="sd-label">Security OU</strong><span class="sd-detail">landing zone이 반드시 생성</span></div>
+              <div class="sd-arrow" aria-hidden="true"></div>
+              <div class="sd-grid">
+                <div class="sd-node"><strong class="sd-label">Log archive 계정</strong><span class="sd-detail">자동 생성</span></div>
+                <div class="sd-node"><strong class="sd-label">Audit 계정</strong><span class="sd-detail">자동 생성</span></div>
+              </div>
+            </div>
+          </section>
+          <div class="sd-node"><strong class="sd-label">Sandbox OU</strong><span class="sd-detail">landing zone 생성 시 선택했을 때만 생성</span></div>
+        </div>
+      </section>
+      <section class="sd-band" aria-label="사용자가 직접 만드는 권장 영역">
+        <div class="sd-band-title">직접 생성해야 하는 영역</div>
+        <div class="sd-grid">
+          <div class="sd-node sd-node--muted"><strong class="sd-label">Infrastructure OU</strong><span class="sd-detail">Network, Backup, Identity 계정을 직접 구성</span></div>
+          <div class="sd-node sd-node--muted"><strong class="sd-label">Workloads OU</strong><span class="sd-detail">Prod, Staging 계정을 직접 구성</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-note">Infrastructure OU와 Workloads OU는 권장 구성일 뿐 Control Tower가 자동 생성하는 landing zone 결과물은 아닙니다.</div>
+  </div>
+</figure>

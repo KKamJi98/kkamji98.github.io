@@ -27,7 +27,7 @@ image:
 
 ## 1. 실습 환경
 
-![Kubernetes VM Structure](/assets/img/kubernetes/kubernetes_virtualbox_structure.webp)
+{% include diagrams/static/kubernetes/kubernetes_virtualbox_structure.html %}
 
 - VMs: cilium-m1, cilium-w1, cilium-w2
   - eth0: 10.0.2.15 (VirtualBox의 NAT 네트워크 모드를 사용하므로, 각 VM의 eth0 인터페이스는 모두 동일한 IP인 10.0.2.15를 가짐)

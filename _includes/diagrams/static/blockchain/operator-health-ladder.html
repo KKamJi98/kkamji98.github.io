@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" id="sd-blockchain-operator-health-ladder" aria-labelledby="sd-title-blockchain-operator-health-ladder">
+  <figcaption class="sd-title" id="sd-title-blockchain-operator-health-ladder">노드 상태는 HTTP 하나로 끝나지 않는 점검 사다리입니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">HTTP 200</strong>
+      <span class="sd-detail">socket 및 JSON body 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">result 또는 error 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">eth_syncing</strong>
+      <span class="sd-detail">false 또는 progress object</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">import 상태 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">net_peerCount</strong>
+      <span class="sd-detail">EL peer 수이며 CL peer와 별도</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">peer 뒤 head 나이 확인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">latest timestamp</strong>
+      <span class="sd-detail">slot 나이 확인, height만 보지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">head 간격 비교</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">safe / finalized lag</strong>
+      <span class="sd-detail">간격은 상수가 아님</span>
+    </div>
+  </div>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">tags에서 CL과 EL의 별도 인증 경계 확인</span>
+    <svg width="12" height="30" viewBox="0 0 12 30" aria-hidden="true" focusable="false">
+      <path d="M6 1v20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"></path>
+    </svg>
+  </div>
+  <section class="sd-lane sd-lane--warning" aria-label="Engine API 별도 인증 경계">
+    <div class="sd-lane-title">Engine API 별도 인증 경계</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Engine JWT path</strong>
+        <span class="sd-detail">CL이 EL을 계속 구동하는 별도 경로</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">각 단계가 통과해도 다음 검사는 실패할 수 있습니다. HTTP 200과 eth_syncing false만으로 네트워크 head를 증명할 수 없습니다.</p>
+</figure>

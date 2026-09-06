@@ -37,7 +37,7 @@ SAP-C02는 이 층에서 답을 가릅니다. `RTO 15분, RPO 5분` 같은 숫�
 
 두 값은 시간축의 서로 다른 쪽을 가리킵니다. RPO는 재해 시점을 기준으로 과거 방향의 구간이고 데이터 손실을 얼마나 감수할지를 말합니다. RTO는 재해 시점에서 미래 방향의 구간이고 서비스가 중단된 채로 얼마나 있을 수 있는지를 말합니다.
 
-![마지막 복구 가능 지점부터 서비스 재개까지 RPO 구간과 RTO 구간이 재해 시점을 사이에 두고 나뉘는 시간축](/assets/img/sap-c02/rto-rpo-timeline.webp)
+{% include diagrams/static/sap-c02/rto-rpo-timeline.html %}
 
 그림은 RPO와 RTO가 각각 시간축의 어느 구간을 차지하는지, 그리고 두 구간의 실제 상한을 무엇이 정하는지를 보여줍니다.
 
@@ -65,7 +65,7 @@ RTO 쪽도 마찬가지입니다. 목표 숫자만 보고 전략을 고르면 �
 
 AWS는 DR 전략을 backup and restore, pilot light, warm standby, multi-site active/active 네 가지로 분류합니다. 앞의 세 가지는 active/passive이고 passive site는 failover 이벤트 전까지 트래픽을 처리하지 않습니다. multi-site active/active만 두 사이트가 모두 트래픽을 받습니다.
 
-![backup and restore부터 multi-site active/active까지 네 전략과 각 전략이 DR 리전에 유지하는 상태를 두 그룹으로 나눈 배치](/assets/img/sap-c02/dr-strategy-four-tiers.webp)
+{% include diagrams/static/sap-c02/dr-strategy-four-tiers.html %}
 
 그림은 네 전략을 왼쪽에서 오른쪽으로 놓고, 각 전략이 DR 리전에 무엇을 유지하는지와 그 상태가 어느 그룹에 속하는지를 보여줍니다.
 
@@ -139,7 +139,7 @@ Aurora Global Database는 primary 1개 리전과 read-only secondary 최대 10�
 
 전환 절차는 두 가지이고 용도가 다릅니다.
 
-![Aurora Global Database에서 switchover 경로와 managed failover 경로가 갈라지고 각각 도달하는 결과](/assets/img/sap-c02/aurora-global-switchover-failover.webp)
+{% include diagrams/static/sap-c02/aurora-global-switchover-failover.html %}
 
 그림은 두 전환 절차가 어떤 사전 조건을 공유하고 각각 어떤 결과에 도달하는지를 보여줍니다.
 
@@ -291,7 +291,7 @@ DR 리전에서 컨테이너 워크로드를 띄우려면 이미지가 그 리�
 
 AWS Backup의 backup plan에는 continuous backup rule과 snapshot backup rule을 둘 수 있고, 둘의 역할이 다릅니다.
 
-![backup plan에서 continuous backup rule과 snapshot backup rule이 갈라져 각각 도달하는 보존 경로](/assets/img/sap-c02/aws-backup-continuous-vs-snapshot.webp)
+{% include diagrams/static/sap-c02/aws-backup-continuous-vs-snapshot.html %}
 
 그림은 두 rule이 각각 어떤 보존 경로로 이어지고 어디서 막히는지를 보여줍니다.
 
@@ -385,7 +385,7 @@ EBS만 대상으로 삼는 경우에는 더 가벼운 선택지가 있습니다.
 
 전환 수단은 네 가지가 자주 함께 등장하고, 그중 둘만 리전 단위 전환을 만듭니다.
 
-![클라이언트 요청이 Route 53, ARC routing control, Global Accelerator, CloudFront 네 계층을 거쳐 DR 리전에 도달하는 경로를 두 그룹으로 나눈 배치](/assets/img/sap-c02/regional-failover-trigger-layers.webp)
+{% include diagrams/static/sap-c02/regional-failover-trigger-layers.html %}
 
 그림은 네 전환 수단을 리전 단위 전환을 만드는 것과 만들지 못하는 것으로 나누어 보여줍니다.
 
@@ -533,7 +533,7 @@ MRSC는 강한 일관성과 RPO 0을 제공하지만 쓰기와 강한 일관성 
 
 DR 설계는 문서 위에서 완성되지 않습니다. 실제로 전환하고 복원해 봐야 격차가 드러납니다. 도입부의 quota, 엔진 버전, health check 세 가지는 전부 훈련에서만 발견되는 종류입니다.
 
-![복구 목표에서 시작해 FIS 실험과 restore testing을 거쳐 격차와 교정으로 돌아오는 순환](/assets/img/sap-c02/dr-verification-loop.webp)
+{% include diagrams/static/sap-c02/dr-verification-loop.html %}
 
 그림은 복구 목표가 실험과 복원 검증을 거쳐 격차와 교정으로 이어지는 순환을 보여줍니다.
 

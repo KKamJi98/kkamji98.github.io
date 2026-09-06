@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="route-selection-order" aria-labelledby="route-selection-order-title">
+  <figcaption class="sd-title" id="route-selection-order-title">Longest prefix를 먼저 고르고 distance와 metric으로 동률을 풉니다</figcaption>
+  <p class="sd-intro">더 구체적인 prefix는 더 좋은 metric보다 먼저 선택됩니다. 그래서 하나의 <code>/32</code> route가 넓은 routing policy를 덮을 수 있습니다.</p>
+
+  <div class="sd-flow" aria-label="Route selection order 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">Destination IP</strong>
+      <span class="sd-detail">forwarding할 packet의 목적지</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">일치하는 route 후보를 찾음</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Longest prefix match</strong>
+      <span class="sd-detail">가장 구체적인 prefix가 우선</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">같은 prefix 후보가 여러 개면 계속 비교</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Still more than one?</strong>
+      <span class="sd-detail">서로 다른 source가 같은 prefix를 제시한 상태</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">source 사이의 local preference 확인</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Administrative distance</strong>
+      <span class="sd-detail">RIP나 OSPF packet에 광고되는 metric이 아닌 로컬 우선순위</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">같은 protocol 안의 경로 값을 비교</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Metric and next hop</strong>
+      <span class="sd-detail">RIP는 hop 수, OSPF는 link cost 합으로 최종 next hop 선택</span>
+    </div>
+  </div>
+</figure>

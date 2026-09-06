@@ -1,0 +1,47 @@
+<figure class="sd sd--flow" id="gcp-resource-hierarchy" aria-labelledby="gcp-resource-hierarchy-title">
+  <figcaption class="sd-title" id="gcp-resource-hierarchy-title">모든 GCP Resource는 Project 아래에 있고 정책은 아래로 흐릅니다</figcaption>
+  <p class="sd-intro">Organization, Folder, Project를 거친 뒤 실제 서비스 Resource가 배치되며, 각 상위 레벨의 IAM binding과 organization policy가 하위로 상속됩니다.</p>
+
+  <div class="sd-flow" aria-label="GCP 리소스 계층 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">1. Organization</strong>
+      <span class="sd-detail">계층의 root node</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">binding과 organization policy가 하위로 상속</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">2. Folder</strong>
+      <span class="sd-detail">선택 사항이며 중첩 가능</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">Folder 범위의 정책을 계속 전달</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">3. Project</strong>
+      <span class="sd-detail">billing과 quota의 기본 경계</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">실제 서비스 Resource가 Project에 소속</span></div>
+
+    <section class="sd-band" aria-labelledby="gcp-resource-hierarchy-resources-title">
+      <div class="sd-band-title" id="gcp-resource-hierarchy-resources-title">4. Resources</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">Compute Engine</strong>
+          <span class="sd-detail">Project의 VM resource</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Cloud Storage</strong>
+          <span class="sd-detail">Project의 bucket resource</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">GKE</strong>
+          <span class="sd-detail">Project의 cluster resource</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">특정 Resource에 적용되는 정책은 자기 레벨과 모든 상위 레벨에서 inherited 된 정책을 함께 평가합니다.</p>
+</figure>

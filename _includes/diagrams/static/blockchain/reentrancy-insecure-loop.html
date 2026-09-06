@@ -1,0 +1,25 @@
+<figure class="sd sd--flow" id="sd-blockchain-reentrancy-insecure-loop" aria-labelledby="sd-title-blockchain-reentrancy-insecure-loop">
+  <figcaption class="sd-title" id="sd-title-blockchain-reentrancy-insecure-loop">balance를 지우기 전에 보내면 receive가 withdraw를 다시 부릅니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">withdraw()</strong>
+      <span class="sd-detail">balance가 아직 1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">storage 변경 전 외부 호출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">msg.sender.call</strong>
+      <span class="sd-detail">먼저 1 ETH 전송</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">receive 진입</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">attacker receive</strong>
+      <span class="sd-detail">vault.balance &gt;= 1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">mapping이 아직 0이 아님</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">withdraw again</strong>
+      <span class="sd-detail">nested call이 withdraw를 반복 호출</span>
+    </div>
+  </div>
+  <p class="sd-note">vault balance가 1 ETH 아래로 내려갈 때까지 receive의 조건이 재진입을 이어갑니다.</p>
+</figure>

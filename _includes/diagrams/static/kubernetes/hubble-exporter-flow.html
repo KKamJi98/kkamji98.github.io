@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-hubble-exporter-flow" aria-labelledby="sd-kubernetes-hubble-exporter-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-hubble-exporter-flow-title">Hubble exporter가 agent ring buffer의 flow를 오래 보관하게 만든다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Cilium agent</strong>
+      <span class="sd-detail">node마다 DaemonSet Pod 하나가 실행됩니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">eBPF observation</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Hubble flow events</strong>
+      <span class="sd-detail">network flow가 observation point에서 발생합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">filter와 format 적용</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Hubble exporter</strong>
+      <span class="sd-detail">보존할 flow를 골라 출력 형식으로 변환합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">scrape endpoint 노출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Metrics endpoint</strong>
+      <span class="sd-detail">agent에서 scrape할 수 있는 endpoint입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">주기적으로 scrape</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Prometheus</strong>
+      <span class="sd-detail">flow metric을 수집하고 저장합니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">eBPF flow event는 agent memory의 ring buffer에 머무르므로 장기 보관에는 exporter가 필요합니다. Static 또는 Dynamic 설정으로 filter와 field mask를 조정할 수 있습니다.</p>
+</figure>

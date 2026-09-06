@@ -154,7 +154,7 @@ kitty는 tab, window, remote control API, desktop notification 기능을 제공�
 
 ## 4. 최종 아키텍처
 
-![Agentic development workspace](/assets/img/ai/agentic-development-workspace.webp)
+{% include diagrams/static/ai/agentic-development-workspace.html %}
 
 핵심은 cmux와 tmux의 책임을 겹치지 않는 것입니다.
 

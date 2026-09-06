@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-ci-cd-argocd-declarative-application" aria-labelledby="sd-title-ci-cd-argocd-declarative-application">
+  <figcaption class="sd-title" id="sd-title-ci-cd-argocd-declarative-application">Argo CD Application이 Git 상태를 Cluster와 맞추는 흐름</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Git repository</strong>
+      <span class="sd-detail">배포할 desired state를 보관</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Application에 source와 path 선언</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Application manifest</strong>
+      <span class="sd-detail">source repo, path, destination</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Kubernetes API에 등록</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Argo CD API server</strong>
+      <span class="sd-detail">Application을 검증하고 저장</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">controller가 변경을 감시</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Application controller</strong>
+      <span class="sd-detail">desired state와 live state를 diff</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차이를 reconcile</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cluster resources</strong>
+      <span class="sd-detail">Synced 또는 OutOfSync 상태를 보고</span>
+    </div>
+  </div>
+  <p class="sd-note">Argo CD에는 별도 deploy command를 보내지 않습니다. Application이 Git source와 대상 Cluster를 연결하고 controller가 계속 상태를 맞춥니다.</p>
+</figure>

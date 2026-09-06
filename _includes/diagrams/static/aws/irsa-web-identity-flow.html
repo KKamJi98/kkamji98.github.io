@@ -1,0 +1,37 @@
+<figure class="sd sd--layers" id="sd-aws-irsa-web-identity-flow" aria-labelledby="sd-title-aws-irsa-web-identity-flow">
+  <figcaption class="sd-title" id="sd-title-aws-irsa-web-identity-flow">IRSA는 projected ServiceAccount token을 AWS credentials로 바꾼다</figcaption>
+  <section class="sd-lane" aria-label="Amazon EKS cluster and Pod">
+    <div class="sd-lane-title">Amazon EKS cluster</div>
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">ServiceAccount</strong>
+        <span class="sd-detail">eks.amazonaws.com/role-arn annotation</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">token projection</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Projected SA token</strong>
+        <span class="sd-detail">aud: sts.amazonaws.com; cluster가 서명</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">SDK calls STS</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">AWS STS</strong>
+        <span class="sd-detail">AssumeRoleWithWebIdentity</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">신뢰 검증과 credential 발급</span></div>
+  <section class="sd-lane" aria-label="AWS IAM">
+    <div class="sd-lane-title">AWS IAM</div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">IAM OIDC provider</strong>
+        <span class="sd-detail">cluster issuer URL; token signature 검증</span>
+      </div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">IAM role</strong>
+        <span class="sd-detail">Pod scope의 temporary credentials</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Node instance profile과 static access key를 사용하지 않습니다. STS는 OIDC trust가 확인된 뒤 role credentials를 반환합니다.</p>
+</figure>

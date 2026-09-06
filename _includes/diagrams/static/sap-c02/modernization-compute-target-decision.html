@@ -1,0 +1,54 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-modernization-compute-target-decision-title">
+  <figcaption class="sd-title" id="sap-c02-modernization-compute-target-decision-title">실행 시간과 OS 제어로 컴퓨트를 고른다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">기존 워크로드</strong>
+      <span class="sd-detail">실행 시간, 상태 보유 여부, 런타임 요구를 먼저 기록한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">제약 판정: 15분, 메모리, OS 접근, 상시 실행</span></div>
+  </div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane">
+      <span class="sd-lane-title">짧은 이벤트와 무상태</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">15분 이내 함수</strong>
+          <span class="sd-detail">호출당 최대 900초, 무상태로 처리한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">이벤트 실행</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">AWS Lambda</strong>
+          <span class="sd-detail">이벤트 기반 함수. 메모리는 최대 10,240MB다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">장시간 또는 상태 보유</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">컨테이너 작업</strong>
+          <span class="sd-detail">15분을 넘길 수 있고 실행 중 메모리 상태를 유지한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">태스크 실행</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">AWS Fargate</strong>
+          <span class="sd-detail">ECS 컨테이너. 실행 시간 하드 리밋이 없고 최대 244GiB 메모리다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">OS 또는 특수 런타임</span>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">호스트 수준 제어</strong>
+          <span class="sd-detail">커널, 드라이버, 패치 레벨, 특수 파일 시스템이 필요하다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">직접 관리</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Amazon EC2</strong>
+          <span class="sd-detail">운영체제와 런타임을 직접 관리하는 컴퓨트다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

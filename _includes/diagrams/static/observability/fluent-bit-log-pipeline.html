@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-observability-fluent-bit-log-pipeline" aria-labelledby="sd-title-observability-fluent-bit-log-pipeline">
+  <figcaption class="sd-title" id="sd-title-observability-fluent-bit-log-pipeline">Fluent Bit이 Node의 container log를 수집해 검색 경로로 전달</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Container logs</strong>
+      <span class="sd-detail">Node에 남은 stdout와 stderr</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">파일 tail</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Fluent Bit</strong>
+      <span class="sd-detail">Node마다 DaemonSet Pod 하나가 수집과 전송</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">parse와 metadata 보강</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Elasticsearch</strong>
+      <span class="sd-detail">로그를 parse, enrich하고 index에 저장</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">index query</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Kibana</strong>
+      <span class="sd-detail">저장된 index를 query하고 시각화</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">운영자에게 결과 표시</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Log search</strong>
+      <span class="sd-detail">운영자가 실제로 읽는 검색 결과</span>
+    </div>
+  </div>
+  <p class="sd-note">Fluent Bit은 애플리케이션 내부가 아니라 각 Node의 container log를 읽습니다. DaemonSet으로 모든 Node에 수집 Pod를 배치합니다.</p>
+</figure>

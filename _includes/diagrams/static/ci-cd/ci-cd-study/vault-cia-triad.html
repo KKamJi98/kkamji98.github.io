@@ -1,0 +1,25 @@
+<figure class="sd sd--comparison" id="vault-cia-triad" aria-labelledby="vault-cia-triad-title">
+  <figcaption class="sd-title" id="vault-cia-triad-title">Vault가 보호하는 정보시스템은 Confidentiality, Integrity, Availability를 함께 요구합니다</figcaption>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">정보시스템</strong>
+    <span class="sd-detail">세 보안 목표가 동시에 지켜져야 하는 중심 대상</span>
+  </div>
+
+  <div class="sd-grid sd-grid--three">
+    <div class="sd-node">
+      <strong class="sd-label">Confidentiality (기밀성)</strong>
+      <span class="sd-detail">권한이 검증된 entity만 secret과 key를 읽습니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Integrity (무결성)</strong>
+      <span class="sd-detail">승인되지 않은 변경과 롤백을 탐지하고 막습니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Availability (가용성)</strong>
+      <span class="sd-detail">필요한 시점에 응답하고 장애에서 복구합니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">ACL과 짧은 lease는 기밀성을, Transit 서명과 KV version은 무결성을, Raft HA와 Auto Unseal은 가용성을 보강합니다.</p>
+</figure>

@@ -1,0 +1,32 @@
+<figure class="sd sd--flow" id="what-is-a-helm-chart" aria-labelledby="what-is-a-helm-chart-title">
+  <figcaption class="sd-title" id="what-is-a-helm-chart-title">Helm Chart는 Kubernetes manifest를 정의하고 패키징해 release로 관리합니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Chart files</strong>
+      <span class="sd-detail"><code>Chart.yaml</code>, <code>values.yaml</code>, <code>templates/</code>, <code>charts/</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">값을 주입해 렌더링</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Define</strong>
+      <span class="sd-detail">Go Template으로 Kubernetes manifest를 만듭니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">버전 있는 artifact 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Package</strong>
+      <span class="sd-detail">Chart를 배포 가능한 <code>.tgz</code>로 묶습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>helm install</code> 또는 <code>upgrade</code></span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Kubernetes Release</strong>
+      <span class="sd-detail">렌더링된 resource를 클러스터에 배포합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">운영 수명주기 관리</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Manage</strong>
+      <span class="sd-detail"><code>upgrade</code>, <code>rollback</code>, <code>helm test</code>로 관리합니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">같은 Chart를 값만 바꿔 재사용하고, template과 version으로 consistency와 변경 추적성을 확보합니다.</p>
+</figure>

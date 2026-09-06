@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-s3-intelligent-tiering-tiers-title">
+  <figcaption class="sd-title" id="sap-c02-s3-intelligent-tiering-tiers-title">Intelligent-Tiering은 미접근 일수로 내려가고 접근으로 돌아온다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Frequent Access</strong>
+      <span class="sd-detail">기본 계층. 어느 계층에서든 유효한 접근이 발생하면 여기로 돌아온다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">30일 연속 미접근</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Infrequent Access</strong>
+      <span class="sd-detail">자동 계층이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">90일 연속 미접근</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Archive Instant Access</strong>
+      <span class="sd-detail">여기까지가 자동 계층이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">선택 계층을 켠 경우</span></div>
+  </div>
+  <section class="sd-lane">
+    <span class="sd-lane-title">선택 계층</span>
+    <div class="sd-flow">
+      <div class="sd-node"><strong class="sd-label">Archive Access</strong><span class="sd-detail">최소 90일부터 최대 730일까지 설정한다.</span></div>
+      <div class="sd-arrow"><span class="sd-edge-label">둘 다 켜면 더 깊은 계층으로 이동</span></div>
+      <div class="sd-node"><strong class="sd-label">Deep Archive Access</strong><span class="sd-detail">최소 180일부터 최대 730일까지 설정한다.</span></div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">어느 선택 계층에서든 restore 요청</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Frequent Access로 복귀</strong>
+    <span class="sd-detail">계정당 리전당 restore 요청은 최대 1,000 TPS이며 객체가 실제로 Frequent Access로 이동한다.</span>
+  </div>
+  <p class="sd-note">128 KB 미만 객체는 모니터링과 자동 이동 대상이 아니므로 항상 Frequent Access에 남는다.</p>
+</figure>

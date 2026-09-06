@@ -1,0 +1,45 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-cloudwatch-logs-delivery-paths-title">
+  <figcaption class="sd-title" id="sap-c02-cloudwatch-logs-delivery-paths-title">CloudWatch Logs 로그 그룹 밖의 네 경로</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">CloudWatch Logs 로그 그룹</strong><span class="sd-detail">subscription filter 5개, metric filter 100개이며 조정 불가</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">사용 목적에 따라 선택</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Subscription filter 실시간 전달">
+        <div class="sd-lane-title">실시간 전달</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Subscription filter</strong><span class="sd-detail">near-real-time push, base64 후 gzip, throttle 시 24시간 재시도</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-grid sd-grid--three">
+            <div class="sd-node"><strong class="sd-label">Kinesis Data Streams</strong><span class="sd-detail">소비자별 독립 읽기</span></div>
+            <div class="sd-node"><strong class="sd-label">Lambda</strong><span class="sd-detail">이벤트 단위 변환</span></div>
+            <div class="sd-node"><strong class="sd-label">Data Firehose</strong><span class="sd-detail">버퍼링 후 적재</span></div>
+            <div class="sd-node"><strong class="sd-label">OpenSearch Service</strong><span class="sd-detail">기존 Amazon ES 명칭</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Metric filter 경로">
+        <div class="sd-lane-title">메트릭 변환</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Metric filter</strong><span class="sd-detail">이미 수집된 로그 패턴을 세어 메트릭으로 생성</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">CloudWatch 메트릭과 alarm</strong><span class="sd-detail">로그 발행 코드를 바꾸기 어려울 때 사용</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="S3 export task 경로">
+        <div class="sd-lane-title">배치 export</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning"><strong class="sd-label">S3 export task</strong><span class="sd-detail">준비까지 최대 12시간, 계정당 동시 1개, 24시간 timeout</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">S3 버킷</strong><span class="sd-detail">AES-256와 SSE-KMS 지원, DSSE-KMS 미지원</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Logs Insights 조회 경로">
+        <div class="sd-lane-title">대화형 조회</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Logs Insights query</strong><span class="sd-detail">계정당 동시 100개, 60분 timeout, 결과 조회 7일</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-note">실시간 전달은 subscription filter만 제공하며 S3 export는 데이터가 준비될 때까지 기다리는 배치 경로입니다.</div>
+  </div>
+</figure>

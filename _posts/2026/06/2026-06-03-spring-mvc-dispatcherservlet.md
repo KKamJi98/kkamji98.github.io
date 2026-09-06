@@ -39,7 +39,7 @@ image:
 
 1편에서 "DispatcherServlet -> 컨트롤러"로 뭉뚱그렸지만, 실제로는 내부에서 여러 부품이 협력합니다.
 
-![DispatcherServlet 내부 시퀀스](/assets/img/spring/spring-05-dispatcherservlet-sequence.webp)
+{% include diagrams/static/spring/spring-05-dispatcherservlet-sequence.html %}
 _DispatcherServlet이 HandlerMapping(매칭) -> HandlerAdapter(호출) -> 반환값 변환으로 위임_
 
 가장 중요한 분담은 **HandlerMapping(매칭)** 과 **HandlerAdapter(호출)** 의 분리입니다.
@@ -101,7 +101,7 @@ public class OrderController {
 
 > The maximum number of request processing threads ... If not specified, this attribute is set to 200.  
 
-![thread-per-request 모델](/assets/img/spring/spring-06-thread-per-request.webp)
+{% include diagrams/static/spring/spring-06-thread-per-request.html %}
 _요청당 워커 1개 점유(블로킹 포함), 풀이 차면 대기 큐 -> 거절/타임아웃_
 
 동작을 정리하면:

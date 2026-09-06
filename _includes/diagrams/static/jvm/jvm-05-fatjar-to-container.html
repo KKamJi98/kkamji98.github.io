@@ -1,0 +1,27 @@
+<figure class="sd sd--flow" id="jvm-05-fatjar-to-container" aria-labelledby="sd-title-jvm-05-fatjar-to-container">
+  <figcaption class="sd-title" id="sd-title-jvm-05-fatjar-to-container">Fat jar에서 Dockerfile 없는 OCI container까지</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Fat jar (<code>app.jar</code>)</strong>
+      <span class="sd-detail">Gradle 또는 Maven build 결과</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>bootBuildImage</code></span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Paketo buildpack</strong>
+      <span class="sd-detail">JRE와 launch logic 선택</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">이미지 생성</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">OCI image</strong>
+      <span class="sd-detail">JRE + jar + launcher</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">container 시작</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Container run</strong>
+      <span class="sd-detail">launcher Memory Calculator가 <code>-Xmx</code> 계산</span>
+    </div>
+  </div>
+
+  <p class="sd-note">Dockerfile은 이 경로에 없습니다. JRE 선택과 시작 시 <code>-Xmx</code> 결정은 buildpack launcher가 담당합니다.</p>
+</figure>

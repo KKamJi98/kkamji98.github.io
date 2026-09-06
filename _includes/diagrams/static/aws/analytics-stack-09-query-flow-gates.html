@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-aws-analytics-stack-09-query-flow-gates" aria-labelledby="sd-title-aws-analytics-stack-09-query-flow-gates">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-09-query-flow-gates">Athena query의 길목마다 권한 gate가 선다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">SQL 제출</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">IAM</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">StartQueryExecution</strong>
+      <span class="sd-detail">workgroup result location and scan limit policy</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">IAM plus Lake Formation</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Glue Data Catalog 조회</strong>
+      <span class="sd-detail">schema, S3 LOCATION, partitions</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">IAM; S3 Tables는 LF도 평가</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">S3 or S3 Tables data scan</strong>
+      <span class="sd-detail">partition filter로 scan량 축소</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">IAM</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">query result location (S3)</strong>
+      <span class="sd-detail">결과 기록 후 client에 반환</span>
+    </div>
+  </div>
+  <p class="sd-note">각 길목의 gate가 모두 Allow여야 query가 끝까지 진행됩니다. Athena는 data를 보관하지 않습니다.</p>
+</figure>

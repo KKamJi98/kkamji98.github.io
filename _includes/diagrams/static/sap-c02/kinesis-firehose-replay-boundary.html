@@ -1,0 +1,44 @@
+<figure class="sd sd--comparison" id="kinesis-firehose-replay-boundary" aria-labelledby="kinesis-firehose-replay-boundary-title">
+  <figcaption class="sd-title" id="kinesis-firehose-replay-boundary-title">재처리 경계는 Kinesis Data Streams 앞에 있다</figcaption>
+  <p class="sd-note">Kinesis Data Streams는 원본을 24시간에서 365일까지 보존하지만 Amazon Data Firehose는 목적지로 전달한 뒤 자체 replay를 제공하지 않습니다.</p>
+
+  <div class="sd-flow" aria-label="Kinesis Data Streams와 Firehose 전달 경계">
+    <div class="sd-node">
+      <strong class="sd-label">Application source</strong>
+      <span class="sd-detail">events</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">원본 보존</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Kinesis Data Streams</strong>
+      <span class="sd-detail">retention 24 hours to 365 days</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">전달 파이프라인</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Amazon Data Firehose</strong>
+      <span class="sd-detail">buffer interval 60 to 900 seconds</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">목적지 전달</span></div>
+    <div class="sd-grid">
+      <div class="sd-node"><strong class="sd-label">Amazon S3</strong><span class="sd-detail">delivered objects</span></div>
+      <div class="sd-node"><strong class="sd-label">OpenSearch Service</strong><span class="sd-detail">delivered index records</span></div>
+    </div>
+  </div>
+
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="kinesis-firehose-replay-boundary-replay-title">
+      <div class="sd-lane-title" id="kinesis-firehose-replay-boundary-replay-title">재처리 가능한 구간</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">보존된 stream record</strong><span class="sd-detail">Kinesis Data Streams에서 retention 기간 동안 다시 읽습니다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">Replay</span></div>
+        <div class="sd-node"><strong class="sd-label">Replay consumer</strong><span class="sd-detail">retained stream records를 읽어 재처리합니다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="kinesis-firehose-replay-boundary-no-replay-title">
+      <div class="sd-lane-title" id="kinesis-firehose-replay-boundary-no-replay-title">Firehose 이후</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Firehose 자체 replay 없음</strong>
+        <span class="sd-detail">전달 파이프라인은 저장소가 아니므로 재처리가 필요하면 앞의 stream을 읽습니다.</span>
+      </div>
+    </section>
+  </div>
+</figure>

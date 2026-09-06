@@ -40,7 +40,7 @@ public class OrderController {
 
 클래스가 늘수록 이 "누가 누구를 `new` 해서 엮느냐"는 조립 코드가 거대해지고, 그 관리를 전부 내가 떠안게 됩니다.
 
-![IoC 전후 결합도 비교](/assets/img/spring/spring-03-ioc-before-after.webp)
+{% include diagrams/static/spring/spring-03-ioc-before-after.html %}
 _왼쪽(수동 new, 강결합) vs 오른쪽(컨테이너가 조립/주입, 느슨한 결합)_
 
 ---
@@ -128,7 +128,7 @@ Spring 공식 레퍼런스는 이 "역전"을 이렇게 정의합니다.
 
 빈은 컨테이너 안에서 다음 단계를 거칩니다.
 
-![빈 생명주기](/assets/img/spring/spring-04-bean-lifecycle.webp)
+{% include diagrams/static/spring/spring-04-bean-lifecycle.html %}
 _컴포넌트 스캔 -> 빈 정의 등록 -> 인스턴스화 -> 의존 주입 -> 초기화 콜백 -> 사용(싱글톤) -> 소멸_
 
 - 컨테이너 시작 시 컴포넌트 스캔으로 빈 정의를 등록한다.

@@ -1,0 +1,54 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-hubble-architecture" aria-labelledby="sd-kubernetes-hubble-architecture-title">
+  <figcaption class="sd-title" id="sd-kubernetes-hubble-architecture-title">Hubble는 node-local flow를 Relay와 observability 도구로 전달한다</figcaption>
+  <section class="sd-band" aria-labelledby="sd-kubernetes-hubble-architecture-nodes-title">
+    <div class="sd-band-title" id="sd-kubernetes-hubble-architecture-nodes-title">Node-local Hubble API</div>
+    <div class="sd-grid">
+      <section class="sd-lane sd-lane--accent" aria-label="Node 1 Hubble path">
+        <div class="sd-lane-title">Node 1</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Pods (3)</strong><span class="sd-detail">workload flow가 node 안에서 발생합니다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">eBPF observation</span></div>
+          <div class="sd-node"><strong class="sd-label">cilium + BPF</strong><span class="sd-detail">network event와 identity를 수집합니다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">node-local flow</span></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">Hubble API</strong><span class="sd-detail">이 node의 flow를 제공합니다.</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Node 2 Hubble path">
+        <div class="sd-lane-title">Node 2</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Pods (3)</strong><span class="sd-detail">두 번째 node의 workload flow입니다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">eBPF observation</span></div>
+          <div class="sd-node"><strong class="sd-label">cilium + BPF</strong><span class="sd-detail">동일한 방식으로 event를 수집합니다.</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">node-local flow</span></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">Hubble API</strong><span class="sd-detail">이 node의 flow를 제공합니다.</span></div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">optional cluster aggregation</span></div>
+  <section class="sd-band sd-band--accent" aria-labelledby="sd-kubernetes-hubble-architecture-consumers-title">
+    <div class="sd-band-title" id="sd-kubernetes-hubble-architecture-consumers-title">Cluster-wide consumers</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Hubble Relay (optional)</strong>
+        <span class="sd-detail">여러 node의 Hubble API를 모아 cluster-wide flow로 만듭니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">observability data</span></div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">Metrics</strong>
+          <span class="sd-detail">Prometheus가 수집하고 Grafana가 시각화합니다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Service Map UI</strong>
+          <span class="sd-detail">Hubble UI가 service graph를 표시합니다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Flow Inspection</strong>
+          <span class="sd-detail">Hubble CLI와 <code>jq</code>로 flow를 조회합니다.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Hubble API의 기본 범위는 node-local입니다. Relay를 배치할 때만 여러 node의 데이터를 한 cluster 관점으로 조회합니다.</p>
+</figure>

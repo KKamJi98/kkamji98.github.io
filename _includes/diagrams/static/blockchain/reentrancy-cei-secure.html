@@ -1,0 +1,25 @@
+<figure class="sd sd--flow" id="sd-blockchain-reentrancy-cei-secure" aria-labelledby="sd-title-blockchain-reentrancy-cei-secure">
+  <figcaption class="sd-title" id="sd-title-blockchain-reentrancy-cei-secure">storage를 먼저 지우면 nested withdraw가 revert됩니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">CEI withdraw</strong>
+      <span class="sd-detail">require amount &gt; 0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">interaction 전 상태 변경</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">balances = 0</strong>
+      <span class="sd-detail">call 전 상태 변경</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">외부 호출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">msg.sender.call</strong>
+      <span class="sd-detail">storage 변경 후 send</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">amount 0이면 revert</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">nested withdraw</strong>
+      <span class="sd-detail">revert "empty" 후 send failed</span>
+    </div>
+  </div>
+  <p class="sd-note">nested call의 실패가 false로 돌아와 바깥 withdraw도 send failed로 revert됩니다.</p>
+</figure>

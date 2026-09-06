@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="priority-queue-heap-flow" aria-labelledby="priority-queue-heap-flow-title">
+  <figcaption class="sd-title" id="priority-queue-heap-flow-title">우선순위 큐는 힙의 루트에서 다음 원소를 꺼냅니다</figcaption>
+  <p class="sd-note">전체 배열을 정렬하지 않고 루트까지 이어진 한 경로만 복구하므로 <code>heappush</code>와 <code>heappop</code>은 O(log n), root peek은 O(1)입니다.</p>
+
+  <div class="sd-flow" aria-label="우선순위 큐의 binary heap 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">Input items</strong>
+      <span class="sd-detail">각 원소에 priority가 붙어 있습니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">우선순위 비교</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Binary heap</strong>
+      <span class="sd-detail">부모가 자식보다 높은 우선순위를 유지합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">루트 확인</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Highest priority at the root</strong>
+      <span class="sd-detail">다음 원소를 constant time에 읽습니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label"><code>pop</code> 실행</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Pop</strong>
+      <span class="sd-detail">마지막 원소를 올린 뒤 <code>sift down</code>으로 조건을 복구합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">한 경로만 복구</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Next item surfaces</strong>
+      <span class="sd-detail">다음 우선순위 원소가 루트로 올라옵니다.</span>
+    </div>
+  </div>
+</figure>

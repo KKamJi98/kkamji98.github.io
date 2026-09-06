@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-supply-pin-then-deploy" aria-labelledby="sd-title-blockchain-supply-pin-then-deploy">
+  <figcaption class="sd-title" id="sd-title-blockchain-supply-pin-then-deploy">pinned compiler hash를 확인한 뒤 deploy gate를 통과합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">foundry.toml</strong>
+      <span class="sd-detail">solc 0.8.35</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">pin을 사용해 build</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">forge build</strong>
+      <span class="sd-detail">재현 가능한 입력</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">sha256 비교</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">hash check</strong>
+      <span class="sd-detail">match d8f49804...</span>
+    </div>
+  </div>
+  <p class="sd-note">hash가 일치하면 forge create를 진행할 수 있지만, 이번 랩은 재배포하지 않았습니다.</p>
+</figure>

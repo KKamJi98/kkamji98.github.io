@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="default-gateway-forwarding" aria-labelledby="default-gateway-forwarding-title">
+  <figcaption class="sd-title" id="default-gateway-forwarding-title">Host는 자기 subnet 밖의 목적지를 default gateway로 보냅니다</figcaption>
+  <p class="sd-intro">더 구체적인 경로가 없으면 host가 같은 link의 gateway를 next hop으로 선택하고, 그 뒤 router가 packet을 hop by hop 전달합니다.</p>
+
+  <div class="sd-flow" aria-label="Default gateway forwarding 흐름">
+    <div class="sd-node">
+      <strong class="sd-label">Host</strong>
+      <span class="sd-detail">destination IP와 subnet mask를 비교하고 default route를 선택</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">다른 subnet이면 gateway를 next hop으로 결정</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Default gateway</strong>
+      <span class="sd-detail">같은 subnet의 router interface. IPv4는 ARP, IPv6는 NDP로 MAC 확인</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">첫 frame의 MAC 목적지는 gateway</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Next network</strong>
+      <span class="sd-detail">router가 frame을 벗기고 다음 link용 frame으로 다시 만들어 전달</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">IP 목적지는 remote server를 유지</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Remote server</strong>
+      <span class="sd-detail">응답은 reverse path를 따라 돌아옴</span>
+    </div>
+  </div>
+
+  <p class="sd-note">ARP 또는 NDP가 실패하면 default route가 있어도 첫 frame을 만들 수 없습니다. 같은 subnet 목적지는 gateway를 거치지 않고 직접 전송합니다.</p>
+</figure>

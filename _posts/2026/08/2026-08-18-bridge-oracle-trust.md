@@ -25,7 +25,7 @@ Anvil :8547   chainId 31337  latest 3  balance 9998999219286062346196
 Sepolia RPC   chainId 11155111         balance 0
 ```
 
-![한 EOA를 세 node에 물으면 balance가 세 갈래로 갈라지는 구조](/assets/img/blockchain/rpc-balance-is-local.webp)
+{% include diagrams/static/blockchain/rpc-balance-is-local.html %}
 _같은 키다. 각 RPC는 자기 상태 트리만 읽는다._
 
 두 Anvil은 둘 다 개발 체인이고 둘 다 31337입니다. 그래도 latest와 잔액이 다릅니다. 프로세스가 다르기 때문입니다. Sepolia에서 이 키의 잔액은 0입니다. 로컬 숫자를 보고 “이 계정에 만 ETH가 있다”고 쓰면, 그 문장은 그 node 밖에서는 거짓입니다.
@@ -38,7 +38,7 @@ ethereum.org는 자산 이동을 세 가지로 나눕니다. lock-and-mint, burn
 
 그 누군가를 문서는 trusted와 trustless로 나눕니다. trusted 브리지는 외부 verifier입니다. 멀티시그 연합, MPC, oracle network가 그 예입니다. trustless 브리지는 연결하는 체인의 validator 외에 새 신뢰 가정을 더하지 않는다고 적습니다. 이름이 신뢰를 없앤다는 뜻이 아니라, 추가 가정을 더하지 않는다는 뜻입니다.
 
-![출발 체인 lock이 verifier를 거쳐 도착 체인 mint가 되는 흐름](/assets/img/blockchain/lock-and-mint-trust.webp)
+{% include diagrams/static/blockchain/lock-and-mint-trust.html %}
 _mint의 진실은 lock이 아니라, lock을 봤다고 주장하는 verifier다._
 
 운영 사고는 탐색기 잔액을 verifier 입력으로 쓰는 순간에 납니다. 1절의 8545 숫자를 보고 다른 체인에 mint하면, 그 mint는 8545 프로세스의 상태를 담보로 합니다. 프로세스를 끄면 담보는 사라집니다. 공개망 브리지도 같은 모양입니다. 담보는 출발 체인의 잠금과, 그 잠금을 읽는 집합입니다.

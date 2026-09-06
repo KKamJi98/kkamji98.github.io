@@ -1,0 +1,56 @@
+<figure class="sd sd--comparison" id="ja4-fingerprint-construction" aria-labelledby="ja4-fingerprint-construction-title">
+  <figcaption class="sd-title" id="ja4-fingerprint-construction-title">JA4는 정렬한 뒤 해시해 extension 순서 변화에 강합니다</figcaption>
+  <p class="sd-note">같은 TLS Client Hello에서 두 방식이 갈라집니다. JA3는 wire order를 보존하고, JA4는 필드를 정렬한 뒤 fingerprint를 만듭니다.</p>
+
+  <div class="sd-flow" aria-label="JA3 and JA4 fingerprint construction">
+    <div class="sd-node">
+      <strong class="sd-label">TLS Client Hello</strong>
+      <span class="sd-detail">TLS version, cipher, extension과 ALPN을 포함한 입력입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">wire order 또는 sorted fields로 분기</span></div>
+
+    <div class="sd-grid">
+      <section class="sd-lane sd-lane--warning" aria-labelledby="ja3-path-title">
+        <div class="sd-lane-title" id="ja3-path-title">JA3: wire order</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">JA3 hashes wire order</strong>
+            <span class="sd-detail">도착한 field 순서 그대로 MD5를 계산합니다.</span>
+          </div>
+
+          <div class="sd-arrow"><span class="sd-edge-label">extension 순서가 달라짐</span></div>
+
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Fingerprint changes per connection</strong>
+            <span class="sd-detail">브라우저의 randomised extension order가 결과를 바꿉니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane sd-lane--accent" aria-labelledby="ja4-path-title">
+        <div class="sd-lane-title" id="ja4-path-title">JA4: sorted fields</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">JA4 sorts by hex value</strong>
+            <span class="sd-detail">cipher와 extension을 정렬하고 GREASE, SNI, ALPN을 count에서 뺍니다.</span>
+          </div>
+
+          <div class="sd-arrow"><span class="sd-edge-label">SHA-256 truncate</span></div>
+
+          <div class="sd-node">
+            <strong class="sd-label">SHA-256, first 12 chars</strong>
+            <span class="sd-detail">prefix와 <code>a_b_c</code> hash segment로 읽기 쉽게 만듭니다.</span>
+          </div>
+
+          <div class="sd-arrow"><span class="sd-edge-label">WAF 조건으로 전달</span></div>
+
+          <div class="sd-node">
+            <strong class="sd-label">WAF rule</strong>
+            <span class="sd-detail">match, rate limit 또는 challenge를 적용합니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

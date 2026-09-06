@@ -1,0 +1,56 @@
+<figure class="sd sd--layers" id="sd-el-cl-engine-jwt" aria-labelledby="sd-title-el-cl-engine-jwt">
+  <figcaption class="sd-title" id="sd-title-el-cl-engine-jwt">실행과 합의 client는 JWT Engine API로 연결됩니다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="사용자 API">
+      <div class="sd-band-title">사용자 API</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Wallet / indexer</strong>
+          <span class="sd-detail">eth_*, net_*</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">HTTP JSON-RPC</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">JSON-RPC 8545</strong>
+          <span class="sd-detail">unauthenticated user API</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">execution 요청</span></div>
+    <section class="sd-band" aria-label="Execution layer">
+      <div class="sd-band-title">Execution layer</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">Execution client</strong>
+          <span class="sd-detail">EVM, state, txpool</span>
+        </div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">EL P2P</strong>
+          <span class="sd-detail">Execution client에서 EL P2P network로 transaction gossip</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">authenticated Engine 호출</span></div>
+    <section class="sd-band sd-band--accent" aria-label="Engine API 인증 경계">
+      <div class="sd-band-title">인증 경계</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Engine API 8551</strong>
+        <span class="sd-detail">JWT HS256, iat 60s</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">fork choice와 finality 전달</span></div>
+    <section class="sd-band" aria-label="Consensus layer">
+      <div class="sd-band-title">Consensus layer</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">Consensus client</strong>
+          <span class="sd-detail">fork choice, finality</span>
+        </div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">CL P2P</strong>
+          <span class="sd-detail">Consensus client에서 CL P2P network로 blocks, attestations</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">8545는 사용자가 보는 포트이고 8551은 execution과 consensus 사이의 인증 경계입니다. Anvil은 이 consensus 경로를 구현하지 않습니다.</p>
+</figure>

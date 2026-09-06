@@ -1,0 +1,60 @@
+<figure class="sd sd--comparison" id="kubernetes-cilium-kube-proxy-replacement" aria-labelledby="kubernetes-cilium-kube-proxy-replacement-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-kube-proxy-replacement-title">kube-proxy replacement은 Service datapath 책임을 Cilium eBPF로 옮긴다</figcaption>
+  <p class="sd-note">같은 Service 요청이라도 기존 경로는 kube-proxy가 만든 iptables와 host stack을 거치고, replacement 경로는 Cilium eBPF가 endpoint lookup과 forwarding을 맡습니다.</p>
+
+  <div class="sd-flow" aria-label="Service 요청의 공통 입력">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Pod A request</strong>
+      <span class="sd-detail"><code>curl</code>이 Service ClusterIP로 요청을 보냅니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Service endpoint 선택</span></div>
+  </div>
+
+  <div class="sd-grid" aria-label="kube-proxy와 Cilium eBPF 경로 비교">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-kube-proxy-replacement-standard-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-kube-proxy-replacement-standard-title">기존 kube-proxy path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pod A socket와 veth</strong>
+          <span class="sd-detail">Pod 네트워크에서 host 쪽으로 나옵니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">DNAT 규칙 조회</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">kube-proxy iptables</strong>
+          <span class="sd-detail">Service와 endpoint를 DNAT rule로 연결합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">host stack traversal</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Linux routing와 FORWARD</strong>
+          <span class="sd-detail"><code>PREROUTING</code>, <code>FORWARD</code>, <code>POSTROUTING</code> chain을 통과합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">endpoint 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Pod B endpoint</strong>
+          <span class="sd-detail">반대쪽 veth와 socket으로 도착합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-kube-proxy-replacement-cilium-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-kube-proxy-replacement-cilium-title">Cilium eBPF replacement</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Pod A socket와 veth</strong>
+          <span class="sd-detail">같은 Service 요청이 Cilium datapath로 들어갑니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">kernel service lookup</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Cilium eBPF service datapath</strong>
+          <span class="sd-detail">ClusterIP, NodePort와 LoadBalancer endpoint를 lookup하고 전달합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">host 작업을 줄여 전달</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Pod B endpoint</strong>
+          <span class="sd-detail">복잡한 host iptables chain을 크게 우회한 경로입니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">replacement는 단순히 chain을 건너뛰는 옵션이 아니라 Service traffic 처리 책임을 Cilium으로 전환하는 구성입니다.</p>
+    </section>
+  </div>
+</figure>

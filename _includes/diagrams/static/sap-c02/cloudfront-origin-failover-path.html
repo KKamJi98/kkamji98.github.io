@@ -1,0 +1,29 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-cloudfront-origin-failover-path-title">
+  <figcaption class="sd-title" id="sap-c02-cloudfront-origin-failover-path-title">CloudFront origin failover 조건</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">Viewer request</strong><span class="sd-detail">메서드에 따라 origin group 경로가 갈림</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="읽기 요청 failover 경로">
+        <div class="sd-lane-title">GET, HEAD, OPTIONS</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">CloudFront</strong><span class="sd-detail">항상 primary origin으로 먼저 전달</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">Primary origin</strong><span class="sd-detail">상태 코드 또는 timeout 반환</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">설정된 failover code인가</span></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">Failover 상태 코드 조건</strong><span class="sd-detail">400, 403, 404, 416, 429, 500-504 중 설정값</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">Secondary origin</strong><span class="sd-detail">조건을 만족한 읽기 요청만 수신</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="쓰기 요청 경로">
+        <div class="sd-lane-title">POST, PUT</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">쓰기 요청</strong><span class="sd-detail">origin group failover 대상 메서드가 아님</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">별도 이중화 필요</strong><span class="sd-detail">쓰기 실패는 CloudFront origin failover로 전환되지 않음</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-multiple-pods-evicted-flow" aria-labelledby="sd-kubernetes-multiple-pods-evicted-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-multiple-pods-evicted-flow-title">Disk pressure가 node를 unhealthy로 만들기 전에 kubelet이 Pod를 evict한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Node disk pressure</strong>
+      <span class="sd-detail"><code>nodefs</code> 또는 <code>imagefs</code>가 threshold를 넘습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">node-local eviction 판단</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">kubelet eviction</strong>
+      <span class="sd-detail">QoS class와 사용량으로 candidate 순위를 정합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Pod 종료 처리</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Evicted Pods</strong>
+      <span class="sd-detail">phase는 <code>Failed</code>, reason은 <code>Evicted</code>입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">controller가 재생성할 수 있음</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Workload impact</strong>
+      <span class="sd-detail">capacity가 부족하면 새 replica도 대기할 수 있습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">disk를 회수한 뒤 복구</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cleanup and recovery</strong>
+      <span class="sd-detail">disk를 reclaim하고 threshold와 monitoring을 다시 점검합니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">Eviction은 scheduler나 controller가 요청하는 작업이 아니라 kubelet의 node-local 결정입니다. image GC가 공간을 회수하지 못하면 같은 순환이 반복될 수 있습니다.</p>
+</figure>

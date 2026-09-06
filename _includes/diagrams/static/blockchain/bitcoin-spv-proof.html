@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-bitcoin-spv-proof" aria-labelledby="sd-title-bitcoin-spv-proof">
+  <figcaption class="sd-title" id="sd-title-bitcoin-spv-proof">Merkle 경로만으로 block 포함을 검증합니다</figcaption>
+  <section class="sd-lane" aria-label="증명 입력">
+    <div class="sd-lane-title">증명 입력</div>
+    <div class="sd-grid">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">block 112</strong>
+        <span class="sd-detail">20fcf935, nTx=2</span>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">header merkleroot</strong>
+        <span class="sd-detail">38990380955e1609...</span>
+      </div>
+    </div>
+    <p class="sd-note">전체 block body 대신 block과 header root를 증명 계산에 사용합니다.</p>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">Merkle path 생성</span></div>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">gettxoutproof</strong>
+      <span class="sd-detail">151 bytes</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">txid와 root 비교</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">verifytxoutproof</strong>
+      <span class="sd-detail">같은 txid b50a5a25...</span>
+    </div>
+  </div>
+  <p class="sd-note">이 관측은 nTx=2인 local block의 증명이며, 메인넷 block 전체를 전송하지 않는 SPV 경로를 보여줍니다.</p>
+</figure>

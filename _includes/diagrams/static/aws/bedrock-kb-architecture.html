@@ -1,0 +1,70 @@
+<figure class="sd sd--comparison" id="sd-aws-bedrock-kb-architecture" aria-labelledby="sd-title-aws-bedrock-kb-architecture">
+  <figcaption class="sd-title" id="sd-title-aws-bedrock-kb-architecture">Bedrock Knowledge Base는 ingestion과 query를 나눠 관리한다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Managed ingestion">
+      <div class="sd-lane-title">1. Managed ingestion</div>
+      <div class="sd-grid">
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Data sources</strong>
+            <span class="sd-detail">S3 and connectors</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">fetch, parse, chunk</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Bedrock KB</strong>
+            <span class="sd-detail">managed ingestion</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">embed</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Embedding model</strong>
+            <span class="sd-detail">Titan or Cohere</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">vectorize</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Vector store</strong>
+            <span class="sd-detail">managed or customer-managed: OpenSearch, Aurora, S3 Vectors</span>
+          </div>
+        </div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Ingestion controls</strong>
+          <span class="sd-detail">chunking, metadata, sync schedule</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Query and grounding">
+      <div class="sd-lane-title">2. Query and grounding</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">User or app</strong>
+          <span class="sd-detail">natural language query</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Retrieve or RetrieveAndGenerate</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Agent runtime</strong>
+          <span class="sd-detail">Bedrock runtime API</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">IAM plus metadata filter</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Access filter</strong>
+          <span class="sd-detail">문서별 권한과 tenant 범위</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">top-k retrieval</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Vector search</strong>
+          <span class="sd-detail">ingestion에서 만든 index를 조회</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">grounded generation</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Foundation model</strong>
+          <span class="sd-detail">검색 근거를 포함해 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">source attribution</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Answer with citations</strong>
+          <span class="sd-detail">원문 source로 추적 가능</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Ingestion은 문서를 미리 vector로 만들고, query는 그 index에서 검색한 뒤 foundation model을 ground합니다.</p>
+</figure>

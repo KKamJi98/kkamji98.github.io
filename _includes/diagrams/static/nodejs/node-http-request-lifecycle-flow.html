@@ -1,0 +1,59 @@
+<figure class="sd sd--flow" id="node-http-request-lifecycle-flow" aria-labelledby="sd-title-node-http-request-lifecycle-flow">
+  <figcaption class="sd-title" id="sd-title-node-http-request-lifecycle-flow">HTTP request는 parser가 head를 완성한 뒤 request event가 됩니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">TCP connection을 엶</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">accepted</span></div>
+    <section class="sd-band" aria-label="Container boundary">
+      <div class="sd-band-title">Container boundary</div>
+      <section class="sd-lane" aria-label="Node.js process PID 1">
+        <div class="sd-lane-title">Node.js process (PID 1)</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Accepted TCP socket</strong>
+            <span class="sd-detail">libuv가 server에 전달</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">byte stream 해석</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">HTTP parser</strong>
+            <span class="sd-detail">method, path, headers와 body 규칙</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">complete head</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">request event</strong>
+            <span class="sd-detail">일반 HTTP/1.1 request마다 한 번 emit</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">application 호출</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Application handler</strong>
+            <span class="sd-detail">status, headers, body를 작성</span>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <p class="sd-note">Request data path와 process 종료 제어는 서로 다른 경계입니다.</p>
+
+  <section class="sd-lane" aria-label="Container termination control">
+    <div class="sd-lane-title">Container 종료 제어 경로</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">kubelet or container runtime</strong>
+        <span class="sd-detail">Node.js PID 1에 stop signal을 보냄</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">signal은 runtime과 entrypoint에 따라 다름</span></div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Graceful shutdown</strong>
+        <span class="sd-detail">새 연결 수락 중단, in-flight request drain</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">-> process socket: stop accepting / drain in-flight</span></div>
+    </div>
+    <p class="sd-note">점선 제어는 위 process boundary의 socket에 적용됩니다. graceful shutdown이 실행될지는 signal과 image entrypoint에 달려 있습니다.</p>
+  </section>
+
+  <p class="sd-note">하나의 TCP connection은 keep-alive로 여러 HTTP request를 운반할 수 있습니다. parser와 request event는 메시지 단위이고 connection event와 같은 개념이 아닙니다.</p>
+</figure>

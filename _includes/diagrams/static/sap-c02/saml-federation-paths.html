@@ -1,0 +1,51 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-saml-federation-paths" aria-labelledby="sd-title-saml-federation-paths">
+  <figcaption class="sd-title" id="sd-title-saml-federation-paths">같은 SAML assertion이 콘솔과 API의 다른 endpoint로 갑니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">사내 사용자</strong>
+      <span class="sd-detail">온프레미스 신원</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">IdP 인증</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">SAML 2.0 IdP</strong>
+      <span class="sd-detail">ADFS 등, assertion에 서명</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">공통 입력</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">SAML assertion</strong>
+      <span class="sd-detail">base64 4자에서 100,000자</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">endpoint 선택</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="관리 콘솔 로그인 경로">
+      <div class="sd-lane-title">콘솔 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">AWS sign-in endpoint</strong>
+          <span class="sd-detail">assertion을 sign-in token으로 교환</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">브라우저 리다이렉트</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">관리 콘솔 세션</strong>
+          <span class="sd-detail">웹 콘솔 접근</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="API 자격 증명 경로">
+      <div class="sd-lane-title">API 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">AssumeRoleWithSAML</strong>
+          <span class="sd-detail">AWS 자격 증명 없는 unsigned 요청</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">임시 자격 증명 발급</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">임시 자격 증명</strong>
+          <span class="sd-detail">DurationSeconds와 SessionNotOnOrAfter 중 짧은 쪽</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">두 경로는 같은 assertion을 공유하지만 콘솔은 sign-in endpoint를, API는 STS를 사용합니다. IAM Identity Center가 관리하는 AWSReservedSSO role에는 직접 SAML 가정을 적용할 수 없습니다.</p>
+</figure>

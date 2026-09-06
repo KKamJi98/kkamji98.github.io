@@ -1,0 +1,41 @@
+<figure class="sd sd--comparison" id="javascript-data-type-model" aria-labelledby="sd-title-javascript-data-type-model">
+  <figcaption class="sd-title" id="sd-title-javascript-data-type-model">JavaScript 값의 8개 ECMAScript 언어 타입</figcaption>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">JavaScript values</strong>
+    <span class="sd-detail">현재 값은 primitive 또는 Object 타입으로 분류됩니다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">7개와 1개로 분기</span></div>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Primitive values (7개)</div>
+      <div class="sd-node">
+        <strong class="sd-label">Undefined, Null, Boolean</strong>
+        <span class="sd-detail">값 없음, 의도한 빈 값, 참과 거짓</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Number, BigInt, String, Symbol</strong>
+        <span class="sd-detail">수치, 임의 정밀도 정수, 텍스트, 고유 키</span>
+      </div>
+      <p class="sd-note">Primitive 대입은 값 자체를 복사합니다. 값은 불변이며 변수는 다른 값으로 재할당할 수 있습니다.</p>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">Reference value: Object (1개)</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">Object and array</strong>
+          <span class="sd-detail">속성을 가진 mutable 값, 비교는 reference 기준</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Function</strong>
+          <span class="sd-detail">callable object</span>
+        </div>
+      </div>
+      <p class="sd-note">Object 대입은 같은 객체를 가리키는 reference를 복사합니다. <code>const</code>는 binding 재할당만 막습니다.</p>
+    </section>
+  </div>
+
+  <p class="sd-note">ECMAScript 언어 타입 표에서는 함수도 별도 타입이 아니라 호출 가능한 Object로 다룹니다.</p>
+</figure>

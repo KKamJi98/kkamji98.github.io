@@ -1,0 +1,38 @@
+<figure class="sd sd--comparison" id="stateless-stateful-firewall" aria-labelledby="stateless-stateful-firewall-title">
+  <figcaption class="sd-title" id="stateless-stateful-firewall-title">Stateless filter는 return rule이 필요하고 Stateful filter는 flow를 기억합니다</figcaption>
+  <p class="sd-intro">Connection tracking이 있으면 첫 packet의 허용 결과를 return path에 재사용할 수 있어 두 번째 rule이 줄어듭니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning" aria-labelledby="stateless-stateful-firewall-stateless-title">
+      <div class="sd-lane-title" id="stateless-stateful-firewall-stateless-title">Stateless path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Stateless firewall</strong>
+          <span class="sd-detail">각 packet을 독립적으로 rule과 비교</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">return traffic도 별도 검사</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Separate return rule</strong>
+          <span class="sd-detail">반대 방향을 허용하는 rule을 직접 작성</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane sd-lane--accent" aria-labelledby="stateless-stateful-firewall-stateful-title">
+      <div class="sd-lane-title" id="stateless-stateful-firewall-stateful-title">Stateful path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Stateful firewall</strong>
+          <span class="sd-detail">flow의 첫 packet을 평가</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">connection tracking에 상태 저장</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Tracked connection state</strong>
+          <span class="sd-detail">일치하는 return traffic을 암묵적으로 허용</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">AWS VPC에서 NACL은 subnet 경계의 stateless control이고 Security Group은 instance 경계의 stateful control입니다.</p>
+</figure>

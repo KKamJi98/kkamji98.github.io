@@ -1,0 +1,25 @@
+<figure class="sd sd--flow" id="sd-project-rememberme-log-monitoring" aria-labelledby="sd-title-project-rememberme-log-monitoring">
+  <figcaption class="sd-title" id="sd-title-project-rememberme-log-monitoring">Lambda 로그를 CloudWatch에서 ELK로 모읍니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Lambda functions x4</strong>
+      <span class="sd-detail">각 함수가 Log Group에 로그 기록</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">로그 수집</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">CloudWatch Logs</strong>
+      <span class="sd-detail">Log Group x4</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Subscription Filter</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Lambda</strong>
+      <span class="sd-detail">구독 로그를 다음 시스템으로 전달</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">ELK pipeline</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">ELK</strong>
+      <span class="sd-detail">Logstash, Elasticsearch, Kibana</span>
+    </div>
+  </div>
+  <p class="sd-note">여러 Lambda의 로그를 한 파이프라인으로 모아 Kibana에서 함께 분석합니다.</p>
+</figure>

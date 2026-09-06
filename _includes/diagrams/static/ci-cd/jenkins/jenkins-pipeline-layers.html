@@ -1,0 +1,40 @@
+<figure class="sd sd--layers" id="sd-ci-cd-jenkins-pipeline-layers" aria-labelledby="sd-title-ci-cd-jenkins-pipeline-layers">
+  <figcaption class="sd-title" id="sd-title-ci-cd-jenkins-pipeline-layers">Pipeline 정의가 세 Repository와 하나의 Jenkins로 이어지는 구조</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-jenkins-pipeline-definition-title">
+      <div class="sd-band-title" id="sd-ci-cd-jenkins-pipeline-definition-title">1. Jenkins item 생성</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Central repository</strong>
+          <span class="sd-detail">서비스별 Job DSL script를 보관</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">seed job이 DSL 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Seed job</strong>
+          <span class="sd-detail">Multibranch item을 생성하거나 갱신</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">Multibranch Pipeline job 생성</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-jenkins-pipeline-run-title">
+      <div class="sd-band-title" id="sd-ci-cd-jenkins-pipeline-run-title">2. Branch별 Pipeline 실행</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Multibranch Pipeline job</strong>
+          <span class="sd-detail">branch와 pull request마다 하위 job 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">branch indexing 후 checkout</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Service repository</strong>
+          <span class="sd-detail">코드와 함께 versioned Jenkinsfile 보관</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label"><code>@Library</code> 로드</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Shared library repository</strong>
+          <span class="sd-detail"><code>vars/</code>, <code>src/</code>, <code>resources/</code>의 공통 코드</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">잡 생성은 중앙 Job DSL이 담당하고, 실행할 Pipeline은 Service repository의 Jenkinsfile이 정의합니다. 공통 단계는 Shared Library에서 재사용합니다.</p>
+</figure>

@@ -1,0 +1,64 @@
+<figure class="sd sd--comparison" id="sd-aws-analytics-stack-01-architecture-history" aria-labelledby="sd-title-aws-analytics-stack-01-architecture-history">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-01-architecture-history">분석 아키텍처는 직전 한계에 답하며 진화했다</figcaption>
+  <p class="sd-note">연도는 두 축을 같은 시점에 놓습니다. 저장과 엔진의 변화, 스트리밍과 조직의 변화는 서로 직교합니다.</p>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Storage and engine evolution">
+      <div class="sd-lane-title">Storage and engine evolution</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Data Warehouse</strong>
+          <span class="sd-detail">1990s - schema-on-write, ETL</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">OLAP cubes and MPP appliances</strong>
+          <span class="sd-detail">2000s - Teradata, Netezza, Greenplum</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Hadoop</strong>
+          <span class="sd-detail">2006 - HDFS plus MapReduce</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Data Lake</strong>
+          <span class="sd-detail">2010 - schema-on-read</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Cloud data warehouse</strong>
+          <span class="sd-detail">2012 - Redshift managed warehouse; Snowflake separates storage and compute</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Open table formats</strong>
+          <span class="sd-detail">2017-19 - Iceberg, Delta Lake, Hudi</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Lakehouse</strong>
+          <span class="sd-detail">2021 - table features on lake storage</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Streaming and organizational patterns">
+      <div class="sd-lane-title">Streaming and organizational patterns</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Lambda architecture</strong>
+          <span class="sd-detail">2011 - batch layer plus speed layer</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Kappa architecture</strong>
+          <span class="sd-detail">2014 - one stream processor</span>
+        </div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Data Mesh</strong>
+          <span class="sd-detail">2019 - domain-oriented, decentralized ownership</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

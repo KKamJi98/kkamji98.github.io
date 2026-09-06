@@ -53,7 +53,7 @@ SCP와 RCP가 조직 트리의 어디에 붙고 OU를 어떻게 설계하는지�
 
 요청이 들어오면 AWS는 인증을 마친 뒤 request context를 만들고, 그 컨텍스트에 적용되는 정책들을 평가합니다. 기본값은 implicit deny이고 필요한 Allow가 있어야 접근이 성립합니다. AWS account root user는 별도 IAM 정책 없이 기본 권한을 갖지만, 요청에 적용되는 explicit Deny가 있으면 거부됩니다. 예를 들어 Organizations member account의 root user도 해당 계정에 적용되는 SCP의 제한을 받습니다.
 
-![Deny evaluation부터 session policy까지 일곱 단계 평가 순서와 각 단계에서 요청이 탈락하는 지점](/assets/img/sap-c02/iam-policy-evaluation-order.webp)
+{% include diagrams/static/sap-c02/iam-policy-evaluation-order.html %}
 
 그림은 좌상단의 API 요청에서 출발한 일곱 단계를 오른쪽으로 갔다가 아래에서 되돌아오는 형태로 접어 놓은 배치입니다. 윗줄은 왼쪽에서 오른쪽으로 1. Deny evaluation, 2. RCP, 3. SCP 순으로 가고, 3에서 아래로 꺾여 아랫줄로 내려온 다음 진행 방향이 반대가 됩니다. 아랫줄은 오른쪽에서 왼쪽으로 4. resource-based policy, 5. identity-based policy, 6. permissions boundary 순으로 돌아오고, 6에서 다시 아래로 내려가 7. session policy를 지나 오른쪽의 초록색 허용 상자에 도달합니다. 일곱 단계를 모두 통과한 요청만 이 상자에 도착합니다.
 
@@ -170,7 +170,7 @@ boundary가 실무에서 쓰이는 대표 형태는 권한 위임입니다. 플�
 
 계정 A의 principal이 계정 B의 리소스에 접근하는 가장 일반적인 경로는 계정 B의 role을 가정하는 것입니다. 이 경로에는 정책이 세 개 관여하고 각각이 결정하는 질문이 다릅니다.
 
-![계정 A의 principal이 계정 B의 role을 가정할 때 trust policy와 permission policy가 각각 결정하는 것](/assets/img/sap-c02/sts-assume-role-cross-account.webp)
+{% include diagrams/static/sap-c02/sts-assume-role-cross-account.html %}
 
 그림은 왼쪽의 계정 A 컨테이너와 오른쪽의 계정 B 컨테이너, 그리고 두 계정 어느 쪽에도 속하지 않고 사이에 놓인 AWS STS로 나뉩니다. 실선은 계정 A의 principal에서 STS로, STS에서 계정 B의 trust policy로 이어집니다. 교차 계정 role 가정이 STS를 거치는 호출이고, 그 호출을 받아 판정하는 첫 정책이 trust policy라는 뜻입니다.
 
@@ -271,7 +271,7 @@ STS 요청 쿼터도 대규모 조직 문항의 재료입니다. AWS 자격 증�
 
 서드파티 SaaS가 고객 계정의 role을 가정해 작업하는 구조에는 confused deputy 위험이 있습니다. 공격자가 다른 고객의 role ARN을 알아내 서드파티에 자기 계정 정보로 등록하면, 서드파티가 그 role을 대신 가정해버리는 경로입니다.
 
-![서드파티가 여러 고객의 role을 가정하는 구조와 external ID가 막는 지점](/assets/img/sap-c02/confused-deputy-external-id.webp)
+{% include diagrams/static/sap-c02/confused-deputy-external-id.html %}
 
 그림 가운데의 서드파티 서비스가 여러 고객의 role을 대신 가정하는 대리인(deputy) 위치에 있습니다. 정상 경로는 실선입니다. 좌상단의 고객 A가 서드파티에 role ARN을 주고, 서드파티가 그 role을 가정하려 하면 가운데 노란 상자인 external ID 조건을 지나 오른쪽 위의 고객 A의 role에 도달합니다. 고객 A의 role 상자에 적힌 대로 그 trust policy가 external ID 일치를 요구합니다.
 
@@ -348,7 +348,7 @@ confused deputy에는 방향이 다른 두 번째 형태가 있습니다. AWS �
 
 ABAC은 principal의 속성과 리소스의 태그를 조건으로 비교해 접근을 결정하는 방식입니다. 계정과 팀이 늘어날 때 role을 계속 만드는 대신 태그 매칭 하나로 확장하는 것이 목적입니다.
 
-![session tag가 aws:PrincipalTag로 들어가 리소스 태그와 매칭되는 ABAC 경로](/assets/img/sap-c02/session-tags-abac.webp)
+{% include diagrams/static/sap-c02/session-tags-abac.html %}
 
 윗줄이 태그가 전달되는 경로입니다. 왼쪽의 IdP 속성에서 출발해 `sts:TagSession`, session tag, `aws:PrincipalTag` 순으로 오른쪽으로 이어집니다. 두 번째 상자가 경로 위에 놓인 이유가 있습니다. `sts:TagSession`이 role trust policy에 없으면 태그만 누락되는 것이 아니라 `AssumeRole` 호출 자체가 실패하기 때문에, 이 상자를 통과하지 못하면 뒤가 전부 성립하지 않습니다. 세 번째 상자의 최대 50개와 key 128자, value 256자가 session tag의 한도이고, 네 번째 상자가 그 값이 request context의 `aws:PrincipalTag`로 들어가는 지점입니다.
 
@@ -400,7 +400,7 @@ flattened claim 형식은 nested object를 지원하지 않는 IdP를 위한 것
 
 사내 IdP를 SAML 2.0으로 AWS에 연결하면 사용자는 AWS에 자격 증명을 만들지 않고도 리소스에 접근할 수 있습니다. 이 연동에서 접근 경로가 둘로 갈리고, 각 경로가 다른 API를 씁니다.
 
-![SAML 2.0 페더레이션에서 API 접근 경로와 콘솔 접근 경로가 갈리는 지점](/assets/img/sap-c02/saml-federation-paths.webp)
+{% include diagrams/static/sap-c02/saml-federation-paths.html %}
 
 그림은 왼쪽의 사내 사용자에서 시작합니다. 사용자가 SAML 2.0 IdP에 인증하면 IdP가 assertion에 서명하고, 그 SAML assertion 상자에서 선이 둘로 갈라집니다. 갈라지기 전까지는 두 경로가 완전히 같습니다.
 
@@ -497,7 +497,7 @@ Identity Center에서 선택한 속성은 대상 계정으로 session tag로 전
 
 온프레미스 Active Directory가 있는 조직이 워크로드를 AWS로 옮길 때 디렉터리 선택 문항이 나옵니다. 선택지는 세 가지이고 기능 차이가 답을 가릅니다.
 
-![AWS Managed Microsoft AD, AD Connector, Simple AD가 갈리는 기준](/assets/img/sap-c02/directory-service-selection.webp)
+{% include diagrams/static/sap-c02/directory-service-selection.html %}
 
 왼쪽의 온프레미스 Active Directory가 출발점이고 거기서 나가는 선이 두 갈래입니다. 실선은 오른쪽의 AD Connector로 갑니다. 사용자를 온프레미스에 그대로 두고 인증만 프록시하는 경로이고, 상자에 적힌 대로 캐싱이 없고 사용자는 온프레미스에만 존재합니다. 그 실선 도중에 위로 갈라져 나온 점선이 AWS Managed Microsoft AD로 향합니다. 실선이 아닌 이유는 온프레미스 저장소를 그대로 쓰는 관계가 아니라 trust로 연결하는 선택이기 때문이고, 세 선택지 중 온프레미스 포리스트와 trust를 맺을 수 있는 것은 이것 하나입니다.
 

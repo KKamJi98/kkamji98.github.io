@@ -1,0 +1,96 @@
+<figure class="sd sd--comparison" id="grafana-loki-architecture" aria-labelledby="grafana-loki-architecture-title">
+  <figcaption class="sd-title" id="grafana-loki-architecture-title">Loki는 Write Path와 Read Path를 분리해 확장한다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Write Path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Log stream</strong>
+          <span class="sd-detail">Agent 또는 Grafana Alloy가 label과 log line을 보낸다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">validate and rate limit</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Distributor</strong>
+          <span class="sd-detail">tenant 요청을 검증하고 Ingester로 복제한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">replicate</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Ingester</strong>
+          <span class="sd-detail">in-memory chunk과 WAL을 유지하다가 flush 시점에 저장한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">flush index and chunks</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Object Store</strong>
+          <span class="sd-detail">Index와 Chunks를 장기 저장한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">Read Path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">LogQL query</strong>
+          <span class="sd-detail">Grafana 또는 API client가 tenant query를 보낸다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">split and cache</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Query Frontend</strong>
+          <span class="sd-detail">긴 query를 분할하고 Results cache를 사용해 Querier 부하를 조절한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">schedule</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Querier</strong>
+          <span class="sd-detail">Ingester의 최신 chunk와 Object Store의 Index/Chunks를 읽어 결과를 합친다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">return logs</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Query result</strong>
+          <span class="sd-detail">LogQL 결과를 Grafana 또는 호출한 client에 반환한다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Memcaches</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Query Frontend and Querier</strong>
+          <span class="sd-detail">Read Path가 query와 저장된 stream을 처리한다.</span>
+        </div>
+        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">cache lookup / cache result</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">R, I, C caches</strong>
+          <span class="sd-detail">Results, Index, Chunks 조회를 각각 캐시한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">Ruler</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Ruler</strong>
+          <span class="sd-detail">저장된 log에 alert rule을 적용한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">read Ingester and Object Store</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Ingester and Object Store</strong>
+          <span class="sd-detail">최신 chunk와 장기 보관 Index/Chunks를 Ruler가 조회한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">alert result</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Alert evaluation</strong>
+          <span class="sd-detail">평가 결과를 alert destination으로 전송한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">Cluster services</div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Compactor and Consul</strong>
+        <span class="sd-detail">Compactor는 retention과 index 정리를 맡고 Consul은 cluster coordination을 지원한다.</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Write와 Read를 독립적으로 확장할 수 있으며 Loki는 log body보다 label metadata를 중심으로 index한다.</p>
+</figure>

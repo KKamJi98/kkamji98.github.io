@@ -1,0 +1,56 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-xray-parent-based-sampling" aria-labelledby="sd-title-xray-parent-based-sampling">
+  <figcaption class="sd-title" id="sd-title-xray-parent-based-sampling">sampling 결정은 trace 진입 서비스에서 한 번만 일어납니다</figcaption>
+  <section class="sd-lane" aria-label="trace 전파 경로">
+    <div class="sd-lane-title">parent-based trace 경로</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">클라이언트 요청</strong>
+        <span class="sd-detail">trace가 시작되는 지점</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">진입</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">서비스 A</strong>
+        <span class="sd-detail">sampled 여부를 결정하고 하위로 전파</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">부모 결정 전파</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">서비스 B</strong>
+        <span class="sd-detail">부모 결정을 그대로 따름</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">부모 결정 전파</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">서비스 C</strong>
+        <span class="sd-detail">부모 결정을 그대로 따름</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">수집 비율 유지</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">수집된 trace</strong>
+        <span class="sd-detail">진입 rule이 정한 비율만큼 남음</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="진입 서비스 sampling rule">
+      <div class="sd-lane-title">A의 결정 입력</div>
+      <div class="sd-node">
+        <strong class="sd-label">진입 sampling rule</strong>
+        <span class="sd-detail">reservoir 1, fixed rate 5%, priority 1에서 9999</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="sampling API proxy">
+      <div class="sd-lane-title">sampling API 호출</div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">CloudWatch agent proxy</strong>
+        <span class="sd-detail">SDK와 ADOT가 TCP 2000으로 호출</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="하위 서비스 sampling rule">
+      <div class="sd-lane-title">C에만 둔 rule</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">fixed rate 100%</strong>
+        <span class="sd-detail">이미 내려진 parent 결정을 바꾸지 못함</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">진입 rule과 sampling proxy는 서비스 A의 결정 입력입니다. C에만 둔 100% rule은 이미 선택된 parent 결정을 뒤집지 못하므로 비율을 바꾸려면 A의 매칭 rule을 수정해야 합니다.</p>
+</figure>

@@ -30,7 +30,7 @@ image:
 
 ### 1.1. GitOps Principles
 
-![GitOps Principles](/assets/img/ci-cd/ci-cd-study/gitops-principles.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/gitops-principles.html %}
 > <https://opengitops.dev/>  
 
 - **Declarative 선언적 구성**
@@ -48,7 +48,7 @@ image:
   - 현재 시스템 상태와 버전 제어에서 원하는 상태의 차이를 비교해 알 수 있고, 이 비교가 폐쇄 루프를 설명한다.
   - 일종의 관리를 위한 컨트롤 루프로 애플리케이션의 라이프 사이클 동안 발생하는 '배포 - 모니터링 - 수정' 등의 전체 수명 주기를 자동화하는 것을 말한다.
 
-  ![GitOps Control Loop](/assets/img/ci-cd/ci-cd-study/gitops-control-loop.webp)
+  {% include diagrams/static/ci-cd/ci-cd-study/gitops-control-loop.html %}
 
 ---
 
@@ -73,7 +73,7 @@ image:
 - 둘째는 **데이터 플레인**이다. 노드에서 사용자 워크로드를 실행하는 역할.
   - 노드는 쿠버네티스 클러스터의 일부분으로 컨테이너 런타임 containerd 등, 노드의 컨테이너 런타임과 REST API와 소통을 담당하는 kubelet 그리고 노드 수준의 네트워크 추상화를 담당하는 kube-proxy로 구성된다.
 
-![Kubernetes Architecture Overview](/assets/img/ci-cd/ci-cd-study/kubernetes-architecture-overview.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/kubernetes-architecture-overview.html %}
 
 ### 2.2. HTTP REST API Server
 

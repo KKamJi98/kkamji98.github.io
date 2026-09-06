@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-project-rememberme-waf-alarm-workflow" aria-labelledby="sd-title-project-rememberme-waf-alarm-workflow">
+  <figcaption class="sd-title" id="sd-title-project-rememberme-waf-alarm-workflow">WAF 이벤트를 Slack 알림으로 전달합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">AWS WAF</strong>
+      <span class="sd-detail">규칙에 맞는 traffic event</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">rule match</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">CloudWatch Metric</strong>
+      <span class="sd-detail">WAF event metric</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">alarm trigger</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Amazon SNS</strong>
+      <span class="sd-detail">Simple Notification Service</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">notification publish</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">AWS Chatbot</strong>
+      <span class="sd-detail">Slack integration</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Slack delivery</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Slack</strong>
+      <span class="sd-detail">운영 채널에 알림 표시</span>
+    </div>
+  </div>
+  <p class="sd-note">예시 규칙은 같은 IP가 1분에 300회 이상 요청할 때 traffic을 제한하는 경우입니다.</p>
+</figure>

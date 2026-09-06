@@ -1,0 +1,31 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-dms-schema-object-ownership-title">
+  <figcaption class="sd-title" id="sap-c02-dms-schema-object-ownership-title">DMS와 schema conversion의 책임 분할</figcaption>
+  <div class="sd-flow">
+    <div class="sd-grid">
+      <div class="sd-node sd-node--accent"><strong class="sd-label">소스 데이터베이스</strong><span class="sd-detail">Oracle, SQL Server, SAP ASE, Db2 등</span></div>
+      <div class="sd-node"><strong class="sd-label">Secrets Manager</strong><span class="sd-detail">migration project가 참조하는 DB 자격증명</span></div>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">같은 소스에 두 도구 연결</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="DMS 데이터 이동 경로">
+        <div class="sd-lane-title">데이터 이동</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">DMS replication task</strong><span class="sd-detail">full load, full load + CDC, CDC only</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">DMS가 만드는 오브젝트</strong><span class="sd-detail">table, primary key, 경우에 따라 unique index</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Schema conversion 오브젝트 경로">
+        <div class="sd-lane-title">스키마와 코드 변환</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">DMS Schema Conversion 또는 AWS SCT</strong><span class="sd-detail">스키마와 코드만 변환, Secrets Manager 자격증명 참조, 데이터는 이동하지 않음</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">변환 도구가 만드는 오브젝트</strong><span class="sd-detail">secondary index, foreign key, user account, sequence, stored procedure, trigger, view</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">타깃에 반영</span></div>
+    <div class="sd-node"><strong class="sd-label">타깃 데이터베이스</strong><span class="sd-detail">Aurora PostgreSQL, Aurora MySQL, RDS 등</span></div>
+    <div class="sd-note">DMS만 실행하면 데이터와 기본 키는 생기지만 secondary index와 코드 오브젝트는 비어 있을 수 있습니다.</div>
+  </div>
+</figure>

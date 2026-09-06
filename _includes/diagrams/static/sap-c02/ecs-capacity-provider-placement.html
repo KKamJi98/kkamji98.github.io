@@ -1,0 +1,52 @@
+<figure class="sd sd--flow" id="ecs-capacity-provider-placement" aria-labelledby="ecs-capacity-provider-placement-title">
+  <figcaption class="sd-title" id="ecs-capacity-provider-placement-title">launchType과 capacityProviderStrategy는 함께 지정할 수 없다</figcaption>
+  <p class="sd-note">호출에서 한 가지 용량 지정 방식만 고릅니다. strategy를 고르면 base를 먼저 채우고 남은 태스크를 weight 비율로 나눕니다.</p>
+
+  <div class="sd-flow" aria-label="ECS 용량 provider 배치">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">RunTask 와 CreateService</strong>
+      <span class="sd-detail">둘 다 생략하면 클러스터의 defaultCapacityProviderStrategy를 사용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">하나만 선택</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="ecs-capacity-provider-placement-launch-title">
+        <div class="sd-lane-title" id="ecs-capacity-provider-placement-launch-title">launchType 경로</div>
+        <div class="sd-node">
+          <strong class="sd-label">launchType</strong>
+          <span class="sd-detail">EC2, FARGATE, EXTERNAL, MANAGED_INSTANCES를 직접 지정합니다. Spot은 없습니다.</span>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="ecs-capacity-provider-placement-strategy-title">
+        <div class="sd-lane-title" id="ecs-capacity-provider-placement-strategy-title">capacityProviderStrategy 경로</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">capacityProviderStrategy</strong>
+            <span class="sd-detail">provider는 최대 20개이며 launchType을 생략해야 합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">먼저</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">base 를 먼저 채운다</strong>
+            <span class="sd-detail">strategy 안에서 한 provider만 base를 가집니다. 범위는 0에서 100,000입니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">남은 태스크</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">남은 태스크를 weight 로 나눈다</strong>
+            <span class="sd-detail">weight 범위는 0에서 1,000이며 전부 0이면 호출이 실패합니다.</span>
+          </div>
+          <div class="sd-grid">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">FARGATE</strong>
+              <span class="sd-detail">온디맨드 용량입니다.</span>
+            </div>
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">FARGATE_SPOT</strong>
+              <span class="sd-detail">회수 시 2분 경고 후 태스크를 중단합니다.</span>
+            </div>
+          </div>
+          <p class="sd-note">ASG capacity provider는 managed scaling이 targetCapacity로 ASG를 조정하는 별도 provider입니다.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-ci-cd-ec2-jenkins-server-flow" aria-labelledby="sd-title-ci-cd-ec2-jenkins-server-flow">
+  <figcaption class="sd-title" id="sd-title-ci-cd-ec2-jenkins-server-flow">EC2의 Jenkins controller가 commit을 artifact로 전달하는 흐름</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Source repository</strong>
+      <span class="sd-detail">webhook 또는 poll로 변경 감지</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Jenkins가 변경을 받음</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Jenkins on EC2</strong>
+      <span class="sd-detail">controller가 queue를 관리하고 executor를 할당</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Build job 스케줄</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Build job</strong>
+      <span class="sd-detail">compile, test, package 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">versioned output 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Artifact or image</strong>
+      <span class="sd-detail">다음 단계로 넘기는 버전 있는 결과물</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">배포 대상이 결과물을 소비</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Deployment target</strong>
+      <span class="sd-detail">artifact 또는 image를 사용해 배포</span>
+    </div>
+  </div>
+  <p class="sd-note">controller는 작업을 조정하고 build workload는 격리된 agent에서 실행할 수 있습니다. 다음 stage로 이동하는 것은 workspace가 아니라 versioned artifact입니다.</p>
+</figure>

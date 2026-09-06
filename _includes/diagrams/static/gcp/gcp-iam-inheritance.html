@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="gcp-iam-inheritance" aria-labelledby="gcp-iam-inheritance-title">
+  <figcaption class="sd-title" id="gcp-iam-inheritance-title">IAM Allow grant는 계층 아래로 누적되며 줄어들지 않습니다</figcaption>
+  <p class="sd-intro">하위 리소스의 effective allow policy는 자기 binding과 모든 상위 binding의 합집합입니다.</p>
+
+  <div class="sd-flow" aria-label="GCP IAM 정책 상속 흐름">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Organization</strong>
+      <span class="sd-detail">상위에 <code>Viewer</code> grant를 설정</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">상위 Allow가 하위로 상속</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Folder: engineering</strong>
+      <span class="sd-detail">자체 binding이 없어도 Organization grant를 받음</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">상속된 Viewer를 유지</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Project: app-prod</strong>
+      <span class="sd-detail">여기에 <code>Editor</code> grant를 추가</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">자기 정책과 상위 정책을 합집합</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Effective policy on app-prod</strong>
+      <span class="sd-detail"><code>Viewer + Editor</code>. 하위에서 상위 Allow를 좁히지 않음</span>
+    </div>
+  </div>
+
+  <p class="sd-note">일반적인 Allow 상속은 additive입니다. 별도 IAM Deny 정책은 이 Allow 계산과 별도로 우선 평가됩니다.</p>
+</figure>

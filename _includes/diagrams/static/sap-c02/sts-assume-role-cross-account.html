@@ -1,0 +1,53 @@
+<figure class="sd sd--flow" id="sd-sap-c02-sts-assume-role-cross-account" aria-labelledby="sd-title-sts-assume-role-cross-account">
+  <figcaption class="sd-title" id="sd-title-sts-assume-role-cross-account">trust policy는 가정 주체를, permission policy는 가정 후 작업을 정합니다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sts-account-a-title">
+      <div class="sd-band-title" id="sts-account-a-title">계정 A: 호출 측 전제</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">계정 A의 principal</strong>
+          <span class="sd-detail">user 또는 role</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">identity policy</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">sts:AssumeRole 권한</strong>
+          <span class="sd-detail">없으면 호출 자체가 거부됨</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">AssumeRole 호출</span></div>
+    <section class="sd-band" aria-labelledby="sts-service-title">
+      <div class="sd-band-title" id="sts-service-title">AWS STS</div>
+      <div class="sd-node">
+        <strong class="sd-label">임시 자격 증명 발급</strong>
+        <span class="sd-detail">기본 유효 기간 1시간</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">trust policy 확인</span></div>
+    <section class="sd-band" aria-labelledby="sts-account-b-title">
+      <div class="sd-band-title" id="sts-account-b-title">계정 B: 역할과 리소스</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">trust policy</strong>
+          <span class="sd-detail">계정 A principal의 explicit Allow 필수</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">가정 허용</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">대상 role</strong>
+          <span class="sd-detail">maximum session duration 1시간에서 12시간</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">role 권한 부여</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">permission policy</strong>
+          <span class="sd-detail">가정한 세션이 할 수 있는 일</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">API 호출</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">대상 리소스</strong>
+          <span class="sd-detail">session policy로 더 좁힐 수 있음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">세 정책이 모두 필요합니다. trust policy가 빠지면 가정이 거부되고, permission policy가 빠지면 가정은 성공해도 이후 API 호출이 거부됩니다.</p>
+</figure>

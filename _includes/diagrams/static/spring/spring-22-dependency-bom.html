@@ -1,0 +1,11 @@
+<figure class="sd sd--flow" id="sd-spring-22-dependency-bom" aria-labelledby="sd-spring-22-title">
+  <figcaption class="sd-title" id="sd-spring-22-title">BOM이 생략한 dependency 버전을 결정하는 흐름</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">declared dependencies</strong><span class="sd-detail">spring-boot-starter-web 등은 version을 생략해 선언</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">dependency management</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">spring-boot-dependencies BOM</strong><span class="sd-detail">properties로 호환되는 library version 집합을 관리</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">직접 및 전이 의존성 정렬</span></div>
+    <div class="sd-node"><strong class="sd-label">resolved dependency tree</strong><span class="sd-detail">서로 호환되는 버전으로 해석된 일관된 의존성 집합</span></div>
+  </div>
+  <p class="sd-note">BOM이 제공하는 검증된 버전 집합이 충돌과 불일치를 줄이며, 개별 version override는 이 보장 범위를 벗어날 수 있습니다.</p>
+</figure>

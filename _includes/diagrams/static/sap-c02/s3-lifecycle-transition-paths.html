@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-s3-lifecycle-transition-paths-title">
+  <figcaption class="sd-title" id="sap-c02-s3-lifecycle-transition-paths-title">S3 lifecycle 전환은 한 방향으로만 흐른다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">S3 Standard</strong>
+      <span class="sd-detail">최소 보관 기간과 최소 과금 객체 크기가 없다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">lifecycle rule 선택</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <span class="sd-lane-title">Intelligent-Tiering 경로</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Intelligent-Tiering</strong><span class="sd-detail">최소 보관 기간과 최소 과금 객체 크기가 없다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">다음 저빈도 계층</span></div>
+        <div class="sd-node"><strong class="sd-label">Glacier Instant Retrieval</strong><span class="sd-detail">최소 90일, 최소 과금 128 KB, 밀리초 조회.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">IA 경로</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Standard-IA</strong><span class="sd-detail">최소 30일, 최소 과금 128 KB.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">클래스 선택</span></div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">One Zone-IA</strong><span class="sd-detail">최소 30일, 단일 AZ, 설계 가용성 99.5%.</span></div>
+          <div class="sd-node"><strong class="sd-label">Glacier Instant Retrieval</strong><span class="sd-detail">최소 90일, 128 KB, 밀리초 조회.</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">Glacier Flexible Retrieval로 합류</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">Glacier Flexible Retrieval</strong>
+    <span class="sd-detail">최소 90일. 객체당 40 KB 메타데이터 오버헤드가 있다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">단방향 전환</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">Glacier Deep Archive</strong>
+    <span class="sd-detail">최소 180일. 객체당 40 KB 메타데이터 오버헤드가 있다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">더 이상 lifecycle 전환 불가</span></div>
+  <div class="sd-node sd-node--warning">
+    <strong class="sd-label">되돌리는 lifecycle 규칙은 없다</strong>
+    <span class="sd-detail">restore로 임시 사본을 받은 뒤 copy로 덮어써야 클래스를 바꿀 수 있다.</span>
+  </div>
+</figure>

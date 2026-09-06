@@ -1,0 +1,45 @@
+<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-cilium-ebpf-event" aria-labelledby="sd-kubernetes-cilium-ebpf-event-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-ebpf-event-title">eBPF는 syscall event를 hook하고 Linux kernel scheduling path와 함께 실행된다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Process</strong>
+      <span class="sd-detail">user-space process가 실행 요청을 만든다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">execve()</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Syscall</strong>
+      <span class="sd-detail">Linux kernel 경계에서 event가 관찰될 수 있다.</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Linux scheduler path">
+      <div class="sd-lane-title">Linux kernel path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Syscall</strong>
+          <span class="sd-detail">kernel이 일반 execution path를 계속 처리한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">scheduler dispatch</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Scheduler</strong>
+          <span class="sd-detail">다음 실행 작업을 선택한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent" aria-label="eBPF event hook path">
+      <div class="sd-lane-title">eBPF hook path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">eBPF program</strong>
+          <span class="sd-detail">syscall hook에서 process event를 읽고 처리한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">submit event</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Event record</strong>
+          <span class="sd-detail">process id와 event type을 perf buffer로 보낸다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note"><code>syscall__ret_execve</code>는 event를 만들고 <code>comm_events.perf_submit</code>으로 제출한다. kprobe나 uprobe를 사용하면 다른 hook 지점에도 program을 붙일 수 있다.</p>
+</figure>

@@ -1,0 +1,46 @@
+<figure class="sd sd--comparison" id="sd-blockchain-reentrancy-cei" aria-labelledby="sd-title-blockchain-reentrancy-cei">
+  <figcaption class="sd-title" id="sd-title-blockchain-reentrancy-cei">외부 호출 전에 balance를 지우는지가 재진입 결과를 가릅니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">withdraw()</strong>
+      <span class="sd-detail">balance가 아직 1 ETH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">호출 순서 분기</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="취약한 외부 호출 순서">
+      <div class="sd-lane-title">취약 순서</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">msg.sender.call</strong>
+          <span class="sd-detail">먼저 1 ETH 전송</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">receive 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">attacker receive</strong>
+          <span class="sd-detail">withdraw를 다시 호출</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">mapping이 아직 0이 아님</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">withdraw again</strong>
+          <span class="sd-detail">balance가 두 번 지급될 수 있음</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Checks effects interactions 순서">
+      <div class="sd-lane-title">CEI 순서</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">CEI withdraw</strong>
+          <span class="sd-detail">storage를 0으로 만든 뒤 send</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">nested call이 0을 읽음</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">msg.sender.call</strong>
+          <span class="sd-detail">바깥 call은 두 번 지급하지 않음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">두 경로의 분기점은 외부 호출 전에 balances를 0으로 만드는가입니다.</p>
+</figure>

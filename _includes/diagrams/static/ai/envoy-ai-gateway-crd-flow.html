@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" id="envoy-ai-gateway-crd-flow" aria-labelledby="envoy-ai-gateway-crd-flow-title">
+  <figcaption class="sd-title" id="envoy-ai-gateway-crd-flow-title">Envoy AI Gateway request path</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">OpenAI-compatible request</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node">
+      <strong class="sd-label">AIGatewayRoute</strong>
+      <span class="sd-detail">model name으로 route를 선택하는 CRD</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">AI Gateway ext processor</strong>
+      <span class="sd-detail">token usage, prompt cache, auth를 data plane에서 판단</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node">
+      <strong class="sd-label">LLM provider</strong>
+      <span class="sd-detail">OpenAI, AWS Bedrock, Gemini</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Quota policy">
+      <div class="sd-lane-title">Quota policy</div>
+      <div class="sd-node">
+        <strong class="sd-label">Quota Policy</strong>
+        <span class="sd-detail">usage-based rate limit을 ext processor에 적용</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Provider credential">
+      <div class="sd-lane-title">Provider credential</div>
+      <div class="sd-node">
+        <strong class="sd-label">BackendSecurityPolicy</strong>
+        <span class="sd-detail">provider credential을 한곳에서 관리해 upstream auth에 사용</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">AIGatewayRoute와 두 policy는 Kubernetes CRD로 선언되고, ext processor와 provider 단계에 각각 적용됩니다.</p>
+</figure>

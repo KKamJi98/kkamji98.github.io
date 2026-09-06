@@ -1,0 +1,30 @@
+<figure class="sd sd--comparison" id="sd-spring-18-propagation" aria-labelledby="sd-spring-18-title">
+  <figcaption class="sd-title" id="sd-spring-18-title">트랜잭션 전파: REQUIRED와 REQUIRES_NEW</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="sd-spring-18-required-title">
+      <div class="sd-lane-title" id="sd-spring-18-required-title">PROPAGATION_REQUIRED (default)</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">outer @Transactional</strong><span class="sd-detail">물리 트랜잭션 시작</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">inner 호출</span></div>
+        <div class="sd-node"><strong class="sd-label">inner @Transactional (REQUIRED)</strong><span class="sd-detail">기존 트랜잭션에 합류</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">같은 물리 경계</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">one physical transaction</strong><span class="sd-detail">outer와 inner scope가 하나의 트랜잭션을 공유</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">inner rollback</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">rollback-only</strong><span class="sd-detail">inner 실패가 전체 트랜잭션을 rollback 대상으로 표시</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="sd-spring-18-requires-new-title">
+      <div class="sd-lane-title" id="sd-spring-18-requires-new-title">PROPAGATION_REQUIRES_NEW</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">outer @Transactional</strong><span class="sd-detail">inner 실행 동안 일시 중지</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">새 경계 시작</span></div>
+        <div class="sd-node"><strong class="sd-label">inner @Transactional (REQUIRES_NEW)</strong><span class="sd-detail">기존 트랜잭션에 참여하지 않음</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">독립 실행</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">two independent transactions</strong><span class="sd-detail">별도 물리 트랜잭션과 DB connection</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">inner 종료</span></div>
+        <div class="sd-node"><strong class="sd-label">inner commit or rollback</strong><span class="sd-detail">inner 결과와 outer 결과가 서로 독립</span></div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">REQUIRED의 inner rollback은 전체를 rollback-only로 만들고, REQUIRES_NEW는 outer를 멈춘 뒤 독립적으로 commit 또는 rollback합니다.</p>
+</figure>

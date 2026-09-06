@@ -1,0 +1,48 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-scp-iam-effective-permissions" aria-labelledby="sd-title-scp-iam-effective-permissions">
+  <figcaption class="sd-title" id="sd-title-scp-iam-effective-permissions">유효 권한은 SCP와 boundary와 identity policy의 교집합입니다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="SCP 권한 경계">
+      <div class="sd-lane-title">조직 경계</div>
+      <div class="sd-node">
+        <strong class="sd-label">SCP</strong>
+        <span class="sd-detail">조직이 정한 최대 한도, 권한을 부여하지 않음</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="permission boundary 권한 경계">
+      <div class="sd-lane-title">principal 경계</div>
+      <div class="sd-node">
+        <strong class="sd-label">Permission boundary</strong>
+        <span class="sd-detail">principal의 최대 한도</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="identity policy 권한 부여">
+      <div class="sd-lane-title">권한 부여</div>
+      <div class="sd-node">
+        <strong class="sd-label">Identity policy</strong>
+        <span class="sd-detail">실제 API 권한을 부여하는 정책</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">세 정책이 모두 허용한 교집합</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">유효 권한</strong>
+    <span class="sd-detail">세 정책이 허용한 작업만 남음</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">API 호출 판정</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="허용된 API 호출">
+      <div class="sd-lane-title">모두 허용</div>
+      <div class="sd-node">
+        <strong class="sd-label">허용</strong>
+        <span class="sd-detail">API 호출 수행</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="정책 교집합에서 빠진 API 호출">
+      <div class="sd-lane-title">하나라도 제외</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">암묵적 거부</strong>
+        <span class="sd-detail">SCP만 허용해도 identity policy가 없으면 차단</span>
+      </div>
+    </section>
+  </div>
+</figure>

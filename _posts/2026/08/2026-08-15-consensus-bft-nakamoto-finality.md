@@ -44,7 +44,7 @@ finalized   11545279    (latest - 74)
 
 같은 URL을 같은 날 이미 세 번 읽었습니다. 간격은 33/64, 56/88, 33/64였고, 이번에는 43/74입니다. 상수가 아닙니다.
 
-![regtest의 invalid 팁과 Sepolia finalized tag는 다른 머리를 가리킨다](/assets/img/blockchain/nakamoto-vs-pos-heads.webp)
+{% include diagrams/static/blockchain/nakamoto-vs-pos-heads.html %}
 _Bitcoin confirmation은 활성 팁까지의 깊이다. finalized는 two-thirds checkpoint다._
 
 두 그림을 한 질문에 넣으면 사고가 납니다. Bitcoin explorer의 confirmation 1과 Ethereum의 `finalized`를 같은 “확정”으로 번역하면, reorg 창과 checkpoint 창을 같은 타이머로 취급하게 됩니다.
@@ -57,7 +57,7 @@ ethereum.org는 체인이 네 epoch보다 길게 finalize하지 못하면 inacti
 
 운영 화면에서는 이렇게 보입니다. `eth_syncing`은 `false`일 수 있고 HTTP는 200입니다. 그런데 `latest`와 `finalized` 간격이 평소보다 벌어지고, 그 상태가 epoch 단위로 유지됩니다. 이전 글의 운영 사다리에서 tag 칸이 실패한 것과 같습니다. 그 실패의 합의 쪽 이름이 inactivity leak입니다.
 
-![checkpoint 투표가 two-thirds를 못 채우면 finalized가 멈추고 네 epoch 뒤 leak이 켜진다](/assets/img/blockchain/pos-inactivity-leak.webp)
+{% include diagrams/static/blockchain/pos-inactivity-leak.html %}
 _이번 Sepolia 조회는 leak 구간이 아니다. 문서는 4 epoch 규칙을 적는다._
 
 이번 스냅샷의 74 block 간격은 leak을 관측한 값이 아닙니다. 공개 RPC 한 곳의 지연과 빈 slot이 섞인 숫자입니다. leak 자체를 로컬에서 재현하지 않았습니다.

@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="sd-http-200-is-not-chain-head" aria-labelledby="sd-title-http-200-is-not-chain-head">
+  <figcaption class="sd-title" id="sd-title-http-200-is-not-chain-head">HTTP 200은 chain head의 정합성을 보장하지 않습니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">cast / curl</strong>
+      <span class="sd-detail">JSON-RPC client</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">HTTP transport</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">HTTP 200</strong>
+      <span class="sd-detail">socket 응답 상태</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">본문의 method와 tag를 별도 검사</span></div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="sync status">
+      <div class="sd-lane-title">sync status</div>
+      <div class="sd-node">
+        <strong class="sd-label">eth_syncing false</strong>
+        <span class="sd-detail">Anvil and Sepolia, import 표시 없음</span>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning" aria-label="peer method">
+      <div class="sd-lane-title">peer method</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">net_peerCount</strong>
+        <span class="sd-detail">Anvil -32601, 그래도 HTTP 200</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="head tags">
+      <div class="sd-lane-title">head tags</div>
+      <div class="sd-node">
+        <strong class="sd-label">latest vs finalized</strong>
+        <span class="sd-detail">Anvil 5 vs 0</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">HTTP 200은 transport가 본문을 돌려줬다는 뜻입니다. JSON-RPC error, peer 유무, tag가 가리키는 머리는 각각 따로 검증해야 합니다.</p>
+</figure>

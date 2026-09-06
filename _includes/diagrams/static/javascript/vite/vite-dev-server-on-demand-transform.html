@@ -1,0 +1,57 @@
+<figure class="sd sd--comparison" id="vite-dev-server-on-demand-transform" aria-labelledby="sd-title-vite-dev-server-on-demand-transform">
+  <figcaption class="sd-title" id="sd-title-vite-dev-server-on-demand-transform">Bundle-first와 Vite dev server의 첫 요청 경로</figcaption>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Bundle-first dev server 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Source modules</strong>
+          <span class="sd-detail">수백 개 파일 전체</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">전체 graph를 먼저 처리</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Bundle everything</strong>
+          <span class="sd-detail">앱 크기와 함께 비용 증가</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">번들 생성 후</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Serve one bundle</strong>
+          <span class="sd-detail">첫 요청이 전체 graph를 기다림</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">응답</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Browser</strong>
+          <span class="sd-detail">bundle-first 결과를 받음</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">Vite dev server 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Source modules</strong>
+          <span class="sd-detail">같은 수백 개 파일</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">dependency만 사전 처리</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Pre-bundle dependencies</strong>
+          <span class="sd-detail"><code>esbuild</code>, <code>node_modules</code>만 대상</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">브라우저 요청마다</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Transform on request</strong>
+          <span class="sd-detail">import된 모듈 하나씩 변환</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">브라우저 요청 / Native ESM 응답</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Browser</strong>
+          <span class="sd-detail">브라우저가 모듈별 요청을 보내고 Native ESM을 받음</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">두 경로의 목적지는 Browser입니다. Vite는 source 전체 번들이 끝날 때까지 기다리지 않고, 브라우저가 요청한 모듈만 transform해 시작 지연을 줄입니다.</p>
+</figure>

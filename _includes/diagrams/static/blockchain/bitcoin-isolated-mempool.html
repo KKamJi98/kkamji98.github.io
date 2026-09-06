@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-bitcoin-isolated-mempool" aria-labelledby="sd-title-bitcoin-isolated-mempool">
+  <figcaption class="sd-title" id="sd-title-bitcoin-isolated-mempool">피어가 없어도 유효한 거래는 local mempool에 머뭅니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">wallet send 1.25 BTC</strong>
+      <span class="sd-detail">fee_rate 10 sat/vB, recipient bob</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">transaction 유효성 검사</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">regtest node</strong>
+      <span class="sd-detail">networkactive=true, peers=0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">이웃 peer 없음</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">mempool</strong>
+      <span class="sd-detail">size=1, unbroadcast=true, unbroadcastcount=1</span>
+    </div>
+  </div>
+  <p class="sd-note">mempool은 전파 버퍼가 아니라 이 node가 아직 block에 넣지 않은 거래를 보관하는 공간입니다.</p>
+</figure>

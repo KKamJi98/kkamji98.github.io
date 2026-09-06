@@ -62,7 +62,7 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 | **Bucket Web**     | 객체 스토리지(S3/GCS) 데이터 시각화 및 관리 WEB UI 제공             | Deployment                |
 | **Query Frontend** | Querier 앞에서 쿼리 캐싱,최적화 (대규모 환경)                       | Deployment                |
 
-![Thanos Architecture](/assets/img/kubernetes/thanos_architecture.webp)
+{% include diagrams/static/kubernetes/thanos_architecture.html %}
 
 ---
 

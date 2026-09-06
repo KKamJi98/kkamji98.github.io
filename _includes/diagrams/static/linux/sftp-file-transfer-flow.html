@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" id="sftp-file-transfer-flow" aria-labelledby="sftp-file-transfer-flow-title">
+  <figcaption class="sd-title" id="sftp-file-transfer-flow-title">SFTP는 SSH 연결 안에서 동작하는 subsystem입니다</figcaption>
+  <p class="sd-note">SFTP는 별도 port가 있는 독립 protocol이 아니라 SSH의 인증과 암호화 channel을 그대로 사용합니다.</p>
+
+  <div class="sd-flow" aria-label="SFTP file transfer flow">
+    <div class="sd-node">
+      <strong class="sd-label">SFTP client</strong>
+      <span class="sd-detail"><code>sftp</code> 명령이나 GUI client가 요청을 시작합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">SSH credentials와 port</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">SSH connection</strong>
+      <span class="sd-detail">로그인 인증과 암호화된 transport를 제공합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">subsystem 실행</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">SFTP server</strong>
+      <span class="sd-detail">SSH가 시작한 <code>sftp</code> subsystem process입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">OS 권한 검사</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Filesystem</strong>
+      <span class="sd-detail">접근 권한은 protocol이 아니라 운영체제가 판정합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">파일 read/write</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Transferred file</strong>
+      <span class="sd-detail">소유권과 권한은 login user 기준으로 남습니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">SSH service를 끄면 같은 channel을 쓰는 SFTP도 함께 사용할 수 없습니다.</p>
+</figure>

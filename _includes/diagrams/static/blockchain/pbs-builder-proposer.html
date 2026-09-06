@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-pbs-builder-proposer" aria-labelledby="sd-title-blockchain-pbs-builder-proposer">
+  <figcaption class="sd-title" id="sd-title-blockchain-pbs-builder-proposer">PBS는 block payload 조립과 제안을 나눕니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">searcher</strong>
+      <span class="sd-detail">private bundle</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">bundle 제출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">builder</strong>
+      <span class="sd-detail">payload 조립</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">완성 payload 전달</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">proposer</strong>
+      <span class="sd-detail">validator가 제안</span>
+    </div>
+  </div>
+  <p class="sd-note">validator는 여전히 block을 제안하고, builder가 거래 순서를 담은 payload를 조립합니다.</p>
+</figure>

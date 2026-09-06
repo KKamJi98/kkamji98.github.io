@@ -1,0 +1,49 @@
+<figure class="sd sd--flow" id="humanize-route-hint" aria-labelledby="humanize-route-hint-title">
+  <figcaption class="sd-title" id="humanize-route-hint-title">결정적 점수가 humanize 경로와 call 수를 선택</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Input prose</strong>
+      <span class="sd-detail">아직 어떤 model도 읽지 않은 원문</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">prepare_monolith_input.py</strong>
+      <span class="sd-detail">counted tells와 risk band로 route_hint를 계산</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">route_hint에 따라 세 path로 분기</span></div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="light route">
+      <div class="sd-lane-title">light</div>
+      <div class="sd-node">
+        <strong class="sd-label">1 call</strong>
+        <span class="sd-detail">counted tells 2개 이하이고 risk가 낮음</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="standard route">
+      <div class="sd-lane-title">standard</div>
+      <div class="sd-node">
+        <strong class="sd-label">2 calls</strong>
+        <span class="sd-detail">tells가 섞였거나 구조 지표 risk가 높음</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="heavy route">
+      <div class="sd-lane-title">heavy</div>
+      <div class="sd-node">
+        <strong class="sd-label">3+ calls</strong>
+        <span class="sd-detail">tells 8개 이상 또는 15000자 초과</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">route별 진단과 윤문 범위</span></div>
+  <div class="sd-node sd-node--warning">
+    <strong class="sd-label">verify_gates.py</strong>
+    <span class="sd-detail">변경률 30%에서 경고하고 50%에서 중단</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">final.md</strong>
+    <span class="sd-detail">원문의 meaning unchanged</span>
+  </div>
+  <p class="sd-note">잘 쓴 prose는 light로 빠르게 끝내고, dense한 AI slop만 heavy path에서 추가 호출을 부담합니다.</p>
+</figure>

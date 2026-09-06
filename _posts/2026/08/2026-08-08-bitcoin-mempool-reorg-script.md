@@ -21,7 +21,7 @@ Bitcoin Core 31.1(`subversion` `/Satoshi:31.1.0/`, `protocolversion` 70016)을 r
 
 이 시점의 chain은 `regtest`, 높이는 111, `difficulty`는 `4.656542373906925e-10`, `size_on_disk`는 33604바이트였습니다. 빈 mempool은 `loaded=true`, `size=0`, `usage=64`, `maxmempool=300000000`, `fullrbf=true`, `minrelaytxfee=1e-06`이었습니다. mempool은 전파 버퍼가 아닙니다. 이 node가 아직 block에 넣지 않은 거래를 보관하는 공간입니다.
 
-![피어가 없는 node가 wallet 송신을 받아 mempool에 올리는 흐름](/assets/img/blockchain/bitcoin-isolated-mempool.webp)
+{% include diagrams/static/blockchain/bitcoin-isolated-mempool.html %}
 _wallet이 1.25 BTC를 보내면 이 node가 유효성만 검사한 뒤 mempool에 둔다. 전달할 피어가 없어 unbroadcast가 true다._
 
 ---
@@ -70,7 +70,7 @@ vin[0].txinwitness     [signature, pubkey 027adbdb86...]
 
 잔돈 address `bcrt1qfwf6y...`는 새로 만든 alice(`bcrt1qnucjj...`)도 bob도 아닙니다. wallet이 고른 잔돈 출력입니다.
 
-![P2WPKH 출력이 witness 스택으로 열리는 흐름](/assets/img/blockchain/bitcoin-p2wpkh-witness.webp)
+{% include diagrams/static/blockchain/bitcoin-p2wpkh-witness.html %}
 _잠금은 scriptPubKey의 0과 20바이트 hash다. 잠금 해제는 빈 scriptSig가 아니라 txinwitness의 signature와 공개키다._
 
 잠금 스크립트가 곧 그 출력을 쓸 수 있는 조건입니다. 같은 node에서 `createmultisig 2`를 호출하면 레거시 P2SH address `2MwmkSC41uzy1QjUzUczpPRHJ8y33zwtvHT`가 나옵니다. RPC의 `type` 필드는 null이었고, `redeemScript` 길이는 142였습니다. 기본 송금 address와 멀티시그 address의 형식이 다른 것은 address가 balance 상자가 아니라, 어떤 Script를 쓰는지에 대한 짧은 이름이기 때문입니다.
@@ -89,7 +89,7 @@ header.height     112
 header.merkleroot 38990380955e16093d384cb634689a165e34ba5a642827fbe345714490368d3e
 ```
 
-![block 헤더의 Merkle 루트와 151바이트 증명으로 txid를 확인하는 흐름](/assets/img/blockchain/bitcoin-spv-proof.webp)
+{% include diagrams/static/blockchain/bitcoin-spv-proof.html %}
 _증명이 151바이트인 이유는 전체 거래 목록이 아니라 해당 거래가 루트에 연결되는 경로만 담기 때문이다._
 
 헤더에는 이전 block hash와 Merkle 루트가 들어 있습니다. 라이트 클라이언트가 전체 체인을 들고 다니지 않아도 포함 여부를 따질 수 있는 지점입니다. 이 값은 nTx=2인 로컬 block의 증명입니다. 메인넷 대형 block의 증명 크기를 여기서 재현한 것은 아닙니다.
@@ -100,7 +100,7 @@ _증명이 151바이트인 이유는 전체 거래 목록이 아니라 해당 �
 
 확인 block `20fcf935...`를 `invalidateblock`으로 무효화했습니다. 같은 거래의 `confirmations`는 다시 0이 되었고, mempool 크기는 1로 돌아왔습니다. 그 상태에서 block 두 개를 더 캐면 체인 팁은 이렇게 갈라집니다.
 
-![mempool의 거래가 block에 들어갔다가 무효화되면 다시 mempool로 돌아오고, 이전 팁은 invalid로 남는 흐름](/assets/img/blockchain/bitcoin-mempool-reorg.webp)
+{% include diagrams/static/blockchain/bitcoin-mempool-reorg.html %}
 _block 112를 무효화하면 거래는 mempool로 돌아가고, 새로 캔 체인이 active 팁(높이 113)이 된다. 옛 팁은 invalid로 남는다._
 
 ```text

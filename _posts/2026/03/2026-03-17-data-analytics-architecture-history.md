@@ -23,7 +23,7 @@ image:
 
 아래 타임라인이 전체 흐름을 한눈에 보여 줍니다. 오른쪽이 저장/엔진의 기술 축, 왼쪽이 스트리밍/조직 축입니다.
 
-![데이터 분석 아키텍처 변천사 타임라인](/assets/img/aws/analytics-stack-01-architecture-history.webp)
+{% include diagrams/static/aws/analytics-stack-01-architecture-history.html %}
 
 ---
 

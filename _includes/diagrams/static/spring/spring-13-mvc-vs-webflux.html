@@ -1,0 +1,34 @@
+<figure class="sd sd--comparison" id="sd-spring-13-mvc-vs-webflux" aria-labelledby="sd-spring-13-title">
+  <figcaption class="sd-title" id="sd-spring-13-title">Spring MVC와 WebFlux의 차이</figcaption>
+  <table class="sd-table">
+    <thead>
+      <tr>
+        <th scope="col">비교 항목</th>
+        <th scope="col">Spring MVC</th>
+        <th scope="col">Spring WebFlux</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">실행 모델</th>
+        <td>동기, 명령형, thread-per-request</td>
+        <td>비동기, 논블로킹, 선언형</td>
+      </tr>
+      <tr>
+        <th scope="row">스레드</th>
+        <td>요청마다 1개를 점유하며 수백 개까지 사용</td>
+        <td>CPU 코어 수에 가까운 작은 고정 event loop 풀</td>
+      </tr>
+      <tr>
+        <th scope="row">라이브러리</th>
+        <td>JPA와 JDBC 같은 blocking library를 그대로 사용</td>
+        <td>R2DBC와 WebClient 같은 논블로킹 stack 필요</td>
+      </tr>
+      <tr>
+        <th scope="row">적합한 작업</th>
+        <td>대부분의 애플리케이션, 이해와 디버깅이 쉬운 경우</td>
+        <td>고동시성 I/O bound 작업과 streaming</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>

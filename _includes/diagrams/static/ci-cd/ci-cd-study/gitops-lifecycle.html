@@ -1,0 +1,27 @@
+<figure class="sd sd--flow" id="gitops-lifecycle" aria-labelledby="gitops-lifecycle-title">
+  <figcaption class="sd-title" id="gitops-lifecycle-title">GitOps Lifecycle: 배포에서 조정까지</figcaption>
+  <div class="sd-loop">
+    <div class="sd-flow">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Deploy</strong>
+        <span class="sd-detail">Git에 저장된 manifest를 클러스터에 반영</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">상태 관찰</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Monitoring</strong>
+        <span class="sd-detail">Git repository와 클러스터 상태를 모니터링</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">차이 탐지</span></div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Drift Detection</strong>
+        <span class="sd-detail">원하는 상태와 live state의 차이를 감지</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">조정 실행</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Take Action</strong>
+        <span class="sd-detail">Rollback 또는 3-way-diff로 상태를 수정</span>
+      </div>
+    </div>
+  </div>
+  <p class="sd-note">Take Action 뒤 다시 Deploy로 돌아가는 폐쇄 루프이며, Git repository가 desired state의 단일 신뢰 소스입니다.</p>
+</figure>

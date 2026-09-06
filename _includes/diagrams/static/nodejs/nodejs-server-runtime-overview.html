@@ -1,0 +1,58 @@
+<figure class="sd sd--flow" id="nodejs-server-runtime-overview" aria-labelledby="sd-title-nodejs-server-runtime-overview">
+  <figcaption class="sd-title" id="sd-title-nodejs-server-runtime-overview">Application은 기다리지 않고 runtime이 I/O를 기다립니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">HTTP request</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">socket readiness</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">OS I/O readiness</strong>
+      <span class="sd-detail"><code>epoll</code> 또는 <code>kqueue</code>가 준비 상태를 보고</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">libuv가 process로 전달</span></div>
+    <section class="sd-band" aria-label="Node.js process">
+      <div class="sd-band-title">Node.js process</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Node runtime</strong>
+          <span class="sd-detail">libuv event loop + V8</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">callback 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Application code</strong>
+          <span class="sd-detail">한 JavaScript flow, I/O 대기로 thread를 붙잡지 않음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">workload 선택</span></div>
+        <div class="sd-grid">
+          <div class="sd-node">
+            <strong class="sd-label">I/O work</strong>
+            <span class="sd-detail">완료 event가 loop로 돌아옴</span>
+          </div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">CPU-bound work</strong>
+            <span class="sd-detail">single loop를 점유해 다른 connection을 지연</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sd-lane">
+    <div class="sd-lane-title">Process lifecycle 경계</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Process supervisor</strong>
+        <span class="sd-detail">systemd, PM2, 또는 container runtime</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">restart와 종료 관리</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Node.js process</strong>
+        <span class="sd-detail">위 band의 runtime, application, workload 실행 경계</span>
+      </div>
+    </div>
+  </section>
+
+  <p class="sd-note">Node.js는 JavaScript language나 framework가 아니라 OS process에서 core API를 실행하는 runtime입니다. I/O와 CPU workload를 같은 비동기 처리로 가정하면 지연 원인을 놓칠 수 있습니다.</p>
+</figure>

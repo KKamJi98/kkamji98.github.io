@@ -1,0 +1,48 @@
+<figure class="sd sd--flow" id="harbor-image-push-flow" aria-labelledby="harbor-image-push-flow-title">
+  <figcaption class="sd-title" id="harbor-image-push-flow-title">Harbor push는 blob을 먼저 쓰고 manifest를 마지막에 기록합니다</figcaption>
+  <p class="sd-note">tag가 digest를 가리키게 만드는 manifest가 끝에 기록되므로 중단된 push는 blob만 남길 수 있습니다.</p>
+
+  <div class="sd-flow" aria-label="Harbor Docker image push flow">
+    <div class="sd-node">
+      <strong class="sd-label">Docker client</strong>
+      <span class="sd-detail"><code>docker push</code>가 image layer와 tag를 보냅니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">project 인증</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Harbor project</strong>
+      <span class="sd-detail">auth, quota와 policy를 project 단위로 적용합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">distribution API</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Registry</strong>
+      <span class="sd-detail">OCI push 요청을 받아 저장 순서를 조정합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">layer blob 업로드</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Blob storage</strong>
+      <span class="sd-detail">layer를 digest로 deduplicate해 먼저 보관합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">모든 blob 확인 뒤 기록</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Manifest</strong>
+      <span class="sd-detail">tag를 layer digest에 연결하는 마지막 기록입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">tag resolve</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Image pull</strong>
+      <span class="sd-detail">client가 manifest를 읽고 digest로 image를 가져옵니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">push가 manifest 전에 끊기면 blob은 남아도 사용할 수 있는 tag가 없어 pull이 완료되지 않습니다.</p>
+</figure>

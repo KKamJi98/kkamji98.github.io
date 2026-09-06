@@ -1,0 +1,39 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-placement-group-boundaries-title">
+  <figcaption class="sd-title" id="sap-c02-placement-group-boundaries-title">배치 전략마다 넘지 못하는 경계가 다르다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">cluster placement group</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">저지연과 고대역</strong><span class="sd-detail">MPI, HPC, 대형 배치와 EFA에 맞춘다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">한 AZ에 배치</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Availability Zone A</strong><span class="sd-detail">그룹 안 single-flow 최대 10 Gbps. Capacity Reservation을 만들 수 있다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">AZ 경계</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">단일 AZ 경계</strong><span class="sd-detail">다른 AZ로는 갈 수 없다. 같은 리전 peered VPC는 예외적으로 걸칠 수 있다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">partition placement group</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">랙 단위 장애 격리</strong><span class="sd-detail">HDFS, HBase, Cassandra, Kafka 복제본을 분리한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">여러 AZ 가능</span></div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">AZ A</strong><span class="sd-detail">partition 1, partition 2. AZ당 최대 7개이며 Dedicated Instances면 2개다.</span></div>
+          <div class="sd-node"><strong class="sd-label">AZ B</strong><span class="sd-detail">같은 그룹의 partition 1을 둘 수 있다.</span></div>
+        </div>
+        <p class="sd-note">인스턴스가 메타데이터에서 파티션 번호를 읽어 복제본을 분산한다.</p>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">rack-level spread</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">인스턴스 단위 하드웨어 분리</strong><span class="sd-detail">소수의 핵심 인스턴스를 서로 다른 랙에 둔다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">여러 AZ 가능</span></div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">AZ A</strong><span class="sd-detail">running 인스턴스 최대 7대.</span></div>
+          <div class="sd-node"><strong class="sd-label">AZ B</strong><span class="sd-detail">3개 AZ면 그룹 전체 21대까지다.</span></div>
+        </div>
+        <p class="sd-note">Dedicated Instances는 지원하지 않는다.</p>
+      </div>
+    </section>
+  </div>
+</figure>

@@ -1,0 +1,82 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-storage-gateway-four-types" aria-labelledby="sd-title-storage-gateway-four-types">
+  <figcaption class="sd-title" id="sd-title-storage-gateway-four-types">Storage Gateway 종류는 인터페이스와 backend 저장 형태의 짝으로 정해집니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="파일 인터페이스와 S3 File Gateway">
+      <div class="sd-lane-title">파일을 객체로</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">NFS 또는 SMB 파일 접근</strong>
+          <span class="sd-detail">파일을 후속 객체 처리</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">파일 공유</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">S3 File Gateway</strong>
+          <span class="sd-detail">file share 하나가 버킷 하나, 파일 최대 5 TiB</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">1:1 저장</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">S3 객체</strong>
+          <span class="sd-detail">파일이 객체로 저장되어 직접 후속 처리</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Windows 파일 인터페이스와 FSx File Gateway">
+      <div class="sd-lane-title">Windows 원본 유지</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">SMB와 Windows 원본</strong>
+          <span class="sd-detail">AD 통합 파일 서버 요구</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">기존 경로</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Amazon FSx File Gateway</strong>
+          <span class="sd-detail">신규 고객에게 제공되지 않음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">직접 접근 전환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">FSx for Windows File Server</strong>
+          <span class="sd-detail">AWS가 직접 접근으로 전환 안내</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="iSCSI 블록과 Volume Gateway">
+      <div class="sd-lane-title">블록 장치로</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">iSCSI 블록 장치</strong>
+          <span class="sd-detail">애플리케이션이 블록에 직접 기록</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">볼륨 제공</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Volume Gateway</strong>
+          <span class="sd-detail">cached 32 TiB, stored 16 TiB, S3에 EBS snapshot 보관</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">백업 결과</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">EBS 스냅샷</strong>
+          <span class="sd-detail">S3 객체로 직접 소비할 수 없음</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="iSCSI 가상 테이프와 Tape Gateway">
+      <div class="sd-lane-title">기존 백업 소프트웨어 유지</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">iSCSI 가상 테이프 라이브러리</strong>
+          <span class="sd-detail">기존 백업 소프트웨어와 카탈로그 유지</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">VTL 연결</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Tape Gateway</strong>
+          <span class="sd-detail">가상 테이프 100 GiB에서 15 TiB</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">장기 아카이브</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">S3 Glacier 아카이브</strong>
+          <span class="sd-detail">Flexible Retrieval 또는 Deep Archive</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">File Gateway는 객체 후속 처리가 필요할 때, Volume Gateway는 블록 I/O가 필요할 때 선택합니다. FSx File Gateway는 신규 설계의 대상이 아닙니다.</p>
+</figure>

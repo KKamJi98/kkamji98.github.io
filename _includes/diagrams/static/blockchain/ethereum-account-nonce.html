@@ -1,0 +1,20 @@
+<figure class="sd sd--sequence" id="sd-ethereum-account-nonce" aria-labelledby="sd-title-ethereum-account-nonce">
+  <figcaption class="sd-title" id="sd-title-ethereum-account-nonce">거래가 nonce를 소비하고 receipt를 남깁니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">EOA 0xf39Fd6e5</strong>
+      <span class="sd-detail">nonce 0, balance 10000 ETH, code 0x</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">nonce 0 거래 수락</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">transaction type 0x2</strong>
+      <span class="sd-detail">value 1 ETH, nonce 0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">state update</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">receipt status 0x1</strong>
+      <span class="sd-detail">gasUsed 21000, nonce now 1</span>
+    </div>
+  </div>
+  <p class="sd-note">UTXO를 스캔하지 않고 계정 nonce를 하나 올립니다. nonce 3처럼 빈 값은 queued에 남고, 같은 nonce 0은 nonce too low로 거절됩니다.</p>
+</figure>

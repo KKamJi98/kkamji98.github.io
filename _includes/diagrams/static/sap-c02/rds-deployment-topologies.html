@@ -1,0 +1,36 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-rds-deployment-topologies-title">
+  <figcaption class="sd-title" id="sap-c02-rds-deployment-topologies-title">RDS 배포마다 대기 노드의 역할이 다르다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane">
+      <span class="sd-lane-title">Multi-AZ DB instance</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">writer</strong><span class="sd-detail">AZ 1에서 쓰기를 받는다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">동기 복제와 자동 failover</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">standby</strong><span class="sd-detail">대기만 하며 읽기 트래픽은 처리하지 않는다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">Multi-AZ DB cluster</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">writer</strong><span class="sd-detail">NVMe 로컬 스토리지 계열 인스턴스 클래스만 지원한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">semisynchronous 복제와 자동 failover</span></div>
+        <div class="sd-grid">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">reader 1</strong><span class="sd-detail">최소 1개의 ack를 요구하며 읽기 가능.</span></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">reader 2</strong><span class="sd-detail">읽기 가능. writer와 3개 AZ에 분산한다.</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">read replica</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">source DB instance</strong><span class="sd-detail">소스를 삭제하면 같은 리전 replica가 standalone으로 승격된다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">비동기 복제</span></div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">read replica 1</strong><span class="sd-detail">읽기 가능. 자동 failover 대상은 아니다.</span></div>
+          <div class="sd-node"><strong class="sd-label">read replica 2</strong><span class="sd-detail">기본 쿼터는 primary당 15개이며 순환 복제는 불가하다.</span></div>
+        </div>
+      </div>
+      <p class="sd-note">failover와 승격은 수동으로 판단하고 실행한다.</p>
+    </section>
+  </div>
+</figure>

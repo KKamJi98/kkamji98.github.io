@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="markdown-rendering-flow" aria-labelledby="markdown-rendering-flow-title">
+  <figcaption class="sd-title" id="markdown-rendering-flow-title">Markdown은 block을 먼저, inline을 나중에 파싱합니다</figcaption>
+  <p class="sd-note">줄 모양과 들여쓰기로 block 경계를 정한 뒤에야 emphasis, link와 code span을 해석합니다.</p>
+
+  <div class="sd-flow" aria-label="Markdown rendering flow">
+    <div class="sd-node">
+      <strong class="sd-label">Markdown source</strong>
+      <span class="sd-detail">plain text와 줄바꿈이 입력됩니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">줄 모양과 들여쓰기 확인</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Block parsing</strong>
+      <span class="sd-detail">paragraph, list, heading과 code fence 경계를 정합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">block 안의 텍스트 해석</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Inline parsing</strong>
+      <span class="sd-detail">emphasis, link와 inline code를 처리합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">문서 구조 생성</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">HTML output</strong>
+      <span class="sd-detail">브라우저가 렌더링할 document가 완성됩니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note"><code>-</code>나 <code>*</code>의 의미도 inline 문법보다 먼저 정해진 block 경계와 들여쓰기에 따라 달라집니다.</p>
+</figure>

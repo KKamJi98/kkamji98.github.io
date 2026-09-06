@@ -69,7 +69,7 @@ tunnel-port: 8472        # 프로토콜 포트 (Geneve는 6081)
 
 ## 3. Native Routing Mode
 
-![Cilium Native Routing Mode](/assets/img/kubernetes/cilium/cilium-native-routing-mode.webp)
+{% include diagrams/static/kubernetes/cilium/cilium-native-routing-mode.html %}
 
 Native Routing Mode는 Cilium이 캡슐화를 사용하지 않고 기본 네트워크의 Routing 기능을 활용하는 Mode입니다. `routing-mode: native`로 설정해 활성화하며, Cilium은 로컬 엔드포인트가 아닌 패킷을 모두 Linux 커널의 Routing 하위 시스템에 위임합니다. 즉, Pod에서 발생하는 패킷이 로컬 프로세스처럼 Routing됩니다.
 

@@ -25,7 +25,7 @@ Application에서 사용하는 API URL이나 DB 정보가 바뀌어도 코드를
 
 External Secrets는 외부 시크릿 관리 시스템에 접근하기 위해 **CRD(Custom Resource Definition)**를 사용합니다. 주요 CRD로는 네임스페이스 범위에서 동작하는 SecretStore, ExternalSecret과 클러스터 범위로 동작하는 ClusterSecretStore, ClusterExternalSecret이 있습니다.
 
-![external-secret-diagram](/assets/img/kubernetes/external-secrets-diagram.webp)
+{% include diagrams/static/kubernetes/external-secrets-diagram.html %}
 
 ### 1.1. SecretStore, ClusterSecretStore
 

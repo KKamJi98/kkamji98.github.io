@@ -1,0 +1,57 @@
+<figure class="sd sd--flow" id="jenkins-ci-overview" aria-labelledby="jenkins-ci-overview-title">
+  <figcaption class="sd-title" id="jenkins-ci-overview-title">Jenkins CI: source 변경에서 실행 서버까지</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Developer</strong>
+      <span class="sd-detail">source code를 GitHub에 push</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">push</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">GitHub source repository</strong>
+      <span class="sd-detail">webhook으로 CI 실행을 알림</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">trigger와 fetch</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">CI/CD server (Jenkins)</strong>
+      <span class="sd-detail">source checkout 후 container image를 build</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="이미지 저장 경로">
+      <div class="sd-lane-title">Image artifact</div>
+      <div class="sd-arrow"><span class="sd-edge-label">Jenkins -&gt; Image artifact: image push</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Container image build</strong>
+          <span class="sd-detail">Jenkins가 애플리케이션을 이미지로 패키징</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">image push</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Container image registry</strong>
+          <span class="sd-detail">배포할 버전 이미지를 보관</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="실행 서버 배포 경로">
+      <div class="sd-lane-title">Runtime deployment</div>
+      <div class="sd-arrow"><span class="sd-edge-label">Jenkins -&gt; Runtime deployment: target deploy</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Deploy to target</strong>
+          <span class="sd-detail">Jenkins가 Docker engine에 실행을 지시</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">target server</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Docker engine (target server)</strong>
+          <span class="sd-detail">배포 명령을 받아 container를 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Container image registry -&gt; Docker engine: image pull</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Running container</strong>
+          <span class="sd-detail">registry의 이미지를 받아 실행</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Jenkins는 webhook으로 시작하고 source를 fetch합니다. 빌드한 이미지를 registry에 push한 뒤 target server가 그 이미지를 pull합니다.</p>
+</figure>

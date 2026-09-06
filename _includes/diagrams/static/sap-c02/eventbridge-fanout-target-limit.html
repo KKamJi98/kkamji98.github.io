@@ -1,0 +1,44 @@
+<figure class="sd sd--flow" id="eventbridge-fanout-target-limit" aria-labelledby="eventbridge-fanout-target-limit-title">
+  <figcaption class="sd-title" id="eventbridge-fanout-target-limit-title">EventBridge rule 다섯 target 뒤에 SNS 팬아웃을 둔다</figcaption>
+  <p class="sd-note">rule당 target 5개는 조정할 수 없습니다. 네 개의 직접 target과 다섯 번째 SNS 슬롯을 나누고, 구독자가 각자 확장합니다.</p>
+
+  <div class="sd-flow" aria-label="EventBridge SNS 팬아웃">
+    <div class="sd-node">
+      <strong class="sd-label">Event source</strong>
+      <span class="sd-detail">custom event bus input</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">이벤트 수신</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Event bus</strong>
+      <span class="sd-detail">event pattern으로 이벤트를 매칭합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">rule 적용</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Rule</strong>
+      <span class="sd-detail">target 슬롯은 5개로 고정됩니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">슬롯 1에서 4</span></div>
+
+    <section class="sd-band" aria-labelledby="eventbridge-fanout-target-limit-direct-title">
+      <div class="sd-band-title" id="eventbridge-fanout-target-limit-direct-title">직접 target 슬롯 1에서 4</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node"><strong class="sd-label">Direct target 1</strong><span class="sd-detail">slot 1</span></div>
+        <div class="sd-node"><strong class="sd-label">Direct target 2</strong><span class="sd-detail">slot 2</span></div>
+        <div class="sd-node"><strong class="sd-label">Direct target 3</strong><span class="sd-detail">slot 3</span></div>
+        <div class="sd-node"><strong class="sd-label">Direct target 4</strong><span class="sd-detail">slot 4</span></div>
+      </div>
+    </section>
+
+    <div class="sd-arrow"><span class="sd-edge-label">다섯 번째 슬롯에 연결</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">SNS topic</strong>
+      <span class="sd-detail">slot 5에서 여러 구독자에게 팬아웃합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">구독자별 확장</span></div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node"><strong class="sd-label">Team queue A</strong><span class="sd-detail">team-owned subscription</span></div>
+      <div class="sd-node"><strong class="sd-label">Team queue B</strong><span class="sd-detail">team-owned subscription</span></div>
+      <div class="sd-node"><strong class="sd-label">HTTP/S subscriber</strong><span class="sd-detail">independent subscription</span></div>
+    </div>
+  </div>
+</figure>

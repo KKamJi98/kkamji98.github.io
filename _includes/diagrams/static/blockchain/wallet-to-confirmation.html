@@ -1,0 +1,35 @@
+<figure class="sd sd--flow" id="sd-blockchain-wallet-to-confirmation" aria-labelledby="sd-title-blockchain-wallet-to-confirmation">
+  <figcaption class="sd-title" id="sd-title-blockchain-wallet-to-confirmation">signed transaction은 mempool을 거쳐 block에 들어간 뒤 UTXO를 바꿉니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">wallet</strong>
+      <span class="sd-detail">키를 보관하며 balance 필드는 없음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">UTXO 선택</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">select UTXOs</strong>
+      <span class="sd-detail">금액과 fee를 충당</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">키로 서명</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">signed transaction</strong>
+      <span class="sd-detail">vin, vout, signature</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">broadcast</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">mempool</strong>
+      <span class="sd-detail">confirmations = 0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">miner가 포함</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">block</strong>
+      <span class="sd-detail">miner가 fee를 회수</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">UTXO set 갱신</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">confirmed UTXOs</strong>
+      <span class="sd-detail">새 output이 set에 추가</span>
+    </div>
+  </div>
+  <p class="sd-note">mempool에서는 confirmation이 0이고 UI balance는 움직일 수 있지만, UTXO set은 block 편입 때까지 바뀌지 않습니다.</p>
+</figure>

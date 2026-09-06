@@ -68,7 +68,7 @@ RAG는 이 한계에 대응하기 위해 모델을 다시 학습시키는 대신
 
 RAG는 크게 두 단계로 나뉩니다. 하나는 미리 문서를 검색 가능한 형태로 준비하는 **오프라인 인덱싱**, 다른 하나는 사용자 질문에 답하는 **온라인 질의**입니다. 인덱싱의 품질이 이후 검색 후보의 품질을 결정하므로, 먼저 문서와 권한 메타데이터를 신뢰할 수 있는 단위로 준비해야 합니다. 두 단계는 벡터 저장소를 공유하며, 인덱싱이 벡터와 메타데이터를 기록하고 질의가 이를 검색합니다.
 
-![RAG end-to-end 파이프라인 - 오프라인 인덱싱(Sources -> Ingestion & Parsing -> Chunking -> Embedding -> Vector DB)과 온라인 질의(User Query -> Query Embedding -> Retrieval -> Reranking -> LLM Generation -> Answer + Citation)이 Vector DB를 공유하는 구조](/assets/img/ai/rag-01-pipeline.webp)
+{% include diagrams/static/ai/rag-01-pipeline.html %}
 
 ### 3.1. 오프라인 인덱싱 (ingestion -> chunking -> embedding -> indexing)
 

@@ -1,0 +1,58 @@
+<figure class="sd sd--comparison" id="kubernetes-endpoint-vs-endpointslice" aria-labelledby="kubernetes-endpoint-vs-endpointslice-title">
+  <figcaption class="sd-title" id="kubernetes-endpoint-vs-endpointslice-title">EndpointSlice는 하나의 큰 Endpoints 객체를 여러 slice로 나눈다</figcaption>
+  <p class="sd-note">Kubernetes v1.33에서 core/v1 <code>Endpoints</code>는 deprecated 되었고, discovery.k8s.io/v1 <code>EndpointSlice</code>가 대규모 Service discovery의 기본 경로입니다.</p>
+
+  <div class="sd-grid" aria-label="Endpoints와 EndpointSlice fanout 비교">
+    <section class="sd-lane" aria-labelledby="kubernetes-endpoint-vs-endpointslice-endpoints-title">
+      <div class="sd-lane-title" id="kubernetes-endpoint-vs-endpointslice-endpoints-title">Endpoints (deprecated)</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Service</strong>
+          <span class="sd-detail">selector로 backend Pod를 선택합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">single object</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Endpoints object</strong>
+          <span class="sd-detail">한 Service의 모든 address를 하나의 객체에 나열합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">full list</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Pod-1 IP ... Pod-1000 IP</strong>
+          <span class="sd-detail">작은 변경도 큰 객체 전체 update가 됩니다.</span>
+        </div>
+      </div>
+      <p class="sd-note">API Server, etcd와 kube-proxy가 큰 객체와 full update를 함께 처리해야 합니다.</p>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-endpoint-vs-endpointslice-slice-title">
+      <div class="sd-lane-title" id="kubernetes-endpoint-vs-endpointslice-slice-title">EndpointSlice</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Service</strong>
+          <span class="sd-detail">같은 selector로 backend Pod를 선택합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">slice set</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">EndpointSlice objects</strong>
+          <span class="sd-detail">기본 약 100 endpoint 단위로 shard를 만듭니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">changed slice만 patch</span></div>
+        <div class="sd-grid sd-grid--three">
+          <div class="sd-node">
+            <strong class="sd-label">Slice-1</strong>
+            <span class="sd-detail">Pod-1 ... Pod-99 IP</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Slice-2</strong>
+            <span class="sd-detail">Pod-101 ... Pod-199 IP</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Slice-3</strong>
+            <span class="sd-detail">Pod-201 ... Pod-299 IP</span>
+          </div>
+        </div>
+      </div>
+      <p class="sd-note"><code>addressType</code>의 IPv4, IPv6, FQDN과 zone, node topology metadata를 함께 담을 수 있습니다.</p>
+    </section>
+  </div>
+</figure>

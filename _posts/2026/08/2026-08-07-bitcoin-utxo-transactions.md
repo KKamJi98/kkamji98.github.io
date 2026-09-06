@@ -23,7 +23,7 @@ hash pointer, signature, Merkle Tree가 기록의 무결성을 담당한다는 �
 
 UTXO(Unspent Transaction Output)는 한 transaction이 만든 output 중 아직 다른 transaction의 input으로 쓰이지 않은 것을 말합니다. 어떤 address의 balance를 알고 싶으면 그 address가 받을 수 있는 UTXO를 전부 찾아 금액을 합칩니다. Bitcoin Core의 `getbalance`는 `listunspent`의 합입니다. explorer가 보여주는 숫자도 같은 종류의 파생값입니다.
 
-![alice의 UTXO를 순서대로 더해 파생 balance 75를 얻는 스캔](/assets/img/blockchain/utxo-balance-scan.webp)
+{% include diagrams/static/blockchain/utxo-balance-scan.html %}
 _50, 20, 5를 더하면 75다. 계좌 행을 수정하는 단계가 없다. 이 세 숫자는 스캔을 설명하는 예시이며 regtest 관측값이 아니다._
 
 새 transaction이 도착하면 node는 참조하는 output이 UTXO 집합에 존재하는지만 확인하면 됩니다. 이중 지출은 이미 소비된 output을 다시 가리키는 순간 거부됩니다. 같은 outpoint를 쓰는 두 transaction은 충돌하며, 유효한 체인에는 둘 중 하나만 들어갑니다. balance를 따로 보관하는 시스템이라면 모든 계좌의 정합성을 별도로 증명해야 하지만, UTXO 모델에서는 장부와 UTXO 집합 하나로 끝납니다.
@@ -52,7 +52,7 @@ serialized transaction에는 version과 locktime도 있습니다. version 1 규�
 
 UTXO는 부분적으로 쓸 수 없습니다. 50 BTC짜리 output에서 1.5 BTC만 보내는 것이 아니라, 50 BTC output 전체를 input으로 소비하고 두 개의 새 output을 만듭니다. 수신자에게 가는 1.5 BTC와 나에게 돌아오는 잔돈 48.5 BTC입니다.
 
-![transaction이 UTXO를 통째로 소비하고 payment와 change 두 output을 만드는 구조](/assets/img/blockchain/utxo-reference-structure.webp)
+{% include diagrams/static/blockchain/utxo-reference-structure.html %}
 _입력 50 BTC가 통째로 소비되고, payment 1.5 BTC와 change 48.4999859 BTC라는 두 개의 새 UTXO가 만들어진다. fee 0.0000141 BTC는 어떤 output에도 존재하지 않는다._
 
 Bitcoin Core 31.1을 regtest 모드로 로컬에 띄우고 block을 채워 만든 coinbase UTXO 50 BTC에서 1.5 BTC를 송금했습니다.
@@ -70,7 +70,7 @@ size 222 vsize 141
 
 한 번에 쓸 UTXO가 하나보다 많으면 wallet은 여러 개를 고릅니다. 이 선택이 coin selection입니다. 고른 UTXO마다 vin이 하나씩 생기고, 각 vin은 자기 outpoint를 통째로 소비합니다. 수신 output과 잔돈 output은 그 합에서 다시 쪼개집니다.
 
-![두 개의 선택된 UTXO가 두 vin이 되고 payment와 change로 다시 나뉘는 선택](/assets/img/blockchain/coin-select-two-inputs.webp)
+{% include diagrams/static/blockchain/coin-select-two-inputs.html %}
 _30과 25를 고르면 입력이 둘이다. 쓰지 않은 UTXO는 장부에 그대로 남는다. 30과 25는 선택 규칙을 설명하는 예시이며, regtest에서 vin 2개는 아직 관측하지 않았다._
 
 시뮬레이터는 같은 규칙을 50+50 입력으로 재현합니다. 아래 테스트 `test_spend_consumes_whole_utxo_and_returns_change`가 그 경우입니다.
@@ -95,7 +95,7 @@ vsize는 레거시 바이트와 다릅니다. 오늘날 block 한도는 weight 4
 
 돈의 이동은 explorer 숫자가 바뀌는 한 순간이 아닙니다. wallet이 키로 signature하기 전에 UTXO를 고르고, node가 그 transaction을 받아 mempool에 올리며, 채굴자가 그것을 block에 넣을 때 UTXO 집합이 바뀝니다.
 
-![wallet이 UTXO를 고르고 signature한 뒤 mempool을 거쳐 block에서 확정되는 경로](/assets/img/blockchain/wallet-to-confirmation.webp)
+{% include diagrams/static/blockchain/wallet-to-confirmation.html %}
 _signature가 붙은 transaction은 바로 장부에 기록되지 않는다. mempool에 있는 동안 confirmation은 0이다._
 
 mempool에 있는 동안에도 wallet UI의 balance 계산은 동작할 수 있습니다. 다만 그 거래가 소비하려는 UTXO는 잠긴 상태가 됩니다. 셀프 전송 transaction을 mempool에 넣어두면 잔돈으로 받을 UTXO가 아직 확정되지 않았기 때문에 그다음 전송이 그 UTXO를 쓰지 못합니다. 실습 중 0.5 BTC를 자신에게 보내는 거래를 만들었을 때, 확정 전까지 wallet의 잔돈 UTXO가 사용 불가 상태로 잠기는 것을 관찰했습니다.

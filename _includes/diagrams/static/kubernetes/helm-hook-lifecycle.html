@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-helm-hook-lifecycle" aria-labelledby="sd-kubernetes-helm-hook-lifecycle-title">
+  <figcaption class="sd-title" id="sd-kubernetes-helm-hook-lifecycle-title">Helm hook은 release 앞뒤에서 별도 resource로 실행된다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label"><code>helm install</code> or <code>helm upgrade</code></strong>
+      <span class="sd-detail">release 작업을 시작합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">pre-install hook 실행 후 wait</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Pre-install hook</strong>
+      <span class="sd-detail">Job이 성공해야 chart manifest를 적용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">성공하면 다음 단계</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Release resources</strong>
+      <span class="sd-detail">chart가 렌더링한 manifest를 적용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">post-install hook 실행 후 wait</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Post-install hook</strong>
+      <span class="sd-detail">resource가 생성된 뒤 Job을 실행합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">hook 완료</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Release deployed</strong>
+      <span class="sd-detail">hook resource는 release resource에 포함되지 않습니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">Pre-install을 포함한 hook이 실패하면 다음 phase로 진행하지 않습니다. hook은 별도 resource이며 release manifest와 수명이 다를 수 있습니다.</p>
+</figure>

@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="ansible-kubernetes-bootstrap" aria-labelledby="ansible-kubernetes-bootstrap-title">
+  <figcaption class="sd-title" id="ansible-kubernetes-bootstrap-title">Ansible playbook은 control plane을 먼저 만들고 worker를 join시킵니다</figcaption>
+  <p class="sd-note">control plane 초기화가 만든 join token을 worker 단계에서 사용하므로 순서가 고정됩니다.</p>
+
+  <div class="sd-flow" aria-label="Ansible Kubernetes bootstrap flow">
+    <div class="sd-node">
+      <strong class="sd-label">Inventory</strong>
+      <span class="sd-detail">control plane과 worker group을 나눠 둡니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">대상 group 순서 결정</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Ansible control node</strong>
+      <span class="sd-detail">bootstrap play를 실행하고 결과를 모읍니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label"><code>kubeadm init</code></span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Control plane</strong>
+      <span class="sd-detail">먼저 초기화하고 worker join token을 생성합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">token으로 join</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Worker nodes</strong>
+      <span class="sd-detail">control plane이 발급한 token으로 cluster에 합류합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">노드 준비 완료</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Kubernetes cluster</strong>
+      <span class="sd-detail">workload를 schedule할 수 있는 상태가 됩니다.</span>
+    </div>
+  </div>
+</figure>

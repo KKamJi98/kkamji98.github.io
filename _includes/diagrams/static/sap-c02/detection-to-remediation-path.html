@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-detection-to-remediation-path-title">
+  <figcaption class="sd-title" id="sap-c02-detection-to-remediation-path-title">Finding 탐지에서 자동 교정까지</figcaption>
+  <div class="sd-flow">
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node"><strong class="sd-label">GuardDuty</strong><span class="sd-detail">지금 위협 행위가 있는가</span></div>
+      <div class="sd-node"><strong class="sd-label">Amazon Inspector</strong><span class="sd-detail">EC2, ECR, Lambda 취약점과 노출 경로</span></div>
+      <div class="sd-node"><strong class="sd-label">Amazon Macie</strong><span class="sd-detail">S3에서 민감 데이터 위치</span></div>
+      <div class="sd-node"><strong class="sd-label">AWS Config</strong><span class="sd-detail">기록된 구성이 rule을 트리거</span></div>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">finding 집계</span></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Security Hub CSPM</strong><span class="sd-detail">표준 대비 control 결과로 집계, Config 기록에 의존</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">후속 사용</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Finding 조사 경로">
+        <div class="sd-lane-title">GuardDuty 연계 조사</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Detective</strong><span class="sd-detail">finding이 어떻게 벌어졌는지 최대 1년 이력 조사</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Finding 장기 적재 경로">
+        <div class="sd-lane-title">선택적 장기 적재</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Security Lake</strong><span class="sd-detail">OCSF와 Parquet로 내 계정 S3에 적재</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Finding 라우팅 경로">
+        <div class="sd-lane-title">자동 라우팅</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">EventBridge</strong><span class="sd-detail">finding을 rule로 라우팅</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">SSM Automation document</strong><span class="sd-detail">교정을 실제로 실행하는 수단</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Config rule 직접 연결</span></div>
+    <div class="sd-node"><strong class="sd-label">Config remediation</strong><span class="sd-detail">수동 또는 자동 실행을 rule에 연결</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">SSM Automation document</strong><span class="sd-detail">구성 변경을 실행하고 결과를 기록</span></div>
+    <div class="sd-note">Detective는 탐지 도구가 아니라 조사 도구이며, Config remediation은 SSM Automation으로만 실제 변경을 실행합니다.</div>
+  </div>
+</figure>

@@ -1,0 +1,42 @@
+<figure class="sd sd--flow" id="jvm-06-memory-calculator" aria-labelledby="sd-title-jvm-06-memory-calculator">
+  <figcaption class="sd-title" id="sd-title-jvm-06-memory-calculator">Memory Calculator: native 영역을 뺀 나머지가 Heap입니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Container memory limit</strong>
+      <span class="sd-detail">시작 시 cgroup에서 읽는 전체 한도</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차감</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Headroom</strong>
+      <span class="sd-detail"><code>BPL_JVM_HEAD_ROOM</code>, 기본 0%</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차감</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Direct memory</strong>
+      <span class="sd-detail"><code>MaxDirectMemorySize</code> 또는 기본 10M</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차감</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Metaspace</strong>
+      <span class="sd-detail">class count에 따른 계산값</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차감</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Reserved code cache</strong>
+      <span class="sd-detail">기본 240M, JIT compiled code 용량</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">차감</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Thread stacks</strong>
+      <span class="sd-detail"><code>-Xss</code> x configured thread count, 기본 1M x 250</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">남은 용량</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Heap (<code>-Xmx</code>)</strong>
+      <span class="sd-detail">위 항목을 모두 뺀 나머지</span>
+    </div>
+  </div>
+
+  <p class="sd-note">계산은 build 시점이 아니라 container 시작 시 수행됩니다. thread count를 바꾸면 다른 설정이 같아도 <code>-Xmx</code>가 달라집니다.</p>
+</figure>

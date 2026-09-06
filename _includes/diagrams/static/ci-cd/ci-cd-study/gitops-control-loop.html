@@ -1,0 +1,22 @@
+<figure class="sd sd--flow" id="gitops-control-loop" aria-labelledby="gitops-control-loop-title">
+  <figcaption class="sd-title" id="gitops-control-loop-title">GitOps control loop</figcaption>
+  <div class="sd-loop">
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">Observe state</strong>
+        <span class="sd-detail">현재 클러스터 상태를 관찰</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">차이 확인</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Calculate actions</strong>
+        <span class="sd-detail">원하는 상태와의 차이를 계산</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">조정 계획</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Apply actions</strong>
+        <span class="sd-detail">필요한 변경을 클러스터에 적용</span>
+      </div>
+    </div>
+  </div>
+  <p class="sd-note">적용이 끝나면 다시 Observe하여 desired state와 live state를 계속 맞춥니다. 이 반복이 closed control loop입니다.</p>
+</figure>

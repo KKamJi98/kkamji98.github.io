@@ -1,0 +1,36 @@
+<figure class="sd sd--comparison" id="sd-blockchain-sign-verify-tamper" aria-labelledby="sd-title-blockchain-sign-verify-tamper">
+  <figcaption class="sd-title" id="sd-title-blockchain-sign-verify-tamper">signature는 정확한 message와 address 조합에서만 검증됩니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">message</strong>
+      <span class="sd-detail">kkamji-week11-local-only</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">sign</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">signature</strong>
+      <span class="sd-detail">132 hex chars</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">원문과 변조 입력으로 분기</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="원문 검증">
+      <div class="sd-lane-title">원문 verify</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">succeeded</strong>
+          <span class="sd-detail">message와 address 일치</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="변조된 메시지 검증">
+      <div class="sd-lane-title">변조 입력 verify</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">exit 1</strong>
+          <span class="sd-detail">문자 1개 변경</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">검증에는 개인키가 아니라 원문 message, signature, address가 함께 필요합니다.</p>
+</figure>

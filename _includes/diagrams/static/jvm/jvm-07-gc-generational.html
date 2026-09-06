@@ -1,0 +1,27 @@
+<figure class="sd sd--flow" id="jvm-07-gc-generational" aria-labelledby="sd-title-jvm-07-gc-generational">
+  <figcaption class="sd-title" id="sd-title-jvm-07-gc-generational">Generational GC: 대부분 객체는 Young에서 끝납니다</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">New object</strong>
+      <span class="sd-detail">처음 할당되는 객체</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">할당</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Eden</strong>
+      <span class="sd-detail">새 객체가 모이는 Young 영역</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Minor GC 후 생존</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Survivor S0 and S1</strong>
+      <span class="sd-detail">두 공간 사이에서 여러 번 aging</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">충분히 생존하면 promotion</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Old generation</strong>
+      <span class="sd-detail">오래 사는 객체가 모이는 영역, mixed 또는 major GC 대상</span>
+    </div>
+  </div>
+
+  <p class="sd-note">Minor GC는 Young만 copying으로 회수합니다. 대부분 객체가 Eden에서 죽기 때문에 자주 실행해도 Old 전체를 다루는 수집보다 비용이 작습니다.</p>
+</figure>

@@ -1,0 +1,31 @@
+<figure class="sd sd--comparison" id="sd-ci-cd-study-argo-multi-cluster-architecture" aria-labelledby="sd-title-ci-cd-study-argo-multi-cluster-architecture">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-argo-multi-cluster-architecture">kind-mgmt의 Argo CD가 kind-prd와 kind-dev를 중앙 관리</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">kind-mgmt</strong>
+      <span class="sd-detail">Argo CD가 설치된 Control Cluster</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">등록된 자격증명으로 Deploy</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-multi-prd-title">
+        <div class="sd-lane-title" id="sd-ci-cd-study-argo-multi-prd-title">kind-prd</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Production Cluster</strong>
+            <span class="sd-detail">운영 workload의 대상 Cluster</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-multi-dev-title">
+        <div class="sd-lane-title" id="sd-ci-cd-study-argo-multi-dev-title">kind-dev</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Development Cluster</strong>
+            <span class="sd-detail">개발과 테스트 workload의 대상 Cluster</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">kind-mgmt의 Argo CD에 대상 Cluster credential을 등록한 뒤, 각 Application의 destination을 kind-prd 또는 kind-dev로 지정합니다. 두 경로는 순서가 아니라 중앙 관리에서 갈라지는 대상입니다.</p>
+</figure>

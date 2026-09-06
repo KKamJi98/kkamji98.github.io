@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-migration-wave-prerequisites-title">
+  <figcaption class="sd-title" id="sap-c02-migration-wave-prerequisites-title">wave 실행 전에 공통 전제를 세운다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-lane sd-lane--muted">
+      <span class="sd-lane-title">모든 wave의 공통 전제</span>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">landing zone</strong>
+          <span class="sd-detail">계정 구조, 네트워크, 가드레일, 로깅을 먼저 만든다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">클라우드 domain controller</strong>
+          <span class="sd-detail">공통 의존성이므로 move group에서 제외한다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">복제 회선</strong>
+          <span class="sd-detail">hosted connection은 파트너가 만들고 사용자가 accept한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">전제가 준비되면</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">wave plan</strong>
+      <span class="sd-detail">move group을 wave로 묶는다. 초기 wave는 10대 미만, 전체 상한은 50대다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">반복 실행</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">wave 실행</strong>
+      <span class="sd-detail">MGN 연속 복제와 DMS full load 및 CDC가 동시에 진행된다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">컷오버 준비와 실행</span></div>
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">컷오버 윈도우에 붙는 절차</span>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">DNS TTL 사전 인하</strong>
+          <span class="sd-detail">며칠 전에 300초로 낮추고 새 응답을 확인한 뒤 원래 값으로 되돌린다.</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">컷오버 윈도우</strong>
+          <span class="sd-detail">lag 0 확인, 소스 서비스 정지, cutover instance 기동, finalize cutover 순서다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

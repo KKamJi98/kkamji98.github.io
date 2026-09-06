@@ -1,0 +1,86 @@
+<figure class="sd sd--layers" id="prometheus-diagram" aria-labelledby="prometheus-diagram-title">
+  <figcaption class="sd-title" id="prometheus-diagram-title">Prometheus Server는 Pull 수집과 Alert 분기를 중심으로 동작합니다</figcaption>
+  <p class="sd-note">기본 수집은 Prometheus가 target을 scrape하는 Pull 방식이고, 짧은 Job은 Push Gateway를 통해 보완합니다.</p>
+
+  <div class="sd-stack">
+    <section class="sd-band">
+      <div class="sd-band-title">Query path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Prometheus Web UI, Grafana and clients</strong>
+          <span class="sd-detail">PromQL로 저장된 시계열을 조회합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">PromQL query</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Prometheus Server</strong>
+          <span class="sd-detail">시계열을 수집하고 local TSDB에 저장합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-band">
+      <div class="sd-band-title">Metric collection inputs</div>
+      <div class="sd-grid">
+        <section class="sd-lane">
+          <div class="sd-lane-title">Kubernetes node metrics</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">Kubernetes Nodes</strong>
+              <span class="sd-detail">각 node에 시스템 metric endpoint가 있습니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">DaemonSet scrape target</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Node Exporter</strong>
+              <span class="sd-detail">모든 node에 DaemonSet으로 배포됩니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Pull scrape</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Prometheus Server</strong>
+              <span class="sd-detail">node metric을 주기적으로 가져와 저장합니다.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sd-lane">
+          <div class="sd-lane-title">Short-lived job metrics</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">Short-lived Jobs</strong>
+              <span class="sd-detail">Pull 시점 전에 종료될 수 있는 작업입니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Push metrics</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Push Gateway</strong>
+              <span class="sd-detail">Job metric을 잠시 보관해 scrape 대상으로 노출합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Pull scrape</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Prometheus Server</strong>
+              <span class="sd-detail">Gateway endpoint를 읽어 시계열로 저장합니다.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="sd-band">
+      <div class="sd-band-title">Alert path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Prometheus Server alert rules</strong>
+          <span class="sd-detail">저장된 metric과 조건으로 경고를 생성합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">alert events</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Alert Manager</strong>
+          <span class="sd-detail">경고를 grouping하고 알림 채널로 라우팅합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">notification fan-out</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Slack, Email and other channels</strong>
+          <span class="sd-detail">운영자가 경고를 받습니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

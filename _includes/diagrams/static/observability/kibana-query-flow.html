@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-observability-kibana-query-flow" aria-labelledby="sd-title-observability-kibana-query-flow">
+  <figcaption class="sd-title" id="sd-title-observability-kibana-query-flow">Kibana는 데이터를 보관하지 않고 Elasticsearch query를 만든다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">User</strong>
+      <span class="sd-detail">dashboard 또는 log search를 요청</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">panel 설정과 time range 전달</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Kibana</strong>
+      <span class="sd-detail">index pattern을 바탕으로 query 생성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Elasticsearch에 query 전송</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Elasticsearch</strong>
+      <span class="sd-detail">여러 shard에서 query 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">pattern이 대상 index 선택</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Log indices</strong>
+      <span class="sd-detail">time range와 index pattern이 정한 검색 대상</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">결과를 panel에 반환</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Search results</strong>
+      <span class="sd-detail">dashboard table, chart 또는 검색 목록</span>
+    </div>
+  </div>
+  <p class="sd-note">Kibana에 원본 log data가 쌓이는 것이 아니라 Elasticsearch query 결과가 표시됩니다. 넓은 time range는 index pattern이 많은 index를 건드려 비용이 커질 수 있습니다.</p>
+</figure>

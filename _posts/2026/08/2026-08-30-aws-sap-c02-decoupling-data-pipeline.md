@@ -57,7 +57,7 @@ SNS와 SQS를 함께 쓰는 팬아웃 패턴이 자주 나오는 이유도 여�
 
 SQS 메시지는 큐에 들어온 뒤 컨슈머가 `ReceiveMessage`로 가져가면 사라지지 않고 다른 컨슈머에게 보이지 않는 상태가 됩니다. 이 상태가 in-flight이고 지속 시간이 visibility timeout입니다. 컨슈머가 그 안에 `DeleteMessage`를 호출하면 메시지가 제거되고, 호출하지 못하면 메시지가 다시 보이면서 수신 횟수가 하나 올라갑니다.
 
-![SQS 메시지가 큐에서 in-flight를 거쳐 삭제되거나 DLQ로 이동하는 수명주기](/assets/img/sap-c02/sqs-message-lifecycle-dlq.webp)
+{% include diagrams/static/sap-c02/sqs-message-lifecycle-dlq.html %}
 
 그림은 프로듀서가 넣은 메시지가 소스 큐와 in-flight 상태를 지나 컨슈머에 도달한 뒤, 처리에 성공해 삭제되는 경로와 실패해 수신 횟수가 올라가는 경로로 갈리는 구조를 담았습니다. 수신 횟수가 `maxReceiveCount`에 닿으면 DLQ로 넘어가고, 그렇지 않으면 소스 큐로 되돌아옵니다. 각 상자의 부제에 보존 기간과 visibility timeout 범위를 적어 두었습니다.
 
@@ -198,7 +198,7 @@ EventBridge는 이벤트를 event pattern으로 매칭해 target에 라우팅합
 
 전달 방식은 at-least-once이고 순서 보장이 없습니다. 기본 24시간 동안 최대 185회까지 exponential backoff와 jitter로 재시도합니다.
 
-![EventBridge rule의 target 5개 상한을 SNS 토픽으로 넘겨 팬아웃하는 구조](/assets/img/sap-c02/eventbridge-fanout-target-limit.webp)
+{% include diagrams/static/sap-c02/eventbridge-fanout-target-limit.html %}
 
 그림은 사용자 지정 이벤트 버스에 들어온 이벤트가 rule을 거쳐 target으로 나가는 구조에서, target 슬롯이 5개로 고정되어 있다는 점과 그중 하나를 SNS 토픽으로 채우면 팬아웃 지점이 토픽으로 옮겨간다는 점을 함께 담았습니다. 토픽 뒤에는 팀별 SQS 큐와 HTTP/S 구독자가 붙습니다.
 
@@ -266,7 +266,7 @@ Amazon MQ는 Apache ActiveMQ Classic과 RabbitMQ를 관리형으로 제공합니
 
 워크플로 타입은 state machine을 만든 뒤에 바꿀 수 없습니다. 잘못 고르면 새로 만들어야 하므로 선택 기준이 그만큼 중요합니다.
 
-![Step Functions 워크플로 타입이 실행 의미와 지속 시간과 통합 패턴에서 갈리는 구조](/assets/img/sap-c02/stepfunctions-workflow-type-split.webp)
+{% include diagrams/static/sap-c02/stepfunctions-workflow-type-split.html %}
 
 그림은 오케스트레이션 요구가 Standard와 Asynchronous Express와 Synchronous Express 세 갈래로 나뉘는 구조를 담고, 각 갈래마다 그 타입에서 걸리는 대표 제약을 하나씩 붙여 두었습니다.
 
@@ -339,7 +339,7 @@ On-demand Advantage는 계정 레벨 설정이며 warm throughput 사전 설정�
 
 Kinesis에서 자주 나오는 성능 문항의 구조는 같습니다. 샤드 수는 처리량 기준으로 충분한데 컨슈머를 늘릴수록 지연이 늘어납니다. 원인은 처리량 부족이 아니라 읽기 모델입니다.
 
-![Kinesis 공유 처리량 컨슈머와 enhanced fan-out 컨슈머의 읽기 경로와 전파 지연 차이](/assets/img/sap-c02/kinesis-efo-vs-shared-consumers.webp)
+{% include diagrams/static/sap-c02/kinesis-efo-vs-shared-consumers.html %}
 
 그림은 같은 샤드를 읽는 두 방식을 두 줄로 나란히 놓고, 공유 처리량 쪽은 2 MB/s를 컨슈머들이 나눠 쓰며 폴링한다는 점을, EFO 쪽은 컨슈머마다 2 MB/s를 전용으로 받고 push로 읽는다는 점을 각각의 전파 지연 값과 함께 담았습니다.
 
@@ -361,7 +361,7 @@ Kinesis에서 자주 나오는 성능 문항의 구조는 같습니다. 샤드 �
 
 Amazon Data Firehose는 이름이 `Kinesis Data Firehose`에서 바뀌었습니다. Exam Guide Appendix와 현재 문서 모두 `Amazon Data Firehose`를 씁니다.
 
-![Kinesis Data Streams와 Firehose 사이에서 재처리가 가능한 구간과 불가능한 구간의 경계](/assets/img/sap-c02/kinesis-firehose-replay-boundary.webp)
+{% include diagrams/static/sap-c02/kinesis-firehose-replay-boundary.html %}
 
 그림은 프로듀서에서 목적지까지 이어지는 파이프라인을 두 구간으로 나눠, 스트림에 데이터가 남아 재처리가 가능한 구간과 전달만 하고 남기지 않는 구간을 구분해 담았습니다. 목적지 상자에는 각 목적지에서 걸리는 제약을 부제로 붙였습니다.
 
@@ -459,7 +459,7 @@ AWS Glue는 서버리스 데이터 통합 서비스입니다. 70개 이상의 �
 
 Lake Formation은 그 카탈로그 리소스에 대한 fine-grained access control을 제공하는 authorization layer입니다. 쓰려면 먼저 S3 location을 등록하고 IAM principal에 테이블과 데이터베이스와 S3 location 권한을 부여해야 합니다. 권한을 통과시키는 서비스는 temporary credential을 발급받는 trusted caller로 동작합니다.
 
-![Glue crawler와 Data Catalog와 Lake Formation을 거쳐 분석 엔진에 도달하는 권한 경로](/assets/img/sap-c02/glue-catalog-lake-formation-access.webp)
+{% include diagrams/static/sap-c02/glue-catalog-lake-formation-access.html %}
 
 그림은 S3 데이터 레이크에서 시작해 crawler와 Data Catalog와 Lake Formation 권한 계층을 거쳐 분석 엔진에 도달하는 경로를 담고, 엔진마다 Lake Formation의 지원 범위가 다르다는 점을 각 상자의 부제로 붙였습니다.
 

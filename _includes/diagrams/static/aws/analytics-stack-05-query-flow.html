@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-aws-analytics-stack-05-query-flow" aria-labelledby="sd-title-aws-analytics-stack-05-query-flow">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-05-query-flow">Athena는 Glue를 묻고 S3를 읽고 결과도 S3에 쓴다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Query author</strong>
+      <span class="sd-detail">submits SQL</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">StartQueryExecution</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Amazon Athena</strong>
+      <span class="sd-detail">query engine; data를 보관하지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Athena가 세 요청을 구동</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Glue metadata request">
+        <div class="sd-lane-title">Metadata</div>
+        <div class="sd-node"><strong class="sd-label">Glue Data Catalog</strong><span class="sd-detail">schema, S3 LOCATION, partitions</span></div>
+      </section>
+      <section class="sd-lane" aria-label="S3 data scan">
+        <div class="sd-lane-title">Data scan</div>
+        <div class="sd-node"><strong class="sd-label">Amazon S3</strong><span class="sd-detail">Catalog가 알려준 data files</span></div>
+      </section>
+      <section class="sd-lane" aria-label="Query result write">
+        <div class="sd-lane-title">Result write</div>
+        <div class="sd-node"><strong class="sd-label">Results bucket (S3)</strong><span class="sd-detail">결과를 먼저 기록하고 client가 여기서 읽음</span></div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">세 갈래는 서로의 순차 hop이 아닙니다. Athena가 metadata 조회, data scan, result write를 각각 수행합니다.</p>
+</figure>

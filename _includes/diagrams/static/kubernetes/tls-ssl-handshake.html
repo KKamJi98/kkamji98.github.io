@@ -1,0 +1,82 @@
+<figure class="sd sd--sequence" id="tls-ssl-handshake" aria-labelledby="tls-ssl-handshake-title">
+  <figcaption class="sd-title" id="tls-ssl-handshake-title">TLS 1.2 전체 핸드셰이크 예시</figcaption>
+  <p class="sd-note">TLS 1.2 full handshake에서 cipher suite에 따라 ServerKeyExchange와 client Certificate는 선택적으로 포함됩니다. ChangeCipherSpec 뒤에 Finished를 교환한 뒤 application data를 보냅니다.</p>
+
+  <div class="sd-stack">
+    <section class="sd-band">
+      <div class="sd-band-title">TCP connection setup</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Client -> Server: SYN</strong>
+          <span class="sd-detail">TCP 연결을 시작합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">SYN ACK</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Server -> Client: SYN ACK</strong>
+          <span class="sd-detail">서버가 연결 요청과 자신의 sequence를 확인합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">ACK</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Client -> Server: ACK</strong>
+          <span class="sd-detail">양쪽 TCP 상태가 연결됩니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-band">
+      <div class="sd-band-title">TLS handshake</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Client -> Server: ClientHello</strong>
+          <span class="sd-detail">지원 버전, cipher와 client random을 제안합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">서버 협상 정보</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Server -> Client: ServerHello</strong>
+          <span class="sd-detail">선택한 알고리즘과 server random을 응답합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Certificate</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Server -> Client: Certificate and ServerHelloDone</strong>
+          <span class="sd-detail">서버 인증서를 보냅니다. 선택된 cipher suite가 요구하면 ServerKeyExchange가 앞에 오고, ServerHelloDone으로 server flight를 마칩니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">인증서 검증과 키 교환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Client: server certificate validation</strong>
+          <span class="sd-detail">client가 CA chain과 hostname을 확인합니다. server가 요청한 경우 client Certificate와 CertificateVerify가 이어질 수 있습니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">검증 통과</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Client -> Server: ClientKeyExchange</strong>
+          <span class="sd-detail">선택된 key exchange 방식에 맞는 key agreement 입력을 전달합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">session key 준비</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Client and Server: session key</strong>
+          <span class="sd-detail">양쪽이 같은 대칭 키를 계산합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">암호화 모드 전환과 검증</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Client -> Server: ChangeCipherSpec and Finished</strong>
+          <span class="sd-detail">클라이언트가 암호화 전환과 handshake 검증을 알립니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">서버 확인</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Server -> Client: ChangeCipherSpec and Finished</strong>
+          <span class="sd-detail">서버도 전환을 확인하고 handshake를 완료합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-band">
+      <div class="sd-band-title">Encrypted application traffic</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Client <-> Server: encrypted data</strong>
+          <span class="sd-detail">session key를 사용한 기밀성과 무결성 통신을 시작합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</figure>

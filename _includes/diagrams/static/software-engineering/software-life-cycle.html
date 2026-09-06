@@ -1,0 +1,53 @@
+<figure class="sd sd--flow" id="software-life-cycle" aria-labelledby="software-life-cycle-title">
+  <figcaption class="sd-title" id="software-life-cycle-title">Software life cycle은 Operation의 피드백으로 다시 시작합니다</figcaption>
+  <p class="sd-note">각 phase가 다음 phase의 입력이 되고, production에서 얻은 관측이 다음 Requirements를 만듭니다.</p>
+
+  <div class="sd-flow" aria-label="software life cycle flow">
+    <div class="sd-node">
+      <strong class="sd-label">Requirements</strong>
+      <span class="sd-detail">software가 해야 할 일을 정의합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">구조 설계</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Design</strong>
+      <span class="sd-detail">요구사항을 구현할 구조를 정합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">코드 작성</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Implementation</strong>
+      <span class="sd-detail">설계한 동작을 code로 만듭니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">요구사항 검증</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Testing</strong>
+      <span class="sd-detail">요청한 동작을 실제로 충족하는지 확인합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">production 배포</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Operation</strong>
+      <span class="sd-detail">운영 관측이 다음 cycle의 입력이 됩니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">production feedback</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Next Requirements</strong>
+      <span class="sd-detail">Operation에서 배운 내용을 반영해 다시 시작합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">cycle restart at Requirements</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Requirements (next cycle)</strong>
+      <span class="sd-detail">새 요구사항 입력으로 돌아가 다음 cycle을 시작합니다.</span>
+    </div>
+  </div>
+</figure>

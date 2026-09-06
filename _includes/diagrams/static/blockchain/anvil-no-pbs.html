@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-anvil-no-pbs" aria-labelledby="sd-title-anvil-no-pbs">
+  <figcaption class="sd-title" id="sd-title-anvil-no-pbs">Anvil은 builder 시장 없이 직접 block을 만듭니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">cast send</strong>
+      <span class="sd-detail">local JSON-RPC로 transaction 1건 전송</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">로컬 요청 수신</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Anvil</strong>
+      <span class="sd-detail">txpool pending 0, queued 0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">local mining</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">local block</strong>
+      <span class="sd-detail">miner 0x000...000, transaction 1건</span>
+    </div>
+  </div>
+  <p class="sd-note">Anvil에는 builder API, relay, MEV-Boost가 없으므로 공개망의 PBS 순서를 재현하지 않습니다.</p>
+</figure>

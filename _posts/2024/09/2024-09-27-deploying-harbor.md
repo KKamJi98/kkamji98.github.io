@@ -9,7 +9,7 @@ image:
   path: /assets/img/registry/harbor/harbor.webp
 ---
 
-![Harbor on Kubernetes architecture](/assets/img/registry/harbor-kubernetes-architecture.webp)
+{% include diagrams/static/registry/harbor-kubernetes-architecture.html %}
 
 **Harbor**는 오픈소스 컨테이너 이미지 레지스트리로, Docker 및 OCI 이미지 포맷을 저장하고 관리할 수 있는 솔루션입니다. 기본적으로 안전한 이미지 관리를 위해 보안 스캔, 서명, 복제 등의 기능을 제공하며, 대규모 엔터프라이즈 환경에서 다양한 이미지 관리 요구를 충족시키기 위해 설계되었습니다. **Harbor**는 특히 프라이빗 이미지 레지스트리를 구축하는 데 유용하며, 클라우드 환경뿐만 아니라 온프레미스에서도 사용할 수 있어 다양한 인프라 요구사항에 적용할 수 있습니다.
 

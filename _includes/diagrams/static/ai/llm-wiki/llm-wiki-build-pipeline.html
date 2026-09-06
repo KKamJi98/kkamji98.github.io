@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" id="llm-wiki-build-pipeline" aria-labelledby="llm-wiki-build-pipeline-title">
+  <figcaption class="sd-title" id="llm-wiki-build-pipeline-title">LLM Wiki의 vault, index, hook 연결</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Sources</strong>
+      <span class="sd-detail">docs, logs, decisions</span>
+    </div>
+    <div class="sd-arrow"></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Obsidian vault</strong>
+      <span class="sd-detail">markdown과 frontmatter를 보관하는 source of truth</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">vault 내용이 검색과 version 관리로 분기</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="검색 경로">
+      <div class="sd-lane-title">검색 경로</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">BM25 index</strong>
+          <span class="sd-detail">로컬 BM25로 title, tags, body를 색인하며 vector database나 SaaS는 사용하지 않습니다.</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Agent and search CLI</strong>
+          <span class="sd-detail">이 index를 읽는 유일한 consumer</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="버전과 갱신">
+      <div class="sd-lane-title">버전과 갱신 trigger</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">git</strong>
+          <span class="sd-detail">history와 review를 남김</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node">
+          <strong class="sd-label">Commit hook</strong>
+          <span class="sd-detail">link를 검사하고 BM25 index를 reindex</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">vault의 내용은 index로 읽히고 git으로 versioning됩니다. Commit hook에서 index를 갱신하는 연결은 데이터 복사가 아니라 freshness trigger입니다.</p>
+</figure>

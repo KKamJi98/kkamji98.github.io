@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-modernization-container-hosting-boundaries-title">
+  <figcaption class="sd-title" id="sap-c02-modernization-container-hosting-boundaries-title">ECR 이후 ECS와 EKS Fargate의 경계를 비교한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">애플리케이션 소스</strong>
+      <span class="sd-detail">Dockerfile과 런타임 정의에서 이미지를 만든다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">이미지 push와 scan</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Amazon ECR</strong>
+      <span class="sd-detail">버전이 있는 공통 이미지 공급 경로다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">오케스트레이터 선택</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">ECS on Fargate</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">ECS 선택</strong>
+          <span class="sd-detail">IP target을 사용하며 Fargate Spot을 선택할 수 있다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">태스크 배치</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">ECS Fargate 태스크</strong>
+          <span class="sd-detail">awsvpc ENI와 EBS, Fargate Spot을 사용할 수 있다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">EKS on Fargate</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">EKS 선택</strong>
+          <span class="sd-detail">Fargate profile이 매칭되고 private subnet에서 실행한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Pod 배치</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">EKS Fargate Pod</strong>
+          <span class="sd-detail">DaemonSet, EBS, GPU, Fargate Spot을 지원하지 않는다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 경로 모두 IP target으로 연결</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">IP target 서비스</strong>
+    <span class="sd-detail">각 태스크 또는 Pod의 awsvpc ENI 주소를 대상에 등록한다.</span>
+  </div>
+</figure>

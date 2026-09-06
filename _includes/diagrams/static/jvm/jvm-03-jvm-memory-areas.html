@@ -1,0 +1,44 @@
+<figure class="sd sd--comparison" id="jvm-03-jvm-memory-areas" aria-labelledby="sd-title-jvm-03-jvm-memory-areas">
+  <figcaption class="sd-title" id="sd-title-jvm-03-jvm-memory-areas">JVM 메모리: Heap과 Non-heap/native</figcaption>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Heap: GC 관리, <code>-Xmx</code> 상한</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Young generation</strong>
+          <span class="sd-detail">Eden과 Survivor S0, S1; 새 객체가 먼저 태어남</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">반복 생존 후 promotion</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Old generation</strong>
+          <span class="sd-detail">오래 살아남았거나 승격된 객체</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">Non-heap/native: <code>-Xmx</code> 밖</div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">Metaspace</strong>
+          <span class="sd-detail">class metadata, JDK 8부터 native</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Thread stacks</strong>
+          <span class="sd-detail"><code>-Xss</code> x thread count</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Code cache</strong>
+          <span class="sd-detail">JIT compiled machine code</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Direct memory</strong>
+          <span class="sd-detail">NIO와 Netty의 off-heap buffer</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note"><code>-Xmx</code>는 Heap만 제한합니다. 컨테이너 RSS와 OOMKill을 판단할 때는 네 가지 native 영역도 함께 봐야 합니다.</p>
+</figure>

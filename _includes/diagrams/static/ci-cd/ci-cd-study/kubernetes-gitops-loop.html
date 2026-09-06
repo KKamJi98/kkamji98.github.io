@@ -1,0 +1,55 @@
+<figure class="sd sd--flow" id="kubernetes-gitops-loop" aria-labelledby="kubernetes-gitops-loop-title">
+  <figcaption class="sd-title" id="kubernetes-gitops-loop-title">Kubernetes GitOps loop: source, image, manifest, cluster</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Developer</strong>
+      <span class="sd-detail">애플리케이션 source code를 변경</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Push source code</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Source Git Repository</strong>
+      <span class="sd-detail">애플리케이션 코드의 버전 소스</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">webhook 또는 commit</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">CI (Pipeline)</strong>
+      <span class="sd-detail">container image를 만들고 manifest 변경을 제안</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="이미지 artifact 경로">
+      <div class="sd-lane-title">Image artifact</div>
+      <div class="sd-arrow"><span class="sd-edge-label">CI (Pipeline) -&gt; Image Registry: Push</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Image Registry</strong>
+          <span class="sd-detail">CI가 push한 container image 보관</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="GitOps 설정과 배포 경로">
+      <div class="sd-lane-title">Declarative deployment</div>
+      <div class="sd-arrow"><span class="sd-edge-label">CI (Pipeline) -&gt; Config Git Repository: Pull Request</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Config Git Repository</strong>
+          <span class="sd-detail">CI가 Pull Request로 App Manifests를 변경</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Config Git Repository -&gt; CD: Pull과 drift detection</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">CD (GitOps Engine)</strong>
+          <span class="sd-detail">manifest를 pull하고 live state와 비교</span>
+        </div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">CD -&gt; Kubernetes clusters: desired state 적용</span>
+          <span class="sd-edge-label">Image Registry -&gt; Kubernetes clusters: Pull</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Kubernetes clusters</strong>
+          <span class="sd-detail">Dev와 Prod가 manifest를 적용하고 registry에서 image를 pull</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">CI의 image push와 Config Git Repository의 manifest Pull Request가 분리됩니다. CD는 설정 저장소를 기준으로 두 cluster를 계속 reconcile합니다.</p>
+</figure>

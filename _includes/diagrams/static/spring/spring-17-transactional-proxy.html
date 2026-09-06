@@ -1,0 +1,32 @@
+<figure class="sd sd--flow" id="sd-spring-17-transactional-proxy" aria-labelledby="sd-spring-17-title">
+  <figcaption class="sd-title" id="sd-spring-17-title">@Transactional은 AOP proxy를 통해 적용됩니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="sd-spring-17-main-title">
+      <div class="sd-lane-title" id="sd-spring-17-main-title">외부 호출: AOP proxy 경유</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">Caller</strong><span class="sd-detail">실제 빈이 아닌 proxy 참조를 보유</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">외부 메서드 호출</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">AOP proxy with TransactionInterceptor</strong><span class="sd-detail">annotation이 실제로 적용되는 유일한 경계</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">intercept</span></div>
+        <div class="sd-node"><strong class="sd-label">begin transaction</strong><span class="sd-detail">PlatformTransactionManager가 트랜잭션 시작</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">메서드 실행</span></div>
+        <div class="sd-node"><strong class="sd-label">@Transactional method</strong><span class="sd-detail">이 구간에서 persistence context가 활성</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">정상 종료 또는 예외</span></div>
+        <div class="sd-node"><strong class="sd-label">commit or rollback</strong><span class="sd-detail">RuntimeException과 Error는 기본 rollback, checked exception은 기본 commit</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">SQL 반영</span></div>
+        <div class="sd-node"><strong class="sd-label">Database</strong></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning" aria-labelledby="sd-spring-17-self-title">
+      <div class="sd-lane-title" id="sd-spring-17-self-title">대안 경로: self-invocation</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning"><strong class="sd-label">실제 bean</strong><span class="sd-detail">객체 내부 코드가 자기 메서드를 직접 호출</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">this.other()</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">Proxy 우회</strong><span class="sd-detail">호출이 객체 밖으로 나가지 않아 TransactionInterceptor를 거치지 않음</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">트랜잭션 경계 없음</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">트랜잭션 없이 실행</strong><span class="sd-detail">self-invocation 대상 메서드의 @Transactional이 가로채지 못함</span></div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">두 lane은 서로 이어지는 단계가 아니라 외부 호출과 객체 내부 직접 호출이라는 별도 진입 경로입니다.</p>
+</figure>

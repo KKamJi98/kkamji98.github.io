@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="terraform-helm-provider-flow" aria-labelledby="terraform-helm-provider-flow-title">
+  <figcaption class="sd-title" id="terraform-helm-provider-flow-title">Helm provider가 release lifecycle을 Terraform state에 연결합니다</figcaption>
+  <p class="sd-note"><code>helm_release</code>를 Terraform이 소유하므로 수동 <code>helm upgrade</code>는 다음 plan에서 drift로 보입니다.</p>
+
+  <div class="sd-flow" aria-label="Terraform Helm provider flow">
+    <div class="sd-node">
+      <strong class="sd-label">Terraform configuration</strong>
+      <span class="sd-detail"><code>helm_release</code> resource와 values를 선언합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">provider 선택</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Helm provider</strong>
+      <span class="sd-detail">Helm SDK를 Terraform process 안에서 실행합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">chart와 values 렌더링</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Helm chart</strong>
+      <span class="sd-detail">chart template과 전달한 values를 조합합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">manifests 적용</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Kubernetes API</strong>
+      <span class="sd-detail">rendered manifests를 cluster에 적용합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">state에 lifecycle 기록</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Release resources</strong>
+      <span class="sd-detail">release 상태가 Terraform state에서 추적됩니다.</span>
+    </div>
+  </div>
+</figure>

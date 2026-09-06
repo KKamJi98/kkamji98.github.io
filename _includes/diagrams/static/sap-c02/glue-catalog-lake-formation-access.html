@@ -1,0 +1,45 @@
+<figure class="sd sd--comparison" id="glue-catalog-lake-formation-access" aria-labelledby="glue-catalog-lake-formation-access-title">
+  <figcaption class="sd-title" id="glue-catalog-lake-formation-access-title">Lake Formation 권한은 분석 엔진별 지원 범위를 가진다</figcaption>
+  <p class="sd-note">Glue crawler가 메타데이터를 채우고 Lake Formation이 권한을 평가하지만, 모든 분석 엔진이 row와 cell 수준 필터를 지원하지는 않습니다.</p>
+
+  <div class="sd-flow" aria-label="Glue Catalog와 Lake Formation 권한 경로">
+    <div class="sd-node">
+      <strong class="sd-label">S3 data lake</strong>
+      <span class="sd-detail">objects and partitions</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">schema inference</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Glue crawler</strong>
+      <span class="sd-detail">데이터 구조를 추론합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">metadata 등록</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Glue Data Catalog</strong>
+      <span class="sd-detail">database, table, partition metadata를 보관합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">권한 평가</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Lake Formation</strong>
+      <span class="sd-detail">fine-grained authorization을 적용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">분석 엔진별 지원 범위</span></div>
+
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="glue-catalog-lake-formation-access-supported-title">
+        <div class="sd-lane-title" id="glue-catalog-lake-formation-access-supported-title">row와 cell 필터 지원</div>
+        <div class="sd-grid sd-grid--three">
+          <div class="sd-node"><strong class="sd-label">Athena SQL</strong><span class="sd-detail">table, column, row, cell reads</span></div>
+          <div class="sd-node"><strong class="sd-label">Redshift Spectrum</strong><span class="sd-detail">table, column, row, cell reads</span></div>
+          <div class="sd-node"><strong class="sd-label">EMR Spark</strong><span class="sd-detail">table, column, row, cell reads</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="glue-catalog-lake-formation-access-unsupported-title">
+        <div class="sd-lane-title" id="glue-catalog-lake-formation-access-unsupported-title">지원하지 않는 엔진</div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Unsupported engine</strong>
+          <span class="sd-detail">Athena Spark, EMR on EKS, EMR Serverless Hive는 이 경로의 row와 cell 필터를 지원하지 않습니다.</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

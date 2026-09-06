@@ -1,0 +1,42 @@
+<figure class="sd sd--layers" id="vault-overview" aria-labelledby="vault-overview-title">
+  <figcaption class="sd-title" id="vault-overview-title">Vault API는 인증, secret 관리, 암호화를 하나의 경계로 묶는다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">사람, 애플리케이션, 시스템이 credential과 secret 요청을 보낸다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">request</span></div>
+    <section class="sd-lane sd-lane--accent">
+      <div class="sd-lane-title">Vault boundary</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Vault API hub</strong>
+        <span class="sd-detail">모든 요청의 진입점이며 각 concern에 인증, policy, secret 처리를 적용한다.</span>
+      </div>
+      <p class="sd-note">아래 세 concern은 API hub에 독립적으로 연결된다. 서로 이어지는 처리 단계가 아니다.</p>
+      <div class="sd-grid sd-grid--three">
+        <section class="sd-lane">
+          <div class="sd-lane-title">Authentication spoke</div>
+          <div class="sd-node">
+            <strong class="sd-label">Identity based access</strong>
+            <span class="sd-detail">AWS, Azure, GCP, GitHub 등의 Auth Method가 client identity를 확인한다.</span>
+          </div>
+        </section>
+        <section class="sd-lane">
+          <div class="sd-lane-title">Secrets management spoke</div>
+          <div class="sd-node">
+            <strong class="sd-label">Secret Engines and Policy</strong>
+            <span class="sd-detail">KV, PKI, Transit와 dynamic secret을 policy가 허용한 path로 제공한다.</span>
+          </div>
+        </section>
+        <section class="sd-lane sd-lane--muted">
+          <div class="sd-lane-title">Encryption spoke</div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">Encryption</strong>
+            <span class="sd-detail">secret data를 암호화한 상태로 저장하고 Vault API 경계 안에서 처리한다.</span>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Audit logging과 lease 만료는 인증 및 secret 제공 흐름을 관찰하고 수명을 제한하는 보조 제어다.</p>
+</figure>

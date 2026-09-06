@@ -28,7 +28,7 @@ balance  10000000000000000000000
 
 비트코인의 address가 Script 잠금의 짧은 이름인 것과 달리, 이더리움 address는 상태 트리의 키입니다. ethereum.org 문서는 그 키 아래에 nonce, balance, codeHash, storageRoot가 있다고 적습니다. 이 랩이 RPC로 읽은 값은 nonce, balance, code입니다. codeHash와 storageRoot 바이트는 따로 덤프하지 않았습니다.
 
-![address가 계정 객체를 가리키고 관측된 필드가 nonce 0, code 0x, 10000 ETH인 구조](/assets/img/blockchain/ethereum-account-fields.webp)
+{% include diagrams/static/blockchain/ethereum-account-fields.html %}
 _address는 상태 트리의 키다. 이 실습이 확인한 필드는 nonce 0, 빈 코드, 시작 balance 10000 ETH다._
 
 ---
@@ -59,7 +59,7 @@ from  9998999978999999979000
 
 nonce를 2 건너뛴 값 3을 넣어 보면 계정 nonce는 그대로 1이었습니다. `txpool_status`는 `pending=0x0`, `queued=0x1`이었습니다. 구멍 난 nonce는 당장 상태에 반영되지 않고, 대기열에 남았습니다.
 
-![EOA가 nonce 0 거래를 보내면 receipt가 21000 gas를 기록하고 nonce가 1이 되는 흐름](/assets/img/blockchain/ethereum-account-nonce.webp)
+{% include diagrams/static/blockchain/ethereum-account-nonce.html %}
 _계정은 balance와 nonce를 저장한다. 단순 이체는 gas를 21000 쓰고 nonce를 하나 올린다._
 
 ---
@@ -72,7 +72,7 @@ _계정은 balance와 nonce를 저장한다. 단순 이체는 gas를 21000 쓰�
 
 Anvil의 `type=0x2` receipt는 EIP-1559 거래입니다. 같은 block의 `baseFeePerGas`는 `0x3b9aca00`, 십진수 1000000000 wei였습니다. effective 값이 base보다 1 wei 큽니다. 소각분과 우선순위 fee를 필드 단위로 더 쪼개지는 않았습니다.
 
-![type 0x2 이체가 21000 gas를 쓰고 성공 receipt를 남기는 흐름](/assets/img/blockchain/ethereum-gas-meter.webp)
+{% include diagrams/static/blockchain/ethereum-gas-meter.html %}
 _단순 이체의 gasUsed는 21000이다. 이 거래의 fee는 21000에 effectiveGasPrice를 곱한 값이다._
 
 로컬 Anvil은 거래마다 block을 만듭니다. 이 송신 뒤 `latest`는 block 1이었습니다. block JSON에 `baseFeePerGas`는 있고 `safe`/`finalized` 키는 없습니다. 세 태그가 다른 머리를 가리키는 장면은 이 로컬 체인에 없습니다.

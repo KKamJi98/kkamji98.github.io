@@ -1,0 +1,47 @@
+<figure class="sd sd--comparison" id="full-para-virtualization" aria-labelledby="full-para-virtualization-title">
+  <figcaption class="sd-title" id="full-para-virtualization-title">Full virtualization은 emulate하고 para virtualization은 guest가 협력합니다</figcaption>
+  <p class="sd-note">수정하지 않은 guest는 trap과 emulate를 거치고, 수정한 guest는 hypercall로 직접 요청합니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="full-virtualization-title">
+      <div class="sd-lane-title" id="full-virtualization-title">Full virtualization</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Unmodified guest OS</strong>
+          <span class="sd-detail">자신이 hardware를 소유한 것처럼 동작합니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">privileged instruction trap</span></div>
+
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Trap and emulate</strong>
+          <span class="sd-detail">hypervisor가 명령을 가로채 hardware 동작을 흉내 냅니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane sd-lane--accent" aria-labelledby="para-virtualization-title">
+      <div class="sd-lane-title" id="para-virtualization-title">Paravirtualization</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Modified guest OS</strong>
+          <span class="sd-detail">modified kernel로 virtualized 상태를 알고 더 저렴한 hypercall path를 사용합니다.</span>
+        </div>
+
+        <div class="sd-arrow"><span class="sd-edge-label">직접 서비스 요청</span></div>
+
+        <div class="sd-node">
+          <strong class="sd-label">Hypercall</strong>
+          <span class="sd-detail">emulation 없이 hypervisor API를 호출합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">두 경로가 같은 hypervisor에 도달</span></div>
+
+  <div class="sd-node sd-node--muted">
+    <strong class="sd-label">Hypervisor</strong>
+    <span class="sd-detail">full과 para 두 모델의 hardware access를 중재합니다.</span>
+  </div>
+</figure>

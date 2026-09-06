@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="usb-serial-bridge-flow" aria-labelledby="usb-serial-bridge-flow-title">
+  <figcaption class="sd-title" id="usb-serial-bridge-flow-title">ATmega16U2 bridge가 USB를 main MCU의 UART로 바꿉니다</figcaption>
+  <p class="sd-note">UNO R3의 <code>ATmega328P</code>에는 USB peripheral이 없어서 PC serial traffic이 두 번째 MCU를 거칩니다.</p>
+
+  <div class="sd-flow" aria-label="UNO R3 USB serial bridge flow">
+    <div class="sd-node">
+      <strong class="sd-label">PC terminal</strong>
+      <span class="sd-detail">운영체제에는 USB CDC serial port로 보입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">USB packet</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">ATmega16U2 bridge</strong>
+      <span class="sd-detail">USB를 UART 신호로 변환하는 보조 MCU입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">USB to UART</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">ATmega328P main MCU</strong>
+      <span class="sd-detail"><code>Serial</code> sketch가 실행되고 <code>D0</code>(RX), <code>D1</code>(TX)를 사용합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">hardware UART</span></div>
+
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">External UART device</strong>
+      <span class="sd-detail">외부 장치도 같은 <code>D0/D1</code> pins를 공유합니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note">USB bridge와 외부 장치를 동시에 연결하면 같은 RX/TX 선을 함께 구동해 통신 충돌이 날 수 있습니다.</p>
+</figure>

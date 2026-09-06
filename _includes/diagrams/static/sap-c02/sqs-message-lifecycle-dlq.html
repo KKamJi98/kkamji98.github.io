@@ -1,0 +1,60 @@
+<figure class="sd sd--flow" id="sd-sap-c02-sqs-message-lifecycle-dlq" aria-labelledby="sd-title-sqs-message-lifecycle-dlq">
+  <figcaption class="sd-title" id="sd-title-sqs-message-lifecycle-dlq">SQS 메시지는 성공하면 삭제되고 반복 실패하면 DLQ로 이동합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Producer</strong>
+      <span class="sd-detail">SendMessage</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">메시지 보존</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Source queue</strong>
+      <span class="sd-detail">retention 최대 14일</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">ReceiveMessage</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">In-flight</strong>
+      <span class="sd-detail">visibility timeout 최대 12시간</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">컨슈머가 처리</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Consumer</strong>
+      <span class="sd-detail">처리 성공 여부에 따라 다음 경로 선택</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">처리 결과</span></div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="성공한 메시지 삭제">
+      <div class="sd-lane-title">성공</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">DeleteMessage</strong>
+          <span class="sd-detail">삭제 성공 후 메시지 제거</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="visibility timeout 만료 후 재시도">
+      <div class="sd-lane-title">재시도</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Retry</strong>
+          <span class="sd-detail">visibility timeout 만료로 다시 보임</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">수신 횟수 증가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Source queue</strong>
+          <span class="sd-detail">maxReceiveCount 전까지 반복</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="maxReceiveCount 도달 후 DLQ 이동">
+      <div class="sd-lane-title">반복 실패</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Dead-letter queue</strong>
+          <span class="sd-detail">maxReceiveCount 도달 시 이동</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">visibility timeout 안에 DeleteMessage를 못 보내면 재수신됩니다. timeout을 처리 시간보다 짧게 잡으면 중복 전달이 생깁니다.</p>
+</figure>

@@ -1,0 +1,38 @@
+<figure class="sd sd--flow" id="jvm-10-jdk-version-gc-shift" aria-labelledby="sd-title-jvm-10-jdk-version-gc-shift">
+  <figcaption class="sd-title" id="sd-title-jvm-10-jdk-version-gc-shift">JDK 업그레이드 뒤 G1 Old baseline이 높아지는 경로</figcaption>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Newer JDK: G1 pause가 짧아짐</strong>
+      <span class="sd-detail">같은 workload에서 collection 시간이 줄어드는 관측</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">같은 pause 목표</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">G1이 Eden을 크게 잡음</strong>
+      <span class="sd-detail">목표 안에 더 많은 Young 객체를 처리</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Young 용량 증가</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Fewer minor collections</strong>
+      <span class="sd-detail">Young 수집 사이 간격이 길어짐</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">adaptive IHOP</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Concurrent marking 지연</strong>
+      <span class="sd-detail">Old marking 시작이 뒤로 이동</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">그 사이 생존 객체</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">More promotion into Old</strong>
+      <span class="sd-detail">Old 점유 baseline이 높아짐</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Mixed GC</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Old 상승 후 급락: sawtooth</strong>
+      <span class="sd-detail">저점이 일정하면 누수보다 거동 변화에 가까움</span>
+    </div>
+  </div>
+
+  <p class="sd-note">이 연쇄는 공식 사실 위에 세운 합리적 추론입니다. Heap이 live set보다 넉넉할 때 더 두드러질 수 있으며, 실제 누수 여부는 GC log와 JFR에서 mixed 이후 live set 저점을 비교해 확인합니다.</p>
+  <p class="sd-note">Young 상한을 <code>MaxNewSize</code>로 고정하면 promotion은 줄 수 있지만 G1의 adaptive pause sizing을 포기합니다.</p>
+</figure>

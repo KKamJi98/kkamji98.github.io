@@ -30,9 +30,9 @@ AWS는 이 시험이 검증하는 것을 `advanced technical skills and experien
 
 AWS 인증은 다섯 갈래로 나뉩니다. 기술 등급 네 개에 더해 Business 갈래가 따로 있습니다. Business는 클라우드와 AI를 비즈니스 성과로 연결하는 전략 역량을 검증하고 기술 경험을 요구하지 않아서, 솔루션을 직접 만들지 않는 사람을 대상으로 합니다.
 
-![AWS 자격증 등급 구조. Foundational, Associate, Professional, Specialty 네 등급과 Business 갈래로 나뉘며 같은 열이 같은 직무 축을 이룬다](/assets/img/sap-c02/aws-certification-tiers.webp)
+{% include diagrams/aws-certification-map.html %}
 
-세로가 등급이고 가로가 직무 축입니다. 맨 왼쪽 열을 보면 Solutions Architect - Associate 위에 Solutions Architect - Professional이 놓입니다. 두 상자를 잇는 화살표가 이 시리즈가 오르려는 사다리이고, 오른쪽 끝의 Developer에서 DevOps Engineer로 향하는 화살표가 그에 대응하는 다른 축입니다. Professional 등급에서 데이터 열이 비어 있는 것은 아직 그 자리에 해당하는 자격증이 없기 때문입니다.
+상단의 Professional 영역에 SAP-C02가 있고, 그 아래 Associate 영역에 SAA-C03이 있습니다. SAP-C02는 복합 요구사항에 대한 아키텍처 설계 판단을 검증합니다. 전체 인증 갈래와 시험 코드는 다음과 같습니다.
 
 | 등급 | 자격증 (시험 코드) |
 | :--- | :--- |
@@ -345,6 +345,7 @@ Overview 뒤로 15편이 이어지고, 20개 task statement 전부에 담당 편
 
 ## 13. Reference
 
+- [AWS Certification - Certifications and Official Badge Images](https://aws.amazon.com/certification/)
 - [AWS Certification - AWS Certified Solutions Architect Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/)
 - [AWS Certification - Exam Guide SAP-C02](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-professional-02/solutions-architect-professional-02.html)
 - [AWS Certification - Exam Guide SAA-C03](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html)

@@ -1,0 +1,44 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-modernization-database-target-selection-title">
+  <figcaption class="sd-title" id="sap-c02-modernization-database-target-selection-title">데이터 모델과 운영 제약으로 DB 타깃을 고른다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">기존 데이터베이스</strong>
+      <span class="sd-detail">엔진, 스키마, 조인, 트랜잭션, 액세스 패턴을 확인한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">요구사항 판정</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <span class="sd-lane-title">관계형 호환성이 핵심</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">조인과 트랜잭션 유지</strong><span class="sd-detail">기존 관계형 계약을 보존한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">replatform</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">RDS 또는 Aurora</strong><span class="sd-detail">관리형 관계형 데이터베이스다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">액세스 패턴이 key-value</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">대규모 분산 처리</strong><span class="sd-detail">스키마를 key-value 모델로 다시 설계한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">purpose-built DB</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">Amazon DynamoDB</strong><span class="sd-detail">key-value 액세스 패턴에 맞춘다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">검색과 분석이 핵심</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">문서와 검색 인덱스</strong><span class="sd-detail">검색 질의와 분석 요구를 분리한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">검색 엔진</span></div>
+        <div class="sd-node"><strong class="sd-label">Amazon OpenSearch</strong><span class="sd-detail">검색과 분석을 전담한다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">엔진 옵션과 OS 제어가 필요</span>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning"><strong class="sd-label">관리형 지원 범위 밖</strong><span class="sd-detail">커널, 드라이버, 세부 엔진 옵션을 직접 제어해야 한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">운영 책임 유지</span></div>
+        <div class="sd-node"><strong class="sd-label">EC2 self-managed</strong><span class="sd-detail">rehost에 가까우며 패치와 백업 부담이 남는다.</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

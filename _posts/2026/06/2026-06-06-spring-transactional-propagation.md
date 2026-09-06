@@ -27,7 +27,7 @@ image:
 > The combination of AOP with transactional metadata yields an AOP proxy that uses a `TransactionInterceptor` in conjunction with an appropriate `TransactionManager` implementation to drive transactions around method invocations.  
 > _- Spring Framework Reference_  
 
-![@Transactional AOP 프록시 동작](/assets/img/spring/spring-17-transactional-proxy.webp)
+{% include diagrams/static/spring/spring-17-transactional-proxy.html %}
 _프록시(TransactionInterceptor)가 메서드 호출을 가로채 begin -> 메서드 실행(영속성 컨텍스트 활성) -> commit/rollback으로 감싼다. self-invocation은 프록시를 우회한다._
 
 즉 호출자는 실제 빈이 아니라 프록시를 호출하고, 프록시가 트랜잭션을 시작한 뒤 실제 메서드를 실행하고, 정상 종료면 commit, 예외면 rollback합니다. 1편에서 본 영속성 컨텍스트는 이 트랜잭션 경계 안에서 살아 있습니다.
@@ -61,7 +61,7 @@ public void saveStrict() throws IOException { ... }
 
 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출할 때, 트랜잭션을 합칠지 새로 만들지를 정하는 것이 **전파(propagation)**입니다.
 
-![전파 REQUIRED vs REQUIRES_NEW](/assets/img/spring/spring-18-propagation.webp)
+{% include diagrams/static/spring/spring-18-propagation.html %}
 _REQUIRED는 기존 트랜잭션에 합류해 1개의 물리 트랜잭션(inner rollback이 전체에 영향). REQUIRES_NEW는 독립된 물리 트랜잭션(독립 commit/rollback)._
 
 기본값은 **`REQUIRED`**입니다.

@@ -1,0 +1,74 @@
+<figure class="sd sd--comparison" id="dx-vif-reach-scope" aria-labelledby="dx-vif-reach-scope-title">
+  <figcaption class="sd-title" id="dx-vif-reach-scope-title">같은 회선 위의 VIF 세 종류가 도달하는 대상이 다르다</figcaption>
+  <p class="sd-note">고객 라우터의 하나의 Direct Connect 연결에서 VIF가 종단하는 gateway가 갈라지고, 그 결과 MTU와 prefix와 SiteLink 범위가 달라집니다.</p>
+
+  <div class="sd-flow" aria-label="Direct Connect VIF 도달 범위">
+    <div class="sd-node">
+      <strong class="sd-label">고객 라우터</strong>
+      <span class="sd-detail">온프레미스의 고객 라우터이며 VIF마다 BGP 세션 하나를 맺습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">전용 또는 hosted 회선</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Direct Connect 연결</strong>
+      <span class="sd-detail">dedicated는 VIF 51개, hosted는 종류와 무관하게 1개입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">세 VIF 유형으로 분기</span></div>
+
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-labelledby="dx-vif-reach-scope-private-title">
+        <div class="sd-lane-title" id="dx-vif-reach-scope-private-title">private VIF</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">private VIF</strong>
+            <span class="sd-detail">MTU 1500 또는 9001, 수신 prefix 기본 100</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">private 연결</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Virtual private gateway</strong>
+            <span class="sd-detail">VPC 하나에만 attach합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">private IP</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">VPC</strong>
+            <span class="sd-detail">VPC의 private IP에 도달합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="dx-vif-reach-scope-public-title">
+        <div class="sd-lane-title" id="dx-vif-reach-scope-public-title">public VIF</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">public VIF</strong>
+            <span class="sd-detail">jumbo 미지원, prefix 1,000 고정, SiteLink 미지원</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">AWS public prefix</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">AWS public prefix 전체</strong>
+            <span class="sd-detail">S3, EC2 public IP, 서비스 API endpoint에 도달합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="dx-vif-reach-scope-transit-title">
+        <div class="sd-lane-title" id="dx-vif-reach-scope-transit-title">transit VIF</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">transit VIF</strong>
+            <span class="sd-detail">dedicated당 4개, MTU 1500 또는 8500</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">gateway 연결</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Direct Connect gateway</strong>
+            <span class="sd-detail">VGW 20개 또는 TGW 6개를 연결합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">attachment 범위</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Transit Gateway</strong>
+            <span class="sd-detail">연결된 모든 attachment가 도달 범위입니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

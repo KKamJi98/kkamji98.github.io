@@ -1,0 +1,64 @@
+<figure class="sd sd--layers" id="sd-ci-cd-study-application-deploy-model-in-kubernetes" aria-labelledby="sd-title-ci-cd-study-application-deploy-model-in-kubernetes">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-application-deploy-model-in-kubernetes">Kubernetes GitOps에서 CI 결과를 CD가 Cluster에 적용하는 구조</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-application-deploy-ci-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-application-deploy-ci-title">CI (Continuous Integration)</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Source Git Repository</strong>
+          <span class="sd-detail">애플리케이션 source code를 관리</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">code build와 test</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">CI</strong>
+          <span class="sd-detail">Container Image를 빌드하고 검증</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">image push</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Image Registry</strong>
+          <span class="sd-detail">versioned Container Image를 저장</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">Pull Request로 Manifest와 image tag 변경</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-application-deploy-cd-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-application-deploy-cd-title">CD (Continuous Delivery)</div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-application-deploy-config-path-title">
+          <div class="sd-lane-title" id="sd-ci-cd-study-application-deploy-config-path-title">Config synchronization</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Config Git Repository</strong>
+              <span class="sd-detail">Kubernetes Manifest와 배포 형상을 관리</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">desired state를 pull</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">CD</strong>
+              <span class="sd-detail">Manifest를 읽고 동기화 작업을 수행</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Push 또는 Pull로 적용</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Kubernetes</strong>
+              <span class="sd-detail">Manifest를 적용하고 실제 image를 실행</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-application-deploy-image-path-title">
+          <div class="sd-lane-title" id="sd-ci-cd-study-application-deploy-image-path-title">Image delivery</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">Image Registry</strong>
+              <span class="sd-detail">CI가 push한 versioned Container Image</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">image pull</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Kubernetes</strong>
+              <span class="sd-detail">Registry에서 image를 가져와 Pod를 실행</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">CI는 image를 만들고 Registry에 저장합니다. CD는 Config Git을 기준으로 Cluster 상태를 맞추고, Kubernetes는 필요한 image를 Registry에서 pull합니다.</p>
+</figure>

@@ -1,0 +1,65 @@
+<figure class="sd sd--layers" id="sd-kubernetes-cilium-5w-lab-environment" aria-labelledby="sd-kubernetes-cilium-5w-lab-environment-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-5w-lab-environment-title">두 underlay 대역을 사용하는 Cilium 실습 cluster와 외부 router</figcaption>
+  <section class="sd-band sd-band--accent" aria-labelledby="sd-kubernetes-cilium-5w-lab-environment-cluster-title">
+    <div class="sd-band-title" id="sd-kubernetes-cilium-5w-lab-environment-cluster-title">Kubernetes cluster boundary</div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">k8s-ctr</strong>
+        <span class="sd-detail">control plane, eth1 192.168.10.100</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">k8s-w1</strong>
+        <span class="sd-detail">worker, eth1 192.168.10.101</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">k8s-w0</strong>
+        <span class="sd-detail">worker, enp0s8 192.168.20.100</span>
+      </div>
+    </div>
+    <p class="sd-note">Node underlay는 <code>192.168.10.0/24</code>와 <code>192.168.20.0/24</code>로 나뉘며, Pod CIDR은 <code>172.20.0.0/16</code>이다.</p>
+  </section>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="192.168.10.0/24 router link">
+      <div class="sd-lane-title">192.168.10.0/24</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">k8s-ctr and k8s-w1</strong>
+          <span class="sd-detail">각 node가 eth1로 같은 underlay segment에 연결된다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay route</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Router eth1</strong>
+          <span class="sd-detail">192.168.10.200</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="192.168.20.0/24 router link">
+      <div class="sd-lane-title">192.168.20.0/24</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">k8s-w0</strong>
+          <span class="sd-detail">enp0s8 192.168.20.100, 별도 underlay segment</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay route</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Router eth2</strong>
+          <span class="sd-detail">192.168.20.200</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <section class="sd-lane" aria-label="Router outside cluster">
+    <div class="sd-lane-title">Router outside the cluster</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">FRR Router</strong>
+        <span class="sd-detail">cluster member가 아닌 독립 서버</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">loopback addresses</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">loop1 and loop2</strong>
+        <span class="sd-detail">10.10.1.200/32 and 10.10.2.200/32</span>
+      </div>
+    </div>
+  </section>
+</figure>

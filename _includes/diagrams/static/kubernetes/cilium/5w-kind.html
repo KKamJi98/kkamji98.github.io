@@ -1,0 +1,70 @@
+<figure class="sd sd--layers" id="kind-architecture" aria-labelledby="kind-architecture-title">
+  <figcaption class="sd-title" id="kind-architecture-title">kind는 Docker container를 Kubernetes node처럼 실행한다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band sd-band--muted">
+      <strong class="sd-band-title">Host (Workstation)</strong>
+      <span class="sd-band-subtitle">VM 없이 로컬 머신의 container runtime을 사용한다.</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kind CLI</strong>
+          <span class="sd-detail">cluster와 node container의 생성 및 context 설정을 지휘한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">control Docker engine</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Docker engine</strong>
+          <span class="sd-detail">Kubernetes node 역할을 맡을 container를 실행한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">create node container</span></div>
+    <section class="sd-band">
+      <strong class="sd-band-title">Node Container boundary</strong>
+      <span class="sd-band-subtitle">Docker engine이 만든 container 안에 systemd, Kubernetes process, inner runtime, workload가 함께 있다.</span>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">systemd</strong>
+        <span class="sd-detail">container 안에서 node 프로세스들의 실행 환경을 시작한다.</span>
+      </div>
+      <div class="sd-grid sd-grid--three">
+        <section class="sd-lane sd-lane--accent">
+          <div class="sd-lane-title">Control plane process path</div>
+          <div class="sd-arrow"><span class="sd-edge-label">systemd starts</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">kube-apiserver and etcd</strong>
+            <span class="sd-detail">cluster API와 상태 저장을 담당한다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">coordinate</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">kube-controller-manager and kube-scheduler</strong>
+            <span class="sd-detail">desired state를 조정하고 Pod를 node에 배치한다.</span>
+          </div>
+        </section>
+        <section class="sd-lane">
+          <div class="sd-lane-title">Node service process path</div>
+          <div class="sd-arrow"><span class="sd-edge-label">systemd starts</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">kubelet</strong>
+            <span class="sd-detail">node에서 Pod 생명주기를 관리한다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">manage network and DNS</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">kube-proxy, CoreDNS, Weave CNI</strong>
+            <span class="sd-detail">Service routing, cluster DNS, Pod network connectivity를 제공한다.</span>
+          </div>
+        </section>
+        <section class="sd-lane">
+          <div class="sd-lane-title">Workload process path</div>
+          <div class="sd-node">
+            <strong class="sd-label">Inner container runtime</strong>
+            <span class="sd-detail">node가 관리하는 Pod container를 실행한다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">run</span></div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">User Pods</strong>
+            <span class="sd-detail">애플리케이션 workload가 node container 내부에서 실행된다.</span>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">각 control-plane 또는 worker node는 같은 Host containment 안에서 하나의 node container로 표현될 수 있다.</p>
+</figure>

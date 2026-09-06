@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-rollup-sequencer-to-l1" aria-labelledby="sd-title-blockchain-rollup-sequencer-to-l1">
+  <figcaption class="sd-title" id="sd-title-blockchain-rollup-sequencer-to-l1">sequencer는 오프체인 실행 뒤 Ethereum에 batch를 게시합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">user tx</strong>
+      <span class="sd-detail">sequencer로 전송</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">L2 순서와 실행</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">sequencer</strong>
+      <span class="sd-detail">순서 지정 및 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">batch 게시</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">L1 batch</strong>
+      <span class="sd-detail">calldata 또는 blob</span>
+    </div>
+  </div>
+  <p class="sd-note">L1에 올라온 batch의 정착 시계는 Ethereum의 finalized head를 따릅니다.</p>
+</figure>

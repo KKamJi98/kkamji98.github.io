@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-mongodb-kubernetes-deployment" aria-labelledby="sd-kubernetes-mongodb-kubernetes-deployment-title">
+  <figcaption class="sd-title" id="sd-kubernetes-mongodb-kubernetes-deployment-title">StatefulSet이 MongoDB Pod마다 stable name과 volume을 붙인다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Helm release</strong>
+      <span class="sd-detail">values가 MongoDB topology를 정합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">operator resource 생성</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">StatefulSet</strong>
+      <span class="sd-detail">ordered rollout과 stable identity를 관리합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">ordinal별 Pod 생성</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">MongoDB Pod</strong>
+      <span class="sd-detail"><code>mongodb-0</code>, <code>mongodb-1</code>처럼 이름이 유지됩니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">volumeClaimTemplate 사용</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">PersistentVolumeClaim</strong>
+      <span class="sd-detail">replica마다 하나씩 생기고 ordinal에 연결됩니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">headless member discovery</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Client service</strong>
+      <span class="sd-detail">headless Service가 replica member를 찾게 합니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">volumeClaimTemplate은 restart와 reschedule 뒤에도 특정 ordinal의 data를 유지하도록 PVC를 묶습니다.</p>
+</figure>

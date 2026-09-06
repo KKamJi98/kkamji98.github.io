@@ -58,7 +58,7 @@ VPC Origins 이전에는 ALB/EC2 같은 오리진을 CloudFront 뒤에 두려면
 
 VPC Origin을 만들면 CloudFront가 대상 프라이빗 서브넷에 **서비스 관리형 ENI(elastic network interface)** 를 생성하고, 이 ENI를 통해 오리진으로 트래픽을 라우팅합니다. 전체 흐름을 정리하면 다음과 같습니다.
 
-![CloudFront VPC Origins 트래픽 흐름](/assets/img/aws/cloudfront-vpc-origins-flow.webp)
+{% include diagrams/static/aws/cloudfront-vpc-origins-flow.html %}
 _CloudFront 엣지 -> 서비스 관리형 ENI(프라이빗 서브넷) -> 오리진. AWS 백본망을 통한 사설 경로_
 
 - **서비스 관리형 ENI**: CloudFront가 VPC Origin 정의 시 프라이빗 서브넷에 자동 생성합니다. 그래서 서브넷에 사용 가능한 IPv4 주소가 최소 1개 있어야 합니다.

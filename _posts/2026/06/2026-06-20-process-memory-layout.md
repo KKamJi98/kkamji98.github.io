@@ -28,7 +28,7 @@ Series 2는 한 계층 더 내려가 JVM과 메모리를 다룹니다. 그 첫�
 
 그 공간은 용도별 구역으로 나뉩니다.
 
-![프로세스 메모리 레이아웃](/assets/img/jvm/jvm-01-process-memory-layout.webp)
+{% include diagrams/static/jvm/jvm-01-process-memory-layout.html %}
 _프로세스 가상 주소공간 (x86 기준 관례)_
 
 각 구역을 위키피디아 정의로 정리하면:
@@ -121,7 +121,7 @@ void process() {
 //   Order 객체 -> heap 에 남음 (GC 가 회수할 때까지)
 ```
 
-![stack vs heap](/assets/img/jvm/jvm-02-stack-vs-heap.webp)
+{% include diagrams/static/jvm/jvm-02-stack-vs-heap.html %}
 _참조(order)는 stack 프레임에, 객체(Order)는 heap에_
 
 | | Stack | Heap |

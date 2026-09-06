@@ -42,7 +42,7 @@ Challenge를 우선 검토할 만한 경우는 다음과 같습니다.
 
 반대로 webhook, partner API, mobile app, server-to-server client처럼 JavaScript document를 실행하지 않는 client에는 적합하지 않습니다. `POST /api/orders`, CORS(Cross-Origin Resource Sharing) preflight `OPTIONS`, JSON-only API를 token 획득용 interstitial endpoint로 쓰는 것도 피해야 합니다. Challenge는 rule에 매칭된 각 request에서 동작하지만, token을 얻는 entry point는 browser가 HTML과 JavaScript를 처리할 수 있는 `GET` route로 분리하는 편이 안전합니다.
 
-![AWS WAF Challenge token flow](/assets/img/aws/aws-waf-challenge-token-flow.webp)
+{% include diagrams/static/aws/aws-waf-challenge-token-flow.html %}
 _token이 없거나 만료 또는 무효일 때 WAF는 `202` response를 반환합니다. browser가 token을 획득해 재시도한 request는 남은 rule 평가로 진행합니다._
 
 ---

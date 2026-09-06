@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-kubernetes-rbac-binding" aria-labelledby="sd-kubernetes-kubernetes-rbac-binding-title">
+  <figcaption class="sd-title" id="sd-kubernetes-kubernetes-rbac-binding-title">RoleBinding이 subject를 verbs 권한에 연결한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">User or ServiceAccount</strong>
+      <span class="sd-detail">request를 보내는 subject입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">roleRef 대상</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Role or ClusterRole</strong>
+      <span class="sd-detail">resource에 허용할 verbs를 정의하지만 단독으로는 권한을 주지 않습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">subject와 role 연결</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">RoleBinding</strong>
+      <span class="sd-detail">subject와 role을 같은 binding으로 묶습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">매 요청마다 authorization 평가</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">API server</strong>
+      <span class="sd-detail">RoleBinding을 확인해 request를 인가합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">허용 여부 결정</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Allowed resource action</strong>
+      <span class="sd-detail">binding이 없으면 기본값은 denied입니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">RoleBinding은 namespace 범위에 묶입니다. 다른 namespace까지 권한을 넓히려면 별도의 binding 범위를 설계해야 합니다.</p>
+</figure>

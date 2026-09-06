@@ -1,0 +1,55 @@
+<figure class="sd sd--sequence" id="sd-bitcoin-mempool-reorg" aria-labelledby="sd-title-bitcoin-mempool-reorg">
+  <figcaption class="sd-title" id="sd-title-bitcoin-mempool-reorg">무효화된 block의 거래는 mempool로 돌아옵니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">wallet tx b50a5a25</strong>
+      <span class="sd-detail">1.25 BTC P2WPKH, vsize 141</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">mempool 수신</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">mempool</strong>
+      <span class="sd-detail">confirmations=0, pool size=1</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">block 112 편입</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">block 112</strong>
+      <span class="sd-detail">20fcf935, nTx=2</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">invalidateblock 뒤 두 branch</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning" aria-label="무효화된 branch">
+      <div class="sd-lane-title">무효화된 branch</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">invalid tip</strong>
+          <span class="sd-detail">height 112, branchlen 1</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">거래 반환</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">mempool</strong>
+          <span class="sd-detail">같은 tx, confirmations=0, pool size=1</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="새 active branch">
+      <div class="sd-lane-title">새 active branch</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">두 block 추가 채굴</strong>
+          <span class="sd-detail">새 chain이 기존 branch를 앞섬</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">현재 chain tip</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">active tip 113</strong>
+          <span class="sd-detail">6d72f32e, 두 새 block 뒤</span>
+        </div>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">옛 block 112</strong>
+        <span class="sd-detail">invalid 상태로 남음</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">confirmation은 저장된 balance flag가 아니라 현재 active tip에 대한 깊이입니다. block 112가 무효화되면 transaction confirmation도 0으로 되돌아갑니다.</p>
+</figure>

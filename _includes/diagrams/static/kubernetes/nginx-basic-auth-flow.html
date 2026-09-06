@@ -1,0 +1,46 @@
+<figure class="sd sd--flow" id="sd-kubernetes-nginx-basic-auth-flow" aria-labelledby="sd-kubernetes-nginx-basic-auth-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-nginx-basic-auth-flow-title">NGINX ingress controller가 backend 전에 Basic Auth를 확인한다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Browser</strong>
+      <span class="sd-detail">인증 실패 뒤 <code>401</code>을 받고 다시 입력합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Authorization header 전송</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Authorization header</strong>
+      <span class="sd-detail">Basic credential이 담긴 HTTP header입니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">annotation 규칙 적용</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">NGINX ingress controller</strong>
+      <span class="sd-detail"><code>auth-type</code>와 <code>auth-secret</code>을 읽습니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">htpasswd와 credential 비교</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Auth Secret</strong>
+      <span class="sd-detail"><code>auth</code> key의 htpasswd 형식 값을 사용합니다.</span>
+    </div>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">match 결과에 따라 분기</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-label="Basic Auth credential 일치 경로">
+      <div class="sd-lane-title">credential match</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Backend service</strong>
+          <span class="sd-detail">인증이 맞을 때만 request를 전달받습니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning" aria-label="Basic Auth credential 불일치 경로">
+      <div class="sd-lane-title">credential mismatch</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">401 Unauthorized</strong>
+          <span class="sd-detail">Browser가 다시 prompt하며 backend에는 header가 전달되지 않습니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Basic Auth는 encoding이므로 TLS와 Secret 접근 제어를 함께 적용해야 합니다.</p>
+</figure>

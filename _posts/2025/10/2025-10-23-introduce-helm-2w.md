@@ -31,7 +31,7 @@ image:
 
 Helm Project는 아래와 같은 구성 요소와 구조를 갖습니다.
 
-![What is a Helm Chart?](/assets/img/ci-cd/ci-cd-study/what-is-a-helm-chart.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/what-is-a-helm-chart.html %}
 > SimplyBlock - What is a Helm Chart? - <https://www.simplyblock.io/glossary/what-is-a-helm-chart>  
 
 ### 2.1. Helm Project의 구조
@@ -637,7 +637,7 @@ helm uninstall my-db
 
 아래 실습에서 PostgreSQL 데이터베이스에 저장된 노래 목록을 반환하는 Java 서비스를 배포해 보겠습니다.
 
-![Music application overview](/assets/img/ci-cd/ci-cd-study/music-application-overview.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/music-application-overview.html %}
 
 > [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Music application overview - 5.6. Deploying a Chart with Dependency p.111  

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "edge-to-origin-inspection-points",
+  "title": "web ACL 을 어느 리소스에 붙였는지가 검사할 수 있는 본문 크기를 정한다",
+  "subtitle": "ALB 는 8 KB 고정이고 CloudFront 는 최대 64 KB 다. Firewall Manager 는 요청 경로가 아니라 정책 배포 축에 있다.",
+  "layout": {
+    "col_gap": 52,
+    "row_gap": 48
+  },
+  "nodes": [
+    {
+      "id": "waf-edge",
+      "kind": "box",
+      "label": "web ACL, CLOUDFRONT scope",
+      "detail": "본문 검사 기본 16 KB, 설정으로 최대 64 KB",
+      "role": "process",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "fms",
+      "kind": "service",
+      "service": "firewall_manager",
+      "label": "Firewall Manager",
+      "detail": "Organizations 와 관리자 계정 지정과 AWS Config 가 전제",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "waf-regional",
+      "kind": "box",
+      "label": "web ACL, REGIONAL scope",
+      "detail": "ALB 와 AppSync 는 본문 검사 8 KB 고정",
+      "role": "process",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "waf-logs",
+      "kind": "box",
+      "label": "web ACL 로그",
+      "detail": "CloudWatch Logs 는 aws-waf-logs- 접두사와 같은 리전 같은 계정",
+      "role": "store",
+      "col": 5,
+      "row": 0
+    },
+    {
+      "id": "client",
+      "kind": "box",
+      "label": "인터넷 요청",
+      "detail": "정상 트래픽과 공격이 같은 경로로 들어온다",
+      "role": "external",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "shield",
+      "kind": "service",
+      "service": "shield",
+      "label": "Shield",
+      "detail": "Standard 는 무료 상시, Advanced 는 L7 자동 완화에 150 WCU 를 더한다",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "cloudfront",
+      "kind": "service",
+      "service": "cloudfront",
+      "label": "CloudFront",
+      "detail": "엣지에서 종단하고 검사한다",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "alb",
+      "kind": "service",
+      "service": "alb",
+      "label": "Application Load Balancer",
+      "detail": "리전 안에서 검사한다",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "origin",
+      "kind": "box",
+      "label": "오리진 애플리케이션",
+      "detail": "검사를 통과한 요청만 도달한다",
+      "role": "store",
+      "col": 5,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "client",
+      "target": "shield"
+    },
+    {
+      "source": "shield",
+      "target": "cloudfront"
+    },
+    {
+      "source": "cloudfront",
+      "target": "alb",
+      "emphasis": true
+    },
+    {
+      "source": "alb",
+      "target": "origin"
+    },
+    {
+      "source": "waf-edge",
+      "target": "cloudfront"
+    },
+    {
+      "source": "waf-regional",
+      "target": "alb"
+    },
+    {
+      "source": "fms",
+      "target": "waf-edge",
+      "dashed": true
+    },
+    {
+      "source": "fms",
+      "target": "waf-regional",
+      "dashed": true
+    },
+    {
+      "source": "waf-regional",
+      "target": "waf-logs"
+    }
+  ]
+}

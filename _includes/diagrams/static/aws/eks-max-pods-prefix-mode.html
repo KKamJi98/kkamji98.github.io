@@ -1,0 +1,45 @@
+<figure class="sd sd--flow" id="sd-aws-eks-max-pods-prefix-mode" aria-labelledby="sd-title-aws-eks-max-pods-prefix-mode">
+  <figcaption class="sd-title" id="sd-title-aws-eks-max-pods-prefix-mode">Prefix mode는 ENI slot 하나가 건네는 IP 수를 키운다</figcaption>
+  <section class="sd-lane" aria-label="EKS worker node">
+    <div class="sd-lane-title">EKS worker node</div>
+    <div class="sd-flow">
+      <div class="sd-node">
+        <strong class="sd-label">Pod requests an IP</strong>
+        <span class="sd-detail">scheduler가 Pod 배치</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">warm pool에서 할당</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Amazon VPC CNI</strong>
+        <span class="sd-detail">ipamd가 IP 자원을 관리</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">address mode 선택</span></div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-label="Secondary IP mode">
+          <div class="sd-lane-title">Secondary IP mode</div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">ENI slot = one IP</strong>
+            <span class="sd-detail">각 Pod에 secondary IP 하나</span>
+          </div>
+        </section>
+        <section class="sd-lane" aria-label="Prefix delegation mode">
+          <div class="sd-lane-title">Prefix delegation</div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">ENI prefix</strong>
+            <span class="sd-detail">slot마다 /28 prefix = 16 IPs</span>
+          </div>
+        </section>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">ENIs x slots x address 수</span></div>
+      <div class="sd-node">
+        <strong class="sd-label">Node IP capacity</strong>
+        <span class="sd-detail">prefix mode에서 address pool이 크게 증가</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">kubelet admission limit</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">max-pods</strong>
+        <span class="sd-detail">t4g.small 계산값 146, low-CPU ceiling은 110</span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">Prefix mode를 켜도 kubelet의 max-pods 설정은 별도로 갱신해야 하며, 실제 반영에는 node replacement가 필요합니다.</p>
+</figure>

@@ -1,0 +1,19 @@
+<figure class="sd sd--flow" id="jib-build-workflow" aria-labelledby="jib-build-workflow-title">
+  <figcaption class="sd-title" id="jib-build-workflow-title">Jib의 Dockerless Container Image 빌드</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Project</strong>
+      <span class="sd-detail">Java source와 Gradle 또는 Maven build</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Jib build</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Jib</strong>
+      <span class="sd-detail">Docker daemon 없이 OCI image를 생성하고 layer cache를 사용</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">image push</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Container Image (registry)</strong>
+      <span class="sd-detail">빌드된 image를 저장하고 배포에서 pull</span>
+    </div>
+  </div>
+</figure>

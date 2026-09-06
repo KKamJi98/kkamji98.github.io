@@ -1,0 +1,43 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-regional-failover-trigger-layers-title">
+  <figcaption class="sd-title" id="sap-c02-regional-failover-trigger-layers-title">리전 전환을 만드는 계층과 만들지 못하는 계층</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">클라이언트 요청</strong>
+      <span class="sd-detail">primary 리전이 응답하지 않는 상황에서 전환 경로를 선택한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">전환 계층 비교</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">리전 단위 전환이 성립하는 경로</span>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Route 53 health check failover</strong>
+          <span class="sd-detail">data plane 동작. 클라이언트 DNS cache TTL만큼 지연될 수 있다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">ARC routing control</strong>
+          <span class="sd-detail">RECOVERY_CONTROL health check를 on 또는 off로 바꾸는 data plane API.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">리전 전환 수단으로 성립하지 않는 경로</span>
+      <div class="sd-grid">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Global Accelerator traffic dial</strong>
+          <span class="sd-detail">DNS cache는 없지만 dial 조정이 control plane operation이다.</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">CloudFront origin failover</strong>
+          <span class="sd-detail">실패한 요청만 secondary로 가고 이후 요청은 다시 primary로 간다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">전환이 실제로 성립할 때</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">DR 리전 엔드포인트</strong>
+    <span class="sd-detail">Route 53 또는 ARC 경로가 선택되어야 트래픽이 도달한다.</span>
+  </div>
+</figure>

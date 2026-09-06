@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" id="sd-kubernetes-mysql-kubernetes-deployment" aria-labelledby="sd-kubernetes-mysql-kubernetes-deployment-title">
+  <figcaption class="sd-title" id="sd-kubernetes-mysql-kubernetes-deployment-title">MySQL Pod은 설정, Secret, volume이 연결된 뒤 Service로 제공된다</figcaption>
+  <p class="sd-note">ConfigMap과 Secret은 설정과 자격 증명을, PVC는 data directory를 제공합니다. 두 입력은 Pod spec에 직접 값을 굽지 않고 Pod에 주입되거나 mount됩니다.</p>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="MySQL 설정과 자격 증명 입력">
+      <div class="sd-lane-title">설정과 자격 증명</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">ConfigMap and Secret</strong>
+          <span class="sd-detail">server config와 password를 분리해 보관합니다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="MySQL 영속 데이터 입력">
+      <div class="sd-lane-title">영속 데이터</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">PersistentVolumeClaim</strong>
+          <span class="sd-detail">MySQL data directory를 보존합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 입력을 Pod에 주입하고 mount</span></div>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">MySQL Pod</strong>
+      <span class="sd-detail">ConfigMap, Secret, PVC를 모두 연결한 뒤 시작합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">stable address 제공</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Service</strong>
+      <span class="sd-detail">cluster 안에서 접근할 고정 주소를 제공합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Service name으로 연결</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">Service 이름으로 MySQL에 접속합니다.</span>
+    </div>
+  </div>
+</figure>

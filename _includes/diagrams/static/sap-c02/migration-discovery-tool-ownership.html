@@ -1,0 +1,61 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-migration-discovery-tool-ownership-title">
+  <figcaption class="sd-title" id="sap-c02-migration-discovery-tool-ownership-title">발견 도구는 비용, 인벤토리, 추적을 나눠 맡는다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">온프레미스 자산</strong>
+      <span class="sd-detail">VMware VM과 물리 서버가 섞여 있는 출발점이다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">수집 방식과 질문에 따라 도구 선택</span></div>
+  </div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane">
+      <span class="sd-lane-title">Migration Evaluator</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">collector</strong>
+          <span class="sd-detail">Windows Server VM 1대. WMI, SNMP, vSphere, T-SQL을 사용하며 게스트 에이전트는 없다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">비용 모델</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">business case</strong>
+          <span class="sd-detail">EC2, EBS, OS와 SQL Server 라이선스, BYOL 비용을 계산한다.</span>
+        </div>
+        <p class="sd-note">application dependency mapping은 하지 않는다.</p>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">ADS Agentless Collector</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Agentless Collector</strong>
+          <span class="sd-detail">vCenter에 OVA 1개를 배포한다. 약 60분 주기이며 VMware VM 전용이다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">추적 전송</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Migration Hub home Region</strong>
+          <span class="sd-detail">추적 데이터는 한 리전에 저장하고 대상 리전은 따로 선택한다.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">ADS Discovery Agent</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">서버별 agent</strong>
+          <span class="sd-detail">약 15초 주기로 물리 서버와 프로세스, 네트워크 의존성을 수집한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">두 산출물로 분기</span></div>
+        <div class="sd-grid">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Migration Hub</strong>
+            <span class="sd-detail">서버 그룹핑과 의존성 시각화.</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Athena와 CSV</strong>
+            <span class="sd-detail">시계열 사용률과 network data 내보내기.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

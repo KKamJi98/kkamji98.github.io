@@ -1,0 +1,49 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-data-transfer-charge-points-title">
+  <figcaption class="sd-title" id="sap-c02-data-transfer-charge-points-title">Private subnet 트래픽의 경로별 과금</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Private subnet의 EC2와 ECS</strong><span class="sd-detail">같은 AZ의 private IP 통신은 전송 과금 없음</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">다섯 경로 중 선택</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="NAT Gateway를 통한 인터넷 경로">
+        <div class="sd-lane-title">인터넷 egress</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">NAT Gateway</strong><span class="sd-detail">시간당 요금과 처리 GB 요금</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">인터넷</strong><span class="sd-detail">월 100 GB까지 무료, China와 GovCloud 제외</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Gateway endpoint 경로">
+        <div class="sd-lane-title">Gateway endpoint</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Gateway endpoint</strong><span class="sd-detail">추가 요금 없음, route table prefix list로 라우팅</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">같은 리전 S3와 DynamoDB</strong><span class="sd-detail">gateway endpoint가 지원하는 두 서비스</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Interface endpoint 경로">
+        <div class="sd-lane-title">Interface endpoint</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Interface endpoint</strong><span class="sd-detail">AZ별 provisioned 시간 요금과 처리 GB 요금</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">그 밖의 AWS 서비스</strong><span class="sd-detail">ECR, Secrets Manager, KMS 등</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="AZ와 리전 경계를 넘는 경로">
+        <div class="sd-lane-title">경계 통과</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">다른 AZ 또는 다른 리전</strong><span class="sd-detail">AZ와 리전 경계를 넘는 전송</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">교차 AZ와 리전 간 전송 요금</strong><span class="sd-detail">같은 리전 VPC peering이 AZ를 넘으면 양방향 $0.01/GB</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="CloudFront 경로">
+        <div class="sd-lane-title">CloudFront 전송</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">CloudFront</strong><span class="sd-detail">AWS origin에서 CloudFront로 가는 전송은 면제</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node"><strong class="sd-label">Viewer</strong><span class="sd-detail">CloudFront에서 viewer로 나가는 전송은 과금</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

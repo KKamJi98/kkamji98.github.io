@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/karpenter.png
 ---
 
-![Karpenter provisioning flow](/assets/img/kubernetes/karpenter-provisioning-flow.webp)
+{% include diagrams/static/kubernetes/karpenter-provisioning-flow.html %}
 
 ---
 

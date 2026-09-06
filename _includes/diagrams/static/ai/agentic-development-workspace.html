@@ -1,0 +1,54 @@
+<figure class="sd sd--flow" id="agentic-development-workspace" aria-labelledby="agentic-development-workspace-title">
+  <figcaption class="sd-title" id="agentic-development-workspace-title">Agentic development workspace 책임 경계</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="주요 진입">
+      <div class="sd-lane-title">주요 진입</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Developer</strong>
+          <span class="sd-detail">task를 선언하고 결과를 review</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="복구 진입">
+      <div class="sd-lane-title">복구 진입</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Ghostty</strong>
+          <span class="sd-detail">cmux 장애와 설정 복구를 위한 독립 terminal</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 진입점이 attention control로 모임</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">cmux</strong>
+    <span class="sd-detail">control plane에서 task를 찾고 attention을 배분</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">Workspace</strong>
+    <span class="sd-detail">하나의 task와 하나의 worktree를 가리킴</span>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="Native agent session">
+      <div class="sd-lane-title">Native agent session</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Agent CLI</strong>
+          <span class="sd-detail">cmux terminal에서 직접 실행하고 native session과 resume을 유지</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="장기 process">
+      <div class="sd-lane-title">장기 process</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">tmux</strong>
+          <span class="sd-detail">pane보다 오래 살아야 하는 명시적 process lifetime에만 사용</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">tmux는 Workspace 아래의 선택적 persistence layer이며, native subagent와 one-shot worker에는 필요하지 않습니다.</p>
+</figure>

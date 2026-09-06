@@ -1,0 +1,40 @@
+<figure class="sd sd--comparison" id="sd-blockchain-rpc-balance-is-local" aria-labelledby="sd-title-blockchain-rpc-balance-is-local">
+  <figcaption class="sd-title" id="sd-title-blockchain-rpc-balance-is-local">같은 address도 어느 RPC에 묻느냐에 따라 balance가 달라집니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">EOA 0xf39Fd6e5</strong>
+      <span class="sd-detail">공개 테스트 키 1개</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">같은 address 조회</span></div>
+  </div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Anvil 8545 결과">
+      <div class="sd-lane-title">Anvil :8545</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">latest 5</strong>
+          <span class="sd-detail">chainId 31337, 9998.9997 ETH</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Anvil 8547 결과">
+      <div class="sd-lane-title">Anvil :8547</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">latest 3</strong>
+          <span class="sd-detail">chainId 31337, 9998.9992 ETH</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Sepolia RPC 결과">
+      <div class="sd-lane-title">Sepolia RPC</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">balance 0</strong>
+          <span class="sd-detail">chainId 11155111</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">각 RPC는 자기 state tree만 읽으므로 전역 원장 balance가 아닙니다.</p>
+</figure>

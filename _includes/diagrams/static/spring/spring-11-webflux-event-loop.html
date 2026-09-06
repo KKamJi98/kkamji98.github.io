@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="spring-11-webflux-event-loop" aria-labelledby="spring-11-webflux-event-loop-title">
+  <figcaption class="sd-title" id="spring-11-webflux-event-loop-title">WebFlux event loop의 connection 다중화</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">다수 connection</strong>
+      <span class="sd-detail">A, B, C, D, E, F, ...</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">non-blocking 할당</span></div>
+  </div>
+  <section class="sd-band" aria-label="Netty event loop pool 경계">
+    <div class="sd-band-title">Netty event loop pool, CPU core 수 수준</div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="첫 번째 event loop">
+        <div class="sd-lane-title">event-loop-1</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">A, C, E 처리</strong>
+            <span class="sd-detail">blocking 없음</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="두 번째 event loop">
+        <div class="sd-lane-title">event-loop-2</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">B, D, F 처리</strong>
+            <span class="sd-detail">blocking 없음</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <p class="sd-note">한 connection의 I/O가 대기 중인 동안 event loop thread는 다른 connection을 처리합니다. Spring MVC라면 같은 작업에 처리 중인 request마다 blocked thread가 필요합니다.</p>
+</figure>

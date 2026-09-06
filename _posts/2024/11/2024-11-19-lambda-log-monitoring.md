@@ -25,7 +25,7 @@ image:
 
 ## 1. Workflows
 
-![workflow](/assets/img/observability/log_monitoring.webp)
+{% include diagrams/static/observability/log_monitoring.html %}
 
 ---
 

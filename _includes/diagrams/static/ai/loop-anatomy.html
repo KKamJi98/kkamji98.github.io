@@ -1,0 +1,30 @@
+<figure class="sd sd--sequence" id="loop-anatomy" aria-labelledby="loop-anatomy-title">
+  <figcaption class="sd-title" id="loop-anatomy-title">한 번의 agent loop를 이루는 다섯 단계</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Find work</strong>
+      <span class="sd-detail">backlog, issue, diff scan에서 일거리를 찾음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">범위와 완료 조건을 정함</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Hand out</strong>
+      <span class="sd-detail">context와 scope를 agent에게 전달</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">결과를 기준으로 검증</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Verify</strong>
+      <span class="sd-detail">tests, gates, review로 완료 조건을 확인</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">다음 판단을 위한 기록</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Record</strong>
+      <span class="sd-detail">notes, logs, state를 남김</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">continue 또는 stop</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Decide next</strong>
+      <span class="sd-detail">계속이면 다음 cycle의 find work로 이어짐</span>
+    </div>
+  </div>
+  <p class="sd-note">Verify가 루프의 중심입니다. 검증 없이 계속 진행하면 자동화된 loop가 아니라 무한 반복이 됩니다.</p>
+</figure>

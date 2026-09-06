@@ -1,0 +1,46 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-session-tags-abac" aria-labelledby="sd-title-session-tags-abac">
+  <figcaption class="sd-title" id="sd-title-session-tags-abac">session tag는 aws:PrincipalTag가 되어 리소스 태그와 비교됩니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">IdP 속성</strong>
+      <span class="sd-detail">SAML attribute 또는 JWT claim</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">sts:TagSession</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">session tag</strong>
+      <span class="sd-detail">최대 50개, key 128자, value 256자</span>
+    </div>
+  </div>
+  <p class="sd-note">trust policy에 sts:TagSession이 없으면 태그 누락이 아니라 AssumeRole 호출 자체가 실패합니다.</p>
+  <div class="sd-arrow"><span class="sd-edge-label">PrincipalTag와 ResourceTag 입력</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="principal tag 입력">
+      <div class="sd-lane-title">principal 쪽 context</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">aws:PrincipalTag</strong>
+          <span class="sd-detail">session tag가 request context로 들어감</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="resource tag 입력">
+      <div class="sd-lane-title">resource 쪽 context</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">aws:ResourceTag</strong>
+          <span class="sd-detail">접근 대상 리소스의 태그</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">정책 Condition에서 태그 비교</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">정책 Condition</strong>
+    <span class="sd-detail">aws:PrincipalTag와 aws:ResourceTag를 비교</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 태그가 일치</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">접근 허용</strong>
+    <span class="sd-detail">PrincipalTag와 ResourceTag가 일치할 때만</span>
+  </div>
+</figure>

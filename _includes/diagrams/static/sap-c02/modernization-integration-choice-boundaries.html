@@ -1,0 +1,38 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-modernization-integration-choice-boundaries-title">
+  <figcaption class="sd-title" id="sap-c02-modernization-integration-choice-boundaries-title">전달 요구가 통합 서비스를 가른다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">모놀리스 모듈</strong>
+      <span class="sd-detail">기존 동기 호출을 어떤 보장으로 분리할지 정한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">순서, 버퍼, 라우팅, 승인 요구 확인</span></div>
+  </div>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">순서와 소비자별 버퍼</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">FIFO 전달</strong><span class="sd-detail">소비자마다 보존된 순서와 버퍼가 필요하다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">팬아웃</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">SNS FIFO</strong><span class="sd-detail">필터링과 팬아웃을 담당한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">소비자별 큐</span></div>
+        <div class="sd-node"><strong class="sd-label">SQS FIFO</strong><span class="sd-detail">소비자별 보존과 순서를 보장한다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">콘텐츠 기반 라우팅</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">이벤트 패턴</strong><span class="sd-detail">내용에 따라 서로 다른 대상이 필요하다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">rule 매칭</span></div>
+        <div class="sd-node"><strong class="sd-label">Amazon EventBridge</strong><span class="sd-detail">rule로 이벤트를 대상에 라우팅한다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">긴 대기와 사람 승인</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">비멱등 작업</strong><span class="sd-detail">긴 실행과 콜백, 승인 단계가 필요하다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">상태 있는 실행</span></div>
+        <div class="sd-node"><strong class="sd-label">Step Functions Standard</strong><span class="sd-detail">승인과 callback을 포함한 긴 워크플로다.</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

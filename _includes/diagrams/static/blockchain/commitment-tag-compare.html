@@ -1,0 +1,48 @@
+<figure class="sd sd--comparison" id="sd-commitment-tag-compare" aria-labelledby="sd-title-commitment-tag-compare">
+  <figcaption class="sd-title" id="sd-title-commitment-tag-compare">체인마다 확인 기준이 가리키는 head가 다릅니다</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane sd-lane--accent" aria-label="Bitcoin 기준">
+      <div class="sd-lane-title">Bitcoin</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">active tip</strong>
+          <span class="sd-detail">현재 canonical chain의 head</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">confirmation 계산</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">confirmations</strong>
+          <span class="sd-detail">거래 뒤 active block 수</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Ethereum 기준">
+      <div class="sd-lane-title">Ethereum</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">latest / safe / finalized</strong>
+          <span class="sd-detail">execution head, justified head, finalized checkpoint</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">tag 선택</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">finalized</strong>
+          <span class="sd-detail">two-thirds checkpoint 기준</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Solana 기준">
+      <div class="sd-lane-title">Solana</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">processed / confirmed / finalized</strong>
+          <span class="sd-detail">처리됨, stake 2/3 초과 vote, maximum lockout</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">commitment 선택</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">finalized</strong>
+          <span class="sd-detail">일반 RPC 기본값은 보통 finalized</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">confirmation, tag, commitment라는 이름이 비슷해도 세 체인이 세는 대상과 되돌림 기준은 서로 다릅니다.</p>
+</figure>

@@ -1,0 +1,71 @@
+<figure class="sd sd--flow" id="kubernetes-graceful-shutdown" aria-labelledby="kubernetes-graceful-shutdown-title">
+  <figcaption class="sd-title" id="kubernetes-graceful-shutdown-title">Pod 삭제는 Service endpoint 제거와 preStop 이후 SIGTERM을 함께 진행한다</figcaption>
+  <p class="sd-note">API Server의 삭제 요청을 kubelet과 kube-proxy가 감지한 뒤, 새 traffic 차단과 application cleanup이 각각의 경로에서 진행됩니다.</p>
+
+  <div class="sd-flow" aria-label="Pod graceful shutdown 공통 시작">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">API Server</strong>
+      <span class="sd-detail">사용자 또는 controller가 Pod 삭제를 요청합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">상태 변경 watch</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">kubelet와 kube-proxy</strong>
+      <span class="sd-detail">같은 삭제 상태를 보고 각자의 종료 경로를 시작합니다.</span>
+    </div>
+  </div>
+
+  <div class="sd-grid" aria-label="traffic과 process 종료 경로">
+    <section class="sd-lane" aria-labelledby="kubernetes-graceful-shutdown-traffic-title">
+      <div class="sd-lane-title" id="kubernetes-graceful-shutdown-traffic-title">Traffic stop path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kube-proxy</strong>
+          <span class="sd-detail">Service backend 목록의 Pod IP를 갱신합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">endpoint 제거</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Service endpoint set</strong>
+          <span class="sd-detail">iptables 또는 ipvs rule에서 terminating Pod를 뺍니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">새 요청 차단</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">No new traffic to Pod</strong>
+          <span class="sd-detail">새 connection이 종료 중인 Pod로 향하지 않게 합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-graceful-shutdown-process-title">
+      <div class="sd-lane-title" id="kubernetes-graceful-shutdown-process-title">Process cleanup path</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kubelet</strong>
+          <span class="sd-detail">container lifecycle을 종료 절차로 전환합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">먼저 실행</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">preStop hook</strong>
+          <span class="sd-detail">sleep, DB connection 정리와 진행 중 작업 마무리를 수행합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">hook 완료 후</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">SIGTERM</strong>
+          <span class="sd-detail">application이 남은 connection과 resource를 정리합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">정상 종료</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Pod exits</strong>
+          <span class="sd-detail">graceful cleanup이 끝난 뒤 process가 종료됩니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-band">
+    <div class="sd-band-title">terminationGracePeriodSeconds</div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">최대 대기 시간</strong>
+      <span class="sd-detail">preStop과 SIGTERM 처리 뒤에도 시간이 남지 않으면 kubelet이 <code>SIGKILL</code>로 강제 종료합니다.</span>
+    </div>
+  </div>
+</figure>

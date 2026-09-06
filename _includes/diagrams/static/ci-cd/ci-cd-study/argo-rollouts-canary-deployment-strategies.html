@@ -1,0 +1,62 @@
+<figure class="sd sd--layers sd--sequence" id="sd-ci-cd-study-argo-rollouts-canary-deployment-strategies" aria-labelledby="sd-title-ci-cd-study-argo-rollouts-canary-deployment-strategies">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-argo-rollouts-canary-deployment-strategies">Canary 배포는 새 버전의 traffic weight를 단계적으로 높인다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Users</strong>
+      <span class="sd-detail">Live traffic을 발생</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">모든 phase의 공통 진입</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Load Balancer</strong>
+      <span class="sd-detail">phase별 weight로 두 버전에 분배</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">canary weight 단계 진행</span></div>
+    <div class="sd-stack">
+      <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-initial-title">
+        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-initial-title">1. Initial version</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Application version 34</strong>
+            <span class="sd-detail">100% traffic</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-ten-title">
+        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-ten-title">2. New version used by 10%</div>
+        <div class="sd-grid">
+          <article class="sd-node">
+            <strong class="sd-label">Version 34</strong>
+            <span class="sd-detail">90% traffic</span>
+          </article>
+          <article class="sd-node sd-node--accent">
+            <strong class="sd-label">Version 35</strong>
+            <span class="sd-detail">10% canary traffic</span>
+          </article>
+        </div>
+      </section>
+      <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-thirtythree-title">
+        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-thirtythree-title">3. New version used by 33%</div>
+        <div class="sd-grid">
+          <article class="sd-node">
+            <strong class="sd-label">Version 34</strong>
+            <span class="sd-detail">66% traffic</span>
+          </article>
+          <article class="sd-node sd-node--accent">
+            <strong class="sd-label">Version 35</strong>
+            <span class="sd-detail">33% canary traffic</span>
+          </article>
+        </div>
+      </section>
+      <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-finish-title">
+        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-finish-title">4. New version used by all users</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Application version 35</strong>
+            <span class="sd-detail">100% traffic, rollout complete</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">각 단계에서 새 버전의 결과를 확인한 뒤 다음 weight로 승격합니다. 문제가 발견되면 이전 버전에 남은 traffic을 유지하거나 rollback할 수 있습니다.</p>
+</figure>

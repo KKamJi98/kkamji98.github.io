@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-bitcoin-p2wpkh-witness" aria-labelledby="sd-title-bitcoin-p2wpkh-witness">
+  <figcaption class="sd-title" id="sd-title-bitcoin-p2wpkh-witness">P2WPKH는 Script로 잠그고 witness로 풉니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">scriptPubKey</strong>
+      <span class="sd-detail">output lock: 0 + 20-byte hash, P2WPKH</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">지출 시 조건 제출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">txinwitness</strong>
+      <span class="sd-detail">signature, compressed pubkey; scriptSig는 empty</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Script 조건 충족</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">vout[0] 1.25 BTC</strong>
+      <span class="sd-detail">bob bcrt1qkdt5x...</span>
+    </div>
+  </div>
+  <p class="sd-note">address 문자열은 출력의 표시 이름이고, 실제 잠금 조건은 scriptPubKey에 있습니다.</p>
+</figure>

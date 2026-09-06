@@ -1,0 +1,30 @@
+<figure class="sd sd--flow" id="sd-kubernetes-flannel-vxlan-pod-flow" aria-labelledby="sd-kubernetes-flannel-vxlan-pod-flow-title">
+  <figcaption class="sd-title" id="sd-kubernetes-flannel-vxlan-pod-flow-title">Flannel VXLAN은 node 사이 UDP tunnel로 Pod traffic을 감싼다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Source Pod</strong>
+      <span class="sd-detail"><code>cni0</code> bridge를 통해 나갑니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">local bridge 전달</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Source node</strong>
+      <span class="sd-detail"><code>flannel.1</code> VTEP가 frame을 encapsulate합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">UDP 8472로 전송</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">VXLAN tunnel</strong>
+      <span class="sd-detail">두 node 사이에서 Pod packet을 감쌉니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">remote node 도착</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Remote node</strong>
+      <span class="sd-detail">VTEP가 frame을 decapsulate합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">local bridge 전달</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Destination Pod</strong>
+      <span class="sd-detail">원래 Pod network로 배달됩니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">underlay가 보는 것은 node to node UDP입니다. 그래서 underlay에는 destination Pod CIDR 경로가 필요하지 않습니다.</p>
+</figure>

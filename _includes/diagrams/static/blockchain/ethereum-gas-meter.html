@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-ethereum-gas-meter" aria-labelledby="sd-title-ethereum-gas-meter">
+  <figcaption class="sd-title" id="sd-title-ethereum-gas-meter">type 0x2 이체의 gas와 fee가 receipt에 기록됩니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">type 0x2 transfer</strong>
+      <span class="sd-detail">1 ETH, nonce 0</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">실행 비용 측정</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">gasUsed 21000</strong>
+      <span class="sd-detail">effectiveGasPrice 1.000000001 gwei</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">fee 계산</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">receipt status 0x1</strong>
+      <span class="sd-detail">block 1, fee 21000000021000 wei</span>
+    </div>
+  </div>
+  <p class="sd-note">fee는 21000 x 1000000001 wei입니다. recipient는 정확히 1 ETH를 받고 fee는 송신 계정이 냅니다.</p>
+</figure>

@@ -1,0 +1,59 @@
+<figure class="sd sd--comparison" id="rag-02-chunking-strategies" aria-labelledby="rag-02-chunking-strategies-title">
+  <figcaption class="sd-title" id="rag-02-chunking-strategies-title">Chunking 전략이 만드는 검색 단위의 차이</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Fixed size">
+      <div class="sd-lane-title">Fixed size</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">Chunk 1</strong>
+          <span class="sd-detail">같은 token 또는 문자 수</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Chunk 2</strong>
+          <span class="sd-detail">앞 chunk와 일부 overlap</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Chunk 3</strong>
+          <span class="sd-detail">의미 경계를 보지 않음</span>
+        </div>
+      </div>
+      <p class="sd-note">저렴하고 예측 가능하지만 문장이나 조항 중간을 자를 수 있습니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Structure aware">
+      <div class="sd-lane-title">Structure aware</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">Section 1</strong>
+          <span class="sd-detail">heading 경계</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Section 2</strong>
+          <span class="sd-detail">문단과 clause 경계</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Section 3</strong>
+          <span class="sd-detail">큰 단위부터 재귀 분할</span>
+        </div>
+      </div>
+      <p class="sd-note">문서 heading과 clause를 우선해 의미가 이어지는 단위를 보존합니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Semantic">
+      <div class="sd-lane-title">Semantic</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node">
+          <strong class="sd-label">Topic A</strong>
+          <span class="sd-detail">문장 의미가 이어지는 구간</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Topic B</strong>
+          <span class="sd-detail">embedding distance가 증가하기 전</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Topic C</strong>
+          <span class="sd-detail">의미가 바뀌는 지점에서 분할</span>
+        </div>
+      </div>
+      <p class="sd-note">embedding distance의 급격한 변화로 경계를 잡지만 사전 계산 비용과 이득의 불확실성이 있습니다.</p>
+    </section>
+  </div>
+</figure>

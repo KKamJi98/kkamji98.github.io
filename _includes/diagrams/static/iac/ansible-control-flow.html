@@ -1,0 +1,39 @@
+<figure class="sd sd--flow" id="ansible-control-flow" aria-labelledby="ansible-control-flow-title">
+  <figcaption class="sd-title" id="ansible-control-flow-title">Ansible은 control node에서 SSH로 managed host를 관리합니다</figcaption>
+  <p class="sd-note">Inventory와 playbook은 control node에 있고, managed host에는 사전에 Ansible agent를 설치하지 않습니다.</p>
+
+  <div class="sd-flow" aria-label="Ansible control flow">
+    <div class="sd-node">
+      <strong class="sd-label">Inventory</strong>
+      <span class="sd-detail">관리할 hosts와 group, host 변수를 정의합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">대상 group 선택</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Ansible control node</strong>
+      <span class="sd-detail"><code>ansible-playbook</code>가 실행되는 위치입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">task 순서 해석</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Playbook and modules</strong>
+      <span class="sd-detail">순서가 있는 task와 대체로 idempotent한 module입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">원격 실행 요청</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">SSH</strong>
+      <span class="sd-detail">인증, 명령 전송과 결과 회신에 필요한 channel입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">module 실행과 report</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Managed hosts</strong>
+      <span class="sd-detail">원격 host에서 module이 실행되고 상태를 돌려줍니다.</span>
+    </div>
+  </div>
+</figure>

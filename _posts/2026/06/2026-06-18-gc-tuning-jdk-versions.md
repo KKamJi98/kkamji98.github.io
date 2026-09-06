@@ -24,7 +24,7 @@ image:
 
 ## 1. 핵심 튜닝 손잡이
 
-![G1 튜닝 파라미터](/assets/img/jvm/jvm-09-gc-tuning-params.webp)
+{% include diagrams/static/jvm/jvm-09-gc-tuning-params.html %}
 _각 플래그가 제어하는 것_
 
 - `-Xms` / `-Xmx`: 초기 / 최대 heap
@@ -53,7 +53,7 @@ _각 플래그가 제어하는 것_
 
 ## 2. 인과 사슬: JDK가 올라가면 왜 Old 거동이 바뀌나
 
-![JDK 버전별 G1 거동 변화](/assets/img/jvm/jvm-10-jdk-version-gc-shift.webp)
+{% include diagrams/static/jvm/jvm-10-jdk-version-gc-shift.html %}
 _faster G1 -> young 비대 -> minor GC 감소 -> IHOP 지연 -> 승격 -> Old 톱니 (일반 예시)_
 
 위 building block(young = pause 레버, 비용 비례, adaptive IHOP)을 이으면 다음 연쇄가 됩니다.

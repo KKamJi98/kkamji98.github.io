@@ -1,0 +1,25 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-route53-hybrid-dns-endpoints-title">
+  <figcaption class="sd-title" id="sap-c02-route53-hybrid-dns-endpoints-title">inbound와 outbound endpoint는 질의 방향이 반대다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">inbound: 온프레미스에서 VPC로</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">온프레미스 DNS</strong><span class="sd-detail">VPC 이름을 조회한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">Direct Connect 또는 VPN</span></div>
+        <div class="sd-node"><strong class="sd-label">inbound endpoint</strong><span class="sd-detail">온프레미스 질의를 VPC Resolver로 받는다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">private hosted zone</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">VPC 내부 이름 응답</strong><span class="sd-detail">Route 53 private hosted zone이 응답한다.</span></div>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <span class="sd-lane-title">outbound: VPC에서 온프레미스로</span>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">VPC workload</strong><span class="sd-detail">온프레미스 이름을 조회한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">outbound endpoint</span></div>
+        <div class="sd-node"><strong class="sd-label">Resolver forwarding rule</strong><span class="sd-detail">도메인별 target DNS 경로를 지정한다.</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">corp.example.local</span></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">온프레미스 authoritative DNS</strong><span class="sd-detail">사내 도메인의 최종 응답을 관리한다.</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

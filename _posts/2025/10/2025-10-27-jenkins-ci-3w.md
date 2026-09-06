@@ -58,7 +58,7 @@ image:
 
 즉, 애플리케이션의 **빌드(Build) -> 테스트(Test) -> 배포(Deploy)** 과정을 코드 형태로 정의하고 자동화할 수 있는 도구 세트입니다.
 
-![Jenkins Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-pipeline.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/jenkins-pipeline.html %}
 
 > [Jenkins Docs - What is Jenkins Pipeline?](https://www.jenkins.io/doc/book/pipeline/)  
 
@@ -105,7 +105,7 @@ image:
 - **선언형** 파이프라인 : 쉽게 작성 가능, 최근 문법이고 젠킨스에서 권장하는 방법, step 필수!
 - **스크립트형** 파이프라인 : 커스텀 작업에 용이, 복잡하여 난이도가 높음, step은 필수 아님
 
-![Scripted vs Declarative Pipeline](/assets/img/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative.html %}
 > [Scripted vs Declarative Pipeline](https://velog.io/@kku64r/pipeline)  
 
 #### 2.4.1. Declarative Pipeline 예시
@@ -437,7 +437,7 @@ for i in {1..100};  do curl -s http://127.0.0.1:30000 | grep name; done | sort |
 
 이번에는 현재 배포한 Sample Application을 새 버전(0.0.2) 태그로 컨테이너 이미지를 빌드 후 컨테이너 저장소(Docker Hub) Push -> Kubernetes Deployment 업데이트를 해보겠습니다. (수동)
 
-![Jenkins CI Overview](/assets/img/ci-cd/ci-cd-study/jenkins-ci-overview.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/jenkins-ci-overview.html %}
 
 ```shell
 ##############################################################
@@ -573,7 +573,7 @@ Jenkins job Trigger - [dev-app] - Setting -> Webhooks -> Gogs 클릭
 
 ### 3.9. Jenkinsfile 작성 후 git push
 
-![Jenkins CI Workflow](/assets/img/ci-cd/ci-cd-study/jenkins-ci-workflow.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/jenkins-ci-workflow.html %}
 
 ```shell
 ##############################################################

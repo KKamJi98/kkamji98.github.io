@@ -1,0 +1,20 @@
+<figure class="sd sd--flow" id="sd-blockchain-pos-inactivity-leak" aria-labelledby="sd-title-blockchain-pos-inactivity-leak">
+  <figcaption class="sd-title" id="sd-title-blockchain-pos-inactivity-leak">two-thirds checkpoint 투표가 끊기면 inactivity leak으로 이어집니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">checkpoint vote</strong>
+      <span class="sd-detail">stake 2/3 필요</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">two-thirds 미달</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">no new finalized</strong>
+      <span class="sd-detail">safe/finalized lag grows</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">4 epoch 초과</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">inactivity leak</strong>
+      <span class="sd-detail">비활성 stake balance 감소</span>
+    </div>
+  </div>
+  <p class="sd-note">이번 Sepolia의 block lag은 inactivity leak을 관측한 증거가 아닙니다.</p>
+</figure>

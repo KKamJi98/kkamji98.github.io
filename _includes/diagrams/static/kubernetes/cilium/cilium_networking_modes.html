@@ -1,0 +1,40 @@
+<figure class="sd sd--comparison" id="sd-kubernetes-cilium-networking-modes" aria-labelledby="sd-kubernetes-cilium-networking-modes-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-networking-modes-title">Cilium networking은 VXLAN overlay와 native direct routing을 선택한다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-label="Encapsulation tunnel mode">
+      <div class="sd-lane-title">Encapsulation (Tunnel) Mode</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Node A</strong>
+          <span class="sd-detail">Pod packet을 tunnel endpoint로 보낸다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">VXLAN or Geneve overlay</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Node B and Node C</strong>
+          <span class="sd-detail">Cilium이 node 사이 encapsulation과 routing을 처리한다.</span>
+        </div>
+      </div>
+      <p class="sd-note">하부 network는 node 간 IP connectivity만 제공하면 되며, Pod CIDR를 직접 라우팅하지 않는다.</p>
+    </section>
+    <section class="sd-lane" aria-label="Direct routing native mode">
+      <div class="sd-lane-title">Direct Routing (Native) Mode</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Node A</strong>
+          <span class="sd-detail">Pod CIDR packet을 encapsulation 없이 보낸다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">native Pod CIDR route</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Cloud router or BGP daemon</strong>
+          <span class="sd-detail">underlay가 remote node의 Pod CIDR 경로를 학습한다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">route to peer node</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Node B and Node C</strong>
+          <span class="sd-detail">라우터가 선택한 native 경로로 packet을 받는다.</span>
+        </div>
+      </div>
+      <p class="sd-note">성능과 IP 가시성을 얻는 대신 switch, router 또는 cloud network에 Pod CIDR routing이 필요하다.</p>
+    </section>
+  </div>
+</figure>

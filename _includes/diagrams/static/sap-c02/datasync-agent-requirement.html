@@ -1,0 +1,32 @@
+<figure class="sd sd--comparison" aria-labelledby="sap-c02-datasync-agent-requirement-title">
+  <figcaption class="sd-title" id="sap-c02-datasync-agent-requirement-title">DataSync agent 필요 여부와 처리량 상한</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="DataSync agent가 필요한 조합">
+      <div class="sd-lane-title">Agent 필요</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">온프레미스와 AWS 스토리지</strong><span class="sd-detail">NFS, SMB, HDFS, 자체 관리 object storage</span></div>
+        <div class="sd-node"><strong class="sd-label">타 클라우드와 EFS 또는 FSx</strong><span class="sd-detail">대상이 file system인 경우</span></div>
+        <div class="sd-node"><strong class="sd-label">계정 간 전송</strong><span class="sd-detail">양쪽 모두 S3가 아닌 경우</span></div>
+        <div class="sd-node"><strong class="sd-label">상용 리전과 GovCloud(US)</strong><span class="sd-detail">양쪽 모두 EFS 또는 FSx면 agent 필요</span></div>
+        <div class="sd-node"><strong class="sd-label">S3 on Outposts와 리전 S3</strong><span class="sd-detail">Basic mode만 지원</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">DataSync agent</strong><span class="sd-detail">VMware, KVM, Hyper-V, EC2에서 실행, 위치 하나당 최대 4개</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">서비스 상한</span></div>
+        <div class="sd-node"><strong class="sd-label">태스크당 10 Gbps</strong><span class="sd-detail">조정할 수 없는 service limit</span></div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="DataSync agent가 필요 없는 조합">
+      <div class="sd-lane-title">Agent 불필요</div>
+      <div class="sd-flow">
+        <div class="sd-node"><strong class="sd-label">같은 계정의 AWS 스토리지</strong><span class="sd-detail">S3, EFS, FSx 조합</span></div>
+        <div class="sd-node"><strong class="sd-label">계정 간 전송에서 한쪽이 S3</strong><span class="sd-detail">S3가 있으면 직접 전송</span></div>
+        <div class="sd-node"><strong class="sd-label">S3와 타 클라우드 object storage</strong><span class="sd-detail">Azure Blob 포함</span></div>
+        <div class="sd-node"><strong class="sd-label">상용 리전과 GovCloud(US)</strong><span class="sd-detail">한쪽이 S3면 agent 불필요</span></div>
+        <div class="sd-arrow" aria-hidden="true"></div>
+        <div class="sd-node sd-node--accent"><strong class="sd-label">서비스가 직접 읽고 씀</strong><span class="sd-detail">운영할 VM이 필요 없음</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">서비스 상한</span></div>
+        <div class="sd-node"><strong class="sd-label">태스크당 5 Gbps</strong><span class="sd-detail">조정할 수 없는 service limit</span></div>
+      </div>
+    </section>
+  </div>
+</figure>

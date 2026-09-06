@@ -1,0 +1,51 @@
+<figure class="sd sd--flow sd--comparison" id="sd-ci-cd-github-actions-workflow-flow" aria-labelledby="sd-title-ci-cd-github-actions-workflow-flow">
+  <figcaption class="sd-title" id="sd-title-ci-cd-github-actions-workflow-flow">GitHub event가 Workflow run을 만들고 Job마다 Runner를 배정</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">GitHub event</strong>
+      <span class="sd-detail"><code>push</code>, <code>pull_request</code>, <code>schedule</code></span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">trigger 조건 일치</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Workflow run</strong>
+      <span class="sd-detail">event마다 독립적인 실행 하나 생성</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">정의된 Job을 스케줄</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-github-actions-test-title">
+        <div class="sd-lane-title" id="sd-ci-cd-github-actions-test-title">Test job</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Test</strong>
+            <span class="sd-detail">선행 <code>needs</code>가 없으면 독립 실행</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label"><code>runs-on</code></span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Runner and steps</strong>
+            <span class="sd-detail">Job마다 새 환경에서 순서대로 실행</span>
+          </div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-labelledby="sd-ci-cd-github-actions-lint-title">
+        <div class="sd-lane-title" id="sd-ci-cd-github-actions-lint-title">Lint job</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Lint</strong>
+            <span class="sd-detail">Test와 dependency가 없어 병렬 실행 가능</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label"><code>runs-on</code></span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Runner and steps</strong>
+            <span class="sd-detail">각 Job의 workspace는 자동 공유되지 않음</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label"><code>needs: [test, lint]</code> 통과</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Deploy job</strong>
+      <span class="sd-detail">앞선 Job이 성공한 뒤에만 실행</span>
+    </div>
+  </div>
+  <p class="sd-note">Job은 기본적으로 서로 독립적이며 <code>needs</code>로 의존성을 선언할 때만 순서가 생깁니다. Job 사이 결과 전달에는 artifact, cache, output을 목적에 맞게 지정합니다.</p>
+</figure>

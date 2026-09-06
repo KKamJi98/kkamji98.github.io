@@ -1,0 +1,61 @@
+<figure class="sd sd--layers" id="sd-kubernetes-cilium-ebpf-merit" aria-labelledby="sd-kubernetes-cilium-ebpf-merit-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-ebpf-merit-title">eBPF use case는 projects와 SDK를 거쳐 verifier가 관리하는 kernel runtime에서 실행된다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="eBPF use cases">
+      <div class="sd-band-title">Use Cases</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Networking</strong>
+          <span class="sd-detail">packet path와 load balancing을 처리한다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Security</strong>
+          <span class="sd-detail">policy와 network security를 적용한다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Observability &amp; Tracing</strong>
+          <span class="sd-detail">runtime event를 추적하고 프로파일링한다.</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">implemented by projects</span></div>
+    <section class="sd-band" aria-label="eBPF projects">
+      <div class="sd-band-title">Projects</div>
+      <div class="sd-node">
+        <strong class="sd-label">eBPF projects</strong>
+        <span class="sd-detail">BCC, Cilium, Falco, Katran, Pixie 같은 user-space projects가 use case를 구현한다.</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">built with SDKs</span></div>
+    <section class="sd-band" aria-label="eBPF SDKs">
+      <div class="sd-band-title">User Space SDKs</div>
+      <div class="sd-node">
+        <strong class="sd-label">eBPF SDKs</strong>
+        <span class="sd-detail">Rust, Go, C, C++ 같은 언어에서 program과 map을 구성한다.</span>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">load into kernel runtime</span></div>
+    <section class="sd-band sd-band--accent" aria-label="eBPF kernel runtime">
+      <div class="sd-band-title">Kernel Runtime</div>
+      <div class="sd-grid sd-grid--three">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Verifier &amp; JIT</strong>
+          <span class="sd-detail">안전성을 검사하고 가능한 환경에서 native code로 실행한다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Maps</strong>
+          <span class="sd-detail">kernel 상태와 program 데이터를 공유한다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Kernel Helper API</strong>
+          <span class="sd-detail">허용된 helper를 통해 kernel 기능에 접근한다.</span>
+        </div>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">OS Runtime</strong>
+        <span class="sd-detail">Linux와 Windows kernel runtime에 연결된다.</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Tracing, profiling, and monitoring applications use eBPF, while networking, security controls, load balancing, and behavioral security run through the kernel runtime.</p>
+</figure>

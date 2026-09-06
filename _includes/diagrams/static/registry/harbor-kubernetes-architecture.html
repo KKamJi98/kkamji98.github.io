@@ -1,0 +1,49 @@
+<figure class="sd sd--comparison" id="harbor-kubernetes-architecture" aria-labelledby="harbor-kubernetes-architecture-title">
+  <figcaption class="sd-title" id="harbor-kubernetes-architecture-title">Harbor는 하나의 Ingress 뒤에서 portal과 registry path를 나눕니다</figcaption>
+  <p class="sd-note">같은 hostname으로 들어온 요청을 Ingress가 경로별로 분기하고, registry path만 image storage에 이어집니다.</p>
+
+  <div class="sd-flow" aria-label="Harbor on Kubernetes architecture">
+    <div class="sd-node">
+      <strong class="sd-label">User</strong>
+      <span class="sd-detail">browser 또는 Docker CLI가 같은 Harbor hostname으로 접근합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">TLS 종료와 path routing</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Ingress</strong>
+      <span class="sd-detail">요청 path에 따라 UI와 registry service를 선택합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">hostname 내부에서 경로 분기</span></div>
+
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="harbor-portal-path-title">
+        <div class="sd-lane-title" id="harbor-portal-path-title">Portal path</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Harbor portal</strong>
+            <span class="sd-detail">web UI와 core API를 제공합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="harbor-registry-path-title">
+        <div class="sd-lane-title" id="harbor-registry-path-title">Registry path</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Registry service</strong>
+            <span class="sd-detail">image distribution API를 처리합니다.</span>
+          </div>
+
+          <div class="sd-arrow"><span class="sd-edge-label">blob과 manifest 저장</span></div>
+
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">Image storage</strong>
+            <span class="sd-detail">object storage 또는 Kubernetes PVC에 보관합니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

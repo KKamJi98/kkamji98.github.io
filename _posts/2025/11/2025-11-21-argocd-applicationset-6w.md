@@ -17,7 +17,7 @@ Argo CD의 App of Apps와 ApplicationSet 리소스에 대해 알아보고, [이�
 
 ## 1. 실습 환경 구성
 
-![Argo CD Multi-Cluster Architecture](/assets/img/ci-cd/ci-cd-study/argo-multi-cluster-architecture.webp)
+{% include diagrams/static/ci-cd/ci-cd-study/argo-multi-cluster-architecture.html %}
 
 - **kind-mgmt**: Argo CD가 설치되는 **제어(Control) 클러스터**
 - **kind-prd**: 실제 서비스가 운영된다고 가정한 **운영 클러스터**

@@ -1,0 +1,26 @@
+<figure class="sd sd--flow" id="rememberme-budget-alarm-workflow" aria-labelledby="rememberme-budget-alarm-workflow-title">
+  <figcaption class="sd-title" id="rememberme-budget-alarm-workflow-title">AWS Budgets 알림은 SNS와 Chatbot을 거쳐 Slack에 도착합니다</figcaption>
+  <p class="sd-note">비용 threshold를 넘으면 Budgets와 CloudWatch alarm이 notification을 만들고, SNS topic이 Chatbot integration을 호출합니다.</p>
+
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">AWS Budgets</strong>
+      <span class="sd-detail">예산과 실제 비용을 비교해 threshold를 감지합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">cost alarm notification</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Amazon SNS</strong>
+      <span class="sd-detail">알림 topic으로 이벤트를 fan-out합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">topic subscription</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">AWS Chatbot</strong>
+      <span class="sd-detail">SNS message를 Slack channel 알림으로 변환합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">Slack delivery</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Slack</strong>
+      <span class="sd-detail">운영자가 예산 초과 경고를 확인합니다.</span>
+    </div>
+  </div>
+</figure>

@@ -48,7 +48,7 @@ LLM Gateway는 애플리케이션과 LLM 프로바이더 사이에 놓이는 프
 
 ---
 
-![LLM Gateway가 놓이는 위치](/assets/img/ai/llm-gateway-position.webp)
+{% include diagrams/static/ai/llm-gateway-position.html %}
 
 애플리케이션은 가상 키로 게이트웨이를 호출하고, 게이트웨이만 실제 프로바이더 키를 쥐고 있습니다. 예산, 감사 로그, 가드레일, 폴백 라우팅이 모두 이 한 칸에 모입니다.
 

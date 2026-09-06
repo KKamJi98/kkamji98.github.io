@@ -1,0 +1,44 @@
+<figure class="sd sd--flow" id="spring-04-bean-lifecycle" aria-labelledby="spring-04-bean-lifecycle-title">
+  <figcaption class="sd-title" id="spring-04-bean-lifecycle-title">Singleton bean의 생성부터 소멸까지</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Container start</strong>
+      <span class="sd-detail">component scan 수행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">정의 발견</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Register BeanDefinition</strong>
+      <span class="sd-detail">metadata만 등록, instance는 아직 없음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">constructor 호출</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Instantiate bean</strong>
+      <span class="sd-detail">constructor 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">의존성 주입</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Inject dependencies</strong>
+      <span class="sd-detail">constructor 또는 field injection</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">초기화 전후 callback</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">@PostConstruct</strong>
+      <span class="sd-detail">init callback, 의존성 사용 가능</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">앱 실행</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Bean ready</strong>
+      <span class="sd-detail">heap에 공유 singleton 1개</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">container shutdown</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">@PreDestroy</strong>
+      <span class="sd-detail">container 종료 시</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">정리 완료</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Bean destroyed</strong>
+    </div>
+  </div>
+  <p class="sd-note">의존성 주입 뒤 Aware callback이 호출되고, BeanPostProcessor가 초기화 전후를 감쌉니다. ready 상태의 singleton은 모든 요청이 공유합니다.</p>
+</figure>

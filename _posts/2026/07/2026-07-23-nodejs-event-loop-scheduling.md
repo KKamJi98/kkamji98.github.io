@@ -13,7 +13,7 @@ image:
 
 Node.js는 기본적으로 하나의 JavaScript thread에서 callback을 실행하면서도 I/O를 kernel과 libuv에 맡깁니다. I/O 완료 이벤트가 poll queue에 들어오고, event loop가 적절한 시점에 JavaScript callback을 실행합니다. `process.nextTick()`, V8 microtask, `setImmediate()`, timer는 이 흐름의 서로 다른 지점에 연결됩니다.
 
-![Node.js event loop scheduling boundary](/assets/img/nodejs/node-event-loop-scheduling-flow.webp)
+{% include diagrams/static/nodejs/node-event-loop-scheduling-flow.html %}
 
 ---
 

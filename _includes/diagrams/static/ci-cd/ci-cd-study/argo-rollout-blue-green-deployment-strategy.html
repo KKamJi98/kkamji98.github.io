@@ -1,0 +1,80 @@
+<figure class="sd sd--layers sd--sequence" id="sd-ci-cd-study-argo-rollout-blue-green-deployment-strategy" aria-labelledby="sd-title-ci-cd-study-argo-rollout-blue-green-deployment-strategy">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-argo-rollout-blue-green-deployment-strategy">Blue-Green 배포는 검증 후 Live traffic을 새 버전으로 전환</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-blue-green-initial-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-blue-green-initial-title">1. Initial version</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Users</strong>
+          <span class="sd-detail">Live traffic을 발생</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">traffic 라우팅</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Load Balancer</strong>
+          <span class="sd-detail">기존 버전으로 전달</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">100% live traffic</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Application version 34</strong>
+          <span class="sd-detail">현재 서비스 버전</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">새 버전을 별도로 배포</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-blue-green-deployed-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-blue-green-deployed-title">2. New version deployed</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Load Balancer</strong>
+          <span class="sd-detail">아직 version 34로만 traffic 전달</span>
+        </div>
+        <div class="sd-grid">
+          <article class="sd-node sd-node--accent">
+            <strong class="sd-label">Version 34</strong>
+            <span class="sd-detail">100% live traffic</span>
+          </article>
+          <article class="sd-node">
+            <strong class="sd-label">Version 35</strong>
+            <span class="sd-detail">별도 배포 후 검증 대기</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">새 버전 검증 후 traffic switch</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-blue-green-switch-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-blue-green-switch-title">3. Switch traffic</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Load Balancer</strong>
+          <span class="sd-detail">새 버전으로 route 변경</span>
+        </div>
+        <div class="sd-grid">
+          <article class="sd-node sd-node--accent">
+            <strong class="sd-label">Version 35</strong>
+            <span class="sd-detail">Live traffic 수신</span>
+          </article>
+          <article class="sd-node">
+            <strong class="sd-label">Version 34</strong>
+            <span class="sd-detail">rollback을 위해 잠시 유지</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">승격 완료 후 old ReplicaSet 축소</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-blue-green-finish-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-blue-green-finish-title">4. Finish</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Load Balancer</strong>
+          <span class="sd-detail">모든 요청을 새 버전으로 전달</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">100% live traffic</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Application version 35</strong>
+          <span class="sd-detail">운영 버전으로 승격</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Blue-Green은 새 버전을 먼저 준비하고 검증한 뒤 Load Balancer의 대상만 바꿉니다. 전환 전에는 기존 버전이 계속 사용자 요청을 처리합니다.</p>
+</figure>

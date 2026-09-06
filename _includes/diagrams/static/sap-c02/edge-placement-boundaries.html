@@ -1,0 +1,57 @@
+<figure class="sd sd--comparison" id="edge-placement-boundaries" aria-labelledby="edge-placement-boundaries-title">
+  <figcaption class="sd-title" id="edge-placement-boundaries-title">엣지 배치는 시설 소유자와 진입 게이트웨이로 갈린다</figcaption>
+  <p class="sd-note">인터넷 사용자, 통신사 단말, 시설 내부 시스템의 진입 경로가 다르고 네 배치 모두 부모 리전 control plane에 묶여 관리됩니다.</p>
+
+  <div class="sd-grid sd-grid--three" aria-label="엣지 배치 경계 비교">
+    <section class="sd-lane" aria-labelledby="edge-placement-boundaries-aws-title">
+      <div class="sd-lane-title" id="edge-placement-boundaries-aws-title">AWS가 운영하는 위치</div>
+      <div class="sd-node">
+        <strong class="sd-label">인터넷 사용자</strong>
+        <span class="sd-detail">유선과 일반 모바일 회선에서 들어옵니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">두 위치로 선택</span></div>
+      <div class="sd-grid">
+        <div class="sd-node">
+          <strong class="sd-label">리전 가용 영역</strong>
+          <span class="sd-detail">internet gateway로 진입합니다.</span>
+        </div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Local Zone</strong>
+          <span class="sd-detail">자체 인터넷과 Direct Connect를 쓰며 zone마다 서비스가 다릅니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="edge-placement-boundaries-carrier-title">
+      <div class="sd-lane-title" id="edge-placement-boundaries-carrier-title">통신사 데이터센터</div>
+      <div class="sd-node">
+        <strong class="sd-label">통신사 네트워크 단말</strong>
+        <span class="sd-detail">5G 단말처럼 통신사 네트워크 안에서만 진입합니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">carrier gateway 전용</span></div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Wavelength Zone</strong>
+        <span class="sd-detail">일반 인터넷 inbound는 제공하지 않습니다.</span>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="edge-placement-boundaries-customer-title">
+      <div class="sd-lane-title" id="edge-placement-boundaries-customer-title">고객이 확보한 시설</div>
+      <div class="sd-node">
+        <strong class="sd-label">시설 내부 시스템</strong>
+        <span class="sd-detail">공정 제어망과 데이터 레지던시 대상입니다.</span>
+      </div>
+      <div class="sd-arrow"><span class="sd-edge-label">LGW 또는 LNI</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Outposts</strong>
+        <span class="sd-detail">데이터가 고객 시설을 벗어나지 않도록 배치합니다.</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">공통 관리 경계</span></div>
+  <div class="sd-node">
+    <strong class="sd-label">부모 리전 control plane</strong>
+    <span class="sd-detail">AZ, Local Zone, Wavelength Zone, Outposts 모두 부모 리전에 묶여 관리됩니다.</span>
+  </div>
+</figure>

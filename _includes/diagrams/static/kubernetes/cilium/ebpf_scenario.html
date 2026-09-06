@@ -1,0 +1,86 @@
+<figure class="sd sd--comparison" id="kubernetes-cilium-ebpf-scenario" aria-labelledby="kubernetes-cilium-ebpf-scenario-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-ebpf-scenario-title">eBPF hook은 file과 network 경로의 여러 kernel 지점에 붙는다</figcaption>
+  <p class="sd-note">Process는 user space에 있고, Linux Kernel 안의 syscall, VFS, socket, TCP/IP와 device 경계에서 eBPF 프로그램이 실행될 수 있습니다.</p>
+
+  <div class="sd-grid" aria-label="eBPF file과 network 경로 비교">
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-scenario-file-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-scenario-file-title">File I/O path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Process</strong>
+          <span class="sd-detail"><code>write()</code>와 <code>read()</code>를 호출합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">system call 경계</span></div>
+        <div class="sd-band">
+          <div class="sd-band-title">Linux Kernel</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Syscall hook</strong>
+              <span class="sd-detail">syscall 지점에서 eBPF를 실행합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">descriptor lookup</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">File Descriptor</strong>
+              <span class="sd-detail">열린 파일을 kernel 객체와 연결합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">filesystem path</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">VFS hook</strong>
+              <span class="sd-detail">VFS 계층에서 file 동작을 관찰하거나 제어합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">device I/O</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Block Device hook</strong>
+              <span class="sd-detail">block layer가 storage 요청을 처리하고 device 경계에서 eBPF가 관찰할 수 있습니다.</span>
+            </div>
+          </div>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">storage access</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Storage</strong>
+          <span class="sd-detail">write 경로는 내려가고 read 결과는 반대 방향으로 돌아옵니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="kubernetes-cilium-ebpf-scenario-network-title">
+      <div class="sd-lane-title" id="kubernetes-cilium-ebpf-scenario-network-title">Network I/O path</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Process</strong>
+          <span class="sd-detail"><code>sendmsg()</code>와 <code>recvmsg()</code>를 호출합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">system call 경계</span></div>
+        <div class="sd-band">
+          <div class="sd-band-title">Linux Kernel</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Syscall hook</strong>
+              <span class="sd-detail">socket system call에서 eBPF를 실행합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">socket lookup</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Sockets hook</strong>
+              <span class="sd-detail">socket 계층의 송수신 이벤트를 봅니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">protocol path</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">TCP/IP hook</strong>
+              <span class="sd-detail">TCP/IP 처리 중 packet 상태를 관찰합니다.</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">device boundary</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Network Device hook</strong>
+              <span class="sd-detail">network device ingress와 egress를 처리합니다.</span>
+            </div>
+          </div>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">network access</span></div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Network</strong>
+          <span class="sd-detail">송신과 수신 모두 kernel hook을 통과할 수 있습니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</figure>

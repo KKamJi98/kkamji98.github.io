@@ -1,0 +1,69 @@
+<figure class="sd sd--layers" id="sd-ci-cd-study-argo-cd-component-architecture" aria-labelledby="sd-title-ci-cd-study-argo-cd-component-architecture">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-argo-cd-component-architecture">Argo CD 컴포넌트는 UI, API, Core, Infra 경계로 나뉜다</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-component-ui-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-component-ui-title">UI layer</div>
+      <div class="sd-grid">
+        <article class="sd-node">
+          <strong class="sd-label">Webapp</strong>
+          <span class="sd-detail">Application 상태와 sync 화면 제공</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">CLI</strong>
+          <span class="sd-detail"><code>argocd</code> 명령으로 작업 요청</span>
+        </article>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">gRPC / REST 요청</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-component-api-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-component-api-title">Application layer</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">API Server</strong>
+          <span class="sd-detail">Application 관리, RBAC, 인증, Webhook와 operation 처리</span>
+        </div>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">Core component에 작업 위임</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-component-core-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-component-core-title">Core layer</div>
+      <div class="sd-grid sd-grid--three">
+        <article class="sd-node">
+          <strong class="sd-label">Application Controller</strong>
+          <span class="sd-detail">Git desired와 Cluster live를 비교하고 reconcile</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">ApplicationSet Controller</strong>
+          <span class="sd-detail">template과 generator로 Application 생성, 수정, 삭제</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">Repo Server</strong>
+          <span class="sd-detail">Git source를 Helm, Kustomize 등 최종 Manifest로 변환</span>
+        </article>
+      </div>
+    </section>
+    <div class="sd-arrow"><span class="sd-edge-label">저장, 인증, Git, Kubernetes API 호출</span></div>
+    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-component-infra-title">
+      <div class="sd-band-title" id="sd-ci-cd-study-argo-component-infra-title">Infra layer</div>
+      <div class="sd-grid">
+        <article class="sd-node">
+          <strong class="sd-label">Redis</strong>
+          <span class="sd-detail">API와 Git 요청을 줄이는 cache</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">Kube API</strong>
+          <span class="sd-detail">실제 Cluster resource와 통신</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">Git</strong>
+          <span class="sd-detail">desired state와 Manifest 원본</span>
+        </article>
+        <article class="sd-node">
+          <strong class="sd-label">Dex</strong>
+          <span class="sd-detail">OIDC 등 외부 Identity Provider 연결</span>
+        </article>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">UI와 CLI는 API Server를 통해 접근합니다. Core 컴포넌트는 상태 비교와 Manifest 생성 같은 역할을 나누고, Infra component는 저장소, 인증, Cluster API 호출을 제공합니다.</p>
+</figure>

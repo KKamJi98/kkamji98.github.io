@@ -43,3 +43,521 @@
     }
   }
 }
+
+/* Shared static diagram system.  Diagram fragments stay semantic and
+   responsive; these rules own the visual treatment in one place. */
+figure.sd {
+  --sd-bg: #0b1220;
+  --sd-surface: #141f31;
+  --sd-surface-raised: #1b2a40;
+  --sd-border: #435672;
+  --sd-border-strong: #6b7f9d;
+  --sd-text: #f5f8fc;
+  --sd-muted: #c7d2e0;
+  --sd-accent: #5eead4;
+  --sd-accent-soft: #173b3c;
+  --sd-warning: #fbbf24;
+  --sd-warning-soft: #3a2c13;
+  --sd-muted-soft: #202b3c;
+  box-sizing: border-box;
+  container-type: inline-size;
+  isolation: isolate;
+  width: 100%;
+  margin: 2rem 0;
+  padding: clamp(1rem, 3.5cqi, 2rem);
+  border: 1px solid var(--sd-border);
+  border-radius: 1rem;
+  background: var(--sd-bg);
+  color: var(--sd-text);
+  color-scheme: dark;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+figure.sd,
+figure.sd * {
+  box-sizing: border-box;
+}
+
+figure.sd .sd-title {
+  display: block;
+  margin: 0 0 1.25rem;
+  color: var(--sd-text);
+  font-size: clamp(22px, 3.5cqi, 30px);
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+figure.sd .sd-intro,
+figure.sd .sd-caption {
+  margin: 0 0 1.25rem;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+figure.sd code,
+figure.sd pre,
+figure.sd li {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+figure.sd pre {
+  max-width: 100%;
+  margin: 0.75rem 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+figure.sd ul,
+figure.sd ol {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+figure.sd .sd-flow {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+figure.sd .sd-loop {
+  position: relative;
+  min-width: 0;
+  padding-inline-start: 1.25rem;
+}
+
+figure.sd .sd-loop::before {
+  position: absolute;
+  inset-block: 0.75rem;
+  inset-inline-start: 0.25rem;
+  width: 0.75rem;
+  border-block: 2px solid var(--sd-accent);
+  border-inline-start: 2px solid var(--sd-accent);
+  border-radius: 0.75rem 0 0 0.75rem;
+  content: "";
+  pointer-events: none;
+}
+
+figure.sd .sd-loop::after {
+  position: absolute;
+  inset-block-start: 0.55rem;
+  inset-inline-start: 0.65rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-inline-end: 2px solid var(--sd-accent);
+  border-block-end: 2px solid var(--sd-accent);
+  content: "";
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+
+figure.sd .sd-node {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--sd-border);
+  border-radius: 0.75rem;
+  background: var(--sd-surface);
+}
+
+figure.sd .sd-label {
+  display: block;
+  min-width: 0;
+  color: var(--sd-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-label .sd-icon {
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+figure.sd .sd-detail,
+figure.sd .sd-edge-label,
+figure.sd .sd-note {
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-detail {
+  display: block;
+  margin-top: 0.35rem;
+}
+
+figure.sd .sd-arrow {
+  display: flex;
+  min-height: 2.25rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: var(--sd-accent);
+  text-align: center;
+}
+
+figure.sd .sd-arrow::after {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+}
+
+figure.sd .sd-arrow--both::before {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-inline-start: 2px solid currentColor;
+  border-block-start: 2px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+}
+
+figure.sd .sd-edge-label {
+  display: block;
+  max-width: 100%;
+  color: var(--sd-muted);
+  font-weight: 600;
+}
+
+figure.sd .sd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+figure.sd .sd-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+figure.sd .sd-lane {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--sd-border);
+  border-radius: 0.75rem;
+  background: var(--sd-surface);
+}
+
+figure.sd .sd-lane-title,
+figure.sd .sd-band-title {
+  display: block;
+  margin: 0 0 0.75rem;
+  color: var(--sd-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-band-subtitle {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--sd-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-stack {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+figure.sd .sd-band {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--sd-border);
+  border-left: 4px solid var(--sd-border-strong);
+  border-radius: 0.75rem;
+  background: var(--sd-surface);
+}
+
+figure.sd .sd-node--accent,
+figure.sd .sd-lane--accent,
+figure.sd .sd-band--accent {
+  border-color: var(--sd-accent);
+  background: var(--sd-accent-soft);
+}
+
+figure.sd .sd-node--warning,
+figure.sd .sd-lane--warning,
+figure.sd .sd-band--warning {
+  border-color: var(--sd-warning);
+  background: var(--sd-warning-soft);
+}
+
+figure.sd .sd-node--muted,
+figure.sd .sd-lane--muted,
+figure.sd .sd-band--muted {
+  border-color: var(--sd-border-strong);
+  background: var(--sd-muted-soft);
+}
+
+figure.sd .sd-note {
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sd-border);
+}
+
+figure.sd .sd-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: var(--sd-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+figure.sd .sd-table th,
+figure.sd .sd-table td {
+  min-width: 0;
+  padding: 0.7rem;
+  border: 1px solid var(--sd-border);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-table th {
+  background: var(--sd-surface-raised);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+figure.sd .sd-table td {
+  color: var(--sd-muted);
+}
+
+figure.sd .sd-icon {
+  display: block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  max-width: 32px;
+  margin: 0;
+  object-fit: contain;
+}
+
+figure.sd .sd-cert-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--sd-border);
+  border-radius: 0.75rem;
+  background: var(--sd-surface);
+}
+
+figure.sd .sd-cert-card.sd-node--accent {
+  border-color: var(--sd-accent);
+  background: var(--sd-accent-soft);
+}
+
+figure.sd .sd-cert-copy {
+  min-width: 0;
+}
+
+figure.sd .sd-cert-badge {
+  display: block;
+  width: 96px;
+  height: 110px;
+  max-width: 100%;
+  margin: 0;
+  object-fit: contain;
+}
+
+figure.sd .sd-cert-name,
+figure.sd .sd-cert-card strong {
+  display: block;
+  color: var(--sd-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-cert-card .sd-label,
+figure.sd .sd-cert-name {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+figure.sd .sd-cert-code {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-cert-qualifier {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--sd-muted);
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+figure.sd .sd-cert-tier {
+  border-top-color: var(--sd-tier-border);
+  border-top-width: 4px;
+  border-left-color: var(--sd-tier-border);
+  border-left-width: 4px;
+  background: var(--sd-tier-surface);
+}
+
+figure.sd .sd-cert-tier .sd-band-title {
+  color: var(--sd-tier-border);
+  font-size: 20px;
+}
+
+figure.sd .sd-cert-tier--professional {
+  --sd-tier-border: #34d399;
+  --sd-tier-surface: #12382f;
+}
+
+figure.sd .sd-cert-tier--associate {
+  --sd-tier-border: #60a5fa;
+  --sd-tier-surface: #142742;
+}
+
+figure.sd .sd-cert-tier--foundational {
+  --sd-tier-border: #94a3b8;
+  --sd-tier-surface: #202b3c;
+}
+
+figure.sd .sd-cert-tier--specialty {
+  --sd-tier-border: #c084fc;
+  --sd-tier-surface: #2f2347;
+}
+
+figure.sd .sd-cert-tier--business {
+  --sd-tier-border: #fbbf24;
+  --sd-tier-surface: #3a2c13;
+}
+
+@container (min-width: 681px) {
+  figure.sd .sd-grid--three .sd-cert-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  figure.sd .sd-grid--three .sd-cert-badge {
+    margin-inline: auto;
+  }
+}
+
+@container (max-width: 680px) {
+  figure.sd .sd-loop {
+    padding-inline-start: 1rem;
+  }
+
+  figure.sd .sd-grid,
+  figure.sd .sd-grid--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  figure.sd {
+    padding: 1rem;
+  }
+
+  figure.sd .sd-node,
+  figure.sd .sd-lane,
+  figure.sd .sd-band,
+  figure.sd .sd-cert-card {
+    padding: 0.875rem;
+  }
+
+  figure.sd .sd-cert-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  figure.sd .sd-cert-badge {
+    width: 72px;
+    height: 82px;
+  }
+}
+
+@media print {
+  figure.sd {
+    --sd-bg: #fff;
+    --sd-surface: #f8fafc;
+    --sd-surface-raised: #eef2f7;
+    --sd-border: #94a3b8;
+    --sd-border-strong: #64748b;
+    --sd-text: #111827;
+    --sd-muted: #374151;
+    --sd-accent: #0f766e;
+    --sd-accent-soft: #ccfbf1;
+    --sd-warning: #92400e;
+    --sd-warning-soft: #fef3c7;
+    --sd-muted-soft: #f1f5f9;
+    border-color: #667085;
+    background: var(--sd-bg);
+    color: var(--sd-text);
+    color-scheme: light;
+  }
+
+  figure.sd .sd-title,
+  figure.sd .sd-label,
+  figure.sd .sd-lane-title,
+  figure.sd .sd-band-title,
+  figure.sd .sd-cert-name,
+  figure.sd .sd-cert-card strong {
+    color: #111827;
+  }
+
+  figure.sd .sd-intro,
+  figure.sd .sd-caption,
+  figure.sd .sd-detail,
+  figure.sd .sd-edge-label,
+  figure.sd .sd-note,
+  figure.sd .sd-cert-code,
+  figure.sd .sd-table td {
+    color: #374151;
+  }
+
+  figure.sd .sd-cert-tier {
+    background: #fff;
+  }
+
+  figure.sd .sd-cert-tier .sd-band-title {
+    color: #111827;
+  }
+
+  figure.sd .sd-cert-tier--professional {
+    --sd-tier-border: #047857;
+  }
+
+  figure.sd .sd-cert-tier--associate {
+    --sd-tier-border: #1d4ed8;
+  }
+
+  figure.sd .sd-cert-tier--foundational {
+    --sd-tier-border: #475569;
+  }
+
+  figure.sd .sd-cert-tier--specialty {
+    --sd-tier-border: #7e22ce;
+  }
+
+  figure.sd .sd-cert-tier--business {
+    --sd-tier-border: #b45309;
+  }
+}

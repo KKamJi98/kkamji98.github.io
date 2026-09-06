@@ -1,0 +1,62 @@
+<figure class="sd sd--comparison" id="d-in-d-vs-d-out-d" aria-labelledby="d-in-d-vs-d-out-d-title">
+  <figcaption class="sd-title" id="d-in-d-vs-d-out-d-title">DinD와 DooD는 Docker daemon의 경계와 권한이 다릅니다</figcaption>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Docker in Docker (DinD)</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Host</strong>
+          <span class="sd-detail">Jenkins를 담은 실행 환경</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">컨테이너 안에 중첩</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Jenkins Container</strong>
+          <span class="sd-detail">빌드 작업을 실행하는 외부 컨테이너</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">privileged 권한 필요</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">DinD Container</strong>
+          <span class="sd-detail">별도의 Docker daemon을 내부에 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">이미지 build</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Inner Container</strong>
+          <span class="sd-detail">중첩 daemon이 만든 결과 컨테이너</span>
+        </div>
+      </div>
+      <p class="sd-note">daemon이 격리되지만 privileged 권한이 필요해 호스트 경계가 약해질 수 있습니다.</p>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">Docker out of Docker (DooD)</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Host</strong>
+          <span class="sd-detail">공유 Docker daemon을 실행</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Jenkins 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Jenkins Container</strong>
+          <span class="sd-detail"><code>user: Jenkins</code>, <code>group: docker</code></span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Unix socket 전달</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Docker Client</strong>
+          <span class="sd-detail"><code>/var/run/docker.sock</code>으로 요청</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">호스트 daemon에 build 요청</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Host Docker daemon</strong>
+          <span class="sd-detail">호스트에서 sibling container를 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">결과 실행</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Sibling Container</strong>
+          <span class="sd-detail">Jenkins와 같은 호스트 daemon의 결과물</span>
+        </div>
+      </div>
+      <p class="sd-note">중첩 daemon은 없지만 socket 접근이 호스트 Docker 권한으로 이어지므로 접근 통제가 필요합니다.</p>
+    </section>
+  </div>
+</figure>

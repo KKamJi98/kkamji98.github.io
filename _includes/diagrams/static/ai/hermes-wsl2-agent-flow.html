@@ -1,0 +1,47 @@
+<figure class="sd sd--flow" id="hermes-wsl2-agent-flow" aria-labelledby="hermes-wsl2-agent-flow-title">
+  <figcaption class="sd-title" id="hermes-wsl2-agent-flow-title">Hermes WSL2 agent의 entry와 runtime 분리</figcaption>
+  <div class="sd-node">
+    <strong class="sd-label">User</strong>
+    <span class="sd-detail">한 session에서 두 entry point를 선택</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="터미널 entry">
+      <div class="sd-lane-title">터미널 entry</div>
+      <div class="sd-node">
+        <strong class="sd-label">Terminal</strong>
+        <span class="sd-detail">WSL2 안에서 직접 접근</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="메시징 entry">
+      <div class="sd-lane-title">메시징 entry</div>
+      <div class="sd-node">
+        <strong class="sd-label">Telegram gateway</strong>
+        <span class="sd-detail">터미널 밖에서 agent에 접근</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 entry point가 같은 turn으로 모임</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Hermes runtime</strong>
+    <span class="sd-detail">standard chat loop 또는 Codex app-server path를 선택</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">openai-codex provider</strong>
+    <span class="sd-detail">인증과 model call path를 담당</span>
+  </div>
+  <div class="sd-arrow"></div>
+  <div class="sd-node">
+    <strong class="sd-label">Model turn</strong>
+    <span class="sd-detail">선택한 runtime 아래에서 tool loop 실행</span>
+  </div>
+  <section class="sd-lane" aria-label="WSL2 supervision">
+    <div class="sd-lane-title">WSL2 supervision</div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">systemd service</strong>
+      <span class="sd-detail">Telegram gateway process를 감독하며 WSL2 안에서 실행</span>
+    </div>
+  </section>
+  <p class="sd-note">provider는 인증과 호출 방식을, runtime은 turn을 처리할 loop를 정합니다. systemd는 process를 감독하지만 WSL 인스턴스를 영구 실행시키지는 않습니다.</p>
+</figure>

@@ -122,7 +122,7 @@ S3 Tables를 Glue Data Catalog에 통합하면, 기본 카탈로그 **안에 `s3
 
 즉 카탈로그 안에 카탈로그가 들어가는 **중첩 구조**가 됩니다. 그림으로 보면 다음과 같습니다.
 
-![카탈로그 중첩 구조 - Default Catalog 안에 s3tablescatalog(federated)와 table bucket, namespace, table이 중첩](/assets/img/aws/analytics-stack-06-catalog-federation.webp)
+{% include diagrams/static/aws/analytics-stack-06-catalog-federation.html %}
 
 왼쪽의 `logs_db`는 기본 카탈로그에 직접 속한 일반 데이터베이스입니다. 오른쪽은 `s3tablescatalog` -> table bucket -> namespace -> table 순으로 중첩된 S3 Tables 경로입니다. 같은 "테이블"이지만 한쪽은 평면, 한쪽은 깊은 계층에 있습니다.
 

@@ -1,0 +1,50 @@
+<figure class="sd sd--layers" id="sd-kubernetes-cilium-8w-cilium-identity-management" aria-labelledby="sd-kubernetes-cilium-8w-cilium-identity-management-title">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-8w-cilium-identity-management-title">Cilium은 label 집합을 cluster 전역 numeric identity로 조회한다</figcaption>
+  <section class="sd-lane" aria-label="Label to identity mapping">
+    <div class="sd-lane-title">Label to Identity map</div>
+    <table class="sd-table">
+      <thead>
+        <tr><th scope="col">Security labels</th><th scope="col">Identity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>role=frontend</code></td><td>10</td></tr>
+        <tr><td><code>role=backend</code></td><td>20</td></tr>
+        <tr><td><code>role=backend</code>, <code>user=joe</code></td><td>30</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Request: role=backend?</strong>
+      <span class="sd-detail">Cilium이 해당 label을 가진 endpoint를 찾는다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">lookup</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Key-Value Store</strong>
+      <span class="sd-detail">label 집합과 numeric identity 매핑을 보관한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">response: identity 20</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Identity 20</strong>
+      <span class="sd-detail"><code>role=backend</code> label의 cluster-wide identity</span>
+    </div>
+  </div>
+  <section class="sd-lane" aria-label="Endpoint identities by node">
+    <div class="sd-lane-title">Endpoint identities</div>
+    <div class="sd-grid sd-grid--three">
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Node A</strong>
+        <span class="sd-detail">Identity 10, <code>role=frontend</code></span>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Node B</strong>
+        <span class="sd-detail">Identity 10, <code>role=frontend</code></span>
+      </div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Node C</strong>
+        <span class="sd-detail">Identity 20, <code>role=backend</code></span>
+      </div>
+    </div>
+  </section>
+  <p class="sd-note">더 구체적인 label 집합인 <code>role=backend</code>와 <code>user=joe</code>는 별도 Identity 30을 만들 수 있다. <code>role=backend</code> query는 Node C의 Identity 20으로 해석된다.</p>
+</figure>

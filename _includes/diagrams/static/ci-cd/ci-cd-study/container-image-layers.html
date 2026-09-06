@@ -1,0 +1,54 @@
+<figure class="sd sd--comparison sd--layers" id="sd-ci-cd-study-container-image-layers" aria-labelledby="sd-title-ci-cd-study-container-image-layers">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-container-image-layers">Container Image는 재사용 가능한 Layer를 아래에서 위로 쌓는다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-labelledby="sd-ci-cd-study-container-layers-generic-title">
+      <div class="sd-lane-title" id="sd-ci-cd-study-container-layers-generic-title">Container Image Layers</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Base Image</strong>
+          <span class="sd-detail">모든 상위 Layer의 시작점</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">변경분을 한 겹 추가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Image Layer 1</strong>
+          <span class="sd-detail">첫 번째 명령의 결과</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">변경분을 한 겹 추가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Image Layer 2</strong>
+          <span class="sd-detail">이전 Layer 위에 누적</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">변경분을 한 겹 추가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Image Layer 3</strong>
+          <span class="sd-detail">최종 이미지의 상위 Layer</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-labelledby="sd-ci-cd-study-container-layers-example-title">
+      <div class="sd-lane-title" id="sd-ci-cd-study-container-layers-example-title">Example Container Image</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Base RHEL</strong>
+          <span class="sd-detail">실행 환경의 기본 OS</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">OS 변경</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">OS Update Layer</strong>
+          <span class="sd-detail">업데이트된 OS 패키지</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">runtime 추가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Java Runtime Layer</strong>
+          <span class="sd-detail">애플리케이션 실행 runtime</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">application 추가</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Application Layer</strong>
+          <span class="sd-detail">변경이 잦은 최상위 내용</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">하위 Layer가 바뀌지 않으면 cache와 재사용이 가능합니다. Dockerfile 명령에서 바뀐 지점 이후의 Layer만 다시 생성됩니다.</p>
+</figure>

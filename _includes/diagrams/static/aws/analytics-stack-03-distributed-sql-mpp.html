@@ -1,0 +1,42 @@
+<figure class="sd sd--flow" id="sd-aws-analytics-stack-03-distributed-sql-mpp" aria-labelledby="sd-title-aws-analytics-stack-03-distributed-sql-mpp">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-03-distributed-sql-mpp">MPP 엔진은 한 쿼리를 worker별 scan 조각으로 나눈다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Client</strong>
+      <span class="sd-detail">SQL 제출</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">parse and plan</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Coordinator</strong>
+      <span class="sd-detail">parse, plan, schedule; 직접 scan하지 않음</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">작업을 병렬 분배</span></div>
+    <div class="sd-grid sd-grid--three">
+      <section class="sd-lane" aria-label="Worker 1">
+        <div class="sd-lane-title">Worker 1</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Worker 1</strong><span class="sd-detail">executes tasks</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
+          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Worker 2">
+        <div class="sd-lane-title">Worker 2</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Worker 2</strong><span class="sd-detail">executes tasks</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
+          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Worker 3">
+        <div class="sd-lane-title">Worker 3</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Worker 3</strong><span class="sd-detail">executes tasks</span></div>
+          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
+          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <p class="sd-note">Worker를 늘리면 scan과 compute capacity가 늘고, Coordinator는 하나로 계획을 조정합니다.</p>
+</figure>

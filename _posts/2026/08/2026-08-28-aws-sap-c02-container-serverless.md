@@ -49,7 +49,7 @@ HTTP 요청 하나를 받아 처리하고 응답하는 동일한 기능을 EC2, 
 | 프라이빗 백엔드 접근 | VPC 안에 있다 | VPC 안에 있다 | VPC 안에 있다 | VPC 연결이 필요하다 | VPC link 또는 함수 VPC 연결 |
 | 요청당 과금 | 없다 | 없다 | 없다 | 있다 | 있다 |
 
-![API Gateway와 Lambda 경로에 겹친 두 개의 타임아웃 상한과, 실행 시간 상한이 없는 ALB와 ECS 경로를 나란히 놓은 비교](/assets/img/sap-c02/serverless-request-path-timeouts.webp)
+{% include diagrams/static/sap-c02/serverless-request-path-timeouts.html %}
 
 같은 요청을 서버리스 경로와 컨테이너 경로로 각각 태웠을 때 어느 지점에 어떤 상한이 걸려 있는지를 나란히 놓은 그림입니다. 서버리스 경로에는 서로 다른 층에서 만들어지는 상한 두 개가 겹쳐 있고, 컨테이너 경로에는 실행 시간 상한 대신 용량과 패치와 스케일 정책을 직접 정해야 하는 책임이 있습니다.
 
@@ -123,7 +123,7 @@ ephemeral storage는 platform version 1.4.0 이상에서 최소 20 GiB이고 `ep
 
 용량을 지정하는 방법은 두 가지이고, 둘 중 하나만 씁니다. 어느 쪽도 지정하지 않으면 클러스터의 `defaultCapacityProviderStrategy`가 적용됩니다.
 
-![RunTask 호출이 launchType과 capacityProviderStrategy 중 하나로 갈라지고, strategy 경로에서 base를 먼저 채운 뒤 나머지를 weight로 나누는 순서](/assets/img/sap-c02/ecs-capacity-provider-placement.webp)
+{% include diagrams/static/sap-c02/ecs-capacity-provider-placement.html %}
 
 용량 지정이 두 갈래로 나뉘는 지점과, strategy 쪽에서 태스크가 실제로 배치되는 순서를 담은 그림입니다. `base`와 `weight`가 각각 어떤 범위를 갖고 어떤 값에서 호출이 실패하는지도 함께 적어 두었습니다.
 
@@ -262,7 +262,7 @@ cross-account 복제에 필요한 정책은 목적지 계정의 registry permiss
 
 EKS 클러스터가 Pod를 스케줄할 수 있는 대상은 EKS Auto Mode managed node, self-managed node, managed node group, Fargate, Hybrid Nodes입니다. hybrid node를 제외한 노드는 클러스터를 만들 때 지정한 서브넷과 같은 VPC 안에 있어야 하고, 같은 서브넷일 필요는 없습니다.
 
-![Windows와 custom CNI 요구가 managed node group으로, 노드 운영 위임이 Auto Mode로, Pod별 VM 격리가 Fargate로, 온프레미스 하드웨어가 Hybrid Nodes로 이어지는 갈림](/assets/img/sap-c02/eks-compute-option-split.webp)
+{% include diagrams/static/sap-c02/eks-compute-option-split.html %}
 
 포기할 수 없는 요구 하나가 컴퓨트 선택을 확정하는 구조를 담은 그림입니다. 네 갈래 각각에 그 선택지가 못 하는 것을 함께 적어 두었습니다.
 
@@ -387,7 +387,7 @@ VPC에 연결되지 않은 함수는 대역폭 증설을 요청할 수 있고, �
 
 동시성은 세 층으로 되어 있고 각 층이 다른 것을 제한합니다.
 
-![요청이 rps 게이트와 함수 동시성과 스케일 속도를 차례로 지나며, 각 게이트에서 429로 빠지는 경로와 provisioned 환경으로 가는 경로가 갈리는 구조](/assets/img/sap-c02/lambda-concurrency-gates.webp)
+{% include diagrams/static/sap-c02/lambda-concurrency-gates.html %}
 
 호출이 실제로 실행 환경에 도달하기까지 지나는 게이트 세 개와, 각 게이트에서 스로틀될 때 어떤 응답이 나가는지를 담은 그림입니다. provisioned 환경과 새 실행 환경이 갈리는 지점도 함께 표시했습니다.
 
@@ -413,7 +413,7 @@ rps 상한은 별도 축입니다. 동기 호출의 초당 요청 수 한계는 
 
 같은 함수라도 어떻게 호출되느냐에 따라 실패를 누가 다시 시도하는지가 달라집니다. 이 차이가 실패 이벤트 보존과 멱등성 요구를 만드는 문항의 뼈대입니다.
 
-![동기와 비동기와 스트림 세 경로가 각각 다른 재시도 주체와 다른 실패 포착 지점으로 이어지는 세 갈래](/assets/img/sap-c02/lambda-invocation-retry-paths.webp)
+{% include diagrams/static/sap-c02/lambda-invocation-retry-paths.html %}
 
 호출 모델 세 가지를 나란히 놓고 각 경로에서 재시도를 누가 수행하며 실패한 이벤트가 어디에 남는지를 담은 그림입니다.
 
@@ -440,7 +440,7 @@ API Gateway와 Lambda의 동기 경로에서 API Gateway는 Lambda 함수를 재
 
 VPC에 연결하지 않은 함수는 기본적으로 퍼블릭 인터넷에 접근합니다. VPC에 붙이면 그 VPC 안에서 도달 가능한 것만 접근할 수 있게 되고, 인터넷 접근이 필요하면 VPC 쪽에 경로를 따로 만들어야 합니다.
 
-![VPC 미연결 함수가 퍼블릭 인터넷으로 바로 나가는 경로와, VPC 연결 함수가 Hyperplane ENI를 거쳐 프라이빗 RDS와 NAT gateway로 나뉘어 가는 경로](/assets/img/sap-c02/lambda-vpc-reachability.webp)
+{% include diagrams/static/sap-c02/lambda-vpc-reachability.html %}
 
 VPC 연결 여부에 따라 함수가 닿을 수 있는 대상이 어떻게 달라지는지를 담은 그림입니다. 퍼블릭 서브넷에 연결하면 인터넷으로 나갈 수 있다는 흔한 오해도 함께 표시했습니다.
 

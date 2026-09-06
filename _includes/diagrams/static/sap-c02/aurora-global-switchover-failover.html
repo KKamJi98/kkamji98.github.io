@@ -1,0 +1,29 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-aurora-global-switchover-failover-title">
+  <figcaption class="sd-title" id="sap-c02-aurora-global-switchover-failover-title">Aurora Global Database 승격 경로 비교</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node"><strong class="sd-label">Primary 리전 클러스터</strong><span class="sd-detail">쓰기 요청을 받는 리전 1개</span></div>
+    <div class="sd-arrow" aria-hidden="true"></div>
+    <div class="sd-node sd-node--accent"><strong class="sd-label">Secondary 리전 클러스터</strong><span class="sd-detail">읽기 전용 최대 10개 리전, 전용 인프라 복제, 통상 1초 미만 지연</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">승격 방식 선택</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Switchover 경로">
+        <div class="sd-lane-title">정상 상태: switchover</div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">secondary 동기화 대기</strong><span class="sd-detail">모든 클러스터가 정상일 때만 수행</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--accent"><strong class="sd-label">secondary를 새 primary로 승격</strong><span class="sd-detail">RPO 0</span></div>
+        </div>
+      </section>
+      <section class="sd-lane" aria-label="Managed failover 경로">
+        <div class="sd-lane-title">리전 장애: managed failover</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning"><strong class="sd-label">동기화 대기 없이 승격</strong><span class="sd-detail">write fencing은 best effort</span></div>
+          <div class="sd-arrow" aria-hidden="true"></div>
+          <div class="sd-node sd-node--warning"><strong class="sd-label">secondary를 새 primary로 승격</strong><span class="sd-detail">RPO가 0이 아닐 수 있음</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">두 경로 모두 유지</span></div>
+    <div class="sd-node"><strong class="sd-label">Global writer endpoint</strong><span class="sd-detail">새 primary를 가리키지만 endpoint 값 자체는 바뀌지 않음</span></div>
+  </div>
+</figure>

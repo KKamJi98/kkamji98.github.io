@@ -33,7 +33,7 @@ Google Cloud의 identity 기능은 이름이 비슷해도 대상이 다릅니다
 
 WIF에서 외부 token은 provider가 검증한 뒤 Security Token Service(STS)에서 short-lived federated token으로 교환됩니다. 그 token으로 resource에 직접 접근하거나, 특정 Google Service Account를 impersonate해 다른 short-lived credential을 받을 수 있습니다.
 
-![External OIDC token to Google Cloud WIF flow](/assets/img/gcp/gcp-wif-token-exchange-flow.webp)
+{% include diagrams/static/gcp/gcp-wif-token-exchange-flow.html %}
 _외부 OIDC token은 provider 검증과 attribute 조건을 통과한 뒤 STS에서 교환되고, 직접 resource 접근 또는 Service Account impersonation으로 이어집니다._
 
 구성 요소의 역할을 먼저 분리하면 policy를 읽기 쉽습니다.

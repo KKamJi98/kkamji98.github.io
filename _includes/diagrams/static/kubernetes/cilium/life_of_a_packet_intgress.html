@@ -1,0 +1,111 @@
+<figure class="sd sd--flow" id="kubernetes-cilium-life-of-a-packet-ingress" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-life-of-a-packet-ingress-title">Cilium ingress datapath는 NIC hook에서 endpoint enforcement까지 이어진다</figcaption>
+  <p class="sd-note">XDP prefilter, overlay decapsulation, L3 encryption, load balancing과 L7 policy는 구성에 따라 선택되며 모든 packet이 같은 순서로 거치지 않습니다.</p>
+
+  <div class="sd-flow" aria-label="공통 ingress forwarding path">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Network device</strong>
+      <span class="sd-detail">외부 또는 overlay packet이 NIC로 들어옵니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">host forwarding</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">TC @ cilium_host</strong>
+      <span class="sd-detail"><code>bpf_host</code> 또는 <code>bpf_overlay</code>가 node forwarding을 처리합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">endpoint policy</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">TC @ Endpoint</strong>
+      <span class="sd-detail"><code>bpf_lxc</code>가 Pod level enforcement를 적용합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">deliver</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Endpoint / Pod</strong>
+      <span class="sd-detail">정책 검사를 통과한 packet이 application에 도착합니다.</span>
+    </div>
+  </div>
+
+  <div class="sd-band">
+    <div class="sd-band-title">Optional feature paths and forwarding points</div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-overlay-title">
+        <div class="sd-lane-title" id="kubernetes-cilium-life-of-a-packet-ingress-overlay-title">Overlay mode</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">NIC</strong>
+            <span class="sd-detail">VXLAN 또는 Geneve로 encapsulated traffic을 받습니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">decapsulate</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Decapsulate and route</strong>
+            <span class="sd-detail">inner packet을 꺼내 node datapath로 보냅니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-prefilter-title">
+        <div class="sd-lane-title" id="kubernetes-cilium-life-of-a-packet-ingress-prefilter-title">Optional prefilter (if enabled)</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">XDP @ NIC</strong>
+            <span class="sd-detail"><code>bpf_xdp</code>가 설정된 경우에만 device 초기에 packet을 검사합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">common path에 합류</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">TC @ cilium_host</strong>
+            <span class="sd-detail">prefilter를 통과한 packet이 공통 host forwarding hook으로 들어갑니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-encryption-title">
+        <div class="sd-lane-title" id="kubernetes-cilium-life-of-a-packet-ingress-encryption-title">L3 encryption</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">TC @ NIC</strong>
+            <span class="sd-detail"><code>bpf_network</code>가 encryption hook을 제공합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">kernel crypto state</span></div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">xfrm와 route</strong>
+            <span class="sd-detail">xfrm 처리와 routing lookup이 함께 관여하며 return path도 지원합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-lb-title">
+        <div class="sd-lane-title" id="kubernetes-cilium-life-of-a-packet-ingress-lb-title">Standalone load balancer</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">TC @ NIC</strong>
+            <span class="sd-detail"><code>bpf_lb</code>가 service lookup을 시작합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">forwarding hooks</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">PREROUTING와 FORWARD</strong>
+            <span class="sd-detail"><code>CILIUM_FORWARD</code>를 포함한 kernel forwarding point입니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">host delivery</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">TC @ cilium_host</strong>
+            <span class="sd-detail"><code>bpf_host</code>로 endpoint path에 합류합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-l7-title">
+        <div class="sd-lane-title" id="kubernetes-cilium-life-of-a-packet-ingress-l7-title">L7 policy</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">PREROUTING와 INPUT</strong>
+            <span class="sd-detail">HTTP aware policy가 필요한 traffic의 control point입니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">proxy redirect</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Userspace proxy</strong>
+            <span class="sd-detail">L7 request를 해석한 뒤 endpoint enforcement로 돌려보냅니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>

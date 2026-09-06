@@ -1,0 +1,34 @@
+<figure class="sd sd--flow" id="spring-02-reading-order-map" aria-labelledby="spring-02-reading-order-map-title">
+  <figcaption class="sd-title" id="spring-02-reading-order-map-title">Spring 시리즈 읽기 순서</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Series 1: 요청 경로</strong>
+      <span class="sd-detail">HTTP 도착, container dispatch, bean 실행</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">한 계층 아래로</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Series 2: JVM과 메모리</strong>
+      <span class="sd-detail">process memory, heap과 native, container limit</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">실행 기반 확장</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Series 3: 두 동시성 경로</strong>
+      <span class="sd-detail">thread-per-request와 event loop</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">데이터 계층으로</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Series 4: 데이터 계층</strong>
+      <span class="sd-detail">persistence context, entity states, N+1</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">선택 주제</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Series 5 (optional): 빌드와 보안</strong>
+      <span class="sd-detail">fat jar, BOM, filter chain, authn과 authz</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">실제 문제로 회수</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">Capstone: 실제 incident</strong>
+      <span class="sd-detail">Boot 4 on JDK 25 with G1: high Old generation은 leak인가?</span>
+    </div>
+  </div>
+</figure>

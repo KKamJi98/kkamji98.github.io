@@ -38,7 +38,7 @@ Bedrock Knowledge Bases는 foundation model(FM)을 사내 데이터에 연결해
 
 Managed Knowledge Base는 Bedrock이 저장소, 인덱싱, retrieval 최적화까지 관리하는 별도 선택지입니다. 반면 다음 섹션의 OpenSearch Serverless, Aurora, Neptune, S3 Vectors 연결은 Customer-managed 구성입니다. 두 유형의 차이를 먼저 구분해야 "관리형"이라는 말이 벡터스토어 운영까지 대신한다는 뜻으로 오해되지 않습니다.
 
-![Amazon Bedrock Knowledge Base 전체 구조 - 관리형 ingestion은 S3와 connector의 문서를 fetch, parse, chunk, embed해 vector store에 색인합니다. 질의는 Agent Runtime에서 IAM과 metadata filter를 적용한 뒤 top-k chunk를 검색하고, foundation model이 출처 기반 Answer와 Citation을 생성합니다.](/assets/img/aws/bedrock-kb-architecture.webp)
+{% include diagrams/static/aws/bedrock-kb-architecture.html %}
 
 ---
 

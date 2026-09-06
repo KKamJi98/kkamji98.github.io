@@ -1,0 +1,41 @@
+<figure class="sd sd--flow" id="keycloak-argocd-sso-flow" aria-labelledby="keycloak-argocd-sso-flow-title">
+  <figcaption class="sd-title" id="keycloak-argocd-sso-flow-title">Keycloak의 groups claim이 Argo CD RBAC role을 결정합니다</figcaption>
+  <p class="sd-note">OIDC token에 group 정보가 들어 있어야 Argo CD가 사용자를 정책 role에 매핑할 수 있습니다.</p>
+
+  <div class="sd-flow" aria-label="Keycloak Argo CD SSO flow">
+    <div class="sd-node">
+      <strong class="sd-label">Browser</strong>
+      <span class="sd-detail">Argo CD UI에서 로그인을 시작합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">OIDC login 요청</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Keycloak login</strong>
+      <span class="sd-detail">Argo CD client를 위한 OIDC provider입니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">인증 결과 발급</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">OIDC token</strong>
+      <span class="sd-detail"><code>groups</code> claim과 사용자 identity를 담습니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">token 검증</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Argo CD</strong>
+      <span class="sd-detail">issuer와 서명을 확인한 뒤 group을 읽습니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">policy 매핑</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">Group-based access</strong>
+      <span class="sd-detail">group을 Argo CD role로 연결해 권한을 부여합니다.</span>
+    </div>
+  </div>
+
+  <p class="sd-note"><code>groups</code> claim이 빠지면 로그인은 되지만 사용자는 default policy에 머뭅니다.</p>
+</figure>

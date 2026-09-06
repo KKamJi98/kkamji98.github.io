@@ -1,0 +1,52 @@
+<figure class="sd sd--comparison" id="sd-sap-c02-spot-interruption-signals" aria-labelledby="sd-title-spot-interruption-signals">
+  <figcaption class="sd-title" id="sd-title-spot-interruption-signals">Spot 신호는 도착 시점에 따라 대응이 달라집니다</figcaption>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">EC2가 Spot 용량을 회수</strong>
+    <span class="sd-detail">capacity, price, constraints 중 하나로 중단 시작</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">두 신호로 분기</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="rebalance recommendation 선제 교체">
+      <div class="sd-lane-title">선제 교체</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">rebalance recommendation</strong>
+          <span class="sd-detail">보통 2분 통지보다 먼저 오며 동시에 올 수도 있음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Capacity Rebalancing</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">ASG Capacity Rebalancing</strong>
+          <span class="sd-detail">새 인스턴스가 health check를 통과한 뒤 기존 인스턴스 종료</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">desired capacity 최대 10% 초과</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">선제 교체 완료</strong>
+          <span class="sd-detail">중단 전에 대체 인스턴스가 준비됨</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="2분 중단 통지 정리">
+      <div class="sd-lane-title">종료 직전 정리</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">2분 중단 통지</strong>
+          <span class="sd-detail">stop과 terminate 대상, hibernate는 즉시 시작</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">EventBridge 또는 metadata</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">이벤트와 메타데이터 폴링</strong>
+          <span class="sd-detail">instance-action을 5초 주기로 확인, best effort</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">2분 안에 정리</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">설정한 중단 동작</strong>
+          <span class="sd-detail">terminate, stop, hibernate, persistent에서는 Terminate 불가</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sd-node sd-node--muted">
+    <strong class="sd-label">중단 빈도 완화</strong>
+    <span class="sd-detail">attribute-based instance type selection으로 pool을 넓히고 price-capacity-optimized를 사용합니다. Capacity Rebalancing 자체는 중단율을 낮추지 않습니다.</span>
+  </div>
+</figure>

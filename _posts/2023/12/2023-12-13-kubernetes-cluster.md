@@ -25,7 +25,7 @@ Kubernetes 클러스터는 컨테이너를 실행하는 머신의 묶음이 아�
 
 `kubectl`이나 CI 시스템이 리소스를 생성할 때 구성 요소끼리 직접 호출하는 구조가 아닙니다. 요청과 상태 변경은 API 서버를 중심으로 흐릅니다. 이 hub-and-spoke 구조에서 다른 컨트롤 플레인 구성 요소는 원격 API를 제공하지 않습니다.
 
-![Kubernetes control plane flow](/assets/img/kubernetes/kubernetes-control-plane-flow.webp)
+{% include diagrams/static/kubernetes/kubernetes-control-plane-flow.html %}
 
 이 그림은 논리적 책임을 표현합니다. 관리형 Kubernetes에서는 컨트롤 플레인의 프로세스가 사용자 노드와 다른 인프라에서 실행될 수 있으며, 구성 요소의 물리적 배치는 제품과 운영 방식에 따라 달라집니다.
 

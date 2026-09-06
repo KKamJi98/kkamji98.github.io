@@ -1,0 +1,51 @@
+<figure class="sd sd--comparison" id="gcp-org-tree" aria-labelledby="gcp-org-tree-title">
+  <figcaption class="sd-title" id="gcp-org-tree-title">Folder는 Project를 묶어 한 정책을 여러 프로젝트에 적용합니다</figcaption>
+  <p class="sd-intro">Folder는 Organization 아래에서 중첩할 수 있는 그룹 단위이며, Project는 billing과 quota의 경계로 남습니다.</p>
+
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Organization</strong>
+    <span class="sd-detail"><code>example.com</code>. Folder는 Organization 아래에서만 존재</span>
+  </div>
+
+  <div class="sd-arrow"><span class="sd-edge-label">조직 아래에서 부서별 Folder branch로 분기</span></div>
+
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-labelledby="gcp-org-tree-engineering-title">
+      <div class="sd-lane-title" id="gcp-org-tree-engineering-title">Engineering branch</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Folder: engineering</strong>
+          <span class="sd-detail">중첩 가능. Folder 정책이 아래 Project로 적용</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">하나의 Folder 아래에 여러 환경</span></div>
+        <div class="sd-grid">
+          <div class="sd-node">
+            <strong class="sd-label">Project: app-prod</strong>
+            <span class="sd-detail">billing과 quota의 경계</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Project: app-staging</strong>
+            <span class="sd-detail">billing과 quota의 경계</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="gcp-org-tree-finance-title">
+      <div class="sd-lane-title" id="gcp-org-tree-finance-title">Finance branch</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Folder: finance</strong>
+          <span class="sd-detail">부서 단위 정책과 리소스 그룹</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Folder 정책을 이 Project에 적용</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Project: billing-system</strong>
+          <span class="sd-detail">billing과 quota의 경계</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">Folder는 최대 10단계까지 중첩할 수 있습니다. 개인 Gmail 계정처럼 Organization이 없으면 Folder를 만들 수 없습니다.</p>
+</figure>

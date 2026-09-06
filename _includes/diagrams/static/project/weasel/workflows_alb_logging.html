@@ -1,0 +1,19 @@
+<figure class="sd sd--flow" id="sd-project-weasel-workflows-alb-logging" aria-labelledby="sd-title-project-weasel-workflows-alb-logging">
+  <figcaption class="sd-title" id="sd-title-project-weasel-workflows-alb-logging">Load Balancer 로그를 S3에 모아 Athena로 분석합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Load Balancer</strong>
+      <span class="sd-detail">요청 access log를 생성합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">로그 전송</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">S3</strong>
+      <span class="sd-detail">로그 파일을 저장합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">로그 분석</span></div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Athena</strong>
+      <span class="sd-detail">S3 로그를 SQL로 분석합니다.</span>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,50 @@
+<figure class="sd sd--comparison" id="nodejs-spring-server-stacks" aria-labelledby="nodejs-spring-server-stacks-title">
+  <figcaption class="sd-title" id="nodejs-spring-server-stacks-title">세 server stack은 대기 중 request를 붙잡는 단위가 다릅니다</figcaption>
+  <p class="sd-note">성능 순위가 아니라 blocking call이 점유하는 실행 경계를 비교합니다. CPU 작업을 어디로 분리할지도 이 경계에서 결정됩니다.</p>
+
+  <div class="sd-grid sd-grid--three" aria-label="Node.js와 Spring server stack 비교">
+    <section class="sd-lane" aria-labelledby="nodejs-stack-title">
+      <div class="sd-lane-title" id="nodejs-stack-title">Node.js core HTTP</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Main JavaScript flow</strong>
+          <span class="sd-detail">한 thread가 application code를 실행합니다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Waiting costs a callback</strong>
+          <span class="sd-detail">I/O 대기 중 event loop가 다른 work로 이동합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="spring-mvc-stack-title">
+      <div class="sd-lane-title" id="spring-mvc-stack-title">Spring Boot MVC</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Servlet request thread</strong>
+          <span class="sd-detail">in-flight request마다 thread 하나가 붙습니다.</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Waiting costs a thread</strong>
+          <span class="sd-detail">thread pool 크기가 동시 request 수를 제한합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane" aria-labelledby="spring-webflux-stack-title">
+      <div class="sd-lane-title" id="spring-webflux-stack-title">Spring Boot WebFlux</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Event loop worker</strong>
+          <span class="sd-detail">작은 고정 thread 집합이 pipeline을 실행합니다.</span>
+        </div>
+        <div class="sd-node">
+          <strong class="sd-label">Waiting costs a subscription</strong>
+          <span class="sd-detail">Reactive Streams의 backpressure가 contract에 포함됩니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">blocking dependency를 어느 실행 단위에서 호출하는지와 CPU 작업을 분리할 위치를 함께 관찰해야 합니다.</p>
+</figure>

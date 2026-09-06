@@ -9,7 +9,7 @@ comments: true
 # path: /assets/img/kkam-img/kkam.webp
 ---
 
-![Priority queue heap flow](/assets/img/data-structures/priority-queue-heap-flow.webp)
+{% include diagrams/static/data-structures/priority-queue-heap-flow.html %}
 
 ---
 

@@ -1,0 +1,55 @@
+<figure class="sd sd--flow" id="jenkins-ci-workflow" aria-labelledby="jenkins-ci-workflow-title">
+  <figcaption class="sd-title" id="jenkins-ci-workflow-title">Jenkins CI와 Argo CD 배포 경로</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">개발팀 Repo</strong>
+      <span class="sd-detail">애플리케이션 source code</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">source checkout</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">CI server (Jenkins)</strong>
+      <span class="sd-detail">image build와 deployment 설정 변경을 수행</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="컨테이너 이미지 경로">
+      <div class="sd-lane-title">Container image path</div>
+      <div class="sd-arrow"><span class="sd-edge-label">CI server (Jenkins) -&gt; Container image registry: image push</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Build container image</strong>
+          <span class="sd-detail">CI 결과물을 배포 가능한 이미지로 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">이미지 업로드</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Container image registry</strong>
+          <span class="sd-detail">Kubernetes가 가져갈 이미지 저장소</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="GitOps 배포 경로">
+      <div class="sd-lane-title">GitOps deployment path</div>
+      <div class="sd-arrow"><span class="sd-edge-label">CI server (Jenkins) -&gt; DevOps팀 Repo: manifest update</span></div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">DevOps팀 Repo</strong>
+          <span class="sd-detail">Kubernetes manifest 변경을 보관</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">manifest 감시</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">CD server (Argo CD)</strong>
+          <span class="sd-detail">Repo의 desired state를 동기화</span>
+        </div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">CD server (Argo CD) -&gt; K8S: 배포와 삭제</span>
+          <span class="sd-edge-label">Container image registry -&gt; K8S: image pull</span>
+        </div>
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">K8S (kind)</strong>
+          <span class="sd-detail">manifest를 적용하고 registry에서 image를 pull</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Jenkins가 DevOps팀 Repo에 변경을 반영하면 Argo CD가 manifest를 읽고 K8S에 적용합니다. K8S의 image 다운로드는 registry에서 일어납니다.</p>
+</figure>

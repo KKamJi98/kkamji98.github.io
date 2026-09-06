@@ -1,0 +1,19 @@
+<figure class="sd sd--flow" id="sd-kubernetes-cilium-ebpf-acceleration" aria-labelledby="sd-title-kubernetes-cilium-ebpf-acceleration">
+  <figcaption class="sd-title" id="sd-title-kubernetes-cilium-ebpf-acceleration">eBPF acceleration이 sidecar 경로의 반복을 줄이는 이유</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Application container in a Pod</strong>
+      <span class="sd-detail">애플리케이션으로 향하거나 나오는 모든 network packet</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">typical Service Mesh packet path</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Sidecar proxy container</strong>
+      <span class="sd-detail">Pod 안에서 패킷을 가로채는 proxy</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">TCP/IP stack traversal</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">TCP/IP stack: 3 traversals</strong>
+      <span class="sd-detail">Pod를 벗어나기 전 각 packet이 stack을 세 번 통과합니다.</span>
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,43 @@
+<figure class="sd sd--flow" aria-labelledby="sap-c02-modernization-strangler-route-switch-title">
+  <figcaption class="sd-title" id="sap-c02-modernization-strangler-route-switch-title">strangler fig은 라우트와 롤백을 함께 둔다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">외부 호출자</strong>
+      <span class="sd-detail">같은 HTTPS endpoint로 요청한다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">공통 진입점</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">HTTP proxy</strong>
+      <span class="sd-detail">API Gateway 또는 facade가 기능별 경계를 가로챈다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">coexist 중 기능별 route</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">라우팅 결정</strong>
+      <span class="sd-detail">기존 기능과 새 서비스 중 검증된 경로로 보낸다.</span>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">기존 경로</span>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">기존 모놀리스</strong>
+        <span class="sd-detail">coexist 동안 빠른 rollback 대상이다.</span>
+      </div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">현대화 경로</span>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">현대화 서비스</strong>
+          <span class="sd-detail">transform에서 만든 기능을 점진적으로 받는다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">서비스별 소유</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">새 데이터 저장소</strong>
+          <span class="sd-detail">서비스별 데이터 계약과 소유 경계를 둔다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">transform으로 새 경로를 만들고 coexist에서 관측한다. 검증 기간이 끝난 뒤에만 eliminate로 모놀리스를 제거한다.</p>
+</figure>

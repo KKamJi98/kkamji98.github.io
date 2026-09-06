@@ -24,7 +24,7 @@ image:
 
 ## 1. 두 층의 게이트웨이
 
-![LLM gateway를 둘 수 있는 두 위치, 앱 레벨과 데이터플레인](/assets/img/ai/gateway-plane-compare.webp)
+{% include diagrams/static/ai/gateway-plane-compare.html %}
 
 같은 "LLM 트래픽을 한 지점에서 통제한다"는 목표를 두 층에서 달성할 수 있습니다.
 
@@ -47,7 +47,7 @@ Kubernetes에서는 CRD로 선언합니다. 라우팅은 `AIGatewayRoute`, provi
 
 ## 3. 데이터플레인에서 하는 일
 
-![Envoy AI Gateway의 요청 처리 흐름과 CRD](/assets/img/ai/envoy-ai-gateway-crd-flow.webp)
+{% include diagrams/static/ai/envoy-ai-gateway-crd-flow.html %}
 
 문서 기준 핵심 기능은 다섯 가지로 묶입니다.
 

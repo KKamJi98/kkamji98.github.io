@@ -1,0 +1,32 @@
+<figure class="sd sd--flow" id="sd-merkle-inclusion-path" aria-labelledby="sd-title-merkle-inclusion-path">
+  <figcaption class="sd-title" id="sd-title-merkle-inclusion-path">sibling hash를 합쳐 Merkle Root까지 올라갑니다</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--accent" aria-label="검증 대상 leaf">
+      <div class="sd-lane-title">검증 대상</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">tx hash</strong>
+        <span class="sd-detail">index 3, 32 bytes</span>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Merkle proof sibling">
+      <div class="sd-lane-title">proof 입력</div>
+      <div class="sd-node">
+        <strong class="sd-label">sibling hash</strong>
+        <span class="sd-detail">one hop on the proof</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">leaf와 sibling을 concat 후 hash</span></div>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">parent hash</strong>
+      <span class="sd-detail">hash(leaf || sibling)</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">상위 level 반복</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Merkle Root</strong>
+      <span class="sd-detail">header에 이 값만 저장</span>
+    </div>
+  </div>
+  <p class="sd-note">6 transaction 예제는 sibling hash 3개, 96 bytes로 root를 대조합니다. 전체 transaction 목록을 들고 다니지 않아도 됩니다.</p>
+</figure>

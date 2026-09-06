@@ -74,7 +74,7 @@ IVF는 벡터 공간을 여러 **목록(list)**으로 나누는 인덱스 계열
 
 ---
 
-![HNSW vs IVF 인덱스 비교 - HNSW는 계층 그래프에서 greedy search로 탐색(높은 recall, 낮은 지연, 높은 메모리), IVF는 centroids로 클러스터를 나눠 top-nprobe list만 probe(메모리 효율, nprobe 튜닝)](/assets/img/ai/rag-03-hnsw-vs-ivf.webp)
+{% include diagrams/static/ai/rag-03-hnsw-vs-ivf.html %}
 
 ---
 

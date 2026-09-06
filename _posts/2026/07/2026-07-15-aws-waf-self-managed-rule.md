@@ -221,7 +221,7 @@ self-managed rule에는 다음 운영 정보가 필요합니다.
 
 값, 근거, 만료, owner는 IaC와 review 기록으로 관리합니다. 다만 실제 운영의 ASN, IP, 내부 log와 traffic 수치는 공개 저장소에 넣지 않습니다.
 
-![WAF rule rollout flow](/assets/img/aws/waf-rule-rollout-flow.webp)
+{% include diagrams/static/aws/waf-rule-rollout-flow.html %}
 
 ---
 

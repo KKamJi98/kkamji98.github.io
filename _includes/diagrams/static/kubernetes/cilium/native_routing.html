@@ -1,0 +1,58 @@
+<figure class="sd sd--comparison" id="native-routing" aria-labelledby="native-routing-title">
+  <figcaption class="sd-title" id="native-routing-title">Cilium native routing은 Pod CIDR를 underlay 경로로 전달합니다</figcaption>
+  <p class="sd-note">캡슐화 없이 각 노드의 eBPF datapath가 패킷을 처리하고, 물리 네트워크가 원격 Pod CIDR를 라우팅해야 합니다.</p>
+
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Cilium Node 1</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Local Pod endpoints</strong>
+          <span class="sd-detail"><code>10.10.10.1/32</code> via <code>lxc1</code>, <code>10.10.10.2/32</code> via <code>lxc2</code></span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Pod interface ingress</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">eBPF datapath and Cilium</strong>
+          <span class="sd-detail">Pod packet을 검사하고 node routing table을 사용합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">native forwarding</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Routing table</strong>
+          <span class="sd-detail"><code>10.10.10.0/24</code> local, <code>10.10.20.0/24</code> via <code>192.168.1.2</code></span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay eth0</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Physical network</strong>
+          <span class="sd-detail">원격 Node 2의 Pod CIDR까지 전달할 경로가 필요합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lane">
+      <div class="sd-lane-title">Cilium Node 2</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Local Pod endpoints</strong>
+          <span class="sd-detail"><code>10.10.20.1/32</code> via <code>lxc1</code>, <code>10.10.20.2/32</code> via <code>lxc2</code></span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Pod interface ingress</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">eBPF datapath and Cilium</strong>
+          <span class="sd-detail">캡슐화 헤더를 추가하지 않고 다음 hop을 선택합니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">native forwarding</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Routing table</strong>
+          <span class="sd-detail"><code>10.10.20.0/24</code> local, <code>10.10.10.0/24</code> via <code>192.168.1.1</code></span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">underlay eth0</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">Physical network</strong>
+          <span class="sd-detail">같은 L2이면 direct node route, 다른 구간이면 BGP 같은 배포가 필요합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="sd-note">Native mode의 전제는 노드와 cloud network가 서로의 Pod CIDR를 알고 전달하는 것입니다. 이 경로가 없으면 tunnel mode처럼 캡슐화할 수 없습니다.</p>
+</figure>

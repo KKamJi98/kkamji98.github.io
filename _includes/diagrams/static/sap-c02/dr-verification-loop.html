@@ -1,0 +1,57 @@
+<figure class="sd sd--sequence" id="dr-verification-loop" aria-labelledby="dr-verification-loop-title">
+  <figcaption class="sd-title" id="dr-verification-loop-title">복구 목표는 주입과 복원 검증을 거쳐야 숫자로 확인된다</figcaption>
+  <p class="sd-note">문서의 목표를 실제 실험으로 측정하고, 격차를 교정한 뒤 같은 기준으로 다시 검증합니다.</p>
+
+  <div class="sd-flow" aria-label="DR 검증 순환">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">복구 목표 확정</strong>
+      <span class="sd-detail">워크로드마다 RTO와 RPO를 숫자로 고정합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">평가와 실험을 병렬 준비</span></div>
+
+    <div class="sd-grid">
+      <section class="sd-lane" aria-labelledby="dr-verification-loop-assess-title">
+        <div class="sd-lane-title" id="dr-verification-loop-assess-title">구성 평가와 복원</div>
+        <div class="sd-flow">
+          <div class="sd-node">
+            <strong class="sd-label">Resilience Hub 평가</strong>
+            <span class="sd-detail">현재 구성을 진단하고 Well-Architected 기반 개선을 권고합니다.</span>
+          </div>
+          <div class="sd-arrow"><span class="sd-edge-label">스케줄 복원</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">AWS Backup restore testing</strong>
+            <span class="sd-detail">복원 뒤 자동 삭제하며 검증은 API로 실행합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sd-lane" aria-labelledby="dr-verification-loop-fis-title">
+        <div class="sd-lane-title" id="dr-verification-loop-fis-title">장애 주입</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">FIS 실험</strong>
+            <span class="sd-detail">actions, targets, stop conditions로 실제 리소스에 액션을 수행합니다.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">두 결과를 한곳에서 관측</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">관측과 판정</strong>
+      <span class="sd-detail">stop condition alarm, 실제 소요 시간, 복원 성공 여부를 확인합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">목표와 비교</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">목표 미달 격차</strong>
+      <span class="sd-detail">quota 미증설, 엔진 버전 불일치, 전환 미동작, 복원 실패를 기록합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">교정</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">교정</strong>
+      <span class="sd-detail">quota와 복제 구성을 보완하고 전환 절차를 수정합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">동일 목표로 다시 실행</span></div>
+    <p class="sd-note">교정 후 같은 FIS와 restore testing을 다시 돌려 RTO와 RPO 격차가 닫혔는지 확인합니다.</p>
+  </div>
+</figure>

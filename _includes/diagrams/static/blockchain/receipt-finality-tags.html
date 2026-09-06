@@ -1,0 +1,32 @@
+<figure class="sd sd--comparison" id="sd-blockchain-receipt-finality-tags" aria-labelledby="sd-title-blockchain-receipt-finality-tags">
+  <figcaption class="sd-title" id="sd-title-blockchain-receipt-finality-tags">receipt status와 block tag는 서로 다른 질문에 답합니다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">JSON-RPC</strong>
+      <span class="sd-detail">HTTP 200만으로 부족</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">실행 결과와 합의 head로 분기</span></div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="receipt 실행 결과">
+      <div class="sd-lane-title">receipt 실행 결과</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">receipt status 0x0</strong>
+          <span class="sd-detail">Anvil boom, gasUsed 21492</span>
+        </div>
+      </div>
+      <p class="sd-note">호출이 revert되었고 gas는 소비되었습니다.</p>
+    </section>
+    <section class="sd-lane" aria-label="finalized 합의 head">
+      <div class="sd-lane-title">finalized 합의 head</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">finalized 11544938</strong>
+          <span class="sd-detail">Sepolia read-only, latest보다 64 뒤</span>
+        </div>
+      </div>
+      <p class="sd-note">어느 block이 합의상 굳었는지를 읽습니다.</p>
+    </section>
+  </div>
+</figure>

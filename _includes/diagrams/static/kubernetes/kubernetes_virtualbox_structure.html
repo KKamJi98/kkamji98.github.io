@@ -1,0 +1,74 @@
+<figure class="sd sd--layers" id="kubernetes-virtualbox-structure" aria-labelledby="kubernetes-virtualbox-structure-title">
+  <figcaption class="sd-title" id="kubernetes-virtualbox-structure-title">VirtualBox Kubernetes 실습은 NAT와 private network를 분리합니다</figcaption>
+  <p class="sd-note">Vagrant로 만든 세 VM은 모두 NAT <code>eth0=10.0.2.15</code>를 공유하고, 노드 간 통신과 Kubernetes 주소는 private <code>eth1</code>를 사용합니다.</p>
+
+  <div class="sd-stack">
+    <section class="sd-band">
+      <div class="sd-band-title">Kubernetes Cluster</div>
+      <p class="sd-note">kubeadm Pod CIDR: <code>10.244.0.0/16</code>. CNI를 설치하기 전에는 모든 노드가 <code>NotReady</code>입니다.</p>
+      <div class="sd-grid sd-grid--three">
+        <section class="sd-lane">
+          <div class="sd-lane-title">cilium-m1</div>
+          <div class="sd-grid">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">eth0 NAT</strong>
+              <span class="sd-detail"><code>10.0.2.15</code>, default route</span>
+            </div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">eth1</strong>
+              <span class="sd-detail"><code>192.168.10.100</code>, control plane</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sd-lane">
+          <div class="sd-lane-title">cilium-w1</div>
+          <div class="sd-grid">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">eth0 NAT</strong>
+              <span class="sd-detail"><code>10.0.2.15</code>, default route</span>
+            </div>
+            <div class="sd-node">
+              <strong class="sd-label">eth1</strong>
+              <span class="sd-detail"><code>192.168.10.101</code>, worker</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sd-lane">
+          <div class="sd-lane-title">cilium-w2</div>
+          <div class="sd-grid">
+            <div class="sd-node sd-node--muted">
+              <strong class="sd-label">eth0 NAT</strong>
+              <span class="sd-detail"><code>10.0.2.15</code>, default route</span>
+            </div>
+            <div class="sd-node">
+              <strong class="sd-label">eth1</strong>
+              <span class="sd-detail"><code>192.168.10.102</code>, worker</span>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">VirtualBox Private Network</strong>
+        <span class="sd-detail"><code>192.168.10.0/24</code>에서 VM 간 통신과 API advertise가 이뤄집니다.</span>
+      </div>
+    </section>
+
+    <section class="sd-band">
+      <div class="sd-band-title">Node address selection</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">kubelet default route</strong>
+          <span class="sd-detail">worker가 default route의 eth0 주소를 고르면 INTERNAL-IP가 <code>10.0.2.15</code>가 됩니다.</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">명시적 node IP</span></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">JoinConfiguration --node-ip</strong>
+          <span class="sd-detail">각 worker를 <code>192.168.10.101</code>, <code>192.168.10.102</code>로 고정합니다.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</figure>

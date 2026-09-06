@@ -1,0 +1,45 @@
+<figure class="sd sd--comparison" id="spring-03-ioc-before-after" aria-labelledby="spring-03-ioc-before-after-title">
+  <figcaption class="sd-title" id="spring-03-ioc-before-after-title">생성 책임이 강결합을 느슨한 결합으로 바꾸는 과정</figcaption>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="수동 생성 방식">
+      <div class="sd-lane-title">수동 new: 강결합</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">OrderController</strong>
+          <span class="sd-detail">new OrderService(...)</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">직접 생성</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">OrderService</strong>
+          <span class="sd-detail">new OrderRepository(...)</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">구체 타입 고정</span></div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">OrderRepository</strong>
+          <span class="sd-detail">구체 타입이 코드에 고정됨</span>
+        </div>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Spring 컨테이너 방식">
+      <div class="sd-lane-title">컨테이너 주입: 느슨한 결합</div>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">OrderController (bean)</strong>
+          <span class="sd-detail">OrderService를 주입받음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">의존성 주입</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">OrderService (bean)</strong>
+          <span class="sd-detail">OrderRepository를 주입받음</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">타입 뒤에서 교체</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">OrderRepository (bean)</strong>
+          <span class="sd-detail">타입 뒤에서 교체 가능</span>
+        </div>
+      </div>
+      <p class="sd-note">Spring IoC container가 bean을 만들고 의존성을 주입합니다.</p>
+    </section>
+  </div>
+  <p class="sd-note">코드에 박힌 생성이 결합을 만들고, container의 construction과 injection이 그 결합을 끊습니다.</p>
+</figure>

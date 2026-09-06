@@ -1,0 +1,56 @@
+<figure class="sd sd--flow" id="grafana-alloy-overview" aria-labelledby="grafana-alloy-overview-title">
+  <figcaption class="sd-title" id="grafana-alloy-overview-title">Grafana Alloy는 push와 pull telemetry를 한 파이프라인으로 모은다</figcaption>
+  <section class="sd-lane">
+    <div class="sd-lane-title">Applications and infrastructure</div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">Application telemetry</strong>
+        <span class="sd-detail">.NET, Java, Go 애플리케이션이 logs, metrics, traces, profiling 데이터를 보낸다.</span>
+      </div>
+      <div class="sd-node sd-node--muted">
+        <strong class="sd-label">Infrastructure signals</strong>
+        <span class="sd-detail">Kubernetes, Kafka, Hubble 같은 인프라가 수집 대상이 된다.</span>
+      </div>
+    </div>
+  </section>
+  <div class="sd-arrow"><span class="sd-edge-label">telemetry 수집</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Push telemetry</div>
+      <div class="sd-node">
+        <strong class="sd-label">Client push</strong>
+        <span class="sd-detail">SDK 또는 exporter가 Alloy endpoint로 telemetry를 전송한다.</span>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">Pull telemetry</div>
+      <div class="sd-node">
+        <strong class="sd-label">Target scrape</strong>
+        <span class="sd-detail">Alloy가 Prometheus target이나 Kubernetes endpoint를 주기적으로 읽는다.</span>
+      </div>
+    </section>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">Collect and Transform</span></div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Grafana Alloy</strong>
+    <span class="sd-detail">수집한 신호를 transform하고 pipeline 규칙에 따라 목적지별로 write한다.</span>
+  </div>
+  <div class="sd-arrow"><span class="sd-edge-label">route telemetry</span></div>
+  <div class="sd-grid">
+    <section class="sd-lane">
+      <div class="sd-lane-title">Telemetry data</div>
+      <div class="sd-node">
+        <strong class="sd-label">Grafana Cloud, Loki, Prometheus, Pyroscope</strong>
+        <span class="sd-detail">logs, metrics, traces, profiling을 각 backend가 저장하고 조회한다.</span>
+      </div>
+    </section>
+    <section class="sd-lane">
+      <div class="sd-lane-title">Alerting rules</div>
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Collectors and alert pipeline</strong>
+        <span class="sd-detail">규칙 평가와 후속 collector 전송으로 운영 신호를 연결한다.</span>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Alloy는 단일 수집기가 아니라 Collect, Transform, Write 단계를 조합하는 OpenTelemetry Collector 기반 pipeline이다.</p>
+</figure>

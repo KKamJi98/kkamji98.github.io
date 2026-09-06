@@ -1,0 +1,32 @@
+<figure class="sd sd--flow" id="tdd-loop" aria-labelledby="tdd-loop-title">
+  <figcaption class="sd-title" id="tdd-loop-title">TDD는 동작 하나마다 RED-GREEN-REFACTOR를 반복합니다</figcaption>
+  <p class="sd-note">구현보다 테스트를 먼저 실행해 동작이 아직 없다는 실패를 확인한 뒤 가장 작은 변경을 추가합니다.</p>
+
+  <div class="sd-flow" aria-label="TDD red green refactor loop">
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">RED</strong>
+      <span class="sd-detail">다음 behavior 하나를 검증하는 failing test를 씁니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">실패를 확인</span></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">GREEN</strong>
+      <span class="sd-detail">테스트를 통과시키는 smallest implementation만 추가합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">동작을 유지하며 정리</span></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">REFACTOR</strong>
+      <span class="sd-detail">tests stay green인 상태로 구조를 정리합니다.</span>
+    </div>
+
+    <div class="sd-arrow"><span class="sd-edge-label">다음 behavior 선택</span></div>
+
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Next behavior</strong>
+      <span class="sd-detail">새 테스트를 쓰며 다음 RED 단계로 돌아갑니다.</span>
+    </div>
+  </div>
+</figure>

@@ -33,7 +33,7 @@ KMP는 전체 관측 플랫폼이 아니라 초기 확인을 빠르게 하는 CL
 | 트래픽을 받을 수 있는 Pod는 무엇인가 | Pod phase, condition, Ready 상태 | `Running`만으로 준비 완료를 뜻하지 않음 |
 | 자원이 어느 노드에 몰렸는가 | Node와 Pod CPU, memory 사용량 | `kubectl top`은 용량이나 장기 추세가 아님 |
 
-![Kubernetes troubleshooting flow](/assets/img/observability/kubernetes-troubleshooting-flow.webp)
+{% include diagrams/static/observability/kubernetes-troubleshooting-flow.html %}
 
 ---
 

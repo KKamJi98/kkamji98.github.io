@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-08-23
+updated: 2026-09-07
 type: architecture
 status: current
 ---
@@ -105,3 +105,30 @@ bash tools/run.sh    # 로컬 미리보기
 - **트레이드오프**: 코드블록에만 등장하는 문자열은 더 이상 검색되지 않는다. 확인된 예로 `apiversion`, `imagepullpolicy`는 0건이 된다. 반면 산문에서도 언급되는 `kubectl` 같은 용어는 그대로 걸린다.
 - **검증(2026-08-15, production build + Playwright)**: `쿠버네티스`가 `kubernetes`와 동일한 결과 집합(상위 2건 동일), `모니터링`/`인증서`/`관측`이 영문 전용 글에 도달, `테라폼 배포`처럼 한글 다중 토큰도 동작. 인라인 스크립트 2,228개 파싱 통과, `bash tools/test.sh`(빌드 + html-proofer, 915 파일) 통과.
 - **후속 판단 기준**: Pagefind 같은 청크 인덱스 전환은 gzip 인덱스가 1MB를 넘어설 때 재검토한다. 현재 263KB에서는 CI에 Node 인덱싱 스텝을 추가할 이득이 없다. Pagefind로 가더라도 한/영 매핑은 사전이 필요하므로 `search_synonyms.yml`은 그대로 쓴다.
+
+### 5. SAP 인증 지도
+
+- **적용일**: 2026-09-07
+- **파일**: `_includes/diagrams/aws-certification-map.html`, `_posts/2026/09/2026-08-22-aws-sap-c02-overview.md`, `assets/img/sap-c02/certification-badges/`
+- **구조**: Professional, Associate, Foundational의 큰 계층 제목과 별도 Specialty/Business 영역을 사용한다. 공식 배지 13개, 자격증 이름, 시험 코드를 정적으로 모두 표시한다. SAP만 핵심 강조를 적용한다.
+- **원본**: AWS 공식 배지의 URL과 원본/표시용 asset 해시는 `certification-badges/sources.json`에 기록한다. 배경/여백 정리와 WebP 압축을 적용한 표시용 자산을 사용한다.
+- **표시 정책**: 공통 `.sd` 스타일로 큰 라벨과 반응형 grid를 적용한다. 선택 버튼, script, 애니메이션은 없다. 이미지에는 `data-static-diagram="true"`를 붙인다.
+- **rollback**: include를 이전 WebP 참조로 되돌린다. 원본 spec/Draw.io/WebP는 유지한다.
+
+### 6. Packer Golden AMI 정적 다이어그램
+
+- **적용일**: 2026-09-07
+- **파일**: `_includes/diagrams/packer-golden-image.html`, `_posts/2026/01/2026-01-08-packer.md`, `assets/img/packer/diagram/`
+- **구조**: 이미지 빌드와 이미지 사용을 분리한다. HCL, 임시 EC2 내부의 Provisioner, Golden AMI, 새 EC2 사이의 관계만 남긴다. 패키지 스택의 반복과 장문 설명을 줄였다.
+- **표시 정책**: 공통 `.sd` 스타일을 사용하며 재생 UI, script, 타이머, 이벤트 리스너가 없다. HashiCorp/AWS Labs 아이콘의 commit URL과 SHA256은 `diagram/sources.json`에 기록한다.
+- **의미**: `amazon-ebs`의 AMI 생성과 임시 리소스 정리 뒤 선택적 Post-processor가 수행되도록 본문 순서도 맞췄다. 새 서비스 인스턴스 배포는 Packer 바깥 단계로 구분한다.
+- **rollback**: include를 `/assets/img/iac/packer-golden-image-flow.webp` 참조로 되돌린다.
+
+### 7. 정적 다이어그램 공통 렌더링
+
+- **적용일**: 2026-09-07
+- **파일**: `assets/css/jekyll-theme-chirpy.scss`, `_includes/refactor-content.html`, `_includes/diagrams/static/`, `kkamji_scripts/blog/validate_static_diagrams.py`
+- **스타일**: `.sd`로 범위를 제한한 정적 flow, branch, comparison, layer, table 컴포넌트다. 텍스트를 이미지처럼 축소하지 않고 grid를 재배치한다. 제작 기준과 source catalog는 [Static diagrams](static-diagrams.md)에 있다.
+- **테마 override**: Chirpy 7.4.1의 `refactor-content.html` 전체를 기반으로, `data-static-diagram` 이미지에 한해 확대 anchor와 shimmer wrapper 생성 전에 원래 img를 그대로 통과시킨다. 일반 본문 이미지 처리는 gem과 동일하다.
+- **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, 실제 760/360/320px 텍스트 크기와 overflow 검사를 수행한다.
+- **테마 업그레이드**: refactor-content gem 원본의 변경을 비교해 static marker 예외를 유지한다. 이 override는 전체 파일 대체이므로 gem 변경이 자동 병합되지 않는다.

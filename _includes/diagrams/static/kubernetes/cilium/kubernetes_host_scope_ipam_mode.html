@@ -1,0 +1,40 @@
+<figure class="sd sd--flow" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode" aria-labelledby="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title">
+  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title">Kubernetes Host Scope는 node의 PodCIDR 안에서만 Pod IP를 할당한다</figcaption>
+  <p class="sd-note">Kubernetes control plane이 node별 CIDR을 정하고, Cilium agent는 해당 <code>v1.Node</code> 정보에서 읽은 범위만 사용합니다.</p>
+
+  <div class="sd-flow" aria-label="Kubernetes Host Scope IPAM 흐름">
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">kube-controller-manager</strong>
+      <span class="sd-detail">각 node에 고유한 PodCIDR을 할당합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">PodCIDR 기록</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">v1.Node</strong>
+      <span class="sd-detail"><code>spec.podCIDR</code> 또는 <code>spec.podCIDRs</code>에 <code>10.1.1.0/24</code>와 선택적 IPv6 범위를 둡니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">node 정보 조회</span></div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cilium agent on node1</strong>
+      <span class="sd-detail">host-scope allocator가 node의 PodCIDR에서만 주소를 선택합니다.</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">같은 CIDR에서 할당</span></div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">Pod 1</strong>
+        <span class="sd-detail"><code>10.1.1.1</code></span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Pod 2</strong>
+        <span class="sd-detail"><code>10.1.1.2</code></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sd-band">
+    <div class="sd-band-title">Node-local allocation boundary</div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">다른 node의 유휴 IP는 사용하지 않음</strong>
+      <span class="sd-detail">한 node의 PodCIDR이 고갈되면 남은 다른 node 범위로 자동 확장되지 않습니다.</span>
+    </div>
+  </div>
+</figure>

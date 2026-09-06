@@ -46,7 +46,7 @@ IAM Access Analyzer의 external access와 unused access 판정은 2편에서 다
 
 아래 그림은 키 소재를 어디에서 만들지 선택하면 rotation, multi-Region, 비대칭 키 사용 가능성이 함께 고정되는 경계를 보여줍니다.
 
-![KMS key material origin별로 rotation과 key type 선택지가 갈리는 경계](/assets/img/sap-c02/kms-key-material-origin.webp)
+{% include diagrams/static/sap-c02/kms-key-material-origin.html %}
 
 그림의 핵심은 origin을 나중에 바꾸는 설정 항목으로 보지 않는 것입니다. 처음 선택이 잘못되면 기존 ciphertext와 애플리케이션 호출을 그대로 둔 채 기능만 추가할 수 없습니다.
 
@@ -134,7 +134,7 @@ CloudHSM을 선택해도 KMS custom key store를 호출하는 권한 검사는 �
 3. KMS key policy가 상대 계정 또는 role을 허용하는가?
 4. key policy, IAM policy, SCP, VPC endpoint policy 중 명시적 Deny가 있는가?
 
-![교차 계정 S3 SSE-KMS 접근에서 bucket policy와 IAM policy와 key policy가 함께 필요한 경계](/assets/img/sap-c02/kms-cross-account-key-access.webp)
+{% include diagrams/static/sap-c02/kms-cross-account-key-access.html %}
 
 예를 들어 데이터 계정의 key policy가 분석 계정에 위임하지 않으면 분석 role에 `kms:Decrypt`를 추가해도 `AccessDenied`가 납니다. AWS managed key인 `aws/s3`는 key policy를 편집할 수 없고 교차 계정 공유에 쓸 수 없으므로 customer managed key로 전환해야 합니다.
 
@@ -181,7 +181,7 @@ ACM과 ACME, Private CA의 경계는 다음과 같습니다.
 | ACM with ACME | 공인 | ACME client가 생성하고 보유 | client가 갱신과 설치 | ACM inventory에는 보이지만 불가 |
 | Private CA 직접 발급 | 사설 | 사용자가 CSR과 키를 보유 | `IssueCertificate` 재호출 | 사설 용도 |
 
-![인증서가 설치될 위치가 ACM과 ACME와 Private CA 발급 경로를 나누는 구조](/assets/img/sap-c02/acm-certificate-issuance-paths.webp)
+{% include diagrams/static/sap-c02/acm-certificate-issuance-paths.html %}
 
 ACME는 Certbot이나 cert-manager 같은 표준 client를 사용해 자체 인프라를 자동화하려는 경로입니다. ACM API 대신 client가 키를 만들고, ACME로 발급된 인증서는 AWS 통합 서비스에 바인딩할 수 없습니다. 공인 신뢰와 AWS 서비스 바인딩을 모두 요구하면 exportable public certificate의 재배포 책임까지 감수하는지 확인합니다.
 
@@ -252,7 +252,7 @@ Compliance mode에서 retain-until-date 전에는 version ID를 알고 있어도
 
 보존 기간을 일수로 지정할 때는 요청 시각을 기준으로 만료 시점을 계산합니다. `s3:object-lock-remaining-retention-days` 조건 키로 최소 보존 일수를 강제하면 애플리케이션이 실수로 짧은 retention을 설정하는 것을 막을 수 있습니다. 이미 잠긴 버전의 retention을 줄이는 것은 mode와 권한에 따라 제한되므로, 규정의 최소 기간을 bucket policy와 조직 정책 양쪽에서 검증합니다.
 
-![S3 Object Lock과 AWS Backup Vault Lock이 WORM 보존을 적용하는 대상과 우회 경계를 나누는 구조](/assets/img/sap-c02/worm-retention-decision.webp)
+{% include diagrams/static/sap-c02/worm-retention-decision.html %}
 
 Object Lock은 S3 데이터 경계입니다. S3 access point, bucket policy, KMS key policy는 누가 객체를 읽고 새 버전을 쓸 수 있는지를 결정하고, Object Lock은 이미 기록된 특정 버전의 삭제 시점을 제한합니다. 따라서 "root도 삭제할 수 없음"이라는 요구에는 bucket policy의 `Deny`만 추가하지 말고 versioning, compliance mode, 최소 retention 조건을 함께 제시해야 합니다.
 
@@ -372,7 +372,7 @@ Security Hub central configuration은 delegated administrator가 home Region에�
 
 Config rule은 한 조건을 평가하는 단위이고, conformance pack은 여러 rule과 remediation을 묶어 계정과 리전에 배포하는 단위입니다. noncompliant 결과의 remediation은 Systems Manager Automation 문서로 실행할 수 있으며, AWS managed document와 custom Automation runbook을 선택합니다. Config는 상태를 평가하고 실행을 요청할 뿐, 모든 수정이 성공했는지와 서비스별 rollback을 대신 보장하지 않습니다.
 
-![Config 평가 결과가 Security Hub CSPM과 SSM Automation remediation으로 이어지는 경계](/assets/img/sap-c02/config-evaluation-remediation.webp)
+{% include diagrams/static/sap-c02/config-evaluation-remediation.html %}
 
 자동 교정에는 세 가지 식별자를 함께 남깁니다. 어느 Config rule 또는 control이 실패했는지, 어떤 Automation document와 파라미터로 실행했는지, 그리고 실행 후 재평가에서 compliant가 되었는지입니다. EventBridge에서 remediation을 직접 호출할 때도 동일한 correlation ID를 ticket, SSM execution, 후속 Config evaluation에 전파하면 반복 실행과 수동 예외를 구분할 수 있습니다.
 
@@ -420,7 +420,7 @@ CloudTrail Lake event data store는 category별 immutable event collection을 �
 3. **실행**: EventBridge로 티켓과 승인 흐름을 만들고, Config remediation 또는 SSM Automation으로 되돌릴 수 있는 변경을 실행합니다.
 4. **재평가**: 대상 리소스의 실제 상태, 새 이미지 또는 설정의 배포 여부, Config 재평가와 서비스 재스캔을 확인한 뒤 finding을 닫습니다.
 
-![보안 finding이 우선순위와 자동 실행을 거쳐 재평가되는 교정 루프](/assets/img/sap-c02/detection-to-remediation-path.webp)
+{% include diagrams/static/sap-c02/detection-to-remediation-path.html %}
 
 예를 들어 Inspector가 인터넷에 노출된 EC2의 취약 패키지를 찾으면, risk score와 업무 owner를 기준으로 ticket을 만들고 SSM Automation 또는 새 AMI 배포를 선택합니다. 실행이 성공해도 이전 인스턴스가 아직 target group에 남아 있거나 새 AMI가 취약한 패키지를 그대로 포함할 수 있으므로, deployment 상태와 Inspector 재스캔을 함께 확인합니다. SSM Patch Manager의 상세 운영과 유지보수 창은 운영 runbook으로 관리하고, 이 루프에서는 교정 실행 결과를 증적으로 남깁니다.
 

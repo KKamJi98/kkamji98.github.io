@@ -1,0 +1,47 @@
+<figure class="sd sd--flow" id="sd-aws-analytics-stack-04-overview" aria-labelledby="sd-title-aws-analytics-stack-04-overview">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-04-overview">Athena, Glue, S3는 분석 스택에서 서로 다른 일을 맡는다</figcaption>
+  <div class="sd-flow">
+    <div class="sd-node">
+      <strong class="sd-label">Query author</strong>
+      <span class="sd-detail">SQL 제출</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">쿼리 실행</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Query engines">
+        <div class="sd-lane-title">Query engines</div>
+        <div class="sd-flow">
+          <div class="sd-node sd-node--accent"><strong class="sd-label">Amazon Athena</strong><span class="sd-detail">serverless SQL</span></div>
+        </div>
+        <div class="sd-flow">
+          <div class="sd-node"><strong class="sd-label">Redshift Spectrum</strong><span class="sd-detail">external tables</span></div>
+        </div>
+      </section>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">schema and S3 LOCATION</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Glue Data Catalog</strong>
+      <span class="sd-detail">공유 schema와 table location</span>
+    </div>
+    <div class="sd-arrow"><span class="sd-edge-label">저장 위치 조회</span></div>
+    <div class="sd-grid">
+      <section class="sd-lane" aria-label="Storage">
+        <div class="sd-lane-title">Storage</div>
+        <div class="sd-grid">
+          <div class="sd-node"><strong class="sd-label">Amazon S3</strong><span class="sd-detail">objects and prefixes</span></div>
+          <div class="sd-node"><strong class="sd-label">S3 Tables</strong><span class="sd-detail">Iceberg, managed compaction</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="sd-grid">
+    <section class="sd-lane" aria-label="IAM permission gate">
+      <div class="sd-lane-title">IAM gate</div>
+      <div class="sd-node"><strong class="sd-label">IAM</strong><span class="sd-detail">API and resource authorization</span></div>
+    </section>
+    <section class="sd-lane" aria-label="Lake Formation permission gate">
+      <div class="sd-lane-title">Lake Formation gate</div>
+      <div class="sd-node"><strong class="sd-label">Lake Formation</strong><span class="sd-detail">data authorization for registered tables</span></div>
+    </section>
+  </div>
+  <p class="sd-note">두 권한 gate가 각 호출 지점에서 모두 Allow여야 합니다. Glue는 메타데이터를, S3와 S3 Tables는 bytes를 보유합니다.</p>
+</figure>
