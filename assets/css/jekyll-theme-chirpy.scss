@@ -64,7 +64,8 @@ figure.sd {
   isolation: isolate;
   width: 100%;
   margin: 2rem 0;
-  padding: clamp(1rem, 3.5cqi, 2rem);
+  /* Outer padding follows the viewport; descendants query this figure. */
+  padding: clamp(1rem, 3.5vw, 2rem);
   border: 1px solid var(--sd-border);
   border-radius: 1rem;
   background: var(--sd-bg);
@@ -87,6 +88,8 @@ figure.sd .sd-title {
   font-weight: 750;
   line-height: 1.25;
   letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 figure.sd .sd-intro,
@@ -201,6 +204,16 @@ figure.sd .sd-arrow {
   gap: 0.2rem;
   color: var(--sd-accent);
   text-align: center;
+}
+
+/* Direct connectors have no parent flow gap. */
+figure.sd > .sd-arrow {
+  margin-block: 0.75rem;
+}
+
+/* Keep only Packer's short HCL clauses together, not all diagram code. */
+figure#packer-golden-image .sd-detail code {
+  white-space: nowrap;
 }
 
 figure.sd .sd-arrow::after {
@@ -470,10 +483,6 @@ figure.sd .sd-cert-tier--business {
   figure.sd .sd-grid,
   figure.sd .sd-grid--three {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  figure.sd {
-    padding: 1rem;
   }
 
   figure.sd .sd-node,

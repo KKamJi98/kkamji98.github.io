@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-09-07
+updated: 2026-09-08
 type: rule
 status: current
 ---
@@ -56,3 +56,11 @@ uv run python docs/_meta/docs_lint.py --root .
 ## Rollback
 
 catalog의 원본 경로를 사용해 해당 본문의 include를 이전 이미지 참조로 되돌릴 수 있다. 그림 일부를 되돌릴 때 공통 CSS와 refactor-content 예외는 다른 static 그림이 사용하는지 확인한 뒤 제거한다.
+
+## Mobile layout and stylesheet cache
+
+- Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
+- Titles use `word-break: keep-all` with `overflow-wrap: anywhere` as the long-token fallback. Direct figure arrows receive `0.75rem` block margins; nested flow arrows keep their existing grid gap.
+- Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
+- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. No service-worker fetch, activation, purge, or cache-name behavior changes.
+- Old cached HTML can still request old CSS until the existing service-worker update lifecycle supplies new HTML. Versioned CSS is not an instant eviction mechanism.

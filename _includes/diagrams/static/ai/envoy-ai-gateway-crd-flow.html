@@ -1,41 +1,57 @@
 <figure class="sd sd--flow" id="envoy-ai-gateway-crd-flow" aria-labelledby="envoy-ai-gateway-crd-flow-title">
-  <figcaption class="sd-title" id="envoy-ai-gateway-crd-flow-title">Envoy AI Gateway request path</figcaption>
-  <div class="sd-flow">
-    <div class="sd-node">
-      <strong class="sd-label">Client</strong>
-      <span class="sd-detail">OpenAI-compatible request</span>
-    </div>
-    <div class="sd-arrow"></div>
-    <div class="sd-node">
-      <strong class="sd-label">AIGatewayRoute</strong>
-      <span class="sd-detail">model name으로 route를 선택하는 CRD</span>
-    </div>
-    <div class="sd-arrow"></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">AI Gateway ext processor</strong>
-      <span class="sd-detail">token usage, prompt cache, auth를 data plane에서 판단</span>
-    </div>
-    <div class="sd-arrow"></div>
-    <div class="sd-node">
-      <strong class="sd-label">LLM provider</strong>
-      <span class="sd-detail">OpenAI, AWS Bedrock, Gemini</span>
-    </div>
-  </div>
-  <div class="sd-grid">
-    <section class="sd-lane" aria-label="Quota policy">
-      <div class="sd-lane-title">Quota policy</div>
-      <div class="sd-node">
-        <strong class="sd-label">Quota Policy</strong>
-        <span class="sd-detail">usage-based rate limit을 ext processor에 적용</span>
+  <figcaption class="sd-title" id="envoy-ai-gateway-crd-flow-title">Envoy의 요청 경로와 설정 경로</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="요청 전달">
+      <div class="sd-band-title">요청 전달</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Client</strong>
+          <span class="sd-detail">Gateway endpoint로 추론 요청</span>
+        </div>
+        <div class="sd-arrow"></div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Envoy Proxy</strong>
+          <span class="sd-detail">모델에 맞는 upstream으로 요청 전달</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Proxy가 provider 호출</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">LLM provider</strong>
+          <span class="sd-detail">지원되는 모델 API</span>
+        </div>
       </div>
     </section>
-    <section class="sd-lane" aria-label="Provider credential">
-      <div class="sd-lane-title">Provider credential</div>
-      <div class="sd-node">
-        <strong class="sd-label">BackendSecurityPolicy</strong>
-        <span class="sd-detail">provider credential을 한곳에서 관리해 upstream auth에 사용</span>
+    <section class="sd-band" aria-label="요청과 응답의 외부 처리">
+      <div class="sd-band-title">요청과 응답의 외부 처리</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Envoy Proxy</strong>
+          <span class="sd-detail">위 요청 경로의 동일한 Proxy</span>
+        </div>
+        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">gRPC: 처리 메시지 전송과 처리 결과 반환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">AI Gateway external processor</strong>
+          <span class="sd-detail">API 변환과 토큰 사용량 추출</span>
+        </div>
+      </div><p class="sd-note">external processor는 Proxy와 통신하며 provider 호출 홉이 아니다.</p>
+    </section>
+    <section class="sd-band" aria-label="설정 반영: 요청 홉과 별개">
+      <div class="sd-band-title">설정 반영: 요청 홉과 별개</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">CRD와 정책 선언</strong>
+          <span class="sd-detail">AIGatewayRoute, BackendSecurityPolicy, 사용량 제한 설정</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">선언을 감시하고 구성으로 변환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">AI Gateway / Envoy Gateway controllers</strong>
+          <span class="sd-detail">controller별 내부 변환 단계는 생략</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">Proxy와 external processor에 각각 구성 반영</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">런타임 구성</strong>
+          <span class="sd-detail">Proxy의 라우팅/필터 설정, external processor의 처리 설정</span>
+        </div>
       </div>
     </section>
   </div>
-  <p class="sd-note">AIGatewayRoute와 두 policy는 Kubernetes CRD로 선언되고, ext processor와 provider 단계에 각각 적용됩니다.</p>
 </figure>

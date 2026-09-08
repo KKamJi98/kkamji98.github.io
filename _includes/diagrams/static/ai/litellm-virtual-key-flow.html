@@ -1,45 +1,62 @@
 <figure class="sd sd--flow" id="litellm-virtual-key-flow" aria-labelledby="litellm-virtual-key-flow-title">
-  <figcaption class="sd-title" id="litellm-virtual-key-flow-title">Virtual key budget enforcement</figcaption>
-  <div class="sd-flow">
-    <div class="sd-node">
-      <strong class="sd-label">/key/generate</strong>
-      <span class="sd-detail">master key가 virtual key를 발급</span>
-    </div>
-    <div class="sd-arrow"></div>
-    <div class="sd-node">
-      <strong class="sd-label">/v1/chat/completions</strong>
-      <span class="sd-detail">client가 virtual key로 요청</span>
-    </div>
-    <div class="sd-arrow"></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Budget check</strong>
-      <span class="sd-detail">현재 spend와 max_budget을 비교</span>
-    </div>
-  </div>
-  <div class="sd-grid">
-    <section class="sd-lane" aria-label="예산 안">
-      <div class="sd-lane-title">spend가 max_budget 안</div>
+  <figcaption class="sd-title" id="litellm-virtual-key-flow-title">가상 키 발급과 반복 추론</figcaption>
+  <div class="sd-stack">
+    <section class="sd-band" aria-label="사전 발급: 관리자 작업">
+      <div class="sd-band-title">사전 발급: 관리자 작업</div>
       <div class="sd-flow">
         <div class="sd-node">
-          <strong class="sd-label">Provider call</strong>
-          <span class="sd-detail">요청을 provider로 forward</span>
+          <strong class="sd-label">관리자</strong>
+          <span class="sd-detail">master key로 관리 API 인증</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">발급 요청</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">/key/generate</strong>
+          <span class="sd-detail">가상 키와 예산 정책 생성</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">관리 레코드 저장 후 발급 결과 반환</span></div>
+        <div class="sd-node">
+          <strong class="sd-label">PostgreSQL / 발급된 가상 키</strong>
+          <span class="sd-detail">DB에 관리 레코드 보관, 관리자에게 가상 키 반환</span>
+        </div>
+      </div><p class="sd-note">관리자는 가상 키를 클라이언트에 전달한다. master key와 발급 API는 반복 추론 단계에 포함되지 않는다.</p>
+    </section>
+    <section class="sd-band" aria-label="반복 추론: 이미 발급된 키 사용">
+      <div class="sd-band-title">반복 추론: 이미 발급된 키 사용</div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">/v1/chat/completions</strong>
+          <span class="sd-detail">클라이언트가 가상 키로 요청</span>
         </div>
         <div class="sd-arrow"></div>
-        <div class="sd-node">
-          <strong class="sd-label">Spend log</strong>
-          <span class="sd-detail">tokens와 cost를 key별로 기록</span>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">인증과 예산 검사</strong>
+          <span class="sd-detail">키 권한, spend와 max_budget 확인</span>
+        </div>
+        <div class="sd-arrow"><span class="sd-edge-label">검사 결과에 따라 분기</span></div>
+        <div class="sd-grid">
+          <section class="sd-lane" aria-label="인증과 예산 검사 통과">
+            <div class="sd-lane-title">인증과 예산 검사 통과</div>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">Provider 호출</strong>
+                <span class="sd-detail">일반 경로: 선택한 모델로 전달</span>
+              </div>
+              <div class="sd-arrow"><span class="sd-edge-label">응답의 사용량 집계</span></div>
+              <div class="sd-node">
+                <strong class="sd-label">사용 내역 기록</strong>
+                <span class="sd-detail">토큰 사용량, 모델 가격 설정에 따른 비용</span>
+              </div>
+            </div>
+          </section>
+          <section class="sd-lane" aria-label="예산 조건 미충족">
+            <div class="sd-lane-title">예산 조건 미충족</div>
+            <div class="sd-node sd-node--warning">
+              <strong class="sd-label">요청 거절</strong>
+              <span class="sd-detail">관측: max_budget: 0인 키에 HTTP 429, budget_exceeded</span>
+            </div>
+          </section>
         </div>
       </div>
     </section>
-    <section class="sd-lane" aria-label="예산 초과">
-      <div class="sd-lane-title">spend가 max_budget 초과</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--warning">
-          <strong class="sd-label">HTTP 429 refused</strong>
-          <span class="sd-detail">budget_exceeded로 gate에서 거절하고 provider에는 전달하지 않음</span>
-        </div>
-      </div>
-    </section>
-  </div>
-  <p class="sd-note">예산 판정은 provider 호출 전에 이뤄지며, 허용된 호출만 usage와 cost를 spend log에 남깁니다.</p>
+  </div><p class="sd-note">실험에서 확인한 것은 mock 응답 성공과 0 예산 키의 HTTP 429다. 양수 예산 소진이나 실제 provider 미도달은 별도 검증이 필요하다.</p>
 </figure>

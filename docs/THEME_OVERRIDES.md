@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-09-07
+updated: 2026-09-08
 type: architecture
 status: current
 ---
@@ -132,3 +132,11 @@ bash tools/run.sh    # 로컬 미리보기
 - **테마 override**: Chirpy 7.4.1의 `refactor-content.html` 전체를 기반으로, `data-static-diagram` 이미지에 한해 확대 anchor와 shimmer wrapper 생성 전에 원래 img를 그대로 통과시킨다. 일반 본문 이미지 처리는 gem과 동일하다.
 - **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, 실제 760/360/320px 텍스트 크기와 overflow 검사를 수행한다.
 - **테마 업그레이드**: refactor-content gem 원본의 변경을 비교해 static marker 예외를 유지한다. 이 override는 전체 파일 대체이므로 gem 변경이 자동 병합되지 않는다.
+
+## Mobile layout and stylesheet cache
+
+- Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
+- Titles use `word-break: keep-all` with `overflow-wrap: anywhere` as the long-token fallback. Direct figure arrows receive `0.75rem` block margins; nested flow arrows keep their existing grid gap.
+- Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
+- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. No service-worker fetch, activation, purge, or cache-name behavior changes.
+- Old cached HTML can still request old CSS until the existing service-worker update lifecycle supplies new HTML. Versioned CSS is not an instant eviction mechanism.
