@@ -1,33 +1,56 @@
 <figure class="sd sd--flow" aria-labelledby="sap-c02-config-evaluation-remediation-title">
   <figcaption class="sd-title" id="sap-c02-config-evaluation-remediation-title">Config 평가와 SSM Automation 교정의 경계</figcaption>
   <div class="sd-flow">
-    <div class="sd-node"><strong class="sd-label">리소스 구성 변경</strong><span class="sd-detail">생성, 수정, 삭제 이벤트</span></div>
-    <div class="sd-arrow"><span class="sd-edge-label">평가 방식 선택</span></div>
     <div class="sd-grid">
       <section class="sd-lane" aria-label="Detective 평가와 교정 경로">
         <div class="sd-lane-title">Detective 평가</div>
+        <div class="sd-node">
+          <strong class="sd-label">리소스 구성 변경</strong>
+          <span class="sd-detail">생성, 수정, 삭제 이벤트</span>
+        </div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">변경 기록</span>
+        </div>
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Configuration recorder</strong><span class="sd-detail">계정과 리전당 1개, continuous 또는 daily, global IAM 4종은 기본 제외</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Configuration recorder</strong>
+            <span class="sd-detail">계정과 리전당 1개, continuous 또는 daily, global IAM 4종은 기본 제외</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node"><strong class="sd-label">Config rule 평가</strong><span class="sd-detail">configuration change, periodic, hybrid trigger</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Config rule 평가</strong>
+            <span class="sd-detail">configuration change, periodic, hybrid trigger</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
           <div class="sd-grid">
             <section class="sd-lane" aria-label="Compliant 결과 집계 경로">
               <div class="sd-lane-title">COMPLIANT</div>
               <div class="sd-flow">
-                <div class="sd-node"><strong class="sd-label">준수 결과</strong><span class="sd-detail">ERROR와 NOT_APPLICABLE도 평가 결과에 포함</span></div>
-                <div class="sd-arrow"><span class="sd-edge-label">read-only 집계</span></div>
-                <div class="sd-node sd-node--muted"><strong class="sd-label">Config aggregator</strong><span class="sd-detail">read-only 집계, rule 배포와 snapshot 주입은 불가</span></div>
+                <div class="sd-node">
+                  <strong class="sd-label">준수 결과</strong>
+                  <span class="sd-detail">규칙을 준수한 결과</span>
+                </div>
               </div>
             </section>
             <section class="sd-lane" aria-label="Non compliant 교정 경로">
               <div class="sd-lane-title">NON_COMPLIANT</div>
               <div class="sd-flow">
-                <div class="sd-node sd-node--warning"><strong class="sd-label">교정 대상</strong><span class="sd-detail">이 결과에서만 remediation 경로가 이어짐</span></div>
-                <div class="sd-arrow"><span class="sd-edge-label">remediation 연결</span></div>
-                <div class="sd-node sd-node--accent"><strong class="sd-label">SSM Automation document</strong><span class="sd-detail">재시도 횟수와 시간 창을 지정해 실제 변경 실행</span></div>
+                <div class="sd-node sd-node--warning">
+                  <strong class="sd-label">교정 대상</strong>
+                  <span class="sd-detail">이 결과에서만 remediation 경로가 이어짐</span>
+                </div>
+                <div class="sd-arrow">
+                  <span class="sd-edge-label">remediation 연결</span>
+                </div>
+                <div class="sd-node sd-node--accent">
+                  <strong class="sd-label">SSM Automation document</strong>
+                  <span class="sd-detail">재시도 횟수와 시간 창을 지정해 실제 변경 실행</span>
+                </div>
                 <div class="sd-arrow" aria-hidden="true"></div>
-                <div class="sd-node"><strong class="sd-label">교정 완료</strong><span class="sd-detail">periodic snapshot이면 COMPLIANT여도 재실행 가능, runbook은 idempotent해야 함</span></div>
+                <div class="sd-node">
+                  <strong class="sd-label">교정 완료</strong>
+                  <span class="sd-detail">periodic snapshot이면 COMPLIANT여도 재실행 가능, runbook은 idempotent해야 함</span>
+                </div>
               </div>
             </section>
           </div>
@@ -35,12 +58,37 @@
       </section>
       <section class="sd-lane" aria-label="Proactive 평가 경로">
         <div class="sd-lane-title">Proactive 평가</div>
+        <div class="sd-node">
+          <strong class="sd-label">배포 예정 구성</strong>
+          <span class="sd-detail">아직 적용하지 않은 resource configuration</span>
+        </div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">배포 전 평가 요청</span>
+        </div>
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Proactive evaluation</strong><span class="sd-detail">배포 전에 구성 적합성을 평가</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Proactive evaluation</strong>
+            <span class="sd-detail">배포 전에 구성 적합성을 평가</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node sd-node--warning"><strong class="sd-label">차단도 교정도 하지 않음</strong><span class="sd-detail">생성 차단에는 SCP 또는 CloudFormation Hooks가 필요</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">차단도 교정도 하지 않음</strong>
+            <span class="sd-detail">생성 차단에는 SCP 또는 CloudFormation Hooks가 필요</span>
+          </div>
         </div>
       </section>
     </div>
   </div>
+  <div class="sd-node">
+    <strong class="sd-label">그 밖의 평가 결과</strong>
+    <span class="sd-detail">ERROR와 NOT_APPLICABLE은 COMPLIANT와 구분하며 이 그림의 자동 교정 경로로 연결하지 않습니다.</span>
+  </div>
+  <section class="sd-lane">
+    <div class="sd-lane-title">독립된 read-only 집계</div>
+    <div class="sd-node sd-node--muted">
+      <strong class="sd-label">Config aggregator</strong>
+      <span class="sd-detail">read-only 집계, rule 배포와 snapshot 주입은 불가</span>
+    </div>
+    <p class="sd-note">계정과 리전의 구성 및 compliance 결과를 집계합니다. COMPLIANT 전용 단계도 교정 실행자도 아닙니다.</p>
+  </section>
 </figure>

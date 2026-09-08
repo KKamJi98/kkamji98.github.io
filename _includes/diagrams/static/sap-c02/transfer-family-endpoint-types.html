@@ -3,40 +3,36 @@
   <div class="sd-grid">
     <section class="sd-lane" aria-label="PUBLIC endpoint">
       <div class="sd-lane-title">PUBLIC</div>
-      <div class="sd-flow">
+      <div class="sd-stack">
         <div class="sd-node">
           <strong class="sd-label">PUBLIC endpoint</strong>
           <span class="sd-detail">security group과 Elastic IP를 지정할 수 없음</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">프로토콜 제약</span></div>
         <div class="sd-node">
-          <strong class="sd-label">SFTP와 FTPS</strong>
-          <span class="sd-detail">security group과 Elastic IP 없이 사용, FTP는 불가</span>
+          <strong class="sd-label">SFTP만</strong>
+          <span class="sd-detail">FTP와 FTPS는 VPC endpoint 필요</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">대상 저장소</span></div>
         <div class="sd-node">
           <strong class="sd-label">S3 또는 EFS</strong>
           <span class="sd-detail">PUBLIC도 대상 저장소는 동일</span>
         </div>
       </div>
       <div class="sd-node sd-node--warning">
-        <strong class="sd-label">FTP 요구</strong>
+        <strong class="sd-label">고정 IP / source IP 제한</strong>
         <span class="sd-detail">PUBLIC은 source IP 제한과 고정 IP 요구를 만족하지 못함</span>
       </div>
     </section>
     <section class="sd-lane" aria-label="VPC Internet Facing endpoint">
       <div class="sd-lane-title">VPC Internet Facing</div>
-      <div class="sd-flow">
+      <div class="sd-stack">
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">VPC Internet Facing</strong>
-          <span class="sd-detail">서브넷마다 Elastic IP, 최대 3개 AZ</span>
+          <span class="sd-detail">서브넷마다 Elastic IP, 최대 3개 AZ. security group으로 source 제한</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">security group으로 source 제한</span></div>
         <div class="sd-node">
           <strong class="sd-label">SFTP와 FTPS만</strong>
           <span class="sd-detail">FTP는 허용하지 않음</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">대상 저장소</span></div>
         <div class="sd-node">
           <strong class="sd-label">S3 또는 EFS</strong>
           <span class="sd-detail">Transfer Family 대상, FSx는 대상 아님</span>
@@ -45,17 +41,15 @@
     </section>
     <section class="sd-lane" aria-label="VPC Internal endpoint">
       <div class="sd-lane-title">VPC Internal</div>
-      <div class="sd-flow">
+      <div class="sd-stack">
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">VPC Internal</strong>
-          <span class="sd-detail">custom hostname은 지원하지 않음</span>
+          <span class="sd-detail">내부 접근, security group으로 source 제한. custom hostname은 지원하지 않음</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">내부 접근과 source 제한</span></div>
         <div class="sd-node">
           <strong class="sd-label">FTP, SFTP, FTPS</strong>
-          <span class="sd-detail">컨트롤 21, 데이터 8192에서 8200</span>
+          <span class="sd-detail">FTP/FTPS: 컨트롤 21, 데이터 8192-8200. SFTP: 기본 22</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">대상 저장소</span></div>
         <div class="sd-node">
           <strong class="sd-label">S3 또는 EFS</strong>
           <span class="sd-detail">Transfer Family 대상, FSx는 대상 아님</span>
@@ -64,7 +58,7 @@
     </section>
     <section class="sd-lane" aria-label="폐지된 VPC endpoint 타입">
       <div class="sd-lane-title">VPC_ENDPOINT</div>
-      <div class="sd-flow">
+      <div class="sd-stack">
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">VPC_ENDPOINT</strong>
           <span class="sd-detail">2021-05-19부터 신규 생성 불가</span>

@@ -24,6 +24,7 @@ Kubernetes 환경에서는 Scale-In, Rolling Update, Node Failure 등의 이유�
 ## 1. Kubernetes에서 Graceful Shutdown
 
 {% include diagrams/static/kubernetes/graceful-shutdown.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/graceful-shutdown--28057279b6e1a605.png" %}
 
 > **Graceful Shutdown** 절차  
 >

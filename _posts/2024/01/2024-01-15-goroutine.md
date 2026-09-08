@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/go/goroutine-scheduling-model.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/go/goroutine-scheduling-model--0fbc07236798ac7c.png" %}
 
 동시성과 병렬성은 자주 같은 말처럼 쓰이지만 서로 다른 개념입니다. 코어가 하나뿐인 기계에서도 동시성은 성립하고, 병렬성은 코어가 여럿이어야 성립합니다. Go는 goroutine과 채널로 동시성을 언어 차원에서 다루고, 실제로 몇 개의 코어에 펼칠지는 런타임이 결정합니다. 둘의 차이와 `runtime.GOMAXPROCS()`, `sync.WaitGroup`이 각각 어느 쪽에 관여하는지 정리합니다.
 

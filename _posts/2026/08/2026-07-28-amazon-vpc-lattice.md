@@ -14,6 +14,7 @@ image:
 Amazon VPC Lattice는 이 문제를 application networking 계층에서 해결합니다. 서비스를 논리적으로 등록하고, 정책으로 접근을 제어하고, cross-VPC/cross-account 연결을 자동 관리하는 fully managed 서비스입니다. Sidecar proxy 없이 service mesh 수준의 기능을 제공하며, 2023년 3월 31일에 일반 available(GA)되었습니다. 서울(ap-northeast-2) 리전을 포함한 30개 리전에서 사용할 수 있습니다.
 
 {% include diagrams/static/aws/vpc-lattice-cross-vpc-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/vpc-lattice-cross-vpc-flow--831184124ef64b06.png" %}
 _세 개의 서로 다른 AWS 계정에 있는 VPC가 하나의 Service Network를 통해 연결됩니다. VPC Peering이나 Transit Gateway 없이 VPC Association만으로 cross-VPC 통신이 가능합니다._
 
 > **TL;DR**  

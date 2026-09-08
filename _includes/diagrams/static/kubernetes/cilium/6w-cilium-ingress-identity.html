@@ -1,5 +1,5 @@
 <figure class="sd sd--layers sd--flow" id="sd-kubernetes-6w-cilium-ingress-identity" aria-labelledby="sd-kubernetes-6w-cilium-ingress-identity-title">
-  <figcaption class="sd-title" id="sd-kubernetes-6w-cilium-ingress-identity-title">Cilium Ingress는 요청의 identity를 단계마다 바꾼다</figcaption>
+  <figcaption class="sd-title" id="sd-kubernetes-6w-cilium-ingress-identity-title">Cilium Ingress 정책은 source와 destination identity를 두 경계에서 확인한다</figcaption>
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">External client</strong>
@@ -14,15 +14,15 @@
         <strong class="sd-label">Load Balancer</strong>
         <span class="sd-detail">Kubernetes Service가 외부 요청을 cluster로 받습니다.</span>
       </div>
-      <div class="sd-arrow"><span class="sd-edge-label">Ingress 경계에서 identity 전환</span></div>
+      <div class="sd-arrow"><span class="sd-edge-label">첫 정책 경계: source world, destination ingress</span></div>
       <div class="sd-node sd-node--accent">
         <strong class="sd-label">Ingress</strong>
-        <span class="sd-detail">Envoy 진입 뒤 요청 identity가 <code>ingress</code>가 됩니다.</span>
+        <span class="sd-detail">Envoy를 거쳐 backend로 보내는 트래픽의 source identity는 <code>ingress</code>입니다.</span>
       </div>
-      <div class="sd-arrow"><span class="sd-edge-label">backend identity로 전달</span></div>
+      <div class="sd-arrow"><span class="sd-edge-label">두 번째 정책 경계: source ingress, destination productpage</span></div>
       <div class="sd-node sd-node--accent">
         <strong class="sd-label">productpage-app Pod</strong>
-        <span class="sd-detail">backend workload의 <code>productpage</code> identity로 나갑니다.</span>
+        <span class="sd-detail">destination identity가 <code>productpage</code>인 backend입니다. source는 <code>ingress</code>로 평가합니다.</span>
       </div>
     </div>
   </section>

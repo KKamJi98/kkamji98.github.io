@@ -33,6 +33,7 @@ image:
 ---
 
 {% include diagrams/static/ai/rag-05-secure-rag-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-05-secure-rag-flow--e357a9b8cfdf79de.png" %}
 
 ---
 
@@ -90,6 +91,7 @@ RAG는 indirect prompt injection의 공격면을 가집니다. 검색된 문서�
 [6편](/posts/rag-latency-optimization-and-evaluation/)에서 다룰 **semantic cache**는 질의 임베딩과 유사도 임계값으로 검색 결과 또는 최종 응답을 재사용합니다. 이 재사용은 인가 결정과 독립적이면 위험합니다. 원래 요청과 새 요청의 사용자, tenant, 권한, 문서 집합, 정책 버전이 다를 수 있기 때문입니다.
 
 {% include diagrams/static/ai/rag-05-cache-conflict.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-05-cache-conflict--35f50bf2a9bab68a.png" %}
 _두 사용자의 유사한 질의가 같은 캐시 항목을 노린다. 빨간 갈래는 key를 공유한 경우로 A의 HR 문서가 B에게 그대로 나가고, 초록 갈래는 role을 key에 포함해 격리되지만 hit rate가 낮아진다._
 
 ### 5.1. Cross-user key collision

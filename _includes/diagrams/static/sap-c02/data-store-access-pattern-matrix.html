@@ -1,69 +1,54 @@
 <figure class="sd sd--comparison" aria-labelledby="sap-c02-data-store-access-pattern-matrix-title">
   <figcaption class="sd-title" id="sap-c02-data-store-access-pattern-matrix-title">액세스 패턴에서 데이터스토어 선택으로</figcaption>
-  <div class="sd-grid sd-grid--three">
-    <section class="sd-lane" aria-label="키 조회와 DynamoDB">
-      <div class="sd-lane-title">키 기반 조회</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">키 하나로 아이템 조회</strong><span class="sd-detail">초당 수십만 건, 유동적 스키마</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">DynamoDB</strong><span class="sd-detail">아이템 400 KB, 1 MB page, LSI는 생성 시점에만</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="초저지연 읽기와 DAX">
-      <div class="sd-lane-title">같은 아이템 집중 읽기</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">읽기 집중과 마이크로초 지연</strong><span class="sd-detail">코드 변경을 최소화해야 함</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">DAX</strong><span class="sd-detail">eventually consistent 읽기만 가속, VPC 전용</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="세션과 Valkey 또는 Redis OSS">
-      <div class="sd-lane-title">세션, 리더보드, pub/sub</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">복합 자료구조와 다중 소스</strong><span class="sd-detail">여러 데이터 소스 앞단 캐싱</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">ElastiCache Valkey 또는 Redis OSS</strong><span class="sd-detail">cache-aside는 앱 작성, Memcached는 복제와 failover 없음</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="관계형 조인과 Aurora">
-      <div class="sd-lane-title">관계형 스키마와 조인</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">읽기 확장과 failover</strong><span class="sd-detail">여러 reader 필요</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">Aurora</strong><span class="sd-detail">reader 최대 15개, 공유 클러스터 볼륨</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="엔진 유지와 RDS Multi-AZ DB cluster">
-      <div class="sd-lane-title">기존 엔진 유지</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">커밋 손실 방지와 대기 노드 읽기</strong><span class="sd-detail">엔진을 그대로 유지</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">RDS Multi-AZ DB cluster</strong><span class="sd-detail">reader 2개, NVMe 계열 인스턴스만</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="공유 파일과 EFS">
-      <div class="sd-lane-title">공유 POSIX 디렉터리</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">여러 AZ 인스턴스가 같은 디렉터리 공유</strong><span class="sd-detail">표준 POSIX 인터페이스</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">EFS</strong><span class="sd-detail">Archive는 Elastic throughput에서만</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="블록 I O와 EBS">
-      <div class="sd-lane-title">인스턴스 단일 블록 I/O</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">IOPS와 처리량을 수치로 요구</strong><span class="sd-detail">한 인스턴스가 블록 디바이스에 연결</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">EBS</strong><span class="sd-detail">gp3는 80,000 IOPS와 2,000 MiB/s까지</span></div>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="객체 보관과 S3">
-      <div class="sd-lane-title">객체 수명주기</div>
-      <div class="sd-flow">
-        <div class="sd-node"><strong class="sd-label">접근 빈도가 시간에 따라 하락</strong><span class="sd-detail">객체 보관과 lifecycle 전환</span></div>
-        <div class="sd-arrow" aria-hidden="true"></div>
-        <div class="sd-node sd-node--accent"><strong class="sd-label">S3</strong><span class="sd-detail">최소 저장 기간과 최소 과금 크기가 선택을 결정</span></div>
-      </div>
-    </section>
-  </div>
+  <table class="sd-table sd-quality-table">
+    <thead>
+      <tr>
+        <th scope="col">액세스 패턴</th>
+        <th scope="col">서비스</th>
+        <th scope="col">제약</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">키 기반 조회<br>키 하나로 아이템 조회<br>초당 수십만 건, 유동적 스키마</th>
+        <td>DynamoDB</td>
+        <td>아이템 400 KB, 1 MB page, LSI는 생성 시점에만</td>
+      </tr>
+      <tr>
+        <th scope="row">같은 아이템 집중 읽기<br>읽기 집중과 마이크로초 지연<br>코드 변경을 최소화해야 함</th>
+        <td>DAX</td>
+        <td>eventually consistent 읽기만 가속, VPC 전용</td>
+      </tr>
+      <tr>
+        <th scope="row">세션, 리더보드, pub/sub<br>복합 자료구조와 다중 소스<br>여러 데이터 소스 앞단 캐싱</th>
+        <td>ElastiCache Valkey 또는 Redis OSS</td>
+        <td>cache-aside는 앱 작성, Memcached는 복제와 failover 없음</td>
+      </tr>
+      <tr>
+        <th scope="row">관계형 스키마와 조인<br>읽기 확장과 failover<br>여러 reader 필요</th>
+        <td>Aurora</td>
+        <td>reader 최대 15개, 공유 클러스터 볼륨</td>
+      </tr>
+      <tr>
+        <th scope="row">기존 엔진 유지<br>커밋 손실 방지와 대기 노드 읽기<br>엔진을 그대로 유지</th>
+        <td>RDS Multi-AZ DB cluster</td>
+        <td>reader 2개, NVMe 계열 인스턴스만</td>
+      </tr>
+      <tr>
+        <th scope="row">공유 POSIX 디렉터리<br>여러 AZ 인스턴스가 같은 디렉터리 공유<br>표준 POSIX 인터페이스</th>
+        <td>EFS</td>
+        <td>Archive는 Elastic throughput에서만</td>
+      </tr>
+      <tr>
+        <th scope="row">인스턴스 단일 블록 I/O<br>IOPS와 처리량을 수치로 요구<br>한 인스턴스가 블록 디바이스에 연결</th>
+        <td>EBS</td>
+        <td>gp3는 80,000 IOPS와 2,000 MiB/s까지</td>
+      </tr>
+      <tr>
+        <th scope="row">객체 수명주기<br>접근 빈도가 시간에 따라 하락<br>객체 보관과 lifecycle 전환</th>
+        <td>S3</td>
+        <td>최소 저장 기간과 최소 과금 크기가 선택을 결정</td>
+      </tr>
+    </tbody>
+  </table>
 </figure>

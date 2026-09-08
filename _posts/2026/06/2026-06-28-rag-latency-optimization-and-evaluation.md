@@ -35,6 +35,7 @@ RAG의 응답 지연은 단일 값이 아니라 여러 단계의 합입니다.
 ---
 
 {% include diagrams/static/ai/rag-06-latency-eval.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-06-latency-eval--750cc50146d22a4f.png" %}
 _캐시에 맞으면 검색과 생성을 건너뛰고 곧바로 답변으로 간다. 빗나가면 retrieval, reranking, generation을 차례로 지나며 지연이 누적된다. 답변은 Ragas로 품질을 되짚는다._
 
 ---

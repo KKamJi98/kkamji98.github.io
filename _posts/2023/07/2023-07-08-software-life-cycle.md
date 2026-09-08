@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/software-engineering/software-life-cycle.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/software-engineering/software-life-cycle--8c37f16ee2be4785.png" %}
 
 개발 방법론을 고르는 문제는 결국 요구사항이 언제 확정되는지에 달려 있습니다. 시작 시점에 요구사항이 확정되고 이후 바뀌지 않는다면 단계를 순서대로 매듭짓는 편이 낫고, 개발 중에 계속 바뀐다면 짧은 주기로 결과물을 내놓고 반응을 받는 편이 낫습니다. 대표적인 네 가지 생명 주기 모형이 각각 어떤 전제 위에 서 있는지 정리합니다.
 

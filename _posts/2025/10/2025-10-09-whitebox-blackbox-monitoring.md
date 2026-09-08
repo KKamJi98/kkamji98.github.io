@@ -36,6 +36,7 @@ Google SRE는 모니터링을 시스템의 실시간 정량 데이터를 수집,
 두 관측은 서로의 빈틈을 메웁니다. 합성 점검이 성공해도 특정 지역, 로그인 상태, 결제 수단에서만 발생하는 실패는 놓칠 수 있습니다. 반대로 내부 오류율이 상승해도 retry와 cache가 사용자를 보호하고 있다면 즉시 page를 보낼 이유는 약합니다. 사용자 여정 SLI와 내부 신호를 같은 incident timeline에서 비교해야 이 차이를 판단할 수 있습니다.
 
 {% include diagrams/static/observability/blackbox-whitebox-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/blackbox-whitebox-flow--46e01973d0b98ab6.png" %}
 
 ---
 

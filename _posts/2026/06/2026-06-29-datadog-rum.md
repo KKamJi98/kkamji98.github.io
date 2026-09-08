@@ -59,6 +59,7 @@ RUM instrumentation은 전적으로 client-side에 존재합니다. 브라우저
 RUM 데이터는 트리 구조입니다. 최상위 **Session**이 한 사용자의 여정 전체를 묶고, 그 아래 **View**가 페이지/화면 단위로 생기며, 나머지 이벤트는 모두 수집 시점의 active View에 귀속됩니다.
 
 {% include diagrams/static/observability/datadog-rum-01-data-model.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/datadog-rum-01-data-model--dce64c5336bffd4c.png" %}
 _Session 아래에 View가 생기고, View에서 갈라지는 다섯 화살표는 순서가 아니라 수집 시점의 active View에 귀속되는 이벤트 종류다._
 
 | 이벤트         | 무엇을 캡처                                              | 대표 속성 / 예시                                   |
@@ -137,6 +138,7 @@ RUM의 진짜 가치는 단독 frontend 지표가 아니라, **다른 telemetry�
 가장 중요한 연결입니다. Browser RUM SDK는 `allowedTracingUrls`에 매칭되는 요청에 trace context 헤더를 주입하고, 백엔드 APM tracer가 같은 `trace_id`를 이어받습니다. 그 결과 **프론트 Resource와 백엔드 분산 trace가 같은 trace로 묶여**, 사용자 클릭에서 백엔드의 느린 SQL까지 한 흐름으로 추적됩니다.
 
 {% include diagrams/static/observability/datadog-rum-02-trace-linking.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/datadog-rum-02-trace-linking--81222517cc3c3543.png" %}
 
 - **Datadog 헤더**: `x-datadog-trace-id`, `x-datadog-parent-id`, `x-datadog-origin: rum`, `x-datadog-sampling-priority`
 - **W3C 헤더**: `traceparent`, `tracestate`
@@ -162,6 +164,7 @@ RUM은 APM, Logs, Synthetics, Infrastructure와 함께 Datadog의 single pane of
 세 가지는 경쟁이 아니라 보완 관계입니다.
 
 {% include diagrams/static/observability/datadog-rum-03-positioning.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/datadog-rum-03-positioning--1e3853b41c085c8d.png" %}
 
 | 구분          | RUM                     | Synthetic Monitoring        | APM                          |
 | :------------ | :---------------------- | :-------------------------- | :--------------------------- |

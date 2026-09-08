@@ -47,6 +47,7 @@ image:
 분산 SQL 엔진은 **MPP(Massively Parallel Processing)** 구조로 이 한계를 풉니다. 하나의 쿼리를 여러 노드에 쪼개 동시에 처리하는 방식입니다.
 
 {% include diagrams/static/aws/analytics-stack-03-distributed-sql-mpp.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-03-distributed-sql-mpp--bbf650c5e4448eb9.png" %}
 _coordinator가 쿼리를 stage/task/split으로 쪼개 여러 worker에 분배하고, worker들이 동시에 데이터를 처리한 뒤 결과를 모아 클라이언트로 돌려주는 MPP 구조_
 
 ### 3.1. coordinator와 worker

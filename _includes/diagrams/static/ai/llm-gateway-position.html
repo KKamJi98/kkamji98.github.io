@@ -1,44 +1,4 @@
-<figure class="sd sd--flow" id="llm-gateway-position" aria-labelledby="llm-gateway-position-title">
-  <figcaption class="sd-title" id="llm-gateway-position-title">가상 키로 호출하는 LLM Gateway</figcaption>
-  <section class="sd-lane" aria-label="애플리케이션">
-    <div class="sd-lane-title">애플리케이션: 가상 키로 인증</div>
-    <div class="sd-grid sd-grid--three">
-      <div class="sd-node">
-        <strong class="sd-label">Chatbot</strong>
-        <span class="sd-detail">팀 A의 가상 키</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">RAG Service</strong>
-        <span class="sd-detail">팀 B의 가상 키</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">Agent</strong>
-        <span class="sd-detail">팀 C의 가상 키</span>
-      </div>
-    </div>
-  </section>
-  <div class="sd-arrow"><span class="sd-edge-label">Gateway endpoint로 요청</span></div>
-  <div class="sd-node sd-node--accent">
-    <strong class="sd-label">LLM Gateway</strong>
-    <span class="sd-detail">인증과 예산 검사, 감사 기록, 모델 라우팅</span>
-  </div>
-  <div class="sd-arrow"><span class="sd-edge-label">허용된 요청을 선택한 provider의 자격증명으로 전달</span></div>
-  <section class="sd-lane" aria-label="LLM providers">
-    <div class="sd-lane-title">LLM Providers</div>
-    <div class="sd-grid sd-grid--three">
-      <div class="sd-node">
-        <strong class="sd-label">OpenAI</strong>
-        <span class="sd-detail">provider API</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">Anthropic</strong>
-        <span class="sd-detail">provider API</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">Azure OpenAI</strong>
-        <span class="sd-detail">provider API</span>
-      </div>
-    </div>
-  </section>
-  <p class="sd-note">가상 키는 Gateway 인증용이다. 접근 범위는 키에 부여한 권한과 예산 정책에 따라 달라진다.</p>
+<figure class="sd sd--gateway-v2" id="llm-gateway-position" aria-labelledby="llm-gateway-position-title">
+  <figcaption class="sd-title" id="llm-gateway-position-title">애플리케이션과 모델 사이의 Gateway</figcaption>
+<div class="sd-v2-rail"><section class="sd-v2-group" aria-label="애플리케이션"><div class="sd-v2-section-title">애플리케이션</div><div class="sd-v2-group-item"><strong class="sd-label">Chatbot</strong><span class="sd-detail">팀 A 가상 키</span></div><div class="sd-v2-group-item"><strong class="sd-label">RAG Service</strong><span class="sd-detail">팀 B 가상 키</span></div><div class="sd-v2-group-item"><strong class="sd-label">Agent</strong><span class="sd-detail">팀 C 가상 키</span></div></section><div class="sd-v2-link" aria-hidden="true"></div><div class="sd-node sd-node--accent"><strong class="sd-label">LLM Gateway</strong><span class="sd-detail">인증과 예산 검사<br>감사 기록<br>모델 라우팅</span></div><div class="sd-v2-link" aria-hidden="true"></div><section class="sd-v2-group" aria-label="LLM Providers"><div class="sd-v2-section-title">LLM Providers</div><div class="sd-v2-group-item"><strong class="sd-label">OpenAI</strong></div><div class="sd-v2-group-item"><strong class="sd-label">Anthropic</strong></div><div class="sd-v2-group-item"><strong class="sd-label">Azure OpenAI</strong></div></section></div><p class="sd-note">클라이언트는 Gateway endpoint에 가상 키로 인증한다. Gateway는 허용된 요청을 선택한 provider의 자격증명으로 전달한다.</p><p class="sd-note">가상 키의 접근 범위는 부여한 권한과 예산 정책에 따른다.</p>
 </figure>

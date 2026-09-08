@@ -36,6 +36,7 @@ image:
 세 갈래로 나눠 봅니다.
 
 {% include diagrams/static/jvm/jvm-11-capstone-diagnosis.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-11-capstone-diagnosis--84e5f740a1f2a8b2.png" %}
 _mixed GC 후에도 live가 계속 우상향이면 누수, heap은 여유인데 컨테이너가 OOMKill이면 off-heap, Old는 높지만 회수되고 안정적이면 G1의 지연 회수(정상)._
 
 - **누수**: mixed GC가 돌고 난 뒤에도 live set이 시간에 따라 **계속 우상향**한다면 진짜 누수 신호입니다. heap dump로 어떤 객체가 쌓이는지 봅니다.
@@ -84,6 +85,7 @@ heap만 보는 함정은 특히 [WebFlux/netty](/posts/spring-webflux-netty-even
 원인이 정리되면 처방은 명확해집니다. 핵심은 "관찰된 원인(누수 아님)"을 그에 맞는 레버로 다루는 것입니다.
 
 {% include diagrams/static/jvm/jvm-12-capstone-levers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-12-capstone-levers--dc81a9f975fd7227.png" %}
 _Old 점유는 MaxNewSize/IHOP로, off-heap은 MaxDirectMemorySize로, 컨테이너 메모리는 heap+off-heap 합으로 다룬다. 수치는 측정해서 정한다._
 
 - **`MaxNewSize`**: young 영역 상한을 두어 Old로의 승격 속도와 Old 증가를 관리합니다.

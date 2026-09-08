@@ -3,28 +3,37 @@
   <div class="sd-flow">
     <div class="sd-node sd-node--warning">
       <strong class="sd-label">Metrics Server</strong>
-      <span class="sd-detail"><code>metrics.k8s.io</code>를 제공해야 합니다.</span>
+      <span class="sd-detail">
+        <code>metrics.k8s.io</code>를 제공해야 합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">주기적으로 metric read</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">주기적으로 metric read</span>
+    </div>
     <div class="sd-node">
       <strong class="sd-label">HPA controller</strong>
       <span class="sd-detail">fixed interval마다 target과 현재 값을 비교합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">scale subresource patch</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">current replicas x current/target</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Desired replica count</strong>
+      <span class="sd-detail">HPA controller가 현재 replica 수와 metric 비율로 계산한 목표 replica 수입니다.</span>
+    </div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">scale subresource patch</span>
+    </div>
     <div class="sd-node">
       <strong class="sd-label">Deployment</strong>
       <span class="sd-detail">scale subresource가 변경됩니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">current replicas x current/target</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Desired replica count</strong>
-      <span class="sd-detail">다음 reconcile에서 사용할 replica 수입니다.</span>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">replica 추가 또는 제거</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">replica 추가 또는 제거</span></div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Pods</strong>
       <span class="sd-detail">계산된 수에 맞춰 Pod가 늘거나 줄어듭니다.</span>
     </div>
   </div>
-  <p class="sd-note">이 흐름은 고정 주기로 반복됩니다. Metrics Server가 없거나 보고하지 않으면 target이 <code>&lt;unknown&gt;</code>으로 남아 scale하지 않습니다.</p>
+  <p class="sd-note">이 그림은 CPU와 메모리 resource metric을 사용하는 HPA 경로입니다. 고정 주기로 반복되며 Metrics Server가 보고하지 않으면 해당 target이 &lt;unknown&gt;으로 남아 그 metric으로 scale할 수 없습니다.</p>
 </figure>

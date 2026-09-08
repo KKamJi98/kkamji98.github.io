@@ -36,6 +36,7 @@ TLS는 클라이언트와 서버 간의 데이터 전송 시 보안을 강화하
 
 TLS는 클라이언트와 서버 간의 통신 세션을 수립하기 위해 **Handshake** 과정을 거칩니다. 쉬운 이해를 위해 **TLS Handshake** 과정에 대해 이미지를 첨부하겠습니다. 아래 그림과 같습니다.
 {% include diagrams/static/kubernetes/tls-ssl-handshake.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/tls-ssl-handshake--04fdb81efe7a615c.png" %}
 
 <p align="center">
   <a href="https://www.cloudflare.com/ko-kr/learning/ssl/what-happens-in-a-tls-handshake/">

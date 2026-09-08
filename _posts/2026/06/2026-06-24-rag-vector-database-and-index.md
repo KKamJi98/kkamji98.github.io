@@ -75,6 +75,7 @@ IVF는 벡터 공간을 여러 **목록(list)**으로 나누는 인덱스 계열
 ---
 
 {% include diagrams/static/ai/rag-03-hnsw-vs-ivf.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-03-hnsw-vs-ivf--521a471688757213.png" %}
 
 ---
 

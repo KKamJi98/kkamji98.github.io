@@ -77,6 +77,7 @@ Prysm 문서는 beacon node가 execution node에 HTTP로 붙을 때만 이 절�
 Anvil에는 이 경계가 없습니다. 같은 시각에 `engine_exchangeCapabilities`와 `engine_getClientVersionV1`은 `-32601 Method not found`였습니다. `parentBeaconBlockRoot`는 32바이트 0이었습니다. 로컬 개발 노드는 consensus client를 옆에 두지 않습니다. 그래서 `safe`와 `finalized`를 받아도 합의 머리를 따라가지 않습니다.
 
 {% include diagrams/static/blockchain/el-cl-engine-jwt.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/el-cl-engine-jwt--671f308e313f6a8d.png" %}
 _지갑이 보는 포트와 머리를 밀어 주는 포트는 다릅니다. Anvil은 후자를 구현하지 않습니다._
 
 ---
@@ -122,6 +123,7 @@ tag 이름은 받습니다. 합의 머리는 없습니다. `safe`와 `finalized`
 indexer나 입금 확인을 `latest`에만 걸면, 공개망에서는 reorg 창 안의 receipt를 확정으로 취급합니다. Anvil에서는 그 창이 존재하지 않거나, 반대로 `finalized`가 영원히 genesis에 남습니다. 같은 메서드, 같은 tag, 다른 운영 의미입니다.
 
 {% include diagrams/static/blockchain/http-200-is-not-chain-head.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/http-200-is-not-chain-head--ebfaa39aa9b3cb04.png" %}
 _소켓이 살아 있는 것과 이 노드가 네트워크 머리를 보고 있는 것은 다른 검사입니다._
 
 ---
@@ -168,6 +170,7 @@ Foundry의 `--fork-url`은 이 경계를 더 흐립니다. fork된 Anvil은 원�
 여섯째는 Engine 경로입니다. 자기 집 노드라면 JWT 파일 권한, 8551의 수신, consensus client 로그의 authentication 실패를 봅니다. 공개 RPC를 빌려 쓰는 쪽은 이 경로를 직접 보지 못합니다. 보지 못한다는 사실 자체가 신뢰 경계입니다. 남이 굴리는 execution client의 Engine 포트가 살아 있는지는 `eth_blockNumber`가 증명하지 않습니다.
 
 {% include diagrams/static/blockchain/operator-health-ladder.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/operator-health-ladder--8c9dffac425c7325.png" %}
 _한 칸이 통과해도 다음 칸이 실패할 수 있습니다. Anvil은 아래 칸 여러 개를 구현하지 않습니다._
 
 디스크와 sync mode는 이 사다리의 배경입니다. ethereum.org는 full node가 최근 데이터를 남기고 오래된 state를 지운다고 적습니다. archive node는 genesis부터 지운 적이 없습니다. snap sync는 빠르고 디스크를 덜 쓰지만, 오래된 높이의 `eth_getBalance`가 로컬에 없을 수 있습니다. HTTP 200에 `null`이나 오류가 오면, 네트워크가 죽은 것이 아니라 그 노드의 보존 범위 밖일 수 있습니다. 이번 실습은 현재 머리만 읽었고, archive 여부를 확인하지 않았습니다.

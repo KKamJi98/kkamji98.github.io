@@ -1,7 +1,6 @@
 <figure class="sd sd--layers" id="pod-identity-workflow" aria-labelledby="pod-identity-workflow-title">
   <figcaption class="sd-title" id="pod-identity-workflow-title">EKS Pod Identity는 Agent가 Pod의 임시 AWS 자격 증명을 중계합니다</figcaption>
   <p class="sd-note">IAM Role의 신뢰 주체는 <code>pods.eks.amazonaws.com</code>이고, Pod에는 OIDC provider 대신 Service Account association과 Agent가 필요합니다.</p>
-
   <div class="sd-stack">
     <section class="sd-band">
       <div class="sd-band-title">AWS Cloud control plane</div>
@@ -13,14 +12,15 @@
               <strong class="sd-label">EKS User</strong>
               <span class="sd-detail">Service Account에 연결할 Role을 만듭니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Create IAM Role</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">Create IAM Role</span>
+            </div>
             <div class="sd-node sd-node--accent">
               <strong class="sd-label">AWS IAM Role</strong>
               <span class="sd-detail">trust principal은 <code>pods.eks.amazonaws.com</code>입니다.</span>
             </div>
           </div>
         </section>
-
         <section class="sd-lane">
           <div class="sd-lane-title">Association validation</div>
           <div class="sd-flow">
@@ -28,7 +28,9 @@
               <strong class="sd-label">EKS User</strong>
               <span class="sd-detail">Service Account와 IAM Role association을 등록합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">CreatePodIdentityAssociation</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">CreatePodIdentityAssociation</span>
+            </div>
             <div class="sd-node sd-node--accent">
               <strong class="sd-label">EKS Pod Identity API</strong>
               <span class="sd-detail">클러스터의 association 요청을 받습니다.</span>
@@ -39,7 +41,9 @@
               <strong class="sd-label">EKS Auth API</strong>
               <span class="sd-detail">연결된 Service Account와 IAM Role association을 확인합니다.</span>
             </div>
-            <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">Validate Associations request / association metadata result</span></div>
+            <div class="sd-arrow sd-arrow--both">
+              <span class="sd-edge-label">Validate Associations request / association metadata result</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">EKS Pod Identity API</strong>
               <span class="sd-detail">EKS Auth API에 association metadata를 제공합니다.</span>
@@ -48,7 +52,6 @@
         </section>
       </div>
     </section>
-
     <section class="sd-band">
       <div class="sd-band-title">Amazon EKS Cluster</div>
       <section class="sd-lane">
@@ -58,24 +61,30 @@
             <strong class="sd-label">Pod spec with Service Account</strong>
             <span class="sd-detail">association에 맞는 SA를 사용해 배포됩니다.</span>
           </div>
-          <div class="sd-arrow"><span class="sd-edge-label">create Pod</span></div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">create Pod</span>
+          </div>
           <div class="sd-node">
             <strong class="sd-label">Kubernetes API server</strong>
             <span class="sd-detail">Pod admission 요청을 EKS control plane에서 처리합니다.</span>
           </div>
-          <div class="sd-arrow"><span class="sd-edge-label">mutating admission</span></div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">mutating admission</span>
+          </div>
           <div class="sd-node">
             <strong class="sd-label">EKS Pod Identity Webhook</strong>
             <span class="sd-detail">Pod manifest에 credential 환경 변수와 volume을 추가합니다.</span>
           </div>
-          <div class="sd-arrow"><span class="sd-edge-label">mutates the Pod spec</span></div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">mutates the Pod spec</span>
+          </div>
           <div class="sd-node sd-node--accent">
             <strong class="sd-label">Mutated Pod spec</strong>
-            <span class="sd-detail"><code>AWS_CONTAINER_CREDENTIALS_FULL_URI</code>와 <code>AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE</code>이 주입됩니다.</span>
+            <span class="sd-detail">
+              <code>AWS_CONTAINER_CREDENTIALS_FULL_URI</code>와 <code>AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE</code>이 주입됩니다.</span>
           </div>
         </div>
       </section>
-
       <div class="sd-grid">
         <section class="sd-lane">
           <div class="sd-lane-title">EC2 Worker Node data plane</div>
@@ -84,25 +93,23 @@
               <strong class="sd-label">k8s Pod with AWS SDK</strong>
               <span class="sd-detail">Service Account token과 credential URI가 있는 컨테이너입니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">retrieve credentials</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">retrieve credentials</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">EKS Pod Identity Agent local endpoint</strong>
               <span class="sd-detail">Agent가 노드의 Pod credential 요청을 받습니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">temporary credentials</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">temporary credentials</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">AWS SDK signed request</strong>
               <span class="sd-detail">반환된 자격 증명으로 resource API를 호출합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Access AWS resources</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Amazon S3</strong>
-              <span class="sd-detail">Pod identity Role의 권한으로 접근합니다.</span>
-            </div>
           </div>
           <p class="sd-note">Pod Identity Agent는 Linux EC2 node에 DaemonSet으로 설치됩니다.</p>
         </section>
-
         <section class="sd-lane">
           <div class="sd-lane-title">Agent to IAM Role exchange</div>
           <div class="sd-flow">
@@ -110,22 +117,30 @@
               <strong class="sd-label">EKS Pod Identity Agent</strong>
               <span class="sd-detail">Pod의 Service Account token을 사용해 control plane을 호출합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">AssumeRoleForPodIdentity</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">AssumeRoleForPodIdentity</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">EKS Auth API</strong>
               <span class="sd-detail">association 검증을 위해 EKS Pod Identity API를 조회합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Validate Associations</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">Validate Associations</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">EKS Pod Identity API</strong>
               <span class="sd-detail">Service Account에 연결된 Role을 확인합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">resolve associated role</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">resolve associated role</span>
+            </div>
             <div class="sd-node">
               <strong class="sd-label">AWS IAM Role</strong>
               <span class="sd-detail">EKS Auth API가 이 Role의 임시 자격 증명을 준비합니다.</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">return to Agent cache</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">return to Agent cache</span>
+            </div>
             <div class="sd-node sd-node--accent">
               <strong class="sd-label">Agent credential cache</strong>
               <span class="sd-detail">local endpoint가 다음 Pod SDK 요청에 응답합니다.</span>
@@ -135,6 +150,12 @@
       </div>
     </section>
   </div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">Pod AWS SDK signed request: Access AWS resources</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+    <strong class="sd-label">Amazon S3</strong>
+    <span class="sd-detail">Pod identity Role의 권한으로 접근합니다.</span>
+  </div>
   <p class="sd-note">Pod SDK의 credential 요청은 Agent local endpoint로 향하고, Agent의 AssumeRoleForPodIdentity 호출은 EKS Auth API와 association 검증 경계를 거칩니다. Pod가 IAM Role을 직접 호출하는 경로는 아닙니다.</p>
 </figure>

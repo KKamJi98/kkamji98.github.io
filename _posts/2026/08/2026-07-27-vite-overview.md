@@ -18,6 +18,7 @@ Vite는 이 문제를 브라우저가 이미 가지고 있는 Native ESM으로 �
 ## 1. bundle 기반 dev server와 Vite의 접근 차이
 
 {% include diagrams/static/javascript/vite/vite-dev-server-on-demand-transform.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/javascript/vite/vite-dev-server-on-demand-transform--6de1c5e7a6af07a4.png" %}
 _두 경로 모두 브라우저에서 끝난다. 차이는 dev server가 첫 요청에 응답하기 전에 무엇을 끝내야 하는가다. Vite 쪽의 양방향 화살표는 브라우저가 모듈마다 따로 요청한다는 뜻이다._
 
 webpack이나 Create React App 같은 bundle 기반 dev server는 애플리케이션 전체를 하나의 번들로 만든 뒤 브라우저에 서빙합니다. 모듈이 늘어날수록 번들링 시간이 길어지고, dev server 시작이 느려집니다. HMR도 변경된 모듈에서 시작해 dependency graph를 따라가며 영향받는 모든 모듈을 다시 번들링해야 하므로, 프로젝트가 크면 hot update도 느려집니다.

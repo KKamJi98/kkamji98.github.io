@@ -69,6 +69,7 @@ percentile 통계에도 조건이 있습니다. 메트릭 값에 음수가 하�
 알람은 threshold를 넘었는지만 보는 장치가 아니라, 데이터포인트를 모으고 개수를 세고 부족분을 채워 넣는 절차입니다. 도입부의 상황이 이 절차의 마지막 단계에서 갈렸습니다.
 
 {% include diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/cloudwatch-alarm-missing-data--a27a61fb5a3388c3.png" %}
 
 그림은 메트릭 데이터포인트에서 출발해 evaluation range 수집, 데이터포인트 개수 판정, 상태 결정, action 실행까지를 한 줄기로 놓은 배치입니다. 가운데의 개수 판정 상자에서 경로가 둘로 갈리고, 한쪽은 M out of N 판정으로, 다른 한쪽은 결측 처리 설정으로 이어집니다. 오른쪽의 세 상자가 알람이 도달할 수 있는 상태이고, 그중 ALARM에서만 action 상자로 선이 이어집니다. 상자 안의 부제도 함께 읽을 값입니다. 결측 처리 상자에는 기본값과 예외 네임스페이스가, M out of N 상자에는 premature alarm 회피 로직이, action 상자에는 Auto Scaling action의 반복 실행 예외가 적혀 있습니다.
 
@@ -186,6 +187,7 @@ monitoring account로 지정된 계정에서는 여러 source account의 로그 
 CloudWatch Logs에 들어온 로그를 다른 곳에서 쓰려면 로그 그룹 밖으로 꺼내야 하고, 경로마다 지연과 개수 제한이 다릅니다. 이 표가 D3 문항에서 가장 자주 답을 가릅니다.
 
 {% include diagrams/static/sap-c02/cloudwatch-logs-delivery-paths.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/cloudwatch-logs-delivery-paths--82e978a9f00e1319.png" %}
 
 그림은 왼쪽의 로그 그룹 하나에서 네 갈래가 나가는 배치입니다. 위쪽 갈래인 subscription filter에서 다시 네 개의 대상 서비스로 부챗살처럼 퍼지고, 아래쪽으로 metric filter, S3 export task, Logs Insights 쿼리가 차례로 놓입니다. export 경로만 점선인 이유가 상자 안에 적혀 있습니다. 이 경로는 실시간 흐름이 아니라 데이터가 준비될 때까지 기다리는 배치 작업입니다.
 
@@ -317,6 +319,7 @@ CloudTrail이 기록하는 event는 **management, data, network activity, Insigh
 CloudTrail이 호출 기록이라면 Config는 구성 상태입니다. "지금 이 보안 그룹이 어떻게 설정돼 있는가"와 "그 설정이 기준에 맞는가"를 다룹니다.
 
 {% include diagrams/static/sap-c02/config-evaluation-remediation.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/config-evaluation-remediation--4c376b21c28675f4.png" %}
 
 그림은 왼쪽의 리소스 구성 변경에서 출발해 configuration recorder, rule 평가, 평가 결과, 자동 교정으로 이어지는 흐름과, 그 흐름에서 갈라져 나와 끝나는 두 곁가지를 함께 보여 줍니다. 아래쪽 점선 가지가 proactive evaluation이고 차단도 교정도 하지 않는 상자에서 끝납니다. 위쪽 점선 가지가 aggregator이고 평가 결과를 받기만 하는 자리입니다. 교정으로 이어지는 실선은 NON_COMPLIANT 상자에서만 나갑니다.
 
@@ -368,6 +371,7 @@ conformance pack 안의 rule도 **리전당 계정당 1,000개 rule 한도에 �
 분산 추적에서 "우리 서비스만 100퍼센트 추적하겠다"는 요구가 자주 나오고, 대부분 동작하지 않습니다.
 
 {% include diagrams/static/sap-c02/xray-parent-based-sampling.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/xray-parent-based-sampling--b0fa7ed57a9daead.png" %}
 
 그림은 클라이언트 요청에서 진입 서비스 A를 지나 B와 C를 거쳐 수집된 trace로 이어지는 한 줄기 흐름과, 그 흐름에 붙는 두 개의 곁가지로 이루어집니다. 진입 서비스 위쪽 상자가 실제로 결정을 내리는 sampling rule이고 실선으로 연결됩니다. 서비스 C 아래의 점선 상자가 C에만 건 100퍼센트 rule이고, 점선인 이유는 이미 내려진 진입 결정을 뒤집지 못하기 때문입니다.
 
@@ -391,6 +395,7 @@ priority를 낮춰도 결과는 같습니다. priority는 **같은 서비스 안
 알람, 구성 위반, 인프라 이벤트, API 호출은 발생 지점이 다르지만 전부 EventBridge 이벤트로 표현됩니다. 이 지점이 관측과 자동화를 잇는 접점입니다.
 
 {% include diagrams/static/sap-c02/ops-event-routing.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/ops-event-routing--faa896cdc6c11f9f.png" %}
 
 그림은 왼쪽 네 개의 신호 발생 지점이 가운데 EventBridge rule 하나로 모이고, 거기서 오른쪽 세 개의 목적지로 나뉘는 배치입니다. 왼쪽 네 상자에는 각 신호의 성격과 제약이, 가운데 상자에는 rule과 target의 개수 제한이, 오른쪽 세 상자에는 각 목적지가 맡는 역할이 적혀 있습니다.
 
@@ -594,8 +599,9 @@ IaC 문항의 상당수가 "스택 작업 중에 데이터가 어떻게 되는�
 배포 문항은 이름을 외우는 문제가 아니라 두 가지를 묻는 문제입니다. **되돌리려면 무엇을 해야 하는가**, 그리고 **실패한 버전이 사용자 트래픽을 받는 구간이 있는가**입니다. 두 답 모두 새 버전을 어디에 띄우는지에서 결정됩니다.
 
 {% include diagrams/static/sap-c02/deployment-rollback-paths.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/deployment-rollback-paths--ec688298254b9f85.png" %}
 
-그림은 왼쪽에 새 버전이 뜨는 네 가지 위치, 가운데에 각각에 대응하는 롤백 동작, 오른쪽에 실패한 버전이 트래픽을 받는 구간이 생기는지를 두고 셋을 연결한 배치입니다. 맨 위 줄만 오른쪽 끝의 노출 상자로 이어지고 나머지 세 줄은 노출되지 않는 상자로 모입니다.
+그림은 배포 방식별로 새 버전의 배치 위치, 실패 시 롤백 동작, 사용자 트래픽 노출 구간을 비교합니다. 롤백은 실패 조건에서 선택하는 동작이며, 노출 범위는 트래픽 전환 시점과 시험 트래픽 사용 여부에 따라 달라집니다.
 
 **Elastic Beanstalk 배포 정책**은 다섯 가지입니다.
 

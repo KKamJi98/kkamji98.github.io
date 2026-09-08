@@ -1,132 +1,64 @@
 <figure class="sd sd--layers" id="thanos-architecture" aria-labelledby="thanos-architecture-title">
   <figcaption class="sd-title" id="thanos-architecture-title">Thanos는 Prometheus query를 장기 block storage와 합칩니다</figcaption>
-  <p class="sd-note">외부 query API는 HTTP로 들어오고, Thanos 내부 Store API 호출은 gRPC로 연결됩니다. 모든 주요 컴포넌트는 stateless로 수평 확장할 수 있습니다.</p>
-
-  <div class="sd-stack">
-    <section class="sd-band">
-      <div class="sd-band-title">Query path</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">PromQL clients</strong>
-          <span class="sd-detail">Grafana, Prometheus Web UI와 외부 query API client</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">HTTP query</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Thanos Query Frontend</strong>
-          <span class="sd-detail">response cache와 query splitting으로 Querier 앞의 요청을 나눕니다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">Prometheus API</span></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">Thanos Query</strong>
-          <span class="sd-detail">여러 Store API 결과를 하나의 PromQL 응답으로 merge합니다.</span>
-        </div>
-      </div>
-
-      <div class="sd-grid">
-        <section class="sd-lane">
-          <div class="sd-lane-title">Long-term block 조회</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Thanos Query</strong>
-              <span class="sd-detail">장기 데이터 Store API를 fan-out합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">gRPC Store API</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Thanos Store Gateway</strong>
-              <span class="sd-detail">Bucket Store를 통해 object storage block을 읽습니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">block read</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Object storage</strong>
-              <span class="sd-detail">S3, GCS 또는 Minio bucket</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="sd-lane">
-          <div class="sd-lane-title">Prometheus 최신 데이터와 업로드</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Thanos Query</strong>
-              <span class="sd-detail">최신 데이터를 Sidecar Store API로 조회합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">gRPC Store API</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Thanos Sidecar</strong>
-              <span class="sd-detail">Prometheus Pod에 붙어 local TSDB를 읽고 Store API를 노출합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">local TSDB read</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Prometheus Server</strong>
-              <span class="sd-detail">local TSDB와 exporter scrape 결과를 보관합니다.</span>
-            </div>
-          </div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Prometheus TSDB block</strong>
-              <span class="sd-detail">Sidecar가 읽은 시계열 block</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Shipper upload</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Object storage</strong>
-              <span class="sd-detail">upload한 block을 Store Gateway가 조회합니다.</span>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section class="sd-band">
-      <div class="sd-band-title">Block maintenance and alert path</div>
-      <div class="sd-grid">
-        <section class="sd-lane">
-          <div class="sd-lane-title">Compactor</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Object storage blocks</strong>
-              <span class="sd-detail">Sidecar와 Ruler가 기록한 block</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">retention and compaction</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Thanos Compactor</strong>
-              <span class="sd-detail">compaction, downsample과 retention을 적용합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">write compacted blocks</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Object storage blocks</strong>
-              <span class="sd-detail">정리된 block을 장기 저장합니다.</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="sd-lane">
-          <div class="sd-lane-title">Ruler and notification</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Thanos Ruler</strong>
-              <span class="sd-detail">Store API를 읽어 recording rule과 alert rule을 평가합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">rule result shipper</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Object storage</strong>
-              <span class="sd-detail">Ruler의 rule 결과와 상태를 장기 보관합니다.</span>
-            </div>
-          </div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">Thanos Ruler</strong>
-              <span class="sd-detail">alert rule이 firing 상태가 되면 알림을 보냅니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Push alerts</span></div>
-            <div class="sd-node sd-node--warning">
-              <strong class="sd-label">External Alertmanager</strong>
-              <span class="sd-detail">경고를 외부 알림 채널로 전달합니다.</span>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
+  <div class="sd-flow">
+  <div class="sd-node">
+  <strong class="sd-label">PromQL clients</strong>
+  <span class="sd-detail">Grafana와 외부 HTTP query clients</span>
   </div>
-
-  <p class="sd-note">이 흐름은 query, block storage, compaction과 alert 역할을 중심으로 보여줍니다.</p>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">HTTP query</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Thanos Query Frontend</strong>
+  <span class="sd-detail">cache와 query splitting</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">Prometheus query API</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">Thanos Query</strong>
+  <span class="sd-detail">Store API 결과를 merge</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">gRPC Store API fan-out</span>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Thanos Store Gateway</strong>
+  <span class="sd-detail">Object storage의 장기 block read</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Thanos Sidecar</strong>
+  <span class="sd-detail">Prometheus Server local TSDB 조회와 block upload</span>
+  </div>
+  </div>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Prometheus Server</strong>
+  <span class="sd-detail">exporter scrape, local TSDB; Sidecar가 같은 Pod에 배치</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">Object storage</strong>
+  <span class="sd-detail">S3, GCS 또는 Minio. Sidecar와 Ruler가 upload, Store Gateway가 read</span>
+  </div>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Thanos Compactor</strong>
+  <span class="sd-detail">Object storage block을 read/write하며 compaction, downsample, retention 수행</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Thanos Ruler</strong>
+  <span class="sd-detail">Thanos Query의 query API로 recording/alert rule 평가. 기본 모드는 local TSDB와 bucket upload 사용</span>
+  </div>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">Ruler의 firing alert만 전달</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">External Alertmanager</strong>
+  <span class="sd-detail">외부 알림 채널로 전달</span>
+  </div>
+  <p class="sd-note">저장소와 local TSDB, Compactor 작업 상태를 모두 stateless로 간주하지 않습니다. Ruler의 선택적 remote-write 모드는 별도 구성입니다.</p>
 </figure>

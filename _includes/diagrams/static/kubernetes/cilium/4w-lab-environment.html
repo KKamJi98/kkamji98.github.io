@@ -14,7 +14,7 @@
       </div>
       <div class="sd-node">
         <strong class="sd-label">k8s-w0</strong>
-        <span class="sd-detail"><code>enp0s8</code> 192.168.20.100, worker</span>
+        <span class="sd-detail">192.168.20.100, worker</span>
       </div>
     </div>
   </section>
@@ -32,7 +32,7 @@
       </div>
       <div class="sd-node sd-node--muted">
         <strong class="sd-label">loop1 and loop2</strong>
-        <span class="sd-detail">10.10.1.200/32 and 10.10.2.200/32</span>
+        <span class="sd-detail">10.10.1.200/24 and 10.10.2.200/24</span>
       </div>
     </div>
   </section>
@@ -42,5 +42,5 @@
     <span class="sd-detail">노드별 /24 대역을 Cilium Native Routing으로 전달합니다.</span>
   </div>
 
-  <p class="sd-note">Router가 172.20.2.0/24 경로를 모르면 기본 public route로 빠져 k8s-w0의 Pod 통신이 실패합니다. Static Route 또는 Cilium BGP Control Plane이 이 경로를 채웁니다.</p>
+  <p class="sd-note">Router가 172.20.2.0/24 경로를 모르면 기본 public route로 빠져 k8s-w0의 Pod 통신이 실패합니다. 이 실습은 Static Route를 수동 추가해 복구합니다. BGP 경로 광고는 별도 구성입니다.</p>
 </figure>

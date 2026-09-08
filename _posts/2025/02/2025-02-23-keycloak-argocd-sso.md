@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/security/keycloak-argocd-sso-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/security/keycloak-argocd-sso-flow--41e0600f3eae1eaa.png" %}
 
 저번 시간에([Keycloak 개념, Helm으로 배포하기]({% post_url 2025/02/2025-02-22-keycloak %})) Keycloak을 배포하고 기본적인 설정을 해보았습니다. 이번 시간에는 Keycloak과 ArgoCD를 연동하여 SSO를 구현해보도록 하겠습니다.
 

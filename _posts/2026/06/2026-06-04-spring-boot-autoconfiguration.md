@@ -69,6 +69,7 @@ public class MyApplication {
 위 문서가 쓴 표현은 "backs away"지만, Spring Boot 내부에서 이 동작을 가리키는 정식 용어는 **back off**입니다. 자동설정 클래스에 붙은 조건(condition)이 어긋나면 그 빈을 만들지 않고 물러나며, 그래서 "기본은 알아서, 필요하면 내가 덮어쓰기"가 성립합니다.
 
 {% include diagrams/static/spring/spring-07-autoconfiguration-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-07-autoconfiguration-flow--3d2aaee4942bfb02.png" %}
 _후보 로드 -> @Conditional 평가 -> 통과 시 빈 등록, 아니면 condition이 back off_
 
 이 "켜고 끄기"의 구현 메커니즘이 `@Conditional` 계열입니다. 문서가 정리한 대표 패턴은 이렇습니다.
@@ -138,6 +139,7 @@ public class MyApplication { ... }
 1편에서 `java -jar app.jar`로 단일 프로세스가 뜬다고 했습니다. 그 jar가 **executable(fat) jar**입니다.
 
 {% include diagrams/static/spring/spring-08-fatjar-layout.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-08-fatjar-layout--6973a263c4a960ad.png" %}
 _jar 내부 구조(좌)와 java -jar -> JarLauncher -> 중첩 classloader -> Start-Class main(우)_
 
 구조는 이렇습니다.

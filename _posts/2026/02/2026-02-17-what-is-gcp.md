@@ -30,6 +30,7 @@ GCP를 처음부터 공부해 보기로 마음먹고 가장 먼저 정리한 것
 - 전 세계에 배치된 **리전(Region)** 과 그 안의 **존(Zone)** 으로 인프라가 구성되어, 사용자와 가까운 위치에 리소스를 배포할 수 있습니다.
 
 {% include diagrams/static/gcp/gcp-region-zone.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-region-zone--b03d3b57de8b6def.png" %}
 _Region은 독립된 지리적 영역, Zone은 그 안의 격리된 장애 도메인. Region 간은 Premium Tier 백본으로 연결되고, 가용성을 위해 여러 Zone에 분산 배치한다._
 
 GCP는 AWS, Microsoft Azure와 함께 대표적인 메이저 퍼블릭 클라우드로 꼽힙니다. 이 시리즈에서는 GCP 자체의 개념과 사용법에 집중합니다.
@@ -89,6 +90,7 @@ GCP 리소스는 여러 인터페이스로 제어할 수 있습니다. 상황에
 입문 단계에서는 Console로 전체 구조를 눈으로 익히고, 반복 작업이나 자동화는 gcloud CLI로 넘어가는 흐름이 일반적입니다.
 
 {% include diagrams/static/gcp/gcp-access-stack.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-access-stack--4bc46700dc7d2e5a.png" %}
 _Console / gcloud / Cloud Shell / Client Library는 모두 동일한 Google Cloud API(REST/gRPC) 위의 프런트엔드다. 어떤 도구로 다루든 결국 같은 API를 호출한다._
 
 gcloud CLI를 처음 쓸 때 가장 먼저 마주치는 명령은 인증과 기본 설정입니다. 아래는 로그인하고 작업 대상 프로젝트와 기본 리전을 지정하는 예시입니다.

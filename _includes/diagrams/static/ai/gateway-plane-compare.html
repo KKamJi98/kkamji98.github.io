@@ -1,43 +1,4 @@
-<figure class="sd sd--comparison" id="gateway-plane-compare" aria-labelledby="gateway-plane-compare-title">
-  <figcaption class="sd-title" id="gateway-plane-compare-title">요청을 중계하는 두 Gateway 구현</figcaption>
-  <div class="sd-grid">
-    <section class="sd-lane" aria-label="독립 LLM 프록시">
-      <div class="sd-lane-title">독립 LLM 프록시</div>
-      <div class="sd-flow">
-        <div class="sd-node">
-          <strong class="sd-label">Application</strong>
-          <span class="sd-detail">OpenAI-compatible HTTP / SDK</span>
-        </div>
-        <div class="sd-arrow"></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">LiteLLM Proxy</strong>
-          <span class="sd-detail">인증, 예산 검사, 모델 라우팅</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">선택한 모델로 전달</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Providers</strong>
-          <span class="sd-detail">OpenAI, AWS Bedrock 등</span>
-        </div>
-      </div><p class="sd-note">설정: 모델/라우팅 YAML, 환경변수, DB 관리 레코드</p>
-    </section>
-    <section class="sd-lane" aria-label="Envoy Gateway 기반 프록시">
-      <div class="sd-lane-title">Envoy Gateway 기반 프록시</div>
-      <div class="sd-flow">
-        <div class="sd-node">
-          <strong class="sd-label">Application</strong>
-          <span class="sd-detail">OpenAI-compatible HTTP / SDK</span>
-        </div>
-        <div class="sd-arrow"></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">Envoy Proxy</strong>
-          <span class="sd-detail">AI Gateway external processor와 처리 통신</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">선택한 모델로 전달</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Providers</strong>
-          <span class="sd-detail">해당 버전에서 지원하는 provider API</span>
-        </div>
-      </div><p class="sd-note">설정: Kubernetes CRD와 controller</p>
-    </section>
-  </div><p class="sd-note">둘 다 요청 데이터 경로에 놓인다. 클라이언트가 Gateway endpoint를 지정하며 Python SDK는 필수가 아니다.</p>
+<figure class="sd sd--gateway-v2" id="gateway-plane-compare" aria-labelledby="gateway-plane-compare-title">
+  <figcaption class="sd-title" id="gateway-plane-compare-title">두 구현, 같은 요청 중계 역할</figcaption>
+<div class="sd-v2-compare"><section class="sd-v2-compare-lane" aria-label="독립 LLM 프록시"><div class="sd-v2-section-title">독립 LLM 프록시</div><div class="sd-node"><strong class="sd-label">Application</strong><span class="sd-detail">OpenAI-compatible HTTP / SDK</span></div><div class="sd-v2-down" aria-hidden="true"></div><div class="sd-node sd-node--accent"><strong class="sd-label">LiteLLM Proxy</strong><span class="sd-detail">인증, 예산 검사, 모델 라우팅</span></div><div class="sd-v2-down" aria-hidden="true"></div><div class="sd-node"><strong class="sd-label">Providers</strong><span class="sd-detail">OpenAI, AWS Bedrock 등</span></div><p class="sd-note">설정: 모델/라우팅 YAML, 환경변수, DB 관리 레코드</p></section><section class="sd-v2-compare-lane" aria-label="Envoy Gateway 기반"><div class="sd-v2-section-title">Envoy Gateway 기반</div><div class="sd-node"><strong class="sd-label">Application</strong><span class="sd-detail">OpenAI-compatible HTTP / SDK</span></div><div class="sd-v2-down" aria-hidden="true"></div><div class="sd-node sd-node--accent"><strong class="sd-label">Envoy Proxy</strong><span class="sd-detail">AI Gateway external processor와 처리 통신</span></div><div class="sd-v2-down" aria-hidden="true"></div><div class="sd-node"><strong class="sd-label">Providers</strong><span class="sd-detail">해당 버전에서 지원하는 provider API</span></div><p class="sd-note">설정: Kubernetes CRD와 controller</p></section></div><p class="sd-note">둘 다 요청 데이터 경로에 놓인다. 선택한 모델로 요청을 전달하며, 클라이언트가 Gateway endpoint를 지정한다. Python SDK는 필수가 아니다.</p>
 </figure>

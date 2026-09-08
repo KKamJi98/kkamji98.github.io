@@ -12,19 +12,19 @@
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">Kubernetes API에 등록</span></div>
     <div class="sd-node">
-      <strong class="sd-label">Argo CD API server</strong>
-      <span class="sd-detail">Application을 검증하고 저장</span>
+      <strong class="sd-label">Kubernetes API / Application CR</strong>
+      <span class="sd-detail">Application CR을 검증하고 저장</span>
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">controller가 변경을 감시</span></div>
     <div class="sd-node">
       <strong class="sd-label">Application controller</strong>
       <span class="sd-detail">desired state와 live state를 diff</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">차이를 reconcile</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">automated sync 설정 시 차이를 적용</span></div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Cluster resources</strong>
       <span class="sd-detail">Synced 또는 OutOfSync 상태를 보고</span>
     </div>
   </div>
-  <p class="sd-note">Argo CD에는 별도 deploy command를 보내지 않습니다. Application이 Git source와 대상 Cluster를 연결하고 controller가 계속 상태를 맞춥니다.</p>
+  <p class="sd-note">이 예제는 automated sync를 설정해 별도 sync 요청 없이 적용합니다. UI와 CLI는 선택적으로 Argo CD API를 이용하며, 선언적 YAML은 Kubernetes API에 직접 등록할 수 있습니다.</p>
 </figure>

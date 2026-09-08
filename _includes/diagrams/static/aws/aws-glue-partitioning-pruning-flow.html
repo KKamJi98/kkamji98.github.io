@@ -1,34 +1,28 @@
 <figure class="sd sd--flow" id="sd-aws-aws-glue-partitioning-pruning-flow" aria-labelledby="sd-title-aws-aws-glue-partitioning-pruning-flow">
   <figcaption class="sd-title" id="sd-title-aws-aws-glue-partitioning-pruning-flow">Partition pruning은 Athena가 열 S3 prefix 수를 결정한다</figcaption>
-  <div class="sd-flow">
-    <div class="sd-node">
-      <strong class="sd-label">SQL query</strong>
-      <span class="sd-detail">WHERE dt, region, hour</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">configured metadata source</span></div>
-    <div class="sd-grid">
-      <section class="sd-lane" aria-label="Glue catalog partition path">
-        <div class="sd-lane-title">Catalog path</div>
-        <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Glue Data Catalog</strong><span class="sd-detail">registered partitions</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">partition list</span></div>
-          <div class="sd-node"><strong class="sd-label">Athena planning</strong><span class="sd-detail">선택할 prefix 계산</span></div>
-        </div>
-      </section>
-      <section class="sd-lane" aria-label="Partition projection path">
-        <div class="sd-lane-title">Projection path</div>
-        <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Partition projection</strong><span class="sd-detail">date, enum, integer rules; catalog round trip 없음</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">계산된 partition</span></div>
-          <div class="sd-node"><strong class="sd-label">Athena planning</strong><span class="sd-detail">선택할 prefix 계산</span></div>
-        </div>
-      </section>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">planner output</span></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">S3 prefixes scanned</strong>
-      <span class="sd-detail">선택된 locations만 읽음</span>
-    </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">SQL query</strong>
+  <span class="sd-detail">WHERE dt, region, hour</span>
   </div>
-  <p class="sd-note">Partition projection은 Athena 기능입니다. Redshift Spectrum 같은 다른 engine은 catalog partition을 읽습니다.</p>
+  <div class="sd-node">
+  <strong class="sd-label">Metadata 선택</strong>
+  <span class="sd-detail">Glue Data Catalog의 registered partition list 또는 Athena partition projection의 date, enum, integer rules</span>
+  </div>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">SQL predicate와 설정된 metadata를 함께 입력</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">Athena planning</strong>
+  <span class="sd-detail">partition list 조회 또는 projection 계산으로 prefix 선택</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">planner output</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">S3 prefixes scanned</strong>
+  <span class="sd-detail">선택된 locations만 읽음</span>
+  </div>
+  <p class="sd-note">Partition projection은 Athena 기능이며 등록 partition list를 조회하지 않습니다. Redshift Spectrum 같은 다른 engine은 catalog partition을 읽습니다.</p>
 </figure>

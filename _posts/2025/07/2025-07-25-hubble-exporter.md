@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/hubble-exporter-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/hubble-exporter-flow--c651d463deffdc10.png" %}
 
 이번 글에서는 **Hubble Exporter**에 대해 알아보도록 하겠습니다.
 

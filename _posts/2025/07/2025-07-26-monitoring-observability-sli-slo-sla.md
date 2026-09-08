@@ -33,6 +33,7 @@ Observability는 시스템이 낸 출력만으로 내부 상태를 얼마나 설
 | 관계 | 운영 활동 | 그 활동과 디버깅의 품질을 높이는 시스템 성질 |
 
 {% include diagrams/static/observability/monitoring-observability-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/monitoring-observability-flow--d67a7cb5b3570a9d.png" %}
 
 ---
 

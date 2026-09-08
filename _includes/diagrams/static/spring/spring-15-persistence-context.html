@@ -1,27 +1,46 @@
 <figure class="sd sd--flow" id="sd-spring-15-persistence-context" aria-labelledby="sd-spring-15-title">
   <figcaption class="sd-title" id="sd-spring-15-title">트랜잭션 범위의 persistence context와 1차 캐시</figcaption>
   <div class="sd-flow">
-    <div class="sd-node"><strong class="sd-label">Application code</strong><span class="sd-detail">@Transactional 메서드에서 EntityManager를 호출</span></div>
-    <div class="sd-arrow"><span class="sd-edge-label">find(id)</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Application code</strong>
+      <span class="sd-detail">@Transactional 메서드에서 EntityManager를 호출</span>
+    </div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">find(id)</span>
+    </div>
     <section class="sd-lane" aria-labelledby="sd-spring-15-context-title">
       <div class="sd-lane-title" id="sd-spring-15-context-title">Persistence context: first-level cache, transaction scoped</div>
-      <div class="sd-node sd-node--accent"><strong class="sd-label">Managed entities</strong><span class="sd-detail">id마다 하나의 인스턴스를 추적</span></div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">Managed entities</strong>
+        <span class="sd-detail">id마다 하나의 인스턴스를 추적</span>
+      </div>
       <div class="sd-grid">
         <section class="sd-lane" aria-labelledby="sd-spring-15-hit-title">
           <div class="sd-lane-title" id="sd-spring-15-hit-title">같은 id를 다시 조회</div>
           <div class="sd-flow">
-            <div class="sd-node sd-node--accent"><strong class="sd-label">Second find(id)</strong><span class="sd-detail">cache hit, 같은 인스턴스 반환, DB round trip 없음</span></div>
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">Second find(id)</strong>
+              <span class="sd-detail">cache hit, 같은 인스턴스 반환, DB round trip 없음</span>
+            </div>
           </div>
         </section>
         <section class="sd-lane" aria-labelledby="sd-spring-15-flush-title">
           <div class="sd-lane-title" id="sd-spring-15-flush-title">변경을 저장</div>
           <div class="sd-flow">
-            <div class="sd-node"><strong class="sd-label">Dirty checking</strong><span class="sd-detail">스냅샷과 현재 값을 flush 시 비교</span></div>
-            <div class="sd-arrow"><span class="sd-edge-label">flush</span></div>
-            <div class="sd-node"><strong class="sd-label">Database</strong><span class="sd-detail">INSERT, UPDATE, DELETE를 전송하며 commit 전까지 확정되지 않음</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Dirty checking</strong>
+              <span class="sd-detail">스냅샷과 현재 값을 flush 시 비교</span>
+            </div>
           </div>
         </section>
       </div>
     </section>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">Dirty checking 결과를 flush: 컨텍스트 밖 DB로 SQL 전송</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Database</strong>
+      <span class="sd-detail">INSERT, UPDATE, DELETE를 전송하며 commit 전까지 확정되지 않음</span>
+    </div>
   </div>
 </figure>

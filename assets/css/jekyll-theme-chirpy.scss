@@ -275,7 +275,7 @@ figure.sd .sd-band-subtitle {
   display: block;
   margin-top: 0.2rem;
   color: var(--sd-muted);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -569,4 +569,148 @@ figure.sd .sd-cert-tier--business {
   figure.sd .sd-cert-tier--business {
     --sd-tier-border: #b45309;
   }
+}
+
+/* BEGIN AI GATEWAY V2 */
+/* AI Gateway diagram v2: scoped opt-in layouts.
+   Mobile reflow begins below 540px figure content width. */
+figure.sd.sd--gateway-v2 { padding: 24px; }
+figure.sd.sd--gateway-v2 .sd-title { font-size: 24px; line-height: 1.3; margin-bottom: 24px; }
+figure.sd.sd--gateway-v2 .sd-node { padding: 12px; border-radius: 10px; }
+figure.sd.sd--gateway-v2 .sd-label { font-size: 16px; line-height: 1.4; word-break: keep-all; }
+figure.sd.sd--gateway-v2 .sd-detail,
+figure.sd.sd--gateway-v2 .sd-note,
+figure.sd.sd--gateway-v2 .sd-edge-label { font-size: 14px; line-height: 1.5; }
+figure.sd.sd--gateway-v2 .sd-note { margin: 14px 0 0; }
+figure.sd.sd--gateway-v2 .sd-v2-rail { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1.22fr) 28px minmax(0,1fr); align-items: center; }
+figure.sd.sd--gateway-v2 .sd-v2-link { height: 2px; background: var(--sd-accent); position: relative; margin: 0 2px; }
+figure.sd.sd--gateway-v2 .sd-v2-link::after { content: ''; position: absolute; right: 0; top: -3px; width: 8px; height: 8px; border-top: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
+/* The adjunct starts at the rail bottom: stretch its source to that border,
+   even when a sibling wraps to a taller box. Other rails retain centering. */
+figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > .sd-node--accent { align-self: stretch; }
+figure.sd.sd--gateway-v2 .sd-v2-adjunct { width: 55%; margin: 0 auto; text-align: center; }
+figure.sd.sd--gateway-v2 .sd-v2-relation { padding: 18px 0 12px; position: relative; }
+figure.sd.sd--gateway-v2 .sd-v2-relation::before { content: ''; position: absolute; height: 100%; left: 50%; top: 0; border-left: 2px solid var(--sd-border-strong); }
+figure.sd.sd--gateway-v2 .sd-v2-relation::after { content: ''; position: absolute; left: calc(50% - 3px); top: 2px; bottom: 2px; width: 8px; border-top: 2px solid var(--sd-border-strong); border-bottom: 2px solid var(--sd-border-strong); }
+figure.sd.sd--gateway-v2 .sd-v2-relation .sd-edge-label { position: relative; display: inline-block; padding: 2px 8px; background: var(--sd-bg); }
+figure.sd.sd--gateway-v2 .sd-v2-setup,
+figure.sd.sd--gateway-v2 .sd-v2-issuance,
+figure.sd.sd--gateway-v2 .sd-v2-config { margin-top: 20px; padding: 16px; border: 1px dashed var(--sd-border); border-radius: 10px; }
+figure.sd.sd--gateway-v2 .sd-v2-setup { border: 0; border-left: 3px solid var(--sd-border-strong); border-radius: 0; background: var(--sd-surface); }
+figure.sd.sd--gateway-v2 .sd-v2-issuance { margin-top: 0; }
+figure.sd.sd--gateway-v2 .sd-v2-issuance-row { display: grid; grid-template-columns: minmax(0,.85fr) 22px minmax(0,1fr) 22px minmax(0,1.2fr); align-items: center; margin-top: 8px; }
+figure.sd.sd--gateway-v2 .sd-v2-section-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin: 0 0 12px; }
+figure.sd.sd--gateway-v2 .sd-v2-request { margin-top: 24px; }
+figure.sd.sd--gateway-v2 .sd-v2-request-row { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr); align-items: center; }
+figure.sd.sd--gateway-v2 .sd-v2-fork { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; position: relative; padding-top: 24px; }
+figure.sd.sd--gateway-v2 .sd-v2-fork::before { content: ''; position: absolute; left: calc(25% - 6px); right: calc(25% - 6px); top: 24px; height: 2px; background: var(--sd-accent); }
+figure.sd.sd--gateway-v2 .sd-v2-fork::after { content: ''; position: absolute; right: calc(25% - 6px); top: 0; height: 24px; width: 2px; background: var(--sd-accent); }
+figure.sd.sd--gateway-v2 .sd-v2-outcome { position: relative; padding-top: 18px; min-width: 0; }
+figure.sd.sd--gateway-v2 .sd-v2-outcome::before { content: ''; position: absolute; top: 0; left: 50%; height: 16px; width: 2px; background: var(--sd-accent); }
+figure.sd.sd--gateway-v2 .sd-v2-condition { color: var(--sd-accent); text-align: center; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+figure.sd.sd--gateway-v2 .sd-v2-outcome--reject .sd-v2-condition { color: var(--sd-warning); }
+/* Give vertical arrowheads a full paint box while keeping the centered 2px shaft. */
+figure.sd.sd--gateway-v2 .sd-v2-down { height: 26px; width: 12px; margin: 0 auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; position: relative; }
+figure.sd.sd--gateway-v2 .sd-v2-down::after { content: ''; position: absolute; bottom: 1px; left: 2px; width: 8px; height: 8px; border-bottom: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
+figure.sd.sd--gateway-v2 .sd-v2-group { min-width: 0; border: 1px solid var(--sd-border); border-radius: 10px; padding: 12px; }
+figure.sd.sd--gateway-v2 .sd-v2-group-item { padding: 10px 0; border-top: 1px solid var(--sd-border); }
+figure.sd.sd--gateway-v2 .sd-v2-group-item .sd-detail { margin-top: 2px; }
+figure.sd.sd--gateway-v2 .sd-v2-compare { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+figure.sd.sd--gateway-v2 .sd-v2-compare-lane { min-width: 0; padding: 16px; border: 1px solid var(--sd-border); border-radius: 10px; }
+@container (max-width: 539px) {
+ figure.sd.sd--gateway-v2 .sd-v2-rail,
+ figure.sd.sd--gateway-v2 .sd-v2-request-row,
+ figure.sd.sd--gateway-v2 .sd-v2-issuance-row { grid-template-columns: minmax(0,1fr); }
+ figure.sd.sd--gateway-v2 .sd-v2-link { height: 24px; width: 12px; margin: 0 auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; }
+ figure.sd.sd--gateway-v2 .sd-v2-link::after { right: 2px; top: auto; bottom: 1px; transform: rotate(135deg); }
+ figure.sd.sd--gateway-v2 .sd-v2-adjunct { width: 100%; padding-left: 20px; position: relative; }
+ /* The side rail joins the Proxy, never the provider above the adjunct. */
+ figure.sd.sd--gateway-v2 .sd-v2-rail { padding-left: 20px; }
+ figure.sd.sd--gateway-v2 .sd-v2-rail > .sd-node--accent { position: relative; }
+ figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > .sd-node--accent::before { content: ''; position: absolute; right: 100%; top: 50%; width: 20px; height: calc(50% + 24px); border-top: 2px solid var(--sd-border-strong); border-left: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > :last-child { position: relative; }
+ figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > :last-child::before { content: ''; position: absolute; right: calc(100% + 19px); top: 0; height: 100%; border-left: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-adjunct::before { content: ''; position: absolute; left: 0; top: 0; bottom: 50px; width: 20px; border-left: 2px solid var(--sd-border-strong); border-bottom: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-relation::before,
+ figure.sd.sd--gateway-v2 .sd-v2-relation::after { content: none; }
+ figure.sd.sd--gateway-v2 .sd-v2-fork { grid-template-columns: minmax(0,1fr); gap: 18px; margin-left: 10px; padding: 0 0 0 20px; border-left: 2px solid var(--sd-accent); }
+ figure.sd.sd--gateway-v2 .sd-v2-fork::before,
+ figure.sd.sd--gateway-v2 .sd-v2-fork::after { content: none; }
+ figure.sd.sd--gateway-v2 .sd-v2-outcome::before { left: -20px; top: 28px; width: 20px; height: 2px; }
+ figure.sd.sd--gateway-v2 .sd-v2-condition { text-align: left; }
+ figure.sd.sd--gateway-v2 .sd-v2-compare { grid-template-columns: minmax(0,1fr); }
+ figure.sd.sd--gateway-v2 .sd-v2-config .sd-v2-rail { padding-left: 0; }
+}
+@media (max-width: 480px) {
+ figure.sd.sd--gateway-v2 { padding: 16px; }
+ figure.sd.sd--gateway-v2 .sd-title { font-size: 22px; }
+}
+
+/* END AI GATEWAY V2 */
+
+figure.sd :is(.sd-label, .sd-lane-title, .sd-band-title) code {
+  font-size: 16px;
+}
+
+/* Corpus quality tables and records: scoped opt-in, no clipping or text scaling. */
+figure.sd .sd-quality-records { display: grid; gap: 0.75rem; min-width: 0; }
+figure.sd .sd-quality-record {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--sd-border);
+  border-radius: 0.5rem;
+  background: var(--sd-surface);
+}
+figure.sd .sd-quality-record.sd-node--warning {
+  border-color: var(--sd-warning);
+  background: var(--sd-warning-soft);
+}
+figure.sd .sd-quality-field { min-width: 0; }
+figure.sd .sd-quality-field > .sd-label { margin-bottom: 0.25rem; }
+figure.sd .sd-quality-field > .sd-detail {
+  display: block;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+figure.sd .sd-quality-record code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+/* Outrank Chirpy's content table display and percentage cell font rules. */
+#main-wrapper main .content figure.sd table.sd-quality-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  white-space: normal;
+}
+#main-wrapper main .content figure.sd .sd-quality-table td {
+  font-size: 14px;
+  white-space: normal;
+}
+#main-wrapper main .content figure.sd .sd-quality-table th {
+  font-size: 16px;
+  white-space: normal;
+}
+#main-wrapper main .content figure.sd .sd-quality-table code {
+  font-size: 14px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Three-field comparisons use the row key as a full-width card heading. */
+figure.sd .sd-quality-record:has(> :nth-child(3)) > :first-child {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+figure.sd .sd-quality-record:has(> :nth-child(3)) > :first-child > .sd-detail {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sd-text);
 }

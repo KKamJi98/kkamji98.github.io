@@ -12,9 +12,7 @@
         <div class="sd-grid sd-grid--three">
           <div class="sd-node"><strong class="sd-label">Compute Savings Plans</strong><span class="sd-detail">최대 66%, family, size, Region, OS, tenancy 무관, Fargate와 Lambda 포함</span></div>
           <div class="sd-node"><strong class="sd-label">EC2 Instance Savings Plans</strong><span class="sd-detail">최대 72%, Region과 instance family 고정, Fargate와 Lambda 제외</span></div>
-          <div class="sd-node"><strong class="sd-label">Convertible RI</strong><span class="sd-detail">최대 66%, exchange 가능, Marketplace 매도 불가</span></div>
-          <div class="sd-node"><strong class="sd-label">Standard RI</strong><span class="sd-detail">최대 72%, exchange 불가, Marketplace 매도 가능</span></div>
-          <div class="sd-node"><strong class="sd-label">Regional RI</strong><span class="sd-detail">AZ와 size 유연성, 용량 예약 없음</span></div>
+          <div class="sd-node"><strong class="sd-label">Regional RI</strong><span class="sd-detail">AZ 유연성, 용량 예약 없음; size 유연성은 Amazon Linux/Unix와 default tenancy 조건</span></div>
         </div>
       </section>
       <section class="sd-band" aria-label="용량 확보 층">
@@ -25,10 +23,17 @@
         </div>
       </section>
       <section class="sd-band" aria-label="할인과 용량을 함께 제공하는 층">
-        <div class="sd-band-title">두 축을 함께 가진 유일한 수단</div>
+        <div class="sd-band-title">Zonal RI: 요금 할인과 지정 AZ 용량 예약</div>
         <div class="sd-node sd-node--accent"><strong class="sd-label">Zonal scope Reserved Instance</strong><span class="sd-detail">지정 AZ 용량 예약과 요금 할인을 동시에 제공, AZ와 size 유연성 없음</span></div>
         <div class="sd-note">ODCR 위에는 Savings Plans 요금을 겹칠 수 있지만 zonal RI 할인은 ODCR에 적용되지 않습니다. Spot 사용분에는 Savings Plans가 적용되지 않습니다.</div>
       </section>
     </div>
   </div>
+<section class="sd-lane"><div class="sd-lane-title">RI offering class: scope와 독립된 분류</div>
+<div class="sd-grid">
+<div class="sd-node"><strong class="sd-label">Convertible RI</strong><span class="sd-detail">최대 66%, exchange 가능, Marketplace 매도 불가</span></div>
+<div class="sd-node"><strong class="sd-label">Standard RI</strong><span class="sd-detail">최대 72%, exchange 불가, Marketplace 매도 가능</span></div>
+</div>
+<p class="sd-note">Standard와 Convertible 모두 regional 또는 zonal scope를 선택합니다. 위의 할인 전용 층은 regional RI에 해당합니다.</p>
+</section>
 </figure>

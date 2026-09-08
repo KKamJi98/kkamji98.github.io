@@ -39,6 +39,7 @@ Hermes Agent는 터미널과 메시징 환경에서 동작하는 self-hosted ope
 provider와 runtime은 같은 설정이 아닙니다. provider는 Large Language Model(LLM)의 인증과 호출 경로를 정하고, runtime은 Hermes standard chat loop 또는 선택적 Codex app-server 중 어느 경로가 turn을 처리할지 정합니다. 먼저 필요한 기능과 권한 모델을 정한 뒤 조합을 선택해야 합니다.
 
 {% include diagrams/static/ai/hermes-wsl2-agent-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/hermes-wsl2-agent-flow--abec8d1342de0b43.png" %}
 
 ---
 

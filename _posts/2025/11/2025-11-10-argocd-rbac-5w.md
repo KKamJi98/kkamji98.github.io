@@ -563,6 +563,7 @@ Argo CD를 Keycloak과 직접 연동하면 구성은 다음과 같습니다.
 OpenID Connect의 **Authorization Code Flow**를 사용하면 인증은 다음 순서로 진행됩니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/openid-connect-authorization-code-flow-simplied.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/openid-connect-authorization-code-flow-simplied--9b334953fedc871c.png" %}
 
 1. **Argo CD**는 인증 요청을 준비하고, 사용자의 브라우저를 Keycloak으로 리디렉션합니다.
 2. 브라우저는 사용자를 Keycloak의 Authorization Endpoint로 보냅니다.

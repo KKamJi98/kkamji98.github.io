@@ -21,6 +21,7 @@ LiteLLM에서 `max_budget: 0`으로 발급한 virtual key는 지출이 `0.0`인 
 ## 1. Proxy 설정과 DB에 저장하는 상태
 
 {% include diagrams/static/ai/litellm-architecture.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/litellm-architecture--39ece6e6e8007745.png" %}
 
 LiteLLM Proxy는 클라이언트와 LLM provider 사이에서 OpenAI 호환 HTTP 요청을 받는 독립 프록시입니다. 클라이언트는 Gateway endpoint와 발급된 키를 사용해 HTTP 또는 호환 SDK로 호출합니다.
 
@@ -57,6 +58,7 @@ ESO가 Secret을 갱신해도 이미 실행 중인 컨테이너의 환경변수�
 ## 4. virtual key 발급과 mock 응답
 
 {% include diagrams/static/ai/litellm-virtual-key-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/litellm-virtual-key-flow--4701f8019d165145.png" %}
 
 관리자는 master key로 `/key/generate`를 호출해 키를 발급하고, 클라이언트는 발급된 virtual key로 추론을 요청합니다. master key는 관리 경로에서만 사용하도록 분리합니다. 그림의 키 발급은 사전 관리 작업이고, 발급된 키를 검증하는 추론 경로는 별도입니다. 이 경로에서 성공한 mock 호출은 아래의 사용량 및 키 조회 결과로, 0 예산 키의 거절은 5절의 오류 응답으로 구분해 확인했습니다.
 

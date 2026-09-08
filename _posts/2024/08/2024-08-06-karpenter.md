@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/karpenter-provisioning-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/karpenter-provisioning-flow--be67cbd3dd9c6b0b.png" %}
 
 ---
 

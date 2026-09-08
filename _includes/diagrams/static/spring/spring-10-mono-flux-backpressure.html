@@ -1,25 +1,20 @@
 <figure class="sd sd--flow" id="spring-10-mono-flux-backpressure" aria-labelledby="spring-10-mono-flux-backpressure-title">
   <figcaption class="sd-title" id="spring-10-mono-flux-backpressure-title">Mono와 Flux의 lazy flow, 그리고 backpressure</figcaption>
-  <div class="sd-flow">
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Publisher</strong>
-      <span class="sd-detail">Mono 0..1 or Flux 0..N</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">연산자 조립</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Operators</strong>
-      <span class="sd-detail">map, filter, flatMap: 계획만 구성</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">subscription 계약</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Subscription</strong>
-      <span class="sd-detail">request(n)과 cancel을 전달하는 계약</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">signal 전달</span></div>
-    <div class="sd-node sd-node--muted">
-      <strong class="sd-label">Subscriber</strong>
-      <span class="sd-detail">onNext, onComplete, onError</span>
-    </div>
-  </div>
-  <p class="sd-note">subscribe()가 flow를 시작합니다. demand upstream: Subscription -&gt; Publisher (request(n)); Subscriber는 cancel도 보냅니다.</p>
+  <section class="sd-lane"><div class="sd-lane-title">구독 후 downstream signal</div>
+<div class="sd-flow">
+<div class="sd-node sd-node--accent"><strong class="sd-label">Publisher</strong><span class="sd-detail">Mono 0..1 or Flux 0..N</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">onNext, onComplete, onError</span></div>
+<div class="sd-node"><strong class="sd-label">Operators</strong><span class="sd-detail">map, filter, flatMap; assembly에서는 계획만 구성</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">변환된 signal을 downstream으로 전달</span></div>
+<div class="sd-node sd-node--muted"><strong class="sd-label">Subscriber</strong><span class="sd-detail">onNext, onComplete, onError 수신</span></div>
+</div>
+</section>
+  <section class="sd-lane"><div class="sd-lane-title">반대 방향의 demand와 취소</div>
+<div class="sd-flow">
+<div class="sd-node"><strong class="sd-label">Subscriber의 Subscription</strong><span class="sd-detail">onSubscribe로 받은 계약의 request(n)과 cancel 호출</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">operators를 거쳐 upstream으로 request 또는 cancel 전달</span></div>
+<div class="sd-node"><strong class="sd-label">Publisher / upstream 단계</strong><span class="sd-detail">요청된 demand 한도 안에서 onNext 발행</span></div>
+</div>
+</section>
+  <p class="sd-note">subscribe()가 조립한 flow의 실행을 시작합니다. Subscription은 signal이 통과하는 별도 처리 단계가 아니라 각 구독의 request(n)과 cancel 계약입니다.</p>
 </figure>

@@ -8,7 +8,6 @@
           <strong class="sd-label">Single transaction update</strong>
           <span class="sd-detail">작은 변경도 전체 rule set을 다시 만들고 갱신한다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">recreate chains</span></div>
         <div class="sd-node">
           <strong class="sd-label">IP and port churn</strong>
           <span class="sd-detail">새 IP나 port가 생길 때 rule과 chain을 추가로 바꾼다.</span>
@@ -22,12 +21,10 @@
           <strong class="sd-label">Linked-list chains</strong>
           <span class="sd-detail">ACL을 순차적으로 탐색하므로 연산이 O(n)으로 늘어난다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">sequential match</span></div>
         <div class="sd-node">
           <strong class="sd-label">IP and port rules</strong>
           <span class="sd-detail">주소와 port 중심의 L3/L4 match를 수행한다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">no L7 context</span></div>
         <div class="sd-node">
           <strong class="sd-label">L7 blind spot</strong>
           <span class="sd-detail">HTTP나 DNS 같은 application protocol 내용을 이해하지 못한다.</span>
@@ -41,7 +38,9 @@
           <strong class="sd-label">Many Services and Pods</strong>
           <span class="sd-detail">동적 endpoint가 늘수록 rule count와 update churn이 커진다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">resource pressure</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">resource pressure</span>
+        </div>
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">CPU and memory usage</strong>
           <span class="sd-detail">대규모 cluster에서 system resource 소비가 높아진다.</span>

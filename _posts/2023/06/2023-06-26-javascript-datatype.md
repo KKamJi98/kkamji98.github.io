@@ -10,6 +10,7 @@ comments: true
 ---
 
 {% include diagrams/static/javascript/javascript-data-type-model.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/javascript/javascript-data-type-model--da87045f34b42734.png" %}
 _왼쪽에서 갈라지는 두 화살표는 8개 타입이 나뉘는 방향이다. 위쪽은 원시 값 7개, 아래쪽은 Object 하나뿐이며 객체와 배열, 함수는 모두 그 아래에 놓인다._
 
 # 데이터 타입

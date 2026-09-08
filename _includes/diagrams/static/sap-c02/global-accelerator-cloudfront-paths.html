@@ -1,22 +1,24 @@
 <figure class="sd sd--comparison" id="global-accelerator-cloudfront-paths" aria-labelledby="global-accelerator-cloudfront-paths-title">
   <figcaption class="sd-title" id="global-accelerator-cloudfront-paths-title">Global Accelerator는 고정 IP로 전달하고 CloudFront는 캐시한다</figcaption>
   <p class="sd-note">두 엣지 서비스는 진입점과 오리진 요청 여부를 다르게 결정합니다. 같은 클라이언트라도 요구하는 프로토콜과 캐시 여부에 따라 경로를 나눕니다.</p>
-
   <div class="sd-node sd-node--accent">
     <strong class="sd-label">클라이언트</strong>
     <span class="sd-detail">고정 IP 또는 배포 도메인으로 접속합니다.</span>
   </div>
-  <div class="sd-arrow"><span class="sd-edge-label">요구에 맞는 진입점</span></div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">요구에 맞는 진입점</span>
+  </div>
   <div class="sd-grid">
     <section class="sd-lane" aria-labelledby="global-accelerator-cloudfront-paths-ga-title">
-      <div class="sd-lane-title" id="global-accelerator-cloudfront-paths-ga-title">Global Accelerator</div>
+      <div class="sd-lane-title" id="global-accelerator-cloudfront-paths-ga-title">TCP / UDP</div>
       <div class="sd-flow">
         <div class="sd-node">
           <strong class="sd-label">Global Accelerator</strong>
           <span class="sd-detail">anycast static IP로 새 연결을 전달하며 TCP와 UDP를 처리합니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">캐시 없이 전달</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">캐시 없이 전달</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">리전 endpoint</strong>
           <span class="sd-detail">NLB, ALB, EC2, EIP를 받을 수 있습니다.</span>
@@ -24,20 +26,23 @@
       </div>
       <p class="sd-note">모든 요청이 endpoint로 가며 TCP idle timeout은 340초입니다.</p>
     </section>
-
     <section class="sd-lane" aria-labelledby="global-accelerator-cloudfront-paths-cf-title">
-      <div class="sd-lane-title" id="global-accelerator-cloudfront-paths-cf-title">CloudFront</div>
+      <div class="sd-lane-title" id="global-accelerator-cloudfront-paths-cf-title">HTTP / HTTPS</div>
       <div class="sd-flow">
         <div class="sd-node">
           <strong class="sd-label">CloudFront</strong>
           <span class="sd-detail">HTTP와 HTTPS 요청을 엣지에서 처리합니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">캐시 판정</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">캐시 판정</span>
+        </div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">엣지 캐시</strong>
           <span class="sd-detail">캐시 히트면 CloudFront origin에 요청하지 않습니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">캐시 미스일 때만</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">캐시 미스일 때만</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">CloudFront origin</strong>
           <span class="sd-detail">캐시 미스에서만 요청을 받습니다.</span>

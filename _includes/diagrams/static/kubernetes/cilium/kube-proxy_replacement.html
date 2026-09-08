@@ -40,21 +40,21 @@
       <div class="sd-lane-title" id="kubernetes-cilium-kube-proxy-replacement-cilium-title">Cilium eBPF replacement</div>
       <div class="sd-flow">
         <div class="sd-node">
-          <strong class="sd-label">Pod A socket와 veth</strong>
-          <span class="sd-detail">같은 Service 요청이 Cilium datapath로 들어갑니다.</span>
+          <strong class="sd-label">Pod A Service request</strong>
+          <span class="sd-detail">Service 주소에 대한 요청이며 적용 hook은 구성에 따라 다릅니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">kernel service lookup</span></div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">Cilium eBPF service datapath</strong>
-          <span class="sd-detail">ClusterIP, NodePort와 LoadBalancer endpoint를 lookup하고 전달합니다.</span>
+          <span class="sd-detail">기본 socket-LB는 socket에서 backend를 선택합니다. Pod namespace 우회 구성은 tc/veth에서 Service lookup을 수행합니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">host 작업을 줄여 전달</span></div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">Pod B endpoint</strong>
-          <span class="sd-detail">복잡한 host iptables chain을 크게 우회한 경로입니다.</span>
+          <span class="sd-detail">kube-proxy의 Service NAT를 대체하지만 모든 host networking을 우회하지는 않습니다.</span>
         </div>
       </div>
-      <p class="sd-note">replacement는 단순히 chain을 건너뛰는 옵션이 아니라 Service traffic 처리 책임을 Cilium으로 전환하는 구성입니다.</p>
+      <p class="sd-note"><code>socketLB.hostNamespaceOnly=true</code>는 Pod namespace의 socket rewrite 대신 tc/veth fallback을 사용합니다. socket과 veth를 필수 연속 LB 단계로 읽으면 안 됩니다.</p>
     </section>
   </div>
 </figure>

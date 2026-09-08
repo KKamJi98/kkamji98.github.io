@@ -43,6 +43,7 @@ GA에서는 중복 인시던트를 식별해 LINKED 상태로 묶는 Triage Agen
 ## 3. 기존 관측 도구를 대체하지 않고 상위에서 소비합니다
 
 {% include diagrams/static/aws/devops-agent/devops-agent-signal-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/devops-agent/devops-agent-signal-flow--3863fa76831b7d83.png" %}
 _왼쪽 세 상자에서 모이는 화살표는 단계가 아니라 에이전트가 읽는 입력 종류다. Journal로 향하는 점선은 조사와 별개로 모든 단계가 기록된다는 뜻이다._
 
 DevOps Agent는 다음 관측 도구와 built-in 통합을 제공합니다.

@@ -137,6 +137,7 @@ peering이 막히는 것은 edge-to-edge routing 제약이고, VGW 기반 VPN과
 private NAT gateway도 함께 정리해 둡니다. private NAT gateway에는 Elastic IP를 붙일 수 없고 인터넷으로 나가지 않습니다. 겹치는 온프레미스 주소 공간과 통신할 때 출발지 주소를 바꾸는 용도입니다. private NAT gateway가 있는 VPC에 internet gateway를 attach하는 것 자체는 가능하지만, 그쪽으로 라우팅하면 internet gateway가 트래픽을 드롭합니다.
 
 {% include diagrams/static/sap-c02/transitive-routing-boundaries.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/transitive-routing-boundaries--0bf7fe4bf35bddaa.png" %}
 
 전이 라우팅이 성립하는 경계와 성립하지 않는 경계를 한 장에 놓은 그림입니다. 위쪽 레인은 온프레미스가 VPC A에 도달한 뒤 peering 상대인 VPC B의 게이트웨이를 쓰려는 경로이고, 아래쪽 레인은 같은 요구를 Direct Connect gateway와 Transit Gateway로 처리하는 경로입니다. 중앙 NAT gateway가 아래쪽 레인에만 있는 이유가 이 절의 표입니다.
 
@@ -200,6 +201,7 @@ Transit Gateway는 attachment를 붙이고 route table로 그 attachment들 사�
 이 둘을 분리하면 spoke VPC끼리는 서로 보지 못하고 shared services VPC만 볼 수 있는 구조가 route table 두 개로 만들어집니다. spoke attachment들은 spoke route table에 association되고 그 table에는 shared services VPC 라우트만 실립니다. shared services attachment는 별도 route table에 association되고 그 table에는 모든 spoke 라우트가 propagate됩니다.
 
 {% include diagrams/static/sap-c02/tgw-route-table-isolation.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/tgw-route-table-isolation--c8116c036129dc9e.png" %}
 
 route table 두 개로 spoke 사이 격리와 shared services 공유를 동시에 만드는 구성을 그린 그림입니다. blackhole route가 별도로 붙어 있는 것은 격리를 라우트 부재가 아니라 명시적 드롭으로 강제하는 경우를 나타냅니다. TGW route table에 blackhole route를 넣으면 해당 CIDR로 향하는 트래픽이 드롭됩니다.
 
@@ -261,6 +263,7 @@ Direct Connect 쪽에는 반대 방향의 권고가 하나 붙습니다. **하�
 **stateful appliance가 있는 VPC attachment에는 appliance mode를 켜야 합니다.** 켜지 않으면 요청 방향과 응답 방향이 서로 다른 AZ의 어플라이언스에 도착합니다. 응답을 받은 어플라이언스는 그 세션을 모르므로 패킷을 드롭합니다. 같은 출발지와 목적지 조합인데도 성공과 실패가 섞이고, 어플라이언스 로그에는 세션 테이블에 없는 패킷이라는 기록이 남습니다.
 
 {% include diagrams/static/sap-c02/tgw-appliance-mode-symmetry.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/tgw-appliance-mode-symmetry--de882f61b34c30b8.png" %}
 
 같은 트래픽이 appliance mode 설정에 따라 어디로 가는지를 두 레인으로 나눠 놓은 그림입니다. 위 레인의 마지막 상자가 드롭인 것이 이 절의 증상이고, 아래 레인의 양방향 연결이 appliance mode가 만드는 상태입니다.
 
@@ -332,6 +335,7 @@ hosted connection이 VIF 하나만 지원한다는 사실이 문항의 축이 �
 virtual interface는 물리 연결 위에 올라가는 논리 인터페이스이고 종단점에 따라 세 종류입니다.
 
 {% include diagrams/static/sap-c02/dx-vif-reach-scope.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/dx-vif-reach-scope--0d7159ca3332f032.png" %}
 
 같은 물리 회선에서 갈라진 세 VIF가 각각 어디에 종단하고 그 너머로 무엇에 도달하는지를 그린 그림입니다. 종단점이 다르다는 사실 하나에서 MTU 상한과 prefix 상한과 SiteLink 가능 여부가 함께 갈립니다.
 
@@ -518,6 +522,7 @@ route table 기반이라는 구현이 세 가지 제약을 만듭니다.
 security group 설정에도 특징이 있습니다. gateway endpoint로 접근할 때 인스턴스는 여전히 **서비스의 public endpoint를 호출합니다.** 따라서 security group outbound에 그 서비스의 prefix list를 허용해야 하고, network ACL은 prefix list를 참조할 수 없으므로 CIDR을 직접 나열해야 합니다.
 
 {% include diagrams/static/sap-c02/s3-private-access-paths.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/s3-private-access-paths--0b2cab82128a84ef.png" %}
 
 같은 S3 버킷에 도달하는 세 경로를 출발지 기준으로 나눠 놓은 그림입니다. 온프레미스 쪽에서 gateway endpoint로 향하는 경로가 점선과 붉은 상자로 처리된 것이 도입의 첫 번째 증상이고, 그 자리를 interface endpoint가 대신합니다.
 

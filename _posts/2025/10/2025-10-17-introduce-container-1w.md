@@ -36,6 +36,7 @@ Container Image는 아래 그림과 같은 **계층 구조(layered structure)** 
 이러한 구조 덕분에 컨테이너 이미지는 **효율적인 버전 관리와 재사용**이 가능합니다. 하위 레이어(Base Image 등)는 변경되지 않으면 다시 빌드할 필요가 없고, 변경된 부분만 새로운 레이어로 추가되어 최종 이미지를 구성합니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/container-image-layers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/container-image-layers--ff87a6165953a083.png" %}
 
 > [O'Reilly GitOps Cookbook: Kubernetes Automation in Practice](https://product.kyobobook.co.kr/detail/S000214781090)  
 > Container Image Layers - 3.1. 도커를 사용한 컨테이너 빌드 p.23  
@@ -224,6 +225,7 @@ docker inspect kind | jq
 ### 3.1. Docker를 사용한 Container Image Build 흐름
 
 {% include diagrams/static/ci-cd/ci-cd-study/docker-build-workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/docker-build-workflow--b6b3e0ed23609e3d.png" %}
 
 ### 3.2. Docker를 사용한 Container Image Build 실습
 
@@ -409,9 +411,11 @@ docker rm -f myweb
 Jib은 아래와 같이 Dockerfile 없이 Build 단계에서 Container Image Registry로 Container Image Push까지 처리하므로, 개발자는 개발에만 집중합니다. 애플리케이션을 종속 항목, 리소스, 클래스 등 별개의 레이어로 구성하고 Docker Image Layer Caching을 활용해 변경사항만 다시 빌드하므로 빌드가 빠릅니다. Jib 레이어 구성과 작은 기본 이미지는 전체 이미지를 작게 유지하여 성능과 이식성을 향상시킵니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/docker-build-workflow.html instance="-comparison" %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/docker-build-workflow--1a2e14f23d39a851.png" %}
 > Docker Build Workflow  
 
 {% include diagrams/static/ci-cd/ci-cd-study/jib-build-workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/jib-build-workflow--525614cf35797e6b.png" %}
 > Jib Build Workflow  
 
 ### 4.2. Docker가 필요 없는 Jib을 사용한 Container Image Build (dockerless) 빌드 흐름 실습
@@ -831,6 +835,7 @@ Buildpack Mechanism은 아래 두 단계로 구성됩니다.
   - 일단 Buildpack이 결정되면 **소스는 컴파일**되고, Buildpack은 적절한 **진입점** entrypoint 과 **시작 스크립트** startup scripts 가 포함된 **컨테이너 이미지**를 만든다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/buildpacks-mechanism.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/buildpacks-mechanism--531ac6d055790189.png" %}
 > [Buildpack.io - What is a buildpack?](https://buildpacks.io/docs/for-app-developers/concepts/buildpack/)  
 > Buildpack Mechanism  
 

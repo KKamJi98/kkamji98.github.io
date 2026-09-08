@@ -56,6 +56,7 @@ Apache Iceberg는 이 문제를 정반대로 풉니다. 디렉터리를 스캔�
 Iceberg의 모든 능력은 메타데이터 구조에서 나옵니다. 메타데이터는 네 단계로 쌓입니다.
 
 {% include diagrams/static/aws/analytics-stack-10-iceberg-metadata-layers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-10-iceberg-metadata-layers--510b073a234037a6.png" %}
 _카탈로그는 현재 metadata file 하나만 가리키고, 그 아래로 스냅샷(manifest list), 파일 목록과 통계(manifest file), 실제 data file과 row-level delete file이 이어진다. 엔진은 디렉터리를 훑는 대신 이 트리를 따라 읽을 파일을 고른다._
 
 실제 스토리지에 펼쳐 보면 대략 다음과 같은 모습입니다.
@@ -251,6 +252,7 @@ ALTER TABLE sales_db.daily_sales DROP PARTITION FIELD day(sale_date);
 행 단위 수정/삭제(`UPDATE`, `DELETE`, `MERGE`)는 데이터 파일을 다시 쓰는 방식과 delete file을 추가하는 방식으로 설명할 수 있습니다. Iceberg의 write mode 설정과 기본값, 지원 범위는 엔진과 테이블 포맷 버전에 따라 달라지므로, 사용하는 엔진 문서에서 확인해야 합니다.
 
 {% include diagrams/static/aws/analytics-stack-11-iceberg-cow-vs-mor.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-11-iceberg-cow-vs-mor--b81addbf91eec70b.png" %}
 
 ### 7.1. Copy-on-Write (CoW)
 

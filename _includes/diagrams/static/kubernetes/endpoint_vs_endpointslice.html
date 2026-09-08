@@ -13,7 +13,7 @@
         <div class="sd-arrow"><span class="sd-edge-label">single object</span></div>
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">Endpoints object</strong>
-          <span class="sd-detail">한 Service의 모든 address를 하나의 객체에 나열합니다.</span>
+          <span class="sd-detail">이 1,000개 예시는 한 Service의 address를 단일 객체에 나열합니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">full list</span></div>
         <div class="sd-node">
@@ -34,25 +34,25 @@
         <div class="sd-arrow"><span class="sd-edge-label">slice set</span></div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">EndpointSlice objects</strong>
-          <span class="sd-detail">기본 약 100 endpoint 단위로 shard를 만듭니다.</span>
+          <span class="sd-detail">기본 최대 100 endpoints/slice입니다. 실제 배치는 연속 번호나 고정 크기가 아닙니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">changed slice만 patch</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">변경된 slice 단위로 갱신</span></div>
         <div class="sd-grid sd-grid--three">
           <div class="sd-node">
             <strong class="sd-label">Slice-1</strong>
-            <span class="sd-detail">Pod-1 ... Pod-99 IP</span>
+            <span class="sd-detail">예: Pod-1 ... Pod-100 IP</span>
           </div>
           <div class="sd-node">
             <strong class="sd-label">Slice-2</strong>
-            <span class="sd-detail">Pod-101 ... Pod-199 IP</span>
+            <span class="sd-detail">예: Pod-101 ... Pod-200 IP</span>
           </div>
           <div class="sd-node">
             <strong class="sd-label">Slice-3</strong>
-            <span class="sd-detail">Pod-201 ... Pod-299 IP</span>
+            <span class="sd-detail">예: Pod-201 ... Pod-300 IP</span>
           </div>
         </div>
       </div>
-      <p class="sd-note"><code>addressType</code>의 IPv4, IPv6, FQDN과 zone, node topology metadata를 함께 담을 수 있습니다.</p>
+      <p class="sd-note">앞의 세 slice만 표시한 개념 예시이며 나머지는 생략했습니다. addressType과 zone, node metadata도 함께 담습니다.</p>
     </section>
   </div>
 </figure>

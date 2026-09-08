@@ -1,7 +1,5 @@
 <figure class="sd sd--flow" id="gcp-access-stack" aria-labelledby="gcp-access-stack-title">
   <figcaption class="sd-title" id="gcp-access-stack-title">Console, gcloud, SDK는 같은 Google Cloud API의 프런트엔드입니다</figcaption>
-  <p class="sd-intro">어떤 도구를 골라도 요청은 같은 API 경로를 거치므로 IAM 평가와 audit log의 요청 주체가 도구에 따라 달라지지 않습니다.</p>
-
   <section class="sd-band" aria-labelledby="gcp-access-stack-frontends-title">
     <div class="sd-band-title" id="gcp-access-stack-frontends-title">1. 작업을 시작하는 Front-end</div>
     <div class="sd-grid sd-grid--three">
@@ -23,20 +21,18 @@
       </div>
     </div>
   </section>
-
-  <div class="sd-arrow"><span class="sd-edge-label">각 도구가 같은 API 요청으로 수렴</span></div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">각 도구가 같은 API 요청으로 수렴</span>
+  </div>
   <div class="sd-node sd-node--accent">
     <strong class="sd-label">Google Cloud API</strong>
     <span class="sd-detail">REST와 gRPC endpoint가 인증, 권한, 요청을 처리</span>
   </div>
-
-  <div class="sd-arrow"><span class="sd-edge-label">허용된 요청을 서비스에 전달</span></div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">허용된 요청을 서비스에 전달</span>
+  </div>
   <div class="sd-node">
     <strong class="sd-label">Google Cloud services</strong>
     <span class="sd-detail">Compute Engine, Cloud Storage, BigQuery, IAM 등 실제 서비스</span>
   </div>
-
-  <p class="sd-note">Cloud Console에서 만든 작업과 gcloud 또는 client library가 만든 작업은 결국 동일한 Google Cloud API 호출로 관찰됩니다.</p>
 </figure>

@@ -1,7 +1,6 @@
 <figure class="sd sd--comparison" id="lambda-vpc-reachability" aria-labelledby="lambda-vpc-reachability-title">
   <figcaption class="sd-title" id="lambda-vpc-reachability-title">VPC에 붙이는 순간 함수가 닿을 수 있는 곳이 바뀐다</figcaption>
   <p class="sd-note">VPC 미연결 함수는 Lambda 소유 네트워크에서 퍼블릭 인터넷으로 나갑니다. VPC 연결 함수는 Hyperplane ENI를 통해 라우팅된 대상만 봅니다.</p>
-
   <div class="sd-grid">
     <section class="sd-lane" aria-labelledby="lambda-vpc-reachability-novpc-title">
       <div class="sd-lane-title" id="lambda-vpc-reachability-novpc-title">VPC 미연결</div>
@@ -10,14 +9,15 @@
           <strong class="sd-label">VPC 미연결 함수</strong>
           <span class="sd-detail">Lambda 소유 네트워크에서 실행됩니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">기본 경로</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">기본 경로</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">퍼블릭 인터넷</strong>
           <span class="sd-detail">퍼블릭 endpoint로 기본 접근합니다.</span>
         </div>
       </div>
     </section>
-
     <section class="sd-lane" aria-labelledby="lambda-vpc-reachability-vpc-title">
       <div class="sd-lane-title" id="lambda-vpc-reachability-vpc-title">VPC 연결</div>
       <div class="sd-flow">
@@ -25,7 +25,9 @@
           <strong class="sd-label">VPC 연결 함수</strong>
           <span class="sd-detail">ENI 생성 중에는 Pending이고 14일 유휴면 Inactive가 됩니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">공유 네트워크 연결</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">공유 네트워크 연결</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">Hyperplane ENI</strong>
           <span class="sd-detail">subnet과 SG 조합당 하나이며 같은 조합의 함수가 공유합니다.</span>
@@ -35,20 +37,23 @@
             <strong class="sd-label">프라이빗 RDS</strong>
             <span class="sd-detail">VPC 안의 라우팅으로 도달합니다.</span>
           </div>
-          <div class="sd-node">
-            <strong class="sd-label">NAT gateway</strong>
-            <span class="sd-detail">외부 호출을 위해 별도 경로가 필요합니다.</span>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">NAT gateway</strong>
+              <span class="sd-detail">외부 호출을 위해 별도 경로가 필요합니다.</span>
+            </div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">NAT 경유</span>
+            </div>
+            <div class="sd-node">
+              <strong class="sd-label">외부 SaaS API</strong>
+              <span class="sd-detail">경로를 만들지 않으면 타임아웃됩니다.</span>
+            </div>
           </div>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">NAT 경유</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">외부 SaaS API</strong>
-          <span class="sd-detail">경로를 만들지 않으면 타임아웃됩니다.</span>
         </div>
       </div>
     </section>
   </div>
-
   <div class="sd-node sd-node--warning">
     <strong class="sd-label">퍼블릭 서브넷에 연결</strong>
     <span class="sd-detail">퍼블릭 IP도 인터넷 경로도 자동으로 생기지 않습니다. 외부 호출에는 NAT gateway 또는 필요한 VPC endpoint 경로를 만듭니다.</span>

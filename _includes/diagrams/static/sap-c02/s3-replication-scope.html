@@ -4,7 +4,9 @@
     <strong class="sd-label">원본 버킷</strong>
     <span class="sd-detail">source와 destination 모두 versioning 필요, Object Lock이면 대상에도 활성화</span>
   </div>
-  <div class="sd-arrow"><span class="sd-edge-label">복제 범위 선택</span></div>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">복제 범위 선택</span>
+  </div>
   <div class="sd-grid sd-grid--three">
     <section class="sd-lane" aria-label="live replication 경로">
       <div class="sd-lane-title">live replication</div>
@@ -13,7 +15,9 @@
           <strong class="sd-label">CRR 또는 SRR</strong>
           <span class="sd-detail">규칙 설정 뒤 생성 또는 갱신된 객체만</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">RTC는 15분 SLA</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">RTC는 15분 SLA</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">대상 버킷</strong>
           <span class="sd-detail">versioning을 끄면 FAILED</span>
@@ -27,7 +31,9 @@
           <strong class="sd-label">S3 Batch Replication</strong>
           <span class="sd-detail">기존 객체, 실패 재시도, 복제본의 복제</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">RTC SLA 없음</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">RTC SLA 없음</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">대상 버킷</strong>
           <span class="sd-detail">live와 같은 destination</span>
@@ -39,9 +45,8 @@
       <div class="sd-flow">
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">복제 제외 항목</strong>
-          <span class="sd-detail">version ID를 지정한 DELETE, lifecycle 액션과 delete marker</span>
+          <span class="sd-detail">version ID를 지정한 DELETE, lifecycle이 만든 액션과 delete marker</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">대상에 도달하지 않음</span></div>
         <div class="sd-node sd-node--muted">
           <strong class="sd-label">버킷 레벨 항목과 Glacier 계열</strong>
           <span class="sd-detail">서브리소스와 아카이브 티어 객체도 제외</span>

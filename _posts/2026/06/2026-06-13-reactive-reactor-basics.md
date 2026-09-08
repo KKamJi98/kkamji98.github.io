@@ -38,6 +38,7 @@ reactiveRepo.findById(id)      // "조회하면 -> 이렇게 처리해라" 파�
 ```
 
 {% include diagrams/static/spring/spring-09-blocking-vs-reactive.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-09-blocking-vs-reactive--0e0ce1261cd10418.png" %}
 _블로킹: I/O 대기 동안 스레드 점유 vs 논블로킹: 파이프라인 선언, 스레드 freed, 준비되면 처리_
 
 - 명령형: "호출하고, 기다리고, 받는다." 기다리는 동안 스레드 점유.
@@ -59,6 +60,7 @@ _블로킹: I/O 대기 동안 스레드 점유 vs 논블로킹: 파이프라인 
 - **Processor**: Publisher이자 Subscriber (중간 변환)
 
 {% include diagrams/static/spring/spring-10-mono-flux-backpressure.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-10-mono-flux-backpressure--8d55e834be2f1dd5.png" %}
 _Publisher -> operators -> Subscriber, 그리고 Subscriber가 request(n)으로 demand를 거꾸로 신호_
 
 핵심은 **backpressure**입니다. 소비자가 `request(n)`으로 **받을 양을 직접 신호**하므로, 빠른 생산자가 느린 소비자를 압도하지 않습니다.

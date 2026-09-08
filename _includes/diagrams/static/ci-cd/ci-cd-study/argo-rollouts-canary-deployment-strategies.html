@@ -5,12 +5,16 @@
       <strong class="sd-label">Users</strong>
       <span class="sd-detail">Live traffic을 발생</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">모든 phase의 공통 진입</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">모든 phase의 공통 진입</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Load Balancer</strong>
       <span class="sd-detail">phase별 weight로 두 버전에 분배</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">canary weight 단계 진행</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">canary weight 단계 진행</span>
+    </div>
     <div class="sd-stack">
       <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-initial-title">
         <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-initial-title">1. Initial version</div>
@@ -35,15 +39,15 @@
         </div>
       </section>
       <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-canary-thirtythree-title">
-        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-thirtythree-title">3. New version used by 33%</div>
+        <div class="sd-band-title" id="sd-ci-cd-study-argo-canary-thirtythree-title">3. New version used by about one third</div>
         <div class="sd-grid">
           <article class="sd-node">
             <strong class="sd-label">Version 34</strong>
-            <span class="sd-detail">66% traffic</span>
+            <span class="sd-detail">약 66.7% traffic</span>
           </article>
           <article class="sd-node sd-node--accent">
             <strong class="sd-label">Version 35</strong>
-            <span class="sd-detail">33% canary traffic</span>
+            <span class="sd-detail">약 33.3% canary traffic</span>
           </article>
         </div>
       </section>

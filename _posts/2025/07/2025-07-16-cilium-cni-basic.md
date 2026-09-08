@@ -50,6 +50,7 @@ eBPF를 사용하기에 Cilium은 대규모 환경에서도 매우 뛰어난 확
 Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux Network Stack**을 사용합니다. 하지만 이러한 방식은 복잡하고, 변경에 시간이 오래걸리며, Layer를 건너 뛰기 어렵다는 단점이 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/kubernetes_uses_iptables_for.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kubernetes_uses_iptables_for--240e6b3aaab6d398.png" %}
 
 - **kube-proxy**: kube-proxy는 Kubernetes Cluster의 핵심 구성 요소 중 하나입니다. 이 컴포넌트는 **서비스(Services)**를 구현하고 로드 밸런싱(load balancing) 기능을 제공하기 위해 DNAT (Destination Network Address Translation) iptables 규칙을 사용
 - **대부분의 CNI 플러그인(CNI plugins)**: CNI (Container Network Interface)는 컨테이너 런타임과 네트워크 플러그인 간의 표준 인터페이스입니다. **Calico**, **Flannel**, **Weave Net** 등 대부분의 CNI 플러그인들은 **네트워크 정책(Network Policies)**을 구현하기 위해 iptables를 사용
@@ -57,6 +58,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 ### 3.1. iptables의 단점
 
 {% include diagrams/static/kubernetes/cilium/disadvantages_of_iptables.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/disadvantages_of_iptables--08a0990b6c69ba45.png" %}
 
 - **단일 트랜잭션으로 모든 규칙 업데이트 필요**: iptables의 규칙을 업데이트할 때는 모든 규칙을 처음부터 다시 만들고 업데이트해야 하는 '단일 트랜잭션' 방식을 따릅니다. 이는 하나의 작은 규칙을 변경하더라도 전체 규칙 세트를 재구성해야 함을 의미하며, 규칙이 많아질수록 비효율성이 커집니다.
 - **연결 리스트(Linked List)로 구현된 규칙 체인, 모든 연산은 O(n)**: iptables는 규칙 체인(chains of rules)을 '연결 리스트' 형태로 구현합니다. 연결 리스트의 특성상, 어떤 특정 규칙을 찾거나 적용하기 위해서는 목록의 처음부터 순차적으로 탐색해야 합니다. 이로 인해 모든 연산(예: 규칙 추가, 삭제, 조회, 매칭)은 규칙의 수(n)에 비례하는 시간 복잡도 O(n)를 가집니다. 규칙의 수가 많아질수록 성능 저하가 심해집니다.
@@ -74,13 +76,18 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 가장 큰 장점은 압도적인 성능과 높은 프로그래밍 유연성입니다. 특히 복잡한 규칙으로 성능 저하가 발생하는 기존 iptables 방식의 한계를 극복하는 차세대 네트워킹 기술로 주목받고 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/linux_kernel_network_flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/linux_kernel_network_flow--a34e6ece0f177b0a.png" %}
 
 {% include diagrams/static/kubernetes/cilium/bgp_network_flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/bgp_network_flow--4b6f86526cfcb75f.png" %}
 {% include diagrams/static/kubernetes/cilium/standard_vs_cilium_ebpf_networing.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/standard_vs_cilium_ebpf_networing--2b3b5c44fbc22649.png" %}
 
 {% include diagrams/static/kubernetes/cilium/ebpf_summary.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_summary--492a2839c4be795c.png" %}
 
 {% include diagrams/static/kubernetes/cilium/ebpf_merit.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_merit--4d20338aa0516901.png" %}
 
 ### 4.1. 장점 1. 커널 내 고성능 네트워킹 및 실행
 
@@ -118,10 +125,12 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 **eBPF**는 Kernel 코드의 특정 지점에 **훅(Hook)**을 걸어두고, 해당 지점에서 이벤트(예: 네트워크 패킷 수신)가 발생하면 미리 로드해둔 eBPF 프로그램을 실행하는 방식으로 동작합니다. verifier가 프로그램의 안전성을 검사한 뒤 허용된 helper와 map을 통해 Kernel 상태에 접근하며, JIT가 가능한 환경에서는 프로그램을 네이티브 명령으로 변환해 실행합니다. 사전 정의된 훅(Hook)에는 시스템 호출, 함수 진입/종료, Kernel 추적점, 네트워크 이벤트 등이 포함됩니다.
 
 {% include diagrams/static/kubernetes/cilium/ebpf_event.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_event--ce15a7f62a896929.png" %}
 
 **eBPF**는 특정 요구 사항에 맞는 사전 정의된 후크가 없는 경우 Kernel 프로브(kprobe)나 사용자 프로브(uprobe)를 만들어 Kernel이나 사용자 애플리케이션의 어느 곳에나 eBPF 프로그램을 첨부할 수 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/ebpf_scenario.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_scenario--fc7e247083238f3f.png" %}
 
 - XDP (eXpress Data Path): 네트워크 드라이버 단에서 가장 먼저 패킷을 처리하여 최고 속도를 보장
 - TC (Traffic Control): Kernel의 트래픽 제어 계층에서 패킷을 처리
@@ -134,6 +143,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 Cilium에는 크게 **Encapsulation (Tunnel) Mode**와 **Direct Routing (Native) Mode**가 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/cilium_networking_modes.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/cilium_networking_modes--cef34630ce3a224a.png" %}
 
 ### 6.1. Encapsulation (Tunnel) Mode - VXLAN(Virtual Extensible LAN) / Geneve
 
@@ -163,6 +173,7 @@ Cilium에는 크게 **Encapsulation (Tunnel) Mode**와 **Direct Routing (Native)
 ### 6.2. Direct Routing (Native) Mode
 
 {% include diagrams/static/kubernetes/cilium/native_routing.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/native_routing--8a53ea159db58604.png" %}
 
 캡슐화를 쓰지 않고, Pod CIDR 자체를 물리 스위치, 라우터 또는 클라우드 네트워크가 전달하도록 해 패킷을 바로 전달합니다. 현재 Cilium에서는 `routing-mode: native`로 활성화합니다. 이 모드에서는 노드와 네트워크가 다른 노드의 Pod CIDR를 전달할 수 있어야 하며, 같은 L2(Layer 2) 구간에서는 direct node route를 사용하거나 그 밖의 환경에서는 BGP(Border Gateway Protocol) 같은 경로 배포 방식을 선택합니다.
 
@@ -197,6 +208,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 노드마다 부여된 `PodCIDR` 범위 안에서 **kube-controller-manager**가 직접 IP를 할당하는 방식입니다.
 
 {% include diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode--221aed3a16b7b4cc.png" %}
 
 
 ### 7.2. Cluster Scope
@@ -204,6 +216,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 각 노드에 노드별 `PodCIDR`을 할당하고, 각 노드의 호스트 범위 할당자를 사용하여 IP를 할당한다는 점에서 `Kubernetes Host Scope`와 비슷하지만 **Cilium operator**가 `v2.CiliumNode` 리소스를 통해 노드별 `PodCIDR`을 관리한다는 점에서 차이가 있습니다. 따라서 Kubernetes `v1.Node` 리소스에 의존하지 않아 Kubernetes가 `PodCIDR`을 배포하도록 구성할 수 없거나 더 많은 제어가 필요한 경우에 유용하게 사용할 수 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode--c697c4483b8124a0.png" %}
 
 
 ### 7.3. Multi-Pool (Beta)
@@ -211,6 +224,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 사용자가 정의한 작업 주석 및 노드 레이블에 따라 여러 개의 다른 IPAM 풀에서 PodCIDR을 할당하는 것을 지원합니다.
 
 {% include diagrams/static/kubernetes/cilium/multi-pool.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/multi-pool--4ae535c7e21675d7.png" %}
 
 ---
 
@@ -219,8 +233,10 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 Cilium은 eBPF service datapath로 kube-proxy의 Service 구현을 대체할 수 있습니다. 이는 iptables chain을 단순히 건너뛰는 기능이 아니라 ClusterIP, NodePort, LoadBalancer 같은 Service traffic을 처리하는 책임을 Cilium으로 옮기는 전환입니다.
 
 {% include diagrams/static/kubernetes/cilium/problems_with_iptables.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/problems_with_iptables--823a484949fd57d4.png" %}
 
 {% include diagrams/static/kubernetes/cilium/kube-proxy_replacement.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kube-proxy_replacement--21061e829a40cb5a.png" %}
 
 기존 cluster에서 kube-proxy를 제거하거나 replacement를 켜고 끄는 작업은 기존 Service 연결을 끊을 수 있습니다. 새 cluster에서 지원되는 구성으로 시작하는 편이 가장 단순하며, migration이라면 Service connectivity, source IP 보존, NodePort, health check를 사전 검증하고 즉시 되돌릴 수 있는 절차를 준비해야 합니다.
 

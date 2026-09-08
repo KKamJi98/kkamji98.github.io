@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/multiple-pods-evicted-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/multiple-pods-evicted-flow--5eb9060d7460419a.png" %}
 
 쿠버네티스 환경에서 이미지를 변환해주는 웹 사이트 <https://image-converter.kkamji.net> 를 로컬 클러스터에서 운영하던 도중 **여러 Pod가 동시에 Evicted 되는 문제가 발생**했습니다. 당시 상황과 원인을 분석하고 해결 방법과 재발 방지 방법에 대해 알아봅니다.
 

@@ -20,6 +20,7 @@ image:
 로컬 Anvil 8547을 읽었습니다. `txpool_status`는 `pending 0`, `queued 0`이었습니다. latest block의 `miner`는 `0x000...000`이고, 거래는 1건이었습니다. builder API도, relay도, MEV-Boost도 없습니다.
 
 {% include diagrams/static/blockchain/anvil-no-pbs.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/anvil-no-pbs--50cd5f4eb76c0c1f.png" %}
 _개발 체인은 보낸 순서에 가깝게 한 프로세스가 바로 캔다. 경매가 없다._
 
 이 관측이 중요한 이유는, 테스트에서 본 포함 순서를 공개망 순서로 옮기면 안 되기 때문입니다. Anvil의 receipt는 실행 결과입니다. 공개망의 포함 순서는 다른 주체가 팝니다.
@@ -41,6 +42,7 @@ ethereum.org는 proof-of-work와 proof-of-stake 모두에서, block을 만드는
 validator는 여전히 block을 제안하고 투표합니다. payload를 조립하는 쪽은 builder입니다. searcher의 bundle은 builder로 들어가고, proposer는 완성된 payload를 받아 체인에 올립니다.
 
 {% include diagrams/static/blockchain/pbs-builder-proposer.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/pbs-builder-proposer--4d310b61c38303e5.png" %}
 _실행 순서를 정하는 주체와, 그 block에 투표하는 주체가 갈라진다._
 
 인덱서와 입금 확인은 이 경로의 바깥에 있습니다. builder가 순서를 바꾼 뒤의 receipt를 “사용자가 보낸 순서”로 저장하면, 운영 로그와 체인 로그가 어긋납니다. Anvil에서는 그 어긋남이 거의 보이지 않습니다.

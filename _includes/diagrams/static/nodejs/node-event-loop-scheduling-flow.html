@@ -4,7 +4,7 @@
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Synchronous callback</strong>
-      <span class="sd-detail">현재 body가 끝날 때까지 먼저 실행</span>
+      <span class="sd-detail">CommonJS script 또는 일반 callback body가 끝날 때까지 실행</span>
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">callback 종료</span></div>
     <div class="sd-node sd-node--warning">
@@ -16,27 +16,15 @@
       <strong class="sd-label">V8 microtasks</strong>
       <span class="sd-detail">Promise continuation과 <code>queueMicrotask()</code></span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">queues exhausted</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">timers phase</strong>
-      <span class="sd-detail"><code>setTimeout</code>, <code>setInterval</code></span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">다음 phase</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">poll phase</strong>
-      <span class="sd-detail">I/O callbacks</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">check로 이동</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">check phase</strong>
-      <span class="sd-detail"><code>setImmediate</code></span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">다음 turn</span></div>
-    <div class="sd-node sd-node--muted">
-      <strong class="sd-label">JavaScript continuation</strong>
-      <span class="sd-detail">다음 event loop turn</span>
-    </div>
+<div class="sd-arrow"><span class="sd-edge-label">두 queue를 모두 비운 뒤 event loop 실행 재개</span></div><div class="sd-node"><strong class="sd-label">JavaScript continuation</strong><span class="sd-detail">현재 phase와 준비된 callback에 따라 실행을 계속함</span></div>
   </div>
+<section class="sd-lane"><div class="sd-lane-title">주요 phase와 callback 종류 (고정된 다음 실행 순서가 아님)</div>
+<div class="sd-grid">
+<div class="sd-node"><strong class="sd-label">timers phase</strong><span class="sd-detail">setTimeout, setInterval</span></div>
+<div class="sd-node"><strong class="sd-label">poll phase</strong><span class="sd-detail">I/O callbacks</span></div>
+<div class="sd-node"><strong class="sd-label">check phase</strong><span class="sd-detail">setImmediate</span></div>
+</div>
+</section>
 
   <p class="sd-note">CommonJS script와 일반 callback boundary에서는 두 queue가 모두 소진될 때까지 다음 phase로 넘어가지 않습니다. recursive <code>nextTick</code>은 queue를 계속 채워 poll phase를 starvation시킬 수 있습니다.</p>
   <p class="sd-note">ESM top-level 자체는 microtask context이므로 <code>nextTick</code>과 Promise 순서가 달라질 수 있습니다. <code>setTimeout(0)</code>과 <code>setImmediate()</code>의 top-level 우선순위도 고정 계약이 아닙니다.</p>

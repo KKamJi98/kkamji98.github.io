@@ -26,6 +26,7 @@ GCP에서는 거의 모든 리소스와 권한이 이 계층에 상속(Inheritan
 GCP의 모든 리소스는 트리(Tree) 형태의 계층 안에 배치됩니다. 최상위부터 `Organization > Folder > Project > Resource` 순서이며, 위에서 아래로 권한과 정책이 흘러내려 갑니다.
 
 {% include diagrams/static/gcp/gcp-resource-hierarchy.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-resource-hierarchy--01e82a43b42504f1.png" %}
 _Organization -> Folder -> Project -> Resource로 이어지는 GCP 리소스 계층_
 
 | 계층         | 필수 여부              | 역할                                      |
@@ -63,6 +64,7 @@ Organization은 사용자가 직접 만들지 못합니다. **Google Workspace**
 - Folder에 설정한 정책은 그 안의 모든 하위 Folder와 Project로 상속됩니다.
 
 {% include diagrams/static/gcp/gcp-org-tree.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-org-tree--35f5187839a76a69.png" %}
 _Folder로 부서/환경을 묶고 그 아래 Project를 배치한 구성 예시_
 
 > Folder는 **Organization이 존재할 때만** 생성할 수 있습니다. 개인 계정에는 Organization이 없으므로 Folder도 만들 수 없습니다.  
@@ -111,6 +113,7 @@ Project는 리소스/권한/API의 경계이면서 **비용 귀속의 경계**�
 IAM 정책(누가 무엇을 할 수 있는가)은 Organization, Folder, Project, 그리고 일부 리소스 레벨에 부여할 수 있습니다. 상위 노드에 부여한 정책은 하위로 상속되며, 특정 리소스에 실제로 적용되는 권한은 **자기 자신의 정책 + 모든 상위 노드의 정책을 합집합(Union)** 한 결과입니다.
 
 {% include diagrams/static/gcp/gcp-iam-inheritance.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-iam-inheritance--01b46e6c7f90d560.png" %}
 _특정 리소스의 effective allow policy는 자기 정책과 상위 상속 정책의 합집합_
 
 공식 문서는 특정 리소스의 effective allow policy를 다음과 같이 정의합니다.

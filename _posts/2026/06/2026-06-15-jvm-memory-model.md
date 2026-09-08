@@ -27,6 +27,7 @@ image:
 JVM은 메모리를 용도별 영역으로 나눕니다. 큰 구분은 **Heap vs Non-heap**입니다.
 
 {% include diagrams/static/jvm/jvm-03-jvm-memory-areas.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-03-jvm-memory-areas--5da0e5ca31cea4df.png" %}
 _Heap(객체, GC, -Xmx) vs Non-heap/native(metaspace, 스레드 스택, code cache, direct)_
 
 ---
@@ -165,6 +166,7 @@ jmap -histo:live <pid>
 그래서 컨테이너 메모리 한도는 이렇게 구성됩니다.
 
 {% include diagrams/static/jvm/jvm-04-container-memory-breakdown.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-04-container-memory-breakdown--54121287619ee22d.png" %}
 _컨테이너 메모리 = Heap(-Xmx) + metaspace + 스레드 스택 + code cache + direct + 여유_
 
 ```text

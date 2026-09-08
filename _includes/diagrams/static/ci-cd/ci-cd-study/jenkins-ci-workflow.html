@@ -1,5 +1,5 @@
 <figure class="sd sd--flow" id="jenkins-ci-workflow" aria-labelledby="jenkins-ci-workflow-title">
-  <figcaption class="sd-title" id="jenkins-ci-workflow-title">Jenkins CI와 Argo CD 배포 경로</figcaption>
+  <figcaption class="sd-title" id="jenkins-ci-workflow-title">Jenkins CI와 GitOps 확장 설계</figcaption>
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">개발팀 Repo</strong>
@@ -8,7 +8,7 @@
     <div class="sd-arrow"><span class="sd-edge-label">source checkout</span></div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">CI server (Jenkins)</strong>
-      <span class="sd-detail">image build와 deployment 설정 변경을 수행</span>
+      <span class="sd-detail">실습 Jenkinsfile: source checkout과 image build/push</span>
     </div>
   </div>
   <div class="sd-grid">
@@ -28,8 +28,8 @@
       </div>
     </section>
     <section class="sd-lane" aria-label="GitOps 배포 경로">
-      <div class="sd-lane-title">GitOps deployment path</div>
-      <div class="sd-arrow"><span class="sd-edge-label">CI server (Jenkins) -&gt; DevOps팀 Repo: manifest update</span></div>
+      <div class="sd-lane-title">GitOps 확장 예시 (실습 미구현)</div>
+      <div class="sd-arrow"><span class="sd-edge-label">별도 manifest-update 자동화를 추가한 경우</span></div>
       <div class="sd-flow">
         <div class="sd-node">
           <strong class="sd-label">DevOps팀 Repo</strong>
@@ -41,7 +41,7 @@
           <span class="sd-detail">Repo의 desired state를 동기화</span>
         </div>
         <div class="sd-arrow">
-          <span class="sd-edge-label">CD server (Argo CD) -&gt; K8S: 배포와 삭제</span>
+          <span class="sd-edge-label">Argo CD -&gt; K8S: sync (삭제는 prune 설정 시)</span>
           <span class="sd-edge-label">Container image registry -&gt; K8S: image pull</span>
         </div>
         <div class="sd-node sd-node--muted">
@@ -51,5 +51,5 @@
       </div>
     </section>
   </div>
-  <p class="sd-note">Jenkins가 DevOps팀 Repo에 변경을 반영하면 Argo CD가 manifest를 읽고 K8S에 적용합니다. K8S의 image 다운로드는 registry에서 일어납니다.</p>
+  <p class="sd-note">본문 실습은 image push 후 운영자가 kubectl set image로 0.0.3을 적용합니다. 오른쪽 GitOps 경로는 별도 확장 설계이며, 제시된 Jenkinsfile에는 manifest 갱신이나 Argo CD 연동이 없습니다.</p>
 </figure>

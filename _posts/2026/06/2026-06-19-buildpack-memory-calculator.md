@@ -27,6 +27,7 @@ image:
 Series 1에서 앱은 fat jar로 패키징된다고 했습니다. 그 jar를 컨테이너 이미지로 만드는 한 방법이 **buildpack**입니다.
 
 {% include diagrams/static/jvm/jvm-05-fatjar-to-container.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-05-fatjar-to-container--a76aa28f1d038ceb.png" %}
 _fat jar -> buildpack -> OCI 이미지 -> 컨테이너 실행 (Dockerfile 없이)_
 
 ---
@@ -48,6 +49,7 @@ DevSecOps 관점 이점: 베이스 이미지/패치를 buildpack이 일관되게
 Paketo Java buildpack의 핵심 부품이 **Memory Calculator**입니다. 의존 체인을 한 줄로 정리하면, Spring Boot의 `bootBuildImage`는 기본 builder로 `paketobuildpacks/builder-noble-java-tiny`(Paketo)를 호출하고, 그 Paketo BellSoft Liberica buildpack이 cloudfoundry의 java-buildpack-memory-calculator를 launch layer에 심어 컨테이너 시작 시 `-Xmx`를 계산합니다.
 
 {% include diagrams/static/jvm/jvm-06-memory-calculator.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-06-memory-calculator--73cb0be3e089310a.png" %}
 _컨테이너 메모리에서 non-heap을 빼고 남는 것이 Heap(-Xmx)_
 
 계산식은 다음과 같이 명시돼 있습니다.

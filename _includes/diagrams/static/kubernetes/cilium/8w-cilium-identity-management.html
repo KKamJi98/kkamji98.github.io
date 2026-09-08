@@ -2,7 +2,7 @@
   <figcaption class="sd-title" id="sd-kubernetes-cilium-8w-cilium-identity-management-title">Cilium은 label 집합을 cluster 전역 numeric identity로 조회한다</figcaption>
   <section class="sd-lane" aria-label="Label to identity mapping">
     <div class="sd-lane-title">Label to Identity map</div>
-    <table class="sd-table">
+    <table class="sd-table sd-quality-table">
       <thead>
         <tr><th scope="col">Security labels</th><th scope="col">Identity</th></tr>
       </thead>
@@ -15,8 +15,8 @@
   </section>
   <div class="sd-flow">
     <div class="sd-node">
-      <strong class="sd-label">Request: role=backend?</strong>
-      <span class="sd-detail">Cilium이 해당 label을 가진 endpoint를 찾는다.</span>
+      <strong class="sd-label">정확한 label 집합: {role=backend}</strong>
+      <span class="sd-detail">Cilium이 전체 security label 집합에 해당하는 numeric identity를 조회한다.</span>
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">lookup</span></div>
     <div class="sd-node sd-node--muted">
@@ -26,7 +26,7 @@
     <div class="sd-arrow"><span class="sd-edge-label">response: identity 20</span></div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Identity 20</strong>
-      <span class="sd-detail"><code>role=backend</code> label의 cluster-wide identity</span>
+      <span class="sd-detail">정확히 <code>role=backend</code>만 포함한 집합의 cluster-wide identity</span>
     </div>
   </div>
   <section class="sd-lane" aria-label="Endpoint identities by node">
@@ -46,5 +46,5 @@
       </div>
     </div>
   </section>
-  <p class="sd-note">더 구체적인 label 집합인 <code>role=backend</code>와 <code>user=joe</code>는 별도 Identity 30을 만들 수 있다. <code>role=backend</code> query는 Node C의 Identity 20으로 해석된다.</p>
+  <p class="sd-note">더 구체적인 label 집합인 <code>role=backend</code>와 <code>user=joe</code>는 별도 Identity 30을 만들 수 있다. 이 예시의 정확한 집합 조회는 Identity 20입니다. 정책 selector <code>role=backend</code>는 Identity 20과 30 모두에 일치합니다. 숫자는 예시 매핑입니다.</p>
 </figure>

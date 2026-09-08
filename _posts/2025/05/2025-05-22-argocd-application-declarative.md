@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/ci-cd/argocd-declarative-application.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/argocd-declarative-application--ce0c23ed23ff2084.png" %}
 
 최근 Kubernetes 환경에서 ArgoCD를 사용한 GitOps가 주목받고 있습니다. ArgoCD를 처음 접하는 경우, ArgoCD Web UI를 통해 배포하는 방식을 가장 먼저 배우는 경우가 많습니다. 하지만 배포할 애플리케이션이 많아질수록 Web UI를 통해 모든 Application을 생성하게 되면 Human Error의 발생 가능성이 증가하고, 관리가 어렵다는 문제가 발생합니다.  
 

@@ -15,15 +15,15 @@
           <strong class="sd-label">Cilium Agent</strong>
           <span class="sd-detail">node에 배정된 pool에서 Pod IP를 선택합니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">예시 주소 할당</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">개념 예시: allocated CIDR 안에서 할당</span></div>
         <div class="sd-grid sd-grid--three">
           <div class="sd-node">
             <strong class="sd-label">default</strong>
-            <span class="sd-detail">Pod 1, 2, 3: <code>10.0.0.x</code></span>
+            <span class="sd-detail">Pod 1, 2, 3: 표시된 <code>10.0.10.0/24</code> 또는 <code>10.0.20.0/24</code> 안에서 할당</span>
           </div>
           <div class="sd-node">
             <strong class="sd-label">mars</strong>
-            <span class="sd-detail">Pod 4, ...: <code>172.16.8.x</code></span>
+            <span class="sd-detail">Pod 4, ...: 표시된 <code>172.16.8.0/27</code> 안에서 할당</span>
           </div>
           <div class="sd-node sd-node--warning">
             <strong class="sd-label">jupiter</strong>
@@ -51,7 +51,7 @@
           <span class="sd-detail">default: <code>10.0.10.0/24</code>, <code>10.0.20.0/24</code>; mars: <code>172.16.8.0/27</code></span>
         </div>
       </div>
-      <p class="sd-note">mars는 기존 CIDR이 소진되어 추가 CIDR을 받고, jupiter는 처음 요청되어 새 CIDR을 기다립니다.</p>
+      <p class="sd-note">표시된 allocated는 현재 할당 상태입니다. mars의 추가 요청과 jupiter의 첫 요청은 reconcile을 기다리며, 새 CIDR은 아직 표시하지 않았습니다.</p>
     </section>
   </div>
 
@@ -59,7 +59,7 @@
     <div class="sd-band-title">Pool lifecycle</div>
     <div class="sd-node">
       <strong class="sd-label">사용량에 맞춰 확장과 정리</strong>
-      <span class="sd-detail">Agent는 workload에 따라 추가 pool을 요청하고, 더 이상 사용하지 않는 PodCIDR은 제거 대상으로 돌립니다. Multi-Pool은 beta 기능이며 일부 tunnel 또는 IPsec 구성과 제약이 있습니다.</span>
+      <span class="sd-detail">Agent는 추가 주소를 요청하고, 사용을 끝낸 PodCIDR을 반환합니다. 주소 범위는 개념 예시이며 실측 Pod IP가 아닙니다. 본문의 beta 및 tunnel/IPsec 제약은 버전이 명시되지 않아 현재 일반 제약으로 단정하지 않습니다.</span>
     </div>
   </div>
 </figure>

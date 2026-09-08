@@ -58,6 +58,7 @@ mark 이후 garbage를 어떻게 처리하느냐에 따라 회수 전략이 갈�
 그래서 [ep2](/posts/jvm-memory-model/)에서 본 것처럼 Heap을 young/old로 나눕니다.
 
 {% include diagrams/static/jvm/jvm-07-gc-generational.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-07-gc-generational--39a6cdba366b669f.png" %}
 _new object -> Eden -> (minor GC, aging) Survivor -> 승격 -> Old_
 
 > The young generation consists of eden and two survivor spaces.  
@@ -99,6 +100,7 @@ JDK 9+ 기본 수집기인 G1을 Oracle은 이렇게 정의합니다.
 > G1 is a **generational, incremental, parallel, mostly concurrent, stop-the-world, and evacuating** garbage collector  
 
 {% include diagrams/static/jvm/jvm-08-g1gc-regions.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-08-g1gc-regions--e6df45125f33771a.png" %}
 _Heap = 같은 크기 region(E/S/O/H), 사이클: young -> concurrent mark(IHOP) -> mixed_
 
 핵심은 region입니다.

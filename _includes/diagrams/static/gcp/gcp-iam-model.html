@@ -1,13 +1,12 @@
 <figure class="sd sd--flow" id="gcp-iam-model" aria-labelledby="gcp-iam-model-title">
-  <figcaption class="sd-title" id="gcp-iam-model-title">Binding은 하나의 Principal과 Role을 Resource에 붙입니다</figcaption>
+  <figcaption class="sd-title" id="gcp-iam-model-title">Binding은 하나 이상의 Principal과 한 Role을 Resource policy에 묶습니다</figcaption>
   <p class="sd-intro">권한은 Principal에 직접 붙지 않습니다. Principal과 권한 묶음인 Role을 하나의 binding으로 만든 뒤 Resource의 policy에 저장합니다.</p>
-
   <section class="sd-band" aria-labelledby="gcp-iam-model-binding-title">
-    <div class="sd-band-title" id="gcp-iam-model-binding-title">Binding: 하나의 신원과 하나의 Role</div>
+    <div class="sd-band-title" id="gcp-iam-model-binding-title">Binding: 하나 이상의 신원과 하나의 Role</div>
     <div class="sd-grid">
       <div class="sd-node">
-        <strong class="sd-label">Principal</strong>
-        <span class="sd-detail">user, group 또는 service account</span>
+        <strong class="sd-label">Principals</strong>
+        <span class="sd-detail">하나 이상의 user, group 또는 service account</span>
       </div>
       <div class="sd-node">
         <strong class="sd-label">Role</strong>
@@ -15,13 +14,12 @@
       </div>
     </div>
   </section>
-
-  <div class="sd-arrow"><span class="sd-edge-label">두 요소를 binding으로 묶어 Resource에 부착</span></div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">두 요소를 binding으로 묶어 Resource에 부착</span>
+  </div>
   <div class="sd-node sd-node--accent">
     <strong class="sd-label">Resource: Cloud Storage</strong>
     <span class="sd-detail">여러 binding의 집합이 Allow Policy가 되고, 하위 리소스에 union으로 상속</span>
   </div>
-
   <p class="sd-note">Policy가 Principal에 붙는 identity-attached 모델과 달리, GCP IAM policy의 저장 위치는 Resource입니다.</p>
 </figure>

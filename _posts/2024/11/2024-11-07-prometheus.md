@@ -46,6 +46,7 @@ image:
 ## 3. Prometheus의 구성요소
 
 {% include diagrams/static/observability/prometheus/prometheus_diagram.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/prometheus/prometheus_diagram--4711a34fe9e408aa.png" %}
 
 - **Prometheus Server**: 메트릭 데이터를 Pull 방식으로 수집하고 시계열 데이터베이스에 저장합니다.
 - **Node Exporter**: 각 Kubernetes Node에 DaemonSet 형태로 배포되어 시스템 메트릭을 수집합니다.

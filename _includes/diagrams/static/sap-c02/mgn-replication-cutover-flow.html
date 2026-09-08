@@ -1,57 +1,47 @@
 <figure class="sd sd--flow" aria-labelledby="sap-c02-mgn-replication-cutover-flow-title">
   <figcaption class="sd-title" id="sap-c02-mgn-replication-cutover-flow-title">MGN staging area에서 test와 cutover를 분리</figcaption>
-  <div class="sd-stack">
-    <section class="sd-lane sd-lane--muted">
-      <span class="sd-lane-title">소스 경계: 온프레미스 또는 기존 클라우드</span>
-      <div class="sd-grid">
-        <div class="sd-node">
-          <strong class="sd-label">소스 서버</strong>
-          <span class="sd-detail">물리, 가상, 클라우드 서버에 AWS Replication Agent를 설치한다.</span>
-        </div>
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">MGN vCenter Client</strong>
-          <span class="sd-detail">agentless 경로. vCenter 6.7, 7.0, 8.0에서 CBT와 VDDK로 스냅샷을 보낸다.</span>
-        </div>
-      </div>
-    </section>
-    <div class="sd-arrow"><span class="sd-edge-label">연속 블록 복제</span></div>
-    <section class="sd-lane">
-      <span class="sd-lane-title">staging area subnet</span>
-      <div class="sd-flow">
-        <div class="sd-node">
-          <strong class="sd-label">replication server</strong>
-          <span class="sd-detail">t3.small. 볼륨 15개당 1대이며 IP는 고정할 수 없다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">TCP 1500</span></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">staging EBS 볼륨</strong>
-          <span class="sd-detail">소스 볼륨과 같은 크기. 증분 스냅샷을 5-7개 유지한다.</span>
-        </div>
-      </div>
-    </section>
-    <div class="sd-arrow"><span class="sd-edge-label">목적에 따라 인스턴스를 기동</span></div>
-    <div class="sd-grid">
-      <section class="sd-lane">
-        <span class="sd-lane-title">test 경로</span>
-        <div class="sd-node">
-          <strong class="sd-label">test instance</strong>
-          <span class="sd-detail">인수 테스트용. 종료한 뒤 다시 띄울 수 있다.</span>
-        </div>
-      </section>
-      <section class="sd-lane sd-lane--accent">
-        <span class="sd-lane-title">cutover 경로</span>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">cutover instance</strong>
-            <span class="sd-detail">lag 0을 확인하고 소스 서비스를 정지한 뒤 기동한다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">finalize cutover</span></div>
-          <div class="sd-node sd-node--warning">
-            <strong class="sd-label">source server archive</strong>
-            <span class="sd-detail">복제 리소스를 정리한 뒤의 상태다.</span>
-          </div>
-        </div>
-      </section>
-    </div>
+  <section class="sd-band">
+  <div class="sd-band-title">소스 경계: 온프레미스 또는 기존 클라우드</div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">소스 서버 / AWS Replication Agent</strong>
+  <span class="sd-detail">물리, 가상, 클라우드 서버. replication server에 TCP 1500 연속 블록 복제</span>
   </div>
+  <div class="sd-node">
+  <strong class="sd-label">MGN vCenter Client</strong>
+  <span class="sd-detail">별도 agentless snapshot 경로. vCenter 6.7, 7.0, 8.0; CBT와 VDDK</span>
+  </div>
+  </div>
+  </section>
+  <section class="sd-band">
+  <div class="sd-band-title">staging area subnet</div>
+  <div class="sd-node">
+  <strong class="sd-label">replication server</strong>
+  <span class="sd-detail">Agent의 TCP 1500 수신. t3.small, 통상 볼륨 15개당 1대, 고정 IP 불가</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">복제 block을 staging EBS에 기록</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">staging EBS 볼륨</strong>
+  <span class="sd-detail">소스 볼륨과 같은 크기. agentless snapshot 경로도 이 staging 상태에 반영; 증분 스냅샷 5-7개</span>
+  </div>
+  </section>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">staging snapshot으로 test 또는 cutover 기동</span>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">타깃 VPC</div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">test instance</strong>
+  <span class="sd-detail">인수 테스트. 종료 뒤 재기동 가능</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">cutover instance</strong>
+  <span class="sd-detail">lag 0 확인과 소스 서비스 정지 후 기동</span>
+  </div>
+  </div>
+  </section>
+  <p class="sd-note">Cutover 완료 뒤 finalize하고 복제 리소스를 정리하면 source server archive 상태가 됩니다. 그림의 volume 수치는 기본 EBS 경로 기준입니다.</p>
 </figure>

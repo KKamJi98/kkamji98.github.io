@@ -14,6 +14,7 @@ image:
 이번 글에서는 **Service(LoadBalancer) External IP를 BGP로 광고**하는 과정을 살펴보고, `ExternalTrafficPolicy`(Cluster vs Local)에 따른 동작 차이와 **Linux ECMP Hash Policy**가 트래픽 분산/소스IP 보존/연결 안정성에 미치는 영향을 실습을 통해 알아보겠습니다.
 
 {% include diagrams/static/kubernetes/cilium/5w-l3-announcement-over-bgp.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/5w-l3-announcement-over-bgp--548d672ee4594146.png" %}
 
 > [ISOVALENT Blog - Migrating from metallb to Cilium](https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/#l3-announcement-over-bgp)  
 > [Cilium Docs - LoadBalancer IP Address Management (LB IPAM)](https://docs.cilium.io/en/stable/network/lb-ipam/)  
@@ -29,6 +30,7 @@ image:
 ## 1. 실습 환경
 
 {% include diagrams/static/kubernetes/cilium/5w-lab-environment.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/5w-lab-environment--5213f68fc9082265.png" %}
 
 - 기본 VM: k8s-ctr, k8s-w1, k8s-w0, router(FRR)
 - router: 192.168.10.0/24 ↔ 192.168.20.0/24 라우팅, 클러스터에 join되지 않은 독립 서버, FRR 설치로 BGP 실습 가능 (FRR Docs)

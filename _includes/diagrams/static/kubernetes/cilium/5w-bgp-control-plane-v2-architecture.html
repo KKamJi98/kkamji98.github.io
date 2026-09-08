@@ -1,112 +1,32 @@
 <figure class="sd sd--layers" id="bgp-control-plane-v2-architecture" aria-labelledby="bgp-control-plane-v2-architecture-title">
   <figcaption class="sd-title" id="bgp-control-plane-v2-architecture-title">Cilium BGPv2는 선언한 CRD를 BGP 인스턴스와 광고로 연결한다</figcaption>
-  <section class="sd-lane">
-    <div class="sd-lane-title">Instance resources</div>
-    <div class="sd-grid">
-      <section class="sd-lane">
-        <div class="sd-lane-title">Cluster scope</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--muted">
-            <strong class="sd-label">CiliumBGPClusterConfig</strong>
-            <span class="sd-detail">클러스터 수준 BGP instance와 node selector를 선언한다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">creates</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">BGP Instance</strong>
-            <span class="sd-detail">선택된 node에서 BGP control-plane 설정을 실행한다.</span>
-          </div>
-        </div>
-      </section>
-      <section class="sd-lane">
-        <div class="sd-lane-title">Node scope</div>
-        <div class="sd-grid">
-          <section class="sd-lane">
-            <div class="sd-lane-title">Node configuration</div>
-            <div class="sd-flow">
-              <div class="sd-node sd-node--muted">
-                <strong class="sd-label">CiliumBGPNodeConfig</strong>
-                <span class="sd-detail">node별 local BGP 설정을 선언한다.</span>
-              </div>
-              <div class="sd-arrow"><span class="sd-edge-label">creates</span></div>
-              <div class="sd-node sd-node--accent">
-                <strong class="sd-label">BGP Node Instance</strong>
-                <span class="sd-detail">선택된 node에서 BGP session 설정을 실행한다.</span>
-              </div>
-            </div>
-          </section>
-          <section class="sd-lane">
-            <div class="sd-lane-title">Node override</div>
-            <div class="sd-flow">
-              <div class="sd-node sd-node--warning">
-                <strong class="sd-label">CiliumBGPNodeConfigOverride</strong>
-                <span class="sd-detail">selector에 맞는 node의 BGP 설정을 덮어쓴다.</span>
-              </div>
-              <div class="sd-arrow"><span class="sd-edge-label">creates override</span></div>
-              <div class="sd-node">
-                <strong class="sd-label">BGP Node Override</strong>
-                <span class="sd-detail">해당 BGP Node Instance에 적용할 예외 설정이다.</span>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-    </div>
-  </section>
+  <section class="sd-lane"><div class="sd-lane-title">선언과 node별 설정</div>
+<div class="sd-grid">
+<div class="sd-node sd-node--muted"><strong class="sd-label">CiliumBGPClusterConfig</strong><span class="sd-detail">nodeSelector로 node를 선택; BGP instance의 localASN과 peers의 peerASN, peerAddress, peerConfigRef 선언</span></div>
+<div class="sd-node sd-node--warning"><strong class="sd-label">CiliumBGPNodeConfigOverride</strong><span class="sd-detail">리소스 이름이 node 이름과 일치해야 함; instance와 peer 이름에 맞춰 node별 예외 설정</span></div>
+</div>
+<div class="sd-arrow"><span class="sd-edge-label">Operator가 선택된 node의 설정으로 반영</span></div>
+<div class="sd-node"><strong class="sd-label">CiliumBGPNodeConfig</strong><span class="sd-detail">Operator가 생성하는 node별 BGP instance와 peer 설정</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">node의 Cilium agent가 reconcile</span></div>
+<div class="sd-node sd-node--accent"><strong class="sd-label">BGP Instance / BGP Node Instance</strong><span class="sd-detail">node에서 BGP session을 실행하는 runtime; 별도의 두 직렬 datapath가 아님</span></div>
+</section>
   <div class="sd-grid">
-    <section class="sd-lane">
-      <div class="sd-lane-title">Peer selection</div>
-      <div class="sd-flow">
-        <div class="sd-grid">
-          <div class="sd-node sd-node--muted">
-            <strong class="sd-label">CiliumBGPPeerConfig</strong>
-            <span class="sd-detail">remote ASN, address, timers 같은 peer 설정을 선언한다.</span>
-          </div>
-          <div class="sd-node sd-node--muted">
-            <strong class="sd-label">BGP Instance and BGP Node Instance</strong>
-            <span class="sd-detail">각 instance가 사용할 peer reference를 선택한다.</span>
-          </div>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">define Peers / Ref by name</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Peers</strong>
-          <span class="sd-detail">CiliumBGPPeerConfig를 이름으로 찾아 BGP instance와 node instance에 연결한다.</span>
-        </div>
-      </div>
-    </section>
-    <section class="sd-lane">
-      <div class="sd-lane-title">Advertisement selection</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">CiliumBGPAdvertisement</strong>
-          <span class="sd-detail">어떤 Pod CIDR 또는 Service route를 광고할지 selector로 선언한다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">Ref by labels</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Advertisement</strong>
-          <span class="sd-detail">SelectorType과 label 조건으로 광고 대상을 선택한다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">select route targets</span></div>
-        <div class="sd-grid sd-grid--three">
-          <div class="sd-node">
-            <strong class="sd-label">CiliumPodIPPool</strong>
-            <span class="sd-detail">선택된 Pod IP pool route를 광고한다.</span>
-          </div>
-          <div class="sd-node">
-            <strong class="sd-label">PodCIDR</strong>
-            <span class="sd-detail">node 또는 cluster Pod CIDR route를 광고한다.</span>
-          </div>
-          <div class="sd-node">
-            <strong class="sd-label">Service routes</strong>
-            <span class="sd-detail">Service (LB, External, Cluster IP) route를 광고한다.</span>
-          </div>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">advertise to selected Peers</span></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">External BGP routes</strong>
-          <span class="sd-detail">PodCIDR, ServiceCIDR, Service route를 Ref by name으로 선택된 peer에 광고한다.</span>
-        </div>
-      </div>
-    </section>
-  </div>
-  <p class="sd-note">BGPv2는 control plane에서 route를 교환한다. 외부에서 온 BGP route를 node kernel FIB에 넣지 않으며 Pod와 Service 전달은 Cilium eBPF datapath가 처리한다.</p>
+<section class="sd-lane"><div class="sd-lane-title">Peer 설정 참조</div>
+<div class="sd-node sd-node--muted"><strong class="sd-label">CiliumBGPPeerConfig</strong><span class="sd-detail">공통 timers, transport, graceful restart와 address families 설정</span></div>
+<p class="sd-note">ClusterConfig의 peers가 peerConfigRef.name으로 참조합니다. remote ASN과 주소는 ClusterConfig의 peerASN과 peerAddress입니다.</p>
+<div class="sd-node"><strong class="sd-label">Peers</strong><span class="sd-detail">node의 BGP instance가 선택된 외부 router와 session을 구성</span></div>
+</section>
+<section class="sd-lane"><div class="sd-lane-title">Advertisement 선택</div>
+<div class="sd-node sd-node--muted"><strong class="sd-label">CiliumBGPAdvertisement</strong><span class="sd-detail">PeerConfig의 families.advertisements label selector로 선택되는 광고 정의</span></div>
+<p class="sd-note">advertisementType과 필요한 label selector로 아래 route 대상을 선택합니다. 설정 참조는 packet 전달 경로가 아닙니다.</p>
+<div class="sd-grid">
+<div class="sd-node"><strong class="sd-label">CiliumPodIPPool</strong><span class="sd-detail">선택된 Pod IP pool의 할당 route</span></div>
+<div class="sd-node"><strong class="sd-label">PodCIDR</strong><span class="sd-detail">node에 할당된 Pod CIDR route</span></div>
+<div class="sd-node"><strong class="sd-label">Service routes</strong><span class="sd-detail">선택된 Service의 LoadBalancerIP, ExternalIP, ClusterIP route</span></div>
+</div>
+</section>
+</div>
+  <div class="sd-arrow"><span class="sd-edge-label">node의 BGP instance가 선택된 route를 Peers에 광고</span></div>
+  <div class="sd-node sd-node--accent"><strong class="sd-label">External BGP routes</strong><span class="sd-detail">Pod CIDR과 선택된 Service IP route를 외부 peer에 광고</span></div>
+  <p class="sd-note">BGPv2는 control plane에서 route를 교환합니다. 외부에서 온 BGP route를 node kernel FIB에 넣지 않으며 Pod와 Service 전달은 Cilium eBPF datapath가 처리합니다.</p>
 </figure>

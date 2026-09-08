@@ -33,6 +33,7 @@ request lifetime은 client가 request를 보내고 response가 끝날 때까지�
 ## 2. 시작 순서와 실패 시점을 분리합니다
 
 {% include diagrams/static/nodejs/node-esm-startup-config-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/node-esm-startup-config-flow--11920b03e5ee2b79.png" %}
 _Node CLI가 environment 값을 제공한 뒤 ESM module graph를 load합니다. module graph가 통과하면 application이 configuration을 검증하고, valid configuration에서만 server error listener를 등록한 뒤 `listen()`을 호출합니다._
 
 application validation이 모든 startup 오류를 먼저 걸러내지는 않습니다. static import의 resolution 또는 module evaluation이 실패하면 `main.mjs`의 application code가 실행되기 전에 process가 실패할 수 있습니다. configuration failure와 port bind failure는 서로 다른 관측 지점과 대응이 필요합니다.

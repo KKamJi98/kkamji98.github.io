@@ -8,7 +8,9 @@
           <strong class="sd-label">Node A</strong>
           <span class="sd-detail">Pod packet을 tunnel endpoint로 보낸다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">VXLAN or Geneve overlay</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">VXLAN or Geneve overlay</span>
+        </div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">Node B and Node C</strong>
           <span class="sd-detail">Cilium이 node 사이 encapsulation과 routing을 처리한다.</span>
@@ -23,18 +25,15 @@
           <strong class="sd-label">Node A</strong>
           <span class="sd-detail">Pod CIDR packet을 encapsulation 없이 보낸다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">native Pod CIDR route</span></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">Cloud router or BGP daemon</strong>
-          <span class="sd-detail">underlay가 remote node의 Pod CIDR 경로를 학습한다.</span>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">native Pod CIDR packet 전달</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">route to peer node</span></div>
         <div class="sd-node">
           <strong class="sd-label">Node B and Node C</strong>
-          <span class="sd-detail">라우터가 선택한 native 경로로 packet을 받는다.</span>
+          <span class="sd-detail">underlay의 native 경로로 packet을 받는다.</span>
         </div>
       </div>
-      <p class="sd-note">성능과 IP 가시성을 얻는 대신 switch, router 또는 cloud network에 Pod CIDR routing이 필요하다.</p>
+      <p class="sd-note">성능과 IP 가시성을 얻는 대신 switch, router 또는 cloud network에 Pod CIDR routing이 필요하다. Cloud router의 전달 경로와 BGP daemon의 경로 배포는 별개이며, daemon은 packet의 중간 hop이 아니다.</p>
     </section>
   </div>
 </figure>

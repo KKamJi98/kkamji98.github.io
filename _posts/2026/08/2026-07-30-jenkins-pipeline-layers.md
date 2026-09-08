@@ -145,6 +145,7 @@ multibranchPipelineJob('my-service') {
 이 구성이 모이면 다음 그림이 됩니다.
 
 {% include diagrams/static/ci-cd/jenkins/jenkins-pipeline-layers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/jenkins/jenkins-pipeline-layers--df03e84f9f846d13.png" %}
 > 파이프라인 정의가 사는 세 곳  
 
 중앙 리포지토리의 Job DSL이 seed job을 통해 Multibranch 잡을 만들고, 각 Multibranch 잡은 서비스 리포지토리의 Jenkinsfile을 읽고, Jenkinsfile은 Shared Library를 로드합니다. 파이프라인 정의 전부가 git 안에 있습니다. Jenkins UI에서 잡을 만들고 스크립트를 붙여넣던 초기 상태와 비교하면, Jenkins는 실행 환경일 뿐이고 정의는 전부 리포지토리에 있는 구조입니다.

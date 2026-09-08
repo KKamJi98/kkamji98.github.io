@@ -1,31 +1,41 @@
 <figure class="sd sd--flow" id="identity-center-login-flow" aria-labelledby="identity-center-login-flow-title">
   <figcaption class="sd-title" id="identity-center-login-flow-title">permission set은 대상 계정의 IAM role로 구체화된다</figcaption>
-  <p class="sd-note">Identity Center는 신원을 한곳에서 확인하고, 같은 permission set을 계정별 IAM role로 provisioning합니다. 사용자가 assume하는 대상은 permission set이 아니라 이 role입니다.</p>
-
-  <div class="sd-flow" aria-label="IAM Identity Center 로그인과 role provisioning">
-    <div class="sd-node">
-      <strong class="sd-label">구성원</strong>
-      <span class="sd-detail">AWS access portal에 로그인합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">SAML 2.0 인증과 SCIM 매칭</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">외부 IdP</strong>
-      <span class="sd-detail">사용자와 그룹 정보를 SCIM으로 미리 provisioning합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">인증된 신원 전달</span></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">IAM Identity Center</strong>
-      <span class="sd-detail">계정당 인스턴스 하나에서 접근 할당을 관리합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">정책 묶음 선택</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Permission set</strong>
-      <span class="sd-detail">대상 계정에 적용할 정책 묶음을 정의합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">계정별 provisioning</span></div>
-    <div class="sd-grid">
-      <div class="sd-node"><strong class="sd-label">Prod 계정의 IAM role</strong><span class="sd-detail">permission set이 provisioning된 결과입니다.</span></div>
-      <div class="sd-node"><strong class="sd-label">Dev 계정의 IAM role</strong><span class="sd-detail">같은 permission set에서 별도로 만들어집니다.</span></div>
-    </div>
+  <div class="sd-grid">
+  <section class="sd-band">
+  <div class="sd-band-title">사전 setup / provisioning</div>
+  <div class="sd-node">
+  <strong class="sd-label">외부 IdP: SCIM</strong>
+  <span class="sd-detail">사용자와 그룹을 Identity Center에 미리 provisioning</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Permission set</strong>
+  <span class="sd-detail">정책 묶음과 사용자/그룹, 대상 AWS 계정 할당</span>
+  </div>
+  </section>
+  <section class="sd-band">
+  <div class="sd-band-title">매 로그인 runtime</div>
+  <div class="sd-node">
+  <strong class="sd-label">구성원</strong>
+  <span class="sd-detail">AWS access portal 로그인</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">외부 IdP의 SAML 2.0 인증</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">IAM Identity Center</strong>
+  <span class="sd-detail">인증 신원을 사전 provisioning된 identity와 매칭</span>
+  </div>
+  </section>
+  </div>
+  <p class="sd-note">Setup은 아래 계정 role을 provisioning합니다. 로그인은 할당된 기존 role을 선택해 세션을 얻으며 role을 매번 생성하지 않습니다.</p>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Prod 계정의 IAM role</strong>
+  <span class="sd-detail">permission set이 provisioning한 role; 허용된 사용자의 role session 대상</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Dev 계정의 IAM role</strong>
+  <span class="sd-detail">같은 permission set의 별도 account role</span>
+  </div>
   </div>
 </figure>

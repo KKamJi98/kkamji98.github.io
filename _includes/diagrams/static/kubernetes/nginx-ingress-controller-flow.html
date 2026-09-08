@@ -1,30 +1,35 @@
 <figure class="sd sd--flow" id="sd-kubernetes-nginx-ingress-controller-flow" aria-labelledby="sd-kubernetes-nginx-ingress-controller-flow-title">
   <figcaption class="sd-title" id="sd-kubernetes-nginx-ingress-controller-flow-title">Ingress는 설정이고 실제 proxy는 controller가 수행한다</figcaption>
-  <div class="sd-flow">
-    <div class="sd-node">
-      <strong class="sd-label">Client</strong>
-      <span class="sd-detail">HTTP request를 보냅니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">host와 path rule 선택</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Ingress resource</strong>
-      <span class="sd-detail">proxy가 사용할 host와 path 설정입니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">rule watch와 reload</span></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">NGINX controller</strong>
-      <span class="sd-detail">Ingress를 읽어 실제 proxy configuration을 적용합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">endpoint가 있는 Service로 proxy</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">Service</strong>
-      <span class="sd-detail">backend endpoint를 찾습니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">request 전달</span></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Pod</strong>
-      <span class="sd-detail">최종적으로 HTTP request를 받습니다.</span>
-    </div>
+  <div class="sd-node">
+  <strong class="sd-label">Client</strong>
+  <span class="sd-detail">HTTP request</span>
   </div>
-  <p class="sd-note">controller가 실행 중이지 않으면 Ingress object는 설정으로만 남고 어떤 traffic도 backend에 닿지 않습니다.</p>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">NGINX proxy에 직접 요청</span>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">NGINX controller</div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">NGINX proxy</strong>
+  <span class="sd-detail">host와 path rule을 적용해 backend endpoint로 전달</span>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Ingress resource</strong>
+  <span class="sd-detail">controller가 watch하는 host/path 설정. 요청 hop 아님</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Service / EndpointSlice</strong>
+  <span class="sd-detail">backend 선택과 endpoint discovery를 위한 API 정보</span>
+  </div>
+  </div>
+  </section>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">기본 endpoint forwarding: Pod IP와 port로 proxy</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Pod</strong>
+  <span class="sd-detail">HTTP request 처리</span>
+  </div>
+  <p class="sd-note">Service ClusterIP를 upstream으로 쓰는 설정도 있습니다. Ingress object만 만들고 controller를 실행하지 않으면 proxy는 동작하지 않습니다.</p>
 </figure>

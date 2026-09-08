@@ -1,73 +1,43 @@
 <figure class="sd sd--flow" id="node-async-http-handling-flow" aria-labelledby="sd-title-node-async-http-handling-flow">
   <figcaption class="sd-title" id="sd-title-node-async-http-handling-flow">한 곳이 response를 소유하고 모든 실패가 그 경계를 통과합니다</figcaption>
-
-  <div class="sd-flow">
-    <div class="sd-node sd-node--muted">
-      <strong class="sd-label">Client</strong>
-      <span class="sd-detail">HTTP request를 보냄</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">server emits</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">request event</strong>
-      <span class="sd-detail">Node.js server가 handler를 호출</span>
-    </div>
+  <div class="sd-node">
+  <strong class="sd-label">Client / request event</strong>
+  <span class="sd-detail">HTTP server가 handleRequest() 호출</span>
   </div>
-
+  <section class="sd-band">
+  <div class="sd-band-title">Error boundary: response owner</div>
+  <div class="sd-node">
+  <strong class="sd-label">handleRequest()</strong>
+  <span class="sd-detail">downstream 작업 조정</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">await</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">fetchJson()</strong>
+  <span class="sd-detail">Upstream HTTP service 요청. 완료 전 Promise pending</span>
+  </div>
+  <p class="sd-note">취소 제어: timeout 또는 client disconnect가 AbortController의 AbortSignal을 fetchJson()에 전달해 downstream 작업을 중단합니다.</p>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">Promise settlement</span>
+  </div>
   <div class="sd-grid">
-    <section class="sd-band" aria-label="Error boundary: one owner for the response">
-      <div class="sd-band-title">Error boundary: one owner for the response</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">handleRequest()</strong>
-          <span class="sd-detail">자체적으로 blocking하지 않고 downstream을 orchestration</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">downstream await</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">fetchJson()</strong>
-          <span class="sd-detail">upstream 호출을 <code>await</code></span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">fulfilled 또는 rejected</span></div>
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">Promise pending</strong>
-          <span class="sd-detail">rejected Promise는 response가 아님; boundary가 하나로 매핑</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">success 또는 mapped error</span></div>
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">writeResponse()</strong>
-          <span class="sd-detail">성공과 실패를 모두 쓰는 유일한 writer</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="sd-lane" aria-label="External upstream service">
-      <div class="sd-lane-title">External upstream: fetchJson -> service</div>
-      <div class="sd-node sd-node--muted">
-        <strong class="sd-label">Upstream HTTP service</strong>
-        <span class="sd-detail">fetchJson가 HTTP 요청을 보내며 느리거나 응답하지 않을 수 있음</span>
-      </div>
-    </section>
+  <div class="sd-node">
+  <strong class="sd-label">fulfilled</strong>
+  <span class="sd-detail">정상 body 직렬화</span>
   </div>
-
-  <section class="sd-lane" aria-label="Cancellation control toward fetchJson">
-    <div class="sd-lane-title">Cancellation control -> fetchJson</div>
-    <div class="sd-grid">
-      <div class="sd-flow">
-        <div class="sd-node sd-node--warning">
-          <strong class="sd-label">timeout</strong>
-          <span class="sd-detail">stall을 error로 바꾸고 deadline을 끝냄</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">fetchJson로 전달</span></div>
-      </div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--warning">
-          <strong class="sd-label">AbortController</strong>
-          <span class="sd-detail">client disconnect를 감지해 socket과 Promise를 취소</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">AbortSignal -> fetchJson</span></div>
-      </div>
-    </div>
-    <p class="sd-note">두 신호는 <code>fetchJson()</code>의 <code>AbortSignal</code>로 downstream 작업을 멈춥니다.</p>
+  <div class="sd-node sd-node--warning">
+  <strong class="sd-label">rejected</strong>
+  <span class="sd-detail">error boundary가 안전한 status와 body로 매핑</span>
+  </div>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">동일 writer로 합류</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">writeResponse()</strong>
+  <span class="sd-detail">성공과 실패를 쓰는 유일한 writer</span>
+  </div>
   </section>
-
-  <p class="sd-note">timeout과 abort가 없으면 Promise와 socket이 pending으로 남아 client가 영원히 기다릴 수 있습니다. request 하나는 terminal response 하나만 가져야 합니다.</p>
+  <p class="sd-note">rejected Promise 자체는 HTTP response가 아닙니다. 연결이 종료됐다면 더 쓰지 않고 정리합니다. timeout/abort가 없으면 Promise와 socket이 pending으로 남을 수 있습니다.</p>
 </figure>

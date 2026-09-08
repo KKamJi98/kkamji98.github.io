@@ -1,0 +1,11 @@
+{% comment %}
+Use as a sibling AFTER the canonical figure, never inside figure.sd.
+png is a published same-origin asset path from the verified PNG manifest.
+No second diagram source and no script/clipboard permissions.
+{% endcomment %}
+{% if include.png %}
+<p class="diagram-download">
+  <a href="{{ include.png | relative_url | escape }}" download>PNG 다운로드</a>
+  <a href="{{ include.png | relative_url | escape }}">원본 이미지 열기</a>
+</p>
+{% endif %}

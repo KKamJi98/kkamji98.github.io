@@ -1,6 +1,6 @@
 <figure class="sd sd--flow" id="kubernetes-graceful-shutdown" aria-labelledby="kubernetes-graceful-shutdown-title">
-  <figcaption class="sd-title" id="kubernetes-graceful-shutdown-title">Pod 삭제는 Service endpoint 제거와 preStop 이후 SIGTERM을 함께 진행한다</figcaption>
-  <p class="sd-note">API Server의 삭제 요청을 kubelet과 kube-proxy가 감지한 뒤, 새 traffic 차단과 application cleanup이 각각의 경로에서 진행됩니다.</p>
+  <figcaption class="sd-title" id="kubernetes-graceful-shutdown-title">Pod 삭제는 EndpointSlice 갱신과 process 종료를 병행한다</figcaption>
+  <p class="sd-note">kubelet의 process 종료와 control plane의 EndpointSlice 갱신은 병행됩니다. traffic 제외는 proxy 규칙 전파 후 반영되며 삭제 시점의 원자적 차단이 아닙니다.</p>
 
   <div class="sd-flow" aria-label="Pod graceful shutdown 공통 시작">
     <div class="sd-node sd-node--muted">
@@ -9,7 +9,7 @@
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">상태 변경 watch</span></div>
     <div class="sd-node sd-node--accent">
-      <strong class="sd-label">kubelet와 kube-proxy</strong>
+      <strong class="sd-label">kubelet와 control plane</strong>
       <span class="sd-detail">같은 삭제 상태를 보고 각자의 종료 경로를 시작합니다.</span>
     </div>
   </div>
@@ -19,18 +19,18 @@
       <div class="sd-lane-title" id="kubernetes-graceful-shutdown-traffic-title">Traffic stop path</div>
       <div class="sd-flow">
         <div class="sd-node">
-          <strong class="sd-label">kube-proxy</strong>
-          <span class="sd-detail">Service backend 목록의 Pod IP를 갱신합니다.</span>
+          <strong class="sd-label">Control plane: EndpointSlice</strong>
+          <span class="sd-detail"><code>terminating=true</code>, <code>ready=false</code>로 갱신하며 endpoint를 즉시 제거하지 않습니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">endpoint 제거</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">EndpointSlice 변경 watch</span></div>
         <div class="sd-node sd-node--warning">
-          <strong class="sd-label">Service endpoint set</strong>
-          <span class="sd-detail">iptables 또는 ipvs rule에서 terminating Pod를 뺍니다.</span>
+          <strong class="sd-label">kube-proxy rule reconciliation</strong>
+          <span class="sd-detail">iptables 또는 ipvs 규칙에 일반 traffic용 readiness 변경을 반영합니다.</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">새 요청 차단</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">비동기 dataplane 전파</span></div>
         <div class="sd-node sd-node--accent">
-          <strong class="sd-label">No new traffic to Pod</strong>
-          <span class="sd-detail">새 connection이 종료 중인 Pod로 향하지 않게 합니다.</span>
+          <strong class="sd-label">일반 신규 traffic에서 제외</strong>
+          <span class="sd-detail">전파 지연 중 요청이나 기존 연결은 남을 수 있습니다. draining은 별도 고려 대상입니다.</span>
         </div>
       </div>
     </section>
@@ -45,7 +45,7 @@
         <div class="sd-arrow"><span class="sd-edge-label">먼저 실행</span></div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">preStop hook</strong>
-          <span class="sd-detail">sleep, DB connection 정리와 진행 중 작업 마무리를 수행합니다.</span>
+          <span class="sd-detail">설정되어 있으면 실행합니다. 이 시간도 grace budget에 포함됩니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">hook 완료 후</span></div>
         <div class="sd-node sd-node--warning">

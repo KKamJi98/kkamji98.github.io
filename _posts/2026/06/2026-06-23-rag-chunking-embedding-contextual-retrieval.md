@@ -37,6 +37,7 @@ image:
 같은 문서라도 어떤 기준으로 자르느냐에 따라 청크의 모양이 달라집니다. 대표적인 세 가지 접근을 비교하면 다음과 같습니다.
 
 {% include diagrams/static/ai/rag-02-chunking-strategies.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-02-chunking-strategies--df15a3f10f40477d.png" %}
 
 ### 2.1. Fixed-size Chunking (고정 크기 + overlap)
 
@@ -107,6 +108,7 @@ Anthropic이 제안한 Contextual Retrieval은 이 맥락 손실을 정면으로
 이렇게 맥락이 덧붙은 텍스트를 **임베딩과 BM25 색인 양쪽 모두**에 사용합니다. 그러면 "출장 숙박비 한도 조정" 같은 질문에서 청크 자체에 없던 문서 및 섹션 정보도 검색 신호로 쓸 수 있습니다.
 
 {% include diagrams/static/ai/rag-02-contextual-retrieval.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-02-contextual-retrieval--57de14bdfad5c69d.png" %}
 _원문과 청크를 함께 LLM에 넣어 짧은 맥락을 만들고, 그 맥락이 앞에 붙은 청크를 임베딩 색인과 BM25 색인 양쪽에 같은 텍스트로 넣는다._
 
 ### 5.1. 효과

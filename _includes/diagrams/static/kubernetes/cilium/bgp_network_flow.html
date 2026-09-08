@@ -27,7 +27,7 @@
     </section>
     <section class="sd-lane sd-lane--accent" aria-label="eBPF hook 위치">
       <div class="sd-lane-title">eBPF hook points</div>
-      <table class="sd-table">
+      <table class="sd-table sd-quality-table">
         <thead>
           <tr>
             <th scope="col">Attachment layer</th>
@@ -37,7 +37,7 @@
         <tbody>
           <tr>
             <td><strong class="sd-label">System Call Interface</strong></td>
-            <td><strong class="sd-label">BPF System calls</strong><span class="sd-detail">system call을 관찰하거나 제어합니다.</span></td>
+            <td><strong class="sd-label">Syscall tracing hooks</strong><span class="sd-detail">tracepoints / kprobes로 syscall 이벤트를 관찰합니다.</span></td>
           </tr>
           <tr>
             <td><strong class="sd-label">Sockets</strong></td>
@@ -59,5 +59,5 @@
       </table>
     </section>
   </div>
-  <p class="sd-note">각 eBPF hook은 대응하는 계층에 독립적으로 부착됩니다. 표의 행은 attachment 위치를 매핑하며 hook들이 서로 순차 실행된다는 뜻은 아닙니다.</p>
+  <p class="sd-note">각 hook은 독립된 attachment 위치이며 순차 실행 단계가 아닙니다. <code>bpf()</code>는 program 로드와 map 조작을 위한 별도 제어 API이지 packet 처리 hook이 아닙니다.</p>
 </figure>

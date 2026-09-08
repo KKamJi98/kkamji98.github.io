@@ -107,6 +107,7 @@ Hybrid + RRF로 후보 순위를 얻어도 그 순위가 "질의에 가장 잘 �
 ```
 
 {% include diagrams/static/ai/rag-04-hybrid-rerank.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-04-hybrid-rerank--ea3c6056434ce520.png" %}
 _질의는 dense와 sparse 검색으로 동시에 나가고, 두 순위를 RRF로 하나로 합친 뒤 cross-encoder가 좁혀진 후보만 재채점한다. 왼쪽은 넓고 거칠게, 오른쪽으로 갈수록 좁고 정밀해진다._
 
 각 단계는 다음 단계의 후보 품질을 높이는 역할을 합니다. 다만 hybrid와 reranking의 이득은 코퍼스, 질의 유형, 정답 정의에 따라 달라집니다. 외부 벤치마크 수치를 일반화하지 말고 배포 전에는 사내 평가 셋에서 1차 검색 recall과 최종 top-N의 순위 품질을 비교해야 합니다.

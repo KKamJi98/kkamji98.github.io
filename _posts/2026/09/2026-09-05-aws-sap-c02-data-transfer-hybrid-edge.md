@@ -44,6 +44,7 @@ AWS는 대규모 마이그레이션 타임라인을 다음 공식으로 계산�
 `DATA_SIZE`는 bytes, `CIRCUIT`은 bits per second, `AVAILABLE_HOURS`는 하루에 전송에 쓸 수 있는 시간입니다. 회선 속도 하나만 있는 것이 아니라 네 개의 입력값이 있고, 그중 세 개는 회선 사양이 아니라 운영 조건입니다.
 
 {% include diagrams/static/sap-c02/data-transfer-online-vs-physical.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/data-transfer-online-vs-physical--c7a7054c5db61d47.png" %}
 
 그림은 왼쪽 열의 세 입력값이 계산 상자로 모이고, 그 결과가 허용 기간과 비교되어 두 갈래로 나뉘는 구조를 보여줍니다. 계산 상자에서 따로 뻗은 점선 하나는 cutover 보정 항목입니다. 오른쪽 끝에는 온라인 전송, 기간 한정 hosted connection, 물리 전송이라는 세 가지 도착점이 놓여 있습니다.
 
@@ -126,6 +127,7 @@ Snowmobile은 현재 `docs.aws.amazon.com`에 사용자 가이드가 없고 Snow
 DataSync에서 가장 자주 틀리는 지점은 에이전트 필요 여부입니다. "온프레미스가 끼면 필요하다"나 "대상이 EFS면 필요하다" 같은 요약은 둘 다 틀립니다. 문서는 필요한 조합을 네 가지로 열거합니다.
 
 {% include diagrams/static/sap-c02/datasync-agent-requirement.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/datasync-agent-requirement--a202937bc535871c.png" %}
 
 그림은 조합 목록을 두 묶음으로 나누고 각 묶음이 도달하는 처리량 상한을 함께 보여줍니다. 두 묶음의 상한 값이 서로 다르다는 점이 이 그림의 요지입니다.
 
@@ -332,6 +334,7 @@ identity provider가 AWS Directory Service인 경우 **디렉터리당 사용자
 Transfer Family 서버의 엔드포인트 타입은 PUBLIC, VPC(Internal 또는 Internet Facing), 그리고 폐지된 VPC_ENDPOINT입니다. **VPC_ENDPOINT는 2021-05-19부터 신규 생성이 불가능합니다.**
 
 {% include diagrams/static/sap-c02/transfer-family-endpoint-types.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/transfer-family-endpoint-types--3826943f9b758633.png" %}
 
 그림은 엔드포인트 타입 네 개를 한 묶음으로 두고, 각각이 쓸 수 있는 프로토콜과 통제 수단을 짝지어 보여줍니다. 어느 경로를 타든 도착점은 S3와 EFS 두 가지뿐이라는 점도 함께 담았습니다.
 
@@ -382,6 +385,7 @@ FTP 서버에 강한 security policy를 붙여 규정 준수를 주장하는 구
 Storage Gateway는 온프레미스에 남는 워크로드가 AWS 스토리지를 로컬 인터페이스로 쓰게 하는 계층입니다. 현재 네 종류이고, 무엇을 고를지는 온프레미스 애플리케이션이 요구하는 인터페이스가 정합니다.
 
 {% include diagrams/static/sap-c02/storage-gateway-four-types.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/storage-gateway-four-types--b328a699abfce32d.png" %}
 
 그림은 인터페이스 요구, 게이트웨이 종류, 백엔드 저장 형태를 세 열로 늘어놓고 각 행이 하나의 짝으로 고정되어 있음을 보여줍니다. 게이트웨이를 고른다는 것은 백엔드에 데이터가 어떤 형태로 남을지까지 고르는 일입니다.
 
@@ -493,6 +497,7 @@ EC2 게이트웨이가 ephemeral storage를 캐시로 쓰는 경우에는 정지
 데이터가 시설 밖으로 나가면 안 되거나 온프레미스 시스템과의 지연이 밀리초 단위여야 하면 Outposts가 후보가 됩니다. 여기서 rack과 server의 차이가 답을 가릅니다.
 
 {% include diagrams/static/sap-c02/outposts-rack-vs-server.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/outposts-rack-vs-server--446a090221355716.png" %}
 
 그림은 고객 시설 안에 rack과 server를 나란히 두고 각각의 온프레미스 연결 경로와 지원 서비스 범위를 함께 보여줍니다. 두 폼팩터 모두 홈 리전으로 향하는 service link를 갖는다는 점도 담았습니다.
 
@@ -588,6 +593,7 @@ Outpost와 리전 사이 데이터 이동은 DataSync와의 통합으로 자동�
 엣지 배치 선택지 세 가지는 시설을 누가 운영하는지와 트래픽이 어느 게이트웨이로 들어오는지로 구분됩니다.
 
 {% include diagrams/static/sap-c02/edge-placement-boundaries.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/edge-placement-boundaries--6718b5982090ef4f.png" %}
 
 그림은 세 종류의 사용자와 네 종류의 배치 위치를 시설 소유자별로 묶어 보여줍니다. 각 배치가 부모 리전 control plane과 연결되는 관계도 함께 담았습니다.
 

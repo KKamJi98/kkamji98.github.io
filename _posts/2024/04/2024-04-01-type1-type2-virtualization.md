@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/virtualization/type1-type2-hypervisor.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/virtualization/type1-type2-hypervisor--40495e6944ff39be.png" %}
 _Hardware에서 갈라지는 두 화살표는 단계가 아니라 서로 다른 구성이다. 위쪽은 하이퍼바이저가 하드웨어 위에 바로 올라가는 Type 1, 아래쪽은 호스트 OS 위에서 애플리케이션처럼 도는 Type 2다._
 
 

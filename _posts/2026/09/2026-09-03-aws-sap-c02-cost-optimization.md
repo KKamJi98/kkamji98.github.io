@@ -76,6 +76,7 @@ Savings Plans 는 기간 중 취소할 수 없습니다. 교환이나 수정이�
 한 시간의 사용분에 여러 종류의 커밋이 걸려 있으면 적용 순서가 정해져 있습니다. 이 순서를 모르면 "커밋을 추가로 샀는데 절감액이 예상과 다르다" 는 상황을 설명할 수 없습니다.
 
 {% include diagrams/static/sap-c02/savings-plans-discount-order.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/savings-plans-discount-order--0170dfb1c14b88c0.png" %}
 
 그림은 한 시간의 사용분이 세 단계의 커밋을 거쳐 남은 만큼만 On-Demand 요율로 계산되는 과정과, 그 과정에 처음부터 들어오지 않는 항목을 함께 담고 있습니다. 각 상자의 부제에 그 단계가 고정하는 축과 최대 할인율이 적혀 있습니다.
 
@@ -132,6 +133,7 @@ purchase queuing 은 만료 시점에 맞춰 다음 RI 구매를 예약해 두�
 비용 문항에서 가장 많이 틀리는 축이 여기입니다. **Savings Plans 는 capacity reservation 을 제공하지 않습니다.** 커밋을 늘려도 특정 AZ 에서 인스턴스가 뜬다는 보장은 생기지 않습니다.
 
 {% include diagrams/static/sap-c02/capacity-versus-discount-matrix.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/capacity-versus-discount-matrix--0b600d28333611de.png" %}
 
 그림은 워크로드 요구를 용량 보장과 요금 할인 두 갈래로 나눈 뒤 각 갈래에 어떤 수단이 놓이는지, 그리고 두 갈래를 모두 만족시키려면 무엇을 겹쳐야 하는지를 보여줍니다. Zonal Reserved Instance 만 두 갈래 모두에 걸쳐 있습니다.
 
@@ -217,6 +219,7 @@ Budgets 는 하루 최대 3회 갱신되고 갱신 간격은 보통 8시간에�
 접근 패턴을 예측할 수 없는 데이터에 대한 기본 답이 S3 Intelligent-Tiering 입니다. 다만 언제 내려가고 언제 올라오는지, 그리고 **무엇이 접근으로 인정되는지**가 문항의 재료입니다.
 
 {% include diagrams/static/sap-c02/s3-intelligent-tiering-tiers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/s3-intelligent-tiering-tiers--8d627472c75b7e68.png" %}
 
 그림은 Frequent Access 에서 시작한 객체가 미접근 일수에 따라 이동하는 계층들과, 선택 계층에서 restore 했을 때 객체가 도착하는 지점을 담고 있습니다. 128 KB 미만 객체가 이 이동에서 빠지는 것도 함께 표시했습니다.
 
@@ -255,6 +258,7 @@ Intelligent-Tiering 의 경제성은 세 가지 사실에서 나옵니다.
 접근 패턴을 알고 있으면 lifecycle 로 직접 내리는 쪽이 저장 단가가 낮습니다. 대신 최소 보관 기간, 최소 과금 객체 크기, 전환 요청 비용 세 가지를 떠안습니다.
 
 {% include diagrams/static/sap-c02/s3-lifecycle-transition-paths.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/s3-lifecycle-transition-paths--7d8db778f8c53c94.png" %}
 
 그림은 lifecycle 규칙이 만들 수 있는 전환 방향과 각 클래스의 최소 보관 기간을 함께 보여줍니다. Deep Archive 에서 나가는 lifecycle 경로가 없다는 것도 이 그림의 내용입니다.
 
@@ -442,6 +446,7 @@ Marketplace 서드파티 소프트웨어 구독이 갑자기 뛰는 상황은 Co
 Compute Optimizer 를 켰는데 권고가 부실하다는 상황에는 원인이 정해져 있습니다. 각각 다른 전제 조건에 대응합니다.
 
 {% include diagrams/static/sap-c02/cost-recommendation-sources.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/cost-recommendation-sources--f6097c21fc30ec20.png" %}
 
 그림은 세 권고 도구가 각각 무엇을 입력으로 받고 결과가 어디로 모이는지를 보여줍니다. Cost Explorer 활성화가 두 도구의 공통 전제라는 것과, Cost Explorer rightsizing 결과와 Compute Optimizer 결과 사이의 포함 관계도 여기에 있습니다.
 
@@ -496,6 +501,7 @@ Trusted Advisor 는 비용, 성능, 보안, 내결함성, 서비스 한도 카�
 커밋 할인이 닿지 않는 축 중 가장 큰 것이 데이터 전송입니다. 같은 바이트라도 어느 경로를 지나느냐에 따라 붙는 요금이 달라집니다.
 
 {% include diagrams/static/sap-c02/data-transfer-charge-points.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/data-transfer-charge-points--1db6aa295d8cb8c2.png" %}
 
 그림은 private subnet 의 컴퓨트에서 출발한 트래픽이 통과할 수 있는 다섯 가지 경로와 각 경로에 붙는 요금 항목을 담고 있습니다. 무과금 경로와 유료 경로가 함께 있습니다.
 

@@ -8,7 +8,7 @@
           <strong class="sd-label">계정 A의 principal</strong>
           <span class="sd-detail">user 또는 role</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">identity policy</span></div>
+        <p class="sd-note">identity policy의 사전 권한 조건</p>
         <div class="sd-node">
           <strong class="sd-label">sts:AssumeRole 권한</strong>
           <span class="sd-detail">없으면 호출 자체가 거부됨</span>
@@ -19,8 +19,8 @@
     <section class="sd-band" aria-labelledby="sts-service-title">
       <div class="sd-band-title" id="sts-service-title">AWS STS</div>
       <div class="sd-node">
-        <strong class="sd-label">임시 자격 증명 발급</strong>
-        <span class="sd-detail">기본 유효 기간 1시간</span>
+        <strong class="sd-label">AssumeRole 요청 접수와 권한 평가</strong>
+        <span class="sd-detail">호출 측 권한과 대상 role의 trust policy가 허용해야 발급</span>
       </div>
     </section>
     <div class="sd-arrow"><span class="sd-edge-label">trust policy 확인</span></div>
@@ -31,12 +31,12 @@
           <strong class="sd-label">trust policy</strong>
           <span class="sd-detail">계정 A principal의 explicit Allow 필수</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">가정 허용</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">권한 평가 통과 시 STS가 role session 자격증명 발급 (기본 1시간)</span></div>
         <div class="sd-node">
           <strong class="sd-label">대상 role</strong>
           <span class="sd-detail">maximum session duration 1시간에서 12시간</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">role 권한 부여</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">가정한 세션의 API 권한 범위</span></div>
         <div class="sd-node">
           <strong class="sd-label">permission policy</strong>
           <span class="sd-detail">가정한 세션이 할 수 있는 일</span>

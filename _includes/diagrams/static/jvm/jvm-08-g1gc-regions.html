@@ -3,25 +3,7 @@
 
   <section class="sd-lane">
     <div class="sd-lane-title">Heap: 동일한 크기의 regions</div>
-    <div class="sd-grid sd-grid--three">
-      <div class="sd-node sd-node--accent">
-        <strong class="sd-label">E: Eden regions</strong>
-        <span class="sd-detail">새 객체가 할당되는 region 집합</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">S: Survivor regions</strong>
-        <span class="sd-detail">Young collection에서 생존 객체를 받음</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">O: Old regions</strong>
-        <span class="sd-detail">오래 살거나 승격된 객체</span>
-      </div>
-      <div class="sd-node sd-node--warning">
-        <strong class="sd-label">H: Humongous regions</strong>
-        <span class="sd-detail">region 절반보다 큰 객체</span>
-      </div>
-    </div>
-    <p class="sd-note">세대는 연속된 주소 범위가 아니라 여러 region에 부여된 역할입니다. 한 시점의 region 역할은 GC 사이클에 따라 바뀔 수 있습니다.</p>
+<table class="sd-table sd-quality-table" aria-label="동일 크기 heap region의 한 시점 예시"><tbody><tr><td>E</td><td>E</td><td>S</td><td>O</td><td>O</td></tr><tr><td>O</td><td>E</td><td>H</td><td>O</td><td>E</td></tr><tr><td>S</td><td>O</td><td>E</td><td>E</td><td>O</td></tr><tr><td>O</td><td>H</td><td>O</td><td>S</td><td>E</td></tr></tbody></table><p class="sd-note">E: Eden, S: Survivor, O: Old, H: Humongous. 새 객체는 Eden, Young 생존 객체는 Survivor, 승격 객체는 Old에 배치됩니다. Humongous는 region 절반보다 큰 객체입니다.</p>    <p class="sd-note">세대는 연속된 주소 범위가 아니라 여러 region에 부여된 역할입니다. 한 시점의 region 역할은 GC 사이클에 따라 바뀔 수 있습니다.</p>
   </section>
 
   <div class="sd-arrow"><span class="sd-edge-label">G1 collection cycle</span></div>

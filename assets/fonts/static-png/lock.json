@@ -1,0 +1,738 @@
+{
+  "resources": [
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/css/all.min.css",
+      "path": "resources/e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css",
+      "sha256": "e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b",
+      "content_type": "text/css",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1 fonts; MIT CSS",
+          "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+          "path": "licenses/fontawesome.txt",
+          "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/webfonts/fa-brands-400.woff2",
+      "path": "resources/ff66d1cfb67dbe3da432bbe36572cabfa4eef0e591303c2cba111474ba1d15bc.woff2",
+      "sha256": "ff66d1cfb67dbe3da432bbe36572cabfa4eef0e591303c2cba111474ba1d15bc",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1 fonts; MIT CSS",
+          "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+          "path": "licenses/fontawesome.txt",
+          "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/webfonts/fa-regular-400.woff2",
+      "path": "resources/f4722d10b9e1b41eefe3b51a026312ee1970edb7782f94b0080d3d475945734c.woff2",
+      "sha256": "f4722d10b9e1b41eefe3b51a026312ee1970edb7782f94b0080d3d475945734c",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1 fonts; MIT CSS",
+          "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+          "path": "licenses/fontawesome.txt",
+          "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/webfonts/fa-solid-900.woff2",
+      "path": "resources/24e5fae26b41c08b2df81c91669f5aaae71d81a84a4713fc56b5c621b78dd456.woff2",
+      "sha256": "24e5fae26b41c08b2df81c91669f5aaae71d81a84a4713fc56b5c621b78dd456",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1 fonts; MIT CSS",
+          "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+          "path": "licenses/fontawesome.txt",
+          "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/webfonts/fa-v4compatibility.woff2",
+      "path": "resources/c776ee1f1fe21cd72195e91de7afd5c9dbd007e9d06016254d65fbcc091398ca.woff2",
+      "sha256": "c776ee1f1fe21cd72195e91de7afd5c9dbd007e9d06016254d65fbcc091398ca",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1 fonts; MIT CSS",
+          "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+          "path": "licenses/fontawesome.txt",
+          "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css",
+      "path": "resources/6d3f62d4d17969f9c70e9438cf671004725019e868123f2ebc295a006f8d5d2d.css",
+      "sha256": "6d3f62d4d17969f9c70e9438cf671004725019e868123f2ebc295a006f8d5d2d",
+      "content_type": "text/css",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "MIT",
+          "url": "https://cdn.jsdelivr.net/npm/glightbox@3/LICENSE.md",
+          "path": "licenses/glightbox.txt",
+          "sha256": "41555b530e2e4e65cc9956cf581f69942fd29fac9400e76b136f504f49e157f4"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2/dist/loading-attribute-polyfill.min.css",
+      "path": "resources/0a3d7c1eb3b499252f70e591974dfa255b7678c3b2917b296218c00b8c507b88.css",
+      "sha256": "0a3d7c1eb3b499252f70e591974dfa255b7678c3b2917b296218c00b8c507b88",
+      "content_type": "text/css",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "MIT",
+          "url": "https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2/LICENSE",
+          "path": "licenses/loading.txt",
+          "sha256": "1615001fd55e109a6abc56e4be0a7fc31fdad6582600d4336107dd6e83a5d402"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.css",
+      "path": "resources/13e16c505abff6ed9ece4ddb1988f0b15330bf21c29866536f7ccae3842a8218.css",
+      "sha256": "13e16c505abff6ed9ece4ddb1988f0b15330bf21c29866536f7ccae3842a8218",
+      "content_type": "text/css",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "MIT",
+          "url": "https://cdn.jsdelivr.net/npm/tocbot@4/LICENSE",
+          "path": "licenses/tocbot.txt",
+          "sha256": "f4415c75dae0e1fcc887baa3a3d5cc0f9db463305be7cc3a0bbe382f155faa4b"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap",
+      "path": "resources/d45f58025c1b4523ad54b4c171f89a7f937e24f5df97d0a0da9115cf1b5a5375.css",
+      "sha256": "d45f58025c1b4523ad54b4c171f89a7f937e24f5df97d0a0da9115cf1b5a5375",
+      "content_type": "text/css",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+          "path": "licenses/lato.txt",
+          "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+        },
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh7USSwaPGR_p.woff2",
+      "path": "resources/5627143aaeb49ba46b4614d4fefb967ad8d163fb0743a2fa9c7e53930e559062.woff2",
+      "sha256": "5627143aaeb49ba46b4614d4fefb967ad8d163fb0743a2fa9c7e53930e559062",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+          "path": "licenses/lato.txt",
+          "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh7USSwiPGQ.woff2",
+      "path": "resources/115f6a626ca115d4ad5581b59275327e0e860b30330a52b0f785561332dd2429.woff2",
+      "sha256": "115f6a626ca115d4ad5581b59275327e0e860b30330a52b0f785561332dd2429",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+          "path": "licenses/lato.txt",
+          "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXg.woff2",
+      "path": "resources/918b7dc3e2e2d015c16ce08b57bcb64d2253bafc1707658f361e72865498e537.woff2",
+      "sha256": "918b7dc3e2e2d015c16ce08b57bcb64d2253bafc1707658f361e72865498e537",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+          "path": "licenses/lato.txt",
+          "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjxAwXjeu.woff2",
+      "path": "resources/8b9fc9737043f88c1a9a7195c27a239bd329cc33d928ffb67736c61ae7a1dbbd.woff2",
+      "sha256": "8b9fc9737043f88c1a9a7195c27a239bd329cc33d928ffb67736c61ae7a1dbbd",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+          "path": "licenses/lato.txt",
+          "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qN67lqDY.woff2",
+      "path": "resources/26d1dbd047f3e3167a47a32d90011e68c0491450482b74c575b6b21075ab57c1.woff2",
+      "sha256": "26d1dbd047f3e3167a47a32d90011e68c0491450482b74c575b6b21075ab57c1",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNK7lqDY.woff2",
+      "path": "resources/300aa5a91d8d582a14e0c6ece4293bc35f132e3a3a649e5fdf8f8dded715777a.woff2",
+      "sha256": "300aa5a91d8d582a14e0c6ece4293bc35f132e3a3a649e5fdf8f8dded715777a",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNa7lqDY.woff2",
+      "path": "resources/d58dafd8f0b43c7bbffc003540514a742bf988ec213f96645dcf112938e4164e.woff2",
+      "sha256": "d58dafd8f0b43c7bbffc003540514a742bf988ec213f96645dcf112938e4164e",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNq7lqDY.woff2",
+      "path": "resources/f61f863b7dcf4f836954b8a11abc2b2284fb089d669c2cde701b198f9137fbcb.woff2",
+      "sha256": "f61f863b7dcf4f836954b8a11abc2b2284fb089d669c2cde701b198f9137fbcb",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qO67lqDY.woff2",
+      "path": "resources/fa58f80d5251de704511935874593441df23bbd968ddd0ba288295c19708195c.woff2",
+      "sha256": "fa58f80d5251de704511935874593441df23bbd968ddd0ba288295c19708195c",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7l.woff2",
+      "path": "resources/691491f1fc8badab623e1be56f92cc2d98c462b16617c67e1e288d6b061444bc.woff2",
+      "sha256": "691491f1fc8badab623e1be56f92cc2d98c462b16617c67e1e288d6b061444bc",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xK3dSBYKcSV-LCoeQqfX1RYOo3qPK7lqDY.woff2",
+      "path": "resources/a5984c2e2d01b200cc490bc23a4d437a3242c8c1c3d244a89eb7a6f5b11cd160.woff2",
+      "sha256": "a5984c2e2d01b200cc490bc23a4d437a3242c8c1c3d244a89eb7a6f5b11cd160",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwkxduz8A.woff2",
+      "path": "resources/ded3f805bc7e6647a673445d3d245223e5048f2bb03dd3d25c0d63db59ed29e4.woff2",
+      "sha256": "ded3f805bc7e6647a673445d3d245223e5048f2bb03dd3d25c0d63db59ed29e4",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlBduz8A.woff2",
+      "path": "resources/59ef09633ae72774978e64bba41dc2bce30b53da234c8020b24a9350dfc0fee3.woff2",
+      "sha256": "59ef09633ae72774978e64bba41dc2bce30b53da234c8020b24a9350dfc0fee3",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2",
+      "path": "resources/156650610835fe32914722ecfc8dab0ebbb84795e201b842158afa0ea873cfa4.woff2",
+      "sha256": "156650610835fe32914722ecfc8dab0ebbb84795e201b842158afa0ea873cfa4",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmBduz8A.woff2",
+      "path": "resources/615c0d875de2ec25e22bba41b5cd0e1184517a90916cfac8a4be8467539a5c8f.woff2",
+      "sha256": "615c0d875de2ec25e22bba41b5cd0e1184517a90916cfac8a4be8467539a5c8f",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmRduz8A.woff2",
+      "path": "resources/9d8b9b83f39fe3768c876486e92bb995c1a92c9e85b69481da84e5444ecc980f.woff2",
+      "sha256": "9d8b9b83f39fe3768c876486e92bb995c1a92c9e85b69481da84e5444ecc980f",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmhduz8A.woff2",
+      "path": "resources/f294b104a531823ee717881667ff33659a608feaed803c512d596e11c0028632.woff2",
+      "sha256": "f294b104a531823ee717881667ff33659a608feaed803c512d596e11c0028632",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmxduz8A.woff2",
+      "path": "resources/8dc088cf6d206732af59c4711ffcdac3e348e8e0db3d8d02511a78addf1fb799.woff2",
+      "sha256": "8dc088cf6d206732af59c4711ffcdac3e348e8e0db3d8d02511a78addf1fb799",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwkxduz8A.woff2",
+      "path": "resources/3380ca07336aca88710606a065871d156cd513642e4dd3847ae9c0aadbf7154c.woff2",
+      "sha256": "3380ca07336aca88710606a065871d156cd513642e4dd3847ae9c0aadbf7154c",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlBduz8A.woff2",
+      "path": "resources/04d65f6a36dfdc86cd8985b5a76477459e8cd2dcdb8aa7a6c04166eba6cfc4d0.woff2",
+      "sha256": "04d65f6a36dfdc86cd8985b5a76477459e8cd2dcdb8aa7a6c04166eba6cfc4d0",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu.woff2",
+      "path": "resources/06b675a649489d21b7fd33f19b1c6d37e8bd778ded07ecfec26bbc8f11e694f4.woff2",
+      "sha256": "06b675a649489d21b7fd33f19b1c6d37e8bd778ded07ecfec26bbc8f11e694f4",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmBduz8A.woff2",
+      "path": "resources/a33512ad87ab43143f32bb72a12f632c548492d0c9812639e2d96f6c5ec165b3.woff2",
+      "sha256": "a33512ad87ab43143f32bb72a12f632c548492d0c9812639e2d96f6c5ec165b3",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmRduz8A.woff2",
+      "path": "resources/bdfe6be41d09ed9bb7084c79c799baf380b43fd81474ab57f1099d177ddd476d.woff2",
+      "sha256": "bdfe6be41d09ed9bb7084c79c799baf380b43fd81474ab57f1099d177ddd476d",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmhduz8A.woff2",
+      "path": "resources/eac614c07305eb019a65be8876f3f563462626f70ae1845e14a5027361d77fa1.woff2",
+      "sha256": "eac614c07305eb019a65be8876f3f563462626f70ae1845e14a5027361d77fa1",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmxduz8A.woff2",
+      "path": "resources/c727042ba9c59613d37cc97a464f5492c891cf2c0251a36d76ae09c4a6b59fcd.woff2",
+      "sha256": "c727042ba9c59613d37cc97a464f5492c891cf2c0251a36d76ae09c4a6b59fcd",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwkxduz8A.woff2",
+      "path": "resources/8c7a5a574b427dafe22ffa653e58b9045888a024dbafd759e122be76e220b625.woff2",
+      "sha256": "8c7a5a574b427dafe22ffa653e58b9045888a024dbafd759e122be76e220b625",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwlBduz8A.woff2",
+      "path": "resources/f82a51221b8b237f121c2e761eb397c8d98a1220860d5f90819da97e1154008a.woff2",
+      "sha256": "f82a51221b8b237f121c2e761eb397c8d98a1220860d5f90819da97e1154008a",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwlxdu.woff2",
+      "path": "resources/01f626ea1f2510f33efbd895b41049a10d2ddfbf2737b5400721ed310cf071a3.woff2",
+      "sha256": "01f626ea1f2510f33efbd895b41049a10d2ddfbf2737b5400721ed310cf071a3",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwmBduz8A.woff2",
+      "path": "resources/cef5f5d6f1164a9f9889686ed235b1f542fb7245aa98871ee692997df8d97ad0.woff2",
+      "sha256": "cef5f5d6f1164a9f9889686ed235b1f542fb7245aa98871ee692997df8d97ad0",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwmRduz8A.woff2",
+      "path": "resources/05c26abcc0f7b38e8cd0ed66b1e99e63c1fc5da32859fac2335044375a5ac00b.woff2",
+      "sha256": "05c26abcc0f7b38e8cd0ed66b1e99e63c1fc5da32859fac2335044375a5ac00b",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwmhduz8A.woff2",
+      "path": "resources/524c60b9711de859bbc146e0c1e6f0ae3fe3a569d3d67322427f10480ed6f75c.woff2",
+      "sha256": "524c60b9711de859bbc146e0c1e6f0ae3fe3a569d3d67322427f10480ed6f75c",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/sourcesanspro/v23/6xKydSBYKcSV-LCoeQqfX1RYOo3iu4nwmxduz8A.woff2",
+      "path": "resources/4df42cd5ca56298f37abf90eafbe650995c80b3c79683134bbba61fbcdea7f14.woff2",
+      "sha256": "4df42cd5ca56298f37abf90eafbe650995c80b3c79683134bbba61fbcdea7f14",
+      "content_type": "font/woff2",
+      "source": "https://kkamji.net/posts/litellm-gateway/",
+      "license": [
+        {
+          "spdx": "OFL-1.1",
+          "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+          "path": "licenses/sourcesanspro.txt",
+          "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+        }
+      ]
+    }
+  ],
+  "licenses": {
+    "fontawesome": {
+      "spdx": "OFL-1.1 fonts; MIT CSS",
+      "url": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/LICENSE.txt",
+      "path": "licenses/fontawesome.txt",
+      "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced"
+    },
+    "glightbox": {
+      "spdx": "MIT",
+      "url": "https://cdn.jsdelivr.net/npm/glightbox@3/LICENSE.md",
+      "path": "licenses/glightbox.txt",
+      "sha256": "41555b530e2e4e65cc9956cf581f69942fd29fac9400e76b136f504f49e157f4"
+    },
+    "lato": {
+      "spdx": "OFL-1.1",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lato/OFL.txt",
+      "path": "licenses/lato.txt",
+      "sha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e"
+    },
+    "loading": {
+      "spdx": "MIT",
+      "url": "https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2/LICENSE",
+      "path": "licenses/loading.txt",
+      "sha256": "1615001fd55e109a6abc56e4be0a7fc31fdad6582600d4336107dd6e83a5d402"
+    },
+    "sourcesanspro": {
+      "spdx": "OFL-1.1",
+      "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/release/LICENSE.md",
+      "path": "licenses/sourcesanspro.txt",
+      "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328"
+    },
+    "tocbot": {
+      "spdx": "MIT",
+      "url": "https://cdn.jsdelivr.net/npm/tocbot@4/LICENSE",
+      "path": "licenses/tocbot.txt",
+      "sha256": "f4415c75dae0e1fcc887baa3a3d5cc0f9db463305be7cc3a0bbe382f155faa4b"
+    }
+  },
+  "evidence": {
+    "page": "https://kkamji.net/posts/litellm-gateway/",
+    "browser": "151.0.7922.34",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+    "actual_used_fonts": {
+      "1280": [
+        {
+          "familyName": "NanumGothic",
+          "postScriptName": "NanumGothic",
+          "isCustomFont": false,
+          "glyphCount": 42
+        },
+        {
+          "familyName": "Source Sans Pro Black",
+          "postScriptName": "SourceSansPro-Black",
+          "isCustomFont": true,
+          "glyphCount": 4
+        },
+        {
+          "familyName": "Source Sans Pro",
+          "postScriptName": "SourceSansPro-Bold",
+          "isCustomFont": true,
+          "glyphCount": 1
+        },
+        {
+          "familyName": "Source Sans Pro",
+          "postScriptName": "SourceSansPro-Regular",
+          "isCustomFont": true,
+          "glyphCount": 40
+        },
+        {
+          "familyName": "Source Sans Pro SemiBold",
+          "postScriptName": "SourceSansPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ],
+      "360": [
+        {
+          "familyName": "NanumGothic",
+          "postScriptName": "NanumGothic",
+          "isCustomFont": false,
+          "glyphCount": 42
+        },
+        {
+          "familyName": "Source Sans Pro Black",
+          "postScriptName": "SourceSansPro-Black",
+          "isCustomFont": true,
+          "glyphCount": 4
+        },
+        {
+          "familyName": "Source Sans Pro",
+          "postScriptName": "SourceSansPro-Bold",
+          "isCustomFont": true,
+          "glyphCount": 1
+        },
+        {
+          "familyName": "Source Sans Pro",
+          "postScriptName": "SourceSansPro-Regular",
+          "isCustomFont": true,
+          "glyphCount": 40
+        },
+        {
+          "familyName": "Source Sans Pro SemiBold",
+          "postScriptName": "SourceSansPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    "request_failures": [],
+    "production_identical": false,
+    "profile": "unmodified public stylesheet snapshot; not a replacement font profile",
+    "captured_at": "2026-09-08T03:37:51.795986+00:00"
+  }
+}

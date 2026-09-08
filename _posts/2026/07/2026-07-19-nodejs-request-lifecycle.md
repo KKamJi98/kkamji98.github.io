@@ -37,6 +37,7 @@ Node.js process는 포트를 listen하고 HTTP 요청을 handler로 전달합니
 HTTP/1.1 keep-alive가 유효하고 양 끝점이 연결을 유지하기로 하면 하나의 TCP 연결로 여러 HTTP 요청과 응답을 처리할 수 있습니다. 반대로 클라이언트 agent 설정, server timeout, reverse proxy 정책, max request 수, network 오류, 배포 중 drain 상태가 있으면 새 연결이 만들어질 수 있습니다. "요청 두 번을 보냈는데 connection event가 하나였다"는 것은 연결 재사용의 관측 결과이지 Node.js가 요청을 하나만 처리했다는 뜻이 아닙니다.
 
 {% include diagrams/static/nodejs/node-http-request-lifecycle-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/node-http-request-lifecycle-flow--7b19a1a38116f872.png" %}
 _Node.js process 안에서 accepted TCP socket의 byte stream을 HTTP parser가 해석하고, request event가 application handler를 호출합니다. 실선은 데이터 흐름, 점선은 container runtime 또는 kubelet의 종료 제어 흐름입니다._
 
 그림의 왼쪽에서 오른쪽은 요청 처리의 논리 흐름입니다. HTTP parser, request event, application handler는 모두 Node.js process와 container boundary 안에 있습니다. 점선은 process termination 제어 흐름입니다. 실제 배포에서는 client와 Node.js 사이에 load balancer, Gateway, reverse proxy가 추가될 수 있지만, 각 홉에서도 TCP 연결과 HTTP 메시지의 구분은 유지됩니다.

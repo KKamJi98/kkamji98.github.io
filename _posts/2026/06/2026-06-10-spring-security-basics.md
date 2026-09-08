@@ -28,6 +28,7 @@ Spring Security의 서블릿 지원은 마법이 아니라 **servlet Filter**입
 > _- Spring Security Reference_  
 
 {% include diagrams/static/spring/spring-23-security-filter-chain.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-23-security-filter-chain--eb8cce4570f5fa12.png" %}
 _DelegatingFilterProxy가 Servlet 컨테이너와 Spring을 잇고, FilterChainProxy가 SecurityFilterChain의 보안 필터들에 위임한다. 통과해야 컨트롤러에 도달한다._
 
 세 가지 핵심 요소가 있습니다. 먼저 **`DelegatingFilterProxy`**가 서블릿 컨테이너와 Spring을 잇습니다.
@@ -54,6 +55,7 @@ _DelegatingFilterProxy가 Servlet 컨테이너와 Spring을 잇고, FilterChainP
 인증은 "이 요청의 주체가 누구인지" 확정하는 단계입니다.
 
 {% include diagrams/static/spring/spring-24-authn-authz.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-24-authn-authz--dd987ca53ccaa5a7.png" %}
 _인증: credentials -> AuthenticationManager -> 인증된 Authentication을 SecurityContextHolder에 저장. 인가: AuthorizationFilter가 권한을 접근 규칙과 비교해 허용/거부._
 
 인증을 수행하는 API가 **`AuthenticationManager`**입니다.

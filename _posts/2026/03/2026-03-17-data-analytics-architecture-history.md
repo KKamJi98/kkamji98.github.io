@@ -24,6 +24,7 @@ image:
 아래 타임라인이 전체 흐름을 한눈에 보여 줍니다. 오른쪽이 저장/엔진의 기술 축, 왼쪽이 스트리밍/조직 축입니다.
 
 {% include diagrams/static/aws/analytics-stack-01-architecture-history.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-01-architecture-history--b2c48170853f27ac.png" %}
 
 ---
 

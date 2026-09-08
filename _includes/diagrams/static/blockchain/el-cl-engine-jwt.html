@@ -29,7 +29,7 @@
         </div>
       </div>
     </section>
-    <div class="sd-arrow"><span class="sd-edge-label">authenticated Engine 호출</span></div>
+    <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">위쪽 Execution client로 Engine 요청 / 아래쪽 Consensus client로 응답</span></div>
     <section class="sd-band sd-band--accent" aria-label="Engine API 인증 경계">
       <div class="sd-band-title">인증 경계</div>
       <div class="sd-node sd-node--accent">
@@ -37,7 +37,7 @@
         <span class="sd-detail">JWT HS256, iat 60s</span>
       </div>
     </section>
-    <div class="sd-arrow"><span class="sd-edge-label">fork choice와 finality 전달</span></div>
+    <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">Consensus client가 위쪽 Engine API로 fork choice와 finality 전달 / 응답 수신</span></div>
     <section class="sd-band" aria-label="Consensus layer">
       <div class="sd-band-title">Consensus layer</div>
       <div class="sd-grid">

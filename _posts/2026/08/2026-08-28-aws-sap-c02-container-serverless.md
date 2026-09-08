@@ -50,6 +50,7 @@ HTTP 요청 하나를 받아 처리하고 응답하는 동일한 기능을 EC2, 
 | 요청당 과금 | 없다 | 없다 | 없다 | 있다 | 있다 |
 
 {% include diagrams/static/sap-c02/serverless-request-path-timeouts.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/serverless-request-path-timeouts--5b560898b3e713e9.png" %}
 
 같은 요청을 서버리스 경로와 컨테이너 경로로 각각 태웠을 때 어느 지점에 어떤 상한이 걸려 있는지를 나란히 놓은 그림입니다. 서버리스 경로에는 서로 다른 층에서 만들어지는 상한 두 개가 겹쳐 있고, 컨테이너 경로에는 실행 시간 상한 대신 용량과 패치와 스케일 정책을 직접 정해야 하는 책임이 있습니다.
 
@@ -124,6 +125,7 @@ ephemeral storage는 platform version 1.4.0 이상에서 최소 20 GiB이고 `ep
 용량을 지정하는 방법은 두 가지이고, 둘 중 하나만 씁니다. 어느 쪽도 지정하지 않으면 클러스터의 `defaultCapacityProviderStrategy`가 적용됩니다.
 
 {% include diagrams/static/sap-c02/ecs-capacity-provider-placement.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/ecs-capacity-provider-placement--31f0fcc4a4b4154c.png" %}
 
 용량 지정이 두 갈래로 나뉘는 지점과, strategy 쪽에서 태스크가 실제로 배치되는 순서를 담은 그림입니다. `base`와 `weight`가 각각 어떤 범위를 갖고 어떤 값에서 호출이 실패하는지도 함께 적어 두었습니다.
 
@@ -263,6 +265,7 @@ cross-account 복제에 필요한 정책은 목적지 계정의 registry permiss
 EKS 클러스터가 Pod를 스케줄할 수 있는 대상은 EKS Auto Mode managed node, self-managed node, managed node group, Fargate, Hybrid Nodes입니다. hybrid node를 제외한 노드는 클러스터를 만들 때 지정한 서브넷과 같은 VPC 안에 있어야 하고, 같은 서브넷일 필요는 없습니다.
 
 {% include diagrams/static/sap-c02/eks-compute-option-split.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/eks-compute-option-split--3ae70fefcdc94329.png" %}
 
 포기할 수 없는 요구 하나가 컴퓨트 선택을 확정하는 구조를 담은 그림입니다. 네 갈래 각각에 그 선택지가 못 하는 것을 함께 적어 두었습니다.
 
@@ -388,6 +391,7 @@ VPC에 연결되지 않은 함수는 대역폭 증설을 요청할 수 있고, �
 동시성은 세 층으로 되어 있고 각 층이 다른 것을 제한합니다.
 
 {% include diagrams/static/sap-c02/lambda-concurrency-gates.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/lambda-concurrency-gates--5cddd694c3978ade.png" %}
 
 호출이 실제로 실행 환경에 도달하기까지 지나는 게이트 세 개와, 각 게이트에서 스로틀될 때 어떤 응답이 나가는지를 담은 그림입니다. provisioned 환경과 새 실행 환경이 갈리는 지점도 함께 표시했습니다.
 
@@ -414,6 +418,7 @@ rps 상한은 별도 축입니다. 동기 호출의 초당 요청 수 한계는 
 같은 함수라도 어떻게 호출되느냐에 따라 실패를 누가 다시 시도하는지가 달라집니다. 이 차이가 실패 이벤트 보존과 멱등성 요구를 만드는 문항의 뼈대입니다.
 
 {% include diagrams/static/sap-c02/lambda-invocation-retry-paths.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/lambda-invocation-retry-paths--798e651169c26d05.png" %}
 
 호출 모델 세 가지를 나란히 놓고 각 경로에서 재시도를 누가 수행하며 실패한 이벤트가 어디에 남는지를 담은 그림입니다.
 
@@ -441,6 +446,7 @@ API Gateway와 Lambda의 동기 경로에서 API Gateway는 Lambda 함수를 재
 VPC에 연결하지 않은 함수는 기본적으로 퍼블릭 인터넷에 접근합니다. VPC에 붙이면 그 VPC 안에서 도달 가능한 것만 접근할 수 있게 되고, 인터넷 접근이 필요하면 VPC 쪽에 경로를 따로 만들어야 합니다.
 
 {% include diagrams/static/sap-c02/lambda-vpc-reachability.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/lambda-vpc-reachability--6f33223b46b58697.png" %}
 
 VPC 연결 여부에 따라 함수가 닿을 수 있는 대상이 어떻게 달라지는지를 담은 그림입니다. 퍼블릭 서브넷에 연결하면 인터넷으로 나갈 수 있다는 흔한 오해도 함께 표시했습니다.
 

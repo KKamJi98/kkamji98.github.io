@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/aws/route53-dns-record-resolution.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/route53-dns-record-resolution--9eabc6fe78cb7e7b.png" %}
 
 Amazon Route 53에서 DNS record를 만들기 전에, record가 들어갈 hosted zone과 도메인 등록기관의 delegation이 먼저 맞아야 합니다. record 하나를 생성해도 등록기관이 해당 hosted zone의 name server를 가리키지 않으면 인터넷 DNS 조회는 그 zone을 사용하지 않습니다.
 

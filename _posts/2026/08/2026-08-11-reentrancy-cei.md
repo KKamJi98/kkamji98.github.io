@@ -71,6 +71,7 @@ contract Attacker {
 호출 순서는 한 줄입니다. `withdraw`가 `call`로 이더를 보내고, `receive`가 그 `call` 안에서 다시 `withdraw`에 들어갑니다. 바깥 `withdraw`의 `balances[msg.sender] = 0`은 아직 실행되지 않았습니다.
 
 {% include diagrams/static/blockchain/reentrancy-insecure-loop.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/reentrancy-insecure-loop--a3c1ede2ac25ed42.png" %}
 _call이 끝나기 전에 balance가 남아 있으면 같은 출금이 반복된다. 테스트 끝 상태는 vault 0이다._
 
 `receive`의 정지 조건은 mapping이 아니라 `address(vault).balance`입니다. 금고 이더가 1 ETH 아래로 떨어질 때까지 재진입합니다. 피해자 10 ETH는 그 조건에 포함됩니다.
@@ -103,6 +104,7 @@ vault.balances(attacker) == 0
 ```
 
 {% include diagrams/static/blockchain/reentrancy-cei-secure.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/reentrancy-cei-secure--329e032807585ddd.png" %}
 _스토리지를 먼저 바꾸면 receive가 다시 들어와도 amount는 0이다. 바깥 call도 실패한다._
 
 이 순서를 Checks-effects-interactions라고 부릅니다. 검사, 상태 변경, 외부 호출입니다. Solidity 문서의 re-entrancy 절이 같은 순서를 권고합니다.

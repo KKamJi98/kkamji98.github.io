@@ -28,6 +28,7 @@ JPA에서 엔티티를 관리하는 주체는 `EntityManager`(Hibernate의 `Sess
 > _- Hibernate ORM User Guide_  
 
 {% include diagrams/static/spring/spring-15-persistence-context.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-15-persistence-context--e3c1df8a5d7ca3f7.png" %}
 _영속성 컨텍스트는 트랜잭션 범위의 1차 캐시. managed 엔티티(id -> entity)를 보관하고, 변경은 dirty checking으로 flush 시 DB에 write-behind된다._
 
 핵심은 **"id마다 유일한 인스턴스"**입니다. 같은 트랜잭션에서 같은 id를 두 번 조회하면, 두 번째는 DB로 가지 않고 1차 캐시에서 같은 객체를 돌려줍니다.
@@ -51,6 +52,7 @@ Member b = em.find(Member.class, 1L);  // 캐시 hit (쿼리 없음)
 > _- Hibernate ORM User Guide_  
 
 {% include diagrams/static/spring/spring-16-entity-states.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-16-entity-states--8500057e11dfe676.png" %}
 _persist()로 transient -> managed, find()/query로 DB에서 managed 적재, detach/clear/close로 detached, merge()로 다시 managed, remove()로 removed._
 
 - **transient (new)**: `new`로 막 만든 객체. 아직 영속성 컨텍스트와 무관하고 DB에도 없습니다.

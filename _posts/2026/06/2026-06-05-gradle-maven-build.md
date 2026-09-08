@@ -40,6 +40,7 @@ Gradle과 Maven은 접근이 다릅니다.
 빌드의 흐름과 최종 산출물을 정리하면 다음과 같습니다.
 
 {% include diagrams/static/spring/spring-21-build-pipeline.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-21-build-pipeline--0c16122cebf59797.png" %}
 _compile + test -> Spring Boot 플러그인 패키징 -> 앱과 모든 의존성을 담은 실행 가능 jar -> java -jar로 실행._
 
 Spring Boot Gradle 플러그인은 `bootJar` 태스크로 실행 가능 jar를 만듭니다.
@@ -75,6 +76,7 @@ dependencies {
 이게 가능한 이유는 **dependency management(BOM)** 때문입니다.
 
 {% include diagrams/static/spring/spring-22-dependency-bom.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-22-dependency-bom--80a75a69a7f029f7.png" %}
 _버전을 생략해 선언하면, spring-boot-dependencies BOM이 호환되는 버전 집합으로 채워 직접/전이 의존성을 정렬한다._
 
 > When you apply the `io.spring.dependency-management` plugin, Spring Boot's plugin will automatically import the `spring-boot-dependencies` bom from the version of Spring Boot that you are using. ... it allows you to omit version numbers when declaring dependencies that are managed in the bom.  

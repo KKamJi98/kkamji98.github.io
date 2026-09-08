@@ -1,10 +1,10 @@
 <figure class="sd sd--comparison" id="kubernetes-cilium-kubernetes-uses-iptables-for" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-title">
-  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-title">Kubernetes 구성 요소는 Service와 NetworkPolicy에 iptables를 사용한다</figcaption>
-  <p class="sd-note">kube-proxy는 Service와 load balancing을 위해 DNAT rules를 만들고, CNI implementation은 NetworkPolicy enforcement에 iptables를 사용할 수 있습니다. 적용 범위는 implementation에 따라 달라집니다.</p>
+  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-title">iptables 기반 Service와 NetworkPolicy 구현 비교</figcaption>
+  <p class="sd-note">iptables mode의 kube-proxy는 Service와 load balancing을 위해 DNAT rules를 만들고, CNI implementation은 NetworkPolicy enforcement에 iptables를 사용할 수 있습니다. 적용 범위는 implementation에 따라 달라집니다.</p>
 
   <div class="sd-grid" aria-label="Kubernetes iptables 사용처">
     <section class="sd-lane" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-proxy-title">
-      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-proxy-title">kube-proxy</div>
+      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-proxy-title">kube-proxy (iptables mode)</div>
       <div class="sd-band">
         <div class="sd-band-title">Service와 load balancing</div>
         <div class="sd-node sd-node--accent">
@@ -15,12 +15,12 @@
     </section>
 
     <section class="sd-lane" aria-labelledby="kubernetes-cilium-kubernetes-uses-iptables-for-cni-title">
-      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-cni-title">대부분의 CNI plugins</div>
+      <div class="sd-lane-title" id="kubernetes-cilium-kubernetes-uses-iptables-for-cni-title">정책 지원 network plugin</div>
       <div class="sd-band">
         <div class="sd-band-title">NetworkPolicy</div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">iptables policy rules</strong>
-          <span class="sd-detail">Calico, Flannel, Weave Net과 같은 CNI가 정책 enforcement에 사용합니다.</span>
+          <span class="sd-detail">iptables 기반 정책 구현이 사용하는 규칙입니다. Flannel 단독은 NetworkPolicy를 제공하지 않으며 별도 정책 제공자가 필요합니다.</span>
         </div>
       </div>
     </section>

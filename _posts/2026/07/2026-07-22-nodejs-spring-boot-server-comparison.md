@@ -35,6 +35,7 @@ Node.js core HTTP는 Node process에서 `http.Server`와 application handler를 
 Spring Boot MVC는 Servlet API와 servlet container 위에서 controller를 실행합니다. blocking 작업은 request thread를 점유할 수 있으므로 thread pool, queue, request latency를 함께 관찰해야 합니다. Spring Boot WebFlux는 non-blocking I/O와 Reactive Streams 계약을 전제로 하는 별도 웹 스택입니다. 기본 server 선택은 Reactor Netty이지만 WebFlux 자체와 Netty는 같은 개념이 아닙니다.
 
 {% include diagrams/static/server/nodejs-spring-server-stacks.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/server/nodejs-spring-server-stacks--fff368389552f735.png" %}
 _세 칸은 성능 순위가 아니라 요청을 실행하는 책임 경계다. 블로킹 코드가 어느 실행 단위를 점유하는지, CPU 작업을 어디로 분리할지는 각 stack의 계약 안에서 판단한다._
 
 ---

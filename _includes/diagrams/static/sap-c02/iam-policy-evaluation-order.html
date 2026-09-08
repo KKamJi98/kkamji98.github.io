@@ -1,45 +1,55 @@
 <figure class="sd sd--sequence" id="iam-policy-evaluation-order" aria-labelledby="iam-policy-evaluation-order-title">
-  <figcaption class="sd-title" id="iam-policy-evaluation-order-title">요청은 일곱 단계를 순서대로 통과해야 허용된다</figcaption>
-  <p class="sd-note">1단계에서 모든 정책 타입의 explicit Deny를 먼저 찾습니다. 이후 단계에서 필요한 Allow가 없으면 implicit deny로 거부됩니다.</p>
-
-  <div class="sd-flow" aria-label="IAM 정책 평가 순서">
+  <figcaption class="sd-title" id="iam-policy-evaluation-order-title">IAM은 explicit Deny와 적용 가능한 정책의 권한을 평가한다</figcaption>
+  <p class="sd-note">요청에 적용되는 정책만 평가합니다. 평가 순서는 정책 객체를 호출하는 request hop이 아니며 모든 정책 종류에서 각각 Allow를 받아야 한다는 뜻도 아닙니다.</p>
+  <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">API 요청</strong>
-      <span class="sd-detail">기본값은 implicit deny입니다.</span>
+      <span class="sd-detail">인증 후 request context를 만듭니다. 일반적인 기본값은 implicit deny이며 root user의 기본 권한은 별도입니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">request context</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">적용 정책에서 explicit Deny 확인</span>
+    </div>
     <div class="sd-node sd-node--warning">
       <strong class="sd-label">1. Deny evaluation</strong>
-      <span class="sd-detail">여섯 정책 타입 전체에서 explicit Deny를 찾습니다.</span>
+      <span class="sd-detail">어느 적용 정책에든 explicit Deny가 있으면 즉시 거부합니다.</span>
     </div>
-
-    <div class="sd-grid">
-      <section class="sd-lane" aria-labelledby="iam-policy-evaluation-order-denied-title">
-        <div class="sd-lane-title" id="iam-policy-evaluation-order-denied-title">explicit Deny가 발견됨</div>
-        <div class="sd-node sd-node--warning">
-          <strong class="sd-label">거부</strong>
-          <span class="sd-detail">첫 단계에서 즉시 끝나며 뒤의 여섯 단계를 보지 않습니다.</span>
-        </div>
-      </section>
-      <section class="sd-lane" aria-labelledby="iam-policy-evaluation-order-continue-title">
-        <div class="sd-lane-title" id="iam-policy-evaluation-order-continue-title">explicit Deny 없음</div>
-        <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">2. RCP</strong><span class="sd-detail">RCPFullAWSAccess가 항상 붙어 있습니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">조직 리소스 상한</span></div>
-          <div class="sd-node"><strong class="sd-label">3. SCP</strong><span class="sd-detail">조직이 정한 계정 상한입니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">정책 결합</span></div>
-          <div class="sd-node"><strong class="sd-label">4. resource-based policy</strong><span class="sd-detail">지목한 ARN 종류가 뒤 단계의 적용을 바꿉니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">principal 권한</span></div>
-          <div class="sd-node"><strong class="sd-label">5. identity-based policy</strong><span class="sd-detail">권한을 실제로 부여하는 정책입니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">상한 확인</span></div>
-          <div class="sd-node"><strong class="sd-label">6. permissions boundary</strong><span class="sd-detail">user와 role에만 적용되는 상한입니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">세션이면 추가 확인</span></div>
-          <div class="sd-node"><strong class="sd-label">7. session policy</strong><span class="sd-detail">세션 principal만 평가합니다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">모든 단계 통과</span></div>
-          <div class="sd-node sd-node--accent"><strong class="sd-label">허용</strong><span class="sd-detail">일곱 단계를 모두 통과했습니다.</span></div>
-        </div>
-      </section>
-    </div>
-    <p class="sd-note">2단계 이후 어느 단계에서든 필요한 Allow가 없으면 explicit Deny와 같은 거부 결과가 되지만, 원인은 implicit deny입니다.</p>
   </div>
+  <section class="sd-lane">
+    <div class="sd-lane-title">explicit Deny 없음: 적용 조건에 따른 평가</div>
+    <div class="sd-node">
+      <strong class="sd-label">2. RCP</strong>
+      <span class="sd-detail">RCP가 활성화된 조직에서 지원 리소스에 적용합니다. 활성화 시 RCPFullAWSAccess가 자동 부착됩니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">3. SCP</strong>
+      <span class="sd-detail">적용 대상 계정의 principal 권한 상한입니다. management account에는 적용되지 않습니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">4. resource-based policy</strong>
+      <span class="sd-detail">리소스 정책이 권한을 준 principal ARN 종류와 동일 계정/교차 계정 여부에 따라 이후 결합이 달라집니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">5. identity-based policy</strong>
+      <span class="sd-detail">principal에 권한을 부여합니다. 동일 계정의 resource policy 허용과는 일반적으로 합집합이며 모든 요청에 별도 identity Allow가 필요한 것은 아닙니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">6. permissions boundary</strong>
+      <span class="sd-detail">부착된 user와 role의 상한입니다. 동일 계정에서 IAM user ARN 또는 session ARN에 직접 부여된 resource policy 권한의 implicit-deny 예외를 구분합니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">7. session policy</strong>
+      <span class="sd-detail">세션에 전달된 정책이 적용될 때 권한을 제한합니다. role ARN과 직접 부여된 session ARN의 차이를 구분합니다.</span>
+    </div>
+  </section>
+  <div class="sd-grid">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">허용</strong>
+      <span class="sd-detail">해당 요청에 필요한 권한이 성립하고 적용되는 상한을 만족할 때만 허용합니다.</span>
+    </div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">거부</strong>
+      <span class="sd-detail">적용 정책의 explicit Deny 또는 필요한 권한 부재에 따른 implicit deny입니다.</span>
+    </div>
+  </div>
+  <p class="sd-note">role trust policy와 KMS key policy는 explicit Allow 요구를 별도로 확인합니다. 정책의 적용 여부와 principal 종류를 먼저 확정해야 합니다.</p>
 </figure>

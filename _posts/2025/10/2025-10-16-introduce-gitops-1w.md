@@ -71,11 +71,13 @@ CI(Continuous Integration, 지속적 통합)와 CD(Continuous Delivery, 지속�
 일반적인 CI/CD 파이프라인에서 CI 프로세스는 제출된 코드를 빌드하고 테스트하여 검증하며 CD 프로세스는 보안 정책, IaC(Infrastructure as Code), 애플리케이션 설정 등의 요구 사항을 자동으로 적용합니다. 이 과정에서 모든 변경 사항은 Git으로 버전 관리되므로 변경 이력 추적과 롤백이 용이합니다. 이 Workflow는 아래와 같습니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/ci-cd-workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/ci-cd-workflow--878a4f2ecbae0445.png" %}
 > CI/CD Workflow  
 
 Kubernetes를 활용하면 클러스터 내부에 CI/CD 파이프라인을 아래와 같은 구조로 쉽게 구현할 수 있습니다. CI 과정에서는 애플리케이션을 나타내는 컨테이너 이미지(Container Image)를 생성하여 컨테이너 이미지 저장소(Container Image Registry)에 저장하고, Pull-Request 등의 Git Workflow를 통해 배포할 앱의 명세(Manifest)파일을 변경한 후 CD 동기화 루프를 개시합니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/application-deploy-model-in-kubernetes.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/application-deploy-model-in-kubernetes--faf9e2ceb10276f7.png" %}
 > Application Deployment Model In Kubernetes  
 
 ---
@@ -89,6 +91,7 @@ GitOps의 애플리케이션 배포 모델(Application Deployment Model)은 클�
 Kubernetes GitOps Lifecycle은 다음과 같은 순서로 구성되며, 모든 단계는 Git 저장소를 단일 신뢰 소스(Single Source of Truth)로 사용하고 Git 워크플로로 수행됩니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/gitops-lifecycle.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/gitops-lifecycle--85c6512b7a0309c3.png" %}
 > GitOps Lifecycle  
 
 1. Deploy
@@ -111,6 +114,7 @@ Kubernetes에서 GitOps 접근법을 사용해 애플리케이션을 배포하�
 하나는 애플리케이션 소스 코드를 보관하기 위해 사용하고, 다른 하나는 앱의 배포 형상을 기술하는 Kubernetes Manifest 파일들을 보관하기 위해 사용합니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/kubernetes-gitops-loop.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/kubernetes-gitops-loop--eecbe695d579cf5a.png" %}
 > Kubernetes GitOps Loop  
 
 

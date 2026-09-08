@@ -25,6 +25,7 @@ Jenkins Operator를 운영하다 보면 이런 상황을 만납니다. JCasC 설
 Operator의 심장은 `internal/controller/jenkins_controller.go`의 reconcile 함수입니다. watch 이벤트가 도착하면 다음 순서로 진행합니다.
 
 {% include diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-walkthrough.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-walkthrough--fcd215e948f7d320.png" %}
 > One pass through reconcile  
 
 1. **base.Validate** - CR spec의 유효성을 검사합니다. 잘못된 spec은 이 단계에서 거부됩니다.

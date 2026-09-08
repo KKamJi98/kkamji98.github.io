@@ -19,6 +19,7 @@ image:
 {: .prompt-tip}
 
 {% include diagrams/static/kubernetes/network-policy.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/network-policy--463bbe08964a7366.png" %}
 
 > **TL;DR**  
 > - web, was, db 3계층을 namespace로 나누고 NetworkPolicy로 허용 방향만 남기는 실습입니다.  

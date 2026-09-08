@@ -38,19 +38,19 @@
   <div class="sd-arrow"><span class="sd-edge-label">route telemetry</span></div>
   <div class="sd-grid">
     <section class="sd-lane">
-      <div class="sd-lane-title">Telemetry data</div>
+      <div class="sd-lane-title">Storage backends</div>
       <div class="sd-node">
-        <strong class="sd-label">Grafana Cloud, Loki, Prometheus, Pyroscope</strong>
-        <span class="sd-detail">logs, metrics, traces, profiling을 각 backend가 저장하고 조회한다.</span>
+        <strong class="sd-label">Grafana Cloud 또는 신호별 backend</strong>
+        <span class="sd-detail">metrics: Mimir / Prometheus, logs: Loki, traces: Tempo, profiles: Pyroscope</span>
       </div>
     </section>
     <section class="sd-lane">
-      <div class="sd-lane-title">Alerting rules</div>
+      <div class="sd-lane-title">Optional downstream collectors</div>
       <div class="sd-node sd-node--warning">
-        <strong class="sd-label">Collectors and alert pipeline</strong>
-        <span class="sd-detail">규칙 평가와 후속 collector 전송으로 운영 신호를 연결한다.</span>
+        <strong class="sd-label">다른 Alloy / OpenTelemetry Collector</strong>
+        <span class="sd-detail">필요하면 중간 collector로 보내 추가 처리 후 호환 storage backend에 저장한다.</span>
       </div>
     </section>
   </div>
-  <p class="sd-note">Alloy는 단일 수집기가 아니라 Collect, Transform, Write 단계를 조합하는 OpenTelemetry Collector 기반 pipeline이다.</p>
+  <p class="sd-note">Alloy는 Collect, Transform, Write를 맡는 수집 계층입니다. 알림 규칙 평가는 downstream backend 또는 alerting system의 역할입니다.</p>
 </figure>

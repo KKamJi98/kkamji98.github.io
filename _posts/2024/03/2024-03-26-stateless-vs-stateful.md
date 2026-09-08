@@ -10,6 +10,7 @@ comments: true
 ---
 
 {% include diagrams/static/network/stateless-stateful-firewall.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/network/stateless-stateful-firewall--7b86b27c02d73e70.png" %}
 
 > 네트워크나 웹을 공부하다 보면 **Stateless**와 **Stateful**을 자주 접하게 됩니다.  
 > **Stateless**는 **상태를 유지하지 않고**, **Stateful**은 **상태를 유지**한다고 하는데 이게 무슨 의미일까요?  

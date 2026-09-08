@@ -3,32 +3,23 @@
   <div class="sd-stack">
     <section class="sd-band" aria-label="Permission matrix">
       <div class="sd-band-title">Permission matrix: catalog, database, table</div>
-      <table class="sd-table">
-        <thead>
-          <tr>
-            <th scope="col">Layer</th>
-            <th scope="col">IAM API authorization</th>
-            <th scope="col">Lake Formation data authorization</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">catalog</th>
-            <td><code>glue:GetCatalog</code>, <code>GetCatalogs</code><br>catalog/s3tablescatalog/{bucket} ARN</td>
-            <td><code>DESCRIBE</code><br>s3tablescatalog/{bucket}</td>
-          </tr>
-          <tr>
-            <th scope="row">database</th>
-            <td><code>glue:GetDatabase</code>, <code>GetDatabases</code><br>database/s3tablescatalog/{bucket}/{db} ARN</td>
-            <td><code>DESCRIBE</code><br>{db}</td>
-          </tr>
-          <tr>
-            <th scope="row">table</th>
-            <td><code>glue:GetTable</code>, <code>GetTables</code><br>table/s3tablescatalog/{bucket}/{db}/* ARN</td>
-            <td><code>SELECT</code>, <code>DESCRIBE</code><br>target table</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="sd-quality-records">
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">Layer</strong><div class="sd-detail sd-band-title">catalog</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">IAM API authorization</strong><div class="sd-detail"><code>glue:GetCatalog</code>, <code>GetCatalogs</code><br>catalog/s3tablescatalog/{bucket} ARN</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">Lake Formation data authorization</strong><div class="sd-detail"><code>DESCRIBE</code><br>s3tablescatalog/{bucket}</div></div>
+      </div>
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">Layer</strong><div class="sd-detail sd-band-title">database</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">IAM API authorization</strong><div class="sd-detail"><code>glue:GetDatabase</code>, <code>GetDatabases</code><br>database/s3tablescatalog/{bucket}/{db} ARN</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">Lake Formation data authorization</strong><div class="sd-detail"><code>DESCRIBE</code><br>{db}</div></div>
+      </div>
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">Layer</strong><div class="sd-detail sd-band-title">table</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">IAM API authorization</strong><div class="sd-detail"><code>glue:GetTable</code>, <code>GetTables</code><br>table/s3tablescatalog/{bucket}/{db}/* ARN</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">Lake Formation data authorization</strong><div class="sd-detail"><code>SELECT</code>, <code>DESCRIBE</code><br>target table</div></div>
+      </div>
+    </div>
       <p class="sd-note"><code>lakeformation:GetDataAccess</code>는 query principal이 credential vending을 받을 수 있게 하는 IAM action입니다.</p>
     </section>
     <section class="sd-band" aria-label="Debugging timeline">

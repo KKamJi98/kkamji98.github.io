@@ -1,48 +1,31 @@
 <figure class="sd sd--comparison" id="sd-sap-c02-tgw-route-table-isolation" aria-labelledby="sd-title-tgw-route-table-isolation">
   <figcaption class="sd-title" id="sd-title-tgw-route-table-isolation">association은 볼 route table을, propagation은 실을 route를 정합니다</figcaption>
   <div class="sd-grid">
-    <section class="sd-lane" aria-label="spoke route table 격리">
-      <div class="sd-lane-title">Spoke route table</div>
-      <div class="sd-grid">
-        <div class="sd-node">
-          <strong class="sd-label">Spoke VPC A</strong>
-          <span class="sd-detail">개발 계정 attachment</span>
-        </div>
-        <div class="sd-node">
-          <strong class="sd-label">Spoke VPC B</strong>
-          <span class="sd-detail">운영 계정 attachment</span>
-        </div>
-        <div class="sd-node">
-          <strong class="sd-label">온프레미스 VPN</strong>
-          <span class="sd-detail">dynamic routing이어야 ECMP</span>
-        </div>
-      </div>
-      <div class="sd-arrow"><span class="sd-edge-label">association</span></div>
-      <div class="sd-node sd-node--accent">
-        <strong class="sd-label">Spoke route table</strong>
-        <span class="sd-detail">spoke와 VPN이 이 table을 조회, shared VPC 라우트만 보유</span>
-      </div>
-      <div class="sd-arrow"><span class="sd-edge-label">spoke CIDR 드롭</span></div>
-      <div class="sd-node sd-node--warning">
-        <strong class="sd-label">Blackhole route</strong>
-        <span class="sd-detail">spoke 사이 CIDR을 명시적으로 차단</span>
-      </div>
-    </section>
-    <section class="sd-lane" aria-label="shared route table 전파">
-      <div class="sd-lane-title">Shared route table</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">Shared route table</strong>
-          <span class="sd-detail">shared VPC가 association, 모든 attachment 라우트를 propagation</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">전파된 attachment route</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Shared services VPC</strong>
-          <span class="sd-detail">중앙 NAT, interface endpoint, 검사 어플라이언스</span>
-        </div>
-      </div>
-      <p class="sd-note">Spoke route table과 Shared route table을 분리하면 spoke끼리는 보지 못하고 shared services만 사용합니다.</p>
-    </section>
+  <div class="sd-node">
+  <strong class="sd-label">Spoke VPC A / Spoke VPC B</strong>
+  <span class="sd-detail">개발/운영 attachment: Spoke route table에 association, Shared route table로 propagation</span>
   </div>
-  <p class="sd-note">Spoke attachment는 Spoke route table에 association되고, Shared VPC는 Shared route table에 association됩니다. 모든 attachment route는 Shared route table로 propagation됩니다.</p>
+  <div class="sd-node">
+  <strong class="sd-label">온프레미스 VPN</strong>
+  <span class="sd-detail">Spoke route table에 association, Shared route table로 propagation. ECMP는 dynamic routing 필요</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Shared services VPC</strong>
+  <span class="sd-detail">중앙 NAT, interface endpoint, 검사 어플라이언스. Shared route table에 association, Spoke route table로 shared CIDR propagation</span>
+  </div>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">Transit Gateway route configuration</div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Spoke route table</strong>
+  <span class="sd-detail">Spoke/VPN attachment의 lookup 대상. shared VPC route만 보유; 선택적 Blackhole route로 spoke CIDR 명시적 드롭</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Shared route table</strong>
+  <span class="sd-detail">Shared attachment의 lookup 대상. spoke/VPN을 포함한 attachment route 수신</span>
+  </div>
+  </div>
+  </section>
+  <p class="sd-note">Association은 attachment가 조회할 table 하나를 선택합니다. Propagation은 attachment의 route를 table에 싣는 설정이며 packet forwarding hop이 아닙니다.</p>
 </figure>

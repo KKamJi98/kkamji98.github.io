@@ -1,19 +1,10 @@
 <figure class="sd sd--flow" id="sd-kubernetes-cilium-embedded-envoy-proxy" aria-labelledby="sd-title-kubernetes-cilium-embedded-envoy-proxy">
-  <figcaption class="sd-title" id="sd-title-kubernetes-cilium-embedded-envoy-proxy">Embedded Envoy Proxy를 node 단위로 배치하는 Cilium 경로</figcaption>
-  <div class="sd-flow">
+  <figcaption class="sd-title" id="sd-title-kubernetes-cilium-embedded-envoy-proxy">Cilium은 node 단위 Embedded Envoy Proxy로 L7을 처리한다</figcaption>
+  <section class="sd-band">
+    <div class="sd-band-title">Node: Cilium</div>
     <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Cilium</strong>
-      <span class="sd-detail">일부 protocol의 L7 policy와 observability에 Envoy를 사용합니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">embed with Cilium</span></div>
-    <div class="sd-node">
       <strong class="sd-label">Embedded Envoy Proxy</strong>
-      <span class="sd-detail">Service Mesh의 sidecar proxy와 같은 component를 Cilium에 내장합니다.</span>
+      <span class="sd-detail">일부 protocol의 L7 policy와 observability 처리. Service Mesh의 sidecar proxy와 같은 component를 Cilium에 내장하며, Pod마다 sidecar를 두지 않고 node당 Envoy container 하나를 실행합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">one container per node</span></div>
-    <div class="sd-node sd-node--muted">
-      <strong class="sd-label">Node-level Envoy container</strong>
-      <span class="sd-detail">Pod마다 sidecar를 배치하지 않고 node당 하나만 실행합니다.</span>
-    </div>
-  </div>
+  </section>
 </figure>

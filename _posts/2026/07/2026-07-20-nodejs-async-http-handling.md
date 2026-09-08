@@ -36,6 +36,7 @@ HTTP request가 handler에 전달된 뒤에는 입력 검증, upstream HTTP 호�
 `http.createServer(async (request, response) => { ... })`처럼 listener를 `async`로 선언해도 반환 Promise를 Node.js HTTP server가 response로 바꾸지 않습니다. EventEmitter listener는 기본적으로 동기 호출되며 Promise rejection을 HTTP error policy로 해석하지 않습니다. 따라서 "throw하면 자동으로 500"이라는 가정은 안전하지 않습니다.
 
 {% include diagrams/static/nodejs/node-async-http-handling-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/node-async-http-handling-flow--774d6a66b55e6ff1.png" %}
 _실선은 정상 작업과 terminal response 흐름입니다. 점선은 timeout 또는 client disconnect가 downstream 작업을 취소하는 제어 흐름입니다. rejected Promise 자체는 HTTP response가 아니므로 error boundary가 안전한 response로 매핑합니다._
 
 그림의 불변 조건은 간단합니다. request 하나에는 terminal response가 하나만 있어야 합니다. `response.end()`는 각 response에서 호출되어야 하며, error handling도 이 소유권을 깨면 안 됩니다.

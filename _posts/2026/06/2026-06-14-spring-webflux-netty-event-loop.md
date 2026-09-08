@@ -60,6 +60,7 @@ Spring WebFlux는 Spring의 **논블로킹 리액티브 웹 스택**입니다. S
 > _- Spring Framework Reference, Threading Model_  
 
 {% include diagrams/static/spring/spring-11-webflux-event-loop.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-11-webflux-event-loop--e84291851268a2a3.png" %}
 _event loop 스레드 수는 CPU 코어 수 수준. 한 커넥션의 I/O가 진행 중이면 같은 스레드가 다른 커넥션을 처리한다(never blocks). thread-per-request(MVC)는 요청당 스레드가 I/O 동안 묶인다._
 
 핵심은 **다중화(multiplexing)**입니다. event loop 스레드는 어떤 커넥션의 I/O 응답을 기다리는 동안 그 자리에서 멈추지 않고, 준비된 다른 커넥션의 일을 처리합니다. 블로킹이 없으니 스레드가 노는 시간이 없고, 그래서 적은 스레드로도 수많은 커넥션을 감당할 수 있습니다.
@@ -144,6 +145,7 @@ Mono<Order> best = r2dbcRepo.findById(id);
 그래서 netty는 direct buffer를 매번 새로 할당하지 않고 **풀링(pooling)**합니다. 기본 할당자인 `PooledByteBufAllocator`는 메모리 arena와 thread-local 캐시로 버퍼를 재사용하며, direct buffer도 이 풀로 관리합니다(`isDirectBufferPooled()`가 `true`를 반환). 비싼 할당/해제를 줄이는 대신, 풀이 잡아둔 off-heap 메모리는 GC가 자동으로 회수하지 않으므로 한 번 늘어난 direct memory 사용량은 쉽게 줄지 않습니다. 누수처럼 보이는 증가의 상당수는 사실 이 풀이 유지하는 정상 점유분입니다.
 
 {% include diagrams/static/spring/spring-12-netty-direct-memory.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-12-netty-direct-memory--b72676b9eab36812.png" %}
 _JVM process memory = JVM Heap(-Xmx) + Direct Memory(off-heap). netty 소켓 I/O 버퍼는 후자에 있어 커널과 복사 없이 주고받는다. 그래서 컨테이너 메모리는 -Xmx보다 커야 한다._
 
 그리고 이 메모리의 위치가 중요합니다. direct buffer는 GC가 관리하는 일반 힙 **바깥**에 있습니다.

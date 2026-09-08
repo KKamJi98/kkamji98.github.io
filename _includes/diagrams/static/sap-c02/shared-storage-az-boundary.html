@@ -1,29 +1,35 @@
 <figure class="sd sd--comparison" id="sd-sap-c02-shared-storage-az-boundary" aria-labelledby="sd-title-shared-storage-az-boundary">
   <figcaption class="sd-title" id="sd-title-shared-storage-az-boundary">EBS Multi-Attach는 AZ 안에 머물고 EFS는 리전에 걸칩니다</figcaption>
   <div class="sd-grid">
-    <section class="sd-lane" aria-label="같은 AZ의 EBS Multi-Attach">
-      <div class="sd-lane-title">AZ-A 안의 block 공유</div>
-      <div class="sd-grid">
-        <div class="sd-node">
-          <strong class="sd-label">Nitro 인스턴스 1</strong>
-          <span class="sd-detail">clustered file system 필요</span>
+    <div class="sd-stack">
+      <section class="sd-lane" aria-label="같은 AZ의 EBS Multi-Attach">
+        <div class="sd-lane-title">AZ-A 안의 block 공유</div>
+        <div class="sd-grid">
+          <div class="sd-node">
+            <strong class="sd-label">Nitro 인스턴스 1</strong>
+            <span class="sd-detail">clustered file system 필요</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Nitro 인스턴스 2</strong>
+            <span class="sd-detail">인스턴스당 block device mapping 1개</span>
+          </div>
         </div>
-        <div class="sd-node">
-          <strong class="sd-label">Nitro 인스턴스 2</strong>
-          <span class="sd-detail">인스턴스당 block device mapping 1개</span>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">같은 AZ에서만 attach</span>
         </div>
-      </div>
-      <div class="sd-arrow"><span class="sd-edge-label">같은 AZ에서만 attach</span></div>
-      <div class="sd-node sd-node--accent">
-        <strong class="sd-label">io2 볼륨 Multi-Attach</strong>
-        <span class="sd-detail">io1 또는 io2, Nitro 최대 16대, 부팅 볼륨 불가</span>
-      </div>
-      <div class="sd-arrow"><span class="sd-edge-label">AZ 경계</span></div>
-      <div class="sd-node sd-node--warning">
-        <strong class="sd-label">다른 AZ 인스턴스</strong>
-        <span class="sd-detail">같은 io2 볼륨에 attach할 수 없음</span>
-      </div>
-    </section>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">io2 볼륨 Multi-Attach</strong>
+          <span class="sd-detail">io1 또는 io2, Nitro 최대 16대, 부팅 볼륨 불가</span>
+        </div>
+      </section>
+      <section class="sd-lane">
+        <div class="sd-lane-title">AZ-B: EBS 연결 금지</div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">다른 AZ 인스턴스</strong>
+          <span class="sd-detail">같은 io2 볼륨에 attach할 수 없음</span>
+        </div>
+      </section>
+    </div>
     <section class="sd-lane" aria-label="여러 AZ의 Regional EFS">
       <div class="sd-lane-title">리전 범위의 file 공유</div>
       <div class="sd-grid">
@@ -36,7 +42,9 @@
           <span class="sd-detail">NFS mount</span>
         </div>
       </div>
-      <div class="sd-arrow"><span class="sd-edge-label">리전 안 모든 AZ</span></div>
+      <div class="sd-arrow">
+        <span class="sd-edge-label">리전 안 모든 AZ</span>
+      </div>
       <div class="sd-node sd-node--accent">
         <strong class="sd-label">Regional EFS</strong>
         <span class="sd-detail">수천 클라이언트 동시 마운트, AZ를 넘어 공유</span>

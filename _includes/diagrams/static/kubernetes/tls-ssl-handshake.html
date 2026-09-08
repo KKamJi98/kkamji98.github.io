@@ -1,6 +1,6 @@
 <figure class="sd sd--sequence" id="tls-ssl-handshake" aria-labelledby="tls-ssl-handshake-title">
-  <figcaption class="sd-title" id="tls-ssl-handshake-title">TLS 1.2 전체 핸드셰이크 예시</figcaption>
-  <p class="sd-note">TLS 1.2 full handshake에서 cipher suite에 따라 ServerKeyExchange와 client Certificate는 선택적으로 포함됩니다. ChangeCipherSpec 뒤에 Finished를 교환한 뒤 application data를 보냅니다.</p>
+  <figcaption class="sd-title" id="tls-ssl-handshake-title">TLS 1.2 서버 인증서 기반 전체 핸드셰이크</figcaption>
+  <p class="sd-note">서버 인증서 기반 TLS 1.2 예시입니다. 키 교환 방식과 client 인증 요청에 따라 선택 메시지가 달라집니다. TLS 1.3의 순서와는 다릅니다.</p>
 
   <div class="sd-stack">
     <section class="sd-band">
@@ -38,17 +38,17 @@
         <div class="sd-arrow"><span class="sd-edge-label">Certificate</span></div>
         <div class="sd-node">
           <strong class="sd-label">Server -> Client: Certificate and ServerHelloDone</strong>
-          <span class="sd-detail">서버 인증서를 보냅니다. 선택된 cipher suite가 요구하면 ServerKeyExchange가 앞에 오고, ServerHelloDone으로 server flight를 마칩니다.</span>
+          <span class="sd-detail">Certificate 뒤에 필요한 경우 ServerKeyExchange, CertificateRequest를 보내고 ServerHelloDone으로 마칩니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">인증서 검증과 키 교환</span></div>
         <div class="sd-node">
           <strong class="sd-label">Client: server certificate validation</strong>
-          <span class="sd-detail">client가 CA chain과 hostname을 확인합니다. server가 요청한 경우 client Certificate와 CertificateVerify가 이어질 수 있습니다.</span>
+          <span class="sd-detail">client가 CA chain과 hostname을 확인합니다. CertificateRequest를 받았다면 ClientKeyExchange 전에 client Certificate를 보냅니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">검증 통과</span></div>
         <div class="sd-node">
           <strong class="sd-label">Client -> Server: ClientKeyExchange</strong>
-          <span class="sd-detail">선택된 key exchange 방식에 맞는 key agreement 입력을 전달합니다.</span>
+          <span class="sd-detail">선택한 방식의 키 교환 입력을 전달합니다. client 인증에 필요한 CertificateVerify는 이 메시지 뒤, ChangeCipherSpec 전에 보냅니다.</span>
         </div>
         <div class="sd-arrow"><span class="sd-edge-label">session key 준비</span></div>
         <div class="sd-node">

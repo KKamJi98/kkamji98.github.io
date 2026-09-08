@@ -4,7 +4,9 @@
     <strong class="sd-label">변경 불가 보존 요구</strong>
     <span class="sd-detail">규제 기간과 운영자 우회 허용 여부를 먼저 결정</span>
   </div>
-  <div class="sd-arrow"><span class="sd-edge-label">보존 대상 확인</span></div>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">보존 대상 확인</span>
+  </div>
   <div class="sd-grid">
     <section class="sd-lane" aria-label="S3 Object Lock 보존 경로">
       <div class="sd-lane-title">S3 객체 버전</div>
@@ -17,7 +19,7 @@
       <div class="sd-grid sd-grid--three">
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">compliance mode</strong>
-          <span class="sd-detail">root도 삭제 불가, 모드 변경과 기간 단축 불가</span>
+          <span class="sd-detail">보존 기간 중 root도 삭제 불가, 모드 변경과 기간 단축 불가</span>
         </div>
         <div class="sd-node">
           <strong class="sd-label">governance mode</strong>
@@ -28,7 +30,9 @@
           <span class="sd-detail">만료일 없이 별도 해제까지 유지</span>
         </div>
       </div>
-      <div class="sd-arrow"><span class="sd-edge-label">새 버전은 별도 기록</span></div>
+      <div class="sd-arrow">
+        <span class="sd-edge-label">새 버전은 별도 기록</span>
+      </div>
       <div class="sd-node sd-node--muted">
         <strong class="sd-label">새 버전과 delete marker</strong>
         <span class="sd-detail">version ID 없는 DELETE는 delete marker를 남길 수 있음</span>
@@ -50,10 +54,12 @@
               <strong class="sd-label">grace time</strong>
               <span class="sd-detail">ChangeableForDays 지정, 최소 3일</span>
             </div>
-            <div class="sd-arrow"><span class="sd-edge-label">grace 종료</span></div>
+            <div class="sd-arrow">
+              <span class="sd-edge-label">grace 종료</span>
+            </div>
             <div class="sd-node sd-node--warning">
               <strong class="sd-label">되돌릴 수 없는 구간</strong>
-              <span class="sd-detail">lock과 recovery point 변경 및 삭제 불가</span>
+              <span class="sd-detail">lock 변경 불가, recovery point는 보존 기간 전에 변경 및 삭제 불가</span>
             </div>
           </div>
         </section>
@@ -69,5 +75,5 @@
       </div>
     </section>
   </div>
-  <p class="sd-note">S3 객체의 WORM은 Object Lock, AWS Backup 사본의 조기 삭제 방지는 Vault Lock입니다. compliance mode는 grace time 뒤에 immutable 상태가 됩니다.</p>
+  <p class="sd-note">S3 객체의 WORM은 Object Lock, AWS Backup 사본의 조기 삭제 방지는 Vault Lock입니다. grace time 뒤 immutable 상태가 되는 것은 Backup Vault Lock의 compliance mode입니다. S3 compliance는 설정된 보존 기간 동안 적용되며, legal hold는 그 기간과 독립입니다.</p>
 </figure>

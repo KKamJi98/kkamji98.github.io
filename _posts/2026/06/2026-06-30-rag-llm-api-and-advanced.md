@@ -89,6 +89,7 @@ Microsoft GraphRAG는 텍스트에서 엔터티, 관계, 핵심 claim을 추출�
 ---
 
 {% include diagrams/static/ai/rag-07-rag-variants.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/rag-07-rag-variants--905a1b9eec99393a.png" %}
 
 ---
 

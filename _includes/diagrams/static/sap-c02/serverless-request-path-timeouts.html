@@ -8,17 +8,23 @@
           <strong class="sd-label">클라이언트 요청</strong>
           <span class="sd-detail">서버리스 경로</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">통합 요청</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">통합 요청</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">API Gateway</strong>
           <span class="sd-detail">REST 29초 기본, HTTP API 30초, payload 10 MB</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">함수 호출</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">함수 호출</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">Lambda 함수</strong>
           <span class="sd-detail">동기 payload 6 MB, 실행 상한 900초</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">20분 작업</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">20분 작업</span>
+        </div>
         <div class="sd-node sd-node--warning">
           <strong class="sd-label">두 번 잘림</strong>
           <span class="sd-detail">29초에서 504, 함수는 최대 900초에서 강제 종료</span>
@@ -43,17 +49,23 @@
           <strong class="sd-label">클라이언트 요청</strong>
           <span class="sd-detail">컨테이너 비교 경로</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">ALB 전달</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">ALB 전달</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">Application Load Balancer</strong>
-          <span class="sd-detail">요청과 응답 각 1 MB, idle timeout 조정</span>
+          <span class="sd-detail">HTTP 컨테이너 target으로 전달, idle timeout 조정</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">태스크 전달</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">태스크 전달</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">ECS 태스크</strong>
           <span class="sd-detail">Fargate 조합표 또는 EC2 0.125에서 192 vCPU</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">직접 운영</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">직접 운영</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">실행 시간 상한 없음</strong>
           <span class="sd-detail">용량, 패치, scale 정책을 직접 정함</span>

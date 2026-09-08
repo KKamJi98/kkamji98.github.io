@@ -11,17 +11,16 @@
           </div>
         </div>
       </section>
-      <section class="sd-lane" aria-labelledby="sd-ci-cd-study-dockerfile-title{{include.instance}}">
-        <div class="sd-lane-title" id="sd-ci-cd-study-dockerfile-title{{include.instance}}">Dockerfile</div>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">Dockerfile</strong>
-            <span class="sd-detail"><code>FROM</code>, <code>RUN</code>, <code>COPY</code> 등 build 명령</span>
-          </div>
-        </div>
-      </section>
+      <div class="sd-node">
+        <strong class="sd-label">Dockerfile</strong>
+        <span class="sd-detail">
+          <code>FROM</code>, <code>RUN</code>, <code>COPY</code> 등 build 명령</span>
+      </div>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label"><code>docker build</code>가 입력을 묶음</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">
+        <code>docker build</code>가 입력을 묶음</span>
+    </div>
     <section class="sd-band" aria-labelledby="sd-ci-cd-study-docker-installation-title{{include.instance}}">
       <div class="sd-band-title" id="sd-ci-cd-study-docker-installation-title{{include.instance}}">Docker installation</div>
       <div class="sd-flow">
@@ -29,14 +28,18 @@
           <strong class="sd-label">Build Context</strong>
           <span class="sd-detail">Docker Daemon이 읽는 source와 Dockerfile의 범위</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">build와 layer cache</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">build와 layer cache</span>
+        </div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">Container Image (Docker cache)</strong>
           <span class="sd-detail">명령 결과를 Layer로 쌓은 로컬 이미지</span>
         </div>
       </div>
     </section>
-    <div class="sd-arrow"><span class="sd-edge-label">registry로 push</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">registry로 push</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Container Image (registry)</strong>
       <span class="sd-detail">원격 Registry에 저장된 배포 이미지</span>

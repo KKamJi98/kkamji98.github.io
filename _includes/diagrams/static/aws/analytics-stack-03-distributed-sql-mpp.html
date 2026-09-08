@@ -5,35 +5,60 @@
       <strong class="sd-label">Client</strong>
       <span class="sd-detail">SQL 제출</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">parse and plan</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">parse and plan</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Coordinator</strong>
       <span class="sd-detail">parse, plan, schedule; 직접 scan하지 않음</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">작업을 병렬 분배</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">작업을 병렬 분배</span>
+    </div>
     <div class="sd-grid sd-grid--three">
-      <section class="sd-lane" aria-label="Worker 1">
-        <div class="sd-lane-title">Worker 1</div>
+      <section class="sd-flow" aria-label="Worker 1 scan branch">
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Worker 1</strong><span class="sd-detail">executes tasks</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
-          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Worker 1</strong>
+            <span class="sd-detail">executes tasks</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">connector로 slice scan</span>
+          </div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">Data source slice</strong>
+            <span class="sd-detail">공유 S3, MySQL, Kafka 소스의 worker별 scan 조각</span>
+          </div>
         </div>
       </section>
-      <section class="sd-lane" aria-label="Worker 2">
-        <div class="sd-lane-title">Worker 2</div>
+      <section class="sd-flow" aria-label="Worker 2 scan branch">
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Worker 2</strong><span class="sd-detail">executes tasks</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
-          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Worker 2</strong>
+            <span class="sd-detail">executes tasks</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">connector로 slice scan</span>
+          </div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">Data source slice</strong>
+            <span class="sd-detail">공유 S3, MySQL, Kafka 소스의 worker별 scan 조각</span>
+          </div>
         </div>
       </section>
-      <section class="sd-lane" aria-label="Worker 3">
-        <div class="sd-lane-title">Worker 3</div>
+      <section class="sd-flow" aria-label="Worker 3 scan branch">
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">Worker 3</strong><span class="sd-detail">executes tasks</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">connector로 slice scan</span></div>
-          <div class="sd-node sd-node--muted"><strong class="sd-label">Data source slice</strong><span class="sd-detail">S3, MySQL, Kafka</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Worker 3</strong>
+            <span class="sd-detail">executes tasks</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">connector로 slice scan</span>
+          </div>
+          <div class="sd-node sd-node--muted">
+            <strong class="sd-label">Data source slice</strong>
+            <span class="sd-detail">공유 S3, MySQL, Kafka 소스의 worker별 scan 조각</span>
+          </div>
         </div>
       </section>
     </div>

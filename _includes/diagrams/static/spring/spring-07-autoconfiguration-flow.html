@@ -5,17 +5,23 @@
       <strong class="sd-label">애플리케이션 시작</strong>
       <span class="sd-detail">@SpringBootApplication</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">자동설정 후보 로드</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">자동설정 후보 로드</span>
+    </div>
     <div class="sd-node">
       <strong class="sd-label">AutoConfiguration 후보 로드</strong>
       <span class="sd-detail">@EnableAutoConfiguration</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">후보별 조건 평가</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">후보별 조건 평가</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">조건 충족 여부</strong>
       <span class="sd-detail">OnClass, OnMissingBean, OnProperty</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">조건 결과에 따라 분기</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">조건 결과에 따라 분기</span>
+    </div>
   </div>
   <div class="sd-grid">
     <section class="sd-lane" aria-label="조건 충족 branch">
@@ -32,10 +38,10 @@
       <div class="sd-flow">
         <div class="sd-node sd-node--muted">
           <strong class="sd-label">건너뜀: back off</strong>
-          <span class="sd-detail">직접 정의한 bean이 이미 처리함</span>
+          <span class="sd-detail">클래스 부재, property 불일치 또는 기존 bean 때문에 조건 불충족</span>
         </div>
       </div>
     </section>
   </div>
-  <p class="sd-note">이 평가는 candidate마다 한 번 실행되므로, 직접 만든 bean 하나는 해당 자동설정만 비켜서게 합니다.</p>
+  <p class="sd-note">조건은 후보별로 평가합니다. 예를 들어 OnMissingBean은 해당 타입의 bean을 직접 정의하면 기본 bean 등록을 건너뜁니다.</p>
 </figure>

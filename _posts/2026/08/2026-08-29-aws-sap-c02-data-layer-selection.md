@@ -37,6 +37,7 @@ SAP-C02 Domain 2가 데이터 계층에서 내는 문항이 이런 모양입니�
 purpose-built 데이터스토어를 고르는 문항은 지문 앞부분에 답의 절반을 깔아 둡니다. 데이터가 어떤 단위로 읽히는지, 일관성이 얼마나 필요한지, 여러 인스턴스가 동시에 붙는지가 그것입니다.
 
 {% include diagrams/static/sap-c02/data-store-access-pattern-matrix.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/data-store-access-pattern-matrix--2d13ef5af4ef35e2.png" %}
 
 그림은 한쪽에 지문에서 만나는 액세스 패턴을, 다른 쪽에 그 패턴이 지목하는 서비스를 두고 여덟 쌍을 나란히 놓은 것입니다. 각 상자의 부제에는 그 선택을 성립시키거나 무너뜨리는 제약이 적혀 있습니다. 패턴만 읽으면 어느 쌍이든 그럴듯해 보이고, 부제까지 읽어야 선지가 걸러집니다.
 
@@ -85,6 +86,7 @@ io1의 1,000 MiB/s도 조건부입니다. 64,000 IOPS를 프로비저닝하고 N
 같은 볼륨을 여러 인스턴스가 동시에 붙는 구성은 조건이 아주 좁습니다. 공유 스토리지가 필요한 문항에서 Multi-Attach 선지는 대부분 이 조건 중 하나에 걸려 탈락합니다.
 
 {% include diagrams/static/sap-c02/shared-storage-az-boundary.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/shared-storage-az-boundary--a0f682aeaf927fc1.png" %}
 
 그림은 AZ 두 개를 상자로 나누고, 한쪽 AZ 안에만 존재하는 io2 Multi-Attach 볼륨과 두 AZ 모두에서 마운트할 수 있는 Regional EFS를 함께 그린 것입니다. 각 상자의 부제에 Multi-Attach의 상한과 EFS의 접근 범위가 적혀 있습니다.
 
@@ -246,6 +248,7 @@ Glacier Flexible Retrieval과 Deep Archive에는 객체당 메타데이터 40 KB
 lifecycle 규칙은 waterfall 모델입니다. 위에서 아래로만 흐르고 거슬러 올라가지 않습니다.
 
 {% include diagrams/static/sap-c02/s3-lifecycle-waterfall.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/s3-lifecycle-waterfall--f4cfc535a7a26706.png" %}
 
 그림은 lifecycle 규칙에서 시작해 S3 Standard부터 Glacier Deep Archive까지 이어지는 전환 사슬과, 그 사슬을 벗어나는 별도 경로를 함께 그린 것입니다. 각 클래스 상자의 부제에 최소 저장 기간이 적혀 있고, 사슬 밖의 상자에는 상위 클래스로 되돌릴 때 쓰는 수단이 적혀 있습니다.
 
@@ -305,6 +308,7 @@ S3 성능 문항은 두 가지 오해를 노립니다. 버킷 단위로 성능�
 복제 문항은 대부분 "복제되지 않는 것"을 묻습니다. 규칙을 켠 시점이 경계이고, 그 경계 밖의 객체를 옮기는 수단은 따로 있습니다.
 
 {% include diagrams/static/sap-c02/s3-replication-scope.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/s3-replication-scope--c2f37cfdcc77d4f5.png" %}
 
 그림은 원본 버킷과 대상 버킷 사이에 live replication과 Batch Replication 두 경로를 나란히 두고, 어느 경로로도 대상 버킷에 도달하지 않는 항목을 따로 묶은 것입니다. 각 상자의 부제에 그 경로가 다루는 객체 범위와 전제 조건이 적혀 있습니다.
 
@@ -337,6 +341,7 @@ delete marker 복제는 설정 형식에 따라 다르게 동작합니다. `Filt
 RDS 고가용성 문항은 요구사항을 세 줄로 적어 놓고 그 셋을 동시에 만족하는 배포를 고르게 합니다. 자동 failover가 필요한지, 커밋 손실을 막아야 하는지, 대기 노드가 읽기를 받아야 하는지입니다.
 
 {% include diagrams/static/sap-c02/rds-deployment-topologies.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/rds-deployment-topologies--020f856cdebae186.png" %}
 
 그림은 세 가지 배포를 각각 상자로 묶어 나란히 놓고, 각 배포의 writer와 대기 노드를 그린 것입니다. 각 노드의 부제에 복제 방식과 그 노드가 읽기를 받는지 여부, 그리고 배포마다 붙는 제약이 적혀 있습니다.
 
@@ -409,6 +414,7 @@ Aurora의 스토리지는 컴퓨트와 분리되어 있고 3개 AZ에 걸쳐 다
 Aurora Global Database는 primary 1개 리전에 읽기 전용 secondary 최대 10개 리전을 붙입니다. 전용 인프라로 복제하고 지연은 통상 1초 미만입니다. secondary 클러스터는 읽기 전용이라는 이유로 reader를 예외적으로 16개까지 둘 수 있습니다.
 
 {% include diagrams/static/sap-c02/aurora-global-switchover-failover.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/aurora-global-switchover-failover--79ec7012dda8afc8.png" %}
 
 그림은 primary 클러스터에서 secondary 클러스터로 이어지는 복제와, secondary가 primary가 되는 두 가지 경로를 나란히 그린 것입니다. 각 경로 상자의 부제에 그 경로를 쓰는 상황과 RPO 특성이 적혀 있고, 두 경로가 공유하는 Global writer endpoint가 함께 있습니다.
 

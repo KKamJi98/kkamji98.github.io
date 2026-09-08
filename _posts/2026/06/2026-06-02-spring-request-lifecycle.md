@@ -30,6 +30,7 @@ image:
 그림으로 보면 다음과 같습니다.
 
 {% include diagrams/static/spring/spring-01-request-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-01-request-flow--87b521b8428f51c4.png" %}
 _요청 한 건이 JVM 프로세스 안에서 계층을 통과하는 경로_
 
 ---
@@ -157,6 +158,7 @@ DevSecOps 관점 비유로는, Ingress Controller나 API Gateway 한 개가 모�
 눈에 보이는 요청 흐름에서 시작해 아래 계층인 JVM과 메모리로 내려가고, 마지막에 실제 운영 이슈로 회수하는 순서입니다. 위 계층의 용어를 알아야 아래 계층의 수치가 무엇을 뜻하는지 읽히기 때문입니다.
 
 {% include diagrams/static/spring/spring-02-reading-order-map.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-02-reading-order-map--2b085e3aac5c013d.png" %}
 _탑다운 학습 경로: 요청 흐름에서 시작해 JVM/메모리로 내려가고 capstone으로 회수_
 
 ---

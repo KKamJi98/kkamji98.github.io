@@ -33,7 +33,7 @@
         <div class="sd-node"><strong class="sd-label">스트림 소스</strong><span class="sd-detail">Kinesis, DynamoDB Streams</span></div>
         <div class="sd-arrow"><span class="sd-edge-label">Lambda가 폴링</span></div>
         <div class="sd-node"><strong class="sd-label">event source mapping</strong><span class="sd-detail">레코드를 배치로 함수에 넘깁니다.</span></div>
-        <div class="sd-arrow"><span class="sd-edge-label">배치 전체를 다시 시도한다</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">함수의 배치 처리 실패</span></div>
         <div class="sd-node"><strong class="sd-label">배치 전체를 다시 시도한다</strong><span class="sd-detail">성공할 때까지 같은 샤드가 진행하지 못합니다.</span></div>
         <div class="sd-arrow"><span class="sd-edge-label">정체 관측</span></div>
         <div class="sd-node sd-node--warning"><strong class="sd-label">Iterator Age 상승</strong><span class="sd-detail">샤드가 막힌 시간을 모니터링합니다.</span></div>

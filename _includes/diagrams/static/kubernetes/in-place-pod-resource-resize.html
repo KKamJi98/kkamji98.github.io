@@ -1,5 +1,6 @@
 <figure class="sd sd--flow" id="sd-kubernetes-in-place-pod-resource-resize" aria-labelledby="sd-kubernetes-in-place-pod-resource-resize-title">
   <figcaption class="sd-title" id="sd-kubernetes-in-place-pod-resource-resize-title">In-place resize는 Pod를 재생성하지 않고 container resource를 바꾼다</figcaption>
+  <p class="sd-note">Kubernetes v1.33: 적용 가능한 NotRequired resize의 성공 경로입니다. 요청이 거부되거나 node 자원 부족으로 지연될 수 있습니다.</p>
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Resource patch</strong>
@@ -13,18 +14,18 @@
     <div class="sd-arrow"><span class="sd-edge-label">node 변경 전달</span></div>
     <div class="sd-node">
       <strong class="sd-label">kubelet</strong>
-      <span class="sd-detail">실행 중인 node에서 새 값을 적용합니다.</span>
+      <span class="sd-detail">현재 node에서 적용 가능 여부를 판단하고 새 값을 적용합니다.</span>
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">cgroup limits update</span></div>
     <div class="sd-node">
       <strong class="sd-label">Container resources</strong>
       <span class="sd-detail">container cgroup 값이 in place로 갱신됩니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">restart와 reschedule 없음</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">NotRequired 적용 성공: 재시작 없음</span></div>
     <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Pod keeps running</strong>
-      <span class="sd-detail">Pod 이름, node, IP를 유지한 채 계속 실행됩니다.</span>
+      <strong class="sd-label">Pod identity 유지</strong>
+      <span class="sd-detail">같은 Pod 이름, node, IP에서 container가 계속 실행됩니다.</span>
     </div>
   </div>
-  <p class="sd-note">Memory limit 감소는 <code>resizePolicy: RestartContainer</code>가 없으면 무중단으로 적용되지 않습니다. 기능은 Kubernetes v1.33의 InPlacePodVerticalScaling 조건을 전제로 합니다.</p>
+  <p class="sd-note">RestartContainer 정책이면 container를 재시작해 적용하되 Pod는 재생성하지 않습니다. v1.33에서 memory limit 감소에는 memory의 resizePolicy[*].restartPolicy: RestartContainer가 필요합니다.</p>
 </figure>

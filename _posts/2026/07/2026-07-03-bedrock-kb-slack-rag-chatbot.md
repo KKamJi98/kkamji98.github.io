@@ -31,6 +31,7 @@ image:
 전체 흐름은 색인(ingestion)과 질의(chat) 두 파이프라인으로 나뉩니다.
 
 {% include diagrams/static/aws/bedrock-slack-rag-architecture.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/bedrock-slack-rag-architecture--03bac9feea382ae8.png" %}
 _색인 파이프라인은 Google Docs를 파서가 섹션별 Markdown으로 바꿔 S3와 Bedrock KB를 거쳐 S3 Vectors에 넣는다. 질의 파이프라인은 Slack 멘션을 받아 retrieve, rerank, 근거 게이트를 지나 출처 딥링크가 붙은 스레드 답변으로 돌아온다. Python Parser에서 갈라지는 두 화살표는 본문 Markdown과 citation metadata로, 한 번의 파싱에서 함께 나오는 산출물이다._
 
 ```text

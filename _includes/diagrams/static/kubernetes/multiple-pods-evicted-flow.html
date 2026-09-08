@@ -5,10 +5,10 @@
       <strong class="sd-label">Node disk pressure</strong>
       <span class="sd-detail"><code>nodefs</code> 또는 <code>imagefs</code>가 threshold를 넘습니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">node-local eviction 판단</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">node-level resource 회수</span></div><div class="sd-node"><strong class="sd-label">Node-level reclamation</strong><span class="sd-detail">미사용 image와 종료된 container를 회수</span></div><div class="sd-arrow"><span class="sd-edge-label">회수만으로 pressure가 해소되지 않으면 Pod eviction</span></div>
     <div class="sd-node sd-node--warning">
       <strong class="sd-label">kubelet eviction</strong>
-      <span class="sd-detail">QoS class와 사용량으로 candidate 순위를 정합니다.</span>
+      <span class="sd-detail">회수할 filesystem의 사용량, requests 초과 여부와 Pod priority로 candidate를 판단합니다.</span>
     </div>
     <div class="sd-arrow"><span class="sd-edge-label">Pod 종료 처리</span></div>
     <div class="sd-node sd-node--warning">

@@ -7,14 +7,14 @@
         <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argo-rollouts-controller-title">
           <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-controller-title">Rollout control</div>
           <div class="sd-flow">
-            <div class="sd-node">
-              <strong class="sd-label">Rollout Controller</strong>
-              <span class="sd-detail">Rollout CRD 변경을 watch하고 상태를 reconcile</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">desired state 반영</span></div>
             <div class="sd-node sd-node--accent">
               <strong class="sd-label">Rollout</strong>
               <span class="sd-detail">배포 단계와 traffic weight를 선언</span>
+            </div>
+            <div class="sd-arrow"><span class="sd-edge-label">Controller가 Rollout spec을 watch</span></div>
+            <div class="sd-node">
+              <strong class="sd-label">Rollout Controller</strong>
+              <span class="sd-detail">Rollout 리소스 변경을 watch하고 상태를 reconcile</span>
             </div>
           </div>
         </section>
@@ -39,20 +39,20 @@
         </section>
       </div>
     </section>
-    <div class="sd-arrow"><span class="sd-edge-label">분석 결과에 따라 promote, pause 또는 rollback</span></div>
+    <div class="sd-arrow"><span class="sd-edge-label">Controller가 분석 결과로 promote, pause, rollback과 routing 설정을 조정 (사용자 요청 경로 아님)</span></div>
     <section class="sd-band" aria-labelledby="sd-ci-cd-study-argo-rollouts-traffic-title">
       <div class="sd-band-title" id="sd-ci-cd-study-argo-rollouts-traffic-title">Traffic plane</div>
       <div class="sd-flow">
         <div class="sd-node">
-          <strong class="sd-label">Ingress</strong>
-          <span class="sd-detail">외부 사용자의 live traffic 진입점</span>
+          <strong class="sd-label">Ingress / service mesh traffic router</strong>
+          <span class="sd-detail">외부 사용자의 live traffic을 Canary 20%, Stable 80%로 분할하는 예시</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">Service로 route</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">traffic router가 weight에 따라 각 Service로 route</span></div>
         <div class="sd-node">
-          <strong class="sd-label">Service</strong>
-          <span class="sd-detail">Canary와 Stable 대상에 weight 적용</span>
+          <strong class="sd-label">Canary Service / Stable Service</strong>
+          <span class="sd-detail">각 selector가 해당 버전의 Pod를 선택; Service 자체는 weight를 적용하지 않음</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">20% / 80% traffic split</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">각 Service가 해당 ReplicaSet의 Pod로 전달</span></div>
         <div class="sd-grid">
           <section class="sd-lane sd-lane--accent" aria-labelledby="sd-ci-cd-study-argo-rollouts-canary-title">
             <div class="sd-lane-title" id="sd-ci-cd-study-argo-rollouts-canary-title">Canary</div>

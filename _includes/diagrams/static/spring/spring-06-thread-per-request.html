@@ -1,35 +1,26 @@
 <figure class="sd sd--comparison" id="spring-06-thread-per-request" aria-labelledby="spring-06-thread-per-request-title">
   <figcaption class="sd-title" id="spring-06-thread-per-request-title">Thread-per-request: 요청마다 worker 하나를 점유 (Tomcat thread pool 기본 약 200)</figcaption>
-  <table class="sd-table">
-    <thead>
-      <tr>
-        <th scope="col">요청</th>
-        <th scope="col">할당된 worker</th>
-        <th scope="col">상태</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Request A</th>
-        <td>worker-1</td>
-        <td>I/O 대기 중에도 worker 점유</td>
-      </tr>
-      <tr>
-        <th scope="row">Request B</th>
-        <td>worker-2</td>
-        <td>I/O 대기 중에도 worker 점유</td>
-      </tr>
-      <tr>
-        <th scope="row">Request C</th>
-        <td>worker-3</td>
-        <td>I/O 대기 중에도 worker 점유</td>
-      </tr>
-      <tr class="sd-node--warning">
-        <th scope="row">Request D, E, ...</th>
-        <td>Pool full</td>
-        <td>대기열 후 reject 또는 timeout</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="sd-quality-records">
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">요청</strong><div class="sd-detail sd-band-title">Request A</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">할당된 worker</strong><div class="sd-detail">worker-1</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">상태</strong><div class="sd-detail">I/O 대기 중에도 worker 점유</div></div>
+      </div>
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">요청</strong><div class="sd-detail sd-band-title">Request B</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">할당된 worker</strong><div class="sd-detail">worker-2</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">상태</strong><div class="sd-detail">I/O 대기 중에도 worker 점유</div></div>
+      </div>
+      <div class="sd-band sd-quality-record">
+          <div class="sd-quality-field"><strong class="sd-label">요청</strong><div class="sd-detail sd-band-title">Request C</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">할당된 worker</strong><div class="sd-detail">worker-3</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">상태</strong><div class="sd-detail">I/O 대기 중에도 worker 점유</div></div>
+      </div>
+      <div class="sd-band sd-quality-record sd-node--warning">
+          <div class="sd-quality-field"><strong class="sd-label">요청</strong><div class="sd-detail sd-band-title">Request D, E, ...</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">할당된 worker</strong><div class="sd-detail">Pool full</div></div>
+          <div class="sd-quality-field"><strong class="sd-label">상태</strong><div class="sd-detail">대기열 후 reject 또는 timeout</div></div>
+      </div>
+    </div>
   <p class="sd-note">각 worker는 native memory에 자기 call stack을 가지므로 pool size가 커질수록 메모리 비용도 커집니다.</p>
 </figure>

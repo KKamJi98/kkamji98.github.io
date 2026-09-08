@@ -1,31 +1,26 @@
 <figure class="sd sd--flow" id="sd-kubernetes-network-policy" aria-labelledby="sd-title-kubernetes-network-policy">
-  <figcaption class="sd-title" id="sd-title-kubernetes-network-policy">NetworkPolicy가 외부 요청을 namespace 경계로 제한합니다</figcaption>
-  <p class="sd-note">Nginx, Tomcat, MySQL은 각각 <code>web</code>, <code>was</code>, <code>db</code> namespace에 있으며 허용된 포트와 방향만 통과합니다.</p>
-  <div class="sd-flow">
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">External request</strong>
-      <span class="sd-detail">K8sCluster 밖에서 들어오는 HTTP 요청</span>
-    </div>
-    <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 80, stateful reply</span></div>
-    <section class="sd-lane" aria-label="K8sCluster 내부 흐름">
-      <div class="sd-lane-title"><strong>K8sCluster</strong></div>
-      <div class="sd-flow">
-        <div class="sd-node">
-          <strong class="sd-label">Nginx</strong>
-          <span class="sd-detail"><code>web</code> namespace, 외부 요청 수신</span>
-        </div>
-        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 8080, stateful reply</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Tomcat</strong>
-          <span class="sd-detail"><code>was</code> namespace, 애플리케이션 요청 처리</span>
-        </div>
-        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">request TCP 3306, stateful reply</span></div>
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">MySQL</strong>
-          <span class="sd-detail"><code>db</code> namespace, 데이터베이스 연결</span>
-        </div>
-      </div>
-    </section>
-  </div>
-  <p class="sd-note">양방향 marker의 reply는 같은 연결에 대한 stateful 응답이며 reverse rule로 새로운 접근을 허용한다는 뜻은 아닙니다. 각 namespace에는 <code>namespaceSelector</code>가 찾을 label이 필요하고, 모든 Pod는 kube-dns에 UDP와 TCP 53 egress를 별도로 허용해야 합니다.</p>
+  <figcaption class="sd-title" id="sd-title-kubernetes-network-policy">NetworkPolicy YAML의 신규 연결 방향과 충돌을 구분합니다</figcaption>
+<p class="sd-note">ClusterIP 실습입니다. Nginx는 web, Tomcat은 was, MySQL은 db namespace에 있습니다. 각 정책은 <code>podSelector.matchLabels: {}</code>로 해당 namespace의 모든 Pod를 선택합니다.</p>
+<div class="sd-grid">
+<section class="sd-lane"><div class="sd-lane-title">YAML 양쪽이 허용하는 신규 연결</div>
+<div class="sd-flow">
+<div class="sd-node"><strong class="sd-label">web: Nginx</strong><span class="sd-detail">목적지 namespace label <code>name: was</code></span></div>
+<div class="sd-arrow"><span class="sd-edge-label">web egress + was ingress: TCP 8080</span></div>
+<div class="sd-node"><strong class="sd-label">was: Tomcat</strong><span class="sd-detail">목적지 namespace label <code>name: db</code></span></div>
+<div class="sd-arrow"><span class="sd-edge-label">was egress + db ingress: TCP 3306</span></div>
+<div class="sd-node"><strong class="sd-label">db: MySQL</strong><span class="sd-detail">was에서 시작한 DB 연결 허용</span></div>
+</div>
+</section>
+<section class="sd-lane"><div class="sd-lane-title">역방향 신규 연결은 별도 규칙</div>
+<div class="sd-flow">
+<div class="sd-node"><strong class="sd-label">was에서 web으로</strong><span class="sd-detail">was egress와 web ingress가 모두 TCP 80 허용</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">별도의 역방향 검토: db에서 was로</span></div>
+<div class="sd-node sd-node--warning"><strong class="sd-label">DB egress / WAS ingress 불일치</strong><span class="sd-detail">db egress는 was의 TCP 8080, was ingress는 db에서 TCP 3306만 허용</span></div>
+<div class="sd-node sd-node--warning"><strong class="sd-label">기록과 YAML의 충돌</strong><span class="sd-detail">본문 DB의 WAS:8080 요청은 HTTP 404로 기록됨. 제시된 YAML만으로 그 도달 결과를 설명할 수 없음</span></div>
+</div>
+</section>
+</div>
+<p class="sd-note">허용 연결의 stateful reply는 역방향 신규 연결 허용과 다릅니다. web과 db 사이의 신규 연결 허용 규칙은 없습니다. <code>namespaceSelector.matchLabels</code>의 <code>name: web</code>, <code>name: was</code>, <code>name: db</code> label이 실제 namespace에 있어야 합니다.</p>
+<div class="sd-node"><strong class="sd-label">DNS egress: YAML은 kube-dns 전용 selector가 아님</strong><span class="sd-detail">세 정책 모두 <code>namespaceSelector.matchLabels: {}</code>에 UDP / TCP 53을 허용합니다. 모든 namespace의 Pod가 대상이며 kube-dns Pod만 선택하지 않습니다.</span></div>
+<p class="sd-note">DB/WAS 역방향은 실제 적용 정책과 테스트 시점 상태를 재확인해야 합니다. 포트를 임의로 고치거나 재실험 성공으로 표시하지 않습니다.</p>
 </figure>

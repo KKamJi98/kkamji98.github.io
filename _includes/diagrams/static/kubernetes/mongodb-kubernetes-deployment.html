@@ -3,27 +3,45 @@
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Helm release</strong>
-      <span class="sd-detail">values가 MongoDB topology를 정합니다.</span>
+      <span class="sd-detail">community-operator chart로 MongoDB Community Operator를 배포합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">operator resource 생성</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">Operator 설치 후 MongoDBCommunity CR 적용</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">MongoDB Community Operator</strong>
+      <span class="sd-detail">MongoDBCommunity에 선언한 topology를 reconcile합니다.</span>
+    </div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">workload 관리</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">StatefulSet</strong>
       <span class="sd-detail">ordered rollout과 stable identity를 관리합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">ordinal별 Pod 생성</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">ordinal별 Pod 생성</span>
+    </div>
     <div class="sd-node">
       <strong class="sd-label">MongoDB Pod</strong>
-      <span class="sd-detail"><code>mongodb-0</code>, <code>mongodb-1</code>처럼 이름이 유지됩니다.</span>
+      <span class="sd-detail">
+        <code>mongodb-0</code>, <code>mongodb-1</code>처럼 이름이 유지됩니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">volumeClaimTemplate 사용</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">PersistentVolumeClaim</strong>
-      <span class="sd-detail">replica마다 하나씩 생기고 ordinal에 연결됩니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">headless member discovery</span></div>
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Client service</strong>
-      <span class="sd-detail">headless Service가 replica member를 찾게 합니다.</span>
+    <div class="sd-grid">
+      <section class="sd-lane">
+        <div class="sd-lane-title">Pod별 영속 저장소</div>
+        <div class="sd-node">
+          <strong class="sd-label">PersistentVolumeClaim</strong>
+          <span class="sd-detail">volumeClaimTemplate으로 replica마다 생성되어 ordinal의 data와 연결됩니다.</span>
+        </div>
+      </section>
+      <section class="sd-lane">
+        <div class="sd-lane-title">Pod member discovery</div>
+        <div class="sd-node sd-node--accent">
+          <strong class="sd-label">Headless Service</strong>
+          <span class="sd-detail">MongoDB replica member의 안정된 DNS 이름을 제공하며, PVC를 거치는 경로가 아닙니다.</span>
+        </div>
+      </section>
     </div>
   </div>
   <p class="sd-note">volumeClaimTemplate은 restart와 reschedule 뒤에도 특정 ordinal의 data를 유지하도록 PVC를 묶습니다.</p>

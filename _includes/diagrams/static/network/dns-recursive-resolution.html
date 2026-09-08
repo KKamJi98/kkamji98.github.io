@@ -1,34 +1,27 @@
 <figure class="sd sd--comparison" id="dns-recursive-resolution" aria-labelledby="dns-recursive-resolution-title">
   <figcaption class="sd-title" id="dns-recursive-resolution-title">Recursive resolver가 DNS delegation을 걷고 stub은 한 번만 묻습니다</figcaption>
   <p class="sd-intro">유효한 cache가 있으면 resolver 안에서 끝납니다. cache miss일 때만 root부터 TLD와 authoritative server까지 delegation을 따라갑니다.</p>
-
   <div class="sd-flow" aria-label="DNS recursive resolution 흐름">
     <div class="sd-node">
       <strong class="sd-label">Browser or stub resolver</strong>
       <span class="sd-detail">한 번 질의하고 최종 answer를 기다림</span>
     </div>
-
-    <div class="sd-arrow"><span class="sd-edge-label">설정된 resolver에 질의 전달</span></div>
-
+    <div class="sd-arrow">
+      <span class="sd-edge-label">설정된 resolver에 질의 전달</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Recursive resolver</strong>
       <span class="sd-detail">cache를 먼저 확인하고, miss면 delegation chain을 대신 탐색</span>
     </div>
   </div>
-
-  <div class="sd-arrow"><span class="sd-edge-label">cache 상태에 따라 두 경로로 분기</span></div>
-
+  <div class="sd-arrow">
+    <span class="sd-edge-label">cache 상태에 따라 두 경로로 분기</span>
+  </div>
   <div class="sd-grid">
-    <section class="sd-lane sd-lane--accent" aria-labelledby="dns-recursive-resolution-cache-title">
-      <div class="sd-lane-title" id="dns-recursive-resolution-cache-title">Cache hit</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">Cache hit</strong>
-          <span class="sd-detail">resolver를 벗어나지 않고 즉시 stub에 응답</span>
-        </div>
-      </div>
-    </section>
-
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cache hit</strong>
+      <span class="sd-detail">resolver를 벗어나지 않고 즉시 stub에 응답</span>
+    </div>
     <section class="sd-lane" aria-labelledby="dns-recursive-resolution-miss-title">
       <div class="sd-lane-title" id="dns-recursive-resolution-miss-title">Cache miss</div>
       <div class="sd-flow">
@@ -36,12 +29,16 @@
           <strong class="sd-label">Root name server</strong>
           <span class="sd-detail">TLD name server를 가리키는 referral 제공</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">.com 같은 TLD로 위임</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">resolver가 root referral을 따라 .com 같은 TLD에 질의</span>
+        </div>
         <div class="sd-node">
           <strong class="sd-label">TLD name server</strong>
           <span class="sd-detail">zone의 authoritative name server를 가리킴</span>
         </div>
-        <div class="sd-arrow"><span class="sd-edge-label">대상 zone으로 위임</span></div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">resolver가 TLD referral을 따라 대상 zone에 질의</span>
+        </div>
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">Authoritative server</strong>
           <span class="sd-detail">실제 record를 반환하고 resolver가 answer와 delegation을 cache</span>
@@ -49,6 +46,5 @@
       </div>
     </section>
   </div>
-
   <p class="sd-note">Stub은 root와 TLD를 직접 걷지 않습니다. resolver가 얻은 최종 answer를 반환한 뒤 유효 기간 동안 cache를 재사용합니다.</p>
 </figure>

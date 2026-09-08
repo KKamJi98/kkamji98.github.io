@@ -25,6 +25,7 @@ image:
 [Series 1 3편](/posts/spring-mvc-dispatcherservlet/)에서 본 Spring MVC는 **thread-per-request**(동기 블로킹), 2편에서 본 WebFlux는 **event loop**(논블로킹)입니다. 핵심 차이를 한 장으로 정리하면 다음과 같습니다.
 
 {% include diagrams/static/spring/spring-13-mvc-vs-webflux.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-13-mvc-vs-webflux--df1a2e0f439f27b8.png" %}
 _왼쪽 MVC(동기/요청당 스레드/블로킹 라이브러리 그대로) vs 오른쪽 WebFlux(논블로킹/적은 고정 스레드/논블로킹 라이브러리 필요). 둘은 우열이 아니라 적합한 상황이 다르다._
 
 표로 다시 보면 이렇습니다.
@@ -73,6 +74,7 @@ Spring 레퍼런스의 WebFlux 개요에는 "Applicability"라는 절이 있고,
 위 기준을 흐름으로 옮기면 다음과 같습니다.
 
 {% include diagrams/static/spring/spring-14-when-to-use.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-14-when-to-use--0acf40f6502608cc.png" %}
 _기존 MVC가 잘 동작하면 유지. 핵심 의존성이 블로킹이면 MVC. 고동시성 I/O bound/스트리밍이고 논블로킹 스택을 끝까지 적용할 수 있으면 WebFlux. 불확실하면 MVC로 시작해 WebClient만 부분 도입._
 
 핵심은 **"끝까지 논블로킹"**입니다. WebFlux를 골랐다면 DB 접근(R2DBC), 외부 호출(WebClient)까지 논블로킹으로 이어져야 event loop의 이점이 나옵니다. 중간에 블로킹 한 곳이 끼면 그 event loop 스레드가 묶이고, 그 스레드가 담당하던 수많은 커넥션이 함께 느려집니다.

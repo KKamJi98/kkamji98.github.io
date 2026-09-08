@@ -1,119 +1,52 @@
 <figure class="sd sd--layers" id="sd-ci-cd-study-argocd-architecture-overview" aria-labelledby="sd-title-ci-cd-study-argocd-architecture-overview">
   <figcaption class="sd-title" id="sd-title-ci-cd-study-argocd-architecture-overview">Argo CD가 Git desired state를 여러 Kubernetes Cluster에 배포</figcaption>
-  <div class="sd-stack">
-    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argocd-overview-input-title">
-      <div class="sd-band-title" id="sd-ci-cd-study-argocd-overview-input-title">Change sources and clients</div>
-      <div class="sd-grid">
-        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-git-title">
-          <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-git-title">Git source</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Git repository</strong>
-              <span class="sd-detail">search와 guestbook Application Manifest의 desired state</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">commit 또는 webhook</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">Webhook event</strong>
-              <span class="sd-detail">변경을 Argo CD에 알림</span>
-            </div>
-          </div>
-        </section>
-        <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-client-title">
-          <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-client-title">Users and automation</div>
-          <div class="sd-flow">
-            <div class="sd-node">
-              <strong class="sd-label">User or CI/CD</strong>
-              <span class="sd-detail">UI, CLI와 외부 자동화가 작업 요청</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">gRPC / REST</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">API request</strong>
-              <span class="sd-detail">Sync, Rollback, 상태 조회 요청</span>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-    <div class="sd-arrow"><span class="sd-edge-label">API Server가 요청과 변경을 수신</span></div>
-    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argocd-overview-control-title">
-      <div class="sd-band-title" id="sd-ci-cd-study-argocd-overview-control-title">Argo CD control plane</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--accent">
-          <strong class="sd-label">API Server</strong>
-          <span class="sd-detail">사용자 요청, Webhook와 Application operation 처리</span>
-        </div>
-        <div class="sd-grid">
-          <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-repo-path-title">
-            <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-repo-path-title">Manifest generation</div>
-            <div class="sd-flow">
-              <div class="sd-arrow"><span class="sd-edge-label">manifest 요청</span></div>
-              <div class="sd-node">
-                <strong class="sd-label">Repo Server</strong>
-                <span class="sd-detail">Git revision과 path에서 최종 Manifest 생성</span>
-              </div>
-            </div>
-          </section>
-          <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-reconcile-path-title">
-            <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-reconcile-path-title">Reconciliation</div>
-            <div class="sd-flow">
-              <div class="sd-arrow"><span class="sd-edge-label">state 비교 요청</span></div>
-              <div class="sd-node">
-                <strong class="sd-label">Application Controller</strong>
-                <span class="sd-detail">desired와 live를 비교하고 Sync 수행</span>
-              </div>
-            </div>
-          </section>
-          <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-hooks-path-title">
-            <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-hooks-path-title">Hooks and actions</div>
-            <div class="sd-flow">
-              <div class="sd-arrow"><span class="sd-edge-label">operation 요청</span></div>
-              <div class="sd-node">
-                <strong class="sd-label">Sync Hooks / App Actions</strong>
-                <span class="sd-detail">PreSync, Sync, PostSync와 사용자 action</span>
-              </div>
-            </div>
-          </section>
-          <section class="sd-lane" aria-labelledby="sd-ci-cd-study-argocd-overview-deploy-path-title">
-            <div class="sd-lane-title" id="sd-ci-cd-study-argocd-overview-deploy-path-title">Deployment</div>
-            <div class="sd-flow">
-              <div class="sd-arrow"><span class="sd-edge-label">deployment 요청</span></div>
-              <div class="sd-node">
-                <strong class="sd-label">Deploy</strong>
-                <span class="sd-detail">Application destination에 Manifest 적용</span>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
-    <div class="sd-arrow"><span class="sd-edge-label">Deploy가 Application destination으로 전달</span></div>
-    <section class="sd-band" aria-labelledby="sd-ci-cd-study-argocd-overview-output-title">
-      <div class="sd-band-title" id="sd-ci-cd-study-argocd-overview-output-title">Target Clusters</div>
-      <div class="sd-flow">
-        <div class="sd-grid sd-grid--three">
-          <article class="sd-node">
-            <strong class="sd-label">dev</strong>
-            <span class="sd-detail">개발 Cluster</span>
-          </article>
-          <article class="sd-node">
-            <strong class="sd-label">staging</strong>
-            <span class="sd-detail">검증 Cluster</span>
-          </article>
-          <article class="sd-node">
-            <strong class="sd-label">us-west-1</strong>
-            <span class="sd-detail">운영 대상 Cluster</span>
-          </article>
-          <article class="sd-node">
-            <strong class="sd-label">us-central-1</strong>
-            <span class="sd-detail">운영 대상 Cluster</span>
-          </article>
-          <article class="sd-node sd-node--accent">
-            <strong class="sd-label">us-east-1</strong>
-            <span class="sd-detail">운영 대상 Cluster</span>
-          </article>
-        </div>
-      </div>
-    </section>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Git repository</strong>
+  <span class="sd-detail">search와 guestbook desired state. Webhook은 API Server에 변경 알림</span>
   </div>
-  <p class="sd-note">Git은 desired state의 원본이고 Kubernetes는 live state를 실행합니다. Argo CD control plane은 둘을 비교해 필요한 Cluster에만 Sync를 수행합니다.</p>
+  <div class="sd-node">
+  <strong class="sd-label">User or CI/CD</strong>
+  <span class="sd-detail">UI, CLI의 gRPC / REST 요청은 API Server가 수신</span>
+  </div>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">Argo CD control plane</div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">API Server</strong>
+  <span class="sd-detail">인증, 상태 조회, Sync/Rollback와 사용자 action 요청</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Repo Server</strong>
+  <span class="sd-detail">Git revision과 path에서 manifest 생성</span>
+  </div>
+  </div>
+  <p class="sd-note">Application Controller가 Repo Server에 manifest를 요청하고 반환된 desired state를 사용합니다.</p>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">Application Controller</strong>
+  <span class="sd-detail">live state와 비교. Sync 시 PreSync, Sync, PostSync hook과 manifest apply 수행</span>
+  </div>
+  </section>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">Controller가 선택된 Application destination에 적용</span>
+  </div>
+  <div class="sd-grid sd-grid--three">
+  <div class="sd-node">
+  <strong class="sd-label">dev</strong>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">staging</strong>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">us-west-1</strong>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">us-central-1</strong>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">us-east-1</strong>
+  </div>
+  </div>
+  <p class="sd-note">Git 변경은 polling 또는 webhook으로 감지합니다. 자동 적용 여부는 sync policy에 따릅니다.</p>
 </figure>

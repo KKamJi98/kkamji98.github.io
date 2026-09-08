@@ -1,135 +1,65 @@
 <figure class="sd sd--layers" id="rememberme-architecture" aria-labelledby="rememberme-architecture-title">
   <figcaption class="sd-title" id="rememberme-architecture-title">Remember Me는 CloudFront edge에서 API와 정적 자산을 나눕니다</figcaption>
-  <p class="sd-note">AWS WAF가 edge와 API 경계에서 과도한 요청을 차단하고, 정적 자산은 S3 origin으로, API 요청은 Lambda로 전달됩니다.</p>
-
-  <div class="sd-stack">
-    <section class="sd-band">
-      <div class="sd-band-title">Web request paths</div>
-      <div class="sd-flow">
-        <div class="sd-node sd-node--muted">
-          <strong class="sd-label">Route53</strong>
-          <span class="sd-detail">서비스 도메인을 edge entry point로 해석합니다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">DNS response</span></div>
-        <div class="sd-node sd-node--warning">
-          <strong class="sd-label">CloudFront + WAF</strong>
-          <span class="sd-detail">edge cache와 고트래픽 차단 경계입니다.</span>
-        </div>
-      </div>
-
-      <div class="sd-grid">
-        <section class="sd-lane">
-          <div class="sd-lane-title">Static asset path</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">CloudFront + WAF</strong>
-              <span class="sd-detail">정적 요청을 cache 정책으로 처리합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">origin fetch</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Amazon S3</strong>
-              <span class="sd-detail">frontend 정적 파일 origin</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="sd-lane">
-          <div class="sd-lane-title">API path</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">CloudFront + WAF</strong>
-              <span class="sd-detail">동일 edge에서 API 요청을 다음 경계로 보냅니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">API route</span></div>
-            <div class="sd-node sd-node--warning">
-              <strong class="sd-label">API Gateway + WAF</strong>
-              <span class="sd-detail">API 수준 request rule과 integration 경계입니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">Lambda integration</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">AWS Lambda functions</strong>
-              <span class="sd-detail">단어 목록과 퀴즈 기능을 처리하는 serverless backend</span>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section class="sd-band">
-      <div class="sd-band-title">Application support services</div>
-      <div class="sd-grid sd-grid--three">
-        <section class="sd-lane">
-          <div class="sd-lane-title">Configuration and data</div>
-          <div class="sd-grid">
-            <section class="sd-lane">
-              <div class="sd-lane-title">Configuration</div>
-              <div class="sd-flow">
-                <div class="sd-node">
-                  <strong class="sd-label">Lambda</strong>
-                  <span class="sd-detail">backend 실행 주체</span>
-                </div>
-                <div class="sd-arrow"><span class="sd-edge-label">config and secret read</span></div>
-                <div class="sd-node sd-node--accent">
-                  <strong class="sd-label">Parameter Store and Secrets Manager</strong>
-                  <span class="sd-detail">환경 설정과 민감한 값을 분리 보관합니다.</span>
-                </div>
-              </div>
-            </section>
-            <section class="sd-lane">
-              <div class="sd-lane-title">Application data</div>
-              <div class="sd-flow">
-                <div class="sd-node">
-                  <strong class="sd-label">Lambda</strong>
-                  <span class="sd-detail">단어 목록과 퀴즈 요청을 처리합니다.</span>
-                </div>
-                <div class="sd-arrow"><span class="sd-edge-label">data read and write</span></div>
-                <div class="sd-node sd-node--accent">
-                  <strong class="sd-label">MongoDB</strong>
-                  <span class="sd-detail">사용자 단어 데이터 저장소</span>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-
-        <section class="sd-lane">
-          <div class="sd-lane-title">Cost alarm</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">AWS Budgets</strong>
-              <span class="sd-detail">비용 threshold를 감시합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">SNS notification</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">AWS Chatbot</strong>
-              <span class="sd-detail">알림을 Slack channel 형식으로 전달합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">chat delivery</span></div>
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Slack</strong>
-              <span class="sd-detail">운영자가 비용 경고를 확인합니다.</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="sd-lane">
-          <div class="sd-lane-title">Infrastructure boundary</div>
-          <div class="sd-flow">
-            <div class="sd-node sd-node--muted">
-              <strong class="sd-label">HCP Terraform</strong>
-              <span class="sd-detail">AWS infrastructure를 코드로 프로비저닝합니다.</span>
-            </div>
-            <div class="sd-arrow"><span class="sd-edge-label">provision</span></div>
-            <div class="sd-node">
-              <strong class="sd-label">VPC and serverless resources</strong>
-              <span class="sd-detail">Lambda, API Gateway, S3, CloudFront와 WAF를 코드로 관리합니다.</span>
-            </div>
-          </div>
-          <p class="sd-note">WAF rule은 CloudFront edge와 API Gateway 경계에서 요청을 검사합니다.</p>
-        </section>
-      </div>
-    </section>
+  <p class="sd-note">DNS: client가 Route53에서 CloudFront 주소를 조회합니다. DNS는 HTTP forwarding hop이 아닙니다.</p>
+  <div class="sd-node sd-node--warning">
+  <strong class="sd-label">CloudFront + WAF</strong>
+  <span class="sd-detail">하나의 edge에서 static/API 요청 분기</span>
   </div>
-
-  <p class="sd-note">보조 서비스는 configuration, application data와 cost alarm 역할로 나뉩니다.</p>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">static origin fetch 또는 API route</span>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Amazon S3</strong>
+  <span class="sd-detail">frontend 정적 파일 origin</span>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">Serverless backend</div>
+  <div class="sd-node">
+  <strong class="sd-label">API Gateway + WAF</strong>
+  <span class="sd-detail">API request rule과 integration</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">Lambda integration</span>
+  </div>
+  <div class="sd-node sd-node--accent">
+  <strong class="sd-label">AWS Lambda functions</strong>
+  <span class="sd-detail">단어 목록과 퀴즈 처리</span>
+  </div>
+  <div class="sd-grid">
+  <div class="sd-node">
+  <strong class="sd-label">Parameter Store and Secrets Manager</strong>
+  <span class="sd-detail">Lambda가 config와 secret read</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">MongoDB</strong>
+  <span class="sd-detail">Lambda가 사용자 단어 data read/write</span>
+  </div>
+  </div>
+  </section>
+  </div>
+  <section class="sd-band">
+  <div class="sd-band-title">비용 알림</div>
+  <div class="sd-flow">
+  <div class="sd-node">
+  <strong class="sd-label">AWS Budgets</strong>
+  <span class="sd-detail">비용 threshold 감시</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">SNS notification</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">AWS Chatbot</strong>
+  <span class="sd-detail">Slack channel 형식 변환</span>
+  </div>
+  <div class="sd-arrow">
+  <span class="sd-edge-label">chat delivery</span>
+  </div>
+  <div class="sd-node">
+  <strong class="sd-label">Slack</strong>
+  <span class="sd-detail">운영자 비용 경고</span>
+  </div>
+  </div>
+  </section>
+  <p class="sd-note">HCP Terraform이 VPC와 위 serverless resources를 코드로 provisioning합니다.</p>
 </figure>

@@ -1050,6 +1050,7 @@ VSO는 Kubernetes 네이티브 시크릿 리소스를 Vault 시크릿과 동기�
 이를 통해 Kubernetes 네이티브 시크릿을 사용하는 애플리케이션이 Vault 시크릿을 안전하게 사용할 수 있고, 개발자가 Vault 도구를 따로 학습하지 않아도 됩니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator--b717b44ba786936d.png" %}
 
 - 기존에 Vault를 사용하기 위해 **애플리케이션에서 직접 구현해야 했던 Vault Login, Vault Secret Read 등의 동작을 VSO가 대신 수행합니다.**
 - **VSO는 Vault에 저장된 Secret을 Kubernetes Native Secret으로 동기화합니다.**
@@ -1196,6 +1197,7 @@ VSO(Vault Secrets Operator)는 Kubernetes에서 Vault의 시크릿(정적 시크
 Kubernetes `Secret` 리소스에 자동으로 반영하는 Operator입니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-flowchart.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-flowchart--e3f325fd46f4737f.png" %}
 
 VSO의 동작 방식은 다음과 같습니다.
 
@@ -1224,6 +1226,7 @@ VSO의 동작 방식은 다음과 같습니다.
     - VSO가 생성/갱신하는 Kubernetes `Secret`을 저장하는 역할을 합니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-sequence-diagram.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-sequence-diagram--3bebc15d96c3e896.png" %}
 
 - **전체 동작 흐름 요약**
     1. 사용자가 VaultAuth, VaultStaticSecret 등의 CRD 생성
@@ -1437,6 +1440,7 @@ kubectl rolesum -n vault-secrets-operator-system vault-secrets-operator-controll
 Static Secret(고정 암호) 실습 시나리오는 다음과 같습니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-static-secrets-senario.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-static-secrets-senario--60b2fcc70b72478e.png" %}
 
 1. Vault에 시크릿(Secret)과 접근을 위한 Policy/Role을 생성합니다.
 2. VSO는 `VaultAuth` CRD 설정을 기반으로 Vault에 로그인하고 토큰(Token)을 발급받습니다.
@@ -1610,6 +1614,7 @@ secretkv   Opaque   3      8m
 ## 8. Dynamic Secret(동적 암호) 실습
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-dynamic-secrets-senario.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-dynamic-secrets-senario--611ab0295f22b42e.png" %}
 
 - 동적 암호 주기 관리는 **Vault** 가 자동으로 **암호를 갱신**(삭제/재생성)하고, **VSO**가 해당 암호를 **Kubernetes Secret 에 동기화**
     - Dynamic secrets lifecycle is managed by Vault and will be automatically rotated

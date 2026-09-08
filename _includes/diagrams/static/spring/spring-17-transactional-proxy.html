@@ -23,8 +23,8 @@
         <div class="sd-node sd-node--warning"><strong class="sd-label">실제 bean</strong><span class="sd-detail">객체 내부 코드가 자기 메서드를 직접 호출</span></div>
         <div class="sd-arrow"><span class="sd-edge-label">this.other()</span></div>
         <div class="sd-node sd-node--warning"><strong class="sd-label">Proxy 우회</strong><span class="sd-detail">호출이 객체 밖으로 나가지 않아 TransactionInterceptor를 거치지 않음</span></div>
-        <div class="sd-arrow"><span class="sd-edge-label">트랜잭션 경계 없음</span></div>
-        <div class="sd-node sd-node--warning"><strong class="sd-label">트랜잭션 없이 실행</strong><span class="sd-detail">self-invocation 대상 메서드의 @Transactional이 가로채지 못함</span></div>
+        <div class="sd-arrow"><span class="sd-edge-label">새 interception 경계 없음</span></div>
+        <div class="sd-node sd-node--warning"><strong class="sd-label">새 트랜잭션 경계 없이 실행</strong><span class="sd-detail">대상 메서드의 @Transactional은 적용되지 않지만 이미 활성인 트랜잭션은 유지될 수 있음</span></div>
       </div>
     </section>
   </div>

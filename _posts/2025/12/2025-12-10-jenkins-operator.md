@@ -43,6 +43,7 @@ Jenkins Operator가 조정하는 대상은 Jenkins CR의 spec으로 선언합니
 Operator는 이 선언을 읽어 Namespace, RBAC, Service, Secret, ConfigMap, master Pod를 생성하고, Jenkins 기동 후 API 토큰을 발급받아 플러그인 설치와 설정 적용을 진행합니다.
 
 {% include diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-loop.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-loop--ed616030cb2c0430.png" %}
 > Jenkins Operator reconcile loop  
 
 조정(reconcile)은 두 단계로 진행됩니다. Base reconciliation loop가 namespace, RBAC, master Pod, API 토큰, 보안 강화 스크립트처럼 Jenkins가 동작하기 위한 기본 요소를 먼저 확보합니다. User reconciliation loop가 그 위에 JCasC 설정, seed job, Groovy 스크립트, 백업 잡처럼 사용자가 선언한 구성을 적용합니다. 각 단계가 완료된 시각은 CR의 status 필드에 기록되며, 동일한 에러가 10회 반복되면 ReconcileLoopFailed로 조정을 멈춥니다. base 단계가 실패하면 user 단계는 실행되지 않으므로, 설정이 반영되지 않는 문제를 디버깅할 때는 어느 단계에서 멈췄는지 status와 Operator 로그를 먼저 확인합니다.

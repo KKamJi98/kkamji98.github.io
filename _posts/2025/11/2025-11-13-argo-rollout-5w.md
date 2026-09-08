@@ -61,18 +61,21 @@ image:
 블루-그린 배포는 애플리케이션의 새 버전과 이전 버전이 동시에 배포되는 방식입니다. 이 기간 동안에는 이전 버전의 애플리케이션만 프로덕션 트래픽을 받습니다. 개발자는 라이브 트래픽을 새 버전으로 전환하기 전에 새 버전을 테스트할 수 있습니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/argo-rollout-blue-green-deployment-strategy.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/argo-rollout-blue-green-deployment-strategy--1c64df2ad3a1e160.png" %}
 
 ### 2.2. Canary Deployment Strategies
 
 카나리 배포는 애플리케이션의 새 버전에 사용자 하위 집합을 노출하는 동시에 나머지 트래픽은 이전 버전으로 서비스하는 방식입니다. 새 버전이 올바르다고 확인되면 새 버전이 점진적으로 이전 버전을 대체할 수 있습니다. NGINX나 Istio 같은 인그레스 컨트롤러와 서비스 메시는 기본 기능보다 정교한 카나리 트래픽 쉐이핑 패턴을 지원합니다(ex: 세분화된 트래픽 분할, HTTP 헤더 기반 분할).
 
 {% include diagrams/static/ci-cd/ci-cd-study/argo-rollouts-canary-deployment-strategies.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/argo-rollouts-canary-deployment-strategies--ddd23426cb062929.png" %}
 
 ---
 
 ## 3. Argo Rollouts Architecture
 
 {% include diagrams/static/ci-cd/ci-cd-study/argo-rollouts-architecture.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/argo-rollouts-architecture--73cbaee852fd2044.png" %}
 
 ### 3.1. Argo Rollouts Controller
 

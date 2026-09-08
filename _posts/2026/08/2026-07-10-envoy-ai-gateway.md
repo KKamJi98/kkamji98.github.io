@@ -14,11 +14,16 @@ image:
 
 발행일 이후의 2026-08-28 조사 기록을 바탕으로, 2026-09-08에 공식 `v1.1.0` 태그의 문서와 소스를 대조해 구현 설명을 갱신했습니다. 문서와 소스 조사이며 설치 및 트래픽 실행 검증은 포함하지 않습니다.
 
+> **TL;DR**  
+> Envoy Proxy가 provider 연결을 담당하고, 별도 ext-proc가 모델과 토큰 사용량을 해석한다. Kubernetes에서는 AI 전용 CRD를 기존 Gateway API 설정으로 연결하며, 토큰 제한에는 별도의 Rate Limit Service와 Redis 구성이 필요하다.  
+{: .prompt-info}
+
 ---
 
 ## 1. 독립 LLM 프록시와 Envoy Gateway 통합
 
 {% include diagrams/static/ai/gateway-plane-compare.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/gateway-plane-compare--20e9628c05c336d6.png" %}
 
 LiteLLM Proxy와 Envoy AI Gateway는 모두 애플리케이션과 provider 사이에서 실제 요청을 중계합니다. 구현 방식과 설정 체계, 함께 운영하는 구성 요소가 다릅니다.
 
@@ -42,6 +47,7 @@ LiteLLM Proxy는 Python 기반의 독립 LLM 프록시입니다. 클라이언트
 ## 2. 설정 경로와 요청 경로
 
 {% include diagrams/static/ai/envoy-ai-gateway-crd-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/envoy-ai-gateway-crd-flow--6bebf1f69f10a5d3.png" %}
 
 컨트롤 플레인은 Envoy Gateway와 AI Gateway controller가 함께 구성합니다. AI Gateway controller는 `AIGatewayRoute`, `AIServiceBackend`, `BackendSecurityPolicy` 같은 AI 전용 리소스를 감시하고 `HTTPRoute`, `HTTPRouteFilter` 및 ext-proc 설정 Secret을 생성하거나 갱신합니다. Envoy Gateway는 생성된 리소스를 Envoy 설정으로 변환합니다. 이 과정에서 AI Gateway의 extension server가 xDS 설정을 보완하고, 최종 설정은 Envoy Gateway가 Proxy에 배포합니다.
 

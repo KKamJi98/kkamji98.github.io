@@ -1,45 +1,88 @@
 <figure class="sd sd--sequence" aria-labelledby="sap-c02-asg-instance-lifecycle-hooks-title">
   <figcaption class="sd-title" id="sap-c02-asg-instance-lifecycle-hooks-title">Auto Scaling 인스턴스 상태와 hook 대기 지점</figcaption>
   <div class="sd-flow">
-    <div class="sd-node"><strong class="sd-label">warm pool</strong><span class="sd-detail">Stopped가 기본 권장, 기본 크기는 max capacity - desired capacity</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">warm pool</strong>
+      <span class="sd-detail">Stopped가 기본 권장, 기본 크기는 max capacity - desired capacity</span>
+    </div>
     <div class="sd-arrow" aria-hidden="true"></div>
-    <div class="sd-node"><strong class="sd-label">Pending</strong><span class="sd-detail">scale out 또는 교체가 시작됨</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">Pending</strong>
+      <span class="sd-detail">scale out 또는 교체가 시작됨</span>
+    </div>
     <div class="sd-arrow" aria-hidden="true"></div>
-    <div class="sd-node sd-node--accent"><strong class="sd-label">Pending:Wait</strong><span class="sd-detail">launch lifecycle hook에서 bootstrap과 cache warming 수행</span></div>
-    <div class="sd-arrow"><span class="sd-edge-label">CONTINUE</span></div>
-    <div class="sd-grid sd-grid--three">
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Pending:Wait</strong>
+      <span class="sd-detail">launch lifecycle hook에서 bootstrap과 cache warming 수행</span>
+    </div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">launch hook 결과에 따라 분기</span>
+    </div>
+    <div class="sd-grid">
       <section class="sd-lane" aria-label="정상 launch 후 서비스 경로">
-        <div class="sd-lane-title">launch hook 통과</div>
+        <div class="sd-lane-title">CONTINUE: launch hook 통과</div>
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">InService</strong><span class="sd-detail">health check grace period는 콘솔 300초, CLI와 SDK 0초</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">InService</strong>
+            <span class="sd-detail">health check grace period는 콘솔 300초, CLI와 SDK 0초</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node"><strong class="sd-label">Terminating</strong><span class="sd-detail">scale in, unhealthy 교체, refresh, lifetime 만료가 진입시킴</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Terminating</strong>
+            <span class="sd-detail">scale in, unhealthy 교체, refresh, lifetime 만료가 진입시킴</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node sd-node--accent"><strong class="sd-label">Terminating:Wait</strong><span class="sd-detail">termination hook에서 connection draining과 log 반출</span></div>
+          <div class="sd-node sd-node--accent">
+            <strong class="sd-label">Terminating:Wait</strong>
+            <span class="sd-detail">termination hook에서 connection draining과 log 반출</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node sd-node--warning"><strong class="sd-label">termination hook 결과</strong><span class="sd-detail">best effort, timeout 또는 ABANDON이면 즉시 종료</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">CONTINUE 또는 timeout</span></div>
-          <div class="sd-node"><strong class="sd-label">Terminated</strong><span class="sd-detail">ELB deregistration delay 기본 300초</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">termination hook 결과</strong>
+            <span class="sd-detail">best effort, timeout 또는 ABANDON이면 즉시 종료</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">CONTINUE 또는 timeout</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Terminated</strong>
+            <span class="sd-detail">ELB deregistration delay 기본 300초</span>
+          </div>
         </div>
       </section>
       <section class="sd-lane" aria-label="launch hook 중단 경로">
         <div class="sd-lane-title">launch 결과가 ABANDON</div>
         <div class="sd-flow">
-          <div class="sd-node sd-node--warning"><strong class="sd-label">launch hook 결과</strong><span class="sd-detail">ABANDON 또는 heartbeat timeout 3600초 후 종료 경로</span></div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">launch hook 결과</strong>
+            <span class="sd-detail">ABANDON 또는 heartbeat timeout 3600초 후 종료 경로</span>
+          </div>
           <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node"><strong class="sd-label">Terminated</strong><span class="sd-detail">서비스 투입 전에 인스턴스가 끝남</span></div>
-        </div>
-      </section>
-      <section class="sd-lane" aria-label="Spot 중단 우회 경로">
-        <div class="sd-lane-title">Spot interruption</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--warning"><strong class="sd-label">Spot 중단</strong><span class="sd-detail">2분 통지 후 회수하며 lifecycle hook 대기 없음</span></div>
-          <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node"><strong class="sd-label">Terminated</strong><span class="sd-detail">Pending:Wait와 Terminating:Wait을 거치지 않음</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">Terminated</strong>
+            <span class="sd-detail">서비스 투입 전에 인스턴스가 끝남</span>
+          </div>
         </div>
       </section>
     </div>
-    <div class="sd-node sd-node--warning"><strong class="sd-label">unhealthy 신호 소스</strong><span class="sd-detail">EC2 status check, ELB, VPC Lattice, EBS, custom health check가 Terminating으로 보냄</span></div>
+    <div class="sd-node sd-node--warning">
+      <strong class="sd-label">unhealthy 신호 소스</strong>
+      <span class="sd-detail">EC2 status check, ELB, VPC Lattice, EBS, custom health check가 Terminating으로 보냄</span>
+    </div>
     <div class="sd-note">termination hook은 best effort입니다. timeout 또는 ABANDON이면 즉시 종료로 진행합니다.</div>
   </div>
+  <section class="sd-lane" aria-label="Spot 중단 우회 경로">
+    <div class="sd-lane-title">Spot interruption</div>
+    <div class="sd-flow">
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Spot 중단</strong>
+        <span class="sd-detail">2분 통지 후 회수하며 lifecycle hook 대기 없음</span>
+      </div>
+      <div class="sd-arrow" aria-hidden="true"></div>
+      <div class="sd-node">
+        <strong class="sd-label">Terminated</strong>
+        <span class="sd-detail">Pending:Wait와 Terminating:Wait을 거치지 않음</span>
+      </div>
+    </div>
+  </section>
 </figure>

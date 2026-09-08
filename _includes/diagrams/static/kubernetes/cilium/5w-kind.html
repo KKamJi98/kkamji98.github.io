@@ -1,70 +1,32 @@
 <figure class="sd sd--layers" id="kind-architecture" aria-labelledby="kind-architecture-title">
-  <figcaption class="sd-title" id="kind-architecture-title">kind는 Docker container를 Kubernetes node처럼 실행한다</figcaption>
-  <div class="sd-stack">
-    <section class="sd-band sd-band--muted">
-      <strong class="sd-band-title">Host (Workstation)</strong>
-      <span class="sd-band-subtitle">VM 없이 로컬 머신의 container runtime을 사용한다.</span>
-      <div class="sd-flow">
-        <div class="sd-node">
-          <strong class="sd-label">kind CLI</strong>
-          <span class="sd-detail">cluster와 node container의 생성 및 context 설정을 지휘한다.</span>
-        </div>
-        <div class="sd-arrow"><span class="sd-edge-label">control Docker engine</span></div>
-        <div class="sd-node">
-          <strong class="sd-label">Docker engine</strong>
-          <span class="sd-detail">Kubernetes node 역할을 맡을 container를 실행한다.</span>
-        </div>
-      </div>
-    </section>
-    <div class="sd-arrow"><span class="sd-edge-label">create node container</span></div>
-    <section class="sd-band">
-      <strong class="sd-band-title">Node Container boundary</strong>
-      <span class="sd-band-subtitle">Docker engine이 만든 container 안에 systemd, Kubernetes process, inner runtime, workload가 함께 있다.</span>
-      <div class="sd-node sd-node--muted">
-        <strong class="sd-label">systemd</strong>
-        <span class="sd-detail">container 안에서 node 프로세스들의 실행 환경을 시작한다.</span>
-      </div>
-      <div class="sd-grid sd-grid--three">
-        <section class="sd-lane sd-lane--accent">
-          <div class="sd-lane-title">Control plane process path</div>
-          <div class="sd-arrow"><span class="sd-edge-label">systemd starts</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">kube-apiserver and etcd</strong>
-            <span class="sd-detail">cluster API와 상태 저장을 담당한다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">coordinate</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">kube-controller-manager and kube-scheduler</strong>
-            <span class="sd-detail">desired state를 조정하고 Pod를 node에 배치한다.</span>
-          </div>
-        </section>
-        <section class="sd-lane">
-          <div class="sd-lane-title">Node service process path</div>
-          <div class="sd-arrow"><span class="sd-edge-label">systemd starts</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">kubelet</strong>
-            <span class="sd-detail">node에서 Pod 생명주기를 관리한다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">manage network and DNS</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">kube-proxy, CoreDNS, Weave CNI</strong>
-            <span class="sd-detail">Service routing, cluster DNS, Pod network connectivity를 제공한다.</span>
-          </div>
-        </section>
-        <section class="sd-lane">
-          <div class="sd-lane-title">Workload process path</div>
-          <div class="sd-node">
-            <strong class="sd-label">Inner container runtime</strong>
-            <span class="sd-detail">node가 관리하는 Pod container를 실행한다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">run</span></div>
-          <div class="sd-node sd-node--muted">
-            <strong class="sd-label">User Pods</strong>
-            <span class="sd-detail">애플리케이션 workload가 node container 내부에서 실행된다.</span>
-          </div>
-        </section>
-      </div>
-    </section>
-  </div>
-  <p class="sd-note">각 control-plane 또는 worker node는 같은 Host containment 안에서 하나의 node container로 표현될 수 있다.</p>
+  <figcaption class="sd-title" id="kind-architecture-title">kind의 node container 안에서 kubelet과 containerd가 Pod를 실행한다</figcaption>
+<section class="sd-lane"><div class="sd-lane-title">Host: 기록된 Docker 기반 kind 실습</div>
+<div class="sd-flow">
+<div class="sd-node"><strong class="sd-label">kind CLI</strong><span class="sd-detail">node container 생성과 kubeadm bootstrap 구성</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">Docker engine에 생성 요청</span></div>
+<div class="sd-node"><strong class="sd-label">Docker engine</strong><span class="sd-detail">control-plane 및 worker 역할의 node container 실행</span></div>
+</div>
+</section>
+<div class="sd-arrow"><span class="sd-edge-label">node container 경계</span></div>
+<section class="sd-lane"><div class="sd-lane-title">Node container</div>
+<div class="sd-flow">
+<div class="sd-node"><strong class="sd-label">systemd</strong><span class="sd-detail">node service인 kubelet과 containerd를 시작</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">service 시작</span></div>
+<div class="sd-node sd-node--accent"><strong class="sd-label">kubelet + containerd</strong><span class="sd-detail">kubelet이 CRI로 containerd에 Pod container 실행 요청</span></div>
+</div>
+<div class="sd-grid sd-grid--three">
+<section class="sd-lane"><div class="sd-lane-title">Control-plane node의 static Pods</div>
+<div class="sd-node"><strong class="sd-label">kube-apiserver, etcd</strong><span class="sd-detail">kubeadm이 생성한 static Pod manifest를 kubelet이 관리</span></div>
+<div class="sd-node"><strong class="sd-label">kube-controller-manager, kube-scheduler</strong><span class="sd-detail">같은 static Pod 방식. systemd가 직접 실행하는 control-plane service가 아님</span></div>
+</section>
+<section class="sd-lane"><div class="sd-lane-title">Network / DNS workloads</div>
+<div class="sd-node"><strong class="sd-label">kube-proxy, kindnet</strong><span class="sd-detail">실습에 기록된 기본 Service 및 Pod network 구성</span></div>
+<div class="sd-node"><strong class="sd-label">CoreDNS</strong><span class="sd-detail">cluster DNS workload. kubelet/runtime이 Pod를 실행</span></div>
+</section>
+<section class="sd-lane"><div class="sd-lane-title">Application workloads</div>
+<div class="sd-node"><strong class="sd-label">User Pods</strong><span class="sd-detail">스케줄된 node의 kubelet/runtime이 실행</span></div>
+</section>
+</div>
+</section>
+<p class="sd-note">기록된 node runtime은 containerd 2.1.1이며 기본 CNI Pod는 kindnet입니다. 사용자 지정 CNI나 다른 host provider 구성과 구분합니다.</p>
 </figure>

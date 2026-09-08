@@ -31,6 +31,7 @@ AWS는 이 시험이 검증하는 것을 `advanced technical skills and experien
 AWS 인증은 다섯 갈래로 나뉩니다. 기술 등급 네 개에 더해 Business 갈래가 따로 있습니다. Business는 클라우드와 AI를 비즈니스 성과로 연결하는 전략 역량을 검증하고 기술 경험을 요구하지 않아서, 솔루션을 직접 만들지 않는 사람을 대상으로 합니다.
 
 {% include diagrams/aws-certification-map.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/aws-certification-map--ea595bf9615ee6bb.png" %}
 
 상단의 Professional 영역에 SAP-C02가 있고, 그 아래 Associate 영역에 SAA-C03이 있습니다. SAP-C02는 복합 요구사항에 대한 아키텍처 설계 판단을 검증합니다. 전체 인증 갈래와 시험 코드는 다음과 같습니다.
 

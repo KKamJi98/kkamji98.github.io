@@ -1,106 +1,63 @@
 <figure class="sd sd--layers sd--flow" id="sd-kubernetes-cilium-overview" aria-labelledby="sd-kubernetes-cilium-overview-title">
   <figcaption class="sd-title" id="sd-kubernetes-cilium-overview-title">Cilium의 control input은 kernel BPF program으로 내려간다</figcaption>
-  <section class="sd-band" aria-labelledby="sd-kubernetes-cilium-overview-control-title">
-    <div class="sd-band-title" id="sd-kubernetes-cilium-overview-control-title">Cilium layer</div>
+  <section class="sd-band">
+    <div class="sd-band-title">Cilium layer</div>
     <div class="sd-grid">
-      <section class="sd-lane" aria-label="Orchestration input to Cilium Daemon">
-        <div class="sd-lane-title">Orchestration input</div>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">Orchestration systems</strong>
-            <span class="sd-detail">resource와 status를 Cilium Plugins와 교환합니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">plugin event</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">Cilium Plugins</strong>
-            <span class="sd-detail">orchestration API를 daemon 입력으로 전달합니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">independent daemon input</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">Cilium Daemon</strong>
-            <span class="sd-detail">Code Generation으로 node datapath를 구성합니다.</span>
-          </div>
+      <div class="sd-flow">
+        <div class="sd-node">
+          <strong class="sd-label">Orchestration systems</strong>
+          <span class="sd-detail">resource와 status를 Cilium Plugins와 교환합니다.</span>
         </div>
-      </section>
-      <section class="sd-lane" aria-label="Cilium CLI input to Cilium Daemon">
-        <div class="sd-lane-title">CLI input</div>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">Cilium CLI</strong>
-            <span class="sd-detail">운영자의 상태 조회와 정책 명령입니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">independent daemon input</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">Cilium Daemon</strong>
-            <span class="sd-detail">node 단위 구성을 반영합니다.</span>
-          </div>
+        <div class="sd-arrow">
+          <span class="sd-edge-label">plugin event</span>
         </div>
-      </section>
-      <section class="sd-lane" aria-label="Policy Repository input to Cilium Daemon">
-        <div class="sd-lane-title">Policy input</div>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">Policy Repository</strong>
-            <span class="sd-detail">적용할 network policy의 원천입니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">independent daemon input</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">Cilium Daemon</strong>
-            <span class="sd-detail">정책을 node datapath에 반영합니다.</span>
-          </div>
+        <div class="sd-node">
+          <strong class="sd-label">Cilium Plugins</strong>
+          <span class="sd-detail">orchestration API를 daemon 입력으로 전달합니다.</span>
         </div>
-      </section>
-      <section class="sd-lane" aria-label="Cilium Monitor input to Cilium Daemon">
-        <div class="sd-lane-title">Monitor input</div>
-        <div class="sd-flow">
-          <div class="sd-node">
-            <strong class="sd-label">Cilium Monitor</strong>
-            <span class="sd-detail">datapath event를 daemon과 관찰합니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">independent daemon input</span></div>
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">Cilium Daemon</strong>
-            <span class="sd-detail">node event와 상태를 처리합니다.</span>
-          </div>
-        </div>
-      </section>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Cilium CLI</strong>
+        <span class="sd-detail">운영자의 상태 조회와 정책 명령입니다.</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Policy Repository</strong>
+        <span class="sd-detail">적용할 network policy의 원천입니다.</span>
+      </div>
     </div>
-    <p class="sd-note">Orchestration systems, CLI, Policy Repository, Monitor의 입력은 각각 독립적으로 같은 node의 Cilium Daemon으로 모입니다.</p>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">독립 구성 입력</span>
+    </div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Cilium Daemon</strong>
+      <span class="sd-detail">Code Generation으로 node datapath와 정책을 구성하고 상태 조회를 처리합니다.</span>
+    </div>
+    <div class="sd-node">
+      <strong class="sd-label">Cilium Monitor</strong>
+      <span class="sd-detail">datapath event 관찰. 구성 입력 경로와 구분합니다.</span>
+    </div>
   </section>
-  <div class="sd-arrow"><span class="sd-edge-label">Cilium Daemon bytecode injection</span></div>
-  <section class="sd-band sd-band--accent" aria-labelledby="sd-kubernetes-cilium-overview-kernel-title">
-    <div class="sd-band-title" id="sd-kubernetes-cilium-overview-kernel-title">Linux kernel data plane</div>
-    <span class="sd-band-subtitle">Cilium Daemon bytecode가 여러 network path용 BPF Program으로 내려갑니다.</span>
-    <div class="sd-grid">
-      <section class="sd-lane" aria-label="BPF program attachment to eth0">
-        <div class="sd-lane-title">Host interface path</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">BPF Programs</strong>
-            <span class="sd-detail">같은 program 집합이 host hook으로 fan-out합니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">attach to host interface</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">eth0</strong>
-            <span class="sd-detail">host network interface에서 packet을 처리합니다.</span>
-          </div>
-        </div>
-      </section>
-      <section class="sd-lane" aria-label="BPF program attachment to containers">
-        <div class="sd-lane-title">Workload paths</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--accent">
-            <strong class="sd-label">BPF Programs</strong>
-            <span class="sd-detail">같은 program 집합이 workload hook으로 fan-out합니다.</span>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">attach to container paths</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">Containers</strong>
-            <span class="sd-detail">각 workload network path에 policy와 관측을 적용합니다.</span>
-          </div>
-        </div>
-      </section>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">bytecode injection</span>
+  </div>
+  <section class="sd-band sd-band--accent">
+    <div class="sd-band-title">Linux kernel data plane</div>
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">BPF Programs</strong>
+      <span class="sd-detail">여러 network path에 적용하는 program 집합</span>
     </div>
-    <p class="sd-note">BPF Programs는 eth0와 여러 container path로 독립 fan-out하며 eth0가 container traffic의 중간 순서가 되지는 않습니다.</p>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">host interface와 workload hook에 독립 fan-out</span>
+    </div>
+    <div class="sd-grid">
+      <div class="sd-node">
+        <strong class="sd-label">eth0</strong>
+        <span class="sd-detail">host network interface에서 packet을 처리합니다.</span>
+      </div>
+      <div class="sd-node">
+        <strong class="sd-label">Containers</strong>
+        <span class="sd-detail">각 workload network path에 policy와 관측을 적용합니다.</span>
+      </div>
+    </div>
   </section>
 </figure>

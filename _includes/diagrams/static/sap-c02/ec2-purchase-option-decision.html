@@ -1,14 +1,14 @@
 <figure class="sd sd--comparison" id="ec2-purchase-option-decision" aria-labelledby="ec2-purchase-option-decision-title">
   <figcaption class="sd-title" id="ec2-purchase-option-decision-title">구매 옵션은 세 가지 질문에서 갈린다</figcaption>
   <p class="sd-note">중단 허용도, 약정 가능 기간, 라이선스 단위를 따로 판단합니다. 특정 AZ 용량 보장은 이 질문들 위에 겹치는 별도 축입니다.</p>
-
   <div class="sd-flow" aria-label="EC2 구매 옵션 결정">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">워크로드 요구</strong>
       <span class="sd-detail">중단 허용도와 약정 기간과 라이선스 단위를 분리합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">요구별 질문</span></div>
-
+    <div class="sd-arrow">
+      <span class="sd-edge-label">요구별 질문</span>
+    </div>
     <div class="sd-grid">
       <section class="sd-lane" aria-labelledby="ec2-purchase-option-decision-license-title">
         <div class="sd-lane-title" id="ec2-purchase-option-decision-license-title">라이선스 단위</div>
@@ -17,11 +17,13 @@
             <strong class="sd-label">물리 소켓과 코어 단위 라이선스인가</strong>
             <span class="sd-detail">감사와 host affinity가 필요한지 확인합니다.</span>
           </div>
-          <div class="sd-arrow"><span class="sd-edge-label">예: 물리 단위가 보임</span></div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">라이선스와 tenancy 요구에 따라 분기</span>
+          </div>
           <div class="sd-grid">
             <div class="sd-node">
               <strong class="sd-label">Dedicated Host</strong>
-              <span class="sd-detail">소켓과 코어와 host ID가 보이며 placement group에는 넣을 수 없습니다.</span>
+              <span class="sd-detail">물리 단위 라이선스가 필요하면 선택. 소켓과 코어와 host ID가 보이며 placement group에는 넣을 수 없습니다.</span>
             </div>
             <div class="sd-node">
               <strong class="sd-label">Dedicated Instance</strong>
@@ -30,7 +32,6 @@
           </div>
         </div>
       </section>
-
       <section class="sd-lane" aria-labelledby="ec2-purchase-option-decision-interrupt-title">
         <div class="sd-lane-title" id="ec2-purchase-option-decision-interrupt-title">중단과 약정</div>
         <div class="sd-flow">
@@ -43,30 +44,33 @@
               <strong class="sd-label">Spot</strong>
               <span class="sd-detail">중단을 허용하면 선택합니다. 가격과 회수는 EC2가 조정합니다.</span>
             </div>
-            <div class="sd-node">
-              <strong class="sd-label">중단을 견디지 못함</strong>
-              <span class="sd-detail">약정 가능 여부를 다음 질문으로 넘깁니다.</span>
-            </div>
-          </div>
-          <div class="sd-arrow"><span class="sd-edge-label">약정 여부</span></div>
-          <div class="sd-node">
-            <strong class="sd-label">1년 또는 3년 지출을 약정할 수 있는가</strong>
-            <span class="sd-detail">구매 후 약정은 취소할 수 없습니다.</span>
-          </div>
-          <div class="sd-grid">
-            <div class="sd-node sd-node--accent">
-              <strong class="sd-label">Savings Plans 또는 Reserved Instances</strong>
-              <span class="sd-detail">요금 할인만 주며 용량을 예약하지 않습니다.</span>
-            </div>
-            <div class="sd-node">
-              <strong class="sd-label">On-Demand</strong>
-              <span class="sd-detail">약정 없는 기준 가격으로 변동분과 검증 구간을 담습니다.</span>
+            <div class="sd-flow">
+              <div class="sd-node">
+                <strong class="sd-label">중단을 견디지 못함</strong>
+                <span class="sd-detail">약정 가능 여부를 다음 질문으로 넘깁니다.</span>
+              </div>
+              <div class="sd-arrow">
+                <span class="sd-edge-label">약정 여부</span>
+              </div>
+              <div class="sd-node">
+                <strong class="sd-label">1년 또는 3년 지출을 약정할 수 있는가</strong>
+                <span class="sd-detail">구매 후 약정은 취소할 수 없습니다.</span>
+              </div>
+              <div class="sd-grid">
+                <div class="sd-node sd-node--accent">
+                  <strong class="sd-label">Savings Plans 또는 Regional Reserved Instances</strong>
+                  <span class="sd-detail">요금 할인만 주며 용량을 예약하지 않습니다.</span>
+                </div>
+                <div class="sd-node">
+                  <strong class="sd-label">On-Demand</strong>
+                  <span class="sd-detail">약정 없는 기준 가격으로 변동분과 검증 구간을 담습니다.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-
     <div class="sd-band" aria-labelledby="ec2-purchase-option-decision-capacity-title">
       <div class="sd-band-title" id="ec2-purchase-option-decision-capacity-title">특정 AZ 용량 보장이 필요하면 별도로 겹친다</div>
       <div class="sd-node sd-node--warning">

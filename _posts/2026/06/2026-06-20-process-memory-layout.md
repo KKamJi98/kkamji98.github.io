@@ -29,6 +29,7 @@ Series 2는 한 계층 더 내려가 JVM과 메모리를 다룹니다. 그 첫�
 그 공간은 용도별 구역으로 나뉩니다.
 
 {% include diagrams/static/jvm/jvm-01-process-memory-layout.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-01-process-memory-layout--93d1a4f5c0ec2d06.png" %}
 _프로세스 가상 주소공간 (x86 기준 관례)_
 
 각 구역을 위키피디아 정의로 정리하면:
@@ -122,6 +123,7 @@ void process() {
 ```
 
 {% include diagrams/static/jvm/jvm-02-stack-vs-heap.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-02-stack-vs-heap--bdec3bac14e79531.png" %}
 _참조(order)는 stack 프레임에, 객체(Order)는 heap에_
 
 | | Stack | Heap |

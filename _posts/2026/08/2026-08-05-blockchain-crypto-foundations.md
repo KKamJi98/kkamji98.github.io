@@ -53,6 +53,7 @@ hash B: 22cd2b2c93dfdbef9963d41465fecdad870e7b6549f1b0765184b83847a25eda
 block header는 직전 header의 hash pointer를 포함합니다. 지금 header의 digest는 다시 다음 header에 들어갑니다. 검증자가 기억해야 하는 값은 맨 끝 header의 digest 하나입니다. 그 하나에서 거꾸로 내려가면 각 칸의 내용이 그 pointer와 맞는지 확인할 수 있습니다.
 
 {% include diagrams/static/blockchain/hash-pointer-chain.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/hash-pointer-chain--b4d12a1e85e4b2c2.png" %}
 _block 1 header는 genesis digest를 들고, block 2 header는 block 1 digest를 든다. 한 payload를 바꾸면 이후 pointer가 전부 깨진다._
 
 ```python
@@ -191,6 +192,7 @@ print(verify_proof(h(b"tx3: Alice->Bob:999999 BTC"), proof, root))  # False
 6건 예제에서는 형제 hash 3개, 96바이트만으로 Root와 대조됩니다. transaction이 4,000건인 block이라도 경로는 12단계, 384바이트로 늘어날 뿐입니다. SPV wallet이 header 80바이트와 이 경로만으로 자기 거래의 포함 여부를 확인하는 이유가 여기 있습니다.
 
 {% include diagrams/static/blockchain/merkle-inclusion-path.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/merkle-inclusion-path--4841a85b8b82e4bf.png" %}
 _header는 Root만 저장한다. 포함 증명은 leaf에서 Root까지 sibling을 따라간다._
 
 경로의 형제 hash는 원본 leaf 기준으로 계산된 값입니다. 다른 transaction을 끼워 넣으면 재계산된 Root가 header의 Root와 맞을 수 없습니다. Bitcoin SPV가 쓰는 것은 이 포함 증명입니다.

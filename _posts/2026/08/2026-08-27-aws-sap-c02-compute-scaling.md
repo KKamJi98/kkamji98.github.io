@@ -102,6 +102,7 @@ T 계열이 지원하는 구매 옵션도 좁습니다. On-Demand, Reserved, Spo
 AWS 문서가 나열하는 EC2 구매 옵션은 On-Demand Instances, Savings Plans, Reserved Instances, Spot Instances, Dedicated Hosts, Dedicated Instances, Capacity Reservations 일곱 가지입니다. 이 일곱 개를 한 줄에 세워 놓고 비교하면 답이 안 나옵니다. 서로 배타적인 선택지가 아니라 층이 다른 수단이 섞여 있기 때문입니다.
 
 {% include diagrams/static/sap-c02/ec2-purchase-option-decision.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/ec2-purchase-option-decision--6cd35e91f559e3e7.png" %}
 
 그림은 왼쪽의 워크로드 요구에서 출발해 두 질문으로 갈라지는 구조입니다. 하나는 물리 소켓과 코어 단위 라이선스인지를 묻는 가지이고 Dedicated Host와 Dedicated Instance로 이어집니다. 다른 하나는 2분 통지로 중단을 견디는지를 묻는 가지이고, 견디면 Spot으로, 견디지 못하면 약정 가능 여부를 묻는 다음 질문으로 이어져 Savings Plans 계열과 On-Demand로 나뉩니다. 오른쪽에 따로 놓인 붉은 상자가 용량 보장 축이고, 다른 가지 위에 겹쳐 쓰는 수단이라는 뜻입니다.
 
@@ -167,6 +168,7 @@ size 유연성에는 조건이 붙습니다. **Amazon Linux와 Unix 플랫폼에
 도입부의 실패가 여기서 나옵니다. 요금 할인 수단과 용량 확보 수단은 층이 다르고, 하나가 다른 하나를 대신하지 못합니다.
 
 {% include diagrams/static/sap-c02/capacity-and-discount-layers.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/capacity-and-discount-layers--53bb4fece5abf95e.png" %}
 
 그림은 세 개의 층 상자로 나뉩니다. 하나는 요금 할인만 하는 수단들이고 Compute와 EC2 Instance Savings Plans, Convertible과 Standard Reserved Instance, regional scope RI가 들어 있습니다. 다른 하나는 용량만 확보하는 수단이고 On-Demand Capacity Reservation과 Capacity Blocks for ML이 들어 있습니다. 점선으로 표시한 세 번째 층에 zonal scope RI 하나만 놓여 있고, 두 축을 동시에 가진 유일한 수단이라는 뜻입니다. 붉은 상자에는 겹쳐 쓸 때의 조건이 적혀 있습니다.
 
@@ -264,6 +266,7 @@ API 경로도 짚어 둡니다. `request-spot-instances`는 legacy API이고 문
 Spot 워크로드를 설계할 때 받는 신호는 두 개이고, 도착 시점과 대응 방식이 다릅니다.
 
 {% include diagrams/static/sap-c02/spot-interruption-signals.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/spot-interruption-signals--275e237ed6cd0710.png" %}
 
 그림은 EC2가 Spot 용량을 회수하기로 결정한 지점에서 두 갈래로 갈립니다. 한쪽은 rebalance recommendation을 받아 ASG Capacity Rebalancing이 선제 교체를 수행하는 경로이고, 다른 한쪽은 2분 중단 통지를 받아 EventBridge와 메타데이터로 정리 작업을 하고 설정한 중단 동작으로 끝나는 경로입니다. 두 신호를 잇는 점선은 동시에 도착할 수도 있다는 뜻이고, 아래쪽 상자는 신호 대응과 별개로 중단 빈도 자체를 줄이는 수단을 가리킵니다.
 
@@ -325,6 +328,7 @@ On-Demand base capacity는 그룹 초기 용량 중 On-Demand로 채워야 하�
 placement group은 인스턴스를 물리적으로 어떻게 배치할지 지정하는 논리 그룹입니다. 전략은 cluster, partition, spread, precision time 네 가지이고 **생성 비용이 없습니다.** precision time은 지원 하드웨어에서 AWS 인프라의 고정밀 시간 소스에 직접 접근하게 하며, placement-group Capacity Reservation은 cluster와 precision time에서 만들 수 있습니다. 아래 표는 시험에서 자주 비교하는 cluster, partition, rack-level spread 세 가지를 정리합니다.
 
 {% include diagrams/static/sap-c02/placement-group-boundaries.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/placement-group-boundaries--cdc5a9aebf633cff.png" %}
 
 그림은 두 개의 Availability Zone 상자 안에 세 전략을 나란히 놓은 배치입니다. 왼쪽 열은 요구 세 가지이고 각각 저지연과 고대역, 랙 단위 장애 격리, 인스턴스 단위 하드웨어 분리입니다. cluster는 한쪽 AZ 상자 안에만 있고, 그 옆의 붉은 상자가 AZ 경계를 넘지 못한다는 사실을 표시합니다. partition과 rack-level spread는 두 AZ 상자에 각각 놓여 여러 AZ에 걸칠 수 있다는 뜻입니다.
 
@@ -522,6 +526,7 @@ launch lifecycle hook을 쓰면 초기화 완료를 hook이 보증하므로 grac
 Auto Scaling group 안에서 인스턴스는 정해진 상태를 지나갑니다. lifecycle hook은 그 경로의 두 자리에만 대기를 만들 수 있습니다.
 
 {% include diagrams/static/sap-c02/asg-instance-lifecycle-hooks.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/asg-instance-lifecycle-hooks--ff141a18d4ef0097.png" %}
 
 그림은 warm pool에서 출발해 Pending, Pending:Wait, InService를 지나고 Terminating, Terminating:Wait, Terminated로 이어지는 상태 경로입니다. Pending:Wait과 Terminating:Wait 두 자리에서 각각 lifecycle hook 결과 상자로 점선이 나가고, 결과가 CONTINUE인지 ABANDON이나 timeout인지에 따라 다음 행선지가 갈립니다. Spot 중단 상자에서 나오는 점선은 hook 자리를 거치지 않고 종료로 직행합니다. unhealthy 신호 소스 상자는 Terminating으로 들어가는 입력입니다.
 

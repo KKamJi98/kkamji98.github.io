@@ -21,21 +21,28 @@
       </div>
     </section>
   </div>
-  <div class="sd-arrow"><span class="sd-edge-label">두 입력을 Pod에 주입하고 mount</span></div>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">두 입력을 Pod에 주입하고 mount</span>
+  </div>
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">MySQL Pod</strong>
       <span class="sd-detail">ConfigMap, Secret, PVC를 모두 연결한 뒤 시작합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">stable address 제공</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">노출 관계: Pod를 Service로 제공</span>
+    </div>
     <div class="sd-node">
       <strong class="sd-label">Service</strong>
       <span class="sd-detail">cluster 안에서 접근할 고정 주소를 제공합니다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">Service name으로 연결</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">노출 관계: Client에 Service 주소 제공</span>
+    </div>
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Client</strong>
       <span class="sd-detail">Service 이름으로 MySQL에 접속합니다.</span>
     </div>
   </div>
+  <p class="sd-note">위 화살표는 설정 주입과 서비스 노출 관계입니다. 실제 접속 요청은 Client에서 Service 이름을 거쳐 MySQL Pod로 향합니다.</p>
 </figure>

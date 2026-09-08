@@ -1,32 +1,58 @@
 <figure class="sd sd--comparison" aria-labelledby="sap-c02-directory-service-selection-title">
   <figcaption class="sd-title" id="sap-c02-directory-service-selection-title">사용자 저장 위치로 Directory Service 선택</figcaption>
   <div class="sd-flow">
-    <div class="sd-node sd-node--accent"><strong class="sd-label">온프레미스 Active Directory</strong><span class="sd-detail">기존 사용자가 저장된 출발점</span></div>
-    <div class="sd-arrow"><span class="sd-edge-label">사용자를 어디에 둘 것인가</span></div>
-    <div class="sd-grid sd-grid--three">
-      <section class="sd-lane" aria-label="AWS Managed Microsoft AD 선택">
-        <div class="sd-lane-title">AWS Managed Microsoft AD</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--accent"><strong class="sd-label">실제 Windows Server AD</strong><span class="sd-detail">온프레미스와 trust, schema extension 지원</span></div>
-          <div class="sd-arrow" aria-hidden="true"></div>
-          <div class="sd-node"><strong class="sd-label">RDS for SQL Server</strong><span class="sd-detail">세 선택지 중 Managed Microsoft AD만 지원</span></div>
+    <section class="sd-band">
+      <div class="sd-band-title">온프레미스 AD 연동</div>
+      <div class="sd-node sd-node--accent">
+        <strong class="sd-label">온프레미스 Active Directory</strong>
+        <span class="sd-detail">기존 사용자가 저장된 출발점</span>
+      </div>
+      <div class="sd-arrow">
+        <span class="sd-edge-label">온프레미스 연동: trust 또는 인증 proxy</span>
+      </div>
+      <div class="sd-grid">
+        <section class="sd-lane" aria-label="AWS Managed Microsoft AD 선택">
+          <div class="sd-lane-title">AWS Managed Microsoft AD</div>
+          <div class="sd-flow">
+            <div class="sd-node sd-node--accent">
+              <strong class="sd-label">실제 Windows Server AD</strong>
+              <span class="sd-detail">온프레미스와 trust, schema extension 지원</span>
+            </div>
+            <div class="sd-arrow" aria-hidden="true"></div>
+            <div class="sd-node">
+              <strong class="sd-label">RDS for SQL Server</strong>
+              <span class="sd-detail">세 선택지 중 Managed Microsoft AD만 지원</span>
+            </div>
+          </div>
+        </section>
+        <section class="sd-lane" aria-label="AD Connector 선택">
+          <div class="sd-lane-title">AD Connector</div>
+          <div class="sd-flow">
+            <div class="sd-node">
+              <strong class="sd-label">인증 프록시</strong>
+              <span class="sd-detail">캐싱 없음, 사용자는 온프레미스에만 저장</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="sd-lane" aria-label="Simple AD 선택">
+      <div class="sd-lane-title">Simple AD</div>
+      <p class="sd-note">온프레미스 AD와 연결하지 않는 독립 AWS directory</p>
+      <div class="sd-flow">
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Samba 4 기반 directory</strong>
+          <span class="sd-detail">신규 온보딩이 중단된 선택지</span>
         </div>
-      </section>
-      <section class="sd-lane" aria-label="AD Connector 선택">
-        <div class="sd-lane-title">AD Connector</div>
-        <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">인증 프록시</strong><span class="sd-detail">캐싱 없음, 사용자는 온프레미스에만 저장</span></div>
-        </div>
-      </section>
-      <section class="sd-lane" aria-label="Simple AD 선택">
-        <div class="sd-lane-title">Simple AD</div>
-        <div class="sd-flow">
-          <div class="sd-node sd-node--warning"><strong class="sd-label">Samba 4 기반 directory</strong><span class="sd-detail">신규 온보딩이 중단된 선택지</span></div>
-        </div>
-      </section>
+      </div>
+    </section>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">세 방식 모두 domain join 가능</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">세 방식 모두 domain join 가능</span></div>
-    <div class="sd-node"><strong class="sd-label">EC2 Windows domain join</strong><span class="sd-detail">Managed Microsoft AD, AD Connector, Simple AD 모두 지원</span></div>
+    <div class="sd-node">
+      <strong class="sd-label">EC2 Windows domain join</strong>
+      <span class="sd-detail">Managed Microsoft AD, AD Connector, Simple AD 모두 지원</span>
+    </div>
     <div class="sd-note">Managed Microsoft AD만 온프레미스 forest와 trust를 맺고 RDS for SQL Server를 지원합니다. AD Connector는 사용자를 저장하지 않습니다.</div>
   </div>
 </figure>

@@ -56,12 +56,14 @@ image:
 HCP Terraform을 GitHub와 연동해 Terraform Cloud 환경을 구축했고 Terraform 코드가 변경되면 인프라가 자동으로 업데이트됩니다. 모든 AWS 리소스(VPC, Lambda, API Gateway, S3, CloudFront 등)를 코드로 정의해 관리하기 쉽고 설정도 일관되게 유지했습니다.
 
 {% include diagrams/static/project/rememberme/architecture.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/architecture--30b7819d5fb0c04d.png" %}
 
 ### 3.1. Logging
 
 CloudWatch Logs Subscription Filter로 Lambda 로그를 실시간으로 Logstash -> Elasticsearch로 전송한 뒤 Kibana 대시보드에서 상태별, 로그그룹별로 로그를 분석하도록 구현했습니다. 여러 Lambda가 남기는 Log Data를 한곳에서 관리하니 문제가 생겼을 때 원인을 빠르게 찾고 대응할 수 있었습니다.
 
 {% include diagrams/static/project/rememberme/log_monitoring.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/log_monitoring--bec9210695f65366.png" %}
 
 ![Kibana Dashboard](/assets/img/project/rememberme/kibana_dashboard.webp)
 
@@ -72,11 +74,13 @@ AWS WAF 규칙으로 과도한 트래픽(예: 동일 IP에서 분당 300회 이�
 #### 3.2.1. WAF Alarm
 
 {% include diagrams/static/project/rememberme/waf_alarm_workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/waf_alarm_workflow--cb7149532df8d11e.png" %}
 ![WAF Alarm](/assets/img/project/rememberme/waf_alarm.webp)
 
 #### 3.2.2. Budget Alarm
 
 {% include diagrams/static/project/rememberme/budget_alarm_workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/budget_alarm_workflow--6d6f0dfce4c01913.png" %}
 ![Budgets Alarm](/assets/img/project/rememberme/budgets_alarm.webp)
 
 ### 3.3. CI/CD

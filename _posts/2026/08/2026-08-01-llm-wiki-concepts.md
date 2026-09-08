@@ -28,6 +28,7 @@ Confluence나 Notion 같은 위키는 사람 독자를 전제로 설계되었습
 ## 2. LLM Wiki의 정의
 
 {% include diagrams/static/ai/llm-wiki/llm-wiki-compile-vs-rag.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/llm-wiki/llm-wiki-compile-vs-rag--5b6dee9b9c7d7ca4.png" %}
 _두 경로의 입력은 같다. 교차 참조와 모순을 질문이 도착한 뒤에 푸는지, 도착하기 전에 한 번 풀어 두는지가 갈린다._
 
 LLM Wiki는 **LLM이 질의 시점에 검색해 읽을 수 있게 구조화된 마크다운 지식 베이스**입니다. Karpathy가 2026년 4월에 공개한 패턴으로, 핵심 주장은 지식을 매번 모델이 다시 유추하게 하지 말고 **ingestion 시점에 한 번 정리해서 위키로 컴파일**하는 것입니다.

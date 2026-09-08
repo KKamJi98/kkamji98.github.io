@@ -10,6 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/mongodb-kubernetes-deployment.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/mongodb-kubernetes-deployment--0116af07a5ac7e73.png" %}
 
 **MongoDB**는 현대 애플리케이션에서 중요한 역할을 하는 NoSQL 데이터베이스로, 다양한 형태의 데이터와 복잡한 구조를 유연하게 처리할 수 있는 장점을 제공합니다. 관계형 데이터베이스와 비교했을 때 MongoDB는 문서 지향(Document-Oriented) 모델을 채택하여 데이터 스키마를 자유롭게 설계할 수 있습니다. 이를 통해 불규칙하거나 복잡한 데이터 구조를 다룰 때 유리합니다.
 

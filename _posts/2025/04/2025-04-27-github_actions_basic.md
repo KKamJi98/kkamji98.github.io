@@ -26,6 +26,7 @@ Workflow는 구성 가능한 자동화 프로세스입니다. 저장소의 `.git
 실행은 이벤트에 연결된 commit SHA와 Git ref를 기준으로 시작됩니다. GitHub는 그 ref에 존재하는 Workflow 파일을 찾아 트리거 조건과 일치하는 것을 실행합니다. 따라서 Workflow 변경도 일반 코드 변경처럼 리뷰해야 하며, 기본 브랜치에 파일이 있어야 하는 이벤트 조건도 별도로 확인해야 합니다.
 
 {% include diagrams/static/ci-cd/github-actions-workflow-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/github-actions-workflow-flow--c77b5de28249f7d1.png" %}
 
 이 그림의 `deploy`처럼 선행 작업이 필요한 Job은 `needs`로 의존성을 선언합니다. `needs`가 없으면 Job은 서로 독립적으로 실행될 수 있습니다.
 

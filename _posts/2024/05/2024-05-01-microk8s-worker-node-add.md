@@ -11,6 +11,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/microk8s-worker-join.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/microk8s-worker-join--5bd609b07fe4f919.png" %}
 
 MicroK8s 클러스터에 계산 자원을 늘리고 싶을 때 worker node를 추가할 수 있습니다. 이 글은 EC2의 private network 안에서 기존 control plane에 worker를 안전하게 조인하고, 실제 Pod가 해당 node에 배치되는지 확인하는 흐름을 다룹니다.
 

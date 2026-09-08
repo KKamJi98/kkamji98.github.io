@@ -41,6 +41,7 @@ AWS Organizations는 여러 AWS 계정을 하나의 트리로 묶어 정책과 �
 | member account | 조직에 속한 나머지 계정 | delegated administrator로 지정되어도 SCP 적용 대상이다 |
 
 {% include diagrams/static/sap-c02/organizations-scp-hierarchy.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/organizations-scp-hierarchy--118693f78dca5cea.png" %}
 
 그림 가운데 위의 Root에서 아래로 갈라지는 두 선이 OU 계층입니다. Root에서 Security OU와 Workloads OU로 내려가고, Security OU에서 다시 Audit 계정과 Log archive 계정으로, Workloads OU에서 Prod 계정으로 이어집니다. 파란색으로 표시된 Root와 두 OU가 SCP 부착 지점이고, 초록색 계정 박스는 부착 지점이면서 동시에 위에서 내려온 정책을 상속받는 쪽입니다. 계정 하나의 유효 SCP는 그 계정에 직접 붙은 것뿐 아니라 Root부터 그 계정까지 경로에 있는 모든 엔티티의 SCP를 교집합으로 합친 결과입니다. Prod 계정 아래에 적힌 대로 멤버 계정에서는 root user까지 SCP를 받습니다. 왼쪽으로 빠지는 점선 화살표가 가리키는 회색 상자가 management account입니다. 점선인 이유는 정책 부착 자체는 가능하지만 그 계정의 사용자와 역할에는 효력이 없기 때문입니다.
 
@@ -110,6 +111,7 @@ OU 중첩은 root 아래 5단계까지입니다. 조직도를 그대로 반영�
 Service Control Policy를 한 문장으로 정의하면 조직 트리에 붙어서 그 아래 계정의 principal이 가질 수 있는 **최대 권한의 경계**를 정하는 정책입니다. 권한을 부여하지 않습니다.
 
 {% include diagrams/static/sap-c02/scp-iam-effective-permissions.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/scp-iam-effective-permissions--f2d725d1827418cf.png" %}
 
 그림 왼쪽의 세 상자가 하나의 API 호출에 함께 걸리는 정책들입니다. 맨 위 SCP는 조직이 정한 최대 한도, 가운데 permission boundary는 그 principal에 걸린 최대 한도, 맨 아래 identity policy는 실제로 권한을 부여하는 정책입니다. 세 상자에서 나온 선이 가운데 유효 권한 상자로 모입니다. 세 정책이 **모두** 허용한 작업만 여기 남습니다. 유효 권한 상자에서 오른쪽 위로 향하는 실선은 그 교집합에 들어간 호출이 수행되는 경로이고, 오른쪽 아래로 향하는 점선은 셋 중 하나라도 허용하지 않은 호출이 암묵적 거부로 차단되는 경로입니다. SCP 상자에서 유효 권한으로 선이 이어진다고 해서 SCP가 권한을 만드는 것으로 읽으면 안 됩니다. 권한을 부여하는 것은 identity policy 하나뿐이고 나머지 둘은 한도만 정합니다.
 
@@ -335,6 +337,7 @@ SCP와 RCP는 authorization policy입니다. API 호출이 들어왔을 때 허�
 AWS IAM Identity Center는 여러 AWS 계정과 애플리케이션에 대한 접근을 하나의 신원 소스로 관리하는 서비스입니다. 2022년 7월 26일에 AWS Single Sign-On에서 이름이 바뀌었고, `sso`와 `identitystore` API 네임스페이스와 `AWSServiceRoleForSSO` 역할 이름은 그대로입니다.
 
 {% include diagrams/static/sap-c02/identity-center-login-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/identity-center-login-flow--aadbfb020e255a33.png" %}
 
 그림은 왼쪽에서 오른쪽으로 한 번의 로그인이 여러 계정의 role로 펼쳐지는 경로를 따라갑니다. 맨 왼쪽 구성원이 AWS access portal에 로그인하면 외부 IdP가 SAML 2.0으로 인증을 처리합니다. 사용자와 그룹 정보는 SCIM으로 미리 프로비저닝되어 있어 인증된 신원이 identity store의 사용자와 매칭됩니다. 그다음 IAM Identity Center를 거쳐 permission set에 도달합니다. permission set 상자는 정책 묶음의 정의일 뿐이고, 오른쪽으로 갈라지는 두 선이 그 정의가 대상 계정에서 실제 IAM role로 provisioning된 결과입니다. Prod 계정과 Dev 계정에 같은 permission set이 각각의 role로 찍혀 있습니다. 사용자가 실제로 assume하는 것은 permission set이 아니라 계정마다 만들어진 이 role입니다. 할당 하나는 사용자 또는 그룹, permission set, 대상 AWS 계정 세 요소의 조합입니다.
 
@@ -381,6 +384,7 @@ ABAC는 IdP가 보낸 속성을 session tag로 전달하고, permission set의 �
 AWS Control Tower는 AWS Organizations, AWS Service Catalog, AWS IAM Identity Center를 오케스트레이션해 landing zone을 1시간 이내에 구성하는 서비스입니다. Organizations가 정책과 계정 구조를 제공한다면, Control Tower는 그 위에 표준 계정 구성과 control 카탈로그와 drift 탐지를 얹습니다.
 
 {% include diagrams/static/sap-c02/control-tower-landing-zone.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/control-tower-landing-zone--9c5a05f235b815a3.png" %}
 
 왼쪽 큰 상자가 Control Tower이고 여기서 나가는 선이 landing zone 배포 결과입니다. 실선은 Security OU로 이어지고 그 아래 점선은 Sandbox OU로 이어집니다. 실선과 점선의 차이가 자동 생성과 선택의 차이입니다. Security OU는 landing zone이 반드시 만들고, Sandbox OU는 landing zone을 만들 때 선택했을 때만 생깁니다. Security OU에서 오른쪽으로 갈라지는 두 선이 그 안에 자동으로 만들어지는 Log archive 계정과 Audit 계정입니다. 아래쪽 점선 테두리 영역은 Control Tower가 만들어 주지 않는 것들을 모아둔 것입니다. Infrastructure OU와 그 안의 Network, Backup, Identity 계정, Workloads OU와 그 안의 Prod, Staging 계정은 전부 직접 만들어야 합니다. 문서에 권장 구성으로 적혀 있을 뿐 landing zone 배포 결과물이 아닙니다.
 
@@ -462,6 +466,7 @@ subnet 공유에는 조건이 하나 더 있습니다. **default VPC의 subnet�
 RAM으로 subnet을 공유하는 구성은 네트워크팀이 VPC를 소유하고 애플리케이션 팀이 그 안에서 워크로드를 운영하는 형태입니다. 책임 분할이 문서에 아주 세밀하게 규정되어 있고, 그 경계가 그대로 시험 문항이 됩니다.
 
 {% include diagrams/static/sap-c02/ram-vpc-subnet-sharing.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/ram-vpc-subnet-sharing--4044b8dd911a5079.png" %}
 
 왼쪽 상자가 VPC owner 계정이고 오른쪽 상자가 participant 계정입니다. owner 계정 안에 route table, shared subnet, NAT gateway가 놓여 있는데 셋 다 owner 소유입니다. route table에는 participant가 조회만 가능하다고, NAT gateway에는 조회조차 불가능하다고 적혀 있습니다. 가운데를 가로지르는 선은 shared subnet이 RAM resource share를 거쳐 participant 계정으로 공유되는 경로입니다. 같은 조직 안 공유이므로 초대 없이 바로 적용되고, default VPC의 subnet은 애초에 이 경로에 올릴 수 없습니다. participant 계정 쪽에서 선이 도착하는 곳은 network interface입니다. participant가 공유 subnet 안에 만드는 것이 이 ENI이고 그 쿼터는 participant 계정에서 나갑니다. ENI에서 위로 올라가는 선은 participant가 직접 만드는 security group이며, 여기에 owner의 default security group은 쓸 수 없다고 적혀 있습니다. ENI에서 오른쪽으로 돌아 아래로 내려오는 선은 flow log이고 자기가 소유한 ENI에 대해서만 만들 수 있습니다. participant 상자에서 owner 상자로 되돌아가는 선이 하나도 없다는 점이 이 그림의 요지입니다.
 

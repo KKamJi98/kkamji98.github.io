@@ -1,47 +1,32 @@
 <figure class="sd sd--flow" id="lambda-concurrency-gates" aria-labelledby="lambda-concurrency-gates-title">
-  <figcaption class="sd-title" id="lambda-concurrency-gates-title">요청이 스로틀되는 게이트는 세 군데다</figcaption>
-  <p class="sd-note">동기와 비동기 호출은 rps 상한과 함수 동시성과 스케일 속도를 차례로 만납니다. 먼저 도달한 한계에서 429가 발생합니다.</p>
-
-  <div class="sd-flow" aria-label="Lambda 동시성 게이트">
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">함수 호출</strong>
-      <span class="sd-detail">동기와 비동기 모두 같은 게이트를 지납니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">초당 요청 수</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">rps 게이트</strong>
-      <span class="sd-detail">동시성 쿼터의 10배입니다. 기본 1,000이면 10,000 rps입니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">동시 실행 수</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">함수 동시성</strong>
-      <span class="sd-detail">reserved concurrency를 걸면 그 값이 상한이자 하한입니다.</span>
-    </div>
-    <div class="sd-arrow"><span class="sd-edge-label">환경 생성 속도</span></div>
-    <div class="sd-node">
-      <strong class="sd-label">스케일 속도</strong>
-      <span class="sd-detail">함수당 10초에 실행 환경 1,000개까지 늘립니다.</span>
-    </div>
-    <div class="sd-grid">
-      <div class="sd-node sd-node--accent">
-        <strong class="sd-label">provisioned 실행 환경</strong>
-        <span class="sd-detail">초기화가 끝난 환경이며 과금 대상이고 reserved를 넘지 못합니다.</span>
-      </div>
-      <div class="sd-node">
-        <strong class="sd-label">새 실행 환경</strong>
-        <span class="sd-detail">초기화부터 시작하므로 콜드 스타트가 발생합니다.</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="sd-grid">
-    <div class="sd-node sd-node--warning">
-      <strong class="sd-label">429 TooManyRequestsException</strong>
-      <span class="sd-detail">rps 또는 함수 동시성 게이트에서 먼저 거절됩니다. 동기는 호출자에게, 비동기는 큐로 되돌려 재시도합니다.</span>
-    </div>
-    <div class="sd-node">
-      <strong class="sd-label">미예약 pool</strong>
-      <span class="sd-detail">Lambda가 항상 100을 남기므로 기본 1,000에서 예약 총량은 900입니다.</span>
-    </div>
-  </div>
+  <figcaption class="sd-title" id="lambda-concurrency-gates-title">동기 호출 제한과 비동기 큐 처리 제한을 구분한다</figcaption>
+<div class="sd-grid">
+<section class="sd-lane"><div class="sd-lane-title">동기 호출: 호출자가 결과를 기다림</div>
+<div class="sd-flow">
+<div class="sd-node sd-node--accent"><strong class="sd-label">Synchronous invoke</strong><span class="sd-detail">RPS, 가용 동시성, 환경 확장 제약을 함께 만족해야 함</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">제약별 거절 조건</span></div>
+<div class="sd-grid">
+<div class="sd-node sd-node--warning"><strong class="sd-label">RPS 제한</strong><span class="sd-detail">계정 및 함수의 동기 RPS 한도: 관련 동시성 한도의 10배. 초과 시 호출자에게 429</span></div>
+<div class="sd-node sd-node--warning"><strong class="sd-label">동시성 / 스케일 제한</strong><span class="sd-detail">가용 동시성 부족 또는 확장 속도로 수요를 못 따라가면 호출자에게 429</span></div>
+</div>
+<div class="sd-arrow"><span class="sd-edge-label">제약 내 요청</span></div>
+<div class="sd-node"><strong class="sd-label">실행 후 결과 반환</strong><span class="sd-detail">기존 환경 재사용, provisioned 환경 또는 새 환경 사용</span></div>
+</div>
+</section>
+<section class="sd-lane"><div class="sd-lane-title">비동기 호출: 수락된 이벤트의 처리</div>
+<div class="sd-flow">
+<div class="sd-node sd-node--accent"><strong class="sd-label">Accepted async event</strong><span class="sd-detail">Lambda 내부 큐에 수락된 이벤트가 대상</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">큐에서 처리 시도</span></div>
+<div class="sd-node"><strong class="sd-label">가용 동시성 / 환경 확장</strong><span class="sd-detail">동기와 같은 RPS 게이트를 적용하지 않음</span></div>
+<div class="sd-arrow"><span class="sd-edge-label">처리 시 throttling 429 / system 5xx</span></div>
+<div class="sd-node sd-node--warning"><strong class="sd-label">큐로 반환 후 재시도</strong><span class="sd-detail">기본 최대 6시간 재시도. 처리 시 429는 원래 호출자에게 동기 반환하는 경로가 아님</span></div>
+</div>
+</section>
+</div>
+<div class="sd-grid sd-grid--three">
+<div class="sd-node"><strong class="sd-label">Reserved concurrency</strong><span class="sd-detail">함수용 용량 예약이자 최대 동시 실행 수. 최소 실행 환경 수나 사전 초기화가 아님</span></div>
+<div class="sd-node"><strong class="sd-label">Provisioned concurrency</strong><span class="sd-detail">사전 초기화된 유료 환경. reserved 설정이 있으면 그 값을 넘을 수 없음</span></div>
+<div class="sd-node"><strong class="sd-label">확장 속도와 미예약 pool</strong><span class="sd-detail">함수별 10초당 최대 1,000 환경 확장. 계정 한도에서 최소 100은 미예약 함수용으로 남김</span></div>
+</div>
+<p class="sd-note">비동기 lane은 이벤트 수락 이후 처리 경로입니다. 이벤트 수락 자체가 항상 성공한다는 뜻은 아니며, 만료와 실패 처리는 비동기 설정에 따릅니다.</p>
 </figure>

@@ -17,15 +17,16 @@
     <div class="sd-grid sd-grid--three">
       <section class="sd-lane" aria-labelledby="dx-vif-reach-scope-private-title">
         <div class="sd-lane-title" id="dx-vif-reach-scope-private-title">private VIF</div>
+<p class="sd-note">VGW 직접 종단 또는 Direct Connect gateway 종단을 선택합니다. DX gateway 경로에서는 연결된 VGW를 통해 VPC에 도달하며 SiteLink도 DX gateway 연결 시 지원합니다.</p>
         <div class="sd-flow">
           <div class="sd-node">
-            <strong class="sd-label">private VIF</strong>
+            <strong class="sd-label">연결 조건</strong>
             <span class="sd-detail">MTU 1500 또는 9001, 수신 prefix 기본 100</span>
           </div>
           <div class="sd-arrow"><span class="sd-edge-label">private 연결</span></div>
           <div class="sd-node">
             <strong class="sd-label">Virtual private gateway</strong>
-            <span class="sd-detail">VPC 하나에만 attach합니다.</span>
+            <span class="sd-detail">이 실선은 VGW에 직접 연결하는 예시이며 VGW 하나는 VPC 하나에 attach합니다.</span>
           </div>
           <div class="sd-arrow"><span class="sd-edge-label">private IP</span></div>
           <div class="sd-node sd-node--accent">
@@ -39,7 +40,7 @@
         <div class="sd-lane-title" id="dx-vif-reach-scope-public-title">public VIF</div>
         <div class="sd-flow">
           <div class="sd-node">
-            <strong class="sd-label">public VIF</strong>
+            <strong class="sd-label">연결 조건</strong>
             <span class="sd-detail">jumbo 미지원, prefix 1,000 고정, SiteLink 미지원</span>
           </div>
           <div class="sd-arrow"><span class="sd-edge-label">AWS public prefix</span></div>
@@ -54,18 +55,18 @@
         <div class="sd-lane-title" id="dx-vif-reach-scope-transit-title">transit VIF</div>
         <div class="sd-flow">
           <div class="sd-node">
-            <strong class="sd-label">transit VIF</strong>
+            <strong class="sd-label">연결 조건</strong>
             <span class="sd-detail">dedicated당 4개, MTU 1500 또는 8500</span>
           </div>
           <div class="sd-arrow"><span class="sd-edge-label">gateway 연결</span></div>
           <div class="sd-node">
             <strong class="sd-label">Direct Connect gateway</strong>
-            <span class="sd-detail">VGW 20개 또는 TGW 6개를 연결합니다.</span>
+            <span class="sd-detail">gateway 연결 한도는 VGW 20개 또는 TGW 6개입니다. 이 transit VIF 경로에서는 TGW에 연결합니다.</span>
           </div>
           <div class="sd-arrow"><span class="sd-edge-label">attachment 범위</span></div>
           <div class="sd-node sd-node--accent">
             <strong class="sd-label">Transit Gateway</strong>
-            <span class="sd-detail">연결된 모든 attachment가 도달 범위입니다.</span>
+            <span class="sd-detail">연결된 attachment가 대상이며 실제 도달은 TGW route table과 allowed prefix 설정에 따릅니다.</span>
           </div>
         </div>
       </section>

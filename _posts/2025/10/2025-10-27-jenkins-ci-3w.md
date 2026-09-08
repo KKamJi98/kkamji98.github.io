@@ -59,6 +59,7 @@ image:
 즉, 애플리케이션의 **빌드(Build) -> 테스트(Test) -> 배포(Deploy)** 과정을 코드 형태로 정의하고 자동화할 수 있는 도구 세트입니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/jenkins-pipeline.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/jenkins-pipeline--40c679c40fef8873.png" %}
 
 > [Jenkins Docs - What is Jenkins Pipeline?](https://www.jenkins.io/doc/book/pipeline/)  
 
@@ -106,6 +107,7 @@ image:
 - **스크립트형** 파이프라인 : 커스텀 작업에 용이, 복잡하여 난이도가 높음, step은 필수 아님
 
 {% include diagrams/static/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative--fd798da538a278bc.png" %}
 > [Scripted vs Declarative Pipeline](https://velog.io/@kku64r/pipeline)  
 
 #### 2.4.1. Declarative Pipeline 예시
@@ -438,6 +440,7 @@ for i in {1..100};  do curl -s http://127.0.0.1:30000 | grep name; done | sort |
 이번에는 현재 배포한 Sample Application을 새 버전(0.0.2) 태그로 컨테이너 이미지를 빌드 후 컨테이너 저장소(Docker Hub) Push -> Kubernetes Deployment 업데이트를 해보겠습니다. (수동)
 
 {% include diagrams/static/ci-cd/ci-cd-study/jenkins-ci-overview.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/jenkins-ci-overview--1160592104c4864c.png" %}
 
 ```shell
 ##############################################################
@@ -574,6 +577,7 @@ Jenkins job Trigger - [dev-app] - Setting -> Webhooks -> Gogs 클릭
 ### 3.9. Jenkinsfile 작성 후 git push
 
 {% include diagrams/static/ci-cd/ci-cd-study/jenkins-ci-workflow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/jenkins-ci-workflow--571a9000bd4b4c8f.png" %}
 
 ```shell
 ##############################################################

@@ -20,6 +20,7 @@ L2 explorer의 confirmation 1은 L1의 `finalized`가 아닙니다. 거래를 �
 ethereum.org는 optimistic rollup에서 사용자가 거래를 operator에게 보낸다고 적습니다. 그 operator가 sequencer이면 오프체인에서 실행하고, 여러 거래를 batch로 묶어 L1에 올립니다. ZK-rollup 문서도 같은 역할을 말합니다. 어떤 설계에서는 sequencer만 L2 block을 만들 수 있습니다.
 
 {% include diagrams/static/blockchain/rollup-sequencer-to-l1.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/rollup-sequencer-to-l1--043c8a5d18ce12ad.png" %}
 _순서는 sequencer가 정한다. L1에 남는 것은 실행 결과가 아니라 batch다._
 
 운영자가 먼저 물을 질문은 “이 RPC의 `latest`가 누구의 순서인가”입니다. 그 값은 L1 validator 집합의 머리가 아니라, 지금 batch를 만들고 있는 sequencer의 머리일 수 있습니다. 이번 랩은 L2 RPC를 조회하지 않았습니다. 그 차이를 숫자로 교차 검증하지 않았다는 뜻입니다.
@@ -33,6 +34,7 @@ optimistic rollup은 거래를 Ethereum에 calldata 또는 blob으로 씁니다.
 그래서 탈출 경로는 sequencer RPC가 아닙니다. ethereum.org는 사용자가 거래를 L1에 직접 넣을 수 있다고 적습니다. 그 거래는 별도 inbox에 쌓이고, sequencer는 제한 시간 안에 포함해야 계속 유효한 block을 만들 수 있습니다.
 
 {% include diagrams/static/blockchain/rollup-l1-inbox-escape.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/rollup-l1-inbox-escape--54c9b49cb2958b6c.png" %}
 _탈출창의 입구는 L1이다. sequencer RPC가 침묵해도 inbox는 남는다._
 
 데이터를 L1 밖에만 두는 설계는 같은 문서가 rollup과 구분해 적습니다. 그 경우 검증 가능한 탈출에 필요한 입력이 L1에 없을 수 있습니다. 이번 글은 rollup, 즉 데이터를 Ethereum에 쓰는 쪽만 다룹니다.

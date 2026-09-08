@@ -34,6 +34,7 @@ KMP는 전체 관측 플랫폼이 아니라 초기 확인을 빠르게 하는 CL
 | 자원이 어느 노드에 몰렸는가 | Node와 Pod CPU, memory 사용량 | `kubectl top`은 용량이나 장기 추세가 아님 |
 
 {% include diagrams/static/observability/kubernetes-troubleshooting-flow.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/observability/kubernetes-troubleshooting-flow--97c8b98ee5cfd2d3.png" %}
 
 ---
 

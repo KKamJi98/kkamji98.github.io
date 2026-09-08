@@ -5,7 +5,9 @@
       <strong class="sd-label">온프레미스 네트워크</strong>
       <span class="sd-detail">공장 제어망 또는 사내 네트워크. rack과 server 모두 양방향 통신한다.</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">시설 안 연결 방식 선택</span></div>
+    <div class="sd-arrow">
+      <span class="sd-edge-label">시설 안 연결 방식 선택</span>
+    </div>
   </div>
   <section class="sd-lane sd-lane--muted">
     <span class="sd-lane-title">고객이 확보하고 관리하는 시설</span>
@@ -13,27 +15,45 @@
       <section class="sd-lane sd-lane--accent">
         <span class="sd-lane-title">rack 경로</span>
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">local gateway (LGW)</strong><span class="sd-detail">rack 전용이며 IPv4만 지원한다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">VPC 연결</span></div>
-          <div class="sd-node"><strong class="sd-label">Outposts rack</strong><span class="sd-detail">EC2, EBS, S3 on Outposts, EKS, ECS, RDS, EMR, ALB를 지원한다.</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">local gateway (LGW)</strong>
+            <span class="sd-detail">rack 전용이며 IPv4만 지원한다.</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">VPC 연결</span>
+          </div>
+          <div class="sd-node">
+            <strong class="sd-label">Outposts rack</strong>
+            <span class="sd-detail">EC2, EBS, S3 on Outposts, EKS, ECS, RDS, EMR, ALB를 지원한다.</span>
+          </div>
         </div>
       </section>
       <section class="sd-lane sd-lane--warning">
         <span class="sd-lane-title">server 경로</span>
         <div class="sd-flow">
-          <div class="sd-node"><strong class="sd-label">local network interface (LNI)</strong><span class="sd-detail">Outpost subnet에서만 동작한다.</span></div>
-          <div class="sd-arrow"><span class="sd-edge-label">VPC 연결</span></div>
-          <div class="sd-node sd-node--warning"><strong class="sd-label">Outposts server</strong><span class="sd-detail">EC2와 ECS, VPC subnet까지 지원한다. EBS 없이 instance store만 사용하며 신규 판매는 중단됐다.</span></div>
+          <div class="sd-node">
+            <strong class="sd-label">local network interface (LNI)</strong>
+            <span class="sd-detail">Outpost subnet에서만 동작한다.</span>
+          </div>
+          <div class="sd-arrow">
+            <span class="sd-edge-label">VPC 연결</span>
+          </div>
+          <div class="sd-node sd-node--warning">
+            <strong class="sd-label">Outposts server</strong>
+            <span class="sd-detail">EC2와 ECS, VPC subnet까지 지원한다. EBS 없이 instance store만 사용하며 신규 판매는 중단됐다.</span>
+          </div>
         </div>
       </section>
     </div>
   </section>
-  <div class="sd-arrow"><span class="sd-edge-label">두 경로 모두 service link</span></div>
+  <div class="sd-arrow">
+    <span class="sd-edge-label">두 경로 모두 service link</span>
+  </div>
   <div class="sd-node">
     <strong class="sd-label">service link</strong>
     <span class="sd-detail">암호화된 VPN 집합이며 홈 리전 control plane과 양방향으로 연결된다. IPv6는 지원하지 않는다.</span>
   </div>
-  <div class="sd-arrow"><span class="sd-edge-label">홈 리전 control plane</span></div>
+  <div class="sd-arrow sd-arrow--both" aria-hidden="true"></div>
   <div class="sd-node sd-node--accent">
     <strong class="sd-label">홈 리전 control plane</strong>
     <span class="sd-detail">Route 53 Resolver를 포함한 서비스 제어 지점이다.</span>

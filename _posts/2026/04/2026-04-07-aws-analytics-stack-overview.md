@@ -59,6 +59,7 @@ AWS는 이 "S3에 쌓인 데이터를 분석하는 일"을 **여러 서비스의
 먼저 큰 그림부터 봅니다.
 
 {% include diagrams/static/aws/analytics-stack-04-overview.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-04-overview--7554c80dc29cb666.png" %}
 _Athena는 Catalog에 스키마와 데이터 위치를 묻고 S3 또는 S3 Tables를 읽는다. IAM은 API 호출을, Lake Formation은 데이터 접근을 서로 다른 길목에서 통제한다._
 
 각 구성요소를 한 줄로 정의하면 다음과 같습니다.
@@ -102,6 +103,7 @@ GROUP BY user_id
 4. **결과 반환**: Athena는 쿼리 결과를 클라이언트에 바로 흘려보내는 것이 아니라, 1번에서 정해진 **workgroup의 query result location(S3)에 먼저 기록**한 뒤 그곳에서 읽어 반환합니다. 그래서 `GetQueryResults` 호출과 별개로, 결과 위치의 S3 객체에 직접 접근하면 같은 결과를 받을 수 있습니다.
 
 {% include diagrams/static/aws/analytics-stack-09-query-flow-gates.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-09-query-flow-gates--390b2013483c5264.png" %}
 _쿼리 제출(Athena, 엔진) -> 메타데이터 조회(Glue Catalog) -> 데이터 스캔(S3/S3 Tables) -> 결과 위치(S3) 기록. 각 길목에 IAM(+ Lake Formation) 권한 게이트가 선다._
 
 즉 Athena 자체는 데이터를 들고 있지 않습니다. **메타데이터는 Glue Catalog에, 데이터는 S3에** 있고, Athena는 그 둘을 엮어 실행할 뿐입니다. 결과 역시 Athena가 보관하는 것이 아니라 S3의 결과 위치에 떨어집니다.
