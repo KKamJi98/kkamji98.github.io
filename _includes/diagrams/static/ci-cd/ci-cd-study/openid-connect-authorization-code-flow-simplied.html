@@ -25,11 +25,11 @@
       <strong class="sd-label">5. Application exchanges the code</strong>
       <span class="sd-detail">ID Token과 Access Token을 발급받음</span>
     </div>
-    <div class="sd-arrow"><span class="sd-edge-label">Application -&gt; Keycloak: Token Endpoint exchange</span></div>
+    <div class="sd-arrow" data-connector-role="continuation"><span class="sd-edge-label">Application -&gt; Keycloak: Token Endpoint exchange</span></div>
   </div>
-  <div class="sd-loop">
+  <div class="sd-loop" data-connector-role="loop" data-from="openid-connect-authorization-code-flow-simplied-6-application-establishes-a-session" data-to="openid-connect-authorization-code-flow-simplied-6-application-establishes-a-session">
     <div class="sd-flow">
-      <div class="sd-node sd-node--muted">
+      <div class="sd-node sd-node--muted" id="openid-connect-authorization-code-flow-simplied-6-application-establishes-a-session">
         <strong class="sd-label">6. Application establishes a session</strong>
         <span class="sd-detail">Application -&gt; Application: ID Token으로 사용자 신원을 확인하고 session 생성</span>
       </div>

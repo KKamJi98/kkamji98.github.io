@@ -10,6 +10,7 @@ import threading
 from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from functools import partial
+from connector_audit import inspect_connectors
 
 
 def digest(data):
@@ -104,7 +105,8 @@ def freshness(receipt, current, png):
 
 
 def gate(metrics):
-    return all(key in metrics and not metrics[key] for key in ['overflow', 'small', 'hidden', 'unselectable', 'broken', 'interaction'])
+    return (all(key in metrics and not metrics[key] for key in ['overflow', 'small', 'hidden', 'unselectable', 'broken', 'interaction'])
+            and not metrics.get('connector_issues'))
 
 
 AUDIT = r'''f => {
@@ -197,6 +199,8 @@ def main():
         f.locator('img').evaluate_all('(imgs)=>imgs.forEach(i=>{i.loading="eager"})')
         f.scroll_into_view_if_needed();await_assets(f)
         desktop=f.evaluate(AUDIT)
+        connectors=inspect_connectors(page, selector)
+        desktop.update(connector_issues=connectors['issues'], connector_metrics=connectors)
         actual_fonts = rendered_fonts(page, selector)
         policy = font_policy(a.font_profile, actual_fonts, blocked_fonts)
         article_width=page.locator('.content').first.evaluate('e=>e.getBoundingClientRect().width')
@@ -223,6 +227,8 @@ def main():
         page.set_viewport_size({'width':360,'height':1000})
         page.evaluate('''()=>{const c=document.querySelector('.content');c.style.removeProperty('width');c.style.removeProperty('max-width')}''')
         f.scroll_into_view_if_needed();await_assets(f);mobile=f.evaluate(AUDIT)
+        connectors=inspect_connectors(page, selector)
+        mobile.update(connector_issues=connectors['issues'], connector_metrics=connectors)
         mobile_fonts = rendered_fonts(page, selector)
         font_policy(a.font_profile, mobile_fonts, blocked_fonts)
         if not a.check:f.screenshot(path=str(mobile_png),animations='disabled')
@@ -244,6 +250,8 @@ def main():
         inputs.update(mobile_fonts=mobile_fonts, loaded_font_binaries=dict(sorted(loaded_fonts.items())),
                       mobile_viewport=[360,1000], actual_system_font_binaries=actual_system)
         inputs.update(export_font_bundle={url:{k:v for k,v in entry.items() if k != 'body'} for url,entry in export_bundle.items()}, export_font_css=export_css)
+        inputs['connector_tool_sha256'] = {name: digest(Path(__file__).with_name(name).read_bytes())
+                                             for name in ('connector_audit.py', 'connector_geometry.py', 'connector_roles.py', 'connector_loop.py')}
         fp = fingerprint(inputs)
         fresh = False
         if receipt_path.exists():

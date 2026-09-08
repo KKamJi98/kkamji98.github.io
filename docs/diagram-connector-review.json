@@ -1,0 +1,3146 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "components": 388,
+  "used_occurrences": 388,
+  "unused_includes": 9,
+  "checked_cases": 3176,
+  "repaired_sources": 58,
+  "unresolved": 0,
+  "baseline_commit": "6a0075fcf4f30bf03f78b1356d41f2d57fc78a9b",
+  "code_and_semantics_review": "independent acceptance review passed",
+  "visual_review": {
+    "method": "native image inspection of representative corrected families",
+    "scope": [
+      "virtual-key issuance/request/fork/outcome",
+      "mobile attached buses",
+      "rounded loop head/source crops"
+    ],
+    "limitations": "Not a claim of human or per-image pixel review. Minor loop-junction antialiasing ambiguity remained; measured contact and alignment gates passed."
+  },
+  "measurement_scope": {
+    "viewports": [
+      360,
+      390
+    ],
+    "figure_content_widths": [
+      625,
+      720
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "unused": "isolated canonical HTML with compiled production CSS"
+  },
+  "inputs": {
+    "stylesheet_sha256": "a0efe41ea903fb9e924e6f605ee89461cb79ba4943279899ae07e183ac7ca4fc",
+    "audit_sha256": "7d569f12339c1a66314c6e8206514ef41b884d470161026265ddc685d2420916"
+  },
+  "includes": [
+    {
+      "include": "diagrams/aws-certification-map.html",
+      "source_sha256": "228f54904505528abf1c1ddde769b46136fbb6be5b6f32247f0a0a8ae56fbc5c",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/packer-golden-image.html",
+      "source_sha256": "2bea76dd7d41f6bbf14cf609813fdf6934ea38254e44e2d6bf2f90463ee2904f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/agent-eng-layer-ladder.html",
+      "source_sha256": "a84c0025de53ce86897f7f2d2113b913d9f3d10b6c37af51fe66ea84ac89cf4e",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/agentic-development-workspace.html",
+      "source_sha256": "71d87e84f163462f66078cc66115537b2e8a3f57da1970cbea8848b12ba6ff87",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/envoy-ai-gateway-crd-flow.html",
+      "source_sha256": "3cc28ff8907384a37e951d6b73f23086af0feddcf360a4dcd4ee767a5adca678",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/gateway-plane-compare.html",
+      "source_sha256": "0c3ba437a268cb4b7ff3876b9441fd220c115f03b3567d6115dc1cf75ed5d86a",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/graph-system-intelligence.html",
+      "source_sha256": "acf6f3667553d511bcc2b148eee2b1344dd05d9d61444d1b0053308e82f0e5d0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/hermes-wsl2-agent-flow.html",
+      "source_sha256": "4ac434cbb806c5eaeb90032bb52492c2475e9d0582565b993f8908e31902dc84",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/humanize/humanize-route-hint.html",
+      "source_sha256": "f2e49cdd07743d82eeef5fd2f0c9f09451b315b53f15d76188dff0dcdec39288",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/litellm-architecture.html",
+      "source_sha256": "ede2c34e7aeec96cde148a01dfa7a33ef02f74accf3907c0526d3f051dca81a3",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/litellm-virtual-key-flow.html",
+      "source_sha256": "7f6ab7ddbda1e91276655365555653102f27bb8338807918390fef82b47c4a8f",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/llm-gateway-position.html",
+      "source_sha256": "9861142619661d1b6375d2047b3454b0458a689ee93a5b3c62b780614626ea79",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/llm-wiki/llm-wiki-build-pipeline.html",
+      "source_sha256": "be043d635c75483f85eede02dd9b658d959148d282a1932e8480f45d38a833aa",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/llm-wiki/llm-wiki-compile-vs-rag.html",
+      "source_sha256": "8bf89af2f84fdd3e24bf43f887d1279b91dbf56cd312fb92305548d49290dc0a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/llm-wiki/llm-wiki-search-regression-gate.html",
+      "source_sha256": "32dc5befaf17c0e149072c3faf3958318a020842068ea2c4fee19a1971f6001f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/loop-anatomy.html",
+      "source_sha256": "1d5f68d9df1251c8f5682584485b5ec6772417a20bf70413fb4cbc5ccd79ee59",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-01-pipeline.html",
+      "source_sha256": "fb90f2199c844ab1f22018b2015717b58d6dc030fab166adca7ee298a61a156b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-02-chunking-strategies.html",
+      "source_sha256": "73942c328c2b832797c7e3736597ef3eff5109c9108fc9549f4689ba029777db",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-02-contextual-retrieval.html",
+      "source_sha256": "cae14c1298e432a409c5c13735bb884e15b0fe79e3a385dd0af102da975dbcac",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-03-hnsw-vs-ivf.html",
+      "source_sha256": "c234762408866a7a41c97900aafc248440ac6431a3dbb0407139ece71b1cfeb1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-04-hybrid-rerank.html",
+      "source_sha256": "158420087f7d8a6132dadbe9003dd36a52d1b3cb475d9c9038a53bc1b2fcb591",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-05-cache-conflict.html",
+      "source_sha256": "a56bb7162b354d8ca14a071db1913256bcdb46bc4df6539ce69f7e512da4318d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-05-secure-rag-flow.html",
+      "source_sha256": "e63eb2cfaeb2481831f9210efcf940d84533d45077e74bdecd54d7bd3cecd6fb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-06-latency-eval.html",
+      "source_sha256": "e9bf448c9d7bd03c85ea252978f76f4d7dea912af505d9c317176db52ca0ac25",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ai/rag-07-rag-variants.html",
+      "source_sha256": "9dcf79b16c88082d66646dc7f7d85a23a2eda047c13724e1eb0a5d4712a7c804",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-01-architecture-history.html",
+      "source_sha256": "b617f4afc68ae1488c9f3f380f90e6a1d55347b795bc61cdca92cb92c126fd4d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-02-warehouse-lake-lakehouse.html",
+      "source_sha256": "0185722bd4e940110050f41887d1e82cf7792f17b823076a6e54f5ff2aae78b2",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-03-distributed-sql-mpp.html",
+      "source_sha256": "862fa95c88ddebe39c0e4993da58a654caac82fa8d0c35a822a9f87aa6f0b23f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-04-overview.html",
+      "source_sha256": "727bb1154c2bf766d390e87d4d9fa3256c6a0db6c0678d9dbbea0cb807647df3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-05-query-flow.html",
+      "source_sha256": "e909be7fcc6c0bf098b19c13d12c06518d2bff41bb5337b6a6086eda482c8d32",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-06-catalog-federation.html",
+      "source_sha256": "d9126f2293e4822379149cc375329633417cb105d13b776262a27df39ae231af",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-07-lake-formation.html",
+      "source_sha256": "409c682d2cfe4395fb3f95adfe80e90d930928a5c51c144de5c778773b724994",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-08-lf-permissions.html",
+      "source_sha256": "89389ddfe0ca58e08cf65f4c5fed730ffb6c9b02c93b7831d7697f8d412e2ee3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-09-query-flow-gates.html",
+      "source_sha256": "21bcf308292f881312d7f5f56f7a9d6a21c893110d7f2c8da3d15d5ac4a574c6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-10-iceberg-metadata-layers.html",
+      "source_sha256": "7b58a23a451a976c0b270e60186b54de6e9dbf2a89afb896cc163bd6a7e77441",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/analytics-stack-11-iceberg-cow-vs-mor.html",
+      "source_sha256": "ec65b8ac96e20aaf103c4b82b364b3bfa5fcbd91ef042bb01e03a136bc574f74",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/aws-glue-partitioning-pruning-flow.html",
+      "source_sha256": "134a26b1420a7eeb95c4f85a5fb6640dd497323a73a6a74791624b8444ba0db6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/aws-waf-challenge-token-flow.html",
+      "source_sha256": "4bce98d51c7b771cba5492ffd2d42084257386b611e24207454cc664b70fa106",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/aws-waf-request-flow.html",
+      "source_sha256": "049f35ed74b98182c365ec4009951adfce1ca168bf87fce32b70cafd76257484",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/bedrock-kb-architecture.html",
+      "source_sha256": "bf521eea2dfa91879bd5aabb65800dead987b99fea4880bc0de75c80c4615061",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/bedrock-slack-rag-architecture.html",
+      "source_sha256": "f30594411efdd8d347d1ab18e73a7d1742395c802f213cbc942bafee09b59d87",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/cloudfront-vpc-origins-flow.html",
+      "source_sha256": "a0e225fae94627d293d6a8ec6a5d9df64fa729282388bf72b6ba25f4f4a8d45c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/codeartifact/codeartifact-domain-repository-model.html",
+      "source_sha256": "75aeeca8ed9fa6fd1d056cf126e317c1ad16671258bcea33e13e241333d60df0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/devops-agent/devops-agent-signal-flow.html",
+      "source_sha256": "722e748aebac0fcd70eab8468a3e0b2bad4e18f717f05e6429e73d4f651fe664",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/eks-max-pods-prefix-mode.html",
+      "source_sha256": "e0442415a236909aa8a2f0491c8bd41363ffa30985fd332d91c014609e3ec91d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/eks-secrets-manager-csi.html",
+      "source_sha256": "e66247a554898e15e1e578dcd667cdc419470a867b0b7ef1c71acf176b7899ba",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/eks-token-cache-flow.html",
+      "source_sha256": "3f375f19425d2f9143a0baa52c5028299670806b4e7d95c52fa7253ca6c0a487",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/irsa-web-identity-flow.html",
+      "source_sha256": "283f06cfdb9fbb6a467e474a1f510d2b77c90536889f686118e4e8bf4677232b",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/route53-dns-record-resolution.html",
+      "source_sha256": "e75a504d0ae75984e7675ebdc015631912dc0ac4d35d54361f4384b0f6cdc775",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/vpc-lattice-cross-vpc-flow.html",
+      "source_sha256": "0698c6e3988c4f5d5e607bd8bf4d03981ecc5be5807f830f3a482c72169537fa",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/aws/waf-rule-rollout-flow.html",
+      "source_sha256": "dda3e4430196f3b581c997af0a0a237e0b8072e5b8296b46c8299684028db8fb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/anvil-no-pbs.html",
+      "source_sha256": "c09dc65f1f16d8abaaf17fa62863dac4596136edd0cd81f500e59a3a1f06bcf3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/bitcoin-isolated-mempool.html",
+      "source_sha256": "4440cedf46385ff735a557630cf3d178c9c06994474a537197d329b4c91eca42",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/bitcoin-mempool-reorg.html",
+      "source_sha256": "b874eed4e6eaa086a217e00c18613ec1880f003681107a568ad21fa5da4667cf",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/bitcoin-p2wpkh-witness.html",
+      "source_sha256": "e47e5cdb7fc6b9645492c78c0f37baa228085f25e2ac74202e8271282bc0c202",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/bitcoin-spv-proof.html",
+      "source_sha256": "e3619f1f01809381eb1599993f5b487c775171bfef69b6cff76ed1f4c650a7bb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/coin-select-two-inputs.html",
+      "source_sha256": "305735e5d751ba5282bfb1c2e8aa7cfc4e09b69a79e60ec9e90d7764f2492191",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/commitment-tag-compare.html",
+      "source_sha256": "a609035b7e4616936d11e1b787aed51aa133fec1c984836302d1fe47083ff391",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/el-cl-engine-jwt.html",
+      "source_sha256": "2961e1de901896421dfc500836db11e133566bc0a5f688dd4690b99255c2a391",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/escrow-auth-deny.html",
+      "source_sha256": "4f41379435fe45e00770a86149c04e9205ac5c45e2e691fd9917aeb8b1a13a91",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/escrow-deposit-release.html",
+      "source_sha256": "17eed858d0d0c3070a535e10aedc9cd87d9dcdd7515d775a1f3fe4a081d7cdab",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/ethereum-account-fields.html",
+      "source_sha256": "f23f65573641ee85870b3643b633776c54fe4763e26bc92678e6663c16448256",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/ethereum-account-nonce.html",
+      "source_sha256": "e5dcdefc81891749f500b5ece3d68145e47bee93164d5858c349b41e8ea71759",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/ethereum-gas-meter.html",
+      "source_sha256": "55c1a989b6090e4a748375a0510d9932b00c5f026f07c84320a771f204d71ecb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/foundry-counter-deploy.html",
+      "source_sha256": "74a5ad12b0fd17ca06dd5f6e682952ea4274ab528227405fedee35c33988c2ba",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/foundry-test-create-cast.html",
+      "source_sha256": "c7ce5bd98f9938e4a6a5a30684ac416c5e7013ae8e7aee063b3de45563ce2a30",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/hash-pointer-chain.html",
+      "source_sha256": "b51019139e2dea9f5bfb7fac91fdfa469a04ac568697e407fec2b13e58408e23",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/hd-mnemonic-three-addresses.html",
+      "source_sha256": "19f6601d1899d8b76324310c0127c45a7974bd4e0cf55c5ba9d61535c72bd222",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/http-200-is-not-chain-head.html",
+      "source_sha256": "0724b83eeb819eee8ce1862e1628aaad968f01bd7a85d2df20a82c429ef9c4e8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/incident-runbook-ladder.html",
+      "source_sha256": "9877c12621d030517e9b5323aab4ab019b27ea056ccd211eaf01005370f3c927",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/lock-and-mint-trust.html",
+      "source_sha256": "8c08c0c9a9a3e52a00f41edca39204b0fd097264e75118fc985c024d8848ad41",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/merkle-inclusion-path.html",
+      "source_sha256": "41155fe8df5782aecc2c99d90060c52b91bd1fcfbb25a519168afc6b72ba2962",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/nakamoto-vs-pos-heads.html",
+      "source_sha256": "c1b0f38860d37cab110abd718334243ec14cbbfec763410eac235d77563df8bb",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/operator-health-ladder.html",
+      "source_sha256": "2cf534aa49a7b5fe15093bf349c3f10051c1cffcf852990c70e96f194aaba720",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/pbs-builder-proposer.html",
+      "source_sha256": "2550b8ff699051507b1abd7235d7475da78640d06161b49f3e39b65f9982ccc2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/pos-inactivity-leak.html",
+      "source_sha256": "b08d2aaeaa3a97232ed55070542a64744687c44894ce399574e08b3be71b4b4a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/receipt-estimate-blocked.html",
+      "source_sha256": "eb736fe92848d00b1cf6178673fb7235cbf89733bfc0e2f27e2d7b25fd31d0bd",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/receipt-finality-tags.html",
+      "source_sha256": "c3e42797a04138c9608d4d0b4e5b7d619f750229e95ed029c0500bd03f52a2e7",
+      "used": false,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/receipt-forced-status.html",
+      "source_sha256": "df842be15cea5e36cefce3cc2fbdeaad678cde3e8cc95e8a79e7de558687a67e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/reentrancy-cei-secure.html",
+      "source_sha256": "43a88b6b396c65f99bd80e5396de9ed1c1bb858c2b9ca69ff92a34427e5ffb9e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/reentrancy-cei.html",
+      "source_sha256": "2e91f90db816c369fbc804bc9e32f66a27e980ee5d687a5f3c294408e18f749d",
+      "used": false,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/reentrancy-insecure-loop.html",
+      "source_sha256": "ceec954e16a4ce8961d76ffff0a661913522871baa74bb4e21b7e203f35c3ec8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/rollup-l1-inbox-escape.html",
+      "source_sha256": "e05ba7ad6ca164479469ea38745c4139f5212bcbe6926563c249bde324f6ff60",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/rollup-sequencer-to-l1.html",
+      "source_sha256": "e04a6331f8f146bfd99199757410b235e173fefffb58392b8660fe3529e6e52d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/rpc-balance-is-local.html",
+      "source_sha256": "42257f0d9333ab9757a8739aa44a170974f012fc341791ba91e9386146ef4e5b",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/sepolia-head-tags.html",
+      "source_sha256": "631852636200f6145e21114ed04a3d6a91aa0efdb71a20cad1abf99d04d36bfc",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/sign-verify-tamper.html",
+      "source_sha256": "362a57e4f30a72e01c91454f5c7984a20fb01ddb681d7f931f754c15c1e64ab8",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/solc-pin-two-hashes.html",
+      "source_sha256": "33af61576314d71ced8dc7fe34a78f3fe7b6caec2e8c68a53ed4294fe28377a4",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/supply-pin-then-deploy.html",
+      "source_sha256": "baa57d0a7b177c5af545e9d27092da084acec56dc47d146f1b34a8a7ffd6119b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/utxo-balance-scan.html",
+      "source_sha256": "6a180299c6b61bf5f20f08c7003b4a99a15500d5c679f667f70a22306c915692",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/utxo-reference-structure.html",
+      "source_sha256": "2367b0d14d1e5cf935e5da46f534e312b97c9aae75a09b2635243c35e965ab3f",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/blockchain/wallet-to-confirmation.html",
+      "source_sha256": "a51141c00723c2c62170cbfe7ae953b092336359c08b93f2d19c48f3855f5a21",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/argocd-declarative-application.html",
+      "source_sha256": "856402a7624c361329b62494c805b9d2f2708c4e6b8475f746b00fe4eb484ac1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/argocd-multi-cluster-flow.html",
+      "source_sha256": "d3845bcefe3427249c3363afc2065390fde60c8001b49526b0682c731e958834",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/application-deploy-model-in-kubernetes.html",
+      "source_sha256": "18d5af48faecbdfcc99dea6d504e3239bc862da05dbe15bacffabdaba79893cb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argo-cd-component-architecture.html",
+      "source_sha256": "a120251cc2a9939ed52b5015af6355ca70e97251db6a37522fb339ad34b510d5",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argo-multi-cluster-architecture.html",
+      "source_sha256": "23e8d11a2f18cc35bd0849cc5a65f499ed2fddefd5f9070af623d2ab632ffe44",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argo-rollout-blue-green-deployment-strategy.html",
+      "source_sha256": "35dc0560e013ac268d106ddb6dc039b3ba70114fd0c562bd01e09126ce9c3bf6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argo-rollouts-architecture.html",
+      "source_sha256": "299d4e7e4aeb5258840d31e1bdcb129f13355d41db9a73a24a97e1215d18df02",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argo-rollouts-canary-deployment-strategies.html",
+      "source_sha256": "9718ba59f382de6378246cc18e326f3b5f9b91ce359333a495436ac75d58a641",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/argocd-architecture-overview.html",
+      "source_sha256": "4b1fa44a649ea8771ca7570218ad33e9d55886dd9ce0bc6a8196fe3709edfcb4",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/buildpacks-mechanism.html",
+      "source_sha256": "f7d66470abc6565665efdf5ba1e92938a2a4232da4f5dfeb89a19fbb879f5eaf",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/ci-cd-workflow.html",
+      "source_sha256": "a5e4da04c49cd583d50328e4ba69a5d1a920a90ab40d9bce7b7f9512bd264112",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/container-image-layers.html",
+      "source_sha256": "34b43065b624a03e7a5df8fec71b8133216a71a93aac703caafdcba50268aa93",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/d-in-d_vs_d-out-d.html",
+      "source_sha256": "4d295af2736b510030828690060f4413b0171a882d0982f16f23f2d25589cca9",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/docker-build-workflow.html",
+      "source_sha256": "2ea13add9226e7ca93dfabe556ed9c98c1a79d419c06a1f602a9037c613bc027",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/gitops-control-loop.html",
+      "source_sha256": "5eb4aea05a50af19c7f11734f73199f15aabaaa7e5bde721af230827a2dc8ba8",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/gitops-lifecycle.html",
+      "source_sha256": "40d8ec65b6523c7fe16880934702802ef178f18a1be3906585780bc74638f49d",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/gitops-principles.html",
+      "source_sha256": "d006f553ce697e7eee037288b54bb88b81278d762a5b1b5f7e85bab8b7739002",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/jenkins-ci-overview.html",
+      "source_sha256": "afa13fc46e37cce8acd48aab28cc2e8f312596b648d61721bd56927e19dbdd55",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/jenkins-ci-workflow.html",
+      "source_sha256": "11971f07cc88106776b9c2068c91d6a3dd68eb6a615ff5e7e96350b3d3fbd848",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/jenkins-pipeline.html",
+      "source_sha256": "9b059d1fa26a73e60553b43cfa593f9ced224bbdd982995fb1caee0f0f394b40",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/jenkins-scripted-vs-declarative.html",
+      "source_sha256": "4c4505fd23bb211fb1962813acd1cf1392cc9a3beba1f48bac3d081bda138507",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/jib-build-workflow.html",
+      "source_sha256": "0e96141abe81236124cf54ef7ec3176286de531dcdda69be8d60d5bb99f92d8a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/kubernetes-architecture-overview.html",
+      "source_sha256": "32aa77aaae53af1116e32b8197d90e8b24560fa2df4f5feec2780fe896a545b7",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/kubernetes-gitops-loop.html",
+      "source_sha256": "85a2f2b4720fb1dd09af13401eb0bd59bf3452c851669096da922e3c643c6c60",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/music-application-overview.html",
+      "source_sha256": "e4e9d112496b25e3b49d9bd973dd79d179c7649a59a3478a09a0538ba0e18265",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/openid-connect-authorization-code-flow-simplied.html",
+      "source_sha256": "bc245d9c138bcd357e347594bb463b8630802e46c4f371ccf11076134495a5b1",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-aaa.html",
+      "source_sha256": "2f297786cb32515f6989b68c0238046cc0ef3279061b7d61168f7f8a8a451b55",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-access-management-overview.html",
+      "source_sha256": "aa41c8e2ae9975bff70431abbe1793ae5142245a73086901d743977ed1e659b3",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-cia-triad.html",
+      "source_sha256": "cfda11c7d471b7d16d4b504c08e9eefab642e61430a70287614d84f42d3b7050",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-core-workflow.html",
+      "source_sha256": "dd7418c90028b0bfe5872e5735e94e574bbd7d8a711eeadc2565ea7843d97572",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-dynamic-secrets-senario.html",
+      "source_sha256": "629c19672b8b804768b8915fd364d91749e6abcccb8f8dc5ca5ce8c5d858d93c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-overview.html",
+      "source_sha256": "e7219cf66422a266418e5e8f7a82ee6fe1a7120330d8613d46c837f0006d6bf1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-flowchart.html",
+      "source_sha256": "0267dbb2193ca9d2d0c4bc7d60a0808e83951b99cc6031c8b501ddbc4ea32150",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator-sequence-diagram.html",
+      "source_sha256": "bf94f6e2205b87faf97deed96a70258aa61c1784282bfa35c8e5d5623d3f4fa4",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator.html",
+      "source_sha256": "32e3559109ac6e1b0ed2ee6080d6e9ca9ecd558317e1589c0e8deb77d277acda",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/vault-static-secrets-senario.html",
+      "source_sha256": "6af0599e693557c66414ce28793159ba05cc999e905e4347a05dcbe8ddf8ad06",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ci-cd-study/what-is-a-helm-chart.html",
+      "source_sha256": "4a06c386057e5538b4060e4ce00dbc354c38e6c5e61753d75e6ac2c959982fc7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/ec2-jenkins-server-flow.html",
+      "source_sha256": "ff62e2b7d5a22725af54c82e724183d6a4f4b3c61a5341c8024b2ed79ffb8170",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/github-actions-workflow-flow.html",
+      "source_sha256": "af84e53d5e9a851c63faaa7c72fd2f48ef682c540ea32a2e1764aac7515b676f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-loop.html",
+      "source_sha256": "f731fb498a6e56c27011b582c7f1f87921e2bd8f9a425b50cc19167843c55f82",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/jenkins/jenkins-operator/jenkins-operator-reconcile-walkthrough.html",
+      "source_sha256": "a2f44ed9cacb7cd5980e37b76d62455c7b2e2402e6a235d9fabbfffe194deb0f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/ci-cd/jenkins/jenkins-pipeline-layers.html",
+      "source_sha256": "7eb5d45485284b3fa6c37dc5d12c754b8a70d207e29655145c3286acf4ef0ba6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/data-structures/priority-queue-heap-flow.html",
+      "source_sha256": "2bbe36fdeec3f6ff784cb8bd7154cded3d3799c5782cb954bf4726fba4439b68",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/database/influxdb-migration-flow.html",
+      "source_sha256": "d30ab449e118a4923c380f06bc9b7697cd9d546917c4ac562ed199535d0345e8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/dev/tdd-loop.html",
+      "source_sha256": "1b5aedeffebb32e7f4058799970c8dee026162de648bab513e037a46d7640e55",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-access-stack.html",
+      "source_sha256": "6730eb51da38e5d1790614d7432ad2335d22dfb7905b81dde0ecf9ea03dfb64a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-iam-inheritance.html",
+      "source_sha256": "92d03700c7e05a702247bbb1a68c10383cc3f80818d58bf5a7f7aeb344927a18",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-iam-model.html",
+      "source_sha256": "0d21a48f3bb81309377f98f1b3d09831444e590805d4c2cc4c78d0990016a53f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-org-tree.html",
+      "source_sha256": "63b49854a24a1ae152d2703953c1fbc8d20c7489e190528a35b8a56ee49f31a2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-region-zone.html",
+      "source_sha256": "a6ece80c03964fb2ca2ae089e239ab99fa5349121c870306d1f0ef4abe02a3d1",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-resource-hierarchy.html",
+      "source_sha256": "34e324fe0a6b01fab877da9e2b261841c867731cefc764340d7969f527854ed8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-sa-auth.html",
+      "source_sha256": "e3e53bbcb6eae0d351789981657301000721d1e523b442ab7e1e39b0b2f35dae",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/gcp/gcp-wif-token-exchange-flow.html",
+      "source_sha256": "cf010b9e5b6de9dde7a1390d5d2db53af7b2bb770dc16eaf83de84f813cf8cdd",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/git/bare-worktree-layout.html",
+      "source_sha256": "788fa64c492b6d62d0d786361ab5f740766fb74f552260182cd3066d5e63c2cc",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/go/goroutine-scheduling-model.html",
+      "source_sha256": "4a6d23b2382bab7894589cceb991dc1bacee4473c1563cc976042133785f4ad6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/hardware/usb-serial-bridge-flow.html",
+      "source_sha256": "d1f59fe336282ec575ebbbd0efc1dc74007c6099e68d6b47a6f337c084657afe",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/iac/ansible-control-flow.html",
+      "source_sha256": "6e6b8a542613dc7c54dd976686f561c5ab9889cceea07dc4d7c6b59b66c9a50d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/iac/ansible-kubernetes-bootstrap.html",
+      "source_sha256": "234f4f9248d09572d9ae13f198d729b0e5f4c11f424e6be686d6a351d0f6d5de",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/iac/terraform-helm-provider-flow.html",
+      "source_sha256": "20b74569e44dfacdd20d78f8d9984d9333e1acddb16edac37b06c8a098c25b63",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/javascript/javascript-data-type-model.html",
+      "source_sha256": "fffaa82bbf2ca990871bcf8e1357b936e620ebc4a32caf3d0e773797a45c45ee",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/javascript/vite/vite-dev-server-on-demand-transform.html",
+      "source_sha256": "57b0f9c1e602d18003d67110c42cc38a655cae955dbb0db74c4a7e2af43ab4b6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-01-process-memory-layout.html",
+      "source_sha256": "fe1329a21fba04254c2bcba2feca4b3e7c31bc43f3485ab8902d2bdb69c4f73a",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-02-stack-vs-heap.html",
+      "source_sha256": "1a277e1ecb5f3a6ca77c59bb183534f0433186aa892667a44a9e6d906b9fc3d4",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-03-jvm-memory-areas.html",
+      "source_sha256": "81515cd13575b3e5d6f142e1accfc637ed643a97265adf15a1edef1f2f0cad65",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-04-container-memory-breakdown.html",
+      "source_sha256": "fe0a1a2932b0a05a6bee3802998c4e433e1eafca7592bfadd7c13db2556b9604",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-05-fatjar-to-container.html",
+      "source_sha256": "6fae3f3231caa71deb137888c7f5920979786e01557ba34373c846cec702350e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-06-memory-calculator.html",
+      "source_sha256": "e0587c44b8c075965cc407ae668866bc3105222392dc431eb9f9b523343e521c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-07-gc-generational.html",
+      "source_sha256": "c7d800cde3582ba50f95606766e4f54a16e3ed0777c6bd1e0a07798f687e11f6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-08-g1gc-regions.html",
+      "source_sha256": "7a1b0ee62b30b0fef8f495c0a501598b6d2eaf9a6e1e201a51bfabbb94d450f3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-09-gc-tuning-params.html",
+      "source_sha256": "b1d9e65126568e615cd6f2c2cc6f8651138c1629735b76fc23fcf15062f188c7",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-10-jdk-version-gc-shift.html",
+      "source_sha256": "775c50132acc1b1e4d8a9ad7021a16a6fa2a6f544df1bd6dbbf4e16d97f80967",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-11-capstone-diagnosis.html",
+      "source_sha256": "bb8c716a04a2b3554653d6cc03c734a78f250d8d9d1b6d10991e5a28c2796164",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/jvm/jvm-12-capstone-levers.html",
+      "source_sha256": "81c996cdc8da9cd4562eff91948cd519c7a787b3d7eaa8b8acc2c1996a5701a6",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium-native-routing-flow.html",
+      "source_sha256": "d0891264563adfc29c2d6ee25b2e79b0e68e11c08d29c2e7c72ac5c450417aca",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/2w-grafana-alloy-overview.html",
+      "source_sha256": "3ad317d6038123c976a243c5dcb532d831d6b3884835f7986a840f3bae6b264f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/2w-grafana-loki-architecture.html",
+      "source_sha256": "743125eaff3b42183ce7f803e14927f1603bacb5010e4c358c66f2241e85ec4f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/2w-grafana-loki-overview.html",
+      "source_sha256": "3014c336fb1e03298e769eab47cb8d3cfb4833d8709ca912b844669574cc3aa0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/4w-lab-environment.html",
+      "source_sha256": "455d7d0fd0719a053654dc384875b523721547ed8025b638a3ae9644313acf64",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/5w-bgp-control-plane-v2-architecture.html",
+      "source_sha256": "e848ff7165beb1f1425b6d1bb2baaddb9d55264ab77fe8b975823890500889c1",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/5w-kind.html",
+      "source_sha256": "79d2e7c1d1c124381efc0b1c2ceb92cee878479a693580b0c0d71197c88fc547",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/5w-l3-announcement-over-bgp.html",
+      "source_sha256": "a246fe1f46b92c29b36523e9a14adae2c09ef4fd13a86d7e8ee5a9aa8593ff67",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/5w-lab-environment.html",
+      "source_sha256": "0b207fe9f3444e7646190906c7337e75920508775e4cb3a4c3817af8e2da5c2b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 24,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-cilium-ingress-identity.html",
+      "source_sha256": "1c3e367f9c327e506139fb12729475fdcdbc3a7d60252d44ee34528782677887",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-controlplane-managed.html",
+      "source_sha256": "4d07414c7b483a4f01bdb6e05d5f80fdfa08a9afb45ef4d3038f2447c1f22bd0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-ebpf-acceleration.html",
+      "source_sha256": "7e84f774f3c041cde68e60304e2fb092f41b329b9c9d0ca1760fd7e7f39b46c1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-embedded-envoy-proxy.html",
+      "source_sha256": "fee365880e3ce2d1d591d3dfed18b9e7a5112035a3cdf99a5be6c1877bb10c00",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-ingress-to-endpoint.html",
+      "source_sha256": "45c9ffa4c7b139689ca5a6e193645ed684d042dcaae6e50d08d47dd82a391c2e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-micro-service-architecture-complexity.html",
+      "source_sha256": "23442cb72bf0af5ed39e4e1fd491567b04b98f66bbb39fa407826d0e31aa3f50",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-proxy-injected.html",
+      "source_sha256": "cefe253c3de09330f4eeb0aad18c0034aa9847f240464d26b29e2b5f77c747d3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/6w-traditional-communication-structure.html",
+      "source_sha256": "42e721a939d70427293c07242d36ad45701c1fbe84c1efad2b382421dd5a092d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/8w-cilium-identity-management.html",
+      "source_sha256": "479a20efb3c1e3bc9e895f98fca7a279004bb67d36c72dd738a71e5333682efa",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/bgp_network_flow.html",
+      "source_sha256": "6e4c3e0210afd0afa84f691030eb3be00cd5c87159f8b266a4356e8b5c8b334c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/cilium-native-routing-mode.html",
+      "source_sha256": "20b2db0fb9442bbd946051ec5c077187dd0b78e53254f9d31d5f134b33987f3f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/cilium-overview.html",
+      "source_sha256": "e0834ec5279f1f8d1cdba61137d5739469c58d45d462bbf5bb677509bacfac65",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/cilium_l7_layer_policy.html",
+      "source_sha256": "77d11d57c5c9d378ccd7ecd135ad316ea5ed8f97e06190d5b384cb0ef4f5522b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/cilium_networking_modes.html",
+      "source_sha256": "8644cef6d83571f762285992f00657a946a4f3c86aa356d64094d4b057184db0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode.html",
+      "source_sha256": "0d52cd58f3d48228341e4200f809551c0a45040d12dfff7753f3509b182a83a5",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/disadvantages_of_iptables.html",
+      "source_sha256": "42dfec90f0e42f3ab4111ea87c43721246309f31012a7233634ffaf6b5ee9590",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/ebpf_event.html",
+      "source_sha256": "ab9f06fc0727812e1b63e5c960a2024f3f26de08a9b28ec3e34ff468fca6114e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/ebpf_merit.html",
+      "source_sha256": "b75a9a5f709bbdc83a1d1e9a9265de7eff8686d2f24f7596ed181a3b6a14f45b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/ebpf_scenario.html",
+      "source_sha256": "7a614f3ad94f1c735ebed1a70d530485b88df7a538a23ba1c000e8805a62ccaf",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/ebpf_summary.html",
+      "source_sha256": "d7f227c84a605cee7bddc39de4a46eacb90092ecea9d3ffe48370d3e5ca3f776",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/hubble-architecture.html",
+      "source_sha256": "9e6181ac2994716132b6e8814a1f1316ed882078d929df6c7c3e9ee4c9602bc9",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/kube-proxy_replacement.html",
+      "source_sha256": "da046ac106b6555f0e04de0cf7785922392be515e16ce654f919b0c8291bf722",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/kubernetes-cluster-environment-arch.html",
+      "source_sha256": "f8810f312f39074cda82a934a141d68b5531df6d3b6055f3d054ce226d70fe14",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode.html",
+      "source_sha256": "46429f16ebfffb03630c5bf5f1bc23b1a8cb91c83be13514d724fcc94bb7edb7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/kubernetes_uses_iptables_for.html",
+      "source_sha256": "c9b77d2458e9ebd55e98a308bb3e9dae0ebcbda5070b3f2b35453b5295e0b305",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/l4_layer_policy.html",
+      "source_sha256": "bf16d84797e4658c60d615b69eff10bea68a77bcf5cf96d2d2e70d93d0bbde16",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/life_of_a_packet_intgress.html",
+      "source_sha256": "a7d150ae2bae0b3bf436de142c781795f40c43c1c8b1ccda3a7865a575b0f102",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/linux_kernel_network_flow.html",
+      "source_sha256": "8bfa8ea1a9a0ea3674c32d31ad417d41628164f0c0b71e7a3bdd254af77b7b29",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/multi-pool.html",
+      "source_sha256": "c028ea6b994a9c68a770bb2247fb1cda750eb919e1ad281a0ad17172e37a8264",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/native_routing.html",
+      "source_sha256": "4876554fad4b281a4e8abd6acc3c5edc23b7fc0a6b57825894368e1a40c4eef1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/problems_with_iptables.html",
+      "source_sha256": "22190417b57d1784afb227f1b07377dfcc57595c7c792d066773b403b11386c7",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/standard_vs_cilium_ebpf_networing.html",
+      "source_sha256": "3842df32edae3865ad9b6f9c18494588522ae2299110dc671ad9fc656288e8bc",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/cilium/star-wars-application-topology.html",
+      "source_sha256": "7de6be7bee2494f27aec7f6e86ae1c2f6666cac766bdd9194289d254e405f5d7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/endpoint_vs_endpointslice.html",
+      "source_sha256": "9434226f84bc7775743c77636121833b132041f822550f33c3a567ba57e36dd7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/etcd-secret-encryption.html",
+      "source_sha256": "4b707a040a174e4455fc5a394f346264924cd91976fea1f77a8951f160fcc8af",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/external-secrets-diagram.html",
+      "source_sha256": "8e6c6f3bb6b52e3d6c1eb4f38fe2b25fa30acb12edaba5436bcc367e0405dd20",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/flannel-vxlan-pod-flow.html",
+      "source_sha256": "ef60392f1d849811ad804f39a5f5c594b7c614a786fdf380a8aa288746e58063",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/graceful-shutdown.html",
+      "source_sha256": "4322fd09682763a4adc7a05e01e74a972423f623bedbded96a177a652cf0df28",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/helm-hook-lifecycle.html",
+      "source_sha256": "3426735afb51e0ac771925d63dd93aed5172e3fe2564335b636295c5b589aef0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/horizontal-pod-autoscaling.html",
+      "source_sha256": "7702d771f180aa6cc8499b3aff9cce38cbe337011b34e13c08fc9b292e163f0f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/hubble-exporter-flow.html",
+      "source_sha256": "af960f2e0a12379dbb0332ec9d2801f51623e7c3620736fe43a4cfb7006cffd6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/in-place-pod-resource-resize.html",
+      "source_sha256": "6646d7502d388037c2a198e225993667c7c4ec85157c046df1689074ec551b2d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/karpenter-provisioning-flow.html",
+      "source_sha256": "0dbcbdbc0c2e8b0b5848a7dddb471138116da6154c5f0dcfc7aa4f21a057a223",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/kubernetes-control-plane-flow.html",
+      "source_sha256": "5785b8f458c3121ab3693d54667c116523b5e03f7e1f5cbce756560ca27fbb7a",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/kubernetes-fqdn-resolution.html",
+      "source_sha256": "5f3307d83c1fba60598de31ba57d14245242ecfaf78db0133769fb972cb0dc2e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/kubernetes-rbac-binding.html",
+      "source_sha256": "bd94a373833aab555830c37b5060955d8daa65b8b2132c75005b0c7f78f84f7b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/kubernetes_virtualbox_structure.html",
+      "source_sha256": "b8eabf6a5f3138aae8818492e1341f29cc10498327e8d0a6375fb264af782a4a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/metrics-server-collection.html",
+      "source_sha256": "f5b825196ce3ba7e2d0c8e8c87add4dcd502adff9b9215241ccd212e8ed593e1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/microk8s-worker-join.html",
+      "source_sha256": "568f98ac0c88b4bd135439b1ebd495090ec311a56d39dab4a79ee5e766798b3e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/mongodb-kubernetes-deployment.html",
+      "source_sha256": "8e611ffd1e488422e741039311c6ffb6a22c8b774d1fc184bce56730967fdd86",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/multiple-pods-evicted-flow.html",
+      "source_sha256": "526676e47c8ce17f65c309a02bf8626f4ddb4ed93c2b33ba9cc145bcf277f911",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/mysql-kubernetes-deployment.html",
+      "source_sha256": "fead7f5d488aaabab0b319375fdf396ee250fd627a05d77361401e28b9f39818",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/network-policy.html",
+      "source_sha256": "7962d62eeb25addfb96cc982590df79ffc2b36169bbfbefc1a4868c64cdbf021",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/nginx-basic-auth-flow.html",
+      "source_sha256": "96310139af89da1d99a7a22c77418e4c5bb6f0f455f8a89aa4d08b55e63acb45",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/nginx-ingress-controller-flow.html",
+      "source_sha256": "c6b65187bd0f530a9ec13879fa7a4712abdf9fef575e0ced4e123d8ae45f3f1e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/pod-identity-workflow.html",
+      "source_sha256": "68ea84894777cabafe63bf360f96fc8dbb6d7fb3ddab1fbfa587144f67e69946",
+      "used": false,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/probe-state-flow.html",
+      "source_sha256": "3ac2977ba039187bf6c732a2fdf0e5c05045138a4c08a6ade7616e165d312b86",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/terminating-pod-troubleshooting.html",
+      "source_sha256": "0a9e3ecb372703a4cc7dc1b7fae24718b41a0f5597773e49014f51726503d28a",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/thanos_architecture.html",
+      "source_sha256": "05bd30f6168650c58fcbe63bd3f7e7e36f0f0a672afa65d230968ba4d5daa88f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/kubernetes/tls-ssl-handshake.html",
+      "source_sha256": "c2dcc8d9ddb0911d9c94b2fe1d94f7dcf43edaa8e4303b4be6c246df45847aa7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/linux/sftp-file-transfer-flow.html",
+      "source_sha256": "959d1864bacba482122af6936c4c7bde91e78aed7c8c15422f253853594d32df",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/markdown/markdown-rendering-flow.html",
+      "source_sha256": "878974d3be0eef50164286bdbbdee42d510ef0c13951244c5a333e1b438217a8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/default-gateway-forwarding.html",
+      "source_sha256": "f825a5dea7632c2efa68a34941a96bc42b7ac5f5bbc649548022e45ed6b20590",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/dns-recursive-resolution.html",
+      "source_sha256": "cc946bacf1b6a2f58ce31ce533a2af978d7f36c8e9fdb02e8232371aa5c22a12",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/nat-pat-translation-flow.html",
+      "source_sha256": "78346e39db152eaf7e38999d4083626688bd672a67247c4e0753a84f70ef26c3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/osi-encapsulation-flow.html",
+      "source_sha256": "a7881be242f7478a43453fa3fa9ba050d2401a422a4af5ed320bd72e9ef57ca9",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/osi-seven-layer-stack.html",
+      "source_sha256": "1c9fa152c5c44ca68da2f411508d04d238b9b9e67d98ea636e9eab6467b9e773",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/route-selection-order.html",
+      "source_sha256": "336c3fd06a418e5ae8df89b83e6684948a2579d974fac90a6c3f7305d5eb4059",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/stateless-stateful-firewall.html",
+      "source_sha256": "013fee1f3e5ef6aded2f84ed4bf9c0832f413c25fe851dc46fd0baf622d98978",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/network/tcp-3-way-handshake.html",
+      "source_sha256": "7d209360182d4ac16bd773a529d36638ff2f82d8a1f1a1fff846527ec8d9c315",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/nodejs/node-async-http-handling-flow.html",
+      "source_sha256": "8c810cf4d69a463d23fd9679f50aeeaf08e200c59e371c013e8833f4aef920f5",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/nodejs/node-esm-startup-config-flow.html",
+      "source_sha256": "4291db37bcc70055ddd614252c0d525fbd08f879c41a2ddb773ad3b11959bdce",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/nodejs/node-event-loop-scheduling-flow.html",
+      "source_sha256": "c8c42f8ffed36747c1076420f5e848ffb61415405799739249f05df41ab74a75",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/nodejs/node-http-request-lifecycle-flow.html",
+      "source_sha256": "ef81d4dcf87f70e2056570f6623892b9234175fa1f9461c5f146779876fe0203",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/nodejs/nodejs-server-runtime-overview.html",
+      "source_sha256": "6757f942d17e48114a107857f07aa976dd52e8352be6faf178a3edf4a17f7b5c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/blackbox-whitebox-flow.html",
+      "source_sha256": "9cf0e838e82eeb36d24b51bbfec21a5c55ff1d680061f118a095c85034084d89",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/datadog-rum-01-data-model.html",
+      "source_sha256": "38d0ff04b371204d69265f550eddb6c7ea10a018177777a80c9ac820b4cded75",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/datadog-rum-02-trace-linking.html",
+      "source_sha256": "261387c4923448bf59816a38ca10ce48d424cb94b60632e10fe7d9cfe813036a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/datadog-rum-03-positioning.html",
+      "source_sha256": "723a6ec0baee69c2cb3f86966a1757ea9597efcb465f592643cf9dc3e8eea79f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/elasticsearch-eck-flow.html",
+      "source_sha256": "7bcd97a4e4ab3e2e2cf81ae5a491c0fa134022696f9da5f2b381becfb8c5d84d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/fluent-bit-log-pipeline.html",
+      "source_sha256": "55f2e3518eb46eeac3bff4c953182c4de3d5cba0976f97c772e2bce15e695b79",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/kibana-query-flow.html",
+      "source_sha256": "caed263f79a867653c96ef1040436c896487185e8d80ac58b2ea2a88b57b8bd3",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/kubernetes-troubleshooting-flow.html",
+      "source_sha256": "06a95ae532f19ee3d540b8bb6f4e9156cff9f9598a8314a579c228dd6b49beb0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/log_monitoring.html",
+      "source_sha256": "96f8694f8bb48442bbdc27dfa6c3f514cf8d34d9502eb3c53efb422b185cef13",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/monitoring-observability-flow.html",
+      "source_sha256": "ccbf624968663a6a330aa87809a3e01792e8c381a8618316b84215b5d35f70bd",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/observability/prometheus/prometheus_diagram.html",
+      "source_sha256": "b9d772857275d4d4f04c5041f6b0c8e5054abf2ebe59050842ac1f642c7923f1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/rememberme/architecture.html",
+      "source_sha256": "33be8c796097c5cf22bf8d9fb5cca3c7f79d7d5f951abd0e513844aa5e6be0cc",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/rememberme/budget_alarm_workflow.html",
+      "source_sha256": "5066025f52d2a461424068a4f2e0367cfb3842418c817fc7929cf2285d33baad",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/rememberme/log_monitoring.html",
+      "source_sha256": "749e3e189925786f8024cc208c9a2b474400ca66fd009d31c4811754b28ee4fe",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/rememberme/waf_alarm_workflow.html",
+      "source_sha256": "d363e14a62bd5974543a80f477709c5c8984949b01e3706e4ba06bdd47927e2f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/about/architecture.html",
+      "source_sha256": "6b04a150eaa168a0bc4c0ac201d6eed156b23b4888fbd1e62bff0114fb097571",
+      "used": false,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/about/ci-cd.html",
+      "source_sha256": "05b6af7e6ab4a596f6c8a4bb243f5f190f8143f433ba246fe954e44c82d27d94",
+      "used": false,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/about/workflow.html",
+      "source_sha256": "97cbe0bff2781e6b75a544a7c679e13990000ee219e89c17fe3412be0f787aa8",
+      "used": false,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/cicd.html",
+      "source_sha256": "d30acfbf7cf1ebe01ac023950290d96b323d70e4daa2c5b70283ebdfe4a047ed",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/weasel-architecture.html",
+      "source_sha256": "c17119c4acc0ead13d7657b6d492707cf776d310e1b070611f202a6907ed477f",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/workflows.html",
+      "source_sha256": "70e2edc826b599e7d2a0dbfc8f436b9ff5878ba83afcc9eff4fa772f183ba403",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/workflows_alb_logging.html",
+      "source_sha256": "166b6e3f4d1cde05b25f56f9eab34a0d7c7b482cedcaeeeb34a07b3d67a495da",
+      "used": false,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/project/weasel/workflows_cloufront_logging.html",
+      "source_sha256": "54db42e4f12a43c39cbfbe0cecccebf24874f19d9c10820f5e1e72945d51b8b7",
+      "used": false,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/registry/harbor-image-push-flow.html",
+      "source_sha256": "0d500f1e402aedf44bbbe5ab33c500c699458bb3ca2a1f2b2744b0b9f315d708",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/registry/harbor-kubernetes-architecture.html",
+      "source_sha256": "276b63d7048029f3c354b59d200f873d12a333b6edfdce3aef2c9c5d74cac2f9",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/acm-certificate-issuance-paths.html",
+      "source_sha256": "48df1ad027701730b4ea02e2bbf01be39c0dc4f278cceb9ebeb5d7147de8f68c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/asg-instance-lifecycle-hooks.html",
+      "source_sha256": "f7b50cf00d800533cc7cfd8ddc33ef8605dd652b27276ff7520661a9fca58d65",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/aurora-global-switchover-failover.html",
+      "source_sha256": "86d02053b496250891bc58b510192922af3c67b393fe664fc5936d18e0d81890",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/aws-backup-continuous-vs-snapshot.html",
+      "source_sha256": "c239ea5a820a4eb3368a72269dc8c4e20d5dd704a2ec84015156feea3943c130",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/capacity-and-discount-layers.html",
+      "source_sha256": "1dca546208d18eaca5f03836b09e8b3acb66fa9664f0ec4842ecb3900b29ed60",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/capacity-versus-discount-matrix.html",
+      "source_sha256": "16f60d07968171dd246a4077883b4dd375a4c8af4b395ab2481581d04e9c32d1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/cloudfront-origin-failover-path.html",
+      "source_sha256": "8806f985463fcaf870087983597e797a7b19a1db76dfa5ab114c3eb0347a718a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html",
+      "source_sha256": "e6e097213b34181bc7fc9e77794dc07a97ce59ab3fc54512413455347c29754a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/cloudwatch-logs-delivery-paths.html",
+      "source_sha256": "b4a895a7b709e34f12eaea7afa18f8fd9090f2acf91c0507c5a6b650aa7a0f9c",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/config-evaluation-remediation.html",
+      "source_sha256": "722454794ddbd9b8e6e862b011909ac058cc202a14dd0d5e87c7d6784a1fe35d",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 16,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/confused-deputy-external-id.html",
+      "source_sha256": "88ddba64a296a5ebcba3c48fb1b947a12a4319e2f7ef3ad3d6f5454374e80712",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/control-tower-landing-zone.html",
+      "source_sha256": "8ea41b6d1b8540c0cbd4cb6d908c6afb7654ea152bcd1b050df7d1795cb84286",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/cost-recommendation-sources.html",
+      "source_sha256": "f67d8963c4491d4f6dae2e5bb04daa8ac68b0d4b033a4709cbc7ad49e15b70a1",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/data-store-access-pattern-matrix.html",
+      "source_sha256": "0f022f06023ebc8b77b8676d3a352d964f80c6cd316b8beb287fa29122a04184",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/data-transfer-charge-points.html",
+      "source_sha256": "01b8d01f8658fa4a55951ec62a41864abd9c01a0e2847001806d5d5a336df5bb",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/data-transfer-online-vs-physical.html",
+      "source_sha256": "5ae7024d97cb4f72c71aa2b8cbd5215205f58a97b7cd18aa5f1a79e42940b900",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/datasync-agent-requirement.html",
+      "source_sha256": "8a41494fbcc3086507a340ddb00ba38dfcf9b983bf950be12e5410cb4c214808",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/deployment-rollback-paths.html",
+      "source_sha256": "95bffe2f7c2d8822daee86fd7a3867c787270a9666c77340ae0cbb7546bbb5d4",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/detection-to-remediation-path.html",
+      "source_sha256": "1c6e1a50ca24ae3d3881c84f46ded654bf2deb18724bfd3ce6e73dcd3b991cca",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/directory-service-selection.html",
+      "source_sha256": "ec604c5f02fad9ace83f30d6bacd0b534960d8d442e014f3fffa1622e72900c5",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/dms-schema-object-ownership.html",
+      "source_sha256": "967b3842ef1ec21e7178101a5196dc6affd07d0eaa08c6ad24f66f4710b6dfa0",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/dns-global-traffic-decision-layers.html",
+      "source_sha256": "9bf7fde533d84a7430359beb7d6d1a485214f9ed9f58984b741fcc3e8511e4a2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/dr-strategy-four-tiers.html",
+      "source_sha256": "0d1c834c3beed6c26a17f0a0f3a3388f3f1dc7b829182f3bc922f8f45032f93f",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/dr-verification-loop.html",
+      "source_sha256": "d215683f63aa852c00a54542a314c13e543223df8bacb2fdf9abdd87e7229857",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/dx-vif-reach-scope.html",
+      "source_sha256": "a9099b8c28412e0dcf86b40b62e8cb910118728e9e1d545b6d1fdaf1f2804fc2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/ec2-purchase-option-decision.html",
+      "source_sha256": "c30d747bd364d9a8fe6d3f598fa4f2ee91b172d60f564f5868a050ce0cc655f8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/ecs-capacity-provider-placement.html",
+      "source_sha256": "3eeea05d12eb264e78c66a7cf7a966d47c1384b65af13680141f1d5200aeaef5",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/edge-placement-boundaries.html",
+      "source_sha256": "4811174bc8e6a59885b8a9974b84b7b14684a51310e3537e6104af9e7370374c",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/edge-to-origin-inspection-points.html",
+      "source_sha256": "a110e6cda02a0c906d0f7ad17f757154487e64ee9184081d6dc1e18b8ab1abf2",
+      "used": false,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/eks-compute-option-split.html",
+      "source_sha256": "37d535c869969632802c753c1bdff345cb0ff20cce3f60ece3fc0888c96fce48",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/eventbridge-fanout-target-limit.html",
+      "source_sha256": "f1001e25da3694539a8cbacb6bd6b012fa823a6f26934781c66205bc37849c03",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/global-accelerator-cloudfront-paths.html",
+      "source_sha256": "590d9710a6fe7f1e8e1df5d358d7812eccaebe0fb55311cb2113f0a276c8f003",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/glue-catalog-lake-formation-access.html",
+      "source_sha256": "365ff2ee451a3f63eeec37b508237fb630f7a5424f22eacedf3a92fd63709144",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/iam-policy-evaluation-order.html",
+      "source_sha256": "7b005a1eb315611639a3f99c3859210bf435a036789078e0b12dcd9c82ad557f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/identity-center-login-flow.html",
+      "source_sha256": "826b6bae21dc88836cb118f444176636ca1033972e2089552593bca14a1166c7",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/kinesis-efo-vs-shared-consumers.html",
+      "source_sha256": "163efbbc7dab1b22a2d9260098a4c00a64c8aa44184be6d9d7003969b84025b2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/kinesis-firehose-replay-boundary.html",
+      "source_sha256": "e7a40b05a666d05e91fab3cad8a4662682d2c5e1add3ba99d550bb6422fb9429",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/kms-cross-account-key-access.html",
+      "source_sha256": "2e1d4328e6b4e12fc202ab3283aa741ced2b3b181bf005d10088d982eaffd280",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/kms-key-material-origin.html",
+      "source_sha256": "97316c8bc391d9c5f4dc434adcd40c29503aa21197e95b6541def4952105e193",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/lambda-concurrency-gates.html",
+      "source_sha256": "d06ea25af80945dd333d6fd6cc2d25bfc519fb387c72fe86909738ecadc4680a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/lambda-invocation-retry-paths.html",
+      "source_sha256": "874ade406f130520878921d2e17f48c98731c0fd8790c364d570346dabfdc590",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/lambda-vpc-reachability.html",
+      "source_sha256": "2bd55d212bea2e884c8f08971e70f75bb0ad8334a3450c8b073c08fe49bdb169",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/mgn-replication-cutover-flow.html",
+      "source_sha256": "458b0fc56623f5baa79f6b5f0cfa74da25dacc33d6657823b8963084f1d66a1d",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/migration-7r-decision-tree.html",
+      "source_sha256": "9a63954ce629db2cc9e6c1e247eb76d4bbb2de98de8ecb18972dc231239b5ed5",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/migration-discovery-tool-ownership.html",
+      "source_sha256": "cc1456e654258071488f56b3810524f55f9d11f50dfd88dfff8151f75b67b480",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/migration-wave-prerequisites.html",
+      "source_sha256": "4d7f91b19dc5425ffe6361c1e354eaa4daac0498c57e3482e7677e5724b30023",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/modernization-compute-target-decision.html",
+      "source_sha256": "54f0fadef22b7222253d5ab1990f869c4741af30329007b5276fcbe63f058bbb",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/modernization-container-hosting-boundaries.html",
+      "source_sha256": "35027a7eac20282a93c67154faf7533b3e9eb19a35d420d85ccece533161a886",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/modernization-database-target-selection.html",
+      "source_sha256": "e188068d5c52957da21af53c47550b51e94a5baeacd761b0f0808a300a35c320",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/modernization-integration-choice-boundaries.html",
+      "source_sha256": "b7042ad1e379370e0d953196258f67fc13059ef9aeaaa865bf8ed3a007353e44",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/modernization-strangler-route-switch.html",
+      "source_sha256": "333635b652f64242d7feb6666fbaae98a237d2b15ccae29eeacf39e7c4ced555",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/ops-event-routing.html",
+      "source_sha256": "0aa087574b55c0bf81b35ea8aab6a7b8d8d3d15e78ea96d3fe236110ef5178d6",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/organizations-scp-hierarchy.html",
+      "source_sha256": "f660b655bd93245d088c37e3f3d25412e2d9a85ccf68868436f934df15cf4c37",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/outposts-rack-vs-server.html",
+      "source_sha256": "897aa819532b5e7f9c1f8a09cf22cbe7da7702bee0070d6edfc6849801be643b",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/placement-group-boundaries.html",
+      "source_sha256": "c2215d2ff64e6333bc766a05e7e472f65193655099aff4b73d2a41f54d53767e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/ram-vpc-subnet-sharing.html",
+      "source_sha256": "ab7185f24ae1458ddab23ef2d1822ff21ed806500154639629b5913c405b946e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/rds-deployment-topologies.html",
+      "source_sha256": "d48e997dc8d52d03eeed05124c6360ebc739058316b503fe276065efc0005ba2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/regional-failover-trigger-layers.html",
+      "source_sha256": "9fbfacf4b308a87cf28b3f81c5a6641116e5037b37e8683b2735f5dcb0f7b0a8",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/route53-health-check-private-endpoint.html",
+      "source_sha256": "8d44df46acfaa287ce61940c43a046d50c6ac3f0bf141ebf83fb11543f280c09",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/route53-hybrid-dns-endpoints.html",
+      "source_sha256": "921a7103015ad851c242b4a61845b1d42ca1343493c3878f3209d17f20250a01",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/rto-rpo-timeline.html",
+      "source_sha256": "fe68323fffe6db2ce7f3d4b79e8f7378a1f9be46806a3f9ccc39efceabbb639e",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/s3-intelligent-tiering-tiers.html",
+      "source_sha256": "43a4d784a5b3940791cc1174789b9604685e4e1f5489c13a560ec52d4a021fa8",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/s3-lifecycle-transition-paths.html",
+      "source_sha256": "5853b1d66bef3262af07ff3819db69f9c7575058c2a5cba81b67f56de587f5c6",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/s3-lifecycle-waterfall.html",
+      "source_sha256": "cc3b7b0569baa7893fe8f0938bf09ffe7a6f83212d1fa9c4f68c41a7a0eea073",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/s3-private-access-paths.html",
+      "source_sha256": "a5d0305daba67785a17c6264fdbd3ebb3b85f2d3b10ed84da348f6312a1392d2",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/s3-replication-scope.html",
+      "source_sha256": "14be7ce63bae9b4a18f812b84ee9ee38aec0ca2878954ea0ebd125186ec80077",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/saml-federation-paths.html",
+      "source_sha256": "6502c07d4da89a330cee8de8c90e01dfda444f2f699fb6a525b46e93492f802d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/savings-plans-discount-order.html",
+      "source_sha256": "5a6d76e207a180db4105604bee81ac0561f2f157c78e8ae3d617ed067254e737",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/scp-iam-effective-permissions.html",
+      "source_sha256": "5250030cdb5ab362b3f8864660a017bd26b14a064ff6af3c639d630c25c164bf",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/serverless-request-path-timeouts.html",
+      "source_sha256": "28a41d56c68695b752bcbcc34de0d5f878c5b127e66c7583b7f13ebc7251c4cd",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/session-tags-abac.html",
+      "source_sha256": "117184c4a9df801580be3ba23b7fdb14ef45c0fca4d1163b102023c10637d355",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/shared-storage-az-boundary.html",
+      "source_sha256": "81fc3553ddf6e16a6461c973de33845905e6c58c7fc5312fee2f963c94853853",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/spot-interruption-signals.html",
+      "source_sha256": "1a5d1dba9b1d8cfea35b811e37e1faed456f0a273a7db0b0f342ba86e3c12942",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/sqs-message-lifecycle-dlq.html",
+      "source_sha256": "0d0adb12209a7d31399f7809ea628d1d3c66c25096cd41f811e5e4d987d5f295",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/stepfunctions-workflow-type-split.html",
+      "source_sha256": "1b744529705d07f40b10de8aebcd4bcc5a468655c8edccf4de73877bc5920214",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/storage-gateway-four-types.html",
+      "source_sha256": "d858df7ea16770b0c3247b20337848466681e03708ee3e8a7c64c4a075c29439",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/sts-assume-role-cross-account.html",
+      "source_sha256": "5758136196fc6cc59dea50aaef84ca512d175143fabe80d1889c8d8bf8ca6b6a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/tgw-appliance-mode-symmetry.html",
+      "source_sha256": "fe1501cc5d48cebfd6c002b532ba9fbe57d65c3feaf9dc6bc40ce05fe1657271",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/tgw-route-table-isolation.html",
+      "source_sha256": "d6f649fd95efbb2011e8454faba998a3d4d0f28382014a45be02ca0c1e8ea9e6",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/transfer-family-endpoint-types.html",
+      "source_sha256": "83023bfffcfda37208fe72dda7fd70b88827c419bcae666765ac0e54434d3c51",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/transitive-routing-boundaries.html",
+      "source_sha256": "6b50887a8660acd1401adb6a2509642d56a56e79b7b2b84d3c8c604d3f06a00b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/worm-retention-decision.html",
+      "source_sha256": "bfde33a09c053d390c6e565d55965609e40607e746719e9c1123e14b8e28cf76",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/sap-c02/xray-parent-based-sampling.html",
+      "source_sha256": "ab20fd7f3df062d30d045c25e543ce5b26a614e5a90b0381e8b8b35f1e03b826",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/security/ja4/ja4-fingerprint-construction.html",
+      "source_sha256": "c6d7786063514065a7e68f3875a2a40fc6972cf48dc39f3e01603a427ad4018b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/security/keycloak-argocd-sso-flow.html",
+      "source_sha256": "6889b9e095eee9b11c4c038d470cb6ee141b2530b0606fbddfc8813b9115a54f",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/server/nodejs-spring-server-stacks.html",
+      "source_sha256": "00f7c072446f2d01f909070723dffaca38f21b085f6066d124933d0ebd43439b",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/software-engineering/software-life-cycle.html",
+      "source_sha256": "0e21dafd95861f751d6e2f44fca4b711fb00381e5669259514220c661f8a8f72",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-01-request-flow.html",
+      "source_sha256": "5dd5c4e178cf27c41e6a58080c7ffd2be47193fafc94bd7fd906757c138495cd",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-02-reading-order-map.html",
+      "source_sha256": "9eb31370001a2cf22030ccfa02d7d620866e73c2181a0418d68bf449361b9623",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-03-ioc-before-after.html",
+      "source_sha256": "97914a057a8807ad5091a2db75a0ccd639c9dd6e36d217e861f7e4108cbef601",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-04-bean-lifecycle.html",
+      "source_sha256": "3e8dab0704b7eef0b0e4ac2c66b80863e1b7f35e9a5d386a16e6df3c94dbefe8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-05-dispatcherservlet-sequence.html",
+      "source_sha256": "c0c027c05aebbd00073b5ca6468b33a5f23a216db6339c8d4349d74a4c20acaa",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-06-thread-per-request.html",
+      "source_sha256": "cda7085198a04772ac3d9bcfd2903f988b6d711a4b2f3e9eaf661b18322273da",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-07-autoconfiguration-flow.html",
+      "source_sha256": "b2d12493667ddaf01002de6102cbc08cab3708d4f913587ee3c703289df1777e",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-08-fatjar-layout.html",
+      "source_sha256": "164e77bfaa926162174d0b285eb393efb5372c0222cf8b856eed7a916774edc8",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-09-blocking-vs-reactive.html",
+      "source_sha256": "a370f7718a347a8ba051b9235070fd7d2d0e8d7611a255222dfbd8d0dd1edb90",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-10-mono-flux-backpressure.html",
+      "source_sha256": "d4394275696ff769175a3d25cff1222cf91326abde81793f3236d53c91299d81",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-11-webflux-event-loop.html",
+      "source_sha256": "c6540748fb8599554c65d7d0796364c113a9467d35955ace3179c656cb528a41",
+      "used": true,
+      "status": "repaired",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-12-netty-direct-memory.html",
+      "source_sha256": "479d5c24e157a2ccdeb3be5eb80431270868fa4b7a73c07fb9fb40deb347c391",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-13-mvc-vs-webflux.html",
+      "source_sha256": "934ab5add20cba9b281186655e4f5c31ba0cffc51b3275261113a2aa7410cdf8",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-14-when-to-use.html",
+      "source_sha256": "dee3ee258a2b816d579b38bab62dc8c74deb0eb6f642bfe8fd0fece3108e45ea",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-15-persistence-context.html",
+      "source_sha256": "e9ace222836a5b6ba799d9796416a4f3c64d0c6f6f6b31395bc2548ee07b85a7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-16-entity-states.html",
+      "source_sha256": "1a7329ed82c49640e93d0060c519c17b5a1494ab55aaeba07d33bcc18c99b93a",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-17-transactional-proxy.html",
+      "source_sha256": "efe3d36ee0bce395c0fe4bb5c18194288016462aae5698745388ec129316ce09",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-18-propagation.html",
+      "source_sha256": "5fc74f983b5ed470c25dbf7dbcd4e9231f7d771ae470ed5eb602a1fa18e5c258",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-19-n-plus-1.html",
+      "source_sha256": "d48cdf261c3a66a8296d63348b0ab69888272fd0cc53effc9c5ddd2e79f98743",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-20-n-plus-1-fix.html",
+      "source_sha256": "56eb6cc66c95b8c918364bcf3bd371dd959a80929e167277cddd1d32336b635d",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-21-build-pipeline.html",
+      "source_sha256": "db5bb7a98ff874a036853069531d5420470952ae0a4f3acfc4b3e1b3f3fa33e7",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-22-dependency-bom.html",
+      "source_sha256": "0a867720e16a3eec3175b03a57c5fa7681c794bfe3ff728ca2425c601bbf21b5",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-23-security-filter-chain.html",
+      "source_sha256": "2eed50fe17a761a40b797642ff164b510fbfa69e333d41d8d91cc960598015d9",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/spring/spring-24-authn-authz.html",
+      "source_sha256": "927ce8ae74b34204db5b74b02d951c1c4c9481cce8acd2b899129d8574356922",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/virtualization/full-para-virtualization.html",
+      "source_sha256": "cbbb5299da503dff95384f646b4a0bb754a9ae2d09e0414b1a0b8b9ee10e3764",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/virtualization/type1-type2-hypervisor.html",
+      "source_sha256": "be3241030fbc05d1a421fb16cb16133ca1a338450ee1d2f3032108c90a70864b",
+      "used": true,
+      "status": "retained",
+      "checked_cases": 8,
+      "gate": "passed"
+    },
+    {
+      "include": "diagrams/static/virtualization/virtualization-model.html",
+      "source_sha256": "06e8f370a9fb4e591c3d845f4979dbe14a05e8161a96b0f4bb4356deec069351",
+      "used": true,
+      "status": "no-connector",
+      "checked_cases": 8,
+      "gate": "passed"
+    }
+  ]
+}

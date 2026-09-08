@@ -12,7 +12,7 @@
       <section class="sd-lane" aria-label="Node.js process PID 1">
         <div class="sd-lane-title">Node.js process (PID 1)</div>
         <div class="sd-flow">
-          <div class="sd-node">
+          <div class="sd-node" id="node-http-request-lifecycle-flow-accepted-tcp-socket">
             <strong class="sd-label">Accepted TCP socket</strong>
             <span class="sd-detail">libuv가 server에 전달</span>
           </div>
@@ -46,11 +46,11 @@
         <span class="sd-detail">Node.js PID 1에 stop signal을 보냄</span>
       </div>
       <div class="sd-arrow"><span class="sd-edge-label">signal은 runtime과 entrypoint에 따라 다름</span></div>
-      <div class="sd-node sd-node--warning">
+      <div class="sd-node sd-node--warning" id="node-http-request-lifecycle-flow-graceful-shutdown">
         <strong class="sd-label">Graceful shutdown</strong>
         <span class="sd-detail">새 연결 수락 중단, in-flight request drain</span>
       </div>
-      <div class="sd-arrow"><span class="sd-edge-label">-> process socket: stop accepting / drain in-flight</span></div>
+      <div class="sd-note sd-reference" data-connector-role="reference-note" data-from="node-http-request-lifecycle-flow-graceful-shutdown" data-to="node-http-request-lifecycle-flow-accepted-tcp-socket"><span class="sd-edge-label">Graceful shutdown -&gt; Accepted TCP socket: stop accepting / drain in-flight</span></div>
     </div>
     <p class="sd-note">점선 제어는 위 process boundary의 socket에 적용됩니다. graceful shutdown이 실행될지는 signal과 image entrypoint에 달려 있습니다.</p>
   </section>

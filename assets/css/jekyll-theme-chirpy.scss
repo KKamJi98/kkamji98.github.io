@@ -126,17 +126,31 @@ figure.sd .sd-flow {
   min-width: 0;
 }
 
+figure.sd .sd-flow:has(> [data-connector-role="continuation"]:last-child) {
+  margin-block-end: 8px;
+}
+
+/* Only gapless, leading VSO references need a local target corridor. */
+figure.sd#vault-secrets-operator .sd-arrow[data-connector-role="reference"]:first-child {
+  margin-block-end: 8px;
+}
+
+figure.sd .sd-reference[data-connector-role="reference-note"] {
+  border-top-style: dashed;
+}
+
 figure.sd .sd-loop {
+  --sd-loop-gutter: 1.25rem;
   position: relative;
   min-width: 0;
-  padding-inline-start: 1.25rem;
+  padding-inline-start: var(--sd-loop-gutter);
 }
 
 figure.sd .sd-loop::before {
   position: absolute;
   inset-block: 0.75rem;
   inset-inline-start: 0.25rem;
-  width: 0.75rem;
+  width: calc(var(--sd-loop-gutter) - 0.25rem);
   border-block: 2px solid var(--sd-accent);
   border-inline-start: 2px solid var(--sd-accent);
   border-radius: 0.75rem 0 0 0.75rem;
@@ -146,8 +160,10 @@ figure.sd .sd-loop::before {
 
 figure.sd .sd-loop::after {
   position: absolute;
-  inset-block-start: 0.55rem;
-  inset-inline-start: 0.65rem;
+  /* Center the rotated head on the 2px top rail. Its right tip is
+     (1 + sqrt(2)) * half the 0.55rem border box from its left inset. */
+  inset-block-start: calc(0.75rem + 1px - 0.275rem);
+  inset-inline-start: calc(var(--sd-loop-gutter) - 0.663909rem);
   width: 0.55rem;
   height: 0.55rem;
   border-inline-end: 2px solid var(--sd-accent);
@@ -209,6 +225,13 @@ figure.sd .sd-arrow {
 /* Direct connectors have no parent flow gap. */
 figure.sd > .sd-arrow {
   margin-block: 0.75rem;
+}
+
+/* Gapless nested corridors need room for the rotated head. Flow/stack/grid
+   parents already supply gaps; preserve their spacing and the own-label gap. */
+figure.sd :is(.sd-lane, .sd-band):not(.sd-flow, .sd-stack, .sd-grid) > .sd-arrow:has(> .sd-edge-label):has(+ *),
+figure.sd :not(.sd-flow, .sd-stack, .sd-grid) > .sd-lane + .sd-arrow:has(> .sd-edge-label):has(+ .sd-lane) {
+  margin-block: 8px;
 }
 
 /* Keep only Packer's short HCL clauses together, not all diagram code. */
@@ -477,7 +500,7 @@ figure.sd .sd-cert-tier--business {
 
 @container (max-width: 680px) {
   figure.sd .sd-loop {
-    padding-inline-start: 1rem;
+    --sd-loop-gutter: 1rem;
   }
 
   figure.sd .sd-grid,
@@ -574,7 +597,7 @@ figure.sd .sd-cert-tier--business {
 /* BEGIN AI GATEWAY V2 */
 /* AI Gateway diagram v2: scoped opt-in layouts.
    Mobile reflow begins below 540px figure content width. */
-figure.sd.sd--gateway-v2 { padding: 24px; }
+figure.sd.sd--gateway-v2 { --sd-v2-marker-length: 24px; --sd-v2-marker-gap: 8px; --sd-v2-bus-inset: 20px; --sd-v2-card-border: 1px; padding: 24px; }
 figure.sd.sd--gateway-v2 .sd-title { font-size: 24px; line-height: 1.3; margin-bottom: 24px; }
 figure.sd.sd--gateway-v2 .sd-node { padding: 12px; border-radius: 10px; }
 figure.sd.sd--gateway-v2 .sd-label { font-size: 16px; line-height: 1.4; word-break: keep-all; }
@@ -583,8 +606,8 @@ figure.sd.sd--gateway-v2 .sd-note,
 figure.sd.sd--gateway-v2 .sd-edge-label { font-size: 14px; line-height: 1.5; }
 figure.sd.sd--gateway-v2 .sd-note { margin: 14px 0 0; }
 figure.sd.sd--gateway-v2 .sd-v2-rail { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1.22fr) 28px minmax(0,1fr); align-items: center; }
-figure.sd.sd--gateway-v2 .sd-v2-link { height: 2px; background: var(--sd-accent); position: relative; margin: 0 2px; }
-figure.sd.sd--gateway-v2 .sd-v2-link::after { content: ''; position: absolute; right: 0; top: -3px; width: 8px; height: 8px; border-top: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
+figure.sd.sd--gateway-v2 .sd-v2-link { height: 2px; background: var(--sd-accent); position: relative; margin: 0 6px; }
+figure.sd.sd--gateway-v2 .sd-v2-link::after { content: ''; position: absolute; right: 2px; top: -3px; width: 8px; height: 8px; border-top: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
 /* The adjunct starts at the rail bottom: stretch its source to that border,
    even when a sibling wraps to a taller box. Other rails retain centering. */
 figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > .sd-node--accent { align-self: stretch; }
@@ -598,20 +621,30 @@ figure.sd.sd--gateway-v2 .sd-v2-issuance,
 figure.sd.sd--gateway-v2 .sd-v2-config { margin-top: 20px; padding: 16px; border: 1px dashed var(--sd-border); border-radius: 10px; }
 figure.sd.sd--gateway-v2 .sd-v2-setup { border: 0; border-left: 3px solid var(--sd-border-strong); border-radius: 0; background: var(--sd-surface); }
 figure.sd.sd--gateway-v2 .sd-v2-issuance { margin-top: 0; }
-figure.sd.sd--gateway-v2 .sd-v2-issuance-row { display: grid; grid-template-columns: minmax(0,.85fr) 22px minmax(0,1fr) 22px minmax(0,1.2fr); align-items: center; margin-top: 8px; }
+/* Intrinsic text columns put spare width in connector gaps, not after labels. */
+figure.sd.sd--gateway-v2 .sd-v2-issuance-row { display: grid; grid-template-columns: minmax(0,max-content) minmax(28px,1fr) minmax(0,max-content) minmax(28px,1fr) minmax(0,max-content); align-items: center; margin-top: 8px; }
+/* Reserve whitespace around issuance paint, not only the unrotated head. */
+figure.sd.sd--gateway-v2 .sd-v2-issuance-row > .sd-detail { margin-top: 0; }
+figure.sd.sd--gateway-v2 .sd-v2-issuance-row .sd-v2-link { width: 16px; justify-self: center; margin: 0; }
+figure.sd.sd--gateway-v2 .sd-v2-issuance-row .sd-v2-link::after { right: 2px; }
 figure.sd.sd--gateway-v2 .sd-v2-section-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin: 0 0 12px; }
 figure.sd.sd--gateway-v2 .sd-v2-request { margin-top: 24px; }
 figure.sd.sd--gateway-v2 .sd-v2-request-row { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr); align-items: center; }
-figure.sd.sd--gateway-v2 .sd-v2-fork { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; position: relative; padding-top: 24px; }
-figure.sd.sd--gateway-v2 .sd-v2-fork::before { content: ''; position: absolute; left: calc(25% - 6px); right: calc(25% - 6px); top: 24px; height: 2px; background: var(--sd-accent); }
-figure.sd.sd--gateway-v2 .sd-v2-fork::after { content: ''; position: absolute; right: calc(25% - 6px); top: 0; height: 24px; width: 2px; background: var(--sd-accent); }
+/* Match the request's 28px gutter and center each 2px stroke on its node. */
+figure.sd.sd--gateway-v2 .sd-v2-fork { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; position: relative; padding-top: 24px; }
+figure.sd.sd--gateway-v2 .sd-v2-fork::before { content: ''; position: absolute; left: calc(25% - 8px); right: calc(25% - 8px); top: 24px; height: 2px; background: var(--sd-accent); }
+figure.sd.sd--gateway-v2 .sd-v2-fork::after { content: ''; position: absolute; right: calc(25% - 8px); top: 0; height: 25px; width: 2px; background: var(--sd-accent); }
 figure.sd.sd--gateway-v2 .sd-v2-outcome { position: relative; padding-top: 18px; min-width: 0; }
-figure.sd.sd--gateway-v2 .sd-v2-outcome::before { content: ''; position: absolute; top: 0; left: 50%; height: 16px; width: 2px; background: var(--sd-accent); }
+/* Stop branches before condition text without moving their rail junctions. */
+figure.sd.sd--gateway-v2 .sd-v2-outcome::before { content: ''; position: absolute; top: 0; left: calc(50% - 1px); height: 12px; width: 2px; background: var(--sd-accent); }
 figure.sd.sd--gateway-v2 .sd-v2-condition { color: var(--sd-accent); text-align: center; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
 figure.sd.sd--gateway-v2 .sd-v2-outcome--reject .sd-v2-condition { color: var(--sd-warning); }
 /* Give vertical arrowheads a full paint box while keeping the centered 2px shaft. */
-figure.sd.sd--gateway-v2 .sd-v2-down { height: 26px; width: 12px; margin: 0 auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; position: relative; }
-figure.sd.sd--gateway-v2 .sd-v2-down::after { content: ''; position: absolute; bottom: 1px; left: 2px; width: 8px; height: 8px; border-bottom: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
+figure.sd.sd--gateway-v2 .sd-v2-down { height: 26px; width: 12px; margin: 8px auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; position: relative; }
+figure.sd.sd--gateway-v2 .sd-v2-down::after { content: ''; position: absolute; bottom: 2px; left: 2px; width: 8px; height: 8px; border-bottom: 2px solid var(--sd-accent); border-right: 2px solid var(--sd-accent); transform: rotate(45deg); }
+/* Standalone outcome arrows need card clearance in addition to a paint box. */
+figure.sd.sd--gateway-v2 .sd-v2-outcome > .sd-v2-down { margin-block: 8px; }
+figure.sd.sd--gateway-v2 .sd-v2-outcome > .sd-v2-down::after { bottom: 2px; }
 figure.sd.sd--gateway-v2 .sd-v2-group { min-width: 0; border: 1px solid var(--sd-border); border-radius: 10px; padding: 12px; }
 figure.sd.sd--gateway-v2 .sd-v2-group-item { padding: 10px 0; border-top: 1px solid var(--sd-border); }
 figure.sd.sd--gateway-v2 .sd-v2-group-item .sd-detail { margin-top: 2px; }
@@ -621,22 +654,24 @@ figure.sd.sd--gateway-v2 .sd-v2-compare-lane { min-width: 0; padding: 16px; bord
  figure.sd.sd--gateway-v2 .sd-v2-rail,
  figure.sd.sd--gateway-v2 .sd-v2-request-row,
  figure.sd.sd--gateway-v2 .sd-v2-issuance-row { grid-template-columns: minmax(0,1fr); }
- figure.sd.sd--gateway-v2 .sd-v2-link { height: 24px; width: 12px; margin: 0 auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; }
- figure.sd.sd--gateway-v2 .sd-v2-link::after { right: 2px; top: auto; bottom: 1px; transform: rotate(135deg); }
- figure.sd.sd--gateway-v2 .sd-v2-adjunct { width: 100%; padding-left: 20px; position: relative; }
+ figure.sd.sd--gateway-v2 .sd-v2-link { height: var(--sd-v2-marker-length); width: 12px; margin: var(--sd-v2-marker-gap) auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; }
+ figure.sd.sd--gateway-v2 .sd-v2-link::after { right: 2px; top: auto; bottom: 2px; transform: rotate(135deg); }
+ figure.sd.sd--gateway-v2 .sd-v2-issuance-row .sd-v2-link { width: 12px; margin: 8px auto; }
+ figure.sd.sd--gateway-v2 .sd-v2-issuance-row .sd-v2-link::after { bottom: 2px; }
+ figure.sd.sd--gateway-v2 .sd-v2-adjunct { width: 100%; padding-left: var(--sd-v2-bus-inset); position: relative; }
  /* The side rail joins the Proxy, never the provider above the adjunct. */
- figure.sd.sd--gateway-v2 .sd-v2-rail { padding-left: 20px; }
+ figure.sd.sd--gateway-v2 .sd-v2-rail { padding-left: var(--sd-v2-bus-inset); }
  figure.sd.sd--gateway-v2 .sd-v2-rail > .sd-node--accent { position: relative; }
- figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > .sd-node--accent::before { content: ''; position: absolute; right: 100%; top: 50%; width: 20px; height: calc(50% + 24px); border-top: 2px solid var(--sd-border-strong); border-left: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > .sd-node--accent::before { content: ''; position: absolute; right: 100%; top: 50%; width: calc(var(--sd-v2-bus-inset) + var(--sd-v2-card-border)); bottom: calc(0px - var(--sd-v2-card-border) - var(--sd-v2-marker-length) - 2 * var(--sd-v2-marker-gap)); border-top: 2px solid var(--sd-border-strong); border-left: 2px solid var(--sd-border-strong); }
  figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > :last-child { position: relative; }
- figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > :last-child::before { content: ''; position: absolute; right: calc(100% + 19px); top: 0; height: 100%; border-left: 2px solid var(--sd-border-strong); }
- figure.sd.sd--gateway-v2 .sd-v2-adjunct::before { content: ''; position: absolute; left: 0; top: 0; bottom: 50px; width: 20px; border-left: 2px solid var(--sd-border-strong); border-bottom: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-rail:has(+ .sd-v2-adjunct) > :last-child::before { content: ''; position: absolute; left: calc(0px - var(--sd-v2-bus-inset) - var(--sd-v2-card-border)); top: calc(0px - var(--sd-v2-card-border)); bottom: calc(0px - var(--sd-v2-card-border)); border-left: 2px solid var(--sd-border-strong); }
+ figure.sd.sd--gateway-v2 .sd-v2-adjunct::before { content: ''; position: absolute; left: 0; top: 0; bottom: 50px; width: var(--sd-v2-bus-inset); border-left: 2px solid var(--sd-border-strong); border-bottom: 2px solid var(--sd-border-strong); }
  figure.sd.sd--gateway-v2 .sd-v2-relation::before,
  figure.sd.sd--gateway-v2 .sd-v2-relation::after { content: none; }
  figure.sd.sd--gateway-v2 .sd-v2-fork { grid-template-columns: minmax(0,1fr); gap: 18px; margin-left: 10px; padding: 0 0 0 20px; border-left: 2px solid var(--sd-accent); }
  figure.sd.sd--gateway-v2 .sd-v2-fork::before,
  figure.sd.sd--gateway-v2 .sd-v2-fork::after { content: none; }
- figure.sd.sd--gateway-v2 .sd-v2-outcome::before { left: -20px; top: 28px; width: 20px; height: 2px; }
+ figure.sd.sd--gateway-v2 .sd-v2-outcome::before { left: -20px; top: 28px; width: 14px; height: 2px; }
  figure.sd.sd--gateway-v2 .sd-v2-condition { text-align: left; }
  figure.sd.sd--gateway-v2 .sd-v2-compare { grid-template-columns: minmax(0,1fr); }
  figure.sd.sd--gateway-v2 .sd-v2-config .sd-v2-rail { padding-left: 0; }

@@ -3,35 +3,35 @@
   <section class="sd-band" aria-label="Control plane 경계">
     <div class="sd-band-title">Control plane</div>
     <div class="sd-flow">
-      <div class="sd-node sd-node--accent">
+      <div class="sd-node sd-node--accent" id="kubernetes-architecture-overview-api-server">
         <strong class="sd-label">API server</strong>
         <span class="sd-detail">모든 구성요소와 client가 통신하는 REST API</span>
       </div>
       <div class="sd-grid sd-grid--three">
         <div class="sd-flow">
-          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Database (etcd)</span></div>
-          <div class="sd-node">
+          <div class="sd-arrow sd-arrow--both" data-connector-role="reference" data-from="kubernetes-architecture-overview-api-server" data-to="kubernetes-architecture-overview-database-etcd"><span class="sd-edge-label">API server &lt;-&gt; Database (etcd)</span></div>
+          <div class="sd-node" id="kubernetes-architecture-overview-database-etcd">
             <strong class="sd-label">Database (etcd)</strong>
             <span class="sd-detail">클러스터 상태 저장</span>
           </div>
         </div>
         <div class="sd-flow">
-          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Scheduler</span></div>
-          <div class="sd-node">
+          <div class="sd-arrow sd-arrow--both" data-connector-role="reference" data-from="kubernetes-architecture-overview-api-server" data-to="kubernetes-architecture-overview-scheduler"><span class="sd-edge-label">API server &lt;-&gt; Scheduler</span></div>
+          <div class="sd-node" id="kubernetes-architecture-overview-scheduler">
             <strong class="sd-label">Scheduler</strong>
             <span class="sd-detail">Pod를 실행할 node 선택</span>
           </div>
         </div>
         <div class="sd-flow">
-          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Controller Manager</span></div>
-          <div class="sd-node">
+          <div class="sd-arrow sd-arrow--both" data-connector-role="reference" data-from="kubernetes-architecture-overview-api-server" data-to="kubernetes-architecture-overview-controller-manager"><span class="sd-edge-label">API server &lt;-&gt; Controller Manager</span></div>
+          <div class="sd-node" id="kubernetes-architecture-overview-controller-manager">
             <strong class="sd-label">Controller Manager</strong>
             <span class="sd-detail">desired state로 지속 조정</span>
           </div>
         </div>
         <div class="sd-flow">
-          <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">API server &lt;-&gt; Cloud Controller Manager</span></div>
-          <div class="sd-node">
+          <div class="sd-arrow sd-arrow--both" data-connector-role="reference" data-from="kubernetes-architecture-overview-api-server" data-to="kubernetes-architecture-overview-cloud-controller-manager"><span class="sd-edge-label">API server &lt;-&gt; Cloud Controller Manager</span></div>
+          <div class="sd-node" id="kubernetes-architecture-overview-cloud-controller-manager">
             <strong class="sd-label">Cloud Controller Manager</strong>
             <span class="sd-detail">cloud provider 자원과 연동</span>
           </div>
@@ -62,15 +62,15 @@
     <div class="sd-band-title">External boundaries</div>
     <div class="sd-grid">
       <div class="sd-flow">
-        <div class="sd-node">
+        <div class="sd-node" id="kubernetes-architecture-overview-kubectl-user-machine">
           <strong class="sd-label">kubectl (User machine)</strong>
           <span class="sd-detail">HTTPS로 API server를 호출</span>
         </div>
-        <div class="sd-arrow sd-arrow--both"><span class="sd-edge-label">kubectl &lt;-&gt; API server: HTTPS 요청과 응답</span></div>
+        <div class="sd-note sd-reference" data-connector-role="reference-note" data-from="kubernetes-architecture-overview-kubectl-user-machine" data-to="kubernetes-architecture-overview-api-server"><span class="sd-edge-label">kubectl &lt;-&gt; API server: HTTPS 요청과 응답</span></div>
       </div>
       <div class="sd-flow">
-        <div class="sd-arrow"><span class="sd-edge-label">Cloud Controller Manager -&gt; Cloud Provider API</span></div>
-        <div class="sd-node sd-node--muted">
+        <div class="sd-arrow" data-connector-role="reference" data-from="kubernetes-architecture-overview-cloud-controller-manager" data-to="kubernetes-architecture-overview-cloud-provider-api"><span class="sd-edge-label">Cloud Controller Manager -&gt; Cloud Provider API</span></div>
+        <div class="sd-node sd-node--muted" id="kubernetes-architecture-overview-cloud-provider-api">
           <strong class="sd-label">Cloud Provider API</strong>
           <span class="sd-detail">Cloud Controller Manager가 호출하는 외부 API</span>
         </div>

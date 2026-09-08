@@ -133,7 +133,7 @@ OUT=/tmp/blog-png-release
 FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
   "$DIAGRAM_PYTHON" "$SCRIPT" export --site "$SITE" --out "$OUT" --jobs 4
 FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
-  "$DIAGRAM_PYTHON" "$SCRIPT" check --site "$SITE" --out "$OUT" --jobs 4
+  "$DIAGRAM_PYTHON" "$SCRIPT" release --site "$SITE" --out "$OUT" --jobs 4
 ```
 
 Keep canonical includes at block level: indentation inside Markdown lists can produce escaped closing tags and break sibling adjacency. Wiring preserves prose, frontmatter, dates and footer; every helper must also pass fresh built-DOM checks. Certification tier subtitles and code inside primary labels use 16px. Native comparison tables opt into `sd-quality-table` to prevent theme percentage fonts and nowrap rules from shrinking or overflowing their cells.
@@ -141,6 +141,36 @@ Keep canonical includes at block level: indentation inside Markdown lists can pr
 For the Linux deterministic release environment, set `FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf"` for both export and check. This process-local fontconfig sees only the two approved open font files instead of hashing the host's entire Windows/Linux font inventory for every figure. It does not change user or system font configuration. The strict CDP gate still requires the figure to use custom webfonts; installed/system fallback remains a failure, even if it is the same font family. This is a distinct recorded export environment, not byte parity with earlier host-font captures. Use a fresh build and regenerate all images after switching environments.
 
 DOM geometry and selectable-text gates are not visual or semantic approval. Receipts retain `visual_review` and `semantic_review` as `not-run`. Height ratios are review flags, not universal vertical-layout failures. Dark mode must be exported and reviewed separately.
+
+## Connector acceptance and recurrence gates
+
+Connector layout is checked against **paint**, not just the unrotated CSS layout box. The [corpus connector review](diagram-connector-review.json) records all include-level results and the scope of native-image review. `static_png/connector_audit.py` collects transformed CDP outer/padding quads without changing canonical HTML. `connector_geometry.py` decomposes painted border sides; empty corners of rotated arrowheads and L-shaped borders are not treated as strokes. Browser Range rectangles represent text layout, not segmented glyph ink.
+
+- Standalone markers reserve at least 4px from nearby endpoint boundaries and their own labels. Primary Gateway markers use the stricter 6px contract; outcome arrows retain 8px card clearance. Issuance arrows are centered between actual text ranges, with a 1.5px symmetry tolerance, rather than between oversized empty text tracks.
+- Attached edges retain intentional node-border contact. Collinear mobile bus strokes and their joins must agree within 0.5px. Gateway fork source and branch axes use a 0.25px tolerance. A standalone whitespace rule must not detach a real edge.
+- Rounded loops keep their return/self-action meaning. The head must meet the first action, and the source rail the last action, within 0.5px. `connector_loop.py` models straight border strips and quarter-elliptical annuli, with a 0.0001px curve approximation bound; uncertain numerical boundaries and unsupported paint styles fail closed.
+- Unknown connector roles, hidden registered markers, malformed named endpoints and unclassified painted pseudo relations are blocking findings, not advisory results or silent omissions. The single retained inline SVG boundary marker is matched by its exact reviewed path/stroke/dash signature, not merely the figure name.
+
+Explicit roles resolve cross-container meanings without inventing nodes:
+
+- `data-connector-role="continuation"`: a flow's terminal marker targets its immediate following structural group. Group members remain alternatives or a collective destination, not an invented serial chain.
+- `data-connector-role="reference"`: `data-from`/`data-to` name existing nodes. The following local boundary is still checked for clearance; a physically routed bus from a remote named source is not implied.
+- `data-connector-role="loop"`: named endpoints must match the actual last and first action nodes. A one-node self-action remains a self-action.
+- `data-connector-role="reference-note"`: an explicit named annotation, with no arrow class or painted pseudo arrowheads. This prevents misleading terminal glyphs from pointing at an unrelated next section.
+
+Both PNG export and read-only `check` call the connector gate at desktop and mobile sizes. `release` runs the same complete check and then records the public release manifest with a source fingerprint. Receipts bind the connector helper code hashes, and the build seal also includes exporter/gate sources. Changing a gate during an export cannot produce a valid mixed-version release.
+
+The normal pre-commit hook runs the fast `release_manifest.py --if-staged` consistency gate for staged diagram source/style/tool/font/PNG changes or changed diagram include lines. It verifies complete source/PNG coverage, current hashes and index agreement. Only confirmed Git-ignored Jekyll cache/build directories and an untracked local `Gemfile.lock` are exempt from index membership; their local hashes remain sealed, and ordinary source images are never exempt. A stale release manifest cannot silently accompany a diagram change. Ordinary prose-only commits do not trigger a whole-corpus export. No browser work is hidden inside the commit hook.
+
+Before corpus publication, run the full connector scan after a stamped fresh build:
+
+```bash
+FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
+  /home/kkamji/.local/bin/python3.11 kkamji_scripts/blog/static_png/connector_corpus.py \
+  --site /tmp/blog-static-release --out /tmp/blog-connector-audit.json
+```
+
+The scan covers every referenced occurrence plus every unused canonical include, at native 360/390 viewports and exact 625/720 figure-content widths, in both themes. Unused fragments are identified as isolated harness cases, never as article renders. Keep reports outside source/build trees. Geometry checks are supplemented by native-image review of representative problem families; screenshot generation alone is not visual approval. Tests preserve already-spaced flow/direct-arrow controls, role identities and typography floors.
 
 ## Rollback
 

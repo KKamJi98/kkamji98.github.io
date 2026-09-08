@@ -189,6 +189,8 @@ def source_snapshot(root):
     paths = set()
     for folder in ['_posts', '_includes', '_layouts', '_sass', '_plugins', '_data', 'assets/css', 'assets/js', 'assets/fonts', 'assets/img']:
         paths.update(p for p in (root/folder).rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in outputs)
+    tools = root/'kkamji_scripts/blog/static_png'
+    paths.update(p for p in tools.glob('*') if p.is_file() and p.suffix in ('.py', '.json', '.js', '.sh'))
     for name in ['_config.yml', 'Gemfile', 'Gemfile.lock', MANIFEST, 'docs/diagram-catalog.json']:
         if (root/name).is_file(): paths.add(root/name)
     return {p.relative_to(root).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
@@ -205,7 +207,7 @@ def built_assets_snapshot(site, plan):
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action', choices=['wire', 'source-check', 'build', 'plan', 'export', 'check'])
+    p.add_argument('action', choices=['wire', 'source-check', 'build', 'plan', 'export', 'check', 'release'])
     p.add_argument('--root', type=Path, default=ROOT)
     p.add_argument('--site', type=Path)
     p.add_argument('--out', type=Path)
@@ -246,7 +248,7 @@ def main(argv=None):
     if not a.out: p.error('--out is required')
     out = a.out.resolve(); runtime = out/'downloads-export.json'
     identity = fingerprint({'mapping': plan, 'build': saved_stamp})
-    previous = json.loads(runtime.read_text()) if a.action == 'check' else None
+    previous = json.loads(runtime.read_text()) if a.action in ('check', 'release') else None
     if previous and previous.get('identity') != identity:
         raise ValueError('export manifest stale')
     targets = [fingerprint(e)[:24] for e in rows if e['status'] != 'blocked-insertion']
@@ -261,7 +263,7 @@ def main(argv=None):
                '--theme', 'light', '--font-profile', 'deterministic-export',
                '--font-bundle', str(root/'assets/fonts/static-png/lock.json'),
                '--export-font-bundle', str(root/'assets/fonts/deterministic-export/lock.json')]
-        if a.action == 'check': cmd.append('--check')
+        if a.action in ('check', 'release'): cmd.append('--check')
         try:
             code = subprocess.run(cmd, check=False).returncode
         except OSError as exc:
@@ -299,10 +301,13 @@ def main(argv=None):
             raise ValueError('built assets changed during export/check; run build again')
     except (OSError, ValueError) as exc:
         report.update(status='failed', error=str(exc))
-        if a.action == 'check': raise ValueError(str(exc)) from exc
+        if a.action in ('check', 'release'): raise ValueError(str(exc)) from exc
     if a.action == 'export':
         out.mkdir(parents=True, exist_ok=True); runtime.write_text(json.dumps(report, indent=2) + '\n')
     elif report != previous: raise ValueError('receipt/output manifest mismatch')
+    if a.action == 'release' and report['status'] == 'passed':
+        from release_manifest import record_checked
+        record_checked(root, rows, out)
     print(json.dumps({'references': len(results), 'status': report['status'], 'manifest': str(runtime)}))
     return 0 if report['status'] == 'passed' else 1
 

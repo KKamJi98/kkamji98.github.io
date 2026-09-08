@@ -28,7 +28,7 @@
     </section>
     <section class="sd-lane">
       <div class="sd-lane-title">엣지 캐시 계층</div>
-      <div class="sd-node sd-node--accent">
+      <div class="sd-node sd-node--accent" id="dns-global-traffic-decision-layers-cloudfront">
         <strong class="sd-label">CloudFront 엣지</strong>
         <span class="sd-detail">캐시 히트면 오리진에 가지 않습니다.</span>
       </div>
@@ -37,10 +37,10 @@
         <span class="sd-detail">minimum TTL이 오리진 지시를 덮을 수 있습니다.</span>
       </div>
       <div class="sd-flow">
-        <div class="sd-arrow">
+        <div class="sd-arrow" data-connector-role="reference" data-from="dns-global-traffic-decision-layers-cloudfront" data-to="dns-global-traffic-decision-layers-">
           <span class="sd-edge-label">CloudFront 캐시 미스일 때</span>
         </div>
-        <div class="sd-node">
+        <div class="sd-node" id="dns-global-traffic-decision-layers-">
           <strong class="sd-label">리전 오리진</strong>
           <span class="sd-detail">CloudFront가 origin 요청을 전달합니다.</span>
         </div>

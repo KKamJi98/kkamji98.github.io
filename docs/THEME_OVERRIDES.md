@@ -41,6 +41,7 @@ bash tools/run.sh    # 로컬 미리보기
 - `_includes/diagrams/download.html` is an additive helper, not a gem override.
 - Invoke only outside `figure.sd`, with a same-origin PNG asset path from the verified export manifest. It provides native download and direct image links, no JavaScript or duplicated diagram markup.
 - Every referencing post occurrence is mapped by `docs/diagram-downloads.json`. The helper follows its canonical include as a sibling; a Jekyll-generated `assets/data/diagram-posts.json` sidecar binds source posts to actual rendered URLs. Source/build assets and exact PNG bytes must pass the export/check adapter before publication.
+- Connector acceptance now uses transformed paint and explicit cross-container roles; see [Connector acceptance and recurrence gates](static-diagrams.md#connector-acceptance-and-recurrence-gates). Existing flow/direct-arrow spacing remains a negative control, while gapless nested corridors and attached buses have separate rules.
 - Export and font policy: [Static diagrams](static-diagrams.md#same-source-png-export).
 
 ## Overrides 목록
