@@ -830,6 +830,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/grafana/loki/pull/24300" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>grafana/loki</span>
+      <span class="cv-oss-pr">PR #24300</span>
+    </div>
+    <p class="cv-oss-desc">단일 테넌트 모드에서 Ruler 로컬 스토리지의 기본 <code>fake</code> 테넌트 디렉터리와 <code>rule_path</code>의 차이를 문서에 명시</p>
+  </a>
   <a class="cv-oss" href="https://github.com/istio/istio/pull/61512" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
