@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-09-08
+updated: 2026-09-09
 type: architecture
 status: current
 ---
@@ -146,5 +146,27 @@ bash tools/run.sh    # 로컬 미리보기
 - Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
 - Titles use `word-break: keep-all` with `overflow-wrap: anywhere` as the long-token fallback. Direct figure arrows receive `0.75rem` block margins; nested flow arrows keep their existing grid gap.
 - Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
-- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. No service-worker fetch, activation, purge, or cache-name behavior changes.
-- Old cached HTML can still request old CSS until the existing service-worker update lifecycle supplies new HTML. Versioned CSS is not an instant eviction mechanism.
+- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. Versioned CSS alone cannot refresh HTML held by the old cache-first worker.
+
+### PWA freshness and safe migration
+
+- `assets/js/dist/sw.min.js` and `assets/js/dist/app.min.js` replace the Chirpy 7.6.0 PWA worker and registration client. These are readable Liquid/JavaScript sources at inherited `.min.js` filenames, not generated vendor bundles. Their frontmatter preserves the exact public `/sw.min.js` and `/app.min.js` URLs. No diagram assets, includes, or content-hash build pipeline are involved.
+- Eligible same-origin GET requests, including HTML, CSS, JavaScript, search JSON, and images, use network-first with `fetch(..., { cache: 'no-cache' })`. HTTP caches must revalidate rather than serving a fresh `max-age=600` entry without contacting the server. A network failure falls back only to the current owned cache's exact URL. HTTP error responses remain errors, not disguised stale success. Never-visited pages are not guaranteed offline.
+- The existing root/tab/stylesheet resource list is warmed on installation, with individual failures tolerated. Successful basic, non-redirected, complete responses are retained for offline use. Range requests, non-GET methods, cross-origin URLs, deny paths, and interceptor URL prefixes bypass worker caching. `no-store` responses remove an older copy instead of leaving it available offline. Third-party fonts/scripts remain browser-managed and are not guaranteed offline.
+- Activation deletes only obsolete `chirpy-<digits>` caches, the namespace used by the inherited timestamp-based configuration. It preserves unrelated caches and does not use global `caches.match`. The existing purge switch also deletes only this namespace.
+- Each build embeds its timestamp into the imported `swconf.js?v=...` URL in the main worker. This changes the main script bytes and avoids reusing the old HTTP-cached config even for legacy registrations with default `updateViaCache: 'imports'`. The new client registers with `updateViaCache: 'none'`, checks on visible resume/online events, and checks once per minute while visible and online. No cache-busting query is added to the worker registration URL.
+- New clients never reload on `controllerchange`. A waiting worker activates automatically only after every open in-scope window acknowledges the no-reload protocol. A nonresponding or legacy page makes that attempt stop after 1.5 seconds; a later visible client check retries. First installation and natural activation do not claim uncontrolled pages.
+- **One-time migration limit:** the already-loaded Chirpy client unconditionally reloads on controller changes. Therefore forcing `skipWaiting()` while such a reader remains open would violate the no-surprise-reload requirement, even without `clients.claim()`. The replacement waits for legacy tabs/PWA windows to close, or honors the old toast's explicit Update click. Closing all blog tabs and reopening is the deterministic migration path; clearing all Safari website data is not required. There is deliberately no promise of immediate automatic migration for a legacy tab kept open indefinitely. Once migrated, modern-only tabs activate updates without a toast, reload, or reload loop.
+- Revalidate after a theme upgrade: preserve registration URL/baseurl behavior and compare the upstream app, worker, config, and resource list. Do not restore the old app reload handler or broad cache deletion. Removing the overrides is not an immediate browser rollback; deployed registrations still need an update lifecycle.
+
+Verification from the repository root:
+
+```bash
+JEKYLL_ENV=production bundle exec jekyll build --destination /tmp/blog-cache-fix/site
+python3 tools/test_pwa.py --site /tmp/blog-cache-fix/site
+node --check /tmp/blog-cache-fix/site/sw.min.js
+node --check /tmp/blog-cache-fix/site/app.min.js
+python3 docs/_meta/docs_lint.py --root .
+```
+
+The browser test requires Python Playwright plus installed Chromium and the installed Chirpy gem. It serves the production-built worker/client through an HTTP fixture with a ten-minute HTTP cache, reads the actual gem's legacy worker/client, and exercises freshness, offline fallback, owned-cache cleanup, exclusions, safe legacy migration, and automatic modern update discovery. Chromium coverage is not an iPhone Safari test: validate a pre-existing iOS Safari/PWA registration after deployment, including background/resume and closing all legacy windows.

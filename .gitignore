@@ -24,7 +24,10 @@ package-lock.json
 
 # Misc
 _sass/vendors
-assets/js/dist
+assets/js/dist/*
+# Readable local PWA overrides retain the theme's public URLs.
+!assets/js/dist/app.min.js
+!assets/js/dist/sw.min.js
 LAST_CODEX_RUN.md
 .hermes/
 __pycache__/
