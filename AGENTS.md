@@ -53,6 +53,7 @@
 - 훅은 `.githooks/pre-commit`으로 추적한다. **클론마다 한 번 `git config core.hooksPath .githooks`를 실행**해야 동작한다. `.git/hooks/`에 사본을 두지 않는다.
 - 이 저장소는 CI에 품질 게이트를 두지 않는다. 되돌아가면 곤란한 규칙은 이 훅이 막는다.
   - `_posts/*.md` staged: `run_md_tools.sh`, staged 글에 대한 `audit_humanizer --strict`, `check_post_dates`, `check_series_order`, `check_high_impact_tldr`, 그리고 frontmatter/커버/내부 링크/금지 문자/footer 기계 검사.
+  - 정적 다이어그램, CSS, export 도구, PNG 또는 diagram include 줄 변경 staged: `kkamji_scripts/blog/static_png/release_manifest.py --if-staged`로 source fingerprint, PNG 해시, index 일치를 확인한다. 생성과 검증 절차는 `docs/static-diagrams.md`의 `Connector acceptance and recurrence gates`를 따른다. 일반 본문만 수정하면 이 게이트는 적용하지 않는다.
   - `assets/img/**/*.spec.json` staged: spec을 compile + normalize한 결과와 커밋된 `.drawio`를 비교해 `rebuild_diagrams.sh` 누락을 잡고, `audit_diagram_badges`로 배지 위치를 확인한다.
 - 훅은 스크립트가 실제로 내용을 바꾼 staged 파일만 다시 stage한다. 커밋 대상이 아닌데 포매터가 건드린 글은 unstaged로 남기고 이름을 출력한다.
 - `jekyll build`, `check_inline_scripts`, 외부 링크 검사는 훅에 넣지 않는다. 발행 절차인 `kkamji_scripts/blog/pre_publish_check.sh`가 담당한다.
