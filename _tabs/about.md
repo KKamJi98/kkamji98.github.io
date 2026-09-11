@@ -826,6 +826,20 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
   </li>
 </ol>
 
+## <i class="fas fa-shield-halved fa-fw"></i> Security Research
+{: #security-research .cv-h2}
+
+<div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/expressjs/compression/security/advisories/GHSA-vc2v-76pw-4v95" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fas fa-shield-halved"></i>
+      <span>expressjs/compression</span>
+      <span class="cv-oss-pr">CVE-2026-87776</span>
+    </div>
+    <p class="cv-oss-desc">응답 전송 도중 클라이언트가 연결을 끊으면 zlib Stream이 정리되지 않아 Native Memory가 누수되는 DoS 취약점(CVSS 7.5 High) 발견. 운영 중인 self-hosted n8n의 메모리 우상향을 Heap Snapshot으로 추적하다 확인했으며, GHSA-vc2v-76pw-4v95 Credits에 <strong>Finder</strong>로 등재. compression 1.8.2에서 패치</p>
+  </a>
+</div>
+
 ## <i class="fab fa-github fa-fw"></i> Open-source Contributions
 {: #open-source-contributions .cv-h2}
 
