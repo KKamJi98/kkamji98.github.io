@@ -22,6 +22,8 @@ status: current
 
 - [First-person experience posts](first-person-experience-posts.md) - 겪은 일을 다룬 글에서 화자를 지우지 않기 위한 체크리스트. 자동 게이트가 못 잡는 사각지대.
 
+- [Emphasis and bold](emphasis-and-bold.md) - 본문 강조를 붙이는 자리와 붙이지 않는 자리. `check_emphasis.py` 기준.
+
 ## Evidence
 
 - [Blog refresh backlog](blog-refresh-backlog.md) - `audit_blog_quality.py` 결과 기반 리프레시 우선순위.

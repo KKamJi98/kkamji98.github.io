@@ -34,6 +34,8 @@
 - Cilium 학습 시리즈는 사용자가 직접 쓴 고유 기록이므로 AI 문체 후보나 자동 humanizer 수정 대상으로 분류하지 않는다. 주인님이 개별 수정을 요청한 경우에만 다룬다. 다만 스크립트가 주입한 정형 문구는 이 예외에 해당하지 않는다.
 - 발행 전 `python3 kkamji_scripts/blog/audit_humanizer.py --strict --file <post>` humanizer review를 수행한다. 메타 서술, 과도한 부정 병렬, 기계적인 목록, 교과 과정 같은 문체를 찾고, 정확성 근거와 실험 증거는 유지한 채 고친다.
 - 필자가 겪은 일을 다룬 글(장애, 취약점 발견, 마이그레이션, 실험 기록)은 `docs/first-person-experience-posts.md`의 체크리스트를 함께 적용한다. `audit_humanizer.py`는 화자 부재를 검출하지 못하므로 strict 통과를 생략 근거로 쓰지 않는다.
+- 화자를 되돌리는 것과 서사로 각색하는 것은 다르다. `범인은`, `그 순간`, `드디어`, `결국 ~에 닿았습니다`, `헤맸습니다`, `숨은 원인`, `아무리 ~해 봐도` 같은 연출 표현은 쓰지 않고 관측값 그대로 쓴다. 금지선은 `docs/first-person-experience-posts.md`.
+- 본문 강조는 `docs/emphasis-and-bold.md`를 따른다. 3,000자 이상 글은 판단이 걸린 문장에 볼드를 둔다. 확인은 `python3 kkamji_scripts/blog/check_emphasis.py --file <post>`.
 
 ## Diagrams
 
