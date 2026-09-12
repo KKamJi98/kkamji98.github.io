@@ -1,6 +1,6 @@
 ---
 title: Docs index
-updated: 2026-09-07
+updated: 2026-09-13
 type: architecture
 status: current
 ---
@@ -19,6 +19,8 @@ status: current
 - [Static diagrams](static-diagrams.md) - 정적 다이어그램 제작 기준, 검증과 원본 매핑.
 
 - [Technical post template](blog-post-template.md) - 신규 기술 글의 기본 구조와 유지해야 하는 섹션.
+
+- [First-person experience posts](first-person-experience-posts.md) - 겪은 일을 다룬 글에서 화자를 지우지 않기 위한 체크리스트. 자동 게이트가 못 잡는 사각지대.
 
 ## Evidence
 

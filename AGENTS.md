@@ -33,6 +33,7 @@
 - bullet, 번호 목록, 표 셀, TL;DR과 prompt callout, 그림 캡션은 `~한다`, `~하는 역할`처럼 짧은 평서체로 둔다. 여기서 존댓말로 늘리면 목록이 문단처럼 읽힌다.
 - Cilium 학습 시리즈는 사용자가 직접 쓴 고유 기록이므로 AI 문체 후보나 자동 humanizer 수정 대상으로 분류하지 않는다. 주인님이 개별 수정을 요청한 경우에만 다룬다. 다만 스크립트가 주입한 정형 문구는 이 예외에 해당하지 않는다.
 - 발행 전 `python3 kkamji_scripts/blog/audit_humanizer.py --strict --file <post>` humanizer review를 수행한다. 메타 서술, 과도한 부정 병렬, 기계적인 목록, 교과 과정 같은 문체를 찾고, 정확성 근거와 실험 증거는 유지한 채 고친다.
+- 필자가 겪은 일을 다룬 글(장애, 취약점 발견, 마이그레이션, 실험 기록)은 `docs/first-person-experience-posts.md`의 체크리스트를 함께 적용한다. `audit_humanizer.py`는 화자 부재를 검출하지 못하므로 strict 통과를 생략 근거로 쓰지 않는다.
 
 ## Diagrams
 
