@@ -25,7 +25,7 @@ Google Cloud의 identity 기능은 이름이 비슷해도 대상이 다릅니다
 | Workforce Identity Federation | 외부 사용자와 그룹 | 회사 SSO로 Google Cloud console 또는 API 접근 |
 | GKE Workload Identity | GKE Pod | Kubernetes ServiceAccount와 Google Service Account 연결 |
 
-외부 CI가 Google Cloud에 접근하는 문제는 첫 번째 WIF입니다. GKE Pod에 Google 권한을 주려는 문제나 사람이 사내 IdP로 console에 로그인하는 문제와 같은 설정으로 취급하면 principal과 IAM binding이 어긋납니다.
+외부 CI가 Google Cloud에 접근하는 문제는 첫 번째 WIF입니다. GKE Pod에 Google 권한을 주려는 문제나 사람이 사내 IdP로 console에 로그인하는 문제와 **같은 설정으로 취급하면 principal과 IAM binding이 어긋납니다**.
 
 ---
 
@@ -53,7 +53,7 @@ _외부 OIDC token은 provider 검증과 attribute 조건을 통과한 뒤 STS�
 
 ## 3. attribute mapping과 condition은 서로 대체되지 않습니다
 
-mapping은 claim을 IAM에서 쓸 attribute로 바꾸고, condition은 provider가 assertion을 신뢰할지 결정합니다. 둘 중 하나만으로 multi-tenant issuer를 안전하게 제한했다고 볼 수 없습니다.
+mapping은 claim을 IAM에서 쓸 attribute로 바꾸고, condition은 provider가 assertion을 신뢰할지 결정합니다. **둘 중 하나만으로 multi-tenant issuer를 안전하게 제한했다고 볼 수 없습니다.**
 
 다음은 GitHub Actions OIDC provider를 설명하기 위한 일반화한 명령입니다. `PROJECT_ID`, numeric organization ID, numeric repository ID, project number는 배포 대상에 맞게 바꿔야 하며, production Project에 그대로 실행하면 pool과 provider를 생성합니다. 생성 명령은 active gcloud project에 의존하지 않도록 `--project=PROJECT_ID`를 명시합니다.
 
@@ -73,7 +73,7 @@ gcloud iam workload-identity-pools providers create-oidc github-oidc \
   --attribute-condition="assertion.repository_owner_id == 'ORG_NUMERIC_ID'"
 ```
 
-GitHub Actions OIDC issuer는 여러 조직이 공유합니다. issuer URL만 신뢰하면 다른 조직의 token까지 같은 provider로 들어올 수 있으므로, 조직 ID claim을 확인하는 condition이 필요합니다. repository나 organization name은 삭제 뒤 재사용될 수 있으므로 authorization key보다 numeric ID가 안전합니다. branch까지 제한해야 하면 `assertion.ref == 'refs/heads/main'` 같은 조건을 추가합니다. provider condition은 pool에 인증할 수 있는 identity 집합을 먼저 제한하지만, 조직 ID만 제한한 뒤 pool 전체에 binding하면 해당 조직의 모든 repository까지 권한 대상이 될 수 있습니다. repository ID 또는 environment처럼 더 좁은 principalSet을 사용합니다.
+GitHub Actions OIDC issuer는 여러 조직이 공유합니다. issuer URL만 신뢰하면 다른 조직의 token까지 같은 provider로 들어올 수 있으므로, 조직 ID claim을 확인하는 condition이 필요합니다. repository나 organization name은 삭제 뒤 재사용될 수 있으므로 authorization key보다 numeric ID가 안전합니다. branch까지 제한해야 하면 `assertion.ref == 'refs/heads/main'` 같은 조건을 추가합니다. provider condition은 pool에 인증할 수 있는 identity 집합을 먼저 제한하지만, **조직 ID만 제한한 뒤 pool 전체에 binding하면 해당 조직의 모든 repository까지 권한 대상이 될 수 있습니다.** repository ID 또는 environment처럼 더 좁은 principalSet을 사용합니다.
 
 다음처럼 repository ID attribute를 기준으로 한 principalSet을 만들면 resource policy가 특정 repository에만 적용됩니다.
 
@@ -94,7 +94,7 @@ federated principal에 resource role을 직접 부여할 수 있고, Service Acc
 | Direct resource access | project, bucket 등 target resource | 필요한 권한이 적고 호출 주체를 federated principal로 남기고 싶을 때 |
 | Service Account impersonation | 특정 Service Account IAM policy | 기존 workload identity와 role 구성을 재사용하거나 여러 API가 Service Account를 기대할 때 |
 
-impersonation을 쓴다면 target Service Account의 policy에 `roles/iam.workloadIdentityUser`를 해당 principalSet에만 부여합니다. project 전체 또는 pool 전체에 이 role을 부여하면 provider 안의 더 많은 workload가 해당 Service Account가 될 수 있습니다.
+impersonation을 쓴다면 target Service Account의 policy에 `roles/iam.workloadIdentityUser`를 해당 principalSet에만 부여합니다. **project 전체 또는 pool 전체에 이 role을 부여하면 provider 안의 더 많은 workload가 해당 Service Account가 될 수 있습니다.**
 
 ```bash
 # 변경 명령입니다. SERVICE_ACCOUNT와 principalSet은 전용 sandbox 값으로 제한합니다.
@@ -130,7 +130,7 @@ gcloud iam service-accounts get-iam-policy \
   --project=PROJECT_ID
 ```
 
-운영 전에는 expected repository와 branch 또는 environment의 token만 통과하는 positive test, 다른 repository 또는 branch token이 거부되는 negative test를 각각 남겨야 합니다. 성공만 확인하면 condition이 너무 넓은지 알 수 없습니다.
+운영 전에는 expected repository와 branch 또는 environment의 token만 통과하는 positive test, 다른 repository 또는 branch token이 거부되는 negative test를 각각 남겨야 합니다. **성공만 확인하면 condition이 너무 넓은지 알 수 없습니다.**
 
 ---
 
@@ -159,7 +159,7 @@ WIF의 위험은 "키가 없으니 안전하다"로 끝나지 않습니다. key 
 5. STS, impersonation, target resource audit log를 같은 실행 시간 창에서 연결합니다.
 6. 검증이 끝난 pool과 Service Account binding은 삭제하거나 sandbox project 전체를 폐기합니다.
 
-WIF는 Service Account key를 대체하는 좋은 기본값이지만, GitHub repository 전체를 production principal로 취급하는 설정은 너무 넓을 수 있습니다. 배포 branch, environment approval, repository ownership, target Service Account를 각각 다른 정책 계층에서 좁혀야 합니다.
+WIF는 Service Account key를 대체하는 좋은 기본값이지만, **GitHub repository 전체를 production principal로 취급하는 설정은 너무 넓을 수 있습니다.** 배포 branch, environment approval, repository ownership, target Service Account를 각각 다른 정책 계층에서 좁혀야 합니다.
 
 ---
 

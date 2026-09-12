@@ -51,7 +51,7 @@ _세 칸은 성능 순위가 아니라 요청을 실행하는 책임 경계다. 
 | CPU-heavy 작업 | Worker Thread 또는 process 분리 검토 | executor 또는 서비스 경계 검토 | event loop 밖 scheduler 또는 서비스 경계 검토 |
 | 우선 관측 | event loop delay, CPU, latency | active thread, queue, latency | event loop blocking, scheduler, latency |
 
-"Node.js는 싱글 스레드"라는 문장은 기본 JavaScript 실행 흐름을 가리킬 때만 유효합니다. libuv Worker Pool, Worker Threads, cluster process는 별도의 실행 단위입니다. 반대로 MVC request thread와 WebFlux event loop worker도 JVM의 모든 thread를 뜻하지 않습니다.
+"Node.js는 싱글 스레드"라는 문장은 **기본 JavaScript 실행 흐름을 가리킬 때만 유효합니다**. libuv Worker Pool, Worker Threads, cluster process는 별도의 실행 단위입니다. 반대로 MVC request thread와 WebFlux event loop worker도 JVM의 모든 thread를 뜻하지 않습니다.
 
 ---
 
@@ -59,7 +59,7 @@ _세 칸은 성능 순위가 아니라 요청을 실행하는 책임 경계다. 
 
 I/O wait는 CPU를 계속 계산하는 작업과 다릅니다. Node.js에서 비동기 I/O를 시작한 뒤 현재 handler가 기다리는 동안 ready callback이 처리될 수 있지만, 긴 동기 JavaScript는 main event loop를 점유합니다. [비동기 HTTP handler 글](/posts/nodejs-async-http-handling/)의 `await`도 process 전체를 멈추는 기능은 아닙니다.
 
-MVC에서는 blocking JDBC, file I/O, remote call 같은 작업이 request thread를 오래 점유할 수 있습니다. WebFlux는 blocking dependency를 없애는 마법이 아닙니다. event loop worker에서 blocking call을 실행하면 적은 worker가 다수 요청에 영향을 줄 수 있습니다. 따라서 WebFlux에서 `Thread.sleep()`을 non-blocking API처럼 사용하면 안 됩니다.
+MVC에서는 blocking JDBC, file I/O, remote call 같은 작업이 request thread를 오래 점유할 수 있습니다. **WebFlux는 blocking dependency를 없애는 마법이 아닙니다.** event loop worker에서 blocking call을 실행하면 적은 worker가 다수 요청에 영향을 줄 수 있습니다. 따라서 WebFlux에서 `Thread.sleep()`을 non-blocking API처럼 사용하면 안 됩니다.
 
 여기서 "비동기"라는 단어만으로 처리량, latency, memory 효율을 단정할 수 없습니다. workload shape, 동시성, payload, CPU limit, downstream dependency의 blocking 여부와 runtime version을 함께 봐야 합니다.
 
@@ -67,7 +67,7 @@ MVC에서는 blocking JDBC, file I/O, remote call 같은 작업이 request threa
 
 ## 5. Worker Thread와 MVC request thread를 등치하지 않기
 
-Node Worker Threads는 CPU-intensive JavaScript를 분리하는 데 적합합니다. I/O-intensive 작업을 위해 request마다 Worker Thread를 만드는 모델은 적절하지 않습니다. Worker 생성, message passing, shared memory 정책은 별도 설계 대상입니다.
+Node Worker Threads는 CPU-intensive JavaScript를 분리하는 데 적합합니다. **I/O-intensive 작업을 위해 request마다 Worker Thread를 만드는 모델은 적절하지 않습니다.** Worker 생성, message passing, shared memory 정책은 별도 설계 대상입니다.
 
 MVC의 request thread는 request lifecycle 동안 blocking 작업을 처리할 수 있도록 container가 관리하는 실행 단위입니다. WebFlux의 scheduler도 Node Worker Thread와 같은 API가 아닙니다. 세 경우 모두 "블로킹 작업을 어디에서 실행할 것인가"라는 질문은 같지만, lifecycle, queue, cancellation, observability가 다릅니다.
 
@@ -75,9 +75,9 @@ MVC의 request thread는 request lifecycle 동안 blocking 작업을 처리할 �
 
 ## 6. Spring Boot에서 MVC와 WebFlux를 고르는 실제 규칙
 
-`spring-boot-starter-web` 계열은 MVC servlet application을 구성합니다. `spring-boot-starter-webflux`는 reactive web application을 구성합니다. 두 starter가 함께 있으면 Spring Boot는 기본적으로 MVC를 자동 구성합니다. MVC application에서 `WebClient`를 사용하기 위해 WebFlux dependency를 추가하는 경우를 지원하기 위한 선택입니다.
+`spring-boot-starter-web` 계열은 MVC servlet application을 구성합니다. `spring-boot-starter-webflux`는 reactive web application을 구성합니다. **두 starter가 함께 있으면 Spring Boot는 기본적으로 MVC를 자동 구성합니다.** MVC application에서 `WebClient`를 사용하기 위해 WebFlux dependency를 추가하는 경우를 지원하기 위한 선택입니다.
 
-server stack은 dependency graph만으로 드러나지 않습니다. startup log, ApplicationContext type, active server implementation, handler thread name을 실제 환경에서 확인해야 합니다. reactive return type을 controller에서 쓴다는 사실만으로 WebFlux server라고 결론 내릴 수도 없습니다.
+server stack은 dependency graph만으로 드러나지 않습니다. startup log, ApplicationContext type, active server implementation, handler thread name을 실제 환경에서 확인해야 합니다. **reactive return type을 controller에서 쓴다는 사실만으로 WebFlux server라고 결론 내릴 수도 없습니다.**
 
 ---
 
@@ -118,7 +118,7 @@ stack을 고르기 전에 다음을 확인합니다.
 4. 팀이 JavaScript와 JVM 생태계 중 어느 쪽의 dependency와 observability를 운영할 수 있는가
 5. thread pool, scheduler, event loop delay, queue를 어떤 metric으로 검증할 것인가
 
-Node.js가 빠른지 Spring Boot가 빠른지를 먼저 묻기보다, 서비스가 어떤 작업을 기다리고 무엇을 block하며 어떤 실행 단위를 관측할 수 있는지부터 답해야 합니다.
+Node.js가 빠른지 Spring Boot가 빠른지를 먼저 묻기보다, **서비스가 어떤 작업을 기다리고 무엇을 block하며 어떤 실행 단위를 관측할 수 있는지부터 답해야 합니다.**
 
 ---
 

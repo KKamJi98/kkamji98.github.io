@@ -469,7 +469,7 @@ DMS가 만들지 않는 것은 이렇습니다.
 - trigger
 - view
 
-전체 스키마와 코드 오브젝트 변환이 필요하면 DMS Schema Conversion이나 AWS SCT가 필요합니다. "DMS task 하나로 스키마와 데이터를 모두 옮긴다"는 선지가 성립하지 않는 이유이고, stored procedure 400개가 지문에 등장하면 그 순간 변환 도구가 확정됩니다.
+전체 스키마와 코드 오브젝트 변환이 필요하면 DMS Schema Conversion이나 AWS SCT가 필요합니다. "DMS task 하나로 스키마와 데이터를 모두 옮긴다"는 선지가 성립하지 않는 이유이고, stored procedure 400개가 지문에 등장하면 변환 도구가 확정됩니다.
 
 ---
 

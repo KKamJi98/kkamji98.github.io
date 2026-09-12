@@ -40,7 +40,7 @@ image:
 _mixed GC 후에도 live가 계속 우상향이면 누수, heap은 여유인데 컨테이너가 OOMKill이면 off-heap, Old는 높지만 회수되고 안정적이면 G1의 지연 회수(정상)._
 
 - **누수**: mixed GC가 돌고 난 뒤에도 live set이 시간에 따라 **계속 우상향**한다면 진짜 누수 신호입니다. heap dump로 어떤 객체가 쌓이는지 봅니다.
-- **off-heap**: heap(`-Xmx`)은 여유로운데 **컨테이너가 OOMKill** 된다면, 범인은 heap 밖입니다. direct memory / metaspace / thread stack 같은 off-heap을 봐야 합니다([JVM 메모리 모델](/posts/jvm-memory-model/) 참고).
+- **off-heap**: heap(`-Xmx`)은 여유로운데 **컨테이너가 OOMKill** 된다면, 원인은 heap 밖입니다. direct memory / metaspace / thread stack 같은 off-heap을 봐야 합니다([JVM 메모리 모델](/posts/jvm-memory-model/) 참고).
 - **GC 거동**: Old가 높지만 mixed GC 후 회수되고 일정 수준에서 **안정적**이라면, 이건 누수가 아니라 G1의 정상 동작입니다. 다음 절이 그 이유입니다.
 
 ---

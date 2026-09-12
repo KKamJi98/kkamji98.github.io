@@ -9,7 +9,7 @@ image:
   path: /assets/img/blockchain/blockchain.webp
 ---
 
-block explorer에서 비트코인 wallet을 열면 balance가 딱 붙어 나옵니다. 그런데 비트코인의 데이터 구조 어디에도 balance라는 필드는 없습니다. `balance`라는 저장된 값을 읽어온다면 어디에 들어 있을까요. 답은 없음입니다. balance는 저장되지 않고, 미사용 출력(UTXO)을 전부 모아 합한 값을 매번 계산해서 보여줄 뿐입니다.
+block explorer에서 비트코인 wallet을 열면 balance가 딱 붙어 나옵니다. 그런데 비트코인의 데이터 구조 어디에도 balance라는 필드는 없습니다. `balance`라는 저장된 값을 읽어온다면 어디에 들어 있을까요. 답은 없음입니다. **balance는 저장되지 않고, 미사용 출력(UTXO)을 전부 모아 합한 값을 매번 계산해서 보여줄 뿐입니다.**
 
 hash pointer, signature, Merkle Tree가 기록의 무결성을 담당한다는 것은 [이전 글](https://kkamji.net/posts/blockchain-crypto-foundations/)에서 확인했습니다. 그 기록 위에서 돈은 미사용 output이라는 형태로 존재합니다. wallet의 balance가 왜 파생값인지, transaction이 미사용 output을 어떻게 소비하는지, fee가 어디로 사라지는지를 Python 시뮬레이터와 Bitcoin Core regtest node로 확인합니다. 실습은 로컬 regtest에서 진행하므로 실제 비용은 발생하지 않습니다.
 
@@ -27,7 +27,7 @@ UTXO(Unspent Transaction Output)는 한 transaction이 만든 output 중 아직 
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/utxo-balance-scan--f74a2e41619e51a4.png" %}
 _50, 20, 5를 더하면 75다. 계좌 행을 수정하는 단계가 없다. 이 세 숫자는 스캔을 설명하는 예시이며 regtest 관측값이 아니다._
 
-새 transaction이 도착하면 node는 참조하는 output이 UTXO 집합에 존재하는지만 확인하면 됩니다. 이중 지출은 이미 소비된 output을 다시 가리키는 순간 거부됩니다. 같은 outpoint를 쓰는 두 transaction은 충돌하며, 유효한 체인에는 둘 중 하나만 들어갑니다. balance를 따로 보관하는 시스템이라면 모든 계좌의 정합성을 별도로 증명해야 하지만, UTXO 모델에서는 장부와 UTXO 집합 하나로 끝납니다.
+새 transaction이 도착하면 node는 참조하는 output이 UTXO 집합에 존재하는지만 확인하면 됩니다. 이중 지출은 이미 소비된 output을 다시 가리키는 순간 거부됩니다. 같은 outpoint를 쓰는 두 transaction은 충돌하며, 유효한 체인에는 둘 중 하나만 들어갑니다. **balance를 따로 보관하는 시스템이라면 모든 계좌의 정합성을 별도로 증명해야 하지만, UTXO 모델에서는 장부와 UTXO 집합 하나로 끝납니다.**
 
 금액의 최소 단위는 satoshi입니다. 1 BTC는 100,000,000 sat입니다. 아래 관측의 fee 0.0000141 BTC는 1,410 sat입니다.
 
@@ -84,9 +84,9 @@ _30과 25를 고르면 입력이 둘이다. 쓰지 않은 UTXO는 장부에 그�
 
 input의 합에서 output의 합을 빼면 fee입니다. 관측한 거래에서 입력은 50 BTC, 출력은 1.5 + 48.4999859 = 49.9999859 BTC, 따라서 fee는 0.0000141 BTC입니다.
 
-이 0.0000141 BTC는 어느 wallet에도 속하지 않습니다. fee를 담은 UTXO는 존재하지 않습니다. 거래 직후 전체 UTXO 합계를 계산하면 정확히 fee만큼 줄어 있습니다. fee는 일단 장부에서 사라지고, 그 거래를 block에 담은 채굴자가 coinbase transaction을 통해 회수합니다. 채굴 보상(block reward)이 보조금(subsidy)과 fee의 합인 이유가 여기에 있습니다. 별도 수신 address가 없습니다.
+이 0.0000141 BTC는 어느 wallet에도 속하지 않습니다. **fee를 담은 UTXO는 존재하지 않습니다.** 거래 직후 전체 UTXO 합계를 계산하면 정확히 fee만큼 줄어 있습니다. fee는 일단 장부에서 사라지고, 그 거래를 block에 담은 채굴자가 coinbase transaction을 통해 회수합니다. 채굴 보상(block reward)이 보조금(subsidy)과 fee의 합인 이유가 여기에 있습니다. 별도 수신 address가 없습니다.
 
-fee는 금액이 아니라 크기에 비례합니다. 관측한 거래는 size 222, vsize 141이었습니다. fee 1,410 sat을 141 vB로 나누면 10 sat/vB입니다. 같은 1.5 BTC라도 입력이 많거나 Script가 길면 vsize가 커지고 fee도 올라갑니다.
+**fee는 금액이 아니라 크기에 비례합니다.** 관측한 거래는 size 222, vsize 141이었습니다. fee 1,410 sat을 141 vB로 나누면 10 sat/vB입니다. 같은 1.5 BTC라도 입력이 많거나 Script가 길면 vsize가 커지고 fee도 올라갑니다.
 
 vsize는 레거시 바이트와 다릅니다. 오늘날 block 한도는 weight 4,000,000이고, 4 weight가 1 vbyte입니다. witness 데이터는 더 작은 계수로 셉니다. 그래서 같은 거래의 size 222와 vsize 141이 갈라집니다. fee 시장이 쓰는 단위는 보통 sat/vB입니다.
 
@@ -102,7 +102,7 @@ vsize는 레거시 바이트와 다릅니다. 오늘날 block 한도는 weight 4
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/wallet-to-confirmation--45d415a12bbc306f.png" %}
 _signature가 붙은 transaction은 바로 장부에 기록되지 않는다. mempool에 있는 동안 confirmation은 0이다._
 
-mempool에 있는 동안에도 wallet UI의 balance 계산은 동작할 수 있습니다. 다만 그 거래가 소비하려는 UTXO는 잠긴 상태가 됩니다. 셀프 전송 transaction을 mempool에 넣어두면 잔돈으로 받을 UTXO가 아직 확정되지 않았기 때문에 그다음 전송이 그 UTXO를 쓰지 못합니다. 실습 중 0.5 BTC를 자신에게 보내는 거래를 만들었을 때, 확정 전까지 wallet의 잔돈 UTXO가 사용 불가 상태로 잠기는 것을 관찰했습니다.
+mempool에 있는 동안에도 wallet UI의 balance 계산은 동작할 수 있습니다. 다만 그 거래가 소비하려는 UTXO는 잠긴 상태가 됩니다. **셀프 전송 transaction을 mempool에 넣어두면 잔돈으로 받을 UTXO가 아직 확정되지 않았기 때문에 그다음 전송이 그 UTXO를 쓰지 못합니다.** 실습 중 0.5 BTC를 자신에게 보내는 거래를 만들었을 때, 확정 전까지 wallet의 잔돈 UTXO가 사용 불가 상태로 잠기는 것을 관찰했습니다.
 
 block 하나를 더 채굴하자 잠금이 풀렸습니다. 수신 output 0.5 BTC와 잔돈 output이 각각 별도의 UTXO로 확정되어 목록에 나타납니다. confirmation이란 이 거래가 만드는 UTXO 변경이 체인 합의에 편입되었음을 뜻합니다. confirmation 수가 쌓일수록 되돌리기 어려워지는 reorg 가능성을 고려하면, 실무에서 6 confirmation을 기다리는 관행은 이 확정의 신뢰도를 확률적으로 높이는 절차입니다. 로컬에서 관측한 값은 1 block 편입이며, 6 confirmation 관행을 여기서 재현한 것은 아닙니다.
 
@@ -165,7 +165,7 @@ class UtxoLedger:
 
 비트코인의 돈은 계좌가 아니라 미사용 output이라는 사실에서 나머지가 따라옵니다. balance는 저장값이 아니라 UTXO 집합의 합계라는 파생값입니다. transaction은 outpoint로 이전 output을 통째로 소비하고 잔돈을 새 output으로 발행합니다. fee는 입력과 출력의 차이로 정의되며 어떤 output에도 존재하지 않다가 채굴자가 회수합니다. confirmation은 이 모든 UTXO 변경이 합의에 편입되는 과정입니다.
 
-그래서 wallet이 balance는 있는데 전송이 안 되는 상황은 이상 현상이 아닙니다. 사용 가능한 UTXO가 없거나, mempool에서 잠겼거나, 남은 조각이 dust에 가깝기 때문입니다. fee가 송금액이 아니라 vsize에 비례하는 것도 같은 모델의 직접 결과입니다. explorer 숫자와 node의 `listunspent`가 어긋나면, 먼저 어느 쪽 UTXO 집합을 보고 있는지부터 보면 됩니다.
+**그래서 wallet이 balance는 있는데 전송이 안 되는 상황은 이상 현상이 아닙니다.** 사용 가능한 UTXO가 없거나, mempool에서 잠겼거나, 남은 조각이 dust에 가깝기 때문입니다. fee가 송금액이 아니라 vsize에 비례하는 것도 같은 모델의 직접 결과입니다. explorer 숫자와 node의 `listunspent`가 어긋나면, 먼저 어느 쪽 UTXO 집합을 보고 있는지부터 보면 됩니다.
 
 이더리움은 같은 문제를 계정 객체에 `balance`와 `nonce`를 저장하는 방식으로 다르게 풉니다. 두 설계의 트레이드오프는 UTXO를 이해한 다음에 비교해야 선이 보입니다.
 

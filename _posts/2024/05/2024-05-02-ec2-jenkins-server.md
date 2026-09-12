@@ -31,7 +31,7 @@ Jenkins controller를 EC2에 두고 build 실행은 이후 Kubernetes agent에 �
 | agent | controller가 할당한 build와 test를 실행하는 worker입니다. Kubernetes Pod agent도 이 역할입니다. |
 | `JENKINS_HOME` | job 설정, build metadata, plugin, credential 관련 데이터를 보관하는 Jenkins data directory입니다. |
 
-작은 팀 기준으로 Jenkins는 4 GiB 이상의 memory와 충분한 persistent disk를 권장합니다. EC2 instance type은 build를 controller에서 실행할지, agent에서 실행할지에 따라 달라집니다. controller 자체에는 build cache와 대량 artifact를 쌓지 않는 편이 운영과 backup에 유리합니다.
+작은 팀 기준으로 Jenkins는 4 GiB 이상의 memory와 충분한 persistent disk를 권장합니다. EC2 instance type은 build를 controller에서 실행할지, agent에서 실행할지에 따라 달라집니다. **controller 자체에는 build cache와 대량 artifact를 쌓지 않는 편이 운영과 backup에 유리합니다.**
 
 ```text
 developer
@@ -43,13 +43,13 @@ Jenkins controller on EC2 ----- schedules ----- Kubernetes agent Pod
 JENKINS_HOME and backups                        build, test, artifact upload
 ```
 
-controller는 pipeline의 제어와 상태를 맡고, 신뢰하지 않는 repository code를 실행하는 build는 agent에 격리하는 것이 핵심입니다. Jenkins도 built-in node에서 build를 실행하지 않는 controller isolation을 권장합니다.
+controller는 pipeline의 제어와 상태를 맡고, **신뢰하지 않는 repository code를 실행하는 build는 agent에 격리하는 것이 핵심입니다.** Jenkins도 built-in node에서 build를 실행하지 않는 controller isolation을 권장합니다.
 
 ---
 
 ## 2. Java 21 설치
 
-Jenkins 설치보다 Java를 먼저 설치합니다. Jenkins 공식 설치 문서는 현재 Java 21 이상을 요구하며, Java를 나중에 설치하면 service가 유효한 Java runtime을 찾지 못할 수 있다고 안내합니다.
+Jenkins 설치보다 Java를 먼저 설치합니다. Jenkins 공식 설치 문서는 현재 Java 21 이상을 요구하며, **Java를 나중에 설치하면 service가 유효한 Java runtime을 찾지 못할 수 있다고 안내합니다.**
 
 ```bash
 sudo apt update
@@ -84,7 +84,7 @@ sudo systemctl status jenkins --no-pager
 sudo journalctl -u jenkins.service -n 100 --no-pager
 ```
 
-기본 listener는 8080입니다. 이미 사용 중인 port가 있다면 systemd drop-in으로 `JENKINS_PORT`를 바꾸고 daemon reload 후 재시작합니다. package가 제공하는 unit file을 직접 수정하면 package upgrade에서 덮어쓸 수 있습니다.
+기본 listener는 8080입니다. 이미 사용 중인 port가 있다면 systemd drop-in으로 `JENKINS_PORT`를 바꾸고 daemon reload 후 재시작합니다. **package가 제공하는 unit file을 직접 수정하면 package upgrade에서 덮어쓸 수 있습니다.**
 
 ---
 
@@ -96,7 +96,7 @@ sudo journalctl -u jenkins.service -n 100 --no-pager
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-이 값은 one-time administrator setup에만 사용하고 chat, source repository, terminal capture에 남기지 않습니다. setup wizard에서는 필요한 plugin만 설치하고, administrator 계정에는 개인 계정과 강력한 password 또는 조직의 identity provider를 사용합니다.
+**이 값은 one-time administrator setup에만 사용하고 chat, source repository, terminal capture에 남기지 않습니다.** setup wizard에서는 필요한 plugin만 설치하고, administrator 계정에는 개인 계정과 강력한 password 또는 조직의 identity provider를 사용합니다.
 
 EC2 security group은 다음을 기준으로 설계합니다.
 

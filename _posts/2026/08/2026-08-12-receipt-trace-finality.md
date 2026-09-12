@@ -9,7 +9,7 @@ image:
   path: /assets/img/blockchain/blockchain.webp
 ---
 
-JSON-RPC가 HTTP 200을 돌려줘도 그 거래는 성공이 아닐 수 있습니다. receipt의 `status`가 `0x0`이면 실행은 되돌려졌고, gas는 이미 소비되었습니다. explorer 화면의 빨간 실패 표시가 가리키는 값이 바로 그 필드입니다.
+**JSON-RPC가 HTTP 200을 돌려줘도 그 거래는 성공이 아닐 수 있습니다.** receipt의 `status`가 `0x0`이면 실행은 되돌려졌고, gas는 이미 소비되었습니다. explorer 화면의 빨간 실패 표시가 가리키는 값이 바로 그 필드입니다.
 
 [이전 글](https://kkamji.net/posts/reentrancy-cei/)에서 출금 순서가 자금을 비울 수 있음을 확인했습니다. 이번에는 실패한 호출을 node가 어떻게 기록하는지를 봅니다. deploy와 실패 재현은 로컬 Anvil에서 했고, Sepolia 공개 RPC는 읽기만 했습니다. Sepolia에 contract를 올리지 않았습니다. Anvil 기본 키로 공개망에 보내지 않았습니다. 전용 testnet wallet이 없기 때문입니다.
 
@@ -40,7 +40,7 @@ Error: Failed to estimate gas
 execution reverted: boom
 ```
 
-실패를 시뮬레이트한 것과 실패를 block에 넣는 것은 다른 객체입니다. 전자는 에러 문자열만 남고, 후자라야 `status`와 `gasUsed`를 읽을 수 있습니다.
+**실패를 시뮬레이트한 것과 실패를 block에 넣는 것은 다른 객체입니다.** 전자는 에러 문자열만 남고, 후자라야 `status`와 `gasUsed`를 읽을 수 있습니다.
 
 {% include diagrams/static/blockchain/receipt-estimate-blocked.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/receipt-estimate-blocked--ea4bd66965376b0d.png" %}
@@ -62,7 +62,7 @@ revertReason        boom
 transactionHash     0x5e5d58bb...
 ```
 
-`status=0x0`은 상태 트리가 그 호출 이전으로 되돌아갔다는 뜻입니다. 그래도 `gasUsed`는 21492입니다. revert도 EVM 실행이고, 실행한 만큼 gas를 걷습니다. `logs`가 빈 배열인 이유는 이벤트를 emit하기 전에 되돌려졌기 때문입니다. `blockNumber=0x5`는 그 실패가 Anvil block 5에 들어갔다는 뜻입니다.
+`status=0x0`은 상태 트리가 그 호출 이전으로 되돌아갔다는 뜻입니다. 그래도 `gasUsed`는 21492입니다. **revert도 EVM 실행이고, 실행한 만큼 gas를 걷습니다.** `logs`가 빈 배열인 이유는 이벤트를 emit하기 전에 되돌려졌기 때문입니다. `blockNumber=0x5`는 그 실패가 Anvil block 5에 들어갔다는 뜻입니다.
 
 {% include diagrams/static/blockchain/receipt-forced-status.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/receipt-forced-status--403470e3061db72e.png" %}
@@ -96,9 +96,9 @@ finalized   11544938    (latest - 64)
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/sepolia-head-tags--1bc74bd4b86f13a2.png" %}
 _latest는 지금 이 node의 끝이다. finalized는 그보다 64block 뒤다. 이 간격은 그 시점의 공개 RPC 한 곳이다._
 
-`latest`는 지금 이 node가 보고 있는 끝입니다. `safe`는 그 node가 더 덜 흔들린다고 보는 높이입니다. `finalized`는 합의 관점에서 더 굳은 높이입니다. 64block 차이는 reorg 창이 아직 남아 있다는 뜻으로 읽습니다. indexer나 입금 confirmation 수를 `latest`에만 걸면, 그 창 안에서 같은 receipt가 다른 분기에 속할 수 있습니다.
+`latest`는 지금 이 node가 보고 있는 끝입니다. `safe`는 그 node가 더 덜 흔들린다고 보는 높이입니다. `finalized`는 합의 관점에서 더 굳은 높이입니다. 64block 차이는 reorg 창이 아직 남아 있다는 뜻으로 읽습니다. indexer나 입금 confirmation 수를 `latest`에만 걸면, **그 창 안에서 같은 receipt가 다른 분기에 속할 수 있습니다.**
 
-33과 64는 위 세 높이의 뺄셈입니다. 다른 node, 다른 시각이면 간격이 달라집니다. 변하지 않는 것은 태그 세 개가 같은 질문이 아니라는 점입니다.
+33과 64는 위 세 높이의 뺄셈입니다. 다른 node, 다른 시각이면 간격이 달라집니다. **변하지 않는 것은 태그 세 개가 같은 질문이 아니라는 점입니다.**
 
 ---
 

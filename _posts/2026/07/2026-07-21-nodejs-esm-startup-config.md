@@ -24,7 +24,7 @@ HTTP handler의 Promise 오류 경계를 잘 설계해도, 잘못된 설정으�
 
 [Phase 1](/posts/nodejs-async-http-handling/)은 HTTP request가 handler에 들어온 뒤 Promise rejection, timeout, client disconnect를 response policy로 바꾸는 경계를 다뤘습니다. request가 오기 전 구간은 이야기가 다릅니다. process가 module을 load하고, configuration을 parse하고, TCP port bind를 시도하는 과정입니다.
 
-request lifetime은 client가 request를 보내고 response가 끝날 때까지의 범위입니다. process startup lifetime은 Node CLI가 program을 시작해 `listening` 상태에 도달하거나 실패하고 종료할 때까지의 범위입니다. invalid configuration은 HTTP 500이 아닙니다. `listen()` 전이라면 client에 response를 보낼 HTTP server 자체가 없습니다.
+request lifetime은 client가 request를 보내고 response가 끝날 때까지의 범위입니다. process startup lifetime은 Node CLI가 program을 시작해 `listening` 상태에 도달하거나 실패하고 종료할 때까지의 범위입니다. **invalid configuration은 HTTP 500이 아닙니다.** `listen()` 전이라면 client에 response를 보낼 HTTP server 자체가 없습니다.
 
 기준은 native `node:http`와 Node.js v26의 ESM 규칙입니다. Event Loop 내부 scheduling, Worker Pool, framework dependency injection, hot reload, secret manager 선택은 이 경계 밖입니다.
 
@@ -36,7 +36,7 @@ request lifetime은 client가 request를 보내고 response가 끝날 때까지�
 {% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/node-esm-startup-config-flow--11920b03e5ee2b79.png" %}
 _Node CLI가 environment 값을 제공한 뒤 ESM module graph를 load합니다. module graph가 통과하면 application이 configuration을 검증하고, valid configuration에서만 server error listener를 등록한 뒤 `listen()`을 호출합니다._
 
-application validation이 모든 startup 오류를 먼저 걸러내지는 않습니다. static import의 resolution 또는 module evaluation이 실패하면 `main.mjs`의 application code가 실행되기 전에 process가 실패할 수 있습니다. configuration failure와 port bind failure는 서로 다른 관측 지점과 대응이 필요합니다.
+**application validation이 모든 startup 오류를 먼저 걸러내지는 않습니다.** static import의 resolution 또는 module evaluation이 실패하면 `main.mjs`의 application code가 실행되기 전에 process가 실패할 수 있습니다. configuration failure와 port bind failure는 서로 다른 관측 지점과 대응이 필요합니다.
 
 | 발생 지점 | application code가 할 수 있는 일 | HTTP response |
 | --- | --- | --- |
@@ -86,7 +86,7 @@ ESM에서 CommonJS를 import할 때 default export는 제공되지만, named exp
 
 Node CLI의 `--env-file`은 file의 값을 `process.env`에 제공합니다. 값이 제공된 뒤에도 environment variable은 text입니다. 예를 들어 `APP_PORT=3000`은 number가 아니고 `DEBUG=false`도 boolean이 아닙니다. `Boolean(process.env.DEBUG)`는 문자열 `"false"`도 truthy로 처리하므로 configuration parser로 쓰면 안 됩니다.
 
-application은 startup에서 값을 읽고 required field, range, enum, URL, field 조합을 검증한 뒤 typed configuration object로 변환합니다. 이 검증은 service가 선택한 startup policy입니다. Node가 자동으로 강제하는 schema는 없습니다.
+application은 startup에서 값을 읽고 required field, range, enum, URL, field 조합을 검증한 뒤 typed configuration object로 변환합니다. 이 검증은 service가 선택한 startup policy입니다. **Node가 자동으로 강제하는 schema는 없습니다.**
 
 ```js
 export class ConfigurationError extends Error {}
@@ -142,7 +142,7 @@ try {
 
 `listen()`은 synchronous bind success를 반환하는 API가 아닙니다. bind failure는 server의 `error` event로 전달될 수 있으므로 listener를 `listen()`보다 앞에 둡니다. listener 없는 EventEmitter의 `error` event는 process를 종료시킬 수 있습니다. readiness log도 `listen()` 호출 직후가 아니라 callback 또는 `listening` event 이후에 남깁니다.
 
-configuration validation은 module resolution failure를 가로채지 못합니다. static import graph가 먼저 resolve되고 evaluate된 뒤에 entry module body가 실행될 수 있기 때문입니다. 운영 runbook은 module graph, configuration, port bind, request handling을 각각 다른 startup 또는 runtime error class로 분리해야 합니다.
+**configuration validation은 module resolution failure를 가로채지 못합니다.** static import graph가 먼저 resolve되고 evaluate된 뒤에 entry module body가 실행될 수 있기 때문입니다. 운영 runbook은 module graph, configuration, port bind, request handling을 각각 다른 startup 또는 runtime error class로 분리해야 합니다.
 
 ---
 
@@ -176,7 +176,7 @@ import './state.mjs?first';
 import './state.mjs?second';
 ```
 
-위처럼 URL identity가 달라지면 module-level state가 두 번 초기화될 수 있습니다. module이 process 전체에서 언제나 한 번만 실행된다는 보장은 없습니다. test isolation, hot reload, cache invalidation은 loader identity와 side effect를 함께 검토해야 합니다.
+위처럼 URL identity가 달라지면 module-level state가 두 번 초기화될 수 있습니다. **module이 process 전체에서 언제나 한 번만 실행된다는 보장은 없습니다.** test isolation, hot reload, cache invalidation은 loader identity와 side effect를 함께 검토해야 합니다.
 
 ---
 

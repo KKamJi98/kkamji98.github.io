@@ -33,7 +33,7 @@ function withdraw() external {
 }
 ```
 
-`call`은 수신자가 contract이면 `receive` 또는 `fallback`을 실행합니다. 그 함수가 다시 `withdraw`를 호출하면, 아직 `balances[msg.sender]`가 남아 있으므로 `require(amount > 0)`를 통과합니다. 두 번째 송금이 나갑니다.
+`call`은 수신자가 contract이면 `receive` 또는 `fallback`을 실행합니다. 그 함수가 다시 `withdraw`를 호출하면, 아직 `balances[msg.sender]`가 남아 있으므로 `require(amount > 0)`를 통과합니다. **두 번째 송금이 나갑니다.**
 
 테스트는 피해자 address `0xBEEF`에 10 ETH를 넣고 `vm.prank`로 입금합니다. 공격 contract는 1 ETH를 넣은 뒤 `attack()`에서 `withdraw`를 시작합니다. Solc 0.8.35에서 결과는 금고 balance 0이었습니다. 피해자 자금까지 빠져나갔습니다.
 
@@ -80,7 +80,7 @@ _call이 끝나기 전에 balance가 남아 있으면 같은 출금이 반복된
 
 ## 3. 스토리지를 먼저 바꾸면 중첩 출금이 되돌아온다
 
-`SecureVault`는 같은 `deposit`과 같은 `require`를 씁니다. 바뀐 것은 두 줄의 순서입니다. mapping을 0으로 만든 뒤에 보냅니다.
+`SecureVault`는 같은 `deposit`과 같은 `require`를 씁니다. **바뀐 것은 두 줄의 순서입니다.** mapping을 0으로 만든 뒤에 보냅니다.
 
 ```solidity
 function withdraw() external {
@@ -94,7 +94,7 @@ function withdraw() external {
 
 공격 contract도 같습니다. `SecureAttacker.receive`는 금고에 1 ETH 이상이 있으면 다시 `withdraw`를 호출합니다. 중첩 호출이 읽는 `balances[attacker]`는 이미 0입니다. `require(amount > 0, "empty")`가 revert합니다.
 
-그 revert는 안쪽 `withdraw`만의 실패가 아닙니다. 바깥 `call`이 `(false, ...)`를 돌려주고, `require(ok, "send failed")`가 바깥 `withdraw`를 되돌립니다. `attack()` 전체가 revert합니다. 공격자의 1 ETH 입금도 같이 되돌아갑니다. 피해자 10 ETH만 금고에 남습니다.
+**그 revert는 안쪽 `withdraw`만의 실패가 아닙니다.** 바깥 `call`이 `(false, ...)`를 돌려주고, `require(ok, "send failed")`가 바깥 `withdraw`를 되돌립니다. `attack()` 전체가 revert합니다. 공격자의 1 ETH 입금도 같이 되돌아갑니다. 피해자 10 ETH만 금고에 남습니다.
 
 ```text
 [PASS] test_secureVaultKeepsVictimFunds()
@@ -109,13 +109,13 @@ _스토리지를 먼저 바꾸면 receive가 다시 들어와도 amount는 0이�
 
 이 순서를 Checks-effects-interactions라고 부릅니다. 검사, 상태 변경, 외부 호출입니다. Solidity 문서의 re-entrancy 절이 같은 순서를 권고합니다.
 
-`nonReentrant` 락은 이번 랩의 소스에 없습니다. 락은 같은 실수를 한 번 더 막는 장치에 가깝고, 이 순서 자체를 대체하는 관측은 하지 않았습니다.
+`nonReentrant` 락은 이번 랩의 소스에 없습니다. **락은 같은 실수를 한 번 더 막는 장치에 가깝고, 이 순서 자체를 대체하는 관측은 하지 않았습니다.**
 
 ---
 
 ## 4. 두 테스트가 같은 공격을 다른 결과로 고정한다
 
-두 테스트의 준비는 같습니다. 피해자 10 ETH를 먼저 넣고, 공격자가 1 ETH로 `attack()`을 엽니다. 갈라지는 지점은 `withdraw`가 `call`보다 먼저 mapping을 지우는가입니다.
+두 테스트의 준비는 같습니다. 피해자 10 ETH를 먼저 넣고, 공격자가 1 ETH로 `attack()`을 엽니다. **갈라지는 지점은 `withdraw`가 `call`보다 먼저 mapping을 지우는가입니다.**
 
 ```text
 [PASS] test_insecureVaultIsDrained()
@@ -124,7 +124,7 @@ _스토리지를 먼저 바꾸면 receive가 다시 들어와도 amount는 0이�
 Solc 0.8.35
 ```
 
-재진입은 권한이 없는 함수의 문제가 아닙니다. 아직 끝나지 않은 출금이 같은 balance를 다시 읽는 문제입니다. 수정은 접근 제어를 추가한 것이 아니라, 외부 호출 전에 스토리지를 바꾼 한 줄 이동이었습니다.
+재진입은 권한이 없는 함수의 문제가 아닙니다. **아직 끝나지 않은 출금이 같은 balance를 다시 읽는 문제입니다.** 수정은 접근 제어를 추가한 것이 아니라, 외부 호출 전에 스토리지를 바꾼 한 줄 이동이었습니다.
 
 이 관측은 로컬 테스트에서만 나왔고 실제 자산은 움직이지 않았습니다.
 

@@ -25,7 +25,7 @@ MicroK8s 클러스터에 계산 자원을 늘리고 싶을 때 worker node를 �
 
 ## 1. 먼저 확인할 것
 
-MicroK8s의 worker는 kubelet과 kube-proxy가 local API server proxy를 통해 control plane의 API server와 통신하는 node입니다. 따라서 worker를 늘리는 것은 Pod 실행 capacity를 늘리는 작업이지 control plane 장애 허용성을 높이는 작업은 아닙니다. HA가 목적이라면 control plane node 수와 datastore quorum을 별도로 설계해야 합니다.
+MicroK8s의 worker는 kubelet과 kube-proxy가 local API server proxy를 통해 control plane의 API server와 통신하는 node입니다. 따라서 **worker를 늘리는 것은 Pod 실행 capacity를 늘리는 작업이지 control plane 장애 허용성을 높이는 작업은 아닙니다.** HA가 목적이라면 control plane node 수와 datastore quorum을 별도로 설계해야 합니다.
 
 | 항목 | 확인 이유 |
 | --- | --- |
@@ -34,7 +34,7 @@ MicroK8s의 worker는 kubelet과 kube-proxy가 local API server proxy를 통해 
 | security group | 25000/TCP는 조인에 필요하며, cluster 내부 Pod와 Service 통신도 node 사이에서 허용되어야 합니다. |
 | storage | hostpath storage는 node-local입니다. Stateful workload에는 공유 또는 분산 storage를 검토합니다. |
 
-EC2에서는 control plane security group의 25000/TCP source를 worker subnet 또는 worker security group으로 제한합니다. 0.0.0.0/0으로 여는 것은 조인 token 노출 위험을 키우므로 피합니다. 필요한 node 간 통신 범위는 사용하는 CNI, addon, control plane 구성에 따라 다르므로 배포한 MicroK8s의 services and ports 문서와 security group rule을 함께 점검합니다.
+EC2에서는 control plane security group의 25000/TCP source를 worker subnet 또는 worker security group으로 제한합니다. **0.0.0.0/0으로 여는 것은 조인 token 노출 위험을 키우므로 피합니다.** 필요한 node 간 통신 범위는 사용하는 CNI, addon, control plane 구성에 따라 다르므로 배포한 MicroK8s의 services and ports 문서와 security group rule을 함께 점검합니다.
 
 ```text
 control plane                         worker
@@ -80,7 +80,7 @@ sudo microk8s add-node
 sudo microk8s join <private-ip>:25000/<token>/<node-id> --worker
 ```
 
-`--worker` 없이 조인하면 일반 cluster member로 추가되어 control plane 구성에 영향을 줄 수 있습니다. 조인이 완료되면 worker의 API server proxy가 control plane endpoint 목록을 관리합니다. control plane endpoint를 load balancer 뒤에 둘 때는 MicroK8s 문서의 worker endpoint 설정 절차를 따릅니다.
+`--worker` 없이 조인하면 **일반 cluster member로 추가되어 control plane 구성에 영향을 줄 수 있습니다.** 조인이 완료되면 worker의 API server proxy가 control plane endpoint 목록을 관리합니다. control plane endpoint를 load balancer 뒤에 둘 때는 MicroK8s 문서의 worker endpoint 설정 절차를 따릅니다.
 
 ---
 
@@ -107,7 +107,7 @@ sudo microk8s kubectl rollout status deployment/web
 sudo microk8s kubectl get pods -l app=web -o wide
 ```
 
-이 결과는 scheduler가 해당 worker를 사용할 수 있음을 보여주지만, replica가 모든 node에 균등 분산된다는 보장은 아닙니다. node별 배치가 요구되면 resource request와 limit을 설정하고, 필요에 따라 node affinity, topology spread constraint, taint와 toleration을 명시합니다.
+이 결과는 scheduler가 해당 worker를 사용할 수 있음을 보여주지만, **replica가 모든 node에 균등 분산된다는 보장은 아닙니다.** node별 배치가 요구되면 resource request와 limit을 설정하고, 필요에 따라 node affinity, topology spread constraint, taint와 toleration을 명시합니다.
 
 실습을 마쳤다면 리소스를 정리합니다.
 

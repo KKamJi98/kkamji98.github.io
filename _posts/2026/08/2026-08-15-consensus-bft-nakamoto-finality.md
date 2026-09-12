@@ -24,7 +24,7 @@ active    height=114  branchlen=0
 invalid   height=112  branchlen=1
 ```
 
-invalid 팁에 들어 있던 거래의 confirmation은 0입니다. 그 거래가 사라지지 않았습니다. 이 node가 따르는 활성 체인 조상에 없을 뿐입니다. Nakamoto 합의에서 정본은 더 많은 작업을 쌓은 쪽이고, 짧은 쪽의 확인은 철회됩니다.
+invalid 팁에 들어 있던 거래의 confirmation은 0입니다. 그 거래가 사라지지 않았습니다. 이 node가 따르는 활성 체인 조상에 없을 뿐입니다. **Nakamoto 합의에서 정본은 더 많은 작업을 쌓은 쪽이고, 짧은 쪽의 확인은 철회됩니다.**
 
 실무의 6 confirmation 관행은 이 깊이를 확률적으로 키우는 운영 규칙입니다. 이번 랩은 로컬 1-block 무효화입니다. 메인넷의 6 confirmation을 여기서 재현한 것은 아닙니다.
 
@@ -42,13 +42,13 @@ safe        11545310    (latest - 43)
 finalized   11545279    (latest - 74)
 ```
 
-같은 URL을 같은 날 이미 세 번 읽었습니다. 간격은 33/64, 56/88, 33/64였고, 이번에는 43/74입니다. 상수가 아닙니다.
+같은 URL을 같은 날 이미 세 번 읽었습니다. 간격은 33/64, 56/88, 33/64였고, 이번에는 43/74입니다. **상수가 아닙니다.**
 
 {% include diagrams/static/blockchain/nakamoto-vs-pos-heads.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/nakamoto-vs-pos-heads--ea6289125f53dc36.png" %}
 _Bitcoin confirmation은 활성 팁까지의 깊이다. finalized는 two-thirds checkpoint다._
 
-두 그림을 한 질문에 넣으면 사고가 납니다. Bitcoin explorer의 confirmation 1과 Ethereum의 `finalized`를 같은 “확정”으로 번역하면, reorg 창과 checkpoint 창을 같은 타이머로 취급하게 됩니다.
+**두 그림을 한 질문에 넣으면 사고가 납니다.** Bitcoin explorer의 confirmation 1과 Ethereum의 `finalized`를 같은 "확정"으로 번역하면, reorg 창과 checkpoint 창을 같은 타이머로 취급하게 됩니다.
 
 ---
 
@@ -56,21 +56,21 @@ _Bitcoin confirmation은 활성 팁까지의 깊이다. finalized는 two-thirds 
 
 ethereum.org는 체인이 네 epoch보다 길게 finalize하지 못하면 inactivity leak이 켜진다고 적습니다. 투표를 못 하는 stake의 잔액이 줄어듭니다. 목적은 남은 활성 validator의 비율을 다시 two-thirds 위로 올리는 것입니다.
 
-운영 화면에서는 이렇게 보입니다. `eth_syncing`은 `false`일 수 있고 HTTP는 200입니다. 그런데 `latest`와 `finalized` 간격이 평소보다 벌어지고, 그 상태가 epoch 단위로 유지됩니다. 이전 글의 운영 사다리에서 tag 칸이 실패한 것과 같습니다. 그 실패의 합의 쪽 이름이 inactivity leak입니다.
+운영 화면에서는 이렇게 보입니다. **`eth_syncing`은 `false`일 수 있고 HTTP는 200입니다.** 그런데 `latest`와 `finalized` 간격이 평소보다 벌어지고, 그 상태가 epoch 단위로 유지됩니다. 이전 글의 운영 사다리에서 tag 칸이 실패한 것과 같습니다. 그 실패의 합의 쪽 이름이 inactivity leak입니다.
 
 {% include diagrams/static/blockchain/pos-inactivity-leak.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/pos-inactivity-leak--7a794370044e3eb3.png" %}
 _이번 Sepolia 조회는 leak 구간이 아니다. 문서는 4 epoch 규칙을 적는다._
 
-이번 스냅샷의 74 block 간격은 leak을 관측한 값이 아닙니다. 공개 RPC 한 곳의 지연과 빈 slot이 섞인 숫자입니다. leak 자체를 로컬에서 재현하지 않았습니다.
+이번 스냅샷의 74 block 간격은 leak을 관측한 값이 아닙니다. 공개 RPC 한 곳의 지연과 빈 slot이 섞인 숫자입니다. **leak 자체를 로컬에서 재현하지 않았습니다.**
 
 ---
 
 ## 4. 고전 BFT는 두 번째 commit 대신 멈춘다
 
-Stanford CS 251과 Shi의 합의 교재는 Bitcoin 앞에 Byzantine broadcast와 state machine replication을 둡니다. 고전 BFT 계열은 충돌하는 두 commit을 동시에 인정하지 않는 쪽으로 안전성을 잡습니다. 정족수가 안 모이면 새 commit이 나오지 않습니다. 운영자에게는 “체인이 갈라졌다”가 아니라 “높이가 멈췄다”로 보입니다.
+Stanford CS 251과 Shi의 합의 교재는 Bitcoin 앞에 Byzantine broadcast와 state machine replication을 둡니다. 고전 BFT 계열은 충돌하는 두 commit을 동시에 인정하지 않는 쪽으로 안전성을 잡습니다. 정족수가 안 모이면 새 commit이 나오지 않습니다. 운영자에게는 "체인이 갈라졌다"가 아니라 "높이가 멈췄다"로 보입니다.
 
-이 문단은 클러스터를 띄운 관측이 아닙니다. 로컬에 Tendermint나 Istanbul BFT를 올리지 않았습니다. 가져갈 운영 문장만 고정합니다. Nakamoto는 팁이 둘 생기고, Gasper는 finalized가 늦어지며, 고전 BFT는 진행이 멈춥니다. 같은 “합의 장애”라도 runbook의 첫 검사가 다릅니다.
+이 문단은 클러스터를 띄운 관측이 아닙니다. 로컬에 Tendermint나 Istanbul BFT를 올리지 않았습니다. 가져갈 운영 문장만 고정합니다. **Nakamoto는 팁이 둘 생기고, Gasper는 finalized가 늦어지며, 고전 BFT는 진행이 멈춥니다.** 같은 "합의 장애"라도 runbook의 첫 검사가 다릅니다.
 
 ---
 

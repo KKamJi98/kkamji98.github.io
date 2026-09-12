@@ -9,7 +9,7 @@ image:
   path: /assets/img/kubernetes/kubernetes.webp
 ---
 
-Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의 성능을 내기 위해서는 Kubernetes Cluster 자체의 탄탄한 퍼포먼스 뒷받침되어야 합니다.  
+Cilium은 Kubernetes 내부에서 동작합니다. 따라서 Cilium이 본래의 성능을 내기 위해서는 **Kubernetes Cluster 자체의 탄탄한 퍼포먼스 뒷받침되어야 합니다**.  
 
 이번 글에서는 Kubernetes Cluster의 Performance를 정량적으로 측정하고 비교 가능한 기준선을 만드는 도구인 `Kube-burner`에 대해 알아보고, 로컬 Kind Kubernetes Cluster에서 해당 툴에 대한 실습내용에 대해 공유하도록 하겠습니다.
 
@@ -504,7 +504,7 @@ kubectl get pod -A --no-headers | wc -l
 
 #### 5.2.1. 해결 (max_pods limit 증가)
 
-위에서 max_pods limit이 110에 걸려 6개의 pod가 Pending 상태임을 확인했습니다. max_pods limit을 증가 시켜 위의 문제를 해결해보겠습니다.
+위에서 **max_pods limit이 110에 걸려 6개의 pod가 Pending 상태임을 확인했습니다**. max_pods limit을 증가 시켜 위의 문제를 해결해보겠습니다.
 
 ```shell
 ########################################################
@@ -798,7 +798,7 @@ kube-burner init -c s1-config-delete.yaml --log-level debug
 ```
 {% endraw %}
 
-> /24 대역에서 위 3개는 할당 불가이므로 사용 가능한 Pod IP는 253개입니다. (hostNetwork 파드는 이 계산에서 제외)  
+> /24 대역에서 위 3개는 할당 불가이므로 **사용 가능한 Pod IP는 253개입니다**. (hostNetwork 파드는 이 계산에서 제외)  
 > - 10.244.0.0  (첫 번째 주소: /24 네트워크의 네트워크 주소. 라우팅 식별용)  
 > - 10.244.0.1  (두 번째 주소: CNI Bridge Gateway가 사용하는 주소)  
 > - 10.244.0.255 (마지막 주소: /24의 브로드캐스트 주소)  

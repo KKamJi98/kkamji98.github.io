@@ -110,7 +110,7 @@ _Heap = 같은 크기 region(E/S/O/H), 사이클: young -> concurrent mark(IHOP)
 그리고 동작 3가지:
 
 - **Pause-time 목표**: `-XX:MaxGCPauseMillis=200` ("The goal for the maximum pause time"). G1은 이 목표 안에 끝낼 만큼만 수거하도록 young 크기를 동적으로 조절합니다.
-- **Concurrent Marking + IHOP**: Old 점유율이 임계치(IHOP)를 넘으면 백그라운드로 Old의 live 객체를 표시합니다. 이때 G1은 **SATB(Snapshot-At-The-Beginning)** 마킹을 씁니다. 마킹 시작 시점의 heap을 가상 스냅샷으로 찍어, 그 순간 live였던 객체는 이번 마킹이 끝날 때까지 live로 간주합니다. 마킹 도중 죽은 객체는 이번 사이클에서 회수되지 않고 다음으로 미뤄지지만(약간의 floating garbage), 그 대가로 마킹을 앱과 동시에 진행해 pause를 짧게 유지합니다.
+- **Concurrent Marking + IHOP**: Old 점유율이 임계치(IHOP)를 넘으면 백그라운드로 Old의 live 객체를 표시합니다. 이때 G1은 **SATB(Snapshot-At-The-Beginning)** 마킹을 씁니다. 마킹 시작 시점의 heap을 가상 스냅샷으로 찍어, 그 시점에 live였던 객체는 이번 마킹이 끝날 때까지 live로 간주합니다. 마킹 도중 죽은 객체는 이번 사이클에서 회수되지 않고 다음으로 미뤄지지만(약간의 floating garbage), 그 대가로 마킹을 앱과 동시에 진행해 pause를 짧게 유지합니다.
 
   > G1 marking uses an algorithm called Snapshot-At-The-Beginning (SATB) . It takes a virtual snapshot of the heap at the time of the Initial Mark pause, when all objects that were live at the start of marking are considered live for the remainder of marking.  
 

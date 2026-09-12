@@ -23,7 +23,7 @@ _두 경로 모두 브라우저에서 끝난다. 차이는 dev server가 첫 요
 
 webpack이나 Create React App 같은 bundle 기반 dev server는 애플리케이션 전체를 하나의 번들로 만든 뒤 브라우저에 서빙합니다. 모듈이 늘어날수록 번들링 시간이 길어지고, dev server 시작이 느려집니다. HMR도 변경된 모듈에서 시작해 dependency graph를 따라가며 영향받는 모든 모듈을 다시 번들링해야 하므로, 프로젝트가 크면 hot update도 느려집니다.
 
-Vite는 dependencies와 source code를 분리해 처리합니다. 자주 바뀌지 않는 라이브러리는 미리 번들링(pre-bundling)하고, 개발자가 편집하는 애플리케이션 코드는 브라우저가 `import`로 요청할 때마다 개별적으로 transform하여 서빙합니다. dev server가 애플리케이션 전체를 한 번에 번들링하지 않으므로, 시작 시간이 애플리케이션 크기와 무관하게 거의 즉시 이루어집니다.
+Vite는 dependencies와 source code를 분리해 처리합니다. 자주 바뀌지 않는 라이브러리는 미리 번들링(pre-bundling)하고, 개발자가 편집하는 애플리케이션 코드는 브라우저가 `import`로 요청할 때마다 개별적으로 transform하여 서빙합니다. **dev server가 애플리케이션 전체를 한 번에 번들링하지 않으므로, 시작 시간이 애플리케이션 크기와 무관하게 거의 즉시 이루어집니다.**
 
 ---
 
@@ -33,7 +33,7 @@ Vite가 source code를 Native ESM으로 서빙한다면, 왜 dependencies는 별
 
 첫째, npm 패키지 중에는 아직 CommonJS나 UMD 형식으로 배포되는 것이 많습니다. 브라우저의 `import`는 ESM만 이해하므로, CommonJS/UMD 모듈을 ESM으로 변환해야 합니다.
 
-둘째, ESM으로 배포되는 패키지라도 내부 모듈이 너무 많으면 문제가 됩니다. `lodash-es`를 예로 들면 600개 이상의 내부 모듈을 가지고 있습니다. pre-bundling 없이 브라우저가 직접 `import`하면 600개 이상의 HTTP 요청이 동시에 발생해 페이지 로드가 느려집니다. pre-bundling은 이를 하나의 모듈로 병합해 HTTP 요청 수를 줄입니다.
+둘째, ESM으로 배포되는 패키지라도 내부 모듈이 너무 많으면 문제가 됩니다. `lodash-es`를 예로 들면 600개 이상의 내부 모듈을 가지고 있습니다. pre-bundling 없이 브라우저가 직접 `import`하면 600개 이상의 HTTP 요청이 동시에 발생해 페이지 로드가 느려집니다. **pre-bundling은 이를 하나의 모듈로 병합해 HTTP 요청 수를 줄입니다.**
 
 Vite 7까지는 esbuild가 이 역할을 담당했습니다. Vite 8부터는 Rolldown이 pre-bundling을 수행합니다. pre-bundling된 의존성은 `node_modules/.vite` 디렉토리에 캐시되며, lockfile이나 `vite.config.js`가 변경되면 다시 실행됩니다. 브라우저 측에서는 `max-age=31536000,immutable` HTTP 헤더로 강력하게 캐시됩니다.
 
@@ -43,7 +43,7 @@ Vite 7까지는 esbuild가 이 역할을 담당했습니다. Vite 8부터는 Rol
 
 Vite dev server는 `index.html`을 entry point로 사용합니다. `index.html` 안의 `<script type="module" src="...">`를 만나면, 브라우저가 해당 모듈을 서버에 요청하고 서버는 요청받은 파일만 transform하여 반환합니다.
 
-예를 들어 `App.tsx`를 편집하면 Vite는 해당 파일만 TypeScript transpile과 JSX transform을 수행해 브라우저에 보냅니다. 다른 파일은 건드리지 않습니다. Transform target을 `esnext`로 설정해 syntax lowering을 방지하고 원본 소스에 가깝게 서빙하므로, 불필요한 변환 단계를 줄입니다. Vite 8부터는 Oxc Transformer가 TypeScript transpile을 담당하며, HMR 업데이트가 브라우저에 반영되기까지 50ms 미만의 시간이 걸립니다.
+예를 들어 `App.tsx`를 편집하면 Vite는 해당 파일만 TypeScript transpile과 JSX transform을 수행해 브라우저에 보냅니다. **다른 파일은 건드리지 않습니다.** Transform target을 `esnext`로 설정해 syntax lowering을 방지하고 원본 소스에 가깝게 서빙하므로, 불필요한 변환 단계를 줄입니다. Vite 8부터는 Oxc Transformer가 TypeScript transpile을 담당하며, HMR 업데이트가 브라우저에 반영되기까지 50ms 미만의 시간이 걸립니다.
 
 ---
 
@@ -51,7 +51,7 @@ Vite dev server는 `index.html`을 entry point로 사용합니다. `index.html` 
 
 Vite의 HMR(Hot Module Replacement)은 Native ESM 위에서 동작합니다. 파일이 변경되면 Vite는 변경된 모듈의 HMR boundary를 찾고, boundary 안에서만 모듈을 교체합니다. 전체 페이지를 리로드하지 않습니다.
 
-HMR API는 `import.meta.hot` 객체로 노출됩니다. `accept()`를 호출한 모듈은 HMR boundary가 되며, 해당 모듈까지만 업데이트가 전파되고 상위 importer는 알림을 받지 않습니다. `dispose()`는 모듈이 교체되기 전 정리 작업을, `prune()`은 모듈이 제거될 때 호출됩니다.
+HMR API는 `import.meta.hot` 객체로 노출됩니다. `accept()`를 호출한 모듈은 HMR boundary가 되며, **해당 모듈까지만 업데이트가 전파되고 상위 importer는 알림을 받지 않습니다.** `dispose()`는 모듈이 교체되기 전 정리 작업을, `prune()`은 모듈이 제거될 때 호출됩니다.
 
 Vue Single File Components와 React Fast Refresh는 Vite의 HMR API를 활용하는 first-party 통합입니다. Preact는 `@prefresh/vite` 플러그인으로 통합됩니다. 개발자가 직접 HMR API를 다룰 필요 없이, 프레임워크가 제공하는 HMR 통합을 사용하면 됩니다.
 
@@ -81,7 +81,7 @@ Vite 5까지는 `client`와 `ssr` 두 개의 암묵적 환경(environment)만 �
 
 단일 Vite dev server가 여러 환경에서 동시에 코드를 실행할 수 있습니다. Cloudflare 팀이 Vite 7에서 Environment API 기반 Cloudflare Vite plugin 1.0을 발표했으며, React Router v7을 공식 지원합니다. SPA나 MPA에서는 environment 개념이 노출되지 않으며, Vite 5 config가 그대로 작동하므로 기존 프로젝트에 영향이 없습니다.
 
-Vite 8 기준 Environment API는 여전히 release candidate 단계이며, 일부 API는 experimental입니다.
+Vite 8 기준 Environment API는 **여전히 release candidate 단계이며, 일부 API는 experimental입니다.**
 
 ---
 
@@ -91,7 +91,7 @@ Vite는 빌드 도구이지 meta-framework가 아닙니다. Routing, data fetchi
 
 Next.js는 자체 빌드 시스템(webpack/Turbopack)을 사용하므로 Vite와 직접 비교하기보다 서로 다른 생태계로 이해하는 것이 맞습니다. Astro는 Vite를 기반으로 하면서 content-focused 정적 사이트에 최적화된 프레임워크입니다.
 
-Vite를 직접 사용하는 경우는 SPA, 라이브러리 개발, 커스텀 SSR 구성, 또는 Vite 기반 meta-framework 없이 가벼운 개발 환경이 필요할 때입니다. 프로덕션에서 SSR, routing, data fetching이 필요하다면 Vite 위에 구축된 meta-framework를 선택하는 것이 일반적입니다.
+Vite를 직접 사용하는 경우는 SPA, 라이브러리 개발, 커스텀 SSR 구성, 또는 Vite 기반 meta-framework 없이 가벼운 개발 환경이 필요할 때입니다. **프로덕션에서 SSR, routing, data fetching이 필요하다면 Vite 위에 구축된 meta-framework를 선택하는 것이 일반적입니다.**
 
 ---
 

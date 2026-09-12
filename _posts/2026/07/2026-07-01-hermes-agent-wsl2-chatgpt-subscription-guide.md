@@ -36,7 +36,7 @@ Hermes Agent는 터미널과 메시징 환경에서 동작하는 self-hosted ope
 | Telegram gateway | 터미널 밖에서도 agent에 접근하기 위한 messaging gateway |
 | systemd service | WSL 안에서 gateway process를 감독하는 service |
 
-provider와 runtime은 같은 설정이 아닙니다. provider는 Large Language Model(LLM)의 인증과 호출 경로를 정하고, runtime은 Hermes standard chat loop 또는 선택적 Codex app-server 중 어느 경로가 turn을 처리할지 정합니다. 먼저 필요한 기능과 권한 모델을 정한 뒤 조합을 선택해야 합니다.
+**provider와 runtime은 같은 설정이 아닙니다.** provider는 Large Language Model(LLM)의 인증과 호출 경로를 정하고, runtime은 Hermes standard chat loop 또는 선택적 Codex app-server 중 어느 경로가 turn을 처리할지 정합니다. 먼저 필요한 기능과 권한 모델을 정한 뒤 조합을 선택해야 합니다.
 
 {% include diagrams/static/ai/hermes-wsl2-agent-flow.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/ai/hermes-wsl2-agent-flow--abec8d1342de0b43.png" %}
@@ -56,7 +56,7 @@ systemd=true
 
 설정 뒤에는 PowerShell에서 `wsl.exe --shutdown`으로 WSL 인스턴스를 종료한 다음 다시 시작하고, `systemctl status`로 systemd가 실행 중인지 확인합니다.
 
-> systemd service는 WSL 안에서 process를 관리할 뿐, WSL 인스턴스를 계속 실행 상태로 유지하지는 않습니다. 개인 PC의 재부팅, 로그아웃, 유휴 상태까지 gateway가 응답해야 한다면 Windows 쪽 시작 조건 또는 별도 상시 실행 host를 설계하고 실제 메시지 왕복으로 확인해야 합니다.  
+> systemd service는 WSL 안에서 process를 관리할 뿐, **WSL 인스턴스를 계속 실행 상태로 유지하지는 않습니다.** 개인 PC의 재부팅, 로그아웃, 유휴 상태까지 gateway가 응답해야 한다면 Windows 쪽 시작 조건 또는 별도 상시 실행 host를 설계하고 실제 메시지 왕복으로 확인해야 합니다.  
 {: .prompt-warning}
 
 ---
@@ -75,7 +75,7 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 hermes doctor
 ```
 
-installer의 세부 의존성 설치 내용은 release에 따라 달라질 수 있으므로, 특정 도구가 설치되었다고 가정하지 말고 `hermes doctor` 결과를 기준으로 다음 단계를 진행합니다.
+installer의 세부 의존성 설치 내용은 release에 따라 달라질 수 있으므로, **특정 도구가 설치되었다고 가정하지 말고** `hermes doctor` 결과를 기준으로 다음 단계를 진행합니다.
 
 ---
 
@@ -94,7 +94,7 @@ installer의 세부 의존성 설치 내용은 release에 따라 달라질 수 �
 hermes model
 ```
 
-Hermes는 `openai-codex`를 `codex_responses` 경로로 해석하며, Codex app-server runtime은 별도 옵션입니다. OpenAI는 Codex가 ChatGPT 요금제에 포함될 수 있다고 안내하지만 사용 한도는 요금제별로 다릅니다. Hermes에서 이 인증 경로가 현재 계정과 환경에서 동작하는지는 interactive login과 짧은 test turn으로 확인해야 합니다.
+Hermes는 `openai-codex`를 `codex_responses` 경로로 해석하며, Codex app-server runtime은 별도 옵션입니다. OpenAI는 Codex가 ChatGPT 요금제에 포함될 수 있다고 안내하지만 사용 한도는 요금제별로 다릅니다. **Hermes에서 이 인증 경로가 현재 계정과 환경에서 동작하는지는 interactive login과 짧은 test turn으로 확인해야 합니다.**
 
 `/codex-runtime`은 provider 선택과 독립적으로 Codex app-server runtime을 조정합니다. `auto`는 Hermes standard chat path를 사용하고, `codex_app_server`는 `codex app-server` subprocess로 turn을 전달합니다. 이 글의 목적이 Hermes 중심의 memory와 gateway 흐름을 검증하는 것이라면 먼저 `auto`로 시작하고, Codex native shell 또는 plugin 동작이 필요한 경우에만 별도 workspace에서 app-server runtime을 시험하는 편이 안전합니다.
 
@@ -150,7 +150,7 @@ hermes gateway setup
 3. service로 운영할 경우 service status와 log를 확인합니다.
 4. Windows 재로그인과 WSL 유휴 상태 이후에도 gateway가 응답하는지 외부 message로 재검증합니다.
 
-마지막 단계가 실패하면 systemd나 `loginctl` 설정을 더하는 것으로 해결된다고 가정하지 않습니다. WSL이 멈추는 조건과 host 시작 방식을 분리해 진단해야 합니다.
+마지막 단계가 실패하면 systemd나 `loginctl` 설정을 더하는 것으로 해결된다고 가정하지 않습니다. **WSL이 멈추는 조건과 host 시작 방식을 분리해 진단해야 합니다.**
 
 ---
 
@@ -199,7 +199,7 @@ Hermes Agent는 사용자의 계정으로 실행됩니다. 따라서 WSL2 안에
 
 ## 10. 마치며
 
-WSL2 위의 Hermes Agent는 개인 개발 환경에서 CLI와 messaging gateway를 한곳에 모으는 선택지입니다. 설치보다 중요한 것은 provider, runtime, process lifetime을 서로 다른 결정으로 다루는 일입니다.
+WSL2 위의 Hermes Agent는 개인 개발 환경에서 CLI와 messaging gateway를 한곳에 모으는 선택지입니다. **설치보다 중요한 것은 provider, runtime, process lifetime을 서로 다른 결정으로 다루는 일입니다.**
 
 `openai-codex` provider를 선택했다면 먼저 계정 인증과 현재 사용 한도를 확인합니다. 이어서 Hermes standard runtime과 Codex app-server runtime 중 필요한 tool, 권한, 운영 방식을 만족하는 경로를 test workspace에서 비교합니다. 특정 runtime이 모든 Hermes 기능을 보장하거나 제거한다고 가정하지 않는 것이 안전합니다.
 

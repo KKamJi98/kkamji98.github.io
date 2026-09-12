@@ -42,7 +42,7 @@ function deposit() external payable {
 6 passed; 0 failed
 ```
 
-테스트 통과는 체인 기록이 아닙니다. 권한 규칙이 프로세스 안 EVM에서 한 번도 깨지지 않았다는 뜻입니다.
+**테스트 통과는 체인 기록이 아닙니다.** 권한 규칙이 프로세스 안 EVM에서 한 번도 깨지지 않았다는 뜻입니다.
 
 ---
 
@@ -61,7 +61,7 @@ execution reverted: NotBuyer
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/escrow-auth-deny--78a02ddc17af4540.png" %}
 _권한 실패는 체인을 갱신하지 않는다. funded는 false로 남는다._
 
-이 실패는 이전 글의 `boom()`과 같은 층입니다. revert가 예상되면 node는 gas를 배정하지 않습니다. explorer에 올라갈 hash도 없습니다. 권한이 없는 호출은 "실패한 거래"가 아니라 "거래가 되지 않은 호출"입니다.
+이 실패는 이전 글의 `boom()`과 같은 층입니다. revert가 예상되면 node는 gas를 배정하지 않습니다. explorer에 올라갈 hash도 없습니다. **권한이 없는 호출은 "실패한 거래"가 아니라 "거래가 되지 않은 호출"입니다.**
 
 ---
 
@@ -78,9 +78,9 @@ amount     1000000000000000000
 balance    1 ETH
 ```
 
-`logs`가 1인 이유는 `Deposited`를 emit했기 때문입니다. 금고 address의 이더는 1 ETH입니다. seller의 잔액은 아직 10000 ETH입니다. 잠긴 것이지, 전달된 것이 아닙니다.
+`logs`가 1인 이유는 `Deposited`를 emit했기 때문입니다. 금고 address의 이더는 1 ETH입니다. seller의 잔액은 아직 10000 ETH입니다. **잠긴 것이지, 전달된 것이 아닙니다.**
 
-`release`와 `refund`는 외부 `call` 전에 `funded=false`와 `amount=0`을 먼저 씁니다. 재진입 락은 이 소스에 없습니다. 순서는 Checks-effects-interactions입니다.
+`release`와 `refund`는 외부 `call` 전에 `funded=false`와 `amount=0`을 먼저 씁니다. **재진입 락은 이 소스에 없습니다.** 순서는 Checks-effects-interactions입니다.
 
 ---
 
@@ -118,7 +118,7 @@ arbiter의 `release`/`refund`는 테스트에서만 확인했습니다. 이 Anvi
 5. buyer로 1 ETH를 넣고 `funded()`가 true인지 본다.
 6. `release` 또는 `refund` 뒤 `funded()`가 false인지, 상대 잔액이 1 ETH 늘었는지 본다.
 
-이 순서는 Anvil의 머리에서만 성립합니다. 이전 글에서 본 것처럼 이 block은 peer에 전파되지 않습니다. 프로세스를 끄면 금고와 event도 사라집니다.
+이 순서는 Anvil의 머리에서만 성립합니다. 이전 글에서 본 것처럼 이 block은 peer에 전파되지 않습니다. **프로세스를 끄면 금고와 event도 사라집니다.**
 
 ---
 

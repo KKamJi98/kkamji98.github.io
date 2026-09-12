@@ -11,7 +11,7 @@ image:
 
 "blockchain은 암호화되어서 안전하다"는 설명을 자주 봅니다. 그런데 Bitcoin transaction을 block explorer에서 열어보면 송금액, 수신자, 합계가 전부 평문으로 보입니다. 암호화가 핵심이라면 이 내용은 왜 숨겨져 있지 않을까요?
 
-blockchain이 암호학으로 푸는 문제는 기밀성이 아닙니다. 무결성과 인증입니다. 누가 자산을 이동시켰는지(signature), 기록이 이후에 바뀌지 않았는지(hash pointer), 수천 건의 transaction이 정말 이 block에 들어 있는지(Merkle Tree). 이 세 가지를 Python으로 실행하면서 확인합니다.
+**blockchain이 암호학으로 푸는 문제는 기밀성이 아닙니다. 무결성과 인증입니다.** 누가 자산을 이동시켰는지(signature), 기록이 이후에 바뀌지 않았는지(hash pointer), 수천 건의 transaction이 정말 이 block에 들어 있는지(Merkle Tree). 이 세 가지를 Python으로 실행하면서 확인합니다.
 
 ---
 
@@ -40,7 +40,7 @@ hash B: 22cd2b2c93dfdbef9963d41465fecdad870e7b6549f1b0765184b83847a25eda
 
 수신자 이름 한 글자를 바꿨을 뿐인데 출력의 93% 자리가 바뀝니다. 같은 입력은 항상 같은 출력이 나오고, 입력 크기와 무관하게 길이가 고정입니다. 이 눈사태 효과 때문에 hash는 "내용이 조금이라도 다른지"를 32바이트 비교 한 번으로 판별합니다.
 
-눈사태는 성질이지 공격 분류가 아닙니다. 공격은 세 가지로 나눕니다. preimage는 digest만 보고 원래 입력을 찾는 일입니다. second preimage는 이미 아는 입력과 같은 digest를 내는 다른 입력을 찾는 일입니다. collision은 아무 두 입력을 골라 같은 digest를 내는 일입니다. SHA-256에서 세 가지 모두 현실적인 계산으로는 찾지 못한다고 봅니다. collision은 이론상 존재합니다. 출력 공간이 유한하고 입력 공간은 무한에 가깝기 때문입니다. 찾는 비용이 막대하다는 점과, 존재한다는 점은 다른 문장입니다.
+눈사태는 성질이지 공격 분류가 아닙니다. 공격은 세 가지로 나눕니다. preimage는 digest만 보고 원래 입력을 찾는 일입니다. second preimage는 이미 아는 입력과 같은 digest를 내는 다른 입력을 찾는 일입니다. collision은 아무 두 입력을 골라 같은 digest를 내는 일입니다. SHA-256에서 세 가지 모두 현실적인 계산으로는 찾지 못한다고 봅니다. collision은 이론상 존재합니다. 출력 공간이 유한하고 입력 공간은 무한에 가깝기 때문입니다. **찾는 비용이 막대하다는 점과, 존재한다는 점은 다른 문장입니다.**
 
 단방향성은 이 중 preimage에 가깝습니다. 출력을 보고 입력을 되돌리는 방법이 알려져 있지 않다는 뜻입니다. 약속(commitment)은 그 위에 한 겹을 더 얹습니다. 값을 공개하지 않은 채 hash만 먼저 보여주고, 나중에 값을 열면 처음에 약속한 값인지 누구나 확인합니다. 이번 실습은 그 commitment를 새로 구현하지 않았습니다. 눈사태 숫자 60/64만 관측값입니다.
 
@@ -65,7 +65,7 @@ tampered = hashlib.sha256(("prev=" + block0 + ";txs=AA->BB:500").encode()).hexdi
 print(tampered == block1)  # False
 ```
 
-과거 block 한 건을 바꾸면 그 block의 digest가 바뀌고, 그 digest를 포함하는 다음 header도 바뀌며, 이후 전체 체인이 연쇄적으로 바뀝니다. 변조를 감지하는 비용은 digest 비교 한 번입니다. 변조를 은폐하려면 이후 모든 header를 다시 계산해야 합니다. 이 비용 비대칭이 hash pointer 체인의 핵심입니다.
+과거 block 한 건을 바꾸면 그 block의 digest가 바뀌고, 그 digest를 포함하는 다음 header도 바뀌며, 이후 전체 체인이 연쇄적으로 바뀝니다. 변조를 감지하는 비용은 digest 비교 한 번입니다. 변조를 은폐하려면 이후 모든 header를 다시 계산해야 합니다. **이 비용 비대칭이 hash pointer 체인의 핵심입니다.**
 
 이 실험의 hash는 한 번의 SHA-256입니다. Bitcoin header의 실제 proof-of-work digest는 double SHA-256입니다. 여기서는 pointer의 성질만 확인하고, 난이도 숫자는 재지 않았습니다.
 
@@ -112,7 +112,7 @@ sig2 = priv.sign(msg, ec.ECDSA(hashes.SHA256()))
 print(sig == sig2)  # False
 ```
 
-수신자를 1글자 바꾸면 signature가 무효가 됩니다. 남의 signature도 내 공개키로는 검증되지 않습니다. 같은 키로 같은 메시지를 다시 sign해도 결과가 매번 다릅니다. ECDSA가 signature마다 무작위 nonce를 쓰기 때문입니다. 이 nonce가 바뀌는 것은 정상입니다. 같은 nonce가 재사용되는 순간 개인키가 노출됩니다. RFC 6979는 난수 대신 개인키와 메시지 digest에서 nonce를 결정론적으로 유도해 그 경로를 막습니다.
+수신자를 1글자 바꾸면 signature가 무효가 됩니다. 남의 signature도 내 공개키로는 검증되지 않습니다. 같은 키로 같은 메시지를 다시 sign해도 결과가 매번 다릅니다. ECDSA가 signature마다 무작위 nonce를 쓰기 때문입니다. 이 nonce가 바뀌는 것은 정상입니다. **같은 nonce가 재사용되는 순간 개인키가 노출됩니다.** RFC 6979는 난수 대신 개인키와 메시지 digest에서 nonce를 결정론적으로 유도해 그 경로를 막습니다.
 
 hash pointer에 signature를 붙이면, 그 pointer가 가리키는 구조 전체를 승인한 것이 됩니다. 헤더 digest 하나에 서명하면 그 헤더가 가리키는 이전 칸까지 묶입니다. 이번 코드는 메시지 바이트에만 서명했습니다. pointer 위 서명은 같은 verify 경로입니다.
 
@@ -122,7 +122,7 @@ hash pointer에 signature를 붙이면, 그 pointer가 가리키는 구조 전�
 
 신원은 공개키에서 시작합니다. Bitcoin address는 그 공개키 자체가 아닙니다. 공개키를 SHA-256으로 한 번 해시한 뒤 RIPEMD-160으로 줄인 값, 흔히 HASH160이라고 부르는 digest 위에 version과 checksum을 얹습니다. explorer에 보이는 `1...` 또는 `bc1...` 문자열은 그 인코딩입니다.
 
-이 파이프라인의 구체 digest는 이번 실습에서 찍지 않았습니다. 관측 없이 숫자를 만들지 않습니다. 중요한 구분은 하나입니다. 개인키는 비밀이고, 공개키는 검증키이며, address는 공개키의 digest입니다. 예전 문장처럼 "신원은 공개키(address)"라고 쓰면 두 층이 붙습니다.
+이 파이프라인의 구체 digest는 이번 실습에서 찍지 않았습니다. 관측 없이 숫자를 만들지 않습니다. 중요한 구분은 하나입니다. **개인키는 비밀이고, 공개키는 검증키이며, address는 공개키의 digest입니다.** 예전 문장처럼 "신원은 공개키(address)"라고 쓰면 두 층이 붙습니다.
 
 공개키를 만드는 비용은 난수 하나입니다. 그래서 값싼 신원을 대량으로 만들 수 있습니다. Sybil resistance가 따로 필요한 이유가 여기 있습니다. hash와 signature는 "이 메시지가 이 키의 승인인가"만 답합니다. "이 키가 사람 한 명인가"는 답하지 않습니다. Byzantine fault는 이미 참여한 노드가 거짓말하는 문제이고, Sybil은 참여 자체를 값싸게 복제하는 문제입니다. 합의 알고리즘 이름은 나중에 따로 다룹니다. 여기서는 값싼 공개키가 그 두 문제를 자동으로 풀어 주지 않는다는 점만 남깁니다.
 
@@ -156,7 +156,7 @@ root_tampered = merkle_root([h(t) for t in txs])
 print(root == root_tampered)  # False
 ```
 
-transaction 한 건의 금액을 바꾸면 Root가 완전히 달라집니다. block hash는 header(Root 포함)의 hash이므로, block hash 하나만 비교해도 이 block의 모든 transaction이 원본인지 알 수 있습니다.
+transaction 한 건의 금액을 바꾸면 Root가 완전히 달라집니다. block hash는 header(Root 포함)의 hash이므로, **block hash 하나만 비교해도 이 block의 모든 transaction이 원본인지 알 수 있습니다.**
 
 포함 여부는 전체 없이 증명합니다. 증명하려는 transaction에서 Root까지 가는 경로의 형제 hash만 있으면 됩니다.
 
@@ -203,7 +203,7 @@ _header는 Root만 저장한다. 포함 증명은 leaf에서 Root까지 sibling�
 
 hash pointer와 signature를 갖춰도 이중 지출은 남습니다. Princeton 1장의 GoofyCoin이 그 구멍입니다. 발행자가 자기 공개키로 "이 동전은 Alice 것이다"라고 서명하면 Alice는 소유자가 됩니다. Alice는 같은 문장에 Bob의 이름을 넣어 다시 서명할 수 있고, Carol의 이름을 넣어 한 번 더 서명할 수도 있습니다. 두 signature는 각각 유효합니다. 검증자는 어느 쪽이 먼저인지 hash pointer만으로는 고를 수 없습니다.
 
-append-only 장부에 이체 이력을 한 줄로 붙이면, 이미 쓰인 동전을 다시 쓰는 줄은 거절할 수 있습니다. 그 장부를 누가 하나만 유지하는지가 다음 문제입니다. 중앙 Scrooge가 그 장부를 쓰면 이중 지출은 막히고, Scrooge를 신뢰해야 합니다. Bitcoin이 UTXO 집합과 합의로 그 장부를 나눈 이야기는 다음 편입니다. 여기서 확인할 것은 하나입니다. 암호 프리미티브는 위조와 변조를 막습니다. 어떤 이력이 정본인지는 답하지 않습니다.
+append-only 장부에 이체 이력을 한 줄로 붙이면, 이미 쓰인 동전을 다시 쓰는 줄은 거절할 수 있습니다. 그 장부를 누가 하나만 유지하는지가 다음 문제입니다. 중앙 Scrooge가 그 장부를 쓰면 이중 지출은 막히고, Scrooge를 신뢰해야 합니다. Bitcoin이 UTXO 집합과 합의로 그 장부를 나눈 이야기는 다음 편입니다. 여기서 확인할 것은 하나입니다. **암호 프리미티브는 위조와 변조를 막습니다. 어떤 이력이 정본인지는 답하지 않습니다.**
 
 ---
 

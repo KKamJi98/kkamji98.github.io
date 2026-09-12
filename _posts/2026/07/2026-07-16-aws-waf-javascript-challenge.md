@@ -32,7 +32,7 @@ Challenge rule에 매칭된 request는 AWS WAF가 token 상태를 먼저 확인�
 | CAPTCHA | 사용자의 puzzle 응답 | 다음 WAF rule 평가로 진행 | `405` CAPTCHA response |
 | Block | 별도 browser 검증 없음 | 해당 없음 | rule 평가 종료, 기본 `403` |
 
-Challenge는 "사람임을 증명"하거나 access 권한을 부여하지 않습니다. 뒤 priority의 Block rule, managed rule group, Web ACL default action은 유효 token이 있어도 계속 적용됩니다.
+Challenge는 "사람임을 증명"하거나 access 권한을 부여하지 않습니다. **뒤 priority의 Block rule, managed rule group, Web ACL default action은 유효 token이 있어도 계속 적용됩니다.**
 
 Challenge를 우선 검토할 만한 경우는 다음과 같습니다.
 
@@ -62,7 +62,7 @@ AWS WAF JavaScript integration을 사용하는 browser application은 Web ACL에
 
 따라서 application은 token을 opaque value로 취급해야 합니다. 이 signal은 unique identifier가 아니며 특정 사람에게 mapping할 수 있는 정보로 설명되지 않습니다. 그렇더라도 token 값을 application authorization claim으로 해석하거나, 로그와 analytics event에 그대로 남기면 안 됩니다. token lifecycle, CSP allowlist, log redaction과 privacy notice는 별도 security 및 privacy review 대상입니다.
 
-Challenge와 CAPTCHA의 default immunity time은 300초입니다. Challenge는 300초부터 3일, CAPTCHA는 60초부터 3일까지 설정할 수 있습니다. immunity time이 끝나면 browser는 새 token을 얻어야 하므로, 짧은 값이 항상 더 강한 방어를 의미하지는 않습니다.
+Challenge와 CAPTCHA의 default immunity time은 300초입니다. Challenge는 300초부터 3일, CAPTCHA는 60초부터 3일까지 설정할 수 있습니다. immunity time이 끝나면 browser는 새 token을 얻어야 하므로, **짧은 값이 항상 더 강한 방어를 의미하지는 않습니다.**
 
 ---
 
@@ -120,7 +120,7 @@ Challenge response는 application의 정상 API response가 아닙니다. token 
 | 유효하고 immunity time 안 | `Count`처럼 처리 | 다음 rule로 진행 |
 | 없음, 만료, 무효 | `202`, `x-amzn-waf-action: challenge` 반환 | 여기서 종료 |
 
-HTML navigation에서 받은 interstitial은 browser가 challenge workflow를 수행할 수 있게 합니다. 반면 JSON API `POST`가 `202`를 받았다고 해서 application이 response body를 파싱해 복구하려 하면 안 됩니다. browser application은 protected fetch보다 token retrieval이 먼저 끝나도록 하고, token acquisition timeout이나 network failure는 application error path로 처리해야 합니다.
+HTML navigation에서 받은 interstitial은 browser가 challenge workflow를 수행할 수 있게 합니다. 반면 JSON API `POST`가 `202`를 받았다고 해서 **application이 response body를 파싱해 복구하려 하면 안 됩니다.** browser application은 protected fetch보다 token retrieval이 먼저 끝나도록 하고, token acquisition timeout이나 network failure는 application error path로 처리해야 합니다.
 
 `x-amzn-waf-action` header는 cross-domain JavaScript retrieval에서 사용할 수 없습니다. 이 header를 보고 cross-origin API client를 복구하는 구조 대신, document host, token domain, API host가 실제로 같은 token trust boundary에 있는지 먼저 확인해야 합니다.
 
@@ -163,7 +163,7 @@ Count 기간에는 WAF log와 application metric을 같은 시간 창에서 봅�
 | `ChallengeAttempts`, `ChallengeSolved` | browser verification 시도와 성공 비율이 유지되는가 |
 | origin 4xx, 5xx, login success | WAF 전환이 service behavior를 악화시키지 않았는가 |
 
-no-token Challenge request는 최초 `202` response와 token 획득 뒤 retry request로 log와 metric에 두 번 보일 수 있습니다. Challenge count만으로 attack volume이나 unique user 수를 계산하면 안 됩니다.
+no-token Challenge request는 최초 `202` response와 token 획득 뒤 retry request로 log와 metric에 두 번 보일 수 있습니다. **Challenge count만으로 attack volume이나 unique user 수를 계산하면 안 됩니다.**
 
 CloudFront용 Web ACL은 control plane상 `us-east-1`에 만들고, ALB와 Amazon API Gateway REST API용 Web ACL은 보호 resource와 같은 Region에 만듭니다. API Gateway HTTP API도 같은 association 범위라고 추정하지 말고, 적용 전 현재 AWS WAF association 문서를 다시 확인해야 합니다.
 
@@ -171,7 +171,7 @@ CloudFront용 Web ACL은 control plane상 `us-east-1`에 만들고, ALB와 Amazo
 
 ## 7. rollback은 rule action을 `Count`로 되돌리는 방식이 안전합니다
 
-Challenge를 적용하는 구성에서 가장 빠른 rollback은 보통 rule action을 `Count`로 되돌리는 것입니다. Web ACL association 전체를 제거하면 다른 managed rule과 Block rule까지 함께 사라질 수 있습니다.
+Challenge를 적용하는 구성에서 가장 빠른 rollback은 보통 rule action을 `Count`로 되돌리는 것입니다. **Web ACL association 전체를 제거하면 다른 managed rule과 Block rule까지 함께 사라질 수 있습니다.**
 
 1. disposable path 또는 narrow HTML route만 Count로 관찰합니다.
 2. full WAF logging에서 URI, method, user agent, label, terminating rule을 확인합니다.

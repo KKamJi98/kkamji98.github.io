@@ -33,13 +33,13 @@ retry와 circuit breaker는 idempotency, 중복 요청, dependency 계약을 먼
 
 HTTP request가 handler에 전달된 뒤에는 입력 검증, upstream HTTP 호출, database 호출, response 직렬화처럼 완료 시간이 다른 작업이 이어집니다. 이 작업의 결과는 Promise로 전달됩니다. Promise가 fulfilled되면 정상 response를 쓸 수 있고, rejected되면 어떤 status와 body를 보낼지 application이 정해야 합니다.
 
-`http.createServer(async (request, response) => { ... })`처럼 listener를 `async`로 선언해도 반환 Promise를 Node.js HTTP server가 response로 바꾸지 않습니다. EventEmitter listener는 기본적으로 동기 호출되며 Promise rejection을 HTTP error policy로 해석하지 않습니다. 따라서 "throw하면 자동으로 500"이라는 가정은 안전하지 않습니다.
+`http.createServer(async (request, response) => { ... })`처럼 listener를 `async`로 선언해도 반환 Promise를 Node.js HTTP server가 response로 바꾸지 않습니다. EventEmitter listener는 기본적으로 동기 호출되며 Promise rejection을 HTTP error policy로 해석하지 않습니다. 따라서 **"throw하면 자동으로 500"이라는 가정은 안전하지 않습니다.**
 
 {% include diagrams/static/nodejs/node-async-http-handling-flow.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/node-async-http-handling-flow--774d6a66b55e6ff1.png" %}
 _실선은 정상 작업과 terminal response 흐름입니다. 점선은 timeout 또는 client disconnect가 downstream 작업을 취소하는 제어 흐름입니다. rejected Promise 자체는 HTTP response가 아니므로 error boundary가 안전한 response로 매핑합니다._
 
-그림의 불변 조건은 간단합니다. request 하나에는 terminal response가 하나만 있어야 합니다. `response.end()`는 각 response에서 호출되어야 하며, error handling도 이 소유권을 깨면 안 됩니다.
+그림의 불변 조건은 간단합니다. **request 하나에는 terminal response가 하나만 있어야 합니다.** `response.end()`는 각 response에서 호출되어야 하며, error handling도 이 소유권을 깨면 안 됩니다.
 
 ---
 
@@ -49,7 +49,7 @@ Promise는 아직 끝나지 않은 결과와 실패를 함께 표현합니다. �
 
 `async` 함수는 항상 Promise를 반환합니다. 함수 안의 일반 `return` 값도 fulfilled Promise가 되고, 잡히지 않은 예외는 rejected Promise가 됩니다. `await`는 Promise가 끝날 때까지 현재 async 함수의 다음 실행을 보류합니다. 이것은 Node.js process 전체나 다른 HTTP request를 멈춘다는 뜻이 아닙니다. Event Loop의 세부 scheduling은 다음 단계에서 별도로 다룹니다.
 
-독립적인 작업은 시작을 먼저 모은 뒤 `Promise.all()`로 함께 기다릴 수 있습니다. 다만 하나가 reject되면 결과 Promise가 빨리 reject될 뿐, 이미 시작한 나머지 작업을 자동으로 취소하지는 않습니다. 취소가 필요한 작업에는 공통 `AbortSignal`을 전달해야 합니다.
+독립적인 작업은 시작을 먼저 모은 뒤 `Promise.all()`로 함께 기다릴 수 있습니다. 다만 하나가 reject되면 결과 Promise가 빨리 reject될 뿐, **이미 시작한 나머지 작업을 자동으로 취소하지는 않습니다.** 취소가 필요한 작업에는 공통 `AbortSignal`을 전달해야 합니다.
 
 ---
 
@@ -64,7 +64,7 @@ Promise는 아직 끝나지 않은 결과와 실패를 함께 표현합니다. �
 | `fetchJson()` | upstream fetch와 HTTP status 확인 | body를 비밀값 없이 domain error로 변환 |
 | `writeJson()` | header, status, body를 한 번에 종료 | `writableEnded`이면 아무것도 하지 않음 |
 
-`response.headersSent`는 header가 이미 전송되었는지, `response.writableEnded`는 `end()`가 호출되었는지 확인하는 데 사용합니다. body 일부를 이미 전송했다면 status를 500으로 교체할 수 없습니다. 이 글의 예제는 response 직렬화 이전에 오류를 모으는 구조를 사용합니다. streaming response는 별도의 연결 종료 정책이 필요합니다.
+`response.headersSent`는 header가 이미 전송되었는지, `response.writableEnded`는 `end()`가 호출되었는지 확인하는 데 사용합니다. **body 일부를 이미 전송했다면 status를 500으로 교체할 수 없습니다.** 이 글의 예제는 response 직렬화 이전에 오류를 모으는 구조를 사용합니다. streaming response는 별도의 연결 종료 정책이 필요합니다.
 
 ---
 
@@ -158,7 +158,7 @@ server.listen(4310, '127.0.0.1');
 
 client가 response를 기다리다 연결을 닫으면 이미 전달할 곳이 없는 결과를 계속 계산할 이유가 없습니다. 예제의 `response` close handler는 `AbortController.abort()`를 호출하고, 합쳐진 signal이 `fetch()`에 전달됩니다. abort를 서버 오류처럼 기록하거나 이미 닫힌 socket에 500 response를 쓰면 진단 신호가 흐려집니다. client abort는 작업을 중단한 뒤 return하는 경로로 분리합니다.
 
-timeout은 upstream이 응답하지 않았다는 관측이며 service 전체 장애의 확정 증거는 아닙니다. request ID, route template, upstream target 이름, elapsed time, status, abort reason을 같은 시간 구간에서 비교한 뒤 원인을 좁혀야 합니다. retry는 이번 예제에 넣지 않습니다. 안전한 retry에는 idempotency, deadline budget, duplicate side effect를 먼저 검토해야 합니다.
+**timeout은 upstream이 응답하지 않았다는 관측이며 service 전체 장애의 확정 증거는 아닙니다.** request ID, route template, upstream target 이름, elapsed time, status, abort reason을 같은 시간 구간에서 비교한 뒤 원인을 좁혀야 합니다. retry는 이번 예제에 넣지 않습니다. 안전한 retry에는 idempotency, deadline budget, duplicate side effect를 먼저 검토해야 합니다.
 
 ---
 

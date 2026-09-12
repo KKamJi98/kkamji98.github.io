@@ -11,7 +11,7 @@ image:
 
 비트코인에서는 balance를 구하려면 미사용 출력을 모두 더해야 했습니다. 이더리움 node에 같은 질문을 하면 계정 객체에서 `balance`와 `nonce`를 읽습니다. 합계를 다시 계산하지 않습니다.
 
-[이전 글](https://kkamji.net/posts/bitcoin-mempool-reorg-script/)에서 확인은 활성 팁에 상대적이라는 점을 봤습니다. 이더리움은 그 위에 계정 상태와 gas라는 실행 비용을 올립니다. Foundry Anvil 1.7.1 로컬 체인(chainId 31337)에서 관측합니다. Anvil 기본 키는 공개 테스트 값이며 실제 네트워크에 재사용하지 않습니다.
+[이전 글](https://kkamji.net/posts/bitcoin-mempool-reorg-script/)에서 확인은 활성 팁에 상대적이라는 점을 봤습니다. 이더리움은 그 위에 계정 상태와 gas라는 실행 비용을 올립니다. Foundry Anvil 1.7.1 로컬 체인(chainId 31337)에서 관측합니다. **Anvil 기본 키는 공개 테스트 값이며 실제 네트워크에 재사용하지 않습니다.**
 
 ---
 
@@ -26,7 +26,7 @@ nonce    0
 balance  10000000000000000000000
 ```
 
-비트코인의 address가 Script 잠금의 짧은 이름인 것과 달리, 이더리움 address는 상태 트리의 키입니다. ethereum.org 문서는 그 키 아래에 nonce, balance, codeHash, storageRoot가 있다고 적습니다. 이 랩이 RPC로 읽은 값은 nonce, balance, code입니다. codeHash와 storageRoot 바이트는 따로 덤프하지 않았습니다.
+**비트코인의 address가 Script 잠금의 짧은 이름인 것과 달리, 이더리움 address는 상태 트리의 키입니다.** ethereum.org 문서는 그 키 아래에 nonce, balance, codeHash, storageRoot가 있다고 적습니다. 이 랩이 RPC로 읽은 값은 nonce, balance, code입니다. codeHash와 storageRoot 바이트는 따로 덤프하지 않았습니다.
 
 {% include diagrams/static/blockchain/ethereum-account-fields.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/ethereum-account-fields--a401b9dffb89f87b.png" %}
@@ -56,7 +56,7 @@ to    10001000000000000000000
 from  9998999978999999979000
 ```
 
-같은 nonce 0을 다시 넣으면 Anvil은 적용하지 않습니다. 응답은 `error code -32003: nonce too low`였습니다. UTXO를 두 번 쓰는 이중지출과 같은 자리를, 이더리움은 nonce 카운터로 막습니다.
+같은 nonce 0을 다시 넣으면 Anvil은 적용하지 않습니다. 응답은 `error code -32003: nonce too low`였습니다. **UTXO를 두 번 쓰는 이중지출과 같은 자리를, 이더리움은 nonce 카운터로 막습니다.**
 
 nonce를 2 건너뛴 값 3을 넣어 보면 계정 nonce는 그대로 1이었습니다. `txpool_status`는 `pending=0x0`, `queued=0x1`이었습니다. 구멍 난 nonce는 당장 상태에 반영되지 않고, 대기열에 남았습니다.
 
@@ -68,9 +68,9 @@ _계정은 balance와 nonce를 저장한다. 단순 이체는 gas를 21000 쓰�
 
 ## 3. gas는 실행의 계량 단위다
 
-`gasUsed=21000`은 이 단순 이체의 소비량입니다. ethereum.org는 이 값을 기본 이체의 하한으로 적습니다. gas는 이더의 별칭이 아니라, 연산과 저장에 매기는 계량입니다.
+`gasUsed=21000`은 이 단순 이체의 소비량입니다. ethereum.org는 이 값을 기본 이체의 하한으로 적습니다. **gas는 이더의 별칭이 아니라, 연산과 저장에 매기는 계량입니다.**
 
-이 receipt의 `effectiveGasPrice`는 `0x3b9aca01`, 십진수 1000000001 wei입니다. fee는 `21000 * 1000000001 = 21000000021000` wei입니다. 송신 계정 감소분에서 1 ETH를 빼면 같은 숫자가 나옵니다. 수신 계정은 fee를 받지 않습니다.
+이 receipt의 `effectiveGasPrice`는 `0x3b9aca01`, 십진수 1000000001 wei입니다. fee는 `21000 * 1000000001 = 21000000021000` wei입니다. 송신 계정 감소분에서 1 ETH를 빼면 같은 숫자가 나옵니다. **수신 계정은 fee를 받지 않습니다.**
 
 Anvil의 `type=0x2` receipt는 EIP-1559 거래입니다. 같은 block의 `baseFeePerGas`는 `0x3b9aca00`, 십진수 1000000000 wei였습니다. effective 값이 base보다 1 wei 큽니다. 소각분과 우선순위 fee를 필드 단위로 더 쪼개지는 않았습니다.
 
@@ -84,7 +84,7 @@ _단순 이체의 gasUsed는 21000이다. 이 거래의 fee는 21000에 effectiv
 
 ## 4. 정리
 
-이더리움의 돈과 순서는 계정 필드입니다. EOA는 코드가 없고 nonce로 거래를 줄 세웁니다. 같은 nonce는 `nonce too low`로 거절되고, 구멍을 만든 nonce는 queued에 남습니다. 단순 이체는 21000 gas를 쓰며, 수신자는 value만 받고 fee는 송신 계정이 냅니다. 이 관측은 피어가 없는 Anvil에서 나왔고 실제 자산은 움직이지 않았습니다.
+이더리움의 돈과 순서는 계정 필드입니다. EOA는 코드가 없고 nonce로 거래를 줄 세웁니다. 같은 nonce는 `nonce too low`로 거절되고, 구멍을 만든 nonce는 queued에 남습니다. 단순 이체는 21000 gas를 쓰며, 수신자는 value만 받고 fee는 송신 계정이 냅니다. **이 관측은 피어가 없는 Anvil에서 나왔고 실제 자산은 움직이지 않았습니다.**
 
 ---
 

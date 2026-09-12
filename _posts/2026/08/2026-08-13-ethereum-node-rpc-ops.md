@@ -16,7 +16,7 @@ HTTP/1.1 200 OK
 {"jsonrpc":"2.0","id":1,"error":{"code":-32601,"message":"Method not found"}}
 ```
 
-같은 포트에서 `eth_syncing`은 `false`이고 `net_listening`은 `true`입니다. 프로세스도 살아 있고, 소켓도 열려 있습니다. 그래도 이 endpoint는 네트워크의 머리가 아닙니다. chainId는 31337이고, `safe`와 `finalized`는 genesis에 붙어 있습니다.
+같은 포트에서 `eth_syncing`은 `false`이고 `net_listening`은 `true`입니다. 프로세스도 살아 있고, 소켓도 열려 있습니다. **그래도 이 endpoint는 네트워크의 머리가 아닙니다.** chainId는 31337이고, `safe`와 `finalized`는 genesis에 붙어 있습니다.
 
 [이전 글](https://kkamji.net/posts/receipt-trace-finality/)에서는 receipt의 실행 결과와 공개망 block tag가 다른 질문임을 확인했습니다. 이번에는 그 tag를 다시 외우지 않습니다. node 운영자가 HTTP 200 뒤에서 무엇을 보는지, Anvil이 그 검사 중 몇 개를 생략하는지를 봅니다. 거래는 보내지 않았습니다. 로컬 Anvil과 Sepolia 공개 RPC만 읽었습니다.
 
@@ -36,11 +36,11 @@ JSON-RPC는 transport에 묶이지 않습니다. ethereum.org 문서는 같은 �
 | `eth_blockNumber` | 200 | `0x5` |
 | `net_peerCount` | 200 | error `-32601` |
 
-load balancer나 컨테이너 probe가 `GET /` 또는 아무 POST의 200만 보면, 이 표를 한 줄로 압축합니다. "살아 있다." 운영자가 묻는 질문은 다릅니다. 이 프로세스가 지금 어느 chain의 어느 머리를 보고 있는가.
+load balancer나 컨테이너 probe가 `GET /` 또는 아무 POST의 200만 보면, 이 표를 한 줄로 압축합니다. "살아 있다." 운영자가 묻는 질문은 다릅니다. **이 프로세스가 지금 어느 chain의 어느 머리를 보고 있는가.**
 
 공개 Sepolia endpoint `https://ethereum-sepolia-rpc.publicnode.com`도 같은 시각에 HTTP 200이었습니다. 이쪽은 `net_peerCount`를 구현합니다. 값이 `0x1c`, 십진수 28이었습니다. 수 분 앞선 같은 URL의 관측은 `0x2d`, 십진수 45였습니다. 공개 RPC 한 주소가 항상 같은 프로세스, 같은 peer set을 가리키지는 않습니다. HTTP 200은 그 차이도 숨깁니다.
 
-`web3_clientVersion`은 그 endpoint를 돌리는 소프트웨어를 말합니다. 같은 Sepolia URL을 같은 날 두 번 읽으면 client가 바뀌었습니다. 이전 조회는 `reth/v2.4.1-8eb2101/x86_64-unknown-linux-gnu`였고, 2026-08-22T20:12:03Z 조회는 `Geth/v1.17.1-stable-16783c16/linux-amd64/go1.25.7`이었습니다. 공개 RPC 한 주소가 항상 같은 프로세스를 가리키지는 않습니다. 운영 대시보드에 client 버전 하나를 올려 두고 "네트워크가 이 버전이다"라고 읽으면, 그 숫자는 그 순간의 문패입니다.
+`web3_clientVersion`은 그 endpoint를 돌리는 소프트웨어를 말합니다. 같은 Sepolia URL을 같은 날 두 번 읽으면 client가 바뀌었습니다. 이전 조회는 `reth/v2.4.1-8eb2101/x86_64-unknown-linux-gnu`였고, 2026-08-22T20:12:03Z 조회는 `Geth/v1.17.1-stable-16783c16/linux-amd64/go1.25.7`이었습니다. 공개 RPC 한 주소가 항상 같은 프로세스를 가리키지는 않습니다. 운영 대시보드에 client 버전 하나를 올려 두고 "네트워크가 이 버전이다"라고 읽으면, 그 숫자는 그 시점의 문패입니다.
 
 ---
 
@@ -50,7 +50,7 @@ ethereum.org JSON-RPC 문서는 `eth_syncing`이 sync 상태 객체 또는 `fals
 
 Execution API 명세의 요약도 같습니다. `eth_syncing`은 "sync status 또는 false"입니다.
 
-Anvil 1.7.1은 `false`를 줍니다. Sepolia 공개 endpoint도 `false`를 줍니다. 같은 단어가 같은 운영 사실을 가리키지는 않습니다.
+Anvil 1.7.1은 `false`를 줍니다. Sepolia 공개 endpoint도 `false`를 줍니다. **같은 단어가 같은 운영 사실을 가리키지는 않습니다.**
 
 Anvil은 로컬 개발 체인입니다. Foundry Book은 이를 fast local Ethereum development node로 소개합니다. peer에게 header를 받아 state를 재구성할 대상이 없습니다. `false`는 "이미 네트워크 머리에 있다"가 아니라 "sync할 원격 머리가 없다"에 가깝습니다. 같은 프로세스의 `net_peerCount`가 method 자체를 모르는 것과 맞물립니다.
 
@@ -86,9 +86,9 @@ _지갑이 보는 포트와 머리를 밀어 주는 포트는 다릅니다. Anvi
 
 ethereum.org는 `net_listening`을 "네트워크 연결을 듣고 있으면 true"로, `net_peerCount`를 "지금 붙은 peer 수"로 정의합니다. 둘 다 execution client JSON-RPC의 gossip 층입니다. consensus client의 peer는 Beacon API 쪽에 있습니다. 한쪽이 충분하고 다른 쪽이 비면, 거래는 들어오는데 새 block이 안 오거나, 그 반대가 됩니다.
 
-Anvil은 `net_listening=true`를 줍니다. 8545에서 HTTP를 받고 있다는 뜻으로 읽히면 과합니다. 같은 프로세스가 peer 수 조회 자체를 모릅니다. `admin_peers`와 `admin_nodeInfo`도 `-32601`입니다. 개발 노드는 P2P mesh의 일원이 아닙니다. listening 플래그만으로 "네트워크에 붙어 있다"고 쓰면, Anvil과 실제 노드를 같은 문장에 넣게 됩니다.
+Anvil은 `net_listening=true`를 줍니다. 8545에서 HTTP를 받고 있다는 뜻으로 읽히면 과합니다. 같은 프로세스가 peer 수 조회 자체를 모릅니다. `admin_peers`와 `admin_nodeInfo`도 `-32601`입니다. **개발 노드는 P2P mesh의 일원이 아닙니다.** listening 플래그만으로 "네트워크에 붙어 있다"고 쓰면, Anvil과 실제 노드를 같은 문장에 넣게 됩니다.
 
-Sepolia 공개 endpoint는 listening true와 peer 28을 함께 줬습니다. 이 숫자는 그 순간의 그 backend입니다. 공개 제공자는 앞단에 여러 노드를 둘 수 있고, 같은 URL이 다음 요청에서 다른 인스턴스로 갈 수 있습니다. peer 45에서 28로 바뀐 관측을 "네트워크가 갑자기 고립됐다"로 읽으면 안 됩니다. 자기 집 노드를 운영할 때는 그 해석이 맞을 수 있습니다. 공개 RPC를 빌려 쓸 때는 그 숫자가 자기 운영 지표가 아닙니다.
+Sepolia 공개 endpoint는 listening true와 peer 28을 함께 줬습니다. 이 숫자는 그 시점의 그 backend입니다. 공개 제공자는 앞단에 여러 노드를 둘 수 있고, 같은 URL이 다음 요청에서 다른 인스턴스로 갈 수 있습니다. peer 45에서 28로 바뀐 관측을 "네트워크가 갑자기 고립됐다"로 읽으면 안 됩니다. 자기 집 노드를 운영할 때는 그 해석이 맞을 수 있습니다. 공개 RPC를 빌려 쓸 때는 그 숫자가 자기 운영 지표가 아닙니다.
 
 실행 계층 peer가 0에 가까워지면 `eth_syncing`이 `false`여도 머리가 멈춥니다. 이미 따라잡은 노드가 고립되면, client는 더 이상 import 중이라고 표시하지 않습니다. 표시할 상대가 없기 때문입니다. 이때 봐야 하는 값은 peer 수와 `latest`의 timestamp입니다. block 높이는 어제 숫자 그대로일 수 있고, HTTP는 오늘도 200입니다.
 
@@ -108,7 +108,7 @@ finalized   11545218    (latest - 64)
 peerCount   37
 ```
 
-간격이 33/64에서 56/88로 벌어졌다가 다시 33/64로 돌아왔습니다. proof-of-stake에서 slot은 12초, epoch는 32 slot입니다. 그 자리수와 비슷한 간격이 나오기도 하지만, 이 숫자를 운영 상수로 외우면 안 됩니다. 공개 RPC의 지연, 빈 slot, 관측 시각, 그리고 그 URL이 가리키는 인스턴스가 간격을 바꿉니다.
+간격이 33/64에서 56/88로 벌어졌다가 다시 33/64로 돌아왔습니다. proof-of-stake에서 slot은 12초, epoch는 32 slot입니다. 그 자리수와 비슷한 간격이 나오기도 하지만, **이 숫자를 운영 상수로 외우면 안 됩니다.** 공개 RPC의 지연, 빈 slot, 관측 시각, 그리고 그 URL이 가리키는 인스턴스가 간격을 바꿉니다.
 
 Anvil은 같은 호출을 다른 방식으로 붕괴시킵니다.
 
@@ -118,7 +118,7 @@ safe        0     0xd42a17af...
 finalized   0     0xd42a17af...
 ```
 
-tag 이름은 받습니다. 합의 머리는 없습니다. `safe`와 `finalized`는 같은 genesis hash입니다. `latest`만 로컬에서 만든 block 5를 가리킵니다. 개발 테스트가 `finalized`를 쓰면, 방금 보낸 거래가 보이지 않습니다. HTTP는 200이고 본문은 유효한 block JSON입니다. 틀린 머리를 정확한 형식으로 돌려준 것입니다.
+tag 이름은 받습니다. 합의 머리는 없습니다. `safe`와 `finalized`는 같은 genesis hash입니다. `latest`만 로컬에서 만든 block 5를 가리킵니다. 개발 테스트가 `finalized`를 쓰면, 방금 보낸 거래가 보이지 않습니다. HTTP는 200이고 본문은 유효한 block JSON입니다. **틀린 머리를 정확한 형식으로 돌려준 것입니다.**
 
 indexer나 입금 확인을 `latest`에만 걸면, 공개망에서는 reorg 창 안의 receipt를 확정으로 취급합니다. Anvil에서는 그 창이 존재하지 않거나, 반대로 `finalized`가 영원히 genesis에 남습니다. 같은 메서드, 같은 tag, 다른 운영 의미입니다.
 
@@ -147,7 +147,7 @@ _소켓이 살아 있는 것과 이 노드가 네트워크 머리를 보고 있�
 
 Anvil이 대신하는 것은 EVM과 JSON-RPC의 일부입니다. account, nonce, gas, receipt, `eth_call`은 로컬에서 재현할 수 있습니다. 운영자가 보는 나머지, 즉 peer, sync 진행, Engine JWT, beacon root, 살아 움직이는 finality는 빠져 있습니다. `txpool_status`는 `pending 0`, `queued 0`을 줬습니다. 로컬에서 거래를 넣지 않았으니 그 값은 맞습니다. 그 값이 "네트워크 mempool이 비어 있다"는 뜻은 아닙니다.
 
-Foundry의 `--fork-url`은 이 경계를 더 흐립니다. fork된 Anvil은 원격 상태를 가져와 로컬에서 실행하지만, 그 순간부터 원격 합의를 따라가지 않습니다. fork 높이 위의 `latest`는 다시 로컬 머리가 됩니다. HTTP 200과 `eth_syncing false`는 그대로입니다. fork를 운영 노드의 대체재로 쓰면, 배포 대상 네트워크의 peer와 finality를 검증했다고 착각하게 됩니다.
+Foundry의 `--fork-url`은 이 경계를 더 흐립니다. fork된 Anvil은 원격 상태를 가져와 로컬에서 실행하지만, 그 시점부터 원격 합의를 따라가지 않습니다. fork 높이 위의 `latest`는 다시 로컬 머리가 됩니다. HTTP 200과 `eth_syncing false`는 그대로입니다. **fork를 운영 노드의 대체재로 쓰면, 배포 대상 네트워크의 peer와 finality를 검증했다고 착각하게 됩니다.**
 
 이번 실습의 Anvil `latest` hash `0x2b20b981...`에는 이전 글에서 남긴 로컬 거래가 들어 있습니다. 그 거래의 실행 결과는 여기서 다시 풀지 않습니다. 운영 관점에서 중요한 것은, 그 block이 누구의 peer에도 전파되지 않았다는 점입니다. 같은 머신의 다음 Anvil 프로세스가 뜨면 그 머리는 사라집니다.
 
@@ -191,7 +191,7 @@ _한 칸이 통과해도 다음 칸이 실패할 수 있습니다. Anvil은 아�
 
 JSON-RPC의 HTTP 200은 소켓이 본문을 돌려줬다는 뜻입니다. `eth_syncing false`는 그 client가 import 중이라고 표시하지 않는다는 뜻입니다. `net_listening true`는 네트워크 mesh의 일원이라는 뜻이 아닙니다. Anvil은 이 세 값을 동시에 주면서 peer 메서드와 Engine API를 갖지 않습니다. 공개 Sepolia 노드는 같은 세 값 위에 실제 peer와 움직이는 `safe`/`finalized` 간격을 올립니다. 그 간격은 같은 날에도 33/64에서 56/88로 변했습니다.
 
-운영자의 점검은 이 순서를 내려갑니다. transport, sync 표시, peer, 머리의 나이, tag 간격, 그리고 자기 노드라면 Engine JWT. 한 칸의 성공을 다음 칸의 성공으로 옮기지 않습니다. 개발 체인은 위칸만으로도 충분할 때가 많습니다. 그 충분함을 공개망 노드의 건강으로 읽지 않으면 됩니다.
+운영자의 점검은 이 순서를 내려갑니다. transport, sync 표시, peer, 머리의 나이, tag 간격, 그리고 자기 노드라면 Engine JWT. **한 칸의 성공을 다음 칸의 성공으로 옮기지 않습니다.** 개발 체인은 위칸만으로도 충분할 때가 많습니다. 그 충분함을 공개망 노드의 건강으로 읽지 않으면 됩니다.
 
 ---
 

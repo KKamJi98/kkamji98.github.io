@@ -23,7 +23,7 @@ Kubernetes 클러스터는 컨테이너를 실행하는 머신의 묶음이 아�
 
 클러스터는 컨트롤 플레인(control plane)과 하나 이상의 노드(node)로 구성됩니다. 컨트롤 플레인은 클러스터 전반의 상태를 관리하고, 노드는 컨테이너 런타임을 통해 Pod를 실행합니다. Pod는 Kubernetes가 배치하고 관리하는 가장 작은 배포 단위이며, 하나 이상의 컨테이너를 포함합니다.
 
-`kubectl`이나 CI 시스템이 리소스를 생성할 때 구성 요소끼리 직접 호출하는 구조가 아닙니다. 요청과 상태 변경은 API 서버를 중심으로 흐릅니다. 이 hub-and-spoke 구조에서 다른 컨트롤 플레인 구성 요소는 원격 API를 제공하지 않습니다.
+`kubectl`이나 CI 시스템이 리소스를 생성할 때 구성 요소끼리 직접 호출하는 구조가 아닙니다. 요청과 상태 변경은 API 서버를 중심으로 흐릅니다. **이 hub-and-spoke 구조에서 다른 컨트롤 플레인 구성 요소는 원격 API를 제공하지 않습니다.**
 
 {% include diagrams/static/kubernetes/kubernetes-control-plane-flow.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/kubernetes-control-plane-flow--d614ffb59bc2df8b.png" %}
@@ -42,13 +42,13 @@ API 서버는 구성 요소 간의 계약 경계이기도 합니다. 예를 들�
 
 ### 2.2. etcd
 
-`etcd`는 API 서버 데이터의 일관되고 고가용성인 키-값 저장소입니다. Pod, Deployment, Secret, RBAC 객체처럼 Kubernetes API로 관리하는 객체의 상태는 API 서버를 통해 저장되고 조회됩니다. 애플리케이션이나 운영 도구가 etcd에 직접 접근하는 방식은 일반적인 제어 경로가 아닙니다.
+`etcd`는 API 서버 데이터의 일관되고 고가용성인 키-값 저장소입니다. Pod, Deployment, Secret, RBAC 객체처럼 Kubernetes API로 관리하는 객체의 상태는 API 서버를 통해 저장되고 조회됩니다. **애플리케이션이나 운영 도구가 etcd에 직접 접근하는 방식은 일반적인 제어 경로가 아닙니다.**
 
 etcd는 제어면의 핵심 데이터이므로 백업과 복구 절차는 클러스터 구축 방식에 맞춰 검증해야 합니다. 관리형 서비스에서는 공급자가 etcd 운영과 복구 책임을 맡을 수 있으므로, 사용자가 접근 가능한 범위와 복원 절차를 먼저 확인합니다.
 
 ### 2.3. kube-scheduler
 
-`kube-scheduler`는 아직 노드에 할당되지 않은 Pod를 찾고, 리소스 요청, 노드 제약, affinity, taint와 toleration 같은 조건을 고려해 적합한 노드를 선택합니다. 스케줄러는 컨테이너를 실행하지 않습니다. 선택 결과를 API에 기록하면 해당 노드의 kubelet이 Pod 명세를 보고 실행을 진행합니다.
+`kube-scheduler`는 아직 노드에 할당되지 않은 Pod를 찾고, 리소스 요청, 노드 제약, affinity, taint와 toleration 같은 조건을 고려해 적합한 노드를 선택합니다. **스케줄러는 컨테이너를 실행하지 않습니다.** 선택 결과를 API에 기록하면 해당 노드의 kubelet이 Pod 명세를 보고 실행을 진행합니다.
 
 ### 2.4. kube-controller-manager와 cloud-controller-manager
 
@@ -64,11 +64,11 @@ etcd는 제어면의 핵심 데이터이므로 백업과 복구 절차는 클러
 
 `kubelet`은 각 노드에서 실행되며, API에서 할당된 Pod 명세에 맞게 컨테이너가 실행 중인지 보장합니다. kubelet은 컨테이너 런타임(container runtime)에 이미지 준비와 컨테이너 생명주기 작업을 요청하고, Pod와 노드 상태를 API 서버에 보고합니다. 런타임은 컨테이너를 실제로 실행하는 소프트웨어이며, Kubernetes는 특정 구현 하나를 요구하지 않습니다.
 
-노드에서 API 서버와의 연결이 끊겨도 이미 실행 중인 컨테이너가 즉시 사라지는 것은 아닙니다. 다만 새 명세를 받거나 상태를 보고할 수 없으므로, 새 스케줄링과 정상적인 제어 루프는 진행되지 않습니다. `/etc/kubernetes/manifests` 같은 static Pod 경로는 kubelet이 로컬 파일을 감시하는 별도 기능이며, 일반 워크로드의 장애 복구 수단으로 혼동하지 않아야 합니다.
+**노드에서 API 서버와의 연결이 끊겨도 이미 실행 중인 컨테이너가 즉시 사라지는 것은 아닙니다.** 다만 새 명세를 받거나 상태를 보고할 수 없으므로, 새 스케줄링과 정상적인 제어 루프는 진행되지 않습니다. `/etc/kubernetes/manifests` 같은 static Pod 경로는 kubelet이 로컬 파일을 감시하는 별도 기능이며, 일반 워크로드의 장애 복구 수단으로 혼동하지 않아야 합니다.
 
 ### 3.2. kube-proxy와 네트워크 Add-on
 
-`kube-proxy`는 선택 구성 요소로, 각 노드에서 Service를 구현하기 위한 네트워크 규칙을 유지합니다. Service의 가상 IP나 포트로 들어온 트래픽이 적절한 백엔드 Pod로 전달되도록 돕지만, 모든 Pod 간 네트워크를 단독으로 구성하는 구성 요소는 아닙니다.
+`kube-proxy`는 선택 구성 요소로, 각 노드에서 Service를 구현하기 위한 네트워크 규칙을 유지합니다. Service의 가상 IP나 포트로 들어온 트래픽이 적절한 백엔드 Pod로 전달되도록 돕지만, **모든 Pod 간 네트워크를 단독으로 구성하는 구성 요소는 아닙니다.**
 
 Pod 네트워크, NetworkPolicy 구현, DNS 같은 기능은 CNI 플러그인과 CoreDNS 등 Add-on의 책임입니다. 따라서 Service 연결 문제가 발생했을 때 kube-proxy만 점검하지 말고 EndpointSlice, CNI, DNS, NetworkPolicy, 애플리케이션 리스닝 상태를 함께 확인해야 합니다.
 
@@ -85,7 +85,7 @@ Pod 네트워크, NetworkPolicy 구현, DNS 같은 기능은 CNI 플러그인과
 5. 선택된 노드의 kubelet이 Pod 명세를 관찰하고 런타임으로 컨테이너를 실행한다.
 6. kubelet과 컨트롤러가 상태를 API에 보고하고, 차이가 생기면 다시 조정한다.
 
-핵심은 이 과정이 한 번만 실행되는 배포 스크립트가 아니라는 점입니다. 노드 장애, 컨테이너 종료, 복제 수 변경처럼 실제 상태가 달라질 때 컨트롤러는 API에 선언된 상태로 다시 수렴하려 합니다.
+**핵심은 이 과정이 한 번만 실행되는 배포 스크립트가 아니라는 점입니다.** 노드 장애, 컨테이너 종료, 복제 수 변경처럼 실제 상태가 달라질 때 컨트롤러는 API에 선언된 상태로 다시 수렴하려 합니다.
 
 ---
 

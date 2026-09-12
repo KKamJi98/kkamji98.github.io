@@ -35,7 +35,7 @@ Harbor에서 project는 image repository와 권한을 묶는 최상위 단위입
 | tag | `1.0.0` | 사람이 읽는 version label입니다. 같은 tag는 변경될 수 있습니다. |
 | digest | `sha256:...` | image content를 식별하는 immutable hash입니다. |
 
-Harbor UI에서 project를 먼저 생성합니다. CI가 push할 project는 기본적으로 private으로 두고, 필요한 pull 권한만 부여합니다. proxy cache project에는 직접 push할 수 없습니다.
+Harbor UI에서 project를 먼저 생성합니다. **CI가 push할 project는 기본적으로 private으로 두고, 필요한 pull 권한만 부여합니다.** proxy cache project에는 직접 push할 수 없습니다.
 
 ```text
 local image -- tag --> harbor.example.com/platform/api:1.0.0
@@ -66,15 +66,15 @@ sudo install -m 0644 ca.crt /etc/docker/certs.d/<harbor-address>/ca.crt
 docker login <harbor-address>
 ```
 
-`insecure-registries`는 plain HTTP 또는 검증되지 않은 certificate를 허용하게 하므로 production 해결책으로 사용하지 않습니다. CA trust 문제는 certificate chain, DNS name, client trust store를 수정해 해결합니다.
+`insecure-registries`는 **plain HTTP 또는 검증되지 않은 certificate를 허용하게 하므로 production 해결책으로 사용하지 않습니다.** CA trust 문제는 certificate chain, DNS name, client trust store를 수정해 해결합니다.
 
-CI에서는 project-scoped robot account를 만들고 `Pull Repository`와 필요한 경우 `Push Repository`만 부여합니다. robot secret은 생성 화면에서 한 번만 받을 수 있으므로 secret manager에 저장하고, 만료일과 rotation 절차를 설정합니다.
+CI에서는 project-scoped robot account를 만들고 `Pull Repository`와 필요한 경우 `Push Repository`만 부여합니다. **robot secret은 생성 화면에서 한 번만 받을 수 있으므로 secret manager에 저장하고, 만료일과 rotation 절차를 설정합니다.**
 
 ---
 
 ## 3. Image tag와 push
 
-예시로 public image를 가져와 project namespace와 version tag를 붙입니다. `latest`는 이후 다른 image를 가리킬 수 있으므로 release와 deployment에는 명시적인 version tag를 사용합니다.
+예시로 public image를 가져와 project namespace와 version tag를 붙입니다. `latest`는 **이후 다른 image를 가리킬 수 있으므로 release와 deployment에는 명시적인 version tag를 사용합니다.**
 
 ```bash
 docker pull alpine:3.20
@@ -95,14 +95,14 @@ docker pull <harbor-address>/platform/alpine@sha256:<digest>
 docker image inspect <harbor-address>/platform/alpine@sha256:<digest>
 ```
 
-특정 image만 삭제해 pull을 다시 확인하려면 대상 reference를 명시합니다. `docker rmi $(docker images -q) -f`처럼 host의 모든 local image를 제거하는 명령은 build cache와 실행 중인 workload에 영향을 줄 수 있으므로 사용하지 않습니다.
+특정 image만 삭제해 pull을 다시 확인하려면 대상 reference를 명시합니다. `docker rmi $(docker images -q) -f`처럼 **host의 모든 local image를 제거하는 명령은 build cache와 실행 중인 workload에 영향을 줄 수 있으므로 사용하지 않습니다.**
 
 ```bash
 docker image rm <harbor-address>/platform/alpine:3.20
 docker pull <harbor-address>/platform/alpine@sha256:<digest>
 ```
 
-Kubernetes에서 private Harbor project의 image를 pull하려면 node runtime에도 registry CA trust가 필요하며, Pod에는 project pull 권한을 가진 `imagePullSecret`이 필요합니다. registry credential을 Pod manifest에 평문으로 넣지 않습니다.
+Kubernetes에서 private Harbor project의 image를 pull하려면 node runtime에도 registry CA trust가 필요하며, Pod에는 project pull 권한을 가진 `imagePullSecret`이 필요합니다. **registry credential을 Pod manifest에 평문으로 넣지 않습니다.**
 
 ---
 

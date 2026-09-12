@@ -25,7 +25,7 @@ tmux는 다음 계층으로 동작합니다.
 | Window | 세션 안의 전체 화면 단위이며 하나 이상의 패널을 포함 |
 | Pane | 셸이나 대화형 프로그램이 실행되는 개별 pseudo-terminal(PTY) |
 
-`detach`는 client만 session에서 분리합니다. session과 pane 안의 프로세스는 tmux server가 살아 있는 동안 계속 실행되며, 나중에 다시 `attach`할 수 있습니다. 반면 `kill-session`, 호스트 재부팅, tmux server 종료는 같은 의미가 아닙니다. tmux는 프로세스 체크포인트나 재부팅 복구 도구가 아니므로 중요한 상태는 애플리케이션 자체 파일이나 로그에도 남겨야 합니다.
+`detach`는 client만 session에서 분리합니다. session과 pane 안의 프로세스는 tmux server가 살아 있는 동안 계속 실행되며, 나중에 다시 `attach`할 수 있습니다. 반면 `kill-session`, 호스트 재부팅, tmux server 종료는 같은 의미가 아닙니다. **tmux는 프로세스 체크포인트나 재부팅 복구 도구가 아니므로 중요한 상태는 애플리케이션 자체 파일이나 로그에도 남겨야 합니다.**
 
 tmux는 Claude Code, Codex, Hermes 같은 대화형 프로그램에 지속적인 PTY를 제공할 뿐입니다. 작업을 분해하거나 subagent를 생성하고, 권한을 통제하거나, 여러 에이전트의 파일 수정을 조정하는 관리자는 아닙니다. 이러한 책임은 각 에이전트 도구와 사용자의 작업 절차에 남습니다.
 
@@ -191,7 +191,7 @@ tmux show-buffer
 
 복사한 내용은 tmux paste buffer에 들어가며, `Ctrl-b ]`로 pane에 붙여넣을 수 있습니다. 운영체제 clipboard 연동 여부는 tmux 옵션과 터미널 지원에 따라 달라지므로 tmux buffer 복사를 곧바로 시스템 clipboard 복사로 가정하면 안 됩니다.
 
-pane history는 무제한 감사 로그가 아닙니다. 현재 제한은 다음 명령으로 확인할 수 있으며, 장기 보존이 필요하면 에이전트 자체 기록이나 별도 로그를 사용합니다.
+**pane history는 무제한 감사 로그가 아닙니다.** 현재 제한은 다음 명령으로 확인할 수 있으며, 장기 보존이 필요하면 에이전트 자체 기록이나 별도 로그를 사용합니다.
 
 ```shell
 tmux show-options -gv history-limit
@@ -340,7 +340,7 @@ tmux show-options -g
 tmux show-options -s
 ```
 
-`pane_current_command`는 pane의 현재 명령 이름을 보여주는 상태 정보입니다. 에이전트의 내부 작업 단계나 안전 상태를 증명하지 않으므로 종료 전에는 실제 화면과 애플리케이션 상태를 함께 확인해야 합니다.
+`pane_current_command`는 pane의 현재 명령 이름을 보여주는 상태 정보입니다. **에이전트의 내부 작업 단계나 안전 상태를 증명하지 않으므로 종료 전에는 실제 화면과 애플리케이션 상태를 함께 확인해야 합니다.**
 
 ---
 
@@ -356,7 +356,7 @@ tmux new-session -d -s project-agent -c "$PWD"
 tmux attach-session -t project-agent
 ```
 
-한 window에는 하나의 주 작업 흐름을 두고, 빌드나 로그 확인은 별도 window 또는 pane으로 분리하면 문맥을 찾기 쉽습니다. 여러 에이전트가 같은 저장소를 동시에 수정할 때 tmux는 충돌을 방지하지 않습니다. 파일 소유권, branch 또는 worktree, 검증과 병합 순서는 별도로 정해야 합니다.
+한 window에는 하나의 주 작업 흐름을 두고, 빌드나 로그 확인은 별도 window 또는 pane으로 분리하면 문맥을 찾기 쉽습니다. **여러 에이전트가 같은 저장소를 동시에 수정할 때 tmux는 충돌을 방지하지 않습니다.** 파일 소유권, branch 또는 worktree, 검증과 병합 순서는 별도로 정해야 합니다.
 
 ### 8.2. 자리를 비우기 전
 
@@ -374,7 +374,7 @@ tmux attach-session -t project-agent
 tmux display-message -p '#S:#I.#P pid=#{pane_pid} cmd=#{pane_current_command}'
 ```
 
-화면 출력, prompt, 저장소 상태를 다시 확인한 뒤 입력을 이어갑니다. tmux가 PTY를 유지했다는 사실만으로 에이전트 요청이 성공했거나 저장소가 안전한 상태라고 판단하지 않습니다.
+화면 출력, prompt, 저장소 상태를 다시 확인한 뒤 입력을 이어갑니다. **tmux가 PTY를 유지했다는 사실만으로 에이전트 요청이 성공했거나 저장소가 안전한 상태라고 판단하지 않습니다.**
 
 ---
 
@@ -454,7 +454,7 @@ tmux kill-session -t project-agent
 tmux kill-session -a -t keep-this
 ```
 
-`tmux kill-session -a -t keep-this`와 `tmux kill-server`는 영향 범위가 큽니다. 특히 `tmux kill-server`는 해당 server의 모든 session과 client를 파괴하므로 일반적인 정리 명령으로 사용하지 않는 것이 안전합니다.
+`tmux kill-session -a -t keep-this`와 `tmux kill-server`는 영향 범위가 큽니다. 특히 `tmux kill-server`는 해당 server의 모든 session과 client를 파괴하므로 **일반적인 정리 명령으로 사용하지 않는 것이 안전합니다**.
 
 ---
 

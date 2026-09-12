@@ -9,7 +9,7 @@ image:
   path: /assets/img/nodejs/nodejs-logo-history-banner.png
 ---
 
-Node.js 서버에서 응답이 느려졌을 때 Express middleware부터 의심하기 쉽습니다. 하지만 route 코드가 정상이어도 Node.js process가 CPU를 오래 점유하거나, port를 열지 못했거나, container가 종료 신호를 받는 중일 수 있습니다. 원인을 나누려면 Node.js가 JavaScript 언어도, browser도, web framework도 아니라는 점부터 분명히 해야 합니다.
+Node.js 서버에서 응답이 느려졌을 때 Express middleware부터 의심하기 쉽습니다. 하지만 route 코드가 정상이어도 Node.js process가 CPU를 오래 점유하거나, port를 열지 못했거나, container가 종료 신호를 받는 중일 수 있습니다. 원인을 나누려면 **Node.js가 JavaScript 언어도, browser도, web framework도 아니라는 점부터 분명히 해야 합니다.**
 
 Node.js는 OS process 안에서 JavaScript와 core API를 실행하는 runtime입니다. `node:http`로 HTTP server를 열고, file system, network, process, crypto API를 호출할 수 있습니다. Express나 NestJS는 이 runtime 위에서 route와 middleware를 구성하는 framework입니다. container와 Kubernetes는 Node.js process를 배포하고 lifecycle을 관리하는 바깥 환경입니다.
 
@@ -31,7 +31,7 @@ Node.js는 OS process 안에서 JavaScript와 core API를 실행하는 runtime�
 {% include diagrams/download.html png="/assets/img/diagrams/static/nodejs/nodejs-server-runtime-overview--6ad6474d9f389847.png" %}
 _Node.js application은 OS process 안에서 core API를 호출합니다. network listener와 준비된 I/O callback은 runtime의 scheduling 경계를 거쳐 application code에 전달됩니다._
 
-application code는 route, domain rule, serialization처럼 제품 고유의 책임을 가집니다. Node.js process는 JavaScript와 `node:http` 같은 core API를 실행합니다. OS는 socket과 file descriptor를 제공합니다. 이 셋을 나누면 application bug, port bind failure, network 문제, deployment lifecycle 문제를 같은 오류로 묶지 않게 됩니다.
+application code는 route, domain rule, serialization처럼 제품 고유의 책임을 가집니다. Node.js process는 JavaScript와 `node:http` 같은 core API를 실행합니다. OS는 socket과 file descriptor를 제공합니다. **이 셋을 나누면 application bug, port bind failure, network 문제, deployment lifecycle 문제를 같은 오류로 묶지 않게 됩니다.**
 
 ---
 
@@ -39,9 +39,9 @@ application code는 route, domain rule, serialization처럼 제품 고유의 책
 
 Node.js는 asynchronous event-driven runtime입니다. database query, upstream HTTP request, file read처럼 완료까지 기다려야 하는 I/O가 있을 때, application은 그 시간 내내 연결 하나를 위해 JavaScript thread를 붙잡아 두는 방식만 사용하지 않습니다. 완료된 I/O event가 준비되면 callback이나 Promise 후속 처리를 실행합니다.
 
-그렇다고 Node.js가 CPU 작업을 자동으로 병렬 처리하는 것은 아닙니다. 기본 application JavaScript는 main thread에서 실행됩니다. `await`는 현재 async function의 다음 실행을 Promise 결과까지 미룰 뿐이고, 그 뒤의 긴 JSON 변환이나 암호화, image 처리, 계산을 다른 thread로 옮기지 않습니다.
+그렇다고 Node.js가 CPU 작업을 자동으로 병렬 처리하는 것은 아닙니다. 기본 application JavaScript는 main thread에서 실행됩니다. `await`는 현재 async function의 다음 실행을 Promise 결과까지 미룰 뿐이고, **그 뒤의 긴 JSON 변환이나 암호화, image 처리, 계산을 다른 thread로 옮기지 않습니다.**
 
-Worker Threads를 만들 수는 있습니다. 다만 이는 CPU-heavy 작업을 main thread에서 떼어 내기 위한 명시적인 설계 선택입니다. event-driven I/O와 CPU parallelism은 다른 문제로 봐야 합니다.
+Worker Threads를 만들 수는 있습니다. 다만 이는 CPU-heavy 작업을 main thread에서 떼어 내기 위한 명시적인 설계 선택입니다. **event-driven I/O와 CPU parallelism은 다른 문제로 봐야 합니다.**
 
 ---
 
@@ -54,7 +54,7 @@ Worker Threads를 만들 수는 있습니다. 다만 이는 CPU-heavy 작업을 
 | image, video, large compression, 긴 계산 | main JavaScript thread를 오래 점유하는가 | Worker Threads, queue, 별도 service 검토 |
 | file system 또는 일부 crypto, DNS API | OS async I/O인지 libuv Worker Pool 경로인지 | API별 worker pool contention 확인 |
 
-CPU-heavy 작업을 Promise나 `setTimeout()`으로 감싼다고 main thread 점유가 사라지지는 않습니다. 반대로 CPU usage 하나만으로 JavaScript CPU loop나 Worker Pool 병목을 단정할 수도 없습니다. 요청 지연, event loop delay, queue length, throttling, workload 형태를 함께 봐야 합니다.
+CPU-heavy 작업을 Promise나 `setTimeout()`으로 감싼다고 main thread 점유가 사라지지는 않습니다. 반대로 **CPU usage 하나만으로 JavaScript CPU loop나 Worker Pool 병목을 단정할 수도 없습니다.** 요청 지연, event loop delay, queue length, throttling, workload 형태를 함께 봐야 합니다.
 
 ---
 
@@ -93,7 +93,7 @@ $ npm test
 ℹ fail 0
 ```
 
-test는 localhost ephemeral port에서 server를 열고 `fetch()`로 `/healthz`를 요청합니다. status `200`, `runtime: "node"`, 실행 중인 Node version, 양의 PID를 assertion합니다. 이 작은 확인만으로 production readiness를 판단할 수는 없지만, Node.js가 browser 밖의 process에서 core HTTP API를 제공한다는 실행 증거는 됩니다.
+test는 localhost ephemeral port에서 server를 열고 `fetch()`로 `/healthz`를 요청합니다. status `200`, `runtime: "node"`, 실행 중인 Node version, 양의 PID를 assertion합니다. **이 작은 확인만으로 production readiness를 판단할 수는 없지만**, Node.js가 browser 밖의 process에서 core HTTP API를 제공한다는 실행 증거는 됩니다.
 
 ---
 

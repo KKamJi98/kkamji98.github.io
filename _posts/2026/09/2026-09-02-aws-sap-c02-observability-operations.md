@@ -452,7 +452,7 @@ Systems Manager 안에는 노드에 손대는 도구가 여러 개 들어 있고
 | Session Manager | 대화형 세션 | 노드 내부 | 포트 개방과 bastion 없이 접속한다 |
 | Patch Manager | 스캔과 설치 | 노드 내부 | baseline 기준 준수 판정 |
 
-"수백 대의 에이전트 설정이 사람 손에 바뀌어 계속 어긋난다"는 지문에서 Run Command와 State Manager가 갈립니다. Run Command로 배포하면 그 순간만 맞고 다음에 누가 고치면 다시 어긋납니다. State Manager는 스케줄마다 원하는 상태를 다시 적용하고 association 단위로 준수 상태를 보여줍니다.
+"수백 대의 에이전트 설정이 사람 손에 바뀌어 계속 어긋난다"는 지문에서 Run Command와 State Manager가 갈립니다. Run Command로 배포하면 실행한 시점에만 맞고 다음에 누가 고치면 다시 어긋납니다. State Manager는 스케줄마다 원하는 상태를 다시 적용하고 association 단위로 준수 상태를 보여줍니다.
 
 **State Manager**의 동작 제약은 다음과 같습니다.
 

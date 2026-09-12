@@ -9,7 +9,7 @@ image:
   path: /assets/img/blockchain/blockchain.webp
 ---
 
-explorer에서 confirmation 1이 뜨면 그 거래는 끝난 것처럼 보입니다. 같은 node에서 그 block을 무효화하면 거래는 다시 mempool로 돌아옵니다. 확인 횟수는 balance처럼 저장되는 플래그가 아니라, 지금 활성 체인 팁에 그 거래가 들어 있는지를 센 값입니다.
+explorer에서 confirmation 1이 뜨면 그 거래는 끝난 것처럼 보입니다. 같은 node에서 그 block을 무효화하면 거래는 다시 mempool로 돌아옵니다. **확인 횟수는 balance처럼 저장되는 플래그가 아니라, 지금 활성 체인 팁에 그 거래가 들어 있는지를 센 값입니다.**
 
 [이전 글](https://kkamji.net/posts/bitcoin-utxo-transactions/)에서 돈은 미사용 출력으로만 존재한다는 점을 확인했습니다. 그 출력이 mempool에 머무르는 동안, block에 들어가는 순간, 그리고 체인이 갈라질 때 어떻게 움직이는지를 Bitcoin Core 31.1 regtest에서 관측합니다. 실습은 로컬 테스트 체인에서만 진행하므로 실제 비용은 발생하지 않습니다.
 
@@ -19,7 +19,7 @@ explorer에서 confirmation 1이 뜨면 그 거래는 끝난 것처럼 보입니
 
 Bitcoin Core 31.1(`subversion` `/Satoshi:31.1.0/`, `protocolversion` 70016)을 regtest로 띄웠습니다. `networkactive`는 true이고 `connections`는 0이며 `getpeerinfo`는 빈 배열입니다. `localservicesnames`는 `NETWORK`, `WITNESS`, `NETWORK_LIMITED`, `P2P_V2`입니다. P2P 스택은 살아 있고 이웃만 없습니다.
 
-이 시점의 chain은 `regtest`, 높이는 111, `difficulty`는 `4.656542373906925e-10`, `size_on_disk`는 33604바이트였습니다. 빈 mempool은 `loaded=true`, `size=0`, `usage=64`, `maxmempool=300000000`, `fullrbf=true`, `minrelaytxfee=1e-06`이었습니다. mempool은 전파 버퍼가 아닙니다. 이 node가 아직 block에 넣지 않은 거래를 보관하는 공간입니다.
+이 시점의 chain은 `regtest`, 높이는 111, `difficulty`는 `4.656542373906925e-10`, `size_on_disk`는 33604바이트였습니다. 빈 mempool은 `loaded=true`, `size=0`, `usage=64`, `maxmempool=300000000`, `fullrbf=true`, `minrelaytxfee=1e-06`이었습니다. **mempool은 전파 버퍼가 아닙니다.** 이 node가 아직 block에 넣지 않은 거래를 보관하는 공간입니다.
 
 {% include diagrams/static/blockchain/bitcoin-isolated-mempool.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/bitcoin-isolated-mempool--0a3def374596c7ea.png" %}
@@ -75,7 +75,7 @@ vin[0].txinwitness     [signature, pubkey 027adbdb86...]
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/bitcoin-p2wpkh-witness--2d9c3cf5735272f6.png" %}
 _잠금은 scriptPubKey의 0과 20바이트 hash다. 잠금 해제는 빈 scriptSig가 아니라 txinwitness의 signature와 공개키다._
 
-잠금 스크립트가 곧 그 출력을 쓸 수 있는 조건입니다. 같은 node에서 `createmultisig 2`를 호출하면 레거시 P2SH address `2MwmkSC41uzy1QjUzUczpPRHJ8y33zwtvHT`가 나옵니다. RPC의 `type` 필드는 null이었고, `redeemScript` 길이는 142였습니다. 기본 송금 address와 멀티시그 address의 형식이 다른 것은 address가 balance 상자가 아니라, 어떤 Script를 쓰는지에 대한 짧은 이름이기 때문입니다.
+잠금 스크립트가 곧 그 출력을 쓸 수 있는 조건입니다. 같은 node에서 `createmultisig 2`를 호출하면 레거시 P2SH address `2MwmkSC41uzy1QjUzUczpPRHJ8y33zwtvHT`가 나옵니다. RPC의 `type` 필드는 null이었고, `redeemScript` 길이는 142였습니다. 기본 송금 address와 멀티시그 address의 형식이 다른 것은 **address가 balance 상자가 아니라, 어떤 Script를 쓰는지에 대한 짧은 이름이기 때문입니다**.
 
 ---
 
@@ -95,7 +95,7 @@ header.merkleroot 38990380955e16093d384cb634689a165e34ba5a642827fbe345714490368d
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/bitcoin-spv-proof--dc1bc708ccb1f2f9.png" %}
 _증명이 151바이트인 이유는 전체 거래 목록이 아니라 해당 거래가 루트에 연결되는 경로만 담기 때문이다._
 
-헤더에는 이전 block hash와 Merkle 루트가 들어 있습니다. 라이트 클라이언트가 전체 체인을 들고 다니지 않아도 포함 여부를 따질 수 있는 지점입니다. 이 값은 nTx=2인 로컬 block의 증명입니다. 메인넷 대형 block의 증명 크기를 여기서 재현한 것은 아닙니다.
+헤더에는 이전 block hash와 Merkle 루트가 들어 있습니다. 라이트 클라이언트가 전체 체인을 들고 다니지 않아도 포함 여부를 따질 수 있는 지점입니다. 이 값은 nTx=2인 로컬 block의 증명입니다. **메인넷 대형 block의 증명 크기를 여기서 재현한 것은 아닙니다.**
 
 ---
 
@@ -116,7 +116,7 @@ tips:
   invalid  height=112  branchlen=1  20fcf9356f54f944393db00af07c1b59f7b2ecf9d6b4a19f7362bf53e5bc7e54
 ```
 
-확인은 "이 출력이 영원히 확정됐다"가 아닙니다. 지금 이 node가 따르는 활성 팁의 조상에 그 거래가 있는지를 센 값입니다. 더 긴 쪽이 정본이 되면 짧은 쪽의 확인은 철회됩니다. 실무에서 여러 confirmation을 기다리는 이유는 이 교체가 깊어질수록 비용이 커지기 때문입니다.
+**확인은 "이 출력이 영원히 확정됐다"가 아닙니다.** 지금 이 node가 따르는 활성 팁의 조상에 그 거래가 있는지를 센 값입니다. 더 긴 쪽이 정본이 되면 짧은 쪽의 확인은 철회됩니다. 실무에서 여러 confirmation을 기다리는 이유는 이 교체가 깊어질수록 비용이 커지기 때문입니다.
 
 관측한 값은 로컬에서 만든 1block 무효화입니다. 메인넷의 6 confirmation 관행을 여기서 재현한 것은 아닙니다. generate 2 이후 그 거래가 새 체인에 다시 들어갔는지는 이 덤프에 없습니다. 무효화 직후의 `confirmations=0`과 그다음 tips만 기록했습니다. 지갑을 맞추려고 block을 하나 더 캔 뒤 `getmininginfo`는 `blocks=114`, `pooledtx=0`이었습니다.
 

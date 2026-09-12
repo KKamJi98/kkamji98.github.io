@@ -157,7 +157,7 @@ jmap -heap <pid>
 jmap -histo:live <pid>
 ```
 
-진단 순서는 간단합니다. `jstat -gcutil`로 heap/metaspace가 차는지부터 보고, heap이 멀쩡한데 컨테이너 RSS만 오르면 NMT로 어느 native 카테고리(Thread/Code/Other)가 범인인지 좁힙니다.
+진단 순서는 간단합니다. `jstat -gcutil`로 heap/metaspace가 차는지부터 보고, heap이 멀쩡한데 컨테이너 RSS만 오르면 NMT로 어느 native 카테고리(Thread/Code/Other)가 원인인지 좁힙니다.
 
 ---
 

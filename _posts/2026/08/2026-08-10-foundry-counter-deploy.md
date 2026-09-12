@@ -61,7 +61,7 @@ function testFuzz_SetNumber(uint256 x) public {
 Solc 0.8.35
 ```
 
-퍼즈 테스트는 `setNumber`에 난수 256개를 넣어 저장값이 그대로인지 확인합니다. 통과는 "이 소스의 스토리지 규칙을 256번 깨지 못했다"는 뜻이지, Anvil 상태 트리에 코드가 올라갔다는 뜻이 아닙니다.
+퍼즈 테스트는 `setNumber`에 난수 256개를 넣어 저장값이 그대로인지 확인합니다. 통과는 "이 소스의 스토리지 규칙을 256번 깨지 못했다"는 뜻이지, **Anvil 상태 트리에 코드가 올라갔다는 뜻이 아닙니다.**
 
 프로젝트에 `script/Counter.s.sol`도 있습니다. `vm.startBroadcast()` 안에서 `new Counter()`를 호출하는 스크립트입니다. 이번 랩의 deploy 관측은 `forge create`로 남겼고, 스크립트 실행 로그는 없습니다.
 
@@ -71,7 +71,7 @@ Solc 0.8.35
 
 테스트를 통과한 소스를 Anvil(chainId 31337)에 올리려면 거래가 필요합니다. `forge create`는 contract-creation transaction을 node에 보냅니다. 돌아온 address는 `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512`였습니다. deployer는 Anvil 기본 계정 `0xf39Fd6e5...`입니다.
 
-`cast code`는 그 address의 코드를 읽습니다. 값은 빈 `0x`가 아니라 964자의 hex였습니다. 같은 node에서 EOA를 조회하면 여전히 `0x`입니다. address 형식이 같아서 헷갈리지만, 코드 유무가 계정 종류를 가릅니다.
+`cast code`는 그 address의 코드를 읽습니다. 값은 빈 `0x`가 아니라 964자의 hex였습니다. 같은 node에서 EOA를 조회하면 여전히 `0x`입니다. **address 형식이 같아서 헷갈리지만, 코드 유무가 계정 종류를 가릅니다.**
 
 ```text
 deployer     0xf39Fd6e5...
@@ -83,7 +83,7 @@ cast code    964 hex characters
 {% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/foundry-test-create-cast--c057df62eeaddc62.png" %}
 _forge test는 통과만 남긴다. forge create가 코드를 address에 올리고, cast가 그 칸을 읽는다._
 
-`forge test`의 `new Counter()`와 `forge create`의 `deployedTo`는 같은 소스를 써도 같은 객체가 아닙니다. 한쪽은 테스트 러너의 메모리이고, 다른 쪽은 Anvil이 유지하는 상태 트리입니다. deploy 후에 소스를 고치면 이미 올라간 바이트코드는 그대로입니다.
+`forge test`의 `new Counter()`와 `forge create`의 `deployedTo`는 같은 소스를 써도 같은 객체가 아닙니다. 한쪽은 테스트 러너의 메모리이고, 다른 쪽은 Anvil이 유지하는 상태 트리입니다. **deploy 후에 소스를 고치면 이미 올라간 바이트코드는 그대로입니다.**
 
 ---
 
@@ -115,7 +115,7 @@ receipt의 `status=0x1`은 실행이 되돌려지지 않았다는 뜻입니다. 
 
 `increment`와 `setNumber`는 `public`이고 `msg.sender`를 보지 않습니다. Anvil 기본 키가 아니어도, 그 함수를 넣을 gas만 있으면 `number`가 바뀝니다.
 
-테스트가 검사한 것은 "호출하면 1이 되는가", "넣은 값이 그대로인가"입니다. "누가 호출해도 되는가"는 검사하지 않았습니다. 숫자가 틀려도 이더는 움직이지 않습니다. 같은 권한이 이더를 들고 있는 출금 함수에 있으면 결과가 다릅니다.
+테스트가 검사한 것은 "호출하면 1이 되는가", "넣은 값이 그대로인가"입니다. "누가 호출해도 되는가"는 검사하지 않았습니다. 숫자가 틀려도 이더는 움직이지 않습니다. **같은 권한이 이더를 들고 있는 출금 함수에 있으면 결과가 다릅니다.**
 
 이 관측은 Anvil에서만 나왔고 실제 자산은 움직이지 않았습니다.
 
@@ -123,7 +123,7 @@ receipt의 `status=0x1`은 실행이 되돌려지지 않았다는 뜻입니다. 
 
 ## 5. 정리
 
-Foundry는 테스트와 deploy와 호출을 한 설치로 묶지만, 세 명령의 대상은 다릅니다. `forge test`로 스토리지 규칙을 확인하고, `forge create`로 코드를 address에 올리며, `cast`로 그 칸을 읽고 바꿉니다. 테스트 통과는 체인 기록이 아니고, `cast code`가 `0x`가 아닐 때가 deploy의 증적입니다.
+Foundry는 테스트와 deploy와 호출을 한 설치로 묶지만, 세 명령의 대상은 다릅니다. `forge test`로 스토리지 규칙을 확인하고, `forge create`로 코드를 address에 올리며, `cast`로 그 칸을 읽고 바꿉니다. **테스트 통과는 체인 기록이 아니고, `cast code`가 `0x`가 아닐 때가 deploy의 증적입니다.**
 
 ---
 

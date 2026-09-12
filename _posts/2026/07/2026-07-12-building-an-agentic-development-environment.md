@@ -9,7 +9,7 @@ image:
   path: /assets/img/kkam-img/kkam.webp
 ---
 
-Claude Code, Codex, Hermes처럼 터미널에서 동작하는 Artificial Intelligence(AI) 코딩 에이전트를 동시에 사용하면 실행 능력은 빠르게 늘어납니다. 그러나 작업 수가 늘어날수록 더 큰 병목은 모델 성능이 아니라 사람이 현재 상황을 파악하고 안전하게 개입하는 과정에서 생깁니다. 어느 저장소에서 어떤 에이전트가 일하는지, 승인을 기다리는 작업이 무엇인지, 같은 파일을 두 에이전트가 수정하고 있지는 않은지를 계속 기억해야 하기 때문입니다.
+Claude Code, Codex, Hermes처럼 터미널에서 동작하는 Artificial Intelligence(AI) 코딩 에이전트를 동시에 사용하면 실행 능력은 빠르게 늘어납니다. 그러나 작업 수가 늘어날수록 **더 큰 병목은 모델 성능이 아니라 사람이 현재 상황을 파악하고 안전하게 개입하는 과정에서 생깁니다.** 어느 저장소에서 어떤 에이전트가 일하는지, 승인을 기다리는 작업이 무엇인지, 같은 파일을 두 에이전트가 수정하고 있지는 않은지를 계속 기억해야 하기 때문입니다.
 
 이 글에서는 MacBook 로컬 환경만을 대상으로, development, security, operations를 함께 고려하는 DevSecOps 엔지니어가 여러 AI 코딩 에이전트를 운영하기 위한 Agentic Development Environment를 설계한 과정을 정리합니다. 최종 구성은 cmux를 workspace와 attention cockpit으로 사용하고, Ghostty는 fallback terminal로 남기며, tmux는 cmux 종료 후에도 살아 있어야 하는 장기 interactive process에만 제한적으로 적용하는 구조입니다.
 
@@ -82,7 +82,7 @@ tmux detach는 tmux server가 살아 있는 동안 내부 process를 계속 실�
 
 ### 2.4. Organization과 isolation을 구분한다
 
-workspace, group, tab, pane은 사람이 context를 정리하기 위한 UI 단위입니다. 이 이름이나 색상은 filesystem permission, network policy, credential boundary를 만들지 않습니다. 보안 통제는 실행 계정, worktree, container, virtual machine(VM), sandbox, cloud Identity and Access Management(IAM)처럼 실제 권한을 강제하는 계층에서 수행해야 합니다.
+workspace, group, tab, pane은 사람이 context를 정리하기 위한 UI 단위입니다. **이 이름이나 색상은 filesystem permission, network policy, credential boundary를 만들지 않습니다.** 보안 통제는 실행 계정, worktree, container, virtual machine(VM), sandbox, cloud Identity and Access Management(IAM)처럼 실제 권한을 강제하는 계층에서 수행해야 합니다.
 
 ---
 
@@ -119,7 +119,7 @@ tmux는 terminal multiplexer server와 client를 분리합니다. client를 deta
 
 예를 들어 장시간 관찰해야 하는 local log tail, REPL, test watch, foreground dev server가 이에 해당할 수 있습니다. 반대로 native subagent, agent가 내부적으로 생성한 worker, 몇 분 안에 끝나는 one-shot analysis는 parent agent의 lifecycle과 task model로 관리하면 되므로 tmux가 필요하지 않습니다.
 
-tmux server도 local process입니다. MacBook이 reboot되거나 tmux server가 종료되면 session은 사라집니다. tmux는 app close boundary까지만 넘겨 줍니다. reboot checkpoint로는 쓸 수 없습니다.
+tmux server도 local process입니다. MacBook이 reboot되거나 tmux server가 종료되면 session은 사라집니다. tmux는 app close boundary까지만 넘겨 줍니다. **reboot checkpoint로는 쓸 수 없습니다.**
 
 ### 3.4. Zellij
 
@@ -191,7 +191,7 @@ feat-207-claude-review
 docs-agent-env-hermes-waiting
 ```
 
-workspace 이름은 dashboard label입니다. 신뢰할 수 있는 실제 identity는 working directory, Git branch, worktree status입니다. agent에게 mutation을 허용하기 전 다음 세 값을 확인합니다.
+workspace 이름은 dashboard label입니다. **신뢰할 수 있는 실제 identity는 working directory, Git branch, worktree status입니다.** agent에게 mutation을 허용하기 전 다음 세 값을 확인합니다.
 
 ```shell
 pwd
@@ -231,7 +231,7 @@ group은 실수를 줄이는 시각적 guardrail로는 유용하지만, 공격�
 
 cmux는 relaunch 시 window, workspace, pane layout, working directory, best-effort terminal scrollback, browser state를 복원합니다. 지원되는 coding agent는 hook이 native session ID를 기록한 경우 해당 agent의 resume command로 session을 다시 열 수 있습니다.
 
-여기서 `resume`이라는 단어를 process checkpoint로 해석하면 안 됩니다.
+여기서 `resume`이라는 단어를 **process checkpoint로 해석하면 안 됩니다.**
 
 ```text
 Before cmux closes
@@ -450,7 +450,7 @@ tmux ls
 
 무엇보다 복원 기능을 과대평가하지 않아야 합니다. cmux는 layout과 metadata를 되살리고, 지원되는 agent는 native session을 resume할 수 있습니다. 그러나 임의의 live process를 checkpoint하지 않습니다. tmux도 local server가 살아 있는 동안만 process를 유지하며 MacBook reboot를 넘지 못합니다. agent resume은 context recovery이며 live execution checkpoint까지 대신하지 않습니다.
 
-workspace group, 이름, 색상은 실수를 줄이는 organization layer입니다. 보안 경계는 아닙니다. DevSecOps 관점의 Agentic Development Environment는 보기 좋은 cockpit에서 끝나지 않고, 최소 권한, secret 분리, single-writer rule, 검증 가능한 recovery runbook까지 갖춰야 운영할 수 있습니다. task를 시작할 때는 위치를 확인하고 writer를 지정하며, 사람이 행동해야 할 상태만 알리고, 종료할 때는 diff와 검증 결과를 기록합니다. 일주일 pilot의 측정값이 task discovery, missed attention, writer collision을 줄이지 못한다면 tool을 더 겹치기보다 구조를 단순화하는 편이 낫습니다.
+workspace group, 이름, 색상은 실수를 줄이는 organization layer입니다. 보안 경계는 아닙니다. DevSecOps 관점의 Agentic Development Environment는 보기 좋은 cockpit에서 끝나지 않고, 최소 권한, secret 분리, single-writer rule, 검증 가능한 recovery runbook까지 갖춰야 운영할 수 있습니다. task를 시작할 때는 위치를 확인하고 writer를 지정하며, 사람이 행동해야 할 상태만 알리고, 종료할 때는 diff와 검증 결과를 기록합니다. 일주일 pilot의 측정값이 task discovery, missed attention, writer collision을 줄이지 못한다면 **tool을 더 겹치기보다 구조를 단순화하는 편이 낫습니다.**
 
 ---
 
