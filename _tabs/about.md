@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/jaegertracing/jaeger-ui/pull/4412" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>jaegertracing/jaeger-ui</span>
+      <span class="cv-oss-pr">PR #4412</span>
+    </div>
+    <p class="cv-oss-desc">Trace Timeline의 Span Details divider를 헤더에서 드래그할 수 없던 문제 수정. Resizer를 <code>TimelineHeaderRow</code>로 옮겨 divider 하나가 헤더 행과 테이블 행을 함께 담당하도록 정리</p>
+  </a>
   <a class="cv-oss" href="https://github.com/grafana/loki/pull/24300" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
@@ -868,10 +876,10 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
     </div>
     <p class="cv-oss-desc">불필요한 리소스 생성을 제어할 수 있도록 <code>dcgmExporter.enabled</code>, <code>neuronMonitor.enabled</code> Flag 추가</p>
   </a>
-  <a class="cv-oss" href="https://github.com/strands-agents/sdk-python/pull/1906" target="_blank" rel="noopener">
+  <a class="cv-oss" href="https://github.com/strands-agents/harness-sdk/pull/1906" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
-      <span>strands-agents/sdk-python</span>
+      <span>strands-agents/harness-sdk</span>
       <span class="cv-oss-pr">PR #1906</span>
     </div>
     <p class="cv-oss-desc">README 내 깨진 Documentation Link 19개 수정. v1.35.0 Release New Contributors 항목 등재</p>
