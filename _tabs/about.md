@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/oras-project/oras-www/pull/610" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>oras-project/oras-www</span>
+      <span class="cv-oss-pr">PR #610</span>
+    </div>
+    <p class="cv-oss-desc">문서, 블로그, 커뮤니티 페이지의 <code>Edit this page</code> 링크가 읽기 전용 tree 화면이 아니라 GitHub 편집 화면을 열도록 Docusaurus 설정 수정</p>
+  </a>
   <a class="cv-oss" href="https://github.com/jaegertracing/jaeger-ui/pull/4412" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
