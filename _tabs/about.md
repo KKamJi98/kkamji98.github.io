@@ -431,7 +431,7 @@ order: 4
   /* ===== OSS contributions ===== */
   .cv-oss-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.7rem;
     margin: 0.5rem 0 1.4rem;
   }
@@ -1052,6 +1052,18 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 수동/반복 작업의 편의성을 높이기 위해 CLI Tool과 Web App을 직접 개발하고 운영하고 있습니다.
 
 <div class="cv-mini-grid">
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/tracon" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> tracon</div>
+    <p class="cv-mini-desc">Claude Code와 Codex 세션의 대기 상태, 컨텍스트 잔량, 터미널 이동을 한 화면에서 관리하는 TUI</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/agentctx" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> agentctx</div>
+    <p class="cv-mini-desc">Claude Code와 Codex 계정 전환, Shell Completion, 구독 쿼터 조회를 통합한 CLI</p>
+  </a>
+  <a class="cv-mini-card" href="https://github.com/KKamJi98/aiquota" target="_blank" rel="noopener">
+    <div class="cv-mini-title"><i class="fab fa-github"></i> aiquota</div>
+    <p class="cv-mini-desc">Claude, Codex, Z.AI의 세션 및 주간 잔여 쿼터와 초기화 시점을 표시하는 Go CLI</p>
+  </a>
   <a class="cv-mini-card" href="https://github.com/KKamJi98/ssh-connector" target="_blank" rel="noopener">
     <div class="cv-mini-title"><i class="fab fa-github"></i> ssh-connector</div>
     <p class="cv-mini-desc">SSH Config 파일의 설정을 기반으로 동작하는 서버 접근 관리 Tool</p>
