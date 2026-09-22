@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Jev System One Decision Model</title>
+  <desc id="desc">A dark technical banner showing application state entering Jev and typed decisions flowing into deterministic policy.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.52" stop-color="#11172a"/>
+      <stop offset="1" stop-color="#071b22"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="46%" r="46%">
+      <stop offset="0" stop-color="#39d9c2" stop-opacity="0.22"/>
+      <stop offset="0.55" stop-color="#6c78ff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity="0.32"/>
+    </filter>
+    <linearGradient id="jev" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6e77ff"/>
+      <stop offset="1" stop-color="#2ed6b8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <g font-family="Inter, Noto Sans KR, Segoe UI, sans-serif">
+    <text x="112" y="118" fill="#8fa1bd" font-size="24" font-weight="700" letter-spacing="4">SYSTEM ONE MODEL</text>
+    <text x="108" y="238" fill="#f5f7ff" font-size="112" font-weight="800">Jev</text>
+    <text x="112" y="294" fill="#bac6da" font-size="30" font-weight="500">Typed decisions. Calibrated probabilities.</text>
+
+    <g filter="url(#shadow)">
+      <rect x="110" y="402" width="350" height="238" rx="28" fill="#121d31" stroke="#314059" stroke-width="2"/>
+      <rect x="138" y="432" width="92" height="34" rx="17" fill="#26354d"/>
+      <text x="184" y="456" fill="#aebbd0" font-size="18" font-weight="700" text-anchor="middle">STATE</text>
+      <text x="140" y="514" fill="#f3f6ff" font-size="28" font-weight="700">Tool call + context</text>
+      <text x="140" y="558" fill="#93a4bd" font-size="21">command, scope, intent</text>
+      <text x="140" y="593" fill="#93a4bd" font-size="21">validated facts</text>
+    </g>
+
+    <path d="M 462 521 C 520 521, 533 521, 574 521" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 558 506 L 576 521 L 558 536" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g filter="url(#shadow)">
+      <circle cx="726" cy="521" r="142" fill="#101a2b" stroke="url(#jev)" stroke-width="8"/>
+      <circle cx="726" cy="521" r="118" fill="url(#jev)" fill-opacity="0.13"/>
+      <text x="726" y="506" fill="#f9fbff" font-size="76" font-weight="800" text-anchor="middle">Jev</text>
+      <text x="726" y="551" fill="#a8b8d0" font-size="21" font-weight="600" text-anchor="middle">parallel judgment</text>
+    </g>
+
+    <path d="M 872 521 C 920 521, 930 521, 966 521" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 950 506 L 968 521 L 950 536" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g filter="url(#shadow)">
+      <rect x="974" y="376" width="252" height="90" rx="22" fill="#151e34" stroke="#6874ff" stroke-width="2"/>
+      <text x="1004" y="413" fill="#dce2ff" font-size="22" font-weight="800">Choice</text>
+      <text x="1004" y="443" fill="#96a6c0" font-size="18">option + distribution</text>
+
+      <rect x="974" y="476" width="252" height="90" rx="22" fill="#151e34" stroke="#8670e8" stroke-width="2"/>
+      <text x="1004" y="513" fill="#e5ddff" font-size="22" font-weight="800">Score</text>
+      <text x="1004" y="543" fill="#96a6c0" font-size="18">ordered levels</text>
+
+      <rect x="974" y="576" width="252" height="90" rx="22" fill="#12272d" stroke="#2fd5b7" stroke-width="2"/>
+      <text x="1004" y="613" fill="#d5fff6" font-size="22" font-weight="800">Noul</text>
+      <text x="1004" y="643" fill="#96a6c0" font-size="18">yes probability</text>
+    </g>
+
+    <path d="M 1228 521 C 1270 521, 1280 521, 1312 521" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 1296 506 L 1314 521 L 1296 536" fill="none" stroke="#71809a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g filter="url(#shadow)">
+      <rect x="1320" y="420" width="190" height="202" rx="28" fill="#102329" stroke="#33d1b6" stroke-width="2"/>
+      <rect x="1347" y="450" width="136" height="34" rx="17" fill="#17393b"/>
+      <text x="1415" y="474" fill="#84f0dd" font-size="17" font-weight="800" text-anchor="middle">CODE OWNS</text>
+      <text x="1415" y="526" fill="#f3fffc" font-size="25" font-weight="800" text-anchor="middle">Policy</text>
+      <text x="1415" y="564" fill="#9eb9b9" font-size="18" text-anchor="middle">execute</text>
+      <text x="1415" y="590" fill="#9eb9b9" font-size="18" text-anchor="middle">or escalate</text>
+    </g>
+
+    <rect x="112" y="752" width="1376" height="1" fill="#52627c" fill-opacity="0.45"/>
+    <text x="112" y="812" fill="#8fa1bd" font-size="22">Fast semantic judgment inside a deterministic workflow</text>
+    <text x="1488" y="812" fill="#6f819d" font-size="20" text-anchor="end">kkamji.net</text>
+  </g>
+</svg>
