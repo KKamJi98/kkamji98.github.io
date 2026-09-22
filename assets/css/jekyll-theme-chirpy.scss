@@ -650,10 +650,19 @@ figure.sd.sd--gateway-v2 .sd-v2-group-item { padding: 10px 0; border-top: 1px so
 figure.sd.sd--gateway-v2 .sd-v2-group-item .sd-detail { margin-top: 2px; }
 figure.sd.sd--gateway-v2 .sd-v2-compare { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
 figure.sd.sd--gateway-v2 .sd-v2-compare-lane { min-width: 0; padding: 16px; border: 1px solid var(--sd-border); border-radius: 10px; }
+/* Jev keeps the four decision stages on one desktop row and reuses the
+   painted v2 connector contract. Mobile falls back to the shared vertical markers. */
+figure.sd.sd--gateway-v2.sd--jev .sd-jev-flow { display: grid; grid-template-columns: minmax(0,1.18fr) 28px minmax(0,.72fr) 28px minmax(0,.9fr) 28px minmax(0,1.22fr); align-items: center; }
+figure.sd.sd--gateway-v2.sd--jev .sd-jev-policy { min-width: 0; display: grid; align-items: center; }
+figure.sd.sd--gateway-v2.sd--jev .sd-jev-outcomes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+/* The three primitive cards remain comparable side by side at normal article width. */
+figure.sd.sd--jev-primitives .sd-grid--three { grid-template-columns: repeat(3,minmax(0,1fr)); }
 @container (max-width: 539px) {
  figure.sd.sd--gateway-v2 .sd-v2-rail,
  figure.sd.sd--gateway-v2 .sd-v2-request-row,
- figure.sd.sd--gateway-v2 .sd-v2-issuance-row { grid-template-columns: minmax(0,1fr); }
+ figure.sd.sd--gateway-v2 .sd-v2-issuance-row,
+ figure.sd.sd--gateway-v2.sd--jev .sd-jev-flow,
+ figure.sd.sd--jev-primitives .sd-grid--three { grid-template-columns: minmax(0,1fr); }
  figure.sd.sd--gateway-v2 .sd-v2-link { height: var(--sd-v2-marker-length); width: 12px; margin: var(--sd-v2-marker-gap) auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; }
  figure.sd.sd--gateway-v2 .sd-v2-link::after { right: 2px; top: auto; bottom: 2px; transform: rotate(135deg); }
  figure.sd.sd--gateway-v2 .sd-v2-issuance-row .sd-v2-link { width: 12px; margin: 8px auto; }

@@ -1,0 +1,26 @@
+<figure class="sd sd--jev-primitives" id="jev-primitives" aria-labelledby="jev-primitives-title">
+  <figcaption class="sd-title" id="jev-primitives-title">Jev primitive별 질문과 반환값</figcaption>
+  <div class="sd-grid sd-grid--three">
+    <section class="sd-lane" aria-label="Choice primitive">
+      <strong class="sd-lane-title"><code>Choice</code></strong>
+      <span class="sd-detail"><strong class="sd-label">질문</strong><br>후보 A, B, C 중 무엇인가?</span>
+      <span class="sd-detail"><strong class="sd-label">출력</strong><br><code>choice</code>, <code>probabilities</code>, <code>confidence</code></span>
+      <span class="sd-detail"><strong class="sd-label">예시</strong><br>어느 검토 경로로 보낼 것인가?</span>
+    </section>
+
+    <section class="sd-lane" aria-label="Score primitive">
+      <strong class="sd-lane-title"><code>Score</code></strong>
+      <span class="sd-detail"><strong class="sd-label">질문</strong><br>정의한 순서형 척도에서 어디인가?</span>
+      <span class="sd-detail"><strong class="sd-label">출력</strong><br><code>score</code>, <code>legend</code>, <code>probabilities</code>, <code>confidence</code></span>
+      <span class="sd-detail"><strong class="sd-label">예시</strong><br>영향 범위가 어느 단계인가?</span>
+    </section>
+
+    <section class="sd-lane" aria-label="Noul primitive">
+      <strong class="sd-lane-title"><code>Noul</code></strong>
+      <span class="sd-detail"><strong class="sd-label">질문</strong><br>명제가 참일 가능성은 얼마인가?</span>
+      <span class="sd-detail"><strong class="sd-label">출력</strong><br><code>noul = yes probability</code><br>별도 <code>confidence</code> 없음</span>
+      <span class="sd-detail"><strong class="sd-label">예시</strong><br>이 작업은 비가역적인가?</span>
+    </section>
+  </div>
+  <p class="sd-note">보정된 확률은 여러 예측의 집단 성질이며, 개별 답 하나의 정답을 보장하지 않는다.</p>
+</figure>

@@ -1,0 +1,51 @@
+<figure class="sd sd--gateway-v2 sd--jev" id="jev-decision-pipeline" aria-labelledby="jev-decision-pipeline-title">
+  <figcaption class="sd-title" id="jev-decision-pipeline-title">Jev 판단과 실행 권한의 경계</figcaption>
+  <div class="sd-jev-flow">
+    <section class="sd-v2-group" aria-label="입력">
+      <div class="sd-v2-section-title">입력</div>
+      <div class="sd-v2-group-item">
+        <strong class="sd-label"><code>State</code></strong>
+        <span class="sd-detail"><code>tool call</code>, context, 검증된 사실</span>
+      </div>
+      <div class="sd-v2-group-item">
+        <strong class="sd-label"><code>Typed Questions</code></strong>
+        <span class="sd-detail"><code>Choice</code>, <code>Score</code>, <code>Noul</code></span>
+      </div>
+    </section>
+
+    <div class="sd-v2-link" aria-hidden="true"></div>
+
+    <div class="sd-node sd-node--accent">
+      <strong class="sd-label">Jev</strong>
+      <span class="sd-detail">병렬, 범위 제한 판단<br>실행 권한 없음</span>
+    </div>
+
+    <div class="sd-v2-link" aria-hidden="true"></div>
+
+    <div class="sd-node">
+      <strong class="sd-label">typed answers</strong>
+      <span class="sd-detail">답, 확률 분포, confidence</span>
+    </div>
+
+    <div class="sd-v2-link" aria-hidden="true"></div>
+
+    <section class="sd-jev-policy" aria-label="정책과 결과">
+      <div class="sd-node sd-node--warning">
+        <strong class="sd-label">Deterministic Policy</strong>
+        <span class="sd-detail">코드와 정책이 권한을 판단</span>
+      </div>
+      <div class="sd-v2-down" aria-hidden="true"></div>
+      <div class="sd-jev-outcomes">
+        <div class="sd-node sd-node--muted">
+          <strong class="sd-label">Shadow</strong>
+          <span class="sd-detail">실행 없이 비교</span>
+        </div>
+        <div class="sd-node sd-node--warning">
+          <strong class="sd-label">Escalate</strong>
+          <span class="sd-detail">사람 또는 상위 제어</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="sd-note">Jev의 결과는 정책 입력이다. 직접 실행 경로와 권한은 코드에 남는다.</p>
+</figure>

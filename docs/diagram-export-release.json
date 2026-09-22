@@ -1,23 +1,23 @@
 {
   "schema": 1,
   "status": "export-and-check-passed",
-  "reference_count": 388,
-  "post_count": 201,
+  "reference_count": 390,
+  "post_count": 202,
   "font_profile": "deterministic-export",
   "production_identical": false,
   "theme": "light",
   "browser": "149.0.7827.55",
-  "source_fingerprint": "90c3543c3a6b459fa53fcb0cf4bd6e866c6bbc2a765d48eb08003f814f981424",
+  "source_fingerprint": "801306516bb4491baf58f8f2ce0d9cfe42d08fcf724411d2811b5537cc0c17fd",
   "automated_quality": "connector-paint-font-and-layout-checks-passed",
   "visual_review": "see connector review evidence for scope and limitations",
   "inputs": {
     "_plugins/diagram-downloads.rb": "e699a75a2f90fa2b849b1b02c3ae37bf860ab0b25762e7fe749db87e2664ed8e",
-    "assets/css/jekyll-theme-chirpy.scss": "a0efe41ea903fb9e924e6f605ee89461cb79ba4943279899ae07e183ac7ca4fc",
+    "assets/css/jekyll-theme-chirpy.scss": "080acb90a470ace75eb4da6aec001d280c6bfa9b8fb247016b6ad29533f96f6c",
     "assets/fonts/deterministic-export/fontconfig.conf": "902db6d4a44bf5dffda601598eb74b80735f52dc60f73743fc6eac82fb06ac1f",
     "assets/fonts/deterministic-export/lock.json": "d8464b3d50d061231a134fba8c5ca9b3ea3221d46dd63c2c5d09039164cf3895",
     "assets/fonts/static-png/lock.json": "9506143bd01e50a526fd3cc37d218f77e25210566d76c26e3a398e7a7b348f03",
-    "docs/diagram-catalog.json": "b6ca292be40e8e31348d5c407ec466df086f7138d350cf5d264461af39000210",
-    "docs/diagram-downloads.json": "990b1466212229132e9ac0489d1b07884eed661583d046826a6c905f47a18e77",
+    "docs/diagram-catalog.json": "ddf1b1e959365578c9f77613612fcdf9a26b2a42445cb317c05d95ebeb9ff4e0",
+    "docs/diagram-downloads.json": "0646fb98c83c40cc66390df3edf7ea6713b1e5eef2283893387180b613c2abe3",
     "kkamji_scripts/blog/static_png/connector_audit.py": "351b254340dbc43c30bab8daff36ceba570c1c2c34dd9cd7c13ec96cddebd69a",
     "kkamji_scripts/blog/static_png/connector_corpus.py": "5ae2ea6ffd414d6ca43a849575682a08f29d2034879b6e809959f71c722aab8e",
     "kkamji_scripts/blog/static_png/connector_geometry.py": "cf1b070ec27fa868eefe24edfac7a76ca4e3073c521c0242f9d96015e18398fb",
@@ -27,7 +27,7 @@
     "kkamji_scripts/blog/static_png/downloads.py": "9a1595f923ccd465949922f20f48ee5663e5fdbe26bd9101a691011d854de507",
     "kkamji_scripts/blog/static_png/font_bundle.py": "9c27da13a64123d9adc7423e8123c1546aef5f0a856e4ca0d451f4005c04eea8",
     "kkamji_scripts/blog/static_png/pipeline.py": "f8d04409198f8636ee2bfe343844eab71bbf1958966b49d08e1d8bb0101543b2",
-    "kkamji_scripts/blog/static_png/release_manifest.py": "db41d5eff3bd7d72556dd88560417a9afbbf832495925d3ee2d6e67a3829bb91",
+    "kkamji_scripts/blog/static_png/release_manifest.py": "40fb1cddb2ccbdc5040427e0f2a086365cda25a088a409f802adc65cc3034413",
     "kkamji_scripts/blog/static_png/run.sh": "b8dd916c68c94c7c49d748ad095e4b0ece638c89825ad51ad104eff26edb4465",
     "kkamji_scripts/blog/static_png/test_ai_geometry.py": "8797e607a8d84857105ba1f2853bf5668be01a5a76bcc118bf9893fb7bbcc651",
     "kkamji_scripts/blog/static_png/test_connector_adversarial.py": "cae3f185be47f76bae4d58d02b4d9c046111ac4d5b22b8af74f913b4bd5e65a3",
@@ -50,7 +50,7 @@
     "kkamji_scripts/blog/static_png/test_policy.py": "1003fa99e1a1aecf3b5760c201b186f4d1c892fee0f0256449f960ca826afbeb",
     "kkamji_scripts/blog/static_png/test_release_blockers.py": "50f58ba9cc78b7a5168d7c768e44c339639633438c144b440ae455288a8a9d1d",
     "kkamji_scripts/blog/static_png/test_release_browser.py": "f09edcb1725d51469e549ee9ffa545084dea6edc8a539c86e27565c5e1f950c3",
-    "kkamji_scripts/blog/static_png/test_release_manifest.py": "d13e41eaf00efae77a0496fc74b490a84143c19f03715604242bccb345d52f8e"
+    "kkamji_scripts/blog/static_png/test_release_manifest.py": "0565bf04a8581dd33b14aa058ebbe2c243a1204fcea3400cb425cf71aa09f834"
   },
   "entries": [
     {
@@ -65,7 +65,7 @@
         4562
       ],
       "include_sha256": "228f54904505528abf1c1ddde769b46136fbb6be5b6f32247f0a0a8ae56fbc5c",
-      "receipt_sha256": "dcae66a0be6c4497fc8de4b59765efbff39ac1a2a7dde72c1e2b90a746a2de86"
+      "receipt_sha256": "e8c86a7557e9375cbbe3dfa714b3bfe28a166f403fa3c967200cc1ccb47b2aed"
     },
     {
       "post": "_posts/2026/01/2026-01-08-packer.md",
@@ -79,7 +79,7 @@
         1666
       ],
       "include_sha256": "2bea76dd7d41f6bbf14cf609813fdf6934ea38254e44e2d6bf2f90463ee2904f",
-      "receipt_sha256": "58eed4de31ec9d6ef096e9719efe666cb63c21d6d3c9f39dad23eeac84a4a25a"
+      "receipt_sha256": "72c43686f187fd9d15d137a07e170f620618677932e6f4068211ab96f2e71b87"
     },
     {
       "post": "_posts/2026/08/2026-07-07-loop-engineering.md",
@@ -93,7 +93,7 @@
         1550
       ],
       "include_sha256": "a84c0025de53ce86897f7f2d2113b913d9f3d10b6c37af51fe66ea84ac89cf4e",
-      "receipt_sha256": "f5035eeccc4c78b49d3ef909aa493b59f59937543b99b151006c8e8c6b6b6cce"
+      "receipt_sha256": "818f5ecb30983da6d730094b05d1126700f72e43c1a4688b846d08c091e79fdb"
     },
     {
       "post": "_posts/2026/07/2026-07-12-building-an-agentic-development-environment.md",
@@ -107,7 +107,7 @@
         2140
       ],
       "include_sha256": "71d87e84f163462f66078cc66115537b2e8a3f57da1970cbea8848b12ba6ff87",
-      "receipt_sha256": "12d3971c6bb5f3994a170802ea3bee652b465b34723791f99791c5228fa60b7d"
+      "receipt_sha256": "29e1421e1f05fd39a51755b0d4fd4f97db5da6693f07017c12c818673f236a03"
     },
     {
       "post": "_posts/2026/08/2026-07-10-envoy-ai-gateway.md",
@@ -121,7 +121,7 @@
         1368
       ],
       "include_sha256": "3cc28ff8907384a37e951d6b73f23086af0feddcf360a4dcd4ee767a5adca678",
-      "receipt_sha256": "05d402e183acc5e030394e22f6c87cfda9e79d61c283d18a9afa5bb00b302ce4"
+      "receipt_sha256": "d7017293eb88e915a3dd6cd0a3c595b2bd11809ca28e7daa617c47e1c5ac11ef"
     },
     {
       "post": "_posts/2026/08/2026-07-10-envoy-ai-gateway.md",
@@ -135,7 +135,7 @@
         1302
       ],
       "include_sha256": "0c3ba437a268cb4b7ff3876b9441fd220c115f03b3567d6115dc1cf75ed5d86a",
-      "receipt_sha256": "96266ee543760ee69e015b5796b53c7fb428065a6638420da1f31b4f00ac6977"
+      "receipt_sha256": "121cec1a906cefa7b191bc5392b913cc504b06dbe5d66567bb1d06664475af8c"
     },
     {
       "post": "_posts/2026/08/2026-07-08-graph-engineering.md",
@@ -149,7 +149,7 @@
         1856
       ],
       "include_sha256": "acf6f3667553d511bcc2b148eee2b1344dd05d9d61444d1b0053308e82f0e5d0",
-      "receipt_sha256": "5ad451a8ba9dfce512e26e09f0d552e65aa6775aa80bb5025e8d4ba888b0927d"
+      "receipt_sha256": "f6e1d452442866a0fa26e62f99895c63c9c8a82aed8a06371913afbe9e2c8675"
     },
     {
       "post": "_posts/2026/07/2026-07-01-hermes-agent-wsl2-chatgpt-subscription-guide.md",
@@ -163,7 +163,7 @@
         2380
       ],
       "include_sha256": "4ac434cbb806c5eaeb90032bb52492c2475e9d0582565b993f8908e31902dc84",
-      "receipt_sha256": "79ffa50bc4e4d61fac1abf9cc19e25c2b91f4bc7ba19877bdbb8984c5b075dc8"
+      "receipt_sha256": "a12f39171cc4e23f62bf3cde16de39921ee64284bf5422b2f586892090b4350d"
     },
     {
       "post": "_posts/2026/08/2026-07-06-im-not-ai-skill.md",
@@ -177,7 +177,35 @@
         2412
       ],
       "include_sha256": "f2e49cdd07743d82eeef5fd2f0c9f09451b315b53f15d76188dff0dcdec39288",
-      "receipt_sha256": "27d87728425f71a70512d206c4d2e0d8b2affd04ae786cb8fb25e94a9f6184a4"
+      "receipt_sha256": "aa2b2562de983cfa21408a84431ea788aaeee80aac5bfc3e44a5524004b09c89"
+    },
+    {
+      "post": "_posts/2026/09/2026-09-22-jev-system-one-decision-model.md",
+      "include": "diagrams/static/ai/jev-decision-pipeline.html",
+      "figure": "jev-decision-pipeline",
+      "page": "posts/jev-system-one-decision-model/index.html",
+      "png": "/assets/img/diagrams/static/ai/jev-decision-pipeline--730424ce5bbc600e.png",
+      "png_sha256": "c74e19a71eb2c96820a88dbb467a5b12e9da9da3d15a4a4fea3096b3aa51b4e8",
+      "dimensions": [
+        1250,
+        916
+      ],
+      "include_sha256": "816ebe58ee64d3b6ab85aac07bceecee54f4d5a27fafeaba7cad8e440cffc60c",
+      "receipt_sha256": "63e10f4b5980d809d3b29483a4623b861d561b50013e255fb653defa986486e2"
+    },
+    {
+      "post": "_posts/2026/09/2026-09-22-jev-system-one-decision-model.md",
+      "include": "diagrams/static/ai/jev-primitives.html",
+      "figure": "jev-primitives",
+      "page": "posts/jev-system-one-decision-model/index.html",
+      "png": "/assets/img/diagrams/static/ai/jev-primitives--8f4879260bec067c.png",
+      "png_sha256": "39043b69bafb2cc0f5c3f353c0d57a3f6ad645e33bca2b125b66d6ef1ec540c5",
+      "dimensions": [
+        1250,
+        1058
+      ],
+      "include_sha256": "993d049090451e0bacf1b53aaca7208108ffb6756d569882fe49c757640b59ab",
+      "receipt_sha256": "3a75d37d876ad0bdb22b98156db9541232a7746dd21446143a702e473dd7597e"
     },
     {
       "post": "_posts/2026/08/2026-07-13-litellm-gateway.md",
@@ -191,7 +219,7 @@
         1204
       ],
       "include_sha256": "ede2c34e7aeec96cde148a01dfa7a33ef02f74accf3907c0526d3f051dca81a3",
-      "receipt_sha256": "da8ba26632cc82b378cc939ce9ada5720bcb2d29c44287fab95b5d538bdd1340"
+      "receipt_sha256": "9e5beb97f6ac140e7563d10d971574d4599483333aa28e86cea04d7fdf3d5112"
     },
     {
       "post": "_posts/2026/08/2026-07-13-litellm-gateway.md",
@@ -205,7 +233,7 @@
         1552
       ],
       "include_sha256": "7f6ab7ddbda1e91276655365555653102f27bb8338807918390fef82b47c4a8f",
-      "receipt_sha256": "5af41fd210092478e736c1714c5aa033d3225b4eaed826ee97c9553321d8332a"
+      "receipt_sha256": "656bf9ebcdc235d52181331cca2bb5339adb3c1b1a64da722f7a17bd8a6a2852"
     },
     {
       "post": "_posts/2026/08/2026-07-09-llm-gateway.md",
@@ -219,7 +247,7 @@
         982
       ],
       "include_sha256": "9861142619661d1b6375d2047b3454b0458a689ee93a5b3c62b780614626ea79",
-      "receipt_sha256": "043d8fa3dd7b47515aabdec93260a0dff617dec96552a45f110dec3cb6ee5a5b"
+      "receipt_sha256": "a6e6398c0db10aadc506a7ab675f1bf3418e484be158fb38668addd40cf8a466"
     },
     {
       "post": "_posts/2026/08/2026-08-02-llm-wiki-building.md",
@@ -233,7 +261,7 @@
         2138
       ],
       "include_sha256": "be043d635c75483f85eede02dd9b658d959148d282a1932e8480f45d38a833aa",
-      "receipt_sha256": "7c2e2799fbd2bd3b1a1c885b2094c8e285e5f78448dd5b84533eede20d0d872d"
+      "receipt_sha256": "e3f14a22623b1431c56cabea5c8146ba8b47d0207dbbdc283735e9d0aac5787e"
     },
     {
       "post": "_posts/2026/08/2026-08-01-llm-wiki-concepts.md",
@@ -247,7 +275,7 @@
         2650
       ],
       "include_sha256": "8bf89af2f84fdd3e24bf43f887d1279b91dbf56cd312fb92305548d49290dc0a",
-      "receipt_sha256": "a29ed1fbd49baf02037a455ffa6e1d12da2b4de3fc83dccc45e63e4b9bdf6e8d"
+      "receipt_sha256": "342fc2d94f5f8117943b757f636c4b2e4be97337d1c4ae7fcdb68823b79a4e3b"
     },
     {
       "post": "_posts/2026/08/2026-08-03-llm-wiki-evaluation.md",
@@ -261,7 +289,7 @@
         2380
       ],
       "include_sha256": "32dc5befaf17c0e149072c3faf3958318a020842068ea2c4fee19a1971f6001f",
-      "receipt_sha256": "108c6b0f80bb03a5d939661d1c8820a195c2a4830e3d890a335061d7c1077fd4"
+      "receipt_sha256": "a29a75f077aa90ab6a2bc00d5316c5e841d8595aa0cc2250572dfc0ced85bd81"
     },
     {
       "post": "_posts/2026/08/2026-07-07-loop-engineering.md",
@@ -275,7 +303,7 @@
         1650
       ],
       "include_sha256": "1d5f68d9df1251c8f5682584485b5ec6772417a20bf70413fb4cbc5ccd79ee59",
-      "receipt_sha256": "00b8bcbdc71d559fc6cea80a7f24b5faa7bce6d552495ff7b55b131efed5c746"
+      "receipt_sha256": "a74f6caa89ffdfe4d8a5a42a3588d779c37122a1ab103ce4b24efcb9bd97e1e5"
     },
     {
       "post": "_posts/2026/06/2026-06-22-rag-overview-concept-and-pipeline.md",
@@ -289,7 +317,7 @@
         3482
       ],
       "include_sha256": "fb90f2199c844ab1f22018b2015717b58d6dc030fab166adca7ee298a61a156b",
-      "receipt_sha256": "e9633419101f13ff44469d322cbe8f9fdbeca96057ab73b1e1fa2f7e4af6ac67"
+      "receipt_sha256": "2dce4114a046a258a211348453f4edc4e4eb6f98e642e56a3ecb17c4f186b90d"
     },
     {
       "post": "_posts/2026/06/2026-06-23-rag-chunking-embedding-contextual-retrieval.md",
@@ -303,7 +331,7 @@
         2658
       ],
       "include_sha256": "73942c328c2b832797c7e3736597ef3eff5109c9108fc9549f4689ba029777db",
-      "receipt_sha256": "f56efd3c2a2c1e46906447c01fd175b027e887c4bd3d723dbf1571e6ac0fb593"
+      "receipt_sha256": "c45db72ee93df8a75b29a44cf76a8a09de26123dcb14aee770a3113cb895eabb"
     },
     {
       "post": "_posts/2026/06/2026-06-23-rag-chunking-embedding-contextual-retrieval.md",
@@ -317,7 +345,7 @@
         2140
       ],
       "include_sha256": "cae14c1298e432a409c5c13735bb884e15b0fe79e3a385dd0af102da975dbcac",
-      "receipt_sha256": "9fbb359d279ac20485285f8956784f4a42a6bc3323ff7724f12658d2366f3956"
+      "receipt_sha256": "d1289488532c4e86c94e6cf21af06a1c3219fe11858182c6ed6bda1660b2fa4c"
     },
     {
       "post": "_posts/2026/06/2026-06-24-rag-vector-database-and-index.md",
@@ -331,7 +359,7 @@
         2526
       ],
       "include_sha256": "c234762408866a7a41c97900aafc248440ac6431a3dbb0407139ece71b1cfeb1",
-      "receipt_sha256": "d08741812b164905a2580eb99bc51be0cac19a1825d6409adc937139afbede89"
+      "receipt_sha256": "9d1ad9c405c13523669c236b57e2b45ae338edcf70f2dbf662127475f47d7720"
     },
     {
       "post": "_posts/2026/06/2026-06-26-rag-hybrid-search-and-reranking.md",
@@ -345,7 +373,7 @@
         2372
       ],
       "include_sha256": "158420087f7d8a6132dadbe9003dd36a52d1b3cb475d9c9038a53bc1b2fcb591",
-      "receipt_sha256": "3ab9c0429a205f5a67610d905f13458049abcc186a299a0208c6aa625a9228cb"
+      "receipt_sha256": "64dad8732ae894564facf35c57dc21e504a3d3c96eb169eeca7169e2123450a3"
     },
     {
       "post": "_posts/2026/06/2026-06-27-rag-security-and-access-control.md",
@@ -359,7 +387,7 @@
         1862
       ],
       "include_sha256": "a56bb7162b354d8ca14a071db1913256bcdb46bc4df6539ce69f7e512da4318d",
-      "receipt_sha256": "f8818727923aac3bf6293f6b006f193efeb409f5cfa39bc1d06c6e8e71480273"
+      "receipt_sha256": "4f0d1a344627691104b254a9603c39a24f1f3c9dcf3d4eee111780885d655ecf"
     },
     {
       "post": "_posts/2026/06/2026-06-27-rag-security-and-access-control.md",
@@ -373,7 +401,7 @@
         3484
       ],
       "include_sha256": "e63eb2cfaeb2481831f9210efcf940d84533d45077e74bdecd54d7bd3cecd6fb",
-      "receipt_sha256": "1973f60001e6d7957a3a293a7cc53236f2c1ce650faf20735262181ccf85d0d7"
+      "receipt_sha256": "2ae7c9c040c168081238cfadf2ec4045d201a966adc774c391bc1b3aa0928fe8"
     },
     {
       "post": "_posts/2026/06/2026-06-28-rag-latency-optimization-and-evaluation.md",
@@ -387,7 +415,7 @@
         2684
       ],
       "include_sha256": "e9bf448c9d7bd03c85ea252978f76f4d7dea912af505d9c317176db52ca0ac25",
-      "receipt_sha256": "479fd3e4c35bfdc666f3d87a94116e7d440bb25e8d58a430f8a607bbcd4f4aac"
+      "receipt_sha256": "559adc42e53238bb96e9319bfd441ca336d731f0e01e7120f2ebb303a845b158"
     },
     {
       "post": "_posts/2026/06/2026-06-30-rag-llm-api-and-advanced.md",
@@ -401,7 +429,7 @@
         2966
       ],
       "include_sha256": "9dcf79b16c88082d66646dc7f7d85a23a2eda047c13724e1eb0a5d4712a7c804",
-      "receipt_sha256": "a972a309f35e3adb03483bd897114fdc302b95610b0da5a54a0d3c66396a74fa"
+      "receipt_sha256": "78a721820f3216f4e9ae19e1255b8fdfb2821a61ce9e03335e6a9d12f2db1627"
     },
     {
       "post": "_posts/2026/03/2026-03-17-data-analytics-architecture-history.md",
@@ -415,7 +443,7 @@
         3218
       ],
       "include_sha256": "b617f4afc68ae1488c9f3f380f90e6a1d55347b795bc61cdca92cb92c126fd4d",
-      "receipt_sha256": "b979beb6bef8c5c1469612b099cd56234b0b736426bee552e62a19a03c6ceac1"
+      "receipt_sha256": "32962316f08cd9354a1d86317a6471f54f827cfeabe14540bc05993e1717e55c"
     },
     {
       "post": "_posts/2026/03/2026-03-31-data-warehouse-lake-lakehouse.md",
@@ -429,7 +457,7 @@
         2098
       ],
       "include_sha256": "0185722bd4e940110050f41887d1e82cf7792f17b823076a6e54f5ff2aae78b2",
-      "receipt_sha256": "ab184def9a73662876e6e94b50fa63d183829d6c2fef8261b1759948f21e719b"
+      "receipt_sha256": "220677a0206d90178fedf3c341700a07b055bf5d40e3956a9f7f7218c01401fc"
     },
     {
       "post": "_posts/2026/04/2026-04-14-distributed-sql-engine-trino-presto.md",
@@ -443,7 +471,7 @@
         2308
       ],
       "include_sha256": "862fa95c88ddebe39c0e4993da58a654caac82fa8d0c35a822a9f87aa6f0b23f",
-      "receipt_sha256": "ea972279ecfdc5c431710c9ee4343d0be59b74f7a1436e020f695b5cfc5feefd"
+      "receipt_sha256": "9e93e0880d5f5bff2d2f6273bd89de5b2cd2e66bfca9cc02a4abcdcdf87e1019"
     },
     {
       "post": "_posts/2026/04/2026-04-07-aws-analytics-stack-overview.md",
@@ -457,7 +485,7 @@
         1822
       ],
       "include_sha256": "727bb1154c2bf766d390e87d4d9fa3256c6a0db6c0678d9dbbea0cb807647df3",
-      "receipt_sha256": "d73439fd478c46013bba3f01921f83a6d996eead819415a804dcf71e6a5b865d"
+      "receipt_sha256": "73bbd12422b1b1dff6906ca3c9de216c675fbb8ffae9cfad7eab64a6847f3476"
     },
     {
       "post": "_posts/2026/05/2026-05-12-aws-athena-glue-catalog.md",
@@ -471,7 +499,7 @@
         1856
       ],
       "include_sha256": "e909be7fcc6c0bf098b19c13d12c06518d2bff41bb5337b6a6086eda482c8d32",
-      "receipt_sha256": "8c6a2a742d3e2d0705da958b392505243c2820e19018c5e28f7fd0b604242a9d"
+      "receipt_sha256": "f463c83e8e45b8531c1db9c655fc5c0f7ec5de4b8da74f8d606d7c2e87fc00db"
     },
     {
       "post": "_posts/2026/05/2026-05-26-aws-s3-tables-catalog-federation.md",
@@ -485,7 +513,7 @@
         2860
       ],
       "include_sha256": "d9126f2293e4822379149cc375329633417cb105d13b776262a27df39ae231af",
-      "receipt_sha256": "12f1219d086809bda159ff09b4b71e28319c1bad88208c7e7a3050580b5c93da"
+      "receipt_sha256": "ede7e37de680daa4f8e13551dc88e52cb9a594253fca09e760bffb00d91f4430"
     },
     {
       "post": "_posts/2026/06/2026-06-09-aws-lake-formation.md",
@@ -499,7 +527,7 @@
         1930
       ],
       "include_sha256": "409c682d2cfe4395fb3f95adfe80e90d930928a5c51c144de5c778773b724994",
-      "receipt_sha256": "31f46e362a0652b8eabc7549f016bfdedc56fdab62fac45a6466793881597e6c"
+      "receipt_sha256": "f6dc884d344270e9cb5d9a1075545638007e6dea150dbddcbc3c93b7995486a0"
     },
     {
       "post": "_posts/2026/06/2026-06-16-aws-lake-formation-permissions-deep-dive.md",
@@ -513,7 +541,7 @@
         2736
       ],
       "include_sha256": "89389ddfe0ca58e08cf65f4c5fed730ffb6c9b02c93b7831d7697f8d412e2ee3",
-      "receipt_sha256": "55e24bccab996355f1ee62f1b506c12f239bb77445db335ae005d85e5303fee5"
+      "receipt_sha256": "b19a76fe655b415c86f51385518179b1dcbdabaa843575bb114141f40952530d"
     },
     {
       "post": "_posts/2026/04/2026-04-07-aws-analytics-stack-overview.md",
@@ -527,7 +555,7 @@
         1650
       ],
       "include_sha256": "21bcf308292f881312d7f5f56f7a9d6a21c893110d7f2c8da3d15d5ac4a574c6",
-      "receipt_sha256": "34131d5fbc7e317056c263cba494851cc7c744359aefd8ddf228fa574814a00c"
+      "receipt_sha256": "5c7092bc9e749ef58886ad80fd4221bdb6184a323392d0192509c95c8874d9db"
     },
     {
       "post": "_posts/2026/05/2026-05-19-apache-iceberg-table-format.md",
@@ -541,7 +569,7 @@
         2476
       ],
       "include_sha256": "7b58a23a451a976c0b270e60186b54de6e9dbf2a89afb896cc163bd6a7e77441",
-      "receipt_sha256": "06dd79b8c0bcd84475339b719e2a2a119daa052e3e3202b703da611b4894b3a8"
+      "receipt_sha256": "cb8d32f9c5e777ca3b0c234441887a55c635bc9a681e801c222bb796e3dd088b"
     },
     {
       "post": "_posts/2026/05/2026-05-19-apache-iceberg-table-format.md",
@@ -555,7 +583,7 @@
         1954
       ],
       "include_sha256": "ec65b8ac96e20aaf103c4b82b364b3bfa5fcbd91ef042bb01e03a136bc574f74",
-      "receipt_sha256": "3f21e7d5d3ae9efa152d28ad524a35fd9563e60b0de3d05e4e2f65cbc1415486"
+      "receipt_sha256": "a85deb5fb1cf9cbc8c955a112bcdcecf110c76c4ff95a9a44e80f4f0347e1d70"
     },
     {
       "post": "_posts/2026/08/2026-07-24-aws-glue-partitioning-operations.md",
@@ -569,7 +597,7 @@
         1328
       ],
       "include_sha256": "134a26b1420a7eeb95c4f85a5fb6640dd497323a73a6a74791624b8444ba0db6",
-      "receipt_sha256": "c766115c4ab4f01cf858a6a2540e075f58f01e06611f90055628b9d9288c603e"
+      "receipt_sha256": "2ebb7a4234440e8849a77b9ae15aa6a8f08a283cf4ea159d30837b3b021d46a2"
     },
     {
       "post": "_posts/2026/07/2026-07-16-aws-waf-javascript-challenge.md",
@@ -577,13 +605,13 @@
       "figure": "sd-aws-aws-waf-challenge-token-flow",
       "page": "posts/aws-waf-javascript-challenge/index.html",
       "png": "/assets/img/diagrams/static/aws/aws-waf-challenge-token-flow--4f392d79b671f278.png",
-      "png_sha256": "35a479ee6cdb970ba491036ee2582ceb11d861130a48b35db449e0d1e25416f3",
+      "png_sha256": "40814bfc35fd970a105e416bb718e7fd1498971d5a6e27d16824a143710e1f22",
       "dimensions": [
         1250,
         2552
       ],
       "include_sha256": "4bce98d51c7b771cba5492ffd2d42084257386b611e24207454cc664b70fa106",
-      "receipt_sha256": "9a4245566439ace55323207d32ed73bae292d94aa834ddf8f1c3c6b7c253c06a"
+      "receipt_sha256": "248c2c574b6ff1372327ad660a5dc8563b75285ea9158fb5758276327e79062e"
     },
     {
       "post": "_posts/2026/07/2026-07-14-aws-waf.md",
@@ -597,7 +625,7 @@
         1872
       ],
       "include_sha256": "049f35ed74b98182c365ec4009951adfce1ca168bf87fce32b70cafd76257484",
-      "receipt_sha256": "fbd34c94210d43d9d003ded657c23b5c96b5d297ee3604c6d74c2a239d61d778"
+      "receipt_sha256": "f9624926fc85e520371a5d26b25179306d90d5d92f58faaa8fd214320fea9692"
     },
     {
       "post": "_posts/2026/07/2026-07-02-aws-bedrock-knowledge-base.md",
@@ -611,7 +639,7 @@
         3450
       ],
       "include_sha256": "bf521eea2dfa91879bd5aabb65800dead987b99fea4880bc0de75c80c4615061",
-      "receipt_sha256": "1db41cbfd7af9efcca7383f8267a0519b2f0b0cdf87b1c4c832d8e4bb06fb3b2"
+      "receipt_sha256": "c9229ce773de636265fe2db8ba57f62fa6130fa6e37187712e8bc8bb5d5f27d9"
     },
     {
       "post": "_posts/2026/07/2026-07-03-bedrock-kb-slack-rag-chatbot.md",
@@ -625,7 +653,7 @@
         3930
       ],
       "include_sha256": "f30594411efdd8d347d1ab18e73a7d1742395c802f213cbc942bafee09b59d87",
-      "receipt_sha256": "bb3200b6729f50b282d14b24b3637a8b070f074867c6df768b8a3744acfa6fa9"
+      "receipt_sha256": "1177284cfe4b73e6a87c93cea26624ad5cbcb61e688c1d253310e151a813d66c"
     },
     {
       "post": "_posts/2026/02/2026-02-04-cloudfront-vpc-origins.md",
@@ -639,7 +667,7 @@
         1810
       ],
       "include_sha256": "a0e225fae94627d293d6a8ec6a5d9df64fa729282388bf72b6ba25f4f4a8d45c",
-      "receipt_sha256": "3b4184750dc4f4d6506e90a23ec9f2c1d405939fec963e6b4dc045392570b902"
+      "receipt_sha256": "965c92dce5e59f27e0c32fe0b02e46fd1ccd491cf9f91b9801859be9929a4039"
     },
     {
       "post": "_posts/2026/08/2026-07-29-aws-codeartifact-overview.md",
@@ -653,7 +681,7 @@
         1788
       ],
       "include_sha256": "75aeeca8ed9fa6fd1d056cf126e317c1ad16671258bcea33e13e241333d60df0",
-      "receipt_sha256": "632e75a59f862a7e323e4472cd51fd8b251b56323411d6254803786e9d89a26b"
+      "receipt_sha256": "d7a56f5792e139e17b511a91abbd3244c4d7752bfb7d918836089a0f01239137"
     },
     {
       "post": "_posts/2026/08/2026-07-26-aws-devops-agent.md",
@@ -667,7 +695,7 @@
         1810
       ],
       "include_sha256": "722e748aebac0fcd70eab8468a3e0b2bad4e18f717f05e6429e73d4f651fe664",
-      "receipt_sha256": "aa2f1c470a913caf58c3d24c4a488ad3eb7a95a7916a24659fa3d4b0e048ad7d"
+      "receipt_sha256": "dbbb6f2f5187a8805435f0dde4fa97052317435177c7aa6af202450fcb28051c"
     },
     {
       "post": "_posts/2025/05/2025-05-03-eks-max-pod-limit.md",
@@ -681,7 +709,7 @@
         2222
       ],
       "include_sha256": "e0442415a236909aa8a2f0491c8bd41363ffa30985fd332d91c014609e3ec91d",
-      "receipt_sha256": "a42b4fc5201d28b2d942baa8c5dbdc3dab70d9a90eb9107f5ecec13082164d08"
+      "receipt_sha256": "bf20fbf42e317d01d8c05825e50996bee98b4a11ea601b9c237da521da22f6dd"
     },
     {
       "post": "_posts/2024/07/2024-07-27-eks-secret-manager.md",
@@ -695,7 +723,7 @@
         1806
       ],
       "include_sha256": "e66247a554898e15e1e578dcd667cdc419470a867b0b7ef1c71acf176b7899ba",
-      "receipt_sha256": "af66e61f987b1626f99f03b7f1cbcf1e0e29aa72003024ce02c825d55ffaf616"
+      "receipt_sha256": "dc5408b6d4d314d4c745a20cba27504260999642cadfc49c017a7bccca538218"
     },
     {
       "post": "_posts/2026/01/2026-01-30-eks-token-cache.md",
@@ -709,7 +737,7 @@
         2428
       ],
       "include_sha256": "3f375f19425d2f9143a0baa52c5028299670806b4e7d95c52fa7253ca6c0a487",
-      "receipt_sha256": "767ee1655b28e06985fed3b7ee61730d92669eaeff8c5acd89877025038681fb"
+      "receipt_sha256": "81532ac4f3d58bdbbf54ba14fdfc035e6ebc510f084ef964f7401fcfdf5ba6c8"
     },
     {
       "post": "_posts/2024/07/2024-07-17-irsa.md",
@@ -723,7 +751,7 @@
         1972
       ],
       "include_sha256": "283f06cfdb9fbb6a467e474a1f510d2b77c90536889f686118e4e8bf4677232b",
-      "receipt_sha256": "46c85e905b1a7f97bf60dd335e8cabcc58905cf5583fd92be7c68488267c5b1c"
+      "receipt_sha256": "5b31c137765343a5175483288f65fd6e0aac36b28f0539415372a10b3f224458"
     },
     {
       "post": "_posts/2024/06/2024-06-07-route53-dns-record.md",
@@ -737,7 +765,7 @@
         1706
       ],
       "include_sha256": "e75a504d0ae75984e7675ebdc015631912dc0ac4d35d54361f4384b0f6cdc775",
-      "receipt_sha256": "23acd4c58e13b59bb2f96596a3739842d2b63087915c8970fdc6666b2d4d20b0"
+      "receipt_sha256": "b9168702ee5066c49e1da5166c0489cca2ede3afcf5ef23a09e555c94d30d787"
     },
     {
       "post": "_posts/2026/08/2026-07-28-amazon-vpc-lattice.md",
@@ -751,7 +779,7 @@
         2150
       ],
       "include_sha256": "0698c6e3988c4f5d5e607bd8bf4d03981ecc5be5807f830f3a482c72169537fa",
-      "receipt_sha256": "be32403ad0fae9267a1399b99da9d642be877746fb8c0d059d9ef10a77176154"
+      "receipt_sha256": "e26dd5178c47fe683dacb7417a802fed83c9e701166198e5d6f3b5055446f6d7"
     },
     {
       "post": "_posts/2026/07/2026-07-15-aws-waf-self-managed-rule.md",
@@ -765,7 +793,7 @@
         1706
       ],
       "include_sha256": "dda3e4430196f3b581c997af0a0a237e0b8072e5b8296b46c8299684028db8fb",
-      "receipt_sha256": "0c4cc4d38258cd6294df4e3ad8598170fa8512d6a3a4ea17a67efc0c62bcce0c"
+      "receipt_sha256": "0d4077cce23af2226822ac66617982f6f793e2d8f767cd4d782c6c27f0d268a1"
     },
     {
       "post": "_posts/2026/08/2026-08-19-mev-pbs-relay.md",
@@ -779,7 +807,7 @@
         1094
       ],
       "include_sha256": "c09dc65f1f16d8abaaf17fa62863dac4596136edd0cd81f500e59a3a1f06bcf3",
-      "receipt_sha256": "c08c47e854f29dc30af68358629eef464320ce381ec4fa3bb13f153ff8ef5cd7"
+      "receipt_sha256": "730a11b4d49184ff702062f942e92cd2ff1c2e9409b13bdad25bdd6285f1ed0d"
     },
     {
       "post": "_posts/2026/08/2026-08-08-bitcoin-mempool-reorg-script.md",
@@ -793,7 +821,7 @@
         1096
       ],
       "include_sha256": "4440cedf46385ff735a557630cf3d178c9c06994474a537197d329b4c91eca42",
-      "receipt_sha256": "3b76d123736675f739171b10e057a43043eb4837ef8ee27fa67663ce6f4cad1a"
+      "receipt_sha256": "6bc3a6704ed516261d58ef548390d7487f8fa77ea71c8ea168b7cb37c20c4e2e"
     },
     {
       "post": "_posts/2026/08/2026-08-08-bitcoin-mempool-reorg-script.md",
@@ -807,7 +835,7 @@
         2530
       ],
       "include_sha256": "b874eed4e6eaa086a217e00c18613ec1880f003681107a568ad21fa5da4667cf",
-      "receipt_sha256": "a9b7e06d01574434c8b409f77b5f6eb9eb10e68eeca63936f80c30e1928511b6"
+      "receipt_sha256": "d94a6c0bb96627d2b1c6ba3d7b5319d555cc56f44a146866761d111be96a3dcd"
     },
     {
       "post": "_posts/2026/08/2026-08-08-bitcoin-mempool-reorg-script.md",
@@ -821,7 +849,7 @@
         1052
       ],
       "include_sha256": "e47e5cdb7fc6b9645492c78c0f37baa228085f25e2ac74202e8271282bc0c202",
-      "receipt_sha256": "025a11bf6588036c46c3974b0196ba81f16da7b90b941fe8d9617ca717897996"
+      "receipt_sha256": "379fb505e950165e387a9bf59594ebd8731b37e3f5e1147aae669a006aae09a6"
     },
     {
       "post": "_posts/2026/08/2026-08-08-bitcoin-mempool-reorg-script.md",
@@ -835,7 +863,7 @@
         1520
       ],
       "include_sha256": "e3619f1f01809381eb1599993f5b487c775171bfef69b6cff76ed1f4c650a7bb",
-      "receipt_sha256": "b64dfd7ab4b883ae3e80349e3fa1f39e9ae2ad5275b6229755879f752e118cfd"
+      "receipt_sha256": "4ab969bc8d5806228927730d4bea2bbc6219f37531596f939ce27f3361b5655d"
     },
     {
       "post": "_posts/2026/08/2026-08-07-bitcoin-utxo-transactions.md",
@@ -849,7 +877,7 @@
         2006
       ],
       "include_sha256": "305735e5d751ba5282bfb1c2e8aa7cfc4e09b69a79e60ec9e90d7764f2492191",
-      "receipt_sha256": "472462ccdc6a8e0631e11ac8af15e894e179bd51d2d73f7dde2bbd74183fdcae"
+      "receipt_sha256": "de9039fe34c49996efed7546cf6dafe3cfc30fdb3940f1e740347fb6ef7df4c4"
     },
     {
       "post": "_posts/2026/08/2026-08-21-chain-compare-incident-runbook.md",
@@ -863,7 +891,7 @@
         1386
       ],
       "include_sha256": "a609035b7e4616936d11e1b787aed51aa133fec1c984836302d1fe47083ff391",
-      "receipt_sha256": "bf2ff3219008f9d35edadd0591af4491ed86e0afc6598b396a3aecef622c8fc4"
+      "receipt_sha256": "b30b6d739758043e0dcd84ab9c2f144a6768eb8d79dd24243e866564ef45d2ff"
     },
     {
       "post": "_posts/2026/08/2026-08-13-ethereum-node-rpc-ops.md",
@@ -877,7 +905,7 @@
         2590
       ],
       "include_sha256": "2961e1de901896421dfc500836db11e133566bc0a5f688dd4690b99255c2a391",
-      "receipt_sha256": "f87f052cfb2df4db99f37ed26cc381e8c5bbd04fb2781d8565df706ac85e048d"
+      "receipt_sha256": "a89273bf0b4a1a165c013c5ff64fb6a8cff90ad8b42d7b2425c9617f16733382"
     },
     {
       "post": "_posts/2026/08/2026-08-14-escrow-auth-events.md",
@@ -891,7 +919,7 @@
         1096
       ],
       "include_sha256": "4f41379435fe45e00770a86149c04e9205ac5c45e2e691fd9917aeb8b1a13a91",
-      "receipt_sha256": "26c0aa16c8f5c1100fbcd72ca86c477b0d9d2a24c45690e93f27917319418574"
+      "receipt_sha256": "cc8a4e2e8d0090a4f0c7824fe69892410717cef2828f949ff7b36599b7a184b8"
     },
     {
       "post": "_posts/2026/08/2026-08-14-escrow-auth-events.md",
@@ -905,7 +933,7 @@
         1428
       ],
       "include_sha256": "17eed858d0d0c3070a535e10aedc9cd87d9dcdd7515d775a1f3fe4a081d7cdab",
-      "receipt_sha256": "1ee19d67e37253db46402d1f84060f48b7024c7e1d8a262241464ac32e474be6"
+      "receipt_sha256": "066e740aa787cd967f3dae95594310148a7c7d54ee18e55fd1d4a2b888d3bdbb"
     },
     {
       "post": "_posts/2026/08/2026-08-09-ethereum-account-nonce-gas.md",
@@ -919,7 +947,7 @@
         1096
       ],
       "include_sha256": "f23f65573641ee85870b3643b633776c54fe4763e26bc92678e6663c16448256",
-      "receipt_sha256": "b37b21816c185f13110c11958dfcf3795b8883849a2e35be526a56423f2cccb3"
+      "receipt_sha256": "e2ed433ecc77473f92bb369b89fcf9618b93e7c3056452934b3a2e389792bbc5"
     },
     {
       "post": "_posts/2026/08/2026-08-09-ethereum-account-nonce-gas.md",
@@ -933,7 +961,7 @@
         1096
       ],
       "include_sha256": "e5dcdefc81891749f500b5ece3d68145e47bee93164d5858c349b41e8ea71759",
-      "receipt_sha256": "245d14f6238add40fe5e97cbc1baca6c0845fd96fe79d5b611697917d86bc68a"
+      "receipt_sha256": "2826ec5c0aa1d18c92117775eebf31044f6ef7d93e4e08a12c19973d51852ee6"
     },
     {
       "post": "_posts/2026/08/2026-08-09-ethereum-account-nonce-gas.md",
@@ -947,7 +975,7 @@
         1094
       ],
       "include_sha256": "55c1a989b6090e4a748375a0510d9932b00c5f026f07c84320a771f204d71ecb",
-      "receipt_sha256": "3922fc31513975c09cb7bc019874f66bf16405c1a0fae8ffb1229d17e8a8309a"
+      "receipt_sha256": "87b98c2c0012fac16349abf00c17bd92a61f6c79c04769efb39b6b7b45476c19"
     },
     {
       "post": "_posts/2026/08/2026-08-10-foundry-counter-deploy.md",
@@ -961,7 +989,7 @@
         1094
       ],
       "include_sha256": "74a5ad12b0fd17ca06dd5f6e682952ea4274ab528227405fedee35c33988c2ba",
-      "receipt_sha256": "e0448cba1f9f3533792db466fa89c56e09b2ea8a458ef778635556f1e280db00"
+      "receipt_sha256": "82e227130f7d9688699eef74a05d98cc480e902aef8f3c8e21699a9420c858b2"
     },
     {
       "post": "_posts/2026/08/2026-08-10-foundry-counter-deploy.md",
@@ -975,7 +1003,7 @@
         2138
       ],
       "include_sha256": "c7ce5bd98f9938e4a6a5a30684ac416c5e7013ae8e7aee063b3de45563ce2a30",
-      "receipt_sha256": "db163a0d21a30e7fee85f60f009bb451cb62b1d7625d29ce300691e5306e9513"
+      "receipt_sha256": "c12af9b828d88cd9e49ec69a662a8205e781609811cf7555502450c7a3c3e676"
     },
     {
       "post": "_posts/2026/08/2026-08-05-blockchain-crypto-foundations.md",
@@ -989,7 +1017,7 @@
         1150
       ],
       "include_sha256": "b51019139e2dea9f5bfb7fac91fdfa469a04ac568697e407fec2b13e58408e23",
-      "receipt_sha256": "c6462865502ab2e102f132b6ab5a173b227ecca2b936f30105e27bc3a8df53d6"
+      "receipt_sha256": "704d08ca3b55d96d7f4b53a12d99c3c6a7ea9c3af9f071cb858878e191ada33c"
     },
     {
       "post": "_posts/2026/08/2026-08-16-hd-wallet-signer-ops.md",
@@ -1003,7 +1031,7 @@
         1624
       ],
       "include_sha256": "19f6601d1899d8b76324310c0127c45a7974bd4e0cf55c5ba9d61535c72bd222",
-      "receipt_sha256": "08f397b5e80a82a5ef12c40415a168bdaefc39df9c891974c466081fc0a8f171"
+      "receipt_sha256": "a54c0183e8fd5b55e0cd0bfcfbe6777f8508874c17c5825381d6c721630ca1ca"
     },
     {
       "post": "_posts/2026/08/2026-08-13-ethereum-node-rpc-ops.md",
@@ -1017,7 +1045,7 @@
         1856
       ],
       "include_sha256": "0724b83eeb819eee8ce1862e1628aaad968f01bd7a85d2df20a82c429ef9c4e8",
-      "receipt_sha256": "f7c25011306480dd7e6a77dbf2c54ec773f97d9dba40e6c88ccfddcc680e8713"
+      "receipt_sha256": "9999c92b3e6b7ee6da581b7650901fd6762b4eba2d4c38097a4f2a8c4bb26699"
     },
     {
       "post": "_posts/2026/08/2026-08-21-chain-compare-incident-runbook.md",
@@ -1031,7 +1059,7 @@
         1928
       ],
       "include_sha256": "9877c12621d030517e9b5323aab4ab019b27ea056ccd211eaf01005370f3c927",
-      "receipt_sha256": "c0fead916dde1486f6147e180bf25ab5df5ee811c136dd76ac561e6ba53124b8"
+      "receipt_sha256": "35c67432c0f465811f9063361cb5107f4310e862fc856002848d11bcabf91dde"
     },
     {
       "post": "_posts/2026/08/2026-08-18-bridge-oracle-trust.md",
@@ -1045,7 +1073,7 @@
         1096
       ],
       "include_sha256": "8c08c0c9a9a3e52a00f41edca39204b0fd097264e75118fc985c024d8848ad41",
-      "receipt_sha256": "2ced596e785f3f0eb90776c0a74c44e8923868a9f872bc65e149624f0e2361e1"
+      "receipt_sha256": "2623b4a053a71a059bc64b3a5883be9b8df607615e1cba7b66072ea4d10d4862"
     },
     {
       "post": "_posts/2026/08/2026-08-05-blockchain-crypto-foundations.md",
@@ -1059,7 +1087,7 @@
         1538
       ],
       "include_sha256": "41155fe8df5782aecc2c99d90060c52b91bd1fcfbb25a519168afc6b72ba2962",
-      "receipt_sha256": "c574d7b277c16d01512b094315734ad16c4514a952bfafa26a64e31f6e9c9403"
+      "receipt_sha256": "3045994385bfb8b8f12e71e74e7900a2e3ca92d885450f34ee963b338988afc9"
     },
     {
       "post": "_posts/2026/08/2026-08-15-consensus-bft-nakamoto-finality.md",
@@ -1073,7 +1101,7 @@
         1844
       ],
       "include_sha256": "c1b0f38860d37cab110abd718334243ec14cbbfec763410eac235d77563df8bb",
-      "receipt_sha256": "17a36b6adf8b54273fb27f371977faf9ed45eba9d094a62e2d0bc1a90553d2ce"
+      "receipt_sha256": "39a60b960fbd9f36a0d4928603701ca05137e67706b074f943db5d1bd374c2a2"
     },
     {
       "post": "_posts/2026/08/2026-08-13-ethereum-node-rpc-ops.md",
@@ -1087,7 +1115,7 @@
         2120
       ],
       "include_sha256": "2cf534aa49a7b5fe15093bf349c3f10051c1cffcf852990c70e96f194aaba720",
-      "receipt_sha256": "a5d35531e8fd15a1c4bf96400e79f4277bea54ec2b97a6b9d50934f619adf50a"
+      "receipt_sha256": "49fdf27fd7a90905deb50da62d58bca14570e87f0cd07c06876c9f63afbb43da"
     },
     {
       "post": "_posts/2026/08/2026-08-19-mev-pbs-relay.md",
@@ -1101,7 +1129,7 @@
         1052
       ],
       "include_sha256": "2550b8ff699051507b1abd7235d7475da78640d06161b49f3e39b65f9982ccc2",
-      "receipt_sha256": "92af29b92d20c4a05208b1ed2e2eee3e84ec062c9c00c4346c216b006695b15e"
+      "receipt_sha256": "2ea01bb6402e6e719d1413b7d671c2a073875f14f1c9c1ae407fba6fe012eede"
     },
     {
       "post": "_posts/2026/08/2026-08-15-consensus-bft-nakamoto-finality.md",
@@ -1115,7 +1143,7 @@
         1106
       ],
       "include_sha256": "b08d2aaeaa3a97232ed55070542a64744687c44894ce399574e08b3be71b4b4a",
-      "receipt_sha256": "2ed872419a05c431de54757ba23ba5e3d261d1cfce9f66dad282f5aaf9e76810"
+      "receipt_sha256": "04ccc34cdc27db5a7f60930390cc1f65810f8ff17b6d2bb8b3ee5793df21033f"
     },
     {
       "post": "_posts/2026/08/2026-08-12-receipt-trace-finality.md",
@@ -1129,7 +1157,7 @@
         1106
       ],
       "include_sha256": "eb736fe92848d00b1cf6178673fb7235cbf89733bfc0e2f27e2d7b25fd31d0bd",
-      "receipt_sha256": "1a8bb28582e402be1fc93a2d5aa2bb9308d2b6f07fadcd477b803f389b0c914e"
+      "receipt_sha256": "cc056735f495553d2bedd96ff71100ea8bf1790234a3a403ac6d893b0504e809"
     },
     {
       "post": "_posts/2026/08/2026-08-12-receipt-trace-finality.md",
@@ -1143,7 +1171,7 @@
         1052
       ],
       "include_sha256": "df842be15cea5e36cefce3cc2fbdeaad678cde3e8cc95e8a79e7de558687a67e",
-      "receipt_sha256": "ab8b058b08466c7ffc18c5ed422785a71086c884d3f1e44f9873e5721aea2aaf"
+      "receipt_sha256": "eb016946ce5a220b3cbb32da338f30b445384684f98d8aaa54654bb2685ae33e"
     },
     {
       "post": "_posts/2026/08/2026-08-11-reentrancy-cei.md",
@@ -1157,7 +1185,7 @@
         1330
       ],
       "include_sha256": "43a88b6b396c65f99bd80e5396de9ed1c1bb858c2b9ca69ff92a34427e5ffb9e",
-      "receipt_sha256": "8f680c5bc0e01a5c7a25dad704ab128c172e23bcdd7ecdd1257a8648e0c37449"
+      "receipt_sha256": "142fa4a22b34f3de67768ed16e4a9d5668d99935949c2f8e23e1a6851b75fcd3"
     },
     {
       "post": "_posts/2026/08/2026-08-11-reentrancy-cei.md",
@@ -1171,7 +1199,7 @@
         1384
       ],
       "include_sha256": "ceec954e16a4ce8961d76ffff0a661913522871baa74bb4e21b7e203f35c3ec8",
-      "receipt_sha256": "25817a3e429560de55f100a8887bf3844f2f033b38db98042e7491cc082cd009"
+      "receipt_sha256": "4823ae7b0d3aa804ca41574ebf3fc598947466f8a3cb9967701136eebf35efbd"
     },
     {
       "post": "_posts/2026/08/2026-08-17-rollup-sequencer-da-escape.md",
@@ -1185,7 +1213,7 @@
         1094
       ],
       "include_sha256": "e05ba7ad6ca164479469ea38745c4139f5212bcbe6926563c249bde324f6ff60",
-      "receipt_sha256": "496db94acaad0ad2a67fd7cb0c081ad29325852de45df31ecb44d8db5fca8982"
+      "receipt_sha256": "56c464c53a9373a085ad22c717df1537121f2b5f8baa2eca1d2e02e9e9405365"
     },
     {
       "post": "_posts/2026/08/2026-08-17-rollup-sequencer-da-escape.md",
@@ -1199,7 +1227,7 @@
         1106
       ],
       "include_sha256": "e04a6331f8f146bfd99199757410b235e173fefffb58392b8660fe3529e6e52d",
-      "receipt_sha256": "d07cbbf0a31d2e4e2a7a0b2f0a65d46b95f99158f397cefb6c059b526f2f07b2"
+      "receipt_sha256": "2026896997a47878ce91914bfececf7446dd675821fa2db1126916c55048c3da"
     },
     {
       "post": "_posts/2026/08/2026-08-18-bridge-oracle-trust.md",
@@ -1213,7 +1241,7 @@
         1582
       ],
       "include_sha256": "42257f0d9333ab9757a8739aa44a170974f012fc341791ba91e9386146ef4e5b",
-      "receipt_sha256": "e460875718a35257a6241da00be1fad7fc10fe5bfc99166cfda6bf3abd105751"
+      "receipt_sha256": "4398c5c2f92c72bf9bf8674b26a4797a635029e89fe5ab90c6121fc57ba29620"
     },
     {
       "post": "_posts/2026/08/2026-08-12-receipt-trace-finality.md",
@@ -1227,7 +1255,7 @@
         1296
       ],
       "include_sha256": "631852636200f6145e21114ed04a3d6a91aa0efdb71a20cad1abf99d04d36bfc",
-      "receipt_sha256": "179a7dd43eb55766ac8221d8db8042e5aec6b62f9ff8c6a0712c747d28588794"
+      "receipt_sha256": "1fd5622f4013d70086b6cdefadfbe5eb199d1e0d16f8097fc63358ed8906e691"
     },
     {
       "post": "_posts/2026/08/2026-08-16-hd-wallet-signer-ops.md",
@@ -1241,7 +1269,7 @@
         1544
       ],
       "include_sha256": "362a57e4f30a72e01c91454f5c7984a20fb01ddb681d7f931f754c15c1e64ab8",
-      "receipt_sha256": "34f3bfe4a81fe36582762f74be2bcebb9581ca3efdd50021acd3bee7211cd5de"
+      "receipt_sha256": "d151e2ac90857f4e6c36cbcfb2e2d420174703af658de6a441667fb57e9a93c9"
     },
     {
       "post": "_posts/2026/08/2026-08-20-compiler-pin-repro-build.md",
@@ -1255,7 +1283,7 @@
         1820
       ],
       "include_sha256": "33af61576314d71ced8dc7fe34a78f3fe7b6caec2e8c68a53ed4294fe28377a4",
-      "receipt_sha256": "eea5acace3bb1bc1df92af4aa71f91fe73af81146c75d15d8ef37987a77ca675"
+      "receipt_sha256": "608fb50a8c7db9e24c5628eb510d5b7636583dd7697e226f4fa4c6f159397bee"
     },
     {
       "post": "_posts/2026/08/2026-08-20-compiler-pin-repro-build.md",
@@ -1269,7 +1297,7 @@
         1106
       ],
       "include_sha256": "baa57d0a7b177c5af545e9d27092da084acec56dc47d146f1b34a8a7ffd6119b",
-      "receipt_sha256": "7c38d2258f278ab08c57973dd31f45085992ff98ff7a82499fb885ac18a78b58"
+      "receipt_sha256": "661bfcf50735d0d450116dd50da20522611d32dc97ae1737b37ef661b7110e1d"
     },
     {
       "post": "_posts/2026/08/2026-08-07-bitcoin-utxo-transactions.md",
@@ -1283,7 +1311,7 @@
         1940
       ],
       "include_sha256": "6a180299c6b61bf5f20f08c7003b4a99a15500d5c679f667f70a22306c915692",
-      "receipt_sha256": "1cf144c3647be98c52095e9b8db20ecdae954b113775f6878c52d8d3e346952a"
+      "receipt_sha256": "45d0df8833c2b436d8a711ee789a5123445fc9890f9da63fdd7e1ab1b18299e3"
     },
     {
       "post": "_posts/2026/08/2026-08-07-bitcoin-utxo-transactions.md",
@@ -1297,7 +1325,7 @@
         1586
       ],
       "include_sha256": "2367b0d14d1e5cf935e5da46f534e312b97c9aae75a09b2635243c35e965ab3f",
-      "receipt_sha256": "9b330abead9108186f1275e035eda893c64487db0c8f7069556e6f130e87648e"
+      "receipt_sha256": "aa8d6564ce641b1a5f7518ee8952a694e849cd50ff868639fbadb4502b54cc61"
     },
     {
       "post": "_posts/2026/08/2026-08-07-bitcoin-utxo-transactions.md",
@@ -1311,7 +1339,7 @@
         1984
       ],
       "include_sha256": "a51141c00723c2c62170cbfe7ae953b092336359c08b93f2d19c48f3855f5a21",
-      "receipt_sha256": "bf3bbdf2a9f0b3149e262d7d3ab50bd9e29b95b4c2b13d449d715648aca1977a"
+      "receipt_sha256": "3ca882b50f37d3af757095b44241d7f6cf640eae61716ffb3ca89decc960751c"
     },
     {
       "post": "_posts/2025/05/2025-05-22-argocd-application-declarative.md",
@@ -1325,7 +1353,7 @@
         1650
       ],
       "include_sha256": "856402a7624c361329b62494c805b9d2f2708c4e6b8475f746b00fe4eb484ac1",
-      "receipt_sha256": "05904e49498ded7dbd1dc163d527c47a618c1d56bcbf405477094600435f815b"
+      "receipt_sha256": "8697a95560d444231d86742c3665aef90b2f374993ee43c1f026f2e09b9e0ed7"
     },
     {
       "post": "_posts/2025/05/2025-05-30-argocd-multi-cluster.md",
@@ -1339,7 +1367,7 @@
         1872
       ],
       "include_sha256": "d3845bcefe3427249c3363afc2065390fde60c8001b49526b0682c731e958834",
-      "receipt_sha256": "1740d64f7b06bc50cc9eafdeee28c1782dd1e6ea51ab48cb87ab5a61d3fdc1b3"
+      "receipt_sha256": "1933a92f7aec1e0df54824602086004cce8647a28b6681ccb9e6b2f803ce602c"
     },
     {
       "post": "_posts/2025/10/2025-10-16-introduce-gitops-1w.md",
@@ -1353,7 +1381,7 @@
         2960
       ],
       "include_sha256": "18d5af48faecbdfcc99dea6d504e3239bc862da05dbe15bacffabdaba79893cb",
-      "receipt_sha256": "5e67d23120df91e3976e7c925988c578d8828f6e4dd479a23e9358110c39139d"
+      "receipt_sha256": "d9436e7ee52822be9d4cf152a748e71744b26f80ee26edd7dae74fe7660b2fbc"
     },
     {
       "post": "_posts/2025/10/2025-10-31-argocd-3w.md",
@@ -1367,7 +1395,7 @@
         3020
       ],
       "include_sha256": "a120251cc2a9939ed52b5015af6355ca70e97251db6a37522fb339ad34b510d5",
-      "receipt_sha256": "45033db33f0be1205ab5a659f3faa0141448f47ca75ebda3310a7eacfec70e3c"
+      "receipt_sha256": "5beca4575fe01d07043ce23ace68347a215fb7fa8df95475cfbc078533dd8167"
     },
     {
       "post": "_posts/2025/11/2025-11-18-argocd-cluster-management-6w.md",
@@ -1381,7 +1409,7 @@
         1360
       ],
       "include_sha256": "23e8d11a2f18cc35bd0849cc5a65f499ed2fddefd5f9070af623d2ab632ffe44",
-      "receipt_sha256": "c04ff93b6b3ab41d6a4208b96b0f55b58e70b7e4b24f85b151b0500b47037c56"
+      "receipt_sha256": "b860c92edbcbdaa8151cf05985fc6957ac85b15435b6c53e4d8b1f17ffeda6e8"
     },
     {
       "post": "_posts/2025/11/2025-11-21-argocd-applicationset-6w.md",
@@ -1395,7 +1423,7 @@
         1360
       ],
       "include_sha256": "23e8d11a2f18cc35bd0849cc5a65f499ed2fddefd5f9070af623d2ab632ffe44",
-      "receipt_sha256": "c2f0c12fbcc0cd32d6aab0a7049df71adfdfa4ffde2fee19f8b226a2e528889a"
+      "receipt_sha256": "a21a496a816966dacbe570a3296324777e512e828e7d210e3492de60a88f94d6"
     },
     {
       "post": "_posts/2025/11/2025-11-13-argo-rollout-5w.md",
@@ -1409,7 +1437,7 @@
         3456
       ],
       "include_sha256": "35dc0560e013ac268d106ddb6dc039b3ba70114fd0c562bd01e09126ce9c3bf6",
-      "receipt_sha256": "60adb17ddb878724376a4efbb33cf53043fa0491b9b50b50626d891e6622e950"
+      "receipt_sha256": "7cbd275524b584b2b53e1d0aeeaa6c47e1862f0428782c2155fcdcc310207939"
     },
     {
       "post": "_posts/2025/11/2025-11-13-argo-rollout-5w.md",
@@ -1423,7 +1451,7 @@
         3446
       ],
       "include_sha256": "299d4e7e4aeb5258840d31e1bdcb129f13355d41db9a73a24a97e1215d18df02",
-      "receipt_sha256": "b46347a40bfc3bdfb801a9e0bc7d0763ddb1e259ff6c52e3c364d5d5c0461002"
+      "receipt_sha256": "202ab82b7af22b0a375560561addf9ecb62f13043e9122b43dd999aef2758798"
     },
     {
       "post": "_posts/2025/11/2025-11-13-argo-rollout-5w.md",
@@ -1437,7 +1465,7 @@
         2582
       ],
       "include_sha256": "9718ba59f382de6378246cc18e326f3b5f9b91ce359333a495436ac75d58a641",
-      "receipt_sha256": "3da93e1b6a689d072692ac699d27d566b5e80aacce8de63123c12f99d1ff8036"
+      "receipt_sha256": "257c4f342df3f1ed398fc4eb7c6cb051206b072e86e408ca3550e60a3623f511"
     },
     {
       "post": "_posts/2025/10/2025-10-31-argocd-3w.md",
@@ -1451,7 +1479,7 @@
         2334
       ],
       "include_sha256": "4b1fa44a649ea8771ca7570218ad33e9d55886dd9ce0bc6a8196fe3709edfcb4",
-      "receipt_sha256": "9eb33a2048fa8db63519143a71e95475c368eb18f0795a2dac2520324e87972d"
+      "receipt_sha256": "b4aa58b583bb53b59aaf46c4e3a4b7374f85f372af16aa00e92d154abfcb64dd"
     },
     {
       "post": "_posts/2025/10/2025-10-17-introduce-container-1w.md",
@@ -1465,7 +1493,7 @@
         1426
       ],
       "include_sha256": "f7d66470abc6565665efdf5ba1e92938a2a4232da4f5dfeb89a19fbb879f5eaf",
-      "receipt_sha256": "d1cca41fc07dc275a010e37aff6ca589376e7aa6dab51c75993ec999e9011c3e"
+      "receipt_sha256": "847392c9860626f2f23bafafa3ed58d2067aa2a02fb08f3e363ecc88c3a6f894"
     },
     {
       "post": "_posts/2025/10/2025-10-16-introduce-gitops-1w.md",
@@ -1479,7 +1507,7 @@
         2182
       ],
       "include_sha256": "a5e4da04c49cd583d50328e4ba69a5d1a920a90ab40d9bce7b7f9512bd264112",
-      "receipt_sha256": "b24923d807f23f27d3a0b1e6093c2a21fad0d201010fa935620fc97c3dd640c3"
+      "receipt_sha256": "f2dbaea23021aa577fd00d7ccb798eaf9bfda7e43788784307acbf6d286da41e"
     },
     {
       "post": "_posts/2025/10/2025-10-17-introduce-container-1w.md",
@@ -1493,7 +1521,7 @@
         2704
       ],
       "include_sha256": "34b43065b624a03e7a5df8fec71b8133216a71a93aac703caafdcba50268aa93",
-      "receipt_sha256": "e3d6a29e81b571a7f37dd9d6bf3e6092d422ca05e5094214efeb68638c2adf85"
+      "receipt_sha256": "1a710c5b5801bb7e633cab0179b74010cef51eafe813ab50f98296cfb94b0de7"
     },
     {
       "post": "_posts/2025/10/2025-10-26-jenkins-ci-cd-env-3w.md",
@@ -1507,7 +1535,7 @@
         3080
       ],
       "include_sha256": "4d295af2736b510030828690060f4413b0171a882d0982f16f23f2d25589cca9",
-      "receipt_sha256": "d91570c6bb891f01d002696368a90ddf3d9466e301811135596d41a07d87beb3"
+      "receipt_sha256": "bd33a8e81d098a56edf180a977b926aafba8f61bcb94c392980363a821058302"
     },
     {
       "post": "_posts/2025/10/2025-10-17-introduce-container-1w.md",
@@ -1521,7 +1549,7 @@
         1872
       ],
       "include_sha256": "2ea13add9226e7ca93dfabe556ed9c98c1a79d419c06a1f602a9037c613bc027",
-      "receipt_sha256": "35c63142e1f7f610a913cd4546f3d8afc99db458795800c92baa76f1485dd50d"
+      "receipt_sha256": "3620ad0a010989f78aaa491d228659dbf1d0fb30d31c3e1e2c045aae466c8139"
     },
     {
       "post": "_posts/2025/10/2025-10-17-introduce-container-1w.md",
@@ -1535,7 +1563,7 @@
         1872
       ],
       "include_sha256": "2ea13add9226e7ca93dfabe556ed9c98c1a79d419c06a1f602a9037c613bc027",
-      "receipt_sha256": "4f1db60b984108aab36d57425aa7de523992bde69ad546a0de26a75b2e614766"
+      "receipt_sha256": "671505c7c9ed4bb8ad1625049766809c5cf9754c3bb25a6dc57daed6bf967349"
     },
     {
       "post": "_posts/2025/11/2025-11-03-gitops-kubernetes-4w.md",
@@ -1549,7 +1577,7 @@
         1094
       ],
       "include_sha256": "5eb4aea05a50af19c7f11734f73199f15aabaaa7e5bde721af230827a2dc8ba8",
-      "receipt_sha256": "23fb42d22748329a04fdaefceceee1b79e2b48301898c6c644512182d805b7ff"
+      "receipt_sha256": "6650594c4f694585c744fb9f19f93cb5c5e368a0efd638e10a670f0f313c0074"
     },
     {
       "post": "_posts/2025/10/2025-10-16-introduce-gitops-1w.md",
@@ -1563,7 +1591,7 @@
         1372
       ],
       "include_sha256": "40d8ec65b6523c7fe16880934702802ef178f18a1be3906585780bc74638f49d",
-      "receipt_sha256": "25d03f3f7f57aa0748fc05e7daaea28ca3932ad59dce7c52f8968b9705bd595f"
+      "receipt_sha256": "fa07d10235f4aa4284e39f329374c8dfc461efa86519135c4c133b98ddf1ada3"
     },
     {
       "post": "_posts/2025/11/2025-11-03-gitops-kubernetes-4w.md",
@@ -1577,7 +1605,7 @@
         1164
       ],
       "include_sha256": "d006f553ce697e7eee037288b54bb88b81278d762a5b1b5f7e85bab8b7739002",
-      "receipt_sha256": "ce8075f0bfc8fe797fc9abfe47c4285157f5e30aa07d8189f4e5064b68ad7636"
+      "receipt_sha256": "7556d3beef2bff7e1cbd5f7eb755dd4e306583ab191e452e5dd90534fedc7a96"
     },
     {
       "post": "_posts/2025/10/2025-10-27-jenkins-ci-3w.md",
@@ -1591,7 +1619,7 @@
         2706
       ],
       "include_sha256": "afa13fc46e37cce8acd48aab28cc2e8f312596b648d61721bd56927e19dbdd55",
-      "receipt_sha256": "4dd00e99f5912fcb271415a3ca3ddc40a0cae6abe81fe564df50e69933b7f632"
+      "receipt_sha256": "8c4fbfe20efea061422446d778621f5a6f7b753f74a9cfded0c82f66b0fc74ad"
     },
     {
       "post": "_posts/2025/10/2025-10-27-jenkins-ci-3w.md",
@@ -1605,7 +1633,7 @@
         2520
       ],
       "include_sha256": "11971f07cc88106776b9c2068c91d6a3dd68eb6a615ff5e7e96350b3d3fbd848",
-      "receipt_sha256": "f02dbdd26fe6aa429c271639529c1384284beb6aaa3732913543b10c94529a01"
+      "receipt_sha256": "89cf5fafaacd88dbc93def101ce897c67490fe117aa8d27e73f545002ac75e73"
     },
     {
       "post": "_posts/2025/10/2025-10-27-jenkins-ci-3w.md",
@@ -1619,7 +1647,7 @@
         4026
       ],
       "include_sha256": "9b059d1fa26a73e60553b43cfa593f9ced224bbdd982995fb1caee0f0f394b40",
-      "receipt_sha256": "60e9b7cffb25f86098434a0639d1e455bc92a25b968258a668a2cc991591591d"
+      "receipt_sha256": "47e52fbd93d2f0aa4ab401a7e03c7a869089d58e8d153fac07cdc0895ae010f0"
     },
     {
       "post": "_posts/2025/10/2025-10-27-jenkins-ci-3w.md",
@@ -1633,7 +1661,7 @@
         3124
       ],
       "include_sha256": "4c4505fd23bb211fb1962813acd1cf1392cc9a3beba1f48bac3d081bda138507",
-      "receipt_sha256": "9d86095f9f35a4ddf214ef149aed2ccf0125c4c117e4aef99642588a38463061"
+      "receipt_sha256": "0d5029492abdde92698a2790a140498eb407a86f4c0fd63f184c6d5f56442509"
     },
     {
       "post": "_posts/2025/10/2025-10-17-introduce-container-1w.md",
@@ -1647,7 +1675,7 @@
         942
       ],
       "include_sha256": "0e96141abe81236124cf54ef7ec3176286de531dcdda69be8d60d5bb99f92d8a",
-      "receipt_sha256": "787980a1d9bebfe394e05b224c237d1f6c7cdee8e4374501eaf4a808cbe5a5b7"
+      "receipt_sha256": "c6d02ab7d7a3ae9e21f177769b538a8725c8f2a198d0c7d9aed76472115b9918"
     },
     {
       "post": "_posts/2025/11/2025-11-03-gitops-kubernetes-4w.md",
@@ -1661,7 +1689,7 @@
         3470
       ],
       "include_sha256": "32aa77aaae53af1116e32b8197d90e8b24560fa2df4f5feec2780fe896a545b7",
-      "receipt_sha256": "1a9f3b77ffacba7983f723c5b228f8f7fd5b884ba1c49118ed953837dc726ed5"
+      "receipt_sha256": "39ed2e84558cb1de864d50427048e38ef3084dac3f007ccb8cdb246d8b3a70b2"
     },
     {
       "post": "_posts/2025/10/2025-10-16-introduce-gitops-1w.md",
@@ -1675,7 +1703,7 @@
         2532
       ],
       "include_sha256": "85a2f2b4720fb1dd09af13401eb0bd59bf3452c851669096da922e3c643c6c60",
-      "receipt_sha256": "ccc27bb05dd19508db3ac99c6ab701353dc6b8244ed9e1631044d6555426608d"
+      "receipt_sha256": "9c775adb56e77d673af25fe5e92caa0463d375deea7495898a17bda6b9c387ad"
     },
     {
       "post": "_posts/2025/10/2025-10-23-introduce-helm-2w.md",
@@ -1689,7 +1717,7 @@
         1720
       ],
       "include_sha256": "e4e9d112496b25e3b49d9bd973dd79d179c7649a59a3478a09a0538ba0e18265",
-      "receipt_sha256": "f4a0a9bb9add150479a0ac4a1335d33302e7ddeb153bddae97b53c69b5d86123"
+      "receipt_sha256": "b11b3798a23fab68c533d108a1352834c34fe5a045849eff726291778581aa47"
     },
     {
       "post": "_posts/2025/11/2025-11-10-argocd-rbac-5w.md",
@@ -1703,7 +1731,7 @@
         1920
       ],
       "include_sha256": "bc245d9c138bcd357e347594bb463b8630802e46c4f371ccf11076134495a5b1",
-      "receipt_sha256": "9861d6f0688d7bda1daf0a3965fbdeb0c10c5c3cfb447b36cda632a68527467a"
+      "receipt_sha256": "f896bbcad7869eb9e679829072c68217b6c1675eb406b11461787824e2c0d279"
     },
     {
       "post": "_posts/2025/11/2025-11-30-vault-7w.md",
@@ -1717,7 +1745,7 @@
         974
       ],
       "include_sha256": "2f297786cb32515f6989b68c0238046cc0ef3279061b7d61168f7f8a8a451b55",
-      "receipt_sha256": "047925a1ec551d73255cab9ff6500b190cc09b0523ce727815567b7ad7779415"
+      "receipt_sha256": "53165efba5ba3896228059e0ab4949b2f5930094ffae0c84179f42509b960dc6"
     },
     {
       "post": "_posts/2025/11/2025-11-30-vault-7w.md",
@@ -1731,7 +1759,7 @@
         1978
       ],
       "include_sha256": "aa41c8e2ae9975bff70431abbe1793ae5142245a73086901d743977ed1e659b3",
-      "receipt_sha256": "546a8a06c129200e2f601267237f7af6ec3c1c8ec694a8635f73ff853c04d863"
+      "receipt_sha256": "172bec9072424b08955e3b9bf67ad8274a54594eea29489a63a5439b4889f70b"
     },
     {
       "post": "_posts/2025/11/2025-11-30-vault-7w.md",
@@ -1745,7 +1773,7 @@
         1132
       ],
       "include_sha256": "cfda11c7d471b7d16d4b504c08e9eefab642e61430a70287614d84f42d3b7050",
-      "receipt_sha256": "6ee09f74bb87c3d902117f93da0699f9a865098fbde57c45f80667c0842eb73f"
+      "receipt_sha256": "8671a607e0661b1fbfc61d3d02fb64515c0d0a737d99d2599d91b830eef9c5f9"
     },
     {
       "post": "_posts/2025/11/2025-11-30-vault-7w.md",
@@ -1759,7 +1787,7 @@
         1876
       ],
       "include_sha256": "dd7418c90028b0bfe5872e5735e94e574bbd7d8a711eeadc2565ea7843d97572",
-      "receipt_sha256": "206ead871b6404456f5d95b7a72b53c3b731eb4371e48ec988ac630ee1a03657"
+      "receipt_sha256": "216d98ad47446135574acb83b7305542477a675841be7c16abd5cde57c7d33d5"
     },
     {
       "post": "_posts/2025/12/2025-12-11-valut-vso-in-k8s-8w.md",
@@ -1773,7 +1801,7 @@
         2308
       ],
       "include_sha256": "629c19672b8b804768b8915fd364d91749e6abcccb8f8dc5ca5ce8c5d858d93c",
-      "receipt_sha256": "74a19ab5685e0c8725d572d57c2590f9e281a2dcd04b33497ee0a28c30cff4db"
+      "receipt_sha256": "05787c712f3a48afbc1fcddbadb4cfce25b828650fa521c4ff0c5481c21c3e67"
     },
     {
       "post": "_posts/2025/11/2025-11-30-vault-7w.md",
@@ -1787,7 +1815,7 @@
         2026
       ],
       "include_sha256": "e7219cf66422a266418e5e8f7a82ee6fe1a7120330d8613d46c837f0006d6bf1",
-      "receipt_sha256": "327039b2e27b143e8db5d9a8dc409c17b072f6822ebe0f5e15277c4fe8aad06e"
+      "receipt_sha256": "31a6e51623eee62476f595e7891dceb60881fef7e776be9d90a80755a16d1ab4"
     },
     {
       "post": "_posts/2025/12/2025-12-11-valut-vso-in-k8s-8w.md",
@@ -1801,7 +1829,7 @@
         4038
       ],
       "include_sha256": "32e3559109ac6e1b0ed2ee6080d6e9ca9ecd558317e1589c0e8deb77d277acda",
-      "receipt_sha256": "b7f8aa86b834521533612bde8d098ca6d39f42b245908102421fab56c0f9a625"
+      "receipt_sha256": "42e7159c9f2cc73e0f4dc234adc6761a86ad021387bb96559ea994b97208eed5"
     },
     {
       "post": "_posts/2025/12/2025-12-11-valut-vso-in-k8s-8w.md",
@@ -1815,7 +1843,7 @@
         2304
       ],
       "include_sha256": "0267dbb2193ca9d2d0c4bc7d60a0808e83951b99cc6031c8b501ddbc4ea32150",
-      "receipt_sha256": "0eb7ec286780c021e2d78e7e06c00d6053afec9a37ac15ba8a479b303a8d68a7"
+      "receipt_sha256": "ed624d1b3465dd00ffe375bde061b59bf121b812ddb8911608ee723f8bb555e0"
     },
     {
       "post": "_posts/2025/12/2025-12-11-valut-vso-in-k8s-8w.md",
@@ -1829,7 +1857,7 @@
         3466
       ],
       "include_sha256": "bf94f6e2205b87faf97deed96a70258aa61c1784282bfa35c8e5d5623d3f4fa4",
-      "receipt_sha256": "3c7e143f2c49243b6f721cc7b88f40894e7d075776402908cb52869718c2b247"
+      "receipt_sha256": "38f323ca26f04f59a0b5791f5b049d4af37e2b57f39dbfc1b0f6fd54ca06b20a"
     },
     {
       "post": "_posts/2025/12/2025-12-11-valut-vso-in-k8s-8w.md",
@@ -1843,7 +1871,7 @@
         1428
       ],
       "include_sha256": "6af0599e693557c66414ce28793159ba05cc999e905e4347a05dcbe8ddf8ad06",
-      "receipt_sha256": "6441b8a9aaeb1c5e2a652e20f8003c538cac6227f07fd3dc1494befb0aaba0e8"
+      "receipt_sha256": "23f00e20271594e069d51ecd39a716ed50a552e76f8b71edf48a1b404223d6da"
     },
     {
       "post": "_posts/2025/10/2025-10-23-introduce-helm-2w.md",
@@ -1857,7 +1885,7 @@
         1392
       ],
       "include_sha256": "4a06c386057e5538b4060e4ce00dbc354c38e6c5e61753d75e6ac2c959982fc7",
-      "receipt_sha256": "4f3afbe38752574600e0365049982e57f068f7430655d5038bac947dc8a938e0"
+      "receipt_sha256": "58d2131059e51d31cc17821d3a6f2045887e99e5e29811ba0fc9e76c61e361d9"
     },
     {
       "post": "_posts/2024/05/2024-05-02-ec2-jenkins-server.md",
@@ -1871,7 +1899,7 @@
         1706
       ],
       "include_sha256": "ff62e2b7d5a22725af54c82e724183d6a4f4b3c61a5341c8024b2ed79ffb8170",
-      "receipt_sha256": "085c0014b62c80ee1a0262dc06340c487a935c15776b538f38c697832f160645"
+      "receipt_sha256": "dbf057a100a2aa58534f319d28ac5d3f3b8fe21469570bb00e09ca9fe178c9af"
     },
     {
       "post": "_posts/2025/04/2025-04-27-github_actions_basic.md",
@@ -1885,7 +1913,7 @@
         2426
       ],
       "include_sha256": "af84e53d5e9a851c63faaa7c72fd2f48ef682c540ea32a2e1764aac7515b676f",
-      "receipt_sha256": "a906ffd37a08a12d706010768dec18eb0313bda7f00395fab1158eb3823afb64"
+      "receipt_sha256": "1a7f79da2d75b85faf8e5f827ab914ec6babafe930aadd277e6f468144d0a0b4"
     },
     {
       "post": "_posts/2025/12/2025-12-10-jenkins-operator.md",
@@ -1899,7 +1927,7 @@
         3026
       ],
       "include_sha256": "f731fb498a6e56c27011b582c7f1f87921e2bd8f9a425b50cc19167843c55f82",
-      "receipt_sha256": "43827427f60daef27b8b952a1bb9fa1c3f0f42518c5cfb1eb87cc1372dece458"
+      "receipt_sha256": "d60509292a07c4d42f5601276d20a732ad93d900b83ea5fb98dbdbaab6736e8b"
     },
     {
       "post": "_posts/2026/08/2026-07-31-jenkins-operator-reconcile-deep-dive.md",
@@ -1913,7 +1941,7 @@
         3566
       ],
       "include_sha256": "a2f44ed9cacb7cd5980e37b76d62455c7b2e2402e6a235d9fabbfffe194deb0f",
-      "receipt_sha256": "4985b7b03f23b67f815902a638c4326f26784f69576410887f0309865fa34a32"
+      "receipt_sha256": "d6ef768eb0c5e53a182c654571bd8fa29644d3df544003b94d4ed5ea69dab372"
     },
     {
       "post": "_posts/2026/08/2026-07-30-jenkins-pipeline-layers.md",
@@ -1927,7 +1955,7 @@
         1960
       ],
       "include_sha256": "7eb5d45485284b3fa6c37dc5d12c754b8a70d207e29655145c3286acf4ef0ba6",
-      "receipt_sha256": "a85b486c9063435ba5e47aab235fbfaf57960d623349e6091579ab9b5a359ff7"
+      "receipt_sha256": "0d6bad1375ff658b53efc9cac88d1fc2a4d5542d05e1bb75beba24fcf34a82f9"
     },
     {
       "post": "_posts/2024/06/2024-06-12-priority-queue.md",
@@ -1941,7 +1969,7 @@
         1620
       ],
       "include_sha256": "2bbe36fdeec3f6ff784cb8bd7154cded3d3799c5782cb954bf4726fba4439b68",
-      "receipt_sha256": "203be856f1a6f05bc6a5c0d474680d8cc99874264b1d625bc4ecbc7618269a68"
+      "receipt_sha256": "e09135c00e4a9c43d4ef6d96248cc5af33aa7eb8fb15a70ee7f6bad3533af1a5"
     },
     {
       "post": "_posts/2025/04/2025-04-06-influxdb_migration.md",
@@ -1949,13 +1977,13 @@
       "figure": "influxdb-migration-flow",
       "page": "posts/influxdb_migration/index.html",
       "png": "/assets/img/diagrams/static/database/influxdb-migration-flow--9cc1450c60ef4fd6.png",
-      "png_sha256": "d9473f2dde1796be770c5cb433ccf709289963c57a3c10cafa596c999f1d5626",
+      "png_sha256": "dc439b46aecf109c82520255491286eb7da79ce32857dfd6b6dc914ca6d1ef35",
       "dimensions": [
         1250,
         1618
       ],
       "include_sha256": "d30ab449e118a4923c380f06bc9b7697cd9d546917c4ac562ed199535d0345e8",
-      "receipt_sha256": "eb4f07c4015d6ace6f8928d13599f3c04f2fb0caa14dc401a1fd7f763ac5bedc"
+      "receipt_sha256": "55302300a8545403f1beb94c6945f42d1e504ff61c547a7df7c6e871ea80c782"
     },
     {
       "post": "_posts/2026/08/2026-08-06-tdd-red-green-refactor.md",
@@ -1969,7 +1997,7 @@
         1396
       ],
       "include_sha256": "1b5aedeffebb32e7f4058799970c8dee026162de648bab513e037a46d7640e55",
-      "receipt_sha256": "55f20ef3923af146179a622c631d42fc01c13dd6f97a59fd5f2326cfb1a81e3c"
+      "receipt_sha256": "1f4e28a4bf525b0c6989150e086335e7e13f8409d04100530d99f852813ce7c8"
     },
     {
       "post": "_posts/2026/02/2026-02-17-what-is-gcp.md",
@@ -1983,7 +2011,7 @@
         1694
       ],
       "include_sha256": "6730eb51da38e5d1790614d7432ad2335d22dfb7905b81dde0ecf9ea03dfb64a",
-      "receipt_sha256": "83f3f4fd4951f8b2b23fc7c64731b1424bb6ddf73edc30fd7ea0dc30437a4756"
+      "receipt_sha256": "ad8f6663c1e1a025c7c872ab3f0b65596920ecef0f85410c31291c0125f5f786"
     },
     {
       "post": "_posts/2026/02/2026-02-24-gcp-resource-hierarchy.md",
@@ -1997,7 +2025,7 @@
         1458
       ],
       "include_sha256": "92d03700c7e05a702247bbb1a68c10383cc3f80818d58bf5a7f7aeb344927a18",
-      "receipt_sha256": "981a13737013e3b9223376cc60b61fc5638273c99cc0f2899f8d51d04feca715"
+      "receipt_sha256": "dedbd0f061751b48c3c694ca6958bb0020f25b24215f8be2798fe1f31e7a077f"
     },
     {
       "post": "_posts/2026/03/2026-03-03-gcp-iam.md",
@@ -2011,7 +2039,7 @@
         1320
       ],
       "include_sha256": "0d21a48f3bb81309377f98f1b3d09831444e590805d4c2cc4c78d0990016a53f",
-      "receipt_sha256": "52383dc561b5d5db72df186e079a4e93cb162096f553e1fa4365ef3201123704"
+      "receipt_sha256": "3ba93b9ea60a77156a654c9760ee2c762da24f5a6800df34f0d917729ae0b0de"
     },
     {
       "post": "_posts/2026/02/2026-02-24-gcp-resource-hierarchy.md",
@@ -2025,7 +2053,7 @@
         2192
       ],
       "include_sha256": "63b49854a24a1ae152d2703953c1fbc8d20c7489e190528a35b8a56ee49f31a2",
-      "receipt_sha256": "f620f7a57935c69ec80039f10f734eb09a5202846c1602bfbb7ef46c135a6e22"
+      "receipt_sha256": "b1958bdfb723127d145ebe35b05ca518b42618129800768bb59ae38f24aa5d26"
     },
     {
       "post": "_posts/2026/02/2026-02-17-what-is-gcp.md",
@@ -2039,7 +2067,7 @@
         2206
       ],
       "include_sha256": "a6ece80c03964fb2ca2ae089e239ab99fa5349121c870306d1f0ef4abe02a3d1",
-      "receipt_sha256": "e5c05a25f698902c61a2e307d8edc519c824906f4f6eeb4423d7fc04cda07628"
+      "receipt_sha256": "ca89399a1ec8201b0d1654488b4c6c088673231fd1efa77c28c2fc209511c8b2"
     },
     {
       "post": "_posts/2026/02/2026-02-24-gcp-resource-hierarchy.md",
@@ -2053,7 +2081,7 @@
         2064
       ],
       "include_sha256": "34e324fe0a6b01fab877da9e2b261841c867731cefc764340d7969f527854ed8",
-      "receipt_sha256": "af9a4c3951b29ced80453e465ee3d34b5de418667514b017bf4857f15aa22912"
+      "receipt_sha256": "574b2720da45550a083b07fce54518f27d0bfed34680d4cb8a37cf98705f0ce5"
     },
     {
       "post": "_posts/2026/03/2026-03-03-gcp-iam.md",
@@ -2067,7 +2095,7 @@
         2556
       ],
       "include_sha256": "e3e53bbcb6eae0d351789981657301000721d1e523b442ab7e1e39b0b2f35dae",
-      "receipt_sha256": "0ff5d4fc0cd51c9622be9472c1923e2487176bef6b038a1cb6ddf4719b09c4e9"
+      "receipt_sha256": "61f950bc0444930a51965122a209752785bad04312e0b54b2ce6ba48841348f4"
     },
     {
       "post": "_posts/2026/07/2026-07-17-gcp-workload-identity-federation.md",
@@ -2081,7 +2109,7 @@
         2274
       ],
       "include_sha256": "cf010b9e5b6de9dde7a1390d5d2db53af7b2bb770dc16eaf83de84f813cf8cdd",
-      "receipt_sha256": "b7a282b673ee74bbf3a4759b82e8a96a7570c20234f622cc820466ec21b087b2"
+      "receipt_sha256": "a6285c0e8e727411356bfafc676753f9d8eb4672e4e06ecbdc2aec16c4b70b8f"
     },
     {
       "post": "_posts/2026/01/2026-01-21-git-worktree.md",
@@ -2095,7 +2123,7 @@
         1388
       ],
       "include_sha256": "788fa64c492b6d62d0d786361ab5f740766fb74f552260182cd3066d5e63c2cc",
-      "receipt_sha256": "5501684912214a644cd67d5a2d2577ed7ceaf3053e6344ec13799e7f42682942"
+      "receipt_sha256": "e32d40f0b6b75e9ad13a8e13ff4c92a584eb2cb9b4b0f2b1b60823b5f9e9a831"
     },
     {
       "post": "_posts/2024/01/2024-01-15-goroutine.md",
@@ -2109,7 +2137,7 @@
         1674
       ],
       "include_sha256": "4a6d23b2382bab7894589cceb991dc1bacee4473c1563cc976042133785f4ad6",
-      "receipt_sha256": "374ff0c982e2259e3515bd0b20cfb2019903f53a91aecd360dfcb3fef4a6f2e9"
+      "receipt_sha256": "6ee35717ff6ade4c675e105d946f99863c80a4784d1d31790449be48469dee7e"
     },
     {
       "post": "_posts/2023/06/2023-06-10-usb-serial-communication.md",
@@ -2123,7 +2151,7 @@
         1548
       ],
       "include_sha256": "d1f59fe336282ec575ebbbd0efc1dc74007c6099e68d6b47a6f337c084657afe",
-      "receipt_sha256": "04a8cc6e64de15db388d9b69fd653746cef48e5b83dcf3000cdf08a309569a6a"
+      "receipt_sha256": "e5dc6ab7fa524c0751356e5209334918dbea35bdc8bd7b90729e0486f373bcf9"
     },
     {
       "post": "_posts/2024/06/2024-06-22-ansible.md",
@@ -2137,7 +2165,7 @@
         1674
       ],
       "include_sha256": "6e6b8a542613dc7c54dd976686f561c5ab9889cceea07dc4d7c6b59b66c9a50d",
-      "receipt_sha256": "84c1f672abe623e3d128cf1d67cbfaaeafb46287a63ee75ebffedf6053125a06"
+      "receipt_sha256": "af29813f4e38604e47650b5a9b951a1b34e391a238b8e56f047c002376abcf9f"
     },
     {
       "post": "_posts/2024/06/2024-06-24-ansible-k8s.md",
@@ -2151,7 +2179,7 @@
         1630
       ],
       "include_sha256": "234f4f9248d09572d9ae13f198d729b0e5f4c11f424e6be686d6a351d0f6d5de",
-      "receipt_sha256": "99956cde19974ee45c62eaba58fd6754117e74a77fd8cff4036122debf4abe8f"
+      "receipt_sha256": "546bb1dac229436e97da7114d32e74f5bf5fa9eb72d9a6ee3662108ab9172f1d"
     },
     {
       "post": "_posts/2025/01/2025-01-21-terraform-helm-provider.md",
@@ -2165,7 +2193,7 @@
         1674
       ],
       "include_sha256": "20b74569e44dfacdd20d78f8d9984d9333e1acddb16edac37b06c8a098c25b63",
-      "receipt_sha256": "f57ee6c42319724916fe4ce78aced5fa014d49c22f5c2b7392608a05347afeed"
+      "receipt_sha256": "352d228e8374416ada5519ac075eb835d249aef5814782f785f4a257ff5a3ad0"
     },
     {
       "post": "_posts/2023/06/2023-06-26-javascript-datatype.md",
@@ -2179,7 +2207,7 @@
         1872
       ],
       "include_sha256": "fffaa82bbf2ca990871bcf8e1357b936e620ebc4a32caf3d0e773797a45c45ee",
-      "receipt_sha256": "a7d7c1d50a46f0d2d957ba81237cbe5d1bc7840b8a392212f705537558bbe7d8"
+      "receipt_sha256": "f115f61e3f0e62e545cdc7d839dc989a4e0779bfcb25f461f2380696985f2733"
     },
     {
       "post": "_posts/2026/08/2026-07-27-vite-overview.md",
@@ -2193,7 +2221,7 @@
         2650
       ],
       "include_sha256": "57b0f9c1e602d18003d67110c42cc38a655cae955dbb0db74c4a7e2af43ab4b6",
-      "receipt_sha256": "5d7f2391d3bcec1715568e5def153a2c318e539a0c33ae9a67b358bd8470809f"
+      "receipt_sha256": "0384a927fa77a0d9ebd43c73164445e9af36b257616e06d9a9868c6532fb1bc4"
     },
     {
       "post": "_posts/2026/06/2026-06-20-process-memory-layout.md",
@@ -2207,7 +2235,7 @@
         1702
       ],
       "include_sha256": "fe1329a21fba04254c2bcba2feca4b3e7c31bc43f3485ab8902d2bdb69c4f73a",
-      "receipt_sha256": "e9763b9d98814532ff41251873274654eb72f219b1af1bb605dc13ffb911a840"
+      "receipt_sha256": "a944c237d4a35a649b6002ee31c1daa4d7cbef65b9f367f3a10223644bf441ba"
     },
     {
       "post": "_posts/2026/06/2026-06-20-process-memory-layout.md",
@@ -2221,7 +2249,7 @@
         1150
       ],
       "include_sha256": "1a277e1ecb5f3a6ca77c59bb183534f0433186aa892667a44a9e6d906b9fc3d4",
-      "receipt_sha256": "741e5aa3b64a56c32cf77d5a0303bbc4c6cd20d482ed1f595dc9b40dc8beabf9"
+      "receipt_sha256": "0679e928e409913031a09a0f68f9d65ed95231986536fa36fe09657a62bcf3b0"
     },
     {
       "post": "_posts/2026/06/2026-06-15-jvm-memory-model.md",
@@ -2235,7 +2263,7 @@
         1842
       ],
       "include_sha256": "81515cd13575b3e5d6f142e1accfc637ed643a97265adf15a1edef1f2f0cad65",
-      "receipt_sha256": "1a838ba146f3cc4660987b78bd8ade31cc8a97e764cf0197a42696cf0e030862"
+      "receipt_sha256": "063fa3f89df57f1c4727c4dac4e424c25fb8a107f9b6719ad7b7d7ef4350c6e2"
     },
     {
       "post": "_posts/2026/06/2026-06-15-jvm-memory-model.md",
@@ -2249,7 +2277,7 @@
         1462
       ],
       "include_sha256": "fe0a1a2932b0a05a6bee3802998c4e433e1eafca7592bfadd7c13db2556b9604",
-      "receipt_sha256": "c9f67f046222253ad4d9e985ad1b2bcfc3d8b5ea48efac1ee83e09d86122c336"
+      "receipt_sha256": "5bf625501b343b5fa2350994a209d777d6987ae17ea2be94e2c007b0b8463347"
     },
     {
       "post": "_posts/2026/06/2026-06-19-buildpack-memory-calculator.md",
@@ -2263,7 +2291,7 @@
         1378
       ],
       "include_sha256": "6fae3f3231caa71deb137888c7f5920979786e01557ba34373c846cec702350e",
-      "receipt_sha256": "98cfe72a4692e02a2e3efde7cf8ac97908c55a64196ab8d09a54b1bff22377df"
+      "receipt_sha256": "c920d8b72c4e2ae5e4fd959b5de4b91e7a6e94e4dfd8ea23076cceb4b3fc533f"
     },
     {
       "post": "_posts/2026/06/2026-06-19-buildpack-memory-calculator.md",
@@ -2277,7 +2305,7 @@
         2268
       ],
       "include_sha256": "e0587c44b8c075965cc407ae668866bc3105222392dc431eb9f9b523343e521c",
-      "receipt_sha256": "824b46902e12ef7fc71960d727df3411afb80c31915acd6f84a9c450bc9f2179"
+      "receipt_sha256": "a74bf05523a898ad511ef050aa9227a60fe1fdec1e91928e89c478da1e7e23a7"
     },
     {
       "post": "_posts/2026/06/2026-06-17-gc-basics-g1gc.md",
@@ -2291,7 +2319,7 @@
         1374
       ],
       "include_sha256": "c7d800cde3582ba50f95606766e4f54a16e3ed0777c6bd1e0a07798f687e11f6",
-      "receipt_sha256": "967461da3d3711d6cec861cadddb85bac766b6924487836a9428b9031915e874"
+      "receipt_sha256": "4720d8f2a16241be3769784ea55420737e5281821d05e6172cd39ffa6922118d"
     },
     {
       "post": "_posts/2026/06/2026-06-17-gc-basics-g1gc.md",
@@ -2305,7 +2333,7 @@
         2064
       ],
       "include_sha256": "7a1b0ee62b30b0fef8f495c0a501598b6d2eaf9a6e1e201a51bfabbb94d450f3",
-      "receipt_sha256": "bedf01cd2c028c7dfc98e0439b500302fa80c24382df0e05bf2ff54882b3d9d5"
+      "receipt_sha256": "cec92aadd9f7c15cd5156e51836be9bc3a8f2b97d854462439cd2e8bbda9f58a"
     },
     {
       "post": "_posts/2026/06/2026-06-18-gc-tuning-jdk-versions.md",
@@ -2319,7 +2347,7 @@
         1694
       ],
       "include_sha256": "b1d9e65126568e615cd6f2c2cc6f8651138c1629735b76fc23fcf15062f188c7",
-      "receipt_sha256": "62b7bc832433ce50ddb571a766cdf7675ca7248645f6d7ef2b24955034998777"
+      "receipt_sha256": "6513f14943d98ba098e329bc07d1bd7144c7e3c0610cf6d3874baf4be319146f"
     },
     {
       "post": "_posts/2026/06/2026-06-18-gc-tuning-jdk-versions.md",
@@ -2333,7 +2361,7 @@
         2124
       ],
       "include_sha256": "775c50132acc1b1e4d8a9ad7021a16a6fa2a6f544df1bd6dbbf4e16d97f80967",
-      "receipt_sha256": "c7edfc43b720100e1052e7e116cbb3e44b18ce2b41e7fcdb3cb788e610ef3cc0"
+      "receipt_sha256": "5a3104393e51b77a6287e021234cf5a9cc505d7a892f1a26730e7f3a9a26ce5e"
     },
     {
       "post": "_posts/2026/06/2026-06-21-jvm-spring-capstone.md",
@@ -2347,7 +2375,7 @@
         1790
       ],
       "include_sha256": "bb8c716a04a2b3554653d6cc03c734a78f250d8d9d1b6d10991e5a28c2796164",
-      "receipt_sha256": "451a6d625dce1a06a2f83e84c8aa2a54fcedc02a06c8221d2a476b7b453f1a6c"
+      "receipt_sha256": "256d649caf6ee719e02cae766e4c13f0794642644ec5cd3dc7c5902824f40291"
     },
     {
       "post": "_posts/2026/06/2026-06-21-jvm-spring-capstone.md",
@@ -2361,7 +2389,7 @@
         2004
       ],
       "include_sha256": "81c996cdc8da9cd4562eff91948cd519c7a787b3d7eaa8b8acc2c1996a5701a6",
-      "receipt_sha256": "41b99270e3f5e33ad1a9b472db9c1b0f066d6e183f6245eb4c06f3be391079d9"
+      "receipt_sha256": "6c8269b4c4dc37858d131171fdf29539620b7c7509a5ae2e24f2df1fdf3959b8"
     },
     {
       "post": "_posts/2025/08/2025-08-10-cilium-native-routing.md",
@@ -2375,7 +2403,7 @@
         1652
       ],
       "include_sha256": "d0891264563adfc29c2d6ee25b2e79b0e68e11c08d29c2e7c72ac5c450417aca",
-      "receipt_sha256": "198891d4d0b82acdc17971688b0333b46a87a971f59b0ec1a2733019ef6e11c3"
+      "receipt_sha256": "1405dd76bc219bbca0cd843e031b99ce4f8bc729a1510bd39f38994c80193f10"
     },
     {
       "post": "_posts/2025/07/2025-07-28-hubble-log-monitoring-with-grafana-loki.md",
@@ -2389,7 +2417,7 @@
         2634
       ],
       "include_sha256": "3ad317d6038123c976a243c5dcb532d831d6b3884835f7986a840f3bae6b264f",
-      "receipt_sha256": "0852cf85412f69971f595f8cd079b120639af66b8f5f6506655b338a7fefa776"
+      "receipt_sha256": "1287ab1630a963db7b678467e246edf09cfa1d658fe02c302060702cef3a0f6f"
     },
     {
       "post": "_posts/2025/07/2025-07-28-hubble-log-monitoring-with-grafana-loki.md",
@@ -2403,7 +2431,7 @@
         3274
       ],
       "include_sha256": "743125eaff3b42183ce7f803e14927f1603bacb5010e4c358c66f2241e85ec4f",
-      "receipt_sha256": "90f2c313706d3598693730e6e363fb36de6c3a27f98c2984dc68ad71e1602436"
+      "receipt_sha256": "4ba34204a6fa72863f613fe1d7771983eb921419e90ee50cf4bb598f6d6be925"
     },
     {
       "post": "_posts/2025/07/2025-07-28-hubble-log-monitoring-with-grafana-loki.md",
@@ -2417,7 +2445,7 @@
         1962
       ],
       "include_sha256": "3014c336fb1e03298e769eab47cb8d3cfb4833d8709ca912b844669574cc3aa0",
-      "receipt_sha256": "c5e5d2ff8fc8903bbb29993db16c453ad6422c518ea2f919412fc41da9d0b875"
+      "receipt_sha256": "2cc76283903ca80fd7691eba6f00d8d725855843daaf902ea8d7445380abf35d"
     },
     {
       "post": "_posts/2025/08/2025-08-10-cilium-native-routing.md",
@@ -2431,7 +2459,7 @@
         1966
       ],
       "include_sha256": "455d7d0fd0719a053654dc384875b523721547ed8025b638a3ae9644313acf64",
-      "receipt_sha256": "41dc52fae0dbaf5e0a3f7948ac5be6f0710e1904412bcc41a7fd4002438552f0"
+      "receipt_sha256": "a2ac84b9d5a445a55d841a1bfcf41e511436d044a11fdafca40caff1229bd95a"
     },
     {
       "post": "_posts/2025/08/2025-08-11-cilium-bgp-control-plane.md",
@@ -2445,7 +2473,7 @@
         3402
       ],
       "include_sha256": "e848ff7165beb1f1425b6d1bb2baaddb9d55264ab77fe8b975823890500889c1",
-      "receipt_sha256": "054397ff50cd8244783d39912f093c17630ce58a1bcc8fbc5c86507d74962646"
+      "receipt_sha256": "95498182a26d21419749bb282e5c75f49532d8d6a488bfcdd27b98c4383d64c1"
     },
     {
       "post": "_posts/2025/08/2025-08-13-kind.md",
@@ -2459,7 +2487,7 @@
         2960
       ],
       "include_sha256": "79d2e7c1d1c124381efc0b1c2ceb92cee878479a693580b0c0d71197c88fc547",
-      "receipt_sha256": "f81d01ef2d6f124bc1631c37d84771c98218525e688f5a30ed63664e29fba637"
+      "receipt_sha256": "b4ef702cb9229f7879f6ac39bbd7bcd4afecc62f9564f89098a662a12f6f48ab"
     },
     {
       "post": "_posts/2025/08/2025-08-12-cilium-lb-ipam.md",
@@ -2473,7 +2501,7 @@
         2064
       ],
       "include_sha256": "a246fe1f46b92c29b36523e9a14adae2c09ef4fd13a86d7e8ee5a9aa8593ff67",
-      "receipt_sha256": "e4a4a403cf22ab282dbf6ac1bb88ac5b485eca89d2ef01dcc9cbd3d19cce0536"
+      "receipt_sha256": "9e61bfa8ff47a7df974ef5efede3c140716cd0eadd26ab5375d2ad436064b291"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2487,7 +2515,7 @@
         1626
       ],
       "include_sha256": "0b207fe9f3444e7646190906c7337e75920508775e4cb3a4c3817af8e2da5c2b",
-      "receipt_sha256": "229df11a7668b6f203c8cc6dc5a1c2025276b40880c060f52c5d88ae1a0af168"
+      "receipt_sha256": "3a1f324e548ea18cf9fb01d5e1e2cf2a896562db8ef2872f9d251a40b9e1c481"
     },
     {
       "post": "_posts/2025/08/2025-08-12-cilium-lb-ipam.md",
@@ -2501,7 +2529,7 @@
         1626
       ],
       "include_sha256": "0b207fe9f3444e7646190906c7337e75920508775e4cb3a4c3817af8e2da5c2b",
-      "receipt_sha256": "eeda1a5da092f5c2faa5e01c7daff7d9556de9acc504ef35119b379e86cd0d2e"
+      "receipt_sha256": "07002bec6fe7e7c73ed7b85be1a6ee22316ab30f50f0be9dee8e9097383932f8"
     },
     {
       "post": "_posts/2025/08/2025-08-11-cilium-bgp-control-plane.md",
@@ -2515,7 +2543,7 @@
         1626
       ],
       "include_sha256": "0b207fe9f3444e7646190906c7337e75920508775e4cb3a4c3817af8e2da5c2b",
-      "receipt_sha256": "c98a413aa82ad915e3078b9f40eab06c51fb8d90c0756b9f95d59aacab3df5d1"
+      "receipt_sha256": "8f25b80fe92d364f00a33c3c5396d7a5351228133ed344f1e37ab12471863022"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2529,7 +2557,7 @@
         1590
       ],
       "include_sha256": "1c3e367f9c327e506139fb12729475fdcdbc3a7d60252d44ee34528782677887",
-      "receipt_sha256": "f45c01103f0b28501dc9d2ab6cee682452c41ae67c1f391bf486f9b992b1ad78"
+      "receipt_sha256": "2fa6dd044e6288edfa379e2596937ec4ce64fefcfd65a124666ee4548ca636a7"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2543,7 +2571,7 @@
         2910
       ],
       "include_sha256": "4d07414c7b483a4f01bdb6e05d5f80fdfa08a9afb45ef4d3038f2447c1f22bd0",
-      "receipt_sha256": "6cddb73d640359a973f0b3b8fd55a31bb792e9d776f91f70199f8b6cdae5ee1e"
+      "receipt_sha256": "8448685d3fe2d4c8a43080ad8409721850adfba362bf09d58fb264b3f9779d6b"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2557,7 +2585,7 @@
         942
       ],
       "include_sha256": "7e84f774f3c041cde68e60304e2fb092f41b329b9c9d0ca1760fd7e7f39b46c1",
-      "receipt_sha256": "783e6766264e0b52443f2ad0a7bafac1435d9753031bbfc8bc2d53c132735985"
+      "receipt_sha256": "72a93a30d05a497b3e9c25df35e44e33caa737cb169ae9ab3ff5d8a9caad4785"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2571,7 +2599,7 @@
         656
       ],
       "include_sha256": "fee365880e3ce2d1d591d3dfed18b9e7a5112035a3cdf99a5be6c1877bb10c00",
-      "receipt_sha256": "dda223d19770d3e775c7be174b3d3288177c8602676a7298d43c17da45a4ae27"
+      "receipt_sha256": "ccde9d2735d5deee7a123c73319e8b5d665e806f80999aae7a5375fbbb8891fc"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2585,7 +2613,7 @@
         4306
       ],
       "include_sha256": "45c9ffa4c7b139689ca5a6e193645ed684d042dcaae6e50d08d47dd82a391c2e",
-      "receipt_sha256": "224e6ee496502196ae884aee6b2c3d8a34ad2185175166e7a0912b97feba597d"
+      "receipt_sha256": "b25213e231b6e25d0e7eddf57bfca92af7513c97553f62f83c7a7ad05f2a8008"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2599,7 +2627,7 @@
         2148
       ],
       "include_sha256": "23442cb72bf0af5ed39e4e1fd491567b04b98f66bbb39fa407826d0e31aa3f50",
-      "receipt_sha256": "afb3bb89d16b81823fd6c9028cdb8b65cce533be27bba8527f20d3d0176b9891"
+      "receipt_sha256": "e33517c4b487142551198139f379063f57e278264a852e28348d90f73a9a8f82"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2613,7 +2641,7 @@
         1428
       ],
       "include_sha256": "cefe253c3de09330f4eeb0aad18c0034aa9847f240464d26b29e2b5f77c747d3",
-      "receipt_sha256": "94e0463d764446931bfc217b7f641d843df61c02829fa685aa21e84585ee2f34"
+      "receipt_sha256": "6b1d6b6be0fee33b8c423f88c8bb7b085e06177dea93eeaf8b7ee6bf42cff656"
     },
     {
       "post": "_posts/2025/08/2025-08-18-cilium-service-mesh.md",
@@ -2627,7 +2655,7 @@
         816
       ],
       "include_sha256": "42e721a939d70427293c07242d36ad45701c1fbe84c1efad2b382421dd5a092d",
-      "receipt_sha256": "3ec66fcb59e659ee6b3d68798f64d27da4ebaeb16fb4df37a0ea114fe01ec80b"
+      "receipt_sha256": "c1aa8e6f3f5ca73d6167bef440219d96c9012c64ca97ba6075f6fdea0363a80d"
     },
     {
       "post": "_posts/2025/09/2025-09-03-cilium-network-security.md",
@@ -2641,7 +2669,7 @@
         2402
       ],
       "include_sha256": "479a20efb3c1e3bc9e895f98fca7a279004bb67d36c72dd738a71e5333682efa",
-      "receipt_sha256": "a658bee6d9e4746227aac58bb7ee11b9f916994840885403b4f86f12228ed1b0"
+      "receipt_sha256": "0757f5fb8528673f510ba27f885fdec434a92ce727b7823d4e6a3434fa435f7c"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2655,7 +2683,7 @@
         4380
       ],
       "include_sha256": "6e4c3e0210afd0afa84f691030eb3be00cd5c87159f8b266a4356e8b5c8b334c",
-      "receipt_sha256": "f619552d77eb5a1e07d5e46dab2a3639f8ce4e944ae43a479f0ae1c321c1fef9"
+      "receipt_sha256": "75950baf19b00a12e9afc9582f9ff2deb03b6b07aa2add73ff99419962f58267"
     },
     {
       "post": "_posts/2025/08/2025-08-03-cilium-routing.md",
@@ -2669,7 +2697,7 @@
         2748
       ],
       "include_sha256": "20b2db0fb9442bbd946051ec5c077187dd0b78e53254f9d31d5f134b33987f3f",
-      "receipt_sha256": "50b8817625c4165b764dc0e500461978a67acea1ae3ca147455c080704151857"
+      "receipt_sha256": "67035210375cee6d52e8f68b27fe43799c51dec14c8b684b739e6b9b2b243d72"
     },
     {
       "post": "_posts/2025/07/2025-07-18-deploy-cilium.md",
@@ -2683,7 +2711,7 @@
         2546
       ],
       "include_sha256": "e0834ec5279f1f8d1cdba61137d5739469c58d45d462bbf5bb677509bacfac65",
-      "receipt_sha256": "a1b5daa6133a1e4b1e440a19c32852dda1e11a3d2fc21853fff238f0b4de9c05"
+      "receipt_sha256": "e9feee7141108a13be47b87b3e7546f268c983077d3c55451d79123eb98a738d"
     },
     {
       "post": "_posts/2025/07/2025-07-24-hubble-demo.md",
@@ -2697,7 +2725,7 @@
         2696
       ],
       "include_sha256": "77d11d57c5c9d378ccd7ecd135ad316ea5ed8f97e06190d5b384cb0ef4f5522b",
-      "receipt_sha256": "d414cc7103788b0d927e79906350101b35a4ae5c8d648780e93011563d0ca278"
+      "receipt_sha256": "66fe8b498da61bad19a2c045417f2f895d9698cc6b631df9b44b3a12be761814"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2711,7 +2739,7 @@
         1790
       ],
       "include_sha256": "8644cef6d83571f762285992f00657a946a4f3c86aa356d64094d4b057184db0",
-      "receipt_sha256": "4387dd417871e158ec7df4e063135f43eb5d80113cbcee17f2f28e2a6201c810"
+      "receipt_sha256": "b4c55b83b9e4586147b5acf4ce2e57e521870a5f3a3ee1b1e05f98e8a1069696"
     },
     {
       "post": "_posts/2025/07/2025-07-29-cilium-ipam-mode.md",
@@ -2725,7 +2753,7 @@
         1706
       ],
       "include_sha256": "0d52cd58f3d48228341e4200f809551c0a45040d12dfff7753f3509b182a83a5",
-      "receipt_sha256": "45352145adc00ef4f1886720f5deda531410f6bbf22c7a3561317004ca2ff5f9"
+      "receipt_sha256": "4b8d5eeecfdc99206e5f8cfea95b2a070663e7e998f558679ab6a86dba64310c"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2739,7 +2767,7 @@
         1706
       ],
       "include_sha256": "0d52cd58f3d48228341e4200f809551c0a45040d12dfff7753f3509b182a83a5",
-      "receipt_sha256": "7ef48684053b5499fb656bd5b4f53ca60f2004c9fc7cffe24abc7f25706c80f5"
+      "receipt_sha256": "77b3fbda1a64ee9e0663345d1e05c9b3b4ae9a64d57446dd25e1a42e4a37724a"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2753,7 +2781,7 @@
         2178
       ],
       "include_sha256": "42dfec90f0e42f3ab4111ea87c43721246309f31012a7233634ffaf6b5ee9590",
-      "receipt_sha256": "b40060cd64fec0cad48e76212030dc7e8df2a54837da83ae65219ff595a982dc"
+      "receipt_sha256": "2022dca31e87b6c35e9b5a1e8cab0f6205c61efc75cea078140c2040e449362c"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2767,7 +2795,7 @@
         2028
       ],
       "include_sha256": "ab9f06fc0727812e1b63e5c960a2024f3f26de08a9b28ec3e34ff468fca6114e",
-      "receipt_sha256": "00506226a21c751886ecc30b2a0a2a3bf8f5aaa9c65f006c9e671cb49dedcb9f"
+      "receipt_sha256": "68d8b745a82736a1a135b5d118b661daa68361d8a8fe769bcd5bebdb969deb60"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2781,7 +2809,7 @@
         2896
       ],
       "include_sha256": "b75a9a5f709bbdc83a1d1e9a9265de7eff8686d2f24f7596ed181a3b6a14f45b",
-      "receipt_sha256": "dde248dec86351c7488ae7cfadbfc3927535622adaaf68f3e4efdab758c3c199"
+      "receipt_sha256": "cbae725abe92578db651a7483193bf5067be0dd86cabff4840634399460f8a6c"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2795,7 +2823,7 @@
         4082
       ],
       "include_sha256": "7a614f3ad94f1c735ebed1a70d530485b88df7a538a23ba1c000e8805a62ccaf",
-      "receipt_sha256": "ba00a1cf46923abc2af751497f93e8f96d312b67dc3fda219f9e0c704a1f725d"
+      "receipt_sha256": "10f97b53354ecc763ed132b5772ef07ac1c2167b544f5d3949789a4165ab669b"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2809,7 +2837,7 @@
         1814
       ],
       "include_sha256": "d7f227c84a605cee7bddc39de4a46eacb90092ecea9d3ffe48370d3e5ca3f776",
-      "receipt_sha256": "794e5b037c07cdb3fb6927ee6e959f9f83dafde678e3aa72267f73446b4808de"
+      "receipt_sha256": "659f719530eb83effc2b06fcc6bcb615f9bf437fd2a7614d8f42c2b1ed9631b9"
     },
     {
       "post": "_posts/2025/07/2025-07-21-hubble-basic.md",
@@ -2823,7 +2851,7 @@
         4148
       ],
       "include_sha256": "9e6181ac2994716132b6e8814a1f1316ed882078d929df6c7c3e9ee4c9602bc9",
-      "receipt_sha256": "849ba72dd32f99ab51ee0ee7e73ed03017197766901e1aae854183e40ef68b6f"
+      "receipt_sha256": "4fb7c1a3f947020cf0bb394485969cc74efc462ea3a04865ad9911f89688de65"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2837,7 +2865,7 @@
         2906
       ],
       "include_sha256": "da046ac106b6555f0e04de0cf7785922392be515e16ce654f919b0c8291bf722",
-      "receipt_sha256": "ecaa2ab877502646798889ebaf1fa7d3643ad4b7340d43596a100ff2ed17c526"
+      "receipt_sha256": "76be83bdee6e9b964cc9a9e0742f1861764d670be6ef2303e636d37bf4a72037"
     },
     {
       "post": "_posts/2025/07/2025-07-29-cilium-ipam-mode.md",
@@ -2851,7 +2879,7 @@
         1534
       ],
       "include_sha256": "f8810f312f39074cda82a934a141d68b5531df6d3b6055f3d054ce226d70fe14",
-      "receipt_sha256": "a04c0a9bfe1120ce3ffb70a8ee1c33743551fd3bba77408975a7c35c7f9e4e5f"
+      "receipt_sha256": "8c79216f7566b37d4a2428f8719ff8643b7728b5086937ed3a729ca95ba00763"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2865,7 +2893,7 @@
         1870
       ],
       "include_sha256": "46429f16ebfffb03630c5bf5f1bc23b1a8cb91c83be13514d724fcc94bb7edb7",
-      "receipt_sha256": "e48169d8d20ae636298295a4453d36564d283f2117015cfa923f1270ff57933d"
+      "receipt_sha256": "22795bbb33fa5ef5447c9a012adee8a2df0c8c52e6f0aa55af41b8dd053c2fe3"
     },
     {
       "post": "_posts/2025/07/2025-07-29-cilium-ipam-mode.md",
@@ -2879,7 +2907,7 @@
         1870
       ],
       "include_sha256": "46429f16ebfffb03630c5bf5f1bc23b1a8cb91c83be13514d724fcc94bb7edb7",
-      "receipt_sha256": "fd513e9a7bc4ab7cc43dcfc1d96e589c72dd5aa92956f12f49239f6b0370040e"
+      "receipt_sha256": "dccc8855a690bec4db749f4eee160487b67d6cdae3ab57253fb38da1195be5af"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2893,7 +2921,7 @@
         1336
       ],
       "include_sha256": "c9b77d2458e9ebd55e98a308bb3e9dae0ebcbda5070b3f2b35453b5295e0b305",
-      "receipt_sha256": "b40164a6a7cdf49ca05edff762775981996196e75f3353f1966c18b676267101"
+      "receipt_sha256": "c813b4e1c217cab95605fa9b30f7e20f28bc1344ec36e1ad3ae27e91e1e73344"
     },
     {
       "post": "_posts/2025/07/2025-07-24-hubble-demo.md",
@@ -2907,7 +2935,7 @@
         2306
       ],
       "include_sha256": "bf16d84797e4658c60d615b69eff10bea68a77bcf5cf96d2d2e70d93d0bbde16",
-      "receipt_sha256": "fb292f6c578734fd5160de52f83f5235708e8d74c68fcc77fdd92d95526c6b32"
+      "receipt_sha256": "f325d8363854c75d720518e8ef6113bb63019ea6b5cec4f96339edc57b73a07a"
     },
     {
       "post": "_posts/2025/07/2025-07-24-hubble-demo.md",
@@ -2921,7 +2949,7 @@
         4742
       ],
       "include_sha256": "a7d150ae2bae0b3bf436de142c781795f40c43c1c8b1ccda3a7865a575b0f102",
-      "receipt_sha256": "f3f7ee1a627fac1d315ed0fcaeca8f29472b9575a4dd921dd1e6bca453ef40ed"
+      "receipt_sha256": "6655c8bbcd8507d9c12f440ac39c4909860ae48c0609b3a30848410a5e86283e"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2935,7 +2963,7 @@
         2984
       ],
       "include_sha256": "8bfa8ea1a9a0ea3674c32d31ad417d41628164f0c0b71e7a3bdd254af77b7b29",
-      "receipt_sha256": "57bc203446c952490a210b34f88a044df2813574798d8ce43ac9ede485e0e9da"
+      "receipt_sha256": "a704c1083d73c4aea0435b473e461835cf936a2c4e595c2b03028d2e30ccca85"
     },
     {
       "post": "_posts/2025/07/2025-07-29-cilium-ipam-mode.md",
@@ -2949,7 +2977,7 @@
         3064
       ],
       "include_sha256": "c028ea6b994a9c68a770bb2247fb1cda750eb919e1ad281a0ad17172e37a8264",
-      "receipt_sha256": "bf0645e5396e1c59d76246d077647b9ffb7193a640864e6cc2e2e25fc2849d5e"
+      "receipt_sha256": "c93da3e5b8c0ba9002d9b86efdc82f443f20615222d1c191bad86bfd95f5e6e2"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2963,7 +2991,7 @@
         3066
       ],
       "include_sha256": "c028ea6b994a9c68a770bb2247fb1cda750eb919e1ad281a0ad17172e37a8264",
-      "receipt_sha256": "af06045456aa73ec5aafc31c8efdcedd3d30746a6dd7ab5c2cd9aa96e0e843a2"
+      "receipt_sha256": "5765288fdd5e71b3783fb53bbbde2a363377f796593226533e94f92ad98a85fe"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2977,7 +3005,7 @@
         2826
       ],
       "include_sha256": "4876554fad4b281a4e8abd6acc3c5edc23b7fc0a6b57825894368e1a40c4eef1",
-      "receipt_sha256": "417fbe456b5848ed6c7c01e11e03344143afbdf1b543b712c7534d96fc3d1ff1"
+      "receipt_sha256": "0c830af6e70df9967415fcbfe6b310450415e5fbd973d3025fe2f65f0bc1cf24"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -2991,7 +3019,7 @@
         2090
       ],
       "include_sha256": "22190417b57d1784afb227f1b07377dfcc57595c7c792d066773b403b11386c7",
-      "receipt_sha256": "7c441592bd6432828cefa8bfeb1e513a665acb33914649db25a3875602447d9a"
+      "receipt_sha256": "b3083378aa790330227d517d78037eaf2daec96390fc7088fb2c2a2c8bc59887"
     },
     {
       "post": "_posts/2025/07/2025-07-16-cilium-cni-basic.md",
@@ -3005,7 +3033,7 @@
         2936
       ],
       "include_sha256": "3842df32edae3865ad9b6f9c18494588522ae2299110dc671ad9fc656288e8bc",
-      "receipt_sha256": "bc746e59199369005c0f8fc21e919b1e37c3fb0c4991da488af1fc6e536182cc"
+      "receipt_sha256": "21ace470c0509ebbaa8fcec9c92234aecf1418371300af59e7f375a5008e509f"
     },
     {
       "post": "_posts/2025/07/2025-07-24-hubble-demo.md",
@@ -3019,7 +3047,7 @@
         2620
       ],
       "include_sha256": "7de6be7bee2494f27aec7f6e86ae1c2f6666cac766bdd9194289d254e405f5d7",
-      "receipt_sha256": "96b550a6ec887ab8ff1eea6d40ea7ff3c426a835f0cbff4d8d10d3f714fffd16"
+      "receipt_sha256": "11dc0285437edb5e16cb31a0e319929176bc8744dfc8788e503cbe4cadb02f66"
     },
     {
       "post": "_posts/2025/06/2025-06-28-kubernetes-endpoint-deprecated.md",
@@ -3033,7 +3061,7 @@
         2802
       ],
       "include_sha256": "9434226f84bc7775743c77636121833b132041f822550f33c3a567ba57e36dd7",
-      "receipt_sha256": "976a4ead2d16297ae969e4ad83e8a63aa642157edae959a221fa582e151b5c0b"
+      "receipt_sha256": "d0d702a540bde770e0109622bbe1e347ff2f7833b254b85e189ad47b730b7bee"
     },
     {
       "post": "_posts/2024/09/2024-09-01-etcd-encrypt.md",
@@ -3047,7 +3075,7 @@
         2548
       ],
       "include_sha256": "4b707a040a174e4455fc5a394f346264924cd91976fea1f77a8951f160fcc8af",
-      "receipt_sha256": "b04a488c9cb973eaf0884dc968cf524c9a9a45fc95794e8b721c63478ee91e0d"
+      "receipt_sha256": "e0f082962ad669c8c41b2c5f8598208a83b2b7770ca39c62b4993067abefd0b2"
     },
     {
       "post": "_posts/2025/03/2025-03-01-external-secrets.md",
@@ -3061,7 +3089,7 @@
         2596
       ],
       "include_sha256": "8e6c6f3bb6b52e3d6c1eb4f38fe2b25fa30acb12edaba5436bcc367e0405dd20",
-      "receipt_sha256": "5d92796ba18086b6703cd72b616fe19c31fc83b2d80f7b40584616e435d45a39"
+      "receipt_sha256": "925f94e512f7f781bd1b42ca92ae07fc49af0aa5258546a528a7cf920c573a58"
     },
     {
       "post": "_posts/2025/07/2025-07-15-deploy-flannel-cni.md",
@@ -3075,7 +3103,7 @@
         1706
       ],
       "include_sha256": "ef60392f1d849811ad804f39a5f5c594b7c614a786fdf380a8aa288746e58063",
-      "receipt_sha256": "963bc80eaae342a4033a9012fd135a16f18a2f0ea71f8ac2c5af733a40476419"
+      "receipt_sha256": "18734828c8e013ec828d7f9ebef04f96a3c0ac5bdca1d53021d40ced4ff0447a"
     },
     {
       "post": "_posts/2024/12/2024-12-24-pod-graceful-shutdown.md",
@@ -3089,7 +3117,7 @@
         3192
       ],
       "include_sha256": "4322fd09682763a4adc7a05e01e74a972423f623bedbded96a177a652cf0df28",
-      "receipt_sha256": "67d73d33e1d647bc3ccda3b564c13859847beebf417f3fdcc5d13b5d6fde1eaf"
+      "receipt_sha256": "2fd9beec0a6edc9e424f943f82503360c86c3147e79cf6eb7a4867e39acf8b1e"
     },
     {
       "post": "_posts/2025/01/2025-01-15-helm-hook.md",
@@ -3103,7 +3131,7 @@
         1656
       ],
       "include_sha256": "3426735afb51e0ac771925d63dd93aed5172e3fe2564335b636295c5b589aef0",
-      "receipt_sha256": "aa5741bbb032e70bf937351684654d768f802cb66c39bda8696a5eaf79ad28b5"
+      "receipt_sha256": "8d9fc632a16ae6779e925e177f2279115d70865f5d3558eb39fff1d59aff01d7"
     },
     {
       "post": "_posts/2024/06/2024-06-08-hpa.md",
@@ -3117,7 +3145,7 @@
         1748
       ],
       "include_sha256": "7702d771f180aa6cc8499b3aff9cce38cbe337011b34e13c08fc9b292e163f0f",
-      "receipt_sha256": "c587b2d129a633ca68d887328defe6712782de41c375605b89341ed6f35e8cf6"
+      "receipt_sha256": "a9e5c99b3ca68735b978c4a981ee59055b630affcade6242df64f08626a30a71"
     },
     {
       "post": "_posts/2025/07/2025-07-25-hubble-exporter.md",
@@ -3131,7 +3159,7 @@
         2018
       ],
       "include_sha256": "af960f2e0a12379dbb0332ec9d2801f51623e7c3620736fe43a4cfb7006cffd6",
-      "receipt_sha256": "21d9d468c6b4000af555f45c96712110e11255f0769eac5d160f067e1fab1425"
+      "receipt_sha256": "a7446e9eddad79d8858809a79f588b60fe8c900b4943f6ec72b4b367d9eb19b4"
     },
     {
       "post": "_posts/2025/06/2025-06-10-kubernetes-in-place-pod-resource-resize.md",
@@ -3145,7 +3173,7 @@
         1870
       ],
       "include_sha256": "6646d7502d388037c2a198e225993667c7c4ec85157c046df1689074ec551b2d",
-      "receipt_sha256": "30045f47f4cf49461255f6655cd4839b14cb0e2f23a7208fe040e3e2ea61b29d"
+      "receipt_sha256": "72efd1d2a1fb09392999283efd8d7bb012fbddf0ed3d7390c9115c11e26be76f"
     },
     {
       "post": "_posts/2024/08/2024-08-06-karpenter.md",
@@ -3159,7 +3187,7 @@
         1650
       ],
       "include_sha256": "0dbcbdbc0c2e8b0b5848a7dddb471138116da6154c5f0dcfc7aa4f21a057a223",
-      "receipt_sha256": "6c22d2301fa910fdb09d1039ec9e6e3420970bc05975c3be9bf28ca91af10ba7"
+      "receipt_sha256": "94a5326da57d98797a7fd5394f92a2d2823e4197e7e1a5a6a92150deca1ff2dd"
     },
     {
       "post": "_posts/2023/12/2023-12-13-kubernetes-cluster.md",
@@ -3173,7 +3201,7 @@
         1896
       ],
       "include_sha256": "5785b8f458c3121ab3693d54667c116523b5e03f7e1f5cbce756560ca27fbb7a",
-      "receipt_sha256": "f470129670aeccfc485ef6621a8d9269001bb5f687f0bc5de7deca9d3aee3ef5"
+      "receipt_sha256": "5add0e27587857838639d0eb38f18b631a9433019d290a81ddfc134688d070e2"
     },
     {
       "post": "_posts/2024/06/2024-06-17-fqdn.md",
@@ -3187,7 +3215,7 @@
         1858
       ],
       "include_sha256": "5f3307d83c1fba60598de31ba57d14245242ecfaf78db0133769fb972cb0dc2e",
-      "receipt_sha256": "86447f43b04a2018b0437a8281ce78a8c16ff6d27a1244be71e2484c171c9fb9"
+      "receipt_sha256": "d627b834dea60bc6db83122942d033ab3156ef341afe66921e93a4e470947ef3"
     },
     {
       "post": "_posts/2024/05/2024-05-08-rbac.md",
@@ -3201,7 +3229,7 @@
         1956
       ],
       "include_sha256": "bd94a373833aab555830c37b5060955d8daa65b8b2132c75005b0c7f78f84f7b",
-      "receipt_sha256": "991ee6b4adfba53c20e835a726489014272e1d044369510da0a9d86d93f7fbcd"
+      "receipt_sha256": "a76c926991516f26cb2893b82efc0ad3385c0cad8a852a2a98e8ca849bc92ec8"
     },
     {
       "post": "_posts/2025/07/2025-07-14-deploy-kubernetes-vagrant-virtualbox.md",
@@ -3215,7 +3243,7 @@
         2936
       ],
       "include_sha256": "b8eabf6a5f3138aae8818492e1341f29cc10498327e8d0a6375fb264af782a4a",
-      "receipt_sha256": "d61bb7e97bb894bb886928b3f370c5a56b1fce0120fc656f5b2d57c778e6641a"
+      "receipt_sha256": "e1ef5d212118fc84e8cfbad25f691ec7436a90f147ce90b501f1feeb362d44a4"
     },
     {
       "post": "_posts/2024/05/2024-05-03-metrics-server.md",
@@ -3229,7 +3257,7 @@
         1562
       ],
       "include_sha256": "f5b825196ce3ba7e2d0c8e8c87add4dcd502adff9b9215241ccd212e8ed593e1",
-      "receipt_sha256": "144dc047c9a59732aa7c34fd994708477d5354aaafb95833d0a2a3c91b47b8ac"
+      "receipt_sha256": "c9b6287a19c0bd85a5d0507f1188d462301680e67c2155b03a2fcc882dfc9eb5"
     },
     {
       "post": "_posts/2024/05/2024-05-01-microk8s-worker-node-add.md",
@@ -3243,7 +3271,7 @@
         1706
       ],
       "include_sha256": "568f98ac0c88b4bd135439b1ebd495090ec311a56d39dab4a79ee5e766798b3e",
-      "receipt_sha256": "9bfc93680971cd4e7b0b902c66588e297c66884337ea7621aeac61cc71b0d7b6"
+      "receipt_sha256": "2df54b1ee5ca9ab3b47ac4414b14593ad84b96e2a2fb2274c77dd58b8a47a9a8"
     },
     {
       "post": "_posts/2024/11/2024-11-12-mongodb-deploy.md",
@@ -3257,7 +3285,7 @@
         2096
       ],
       "include_sha256": "8e611ffd1e488422e741039311c6ffb6a22c8b774d1fc184bce56730967fdd86",
-      "receipt_sha256": "c853de4e2610fd78104db1fee99b33928218c955caf91b4d8e399a7d3f25dfc6"
+      "receipt_sha256": "34d596cd5012ccdae01abd2e5d4b726293c4693d7263388d4855e3b09b37598a"
     },
     {
       "post": "_posts/2025/06/2025-06-18-multiple-pods-evicted.md",
@@ -3271,7 +3299,7 @@
         2026
       ],
       "include_sha256": "526676e47c8ce17f65c309a02bf8626f4ddb4ed93c2b33ba9cc145bcf277f911",
-      "receipt_sha256": "4e0ed77cdfe563ecf4dd660a89a478f7c1ba73361caa5ddca058245703724a8f"
+      "receipt_sha256": "a7bc6f49725e06162006e89bd5a22e5a1d31ac125ea021ea98460d6caa1d597b"
     },
     {
       "post": "_posts/2024/07/2024-07-11-k8s-mysql-deploy.md",
@@ -3285,7 +3313,7 @@
         1992
       ],
       "include_sha256": "fead7f5d488aaabab0b319375fdf396ee250fd627a05d77361401e28b9f39818",
-      "receipt_sha256": "c0cfd950ef03cd5171b914e1c54e168ff63a3e33a83257a31b648fe6d422ce48"
+      "receipt_sha256": "a77e939c720650357a553f988fa5b87054f3d8875693bbbdbfca5ce08c162cd9"
     },
     {
       "post": "_posts/2024/06/2024-06-11-network-policy.md",
@@ -3299,7 +3327,7 @@
         2604
       ],
       "include_sha256": "7962d62eeb25addfb96cc982590df79ffc2b36169bbfbefc1a4868c64cdbf021",
-      "receipt_sha256": "6de1ca68972393c5c80b2ff972616a5e38da2f4c4a67367e9cd110e6a5bb443c"
+      "receipt_sha256": "eb0e2fafbdf463585c3d35b11b37d8cc89325c0539547d6bde323b333e414ec0"
     },
     {
       "post": "_posts/2024/12/2024-12-28-nginx-ingress-basic-auth.md",
@@ -3313,7 +3341,7 @@
         2108
       ],
       "include_sha256": "96310139af89da1d99a7a22c77418e4c5bb6f0f455f8a89aa4d08b55e63acb45",
-      "receipt_sha256": "9217eb54ffb41dc4f727f7c08045292e653404f9a14d796e9b1f36f8bfd5022f"
+      "receipt_sha256": "6619f59fc8a08a69661d9388dcc8c5f7614717bb91e65ba8e66edb3fabaa88a0"
     },
     {
       "post": "_posts/2024/09/2024-09-16-nginx-ingress-controller.md",
@@ -3327,7 +3355,7 @@
         1570
       ],
       "include_sha256": "c6b65187bd0f530a9ec13879fa7a4712abdf9fef575e0ced4e123d8ae45f3f1e",
-      "receipt_sha256": "4f11e67208a83da99d7d485680a96e6ecd1a742296857eb34050577d292c650e"
+      "receipt_sha256": "809b66b3befbd1296f8b3939732a10e6f98cc3c628546a0a45689701d923f60f"
     },
     {
       "post": "_posts/2024/11/2024-11-25-liveness-readiness-startup-probes.md",
@@ -3341,7 +3369,7 @@
         2218
       ],
       "include_sha256": "3ac2977ba039187bf6c732a2fdf0e5c05045138a4c08a6ade7616e165d312b86",
-      "receipt_sha256": "2963f50280bddde1be8fc7a9fcf7318550720584b5bd79273618dd6cb418d6b3"
+      "receipt_sha256": "b03951e18d60b1d5ffacb437c1f4e6e4fe98afeca132c818916c84f33915b2be"
     },
     {
       "post": "_posts/2024/05/2024-05-05-pod-trouble-shooting.md",
@@ -3355,7 +3383,7 @@
         2102
       ],
       "include_sha256": "0a9e3ecb372703a4cc7dc1b7fae24718b41a0f5597773e49014f51726503d28a",
-      "receipt_sha256": "7d1a8159414ec5e97e84ebec5099319c876eb2af531f7036bf91cd96e510a5da"
+      "receipt_sha256": "a10238fd920b9d89b8107dd744826612a85f1447bf441b1b216832d8abdf06d5"
     },
     {
       "post": "_posts/2025/06/2025-06-21-thanos-deploy.md",
@@ -3369,7 +3397,7 @@
         2634
       ],
       "include_sha256": "05bd30f6168650c58fcbe63bd3f7e7e36f0f0a672afa65d230968ba4d5daa88f",
-      "receipt_sha256": "82d5940e0111258121da9f438c5a2db65f85b52f3b8cf9a120b11b6a5f912f3a"
+      "receipt_sha256": "be25f8cdb55016f77e76c0c9808ca26f73ea2e56699f61484342a9054663a35b"
     },
     {
       "post": "_posts/2024/10/2024-10-19-kubernetes-tls-1.md",
@@ -3383,7 +3411,7 @@
         3882
       ],
       "include_sha256": "c2dcc8d9ddb0911d9c94b2fe1d94f7dcf43edaa8e4303b4be6c246df45847aa7",
-      "receipt_sha256": "5c4802b4e3634a1da564943e328accf9a89410ba9b7b615e639649f8c5e86809"
+      "receipt_sha256": "2a178a5777c767ed5ecd8d42a3fa4348c2c6ccdbf72c21119e26a4a268e5314e"
     },
     {
       "post": "_posts/2026/01/2026-01-13-sftp.md",
@@ -3397,7 +3425,7 @@
         1728
       ],
       "include_sha256": "959d1864bacba482122af6936c4c7bde91e78aed7c8c15422f253853594d32df",
-      "receipt_sha256": "4c4fa4eb6e025c2774e379dd595cc1ad8e31481e3004956316c754f7ee0068da"
+      "receipt_sha256": "88a05ffb3da6149caeb2c93ab5934372954179c9ff2b2096a5860d8488ba9642"
     },
     {
       "post": "_posts/2023/06/2023-06-21-markdown.md",
@@ -3411,7 +3439,7 @@
         1406
       ],
       "include_sha256": "878974d3be0eef50164286bdbbdee42d510ef0c13951244c5a333e1b438217a8",
-      "receipt_sha256": "d307f7ab180378a83dad824705aae3125ef010266ba7bb6b1cea8f3105ce4361"
+      "receipt_sha256": "d909c08474257a0ebae92ca01dbb88214b3612386b7baee755ec70c4212bddcc"
     },
     {
       "post": "_posts/2023/09/2023-09-13-gateway.md",
@@ -3425,7 +3453,7 @@
         1558
       ],
       "include_sha256": "f825a5dea7632c2efa68a34941a96bc42b7ac5f5bbc649548022e45ed6b20590",
-      "receipt_sha256": "af916481a92fa2c8b4570c46b4718b11fdbba749de8f9775cef10a58ce111dd3"
+      "receipt_sha256": "1d2f645df1916fa5df30026d67ceb72714b15b64cd9fb09f39fe27720281ae38"
     },
     {
       "post": "_posts/2023/09/2023-09-14-dns.md",
@@ -3439,7 +3467,7 @@
         2152
       ],
       "include_sha256": "cc946bacf1b6a2f58ce31ce533a2af978d7f36c8e9fdb02e8232371aa5c22a12",
-      "receipt_sha256": "035ddbd8aa0d3349f9e4539c49b180fd87c54fe9f49d12f4e20b4a4ba28effb7"
+      "receipt_sha256": "06f191810ec75ead71a08d0a774a9f65f7fc3b6c95eb213f7e9f62fe5ded58fe"
     },
     {
       "post": "_posts/2023/09/2023-09-12-nat.md",
@@ -3453,7 +3481,7 @@
         1558
       ],
       "include_sha256": "78346e39db152eaf7e38999d4083626688bd672a67247c4e0753a84f70ef26c3",
-      "receipt_sha256": "e0279849c7ed1ed8c368da23d47f67342bc7226bbd39bc7c5b3ebc1b31ff8254"
+      "receipt_sha256": "f265358773d020ef108ae2449aeb065efbe400d00603975e060b695f7efd5378"
     },
     {
       "post": "_posts/2023/09/2023-09-03-osi-7-layer-model.md",
@@ -3467,7 +3495,7 @@
         1836
       ],
       "include_sha256": "a7881be242f7478a43453fa3fa9ba050d2401a422a4af5ed320bd72e9ef57ca9",
-      "receipt_sha256": "ae9b822f5d42aea4ce5e182b09f8b82910281df0f9527e1bfb2a2ce39e0d268c"
+      "receipt_sha256": "e131b59b7429291006cb7369eac59e465f76a6e7630c378b5aa7b405b9717c89"
     },
     {
       "post": "_posts/2023/09/2023-09-03-osi-7-layer-model.md",
@@ -3481,7 +3509,7 @@
         1848
       ],
       "include_sha256": "1c9fa152c5c44ca68da2f411508d04d238b9b9e67d98ea636e9eab6467b9e773",
-      "receipt_sha256": "620e9ff43d1e2bd662baf91b0b1a8accf0e08201ba059d917a3bbaf369877a28"
+      "receipt_sha256": "3dff1c4c8dd3aa06ba8fb28e13c63f22bd8d70f9001e477425a9c96afaa3213f"
     },
     {
       "post": "_posts/2023/09/2023-09-11-rip-ospf.md",
@@ -3495,7 +3523,7 @@
         2150
       ],
       "include_sha256": "336c3fd06a418e5ae8df89b83e6684948a2579d974fac90a6c3f7305d5eb4059",
-      "receipt_sha256": "af86fce5f071897f7fb8c308402cdcd9366b07ae0ee4090c75dc0693a3d7f9cd"
+      "receipt_sha256": "63676c2f3e3137a9faebd10073af7224032c0a09c8facff0e693c752c69d85a6"
     },
     {
       "post": "_posts/2024/03/2024-03-26-stateless-vs-stateful.md",
@@ -3509,7 +3537,7 @@
         1724
       ],
       "include_sha256": "013fee1f3e5ef6aded2f84ed4bf9c0832f413c25fe851dc46fd0baf622d98978",
-      "receipt_sha256": "d968891e5f0356419d771397879b30c81d89829cc2e2b709dc9703e17be525ef"
+      "receipt_sha256": "050626f147786ef664be201205976509382d763b3433c286e9a0a375ff48ed9d"
     },
     {
       "post": "_posts/2023/10/2023-10-11-tcp-and-udp.md",
@@ -3523,7 +3551,7 @@
         1502
       ],
       "include_sha256": "7d209360182d4ac16bd773a529d36638ff2f82d8a1f1a1fff846527ec8d9c315",
-      "receipt_sha256": "35feffc52d5d1bef8b36875608c782438a617e3ab1741f5b07a5995d2f07d407"
+      "receipt_sha256": "aa030e5bc50a0f8b8b1a74ddf4c4816d9836cf1607d7a5084681ccf9b2ed0b1e"
     },
     {
       "post": "_posts/2026/07/2026-07-20-nodejs-async-http-handling.md",
@@ -3537,7 +3565,7 @@
         2008
       ],
       "include_sha256": "8c810cf4d69a463d23fd9679f50aeeaf08e200c59e371c013e8833f4aef920f5",
-      "receipt_sha256": "bcbc0c550b12873cd4e04cd2c7405fc14f22c4258d4ad8703489db24c5dced79"
+      "receipt_sha256": "b9994612489646c62907bd9d8e26cd4ad2c2fb9bcfc5a0f2807c82714390bed8"
     },
     {
       "post": "_posts/2026/07/2026-07-21-nodejs-esm-startup-config.md",
@@ -3551,7 +3579,7 @@
         3848
       ],
       "include_sha256": "4291db37bcc70055ddd614252c0d525fbd08f879c41a2ddb773ad3b11959bdce",
-      "receipt_sha256": "da09096ed9e3d095e50fcf2557200d5a24f458ad202ceab52075b2bc09cfabb9"
+      "receipt_sha256": "765c732f3628a5076d50602843fbd67dedd38a56caedb67fbe0de4b6e74987d2"
     },
     {
       "post": "_posts/2026/07/2026-07-23-nodejs-event-loop-scheduling.md",
@@ -3565,7 +3593,7 @@
         2288
       ],
       "include_sha256": "c8c42f8ffed36747c1076420f5e848ffb61415405799739249f05df41ab74a75",
-      "receipt_sha256": "c34ba4c6ee195a0195e91305f6f027b2311a4c9f717bf3210358fd408f5207ee"
+      "receipt_sha256": "b30171f97bf8fecbad493aeece2721acf34ec22bd3e65f1af7728e536d0fb6ca"
     },
     {
       "post": "_posts/2026/07/2026-07-19-nodejs-request-lifecycle.md",
@@ -3579,7 +3607,7 @@
         2918
       ],
       "include_sha256": "ef81d4dcf87f70e2056570f6623892b9234175fa1f9461c5f146779876fe0203",
-      "receipt_sha256": "a40c6b2f64bddd18c83ba4a60e5c5f17c89a3c36b5b034b7f0bf54d7ee7964c7"
+      "receipt_sha256": "b8d3fde5a56f2a98e4bdc4751a27a1cf4400becd950c4a79be1fc5da49cb9009"
     },
     {
       "post": "_posts/2026/07/2026-07-18-nodejs-overview.md",
@@ -3593,7 +3621,7 @@
         2140
       ],
       "include_sha256": "6757f942d17e48114a107857f07aa976dd52e8352be6faf178a3edf4a17f7b5c",
-      "receipt_sha256": "78561589a7b04adcb25c3d218757cf466bd4009459283e348b8c40e89b222d2b"
+      "receipt_sha256": "2ea5507be5f2312088b6d83bf63d3c914ca218c9613353681df4a599cd3c448e"
     },
     {
       "post": "_posts/2025/10/2025-10-09-whitebox-blackbox-monitoring.md",
@@ -3607,7 +3635,7 @@
         1706
       ],
       "include_sha256": "9cf0e838e82eeb36d24b51bbfec21a5c55ff1d680061f118a095c85034084d89",
-      "receipt_sha256": "12fc7343687b8bf77a309de2bc702a9b68e83dbf4b27971e341ffa0493173c6d"
+      "receipt_sha256": "bf43528a3da55a3136dfea8cdc8863eaec64febb22a423edd66b757ac3ac987e"
     },
     {
       "post": "_posts/2026/06/2026-06-29-datadog-rum.md",
@@ -3621,7 +3649,7 @@
         1866
       ],
       "include_sha256": "38d0ff04b371204d69265f550eddb6c7ea10a018177777a80c9ac820b4cded75",
-      "receipt_sha256": "894fbb8299ec575982b53d2b7a8df3b7bf5ada72168bfae219eec21f5433a6e1"
+      "receipt_sha256": "cf05e427bb42570879bff342bd767ca08a2742ed1a7002adfa14a96249e1bc87"
     },
     {
       "post": "_posts/2026/06/2026-06-29-datadog-rum.md",
@@ -3635,7 +3663,7 @@
         1096
       ],
       "include_sha256": "261387c4923448bf59816a38ca10ce48d424cb94b60632e10fe7d9cfe813036a",
-      "receipt_sha256": "ec93e3dc2ab9596189204059d4f5f0552a633b3b1258e102db65d58a6c073a0c"
+      "receipt_sha256": "6d709ba7ad7decdc272c31a33a2715ff9f35d74c2760596ab4ea0fe6853ae7bc"
     },
     {
       "post": "_posts/2026/06/2026-06-29-datadog-rum.md",
@@ -3649,7 +3677,7 @@
         1260
       ],
       "include_sha256": "723a6ec0baee69c2cb3f86966a1757ea9597efcb465f592643cf9dc3e8eea79f",
-      "receipt_sha256": "ce5d27d758ddc5bff34933290486cf613fa642c8f01bb68d22949caad9248a40"
+      "receipt_sha256": "89e643d37a79595b8caa4d67024c4df96fdf9aa1abed48144d01c61045b81d3b"
     },
     {
       "post": "_posts/2024/08/2024-08-10-elasticsearch.md",
@@ -3663,7 +3691,7 @@
         1706
       ],
       "include_sha256": "7bcd97a4e4ab3e2e2cf81ae5a491c0fa134022696f9da5f2b381becfb8c5d84d",
-      "receipt_sha256": "2d13b6967f4b73a6ab88fb04c056b3dd7f1d5fffab4b67db59a3884c61930c43"
+      "receipt_sha256": "8dae1b1c95f692aebdfec25321e3f36ccb9c213dba49f627785feb7d9efe3c46"
     },
     {
       "post": "_posts/2024/08/2024-08-09-fluent-bit.md",
@@ -3677,7 +3705,7 @@
         1706
       ],
       "include_sha256": "55f2e3518eb46eeac3bff4c953182c4de3d5cba0976f97c772e2bce15e695b79",
-      "receipt_sha256": "053e4cf8052d5697ad1bcc1767cbdce9d2932f9cef7d25dfdf1f680e67f2cacd"
+      "receipt_sha256": "3c6dccb99ee9111ea7ff915dfbbeea5831c24807ee2b1e8ce94da7cc45d796e1"
     },
     {
       "post": "_posts/2024/08/2024-08-11-kibana.md",
@@ -3691,7 +3719,7 @@
         1706
       ],
       "include_sha256": "caed263f79a867653c96ef1040436c896487185e8d80ac58b2ea2a88b57b8bd3",
-      "receipt_sha256": "66e52430204c4d4f71190bc256a6231abf40e8ebf6d0b7a2c646a947ed2d7048"
+      "receipt_sha256": "0d9c5cce95d62eac93b8da47b499339bcab417b345256f3e60c93f3d20250a1a"
     },
     {
       "post": "_posts/2025/03/2025-03-15-kubernetes_monitoring_python.md",
@@ -3705,7 +3733,7 @@
         1972
       ],
       "include_sha256": "06a95ae532f19ee3d540b8bb6f4e9156cff9f9598a8314a579c228dd6b49beb0",
-      "receipt_sha256": "aa3bfea8888b4ae78000645dfc63ee23a2feda72d5eb3b9ffbcf934f864895b8"
+      "receipt_sha256": "c2abe110e2bac1edfb3b3bf0b5d29cb4705dee2ed5a820cbfec146a311165f0b"
     },
     {
       "post": "_posts/2024/11/2024-11-19-lambda-log-monitoring.md",
@@ -3719,7 +3747,7 @@
         1950
       ],
       "include_sha256": "96f8694f8bb48442bbdc27dfa6c3f514cf8d34d9502eb3c53efb422b185cef13",
-      "receipt_sha256": "3c136e44f87b88dfe211aebab843a2c58cc805ed8639ee348e72908f56d1f914"
+      "receipt_sha256": "30e56eb2309538268d60b90ad49a1bac6537c80b81ed754999286cd42afd3a7b"
     },
     {
       "post": "_posts/2025/07/2025-07-26-monitoring-observability-sli-slo-sla.md",
@@ -3733,7 +3761,7 @@
         1706
       ],
       "include_sha256": "ccbf624968663a6a330aa87809a3e01792e8c381a8618316b84215b5d35f70bd",
-      "receipt_sha256": "ac155589fb64c8d9448321fbeee2a279fc2bdb7bd83aab02749df2c4f550ce1a"
+      "receipt_sha256": "09b24ddb41508b3ddb81ffe31be8e024a3fbe803c6db5bc995c7623d648d9546"
     },
     {
       "post": "_posts/2024/11/2024-11-07-prometheus.md",
@@ -3747,7 +3775,7 @@
         3746
       ],
       "include_sha256": "b9d772857275d4d4f04c5041f6b0c8e5054abf2ebe59050842ac1f642c7923f1",
-      "receipt_sha256": "4fbbb17b693834f534b09c1bb85c9fc2936fe980e2647e89767a9a915fd99623"
+      "receipt_sha256": "b4b185ce0bfc2233a602b5e4f477b8a2d79c0c66d297de5592dad669013d81cd"
     },
     {
       "post": "_posts/2024/12/2024-12-14-remember-me.md",
@@ -3761,7 +3789,7 @@
         2716
       ],
       "include_sha256": "33be8c796097c5cf22bf8d9fb5cca3c7f79d7d5f951abd0e513844aa5e6be0cc",
-      "receipt_sha256": "3ea1afaaecce5120c40f38ffabf16044e694a7dd32bb33572950926a284f87d4"
+      "receipt_sha256": "1e1b1d4356e2e02bb553e734c7dfa6bbe3f2ff4ed848be824bb7e55b0f05cde0"
     },
     {
       "post": "_posts/2024/12/2024-12-14-remember-me.md",
@@ -3775,7 +3803,7 @@
         1396
       ],
       "include_sha256": "5066025f52d2a461424068a4f2e0367cfb3842418c817fc7929cf2285d33baad",
-      "receipt_sha256": "8e7a5bebdef3d487b8dd482cef1eb4feabfc404f30471f4f36e1f8ae6bfc1fb9"
+      "receipt_sha256": "baf083e8d928a4a8e223485b642eb1cd0289663d0698ed43c353d88479d337e1"
     },
     {
       "post": "_posts/2024/12/2024-12-14-remember-me.md",
@@ -3789,7 +3817,7 @@
         1330
       ],
       "include_sha256": "749e3e189925786f8024cc208c9a2b474400ca66fd009d31c4811754b28ee4fe",
-      "receipt_sha256": "6f8e5dc893cb8948762b56eae0ef5b8ecca66bc4283d2da3cf3364c0f896a023"
+      "receipt_sha256": "932529ea9ab56f450861e4b1abecae9d45cfec6b4d508657d081927c4a2b9b13"
     },
     {
       "post": "_posts/2024/12/2024-12-14-remember-me.md",
@@ -3803,7 +3831,7 @@
         1608
       ],
       "include_sha256": "d363e14a62bd5974543a80f477709c5c8984949b01e3706e4ba06bdd47927e2f",
-      "receipt_sha256": "98d4d128ba2a9f98f182fc69ebe3942638fa7a75a6f323bab04e15d6fd3fa6c4"
+      "receipt_sha256": "e0b761b99783ff9c91a353ba6ddb3758aac942ca199c3a184cae56af7cff8ca8"
     },
     {
       "post": "_posts/2024/08/2024-08-21-weasel.md",
@@ -3817,7 +3845,7 @@
         2852
       ],
       "include_sha256": "d30acfbf7cf1ebe01ac023950290d96b323d70e4daa2c5b70283ebdfe4a047ed",
-      "receipt_sha256": "5e3c3497048f9248a293b3d1b02118dc06c1dfd8ce08fe111f753ea0df9facb7"
+      "receipt_sha256": "4cd3f0fdd20427b341bd41fdec908da44d19c1904c32ed5f145a044e9579ab29"
     },
     {
       "post": "_posts/2024/08/2024-08-21-weasel.md",
@@ -3831,7 +3859,7 @@
         4488
       ],
       "include_sha256": "c17119c4acc0ead13d7657b6d492707cf776d310e1b070611f202a6907ed477f",
-      "receipt_sha256": "8399a32f7341ea38d8e4876f450782eadb815d62fb0409a0babacf05a078e5ab"
+      "receipt_sha256": "fd3410edb0cc924941d3a6ccf90bb47675072efa68816ff2047ee1ca3ca86e40"
     },
     {
       "post": "_posts/2024/08/2024-08-21-weasel.md",
@@ -3845,7 +3873,7 @@
         2562
       ],
       "include_sha256": "70e2edc826b599e7d2a0dbfc8f436b9ff5878ba83afcc9eff4fa772f183ba403",
-      "receipt_sha256": "b1cb76740b5d4bf8f783b99b25d710db6e50352b781ab4dfab3ceddc0d5d4d10"
+      "receipt_sha256": "80db8d01403c9b11fff8a4ce0aef4c52c5b0d99cbfcb86ee67429a69166f49da"
     },
     {
       "post": "_posts/2024/10/2024-10-03-harbor-docker-image-push.md",
@@ -3859,7 +3887,7 @@
         2104
       ],
       "include_sha256": "0d500f1e402aedf44bbbe5ab33c500c699458bb3ca2a1f2b2744b0b9f315d708",
-      "receipt_sha256": "a7c4d883a15e115ed922b38f34f01d9791f28aeab209e9c73574ba2459f9fa20"
+      "receipt_sha256": "3608b82e8cfa4e83a0e03c8a187a8935af3a653b3e8a77d9e52c7a30c8256879"
     },
     {
       "post": "_posts/2024/09/2024-09-27-deploying-harbor.md",
@@ -3873,7 +3901,7 @@
         1840
       ],
       "include_sha256": "276b63d7048029f3c354b59d200f873d12a333b6edfdce3aef2c9c5d74cac2f9",
-      "receipt_sha256": "de3b234913344b9963e4d77fffe2e80ee013ae706b14bd3dcbd79f70b8d67c14"
+      "receipt_sha256": "bf8a41c5fdf455a3e338c581ca093f3b236c03bb26b727ac3d9a4657bc39f78e"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -3887,7 +3915,7 @@
         3030
       ],
       "include_sha256": "48df1ad027701730b4ea02e2bbf01be39c0dc4f278cceb9ebeb5d7147de8f68c",
-      "receipt_sha256": "a49f3f3992534ae4c659d4c78bc30cf7174e83705535b8c3b10a7d920bb4b6d1"
+      "receipt_sha256": "7d9b62c41d8dacbf9e88b931ab025f3cf0dfe9f094ef7f9bf8b386e59683c891"
     },
     {
       "post": "_posts/2026/08/2026-08-27-aws-sap-c02-compute-scaling.md",
@@ -3901,7 +3929,7 @@
         4018
       ],
       "include_sha256": "f7b50cf00d800533cc7cfd8ddc33ef8605dd652b27276ff7520661a9fca58d65",
-      "receipt_sha256": "e0754e0797930aff675443815e1bbb0e16f27995a26abd3f494dd8f591625a0c"
+      "receipt_sha256": "ca7d9bbb7922706cbb241a741e854c6ad6059245294570d7e60b2eeaa6ad6b65"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -3915,7 +3943,7 @@
         2220
       ],
       "include_sha256": "86d02053b496250891bc58b510192922af3c67b393fe664fc5936d18e0d81890",
-      "receipt_sha256": "abe6e83a4a16e772501e0d46cc67fb78c5a22a5514d0ca388e18bb899a3846f0"
+      "receipt_sha256": "b8c327b1c776e69d6b89b410a221daacde4a9709d8bc9079280095e70e99111e"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -3929,7 +3957,7 @@
         2220
       ],
       "include_sha256": "86d02053b496250891bc58b510192922af3c67b393fe664fc5936d18e0d81890",
-      "receipt_sha256": "cfc27f2e93a9b1add6fb3dc8d5c013330f7327f3776366eca8940fcbb68dd4eb"
+      "receipt_sha256": "c86b2360b7c93ddce2a9cdbb6bf20b6caf793ce2321354480562426647cbc953"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -3943,7 +3971,7 @@
         2018
       ],
       "include_sha256": "c239ea5a820a4eb3368a72269dc8c4e20d5dd704a2ec84015156feea3943c130",
-      "receipt_sha256": "c07aaa12625596aeac7d7d4135c7c24f8d604d5c272515ef258e2529682b6081"
+      "receipt_sha256": "a42ab8c89cfb9ccb4ba0a9574a8773bd4cf30727c9b12a6e9c25f1f3a86b4ef2"
     },
     {
       "post": "_posts/2026/08/2026-08-27-aws-sap-c02-compute-scaling.md",
@@ -3957,7 +3985,7 @@
         2992
       ],
       "include_sha256": "1dca546208d18eaca5f03836b09e8b3acb66fa9664f0ec4842ecb3900b29ed60",
-      "receipt_sha256": "65b906ed90d5ad96578ec1eff2942e3c825ba0768e17e7388ee09df31a4581f3"
+      "receipt_sha256": "8deae4dfd49d3db69b9eb316cade24829d5921e8636c9134cceda174e5baa898"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -3971,7 +3999,7 @@
         2020
       ],
       "include_sha256": "16f60d07968171dd246a4077883b4dd375a4c8af4b395ab2481581d04e9c32d1",
-      "receipt_sha256": "b737a851b17592ad4ecca5b39315cb34f7867ffde9e77ad855b530a698aa4d9f"
+      "receipt_sha256": "d43eaf3a10a4bf319254245d283af16d47b6fdfb59da07c14f42ca0a13d9202e"
     },
     {
       "post": "_posts/2026/08/2026-08-26-aws-sap-c02-dns-global-traffic.md",
@@ -3985,7 +4013,7 @@
         2220
       ],
       "include_sha256": "8806f985463fcaf870087983597e797a7b19a1db76dfa5ab114c3eb0347a718a",
-      "receipt_sha256": "4c20a6fae374932629a1bad072790c5d9d47cfdd15d0f166d6fb9405d19d2ad3"
+      "receipt_sha256": "375ae8175ea78971b4bb84fd71bc9fbc911dfe7fff7b02f9aff61812d31c3f3e"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -3999,7 +4027,7 @@
         3244
       ],
       "include_sha256": "e6e097213b34181bc7fc9e77794dc07a97ce59ab3fc54512413455347c29754a",
-      "receipt_sha256": "e7edfdfdd65162ec0b09934577bfade81e1335c4742d9cad4485d0fee4c94ced"
+      "receipt_sha256": "87495885dc41a3c0b5b8bf3d47ed33ca101921cda69f23096bc8b7e08a43e36e"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -4013,7 +4041,7 @@
         3322
       ],
       "include_sha256": "b4a895a7b709e34f12eaea7afa18f8fd9090f2acf91c0507c5a6b650aa7a0f9c",
-      "receipt_sha256": "7a00b08049bf67b75fc6877c64b4f9f87f4e06d5e69a0e74941f1dd666698d7d"
+      "receipt_sha256": "983d33ca5a1e580d66bc2467ba849ed2b2922b423c8770ea74d522df063435ef"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -4027,7 +4055,7 @@
         3868
       ],
       "include_sha256": "722454794ddbd9b8e6e862b011909ac058cc202a14dd0d5e87c7d6784a1fe35d",
-      "receipt_sha256": "ea23a7b1da945ab74d7b8e17ce82f60b3cf4ac3d04ed247e39fdaf5e0c02fdbb"
+      "receipt_sha256": "16aa57376abcfd817db6c55461301b80d2941091913160800153d892b9978f17"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -4041,7 +4069,7 @@
         3868
       ],
       "include_sha256": "722454794ddbd9b8e6e862b011909ac058cc202a14dd0d5e87c7d6784a1fe35d",
-      "receipt_sha256": "53ff89d7b427a73b416edd43be164a7aa366ff020f9c6399a50efd22ef68fe61"
+      "receipt_sha256": "07a53cd616a34edfcc2e8c968aeb50f54b440f340523f0b4b5b36fac28cf86f7"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4055,7 +4083,7 @@
         2286
       ],
       "include_sha256": "88ddba64a296a5ebcba3c48fb1b947a12a4319e2f7ef3ad3d6f5454374e80712",
-      "receipt_sha256": "b3fb17562bdd3d3fa050649126785fa03e27ec09f769d46c284a2b69020f6ac4"
+      "receipt_sha256": "a04312c70b59ffc3e983e8e025414203c9372c15f63adc412c40fa7201b848d1"
     },
     {
       "post": "_posts/2026/09/2026-08-23-aws-sap-c02-multi-account-governance.md",
@@ -4069,7 +4097,7 @@
         2018
       ],
       "include_sha256": "8ea41b6d1b8540c0cbd4cb6d908c6afb7654ea152bcd1b050df7d1795cb84286",
-      "receipt_sha256": "ffe3deef7f518dfadf99e8f9366e5fd1ae81519aff164959a7d69fe44fff25c7"
+      "receipt_sha256": "ca3c549f2f2cb86de6fc6b459737dd09aaebe53718684e6f0c319c346cf06514"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -4083,7 +4111,7 @@
         2258
       ],
       "include_sha256": "f67d8963c4491d4f6dae2e5bb04daa8ac68b0d4b033a4709cbc7ad49e15b70a1",
-      "receipt_sha256": "c3625df3275cb2215a3eb7d2597c36c2db82bb00cf97ed40c13b881762294b62"
+      "receipt_sha256": "5ba55e4484a1643d55fdaf2ad294b051272c9178205ae51f56afc30e11e38246"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -4097,7 +4125,7 @@
         2478
       ],
       "include_sha256": "0f022f06023ebc8b77b8676d3a352d964f80c6cd316b8beb287fa29122a04184",
-      "receipt_sha256": "6878509674d4e2a75aba1784156aff39438de4ec34d6f16a57930c259c8630b2"
+      "receipt_sha256": "8a7c80456b866bf87de208faec7571d8001d5938dc55207f715e051433851a46"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -4111,7 +4139,7 @@
         3448
       ],
       "include_sha256": "01b8d01f8658fa4a55951ec62a41864abd9c01a0e2847001806d5d5a336df5bb",
-      "receipt_sha256": "c67424a0f5ada4f1257d0ee624b33c93523389ac76206c92b1102217aca024f6"
+      "receipt_sha256": "8d5521d6679234481ab78f7269349ec67c3c59afb6426fb7c82fc074393bc18b"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -4125,7 +4153,7 @@
         3066
       ],
       "include_sha256": "5ae7024d97cb4f72c71aa2b8cbd5215205f58a97b7cd18aa5f1a79e42940b900",
-      "receipt_sha256": "dd5ac1c11ae20280121cde3fd451b28af6a63d353b383cead0946a365925533e"
+      "receipt_sha256": "48091fd314acff03fa05c21598b38758f7c91f8b4656de5feba38f3cbc98a5fa"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -4139,7 +4167,7 @@
         3214
       ],
       "include_sha256": "8a41494fbcc3086507a340ddb00ba38dfcf9b983bf950be12e5410cb4c214808",
-      "receipt_sha256": "3040873efadc80cdc2c55568e791e638316c4cd9880327e7e0b711004e23e523"
+      "receipt_sha256": "87a05c9a77ef4ce719c2dadd255601b83f4b95211a4eaa16cae7e94d59ba8566"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -4153,7 +4181,7 @@
         3526
       ],
       "include_sha256": "95bffe2f7c2d8822daee86fd7a3867c787270a9666c77340ae0cbb7546bbb5d4",
-      "receipt_sha256": "ae715f3f57f27d593e745ba8e87495931df1296c8e7c355abf0f2b5d23bc77cb"
+      "receipt_sha256": "50c07679b190bd522d289dd1d213687afb08e9b3906c3a6f50a0b9549bf196cb"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -4167,7 +4195,7 @@
         2360
       ],
       "include_sha256": "1c6e1a50ca24ae3d3881c84f46ded654bf2deb18724bfd3ce6e73dcd3b991cca",
-      "receipt_sha256": "4ebf7df02de21fc1901c9c05cb30b1bfa8d2a47ba78558404046b6e766bb3c3b"
+      "receipt_sha256": "9e24854a8e22fbcc385163d2d2894383c97f9843e3ab9877fc3ba1afcd99192b"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4181,7 +4209,7 @@
         2346
       ],
       "include_sha256": "ec604c5f02fad9ace83f30d6bacd0b534960d8d442e014f3fffa1622e72900c5",
-      "receipt_sha256": "2aa13ab686f79fc2d53cbdca4e50a5c00b89fd4a4ae2945df3128c062928391f"
+      "receipt_sha256": "c20b31f9e1141b5ac60fdab93e5747cc51f6b1bd37d9c506f81bf00c3e2229d2"
     },
     {
       "post": "_posts/2026/09/2026-09-04-aws-sap-c02-migration-strategy.md",
@@ -4195,7 +4223,7 @@
         2352
       ],
       "include_sha256": "967b3842ef1ec21e7178101a5196dc6affd07d0eaa08c6ad24f66f4710b6dfa0",
-      "receipt_sha256": "15af8ff4de68a1839b13679dab3137ceb4f38e2ec5ff323aefd9fa7b1815e4e1"
+      "receipt_sha256": "566a117ba0ec830012b1a1b3c3ebaa77e0b16ac3a03e8b87e198e13f1a71160e"
     },
     {
       "post": "_posts/2026/08/2026-08-26-aws-sap-c02-dns-global-traffic.md",
@@ -4209,7 +4237,7 @@
         2214
       ],
       "include_sha256": "9bf7fde533d84a7430359beb7d6d1a485214f9ed9f58984b741fcc3e8511e4a2",
-      "receipt_sha256": "58e45623c59a86c461ffa9c01919adae786d7986de6fdce96e64937285de2d71"
+      "receipt_sha256": "ab4822adf8542a33d0a5438d65768df1a48190afaeac76f8d83f993cc0f4fa69"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -4223,7 +4251,7 @@
         1250
       ],
       "include_sha256": "0d1c834c3beed6c26a17f0a0f3a3388f3f1dc7b829182f3bc922f8f45032f93f",
-      "receipt_sha256": "fc3dea82f9f6301247c30e7000807421747c1aeae5be5bb8be27c92cebdc454c"
+      "receipt_sha256": "c2def84be677820ca02090e3cf5dc28de1635eabf88da21433864d847c5bc207"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -4237,7 +4265,7 @@
         2526
       ],
       "include_sha256": "d215683f63aa852c00a54542a314c13e543223df8bacb2fdf9abdd87e7229857",
-      "receipt_sha256": "cba707691065b7acf43a2e990aa4a9064971916b73f510f140f25d93199ab378"
+      "receipt_sha256": "2a8876ffef4a75cf81dfcd538d1bed1c3a1dd22d008304c5c697fa7d5ccd6cc4"
     },
     {
       "post": "_posts/2026/08/2026-08-25-aws-sap-c02-hybrid-networking.md",
@@ -4251,7 +4279,7 @@
         3430
       ],
       "include_sha256": "a9099b8c28412e0dcf86b40b62e8cb910118728e9e1d545b6d1fdaf1f2804fc2",
-      "receipt_sha256": "8fe4bab94a422eebedea4593d36f8bc3eb754d8e32017e9124604b9fc9b7e1cc"
+      "receipt_sha256": "71db24a23e9f771845c5600d69573ebe5ccab1b1406c16972f91f08c475d802f"
     },
     {
       "post": "_posts/2026/08/2026-08-27-aws-sap-c02-compute-scaling.md",
@@ -4265,7 +4293,7 @@
         3114
       ],
       "include_sha256": "c30d747bd364d9a8fe6d3f598fa4f2ee91b172d60f564f5868a050ce0cc655f8",
-      "receipt_sha256": "57bcabde685a6b7214690239b726671dde2bee8e7f86a4b7d8068155b7d10528"
+      "receipt_sha256": "ba3ca42a1fb52492469680b3b3462c8b5930be03d796fc18164121c7c7ed1622"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4279,7 +4307,7 @@
         2432
       ],
       "include_sha256": "3eeea05d12eb264e78c66a7cf7a966d47c1384b65af13680141f1d5200aeaef5",
-      "receipt_sha256": "4c5bec5db148b68feae22034b4548cd29b4d09468f123c245657f589a77bc241"
+      "receipt_sha256": "9909e7827f66249609cdea7e493cc2a68120fab541504720a4e1de261f9188d8"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -4293,7 +4321,7 @@
         2522
       ],
       "include_sha256": "4811174bc8e6a59885b8a9974b84b7b14684a51310e3537e6104af9e7370374c",
-      "receipt_sha256": "287b3919b767f210d52a7f437590cb270265f7fd11eaf374c5296e8bdcd098d0"
+      "receipt_sha256": "211ceaacb6f743b2b69c5b9fd60a75629c4c567e86ae9bdd94fb408a14b1420d"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4307,7 +4335,7 @@
         3018
       ],
       "include_sha256": "37d535c869969632802c753c1bdff345cb0ff20cce3f60ece3fc0888c96fce48",
-      "receipt_sha256": "5766bb9ab9e3bd1b434b00c80c47d6d43e25c8a005d00286f3f2b54c33924571"
+      "receipt_sha256": "bccb5859d2d658e7f448aae51cab7fb38852e47d0a7c21904eedfc4d72ecd53e"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4321,7 +4349,7 @@
         2758
       ],
       "include_sha256": "f1001e25da3694539a8cbacb6bd6b012fa823a6f26934781c66205bc37849c03",
-      "receipt_sha256": "0f90ee12c10486c5c3d77568bcbbe21cf7fadf15cb296a268307e11aedbe0370"
+      "receipt_sha256": "972de434791df0908985aeaa361170ffe6c42e88c0e41a31e38358c7c815b40c"
     },
     {
       "post": "_posts/2026/08/2026-08-26-aws-sap-c02-dns-global-traffic.md",
@@ -4335,7 +4363,7 @@
         2338
       ],
       "include_sha256": "590d9710a6fe7f1e8e1df5d358d7812eccaebe0fb55311cb2113f0a276c8f003",
-      "receipt_sha256": "a6f8778c90a90c774d4d022f02fea84157939e8f113b9b2e5122f981a8e6a9c6"
+      "receipt_sha256": "bfff5e5e5c03f10a27247c30bfac37df0eab7a379833d41fa50f542a9d496f74"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4349,7 +4377,7 @@
         2486
       ],
       "include_sha256": "365ff2ee451a3f63eeec37b508237fb630f7a5424f22eacedf3a92fd63709144",
-      "receipt_sha256": "365d30545726c8fc0e1072d1b624605ed6c898cf6a7b0576323078154da4262f"
+      "receipt_sha256": "32b2d42805946fa11f291174c52749c85c38ff2a2e83a3aa142bf64837ae67aa"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4363,7 +4391,7 @@
         2662
       ],
       "include_sha256": "7b005a1eb315611639a3f99c3859210bf435a036789078e0b12dcd9c82ad557f",
-      "receipt_sha256": "3cc42f64794b4c3c44a1bebdebce9b2bda301a1bc110f2c91609a4e42ed2db6e"
+      "receipt_sha256": "e01efb9dd0abbdf37e246e368eddaaff0c9811ba1ae113881baaa263621bd6fc"
     },
     {
       "post": "_posts/2026/09/2026-08-23-aws-sap-c02-multi-account-governance.md",
@@ -4377,7 +4405,7 @@
         1752
       ],
       "include_sha256": "826b6bae21dc88836cb118f444176636ca1033972e2089552593bca14a1166c7",
-      "receipt_sha256": "6ae325eb947f5b39835ea5430a9315de592f74a6c5b8f18e5d6f9dd7bc5d1614"
+      "receipt_sha256": "54bc8b9c35b6fda74b2aa58cb87c99dc0c71643b2c49c354aa5fd0ff6177d8ac"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4391,7 +4419,7 @@
         2180
       ],
       "include_sha256": "163efbbc7dab1b22a2d9260098a4c00a64c8aa44184be6d9d7003969b84025b2",
-      "receipt_sha256": "6606f2eb92e6011dc4e4f7ccc09c42be80d51f6965e39d2b11091686b9d8ebed"
+      "receipt_sha256": "f83ed21302e23978e25e3b22cbb5085caa14954e1e8c7dbbec0f4e482ddcffb5"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4405,7 +4433,7 @@
         2410
       ],
       "include_sha256": "e7a40b05a666d05e91fab3cad8a4662682d2c5e1add3ba99d550bb6422fb9429",
-      "receipt_sha256": "26d959c891dacd56d35ccb422b7504a2e827a064ab639c13744ee206f75f7f43"
+      "receipt_sha256": "65788e04c11a0d8bbbe7c1ffae6ac5628e37f8a00ea27d4620549f2ca47929c7"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -4419,7 +4447,7 @@
         2044
       ],
       "include_sha256": "2e1d4328e6b4e12fc202ab3283aa741ced2b3b181bf005d10088d982eaffd280",
-      "receipt_sha256": "fd57d422004e703e960db568435f97184465477588e5a1cb20c65e98460611a8"
+      "receipt_sha256": "63569c3e63ce198b80cfeb5fb7321e9485eb5a2d35e9a046861eb6eab52a485d"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -4433,7 +4461,7 @@
         1170
       ],
       "include_sha256": "97316c8bc391d9c5f4dc434adcd40c29503aa21197e95b6541def4952105e193",
-      "receipt_sha256": "4c41b521f69d84be617b7a11e3f932ab2674dd155e189b39fa9162defff90544"
+      "receipt_sha256": "4611e1bb2f6c9454d235bf38469a317207758dc25485bfacbf7d0750bfd56603"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4447,7 +4475,7 @@
         2822
       ],
       "include_sha256": "d06ea25af80945dd333d6fd6cc2d25bfc519fb387c72fe86909738ecadc4680a",
-      "receipt_sha256": "b33db686823c8932eac5c0a70274bb8804a127cd6b45481c57caafaf52d0c9fc"
+      "receipt_sha256": "4ca4ed81c9dde2be42ab444e41241b856760a69a2e3fef575f68f3713351198a"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4461,7 +4489,7 @@
         3492
       ],
       "include_sha256": "874ade406f130520878921d2e17f48c98731c0fd8790c364d570346dabfdc590",
-      "receipt_sha256": "50dd7acb7236c6e1a31a6f176f07991f998ee0c18efafb2400050be8492edd2d"
+      "receipt_sha256": "349629d8d1452b26d886bdad1b49fb29caee85912dd1c8ed6ca55107ef8db16a"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4475,7 +4503,7 @@
         2358
       ],
       "include_sha256": "2bd55d212bea2e884c8f08971e70f75bb0ad8334a3450c8b073c08fe49bdb169",
-      "receipt_sha256": "c5331e17191bc7025dd763c79f2501e4366c3ec7033583e43fbdc1358281bf98"
+      "receipt_sha256": "01f81230877354795a86dd3a13673806c83b9300af3d8bade5607bc13f3412c8"
     },
     {
       "post": "_posts/2026/09/2026-09-04-aws-sap-c02-migration-strategy.md",
@@ -4489,7 +4517,7 @@
         2042
       ],
       "include_sha256": "458b0fc56623f5baa79f6b5f0cfa74da25dacc33d6657823b8963084f1d66a1d",
-      "receipt_sha256": "e292d7ab85539c6db0f14f1456281c39c0927199e738cf904660284c9096eac6"
+      "receipt_sha256": "c661d5739be8a87c45ca4efafe8a48243e71094758489e0e3b86afa8c2c558fd"
     },
     {
       "post": "_posts/2026/09/2026-09-04-aws-sap-c02-migration-strategy.md",
@@ -4503,7 +4531,7 @@
         3594
       ],
       "include_sha256": "9a63954ce629db2cc9e6c1e247eb76d4bbb2de98de8ecb18972dc231239b5ed5",
-      "receipt_sha256": "56e7c8b50d59c2937f77564702c266b299f58adb87b0105b56b7e5d684aa3e5b"
+      "receipt_sha256": "ce6530f066b147a72542983bac5bdd6e341e16b88d6145aa0275972d9d2bf59a"
     },
     {
       "post": "_posts/2026/09/2026-09-04-aws-sap-c02-migration-strategy.md",
@@ -4517,7 +4545,7 @@
         2618
       ],
       "include_sha256": "cc1456e654258071488f56b3810524f55f9d11f50dfd88dfff8151f75b67b480",
-      "receipt_sha256": "afce1918453041bc2ea7cd317f2d70b445363d3bd466206b978ac5992d3a3885"
+      "receipt_sha256": "d7c5b50eca4138f956e73a67bbb0c122c75c382694724faaae68f092e836e21f"
     },
     {
       "post": "_posts/2026/09/2026-09-04-aws-sap-c02-migration-strategy.md",
@@ -4531,7 +4559,7 @@
         2044
       ],
       "include_sha256": "4d7f91b19dc5425ffe6361c1e354eaa4daac0498c57e3482e7677e5724b30023",
-      "receipt_sha256": "90b159c23a4bea7798eb5dc9216d1c8385484794c010b66aad43eace6e91014f"
+      "receipt_sha256": "f175f29467d14bb4cf48df4576f0b8cb883e05fbc3671fec30fade96fd9c3ceb"
     },
     {
       "post": "_posts/2026/09/2026-09-06-aws-sap-c02-modernization-patterns.md",
@@ -4545,7 +4573,7 @@
         2252
       ],
       "include_sha256": "54f0fadef22b7222253d5ab1990f869c4741af30329007b5276fcbe63f058bbb",
-      "receipt_sha256": "38b8666cabf3afcb7450c99cdfda451c26db69091f44cfa953288d3b0a750a1c"
+      "receipt_sha256": "b3a2be939e47cfb8372aeaab5b9a7f3629b16784f9d5c317a24d2d73f782901c"
     },
     {
       "post": "_posts/2026/09/2026-09-06-aws-sap-c02-modernization-patterns.md",
@@ -4559,7 +4587,7 @@
         2212
       ],
       "include_sha256": "35027a7eac20282a93c67154faf7533b3e9eb19a35d420d85ccece533161a886",
-      "receipt_sha256": "5fb6dadf9a5f1f80a3a9252165c6e57680d860464df21fe75b8b8a30a20d1812"
+      "receipt_sha256": "9aa3f980823c6decd263785800aabf436e124913a442269c12550445ef40dc10"
     },
     {
       "post": "_posts/2026/09/2026-09-06-aws-sap-c02-modernization-patterns.md",
@@ -4573,7 +4601,7 @@
         2846
       ],
       "include_sha256": "e188068d5c52957da21af53c47550b51e94a5baeacd761b0f0808a300a35c320",
-      "receipt_sha256": "25580bdde4e19267198bbed245b07ae0c0336f206c15c5f6c95c3a67870f9626"
+      "receipt_sha256": "3ae17f76dc5480f296c9f8f5ca5668754c8ac071b000f5b919751232dd54fec1"
     },
     {
       "post": "_posts/2026/09/2026-09-06-aws-sap-c02-modernization-patterns.md",
@@ -4587,7 +4615,7 @@
         2528
       ],
       "include_sha256": "b7042ad1e379370e0d953196258f67fc13059ef9aeaaa865bf8ed3a007353e44",
-      "receipt_sha256": "c6962b15b4c87eb074c2f95e66d10c4805627f2dc4c347d0e3917eb76d157801"
+      "receipt_sha256": "3adc4c72501480a7afc34412dc67a35da5c02d5e0d89940efc48551e30ea05e1"
     },
     {
       "post": "_posts/2026/09/2026-09-06-aws-sap-c02-modernization-patterns.md",
@@ -4601,7 +4629,7 @@
         1974
       ],
       "include_sha256": "333635b652f64242d7feb6666fbaae98a237d2b15ccae29eeacf39e7c4ced555",
-      "receipt_sha256": "8b6dbefab821ae482194fbcbcc3fac6feec16c072883f726ee04bdaad948e369"
+      "receipt_sha256": "e5e8d99e571a77a283fb468fb46105691451498f826a22e731f4051ee4b929b5"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -4615,7 +4643,7 @@
         2104
       ],
       "include_sha256": "0aa087574b55c0bf81b35ea8aab6a7b8d8d3d15e78ea96d3fe236110ef5178d6",
-      "receipt_sha256": "a892d7cf3ae6ff11ccd047425ae4008cca0d75d2f4f4e6172e6d6628bc9e2f32"
+      "receipt_sha256": "715801d0e10adc661eb253b29165d69b42e23a82be377aa52b6959610e940f53"
     },
     {
       "post": "_posts/2026/09/2026-08-23-aws-sap-c02-multi-account-governance.md",
@@ -4629,7 +4657,7 @@
         2406
       ],
       "include_sha256": "f660b655bd93245d088c37e3f3d25412e2d9a85ccf68868436f934df15cf4c37",
-      "receipt_sha256": "65069cf991fccdc46a41ba21ccc565fa9ff1ec929d41f24079c5a1199846c96f"
+      "receipt_sha256": "e9b677bd1ee947ff2266206039825becb33b3a8ee8fd35ef5614263b90e8bb21"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -4643,7 +4671,7 @@
         2426
       ],
       "include_sha256": "897aa819532b5e7f9c1f8a09cf22cbe7da7702bee0070d6edfc6849801be643b",
-      "receipt_sha256": "bc3672cbbfe8a7d24be12b105d04fb212a83b8cb7195c52270631dd7588a00db"
+      "receipt_sha256": "8b209f591524a1d306ec6e2567c1c5a4254772292312a65e65b0bdfd49165d31"
     },
     {
       "post": "_posts/2026/08/2026-08-27-aws-sap-c02-compute-scaling.md",
@@ -4657,7 +4685,7 @@
         2904
       ],
       "include_sha256": "c2215d2ff64e6333bc766a05e7e472f65193655099aff4b73d2a41f54d53767e",
-      "receipt_sha256": "aa1c48e979ad1b5086d494237469b7e9f42d7e38cf232c9f6e6d1ce453989002"
+      "receipt_sha256": "00a0e4da1cf688f727bfcd1bfcb6abc6cbde6a99b6e27d6e99faf4d9f09ce6ad"
     },
     {
       "post": "_posts/2026/09/2026-08-23-aws-sap-c02-multi-account-governance.md",
@@ -4671,7 +4699,7 @@
         2262
       ],
       "include_sha256": "ab7185f24ae1458ddab23ef2d1822ff21ed806500154639629b5913c405b946e",
-      "receipt_sha256": "74c8eba3bbead0fa37c4290e430f3963079b0d57e75fb8fc713c843d3b1822d4"
+      "receipt_sha256": "507a9c8a7376eaba9bb9df887724d810989888b5a2d171caffa7027642b323d6"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -4685,7 +4713,7 @@
         2470
       ],
       "include_sha256": "d48e997dc8d52d03eeed05124c6360ebc739058316b503fe276065efc0005ba2",
-      "receipt_sha256": "2bd8bcefad0a017381de953127cae57b2049d85b65e0e0240a0e62f8db4ce396"
+      "receipt_sha256": "9ffcb61f4eaa949324022db50d9e44b1b4e9bc5e1ee60ff1418ff23accf49273"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -4699,7 +4727,7 @@
         1922
       ],
       "include_sha256": "9fbfacf4b308a87cf28b3f81c5a6641116e5037b37e8683b2735f5dcb0f7b0a8",
-      "receipt_sha256": "46d7141b1a41326c1024dffc1f9efda435bf15eb7034f5187426df73f6c32253"
+      "receipt_sha256": "4933d827fbcb2e98807023cd032d998e7ddbf1c61d7bfdaa241984cf5bb1ddf0"
     },
     {
       "post": "_posts/2026/08/2026-08-26-aws-sap-c02-dns-global-traffic.md",
@@ -4713,7 +4741,7 @@
         1852
       ],
       "include_sha256": "8d44df46acfaa287ce61940c43a046d50c6ac3f0bf141ebf83fb11543f280c09",
-      "receipt_sha256": "047a379378f9dda47473d55a4030cde92a8f458d6ab7ad22a2c04e9018d252f7"
+      "receipt_sha256": "d7058b7c23285b67d45ebdaf3f80be3701ebc831a916c6a3e02e5ebbb3da23fc"
     },
     {
       "post": "_posts/2026/08/2026-08-26-aws-sap-c02-dns-global-traffic.md",
@@ -4727,7 +4755,7 @@
         1942
       ],
       "include_sha256": "921a7103015ad851c242b4a61845b1d42ca1343493c3878f3209d17f20250a01",
-      "receipt_sha256": "9e7f6f401c691798c12dfb0f528a72f9259364bc3552ec08c8d863005c6fa5f7"
+      "receipt_sha256": "81f8b2096efe94ed8412b8aeb3d3f60ec98944f24a010f59504af17977440b48"
     },
     {
       "post": "_posts/2026/09/2026-09-01-aws-sap-c02-availability-dr.md",
@@ -4741,7 +4769,7 @@
         1998
       ],
       "include_sha256": "fe68323fffe6db2ce7f3d4b79e8f7378a1f9be46806a3f9ccc39efceabbb639e",
-      "receipt_sha256": "88563ff97e69a343ee04849534ff01e229faa5c1f8aa79137bbc106a2dbb373a"
+      "receipt_sha256": "4b49bab004229ba82a47b366c6df2294c098dde103cab5e196ba681c2b616889"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -4755,7 +4783,7 @@
         2102
       ],
       "include_sha256": "43a4d784a5b3940791cc1174789b9604685e4e1f5489c13a560ec52d4a021fa8",
-      "receipt_sha256": "f8a8ea728cb05624ff522883d6fed646c879a716f32a3ac5ea4f8040c79d247f"
+      "receipt_sha256": "02376d773a4050869509573b1f25279d7ba4a5520dd40beed74acbc687685fb8"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -4769,7 +4797,7 @@
         2092
       ],
       "include_sha256": "5853b1d66bef3262af07ff3819db69f9c7575058c2a5cba81b67f56de587f5c6",
-      "receipt_sha256": "414f1097fa4679e87b6474154e448d7e1d313ff3d510a09751bf767b693d6cd7"
+      "receipt_sha256": "ffa66cce86bf4799b1352d045f240b44b612dddcc59b9cb061944db63faf50d0"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -4783,7 +4811,7 @@
         2928
       ],
       "include_sha256": "cc3b7b0569baa7893fe8f0938bf09ffe7a6f83212d1fa9c4f68c41a7a0eea073",
-      "receipt_sha256": "8f3e496d9bf9403c5590a7c87a97838051481756693e37f03f309b0616d308c3"
+      "receipt_sha256": "ed2be62a4b4d50a680b8bba8a26e9373c41576af135226a2d912d002bf52a639"
     },
     {
       "post": "_posts/2026/08/2026-08-25-aws-sap-c02-hybrid-networking.md",
@@ -4797,7 +4825,7 @@
         3316
       ],
       "include_sha256": "a5d0305daba67785a17c6264fdbd3ebb3b85f2d3b10ed84da348f6312a1392d2",
-      "receipt_sha256": "f779fc3b5bbf71ba12aa106333d2aa0f51e17d6b405e8114e2a3b25adbcdc60f"
+      "receipt_sha256": "532b288bbefe2fc222407780e83269d19764edc9bc4188a44864e8e044a65c75"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -4811,7 +4839,7 @@
         2370
       ],
       "include_sha256": "14be7ce63bae9b4a18f812b84ee9ee38aec0ca2878954ea0ebd125186ec80077",
-      "receipt_sha256": "60c73ca8005ea53c876373b6af30849a9ac6da324b02120c726397704defad4d"
+      "receipt_sha256": "da0f1fec9748c7e9abf2ee5376803975f26ecdb5b2a3b44a1947bc871e8297b5"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4825,7 +4853,7 @@
         2470
       ],
       "include_sha256": "6502c07d4da89a330cee8de8c90e01dfda444f2f699fb6a525b46e93492f802d",
-      "receipt_sha256": "2f3b07dcf0d63097479bdfac8722a9e2bd40fdd5b93790ec10cedd58045f09cd"
+      "receipt_sha256": "60007aae978ead8b27942820ad0ee67c9289f0513dc39ae456e5dc7445c62671"
     },
     {
       "post": "_posts/2026/09/2026-09-03-aws-sap-c02-cost-optimization.md",
@@ -4839,7 +4867,7 @@
         2100
       ],
       "include_sha256": "5a6d76e207a180db4105604bee81ac0561f2f157c78e8ae3d617ed067254e737",
-      "receipt_sha256": "7ab232f9cb5dc5b3e36b8498530c24047816b517b611ccda2eb20d72b77e6fac"
+      "receipt_sha256": "d60fd3fb9b954aa6398f39eed24efb057b4e15b515c0cbc26477f80570e5c9cd"
     },
     {
       "post": "_posts/2026/09/2026-08-23-aws-sap-c02-multi-account-governance.md",
@@ -4853,7 +4881,7 @@
         2204
       ],
       "include_sha256": "5250030cdb5ab362b3f8864660a017bd26b14a064ff6af3c639d630c25c164bf",
-      "receipt_sha256": "fa328fc3bfb66c7d7c0d0f3087112ffe0de3f468173b85488b48c8c6f7dcaa14"
+      "receipt_sha256": "952b8498b38db2e82ed4c88a37c87c0790f27df9b932b27f7fcde60b12e80a1f"
     },
     {
       "post": "_posts/2026/08/2026-08-28-aws-sap-c02-container-serverless.md",
@@ -4867,7 +4895,7 @@
         2900
       ],
       "include_sha256": "28a41d56c68695b752bcbcc34de0d5f878c5b127e66c7583b7f13ebc7251c4cd",
-      "receipt_sha256": "312abb10f8368ddb8f71ff9d02f025ea7413b4dd5e5dcb2e3e4b01eb1bf34337"
+      "receipt_sha256": "b35426035bdd10ce9b1e86170ead0782ce9ba4c0bd132885daceca283442200b"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4881,7 +4909,7 @@
         2340
       ],
       "include_sha256": "117184c4a9df801580be3ba23b7fdb14ef45c0fca4d1163b102023c10637d355",
-      "receipt_sha256": "8174bdf4ea1e932e5ac51ce16a7ac7780dabbeadafef8e1632978693c4bdc8d3"
+      "receipt_sha256": "15ac047f6c763e2b72b79d41813746a6b780d3e7c0d041c766675f7f2dbfad76"
     },
     {
       "post": "_posts/2026/08/2026-08-29-aws-sap-c02-data-layer-selection.md",
@@ -4895,7 +4923,7 @@
         2304
       ],
       "include_sha256": "81fc3553ddf6e16a6461c973de33845905e6c58c7fc5312fee2f963c94853853",
-      "receipt_sha256": "bdc200ffe8371162d3ac12ae0e62c14a649e26df07c8a116db2288acf07f8379"
+      "receipt_sha256": "0a245a447ec845fd962b30527360929283374f6fd1cb3fc7fbcbe540e6f7b01c"
     },
     {
       "post": "_posts/2026/08/2026-08-27-aws-sap-c02-compute-scaling.md",
@@ -4909,7 +4937,7 @@
         2420
       ],
       "include_sha256": "1a5d1dba9b1d8cfea35b811e37e1faed456f0a273a7db0b0f342ba86e3c12942",
-      "receipt_sha256": "4ff01f05cc708cefe8dcd76137d743cab2246647d56f498c6c058290fe787ca6"
+      "receipt_sha256": "fd73c922b151b2475648ec4f1f04114cfe8a0df7a363c35f28a9ee3800dc58d6"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4923,7 +4951,7 @@
         2744
       ],
       "include_sha256": "0d0adb12209a7d31399f7809ea628d1d3c66c25096cd41f811e5e4d987d5f295",
-      "receipt_sha256": "8fb047911c5930257b688770d7c31702b6892ce18a3d61d229bb37c7857a2228"
+      "receipt_sha256": "9ecbd55053e9cc269a0ea68d703610beeecc305629cc3674c44f1114ff67c977"
     },
     {
       "post": "_posts/2026/08/2026-08-30-aws-sap-c02-decoupling-data-pipeline.md",
@@ -4937,7 +4965,7 @@
         2690
       ],
       "include_sha256": "1b744529705d07f40b10de8aebcd4bcc5a468655c8edccf4de73877bc5920214",
-      "receipt_sha256": "612e518bf33947f40e3bc46844b25d9e313b9e870fb733bda142b9b0fd8905ae"
+      "receipt_sha256": "56fc2670a007da343665515c705c24242f7602d4e0ae3160758989ad46f740e3"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -4951,7 +4979,7 @@
         3894
       ],
       "include_sha256": "d858df7ea16770b0c3247b20337848466681e03708ee3e8a7c64c4a075c29439",
-      "receipt_sha256": "59594a691bf72edd023676a51920f4164bc61d3cd2e9bf80d67fbf6c2ba2d724"
+      "receipt_sha256": "6ce2a6492a5828f9711e185d42533d8dca8a8ec458b01abb7e8bd85dda5130c2"
     },
     {
       "post": "_posts/2026/09/2026-08-24-aws-sap-c02-iam-federation.md",
@@ -4965,7 +4993,7 @@
         2680
       ],
       "include_sha256": "5758136196fc6cc59dea50aaef84ca512d175143fabe80d1889c8d8bf8ca6b6a",
-      "receipt_sha256": "0e997faebd65488a09b6899b0220c0eb3f87c2dcf006a415dbe0ecc2c95adf61"
+      "receipt_sha256": "f0c86a557c8eb4e5582a73c8cf1370cd4d0d12562cafb39cc077822ce6113465"
     },
     {
       "post": "_posts/2026/08/2026-08-25-aws-sap-c02-hybrid-networking.md",
@@ -4979,7 +5007,7 @@
         2650
       ],
       "include_sha256": "fe1501cc5d48cebfd6c002b532ba9fbe57d65c3feaf9dc6bc40ce05fe1657271",
-      "receipt_sha256": "f48b6ec61ac3cb98cae3549e1e1ed1c3b1c379a7d7993df05bb14c85b140dc9c"
+      "receipt_sha256": "f4c50ea60f9b294d3886812dffc76b530931943448d5f216c5e4a34910aa3627"
     },
     {
       "post": "_posts/2026/08/2026-08-25-aws-sap-c02-hybrid-networking.md",
@@ -4993,7 +5021,7 @@
         1666
       ],
       "include_sha256": "d6f649fd95efbb2011e8454faba998a3d4d0f28382014a45be02ca0c1e8ea9e6",
-      "receipt_sha256": "e16f32b80ad97eb63acb4f5d094d209556188e46389cbbc3386bfc4d76244d88"
+      "receipt_sha256": "56f698ff83b156c916167cfbdbbd44c5271e2ec926350f21cc145221cc65a159"
     },
     {
       "post": "_posts/2026/09/2026-09-05-aws-sap-c02-data-transfer-hybrid-edge.md",
@@ -5007,7 +5035,7 @@
         2922
       ],
       "include_sha256": "83023bfffcfda37208fe72dda7fd70b88827c419bcae666765ac0e54434d3c51",
-      "receipt_sha256": "098dbba9abd3d625c34d3e59b7c34bff7610e76d7366dd9659af97e572070d2d"
+      "receipt_sha256": "dedc4845185dcebc8f2d1d2eda2a977bdffde7a3240d490a894e9b661a5a80cc"
     },
     {
       "post": "_posts/2026/08/2026-08-25-aws-sap-c02-hybrid-networking.md",
@@ -5021,7 +5049,7 @@
         2812
       ],
       "include_sha256": "6b50887a8660acd1401adb6a2509642d56a56e79b7b2b84d3c8c604d3f06a00b",
-      "receipt_sha256": "2749c8ba3fcf0af0dc35905469cc5ad57c479dab48311fee583097824be109c5"
+      "receipt_sha256": "97c5e581a5a35d377e3485d9dccfa4a2915f9623cedd59bce8989455162330ae"
     },
     {
       "post": "_posts/2026/08/2026-08-31-aws-sap-c02-security-deep-dive.md",
@@ -5035,7 +5063,7 @@
         3038
       ],
       "include_sha256": "bfde33a09c053d390c6e565d55965609e40607e746719e9c1123e14b8e28cf76",
-      "receipt_sha256": "4761f13d428ac0c9aaa3d7000cd290a3e5c3056792f942300f5a8bd68f5efdc2"
+      "receipt_sha256": "48285e78448dbd8eab5834ad9c7bd279da2cbb5a63cb41fcc56b55afa47e9f43"
     },
     {
       "post": "_posts/2026/09/2026-09-02-aws-sap-c02-observability-operations.md",
@@ -5049,7 +5077,7 @@
         2696
       ],
       "include_sha256": "ab20fd7f3df062d30d045c25e543ce5b26a614e5a90b0381e8b8b35f1e03b826",
-      "receipt_sha256": "c5fd54d098f6c4c7367d9feb0320289c1e58a8ce0fe44f190e9c717c97561a65"
+      "receipt_sha256": "3cc77bf49bfecedfdb8b7d39cb2adae3a932910c20302aeaaca812b18a513f49"
     },
     {
       "post": "_posts/2026/08/2026-07-25-ja4-tls-fingerprinting-bot-mitigation.md",
@@ -5063,7 +5091,7 @@
         2062
       ],
       "include_sha256": "c6d7786063514065a7e68f3875a2a40fc6972cf48dc39f3e01603a427ad4018b",
-      "receipt_sha256": "2655aea12fd5961ddd19908fe4082babcb652537adde3b50ad3d6fd655cdd5fb"
+      "receipt_sha256": "4532893bf22afed603010242b3bf20eef3c7e6defae0bc431afb7b7865957955"
     },
     {
       "post": "_posts/2025/02/2025-02-23-keycloak-argocd-sso.md",
@@ -5077,7 +5105,7 @@
         1782
       ],
       "include_sha256": "6889b9e095eee9b11c4c038d470cb6ee141b2530b0606fbddfc8813b9115a54f",
-      "receipt_sha256": "f6dd804da483f22f3113d25f0c927353362b7c4e7283e3d4c083ed6cf70c633a"
+      "receipt_sha256": "79161d94c6dd26810974e144582e1b48afc4de5f7307ff0018ca52348e1e907c"
     },
     {
       "post": "_posts/2026/07/2026-07-22-nodejs-spring-boot-server-comparison.md",
@@ -5091,7 +5119,7 @@
         1966
       ],
       "include_sha256": "00f7c072446f2d01f909070723dffaca38f21b085f6066d124933d0ebd43439b",
-      "receipt_sha256": "4b29953e6656f1f8dbba21b2dda614c6eb8dfa5a0f5b75f5660fb67a06e4066b"
+      "receipt_sha256": "825f222db0541591321cd6cb96f5b38df624280f7712158cb8fadf9411d14111"
     },
     {
       "post": "_posts/2023/07/2023-07-08-software-life-cycle.md",
@@ -5105,7 +5133,7 @@
         1952
       ],
       "include_sha256": "0e21dafd95861f751d6e2f44fca4b711fb00381e5669259514220c661f8a8f72",
-      "receipt_sha256": "97ca76d236b9dbaeb93d734edf9743119f350eabff10edb9bd09fff58277906e"
+      "receipt_sha256": "ea211981f9693319212449c20ae5c92b0b79cd17d6b4cd2aea11917cc124c4e9"
     },
     {
       "post": "_posts/2026/06/2026-06-02-spring-request-lifecycle.md",
@@ -5119,7 +5147,7 @@
         2566
       ],
       "include_sha256": "5dd5c4e178cf27c41e6a58080c7ffd2be47193fafc94bd7fd906757c138495cd",
-      "receipt_sha256": "c73a5ae38e14f725d9e267a1fc549f7bfd8472682efc63e1f6b414d4cb70bf4f"
+      "receipt_sha256": "d76576ce9f1ecb2d9abdbe33be4de1c0f17d1b07c9871f865704122364ea6cda"
     },
     {
       "post": "_posts/2026/06/2026-06-02-spring-request-lifecycle.md",
@@ -5133,7 +5161,7 @@
         1776
       ],
       "include_sha256": "9eb31370001a2cf22030ccfa02d7d620866e73c2181a0418d68bf449361b9623",
-      "receipt_sha256": "09a66445f17b0a9181cd2e7fa7969cf22ff08fdddd7f86e50196563f042f2076"
+      "receipt_sha256": "4cf5df05ea1f9acbc4eeea7238b00c9ae30254b9e23ce37b879d7820f9a0103f"
     },
     {
       "post": "_posts/2026/06/2026-06-01-spring-ioc-di-container.md",
@@ -5147,7 +5175,7 @@
         2204
       ],
       "include_sha256": "97914a057a8807ad5091a2db75a0ccd639c9dd6e36d217e861f7e4108cbef601",
-      "receipt_sha256": "ce4e841873c6fad01970fc7983b71afa4d034dcc02e366a3ef2f66b829115db0"
+      "receipt_sha256": "8dc0c7bac4d28b108992ebb1fdfc0b8eb0c811d480da4c63a6f820c817620783"
     },
     {
       "post": "_posts/2026/06/2026-06-01-spring-ioc-di-container.md",
@@ -5161,7 +5189,7 @@
         2428
       ],
       "include_sha256": "3e8dab0704b7eef0b0e4ac2c66b80863e1b7f35e9a5d386a16e6df3c94dbefe8",
-      "receipt_sha256": "c93f67519f9facec0086c8b62894c872b7f5b696b8fb3b43493178ee4549ddb4"
+      "receipt_sha256": "7ab30c8491f7986b106c564922032e5fe88cb3c99f729e39a68f98338600ced5"
     },
     {
       "post": "_posts/2026/06/2026-06-03-spring-mvc-dispatcherservlet.md",
@@ -5175,7 +5203,7 @@
         2000
       ],
       "include_sha256": "c0c027c05aebbd00073b5ca6468b33a5f23a216db6339c8d4349d74a4c20acaa",
-      "receipt_sha256": "6c9facf2af9a5563ed46d7522bc67d3a5989ac70d715a32c17aa12cdd9a293de"
+      "receipt_sha256": "fdaeb64e0f55ae4d6609bf886d807dd61e85c4f99aed11f7a9be1aa4ae07c60a"
     },
     {
       "post": "_posts/2026/06/2026-06-03-spring-mvc-dispatcherservlet.md",
@@ -5189,7 +5217,7 @@
         1474
       ],
       "include_sha256": "cda7085198a04772ac3d9bcfd2903f988b6d711a4b2f3e9eaf661b18322273da",
-      "receipt_sha256": "82c06f8872c570d61b2fc74de69ca0bdc7360a330f7ee1dcdc342f7f6d8983b1"
+      "receipt_sha256": "0c1c0023a6fb2d7a4e8b9926c5ddb6462f3a312edcad6776f8ba2f820f72b72d"
     },
     {
       "post": "_posts/2026/06/2026-06-04-spring-boot-autoconfiguration.md",
@@ -5203,7 +5231,7 @@
         1810
       ],
       "include_sha256": "b2d12493667ddaf01002de6102cbc08cab3708d4f913587ee3c703289df1777e",
-      "receipt_sha256": "dad10c3cde43bc60adea6807ab4ca9ea5078e1da811b5dc894b28a0693b1e9ed"
+      "receipt_sha256": "eef3f2aeb4cdd2a5ce462c707fdb8d240492b2ee01f674a981c5538b6aaf264c"
     },
     {
       "post": "_posts/2026/06/2026-06-04-spring-boot-autoconfiguration.md",
@@ -5217,7 +5245,7 @@
         2358
       ],
       "include_sha256": "164e77bfaa926162174d0b285eb393efb5372c0222cf8b856eed7a916774edc8",
-      "receipt_sha256": "40be4045980a775d466fbecec4ba59d50cf5d37ebcfc573fa803ae6cd9daf8e1"
+      "receipt_sha256": "65582078629deab6b91f3d15834a46703493f6463d7a80368bc1384dd0537fed"
     },
     {
       "post": "_posts/2026/06/2026-06-13-reactive-reactor-basics.md",
@@ -5231,7 +5259,7 @@
         2040
       ],
       "include_sha256": "a370f7718a347a8ba051b9235070fd7d2d0e8d7611a255222dfbd8d0dd1edb90",
-      "receipt_sha256": "cf816bda493b4f8bf0525b131be7212ec4ca98c523d7706b2655e57c6291feec"
+      "receipt_sha256": "4be11ed0a61906277cf8fc19fa1ccf173d60cf98b0e2ec2ec3f6eafe48737e44"
     },
     {
       "post": "_posts/2026/06/2026-06-13-reactive-reactor-basics.md",
@@ -5245,7 +5273,7 @@
         1784
       ],
       "include_sha256": "d4394275696ff769175a3d25cff1222cf91326abde81793f3236d53c91299d81",
-      "receipt_sha256": "c50ccc4e7204c2414ec7b37915f818e14b5c891dd5f16e36c5920c9bcda60061"
+      "receipt_sha256": "e9d0794403162a33974679145e3e85b0fef39230a93188519a97f018188341f6"
     },
     {
       "post": "_posts/2026/06/2026-06-14-spring-webflux-netty-event-loop.md",
@@ -5259,7 +5287,7 @@
         1382
       ],
       "include_sha256": "c6540748fb8599554c65d7d0796364c113a9467d35955ace3179c656cb528a41",
-      "receipt_sha256": "2b4917513c3e79d5e1038f0043fa7653df007fe86fce9f63fbaca88992e889eb"
+      "receipt_sha256": "e2bad61cb7bc8bf0c41a14792fd8d0c9f08888565a609cdc03f905d650c184d2"
     },
     {
       "post": "_posts/2026/06/2026-06-14-spring-webflux-netty-event-loop.md",
@@ -5273,7 +5301,7 @@
         984
       ],
       "include_sha256": "479d5c24e157a2ccdeb3be5eb80431270868fa4b7a73c07fb9fb40deb347c391",
-      "receipt_sha256": "447e4e8ae9ae5f789c7d0a50dc82baea381690a6cac0bb6554329441d84359d6"
+      "receipt_sha256": "5dadda3d486b7647ec9158b6db3d0ecbad384b0d05c00ebf83194e8dc4d9f4df"
     },
     {
       "post": "_posts/2026/06/2026-06-11-mvc-vs-webflux.md",
@@ -5287,7 +5315,7 @@
         1394
       ],
       "include_sha256": "934ab5add20cba9b281186655e4f5c31ba0cffc51b3275261113a2aa7410cdf8",
-      "receipt_sha256": "2b8638af6a898226cf0750eb262d1a95ca6b473d6dfe779bdc322a10a8feafd9"
+      "receipt_sha256": "b944f612ebc7c554a1ca4bcd31fc259fb8c8a709e18c80baba89856897e763d9"
     },
     {
       "post": "_posts/2026/06/2026-06-11-mvc-vs-webflux.md",
@@ -5301,7 +5329,7 @@
         2378
       ],
       "include_sha256": "dee3ee258a2b816d579b38bab62dc8c74deb0eb6f642bfe8fd0fece3108e45ea",
-      "receipt_sha256": "5c4e43add23bb49cadc84ae35b62f9573e1828b0ceac675b8f828c07224aab93"
+      "receipt_sha256": "b38295437ff11cf8fbed4939c628e154f7d116020a5d81b48613d2a658f72884"
     },
     {
       "post": "_posts/2026/06/2026-06-07-jpa-persistence-context.md",
@@ -5315,7 +5343,7 @@
         1670
       ],
       "include_sha256": "e9ace222836a5b6ba799d9796416a4f3c64d0c6f6f6b31395bc2548ee07b85a7",
-      "receipt_sha256": "6215538b9f8359c0240ef4798f358174889b2eff1fdf6d52278c9500c1990ac1"
+      "receipt_sha256": "cebc482930dd505c9bb821ae57a57a807b8214dbd7d33a0de9fae0e380012b54"
     },
     {
       "post": "_posts/2026/06/2026-06-07-jpa-persistence-context.md",
@@ -5329,7 +5357,7 @@
         2338
       ],
       "include_sha256": "1a7329ed82c49640e93d0060c519c17b5a1494ab55aaeba07d33bcc18c99b93a",
-      "receipt_sha256": "d53f2fcc0ceb17caa690c15d8b663bf8c17eee65cbf35d3404def7c106573137"
+      "receipt_sha256": "4dacd378be5ab7b08fab79cacd7dc086cf585c03510a352ad9768b7799dca233"
     },
     {
       "post": "_posts/2026/06/2026-06-06-spring-transactional-propagation.md",
@@ -5343,7 +5371,7 @@
         2916
       ],
       "include_sha256": "efe3d36ee0bce395c0fe4bb5c18194288016462aae5698745388ec129316ce09",
-      "receipt_sha256": "aad55273111e47f92a99cd043333e1260a2fb35d7218404245ea2776c2e9e6d8"
+      "receipt_sha256": "abbaa70c83d0f2652f4c1c599520af2f0714a6224c312a50d1b631dd92c6d4eb"
     },
     {
       "post": "_posts/2026/06/2026-06-06-spring-transactional-propagation.md",
@@ -5357,7 +5385,7 @@
         2650
       ],
       "include_sha256": "5fc74f983b5ed470c25dbf7dbcd4e9231f7d771ae470ed5eb602a1fa18e5c258",
-      "receipt_sha256": "1f739d688319faf03bb78bf2d0d0cf89d0ea2cb4a0dda54335847a0118baaba8"
+      "receipt_sha256": "3878e6a6ecf0a05ec3aa80bd37124aa45c6285433cb1a7ce585425ea3b75b41b"
     },
     {
       "post": "_posts/2026/06/2026-06-08-jpa-n-plus-1.md",
@@ -5371,7 +5399,7 @@
         1094
       ],
       "include_sha256": "d48cdf261c3a66a8296d63348b0ab69888272fd0cc53effc9c5ddd2e79f98743",
-      "receipt_sha256": "d27b3d0b9a57808df41029ce2aa629674b98e64d189eebbe961510e81f06ac66"
+      "receipt_sha256": "37ed066138602e8bc2446bf0ef9977a53475c78e78748f89669cb322a2e7b5c5"
     },
     {
       "post": "_posts/2026/06/2026-06-08-jpa-n-plus-1.md",
@@ -5385,7 +5413,7 @@
         1860
       ],
       "include_sha256": "56eb6cc66c95b8c918364bcf3bd371dd959a80929e167277cddd1d32336b635d",
-      "receipt_sha256": "bc0336c1933a21313b304dbe77557b1b1ca28801af81555ff80740596b63d077"
+      "receipt_sha256": "5426220a0a228d3e1e9ee93f740a02f728ccbf659e7176ca0e2ff62591642a60"
     },
     {
       "post": "_posts/2026/06/2026-06-05-gradle-maven-build.md",
@@ -5399,7 +5427,7 @@
         1650
       ],
       "include_sha256": "db5bb7a98ff874a036853069531d5420470952ae0a4f3acfc4b3e1b3f3fa33e7",
-      "receipt_sha256": "26d3976361c8046fa8a44bc663c91cd89ebc49e3ca3aad2e9354aa9fccc3039f"
+      "receipt_sha256": "ea1ed3eaa85cc47be49cb42064e70623cadcbe78fffd0d9d755262329b2a4079"
     },
     {
       "post": "_posts/2026/06/2026-06-05-gradle-maven-build.md",
@@ -5413,7 +5441,7 @@
         1094
       ],
       "include_sha256": "0a867720e16a3eec3175b03a57c5fa7681c794bfe3ff728ca2425c601bbf21b5",
-      "receipt_sha256": "c38b675da5b564fbb9bc4a493692d492c1bc15110faa71c1476fa0d1d4d9369d"
+      "receipt_sha256": "b15314a4478a76505e8309ff4eed79f49022e955a44708331be1cba50c2cf5ba"
     },
     {
       "post": "_posts/2026/06/2026-06-10-spring-security-basics.md",
@@ -5427,7 +5455,7 @@
         2014
       ],
       "include_sha256": "2eed50fe17a761a40b797642ff164b510fbfa69e333d41d8d91cc960598015d9",
-      "receipt_sha256": "38d7630b69a1fa5097d3571a9d9c79ea8c0243942cab825b953885dd199df0a0"
+      "receipt_sha256": "707ddaf2622febd38a37c438f346b74308812480d8e433f5da657fecd9d4e640"
     },
     {
       "post": "_posts/2026/06/2026-06-10-spring-security-basics.md",
@@ -5441,7 +5469,7 @@
         2074
       ],
       "include_sha256": "927ce8ae74b34204db5b74b02d951c1c4c9481cce8acd2b899129d8574356922",
-      "receipt_sha256": "c204ad16519b99d7fe0825f62b1fe23c9ae3d46d5c5303df7548f53e26156303"
+      "receipt_sha256": "62e21f152dff8a382e789b73c4061e128af15d1dd85804c0e3f41ed1826be29c"
     },
     {
       "post": "_posts/2024/04/2024-04-03-full-virtualization-vs-para-virtualization.md",
@@ -5455,7 +5483,7 @@
         1884
       ],
       "include_sha256": "cbbb5299da503dff95384f646b4a0bb754a9ae2d09e0414b1a0b8b9ee10e3764",
-      "receipt_sha256": "e27fefb7858982ceb4cd012b2820c3b73bb681cc369487068a4ff520497de672"
+      "receipt_sha256": "87566d93ea302bf1690cb00bc3c86b51e47209aea59d0ad7cdd97721e95123a6"
     },
     {
       "post": "_posts/2024/04/2024-04-01-type1-type2-virtualization.md",
@@ -5469,7 +5497,7 @@
         2340
       ],
       "include_sha256": "be3241030fbc05d1a421fb16cb16133ca1a338450ee1d2f3032108c90a70864b",
-      "receipt_sha256": "dbaeee54658ff4c60014503a491992f39ce9c4ef320ab059ab54c0bf08fbfd0c"
+      "receipt_sha256": "529da966a0c78f5a2236a90fcea55a2d72258c7a6d3d92c05d32d7b6bc8cbb37"
     },
     {
       "post": "_posts/2024/03/2024-03-29-virtualization.md",
@@ -5483,24 +5511,7 @@
         1354
       ],
       "include_sha256": "06e8f370a9fb4e591c3d845f4979dbe14a05e8161a96b0f4bb4356deec069351",
-      "receipt_sha256": "9200750553ab9c951435af2ab575e5fddc91f737527fdeda8c104d37a371c059"
+      "receipt_sha256": "7f926b2af73f5a2d38db67f0c311d7840fae90ad48a5cca34aff6e0257c1c9f0"
     }
-  ],
-  "capture_source_fingerprint": "8a27506ecbf424bddc16717e938fe261ea7b97b22027d860e46b8111693e514e",
-  "post_capture_nonrender_policy_change": {
-    "reason": "Commit index-membership correction only; no render, geometry, font, HTML, build asset or PNG input/output changed. Prior capture/check evidence retained.",
-    "files": {
-      "kkamji_scripts/blog/static_png/release_manifest.py": {
-        "before": "db41d5eff3bd7d72556dd88560417a9afbbf832495925d3ee2d6e67a3829bb91",
-        "after": "40fb1cddb2ccbdc5040427e0f2a086365cda25a088a409f802adc65cc3034413"
-      },
-      "kkamji_scripts/blog/static_png/test_release_manifest.py": {
-        "before": "d13e41eaf00efae77a0496fc74b490a84143c19f03715604242bccb345d52f8e",
-        "after": "0565bf04a8581dd33b14aa058ebbe2c243a1204fcea3400cb425cf71aa09f834"
-      }
-    },
-    "original_checked_manifest_sha256": "0036bbe02206a0e68c4d84be4c57e5e7e97b5677ec7db7c51e27b78f2263bf3d",
-    "build_stamp_unchanged_sha256": "f5c106ad7bc5facfb7cac8fb862e2e21870fa7e642de16298f18fc5619712c6a",
-    "verified_pngs": 388
-  }
+  ]
 }
