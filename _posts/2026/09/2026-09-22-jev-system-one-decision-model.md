@@ -209,12 +209,13 @@ SDK 문서의 `Noul` 예시는 `instructions`만 받고 `criteria` 인자를 보
 }
 ```
 
-SDK는 `TYPESAFE_API_KEY` 환경 변수를 읽고, REST 호출은 `Authorization: Bearer` header로 key를 전달합니다. key는 환경 변수에서만 읽고 명령줄, 스크립트, 요청 파일에 직접 쓰지 않습니다. `-H "Authorization: Bearer $TYPESAFE_API_KEY"`처럼 쓰면 확장된 key가 curl process argument에 남아 같은 host의 `ps`로 보일 수 있습니다. 아래 명령은 bash builtin `printf`와 process substitution으로 header를 파일처럼 전달합니다.
+SDK는 `TYPESAFE_API_KEY` 환경 변수를 읽고, REST 호출은 `Authorization: Bearer` header로 key를 전달합니다. key는 환경 변수에서만 읽고 명령줄, 스크립트, 요청 파일에 직접 쓰지 않습니다. `-H "Authorization: Bearer $TYPESAFE_API_KEY"`처럼 쓰면 확장된 key가 curl process argument에 남아 같은 host의 `ps`로 보일 수 있습니다. 아래 명령은 bash builtin `printf`와 process substitution으로 header를 파일처럼 전달합니다. process substitution 안의 `${VAR:?}` 검사는 실패해도 바깥 curl을 멈추지 못하므로, key 존재 확인은 curl 앞 줄에서 따로 수행하고 `&&`로 연결해 대화형 셸에서도 curl이 실행되지 않게 합니다.
 
 ```bash
 # TYPESAFE_API_KEY는 secret store나 CI secret에서 환경 변수로 주입한다
+: "${TYPESAFE_API_KEY:?TYPESAFE_API_KEY is not set}" &&
 curl -sS https://api.typesafe.ai/v1/systemone \
-  -H @<(printf 'Authorization: Bearer %s\n' "${TYPESAFE_API_KEY:?TYPESAFE_API_KEY is not set}") \
+  -H @<(printf 'Authorization: Bearer %s\n' "$TYPESAFE_API_KEY") \
   -H 'Content-Type: application/json' \
   --data @req_kubectl_delete_prod.json
 ```
@@ -243,7 +244,7 @@ curl -sS https://api.typesafe.ai/v1/systemone \
 }
 ```
 
-한 번의 호출 결과이며, `blast_radius.legend`는 요청한 Score criteria 네 문장을 그대로 돌려주므로 생략했습니다. 나머지 field와 값은 응답 원문과 같습니다. Score의 `score` 2.78은 `1 x 0.11 + 3 x 0.89`로 계산되는 확률 가중 위치입니다. **`score`는 정수 level이 아니므로 `== 3` 같은 일치 비교가 아니라 `>= 2` 같은 구간 비교로 읽어야 합니다.**
+한 번의 호출 결과이며, `blast_radius.legend`는 요청한 Score criteria 네 문장을 그대로 돌려주므로 생략했습니다. 나머지 field와 값은 응답 원문과 같습니다. Score의 `score` 2.78은 `1 x 0.11 + 3 x 0.89`로 계산되는 확률 가중 위치입니다. 1회차 값으로는 정확히 맞지만, 다른 회차는 반올림된 `probabilities`로 재계산하면 0.01 정도 차이가 납니다. **`score`는 정수 level이 아니므로 `== 3` 같은 일치 비교가 아니라 `>= 2` 같은 구간 비교로 읽어야 합니다.**
 
 아래 policy 함수는 SDK 응답 객체의 typed field를 조합합니다. REST 응답을 직접 쓰면 같은 값을 `answers["tool_risk"]["choice"]`처럼 dict key로 읽습니다.
 
@@ -272,7 +273,7 @@ def shadow_or_escalate(answers):
 | `git status --short` | `bounded`, 1.0 | 0.02 | 0.0, 1.0 | `shadow` |
 | `rm -rf ./build` | `review_required`, 0.83 | 0.61 | 0.0, 1.0 | `escalate` |
 
-세 결과는 response field를 조합한 offline policy fixture의 분류와 같습니다. `kubectl` 요청은 Choice, Noul, Score 조건에 모두 걸렸고, `rm -rf ./build`는 blast radius가 worktree 안으로 판정됐지만 `review_required`와 `noul` 0.61 때문에 `escalate`됐습니다.
+세 결과는 측정 전에 response field 값만 가정해 만든 offline policy fixture의 분류와 같습니다. `kubectl` 요청은 Choice, Noul, Score 조건에 모두 걸렸고, `rm -rf ./build`는 blast radius가 worktree 안으로 판정됐지만 `review_required`와 `noul` 0.61 때문에 `escalate`됐습니다.
 
 - `git status --short`의 `shadow`는 실행 허가가 아니라 평가 후보라는 뜻
 - `0.90`, `0.10`, `2`는 검증된 운영 threshold가 아니라 typed field와 deterministic policy 조합을 보이는 예시
@@ -280,7 +281,7 @@ def shadow_or_escalate(answers):
 
 > **측정 조건**  
 > 2026-09-25 한국에 있는 필자의 WSL host에서 `POST https://api.typesafe.ai/v1/systemone`, model `jev-1.13.0`으로 호출함  
-> 세 요청 각 5회, Noul criteria 비교 1회, 인증과 validation 오류 3종을 기록함  
+> 세 요청 각 5회, Noul criteria 비교 1회, 문서 예제 body의 `jev-latest` alias 확인 1회(200), 인증과 validation 오류 3종을 기록함  
 > 측정한 항목: 응답 값, 클라이언트 측 latency, `usage`, 오류 status와 body  
 > 측정하지 않은 항목: 429와 529 동작, 동시 요청, 실제 청구 금액, labeled calibration  
 {: .prompt-warning}
@@ -299,7 +300,7 @@ def shadow_or_escalate(answers):
 | `git status --short` | 5 | 491ms | 552ms | 588ms |
 | `rm -rf ./build` | 5 | 504ms | 526ms | 613ms |
 
-이 값에는 한국에서 API endpoint까지의 network 왕복과 연결 설정 시간이 포함되며, 서버 처리 시간은 분리하지 않았습니다. n=5라 p95도 말할 수 없습니다. **이 수치는 서버 SLO가 아니라 한 client 위치에서 본 관측값이므로, timeout과 latency budget은 실제 배포 region에서 다시 측정해 정해야 합니다.** 6절에서 인용하는 TypeSafe의 응답 시간 70~500ms와 직접 비교하지 않는 이유도 같습니다.
+각 호출은 별도 curl process로 보내 매번 새 TCP와 TLS 연결을 맺었습니다. 따라서 이 값에는 한국에서 API endpoint까지의 network 왕복과 연결 설정 시간이 포함되며, 서버 처리 시간은 분리하지 않았습니다. n=5라 p95도 말할 수 없습니다. **이 수치는 서버 SLO가 아니라 한 client 위치에서 본 관측값이므로, timeout과 latency budget은 실제 배포 region에서 다시 측정해 정해야 합니다.** 6절에서 인용하는 TypeSafe의 응답 시간 70~500ms와 직접 비교하지 않는 이유도 같습니다.
 
 ### 5.2. label은 고정됐고 확률과 score는 흔들렸습니다
 
@@ -311,7 +312,7 @@ def shadow_or_escalate(answers):
 | `rm -rf ./build` | `review_required` 5/5 | Choice `confidence` 0.77-0.87, `review_required` 확률 0.89-0.94, `noul` 0.60-0.62 |
 | `git status --short` | `bounded` 5/5 | `answers` 전체가 5회 모두 동일 |
 
-변동 폭은 값마다 중앙값 기준 약 +-0.01에서 +-0.05였습니다. `rm -rf ./build`의 Choice `confidence` 최댓값 0.87은 예시 threshold 0.90과 0.03 차이입니다. **threshold 근처 값은 같은 입력에서도 호출마다 경계 반대편으로 넘어갈 수 있으므로, policy는 경계값에 여유 구간을 두고 확률의 정확한 일치에 의존하지 않아야 합니다.**
+값마다 5회 중 최댓값과 최솟값의 차이는 0.02에서 0.10이었고, 가장 크게 움직인 값은 `rm -rf ./build`의 Choice `confidence`였습니다. 측정한 값 중 policy 결과를 바꾼 값은 없었습니다. `rm -rf ./build`는 5회 모두 `review_required`였으므로 `confidence < 0.90` 조건이 결과를 가르지 않았기 때문입니다. **threshold 근처 값은 같은 입력에서도 호출마다 경계 반대편으로 넘어갈 수 있으므로, policy는 경계값에 여유 구간을 두고 확률의 정확한 일치에 의존하지 않아야 합니다.**
 
 `probabilities` 안의 key 순서도 호출마다 달랐습니다. 응답은 key 이름으로 읽고, raw response 문자열의 hash를 cache key나 중복 판정에 쓰지 않습니다. 5회 표본의 범위는 7절의 Archestra가 보고한 최대 drift 0.17보다 작지만, 표본이 작아 변동의 상한으로 쓸 수는 없습니다.
 
