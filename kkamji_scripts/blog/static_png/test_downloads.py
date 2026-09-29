@@ -46,10 +46,17 @@ class DownloadWiringTests(unittest.TestCase):
                 self.post.write_text(text)
                 with self.assertRaises(ValueError): discover(self.root)
 
+    def markup(self, entry):
+        png = entry['png']
+        return (f'<figure class="sd" id="{entry["figure"]}"></figure>'
+                f'<p class="diagram-download"><img class="diagram-inline" src="{png}" alt="" '
+                f'width="1920" data-static-diagram="true">'
+                f'<a href="{png}" download>PNG</a><a href="{png}">Open</a></p>')
+
     def test_sibling_outside_figure_and_native_download(self):
-        text = '<main><figure class="sd" id="demo"><div>body</div></figure>\n<p class="diagram-download"><a href="/x.png" download>PNG</a><a href="/x.png">Open</a></p></main>'
+        text = '<main><figure class="sd" id="demo"><div>body</div></figure>\n<p class="diagram-download"><img class="diagram-inline" src="/x.png" alt="" width="1920" data-static-diagram="true"><a href="/x.png" download>PNG</a><a href="/x.png">Open</a></p></main>'
         rows = Siblings(text).rows
-        self.assertEqual(rows, [{'figure': 'demo', 'links': [('/x.png', True), ('/x.png', False)]}])
+        self.assertEqual(rows, [{'figure': 'demo', 'parent': ('main',), 'links': [('/x.png', True), ('/x.png', False)], 'images': [('/x.png', '', 'true', None, True, ('main', 'p'))]}])
         with self.assertRaises(ValueError): Siblings(text.replace('</figure>', ''))
         with self.assertRaises(ValueError): Siblings(text.replace('</figure>', '</figure><div>intervening</div>'))
 
@@ -73,7 +80,7 @@ class DownloadWiringTests(unittest.TestCase):
         def write_pages(entries):
             for page, entry in zip(pages, entries):
                 page.parent.mkdir(parents=True, exist_ok=True)
-                page.write_text('<figure class="sd" id="demo"></figure><p class="diagram-download"><a href="' + entry['png'] + '" download>PNG</a><a href="' + entry['png'] + '">Open</a></p>')
+                page.write_text(self.markup(dict(entry, figure='demo')))
         write_pages(plan['entries'])
         self.assertEqual(len(built_plan(self.root, site, plan)), 2)
         write_pages(list(reversed(plan['entries'])))
@@ -97,11 +104,30 @@ class DownloadWiringTests(unittest.TestCase):
         sidecar.unlink()
         with self.assertRaises(ValueError): built_plan(self.root, site, plan)
 
+    def test_inline_url_alt_and_marker_are_required(self):
+        plan = self.wire()
+        site = self.root/'site'; site.mkdir()
+        page = site/'index.html'
+        text = '<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>'
+        self.sidecar(site)
+        image = '<img class="diagram-inline" src="' + plan['entries'][0]['png'] + '" alt="" width="1920" data-static-diagram="true">'
+        self.assertIn(image, text)
+        page.write_text(text)
+        self.assertEqual(len(built_plan(self.root, site, plan)), 2)
+        for wrong in ['', image.replace('src="', 'src="/different.png', 1),
+                      image.replace('alt=""', 'alt="duplicate description"'),
+                      image.replace('data-static-diagram="true"', ''),
+                      image.replace('data-static-diagram="true"', 'srcset="/other.png 2x" data-static-diagram="true"')]:
+            with self.subTest(wrong=wrong):
+                page.write_text(text.replace(image, wrong, 1))
+                with self.assertRaisesRegex(ValueError, 'missing or mismatched accessible inline PNG'):
+                    built_plan(self.root, site, plan)
+
     def test_built_coverage_missing_unknown_and_duplicate_fail(self):
         plan = self.wire()
         site = self.root/'site'; site.mkdir()
         page = site/'index.html'
-        content = '<main>' + ''.join('<figure class="sd" id="' + e['figure'] + '"></figure><p class="diagram-download"><a href="' + e['png'] + '" download>PNG</a><a href="' + e['png'] + '">Open</a></p>' for e in plan['entries']) + '</main>'
+        content = '<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>'
         page.write_text(content)
         self.sidecar(site)
         self.assertEqual(len(built_plan(self.root, site, plan)), 2)
@@ -129,7 +155,7 @@ class DownloadWiringTests(unittest.TestCase):
             site = Path(external)/'site'; site.mkdir()
             out = Path(external)/'receipts'
             page = site/'index.html'
-            page.write_text('<main>' + ''.join('<figure class="sd" id="' + e['figure'] + '"></figure><p class="diagram-download"><a href="' + e['png'] + '" download>PNG</a><a href="' + e['png'] + '">Open</a></p>' for e in plan['entries']) + '</main>')
+            page.write_text('<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>')
             self.sidecar(site)
             (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': {'index.html': digest(page.read_bytes())}}))
             calls = []
@@ -163,7 +189,7 @@ class DownloadWiringTests(unittest.TestCase):
         site = Path(external.name)/'site'; site.mkdir()
         out = Path(external.name)/'receipts'
         page = site/'index.html'
-        page.write_text('<main>' + ''.join('<figure class="sd" id="' + e['figure'] + '"></figure><p class="diagram-download"><a href="' + e['png'] + '" download>PNG</a><a href="' + e['png'] + '">Open</a></p>' for e in plan['entries']) + '</main>')
+        page.write_text('<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>')
         self.sidecar(site)
         (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': {'index.html': digest(page.read_bytes())}}))
         return plan, site, out, ['--root', str(self.root), '--site', str(site), '--out', str(out)]

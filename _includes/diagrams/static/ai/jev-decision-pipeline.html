@@ -1,51 +1,44 @@
-<figure class="sd sd--gateway-v2 sd--jev" id="jev-decision-pipeline" aria-labelledby="jev-decision-pipeline-title">
-  <figcaption class="sd-title" id="jev-decision-pipeline-title">Jev 판단과 실행 권한의 경계</figcaption>
+<figure class="sd sd--jev" id="jev-decision-pipeline" aria-label="Jev 판단과 실행 권한의 경계">
   <div class="sd-jev-flow">
-    <section class="sd-v2-group" aria-label="입력">
-      <div class="sd-v2-section-title">입력</div>
-      <div class="sd-v2-group-item">
-        <strong class="sd-label"><code>State</code></strong>
-        <span class="sd-detail"><code>tool call</code>, context, 검증된 사실</span>
+    <div class="sd-jev-signals" role="group" aria-label="입력을 받아 판단 신호를 반환하는 Jev">
+      <section class="sd-node sd-jev-inputs" aria-label="입력: State와 Typed Questions">
+        <strong class="sd-label">State</strong>
+        <strong class="sd-label">Typed Questions</strong>
+      </section>
+      <div class="sd-jev-input-link" aria-hidden="true"></div>
+      <div class="sd-node sd-jev-judge" role="group" aria-label="Jev: 범위가 제한된 병렬 판단, 실행 권한 없음">
+        <strong class="sd-label">Jev</strong>
+        <strong class="sd-detail">실행 권한 없음</strong>
       </div>
-      <div class="sd-v2-group-item">
-        <strong class="sd-label"><code>Typed Questions</code></strong>
-        <span class="sd-detail"><code>Choice</code>, <code>Score</code>, <code>Noul</code></span>
-      </div>
-    </section>
-
-    <div class="sd-v2-link" aria-hidden="true"></div>
-
-    <div class="sd-node sd-node--accent">
-      <strong class="sd-label">Jev</strong>
-      <span class="sd-detail">병렬, 범위 제한 판단<br>실행 권한 없음</span>
     </div>
 
-    <div class="sd-v2-link" aria-hidden="true"></div>
-
-    <div class="sd-node">
-      <strong class="sd-label">typed answers</strong>
-      <span class="sd-detail">답, 확률 분포, confidence</span>
+    <div class="sd-jev-transfer" role="group" aria-label="Jev가 정책에 전달하는 데이터: typed answers">
+      <span class="sd-edge-label">typed<br>answers</span>
+      <span class="sd-jev-transfer-line" aria-hidden="true"></span>
     </div>
 
-    <div class="sd-v2-link" aria-hidden="true"></div>
-
-    <section class="sd-jev-policy" aria-label="정책과 결과">
-      <div class="sd-node sd-node--warning">
+    <section class="sd-jev-policy" aria-labelledby="jev-authority-title">
+      <strong class="sd-label sd-jev-boundary-label" id="jev-authority-title">실행 권한 판단</strong>
+      <div class="sd-node sd-jev-authority">
         <strong class="sd-label">Deterministic Policy</strong>
-        <span class="sd-detail">코드와 정책이 권한을 판단</span>
+        <span class="sd-detail">코드와 정책이 결정</span>
       </div>
-      <div class="sd-v2-down" aria-hidden="true"></div>
-      <div class="sd-jev-outcomes">
-        <div class="sd-node sd-node--muted">
+      <div class="sd-jev-fork" aria-hidden="true">
+        <span class="sd-jev-fork-stem"></span>
+        <span class="sd-jev-fork-bus"></span>
+        <span class="sd-jev-fork-drop sd-jev-fork-drop--shadow"></span>
+        <span class="sd-jev-fork-drop sd-jev-fork-drop--escalate"></span>
+      </div>
+      <div class="sd-jev-outcomes" role="group" aria-label="정책 후속 경로: Shadow 또는 Escalate. 실행 허가를 뜻하지 않음">
+        <div class="sd-node sd-jev-shadow">
           <strong class="sd-label">Shadow</strong>
           <span class="sd-detail">실행 없이 비교</span>
         </div>
-        <div class="sd-node sd-node--warning">
+        <div class="sd-node sd-jev-escalate">
           <strong class="sd-label">Escalate</strong>
-          <span class="sd-detail">사람 또는 상위 제어</span>
+          <span class="sd-detail">사람 / 상위 제어</span>
         </div>
       </div>
     </section>
   </div>
-  <p class="sd-note">Jev의 결과는 정책 입력이다. 직접 실행 경로와 권한은 코드에 남는다.</p>
 </figure>

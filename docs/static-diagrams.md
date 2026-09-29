@@ -15,7 +15,15 @@ status: current
 
 제목은 22px 이상, 주요 라벨은 16px 이상, 보조 라벨과 표/코드는 14px 이상이다. 긴 설명은 본문에 둔다. 그림의 제목, 부제, 노드, 캡션에서 같은 문장을 반복하지 않는다. 전문 식별자는 원문을 유지하고 설명 문장은 간결한 한국어로 쓴다.
 
-그림의 버튼, 링크, hover 의존 정보, 숨겨진 내용, 재생, script, 애니메이션을 사용하지 않는다. 좁은 화면에서는 내용을 줄여 숨기는 대신 grid와 flow를 재배치한다.
+그림의 버튼, 링크, hover 의존 정보, 숨겨진 내용, 재생, script, 애니메이션을 사용하지 않는다. 원본 HTML의 grid와 flow는 625px 본문 폭에서 export되며, 매핑된 본문 화면은 그 PNG만 비율을 유지해 축소한다. 좁은 화면에서 재배치한 별도 그림을 보여주지 않는다.
+
+## 단일 PNG 표시
+
+`figure.sd`는 계속 의미 구조와 접근성 텍스트, export의 정본이다. 모든 매핑된 사용처에서 바로 뒤의 `diagrams/download.html` helper는 동일한 PNG URL을 빈 `alt`의 inline 이미지, 다운로드 링크, 원본 열기 링크에 쓴다. 이미지의 중복 설명을 막고 figure의 `aria-labelledby`와 노드 텍스트를 보조 기술에 남긴다. helper가 없는 미사용 figure는 원래 HTML로 표시한다. `figure.sd:has(+ .diagram-download > img.diagram-inline)`는 해당 figure만 화면에서 시각적으로 클립한다. `display:none`, `visibility:hidden`, `aria-hidden`을 사용하지 않는다. 이미지에는 `data-static-diagram="true"`를 붙여 확대/래퍼 생성을 피한다.
+
+PNG는 각 그림의 내용 높이를 유지하며 Chromium에서 625px 원본 캔버스를 DPR 3.072로 직접 렌더해 가로 1920px로 만든다. 1920x1080 고정 비율에 맞추려고 텍스트를 축소하거나 이미지에 여백을 덧대지 않는다. PNG는 intrinsic 비율로 본문 폭까지 축소된다. 360px와 625px, light와 dark, 인쇄에서 화면상 도식 구성은 동일한 PNG 픽셀이다. 좁은 화면에서는 확대가 필요할 수 있으므로 원본 이미지 열기 링크를 유지한다. 이미지는 텍스트 선택이 불가능하지만 의미 정보는 figure에 남는다. export 브라우저는 스크린샷 전 클립만 복구하고 helper를 숨겨 figure HTML을 캡처한다. 이는 게시 HTML 변경이 아니라 일회용 브라우저 스타일 변경이다. 품질/connector gate와 모바일 진단 캡처는 계속 원본 figure에 적용한다.
+
+CSS의 공통 figure 팔레트는 테마/인쇄 모드와 관계없이 흰 바탕과 진한 텍스트/선이다. 그림 안의 중복 시각 제목은 숨기고 접근성 캡션 ID는 유지한다. 의미상 비교 가능한 두 개의 최상위 lane만 원본 캔버스에서 나란히 두며, 세로 비교, 조건 분기, 반복, 시퀀스는 그 의미를 보존한다. 짧은 직렬 3단계 그림 중 opt-in한 것만 가로 카드로 배치한다. 모든 다이어그램을 Jev의 정책 분기 토폴로지로 치환하지 않는다. 화면용 PNG는 `--theme light`와 결정적 폰트 프로필로 생성한다. export 전용 브라우저에서 `html`/`body` 배경을 흰색으로 고정하고, 첫 raster 픽셀이 흰색인지 검사해 어두운 본문 배경이 소수점 크롭 가장자리로 스며드는 실패를 막는다. 최종 전수 PNG의 네 모서리와 잘림, 과도한 높이도 실제 픽셀에서 별도로 점검한다. 기존 저장소 PNG는 새 팔레트를 반영하지 않으므로 소스/CSS 변경 후 전체 mapped corpus를 fresh build에서 재export하고 전체 check/release를 통과시켜야 한다. 한 장만 갱신하거나 현재 이미지를 새 스타일이라고 표시하지 않는다.
 
 ## 공통 클래스
 
@@ -32,7 +40,7 @@ status: current
 | 비교 표 | `sd-table` |
 | 공식 아이콘과 배지 | `sd-icon`, `sd-cert-card`, `sd-cert-badge`, `sd-cert-code` |
 
-내부 제목은 `div` 또는 `strong`으로 만들어 본문 TOC의 heading과 구분한다. figure의 `aria-labelledby`는 고유한 title id를 참조한다. 조건을 담은 edge label은 보조 기술에서도 읽을 수 있어야 한다.
+내부 제목은 `div` 또는 `strong`으로 만들어 본문 TOC의 heading과 구분한다. 제목을 보여주는 그림은 figure의 `aria-labelledby`가 고유한 title id를 참조한다. 시각 제목이 본문과 중복되는 그림은 제목을 그리지 않고 figure에 비어 있지 않은 `aria-label`로 접근성 이름만 남긴다. 조건을 담은 edge label은 보조 기술에서도 읽을 수 있어야 한다.
 
 ## 이미지와 원본 증적
 
@@ -55,7 +63,7 @@ uv run python docs/_meta/docs_lint.py --root .
 
 ## Same-source PNG export
 
-`kkamji_scripts/blog/static_png/` captures the canonical `figure.sd` from an actual Jekyll-built article with compiled theme CSS. It does not author another drawing. Page scripts and external network access are disabled; article width is 625px at a 1280px viewport, mobile QA uses the native 360px viewport and gutters, both at DPR 2. Locale is `ko-KR`, timezone is UTC. Existing Playwright/Chromium and fontconfig are prerequisites; the runner never installs them. Select an existing Python environment using `DIAGRAM_PYTHON` and, if needed, `PYTHONPATH`.
+`kkamji_scripts/blog/static_png/` captures the canonical `figure.sd` from an actual Jekyll-built article with compiled theme CSS. It does not author another drawing. Page scripts and external network access are disabled; article width is 625px at a 1280px viewport, desktop PNG is natively rasterized at DPR 3.072 (1920px width, variable height), and mobile QA uses the native 360px viewport and gutters at the same DPR. Locale is `ko-KR`, timezone is UTC. Existing Playwright/Chromium and fontconfig are prerequisites; the runner never installs them. Select an existing Python environment using `DIAGRAM_PYTHON` and, if needed, `PYTHONPATH`.
 
 ```bash
 bash kkamji_scripts/blog/static_png/run.sh test
@@ -140,7 +148,7 @@ Keep canonical includes at block level: indentation inside Markdown lists can pr
 
 For the Linux deterministic release environment, set `FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf"` for both export and check. This process-local fontconfig sees only the two approved open font files instead of hashing the host's entire Windows/Linux font inventory for every figure. It does not change user or system font configuration. The strict CDP gate still requires the figure to use custom webfonts; installed/system fallback remains a failure, even if it is the same font family. This is a distinct recorded export environment, not byte parity with earlier host-font captures. Use a fresh build and regenerate all images after switching environments.
 
-DOM geometry and selectable-text gates are not visual or semantic approval. Receipts retain `visual_review` and `semantic_review` as `not-run`. Height ratios are review flags, not universal vertical-layout failures. Dark mode must be exported and reviewed separately.
+DOM geometry and selectable-text gates are not visual or semantic approval. Receipts retain `visual_review` and `semantic_review` as `not-run`. Height ratios are review flags, not universal vertical-layout failures. The source palette is light in both site modes. Dark-mode article QA checks the same PNG against its surrounding theme; a separate dark PNG is not a published variant.
 
 ## Connector acceptance and recurrence gates
 
@@ -170,7 +178,7 @@ FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
   --site /tmp/blog-static-release --out /tmp/blog-connector-audit.json
 ```
 
-The scan covers every referenced occurrence plus every unused canonical include, at native 360/390 viewports and exact 625/720 figure-content widths, in both themes. Unused fragments are identified as isolated harness cases, never as article renders. Keep reports outside source/build trees. Geometry checks are supplemented by native-image review of representative problem families; screenshot generation alone is not visual approval. Tests preserve already-spaced flow/direct-arrow controls, role identities and typography floors.
+The scan covers every referenced occurrence plus every unused canonical include, at native 360/390 viewports and target 625/720 figure-content widths, in both themes. Three opt-in fixed-canvas sources (Jev and two three-card landscape rows) retain their 625px outer artwork width in both desktop cases; the scanner identifies these as `fixed-source-content` and checks the actual content width after padding, rather than falsely reporting 625/720px reflow. Unused fragments are identified as isolated harness cases, never as article renders. Keep reports outside source/build trees. Geometry checks are supplemented by native-image review of representative problem families; screenshot generation alone is not visual approval. Tests preserve already-spaced flow/direct-arrow controls, role identities and typography floors.
 
 ## Rollback
 
@@ -179,7 +187,7 @@ catalog의 원본 경로를 사용해 해당 본문의 include를 이전 이미�
 ## Mobile layout and stylesheet cache
 
 - Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
-- Titles use `word-break: keep-all` with `overflow-wrap: anywhere` as the long-token fallback. Direct figure arrows receive `0.75rem` block margins; nested flow arrows keep their existing grid gap.
+- 시각적으로 중복되는 내부 제목은 숨기되 `figcaption.sd-title`과 `aria-labelledby`를 보존해 ID-less figure 식별과 보조 기술 접근성을 유지한다. 렌더 검사에서는 정확히 클립된 접근성 제목만 그림 내부 글자 크기 및 오버플로 검사에서 제외한다.
 - Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
 - Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. No service-worker fetch, activation, purge, or cache-name behavior changes.
 - Old cached HTML can still request old CSS until the existing service-worker update lifecycle supplies new HTML. Versioned CSS is not an instant eviction mechanism.

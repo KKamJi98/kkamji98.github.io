@@ -408,10 +408,13 @@ def semantic_findings(parser: FragmentParser) -> list[Finding]:
         for element in parser.elements
         if element.tag == "figcaption" and _has_class(element, "sd-title")
     ]
-    if not titles:
+    # A titleless artwork still needs an accessible figure name, but it must
+    # not spend diagram canvas space on a redundant visible heading.
+    labelled_figure = len(figures) == 1 and bool(figures[0].attrs.get("aria-label", "").strip())
+    if not titles and not labelled_figure:
         findings.append(
             Finding(
-                "error", "missing-title", "figure must contain a figcaption.sd-title"
+                "error", "missing-title", "figure needs figcaption.sd-title or a nonempty aria-label"
             )
         )
 

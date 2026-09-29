@@ -4,7 +4,7 @@ import re
 
 COLLECT = r"""f => {
  const box=r=>({x:r.x,y:r.y,w:r.width,h:r.height});
- const style=s=>({content:s.content,display:s.display,background:s.backgroundImage,color:s.backgroundColor,transform:s.transform,visibility:s.visibility,opacity:parseFloat(s.opacity),radii:['TopLeft','TopRight','BottomRight','BottomLeft'].map(k=>s['border'+k+'Radius']),borders:['Top','Right','Bottom','Left'].map(k=>({width:parseFloat(s['border'+k+'Width']),style:s['border'+k+'Style'],color:s['border'+k+'Color']}))});
+ const style=s=>({content:s.content,display:s.display,background:s.backgroundImage,backgroundSize:s.backgroundSize,backgroundPosition:s.backgroundPosition,backgroundRepeat:s.backgroundRepeat,color:s.backgroundColor,transform:s.transform,visibility:s.visibility,opacity:parseFloat(s.opacity),radii:['TopLeft','TopRight','BottomRight','BottomLeft'].map(k=>s['border'+k+'Radius']),borders:['Top','Right','Bottom','Left'].map(k=>({width:parseFloat(s['border'+k+'Width']),style:s['border'+k+'Style'],color:s['border'+k+'Color']}))});
  const text=e=>{if(!e)return [];let w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT),n,a=[];while(n=w.nextNode()){if(!n.textContent.trim())continue;let r=document.createRange();r.selectNodeContents(n);for(const b of r.getClientRects())if(b.width&&b.height)a.push({...box(b),text:n.textContent.trim().slice(0,100)})}return a};
 
  let elements=[f,...f.querySelectorAll('*')];let result=[];
@@ -16,7 +16,7 @@ COLLECT = r"""f => {
  const key=(f.id||f.getAttribute('aria-labelledby'))+':'+i;
  let cls=typeof e.className==='string'?e.className:e.getAttribute('class')||'';
  let role=e.getAttribute('data-connector-role')||'';
- let known=/sd-arrow|sd-loop|sd-reference|sd-v2-(link|down|fork|relation)|branch|connector/.test(cls)||!!role;
+ let known=/sd-arrow|sd-loop|sd-reference|sd-v2-(link|down|fork|relation)|branch|connector/.test(cls)||!!role||(f.id==='jev-decision-pipeline'&&cls.includes('sd-jev-'));
  let pseudo=[before,after].some(p=>p.content!=='none'&&p.content!=='normal'&&p.display!=='none');
  let thin=(b.width<=4||b.height<=4)&&b.width*b.height>0;
  let svg=e instanceof SVGElement;
@@ -38,7 +38,15 @@ COLLECT = r"""f => {
  text:text(e),conditionText:e.matches('.sd-v2-outcome')?text(e.querySelector('.sd-v2-condition')):[],parent:e.parentElement.className,
  forkSource:e.matches('.sd-v2-fork')?box(e.previousElementSibling.lastElementChild.getBoundingClientRect()):null});
  }
- let s=getComputedStyle(f),b=f.getBoundingClientRect();return {figure:f.id||f.getAttribute('aria-labelledby'),figureBox:box(b),contentWidth:b.width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-parseFloat(s.borderLeftWidth)-parseFloat(s.borderRightWidth),elements:result};
+ const jev=f.id==='jev-decision-pipeline'&&f.classList.contains('sd--jev')?(()=>{
+  const selectors={inputs:'.sd-jev-signals > .sd-jev-inputs',judge:'.sd-jev-signals > .sd-jev-judge',input:'.sd-jev-signals > .sd-jev-input-link',transfer:'.sd-jev-transfer > .sd-jev-transfer-line',transferLabel:'.sd-jev-transfer > .sd-edge-label',policy:'.sd-jev-flow > .sd-jev-policy',policyLabel:'.sd-jev-policy > .sd-jev-boundary-label',authority:'.sd-jev-policy > .sd-jev-authority',fork:'.sd-jev-policy > .sd-jev-fork',stem:'.sd-jev-fork > .sd-jev-fork-stem',bus:'.sd-jev-fork > .sd-jev-fork-bus',shadowDrop:'.sd-jev-fork > .sd-jev-fork-drop--shadow',escalateDrop:'.sd-jev-fork > .sd-jev-fork-drop--escalate',shadow:'.sd-jev-outcomes > .sd-jev-shadow',escalate:'.sd-jev-outcomes > .sd-jev-escalate'};
+  return Object.fromEntries(Object.entries(selectors).map(([name,selector])=>{const hits=[...f.querySelectorAll(selector)];return [name,{count:hits.length,...(hits.length===1?{box:box(hits[0].getBoundingClientRect()),hidden:hiddenElement(hits[0]),label:hits[0].innerText.trim().replace(/\s+/g,' ')}:{})}]}));
+ })():null;
+ const landscape=['sd-ethereum-account-fields','jib-build-workflow'].includes(f.id)?(()=>{
+  const flows=[...f.children].filter(e=>e.classList.contains('sd-flow--linear-landscape'));
+  return flows.map(flow=>[...flow.children].map(e=>({cls:e.getAttribute('class')||'',index:elements.indexOf(e),hidden:hiddenElement(e),box:box(e.getBoundingClientRect())})));
+ })():null;
+ let s=getComputedStyle(f),b=f.getBoundingClientRect();return {figure:f.id||f.getAttribute('aria-labelledby'),figureBox:box(b),contentWidth:b.width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-parseFloat(s.borderLeftWidth)-parseFloat(s.borderRightWidth),elements:result,jev,landscape};
 }"""
 
 
@@ -64,10 +72,279 @@ def center(b, axis):
     return b[axis] + b["w" if axis == "x" else "h"] / 2
 
 
+# This contract applies only to the reviewed Jev figure. No generic pseudo or
+# unknown connector is approved by it; missing nodes are inventoried separately.
+_JEV_CLASSES = {
+    "input": "sd-jev-input-link",
+    "transfer": "sd-jev-transfer-line",
+    "stem": "sd-jev-fork-stem",
+    "bus": "sd-jev-fork-bus",
+    "shadowDrop": "sd-jev-fork-drop sd-jev-fork-drop--shadow",
+    "escalateDrop": "sd-jev-fork-drop sd-jev-fork-drop--escalate",
+}
+
+
+def _jev_connectors(f):
+    findings, unresolved = [], []
+    anchors = f.get("jev")
+    if not isinstance(anchors, dict):
+        return [{"id": f["figure"], "type": "jev-inventory-missing"}], [], set()
+
+    def defect(name, kind, **detail):
+        findings.append({"id": "jev:" + name, "type": "jev-" + kind, **detail})
+
+    def aligned(name, a, b, tolerance=1):
+        if abs(a - b) > tolerance:
+            defect(name, "off-axis", actual=a, expected=b)
+
+    def visible(name):
+        item = anchors.get(name, {})
+        box = item.get("box", {})
+        if item.get("count") != 1 or item.get("hidden") or box.get("w", 0) <= 0 or box.get("h", 0) <= 0:
+            defect(name, "missing-or-hidden", count=item.get("count"))
+            return None
+        return box
+
+    boxes = {name: visible(name) for name in (
+        "inputs", "judge", "input", "transfer", "transferLabel", "policy",
+        "policyLabel", "authority", "fork", "stem", "bus", "shadowDrop",
+        "escalateDrop", "shadow", "escalate",
+    )}
+    labels = {
+        "inputs": "State Typed Questions", "judge": "Jev 실행 권한 없음",
+        "transferLabel": "typed answers", "policyLabel": "실행 권한 판단",
+        "authority": "Deterministic Policy 코드와 정책이 결정",
+        "shadow": "Shadow 실행 없이 비교", "escalate": "Escalate 사람 / 상위 제어",
+    }
+    for name, expected in labels.items():
+        if anchors.get(name, {}).get("label") != expected:
+            defect(name, "wrong-label", expected=expected, actual=anchors.get(name, {}).get("label"))
+
+    consumed = set()
+    elements = {}
+    for name, cls in _JEV_CLASSES.items():
+        matches = [e for e in f["elements"] if e["cls"] == cls]
+        if len(matches) != 1:
+            defect(name, "connector-inventory", count=len(matches))
+        else:
+            elements[name] = matches[0]
+            consumed.add(matches[0]["id"])
+
+    def opaque(color):
+        return color == "rgb(51, 65, 85)"
+
+    for name, e in elements.items():
+        if e.get("hidden") or e.get("box", {}).get("w", 0) <= 0 or e.get("box", {}).get("h", 0) <= 0:
+            defect(name, "missing-or-hidden-paint")
+        st = e.get("style", {})
+        background = st.get("background")
+        if name in ("input", "shadowDrop", "escalateDrop"):
+            shaft = (isinstance(background, str)
+                     and background.count("rgb(51, 65, 85)") == 2
+                     and background.startswith("linear-gradient(")
+                     and st.get("backgroundSize") == "2px 100%"
+                     and st.get("backgroundPosition") in ("50% 50%", "center center")
+                     and st.get("backgroundRepeat") == "no-repeat")
+        else:
+            shaft = opaque(st.get("color"))
+        dimensions = e["box"]
+        if (name in ("transfer", "bus") and not 1.5 <= dimensions["h"] <= 2.5
+            or name == "stem" and not 1.5 <= dimensions["w"] <= 2.5
+            or name in ("input", "shadowDrop", "escalateDrop") and not 7 <= dimensions["w"] <= 9):
+            shaft = False
+        if not shaft:
+            defect(name, "missing-shaft")
+        if name in ("input", "transfer", "shadowDrop", "escalateDrop"):
+            p = [p for p in e.get("pseudos", []) if p.get("type") == "after"]
+            head = e.get("after", {})
+            sides = head.get("borders", [])
+            main_side = 3 if name == "transfer" else 0  # left or top triangle edge
+            if (len(p) != 1 or not p[0].get("quad") or len(sides) != 4
+                or head.get("content") in ("none", "normal")
+                or head.get("display") == "none"
+                or head.get("visibility") in ("hidden", "collapse")
+                or head.get("opacity", 1) < 0.01
+                or not opaque(sides[main_side].get("color"))
+                or not 5.75 <= sides[main_side].get("width", 0) <= 6.25
+                or sides[main_side].get("style") in ("none", "hidden")
+                or any(not 3.75 <= sides[i].get("width", 0) <= 4.25
+                       for i in ((0, 2) if name == "transfer" else (1, 3)))
+                or any(opaque(sides[i].get("color")) and sides[i].get("width", 0) > 0
+                       for i in range(4) if i != main_side)):
+                defect(name, "missing-or-malformed-arrowhead")
+            else:
+                head_box = bounds(p[0]["quad"])
+                shaft_box = e["box"]
+                expected = (6, 8) if name == "transfer" else (8, 6)
+                if (abs(head_box["w"] - expected[0]) > 0.5 or
+                    abs(head_box["h"] - expected[1]) > 0.5):
+                    defect(name, "malformed-arrowhead-geometry", bounds=head_box)
+                axis = "y" if name == "transfer" else "x"
+                aligned(name + ":head", center(head_box, axis), center(shaft_box, axis))
+                if name == "transfer":
+                    aligned(name + ":head-tip", head_box["x"] + head_box["w"], shaft_box["x"] + shaft_box["w"])
+                else:
+                    aligned(name + ":head-tip", head_box["y"] + head_box["h"], shaft_box["y"] + shaft_box["h"])
+        # Extra painted pseudos can turn a single stroke into a second arrow.
+        for p in e.get("pseudos", []):
+            if p.get("type") != "after" or name in ("stem", "bus"):
+                defect(name, "unexpected-pseudo", pseudo=p.get("type"))
+        if name in ("stem", "bus") and e.get("pseudos"):
+            defect(name, "unexpected-fork-paint")
+
+    b = {name: box for name, box in boxes.items() if box is not None}
+    if len(b) == len(boxes):
+        aligned("input", center(b["input"], "x"), center(b["inputs"], "x"))
+        aligned("input", center(b["input"], "x"), center(b["judge"], "x"))
+        if not (3 <= b["input"]["y"] - b["inputs"]["y"] - b["inputs"]["h"] <= 6
+                and 3 <= b["judge"]["y"] - b["input"]["y"] - b["input"]["h"] <= 6):
+            defect("input", "card-clearance")
+        aligned("transfer", center(b["transfer"], "y"), center(b["judge"], "y"))
+        aligned("transfer", center(b["transfer"], "y"), center(b["authority"], "y"))
+        if not (4 <= b["transfer"]["x"] - b["judge"]["x"] - b["judge"]["w"] <= 8
+                and 6 <= b["authority"]["x"] - b["transfer"]["x"] - b["transfer"]["w"] <= 24):
+            defect("transfer", "card-clearance")
+        if not (b["transferLabel"]["y"] + b["transferLabel"]["h"] <= b["transfer"]["y"] - 4):
+            defect("transfer", "label-clearance")
+        aligned("fork", center(b["stem"], "x"), center(b["authority"], "x"))
+        aligned("fork", center(b["stem"], "x"), center(b["bus"], "x"))
+        if not (3 <= b["stem"]["y"] - b["authority"]["y"] - b["authority"]["h"] <= 6
+                and b["stem"]["y"] <= center(b["bus"], "y") <= b["stem"]["y"] + b["stem"]["h"]):
+            defect("fork", "broken-stem-bus")
+        for drop, card in (("shadowDrop", "shadow"), ("escalateDrop", "escalate")):
+            aligned(drop, center(b[drop], "x"), center(b[card], "x"))
+            if not (b["bus"]["x"] - 1 <= center(b[drop], "x") <= b["bus"]["x"] + b["bus"]["w"] + 1
+                    and b[drop]["y"] <= center(b["bus"], "y") <= b[drop]["y"] + b[drop]["h"]
+                    and 3 <= b[card]["y"] - b[drop]["y"] - b[drop]["h"] <= 6):
+                defect(drop, "broken-bus-drop-or-card-clearance")
+        aligned("fork", b["shadow"]["y"], b["escalate"]["y"])
+
+    # No second horizontal stroke, or unreviewed Jev pseudo, can hide in a
+    # decorative wrapper. Other figures retain the original generic behavior.
+    for e in f["elements"]:
+        if e["id"] in consumed:
+            continue
+        cls = e.get("cls", "")
+        st = e.get("style", {})
+        border = st.get("borders", [])
+        extra_border = (len(border) == 4 and e["box"]["w"] > 4 and
+                        any(border[i].get("width", 0) >= 1.5 and
+                            border[i].get("style") not in ("none", "hidden") and
+                            border[i].get("color") not in (None, "transparent", "rgba(0, 0, 0, 0)")
+                            for i in (0, 2)))
+        extra_line = (e["box"]["h"] <= 4 and e["box"]["w"] > 4 and
+                      (st.get("color") not in (None, "transparent", "rgba(0, 0, 0, 0)") or
+                       isinstance(st.get("background"), str) and "gradient(" in st["background"]))
+        if extra_border or extra_line or "sd-jev-" in cls and e.get("pseudos"):
+            unresolved.append({"id": e["id"], "reason": "extra Jev stroke or pseudo"})
+    return findings, unresolved, consumed
+
+
+_LANDSCAPE_FIGURES = {"sd-ethereum-account-fields", "jib-build-workflow"}
+_LANDSCAPE_COLOR = "rgb(51, 65, 85)"
+
+
+def _landscape_connectors(f):
+    """Paint/geometry contract for the two opted-in 625px three-card rows only."""
+    findings = []
+
+    def defect(name, kind):
+        findings.append({"id": name, "type": "landscape-" + kind})
+
+    rows = f.get("landscape")
+    if not isinstance(rows, list) or len(rows) != 1 or len(rows[0]) != 5:
+        defect(f["figure"], "inventory")
+        return findings
+    row = rows[0]
+    arrows = [e for e in f["elements"] if "sd-arrow" in e.get("cls", "").split()]
+    if len(arrows) != 2:
+        defect(f["figure"], "arrow-inventory")
+    for i, slot in enumerate(row):
+        expected = "sd-arrow" if i % 2 else "sd-node"
+        if expected not in slot.get("cls", "").split() or slot.get("hidden"):
+            defect(f["figure"] + ":" + str(i), "missing-or-hidden-slot")
+    for i in (1, 3):
+        slot = row[i]
+        name = f["figure"] + ":" + str(slot.get("index", i))
+        matched = [e for e in arrows if e["id"] == name]
+        if len(matched) != 1 or slot.get("cls") != "sd-arrow":
+            defect(name, "arrow-inventory")
+            continue
+        e = matched[0]
+        box = e.get("box", {})
+        left, right = row[i - 1].get("box", {}), row[i + 1].get("box", {})
+        if e.get("hidden") or box.get("w", 0) <= 0 or box.get("h", 0) <= 0:
+            defect(name, "missing-or-hidden-arrow")
+            continue
+        st = e.get("style", {})
+        if (st.get("background") != "linear-gradient(rgb(51, 65, 85), rgb(51, 65, 85))"
+            or st.get("backgroundSize") != "48px 2px"
+            or st.get("backgroundPosition") not in ("50% 50%", "center center")
+            or st.get("backgroundRepeat") != "no-repeat"):
+            defect(name, "missing-or-shifted-shaft")
+        shaft = {"x": center(box, "x") - 24, "y": center(box, "y") - 1, "w": 48, "h": 2}
+        if (not 95 <= box["w"] <= 97 or box["h"] < 150
+            or not left or not right
+            or left["x"] + left["w"] > shaft["x"] - 4
+            or shaft["x"] + shaft["w"] > right["x"] - 4
+            or abs(left["x"] + left["w"] - box["x"]) > 1
+            or abs(box["x"] + box["w"] - right["x"]) > 1
+            or abs(center(left, "y") - center(box, "y")) > 1
+            or abs(center(right, "y") - center(box, "y")) > 1):
+            defect(name, "shaft-card-clearance")
+
+        head = e.get("after", {})
+        sides = head.get("borders", [])
+        pseudos = [p for p in e.get("pseudos", []) if p.get("type") == "after" and p.get("quad")]
+        transform = re.fullmatch(r"matrix\(([^)]+)\)", head.get("transform", ""))
+        matrix = []
+        if transform:
+            try:
+                matrix = [float(n.strip()) for n in transform.group(1).split(",")]
+            except ValueError:
+                pass
+        visible = (len(pseudos) == 1 and len(sides) == 4
+                   and head.get("content") not in (None, "none", "normal")
+                   and head.get("display") != "none"
+                   and head.get("visibility") not in ("hidden", "collapse")
+                   and head.get("opacity", 1) >= 0.01
+                   and len(matrix or []) == 6
+                   and all(abs(matrix[j] - v) < 0.02 for j, v in enumerate(
+                       (0.7071, -0.7071, 0.7071, 0.7071, 0, 0)))
+                   and all(sides[j].get("style") not in ("none", "hidden")
+                           and 1.75 <= sides[j].get("width", 0) <= 2.25
+                           and sides[j].get("color") == _LANDSCAPE_COLOR for j in (1, 2))
+                   and all(sides[j].get("width", 0) == 0 or
+                           sides[j].get("color") in ("transparent", "rgba(0, 0, 0, 0)")
+                           for j in (0, 3)))
+        if not visible:
+            defect(name, "missing-or-wrong-caret")
+            continue
+        caret = bounds(pseudos[0]["quad"])
+        if (not 14 <= caret["w"] <= 16 or not 14 <= caret["h"] <= 16
+            or abs(center(caret, "x") - (center(box, "x") + 23.2)) > 1
+            or abs(center(caret, "y") - center(shaft, "y")) > 1
+            or caret["x"] > shaft["x"] + shaft["w"] - 2
+            or caret["x"] + caret["w"] <= shaft["x"] + shaft["w"]
+            or not left or not right
+            or left["x"] + left["w"] > caret["x"] - 4
+            or caret["x"] + caret["w"] > right["x"] - 4):
+            defect(name, "caret-geometry-or-card-clearance")
+        if any(p.get("type") == "before" and p.get("quad") for p in e.get("pseudos", [])):
+            defect(name, "unexpected-caret")
+    return findings
+
+
 def classify(f):
     findings = []
     unresolved = []
     count = 0
+    jev_consumed = set()
+    if f.get("figure") == "jev-decision-pipeline":
+        jev_findings, jev_unresolved, jev_consumed = _jev_connectors(f)
+        findings.extend(jev_findings)
+        unresolved.extend(jev_unresolved)
+        count += len(jev_consumed)
     svg_elements = [e for e in f["elements"] if e["svg"]]
     reviewed_svg = (
         f["figure"] == "sd-blockchain-operator-health-ladder"
@@ -77,6 +354,8 @@ def classify(f):
         == {"path": "M6 1v20", "strokeWidth": "2", "dasharray": "3 3"}
     )
     for e in f["elements"]:
+        if e["id"] in jev_consumed:
+            continue
         cl = e["cls"]
         if e.get("hidden"):
             findings.append({"id": e["id"], "type": "hidden-connector"})
@@ -558,6 +837,8 @@ def classify(f):
                     e,
                     "measured outcome branch to fork rail adjacency; condition label interrupts the visual path intentionally",
                 )
+    if f.get("figure") in _LANDSCAPE_FIGURES:
+        findings.extend(_landscape_connectors(f))
     f.update(
         connectorCount=count,
         findings=findings,

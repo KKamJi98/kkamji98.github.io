@@ -31,6 +31,24 @@ class GateTests(unittest.TestCase):
             p.unlink()
             self.assertFalse(m.freshness(receipt, 'old', p))
 
+    def test_png_perimeter_decoder_distinguishes_dark_backdrop(self):
+        import struct
+        import zlib
+        import pipeline as m
+
+        def chunk(kind, body):
+            return struct.pack('>I', len(body)) + kind + body + struct.pack('>I', zlib.crc32(kind + body))
+
+        def raster(rgb):
+            header = struct.pack('>IIBBBBB', 1, 1, 8, 2, 0, 0, 0)
+            return (b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', header)
+                    + chunk(b'IDAT', zlib.compress(b'\x00' + rgb)) + chunk(b'IEND', b''))
+
+        self.assertEqual(m.png_top_left_rgb(raster(b'\xff\xff\xff')), b'\xff\xff\xff')
+        self.assertEqual(m.png_top_left_rgb(raster(bytes((27, 27, 30)))), bytes((27, 27, 30)))
+        with self.assertRaisesRegex(ValueError, 'RGB PNG'):
+            m.png_top_left_rgb(b'not a PNG')
+
     def test_geometry_and_legibility_fail_closed(self):
         import pipeline as m
         self.assertTrue(hasattr(m, 'gate'), 'quality gate missing')
@@ -61,20 +79,44 @@ class GateTests(unittest.TestCase):
             self.assertTrue(page.locator('figure').evaluate(m.AUDIT)['broken'])
             browser.close()
 
+    def test_visually_hidden_accessible_title_does_not_fail_layout_audit(self):
+        from playwright.sync_api import sync_playwright
+        import pipeline as m
+        style = ('figure{width:625px;position:relative;font-size:16px}'
+                 '.sd-title{position:absolute;width:1px;height:1px;margin:-1px;'
+                 'overflow:hidden;clip-path:inset(50%);white-space:nowrap}')
+        content = (f'<style>{style}</style><figure class="sd" aria-labelledby="diagram-title">'
+                   '<figcaption class="sd-title" id="diagram-title">A long diagram name</figcaption>'
+                   '<span class="sd-label">Visible label</span></figure>')
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.set_content(content)
+            self.assertTrue(m.gate(page.locator('figure').evaluate(m.AUDIT)))
+            page.locator('figure').evaluate("e=>e.removeAttribute('aria-labelledby')")
+            self.assertFalse(m.gate(page.locator('figure').evaluate(m.AUDIT)))
+            page.set_content(content)
+            page.locator('figcaption').evaluate("e=>e.style.clipPath='none'")
+            self.assertFalse(m.gate(page.locator('figure').evaluate(m.AUDIT)))
+            browser.close()
+
     def test_real_export(self):
         import subprocess, sys, json, struct
         import tempfile
         temp = tempfile.TemporaryDirectory(); self.addCleanup(temp.cleanup)
         site = pathlib.Path(temp.name)/'site'; site.mkdir()
         # Synthetic test page only, not a production diagram source.
-        (site/'index.html').write_text('<html><meta charset="utf-8"><style>body{margin:16px}.content{max-width:100%}figure{margin:0;font-size:16px}</style><article class="content"><figure class="sd" id="litellm-architecture"><span class="sd-label">Selectable test 한국어</span></figure></article></html>')
+        (site/'index.html').write_text('<html><meta charset="utf-8"><style>body{margin:16px;background:#1b1b1e}.content{max-width:100%}figure{margin:0;font-size:16px;background:#fff;transform:translateY(.3px)}</style><article class="content"><figure class="sd" id="litellm-architecture"><span class="sd-label">Selectable test 한국어</span></figure></article></html>')
         out = pathlib.Path(temp.name) / 'artifacts'
         run = subprocess.run([sys.executable, str(ROOT/'pipeline.py'), '--font-profile', 'local-fallback', '--site', str(site), '--page', 'index.html', '--figure', 'litellm-architecture', '--out', str(out)], capture_output=True, text=True)
         self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
         p = out/'litellm-architecture-625-light.png'
         self.assertTrue(p.exists(), 'PNG export missing')
         raw = p.read_bytes(); self.assertEqual(raw[:8], b'\x89PNG\r\n\x1a\n')
-        width, height = struct.unpack('>II', raw[16:24]); self.assertGreater(width, 0); self.assertGreater(height, 0)
+        import pipeline as m
+        self.assertEqual(m.png_top_left_rgb(raw), b'\xff\xff\xff',
+                         'white artwork must not capture a dark article backdrop')
+        width, height = struct.unpack('>II', raw[16:24]); self.assertEqual(width, 1920); self.assertGreater(height, 0)
         receipt = json.loads((out/'litellm-architecture-625-light.json').read_text())
         self.assertEqual(receipt['visual_review'], 'not-run')
         self.assertTrue(receipt['inputs'].get('actual_system_font_binaries'), 'actual local font-to-binary mapping missing')

@@ -106,7 +106,12 @@ class Siblings(HTMLParser):
         if tag == 'p' and 'diagram-download' in (a.get('class') or '').split():
             if 'figure' in self.stack or self.last is None or self.last[1] != tuple(self.stack):
                 raise ValueError(f'download is not an immediate figure sibling: stack={self.stack}, preceding={self.last}')
-            self.active = {'figure': self.last[0], 'links': []}
+            self.active = {'figure': self.last[0], 'parent': tuple(self.stack),
+                           'links': [], 'images': []}
+        if tag == 'img' and self.active is not None:
+            self.active['images'].append((a.get('src'), a.get('alt'), a.get('data-static-diagram'),
+                                          a.get('srcset'), 'diagram-inline' in (a.get('class') or '').split(),
+                                          tuple(self.stack)))
         if tag == 'a' and self.active is not None:
             self.active['links'].append((a.get('href'), 'download' in a))
         if tag not in VOID: self.stack.append(tag)
@@ -164,10 +169,12 @@ def built_plan(root, site, plan):
     known = {(e['page'], e['figure'], e['include']) for e in inv['entries']}
     for page in sorted(site.rglob('*.html')):
         for row in Siblings(page.read_text()).rows:
-            links = row['links']
-            if len(links) != 2 or links[0][0] != links[1][0] or not links[0][1]:
+            links = row['links']; images = row['images']
+            if len(links) != 2 or links[0][0] != links[1][0] or not links[0][1] or links[1][1]:
                 raise ValueError('invalid native download links: ' + str(page))
             png = links[0][0]
+            if len(images) != 1 or images[0] != (png, '', 'true', None, True, row['parent'] + ('p',)):
+                raise ValueError('missing or mismatched accessible inline PNG: ' + str(page))
             if png not in by_png or png in seen: raise ValueError('unknown/duplicate PNG URL: ' + str(png))
             entry = by_png[png]; rel = page.relative_to(site).as_posix()
             if pages[entry['post']] != rel: raise ValueError('post/page ownership mismatch: ' + png)

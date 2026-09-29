@@ -51,6 +51,34 @@ def resolve_output(root, site, out):
     return out
 
 
+FIXED_CANVAS_FIGURES = frozenset({
+    "jev-decision-pipeline", "sd-ethereum-account-fields", "jib-build-workflow",
+})
+
+
+def content_width_contract(figure_id, requested_width, box_extras):
+    """Distinguish immutable 625px source art from reflowing HTML figures."""
+    if requested_width < 400:
+        return "native-viewport", None
+    if figure_id in FIXED_CANVAS_FIGURES:
+        return "fixed-source-content", 625 - box_extras
+    return "exact-figure-content", requested_width
+
+
+def summarize_cases(entries, plan, results):
+    expected_cases = len(entries) * 8
+    return {
+        "components": len({row["include"] for row in results}),
+        "used_occurrences": plan["reference_count"],
+        "unused_includes": len(plan["unused_includes"]),
+        "expected_cases": expected_cases,
+        "cases": len(results),
+        "statuses": dict(Counter(row["status"] for row in results)),
+        "passed": len(results) == expected_cases
+        and all(row["status"] == "passed" for row in results),
+    }
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, default=ROOT)
@@ -93,7 +121,6 @@ def main(argv=None):
     threading.Thread(target=server.serve_forever, daemon=True).start()
     origin = "http://127.0.0.1:" + str(server.server_port)
     results = []
-    expected = len(entries) * 8
     from playwright.sync_api import sync_playwright
 
     try:
@@ -168,6 +195,21 @@ def main(argv=None):
                 figure = page.locator(selector)
                 if figure.count() != 1:
                     raise ValueError("non-unique rendered figure: " + figure_id)
+                # Published occurrences display the sibling PNG. Inspect the
+                # canonical HTML source in this disposable browser context.
+                figure.evaluate('''e=>{
+                  if(!e.matches('figure.sd:has(+ .diagram-download > img.diagram-inline)'))return;
+                  e.style.setProperty('position','static','important');
+                  e.style.setProperty('width','100%','important');
+                  if (e.id === 'jev-decision-pipeline' || e.classList.contains('sd--linear-landscape')) {
+                    e.style.setProperty('min-width','625px','important');
+                    e.style.setProperty('max-width','625px','important');
+                  }
+                  e.style.setProperty('height','auto','important');
+                  e.style.setProperty('overflow','visible','important');
+                  e.style.setProperty('clip-path','none','important');
+                  e.nextElementSibling.style.setProperty('display','none','important');
+                }''')
                 figure.locator("img").evaluate_all(
                     '(xs)=>xs.forEach(x=>x.loading="eager")'
                 )
@@ -180,11 +222,7 @@ def main(argv=None):
                             surface=(
                                 "built-article" if entry["page"] else "isolated-unused"
                             ),
-                            width_kind=(
-                                "native-viewport"
-                                if width < 400
-                                else "exact-figure-content"
-                            ),
+                            width_kind=content_width_contract(figure_id, width, 0)[0],
                         )
                         try:
                             page.set_viewport_size(
@@ -197,6 +235,7 @@ def main(argv=None):
                                 '(t)=>document.documentElement.setAttribute("data-mode",t)',
                                 theme,
                             )
+                            extra = 0.0
                             if width < 400:
                                 page.locator(".content").first.evaluate(
                                     '(e,w)=>{e.style.removeProperty("width");e.style.removeProperty("max-width");if(w){e.style.width=w+"px";e.style.maxWidth="none"}}',
@@ -216,9 +255,10 @@ def main(argv=None):
                             content = figure.evaluate(
                                 "e=>{const s=getComputedStyle(e);return e.getBoundingClientRect().width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-parseFloat(s.borderLeftWidth)-parseFloat(s.borderRightWidth)}"
                             )
-                            if width >= 400 and abs(content - width) > 0.05:
+                            expected_content_width = content_width_contract(figure_id, width, extra)[1] if width >= 400 else None
+                            if expected_content_width is not None and abs(content - expected_content_width) > 0.05:
                                 raise ValueError(
-                                    "incorrect content width: " + str(content)
+                                    f"incorrect {row['width_kind']} width: {content}, expected {expected_content_width}"
                                 )
                             measurements = inspect_connectors(page, selector)
                             row.update(
@@ -245,16 +285,7 @@ def main(argv=None):
     includes = defaultdict(list)
     for row in results:
         includes[row["include"]].append(row)
-    summary = {
-        "components": len(includes),
-        "used_occurrences": plan["reference_count"],
-        "unused_includes": len(plan["unused_includes"]),
-        "expected_cases": expected,
-        "cases": len(results),
-        "statuses": dict(Counter(r["status"] for r in results)),
-        "passed": len(results) == expected
-        and all(r["status"] == "passed" for r in results),
-    }
+    summary = summarize_cases(entries, plan, results)
     report = {
         "summary": summary,
         "build_seal_sha256": seal,

@@ -44,21 +44,21 @@
   }
 }
 
-/* Shared static diagram system.  Diagram fragments stay semantic and
-   responsive; these rules own the visual treatment in one place. */
+/* Shared static diagram system. The figure remains the semantic/export source;
+   mapped article occurrences display the same PNG used by both links. */
 figure.sd {
-  --sd-bg: #0b1220;
-  --sd-surface: #141f31;
-  --sd-surface-raised: #1b2a40;
-  --sd-border: #435672;
-  --sd-border-strong: #6b7f9d;
-  --sd-text: #f5f8fc;
-  --sd-muted: #c7d2e0;
-  --sd-accent: #5eead4;
-  --sd-accent-soft: #173b3c;
-  --sd-warning: #fbbf24;
-  --sd-warning-soft: #3a2c13;
-  --sd-muted-soft: #202b3c;
+  --sd-bg: #fff;
+  --sd-surface: #fff;
+  --sd-surface-raised: #fff;
+  --sd-border: #cbd5df;
+  --sd-border-strong: #94a3b8;
+  --sd-text: #111827;
+  --sd-muted: #334155;
+  --sd-accent: #334155;
+  --sd-accent-soft: #f8fafc;
+  --sd-warning: #92400e;
+  --sd-warning-soft: #fffbeb;
+  --sd-muted-soft: #f8fafc;
   box-sizing: border-box;
   container-type: inline-size;
   isolation: isolate;
@@ -66,13 +66,34 @@ figure.sd {
   margin: 2rem 0;
   /* Outer padding follows the viewport; descendants query this figure. */
   padding: clamp(1rem, 3.5vw, 2rem);
-  border: 1px solid var(--sd-border);
-  border-radius: 1rem;
+  border: 0;
+  border-radius: 0;
   background: var(--sd-bg);
   color: var(--sd-text);
-  color-scheme: dark;
+  color-scheme: light;
   font-size: 16px;
   line-height: 1.5;
+}
+
+/* Only mapped figures are visually replaced. Their labelled content remains
+   in the accessibility tree; do not use display:none or aria-hidden. */
+figure.sd:has(+ .diagram-download > img.diagram-inline) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+}
+
+.diagram-download > img.diagram-inline {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 0 0.75rem;
+  object-fit: contain;
+  filter: none !important;
+  mix-blend-mode: normal;
 }
 
 figure.sd,
@@ -80,17 +101,19 @@ figure.sd * {
   box-sizing: border-box;
 }
 
+/* Article context names the diagram. Keep caption IDs for discovery and
+   assistive technology without printing redundant titles inside the artwork. */
 figure.sd .sd-title {
-  display: block;
-  margin: 0 0 1.25rem;
-  color: var(--sd-text);
-  font-size: clamp(22px, 3.5cqi, 30px);
-  font-weight: 750;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
+figure.sd { position: relative; }
 
 figure.sd .sd-intro,
 figure.sd .sd-caption {
@@ -103,8 +126,14 @@ figure.sd .sd-caption {
 figure.sd code,
 figure.sd pre,
 figure.sd li {
+  color: var(--sd-text);
   font-size: 14px;
   line-height: 1.55;
+}
+
+figure.sd code,
+figure.sd pre {
+  background: var(--sd-surface-raised);
 }
 
 figure.sd pre {
@@ -464,28 +493,28 @@ figure.sd .sd-cert-tier .sd-band-title {
 }
 
 figure.sd .sd-cert-tier--professional {
-  --sd-tier-border: #34d399;
-  --sd-tier-surface: #12382f;
+  --sd-tier-border: #047857;
+  --sd-tier-surface: #e5f6ee;
 }
 
 figure.sd .sd-cert-tier--associate {
-  --sd-tier-border: #60a5fa;
-  --sd-tier-surface: #142742;
+  --sd-tier-border: #1d4ed8;
+  --sd-tier-surface: #eaf1ff;
 }
 
 figure.sd .sd-cert-tier--foundational {
-  --sd-tier-border: #94a3b8;
-  --sd-tier-surface: #202b3c;
+  --sd-tier-border: #475569;
+  --sd-tier-surface: #edf2f7;
 }
 
 figure.sd .sd-cert-tier--specialty {
-  --sd-tier-border: #c084fc;
-  --sd-tier-surface: #2f2347;
+  --sd-tier-border: #7e22ce;
+  --sd-tier-surface: #f5edff;
 }
 
 figure.sd .sd-cert-tier--business {
-  --sd-tier-border: #fbbf24;
-  --sd-tier-surface: #3a2c13;
+  --sd-tier-border: #92400e;
+  --sd-tier-surface: #fef3c7;
 }
 
 @container (min-width: 681px) {
@@ -495,6 +524,14 @@ figure.sd .sd-cert-tier--business {
 
   figure.sd .sd-grid--three .sd-cert-badge {
     margin-inline: auto;
+  }
+}
+
+@container (min-width: 540px) and (max-width: 680px) {
+  /* Two sibling comparison lanes stay comparable side by side in the PNG.
+     Mobile source still stacks below 540px; published art is fixed pixels. */
+  figure.sd.sd--comparison > .sd-grid:not(.sd-grid--three):has(> :nth-child(2):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -526,73 +563,8 @@ figure.sd .sd-cert-tier--business {
   }
 }
 
-@media print {
-  figure.sd {
-    --sd-bg: #fff;
-    --sd-surface: #f8fafc;
-    --sd-surface-raised: #eef2f7;
-    --sd-border: #94a3b8;
-    --sd-border-strong: #64748b;
-    --sd-text: #111827;
-    --sd-muted: #374151;
-    --sd-accent: #0f766e;
-    --sd-accent-soft: #ccfbf1;
-    --sd-warning: #92400e;
-    --sd-warning-soft: #fef3c7;
-    --sd-muted-soft: #f1f5f9;
-    border-color: #667085;
-    background: var(--sd-bg);
-    color: var(--sd-text);
-    color-scheme: light;
-  }
-
-  figure.sd .sd-title,
-  figure.sd .sd-label,
-  figure.sd .sd-lane-title,
-  figure.sd .sd-band-title,
-  figure.sd .sd-cert-name,
-  figure.sd .sd-cert-card strong {
-    color: #111827;
-  }
-
-  figure.sd .sd-intro,
-  figure.sd .sd-caption,
-  figure.sd .sd-detail,
-  figure.sd .sd-edge-label,
-  figure.sd .sd-note,
-  figure.sd .sd-cert-code,
-  figure.sd .sd-table td {
-    color: #374151;
-  }
-
-  figure.sd .sd-cert-tier {
-    background: #fff;
-  }
-
-  figure.sd .sd-cert-tier .sd-band-title {
-    color: #111827;
-  }
-
-  figure.sd .sd-cert-tier--professional {
-    --sd-tier-border: #047857;
-  }
-
-  figure.sd .sd-cert-tier--associate {
-    --sd-tier-border: #1d4ed8;
-  }
-
-  figure.sd .sd-cert-tier--foundational {
-    --sd-tier-border: #475569;
-  }
-
-  figure.sd .sd-cert-tier--specialty {
-    --sd-tier-border: #7e22ce;
-  }
-
-  figure.sd .sd-cert-tier--business {
-    --sd-tier-border: #b45309;
-  }
-}
+/* Screen and print use the same light palette. Unmapped semantic figures and
+   export captures therefore do not switch colours between media or themes. */
 
 /* BEGIN AI GATEWAY V2 */
 /* AI Gateway diagram v2: scoped opt-in layouts.
@@ -650,18 +622,12 @@ figure.sd.sd--gateway-v2 .sd-v2-group-item { padding: 10px 0; border-top: 1px so
 figure.sd.sd--gateway-v2 .sd-v2-group-item .sd-detail { margin-top: 2px; }
 figure.sd.sd--gateway-v2 .sd-v2-compare { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
 figure.sd.sd--gateway-v2 .sd-v2-compare-lane { min-width: 0; padding: 16px; border: 1px solid var(--sd-border); border-radius: 10px; }
-/* Jev keeps the four decision stages on one desktop row and reuses the
-   painted v2 connector contract. Mobile falls back to the shared vertical markers. */
-figure.sd.sd--gateway-v2.sd--jev .sd-jev-flow { display: grid; grid-template-columns: minmax(0,1.18fr) 28px minmax(0,.72fr) 28px minmax(0,.9fr) 28px minmax(0,1.22fr); align-items: center; }
-figure.sd.sd--gateway-v2.sd--jev .sd-jev-policy { min-width: 0; display: grid; align-items: center; }
-figure.sd.sd--gateway-v2.sd--jev .sd-jev-outcomes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
 /* The three primitive cards remain comparable side by side at normal article width. */
 figure.sd.sd--jev-primitives .sd-grid--three { grid-template-columns: repeat(3,minmax(0,1fr)); }
 @container (max-width: 539px) {
  figure.sd.sd--gateway-v2 .sd-v2-rail,
  figure.sd.sd--gateway-v2 .sd-v2-request-row,
  figure.sd.sd--gateway-v2 .sd-v2-issuance-row,
- figure.sd.sd--gateway-v2.sd--jev .sd-jev-flow,
  figure.sd.sd--jev-primitives .sd-grid--three { grid-template-columns: minmax(0,1fr); }
  figure.sd.sd--gateway-v2 .sd-v2-link { height: var(--sd-v2-marker-length); width: 12px; margin: var(--sd-v2-marker-gap) auto; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat; }
  figure.sd.sd--gateway-v2 .sd-v2-link::after { right: 2px; top: auto; bottom: 2px; transform: rotate(135deg); }
@@ -757,4 +723,282 @@ figure.sd .sd-quality-record:has(> :nth-child(3)) > :first-child > .sd-detail {
   font-size: 16px;
   font-weight: 700;
   color: var(--sd-text);
+}
+
+/* Only these two serial three-card pilots opt into a landscape grid.
+   Keep the existing sd-arrow so connector inventory can inspect its caret. */
+figure.sd.sd--linear-landscape:is(#sd-ethereum-account-fields, #jib-build-workflow) {
+  --sd-border: #9aa8b6;
+  --sd-accent: #334155;
+  width: 625px;
+  min-width: 625px;
+  max-width: 625px;
+  height: auto;
+  margin-inline: auto;
+  padding: 16px;
+  background: #fff;
+  text-align: left;
+
+  > .sd-flow--linear-landscape {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr) 96px) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
+    min-width: 0;
+  }
+
+  > .sd-flow--linear-landscape > .sd-node {
+    display: flex;
+    min-height: 156px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 12px;
+    border-radius: 3px;
+    background: #fff;
+    text-align: center;
+    box-shadow: none;
+  }
+
+  > .sd-flow--linear-landscape > .sd-node--accent { border-color: #0f766e; }
+  > .sd-flow--linear-landscape > .sd-node--muted { border-color: var(--sd-border); }
+
+  > .sd-flow--linear-landscape > .sd-arrow {
+    position: relative;
+    display: block;
+    min-height: 156px;
+    background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 48px 2px no-repeat;
+  }
+
+  > .sd-flow--linear-landscape > .sd-arrow > .sd-edge-label {
+    position: absolute;
+    bottom: calc(50% + 14px);
+    left: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    line-height: 20px;
+    overflow-wrap: normal;
+    white-space: normal;
+    text-align: center;
+    transform: none;
+  }
+
+  > .sd-flow--linear-landscape > .sd-arrow::after {
+    position: absolute;
+    top: calc(50% - 0.325rem);
+    left: calc(50% + 18px);
+    transform: rotate(-45deg);
+  }
+}
+
+/* The paired PNG scales on mobile while the clipped accessible source cannot
+   extend the viewport beyond the image. Keep the authored export width. */
+figure.sd.sd--linear-landscape:is(#sd-ethereum-account-fields, #jib-build-workflow):has(+ .diagram-download > img.diagram-inline) {
+  min-width: 1px;
+  max-width: 1px;
+}
+figure:is(#sd-ethereum-account-fields, #jib-build-workflow) + .diagram-download > img.diagram-inline {
+  width: 625px;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Jev pilot: fixed white architecture canvas, independent of gateway-v2.
+   Border-box width stays 625px; aspect-ratio is a preference, not a crop.
+   Content may grow rather than clip if the actual font needs more space.
+   One authority enclosure, one transfer shaft, one policy fork bus. */
+figure.sd.sd--jev#jev-decision-pipeline {
+  --sd-surface: #fff;
+  --sd-border: #9aa8b6;
+  --sd-accent: #334155;
+  display: grid;
+  grid-template-rows: minmax(275px, 1fr);
+  width: 625px;
+  min-width: 625px;
+  max-width: 625px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
+  padding: 16px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  text-align: left;
+
+  /* No inherited decorative rails or node separators. Connector paint is
+     declared explicitly below; the include opts out of gateway-v2 too. */
+  :where(*)::before,
+  :where(*)::after {
+    content: none;
+    border: 0;
+    background: none;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .sd-jev-flow {
+    display: grid;
+    align-self: center;
+    grid-template-columns: 196px 64px minmax(0, 1fr);
+    align-items: start;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .sd-label {
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
+  .sd-detail,
+  .sd-edge-label {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
+  .sd-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid var(--sd-border);
+    border-radius: 3px;
+    background: #fff;
+    text-align: center;
+    box-shadow: none;
+  }
+
+  .sd-jev-signals {
+    display: grid;
+    grid-template-rows: 68px 24px 74px;
+    gap: 0;
+  }
+
+  .sd-jev-inputs { gap: 0; }
+  .sd-jev-judge { border-color: #0f766e; }
+  .sd-jev-judge > .sd-label { color: #0f766e; font-size: 20px; }
+
+  /* Input is a composite, not a pair of serial stages. */
+  .sd-jev-input-link {
+    position: relative;
+    justify-self: center;
+    width: 8px;
+    height: 16px;
+    margin-block: 4px;
+    background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat;
+  }
+
+  .sd-jev-input-link::after,
+  .sd-jev-fork-drop::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 6px solid var(--sd-accent);
+    border-inline: 4px solid transparent;
+  }
+
+  /* Jev and Policy share their centerline. The only horizontal transfer
+     crosses the enclosure once; its label remains outside the boundary. */
+  .sd-jev-transfer {
+    position: relative;
+    z-index: 1;
+    height: 74px;
+    margin-top: 92px;
+  }
+
+  .sd-jev-transfer > .sd-edge-label {
+    position: absolute;
+    bottom: calc(50% + 10px);
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .sd-jev-transfer-line {
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 6px;
+    width: calc(100% - 12px);
+    height: 2px;
+    background: var(--sd-accent);
+  }
+
+  .sd-jev-transfer-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--sd-accent);
+    border-block: 4px solid transparent;
+  }
+
+  /* Offset enclosure keeps the policy authority distinct from the model.
+     Its thin neutral outline is not a second directed relationship. */
+  .sd-jev-policy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 31px 74px 28px 68px;
+    gap: 0;
+    min-width: 0;
+    margin-top: 48px;
+    padding: 12px;
+    border: 1px solid var(--sd-border);
+    border-radius: 0;
+    background: #fff;
+  }
+
+  .sd-jev-boundary-label { align-self: start; }
+  .sd-jev-authority { border-color: var(--sd-accent); }
+
+  /* Single shared bus, symmetric drops. The paths are alternatives;
+     there is no condition label and no implied tool execution node. */
+  .sd-jev-fork { position: relative; }
+  .sd-jev-fork > span { position: absolute; background: var(--sd-accent); }
+  .sd-jev-fork-stem { top: 4px; left: calc(50% - 1px); width: 2px; height: 10px; }
+  .sd-jev-fork-bus { top: 12px; left: calc(25% - 3px); right: calc(25% - 3px); height: 2px; }
+  .sd-jev-fork-drop { top: 12px; width: 8px; height: 12px; background: linear-gradient(var(--sd-accent), var(--sd-accent)) center / 2px 100% no-repeat !important; }
+  .sd-jev-fork-drop--shadow { left: calc(25% - 7px); }
+  .sd-jev-fork-drop--escalate { right: calc(25% - 7px); }
+
+  .sd-jev-outcomes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(145px, 1fr));
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .sd-jev-outcomes .sd-label { font-size: 18px; }
+  .sd-jev-shadow { border-color: #0f766e; }
+  .sd-jev-escalate { border-color: #92400e; }
+}
+
+/* The fixed authoring width must not leak from the clipped semantic source
+   into the mobile page's scroll width. Export restores these bounds. */
+figure.sd.sd--jev#jev-decision-pipeline:has(+ .diagram-download > img.diagram-inline) {
+  min-width: 1px;
+  max-width: 1px;
+}
+
+/* The inline image, original and download use the same artwork. */
+figure#jev-decision-pipeline + .diagram-download > img.diagram-inline {
+  width: 625px;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
 }

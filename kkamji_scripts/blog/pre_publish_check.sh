@@ -14,14 +14,18 @@ if ! command -v gitleaks >/dev/null 2>&1; then
   exit 1
 else
   echo "=== gitleaks staged scan ==="
-  gitleaks protect --staged --redact --verbose
+  gitleaks git --staged --no-banner --redact --exit-code 1 .
 
   echo "=== gitleaks source scan ==="
-  gitleaks detect --source _posts --no-git --redact --no-banner
+  gitleaks dir --no-banner --redact --exit-code 1 _posts
 fi
 
 echo "=== Markdown tools ==="
-"${SCRIPT_DIR}/run_md_tools.sh"
+if git diff --cached --quiet -- _posts; then
+  echo "No staged post changes; skipping the repository-wide Markdown formatter"
+else
+  "${SCRIPT_DIR}/run_md_tools.sh"
+fi
 
 echo "=== Post date hygiene ==="
 "${PYTHON_BIN}" "${SCRIPT_DIR}/check_post_dates.py"

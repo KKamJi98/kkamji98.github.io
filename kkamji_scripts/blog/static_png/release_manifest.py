@@ -94,18 +94,29 @@ def staged_requires_verification(root):
     paths = subprocess.check_output(
         ["git", "diff", "--cached", "--name-only"], cwd=root, text=True
     ).splitlines()
+    # Keep this in sync with source_snapshot's sealed render inputs. Posts are
+    # handled separately below so ordinary prose edits do not force a reexport.
+    # Mapped PNGs are excluded from that snapshot, but must still enter the
+    # gate: verify_staged checks their hashes against the release manifest.
     prefixes = (
-        "_includes/diagrams/",
+        "_includes/",
+        "_layouts/",
+        "_sass/",
+        "_plugins/",
+        "_data/",
         "assets/css/",
+        "assets/js/",
         "assets/fonts/",
-        "assets/img/diagrams/",
+        "assets/img/",
         "kkamji_scripts/blog/static_png/",
     )
     exact = {
+        "_config.yml",
+        "Gemfile",
+        "Gemfile.lock",
         "docs/diagram-catalog.json",
         "docs/diagram-downloads.json",
         MANIFEST,
-        "_plugins/diagram-downloads.rb",
     }
     if any(path in exact or path.startswith(prefixes) for path in paths):
         return True
@@ -115,10 +126,13 @@ def staged_requires_verification(root):
             cwd=root,
             text=True,
         )
-        return any(
-            line.startswith(("+", "-")) and "{% include diagrams/" in line
-            for line in diff.splitlines()
+        from downloads import INCLUDE
+
+        changed_lines = "\n".join(
+            line[1:] for line in diff.splitlines()
+            if line.startswith(("+", "-")) and not line.startswith(("+++", "---"))
         )
+        return INCLUDE.search(changed_lines) is not None
     return False
 
 

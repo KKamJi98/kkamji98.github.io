@@ -10,6 +10,39 @@ import connector_corpus as corpus
 
 
 class CorpusSafetyTests(unittest.TestCase):
+    def test_corpus_summary_count_is_independent_of_case_widths(self):
+        entries = [{"include": "a"}, {"include": "b"}]
+        plan = {"reference_count": 2, "unused_includes": []}
+        results = [
+            {"include": entry["include"], "status": "passed", "width": width}
+            for entry in entries for width in (360, 390, 625, 720)
+            for _theme in ("light", "dark")
+        ]
+        summary = corpus.summarize_cases(entries, plan, results)
+        self.assertEqual(summary["expected_cases"], 16)
+        self.assertEqual(summary["cases"], 16)
+        self.assertEqual(summary["components"], 2)
+        self.assertEqual(summary["statuses"], {"passed": 16})
+        self.assertTrue(summary["passed"])
+        broken = [dict(row) for row in results]
+        broken[-1]["status"] = "error"
+        self.assertFalse(corpus.summarize_cases(entries, plan, broken)["passed"])
+        self.assertFalse(corpus.summarize_cases(entries, plan, results[:-1])["passed"])
+
+    def test_fixed_artwork_retains_source_width_without_fake_625_or_720_content(self):
+        for figure in corpus.FIXED_CANVAS_FIGURES:
+            for requested in (625, 720):
+                with self.subTest(figure=figure, requested=requested):
+                    self.assertEqual(
+                        corpus.content_width_contract(figure, requested, 32),
+                        ("fixed-source-content", 593),
+                    )
+            self.assertEqual(corpus.content_width_contract(figure, 360, 32),
+                             ("native-viewport", None))
+        for requested in (625, 720):
+            self.assertEqual(corpus.content_width_contract("unfixed-figure", requested, 32),
+                             ("exact-figure-content", requested))
+
     def test_protected_output_rejected_before_discovery(self):
         with tempfile.TemporaryDirectory(prefix="corpus-safety-", dir="/tmp") as tmp:
             base = Path(tmp)

@@ -7,14 +7,43 @@ import json
 import re
 import struct
 import threading
+import zlib
 from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from functools import partial
 from connector_audit import inspect_connectors
 
+# Rasterize the original 625px figure at native Chromium scale, never by
+# enlarging an existing PNG. The artwork height remains content-driven.
+EXPORT_WIDTH_PX = 1920
+CANVAS_WIDTH_CSS = 625
+EXPORT_DPR = EXPORT_WIDTH_PX / CANVAS_WIDTH_CSS
+
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def png_top_left_rgb(raw):
+    """Inspect Chromium's opaque 8-bit RGB PNG without an image dependency."""
+    if raw[:8] != b'\x89PNG\r\n\x1a\n' or raw[24:26] != b'\x08\x02':
+        raise ValueError('expected opaque 8-bit RGB PNG')
+    decompressor = zlib.decompressobj()
+    first = b''
+    offset = 8
+    while offset + 12 <= len(raw):
+        length = int.from_bytes(raw[offset:offset + 4], 'big')
+        kind = raw[offset + 4:offset + 8]
+        if kind == b'IDAT':
+            first += decompressor.decompress(raw[offset + 8:offset + 8 + length], 4 - len(first))
+            if len(first) == 4:
+                break
+        offset += length + 12
+    if len(first) != 4 or first[0] > 4:
+        raise ValueError('incomplete PNG first pixel')
+    # The first scanline's first pixel has neither a prior row nor left pixel;
+    # every PNG filter therefore yields these literal RGB bytes.
+    return first[1:4]
 
 
 def load_bundle(lock):
@@ -114,9 +143,15 @@ AUDIT = r'''f => {
  const els=[f,...f.querySelectorAll('*')];
  for(const e of els){
    const r=e.getBoundingClientRect(),s=getComputedStyle(e), name=e.id||e.className||e.tagName;
-   if(r.width && (r.left<box.left-1 || r.right>box.right+1 || r.top<box.top-1 || r.bottom>box.bottom+1 || e.scrollWidth>e.clientWidth+2)) out.overflow.push(name);
    if(e.matches('button,a,input,select,textarea,script,[onclick],[tabindex]') || [...e.attributes].some(a=>a.name.startsWith('on')) || s.animationName!=='none') out.interaction.push(name);
    if(e.matches('img') && (!e.complete || !e.naturalWidth)) out.broken.push(e.getAttribute('src'));
+   const title=e.closest('.sd-title'), ts=title&&getComputedStyle(title), tr=title&&title.getBoundingClientRect();
+   const accessibleCaption=title&&ts.position==='absolute'&&ts.overflow==='hidden'&&ts.clipPath==='inset(50%)'&&tr.width<=1.01&&tr.height<=1.01;
+   if(accessibleCaption){
+     if(!title.id||f.getAttribute('aria-labelledby')!==title.id||!title.textContent.trim()) out.hidden.push('unnamed-caption');
+     continue; // It names the artwork, but has no painted text to size or clip.
+   }
+   if(r.width && (r.left<box.left-1 || r.right>box.right+1 || r.top<box.top-1 || r.bottom>box.bottom+1 || e.scrollWidth>e.clientWidth+2)) out.overflow.push(name);
    for(const n of e.childNodes){
      if(n.nodeType!==3 || !n.textContent.trim()) continue;
      let minimum=e.closest('.sd-title')?22:e.closest('.sd-label,.sd-lane-title,.sd-band-title')?16:14;
@@ -173,7 +208,7 @@ def main():
             except Exception: pass
     with sync_playwright() as pw:
         browser=pw.chromium.launch(headless=True)
-        ctx=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=2,color_scheme=a.theme,java_script_enabled=False,locale='ko-KR',timezone_id='UTC')
+        ctx=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=EXPORT_DPR,color_scheme=a.theme,java_script_enabled=False,locale='ko-KR',timezone_id='UTC')
         def route(r):
             if r.request.url.startswith(origin+'/'):
                 if r.request.resource_type=='script': r.abort()
@@ -192,10 +227,34 @@ def main():
         selector = 'figure.sd[id="' + a.figure + '"], figure.sd:not([id])[aria-labelledby="' + a.figure + '"]'
         f=page.locator(selector)
         if f.count()!=1:raise RuntimeError('canonical figure must match exactly once')
+        # The published page clips only mapped source figures. Restore their
+        # original flow and paint in this disposable export page, while hiding
+        # the sibling PNG so layout, fonts and the capture inspect HTML alone.
+        f.evaluate('''e=>{
+          if(!e.matches('figure.sd:has(+ .diagram-download > img.diagram-inline)'))return;
+          e.style.setProperty('position','static','important');
+          e.style.setProperty('width','100%','important');
+          if (e.id === 'jev-decision-pipeline' || e.classList.contains('sd--linear-landscape')) {
+            e.style.setProperty('min-width','625px','important');
+            e.style.setProperty('max-width','625px','important');
+          }
+          e.style.setProperty('height','auto','important');
+          e.style.setProperty('overflow','visible','important');
+          e.style.setProperty('clip-path','none','important');
+          e.nextElementSibling.style.setProperty('display','none','important');
+        }''')
         if export_css:
             page.evaluate('(css)=>{const s=document.createElement("style");s.textContent=css;document.head.appendChild(s)}', export_css)
         # Change only article frame geometry, never author a second drawing.
         page.evaluate('''()=>{const c=document.querySelector('.content');if(!c)throw Error('article .content missing');c.style.width='625px';c.style.maxWidth='625px';}''')
+        # Fractional figure bounds in Chromium may sample the page backdrop at
+        # the image perimeter. Keep a light export white regardless of the
+        # article's dark-mode body; never paint the diagram itself differently.
+        if a.theme == 'light':
+            page.evaluate('''()=>{
+              document.documentElement.style.setProperty('background-color','#fff','important');
+              document.body.style.setProperty('background-color','#fff','important');
+            }''')
         f.locator('img').evaluate_all('(imgs)=>imgs.forEach(i=>{i.loading="eager"})')
         f.scroll_into_view_if_needed();await_assets(f)
         desktop=f.evaluate(AUDIT)
@@ -219,7 +278,7 @@ def main():
         dependencies={str(x.relative_to(site)):digest(x.read_bytes()) for x in sorted(resources)}
         installed_fonts=sorted(set(subprocess.check_output(['fc-list','--format','%{file}\\n'],text=True).splitlines()))
         system_fonts={x:digest(Path(x).read_bytes()) for x in installed_fonts}
-        inputs={'built_html':digest(pagefile.read_bytes()),'figure_html':digest(source.encode()),'dependencies':dependencies, 'fonts':font_state,'system_fonts':system_fonts,'viewport':[1280,1000],'article_width':625,'dpr':2,'theme':a.theme,'browser':browser.version,'playwright':importlib.metadata.version('playwright'),'os':platform.platform(),'tool':digest(Path(__file__).read_bytes()),'network_policy':'offline exact bundle URLs or local; scripts disabled', 'font_policy':policy, 'actual_fonts':actual_fonts, 'loaded_font_binaries':dict(sorted(loaded_fonts.items())), 'production_bundle':{url:{k:v for k,v in entry.items() if k != 'body'} for url,entry in bundle.items()}}
+        inputs={'built_html':digest(pagefile.read_bytes()),'figure_html':digest(source.encode()),'dependencies':dependencies, 'fonts':font_state,'system_fonts':system_fonts,'viewport':[1280,1000],'article_width':625,'dpr':EXPORT_DPR,'theme':a.theme,'browser':browser.version,'playwright':importlib.metadata.version('playwright'),'os':platform.platform(),'tool':digest(Path(__file__).read_bytes()),'network_policy':'offline exact bundle URLs or local; scripts disabled', 'font_policy':policy, 'actual_fonts':actual_fonts, 'loaded_font_binaries':dict(sorted(loaded_fonts.items())), 'production_bundle':{url:{k:v for k,v in entry.items() if k != 'body'} for url,entry in bundle.items()}}
         stem=f'{a.figure}-625-{a.theme}';png=a.out/(stem+'.png');receipt_path=a.out/(stem+'.json')
         mobile_png = a.out/f'{a.figure}-360-{a.theme}.png'
         if not a.check:
@@ -259,11 +318,15 @@ def main():
             fresh = (freshness(receipt, fp, png) and mobile_png.is_file() and
                      receipt.get('mobile_png_sha256') == digest(mobile_png.read_bytes()))
         passed=gate(desktop) and gate(mobile)
+        if a.theme == 'light' and png.exists() and png_top_left_rgb(png.read_bytes()) != b'\xff\xff\xff':
+            raise RuntimeError('light PNG contains non-white page backdrop at its top-left edge')
         result={'fingerprint':fp,'inputs':inputs,'quality':{'desktop':desktop,'mobile':mobile},'quality_status':'passed' if passed else 'failed','visual_review':'not-run','semantic_review':'not-run','font_policy':policy,'mobile_fonts':mobile_fonts,'freshness':fresh,'png_url':png.name}
         if not a.check:
             raw=png.read_bytes()
             if raw[:8]!=b'\x89PNG\r\n\x1a\n':raise RuntimeError('invalid PNG')
-            result.update(png_sha256=digest(raw),png_dimensions=list(struct.unpack('>II',raw[16:24])),
+            dimensions=list(struct.unpack('>II',raw[16:24]))
+            if dimensions[0]!=EXPORT_WIDTH_PX:raise RuntimeError(f'unexpected export width: {dimensions}')
+            result.update(png_sha256=digest(raw),png_dimensions=dimensions,
                           mobile_png_sha256=digest(mobile_png.read_bytes()))
             receipt_path.write_text(json.dumps(result,ensure_ascii=False,indent=2))
             link=f'<p class="diagram-download"><a href="{html.escape(png.name)}" download="{html.escape(png.name)}">PNG 다운로드</a> <a href="{html.escape(png.name)}">원본 이미지 열기</a></p>\n'
