@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/oras-project/oras/pull/2201" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>oras-project/oras</span>
+      <span class="cv-oss-pr">PR #2201</span>
+    </div>
+    <p class="cv-oss-desc">절대경로 파일 push/attach 오류에 보안 위험을 명시하고 경로 검증은 그대로 유지</p>
+  </a>
   <a class="cv-oss" href="https://github.com/oras-project/oras-www/pull/610" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
