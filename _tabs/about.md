@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/kyverno/kyverno/pull/17840" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>kyverno/kyverno</span>
+      <span class="cv-oss-pr">PR #17840</span>
+    </div>
+    <p class="cv-oss-desc">Helm 제거 전 scale-to-zero hook이 release의 namespace와 fullname을 사용하도록 수정하고 렌더 회귀 테스트 추가</p>
+  </a>
   <a class="cv-oss" href="https://github.com/oras-project/oras/pull/2201" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
