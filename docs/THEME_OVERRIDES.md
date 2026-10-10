@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-09-09
+updated: 2026-10-10
 type: architecture
 status: current
 ---
@@ -44,6 +44,7 @@ bash tools/run.sh    # 로컬 미리보기
 - Every referencing post occurrence is mapped by `docs/diagram-downloads.json`. The helper follows its canonical include as a sibling; a Jekyll-generated `assets/data/diagram-posts.json` sidecar binds source posts to actual rendered URLs. Source/build assets and exact PNG bytes must pass the export/check adapter before publication.
 - Connector acceptance now uses transformed paint and explicit cross-container roles; see [Connector acceptance and recurrence gates](static-diagrams.md#connector-acceptance-and-recurrence-gates). Existing flow/direct-arrow spacing remains a negative control, while gapless nested corridors and attached buses have separate rules.
 - Export and font policy: [Static diagrams](static-diagrams.md#same-source-png-export).
+- SAP-C02의 `scp-iam-effective-permissions`, `datasync-agent-requirement`, `transfer-family-endpoint-types`, `control-tower-landing-zone` include는 각각 identity-based 권한 경로의 적용 범위, AWS 스토리지 서비스 간 agent 조건, Internal private IP와 Internet Facing EIP 및 AS2 지원, Landing Zone 4.0의 선택적 구성을 구분한다. 원본과 게시용 PNG를 함께 검증하며 공통 테마 CSS는 변경하지 않는다.
 
 ## Overrides 목록
 

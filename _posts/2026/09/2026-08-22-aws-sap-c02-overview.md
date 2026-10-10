@@ -9,7 +9,7 @@ image:
   path: /assets/img/aws/aws.webp
 ---
 
-AWS Certified Solutions Architect - Professional은 AWS 인증 체계의 Professional 등급에 속하는 솔루션 아키텍트 자격증입니다. 줄여서 SAP라고 부르고, 현재 유효한 시험 버전은 SAP-C02입니다. 180분 동안 75문항을 풀고, 1000점 만점에 750점을 넘으면 합격합니다.
+AWS Certified Solutions Architect - Professional은 AWS 인증 체계의 Professional 등급에 속하는 솔루션 아키텍트 자격증입니다. 줄여서 SAP라고 부르고, 현재 유효한 시험 버전은 SAP-C02입니다. 180분 동안 75문항을 풀고, 1000점 만점에 750점 이상이면 합격합니다.
 
 AWS는 이 시험이 검증하는 것을 `advanced technical skills and experience in designing optimized AWS solutions that are based on the AWS Well-Architected Framework`라고 규정합니다. Associate 등급이 요구사항 하나에 맞는 서비스를 고르게 한다면, Professional 등급은 제약 조건 여러 개가 동시에 걸린 상태에서 여러 애플리케이션과 여러 계정을 가로지르는 설계 판단을 요구합니다. 그래서 선지 네 개가 전부 동작하는 구성으로 출제되고, 지문이 지정한 축을 따라 우선순위를 매기는 것이 실제 과제가 됩니다.
 
@@ -54,7 +54,7 @@ Specialty가 둘뿐인 것도 최근 변화입니다. Machine Learning - Special
 | 시험 코드 | SAP-C02 |
 | 등급 | Professional |
 | 응시료 | 300 USD |
-| 시험 시간 | 180분 |
+| 시험 시간 | 기본 시험 풀이 시간 180분. 예약 표시 시간 및 승인된 편의 시간과 구분 |
 | 문항 수 | 75문항 (채점 65 + 비채점 10) |
 | 합격 점수 | 750 / 1000 |
 | 유효 기간 | 3년 |
@@ -144,6 +144,8 @@ Exam Guide는 채점 구조를 이렇게 규정합니다. `The exam includes 65 
 - 특정 도메인이 약해도 다른 도메인에서 상쇄할 수 있다. D4(20%, 약 13문항)를 절반만 맞혀도 D2(29%, 약 19문항)에서 만회할 여지가 있다
 - 대신 **버려도 되는 도메인은 없다.** 가장 작은 D4도 13문항이고, 이를 통째로 포기하면 나머지 52문항에서 사실상 만점에 가까운 성적이 필요해진다
 - 점수 리포트의 도메인별 분류표는 강점과 약점을 알려주는 참고 정보다. Exam Guide 자체가 `Use caution when you interpret section-level feedback`이라고 경고한다. 도메인당 문항 수가 적어 통계적으로 흔들리기 때문이다
+
+2026년 10월 10일 확인한 C02 공식 가이드의 Emerging Topics에는 Bedrock Guardrails, AgentCore Identity, Step Functions를 통한 AI 작업 승인 흐름이 예시로 나옵니다. 이 항목은 새 내용을 평가하기 위한 비채점 pretest로 등장할 수 있다고 명시되어 있습니다. 기본 네 도메인 학습을 대체하거나 별도 채점 도메인으로 취급하지 않습니다.
 
 ---
 
@@ -246,7 +248,7 @@ D4는 `Selecting`이 지배적입니다. 선택 기준을 명시적으로 갖고
 
 ## 8. 180분에 75문항, 페이싱을 따로 훈련해야 합니다
 
-시험 시간은 180분이고 문항은 75개입니다. 나누면 문항당 144초, 2.4분입니다. 이 숫자가 SAP에서 특히 빡빡하게 느껴지는 이유는 지문 길이 때문입니다. SAP 문항은 요구사항, 현재 구성, 제약 조건이 각각 문단으로 붙고 선지도 길어서, 읽는 데만 1분 가까이 쓰는 문항이 흔합니다.
+공식 기본 시험 풀이 시간은 180분이고 문항은 75개입니다. 예약 확인서의 총 소요 시간은 안내나 설문 등의 시간이 포함될 수 있으므로 풀이 시간으로 그대로 나누지 않습니다. 승인된 시험 편의가 있다면 그 적용 시간도 별도로 확인해야 합니다. 나누면 문항당 144초, 2.4분입니다. 이 숫자가 SAP에서 특히 빡빡하게 느껴지는 이유는 지문 길이 때문입니다. SAP 문항은 요구사항, 현재 구성, 제약 조건이 각각 문단으로 붙고 선지도 길어서, 읽는 데만 1분 가까이 쓰는 문항이 흔합니다.
 
 현실적인 배분은 이렇게 잡습니다.
 
@@ -270,12 +272,12 @@ D4는 `Selecting`이 지배적입니다. 선택 기준을 명시적으로 갖고
 | 날짜 | 내용 |
 | :--- | :--- |
 | 2026-10-27 | SAP-C03 등록 시작 |
-| 2026-11-16 또는 2026-11-17 | SAP-C02 응시 마지막 날 (아래 참고) |
+| 2026-11-16 | SAP-C02 응시 마지막 날 |
 | 2026-11-17 | SAP-C03 정식 응시 시작 |
 
-마지막 날짜는 AWS 공식 페이지 두 곳이 다르게 적고 있습니다. Training and Certification 블로그의 2026년 9월 공지는 11월 16일로, 자격증 제품 페이지는 11월 17일로 안내합니다. 응시일을 11월 중순까지 미룰 계획이라면 예약 화면에서 직접 확인하시기 바랍니다.
+2026년 10월 10일 확인한 AWS 자격증 제품 페이지는 SAP-C02 마지막 응시일을 11월 16일로 안내합니다. 10월 24일 응시는 C02의 네 도메인과 서비스 선택 기준을 중심으로 준비하면 됩니다. 예약한 시험 코드와 시간은 응시 확인서에서 다시 확인하시기 바랍니다.
 
-이 글을 쓰는 2026년 9월 6일 기준으로 SAP-C02 응시 가능 기간은 71일 남았습니다. 7주 학습 계획을 오늘 시작하면 10월 하순에 응시할 수 있고, 한 번 떨어져도 재응시 여유가 남습니다. AWS 재응시 정책상 불합격 후 14일을 기다려야 하므로, 여유를 계산에 넣으려면 10월 안에 첫 응시를 잡는 편이 안전합니다.
+AWS 재응시 정책상 불합격 후 14일을 기다려야 합니다. 첫 응시일을 정할 때 시험 버전 전환일과 재응시 대기 기간을 함께 확인해야 합니다.
 
 SAP-C03에서는 AWS가 공지한 대로 생성형 AI 통합과 agentic 아키텍처, Fault Injection Service와 Resilience Hub와 Application Recovery Controller 중심의 복원력 엔지니어링, DevSecOps와 관측성, lakehouse 아키텍처, post-quantum 암호가 범위에 추가됩니다. 지금 준비 중인 내용이 통째로 무의미해지는 것은 아니지만 추가 학습이 필요하고, C03 Exam Guide가 공개되기 전까지는 정확한 도메인 구성과 가중치를 확인할 수 없습니다. C02로 끝낼 수 있으면 끝내는 편이 계획을 단순하게 만듭니다.
 
@@ -292,6 +294,17 @@ SAP-C03에서는 AWS가 공지한 대로 생성형 AI 통합과 agentic 아키�
 **약점을 방치해도 되는 범위가 있습니다.** compensatory 채점이므로 특정 task에서 점수가 빠져도 총점으로 넘길 수 있습니다. 다만 도메인 하나를 통째로 비우는 것은 다릅니다. 가장 작은 D4를 전부 놓치면 나머지 52문항에서 거의 완벽해야 하는데, 지문이 긴 시험에서 그 정도 정확도를 유지하는 것은 현실적이지 않습니다.
 
 **모의고사는 지식 점검이 아니라 페이싱 점검입니다.** 문항당 2.4분을 지키는 감각은 문제를 푼다고 생기지 않고, 시간을 재고 75문항을 연속으로 푸는 훈련에서 생깁니다. AWS Skill Builder의 공식 practice question set과 official practice exam은 실제 시험의 문항 스타일과 길이에 가장 가까운 기준점이므로, 서드파티 문제집보다 먼저 한 번 풀어 난이도 감각을 보정하는 편이 좋습니다.
+
+공식 C02 in-scope 목록에는 아래 서비스도 포함됩니다. 출제 빈도 대신 입력 데이터와 필요한 기능으로 구분하면 됩니다.
+
+| 요구사항 | 서비스 | 선택 시 확인할 점 |
+| :--- | :--- | :--- |
+| SaaS 데이터를 S3나 Redshift로 수집 | Amazon AppFlow | 커넥터별 소스/대상과 트리거 지원 확인 |
+| 디바이스의 MQTT 메시지를 인증하고 라우팅 | AWS IoT Core | 디바이스 인증, 메시지 브로커와 rules 역할 구분 |
+| 스캔 문서에서 텍스트, 양식, 표 추출 | Amazon Textract | 이미지/PDF의 추출 기능과 지원 언어 확인 |
+| 텍스트의 개체, 핵심 구문, 감정 분석 | Amazon Comprehend | OCR 뒤의 텍스트 분석과 지원 언어 확인 |
+
+문서 이미지를 Textract로 읽고 추출한 텍스트를 Comprehend로 분석하는 구성처럼 두 서비스가 이어질 수도 있습니다. 데이터 모델에 따른 DocumentDB, Neptune, Keyspaces, Timestream 선택은 [데이터 계층 선택](/posts/aws-sap-c02-data-layer-selection/)의 비교표와 연결됩니다.
 
 ---
 
@@ -345,6 +358,12 @@ Overview 뒤로 15편이 이어지고, 20개 task statement 전부에 담당 편
 ---
 
 ## 13. Reference
+
+- [AWS Certification - SAP-C02 In-Scope AWS Services](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-professional-02/sap-02-in-scope-services.html)
+- [Amazon AppFlow - What is Amazon AppFlow](https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html)
+- [AWS IoT Core - What is AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html)
+- [Amazon Textract - What is Amazon Textract](https://docs.aws.amazon.com/textract/latest/dg/what-is.html)
+- [Amazon Comprehend - What is Amazon Comprehend](https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html)
 
 - [AWS Certification - Certifications and Official Badge Images](https://aws.amazon.com/certification/)
 - [AWS Certification - AWS Certified Solutions Architect Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/)

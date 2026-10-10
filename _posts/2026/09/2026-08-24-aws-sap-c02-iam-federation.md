@@ -56,7 +56,7 @@ SCP와 RCP가 조직 트리의 어디에 붙고 OU를 어떻게 설계하는지�
 {% include diagrams/static/sap-c02/iam-policy-evaluation-order.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/iam-policy-evaluation-order--c72aed4ea206ef1c.png" %}
 
-그림은 좌상단의 API 요청에서 출발한 일곱 단계를 오른쪽으로 갔다가 아래에서 되돌아오는 형태로 접어 놓은 배치입니다. 윗줄은 왼쪽에서 오른쪽으로 1. Deny evaluation, 2. RCP, 3. SCP 순으로 가고, 3에서 아래로 꺾여 아랫줄로 내려온 다음 진행 방향이 반대가 됩니다. 아랫줄은 오른쪽에서 왼쪽으로 4. resource-based policy, 5. identity-based policy, 6. permissions boundary 순으로 돌아오고, 6에서 다시 아래로 내려가 7. session policy를 지나 오른쪽의 초록색 허용 상자에 도달합니다. 일곱 단계를 모두 통과한 요청만 이 상자에 도착합니다.
+그림은 좌상단의 API 요청에서 출발한 일곱 단계를 오른쪽으로 갔다가 아래에서 되돌아오는 형태로 접어 놓은 배치입니다. 윗줄은 왼쪽에서 오른쪽으로 1. Deny evaluation, 2. RCP, 3. SCP 순으로 가고, 3에서 아래로 꺾여 아랫줄로 내려온 다음 진행 방향이 반대가 됩니다. 아랫줄은 오른쪽에서 왼쪽으로 4. resource-based policy, 5. identity-based policy, 6. permissions boundary 순으로 돌아오고, 6에서 다시 아래로 내려가 7. session policy를 지나 오른쪽의 초록색 허용 상자에 도달합니다. 그림은 정책 종류를 확인하는 순서를 요약합니다. 모든 정책에 Allow가 필요하다는 뜻은 아니며, resource-based 직접 부여에 따른 이후 단계의 예외는 아래 ARN별 표를 적용합니다.
 
 빠져나가는 경로는 점선 하나입니다. 1. Deny evaluation 상자 아래에서 시작한 점선이 두 줄을 가로질러 내려간 뒤 오른쪽으로 꺾여 오른쪽 아래의 거부 상자로 향합니다. 첫 단계에서 explicit Deny를 만난 요청이 나머지 여섯 단계를 보지 않고 끝나는 경로입니다. 다만 거부 상자에 적힌 사유는 두 가지이고, explicit Deny 말고도 어느 단계에서든 필요한 Allow가 없으면 implicit deny로 같은 자리에 도달합니다. 상자 안의 부제도 함께 읽을 값입니다. 2. RCP에는 `RCPFullAWSAccess`가 항상 붙어 있다는 사실이, 4. resource-based policy에는 그 정책이 지목한 ARN 종류가 뒤 단계를 바꾼다는 사실이 적혀 있고 각각 아래 두 절에서 다룹니다.
 
@@ -103,7 +103,7 @@ SCP와 RCP가 조직 트리의 어디에 붙고 OU를 어떻게 설계하는지�
 | role session ARN | `arn:aws:sts::111122223333:assumed-role/examplerole/examplerolesessionname` | 제한하지 않는다 |
 | federated user ARN | `arn:aws:sts::111122223333:federated-user/exampleuser` | 제한하지 않는다 |
 | role ARN | `arn:aws:iam::111122223333:role/examplerole` | **제한한다** |
-| `Principal: "*"` + `aws:PrincipalArn` wildcard | 조건 키로 범위 지정 | 제한하지 않는다. identity-based policy의 explicit deny만 막는다 |
+| `Principal: "*"` + `aws:PrincipalArn` wildcard | 조건 키로 범위 지정 | boundary의 implicit deny로 제한하지 않는다. 적용되는 explicit deny와 SCP/RCP는 별도로 평가한다 |
 
 `GetFederationToken`으로 만든 세션도 같은 규칙을 따릅니다. federated user ARN에 직접 권한을 주면 제한되지 않지만, 연합을 수행한 IAM user ARN에 권한을 주면 boundary와 session policy의 implicit deny에 걸립니다.
 
@@ -120,8 +120,8 @@ SCP와 RCP가 조직 트리의 어디에 붙고 OU를 어떻게 설계하는지�
 permissions boundary는 IAM user와 role에 붙여 그 principal이 가질 수 있는 최대 권한을 정하는 managed policy입니다. 세 가지를 정확히 기억해야 합니다.
 
 - **부착 대상은 user와 role뿐이다.** group은 지원하지 않는다.
-- **권한을 부여하지 않는다.** identity-based policy가 별도로 필요하고 결과는 교집합이다.
-- **SCP와는 층이 다르다.** SCP는 조직 트리에 붙어 계정 전체에 걸리고 management account에는 적용되지 않는다. boundary는 개별 principal에 붙고 조직과 무관하다. 둘이 함께 있으면 boundary, SCP, identity-based policy가 모두 허용해야 통과한다.
+- **권한을 부여하지 않는다.** identity-based policy로 부여한 권한은 boundary와의 교집합으로 제한된다. resource-based policy의 직접 부여는 앞 절의 principal별 예외를 적용한다.
+- **SCP와는 층이 다르다.** SCP는 조직 트리에 붙어 계정 전체에 걸리고 management account에는 적용되지 않는다. boundary는 개별 principal에 붙고 조직과 무관하다. identity-based 권한 경로에서는 적용되는 boundary, SCP, session policy와 identity-based policy가 모두 허용해야 통과한다. resource-based 직접 부여도 적용되는 explicit deny와 SCP/RCP를 우회하지 못한다.
 
 "개발팀 그룹에 boundary를 붙여 팀 전체의 상한을 정한다"는 선지는 그래서 성립하지 않습니다. group에는 붙지 않고, 붙는다 해도 그것은 그 사람들의 상한일 뿐 그들이 **만드는** role의 상한이 아닙니다.
 
@@ -201,7 +201,7 @@ CloudTrail 기록도 갈립니다. role을 가정하면 대상 계정의 로그�
 | 축 | role 가정 (AssumeRole) | resource-based policy |
 | :--- | :--- | :--- |
 | 원래 권한 | 잃는다. role의 권한만 가진다 | 유지한다. principal이 자기 권한을 포기하지 않는다 |
-| 두 계정 리소스 동시 접근 | 한 세션에서 불가능하다. chaining이 필요하다 | 가능하다 |
+| 두 계정 리소스 동시 접근 | 가정한 role과 대상 리소스 정책이 허용하면 가능하다. 원래 principal의 권한은 합쳐지지 않는다 | 원래 principal의 권한을 유지하며 가능하다 |
 | 지원 범위 | 모든 서비스 | resource-based policy를 지원하는 서비스만 |
 | CloudTrail 기록 | 대상 계정에 role session name이 남는다 | 호출자 principal이 그대로 남는다 |
 | 세션 길이 | 900초에서 43,200초, chaining 시 1시간 | 해당 없음 |

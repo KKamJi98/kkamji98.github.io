@@ -37,7 +37,7 @@ AWS Organizations는 여러 AWS 계정을 하나의 트리로 묶어 정책과 �
 | 구성 요소 | 정의 | 시험에서 갈리는 지점 |
 | :--- | :--- | :--- |
 | root | 조직의 모든 OU와 계정을 담는 최상위 컨테이너. 조직당 1개 | OU가 아니다. 삭제할 수 없고 Control Tower가 Root 레벨에서 enrolled 계정을 governance하지 않는다 |
-| management account | 조직을 만든 계정. 정책 부착, 계정 생성과 초대, 통합 결제의 payer | SCP와 RCP가 이 계정의 principal에 적용되지 않는다 |
+| management account | 조직을 만든 계정. 정책 부착, 계정 생성과 초대, 통합 결제의 payer | SCP는 이 계정의 principal에, RCP는 이 계정이 소유한 리소스에 적용되지 않는다 |
 | member account | 조직에 속한 나머지 계정 | delegated administrator로 지정되어도 SCP 적용 대상이다 |
 
 {% include diagrams/static/sap-c02/organizations-scp-hierarchy.html %}
@@ -53,7 +53,7 @@ AWS Organizations는 여러 AWS 계정을 하나의 트리로 묶어 정책과 �
 - 보낸 초대도 계정 쿼터를 소모한다. 거절, 취소, 만료되면 반환되고, 닫은 계정은 영구 종료 전까지 계속 소모한다
 - Organizations는 글로벌 서비스이고 물리적으로 us-east-1에 호스팅된다. Service Quotas 콘솔이나 CLI로 쿼터를 다룰 때 us-east-1을 지정해야 한다
 
-계정 수 상한이 기본 10이라는 점은 실무에서 자주 걸립니다. Control Tower를 기존 조직에 도입할 때 Audit 계정과 Log archive 계정 두 개가 새로 만들어지므로, 최소 두 계정을 더 만들 수 있는 여유가 필요합니다.
+계정 수 상한이 기본 10이라는 점은 실무에서 자주 걸립니다. Control Tower 도입 시에는 landing zone 버전, 선택한 서비스 통합과 기존 계정 재사용 여부를 기준으로 추가 계정 수를 계산해야 합니다. Landing Zone 4.0에서 Audit 계정과 Log archive 계정 두 개가 항상 새로 생긴다고 가정하면 안 됩니다.
 
 ---
 
@@ -113,13 +113,15 @@ Service Control Policy를 한 문장으로 정의하면 조직 트리에 붙어�
 {% include diagrams/static/sap-c02/scp-iam-effective-permissions.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/scp-iam-effective-permissions--f2d725d1827418cf.png" %}
 
-그림 왼쪽의 세 상자가 하나의 API 호출에 함께 걸리는 정책들입니다. 맨 위 SCP는 조직이 정한 최대 한도, 가운데 permission boundary는 그 principal에 걸린 최대 한도, 맨 아래 identity policy는 실제로 권한을 부여하는 정책입니다. 세 상자에서 나온 선이 가운데 유효 권한 상자로 모입니다. 세 정책이 **모두** 허용한 작업만 여기 남습니다. 유효 권한 상자에서 오른쪽 위로 향하는 실선은 그 교집합에 들어간 호출이 수행되는 경로이고, 오른쪽 아래로 향하는 점선은 셋 중 하나라도 허용하지 않은 호출이 암묵적 거부로 차단되는 경로입니다. SCP 상자에서 유효 권한으로 선이 이어진다고 해서 SCP가 권한을 만드는 것으로 읽으면 안 됩니다. 권한을 부여하는 것은 identity policy 하나뿐이고 나머지 둘은 한도만 정합니다.
+그림은 resource-based policy의 직접 부여가 없는 identity-based 권한 경로를 단순화한 것입니다. 세 상자가 하나의 API 호출에 함께 걸리는 정책들입니다. 맨 위 SCP는 조직이 정한 최대 한도, 가운데 permission boundary는 그 principal에 걸린 최대 한도, 맨 아래 identity policy는 실제로 권한을 부여하는 정책입니다. 세 상자에서 나온 선이 가운데 유효 권한 상자로 모입니다. 세 정책이 **모두** 허용한 작업만 여기 남습니다. 유효 권한 상자에서 오른쪽 위로 향하는 실선은 그 교집합에 들어간 호출이 수행되는 경로이고, 오른쪽 아래로 향하는 점선은 셋 중 하나라도 허용하지 않은 호출이 암묵적 거부로 차단되는 경로입니다. SCP 상자에서 유효 권한으로 선이 이어진다고 해서 SCP가 권한을 만드는 것으로 읽으면 안 됩니다. 이 경로에서 권한을 부여하는 것은 identity policy이고 나머지 둘은 한도만 정합니다.
+
+같은 계정의 resource-based policy가 IAM user ARN이나 role session ARN에 직접 부여하는 권한은 identity policy, boundary, session policy의 implicit deny를 적용하는 방식이 다릅니다. role ARN에 부여한 권한은 boundary와 session policy의 제한을 받습니다. **직접 부여도 적용되는 explicit deny와 SCP/RCP 경계를 우회하지는 못합니다.** [IAM 정책 평가 예외](/posts/aws-sap-c02-iam-federation/)와 함께 구분해야 합니다.
 
 이 구조에서 파생되는 규칙들입니다.
 
 - 최종 유효 권한은 SCP와 RCP가 허용하는 것과 identity-based 및 resource-based policy가 허용하는 것의 논리적 교집합이다
-- permission boundary가 함께 있으면 boundary, SCP, identity-based policy가 **모두** 허용해야 통과한다
-- SCP만 붙여서는 어떤 권한도 생기지 않는다. IAM policy가 없으면 SCP가 전부 허용해도 접근이 없다
+- identity-based policy로 권한을 받는 경로에서는 적용되는 boundary, SCP, session policy와 identity-based policy가 모두 허용해야 한다
+- SCP만 붙여서는 어떤 권한도 생기지 않는다. identity-based 또는 resource-based policy의 권한 부여가 별도로 필요하다
 
 SCP가 통제하지 못하는 대상이 시험의 핵심입니다.
 
@@ -171,9 +173,12 @@ SCP는 IAM policy와 문법이 비슷하지만 쓸 수 없는 요소가 있습�
 | :--- | :--- |
 | `Effect`, `Action`, `NotAction`, `Resource`, `NotResource`, `Condition`, `Sid`, `Version`, `Statement` | 지원 |
 | `Principal`, `NotPrincipal` | **지원하지 않는다** |
-| `Effect: Allow` 문의 `Resource` | `"*"`만 쓸 수 있다 |
+| `Effect: Allow` 문의 `Resource` | 개별 ARN과 `"*"` 모두 지정 가능 |
 | `Effect: Deny` 문의 `Resource` | 개별 ARN 지정 가능 |
+| `Condition`, `NotAction`, `NotResource` | `Allow`와 `Deny` 모두 지원 |
 | `Version` | `"2012-10-17"`이어야 한다 |
+
+2025년 9월 19일 AWS Security Blog는 SCP의 full IAM policy language 지원을 설명하며 Allow의 개별 resource ARN, Condition, NotAction과 Allow/Deny의 NotResource 지원을 명시했습니다. 2026년 10월 10일 확인한 SCP syntax 문서에는 Allow의 Resource를 `"*"`로 제한한다는 구문이 남아 있지만, 같은 문서의 지원 표 및 날짜가 명시된 발표와 충돌합니다. 여기서는 발표의 지원 범위를 따릅니다. 다만 `Principal`과 `NotPrincipal`은 SCP에서 여전히 지원하지 않으며, ARN 범위를 지정할 때는 해당 API의 resource-level 권한 지원도 확인해야 합니다.
 
 특정 role만 예외로 두려면 `Principal` 요소 대신 `Condition`의 `aws:PrincipalArn`을 씁니다. 리전 제한은 `aws:RequestedRegion`에 `StringNotEquals`를 걸고 `NotAction`으로 글로벌 서비스를 빼는 형태가 문서 예시입니다.
 
@@ -229,7 +234,7 @@ SCP 크기를 5,120자로 기억하고 있다면 갱신이 필요합니다. 현�
 
 ## 7. RCP는 반대 방향을 막는다
 
-Resource Control Policy(RCP)는 조직 멤버 계정이 **소유한 리소스**에 대해 접근 상한을 정하는 정책입니다. SCP가 조직 안 principal이 나가는 방향을 막는다면, RCP는 조직 밖 principal이 들어오는 방향을 막습니다.
+Resource Control Policy(RCP)는 조직 멤버 계정이 **소유한 리소스**에 대해 접근 상한을 정하는 정책입니다. SCP가 조직 안 principal이 나가는 방향을 막는다면, RCP는 그 리소스에 접근하는 조직 안팎 principal을 제한합니다. management account의 principal이라도 멤버 계정 소유 리소스에 접근하면 해당 리소스의 RCP 평가 대상입니다.
 
 | 항목 | SCP | RCP |
 | :--- | :--- | :--- |
@@ -386,15 +391,15 @@ AWS Control Tower는 AWS Organizations, AWS Service Catalog, AWS IAM Identity Ce
 {% include diagrams/static/sap-c02/control-tower-landing-zone.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/control-tower-landing-zone--9c5a05f235b815a3.png" %}
 
-왼쪽 큰 상자가 Control Tower이고 여기서 나가는 선이 landing zone 배포 결과입니다. 실선은 Security OU로 이어지고 그 아래 점선은 Sandbox OU로 이어집니다. 실선과 점선의 차이가 자동 생성과 선택의 차이입니다. Security OU는 landing zone이 반드시 만들고, Sandbox OU는 landing zone을 만들 때 선택했을 때만 생깁니다. Security OU에서 오른쪽으로 갈라지는 두 선이 그 안에 자동으로 만들어지는 Log archive 계정과 Audit 계정입니다. 아래쪽 점선 테두리 영역은 Control Tower가 만들어 주지 않는 것들을 모아둔 것입니다. Infrastructure OU와 그 안의 Network, Backup, Identity 계정, Workloads OU와 그 안의 Prod, Staging 계정은 전부 직접 만들어야 합니다. 문서에 권장 구성으로 적혀 있을 뿐 landing zone 배포 결과물이 아닙니다.
+그림은 이전 버전의 기본 계정 구성과 Landing Zone 4.0의 차이를 함께 읽기 위한 예시입니다. 3.3 이하에서 사용하던 Security OU, Log archive, Audit 구성을 모든 버전의 필수 자동 생성 결과로 일반화하면 안 됩니다. **4.0은 Security OU 생성을 강제하거나 관리하지 않으며 서비스 통합 없이도 landing zone을 만들 수 있습니다.** AWS Config, CloudTrail, SecurityRoles, Backup 통합은 선택 사항이며 활성화한 통합의 계정들은 같은 parent OU 아래에 두어야 합니다. 이미 Security OU를 구성한 고객은 이 변경으로 기존 구조를 바꿀 필요가 없습니다.
 
-landing zone이 만드는 것과 만들지 않는 것을 구분해야 합니다.
+landing zone 버전과 선택한 서비스 통합을 먼저 구분해야 합니다.
 
 | 항목 | Control Tower가 |
 | :--- | :--- |
-| Security OU | 자동으로 만든다 |
-| Audit 계정, Log archive 계정 | 자동으로 만든다. Security OU 안에 놓인다 |
-| Sandbox OU | landing zone 생성 시 선택하면 만든다 |
+| Security OU | 3.3 이하의 기본 구성과 달리 4.0에서는 생성을 강제하거나 관리하지 않는다 |
+| Audit 계정, Log archive 계정 | 기존 기본 구성의 shared account다. 4.0은 선택한 통합과 계정 구성에 따라 달라지며 항상 두 계정이 새로 생성되는 것은 아니다 |
+| Sandbox OU | 이전 버전의 기본 설정에서 선택적으로 생성하던 OU다. 4.0은 고객이 조직 구조를 정의한다 |
 | **Infrastructure OU, Workloads OU** | **만들어 주지 않는다.** 직접 만든다 |
 | management account | 기존 조직에 도입하면 기존 것을 그대로 쓴다. 새로 만들지 않는다 |
 
@@ -619,8 +624,8 @@ organization trail과 StackSets의 차이를 구분해야 하는 문항이 나�
 | :--- | :--- |
 | 조직당 landing zone | 1 |
 | landing zone 구성 시간 | 1시간 이내 |
-| 자동 생성 계정 | Audit, Log archive 2개 |
-| 자동 생성 OU | Security OU |
+| shared account 구성 | Audit, Log archive는 기존 기본 구성이다. 4.0에서는 선택한 서비스 통합과 계정 설정 확인 |
+| Security OU 생성 | 4.0부터 생성을 강제하거나 관리하지 않음. 통합 계정은 같은 parent OU에 배치 |
 | home Region 변경 | 불가 |
 | preventive control 동작 리전 | 모든 리전 |
 | detective와 proactive control 동작 리전 | Control Tower 지원 리전만 |
@@ -660,8 +665,8 @@ organization trail과 StackSets의 차이를 구분해야 하는 문항이 나�
 | 짝 | 차이를 만드는 제약 |
 | :--- | :--- |
 | SCP 대 IAM policy | IAM policy는 권한을 부여하고 SCP는 상한만 정한다. SCP만으로는 접근이 생기지 않는다 |
-| SCP 대 permission boundary | SCP는 조직 트리에 붙어 계정 전체의 상한을 정하고 management account에는 적용되지 않는다. permission boundary는 개별 IAM user와 role에 붙는다. 둘이 동시에 있으면 boundary, SCP, identity policy가 모두 허용해야 통과한다 |
-| SCP 대 RCP | SCP는 조직 안 principal을, RCP는 조직 계정이 소유한 리소스를 막는다. RCP는 조직 밖 principal 차단이 가능하고 지원 서비스가 한정되며 AWS managed KMS key에 적용되지 않는다. 둘 다 management account와 service-linked role은 통제하지 못한다 |
+| SCP 대 permission boundary | SCP는 조직 트리에 붙어 계정 전체의 상한을 정하고 management account에는 적용되지 않는다. permission boundary는 개별 IAM user와 role에 붙는다. identity-based 권한 경로는 적용되는 boundary와 SCP의 교집합이다. resource-based 직접 부여의 implicit deny 예외와 explicit deny를 구분한다 |
+| SCP 대 RCP | SCP는 조직 안 principal을, RCP는 조직 계정이 소유한 리소스를 막는다. RCP는 조직 밖 principal 차단이 가능하고 지원 서비스가 한정되며 AWS managed KMS key에 적용되지 않는다. SCP는 management account principal, RCP는 management account 소유 리소스가 예외이며 둘 다 service-linked role을 제한하지 못한다 |
 | authorization policy 대 declarative policy | SCP와 RCP는 API 수준에서 판정하고 service-linked role을 통제하지 못한다. declarative policy는 control plane에서 구성을 강제하고 SLR도 통제하며 새 API가 추가돼도 baseline이 유지된다 |
 | tag policy 대 태그 강제 SCP | tag policy는 이미 붙는 태그의 형식을 표준화하고 비준수 태깅 작업을 실패시킨다. 태그가 없는 리소스는 평가하지 않는다. 생성 차단은 `aws:RequestTag`와 `aws:TagKeys` 조건 SCP가 담당한다 |
 | Control Tower 대 Organizations 직접 구성 | Organizations는 정책과 계정 구조를 준다. Control Tower는 그 위에 landing zone, Account Factory, control 카탈로그, drift 탐지를 얹는다. 대신 home Region을 바꿀 수 없고 조직당 landing zone은 1개다 |
@@ -686,7 +691,7 @@ organization trail과 StackSets의 차이를 구분해야 하는 문항이 나�
 | SCP만 붙여 특정 팀에 S3 권한을 부여한다 | SCP는 권한을 부여하지 않는다 |
 | root에 Deny SCP만 붙이고 나머지는 그대로 둔다 | Allow가 경로의 모든 레벨에 있어야 하므로 `FullAWSAccess`를 지우면 전 서비스가 차단된다 |
 | 하위 OU에 Allow SCP를 붙여 상위 OU의 Deny를 예외 처리한다 | Deny는 경로의 어느 레벨에서든 이긴다 |
-| SCP의 Allow 문에 특정 버킷 ARN을 적어 그 버킷만 허용한다 | Allow 문의 `Resource`는 `"*"`만 가능하다. 개별 ARN은 Deny 문에서만 쓴다 |
+| SCP의 Allow 문에는 특정 버킷 ARN을 쓸 수 없다 | 2025년 언어 확장 이후 Allow에도 개별 ARN을 쓸 수 있다. 단, SCP는 권한을 부여하지 않으며 같은 레벨의 다른 Allow가 더 넓게 허용하면 그 범위도 남는다 |
 | SCP에 `Principal` 요소를 넣어 특정 role만 예외로 둔다 | SCP는 `Principal`과 `NotPrincipal`을 지원하지 않는다. `aws:PrincipalArn` 조건을 쓴다 |
 | consolidated billing 조직에 SCP를 붙여 리전을 제한한다 | SCP, RCP, tag policy, backup policy는 all features 전용이다 |
 | delegated administrator 계정은 SCP 적용에서 제외된다 | delegated administrator로 지정된 멤버 계정에도 SCP와 RCP가 그대로 적용된다 |
@@ -701,7 +706,7 @@ organization trail과 StackSets의 차이를 구분해야 하는 문항이 나�
 | management account에서 Event history로 전 조직 이벤트를 본다 | Event history는 로그인한 계정의 이벤트만 보여준다 |
 | 규제 요건 때문에 Control Tower home Region을 옮긴다 | home Region은 선택 후 변경할 수 없다 |
 | Control Tower governance에서 리전을 빼면 그 리전에 리소스를 만들 수 없다 | 배포는 계속 가능하고 governance 밖에 놓일 뿐이다. 차단은 Region deny control이나 `aws:RequestedRegion` SCP다 |
-| Control Tower가 Infrastructure OU와 Workloads OU를 만들어 준다 | 자동 생성되는 것은 Security OU다. Sandbox OU는 선택이고 나머지는 직접 만든다 |
+| Control Tower가 Infrastructure OU와 Workloads OU를 만들어 준다 | Infrastructure와 Workloads는 직접 설계한다. 4.0은 Security OU 생성도 강제하거나 관리하지 않는다 |
 | detective control로 비준수 리소스 생성을 사전 차단한다 | detective는 Config rule 기반 사후 탐지다 |
 | landing zone을 최신 버전으로 올리면 mandatory control이 자동으로 다 걸린다 | Landing Zone 4.0부터 mandatory control이 기본 적용되지 않는다 |
 | OU를 6단계로 나눠 조직도를 그대로 반영한다 | OU 중첩은 root 아래 5단계까지다 |
@@ -927,6 +932,11 @@ RI와 Savings Plans 할인 공유 모드는 organization-wide, prioritized group
 ---
 
 ## 22. Reference
+
+- [AWS Control Tower - Landing Zone 4.0 key changes](https://docs.aws.amazon.com/controltower/latest/userguide/key-changes-lz-v4.html)
+
+- [AWS Security Blog - SCP full IAM language support, 2025-09-19](https://aws.amazon.com/blogs/security/unlock-new-possibilities-aws-organizations-service-control-policy-now-supports-full-iam-language/)
+- [AWS IAM - Policy evaluation logic and resource-based grants](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-denyallow.html)
 
 - [AWS Organizations - What is AWS Organizations?](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html)
 - [AWS Organizations - Quotas for AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)

@@ -1,5 +1,5 @@
 <figure class="sd sd--comparison" id="sd-sap-c02-scp-iam-effective-permissions" aria-labelledby="sd-title-scp-iam-effective-permissions">
-  <figcaption class="sd-title" id="sd-title-scp-iam-effective-permissions">유효 권한은 SCP와 boundary와 identity policy의 교집합입니다</figcaption>
+  <figcaption class="sd-title" id="sd-title-scp-iam-effective-permissions">Identity policy로 부여한 권한과 적용되는 경계</figcaption>
   <div class="sd-grid sd-grid--three">
     <section class="sd-lane" aria-label="SCP 권한 경계">
       <div class="sd-lane-title">조직 경계</div>
@@ -12,7 +12,7 @@
       <div class="sd-lane-title">principal 경계</div>
       <div class="sd-node">
         <strong class="sd-label">Permission boundary</strong>
-        <span class="sd-detail">principal의 최대 한도</span>
+        <span class="sd-detail">identity policy 권한의 최대 한도</span>
       </div>
     </section>
     <section class="sd-lane" aria-label="identity policy 권한 부여">
@@ -26,7 +26,7 @@
   <div class="sd-arrow"><span class="sd-edge-label">세 정책이 모두 허용한 교집합</span></div>
   <div class="sd-node sd-node--accent">
     <strong class="sd-label">유효 권한</strong>
-    <span class="sd-detail">세 정책이 허용한 작업만 남음</span>
+    <span class="sd-detail">identity policy 경로의 단순화</span>
   </div>
   <div class="sd-arrow"><span class="sd-edge-label">API 호출 판정</span></div>
   <div class="sd-grid">
@@ -45,4 +45,5 @@
       </div>
     </section>
   </div>
+  <p class="sd-note">Resource policy의 직접 부여는 principal별 평가가 다릅니다. 적용되는 explicit deny와 SCP/RCP는 우회하지 못하며 session policy도 별도로 평가합니다.</p>
 </figure>
