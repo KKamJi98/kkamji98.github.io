@@ -53,6 +53,10 @@ purpose-built 데이터스토어를 고르는 문항은 지문 앞부분에 답�
 | S3 데이터셋을 파일로 읽는 HPC와 ML 학습 | FSx for Lustre | scratch는 장애 시 데이터가 남지 않는다 |
 | 인스턴스 하나가 붙는 블록 I/O, IOPS 수치 요구 | EBS | gp3의 상한을 먼저 확인한다 |
 | 객체 보관, 접근 빈도가 시간에 따라 떨어진다 | S3 | 최소 저장 기간과 최소 과금 크기가 비용을 뒤집는다 |
+| MongoDB 호환 문서 모델과 기존 드라이버 활용 | DocumentDB | MongoDB와 완전 동일하지 않으므로 사용 API와 기능 차이를 확인한다 |
+| 관계를 따라 여러 단계 탐색, 사기 관계망이나 추천 그래프 | Neptune | property graph의 Gremlin/openCypher와 RDF의 SPARQL 중 모델에 맞게 선택한다 |
+| 기존 Cassandra 애플리케이션과 CQL 활용 | Keyspaces | Cassandra 호환 서비스이며 지원 CQL/API와 기능 차이를 확인한다 |
+| 센서나 운영 메트릭의 시간 구간별 집계 | Timestream | 시계열 모델이 기준이다. LiveAnalytics와 InfluxDB의 API 및 운영 방식을 구분한다 |
 
 지문에 두 가지가 함께 적혀 있으면 더 좁은 쪽이 이깁니다. "여러 인스턴스가 같은 데이터를 쓰면서 표준 POSIX 인터페이스를 쓴다"에서 답을 가르는 것은 뒤의 조건입니다. 앞의 조건만 보면 EBS Multi-Attach도 후보에 남지만, clustered file system을 도입할 수 없다는 문장이 하나 붙는 순간 탈락합니다.
 
@@ -842,6 +846,11 @@ Regional EFS는 리전 내 여러 AZ에서 동시에 마운트할 수 있고 NFS
 
 ## 28. Reference
 
+- [Amazon DocumentDB - Functional differences with MongoDB](https://docs.aws.amazon.com/documentdb/latest/devguide/functional-differences.html)
+- [Amazon Neptune - Introduction](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html)
+- [Amazon Keyspaces - What is Amazon Keyspaces](https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html)
+- [Amazon Timestream - What is Timestream for LiveAnalytics](https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html)
+
 - [Amazon EBS - Volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html)
 - [Amazon EBS - Use Amazon EBS Multi-Attach](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html)
 - [Amazon EBS - Amazon EBS snapshots](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html)
@@ -886,7 +895,7 @@ Regional EFS는 리전 내 여러 AZ에서 동시에 마운트할 수 있고 NFS
 - [Amazon Aurora - Global Database disaster recovery](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html)
 - [Amazon Aurora - Serverless v2](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html)
 - [Amazon Aurora - Serverless v2 administration](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-administration.html)
-- [Amazon Aurora - Serverless v2 upgrade](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.upgrade.html)
+- [Amazon Aurora - Using Aurora serverless](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
 - [Amazon Aurora - Overview](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html)
 - [Amazon OpenSearch Service - What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html)
 - [Amazon OpenSearch Serverless - What is Amazon OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html)

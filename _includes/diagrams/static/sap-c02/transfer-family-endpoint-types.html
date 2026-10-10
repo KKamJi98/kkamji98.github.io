@@ -30,12 +30,12 @@
           <span class="sd-detail">서브넷마다 Elastic IP, 최대 3개 AZ. security group으로 source 제한</span>
         </div>
         <div class="sd-node">
-          <strong class="sd-label">SFTP와 FTPS만</strong>
+          <strong class="sd-label">SFTP, FTPS, AS2</strong>
           <span class="sd-detail">FTP는 허용하지 않음</span>
         </div>
         <div class="sd-node">
           <strong class="sd-label">S3 또는 EFS</strong>
-          <span class="sd-detail">Transfer Family 대상, FSx는 대상 아님</span>
+          <span class="sd-detail">AS2는 S3 대상</span>
         </div>
       </div>
     </section>
@@ -44,15 +44,15 @@
       <div class="sd-stack">
         <div class="sd-node sd-node--accent">
           <strong class="sd-label">VPC Internal</strong>
-          <span class="sd-detail">내부 접근, security group으로 source 제한. custom hostname은 지원하지 않음</span>
+          <span class="sd-detail">고정 private IP로 내부 접근. EIP 없음. security group으로 source 제한</span>
         </div>
         <div class="sd-node">
-          <strong class="sd-label">FTP, SFTP, FTPS</strong>
+          <strong class="sd-label">SFTP, FTP, FTPS, AS2</strong>
           <span class="sd-detail">FTP/FTPS: 컨트롤 21, 데이터 8192-8200. SFTP: 기본 22</span>
         </div>
         <div class="sd-node">
           <strong class="sd-label">S3 또는 EFS</strong>
-          <span class="sd-detail">Transfer Family 대상, FSx는 대상 아님</span>
+          <span class="sd-detail">AS2는 S3 대상</span>
         </div>
       </div>
     </section>
@@ -66,5 +66,5 @@
       </div>
     </section>
   </div>
-  <p class="sd-note">고정 IP와 source IP 제한이 필요하면 VPC 타입을 선택합니다. 평문 FTP는 VPC Internal과 내부 접근 경로로만 받을 수 있습니다.</p>
+  <p class="sd-note">VPC Internet Facing은 EIP, Internal은 고정 private IP를 사용합니다. 평문 FTP는 VPC Internal과 내부 접근 경로로만 받을 수 있습니다.</p>
 </figure>

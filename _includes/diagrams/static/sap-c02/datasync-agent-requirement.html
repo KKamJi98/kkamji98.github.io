@@ -6,7 +6,7 @@
       <div class="sd-flow">
         <div class="sd-node"><strong class="sd-label">온프레미스와 AWS 스토리지</strong><span class="sd-detail">NFS, SMB, HDFS, 자체 관리 object storage</span></div>
         <div class="sd-node"><strong class="sd-label">타 클라우드와 EFS 또는 FSx</strong><span class="sd-detail">대상이 file system인 경우</span></div>
-        <div class="sd-node"><strong class="sd-label">계정 간 전송</strong><span class="sd-detail">양쪽 모두 S3가 아닌 경우</span></div>
+        <div class="sd-node"><strong class="sd-label">AWS 스토리지 간 계정 간 전송</strong><span class="sd-detail">양쪽 모두 S3가 아닌 경우</span></div>
         <div class="sd-node"><strong class="sd-label">상용 리전과 GovCloud(US)</strong><span class="sd-detail">양쪽 모두 EFS 또는 FSx면 agent 필요</span></div>
         <div class="sd-node"><strong class="sd-label">S3 on Outposts와 리전 S3</strong><span class="sd-detail">Basic mode만 지원</span></div>
         <div class="sd-arrow" aria-hidden="true"></div>
@@ -19,7 +19,7 @@
       <div class="sd-lane-title">Agent 불필요</div>
       <div class="sd-flow">
         <div class="sd-node"><strong class="sd-label">같은 계정의 AWS 스토리지</strong><span class="sd-detail">S3, EFS, FSx 조합</span></div>
-        <div class="sd-node"><strong class="sd-label">계정 간 전송에서 한쪽이 S3</strong><span class="sd-detail">S3가 있으면 직접 전송</span></div>
+        <div class="sd-node"><strong class="sd-label">AWS 스토리지 간 계정 간 전송</strong><span class="sd-detail">한쪽이 S3인 경우 agent 불필요</span></div>
         <div class="sd-node"><strong class="sd-label">S3와 타 클라우드 object storage</strong><span class="sd-detail">Azure Blob 포함</span></div>
         <div class="sd-node"><strong class="sd-label">상용 리전과 GovCloud(US)</strong><span class="sd-detail">한쪽이 S3면 agent 불필요</span></div>
         <div class="sd-arrow" aria-hidden="true"></div>
@@ -29,4 +29,5 @@
       </div>
     </section>
   </div>
+  <p class="sd-note">자체 관리 NFS, SMB, HDFS는 대상이 S3여도 agent가 필요합니다. 지원 전송 조합과 task mode를 함께 확인합니다.</p>
 </figure>

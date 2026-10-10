@@ -23,7 +23,7 @@ SAP-C02 Domain 4는 이 지점을 묻습니다. 서비스 이름을 아는 것�
 > - Enhanced mode는 FSx for Windows File Server, ONTAP, OpenZFS를 지원하지 않는다. task mode는 만든 뒤에 바꿀 수 없다.  
 > - DataSync VPC service endpoint는 default tenancy VPC만 지원하고 shared VPC를 지원하지 않는다.  
 > - Transfer Acceleration은 버킷 이름에 마침표가 있으면 쓸 수 없고 15개 리전에서만 지원된다.  
-> - internet-facing VPC hosted endpoint에서는 SFTP와 FTPS만 쓸 수 있다. FTP는 VPC 내부 접근에서만 된다.  
+> - internet-facing VPC hosted endpoint에서는 SFTP, FTPS, AS2를 쓸 수 있다. FTP는 VPC 내부 접근에서만 된다.  
 > - 16 TiB를 넘는 cached volume의 스냅샷은 EBS 볼륨으로 복원할 수 없다.  
 > - `RefreshCache`는 인벤토리만 갱신하고 파일 데이터를 캐시에 채우지 않는다.  
 > - Outposts server는 EBS, S3 on Outposts, EKS 노드, RDS를 지원하지 않고 신규 판매가 중단됐다.  
@@ -87,9 +87,9 @@ Direct Connect 자체의 구성과 VIF 종류는 [하이브리드 네트워크 �
 
 ---
 
-## 3. Snow Family가 빠진 자리에 남은 선택지
+## 3. Snow Family의 제공 제한과 대체 전송 수단
 
-물리 전송 선택지를 고를 때 가장 먼저 확인할 것은 현재 제공 상태입니다. 강의 자료와 오래된 정리 글이 전제하는 Snow Family 라인업은 지금 대부분 없습니다.
+실제 신규 도입에서는 현재 주문 가능 여부를 확인해야 합니다. AWS는 Snow Family 신규 고객 주문을 제한하지만 기존 Snowball Edge 고객의 사용은 영향을 받지 않는다고 안내합니다. **이 제공 제한만으로 SAP-C02의 Snow 관련 선지를 무조건 오답으로 제거하면 안 됩니다.** 지문이 전제한 시점, 기존 고객 여부, 오프라인 전송 조건을 먼저 확인해야 합니다.
 
 | 시점 | 변경 |
 | :--- | :--- |
@@ -97,7 +97,7 @@ Direct Connect 자체의 구성과 VIF 종류는 [하이브리드 네트워크 �
 | 2025-11-12 | 위 단종 모델의 기존 고객 지원 종료 |
 | 2025-11-07 | 남은 Snowball Edge 디바이스가 기존 고객에게만 제공. 신규 고객 주문 불가 |
 
-결과적으로 **신규 고객은 어떤 Snow Family 디바이스도 주문할 수 없습니다.** 기존 사용 고객은 계속 쓸 수 있습니다. 문항 지문에 "최근 AWS 계정을 개설했다"나 "이 회사의 첫 AWS 프로젝트다" 같은 문장이 있으면 Snow 선지는 그 문장 하나로 탈락합니다.
+결과적으로 **신규 고객은 어떤 Snow Family 디바이스도 주문할 수 없습니다.** 기존 사용 고객은 계속 쓸 수 있습니다. 실무에서는 고객의 주문 자격을 확인하고, 시험에서는 지문이 명시한 제공 조건을 따릅니다. 새 계정이라는 표현만으로 시험의 Snow 선지를 일괄 제거하지 않습니다.
 
 현재 문서에 남아 있는 Snowball Edge 구성은 두 가지입니다.
 
@@ -137,7 +137,7 @@ DataSync에서 가장 자주 틀리는 지점은 에이전트 필요 여부입�
 | :--- | :--- |
 | AWS 스토리지와 온프레미스 스토리지 사이 | NFS, SMB, HDFS, 자체관리 객체 스토리지 |
 | EFS 또는 FSx와 타 클라우드 스토리지 사이 | 대상이 파일 시스템인 경우 |
-| 계정 간 전송에서 소스와 대상이 모두 S3가 아닌 경우 | 한쪽이라도 S3면 해당하지 않는다 |
+| AWS 스토리지 서비스 사이의 계정 간 전송에서 양쪽 모두 S3가 아닌 경우 | 자체 관리 NFS/SMB/HDFS 위치의 agent 요건과 구분한다 |
 | 상용 리전과 GovCloud(US) 사이에서 양쪽 모두 EFS 또는 FSx인 경우 | 한쪽이 S3면 해당하지 않는다 |
 
 **에이전트가 필요 없는 조합**
@@ -145,7 +145,7 @@ DataSync에서 가장 자주 틀리는 지점은 에이전트 필요 여부입�
 | 조합 | 비고 |
 | :--- | :--- |
 | 같은 계정의 AWS 스토리지 서비스 사이 | S3, EFS, FSx 조합 전부 |
-| 계정 간이라도 한쪽이 S3인 경우 | S3가 한쪽에 있으면 직접 전송한다 |
+| AWS 스토리지 서비스 사이의 계정 간 전송에서 한쪽이 S3인 경우 | 자체 관리 NFS/SMB/HDFS는 상대편이 S3여도 agent가 필요하다 |
 | S3와 타 클라우드 객체 스토리지 사이 | Azure Blob을 포함한다 |
 | 상용 리전과 GovCloud(US) 사이에서 한쪽이 S3인 경우 | 위와 같은 규칙이다 |
 
@@ -296,7 +296,7 @@ AWS는 객체가 **100 MB 이상이면 멀티파트 업로드를 사용하라**�
 
 Transfer Family는 파트너가 표준 프로토콜 클라이언트로 접속해 오는 **서버**와, AWS가 외부 파트너 서버에 능동적으로 접속하는 **connector** 두 방향을 제공합니다. 문항에서 방향이 뒤집힌 선지가 나오므로 구분해 두어야 합니다.
 
-지원 프로토콜은 SFTP(version 3), FTPS, FTP, AS2, 그리고 브라우저 기반 전송입니다. **대상 스토리지는 S3와 EFS 두 가지뿐이고 FSx는 대상이 아닙니다.** "파트너 파일을 FSx for Windows File Server에 직접 받는다"는 구성은 성립하지 않습니다.
+지원 프로토콜은 SFTP(version 3), FTPS, FTP, AS2, 그리고 브라우저 기반 전송입니다. 서버의 storage domain은 S3와 EFS입니다. **FSx for NetApp ONTAP은 S3 access point를 통해 연결할 수 있으며 AS2는 S3만 지원합니다.** "파트너 파일을 FSx for Windows File Server에 직접 받는다"는 구성은 성립하지 않습니다.
 
 주요 쿼터는 다음과 같습니다.
 
@@ -336,15 +336,15 @@ Transfer Family 서버의 엔드포인트 타입은 PUBLIC, VPC(Internal 또는 
 {% include diagrams/static/sap-c02/transfer-family-endpoint-types.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/transfer-family-endpoint-types--3826943f9b758633.png" %}
 
-그림은 엔드포인트 타입 네 개를 한 묶음으로 두고, 각각이 쓸 수 있는 프로토콜과 통제 수단을 짝지어 보여줍니다. 어느 경로를 타든 도착점은 S3와 EFS 두 가지뿐이라는 점도 함께 담았습니다.
+그림은 엔드포인트 타입 네 개를 한 묶음으로 두고, 각각이 쓸 수 있는 프로토콜과 통제 수단을 짝지어 보여줍니다. 저장소 선택은 프로토콜과 별도로 확인해야 합니다. AS2는 S3, SFTP/FTPS/FTP는 S3 또는 EFS를 사용하며 FSx for NetApp ONTAP은 S3 access point를 통해 연결합니다.
 
 타입별 차이는 다음과 같습니다.
 
 | 타입 | 프로토콜 | 소스 IP 제한 | 고정 IP |
 | :--- | :--- | :--- | :--- |
-| PUBLIC | FTP를 열 수 없다 | security group을 붙일 수 없다 | Elastic IP를 지정할 수 없다 |
-| VPC Internet Facing | **SFTP와 FTPS만** | security group으로 제한한다 | 서브넷마다 Elastic IP를 지정한다 |
-| VPC Internal | FTP를 포함해 받는다 | security group으로 제한한다 | 서브넷마다 Elastic IP를 지정한다 |
+| PUBLIC | SFTP만 | security group을 붙일 수 없다 | Elastic IP를 지정할 수 없다 |
+| VPC Internet Facing | SFTP, FTPS, AS2 | security group으로 제한한다 | 서브넷마다 Elastic IP를 지정한다 |
+| VPC Internal | SFTP, FTP, FTPS, AS2 | security group으로 제한한다 | endpoint의 고정 private IP를 사용한다. EIP는 붙이지 않는다 |
 | VPC_ENDPOINT | 신규 생성 불가 | - | - |
 
 파트너 방화벽 등록 때문에 고정 IP가 필요하고 파트너 IP만 허용해야 한다는 요구가 나오면 VPC 타입입니다. 여기에 평문 FTP만 지원하는 파트너가 섞여 있으면 그 파트너는 인터넷 경로로 받을 수 없고, Direct Connect나 VPN을 통한 내부 접근 경로로 분리해야 합니다.
@@ -355,7 +355,7 @@ VPC 엔드포인트는 최대 3개 AZ와 서브넷을 고를 수 있습니다. I
 
 | 프로토콜 | 포트 |
 | :--- | :--- |
-| SFTP | 22, 2222, 22000 중 선택. 기본 22 |
+| SFTP | VPC endpoint에서 22, 2222, 2223, 22000 중 선택. 기본 22 |
 | FTP와 FTPS 컨트롤 채널 | 21 |
 | FTP와 FTPS 데이터 채널 | 8192에서 8200 |
 
@@ -720,10 +720,10 @@ jumbo frame 9001은 같은 Wavelength Zone 안에서만 성립합니다. 리전�
 | 항목 | 값 |
 | :--- | :--- |
 | 프로토콜 | SFTP(version 3), FTPS, FTP, AS2, 브라우저 기반 |
-| 대상 스토리지 | S3와 EFS뿐 |
-| SFTP 포트 | 22, 2222, 22000. 기본 22 |
+| 대상 스토리지 | S3 또는 EFS. AS2는 S3만, FSx for NetApp ONTAP은 S3 access point 경유 |
+| SFTP 포트 | VPC endpoint에서 22, 2222, 2223, 22000. 기본 22 |
 | FTP와 FTPS | 컨트롤 21, 데이터 8192-8200 |
-| internet-facing VPC 엔드포인트 | **SFTP와 FTPS만** |
+| internet-facing VPC 엔드포인트 | **SFTP, FTPS, AS2** |
 | VPC_ENDPOINT | 2021-05-19부터 신규 생성 불가, 계정당 10개(조정 불가) |
 | VPC 엔드포인트 AZ | 최대 3개 |
 | 계정당 서버 | 50개(조정 가능) |
@@ -797,12 +797,12 @@ jumbo frame 9001은 같은 Wavelength Zone 안에서만 성립합니다. 리전�
 
 | 짝 | 차이를 만드는 제약 |
 | :--- | :--- |
-| DataSync 에이전트 필요 대 불필요 | 온프레미스, 자체관리 객체 스토리지, 타 클라우드에서 EFS나 FSx로 가는 전송에는 필요하다. 같은 계정의 AWS 스토리지 사이나 한쪽이 S3인 계정 간 전송에는 필요 없다. 처리량 상한도 10 Gbps와 5 Gbps로 갈린다 |
+| DataSync 에이전트 필요 대 불필요 | 온프레미스, 자체관리 객체 스토리지, 타 클라우드에서 EFS나 FSx로 가는 전송에는 필요하다. 같은 계정의 AWS 스토리지 서비스 사이 또는 그 서비스들 사이의 계정 간 전송에서 한쪽이 S3이면 필요 없다. 자체 관리 NFS/SMB/HDFS는 상대편이 S3여도 필요하다. 처리량 상한도 10 Gbps와 5 Gbps로 갈린다 |
 | DataSync Enhanced mode 대 Basic mode | Enhanced는 객체 수 무제한, 병렬 처리, JSON 로그, 전송분만 검증이다. Basic은 객체 수 쿼터, 순차 처리, 전체 검증이다. FSx for Windows/ONTAP/OpenZFS와 S3 on Outposts는 Basic만 가능하고 mode는 생성 후 변경 불가다 |
 | DataSync 대 S3 Transfer Acceleration | DataSync는 NFS/SMB/HDFS/객체 스토리지와 S3/EFS/FSx 사이를 메타데이터와 권한을 보존하며 옮기고 스케줄과 검증을 제공한다. Transfer Acceleration은 버킷 기능이라 대상이 S3뿐이고 버킷 이름에 마침표가 없어야 하며 15개 리전에서만 지원된다 |
-| DataSync 대 Transfer Family | DataSync는 AWS가 주도하는 push와 pull 동기화다. Transfer Family는 외부 파트너가 표준 프로토콜 클라이언트로 접속해 오는 서버를 제공하고 대상이 S3와 EFS뿐이다. 반복 배치 마이그레이션은 DataSync, 파트너의 기존 SFTP 클라이언트를 그대로 받는 상시 수신은 Transfer Family다 |
+| DataSync 대 Transfer Family | DataSync는 AWS가 주도하는 push와 pull 동기화다. Transfer Family는 외부 파트너가 표준 프로토콜 클라이언트로 접속해 오는 서버를 제공하고 S3/EFS를 사용하며 AS2는 S3만 지원한다. FSx for NetApp ONTAP은 S3 access point 경유가 가능하다. 반복 배치 마이그레이션은 DataSync, 파트너의 기존 SFTP 클라이언트를 그대로 받는 상시 수신은 Transfer Family다 |
 | Transfer Family server 대 connector | server는 외부 클라이언트를 받는 수신 엔드포인트다. SFTP와 AS2 connector는 AWS가 외부 파트너 서버에 능동적으로 접속하는 발신 경로다. 쿼터도 분리돼 있다 |
-| Transfer Family PUBLIC 대 VPC 엔드포인트 | VPC 타입만 security group으로 소스 IP를 제한하고 Elastic IP를 직접 붙일 수 있다. internet-facing VPC 엔드포인트는 SFTP와 FTPS만 지원하고 FTP는 Internal 접근에서만 된다 |
+| Transfer Family PUBLIC 대 VPC 엔드포인트 | VPC 타입은 security group으로 소스 IP를 제한한다. Internet Facing은 EIP, Internal은 고정 private IP를 사용한다. internet-facing VPC 엔드포인트는 SFTP, FTPS, AS2를 지원하고 FTP는 Internal 접근에서만 된다 |
 | 콘솔 생성 대 CloudFormation 생성 security policy | 기본값이 다르다. 콘솔/API/CLI는 `TransferSecurityPolicy-2024-01`, CloudFormation은 `TransferSecurityPolicy-2018-11`이다 |
 | S3 File Gateway 대 Volume Gateway | File Gateway는 NFS와 SMB로 접근하고 파일이 S3 객체로 1:1 저장돼 S3에서 직접 읽을 수 있다. Volume Gateway는 iSCSI 블록 장치이고 백업 결과가 EBS 스냅샷이라 S3 객체로 직접 소비할 수 없다 |
 | Volume Gateway cached 대 stored | cached는 최대 32 TiB에 합계 1,024 TiB이고 데이터는 S3에 있다. stored는 최대 16 TiB에 합계 512 TiB이고 전체 데이터가 로컬에 있다. 16 TiB 초과 cached 볼륨 스냅샷은 EBS로 복원할 수 없다 |
@@ -849,8 +849,8 @@ jumbo frame 9001은 같은 Wavelength Zone 안에서만 성립합니다. 리전�
 | S3 on Outposts에 lifecycle 규칙을 걸어 90일 뒤 Glacier로 보낸다 | 스토리지 클래스가 `OUTPOSTS` 하나뿐이고 lifecycle transition이 지원되지 않는다 |
 | 규제 요건상 S3 on Outposts 객체를 고객 관리 KMS 키로 암호화한다 | S3 on Outposts는 SSE-KMS를 지원하지 않는다. 기본 SSE-S3와 선택적 SSE-C만 된다 |
 | 콘솔로 S3 on Outposts 버킷에 객체를 올린다 | 콘솔은 리전에 호스팅되므로 Outpost 객체를 업로드하거나 관리할 수 없다. REST API, CLI, SDK만 가능하다 |
-| internet-facing Transfer Family VPC endpoint에 FTP를 열어 레거시 파트너를 받는다 | internet-facing VPC hosted endpoint는 SFTP와 FTPS만 지원한다 |
-| Transfer Family로 파트너 파일을 FSx for Windows File Server에 직접 받는다 | 대상 스토리지는 S3와 EFS뿐이다 |
+| internet-facing Transfer Family VPC endpoint에 FTP를 열어 레거시 파트너를 받는다 | internet-facing VPC hosted endpoint는 SFTP, FTPS, AS2를 지원한다 |
+| Transfer Family로 파트너 파일을 FSx for Windows File Server에 직접 받는다 | FSx for Windows File Server 직접 연결은 지원하지 않는다. ONTAP의 S3 access point 경로와 구분한다 |
 | CloudFormation으로 Transfer Family 서버를 만들면 최신 security policy가 붙는다 | CloudFormation 기본값은 `TransferSecurityPolicy-2018-11`이다 |
 | FTP 서버에 강한 security policy를 붙여 전송 구간 암호화를 만족시킨다 | FTP는 암호화를 쓰지 않아 security policy의 어떤 항목도 사용하지 않는다 |
 | PUBLIC 엔드포인트에 security group을 붙여 파트너 IP만 허용한다 | PUBLIC 엔드포인트에는 security group을 연결할 수 없고 Elastic IP로 주소를 고정할 수도 없다 |
@@ -879,7 +879,7 @@ jumbo frame 9001은 같은 Wavelength Zone 안에서만 성립합니다. 리전�
 
 ## 25. 예상 문제 10문항
 
-**Q1.** 미디어 회사가 온프레미스 NAS의 600 TB를 S3로 옮깁니다. 인터넷 회선은 1 Gbps이고 업무 시간 다른 트래픽 때문에 마이그레이션에는 40%만 할당할 수 있습니다. 프로젝트 기한은 8주이고, 회사는 최근에 AWS 계정을 개설한 신규 고객입니다. MOST appropriate 접근은 무엇입니까?
+**Q1.** 미디어 회사가 온프레미스 NAS의 600 TB를 S3로 옮깁니다. 인터넷 회선은 1 Gbps이고 업무 시간 다른 트래픽 때문에 마이그레이션에는 40%만 할당할 수 있습니다. 프로젝트 기한은 8주이고, 회사는 현재 신규 주문 제한이 적용되는 Snow Family 신규 고객입니다. MOST appropriate 접근은 무엇입니까?
 
 - A. 온프레미스에 S3 File Gateway를 배포하고 캐시가 채워지는 대로 업로드한다
 - B. S3 Transfer Acceleration을 켜고 멀티파트 업로드로 병렬 전송한다
@@ -895,7 +895,7 @@ AWS 전송 시간 공식은 `(DATA_SIZE * 8) / (CIRCUIT * NETWORK_UTILIZATION * 
 
 - A가 틀린 이유: File Gateway는 온프레미스에서 파일 접근을 유지하면서 S3를 백엔드로 쓰는 캐시 계층이고, 실제 업로드는 같은 회선을 그대로 사용한다.
 - B가 틀린 이유: Transfer Acceleration은 엣지 로케이션을 경유해 장거리 구간 효율을 올리는 기능이고 온프레미스 회선의 물리 대역폭 상한을 늘리지 못한다.
-- D가 틀린 이유: Snowball Edge는 신규 고객에게 더 이상 제공되지 않으며 이 변경으로 어떤 Snow Family 디바이스도 신규 고객이 주문할 수 없다.
+- D가 틀린 이유: 이 연습문제는 현재 신규 주문 제한이 적용되는 고객이라고 명시했다. 기존 고객이나 과거 시점의 Snowball 전송까지 틀렸다는 뜻은 아니다.
 
 </details>
 
@@ -986,7 +986,7 @@ Transfer Acceleration은 버킷 이름이 DNS 호환이어야 하고 마침표�
 
 - A. VPC_ENDPOINT 타입 서버를 만들고 앞에 Network Load Balancer를 둔다
 - B. internet-facing VPC 엔드포인트 하나에 SFTP, FTPS, FTP를 모두 노출한다
-- C. VPC hosted internet-facing 엔드포인트로 SFTP와 FTPS를 노출하고, FTP 파트너는 VPC 내부 접근 경로로 받으며, security group으로 소스 IP를 제한하고 서브넷마다 Elastic IP를 지정한다
+- C. VPC hosted internet-facing 엔드포인트로 SFTP와 FTPS를 노출하고, FTP 파트너는 VPC 내부 접근 경로로 받으며, security group으로 소스 IP를 제한하고 internet-facing 쪽 서브넷마다 Elastic IP를 지정한다
 - D. PUBLIC 엔드포인트를 만들고 security group으로 파트너 IP를 제한한다
 
 <details markdown="1">
@@ -994,7 +994,7 @@ Transfer Acceleration은 버킷 이름이 DNS 호환이어야 하고 마침표�
 
 **정답: C**
 
-Transfer Family의 VPC 엔드포인트 타입은 security group으로 소스 IP를 제한하고 서브넷마다 Elastic IP를 직접 붙일 수 있습니다. internet-facing VPC hosted endpoint에서는 SFTP와 FTPS만 사용할 수 있고 FTP는 VPC 내부 접근에서만 가능하므로, 평문 FTP 파트너는 Direct Connect를 통한 내부 경로로 받아야 합니다.
+Transfer Family의 VPC 엔드포인트는 security group으로 소스 IP를 제한합니다. Internet Facing은 서브넷마다 EIP를 연결하고, Internal은 고정 private IP로 접근합니다. internet-facing VPC hosted endpoint에서는 SFTP, FTPS, AS2를 사용할 수 있고 FTP는 VPC 내부 접근에서만 가능하므로, 평문 FTP 파트너는 Direct Connect를 통한 내부 경로로 받아야 합니다.
 
 - A가 틀린 이유: VPC_ENDPOINT 타입은 2021년 5월 19일부터 신규 생성이 불가능하다.
 - B가 틀린 이유: internet-facing VPC hosted endpoint는 FTP를 지원하지 않는다.
@@ -1085,6 +1085,9 @@ Local Zone은 사용자와 지리적으로 가까운 리전의 확장이고 AWS�
 ---
 
 ## 26. Reference
+
+- [AWS Transfer Family - Configuring AS2](https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html)
+- [AWS Transfer Family - FSx for NetApp ONTAP through S3 access points](https://docs.aws.amazon.com/transfer/latest/userguide/fsx-s3-access-points.html)
 
 - [AWS Snowball - AWS Snowball Edge availability change](https://docs.aws.amazon.com/snowball/latest/developer-guide/snowball-edge-availability-change.html)
 - [AWS Snowball - Differences between Snowball Edge device options](https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
