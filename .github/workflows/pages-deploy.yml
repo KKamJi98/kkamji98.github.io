@@ -4,31 +4,52 @@ on:
     branches:
       - main
       - master
+    # Only paths that the Jekyll build never reads or publishes. Everything
+    # else (including AGENTS.md and kkamji_scripts/, which are published as
+    # static files) still triggers a deploy. docs/diagram-downloads.json is
+    # read by _plugins/diagram-downloads.rb, so docs/ is listed per file type
+    # instead of as a whole directory.
     paths-ignore:
       - .gitignore
       - README.md
       - LICENSE
+      - "docs/*.md"
+      - "docs/_meta/**"
+      - docs/diagram-catalog.json
+      - docs/diagram-connector-review.json
+      - docs/diagram-export-release.json
+      - "tools/**"
+      - ".devcontainer/**"
+      - ".vscode/**"
+      - ".githooks/**"
+      - .editorconfig
+      - .nojekyll
+      - .github/workflows/docs-lint.yml
+      - .github/dependabot.yml
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: {}
 
-# Allow one concurrent deployment
+# Allow one concurrent deployment. Do not cancel an in-progress Pages deploy;
+# a newer push waits for it instead.
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      # actions/configure-pages reads the Pages site configuration.
+      pages: read
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           # submodules: true
@@ -37,10 +58,10 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@e81a8fa391b11a595c1b7ed84177cc0fe02faf83 # v1.328.0
         with:
           ruby-version: 3.3
           bundler-cache: true
@@ -57,7 +78,7 @@ jobs:
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
 
@@ -66,8 +87,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
