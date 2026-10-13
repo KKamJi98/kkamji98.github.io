@@ -109,6 +109,94 @@ def test_complete_conversion_preserves_native_evidence_and_all_outputs(tmp_path)
     assert not (root / 'docs/diagram-webp-release.json').exists(), 'conversion must not claim a built release'
 
 
+def test_fresh_native_snapshot_can_pass_normal_stage_gate_without_future_commit_sha(tmp_path):
+    import json
+    import subprocess
+
+    from pipeline import digest
+    from release_manifest import verify_staged
+    adapter = module()
+    root, native, stamp_path = fixture(tmp_path)
+    baseline = root / adapter.NATIVE
+    native['qualification'] = 'fresh native release fixture'
+    baseline.write_text(json.dumps(native))
+    revision = 'sha256:' + digest(baseline.read_bytes())
+    with pytest.raises(ValueError, match='native baseline changed'):
+        adapter.convert(root, stamp_path, 'HEAD')
+    adapter.convert(root, stamp_path, revision)
+    site = tmp_path / 'site'; built_fixture(root, native, site)
+    adapter.seal(root, site, stamp_path, revision)
+    subprocess.run(['git', 'add', '.'], cwd=root, check=True)
+    assert verify_staged(root)['passed'] is True
+    baseline.write_bytes(baseline.read_bytes() + b'\n')
+    with pytest.raises(ValueError, match='baseline changed'):
+        adapter.convert(root, stamp_path, revision)
+
+
+@pytest.mark.parametrize('corrupt_previous', [False, True])
+def test_reviewed_native_revision_replaces_only_exact_sealed_old_webp(tmp_path, corrupt_previous):
+    import json
+    import subprocess
+
+    from pipeline import digest
+    adapter = module()
+    root, native, stamp_path = fixture(tmp_path)
+    adapter.convert(root, stamp_path)
+    site = tmp_path / 'site'; built_fixture(root, native, site)
+    adapter.seal(root, site, stamp_path)
+    subprocess.run(['git','add','.'],cwd=root,check=True)
+    subprocess.run(['git','-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','previous sealed fixture'],cwd=root,check=True)
+    row = native['entries'][0]
+    target = root / row['png'].lstrip('/')
+    webp = root / row['png'].lstrip('/').replace('.png', '.webp')
+    prior = webp.read_bytes()
+    image = Image.open(BytesIO(target.read_bytes())).convert('RGBA')
+    image.putpixel((200,200),(0,255,80,255))
+    changed = BytesIO(); image.save(changed,format='PNG')
+    target.write_bytes(changed.getvalue())
+    row['png_sha256'] = digest(target.read_bytes())
+    review_file = root / adapter.REVIEWS
+    reviews = json.loads(review_file.read_text())
+    next(r for r in reviews['sources'] if r['include']==row['include'])['png_sha256'] = row['png_sha256']
+    review_file.write_text(json.dumps(reviews))
+    native['review_file_sha256'] = digest(review_file.read_bytes())
+    baseline = root / adapter.NATIVE; baseline.write_text(json.dumps(native))
+    revision = 'sha256:' + digest(baseline.read_bytes())
+    with pytest.raises(ValueError, match='pixels differ'):
+        adapter.convert(root, stamp_path, revision)
+    assert webp.read_bytes() == prior
+    if corrupt_previous:
+        webp.write_bytes(prior + b'corruption')
+        with pytest.raises(ValueError, match='previous reviewed WebP bytes changed'):
+            adapter.convert(root, stamp_path, revision, replace_reviewed=True)
+    else:
+        adapter.convert(root, stamp_path, revision, replace_reviewed=True)
+        assert webp.read_bytes() != prior
+        assert adapter.compare_pixels(target.read_bytes(),webp.read_bytes())['pixel_equality']=='full-decoded-RGBA-equal'
+
+
+@pytest.mark.parametrize('damage', ['review', 'source', 'stamp', 'baseline-address'])
+def test_content_addressed_native_release_keeps_all_freshness_guards(tmp_path, damage):
+    import json
+
+    from pipeline import digest
+    adapter = module()
+    root, _native, stamp_path = fixture(tmp_path)
+    revision = 'sha256:' + digest((root / adapter.NATIVE).read_bytes())
+    if damage == 'review':
+        path = root / adapter.REVIEWS; path.write_bytes(path.read_bytes() + b'\n')
+    elif damage == 'source':
+        path = root / '_includes/diagrams/example.html'; path.write_text(path.read_text() + 'changed')
+    elif damage == 'stamp':
+        value = json.loads(stamp_path.read_text()); value['source']['changed'] = 'a' * 64
+        stamp_path.write_text(json.dumps(value))
+    else:
+        revision = 'sha256:' + '0' * 64
+    with pytest.raises(ValueError):
+        adapter.convert(root, stamp_path, revision)
+    assert not list((root / 'assets/img/diagrams').rglob('*.webp'))
+
+
 def built_fixture(root, native, site, *, cover=False):
     import json
     import shutil

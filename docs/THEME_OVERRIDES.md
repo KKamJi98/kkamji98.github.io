@@ -38,6 +38,8 @@ bash tools/run.sh    # 로컬 미리보기
 
 ## Static diagram download helper
 
+Jev의 판단 경계 도식은 본문의 입력, 실제 측정값과 정책 예시를 FHD 카드에 함께 배치한다. 그룹 상단, 카드 제목 baseline과 padding을 맞추고 기존 보라색/청록색 네온 accent를 유지한다. Choice, Noul, Score는 병렬 신호이며 새 실행 단계가 아니다. 캔버스와 현재 article 표시 규칙은 [Static diagrams](static-diagrams.md)를 따른다.
+
 - `_includes/diagrams/download.html` is an additive helper, not a gem override.
 - Invoke only outside `figure.sd`. The legacy `png=` input may retain a same-origin native PNG provenance path; the helper derives the public `.webp` delivery URL. Inline, download and the scriptless full-size viewer use the same native 1920 x 1080 WebP. Only the article image scales proportionally to article width; it has empty `alt` because the canonical figure stays in the accessibility tree. Full-size display and 100%, 125% and 150% zoom belong to the explicitly user-selected viewer. No JavaScript, alternate drawing, viewport-specific image variant, or forced inline image scrolling.
 - CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The fixed-coordinate SVG is rendered through the approved Aside path; the semantic source and the same SVG are verified together. Source/export input changes require fresh render evidence; inline-only display changes must preserve source/export geometry and require a fresh delivery build/check. Older dark or resized PNGs are not a verified native light release.

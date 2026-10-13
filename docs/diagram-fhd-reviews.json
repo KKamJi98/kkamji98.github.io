@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "completed_at": "2026-10-13T00:39:15.522353+00:00",
-  "build_identity": "26dffc0e74bf66cab75422b4b69359145007f7980cadda739c171a0732bb0e9f",
+  "completed_at": "2026-10-13T12:09:38.292727+00:00",
+  "build_identity": "9b743e80d6b8cdc86867af6ed6a2f53a4954e17a6638d8491b316394ace6eab1",
   "method": "Actual full-resolution native PNG readings with source/SVG comparisons, then exact unchanged-input revalidation and affected-only rerender/reread. Automatic geometry and dimensions are separate gates.",
   "reviewer_role_counts": {
-    "settings": 129,
-    "root": 27,
+    "settings": 128,
+    "root": 28,
     "native": 130,
     "blog": 105
   },
@@ -140,16 +140,16 @@
     {
       "index": 9,
       "include": "diagrams/static/ai/jev-decision-pipeline.html",
-      "source_sha256": "1bf219ce630240b446b4ef54b0943b4429975ed5eb09fe1250a5e7b819ef2872",
-      "svg_sha256": "c5466361502fb9a65d42dc5c77ce6ff843cd914eb93fb672a0b1a1d92daffcdb",
-      "png_sha256": "506ed6c5c1f22c3d71ed5892a19b532e1b86a11fcd8d7d7e34fc460ba34e21d3",
+      "source_sha256": "2315166970112be665a3f9085d05dd8d5480c0d20808697024b6845191014e59",
+      "svg_sha256": "4e06dcafecf1abd40350b3c76763bd8214eb730af3bfbeb8fea8cf47a204c99d",
+      "png_sha256": "16c31066dfefa4c400d9d95ed4ff66c83beeba0c478db7ab4a19a00016e1dd59",
       "visual_status": "passed",
       "semantic_status": "passed",
       "actual_original_png_viewed": true,
-      "reviewed_at": "2026-10-12T23:42:08.460459+00:00",
+      "reviewed_at": "2026-10-13T12:09:38.292698+00:00",
       "review_time_kind": "recorded actual read",
-      "reviewer_role": "settings",
-      "notes": "State and Typed Questions Jev execution permission absent typed answers Execution authority Deterministic Policy Shadow no execution comparison Escalate human/upper control Input arrow reaches Jev; typed answers arrow reaches Policy. Two downward directed fork routes end separately at Shadow and Escalate, preserving alternatives rather than serial steps. The execution authority enclosure distinguishes policy from Jev; neither outcome falsely indicates execution permission. All labels and4 directed edges are clearly readable at native resolution. Typed transfer and fork have visible arrowheads; no overlap or clipping."
+      "reviewer_role": "root",
+      "notes": "Viewed the final native 1920 x 1080 PNG. Both authority boundaries align at y184; primary card tops/heights and title baselines align at y288/h440/y336 with 24px padding. Purple/teal Jev gradient and three role-colored parallel signal panels are visible. Recorded post inputs, measured Choice/Noul/Score values, five illustrative policy conditions and three recorded examples fill the former large empty area. Existing State/Jev/Policy/Shadow/Escalate nodes and all four directed edges remain; Choice/Noul/Score are parallel signals with no new execution dependency. The figure and footer distinguish comparison/escalation from execution permission and state that values/thresholds are examples. Text, arrowheads and panels are readable without clipping or overlap. Supersedes the earlier Jev visual judgment, which did not adequately assess composition/style."
     },
     {
       "index": 10,
@@ -5485,5 +5485,10 @@
       "reviewer_role": "root",
       "notes": "원본1600x900 WebP와 SVG의21개 표시 문장을 먼저 직접 읽고, 새1920x1080 PNG 전체를 실제 읽었습니다. STATE/Jev/Choice-Score-Noul 그룹/CODE OWNS의4열 흐름과 실제3개 오른쪽 화살표 및 state input/typed answers/policy input 라벨을 대조했습니다. Tool call + context, command/scope/intent, validated facts와 Policy/execute/or escalate가 별도 줄로 보여 이전 이어붙임이 해결됐습니다.21개 원래 문장, footer와 결정/정책 구분을 보존하며 잘림이나 선/글자 겹침이 없습니다."
     }
-  ]
+  ],
+  "revision_scope": {
+    "newly_rendered_and_visually_reviewed": 1,
+    "unchanged_sources_require_exact_input_revalidation": 390,
+    "changed_include": "diagrams/static/ai/jev-decision-pipeline.html"
+  }
 }

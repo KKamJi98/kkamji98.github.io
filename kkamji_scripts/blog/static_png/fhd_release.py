@@ -6,7 +6,7 @@ import json
 import shutil
 from pathlib import Path
 
-from downloads import built_plan, source_snapshot
+from downloads import built_plan, source_snapshot, webp_url
 from fhd_export import RENDER, build_guard, unused_png
 from fhd_reuse import native_inputs, receipt_is_current
 from pipeline import digest, fingerprint, png_dimensions
@@ -80,13 +80,27 @@ def checked_sources(root, site, out, reviews):
     return plan, stamp, checked, browsers.pop()
 
 
+def unused_outputs(root, plan):
+    """Keep native paths when a former body figure is now used as a cover."""
+    baseline = root / MANIFEST
+    previous = json.loads(baseline.read_text()) if baseline.is_file() else {}
+    rows = previous.get("entries", []) + previous.get("unused_entries", [])
+    result = []
+    for include in plan["unused_includes"]:
+        paths = sorted({row["png"] for row in rows if row["include"] == include})
+        for png in paths or [unused_png(include)]:
+            webp_url(png)  # Validate the preserved public native path.
+            result.append((include, png))
+    if len({png for _include, png in result}) != len(result):
+        raise ValueError("preserved unused native output collision")
+    return result
+
+
 def promote(root, site, out, reviews):
     """Copy reviewed native outputs only after every source gate passes."""
     plan, _stamp, sources, _browser = checked_sources(root, site, out, reviews)
     destinations = [(row["include"], row["png"]) for row in plan["entries"]]
-    destinations += [
-        (include, unused_png(include)) for include in plan["unused_includes"]
-    ]
+    destinations += unused_outputs(root, plan)
     for include, png in destinations:
         source = out / str(sources[include]["index"]).zfill(3) / "diagram.png"
         for directory in (root, site):
@@ -133,9 +147,8 @@ def record(root, site, out, reviews):
             }
         )
     unused = []
-    for include in plan["unused_includes"]:
+    for include, png in unused_outputs(root, plan):
         source = sources[include]
-        png = unused_png(include)
         raw = (root / png.lstrip("/")).read_bytes()
         if (
             digest(raw) != source["png_sha256"]

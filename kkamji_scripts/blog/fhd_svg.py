@@ -1150,7 +1150,13 @@ def svg_document(layout, figure, source_hash, instance=""):
         f'<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="{source_hash}">',
         '<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>',
     ]
+    if layout.profile.get("brand") == "jev":
+        out.append(
+            '<defs><linearGradient id="jev-neon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6e77ff"/><stop offset="1" stop-color="#2ed6b8"/></linearGradient></defs>'
+        )
     for g in layout.groups:
+        if g.get("owner"):
+            continue
         warning = (
             "sd-node--warning" in g.get("classes", [])
             or "sd-lane--warning" in g.get("classes", [])
@@ -1159,6 +1165,7 @@ def svg_document(layout, figure, source_hash, instance=""):
         fill, border = ("#fffbeb", "#b45309") if warning else ("#f8fafc", "#cbd5e1")
         if g.get("relation_boundary"):
             fill, border = "none", "#64748b"
+        fill, border = g.get("fill", fill), g.get("border", border)
         out.append(
             f'<rect data-source="{g["source"]}" x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="16" fill="{fill}" stroke="{border}" stroke-width="2"/>'
         )
@@ -1167,6 +1174,7 @@ def svg_document(layout, figure, source_hash, instance=""):
         accent = "sd-node--accent" in b["classes"]
         border = "#b45309" if warning else "#0f766e" if accent else "#94a3b8"
         fill = "#fffbeb" if warning else "#f0fdfa" if accent else "#fff"
+        fill, border = b.get("fill", fill), b.get("border", border)
         dash = (
             ' stroke-dasharray="10 8"'
             if b.get("connector_role") == "reference-note"
@@ -1182,8 +1190,13 @@ def svg_document(layout, figure, source_hash, instance=""):
             if value
         )
         out.append(
-            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="2"{dash}/>'
+            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="{b.get("border_width", 2)}"{dash}/>'
         )
+        for g in layout.groups:
+            if g.get("owner") == b["source"]:
+                out.append(
+                    f'<rect data-source="{g["source"]}" x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="12" fill="{g["fill"]}" stroke="{g["border"]}" stroke-width="2"/>'
+                )
     for edge in layout.connectors:
         if "points" not in edge:
             continue
@@ -1228,7 +1241,7 @@ def svg_document(layout, figure, source_hash, instance=""):
     for text in layout.texts:
         weight = 700 if text["label"] else 400
         out.append(
-            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="#111827">{html.escape(text["text"])}</text>'
+            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="{text.get("fill", "#111827")}">{html.escape(text["text"])}</text>'
         )
     out.append("</svg>")
     return "\n".join(out)
@@ -1260,6 +1273,30 @@ def segment_crosses_text(a, b, text):
 
 def check_layout(layout):
     issues = []
+    if layout.profile.get("brand") == "jev":
+        frames = [
+            g for g in layout.groups if g["source"] in ("root.0.0.0", "root.0.0.2")
+        ]
+        primary = [
+            b
+            for b in layout.boxes
+            if b["source"] in ("root.0.0.0.0", "root.0.0.0.2", "root.0.0.2.1")
+        ]
+        outcomes = [b for b in layout.boxes if b["source"].startswith("root.0.0.2.3.")]
+        if (
+            len({(b["y"], b["height"]) for b in frames}) != 1
+            or len({(b["y"], b["height"]) for b in primary}) != 1
+            or len({(b["y"], b["width"], b["height"]) for b in outcomes}) != 1
+        ):
+            issues.append({"code": "jev-card-alignment"})
+        titles = [
+            next(t for t in layout.texts if t["source"] == b["source"] and t["label"])
+            for b in primary
+        ]
+        if len({t["y"] for t in titles}) != 1 or any(
+            t["x"] - b["x"] != 24 for t, b in zip(titles, primary)
+        ):
+            issues.append({"code": "jev-title-alignment"})
     for b in layout.boxes + layout.groups:
         if (
             min(b["x"], b["y"]) < 32
@@ -2157,45 +2194,170 @@ def jev_layout(font, figure):
     """Keep Jev typed data separate from deterministic execution authority."""
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     layout = Layout(
-        font, 28, 22, 24, 24, {"bold_width_budget": 1.25, "regular_width_budget": 1.12}
+        font,
+        28,
+        22,
+        24,
+        24,
+        {"brand": "jev", "bold_width_budget": 1.12, "regular_width_budget": 1.12},
     )
-    layout.add_text(
-        [figure.attrs["aria-label"]], 64, 64, 36, 1792, "jev-title.meaning", True
+
+    def text(value, x, baseline, size, key, bold=False, fill="#111827"):
+        layout.add_text([value], x, baseline - size, size, WIDTH - 64 - x, key, bold)
+        layout.texts[-1]["fill"] = fill
+
+    def card(key, x, y, width, height, fill="#fff", border="#94a3b8"):
+        element = elements[key]
+        box = {
+            "source": key,
+            "label": element.text(),
+            "classes": sorted(element.classes),
+            "x": x,
+            "y": y,
+            "width": width,
+            "height": height,
+            "fill": fill,
+            "border": border,
+        }
+        layout.boxes.append(box)
+        return {"element": element, "bounds": [x, y, width, height]}
+
+    text(figure.attrs["aria-label"], 64, 92, 40, "jev-title.meaning", True)
+    text(
+        "검증된 입력과 확률 신호를 코드가 정한 정책으로 연결",
+        64,
+        138,
+        25,
+        "jev-subtitle.meaning",
+        fill="#475569",
     )
     layout.groups.extend(
         [
             {
                 "source": "root.0.0.0",
                 "classes": [],
-                "x": 40,
-                "y": 192,
-                "width": 1048,
-                "height": 280,
+                "x": 64,
+                "y": 184,
+                "width": 1120,
+                "height": 792,
+                "fill": "#f7f8ff",
+                "border": "#c7d2fe",
             },
             {
                 "source": "root.0.0.2",
                 "classes": [],
-                "x": 1160,
-                "y": 144,
-                "width": 696,
-                "height": 652,
+                "x": 1248,
+                "y": 184,
+                "width": 608,
+                "height": 792,
+                "fill": "#f0fdfa",
+                "border": "#99d6cd",
             },
         ]
     )
-    inputs = layout.draw(elements["root.0.0.0.0"], 64, 264, 420)
-    judge = layout.draw(elements["root.0.0.0.2"], 620, 264, 440)
-    authority = layout.draw(elements["root.0.0.2.1"], 1184, 264, 648)
-    layout.draw(elements["root.0.0.2.0"], 1184, 184, 648)
-    outcomes = [
-        layout.draw(elements["root.0.0.2.3." + str(i)], x, 624, 288)
-        for i, x in enumerate((1184, 1544))
+    text("Jev: 판단 신호 반환", 88, 240, 28, "jev-signals.meaning", True, "#4438a5")
+    text(
+        elements["root.0.0.2.0"].text(), 1272, 240, 28, "root.0.0.2.0", True, "#0f766e"
+    )
+    inputs = card("root.0.0.0.0", 88, 288, 456, 440)
+    judge = card("root.0.0.0.2", 656, 288, 504, 440, border="url(#jev-neon)")
+    layout.boxes[-1]["border_width"] = 3
+    authority = card("root.0.0.2.1", 1272, 288, 560, 440, border="#0f766e")
+    for item in (inputs, judge, authority):
+        key = item["element"].key
+        children = [e for e in item["element"].parts if not isinstance(e, str)]
+        x = item["bounds"][0] + 24
+        text(children[0].text(), x, 336, 34, key, True)
+        text(children[1].text(), x, 376, 24, key)
+    input_values = [
+        "tool: kubectl",
+        "canonical_args:",
+        "delete / namespace",
+        "production",
+        "environment: production",
+        "caller_role: release-bot",
+        "change_window: closed",
     ]
+    for value, y in zip(input_values, [432, 472, 508, 544, 600, 644, 688]):
+        text(value, 112, y, 23, inputs["element"].key)
+    for i, (label, value, fill, border, ink) in enumerate(
+        [
+            (
+                "Choice / tool_risk",
+                "review_required, confidence 1.0",
+                "#f3f2ff",
+                "#6e77ff",
+                "#4438a5",
+            ),
+            (
+                "Noul / irreversible",
+                "noul 0.78, yes probability",
+                "#edfdf8",
+                "#2ed6b8",
+                "#0f766e",
+            ),
+            (
+                "Score / blast_radius",
+                "score 2.78, confidence 0.78",
+                "#f5f0ff",
+                "#9271e3",
+                "#6843a6",
+            ),
+        ]
+    ):
+        layout.groups.append(
+            {
+                "source": judge["element"].key + ".detail-" + str(i),
+                "owner": judge["element"].key,
+                "classes": [],
+                "x": 680,
+                "y": 408 + 100 * i,
+                "width": 456,
+                "height": 92,
+                "fill": fill,
+                "border": border,
+            }
+        )
+        text(label, 704, 447 + 100 * i, 24, judge["element"].key, True, ink)
+        text(value, 704, 486 + 100 * i, 22, judge["element"].key)
+    for value, y in zip(
+        [
+            'risk.choice != "bounded"',
+            "risk.confidence < 0.90",
+            "irreversible.noul >= 0.10",
+            "blast_radius.score >= 2",
+            "blast_radius.confidence < 0.90",
+        ],
+        [440, 488, 536, 584, 632],
+    ):
+        text(value, 1296, y, 22, authority["element"].key)
+    text(
+        "하나라도 충족하면 Escalate",
+        1296,
+        692,
+        24,
+        authority["element"].key,
+        False,
+        "#92400e",
+    )
+    outcomes = [
+        card("root.0.0.2.3." + str(i), x, 832, 256, 116, fill, border)
+        for i, (x, fill, border) in enumerate(
+            [(1272, "#f3fdf9", "#0f766e"), (1576, "#fff9ef", "#b45309")]
+        )
+    ]
+    for outcome in outcomes:
+        key = outcome["element"].key
+        children = [e for e in outcome["element"].parts if not isinstance(e, str)]
+        x = outcome["bounds"][0] + 24
+        text(children[0].text(), x, 875, 30, key, True)
+        text(children[1].text(), x, 915, 22, key)
     for key, a, b, label in [
         ("root.0.0.0.1", inputs, judge, "입력"),
         ("root.0.0.1", judge, authority, "typed answers"),
     ]:
         aa, bb = a["bounds"], b["bounds"]
-        cy = (aa[1] + aa[3] / 2 + bb[1] + bb[3] / 2) / 2
+        cy = 508
         layout.connectors.append(
             {
                 "source": key,
@@ -2206,14 +2368,11 @@ def jev_layout(font, figure):
             }
         )
         source_key = key if key == "root.0.0.1" else key + ".meaning"
-        layout.add_text(
-            layout.wrap(label, bb[0] - aa[0] - aa[2] - 24, 22),
-            aa[0] + aa[2] + 12,
-            cy - 78,
-            22,
-            140,
-            source_key,
-        )
+        if label == "입력":
+            text(label, 564, 482, 24, source_key)
+        else:
+            text("typed", 1172, 446, 22, source_key)
+            text("answers", 1172, 486, 22, source_key)
     a = authority["bounds"]
     sx = a[0] + a[2] / 2
     for i, target in enumerate(outcomes):
@@ -2229,13 +2388,42 @@ def jev_layout(font, figure):
                 "label": ("Shadow 경로" if i == 0 else "Escalate 경로"),
                 "points": [
                     [sx, a[1] + a[3] + 12],
-                    [sx, 528],
-                    [tx, 528],
+                    [sx, 776],
+                    [tx, 776],
                     [tx, b[1] - 12],
                 ],
-                "meaning_bounds": [tx - 110, 564, 220],
+                "meaning_bounds": [tx - 120 if i == 0 else tx + 14, 790, 110],
             }
         )
+    layout.groups.append(
+        {
+            "source": "root.0.1",
+            "classes": [],
+            "x": 88,
+            "y": 772,
+            "width": 1072,
+            "height": 176,
+            "fill": "#fff",
+            "border": "#d6dcf3",
+        }
+    )
+    text("본문 측정 예시 - 실행 허가가 아님", 112, 808, 23, "root.0.1", True, "#475569")
+    for command, result, y in [
+        ("kubectl delete namespace production", "Escalate", 850),
+        ("git status --short", "Shadow", 890),
+        ("rm -rf ./build", "Escalate", 930),
+    ]:
+        text(command, 112, y, 25, "root.0.1")
+        text(
+            result,
+            956,
+            y,
+            26,
+            "root.0.1",
+            True,
+            "#0f766e" if result == "Shadow" else "#92400e",
+        )
+    text(elements["root.0.2"].text(), 64, 1032, 23, "root.0.2", fill="#475569")
     return layout
 
 

@@ -114,6 +114,13 @@ def public_path(root, url, extension):
 
 
 def _git_blob(root, revision, path):
+    if revision.startswith('sha256:'):
+        # A fresh release uses its exact baseline SHA, not a future Git SHA.
+        # checked_native seals reviews, the plugin and every raster input.
+        native_revision(root, revision)
+        if path not in (NATIVE, REVIEWS, PLUGIN):
+            raise ValueError('unsupported content-addressed native evidence')
+        return safe_path(root, path).read_bytes()
     try:
         return subprocess.check_output(['git', 'show', revision + ':' + path], cwd=root, stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as error:
@@ -121,6 +128,12 @@ def _git_blob(root, revision, path):
 
 
 def native_revision(root, revision):
+    if revision.startswith('sha256:'):
+        expected = revision.removeprefix('sha256:')
+        if (not re.fullmatch(r'[a-f0-9]{64}', expected)
+                or digest(safe_path(root, NATIVE).read_bytes()) != expected):
+            raise ValueError('content-addressed native baseline changed')
+        return revision
     try:
         resolved = subprocess.check_output(['git', 'rev-parse', '--verify', revision + '^{commit}'], cwd=root, text=True, stderr=subprocess.PIPE).strip()
     except subprocess.CalledProcessError as error:
@@ -240,7 +253,7 @@ def checked_native(root, stamp, revision='HEAD'):
             'proof_style_sha256': digest(native_style.encode()), 'rows': by_png}
 
 
-def convert(root, native_stamp, revision='HEAD'):
+def convert(root, native_stamp, revision='HEAD', replace_reviewed=False):
     root = Path(root).resolve()
     stamp = load_json(Path(native_stamp).read_bytes())
     native = checked_native(root, stamp, revision)
@@ -248,19 +261,36 @@ def convert(root, native_stamp, revision='HEAD'):
     before = source_snapshot(root)
     # Validate every source/destination before creating any derivative.
     destinations = []
+    previous = {}
+    if replace_reviewed:
+        saved_raw = safe_path(root, MANIFEST).read_bytes()
+        if saved_raw != _git_blob(root, native_revision(root, 'HEAD'), MANIFEST):
+            raise ValueError('previous sealed delivery differs from committed evidence')
+        saved = load_json(saved_raw)
+        if saved.get('status') != 'lossless-conversion-and-built-delivery-checked':
+            raise ValueError('reviewed replacement requires the previous sealed delivery')
+        previous = {row['webp']: row for row in saved['outputs']}
     for png in sorted(native['rows']):
         destination = public_path(root, webp_url(png), 'webp')
         if destination.exists():
-            compare_pixels(public_path(root, png, 'png').read_bytes(), destination.read_bytes())
-        destinations.append((png, destination))
-    for png, destination in destinations:
+            old = previous.get(webp_url(png))
+            replacing = bool(old and old['png_sha256'] != native['rows'][png]['png_sha256'])
+            if replacing:
+                if digest(destination.read_bytes()) != old['webp_sha256']:
+                    raise ValueError('previous reviewed WebP bytes changed; replacement refused')
+            else:
+                compare_pixels(public_path(root, png, 'png').read_bytes(), destination.read_bytes())
+        else:
+            replacing = False
+        destinations.append((png, destination, replacing))
+    for png, destination, replacing in destinations:
         raw = public_path(root, png, 'png').read_bytes()
         converted = encode_lossless(raw)
         destination.parent.mkdir(parents=True, exist_ok=True)
         # Do not silently repair a corrupt/altered previously published derivative.
-        if destination.exists() and destination.read_bytes() != converted:
+        if destination.exists() and destination.read_bytes() != converted and not replacing:
             raise ValueError('existing WebP differs from the required lossless method 6 exact encoding')
-        if not destination.exists(): destination.write_bytes(converted)
+        if not destination.exists() or replacing: destination.write_bytes(converted)
         compare_pixels(raw, destination.read_bytes())
     checked_native(root, stamp, native['revision'])
     if before != source_snapshot(root): raise ValueError('source changed during conversion')
@@ -491,14 +521,15 @@ def main(argv=None):
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[3])
     parser.add_argument('--site', type=Path, help='fresh dedicated delivery build outside the repository')
     parser.add_argument('--native-stamp', type=Path, help='read-only original native build stamp; never a newly rebased snapshot')
-    parser.add_argument('--native-revision', default='HEAD', help='commit containing the immutable native baseline and review evidence')
+    parser.add_argument('--native-revision', default='HEAD', help='native evidence Git commit, or sha256:<exact native baseline hash> for a freshly reviewed release')
     parser.add_argument('--staged', action='store_true', help='check exact index bytes as well as the release')
+    parser.add_argument('--replace-reviewed', action='store_true', help='replace only unchanged sealed old WebP bytes whose newly reviewed native PNG changed')
     args = parser.parse_args(argv)
     if args.action in ('convert', 'seal') and not args.native_stamp: parser.error('--native-stamp is required')
     if args.action == 'seal' and not args.site: parser.error('--site is required')
     if args.staged and args.action != 'check': parser.error('--staged applies only to check')
     try:
-        if args.action == 'convert': result = convert(args.root, args.native_stamp, args.native_revision)
+        if args.action == 'convert': result = convert(args.root, args.native_stamp, args.native_revision, args.replace_reviewed)
         elif args.action == 'seal': result = seal(args.root, args.site, args.native_stamp, args.native_revision)
         else:
             result = check(args.root, args.site)

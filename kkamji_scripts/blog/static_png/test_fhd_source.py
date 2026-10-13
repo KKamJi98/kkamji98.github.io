@@ -1,12 +1,15 @@
 """Negative acceptance tests for preserved source and native FHD geometry."""
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from downloads import output_paths, viewer_url
 from fhd_export import png_dimensions, unused_png
+from fhd_release import unused_outputs
 from fhd_svg import (
     FONT,
     Font,
@@ -267,6 +270,72 @@ class FHDSourceTests(unittest.TestCase):
         self.assertIn('stroke-dasharray="10 8"', svg)
         self.assertIn('data-connector-role="reference-note"', svg)
         self.assertIn('data-from="shutdown" data-to="socket"', svg)
+
+    def test_native_refresh_preserves_former_body_cover_path(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "docs").mkdir()
+            png = "/assets/img/diagrams/banner--0123456789abcdef.png"
+            (root / "docs/diagram-export-release.json").write_text(
+                json.dumps(
+                    {
+                        "entries": [{"include": "diagrams/banner.html", "png": png}],
+                        "unused_entries": [],
+                    }
+                )
+            )
+            self.assertEqual(
+                unused_outputs(root, {"unused_includes": ["diagrams/banner.html"]}),
+                [("diagrams/banner.html", png)],
+            )
+            self.assertEqual(
+                unused_outputs(root, {"unused_includes": ["diagrams/new.html"]}),
+                [("diagrams/new.html", unused_png("diagrams/new.html"))],
+            )
+
+    def test_jev_quality_gate_rejects_group_and_title_misalignment(self):
+        original = source_fragment(
+            (
+                self.root / "_includes/diagrams/static/ai/jev-decision-pipeline.html"
+            ).read_text()
+        )
+        figure = next(
+            e for e in Parse(original).root.descendants() if e.tag == "figure"
+        )
+        layout = jev_layout(self.font, figure)
+        self.assertEqual(check_layout(layout), [])
+        layout.groups[0]["y"] += 48
+        self.assertIn(
+            "jev-card-alignment", [issue["code"] for issue in check_layout(layout)]
+        )
+        layout.groups[0]["y"] -= 48
+        next(t for t in layout.texts if t["source"] == "root.0.0.0.2" and t["label"])[
+            "y"
+        ] += 8
+        self.assertIn(
+            "jev-title-alignment", [issue["code"] for issue in check_layout(layout)]
+        )
+
+    def test_jev_keeps_neon_accent_and_measured_policy_details(self):
+        original = source_fragment(
+            (
+                self.root / "_includes/diagrams/static/ai/jev-decision-pipeline.html"
+            ).read_text()
+        )
+        figure = next(
+            e for e in Parse(original).root.descendants() if e.tag == "figure"
+        )
+        layout = jev_layout(self.font, figure)
+        self.assertEqual(semantic_check(layout, figure), [])
+        self.assertEqual(visible_text_coverage(layout, original), [])
+        svg = svg_document(layout, figure, "test")
+        self.assertIn('stop-color="#6e77ff"', svg)
+        self.assertIn('stop-color="#2ed6b8"', svg)
+        self.assertIn('stroke="url(#jev-neon)"', svg)
+        layout.texts = [
+            t for t in layout.texts if t["text"] != "blast_radius.confidence < 0.90"
+        ]
+        self.assertTrue(semantic_check(layout, figure))
 
     def test_named_source_metadata_does_not_certify_a_disconnected_reference(self):
         original = '<figure class="sd"><div class="sd-node" id="a">Named source</div><div class="sd-arrow" data-connector-role="reference" data-from="a" data-to="b">Remote request</div><div class="sd-node" id="b">Named destination</div></figure>'

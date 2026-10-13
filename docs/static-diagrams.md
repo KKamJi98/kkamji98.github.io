@@ -93,6 +93,20 @@ WebP 검증 환경은 `python3 -m venv .venv`와 `.venv/bin/python -m pip instal
 
 ## Exact per-source freshness
 
+native 갱신에서 본문 대신 커버로 쓰는 그림은 검토된 이전 PNG 경로를 유지한다. 바뀐 native PNG의 공개 WebP를 갱신할 때만 `convert --replace-reviewed`를 사용한다. 이 옵션도 새 native 전체 검증을 먼저 요구하며, 기존 WebP가 이전 sealed delivery의 정확한 해시와 다르면 교체를 거부한다. 변경 전 PNG, WebP, manifest와 검토 증거는 보존한다. 기존 출력이 손상된 경우 이 옵션으로 자동 복구하지 않는다.
+
+SVG를 실제로 수정한 native release는 해당 source를 fresh build에서 다시 렌더하고 검토한다. 입력이 byte 단위로 동일한 source는 아래 재검증 절차로 기존 PNG와 검토를 재사용한다. 새 native manifest와 검토 기록을 생성한 뒤 WebP 변환의 `--native-revision`에 `sha256:<docs/diagram-export-release.json의 정확한 SHA-256>`을 사용할 수 있다. 이 주소는 아직 존재하지 않는 Git 커밋을 가정하지 않으며, native manifest, 원래 build stamp, 검토, 모든 raster 입력과 staged bytes 검증을 유지한다. 기존 release의 Git commit 주소도 계속 지원한다. 이전 증거는 보존하고 실제 변경 source만 새 검토로 교체한다.
+
 전체 build fingerprint가 바뀌어도, 한 source의 모든 렌더 입력 bytes가 동일하면 그 source의 통과 native PNG만 재사용할 수 있다. 기존 의미 HTML SHA, authored SVG exact bytes, 고정 폰트 SHA, sealed build의 원본 이미지 bytes, 실제 HTTP fixture에서 읽은 style bytes, native renderer JavaScript SHA와 실제 Aside browser UA를 전부 비교한다. 누락, 변경 또는 이전 자동 실패가 하나라도 있으면 해당 source를 다시 렌더한다. SVG 또는 PNG bytes가 바뀌면 기존 실제 시각/의미 승인을 무효화한다.
 
 과거 receipt에 입력 필드가 없으면 sealed build stamp, 보존된 renderer source, actual HTTP fixture/font와 원본 receipt를 대조하는 명시적 migration을 수행한다. 원본 receipt와 원래 render build ID는 별도로 보존한다. 새 build에서 Aside가 실제 관측한 fixture/font SHA와 browser UA를 다시 확인한 뒤 revalidation build ID를 별도 기록한다. 전체 release gate의 source fingerprint, 검토 SHA와 index 검사도 계속 적용한다. 이 절차는 오래된 625px 출력이나 실패 PNG에 적용되지 않는다.
+
+## 정렬, 정보 구성과 프로젝트 스타일
+
+같은 위계의 카드와 그룹은 공통 정렬축을 사용한다. 제목 baseline, 비교 카드의 크기, padding과 행 간격을 확인한다. 카드 폭은 역할과 정보량에 따라 다를 수 있으나 그 차이가 제목과 연결의 정렬을 깨면 안 된다. 의미상 필요한 비대칭은 검토 기록에 근거를 남긴다.
+
+FHD의 큰 빈 영역은 본문에 있는 입력 필드, typed answer, 정책 조건이나 실제 예시로 설명력을 높인 뒤 다시 배치한다. 단순 확대, 빈 패널 추가나 출처 없는 내용으로 채우지 않는다. 한 가지 관계를 설명하는 단순한 그림에 불필요한 세부사항을 강제하지 않는다.
+
+승인된 프로젝트의 역할색과 브랜드 표현을 보존한다. Jev의 기존 네온 accent를 회색으로 지우지 않으며, 이 선호를 다른 프로젝트의 색 규칙으로 확대하지 않는다. 흰 배경과 텍스트 대비는 유지하고 사용자 지정 테마는 해당 요청에 따른다.
+
+정렬 오류, 이유 없는 큰 빈 영역과 승인된 색 소실은 시각 검토 미완료 사유다. 치수, hash, byte parity와 구조 검사만으로 이 합격 조건을 대체하지 않는다. 수정한 SVG와 native 출력 및 실제 article을 열고 해당 출력 hash와 판정을 연결한다.
