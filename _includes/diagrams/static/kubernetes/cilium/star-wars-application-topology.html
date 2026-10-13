@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="star-wars-application-topology" aria-labelledby="star-wars-application-topology-title">
-  <figcaption class="sd-title" id="star-wars-application-topology-title">Star Wars Demo는 label 정책으로 착륙 요청을 나눕니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="star-wars-application-topology" aria-labelledby="star-wars-application-topology-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="star-wars-application-topology-title">Star Wars Demo는 label 정책으로 착륙 요청을 나눕니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">세 서비스는 모두 <code>namespace=default</code>에 있고, <code>deathstar</code> Service는 HTTP port 80에서 두 replica로 요청을 전달합니다.</p>
 
   <section class="sd-lane">
@@ -53,4 +53,72 @@
   </section>
 
   <p class="sd-note">L7 정책을 추가하면 허용된 <code>tiefighter</code>도 HTTP method나 path 조건을 더 확인할 수 있고, Hubble이 allow와 deny verdict를 관찰합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7de6be7bee2494f27aec7f6e86ae1c2f6666cac766bdd9194289d254e405f5d7">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="196.600" width="1792.000" height="759.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1.0" x="88.000" y="282.400" width="860.000" height="649.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1.1" x="972.000" y="282.400" width="860.000" height="619.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.1.0.1.0" x="144.000" y="386.400" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0.1.2" x="590.000" y="368.200" width="302.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0.1.4" x="144.000" y="656.400" width="302.000" height="251.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.0.1.6" x="590.000" y="686.100" width="302.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.0" x="1028.000" y="386.400" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.2" x="1474.000" y="368.200" width="302.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.4" x="1028.000" y="656.400" width="302.000" height="221.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.1.0.1.1" data-from="root.0.2.1.0.1.0" data-to="root.0.2.1.0.1.2" d="M 458.000 464.300 L 578.000 464.300" fill="none" stroke="#475569" stroke-width="3"><title>request issued</title></path>
+<polygon data-arrowhead="root.0.2.1.0.1.1" points="578.000,464.300 568.000,470.300 568.000,458.300" fill="#475569"/>
+<path data-edge="root.0.2.1.0.1.3" data-from="root.0.2.1.0.1.2" data-to="root.0.2.1.0.1.4" d="M 904.000 464.300 L 916.000 464.300 L 916.000 608.400 L 120.000 608.400 L 120.000 782.200 L 132.000 782.200" fill="none" stroke="#475569" stroke-width="3"><title>L3/L4 정책 일치</title></path>
+<polygon data-arrowhead="root.0.2.1.0.1.3" points="132.000,782.200 122.000,788.200 122.000,776.200" fill="#475569"/>
+<path data-edge="root.0.2.1.0.1.5" data-from="root.0.2.1.0.1.4" data-to="root.0.2.1.0.1.6" d="M 458.000 782.200 L 578.000 782.200" fill="none" stroke="#475569" stroke-width="3"><title>Service port 80</title></path>
+<polygon data-arrowhead="root.0.2.1.0.1.5" points="578.000,782.200 568.000,788.200 568.000,776.200" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1.1" data-from="root.0.2.1.1.1.0" data-to="root.0.2.1.1.1.2" d="M 1342.000 464.300 L 1462.000 464.300" fill="none" stroke="#475569" stroke-width="3"><title>request issued</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1.1" points="1462.000,464.300 1452.000,470.300 1452.000,458.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1.3" data-from="root.0.2.1.1.1.2" data-to="root.0.2.1.1.1.4" d="M 1788.000 464.300 L 1800.000 464.300 L 1800.000 608.400 L 1004.000 608.400 L 1004.000 767.350 L 1016.000 767.350" fill="none" stroke="#475569" stroke-width="3"><title>정책 조건 불일치</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1.3" points="1016.000,767.350 1006.000,773.350 1006.000,761.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="106.300" font-size="36" font-weight="700" fill="#111827">Star Wars Demo는 label 정책으로 착륙 요청을 나눕니다</text>
+<text data-source="root.0.1" x="64.000" y="164.900" font-size="22" font-weight="400" fill="#111827">세 서비스는 모두 namespace=default에 있고, deathstar Service는 HTTP port 80에서 두 replica로 요청을 전달합니다.</text>
+<text data-source="root.0.2.0" x="88.000" y="248.600" font-size="28" font-weight="700" fill="#111827">namespace=default</text>
+<text data-source="root.0.2.1.0.0" x="112.000" y="334.400" font-size="28" font-weight="700" fill="#111827">허용 경로: Empire</text>
+<text data-source="root.0.2.1.0.1.0" x="168.000" y="438.400" font-size="28" font-weight="700" fill="#111827">tiefighter</text>
+<text data-source="root.0.2.1.0.1.0" x="168.000" y="480.800" font-size="22" font-weight="400" fill="#111827">org=empire,</text>
+<text data-source="root.0.2.1.0.1.0" x="168.000" y="510.500" font-size="22" font-weight="400" fill="#111827">class=tiefighter</text>
+<text data-source="root.0.2.1.0.1.2" x="614.000" y="420.200" font-size="28" font-weight="700" fill="#111827">HTTP landing</text>
+<text data-source="root.0.2.1.0.1.2" x="614.000" y="456.600" font-size="28" font-weight="700" fill="#111827">request</text>
+<text data-source="root.0.2.1.0.1.2" x="614.000" y="499.000" font-size="22" font-weight="400" fill="#111827">POST</text>
+<text data-source="root.0.2.1.0.1.2" x="614.000" y="528.700" font-size="22" font-weight="400" fill="#111827">/v1/request-landing</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="708.400" font-size="28" font-weight="700" fill="#111827">deathstar</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="744.800" font-size="28" font-weight="700" fill="#111827">Service</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="787.200" font-size="22" font-weight="400" fill="#111827">selector가</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="816.900" font-size="22" font-weight="400" fill="#111827">class=deathstar Pod 두</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="846.600" font-size="22" font-weight="400" fill="#111827">개로 load</text>
+<text data-source="root.0.2.1.0.1.4" x="168.000" y="876.300" font-size="22" font-weight="400" fill="#111827">balance합니다.</text>
+<text data-source="root.0.2.1.0.1.6" x="614.000" y="738.100" font-size="28" font-weight="700" fill="#111827">deathstar</text>
+<text data-source="root.0.2.1.0.1.6" x="614.000" y="774.500" font-size="28" font-weight="700" fill="#111827">replicas</text>
+<text data-source="root.0.2.1.0.1.6" x="614.000" y="816.900" font-size="22" font-weight="400" fill="#111827">두 Pod가 착륙 요청을</text>
+<text data-source="root.0.2.1.0.1.6" x="614.000" y="846.600" font-size="22" font-weight="400" fill="#111827">처리합니다.</text>
+<text data-source="root.0.2.1.0.1.1" x="450.000" y="414.900" font-size="22" font-weight="400" fill="#111827">request</text>
+<text data-source="root.0.2.1.0.1.1" x="450.000" y="444.600" font-size="22" font-weight="400" fill="#111827">issued</text>
+<text data-source="root.0.2.1.0.1.3" x="152.000" y="600.400" font-size="22" font-weight="400" fill="#111827">L3/L4 정책 일치</text>
+<text data-source="root.0.2.1.0.1.5" x="450.000" y="732.800" font-size="22" font-weight="400" fill="#111827">Service port</text>
+<text data-source="root.0.2.1.0.1.5" x="450.000" y="762.500" font-size="22" font-weight="400" fill="#111827">80</text>
+<text data-source="root.0.2.1.1.0" x="996.000" y="334.400" font-size="28" font-weight="700" fill="#111827">차단 경로: Alliance</text>
+<text data-source="root.0.2.1.1.1.0" x="1052.000" y="438.400" font-size="28" font-weight="700" fill="#111827">xwing</text>
+<text data-source="root.0.2.1.1.1.0" x="1052.000" y="480.800" font-size="22" font-weight="400" fill="#111827">org=alliance,</text>
+<text data-source="root.0.2.1.1.1.0" x="1052.000" y="510.500" font-size="22" font-weight="400" fill="#111827">class=xwing</text>
+<text data-source="root.0.2.1.1.1.2" x="1498.000" y="420.200" font-size="28" font-weight="700" fill="#111827">HTTP landing</text>
+<text data-source="root.0.2.1.1.1.2" x="1498.000" y="456.600" font-size="28" font-weight="700" fill="#111827">request</text>
+<text data-source="root.0.2.1.1.1.2" x="1498.000" y="499.000" font-size="22" font-weight="400" fill="#111827">POST</text>
+<text data-source="root.0.2.1.1.1.2" x="1498.000" y="528.700" font-size="22" font-weight="400" fill="#111827">/v1/request-landing</text>
+<text data-source="root.0.2.1.1.1.4" x="1052.000" y="708.400" font-size="28" font-weight="700" fill="#111827">Cilium policy</text>
+<text data-source="root.0.2.1.1.1.4" x="1052.000" y="744.800" font-size="28" font-weight="700" fill="#111827">verdict</text>
+<text data-source="root.0.2.1.1.1.4" x="1052.000" y="787.200" font-size="22" font-weight="400" fill="#111827">Empire label 조건을</text>
+<text data-source="root.0.2.1.1.1.4" x="1052.000" y="816.900" font-size="22" font-weight="400" fill="#111827">만족하지 않아 deathstar</text>
+<text data-source="root.0.2.1.1.1.4" x="1052.000" y="846.600" font-size="22" font-weight="400" fill="#111827">접근을 deny합니다.</text>
+<text data-source="root.0.2.1.1.1.1" x="1334.000" y="414.900" font-size="22" font-weight="400" fill="#111827">request</text>
+<text data-source="root.0.2.1.1.1.1" x="1334.000" y="444.600" font-size="22" font-weight="400" fill="#111827">issued</text>
+<text data-source="root.0.2.1.1.1.3" x="1036.000" y="600.400" font-size="22" font-weight="400" fill="#111827">정책 조건 불일치</text>
+<text data-source="root.0.3" x="64.000" y="1002.000" font-size="22" font-weight="400" fill="#111827">L7 정책을 추가하면 허용된 tiefighter도 HTTP method나 path 조건을 더 확인할 수 있고, Hubble이 allow와 deny verdict를 관찰합니다.</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="sd-aws-cloudfront-vpc-origins-flow" aria-labelledby="sd-title-aws-cloudfront-vpc-origins-flow">
-  <figcaption class="sd-title" id="sd-title-aws-cloudfront-vpc-origins-flow">CloudFront VPC Origins는 origin을 private subnet 안에 둔다</figcaption>
+<figure class="sd sd--layers sd--fhd" id="sd-aws-cloudfront-vpc-origins-flow" aria-labelledby="sd-title-aws-cloudfront-vpc-origins-flow" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-cloudfront-vpc-origins-flow">CloudFront VPC Origins는 origin을 private subnet 안에 둔다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Viewer</strong>
@@ -33,4 +33,47 @@
     </section>
   </div>
   <p class="sd-note">Origin은 public IP 없이 동작합니다. Internet Gateway는 VPC 준비 조건일 뿐, CloudFront에서 origin으로 가는 경로에는 사용되지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a0e225fae94627d293d6a8ec6a5d9df64fa729282388bf72b6ba25f4f4a8d45c">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.4" x="96.000" y="393.200" width="792.000" height="551.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.1" x="120.000" y="479.000" width="744.000" height="441.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.1.1" x="144.000" y="564.800" width="696.000" height="331.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="162.750" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="162.750" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.1.0" x="200.000" y="650.600" width="220.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.1.2" x="564.000" y="653.950" width="220.000" height="215.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.4.1.1.1.1" data-from="root.0.1.4.1.1.1.0" data-to="root.0.1.4.1.1.1.2" d="M 432.000 761.550 L 552.000 761.550" fill="none" stroke="#475569" stroke-width="3"><title>private subnet 내부 전달</title></path>
+<polygon data-arrowhead="root.0.1.4.1.1.1.1" points="552.000,761.550 542.000,767.550 542.000,755.550" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 225.800 L 1020.000 225.800" fill="none" stroke="#475569" stroke-width="3"><title>viewer request</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,225.800 1010.000,231.800 1010.000,219.800" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 225.800 L 1848.000 225.800 L 1848.000 345.200 L 72.000 345.200 L 72.000 668.850 L 84.000 668.850" fill="none" stroke="#475569" stroke-width="3"><title>AWS backbone private path</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,668.850 74.000,674.850 74.000,662.850" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="117.800" font-size="36" font-weight="700" fill="#111827">CloudFront VPC Origins는 origin을 private subnet 안에 둔다</text>
+<text data-source="root.0.1.0" x="120.000" y="214.750" font-size="28" font-weight="700" fill="#111827">Viewer</text>
+<text data-source="root.0.1.0" x="120.000" y="257.150" font-size="22" font-weight="400" fill="#111827">public internet</text>
+<text data-source="root.0.1.2" x="1056.000" y="214.750" font-size="28" font-weight="700" fill="#111827">Amazon CloudFront</text>
+<text data-source="root.0.1.2" x="1056.000" y="257.150" font-size="22" font-weight="400" fill="#111827">edge location; WAF와 TLS terminate</text>
+<text data-source="root.0.1.4.0" x="120.000" y="445.200" font-size="28" font-weight="700" fill="#111827">AWS Region</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="531.000" font-size="28" font-weight="700" fill="#111827">VPC</text>
+<text data-source="root.0.1.4.1.1.0" x="168.000" y="616.800" font-size="28" font-weight="700" fill="#111827">Private subnet - no route to an internet gateway</text>
+<text data-source="root.0.1.4.1.1.1.0" x="224.000" y="702.600" font-size="28" font-weight="700" fill="#111827">VPC origin</text>
+<text data-source="root.0.1.4.1.1.1.0" x="224.000" y="739.000" font-size="28" font-weight="700" fill="#111827">ENI</text>
+<text data-source="root.0.1.4.1.1.1.0" x="224.000" y="781.400" font-size="22" font-weight="400" fill="#111827">service-managed;</text>
+<text data-source="root.0.1.4.1.1.1.0" x="224.000" y="811.100" font-size="22" font-weight="400" fill="#111827">free IPv4 address</text>
+<text data-source="root.0.1.4.1.1.1.0" x="224.000" y="840.800" font-size="22" font-weight="400" fill="#111827">1개 필요</text>
+<text data-source="root.0.1.4.1.1.1.2" x="588.000" y="705.950" font-size="28" font-weight="700" fill="#111827">Origin</text>
+<text data-source="root.0.1.4.1.1.1.2" x="588.000" y="748.350" font-size="22" font-weight="400" fill="#111827">internal ALB, NLB</text>
+<text data-source="root.0.1.4.1.1.1.2" x="588.000" y="778.050" font-size="22" font-weight="400" fill="#111827">or EC2;</text>
+<text data-source="root.0.1.4.1.1.1.2" x="588.000" y="807.750" font-size="22" font-weight="400" fill="#111827">service-managed</text>
+<text data-source="root.0.1.4.1.1.1.2" x="588.000" y="837.450" font-size="22" font-weight="400" fill="#111827">SG가 연결됨</text>
+<text data-source="root.0.1.4.1.1.1.1" x="424.000" y="682.450" font-size="22" font-weight="400" fill="#111827">private</text>
+<text data-source="root.0.1.4.1.1.1.1" x="424.000" y="712.150" font-size="22" font-weight="400" fill="#111827">subnet 내부</text>
+<text data-source="root.0.1.4.1.1.1.1" x="424.000" y="741.850" font-size="22" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.1.1" x="892.000" y="176.400" font-size="22" font-weight="400" fill="#111827">viewer</text>
+<text data-source="root.0.1.1" x="892.000" y="206.100" font-size="22" font-weight="400" fill="#111827">request</text>
+<text data-source="root.0.1.3" x="104.000" y="337.200" font-size="22" font-weight="400" fill="#111827">AWS backbone private path</text>
+<text data-source="root.0.2" x="64.000" y="990.500" font-size="22" font-weight="400" fill="#111827">Origin은 public IP 없이 동작합니다. Internet Gateway는 VPC 준비 조건일 뿐, CloudFront에서 origin으로 가는 경로에는 사용되지 않습니다.</text>
+</svg>
 </figure>

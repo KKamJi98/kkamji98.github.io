@@ -1,0 +1,36 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="013fee1f3e5ef6aded2f84ed4bf9c0832f413c25fe851dc46fd0baf622d98978">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="420.300" width="884.000" height="312.000" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="420.300" width="884.000" height="312.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="120.000" y="529.300" width="314.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="578.000" y="529.300" width="314.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="544.150" width="314.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1486.000" y="511.100" width="314.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 607.200 L 566.000 607.200" fill="none" stroke="#475569" stroke-width="3"><title>return traffic도 별도 검사</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,607.200 556.000,613.200 556.000,601.200" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 607.200 L 1474.000 607.200" fill="none" stroke="#475569" stroke-width="3"><title>connection tracking에 상태 저장</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,607.200 1464.000,613.200 1464.000,601.200" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="330.000" font-size="36" font-weight="700" fill="#111827">Stateless filter는 return rule이 필요하고 Stateful filter는 flow를 기억합니다</text>
+<text data-source="root.0.1" x="64.000" y="388.600" font-size="22" font-weight="400" fill="#111827">Connection tracking이 있으면 첫 packet의 허용 결과를 return path에 재사용할 수 있어 두 번째 rule이 줄어듭니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="472.300" font-size="28" font-weight="700" fill="#111827">Stateless path</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="581.300" font-size="28" font-weight="700" fill="#111827">Stateless firewall</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="623.700" font-size="22" font-weight="400" fill="#111827">각 packet을 독립적으로</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="653.400" font-size="22" font-weight="400" fill="#111827">rule과 비교</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="581.300" font-size="28" font-weight="700" fill="#111827">Separate return rule</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="623.700" font-size="22" font-weight="400" fill="#111827">반대 방향을 허용하는 rule을</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="653.400" font-size="22" font-weight="400" fill="#111827">직접 작성</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="528.100" font-size="22" font-weight="400" fill="#111827">return</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="557.800" font-size="22" font-weight="400" fill="#111827">traffic도 별도</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="587.500" font-size="22" font-weight="400" fill="#111827">검사</text>
+<text data-source="root.0.2.1.0" x="996.000" y="472.300" font-size="28" font-weight="700" fill="#111827">Stateful path</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="596.150" font-size="28" font-weight="700" fill="#111827">Stateful firewall</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="638.550" font-size="22" font-weight="400" fill="#111827">flow의 첫 packet을 평가</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="563.100" font-size="28" font-weight="700" fill="#111827">Tracked connection</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="599.500" font-size="28" font-weight="700" fill="#111827">state</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="641.900" font-size="22" font-weight="400" fill="#111827">일치하는 return traffic을</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="671.600" font-size="22" font-weight="400" fill="#111827">암묵적으로 허용</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="528.100" font-size="22" font-weight="400" fill="#111827">connection</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="557.800" font-size="22" font-weight="400" fill="#111827">tracking에</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="587.500" font-size="22" font-weight="400" fill="#111827">상태 저장</text>
+<text data-source="root.0.3" x="64.000" y="778.300" font-size="22" font-weight="400" fill="#111827">AWS VPC에서 NACL은 subnet 경계의 stateless control이고 Security Group은 instance 경계의 stateful control입니다.</text>
+</svg>

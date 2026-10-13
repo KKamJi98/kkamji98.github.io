@@ -1,0 +1,81 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="b9d772857275d4d4f04c5041f6b0c8e5054abf2ebe59050842ac1f642c7923f1">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="195.600" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="64.000" y="348.900" width="1792.000" height="453.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1.1.0" x="76.000" y="397.200" width="878.000" height="392.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1.1.1" x="966.000" y="397.200" width="878.000" height="384.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="64.000" y="813.900" width="1792.000" height="164.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="108.000" y="243.900" width="780.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="1032.000" y="243.900" width="780.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0.1.0" x="120.000" y="449.400" width="323.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0.1.2" x="587.000" y="449.400" width="323.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0.1.4" x="120.000" y="651.900" width="323.000" height="126.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.1.0" x="1010.000" y="445.500" width="323.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.1.2" x="1477.000" y="445.500" width="323.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.1.4" x="1010.000" y="644.100" width="323.000" height="126.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.0" x="108.000" y="862.200" width="434.667" height="104.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.2" x="742.667" y="873.900" width="434.667" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.4" x="1377.333" y="873.900" width="434.667" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 900.000 284.400 L 1020.000 284.400" fill="none" stroke="#475569" stroke-width="3"><title>PromQL query</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="1020.000,284.400 1010.000,290.400 1010.000,278.400" fill="#475569"/>
+<path data-edge="root.0.2.1.1.0.1.1" data-from="root.0.2.1.1.0.1.0" data-to="root.0.2.1.1.0.1.2" d="M 455.000 500.700 L 575.000 500.700" fill="none" stroke="#475569" stroke-width="3"><title>DaemonSet scrape target</title></path>
+<polygon data-arrowhead="root.0.2.1.1.0.1.1" points="575.000,500.700 565.000,506.700 565.000,494.700" fill="#475569"/>
+<path data-edge="root.0.2.1.1.0.1.3" data-from="root.0.2.1.1.0.1.2" data-to="root.0.2.1.1.0.1.4" d="M 922.000 500.700 L 934.000 500.700 L 934.000 603.900 L 96.000 603.900 L 96.000 714.900 L 108.000 714.900" fill="none" stroke="#475569" stroke-width="3"><title>Server가 scrape 요청, target이 metrics 응답</title></path>
+<polygon data-arrowhead="root.0.2.1.1.0.1.3" points="108.000,714.900 98.000,720.900 98.000,708.900" fill="#475569"/>
+<polygon data-arrowhead="root.0.2.1.1.0.1.3.reverse" points="922.000,500.700 932.000,494.700 932.000,506.700" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1.1.1" data-from="root.0.2.1.1.1.1.0" data-to="root.0.2.1.1.1.1.2" d="M 1345.000 496.800 L 1465.000 496.800" fill="none" stroke="#475569" stroke-width="3"><title>Push metrics</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1.1.1" points="1465.000,496.800 1455.000,502.800 1455.000,490.800" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1.1.3" data-from="root.0.2.1.1.1.1.2" data-to="root.0.2.1.1.1.1.4" d="M 1812.000 496.800 L 1824.000 496.800 L 1824.000 596.100 L 986.000 596.100 L 986.000 707.100 L 998.000 707.100" fill="none" stroke="#475569" stroke-width="3"><title>Server가 scrape 요청, target이 metrics 응답</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1.1.3" points="998.000,707.100 988.000,713.100 988.000,701.100" fill="#475569"/>
+<polygon data-arrowhead="root.0.2.1.1.1.1.3.reverse" points="1812.000,496.800 1822.000,490.800 1822.000,502.800" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1" data-from="root.0.2.2.1.0" data-to="root.0.2.2.1.2" d="M 554.667 914.400 L 730.667 914.400" fill="none" stroke="#475569" stroke-width="3"><title>alert events</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1" points="730.667,914.400 720.667,920.400 720.667,908.400" fill="#475569"/>
+<path data-edge="root.0.2.2.1.3" data-from="root.0.2.2.1.2" data-to="root.0.2.2.1.4" d="M 1189.333 914.400 L 1365.333 914.400" fill="none" stroke="#475569" stroke-width="3"><title>notification fan-out</title></path>
+<polygon data-arrowhead="root.0.2.2.1.3" points="1365.333,914.400 1355.333,920.400 1355.333,908.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="137.400" font-size="36" font-weight="700" fill="#111827">Prometheus Server는 Pull 수집과 Alert 분기를 중심으로 동작합니다</text>
+<text data-source="root.0.1" x="64.000" y="178.000" font-size="16" font-weight="400" fill="#111827">기본 수집은 Prometheus가 target을 scrape하는 Pull 방식이고, 짧은 Job은 Push Gateway를 통해 보완합니다.</text>
+<text data-source="root.0.2.0.0" x="76.000" y="225.600" font-size="18" font-weight="700" fill="#111827">Query path: 공통 Server</text>
+<text data-source="root.0.2.0.1.0" x="120.000" y="273.900" font-size="18" font-weight="700" fill="#111827">Prometheus Web UI, Grafana and clients</text>
+<text data-source="root.0.2.0.1.0" x="120.000" y="307.300" font-size="16" font-weight="400" fill="#111827">PromQL로 저장된 시계열을 조회합니다.</text>
+<text data-source="root.0.2.0.1.2" x="1044.000" y="273.900" font-size="18" font-weight="700" fill="#111827">Prometheus Server</text>
+<text data-source="root.0.2.0.1.2" x="1044.000" y="307.300" font-size="16" font-weight="400" fill="#111827">시계열을 수집하고 local TSDB에 저장합니다.</text>
+<text data-source="root.0.2.0.1.1" x="892.000" y="266.800" font-size="16" font-weight="400" fill="#111827">PromQL query</text>
+<text data-source="root.0.2.1.0" x="76.000" y="378.900" font-size="18" font-weight="700" fill="#111827">Metric collection: 같은 Server의 수집 관점</text>
+<text data-source="root.0.2.1.1.0.0" x="88.000" y="427.200" font-size="18" font-weight="700" fill="#111827">Kubernetes node metrics</text>
+<text data-source="root.0.2.1.1.0.1.0" x="132.000" y="479.400" font-size="18" font-weight="700" fill="#111827">Kubernetes Nodes</text>
+<text data-source="root.0.2.1.1.0.1.0" x="132.000" y="512.800" font-size="16" font-weight="400" fill="#111827">각 node에 시스템 metric endpoint가</text>
+<text data-source="root.0.2.1.1.0.1.0" x="132.000" y="534.400" font-size="16" font-weight="400" fill="#111827">있습니다.</text>
+<text data-source="root.0.2.1.1.0.1.2" x="599.000" y="479.400" font-size="18" font-weight="700" fill="#111827">Node Exporter</text>
+<text data-source="root.0.2.1.1.0.1.2" x="599.000" y="512.800" font-size="16" font-weight="400" fill="#111827">모든 node에 DaemonSet으로</text>
+<text data-source="root.0.2.1.1.0.1.2" x="599.000" y="534.400" font-size="16" font-weight="400" fill="#111827">배포됩니다.</text>
+<text data-source="root.0.2.1.1.0.1.4" x="132.000" y="681.900" font-size="18" font-weight="700" fill="#111827">Prometheus Server (동일</text>
+<text data-source="root.0.2.1.1.0.1.4" x="132.000" y="705.300" font-size="18" font-weight="700" fill="#111827">Server)</text>
+<text data-source="root.0.2.1.1.0.1.4" x="132.000" y="738.700" font-size="16" font-weight="400" fill="#111827">node metric을 주기적으로 가져와</text>
+<text data-source="root.0.2.1.1.0.1.4" x="132.000" y="760.300" font-size="16" font-weight="400" fill="#111827">저장합니다.</text>
+<text data-source="root.0.2.1.1.0.1.1" x="447.000" y="461.500" font-size="16" font-weight="400" fill="#111827">DaemonSet</text>
+<text data-source="root.0.2.1.1.0.1.1" x="447.000" y="483.100" font-size="16" font-weight="400" fill="#111827">scrape target</text>
+<text data-source="root.0.2.1.1.0.1.3" x="128.000" y="595.900" font-size="16" font-weight="400" fill="#111827">Server가 scrape 요청, target이 metrics 응답</text>
+<text data-source="root.0.2.1.1.1.0" x="978.000" y="427.200" font-size="18" font-weight="700" fill="#111827">Short-lived job metrics</text>
+<text data-source="root.0.2.1.1.1.1.0" x="1022.000" y="475.500" font-size="18" font-weight="700" fill="#111827">Short-lived Jobs</text>
+<text data-source="root.0.2.1.1.1.1.0" x="1022.000" y="508.900" font-size="16" font-weight="400" fill="#111827">Pull 시점 전에 종료될 수 있는</text>
+<text data-source="root.0.2.1.1.1.1.0" x="1022.000" y="530.500" font-size="16" font-weight="400" fill="#111827">작업입니다.</text>
+<text data-source="root.0.2.1.1.1.1.2" x="1489.000" y="475.500" font-size="18" font-weight="700" fill="#111827">Push Gateway</text>
+<text data-source="root.0.2.1.1.1.1.2" x="1489.000" y="508.900" font-size="16" font-weight="400" fill="#111827">Job metric을 잠시 보관해 scrape</text>
+<text data-source="root.0.2.1.1.1.1.2" x="1489.000" y="530.500" font-size="16" font-weight="400" fill="#111827">대상으로 노출합니다.</text>
+<text data-source="root.0.2.1.1.1.1.4" x="1022.000" y="674.100" font-size="18" font-weight="700" fill="#111827">Prometheus Server (동일</text>
+<text data-source="root.0.2.1.1.1.1.4" x="1022.000" y="697.500" font-size="18" font-weight="700" fill="#111827">Server)</text>
+<text data-source="root.0.2.1.1.1.1.4" x="1022.000" y="730.900" font-size="16" font-weight="400" fill="#111827">Gateway endpoint를 읽어 시계열로</text>
+<text data-source="root.0.2.1.1.1.1.4" x="1022.000" y="752.500" font-size="16" font-weight="400" fill="#111827">저장합니다.</text>
+<text data-source="root.0.2.1.1.1.1.1" x="1337.000" y="479.200" font-size="16" font-weight="400" fill="#111827">Push metrics</text>
+<text data-source="root.0.2.1.1.1.1.3" x="1018.000" y="588.100" font-size="16" font-weight="400" fill="#111827">Server가 scrape 요청, target이 metrics 응답</text>
+<text data-source="root.0.2.2.0" x="76.000" y="843.900" font-size="18" font-weight="700" fill="#111827">Alert path: 같은 Server의 알림 관점</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="892.200" font-size="18" font-weight="700" fill="#111827">Prometheus Server의 alert rules (동일</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="915.600" font-size="18" font-weight="700" fill="#111827">Server)</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="949.000" font-size="16" font-weight="400" fill="#111827">저장된 metric과 조건으로 경고를 생성합니다.</text>
+<text data-source="root.0.2.2.1.2" x="754.667" y="903.900" font-size="18" font-weight="700" fill="#111827">Alert Manager</text>
+<text data-source="root.0.2.2.1.2" x="754.667" y="937.300" font-size="16" font-weight="400" fill="#111827">경고를 grouping하고 알림 채널로 라우팅합니다.</text>
+<text data-source="root.0.2.2.1.4" x="1389.333" y="903.900" font-size="18" font-weight="700" fill="#111827">Slack, Email and other channels</text>
+<text data-source="root.0.2.2.1.4" x="1389.333" y="937.300" font-size="16" font-weight="400" fill="#111827">운영자가 경고를 받습니다.</text>
+<text data-source="root.0.2.2.1.1" x="546.667" y="896.800" font-size="16" font-weight="400" fill="#111827">alert events</text>
+<text data-source="root.0.2.2.1.3" x="1181.333" y="896.800" font-size="16" font-weight="400" fill="#111827">notification fan-out</text>
+</svg>

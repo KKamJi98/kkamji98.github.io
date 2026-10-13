@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-aws-route53-dns-record-resolution" aria-labelledby="sd-title-aws-route53-dns-record-resolution">
-  <figcaption class="sd-title" id="sd-title-aws-route53-dns-record-resolution">Registrar delegation이 맞아야 Route 53 record가 resolve된다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-aws-route53-dns-record-resolution" aria-labelledby="sd-title-aws-route53-dns-record-resolution" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-route53-dns-record-resolution">Registrar delegation이 맞아야 Route 53 record가 resolve된다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Domain registrar</strong>
@@ -27,4 +27,44 @@
     </div>
   </div>
   <p class="sd-note">Hosted zone을 생성하는 것만으로는 충분하지 않습니다. Registrar의 NS가 zone의 네임서버 네 개를 가리켜야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e75a504d0ae75984e7675ebdc015631912dc0ac4d35d54361f4384b0f6cdc775">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="360.500" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="327.450" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="360.500" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="615.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 423.550 L 552.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>NS를 zone으로 위임</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,423.550 542.000,429.550 542.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 423.550 L 1020.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>registrar NS = zone NS</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,423.550 1010.000,429.550 1010.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 423.550 L 1488.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>record 조회</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,423.550 1478.000,429.550 1478.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 423.550 L 1848.000 423.550 L 1848.000 567.650 L 72.000 567.650 L 72.000 693.550 L 84.000 693.550" fill="none" stroke="#475569" stroke-width="3"><title>endpoint 응답</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,693.550 74.000,699.550 74.000,687.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="290.850" font-size="36" font-weight="700" fill="#111827">Registrar delegation이 맞아야 Route 53 record가 resolve된다</text>
+<text data-source="root.0.1.0" x="120.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Domain registrar</text>
+<text data-source="root.0.1.0" x="120.000" y="440.050" font-size="22" font-weight="400" fill="#111827">authoritative NS delegation</text>
+<text data-source="root.0.1.0" x="120.000" y="469.750" font-size="22" font-weight="400" fill="#111827">설정</text>
+<text data-source="root.0.1.2" x="588.000" y="412.500" font-size="28" font-weight="700" fill="#111827">Route 53 hosted zone</text>
+<text data-source="root.0.1.2" x="588.000" y="454.900" font-size="22" font-weight="400" fill="#111827">four assigned name servers</text>
+<text data-source="root.0.1.4" x="1056.000" y="379.450" font-size="28" font-weight="700" fill="#111827">NS delegation</text>
+<text data-source="root.0.1.4" x="1056.000" y="415.850" font-size="28" font-weight="700" fill="#111827">matches</text>
+<text data-source="root.0.1.4" x="1056.000" y="458.250" font-size="22" font-weight="400" fill="#111827">이 zone이 public DNS의</text>
+<text data-source="root.0.1.4" x="1056.000" y="487.950" font-size="22" font-weight="400" fill="#111827">authority가 됨</text>
+<text data-source="root.0.1.6" x="1524.000" y="412.500" font-size="28" font-weight="700" fill="#111827">DNS record</text>
+<text data-source="root.0.1.6" x="1524.000" y="454.900" font-size="22" font-weight="400" fill="#111827">A, AAAA or ALIAS</text>
+<text data-source="root.0.1.8" x="120.000" y="667.650" font-size="28" font-weight="700" fill="#111827">Application endpoint</text>
+<text data-source="root.0.1.8" x="120.000" y="710.050" font-size="22" font-weight="400" fill="#111827">ALB, CloudFront or S3</text>
+<text data-source="root.0.1.8" x="120.000" y="739.750" font-size="22" font-weight="400" fill="#111827">website</text>
+<text data-source="root.0.1.1" x="424.000" y="374.150" font-size="22" font-weight="400" fill="#111827">NS를</text>
+<text data-source="root.0.1.1" x="424.000" y="403.850" font-size="22" font-weight="400" fill="#111827">zone으로 위임</text>
+<text data-source="root.0.1.3" x="892.000" y="374.150" font-size="22" font-weight="400" fill="#111827">registrar NS =</text>
+<text data-source="root.0.1.3" x="892.000" y="403.850" font-size="22" font-weight="400" fill="#111827">zone NS</text>
+<text data-source="root.0.1.5" x="1360.000" y="403.850" font-size="22" font-weight="400" fill="#111827">record 조회</text>
+<text data-source="root.0.1.7" x="104.000" y="559.650" font-size="22" font-weight="400" fill="#111827">endpoint 응답</text>
+<text data-source="root.0.2" x="64.000" y="817.450" font-size="22" font-weight="400" fill="#111827">Hosted zone을 생성하는 것만으로는 충분하지 않습니다. Registrar의 NS가 zone의 네임서버 네 개를 가리켜야 합니다.</text>
+</svg>
 </figure>

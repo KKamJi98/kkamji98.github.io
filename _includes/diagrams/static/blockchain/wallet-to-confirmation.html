@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-blockchain-wallet-to-confirmation" aria-labelledby="sd-title-blockchain-wallet-to-confirmation">
-  <figcaption class="sd-title" id="sd-title-blockchain-wallet-to-confirmation">signed transaction은 mempool을 거쳐 block에 들어간 뒤 UTXO를 바꿉니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-blockchain-wallet-to-confirmation" aria-labelledby="sd-title-blockchain-wallet-to-confirmation" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-blockchain-wallet-to-confirmation">signed transaction은 mempool을 거쳐 block에 들어간 뒤 UTXO를 바꿉니다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">wallet</strong>
@@ -32,4 +32,45 @@
     </div>
   </div>
   <p class="sd-note">mempool에서는 confirmation이 0이고 UI balance는 움직일 수 있지만, UTXO set은 block 편입 때까지 바뀌지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a51141c00723c2c62170cbfe7ae953b092336359c08b93f2d19c48f3855f5a21">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="360.500" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="612.300" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.10" x="564.000" y="612.300" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 438.400 L 552.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>UTXO 선택</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,438.400 542.000,444.400 542.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 438.400 L 1020.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>키로 서명</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,438.400 1010.000,444.400 1010.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 438.400 L 1488.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>broadcast</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,438.400 1478.000,444.400 1478.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 564.300 L 72.000 564.300 L 72.000 675.350 L 84.000 675.350" fill="none" stroke="#475569" stroke-width="3"><title>miner가 포함</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,675.350 74.000,681.350 74.000,669.350" fill="#475569"/>
+<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.1.10" d="M 432.000 675.350 L 552.000 675.350" fill="none" stroke="#475569" stroke-width="3"><title>UTXO set 갱신</title></path>
+<polygon data-arrowhead="root.0.1.9" points="552.000,675.350 542.000,681.350 542.000,669.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="323.900" font-size="36" font-weight="700" fill="#111827">signed transaction은 mempool을 거쳐 block에 들어간 뒤 UTXO를 바꿉니다</text>
+<text data-source="root.0.1.0" x="120.000" y="412.500" font-size="28" font-weight="700" fill="#111827">wallet</text>
+<text data-source="root.0.1.0" x="120.000" y="454.900" font-size="22" font-weight="400" fill="#111827">키를 보관하며 balance 필드는</text>
+<text data-source="root.0.1.0" x="120.000" y="484.600" font-size="22" font-weight="400" fill="#111827">없음</text>
+<text data-source="root.0.1.2" x="588.000" y="427.350" font-size="28" font-weight="700" fill="#111827">select UTXOs</text>
+<text data-source="root.0.1.2" x="588.000" y="469.750" font-size="22" font-weight="400" fill="#111827">금액과 fee를 충당</text>
+<text data-source="root.0.1.4" x="1056.000" y="427.350" font-size="28" font-weight="700" fill="#111827">signed transaction</text>
+<text data-source="root.0.1.4" x="1056.000" y="469.750" font-size="22" font-weight="400" fill="#111827">vin, vout, signature</text>
+<text data-source="root.0.1.6" x="1524.000" y="427.350" font-size="28" font-weight="700" fill="#111827">mempool</text>
+<text data-source="root.0.1.6" x="1524.000" y="469.750" font-size="22" font-weight="400" fill="#111827">confirmations = 0</text>
+<text data-source="root.0.1.8" x="120.000" y="664.300" font-size="28" font-weight="700" fill="#111827">block</text>
+<text data-source="root.0.1.8" x="120.000" y="706.700" font-size="22" font-weight="400" fill="#111827">miner가 fee를 회수</text>
+<text data-source="root.0.1.10" x="588.000" y="664.300" font-size="28" font-weight="700" fill="#111827">confirmed UTXOs</text>
+<text data-source="root.0.1.10" x="588.000" y="706.700" font-size="22" font-weight="400" fill="#111827">새 output이 set에 추가</text>
+<text data-source="root.0.1.1" x="424.000" y="418.700" font-size="22" font-weight="400" fill="#111827">UTXO 선택</text>
+<text data-source="root.0.1.3" x="892.000" y="418.700" font-size="22" font-weight="400" fill="#111827">키로 서명</text>
+<text data-source="root.0.1.5" x="1360.000" y="418.700" font-size="22" font-weight="400" fill="#111827">broadcast</text>
+<text data-source="root.0.1.7" x="104.000" y="556.300" font-size="22" font-weight="400" fill="#111827">miner가 포함</text>
+<text data-source="root.0.1.9" x="424.000" y="655.650" font-size="22" font-weight="400" fill="#111827">UTXO set 갱신</text>
+<text data-source="root.0.2" x="64.000" y="784.400" font-size="22" font-weight="400" fill="#111827">mempool에서는 confirmation이 0이고 UI balance는 움직일 수 있지만, UTXO set은 block 편입 때까지 바뀌지 않습니다.</text>
+</svg>
 </figure>

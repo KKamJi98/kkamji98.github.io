@@ -13,6 +13,12 @@ from release_manifest import staged_requires_verification, verify_staged
 
 
 class ReleaseManifestTests(unittest.TestCase):
+    def test_staged_visual_review_evidence_alone_requires_verification(self):
+        from unittest.mock import patch
+
+        with patch("release_manifest.subprocess.check_output", return_value="docs/diagram-fhd-reviews.json\n"):
+            self.assertTrue(staged_requires_verification(self.root))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -55,8 +61,8 @@ class ReleaseManifestTests(unittest.TestCase):
 
         raw = (
             b"\x89PNG\r\n\x1a\n"
-            + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
-            + chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00"))
+            + chunk(b"IHDR", struct.pack(">IIBBBBB", 1920, 1080, 8, 2, 0, 0, 0))
+            + chunk(b"IDAT", zlib.compress((b"\x00" + b"\x00" * (1920 * 3)) * 1080))
             + chunk(b"IEND", b"")
         )
         self.png.write_bytes(raw)
@@ -67,7 +73,7 @@ class ReleaseManifestTests(unittest.TestCase):
             "reference_count": 1,
             "post_count": 1,
             "source_fingerprint": fingerprint(source_snapshot(self.root)),
-            "entries": [dict(entry, png_sha256=hashlib.sha256(raw).hexdigest())],
+            "entries": [dict(entry, png_sha256=hashlib.sha256(raw).hexdigest(), dimensions=[1920,1080])],
         }
         self.manifest.write_text(json.dumps(self.data))
         subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
@@ -242,6 +248,17 @@ class ReleaseManifestTests(unittest.TestCase):
         self.manifest.write_text(json.dumps(self.data))
         self.stage()
         with self.assertRaises(ValueError):
+            verify_staged(self.root)
+
+    def test_self_consistent_wrong_dimensions_still_fail(self):
+        raw = bytearray(self.png.read_bytes())
+        struct.pack_into('>II', raw, 16, 625, 352)
+        self.png.write_bytes(raw)
+        self.data['entries'][0]['png_sha256'] = hashlib.sha256(raw).hexdigest()
+        self.data['entries'][0]['dimensions'] = [625,352]
+        self.manifest.write_text(json.dumps(self.data))
+        self.stage()
+        with self.assertRaisesRegex(ValueError, 'not exact FHD'):
             verify_staged(self.root)
 
     def test_unstaged_input_cannot_validate_different_index(self):

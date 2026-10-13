@@ -1,0 +1,40 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a7881be242f7478a43453fa3fa9ba050d2401a422a4af5ed320bd72e9ef57ca9">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="402.200" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="369.150" width="324.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="387.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="387.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="96.000" y="657.350" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 465.250 L 552.000 465.250" fill="none" stroke="#475569" stroke-width="3"><title>Transport header 추가</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,465.250 542.000,471.250 542.000,459.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 465.250 L 1020.000 465.250" fill="none" stroke="#475569" stroke-width="3"><title>IP header 추가</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,465.250 1010.000,471.250 1010.000,459.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 465.250 L 1488.000 465.250" fill="none" stroke="#475569" stroke-width="3"><title>MAC 주소와 trailer 추가</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,465.250 1478.000,471.250 1478.000,459.250" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 465.250 L 1848.000 465.250 L 1848.000 609.350 L 72.000 609.350 L 72.000 720.400 L 84.000 720.400" fill="none" stroke="#475569" stroke-width="3"><title>매체가 bits를 운반</title></path>
+<polygon data-arrowhead="root.0.2.7" points="84.000,720.400 74.000,726.400 74.000,714.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="278.850" font-size="36" font-weight="700" fill="#111827">각 OSI 계층은 header를 더해 전체 데이터를 아래 계층으로 넘깁니다</text>
+<text data-source="root.0.1" x="64.000" y="337.450" font-size="22" font-weight="400" fill="#111827">송신 측에서는 아래로 내려갈수록 제어 정보가 붙고, 수신 측에서는 반대 순서로 자기 header와 trailer를 해석합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="454.200" font-size="28" font-weight="700" fill="#111827">Application data</text>
+<text data-source="root.0.2.0" x="120.000" y="496.600" font-size="22" font-weight="400" fill="#111827">응용이 만든 payload</text>
+<text data-source="root.0.2.2" x="588.000" y="421.150" font-size="28" font-weight="700" fill="#111827">Transport header +</text>
+<text data-source="root.0.2.2" x="588.000" y="457.550" font-size="28" font-weight="700" fill="#111827">data</text>
+<text data-source="root.0.2.2" x="588.000" y="499.950" font-size="22" font-weight="400" fill="#111827">segment: port와 sequence</text>
+<text data-source="root.0.2.2" x="588.000" y="529.650" font-size="22" font-weight="400" fill="#111827">정보</text>
+<text data-source="root.0.2.4" x="1056.000" y="439.350" font-size="28" font-weight="700" fill="#111827">IP header + segment</text>
+<text data-source="root.0.2.4" x="1056.000" y="481.750" font-size="22" font-weight="400" fill="#111827">packet: source와 destination</text>
+<text data-source="root.0.2.4" x="1056.000" y="511.450" font-size="22" font-weight="400" fill="#111827">address</text>
+<text data-source="root.0.2.6" x="1524.000" y="439.350" font-size="28" font-weight="700" fill="#111827">Ethernet frame</text>
+<text data-source="root.0.2.6" x="1524.000" y="481.750" font-size="22" font-weight="400" fill="#111827">frame: link의 MAC address와</text>
+<text data-source="root.0.2.6" x="1524.000" y="511.450" font-size="22" font-weight="400" fill="#111827">trailer</text>
+<text data-source="root.0.2.8" x="120.000" y="709.350" font-size="28" font-weight="700" fill="#111827">Bits on the medium</text>
+<text data-source="root.0.2.8" x="120.000" y="751.750" font-size="22" font-weight="400" fill="#111827">실제 link를 지나가는 신호</text>
+<text data-source="root.0.2.1" x="424.000" y="415.850" font-size="22" font-weight="400" fill="#111827">Transport</text>
+<text data-source="root.0.2.1" x="424.000" y="445.550" font-size="22" font-weight="400" fill="#111827">header 추가</text>
+<text data-source="root.0.2.3" x="892.000" y="415.850" font-size="22" font-weight="400" fill="#111827">IP header</text>
+<text data-source="root.0.2.3" x="892.000" y="445.550" font-size="22" font-weight="400" fill="#111827">추가</text>
+<text data-source="root.0.2.5" x="1360.000" y="415.850" font-size="22" font-weight="400" fill="#111827">MAC 주소와</text>
+<text data-source="root.0.2.5" x="1360.000" y="445.550" font-size="22" font-weight="400" fill="#111827">trailer 추가</text>
+<text data-source="root.0.2.7" x="104.000" y="601.350" font-size="22" font-weight="400" fill="#111827">매체가 bits를 운반</text>
+<text data-source="root.0.3" x="64.000" y="829.450" font-size="22" font-weight="400" fill="#111827">수신 측은 bits에서 frame, packet, segment를 차례로 벗겨 application data를 얻습니다. Router를 지날 때 Ethernet frame은 다음 link에 맞게 새로 만들어지고 MAC 주소도 바뀝니다.</text>
+</svg>

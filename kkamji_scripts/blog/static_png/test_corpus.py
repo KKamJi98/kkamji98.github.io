@@ -42,7 +42,7 @@ class ManifestTests(unittest.TestCase):
             result = run('export'); self.assertEqual(result.returncode,0,result.stdout+result.stderr)
             result = run('check'); self.assertEqual(result.returncode,0,result.stdout+result.stderr)
             manifest = out/'manifest-light.json'; before = manifest.read_bytes()
-            png = next(out.rglob('*-625-light.png')); original = png.read_bytes(); png.unlink()
+            png = next(out.rglob('*-1920x1080-light.png')); original = png.read_bytes(); png.unlink()
             self.assertNotEqual(run('check').returncode,0)
             self.assertEqual(manifest.read_bytes(),before, 'check must not rewrite manifest')
             png.write_bytes(original)

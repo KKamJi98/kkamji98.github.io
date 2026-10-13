@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-ci-cd-ec2-jenkins-server-flow" aria-labelledby="sd-title-ci-cd-ec2-jenkins-server-flow">
-  <figcaption class="sd-title" id="sd-title-ci-cd-ec2-jenkins-server-flow">EC2의 Jenkins controller가 commit을 artifact로 전달하는 흐름</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-ci-cd-ec2-jenkins-server-flow" aria-labelledby="sd-title-ci-cd-ec2-jenkins-server-flow" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-ci-cd-ec2-jenkins-server-flow">EC2의 Jenkins controller가 commit을 artifact로 전달하는 흐름</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Source repository</strong>
@@ -27,4 +27,45 @@
     </div>
   </div>
   <p class="sd-note">controller는 작업을 조정하고 build workload는 격리된 agent에서 실행할 수 있습니다. 다음 stage로 이동하는 것은 workspace가 아니라 versioned artifact입니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ff62e2b7d5a22725af54c82e724183d6a4f4b3c61a5341c8024b2ed79ffb8170">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="360.500" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="597.450" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 423.550 L 552.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>Jenkins가 변경을 받음</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,423.550 542.000,429.550 542.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 423.550 L 1020.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>Build job 스케줄</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,423.550 1010.000,429.550 1010.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 423.550 L 1488.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>versioned output 생성</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,423.550 1478.000,429.550 1478.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 423.550 L 1848.000 423.550 L 1848.000 549.450 L 72.000 549.450 L 72.000 675.350 L 84.000 675.350" fill="none" stroke="#475569" stroke-width="3"><title>배포 대상이 결과물을 소비</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,675.350 74.000,681.350 74.000,669.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">EC2의 Jenkins controller가 commit을 artifact로 전달하는 흐름</text>
+<text data-source="root.0.1.0" x="120.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Source repository</text>
+<text data-source="root.0.1.0" x="120.000" y="440.050" font-size="22" font-weight="400" fill="#111827">webhook 또는 poll로 변경</text>
+<text data-source="root.0.1.0" x="120.000" y="469.750" font-size="22" font-weight="400" fill="#111827">감지</text>
+<text data-source="root.0.1.2" x="588.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Jenkins on EC2</text>
+<text data-source="root.0.1.2" x="588.000" y="440.050" font-size="22" font-weight="400" fill="#111827">controller가 queue를</text>
+<text data-source="root.0.1.2" x="588.000" y="469.750" font-size="22" font-weight="400" fill="#111827">관리하고 executor를 할당</text>
+<text data-source="root.0.1.4" x="1056.000" y="412.500" font-size="28" font-weight="700" fill="#111827">Build job</text>
+<text data-source="root.0.1.4" x="1056.000" y="454.900" font-size="22" font-weight="400" fill="#111827">compile, test, package 실행</text>
+<text data-source="root.0.1.6" x="1524.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Artifact or image</text>
+<text data-source="root.0.1.6" x="1524.000" y="440.050" font-size="22" font-weight="400" fill="#111827">다음 단계로 넘기는 버전 있는</text>
+<text data-source="root.0.1.6" x="1524.000" y="469.750" font-size="22" font-weight="400" fill="#111827">결과물</text>
+<text data-source="root.0.1.8" x="120.000" y="649.450" font-size="28" font-weight="700" fill="#111827">Deployment target</text>
+<text data-source="root.0.1.8" x="120.000" y="691.850" font-size="22" font-weight="400" fill="#111827">artifact 또는 image를 사용해</text>
+<text data-source="root.0.1.8" x="120.000" y="721.550" font-size="22" font-weight="400" fill="#111827">배포</text>
+<text data-source="root.0.1.1" x="424.000" y="374.150" font-size="22" font-weight="400" fill="#111827">Jenkins가</text>
+<text data-source="root.0.1.1" x="424.000" y="403.850" font-size="22" font-weight="400" fill="#111827">변경을 받음</text>
+<text data-source="root.0.1.3" x="892.000" y="374.150" font-size="22" font-weight="400" fill="#111827">Build job</text>
+<text data-source="root.0.1.3" x="892.000" y="403.850" font-size="22" font-weight="400" fill="#111827">스케줄</text>
+<text data-source="root.0.1.5" x="1360.000" y="374.150" font-size="22" font-weight="400" fill="#111827">versioned</text>
+<text data-source="root.0.1.5" x="1360.000" y="403.850" font-size="22" font-weight="400" fill="#111827">output 생성</text>
+<text data-source="root.0.1.7" x="104.000" y="541.450" font-size="22" font-weight="400" fill="#111827">배포 대상이 결과물을 소비</text>
+<text data-source="root.0.2" x="64.000" y="799.250" font-size="22" font-weight="400" fill="#111827">controller는 작업을 조정하고 build workload는 격리된 agent에서 실행할 수 있습니다. 다음 stage로 이동하는 것은 workspace가 아니라 versioned artifact입니다.</text>
+</svg>
 </figure>

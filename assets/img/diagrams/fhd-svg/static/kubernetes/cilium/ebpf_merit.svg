@@ -1,0 +1,66 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="b75a9a5f709bbdc83a1d1e9a9265de7eff8686d2f24f7596ed181a3b6a14f45b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="149.900" width="785.226" height="287.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1038.774" y="179.000" width="785.226" height="229.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="96.000" y="641.400" width="785.226" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="1038.774" y="533.700" width="785.226" height="418.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="116.000" y="222.300" width="235.075" height="164.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="371.075" y="222.300" width="235.075" height="137.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="626.150" y="222.300" width="235.075" height="195.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1058.774" y="251.400" width="745.226" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="116.000" y="713.800" width="745.226" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.0" x="1058.774" y="606.100" width="235.075" height="191.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.1" x="1313.850" y="606.100" width="235.075" height="164.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.2" x="1568.925" y="606.100" width="235.075" height="195.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6.2" x="1058.774" y="821.500" width="745.226" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 893.226 293.800 L 1026.774 293.800" fill="none" stroke="#475569" stroke-width="3"><title>implemented by projects</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1026.774,293.800 1016.774,299.800 1016.774,287.800" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 293.800 L 1848.000 293.800 L 1848.000 485.700 L 72.000 485.700 L 72.000 742.700 L 84.000 742.700" fill="none" stroke="#475569" stroke-width="3"><title>built with SDKs</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,742.700 74.000,748.700 74.000,736.700" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 893.226 742.700 L 1026.774 742.700" fill="none" stroke="#475569" stroke-width="3"><title>load into kernel runtime</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1026.774,742.700 1016.774,748.700 1016.774,736.700" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="117.300" font-size="36" font-weight="700" fill="#111827">eBPF use case는 projects와 SDK를 거쳐 verifier가 관리하는 kernel runtime에서 실행된다</text>
+<text data-source="root.0.1.0.0" x="116.000" y="193.900" font-size="24" font-weight="700" fill="#111827">Use Cases</text>
+<text data-source="root.0.1.0.1.0" x="136.000" y="266.300" font-size="24" font-weight="700" fill="#111827">Networking</text>
+<text data-source="root.0.1.0.1.0" x="136.000" y="305.500" font-size="20" font-weight="400" fill="#111827">packet path와 load</text>
+<text data-source="root.0.1.0.1.0" x="136.000" y="332.500" font-size="20" font-weight="400" fill="#111827">balancing을</text>
+<text data-source="root.0.1.0.1.0" x="136.000" y="359.500" font-size="20" font-weight="400" fill="#111827">처리한다.</text>
+<text data-source="root.0.1.0.1.1" x="391.075" y="266.300" font-size="24" font-weight="700" fill="#111827">Security</text>
+<text data-source="root.0.1.0.1.1" x="391.075" y="305.500" font-size="20" font-weight="400" fill="#111827">policy와 network</text>
+<text data-source="root.0.1.0.1.1" x="391.075" y="332.500" font-size="20" font-weight="400" fill="#111827">security를 적용한다.</text>
+<text data-source="root.0.1.0.1.2" x="646.150" y="266.300" font-size="24" font-weight="700" fill="#111827">Observability</text>
+<text data-source="root.0.1.0.1.2" x="646.150" y="297.500" font-size="24" font-weight="700" fill="#111827">&amp; Tracing</text>
+<text data-source="root.0.1.0.1.2" x="646.150" y="336.700" font-size="20" font-weight="400" fill="#111827">runtime event를</text>
+<text data-source="root.0.1.0.1.2" x="646.150" y="363.700" font-size="20" font-weight="400" fill="#111827">추적하고</text>
+<text data-source="root.0.1.0.1.2" x="646.150" y="390.700" font-size="20" font-weight="400" fill="#111827">프로파일링한다.</text>
+<text data-source="root.0.1.2.0" x="1058.774" y="223.000" font-size="24" font-weight="700" fill="#111827">Projects</text>
+<text data-source="root.0.1.2.1" x="1078.774" y="295.400" font-size="24" font-weight="700" fill="#111827">eBPF projects</text>
+<text data-source="root.0.1.2.1" x="1078.774" y="334.600" font-size="20" font-weight="400" fill="#111827">BCC, Cilium, Falco, Katran, Pixie 같은 user-space projects가 use case를</text>
+<text data-source="root.0.1.2.1" x="1078.774" y="361.600" font-size="20" font-weight="400" fill="#111827">구현한다.</text>
+<text data-source="root.0.1.4.0" x="116.000" y="685.400" font-size="24" font-weight="700" fill="#111827">User Space SDKs</text>
+<text data-source="root.0.1.4.1" x="136.000" y="757.800" font-size="24" font-weight="700" fill="#111827">eBPF SDKs</text>
+<text data-source="root.0.1.4.1" x="136.000" y="797.000" font-size="20" font-weight="400" fill="#111827">Rust, Go, C, C++ 같은 언어에서 program과 map을 구성한다.</text>
+<text data-source="root.0.1.6.0" x="1058.774" y="577.700" font-size="24" font-weight="700" fill="#111827">Kernel Runtime</text>
+<text data-source="root.0.1.6.1.0" x="1078.774" y="650.100" font-size="24" font-weight="700" fill="#111827">Verifier &amp; JIT</text>
+<text data-source="root.0.1.6.1.0" x="1078.774" y="689.300" font-size="20" font-weight="400" fill="#111827">안전성을 검사하고</text>
+<text data-source="root.0.1.6.1.0" x="1078.774" y="716.300" font-size="20" font-weight="400" fill="#111827">가능한 환경에서</text>
+<text data-source="root.0.1.6.1.0" x="1078.774" y="743.300" font-size="20" font-weight="400" fill="#111827">native code로</text>
+<text data-source="root.0.1.6.1.0" x="1078.774" y="770.300" font-size="20" font-weight="400" fill="#111827">실행한다.</text>
+<text data-source="root.0.1.6.1.1" x="1333.850" y="650.100" font-size="24" font-weight="700" fill="#111827">Maps</text>
+<text data-source="root.0.1.6.1.1" x="1333.850" y="689.300" font-size="20" font-weight="400" fill="#111827">kernel 상태와</text>
+<text data-source="root.0.1.6.1.1" x="1333.850" y="716.300" font-size="20" font-weight="400" fill="#111827">program 데이터를</text>
+<text data-source="root.0.1.6.1.1" x="1333.850" y="743.300" font-size="20" font-weight="400" fill="#111827">공유한다.</text>
+<text data-source="root.0.1.6.1.2" x="1588.925" y="650.100" font-size="24" font-weight="700" fill="#111827">Kernel Helper</text>
+<text data-source="root.0.1.6.1.2" x="1588.925" y="681.300" font-size="24" font-weight="700" fill="#111827">API</text>
+<text data-source="root.0.1.6.1.2" x="1588.925" y="720.500" font-size="20" font-weight="400" fill="#111827">허용된 helper를</text>
+<text data-source="root.0.1.6.1.2" x="1588.925" y="747.500" font-size="20" font-weight="400" fill="#111827">통해 kernel 기능에</text>
+<text data-source="root.0.1.6.1.2" x="1588.925" y="774.500" font-size="20" font-weight="400" fill="#111827">접근한다.</text>
+<text data-source="root.0.1.6.2" x="1078.774" y="865.500" font-size="24" font-weight="700" fill="#111827">OS Runtime</text>
+<text data-source="root.0.1.6.2" x="1078.774" y="904.700" font-size="20" font-weight="400" fill="#111827">Linux와 Windows kernel runtime에 연결된다.</text>
+<text data-source="root.0.1.1" x="885.226" y="247.800" font-size="20" font-weight="400" fill="#111827">implemented</text>
+<text data-source="root.0.1.1" x="885.226" y="274.800" font-size="20" font-weight="400" fill="#111827">by projects</text>
+<text data-source="root.0.1.3" x="104.000" y="477.700" font-size="20" font-weight="400" fill="#111827">built with SDKs</text>
+<text data-source="root.0.1.5" x="885.226" y="696.700" font-size="20" font-weight="400" fill="#111827">load into</text>
+<text data-source="root.0.1.5" x="885.226" y="723.700" font-size="20" font-weight="400" fill="#111827">kernel runtime</text>
+<text data-source="root.0.2" x="64.000" y="991.700" font-size="20" font-weight="400" fill="#111827">Tracing, profiling, and monitoring applications use eBPF, while networking, security controls, load balancing, and behavioral security run through the kernel runtime.</text>
+</svg>

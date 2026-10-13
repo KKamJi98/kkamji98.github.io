@@ -6,9 +6,10 @@ author: kkamji
 categories: [AI, Development]
 tags: [jev, system-one, typesafe-ai, agent, agent-harness, probabilistic-decision]
 comments: true
-image:
-  path: /assets/img/ai/jev/jev-system-one-banner.webp
 ---
+
+{% include diagrams/static/ai/jev-system-one-banner.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ai/jev-system-one-banner--e97d9e6d4ae55b70.png" %}
 
 에이전트가 `kubectl delete namespace production`을 제안했다고 가정합니다. JSON schema가 유효하더라도 실제로 실행해도 되는지는 알 수 없습니다.
 

@@ -1,0 +1,30 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="455d7d0fd0719a053654dc384875b523721547ed8025b638a3ae9644313acf64">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="142.900" width="1792.000" height="332.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="495.700" width="1792.000" height="332.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="84.000" y="215.300" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="970.000" y="215.300" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="84.000" y="345.500" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="84.000" y="568.100" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="970.000" y="568.100" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="84.000" y="698.300" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="848.500" width="1792.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="110.300" font-size="36" font-weight="700" fill="#111827">Cilium Native Routing 실습은 두 노드망과 Router VM 사이의 PodCIDR 경로를 확인합니다</text>
+<text data-source="root.0.1.0" x="84.000" y="186.900" font-size="24" font-weight="700" fill="#111827">Kubernetes cluster</text>
+<text data-source="root.0.1.1.0" x="104.000" y="259.300" font-size="24" font-weight="700" fill="#111827">k8s-ctr</text>
+<text data-source="root.0.1.1.0" x="104.000" y="298.500" font-size="20" font-weight="400" fill="#111827">eth1 192.168.10.100, control plane</text>
+<text data-source="root.0.1.1.1" x="990.000" y="259.300" font-size="24" font-weight="700" fill="#111827">k8s-w1</text>
+<text data-source="root.0.1.1.1" x="990.000" y="298.500" font-size="20" font-weight="400" fill="#111827">eth1 worker on 192.168.10.0/24</text>
+<text data-source="root.0.1.1.2" x="104.000" y="389.500" font-size="24" font-weight="700" fill="#111827">k8s-w0</text>
+<text data-source="root.0.1.1.2" x="104.000" y="428.700" font-size="20" font-weight="400" fill="#111827">192.168.20.100, worker</text>
+<text data-source="root.0.2.0" x="84.000" y="539.700" font-size="24" font-weight="700" fill="#111827">Router VM</text>
+<text data-source="root.0.2.1.0" x="104.000" y="612.100" font-size="24" font-weight="700" fill="#111827">eth1</text>
+<text data-source="root.0.2.1.0" x="104.000" y="651.300" font-size="20" font-weight="400" fill="#111827">192.168.10.200 on 192.168.10.0/24</text>
+<text data-source="root.0.2.1.1" x="990.000" y="612.100" font-size="24" font-weight="700" fill="#111827">eth2</text>
+<text data-source="root.0.2.1.1" x="990.000" y="651.300" font-size="20" font-weight="400" fill="#111827">192.168.20.200 on 192.168.20.0/24</text>
+<text data-source="root.0.2.1.2" x="104.000" y="742.300" font-size="24" font-weight="700" fill="#111827">loop1 and loop2</text>
+<text data-source="root.0.2.1.2" x="104.000" y="781.500" font-size="20" font-weight="400" fill="#111827">10.10.1.200/24 and 10.10.2.200/24</text>
+<text data-source="root.0.3" x="84.000" y="892.500" font-size="24" font-weight="700" fill="#111827">PodCIDR 172.20.0.0/16</text>
+<text data-source="root.0.3" x="84.000" y="931.700" font-size="20" font-weight="400" fill="#111827">노드별 /24 대역을 Cilium Native Routing으로 전달합니다.</text>
+<text data-source="root.0.4" x="64.000" y="998.700" font-size="20" font-weight="400" fill="#111827">Router가 172.20.2.0/24 경로를 모르면 기본 public route로 빠져 k8s-w0의 Pod 통신이 실패합니다. 이 실습은 Static Route를 수동 추가해 복구합니다. BGP 경로 광고는 별도 구성입니다.</text>
+</svg>

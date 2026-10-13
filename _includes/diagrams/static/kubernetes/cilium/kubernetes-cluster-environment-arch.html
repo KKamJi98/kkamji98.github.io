@@ -1,5 +1,5 @@
-<figure class="sd sd--layers sd--flow" id="sd-kubernetes-cluster-environment-arch" aria-labelledby="sd-kubernetes-cluster-environment-arch-title">
-  <figcaption class="sd-title" id="sd-kubernetes-cluster-environment-arch-title">Kubernetes cluster node는 공통 underlay network에 연결된다</figcaption>
+<figure class="sd sd--layers sd--flow sd--fhd" id="sd-kubernetes-cluster-environment-arch" aria-labelledby="sd-kubernetes-cluster-environment-arch-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-cluster-environment-arch-title">Kubernetes cluster node는 공통 underlay network에 연결된다</figcaption><div class="sd-semantic-source">
   <section class="sd-band" aria-labelledby="sd-kubernetes-cluster-environment-arch-underlay-title">
     <div class="sd-band-title" id="sd-kubernetes-cluster-environment-arch-underlay-title">Underlay network 192.168.10.0/24</div>
     <section class="sd-band sd-band--accent" aria-labelledby="sd-kubernetes-cluster-environment-arch-cluster-title">
@@ -27,4 +27,33 @@
     <span class="sd-detail">router가 cluster 밖의 상위 network와 연결합니다.</span>
   </div>
   <p class="sd-note"><code>192.168.20.0/24</code> interface는 구성되어 있지만 이 cluster 경로에서는 사용하지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f8810f312f39074cda82a934a141d68b5531df6d3b6055f3d054ce226d70fe14">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="140.800" width="1792.000" height="581.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="88.000" y="226.600" width="1744.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="112.000" y="312.400" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="972.000" y="312.400" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="88.000" y="572.200" width="1744.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="832.000" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.2" data-from="root.0.1.1" data-to="root.0.1.3" d="M 960.000 474.500 L 960.000 560.200" fill="none" stroke="#475569" stroke-width="3"><title>same L2 underlay</title></path>
+<polygon data-arrowhead="root.0.1.2" points="960.000,560.200 954.000,550.200 966.000,550.200" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 734.300 L 960.000 820.000" fill="none" stroke="#475569" stroke-width="3"><title>upstream corporate network</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,820.000 954.000,810.000 966.000,810.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="104.200" font-size="36" font-weight="700" fill="#111827">Kubernetes cluster node는 공통 underlay network에 연결된다</text>
+<text data-source="root.0.1.0" x="88.000" y="192.800" font-size="28" font-weight="700" fill="#111827">Underlay network 192.168.10.0/24</text>
+<text data-source="root.0.1.1.0" x="112.000" y="278.600" font-size="28" font-weight="700" fill="#111827">Kubernetes cluster boundary</text>
+<text data-source="root.0.1.1.1.0" x="136.000" y="364.400" font-size="28" font-weight="700" fill="#111827">k8s-ctr</text>
+<text data-source="root.0.1.1.1.0" x="136.000" y="406.800" font-size="22" font-weight="400" fill="#111827">eth1 192.168.10.100</text>
+<text data-source="root.0.1.1.1.1" x="996.000" y="364.400" font-size="28" font-weight="700" fill="#111827">k8s-w1</text>
+<text data-source="root.0.1.1.1.1" x="996.000" y="406.800" font-size="22" font-weight="400" fill="#111827">eth1 192.168.10.101</text>
+<text data-source="root.0.1.3" x="112.000" y="624.200" font-size="28" font-weight="700" fill="#111827">router</text>
+<text data-source="root.0.1.3" x="112.000" y="666.600" font-size="22" font-weight="400" fill="#111827">eth1 192.168.10.200, cluster member가 아닌 외부 router입니다.</text>
+<text data-source="root.0.1.2" x="980.000" y="524.500" font-size="22" font-weight="400" fill="#111827">same L2 underlay</text>
+<text data-source="root.0.3" x="88.000" y="884.000" font-size="28" font-weight="700" fill="#111827">Corporate network 10.10.0.0/16</text>
+<text data-source="root.0.3" x="88.000" y="926.400" font-size="22" font-weight="400" fill="#111827">router가 cluster 밖의 상위 network와 연결합니다.</text>
+<text data-source="root.0.4" x="64.000" y="1004.100" font-size="22" font-weight="400" fill="#111827">192.168.20.0/24 interface는 구성되어 있지만 이 cluster 경로에서는 사용하지 않습니다.</text>
+<text data-source="root.0.2" x="980.000" y="784.300" font-size="22" font-weight="400" fill="#111827">upstream corporate network</text>
+</svg>
 </figure>

@@ -1,0 +1,73 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a110e6cda02a0c906d0f7ad17f757154487e64ee9184081d6dc1e18b8ab1abf2">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3.0" x="64.000" y="589.950" width="888.000" height="219.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="968.000" y="589.950" width="888.000" height="219.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="252.900" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="240.750" width="324.000" height="142.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="252.900" width="324.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="252.900" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="96.000" y="479.650" width="324.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="112.000" y="648.950" width="324.000" height="144.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.2" x="580.000" y="661.950" width="324.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="1016.000" y="661.950" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="1484.000" y="648.950" width="324.000" height="144.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4.0" x="64.000" y="825.550" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1" x="968.000" y="825.550" width="888.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 312.200 L 552.000 312.200" fill="none" stroke="#475569" stroke-width="3"><title>DDoS 보호</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,312.200 542.000,318.200 542.000,306.200" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 312.200 L 1020.000 312.200" fill="none" stroke="#475569" stroke-width="3"><title>엣지 종단</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,312.200 1010.000,318.200 1010.000,306.200" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 312.200 L 1488.000 312.200" fill="none" stroke="#475569" stroke-width="3"><title>리전 전달</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,312.200 1478.000,318.200 1478.000,306.200" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 312.200 L 1848.000 312.200 L 1848.000 431.650 L 72.000 431.650 L 72.000 526.800 L 84.000 526.800" fill="none" stroke="#475569" stroke-width="3"><title>허용된 요청</title></path>
+<polygon data-arrowhead="root.0.2.7" points="84.000,526.800 74.000,532.800 74.000,520.800" fill="#475569"/>
+<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 448.000 721.250 L 568.000 721.250" fill="none" stroke="#475569" stroke-width="3"><title>CloudFront에 부착</title></path>
+<polygon data-arrowhead="root.0.3.0.1.1" points="568.000,721.250 558.000,727.250 558.000,715.250" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1352.000 721.250 L 1472.000 721.250" fill="none" stroke="#475569" stroke-width="3"><title>ALB에 부착</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="1472.000,721.250 1462.000,727.250 1462.000,715.250" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="171.850" font-size="36" font-weight="700" fill="#111827">web ACL을 어느 리소스에 붙였는지가 검사할 본문 크기를 정한다</text>
+<text data-source="root.0.1" x="64.000" y="218.450" font-size="18" font-weight="400" fill="#111827">CloudFront scope는 엣지에서 최대 64 KB를 검사하고 REGIONAL scope는 ALB와 AppSync에서 8 KB로 고정됩니다. Firewall Manager는 요청 경로가 아니라 정책 배포 축입니다.</text>
+<text data-source="root.0.2.0" x="112.000" y="288.900" font-size="20" font-weight="700" fill="#111827">인터넷 요청</text>
+<text data-source="root.0.2.0" x="112.000" y="324.900" font-size="18" font-weight="400" fill="#111827">정상 트래픽과 공격이 같은 경로로</text>
+<text data-source="root.0.2.0" x="112.000" y="349.200" font-size="18" font-weight="400" fill="#111827">들어옵니다.</text>
+<text data-source="root.0.2.2" x="580.000" y="276.750" font-size="20" font-weight="700" fill="#111827">Shield</text>
+<text data-source="root.0.2.2" x="580.000" y="312.750" font-size="18" font-weight="400" fill="#111827">Standard는 무료 상시 보호이고</text>
+<text data-source="root.0.2.2" x="580.000" y="337.050" font-size="18" font-weight="400" fill="#111827">Advanced는 L7 자동 완화를</text>
+<text data-source="root.0.2.2" x="580.000" y="361.350" font-size="18" font-weight="400" fill="#111827">제공합니다.</text>
+<text data-source="root.0.2.4" x="1048.000" y="288.900" font-size="20" font-weight="700" fill="#111827">CloudFront</text>
+<text data-source="root.0.2.4" x="1048.000" y="324.900" font-size="18" font-weight="400" fill="#111827">엣지에서 요청을 종단하고 리전</text>
+<text data-source="root.0.2.4" x="1048.000" y="349.200" font-size="18" font-weight="400" fill="#111827">오리진으로 전달합니다.</text>
+<text data-source="root.0.2.6" x="1516.000" y="288.900" font-size="20" font-weight="700" fill="#111827">Application Load Balancer</text>
+<text data-source="root.0.2.6" x="1516.000" y="324.900" font-size="18" font-weight="400" fill="#111827">REGIONAL web ACL 검사를</text>
+<text data-source="root.0.2.6" x="1516.000" y="349.200" font-size="18" font-weight="400" fill="#111827">통과한 요청을 받습니다.</text>
+<text data-source="root.0.2.8" x="112.000" y="515.650" font-size="20" font-weight="700" fill="#111827">오리진 애플리케이션</text>
+<text data-source="root.0.2.8" x="112.000" y="551.650" font-size="18" font-weight="400" fill="#111827">검사를 통과한 요청만 도달합니다.</text>
+<text data-source="root.0.2.1" x="424.000" y="293.900" font-size="18" font-weight="400" fill="#111827">DDoS 보호</text>
+<text data-source="root.0.2.3" x="892.000" y="293.900" font-size="18" font-weight="400" fill="#111827">엣지 종단</text>
+<text data-source="root.0.2.5" x="1360.000" y="293.900" font-size="18" font-weight="400" fill="#111827">리전 전달</text>
+<text data-source="root.0.2.7" x="104.000" y="423.650" font-size="18" font-weight="400" fill="#111827">허용된 요청</text>
+<text data-source="root.0.3.0.0" x="80.000" y="625.950" font-size="20" font-weight="700" fill="#111827">CLOUDFRONT scope에서의 검사</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="684.950" font-size="20" font-weight="700" fill="#111827">web ACL, CLOUDFRONT</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="710.950" font-size="20" font-weight="700" fill="#111827">scope</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="746.950" font-size="18" font-weight="400" fill="#111827">본문 검사 기본 16 KB, 설정으로</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="771.250" font-size="18" font-weight="400" fill="#111827">최대 64 KB</text>
+<text data-source="root.0.3.0.1.2" x="596.000" y="697.950" font-size="20" font-weight="700" fill="#111827">CloudFront 엣지 검사</text>
+<text data-source="root.0.3.0.1.2" x="596.000" y="733.950" font-size="18" font-weight="400" fill="#111827">엣지에서 검사한 뒤 통과한 요청을</text>
+<text data-source="root.0.3.0.1.2" x="596.000" y="758.250" font-size="18" font-weight="400" fill="#111827">다음 경로로 보냅니다.</text>
+<text data-source="root.0.3.0.1.1" x="440.000" y="678.650" font-size="18" font-weight="400" fill="#111827">CloudFront에</text>
+<text data-source="root.0.3.0.1.1" x="440.000" y="702.950" font-size="18" font-weight="400" fill="#111827">부착</text>
+<text data-source="root.0.3.1.0" x="984.000" y="625.950" font-size="20" font-weight="700" fill="#111827">REGIONAL scope에서의 검사</text>
+<text data-source="root.0.3.1.1.0" x="1032.000" y="697.950" font-size="20" font-weight="700" fill="#111827">web ACL, REGIONAL scope</text>
+<text data-source="root.0.3.1.1.0" x="1032.000" y="733.950" font-size="18" font-weight="400" fill="#111827">ALB와 AppSync 본문 검사는 8</text>
+<text data-source="root.0.3.1.1.0" x="1032.000" y="758.250" font-size="18" font-weight="400" fill="#111827">KB로 고정됩니다.</text>
+<text data-source="root.0.3.1.1.2" x="1500.000" y="684.950" font-size="20" font-weight="700" fill="#111827">Application Load Balancer</text>
+<text data-source="root.0.3.1.1.2" x="1500.000" y="710.950" font-size="20" font-weight="700" fill="#111827">검사</text>
+<text data-source="root.0.3.1.1.2" x="1500.000" y="746.950" font-size="18" font-weight="400" fill="#111827">리전 안에서 검사하고 통과한</text>
+<text data-source="root.0.3.1.1.2" x="1500.000" y="771.250" font-size="18" font-weight="400" fill="#111827">요청을 오리진으로 전달합니다.</text>
+<text data-source="root.0.3.1.1.1" x="1344.000" y="702.950" font-size="18" font-weight="400" fill="#111827">ALB에 부착</text>
+<text data-source="root.0.4.0" x="80.000" y="861.550" font-size="20" font-weight="700" fill="#111827">Firewall Manager</text>
+<text data-source="root.0.4.0" x="80.000" y="897.550" font-size="18" font-weight="400" fill="#111827">Organizations 관리자 계정 지정과 AWS Config가 전제이며 두 scope의 web ACL 정책을 배포합니다.</text>
+<text data-source="root.0.4.1" x="984.000" y="861.550" font-size="20" font-weight="700" fill="#111827">web ACL 로그</text>
+<text data-source="root.0.4.1" x="984.000" y="897.550" font-size="18" font-weight="400" fill="#111827">REGIONAL web ACL의 요청 로그를 남깁니다. CloudWatch Logs는 aws-waf-logs- 접두사와 같은</text>
+<text data-source="root.0.4.1" x="984.000" y="921.850" font-size="18" font-weight="400" fill="#111827">리전과 계정이 필요합니다.</text>
+</svg>

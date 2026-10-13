@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="jvm-01-process-memory-layout" aria-labelledby="sd-title-jvm-01-process-memory-layout">
-  <figcaption class="sd-title" id="sd-title-jvm-01-process-memory-layout">프로세스 가상 주소공간의 전형적 배치</figcaption>
+<figure class="sd sd--layers sd--fhd" id="jvm-01-process-memory-layout" aria-labelledby="sd-title-jvm-01-process-memory-layout" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-jvm-01-process-memory-layout">프로세스 가상 주소공간의 전형적 배치</figcaption><div class="sd-semantic-source">
 
   <div class="sd-stack">
     <div class="sd-band">
@@ -40,4 +40,33 @@
   </div>
 
   <p class="sd-note">배치와 성장 방향은 표준이 아닌 x86 기반 관례입니다. 아키텍처와 loader에 따라 달라지고, ASLR은 시작 주소를 무작위화합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="fe1329a21fba04254c2bcba2feca4b3e7c31bc43f3485ab8902d2bdb69c4f73a">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="154.250" width="1792.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.5" x="64.000" y="780.750" width="1792.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="80.000" y="213.250" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="64.000" y="339.550" width="1792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="64.000" y="449.850" width="1792.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="64.000" y="560.150" width="1792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="64.000" y="670.450" width="1792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.5.0" x="80.000" y="796.750" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="125.650" font-size="36" font-weight="700" fill="#111827">프로세스 가상 주소공간의 전형적 배치</text>
+<text data-source="root.0.1.0.0" x="80.000" y="190.250" font-size="20" font-weight="700" fill="#111827">Higher address</text>
+<text data-source="root.0.1.0.1" x="96.000" y="249.250" font-size="20" font-weight="700" fill="#111827">Stack</text>
+<text data-source="root.0.1.0.1" x="96.000" y="285.250" font-size="18" font-weight="400" fill="#111827">call frames와 locals, thread마다 하나</text>
+<text data-source="root.0.1.1" x="80.000" y="375.550" font-size="20" font-weight="700" fill="#111827">Free space</text>
+<text data-source="root.0.1.1" x="80.000" y="411.550" font-size="18" font-weight="400" fill="#111827">x86 관례에서 stack은 아래로, heap은 위로 성장</text>
+<text data-source="root.0.1.2" x="80.000" y="485.850" font-size="20" font-weight="700" fill="#111827">Heap</text>
+<text data-source="root.0.1.2" x="80.000" y="521.850" font-size="18" font-weight="400" fill="#111827">실행 중 동적 할당: new와 malloc</text>
+<text data-source="root.0.1.3" x="80.000" y="596.150" font-size="20" font-weight="700" fill="#111827">BSS</text>
+<text data-source="root.0.1.3" x="80.000" y="632.150" font-size="18" font-weight="400" fill="#111827">초기화하지 않은 static data</text>
+<text data-source="root.0.1.4" x="80.000" y="706.450" font-size="20" font-weight="700" fill="#111827">Data</text>
+<text data-source="root.0.1.4" x="80.000" y="742.450" font-size="18" font-weight="400" fill="#111827">초기화된 static data</text>
+<text data-source="root.0.1.5.0" x="96.000" y="832.750" font-size="20" font-weight="700" fill="#111827">Text</text>
+<text data-source="root.0.1.5.0" x="96.000" y="868.750" font-size="18" font-weight="400" fill="#111827">실행 코드, read-only</text>
+<text data-source="root.0.1.5.1" x="80.000" y="927.050" font-size="20" font-weight="700" fill="#111827">Lower address</text>
+<text data-source="root.0.2" x="64.000" y="984.050" font-size="18" font-weight="400" fill="#111827">배치와 성장 방향은 표준이 아닌 x86 기반 관례입니다. 아키텍처와 loader에 따라 달라지고, ASLR은 시작 주소를 무작위화합니다.</text>
+</svg>
 </figure>

@@ -4,9 +4,10 @@ png is a published same-origin asset path from the verified PNG manifest.
 No second diagram source and no script/clipboard permissions.
 {% endcomment %}
 {% if include.png %}
-<p class="diagram-download">
-  <img class="diagram-inline" src="{{ include.png | relative_url | escape }}" alt="" width="1920" loading="lazy" decoding="async" data-static-diagram="true">
+{% assign diagram_viewer = include.png | replace_first: '/assets/img/diagrams/', '/diagrams/view/' | replace: '.png', '.html' %}
+<p class="diagram-download" tabindex="0" role="region" aria-label="1920 x 1080 고정 크기 다이어그램. 좁은 화면에서는 가로로 스크롤하세요.">
+  <img class="diagram-inline" src="{{ include.png | relative_url | escape }}" alt="" width="1920" height="1080" loading="lazy" decoding="async" data-static-diagram="true">
   <a href="{{ include.png | relative_url | escape }}" download>PNG 다운로드</a>
-  <a href="{{ include.png | relative_url | escape }}">원본 이미지 열기</a>
+  <a href="{{ diagram_viewer | relative_url | escape }}">고정 크기로 열기 및 확대 보기</a>
 </p>
 {% endif %}

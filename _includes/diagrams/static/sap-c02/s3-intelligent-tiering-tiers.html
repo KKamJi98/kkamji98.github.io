@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" aria-labelledby="sap-c02-s3-intelligent-tiering-tiers-title">
-  <figcaption class="sd-title" id="sap-c02-s3-intelligent-tiering-tiers-title">Intelligent-Tiering은 미접근 일수로 내려가고 접근으로 돌아온다</figcaption>
+<figure class="sd sd--flow sd--fhd" aria-labelledby="sap-c02-s3-intelligent-tiering-tiers-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sap-c02-s3-intelligent-tiering-tiers-title">Intelligent-Tiering은 미접근 일수로 내려가고 접근으로 돌아온다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Frequent Access</strong>
@@ -31,4 +31,51 @@
     <span class="sd-detail">계정당 리전당 restore 요청은 최대 1,000 TPS이며 객체가 실제로 Frequent Access로 이동한다.</span>
   </div>
   <p class="sd-note">128 KB 미만 객체는 모니터링과 자동 이동 대상이 아니므로 항상 Frequent Access에 남는다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="43a4d784a5b3940791cc1174789b9604685e4e1f5489c13a560ec52d4a021fa8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="408.300" width="1792.000" height="312.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="142.800" width="480.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="157.650" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="157.650" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="120.000" y="532.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="1032.000" y="532.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="830.000" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 220.700 L 708.000 220.700" fill="none" stroke="#475569" stroke-width="3"><title>30일 연속 미접근</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,220.700 698.000,226.700 698.000,214.700" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 220.700 L 1332.000 220.700" fill="none" stroke="#475569" stroke-width="3"><title>90일 연속 미접근</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,220.700 1322.000,226.700 1322.000,214.700" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.2" d="M 1584.000 295.750 L 1584.000 346.025 L 960.000 346.025 L 960.000 396.300" fill="none" stroke="#475569" stroke-width="3"><title>선택 계층을 켠 경우</title></path>
+<polygon data-arrowhead="root.0.1.5" points="960.000,396.300 954.000,386.300 966.000,386.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1" data-from="root.0.2.1.0" data-to="root.0.2.1.2" d="M 900.000 595.200 L 1020.000 595.200" fill="none" stroke="#475569" stroke-width="3"><title>둘 다 켜면 더 깊은 계층으로 이동</title></path>
+<polygon data-arrowhead="root.0.2.1.1" points="1020.000,595.200 1010.000,601.200 1010.000,589.200" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 732.300 L 960.000 818.000" fill="none" stroke="#475569" stroke-width="3"><title>어느 선택 계층에서든 restore 요청</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,818.000 954.000,808.000 966.000,808.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="106.200" font-size="36" font-weight="700" fill="#111827">Intelligent-Tiering은 미접근 일수로 내려가고 접근으로 돌아온다</text>
+<text data-source="root.0.1.0" x="120.000" y="194.800" font-size="28" font-weight="700" fill="#111827">Frequent Access</text>
+<text data-source="root.0.1.0" x="120.000" y="237.200" font-size="22" font-weight="400" fill="#111827">기본 계층. 어느 계층에서든 유효한 접근이</text>
+<text data-source="root.0.1.0" x="120.000" y="266.900" font-size="22" font-weight="400" fill="#111827">발생하면 여기로 돌아온다.</text>
+<text data-source="root.0.1.2" x="744.000" y="209.650" font-size="28" font-weight="700" fill="#111827">Infrequent Access</text>
+<text data-source="root.0.1.2" x="744.000" y="252.050" font-size="22" font-weight="400" fill="#111827">자동 계층이다.</text>
+<text data-source="root.0.1.4" x="1368.000" y="209.650" font-size="28" font-weight="700" fill="#111827">Archive Instant Access</text>
+<text data-source="root.0.1.4" x="1368.000" y="252.050" font-size="22" font-weight="400" fill="#111827">여기까지가 자동 계층이다.</text>
+<text data-source="root.0.1.1" x="580.000" y="171.300" font-size="22" font-weight="400" fill="#111827">30일 연속</text>
+<text data-source="root.0.1.1" x="580.000" y="201.000" font-size="22" font-weight="400" fill="#111827">미접근</text>
+<text data-source="root.0.1.3" x="1204.000" y="171.300" font-size="22" font-weight="400" fill="#111827">90일 연속</text>
+<text data-source="root.0.1.3" x="1204.000" y="201.000" font-size="22" font-weight="400" fill="#111827">미접근</text>
+<text data-source="root.0.2.0" x="88.000" y="460.300" font-size="28" font-weight="700" fill="#111827">선택 계층</text>
+<text data-source="root.0.2.1.0" x="144.000" y="584.150" font-size="28" font-weight="700" fill="#111827">Archive Access</text>
+<text data-source="root.0.2.1.0" x="144.000" y="626.550" font-size="22" font-weight="400" fill="#111827">최소 90일부터 최대 730일까지 설정한다.</text>
+<text data-source="root.0.2.1.2" x="1056.000" y="584.150" font-size="28" font-weight="700" fill="#111827">Deep Archive Access</text>
+<text data-source="root.0.2.1.2" x="1056.000" y="626.550" font-size="22" font-weight="400" fill="#111827">최소 180일부터 최대 730일까지 설정한다.</text>
+<text data-source="root.0.2.1.1" x="892.000" y="516.100" font-size="22" font-weight="400" fill="#111827">둘 다 켜면 더</text>
+<text data-source="root.0.2.1.1" x="892.000" y="545.800" font-size="22" font-weight="400" fill="#111827">깊은 계층으로</text>
+<text data-source="root.0.2.1.1" x="892.000" y="575.500" font-size="22" font-weight="400" fill="#111827">이동</text>
+<text data-source="root.0.4" x="88.000" y="882.000" font-size="28" font-weight="700" fill="#111827">Frequent Access로 복귀</text>
+<text data-source="root.0.4" x="88.000" y="924.400" font-size="22" font-weight="400" fill="#111827">계정당 리전당 restore 요청은 최대 1,000 TPS이며 객체가 실제로 Frequent Access로 이동한다.</text>
+<text data-source="root.0.5" x="64.000" y="1002.100" font-size="22" font-weight="400" fill="#111827">128 KB 미만 객체는 모니터링과 자동 이동 대상이 아니므로 항상 Frequent Access에 남는다.</text>
+<text data-source="root.0.3" x="980.000" y="782.300" font-size="22" font-weight="400" fill="#111827">어느 선택 계층에서든 restore 요청</text>
+<text data-source="root.0.1.5" x="84.000" y="344.600" font-size="22" font-weight="400" fill="#111827">선택 계층을 켠 경우</text>
+</svg>
 </figure>

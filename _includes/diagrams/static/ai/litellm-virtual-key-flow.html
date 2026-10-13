@@ -1,4 +1,55 @@
-<figure class="sd sd--gateway-v2" id="litellm-virtual-key-flow" aria-labelledby="litellm-virtual-key-flow-title">
-  <figcaption class="sd-title" id="litellm-virtual-key-flow-title">발급은 한 번, 추론은 가상 키로</figcaption>
+<figure class="sd sd--gateway-v2 sd--fhd" id="litellm-virtual-key-flow" aria-labelledby="litellm-virtual-key-flow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="litellm-virtual-key-flow-title">발급은 한 번, 추론은 가상 키로</figcaption><div class="sd-semantic-source">
 <section class="sd-v2-issuance" aria-label="사전 발급"><strong class="sd-label">사전 발급</strong><div class="sd-v2-issuance-row"><span class="sd-detail">관리자<br>master key 인증</span><div class="sd-v2-link" aria-hidden="true"></div><span class="sd-detail"><code>/key/generate</code><br>키와 예산 정책 생성</span><div class="sd-v2-link" aria-hidden="true"></div><span class="sd-detail">DB에 관리 레코드 저장<br>가상 키 반환</span></div><p class="sd-note">관리자가 가상 키를 클라이언트에 전달. master key와 발급 API는 반복 추론에 사용하지 않는다.</p></section><section class="sd-v2-request" aria-label="반복 추론"><div class="sd-v2-section-title">반복 추론</div><div class="sd-v2-request-row"><div class="sd-node"><strong class="sd-label">/v1/chat/completions</strong><span class="sd-detail">클라이언트의 가상 키</span></div><div class="sd-v2-link" aria-hidden="true"></div><div class="sd-node sd-node--accent"><strong class="sd-label">인증과 예산 검사</strong><span class="sd-detail">키 권한, spend, max_budget</span></div></div><div class="sd-v2-fork"><section class="sd-v2-outcome" aria-label="검사 통과"><div class="sd-v2-condition">검사 통과</div><div class="sd-node"><strong class="sd-label">Provider 호출</strong><span class="sd-detail">일반 경로: 선택한 모델로 전달</span></div><div class="sd-v2-down" aria-hidden="true"></div><div class="sd-node"><strong class="sd-label">사용 내역 기록</strong><span class="sd-detail">응답의 토큰 사용량과 모델 가격 설정에 따른 비용</span></div></section><section class="sd-v2-outcome sd-v2-outcome--reject" aria-label="예산 조건 미충족"><div class="sd-v2-condition">예산 조건 미충족</div><div class="sd-node sd-node--warning"><strong class="sd-label">요청 거절</strong><span class="sd-detail">관측: max_budget: 0<br>HTTP 429<br>budget_exceeded</span></div></section></div></section><p class="sd-note">관측은 mock 응답 성공과 0 예산 키의 HTTP 429다. 양수 예산 소진과 실제 provider 미도달은 별도 검증이 필요하다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7f6ab7ddbda1e91276655365555653102f27bb8338807918390fef82b47c4a8f">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.1.0" x="96.000" y="415.400" width="792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="1032.000" y="415.400" width="792.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.0.1" x="64.000" y="592.600" width="886.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.0.3" x="64.000" y="801.800" width="886.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1" x="970.000" y="592.600" width="886.000" height="164.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 588.000 269.000 L 708.000 269.000" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="708.000,269.000 698.000,275.000 698.000,263.000" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1212.000 269.000 L 1332.000 269.000" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1332.000,269.000 1322.000,275.000 1322.000,263.000" fill="#475569"/>
+<path data-edge="root.0.2.1.1" data-from="root.0.2.1.0" data-to="root.0.2.1.2" d="M 900.000 470.500 L 1020.000 470.500" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.2.1.1" points="1020.000,470.500 1010.000,476.500 1010.000,464.500" fill="#475569"/>
+<path data-edge="root.0.2.2.0.2" data-from="root.0.2.2.0.1" data-to="root.0.2.2.0.3" d="M 507.000 714.800 L 507.000 789.800" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.2.2.0.2" points="507.000,789.800 501.000,779.800 513.000,779.800" fill="#475569"/>
+<path data-edge="root.0.2.2.fork-0" data-from="root.0.2.1.2" data-to="root.0.2.2.0.1" d="M 1428.000 537.600 L 1428.000 539.600 L 507.000 539.600 L 507.000 580.600" fill="none" stroke="#475569" stroke-width="3"><title>검사 통과</title></path>
+<polygon data-arrowhead="root.0.2.2.fork-0" points="507.000,580.600 501.000,570.600 513.000,570.600" fill="#475569"/>
+<path data-edge="root.0.2.2.fork-1" data-from="root.0.2.1.2" data-to="root.0.2.2.1.1" d="M 1428.000 537.600 L 1428.000 539.600 L 1413.000 539.600 L 1413.000 580.600" fill="none" stroke="#475569" stroke-width="3"><title>예산 조건 미충족</title></path>
+<polygon data-arrowhead="root.0.2.2.fork-1" points="1413.000,580.600 1407.000,570.600 1419.000,570.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="157.000" font-size="36" font-weight="700" fill="#111827">발급은 한 번, 추론은 가상 키로</text>
+<text data-source="root.0.1.0" x="64.000" y="213.600" font-size="24" font-weight="700" fill="#111827">사전 발급</text>
+<text data-source="root.0.1.1.0" x="96.000" y="262.000" font-size="20" font-weight="400" fill="#111827">관리자</text>
+<text data-source="root.0.1.1.0" x="96.000" y="289.000" font-size="20" font-weight="400" fill="#111827">master key 인증</text>
+<text data-source="root.0.1.1.2" x="720.000" y="262.000" font-size="20" font-weight="400" fill="#111827">/key/generate</text>
+<text data-source="root.0.1.1.2" x="720.000" y="289.000" font-size="20" font-weight="400" fill="#111827">키와 예산 정책 생성</text>
+<text data-source="root.0.1.1.4" x="1344.000" y="262.000" font-size="20" font-weight="400" fill="#111827">DB에 관리 레코드 저장</text>
+<text data-source="root.0.1.1.4" x="1344.000" y="289.000" font-size="20" font-weight="400" fill="#111827">가상 키 반환</text>
+<text data-source="root.0.1.2" x="64.000" y="336.000" font-size="20" font-weight="400" fill="#111827">관리자가 가상 키를 클라이언트에 전달. master key와 발급 API는 반복 추론에 사용하지 않는다.</text>
+<text data-source="root.0.2.0" x="64.000" y="387.000" font-size="24" font-weight="700" fill="#111827">반복 추론</text>
+<text data-source="root.0.2.1.0" x="116.000" y="459.400" font-size="24" font-weight="700" fill="#111827">/v1/chat/completions</text>
+<text data-source="root.0.2.1.0" x="116.000" y="498.600" font-size="20" font-weight="400" fill="#111827">클라이언트의 가상 키</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="459.400" font-size="24" font-weight="700" fill="#111827">인증과 예산 검사</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="498.600" font-size="20" font-weight="400" fill="#111827">키 권한, spend, max_budget</text>
+<text data-source="root.0.2.2.0.0" x="64.000" y="565.600" font-size="20" font-weight="400" fill="#111827">검사 통과</text>
+<text data-source="root.0.2.2.0.1" x="84.000" y="636.600" font-size="24" font-weight="700" fill="#111827">Provider 호출</text>
+<text data-source="root.0.2.2.0.1" x="84.000" y="675.800" font-size="20" font-weight="400" fill="#111827">일반 경로: 선택한 모델로 전달</text>
+<text data-source="root.0.2.2.0.3" x="84.000" y="845.800" font-size="24" font-weight="700" fill="#111827">사용 내역 기록</text>
+<text data-source="root.0.2.2.0.3" x="84.000" y="885.000" font-size="20" font-weight="400" fill="#111827">응답의 토큰 사용량과 모델 가격 설정에 따른 비용</text>
+<text data-source="root.0.2.2.1.0" x="970.000" y="565.600" font-size="20" font-weight="400" fill="#111827">예산 조건 미충족</text>
+<text data-source="root.0.2.2.1.1" x="990.000" y="636.600" font-size="24" font-weight="700" fill="#111827">요청 거절</text>
+<text data-source="root.0.2.2.1.1" x="990.000" y="675.800" font-size="20" font-weight="400" fill="#111827">관측: max_budget: 0</text>
+<text data-source="root.0.2.2.1.1" x="990.000" y="702.800" font-size="20" font-weight="400" fill="#111827">HTTP 429</text>
+<text data-source="root.0.2.2.1.1" x="990.000" y="729.800" font-size="20" font-weight="400" fill="#111827">budget_exceeded</text>
+<text data-source="root.0.3" x="64.000" y="952.000" font-size="20" font-weight="400" fill="#111827">관측은 mock 응답 성공과 0 예산 키의 HTTP 429다. 양수 예산 소진과 실제 provider 미도달은 별도 검증이 필요하다.</text>
+<text data-source="root.0.1.1.1.meaning" x="592.000" y="252.100" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.1.1.3.meaning" x="1216.000" y="252.100" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.2.1.1.meaning" x="904.000" y="453.600" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.2.2.0.2.meaning" x="527.000" y="756.850" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+</svg>
 </figure>

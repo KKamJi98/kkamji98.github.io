@@ -1,0 +1,23 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5eb4aea05a50af19c7f11734f73199f15aabaaa7e5bde721af230827a2dc8ba8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0.0" x="96.000" y="450.400" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="720.000" y="450.400" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.4" x="1344.000" y="450.400" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.0.1" data-from="root.0.1.0.0" data-to="root.0.1.0.2" d="M 588.000 513.450 L 708.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>차이 확인</title></path>
+<polygon data-arrowhead="root.0.1.0.1" points="708.000,513.450 698.000,519.450 698.000,507.450" fill="#475569"/>
+<path data-edge="root.0.1.0.3" data-from="root.0.1.0.2" data-to="root.0.1.0.4" d="M 1212.000 513.450 L 1332.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>조정 계획</title></path>
+<polygon data-arrowhead="root.0.1.0.3" points="1332.000,513.450 1322.000,519.450 1322.000,507.450" fill="#475569"/>
+<path data-edge="root.0.1.loop" data-from="root.0.1.0.4" data-to="root.0.1.0.0" d="M 1836.000 513.450 L 1880.000 513.450 L 1880.000 608.500 L 40.000 608.500 L 40.000 513.450 L 84.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>반복</title></path>
+<polygon data-arrowhead="root.0.1.loop" points="84.000,513.450 74.000,519.450 74.000,507.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="413.800" font-size="36" font-weight="700" fill="#111827">GitOps control loop</text>
+<text data-source="root.0.1.0.0" x="120.000" y="502.400" font-size="28" font-weight="700" fill="#111827">Observe state</text>
+<text data-source="root.0.1.0.0" x="120.000" y="544.800" font-size="22" font-weight="400" fill="#111827">현재 클러스터 상태를 관찰</text>
+<text data-source="root.0.1.0.2" x="744.000" y="502.400" font-size="28" font-weight="700" fill="#111827">Calculate actions</text>
+<text data-source="root.0.1.0.2" x="744.000" y="544.800" font-size="22" font-weight="400" fill="#111827">원하는 상태와의 차이를 계산</text>
+<text data-source="root.0.1.0.4" x="1368.000" y="502.400" font-size="28" font-weight="700" fill="#111827">Apply actions</text>
+<text data-source="root.0.1.0.4" x="1368.000" y="544.800" font-size="22" font-weight="400" fill="#111827">필요한 변경을 클러스터에 적용</text>
+<text data-source="root.0.1.0.1" x="580.000" y="493.750" font-size="22" font-weight="400" fill="#111827">차이 확인</text>
+<text data-source="root.0.1.0.3" x="1204.000" y="493.750" font-size="22" font-weight="400" fill="#111827">조정 계획</text>
+<text data-source="root.0.2" x="64.000" y="694.500" font-size="22" font-weight="400" fill="#111827">적용이 끝나면 다시 Observe하여 desired state와 live state를 계속 맞춥니다. 이 반복이 closed control loop입니다.</text>
+<text data-source="root.0.1.loop.meaning" x="88.000" y="632.500" font-size="14" font-weight="400" fill="#111827">반복</text>
+</svg>

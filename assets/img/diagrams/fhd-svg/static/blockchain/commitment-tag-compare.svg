@@ -1,0 +1,23 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a609035b7e4616936d11e1b787aed51aa133fec1c984836302d1fe47083ff391">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="416.650" width="581.333" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="669.333" y="416.650" width="581.333" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1274.667" y="416.650" width="581.333" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="88.000" y="502.450" width="533.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="693.333" y="502.450" width="533.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1298.667" y="502.450" width="533.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="380.050" font-size="36" font-weight="700" fill="#111827">체인마다 확인 기준이 가리키는 head가 다릅니다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="468.650" font-size="28" font-weight="700" fill="#111827">Bitcoin</text>
+<text data-source="root.0.1.0.1" x="112.000" y="554.450" font-size="28" font-weight="700" fill="#111827">active tip / confirmations</text>
+<text data-source="root.0.1.0.1" x="112.000" y="596.850" font-size="22" font-weight="400" fill="#111827">현재 canonical chain의 head; 거래 뒤 active block</text>
+<text data-source="root.0.1.0.1" x="112.000" y="626.550" font-size="22" font-weight="400" fill="#111827">수</text>
+<text data-source="root.0.1.1.0" x="693.333" y="468.650" font-size="28" font-weight="700" fill="#111827">Ethereum</text>
+<text data-source="root.0.1.1.1" x="717.333" y="554.450" font-size="28" font-weight="700" fill="#111827">latest / safe / finalized</text>
+<text data-source="root.0.1.1.1" x="717.333" y="596.850" font-size="22" font-weight="400" fill="#111827">execution head, justified head, finalized</text>
+<text data-source="root.0.1.1.1" x="717.333" y="626.550" font-size="22" font-weight="400" fill="#111827">checkpoint; two-thirds checkpoint 기준</text>
+<text data-source="root.0.1.2.0" x="1298.667" y="468.650" font-size="28" font-weight="700" fill="#111827">Solana</text>
+<text data-source="root.0.1.2.1" x="1322.667" y="554.450" font-size="28" font-weight="700" fill="#111827">processed / confirmed / finalized</text>
+<text data-source="root.0.1.2.1" x="1322.667" y="596.850" font-size="22" font-weight="400" fill="#111827">처리됨, stake 2/3 초과 vote, maximum lockout;</text>
+<text data-source="root.0.1.2.1" x="1322.667" y="626.550" font-size="22" font-weight="400" fill="#111827">일반 RPC 기본값은 보통 finalized</text>
+<text data-source="root.0.2" x="64.000" y="728.250" font-size="22" font-weight="400" fill="#111827">confirmation, tag, commitment라는 이름이 비슷해도 세 체인이 세는 대상과 되돌림 기준은 서로 다릅니다.</text>
+</svg>

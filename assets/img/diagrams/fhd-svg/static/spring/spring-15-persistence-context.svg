@@ -1,0 +1,34 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e9ace222836a5b6ba799d9796416a4f3c64d0c6f6f6b31395bc2548ee07b85a7">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.2" x="1032.000" y="183.600" width="792.000" height="563.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.2.0" x="1056.000" y="457.300" width="360.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.2.1" x="1440.000" y="457.300" width="360.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="402.200" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1056.000" y="307.200" width="744.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.0.1.0" x="1080.000" y="543.100" width="312.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.1.1.0" x="1464.000" y="543.100" width="312.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="96.000" y="842.900" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 465.250 L 1020.000 465.250" fill="none" stroke="#475569" stroke-width="3"><title>find(id)</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,465.250 1010.000,471.250 1010.000,459.250" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 465.250 L 1848.000 465.250 L 1848.000 794.900 L 72.000 794.900 L 72.000 905.950 L 84.000 905.950" fill="none" stroke="#475569" stroke-width="3"><title>Dirty checking 결과를 flush: 컨텍스트 밖 DB로 SQL 전송</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,905.950 74.000,911.950 74.000,899.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="147.000" font-size="36" font-weight="700" fill="#111827">트랜잭션 범위의 persistence context와 1차 캐시</text>
+<text data-source="root.0.1.0" x="120.000" y="454.200" font-size="28" font-weight="700" fill="#111827">Application code</text>
+<text data-source="root.0.1.0" x="120.000" y="496.600" font-size="22" font-weight="400" fill="#111827">@Transactional 메서드에서 EntityManager를 호출</text>
+<text data-source="root.0.1.2.0" x="1056.000" y="235.600" font-size="28" font-weight="700" fill="#111827">Persistence context: first-level cache,</text>
+<text data-source="root.0.1.2.0" x="1056.000" y="272.000" font-size="28" font-weight="700" fill="#111827">transaction scoped</text>
+<text data-source="root.0.1.2.1" x="1080.000" y="359.200" font-size="28" font-weight="700" fill="#111827">Managed entities</text>
+<text data-source="root.0.1.2.1" x="1080.000" y="401.600" font-size="22" font-weight="400" fill="#111827">id마다 하나의 인스턴스를 추적</text>
+<text data-source="root.0.1.2.2.0.0" x="1080.000" y="509.300" font-size="28" font-weight="700" fill="#111827">같은 id를 다시 조회</text>
+<text data-source="root.0.1.2.2.0.1.0" x="1104.000" y="595.100" font-size="28" font-weight="700" fill="#111827">Second find(id)</text>
+<text data-source="root.0.1.2.2.0.1.0" x="1104.000" y="637.500" font-size="22" font-weight="400" fill="#111827">cache hit, 같은 인스턴스</text>
+<text data-source="root.0.1.2.2.0.1.0" x="1104.000" y="667.200" font-size="22" font-weight="400" fill="#111827">반환, DB round trip 없음</text>
+<text data-source="root.0.1.2.2.1.0" x="1464.000" y="509.300" font-size="28" font-weight="700" fill="#111827">변경을 저장</text>
+<text data-source="root.0.1.2.2.1.1.0" x="1488.000" y="595.100" font-size="28" font-weight="700" fill="#111827">Dirty checking</text>
+<text data-source="root.0.1.2.2.1.1.0" x="1488.000" y="637.500" font-size="22" font-weight="400" fill="#111827">스냅샷과 현재 값을 flush</text>
+<text data-source="root.0.1.2.2.1.1.0" x="1488.000" y="667.200" font-size="22" font-weight="400" fill="#111827">시 비교</text>
+<text data-source="root.0.1.4" x="120.000" y="894.900" font-size="28" font-weight="700" fill="#111827">Database</text>
+<text data-source="root.0.1.4" x="120.000" y="937.300" font-size="22" font-weight="400" fill="#111827">INSERT, UPDATE, DELETE를 전송하며 commit 전까지 확정되지 않음</text>
+<text data-source="root.0.1.1" x="892.000" y="445.550" font-size="22" font-weight="400" fill="#111827">find(id)</text>
+<text data-source="root.0.1.3" x="104.000" y="786.900" font-size="22" font-weight="400" fill="#111827">Dirty checking 결과를 flush: 컨텍스트 밖 DB로 SQL 전송</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2e1d4328e6b4e12fc202ab3283aa741ced2b3b181bf005d10088d982eaffd280">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="96.000" y="328.400" width="792.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1032.000" y="277.650" width="792.000" height="391.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="692.750" width="1792.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1" x="120.000" y="414.200" width="744.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.0" x="1088.000" y="381.650" width="268.000" height="244.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.2" x="1500.000" y="363.450" width="268.000" height="281.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0" x="88.000" y="778.550" width="860.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.1" x="972.000" y="778.550" width="860.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.2.1.1" data-from="root.0.2.2.1.0" data-to="root.0.2.2.1.2" d="M 1368.000 504.100 L 1488.000 504.100" fill="none" stroke="#475569" stroke-width="3"><title>S3가 요청자를 대신해 KMS Decrypt 호출</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1" points="1488.000,504.100 1478.000,510.100 1478.000,498.100" fill="#475569"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 473.200 L 1020.000 473.200" fill="none" stroke="#475569" stroke-width="3"><title>분석 role의 s3:GetObject 요청</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,473.200 1010.000,479.200 1010.000,467.200" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="187.350" font-size="36" font-weight="700" fill="#111827">교차 계정 SSE-KMS 접근은 key policy의 위임이 있어야 성립한다</text>
+<text data-source="root.0.1" x="64.000" y="245.950" font-size="22" font-weight="400" fill="#111827">분석 계정 IAM policy와 데이터 계정 bucket policy 및 KMS key policy가 함께 허용되어야 합니다. 이 예시의 key policy 위임이 없으면 IAM의 kms:Decrypt Allow만으로는 부족합니다.</text>
+<text data-source="root.0.2.0.0" x="120.000" y="380.400" font-size="28" font-weight="700" fill="#111827">분석 계정 222222222222</text>
+<text data-source="root.0.2.0.1" x="144.000" y="466.200" font-size="28" font-weight="700" fill="#111827">분석 role</text>
+<text data-source="root.0.2.0.1" x="144.000" y="508.600" font-size="22" font-weight="400" fill="#111827">GetObject를 호출합니다.</text>
+<text data-source="root.0.2.0.2" x="120.000" y="586.300" font-size="22" font-weight="400" fill="#111827">부착된 IAM policy: s3:GetObject와 kms:Decrypt Allow</text>
+<text data-source="root.0.2.2.0" x="1056.000" y="329.650" font-size="28" font-weight="700" fill="#111827">데이터 계정 111111111111</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="433.650" font-size="28" font-weight="700" fill="#111827">SSE-KMS 버킷</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="476.050" font-size="22" font-weight="400" fill="#111827">객체마다 data key로</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="505.750" font-size="22" font-weight="400" fill="#111827">암호화합니다. bucket</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="535.450" font-size="22" font-weight="400" fill="#111827">policy가 분석 role의</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="565.150" font-size="22" font-weight="400" fill="#111827">GetObject를 허용해야</text>
+<text data-source="root.0.2.2.1.0" x="1112.000" y="594.850" font-size="22" font-weight="400" fill="#111827">합니다.</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="415.450" font-size="28" font-weight="700" fill="#111827">customer</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="451.850" font-size="28" font-weight="700" fill="#111827">managed key</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="494.250" font-size="22" font-weight="400" fill="#111827">Decrypt 호출을</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="523.950" font-size="22" font-weight="400" fill="#111827">받습니다. key policy가</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="553.650" font-size="22" font-weight="400" fill="#111827">분석 계정</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="583.350" font-size="22" font-weight="400" fill="#111827">222222222222에 키</text>
+<text data-source="root.0.2.2.1.2" x="1524.000" y="613.050" font-size="22" font-weight="400" fill="#111827">사용을 위임해야 합니다.</text>
+<text data-source="root.0.2.2.1.1" x="1360.000" y="425.000" font-size="22" font-weight="400" fill="#111827">S3가 요청자를</text>
+<text data-source="root.0.2.2.1.1" x="1360.000" y="454.700" font-size="22" font-weight="400" fill="#111827">대신해 KMS</text>
+<text data-source="root.0.2.2.1.1" x="1360.000" y="484.400" font-size="22" font-weight="400" fill="#111827">Decrypt 호출</text>
+<text data-source="root.0.2.1" x="892.000" y="394.100" font-size="22" font-weight="400" fill="#111827">분석 role의</text>
+<text data-source="root.0.2.1" x="892.000" y="423.800" font-size="22" font-weight="400" fill="#111827">s3:GetObject</text>
+<text data-source="root.0.2.1" x="892.000" y="453.500" font-size="22" font-weight="400" fill="#111827">요청</text>
+<text data-source="root.0.3.0" x="88.000" y="744.750" font-size="28" font-weight="700" fill="#111827">인가 결과</text>
+<text data-source="root.0.3.1.0" x="112.000" y="830.550" font-size="28" font-weight="700" fill="#111827">복호화 성공</text>
+<text data-source="root.0.3.1.0" x="112.000" y="872.950" font-size="22" font-weight="400" fill="#111827">key policy 위임과 IAM Allow 및 bucket policy가 모두 성립하는 경로입니다.</text>
+<text data-source="root.0.3.1.1" x="996.000" y="830.550" font-size="28" font-weight="700" fill="#111827">AccessDenied</text>
+<text data-source="root.0.3.1.1" x="996.000" y="872.950" font-size="22" font-weight="400" fill="#111827">이 예시에서 key policy 위임이 없으면 IAM Allow만으로 접근할 수 없습니다.</text>
+</svg>

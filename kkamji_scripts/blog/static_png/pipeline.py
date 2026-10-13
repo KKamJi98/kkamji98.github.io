@@ -13,15 +13,22 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from functools import partial
 from connector_audit import inspect_connectors
 
-# Rasterize the original 625px figure at native Chromium scale, never by
-# enlarging an existing PNG. The artwork height remains content-driven.
+# Capture the authored FHD canvas one CSS pixel per output pixel. The layout
+# belongs to the canonical source/CSS, never to a resized or cropped PNG.
 EXPORT_WIDTH_PX = 1920
-CANVAS_WIDTH_CSS = 625
-EXPORT_DPR = EXPORT_WIDTH_PX / CANVAS_WIDTH_CSS
+EXPORT_HEIGHT_PX = 1080
+CANVAS_WIDTH_CSS = EXPORT_WIDTH_PX
+EXPORT_DPR = 1
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def png_dimensions(raw):
+    if raw[:8] != b'\x89PNG\r\n\x1a\n' or raw[12:16] != b'IHDR' or len(raw) < 24:
+        raise ValueError('invalid PNG header')
+    return list(struct.unpack('>II', raw[16:24]))
 
 
 def png_top_left_rgb(raw):
@@ -167,9 +174,7 @@ AUDIT = r'''f => {
  if(!selected.trim()) out.unselectable.push('empty native selection');
  out.width=box.width;out.height=box.height;out.text=f.innerText;out.selection_length=selected.length;
  out.kind=[...f.classList].find(x=>x.startsWith('sd--'))||'unspecified';
- // Review flag only: vertical layering and mobile reflow are not errors.
- const ratios={'sd--flow':4,'sd--comparison':3,'sd--layer':8};
- out.height_review=box.height/box.width>(ratios[out.kind]||6);
+ out.canvas_valid=Math.abs(box.width-1920)<.01&&Math.abs(box.height-1080)<.01;
  return out;
 }'''
 
@@ -188,6 +193,7 @@ def main():
     p.add_argument('--font-bundle', type=Path)
     p.add_argument('--export-font-bundle', type=Path, default=Path(__file__).resolve().parents[3]/'assets/fonts/deterministic-export/lock.json')
     a=p.parse_args();site=a.site.resolve();pagefile=(site/a.page).resolve()
+    p.error('This legacy standalone-browser renderer is disabled by the Aside-only policy. Use fhd_export.py with the approved verification server.')
     if not pagefile.is_relative_to(site) or not pagefile.is_file(): p.error('page must exist inside site')
     if not re.fullmatch(r'[a-zA-Z0-9_-]+',a.figure):p.error('invalid figure ID')
     bundle = load_bundle(a.font_bundle)
@@ -208,7 +214,7 @@ def main():
             except Exception: pass
     with sync_playwright() as pw:
         browser=pw.chromium.launch(headless=True)
-        ctx=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=EXPORT_DPR,color_scheme=a.theme,java_script_enabled=False,locale='ko-KR',timezone_id='UTC')
+        ctx=browser.new_context(viewport={'width':2240,'height':1440},device_scale_factor=EXPORT_DPR,color_scheme=a.theme,java_script_enabled=False,locale='ko-KR',timezone_id='UTC')
         def route(r):
             if r.request.url.startswith(origin+'/'):
                 if r.request.resource_type=='script': r.abort()
@@ -233,12 +239,10 @@ def main():
         f.evaluate('''e=>{
           if(!e.matches('figure.sd:has(+ .diagram-download > img.diagram-inline)'))return;
           e.style.setProperty('position','static','important');
-          e.style.setProperty('width','100%','important');
-          if (e.id === 'jev-decision-pipeline' || e.classList.contains('sd--linear-landscape')) {
-            e.style.setProperty('min-width','625px','important');
-            e.style.setProperty('max-width','625px','important');
-          }
-          e.style.setProperty('height','auto','important');
+          e.style.setProperty('width','1920px','important');
+          e.style.setProperty('min-width','1920px','important');
+          e.style.setProperty('max-width','1920px','important');
+          e.style.setProperty('height','1080px','important');
           e.style.setProperty('overflow','visible','important');
           e.style.setProperty('clip-path','none','important');
           e.nextElementSibling.style.setProperty('display','none','important');
@@ -246,7 +250,7 @@ def main():
         if export_css:
             page.evaluate('(css)=>{const s=document.createElement("style");s.textContent=css;document.head.appendChild(s)}', export_css)
         # Change only article frame geometry, never author a second drawing.
-        page.evaluate('''()=>{const c=document.querySelector('.content');if(!c)throw Error('article .content missing');c.style.width='625px';c.style.maxWidth='625px';}''')
+        page.evaluate('''()=>{const c=document.querySelector('.content');if(!c)throw Error('article .content missing');c.style.width='1920px';c.style.maxWidth='1920px';}''')
         # Fractional figure bounds in Chromium may sample the page backdrop at
         # the image perimeter. Keep a light export white regardless of the
         # article's dark-mode body; never paint the diagram itself differently.
@@ -263,7 +267,7 @@ def main():
         actual_fonts = rendered_fonts(page, selector)
         policy = font_policy(a.font_profile, actual_fonts, blocked_fonts)
         article_width=page.locator('.content').first.evaluate('e=>e.getBoundingClientRect().width')
-        if abs(article_width-625)>1:raise RuntimeError('article frame is not 625px')
+        if abs(article_width-1920)>1:raise RuntimeError('article frame is not 1920px')
         source=f.evaluate('e=>e.outerHTML')
         font_state=page.evaluate('''()=>[...document.fonts].map(f=>({family:f.family,status:f.status,weight:f.weight,style:f.style})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))''')
         import platform, importlib.metadata, subprocess
@@ -278,8 +282,8 @@ def main():
         dependencies={str(x.relative_to(site)):digest(x.read_bytes()) for x in sorted(resources)}
         installed_fonts=sorted(set(subprocess.check_output(['fc-list','--format','%{file}\\n'],text=True).splitlines()))
         system_fonts={x:digest(Path(x).read_bytes()) for x in installed_fonts}
-        inputs={'built_html':digest(pagefile.read_bytes()),'figure_html':digest(source.encode()),'dependencies':dependencies, 'fonts':font_state,'system_fonts':system_fonts,'viewport':[1280,1000],'article_width':625,'dpr':EXPORT_DPR,'theme':a.theme,'browser':browser.version,'playwright':importlib.metadata.version('playwright'),'os':platform.platform(),'tool':digest(Path(__file__).read_bytes()),'network_policy':'offline exact bundle URLs or local; scripts disabled', 'font_policy':policy, 'actual_fonts':actual_fonts, 'loaded_font_binaries':dict(sorted(loaded_fonts.items())), 'production_bundle':{url:{k:v for k,v in entry.items() if k != 'body'} for url,entry in bundle.items()}}
-        stem=f'{a.figure}-625-{a.theme}';png=a.out/(stem+'.png');receipt_path=a.out/(stem+'.json')
+        inputs={'built_html':digest(pagefile.read_bytes()),'figure_html':digest(source.encode()),'dependencies':dependencies, 'fonts':font_state,'system_fonts':system_fonts,'viewport':[2240,1440],'article_width':1920,'canvas':[1920,1080],'display_policy':'fixed-size-scroll; no responsive scaling or reflow','dpr':EXPORT_DPR,'theme':a.theme,'browser':browser.version,'playwright':importlib.metadata.version('playwright'),'os':platform.platform(),'tool':digest(Path(__file__).read_bytes()),'network_policy':'offline exact bundle URLs or local; scripts disabled', 'font_policy':policy, 'actual_fonts':actual_fonts, 'loaded_font_binaries':dict(sorted(loaded_fonts.items())), 'production_bundle':{url:{k:v for k,v in entry.items() if k != 'body'} for url,entry in bundle.items()}}
+        stem=f'{a.figure}-1920x1080-{a.theme}';png=a.out/(stem+'.png');receipt_path=a.out/(stem+'.json')
         mobile_png = a.out/f'{a.figure}-360-{a.theme}.png'
         if not a.check:
             a.out.mkdir(parents=True,exist_ok=True);f.screenshot(path=str(png),animations='disabled')
@@ -317,7 +321,8 @@ def main():
             receipt = json.loads(receipt_path.read_text())
             fresh = (freshness(receipt, fp, png) and mobile_png.is_file() and
                      receipt.get('mobile_png_sha256') == digest(mobile_png.read_bytes()))
-        passed=gate(desktop) and gate(mobile)
+        passed=(gate(desktop) and gate(mobile) and desktop['canvas_valid'] and mobile['canvas_valid']
+                and desktop['text']==mobile['text'] and desktop['width']==mobile['width'] and desktop['height']==mobile['height'])
         if a.theme == 'light' and png.exists() and png_top_left_rgb(png.read_bytes()) != b'\xff\xff\xff':
             raise RuntimeError('light PNG contains non-white page backdrop at its top-left edge')
         result={'fingerprint':fp,'inputs':inputs,'quality':{'desktop':desktop,'mobile':mobile},'quality_status':'passed' if passed else 'failed','visual_review':'not-run','semantic_review':'not-run','font_policy':policy,'mobile_fonts':mobile_fonts,'freshness':fresh,'png_url':png.name}
@@ -325,7 +330,7 @@ def main():
             raw=png.read_bytes()
             if raw[:8]!=b'\x89PNG\r\n\x1a\n':raise RuntimeError('invalid PNG')
             dimensions=list(struct.unpack('>II',raw[16:24]))
-            if dimensions[0]!=EXPORT_WIDTH_PX:raise RuntimeError(f'unexpected export width: {dimensions}')
+            if dimensions != [EXPORT_WIDTH_PX,EXPORT_HEIGHT_PX]:raise RuntimeError(f'unexpected FHD dimensions: {dimensions}')
             result.update(png_sha256=digest(raw),png_dimensions=dimensions,
                           mobile_png_sha256=digest(mobile_png.read_bytes()))
             receipt_path.write_text(json.dumps(result,ensure_ascii=False,indent=2))

@@ -1,0 +1,52 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="c6d7786063514065a7e68f3875a2a40fc6972cf48dc39f3e01603a427ad4018b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.2.0" x="1032.000" y="206.300" width="386.000" height="524.000" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.2.2.1" x="1438.000" y="206.300" width="386.000" height="783.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1032.000" y="206.300" width="792.000" height="783.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="542.700" width="792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.0.1.0" x="1052.000" y="278.700" width="346.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.0.1.2" x="1052.000" y="541.900" width="346.000" height="168.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.0" x="1458.000" y="278.700" width="346.000" height="164.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.2" x="1458.000" y="568.900" width="346.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.4" x="1458.000" y="832.100" width="346.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.2.0.1.1" data-from="root.0.2.2.0.1.0" data-to="root.0.2.2.0.1.2" d="M 1225.000 427.900 L 1225.000 529.900" fill="none" stroke="#475569" stroke-width="3"><title>extension 순서가 달라짐</title></path>
+<polygon data-arrowhead="root.0.2.2.0.1.1" points="1225.000,529.900 1219.000,519.900 1231.000,519.900" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1.1" data-from="root.0.2.2.1.1.0" data-to="root.0.2.2.1.1.2" d="M 1631.000 454.900 L 1631.000 556.900" fill="none" stroke="#475569" stroke-width="3"><title>SHA-256 truncate</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1.1" points="1631.000,556.900 1625.000,546.900 1637.000,546.900" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1.3" data-from="root.0.2.2.1.1.2" data-to="root.0.2.2.1.1.4" d="M 1631.000 718.100 L 1631.000 820.100" fill="none" stroke="#475569" stroke-width="3"><title>WAF 조건으로 전달</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1.3" points="1631.000,820.100 1625.000,810.100 1637.000,810.100" fill="#475569"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 597.800 L 1020.000 597.800" fill="none" stroke="#475569" stroke-width="3"><title>wire order 또는 sorted fields로 분기</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,597.800 1010.000,603.800 1010.000,591.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="126.700" font-size="36" font-weight="700" fill="#111827">JA4는 정렬한 뒤 해시해 extension 순서 변화에 강합니다</text>
+<text data-source="root.0.1" x="64.000" y="179.300" font-size="20" font-weight="400" fill="#111827">같은 TLS Client Hello에서 두 방식이 갈라집니다. JA3는 wire order를 보존하고, JA4는 필드를 정렬한 뒤 fingerprint를 만듭니다.</text>
+<text data-source="root.0.2.0" x="116.000" y="586.700" font-size="24" font-weight="700" fill="#111827">TLS Client Hello</text>
+<text data-source="root.0.2.0" x="116.000" y="625.900" font-size="20" font-weight="400" fill="#111827">TLS version, cipher, extension과 ALPN을 포함한 입력입니다.</text>
+<text data-source="root.0.2.2.0.0" x="1052.000" y="250.300" font-size="24" font-weight="700" fill="#111827">JA3: wire order</text>
+<text data-source="root.0.2.2.0.1.0" x="1072.000" y="322.700" font-size="24" font-weight="700" fill="#111827">JA3 hashes wire order</text>
+<text data-source="root.0.2.2.0.1.0" x="1072.000" y="361.900" font-size="20" font-weight="400" fill="#111827">도착한 field 순서 그대로 MD5를</text>
+<text data-source="root.0.2.2.0.1.0" x="1072.000" y="388.900" font-size="20" font-weight="400" fill="#111827">계산합니다.</text>
+<text data-source="root.0.2.2.0.1.2" x="1072.000" y="585.900" font-size="24" font-weight="700" fill="#111827">Fingerprint changes per</text>
+<text data-source="root.0.2.2.0.1.2" x="1072.000" y="617.100" font-size="24" font-weight="700" fill="#111827">connection</text>
+<text data-source="root.0.2.2.0.1.2" x="1072.000" y="656.300" font-size="20" font-weight="400" fill="#111827">브라우저의 randomised extension</text>
+<text data-source="root.0.2.2.0.1.2" x="1072.000" y="683.300" font-size="20" font-weight="400" fill="#111827">order가 결과를 바꿉니다.</text>
+<text data-source="root.0.2.2.0.1.1" x="1245.000" y="471.900" font-size="20" font-weight="400" fill="#111827">extension</text>
+<text data-source="root.0.2.2.0.1.1" x="1245.000" y="498.900" font-size="20" font-weight="400" fill="#111827">순서가 달라짐</text>
+<text data-source="root.0.2.2.1.0" x="1458.000" y="250.300" font-size="24" font-weight="700" fill="#111827">JA4: sorted fields</text>
+<text data-source="root.0.2.2.1.1.0" x="1478.000" y="322.700" font-size="24" font-weight="700" fill="#111827">JA4 sorts by hex value</text>
+<text data-source="root.0.2.2.1.1.0" x="1478.000" y="361.900" font-size="20" font-weight="400" fill="#111827">cipher와 extension을 정렬하고</text>
+<text data-source="root.0.2.2.1.1.0" x="1478.000" y="388.900" font-size="20" font-weight="400" fill="#111827">GREASE, SNI, ALPN을 count에서</text>
+<text data-source="root.0.2.2.1.1.0" x="1478.000" y="415.900" font-size="20" font-weight="400" fill="#111827">뺍니다.</text>
+<text data-source="root.0.2.2.1.1.2" x="1478.000" y="612.900" font-size="24" font-weight="700" fill="#111827">SHA-256, first 12 chars</text>
+<text data-source="root.0.2.2.1.1.2" x="1478.000" y="652.100" font-size="20" font-weight="400" fill="#111827">prefix와 a_b_c hash segment로</text>
+<text data-source="root.0.2.2.1.1.2" x="1478.000" y="679.100" font-size="20" font-weight="400" fill="#111827">읽기 쉽게 만듭니다.</text>
+<text data-source="root.0.2.2.1.1.4" x="1478.000" y="876.100" font-size="24" font-weight="700" fill="#111827">WAF rule</text>
+<text data-source="root.0.2.2.1.1.4" x="1478.000" y="915.300" font-size="20" font-weight="400" fill="#111827">match, rate limit 또는 challenge를</text>
+<text data-source="root.0.2.2.1.1.4" x="1478.000" y="942.300" font-size="20" font-weight="400" fill="#111827">적용합니다.</text>
+<text data-source="root.0.2.2.1.1.1" x="1651.000" y="498.900" font-size="20" font-weight="400" fill="#111827">SHA-256</text>
+<text data-source="root.0.2.2.1.1.1" x="1651.000" y="525.900" font-size="20" font-weight="400" fill="#111827">truncate</text>
+<text data-source="root.0.2.2.1.1.3" x="1651.000" y="762.100" font-size="20" font-weight="400" fill="#111827">WAF 조건으로</text>
+<text data-source="root.0.2.2.1.1.3" x="1651.000" y="789.100" font-size="20" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.2.1" x="892.000" y="524.800" font-size="20" font-weight="400" fill="#111827">wire order 또는</text>
+<text data-source="root.0.2.1" x="892.000" y="551.800" font-size="20" font-weight="400" fill="#111827">sorted fields로</text>
+<text data-source="root.0.2.1" x="892.000" y="578.800" font-size="20" font-weight="400" fill="#111827">분기</text>
+</svg>

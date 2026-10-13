@@ -1,0 +1,33 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="878974d3be0eef50164286bdbbdee42d510ef0c13951244c5a333e1b438217a8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 576.300 L 552.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>줄 모양과 들여쓰기 확인</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,576.300 542.000,582.300 542.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 576.300 L 1020.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>block 안의 텍스트 해석</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,576.300 1010.000,582.300 1010.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 576.300 L 1488.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>문서 구조 생성</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,576.300 1478.000,582.300 1478.000,570.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="408.100" font-size="36" font-weight="700" fill="#111827">Markdown은 block을 먼저, inline을 나중에 파싱합니다</text>
+<text data-source="root.0.1" x="64.000" y="466.700" font-size="22" font-weight="400" fill="#111827">줄 모양과 들여쓰기로 block 경계를 정한 뒤에야 emphasis, link와 code span을 해석합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="550.400" font-size="28" font-weight="700" fill="#111827">Markdown source</text>
+<text data-source="root.0.2.0" x="120.000" y="592.800" font-size="22" font-weight="400" fill="#111827">plain text와 줄바꿈이</text>
+<text data-source="root.0.2.0" x="120.000" y="622.500" font-size="22" font-weight="400" fill="#111827">입력됩니다.</text>
+<text data-source="root.0.2.2" x="588.000" y="550.400" font-size="28" font-weight="700" fill="#111827">Block parsing</text>
+<text data-source="root.0.2.2" x="588.000" y="592.800" font-size="22" font-weight="400" fill="#111827">paragraph, list, heading과</text>
+<text data-source="root.0.2.2" x="588.000" y="622.500" font-size="22" font-weight="400" fill="#111827">code fence 경계를 정합니다.</text>
+<text data-source="root.0.2.4" x="1056.000" y="550.400" font-size="28" font-weight="700" fill="#111827">Inline parsing</text>
+<text data-source="root.0.2.4" x="1056.000" y="592.800" font-size="22" font-weight="400" fill="#111827">emphasis, link와 inline</text>
+<text data-source="root.0.2.4" x="1056.000" y="622.500" font-size="22" font-weight="400" fill="#111827">code를 처리합니다.</text>
+<text data-source="root.0.2.6" x="1524.000" y="550.400" font-size="28" font-weight="700" fill="#111827">HTML output</text>
+<text data-source="root.0.2.6" x="1524.000" y="592.800" font-size="22" font-weight="400" fill="#111827">브라우저가 렌더링할</text>
+<text data-source="root.0.2.6" x="1524.000" y="622.500" font-size="22" font-weight="400" fill="#111827">document가 완성됩니다.</text>
+<text data-source="root.0.2.1" x="424.000" y="526.900" font-size="22" font-weight="400" fill="#111827">줄 모양과</text>
+<text data-source="root.0.2.1" x="424.000" y="556.600" font-size="22" font-weight="400" fill="#111827">들여쓰기 확인</text>
+<text data-source="root.0.2.3" x="892.000" y="526.900" font-size="22" font-weight="400" fill="#111827">block 안의</text>
+<text data-source="root.0.2.3" x="892.000" y="556.600" font-size="22" font-weight="400" fill="#111827">텍스트 해석</text>
+<text data-source="root.0.2.5" x="1360.000" y="556.600" font-size="22" font-weight="400" fill="#111827">문서 구조 생성</text>
+<text data-source="root.0.3" x="64.000" y="700.200" font-size="22" font-weight="400" fill="#111827">-나 *의 의미도 inline 문법보다 먼저 정해진 block 경계와 들여쓰기에 따라 달라집니다.</text>
+</svg>

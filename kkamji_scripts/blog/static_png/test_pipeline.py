@@ -110,14 +110,14 @@ class GateTests(unittest.TestCase):
         out = pathlib.Path(temp.name) / 'artifacts'
         run = subprocess.run([sys.executable, str(ROOT/'pipeline.py'), '--font-profile', 'local-fallback', '--site', str(site), '--page', 'index.html', '--figure', 'litellm-architecture', '--out', str(out)], capture_output=True, text=True)
         self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
-        p = out/'litellm-architecture-625-light.png'
+        p = out/'litellm-architecture-1920x1080-light.png'
         self.assertTrue(p.exists(), 'PNG export missing')
         raw = p.read_bytes(); self.assertEqual(raw[:8], b'\x89PNG\r\n\x1a\n')
         import pipeline as m
         self.assertEqual(m.png_top_left_rgb(raw), b'\xff\xff\xff',
                          'white artwork must not capture a dark article backdrop')
         width, height = struct.unpack('>II', raw[16:24]); self.assertEqual(width, 1920); self.assertGreater(height, 0)
-        receipt = json.loads((out/'litellm-architecture-625-light.json').read_text())
+        receipt = json.loads((out/'litellm-architecture-1920x1080-light.json').read_text())
         self.assertEqual(receipt['visual_review'], 'not-run')
         self.assertTrue(receipt['inputs'].get('actual_system_font_binaries'), 'actual local font-to-binary mapping missing')
         self.assertEqual(receipt['png_dimensions'], [width, height])

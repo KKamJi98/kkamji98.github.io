@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="nodejs-spring-server-stacks" aria-labelledby="nodejs-spring-server-stacks-title">
-  <figcaption class="sd-title" id="nodejs-spring-server-stacks-title">세 server stack은 대기 중 request를 붙잡는 단위가 다릅니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="nodejs-spring-server-stacks" aria-labelledby="nodejs-spring-server-stacks-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="nodejs-spring-server-stacks-title">세 server stack은 대기 중 request를 붙잡는 단위가 다릅니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">성능 순위가 아니라 blocking call이 점유하는 실행 경계를 비교합니다. CPU 작업을 어디로 분리할지도 이 경계에서 결정됩니다.</p>
 
   <div class="sd-grid sd-grid--three" aria-label="Node.js와 Spring server stack 비교">
@@ -47,4 +47,37 @@
   </div>
 
   <p class="sd-note">blocking dependency를 어느 실행 단위에서 호출하는지와 CPU 작업을 분리할 위치를 함께 관찰해야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="00f7c072446f2d01f909070723dffaca38f21b085f6066d124933d0ebd43439b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="368.450" width="581.333" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="669.333" y="368.450" width="581.333" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1274.667" y="368.450" width="581.333" height="415.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="88.000" y="454.250" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.1" x="88.000" y="604.350" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="693.333" y="454.250" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1" x="693.333" y="604.350" width="533.333" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.0" x="1298.667" y="454.250" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1" x="1298.667" y="604.350" width="533.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="278.150" font-size="36" font-weight="700" fill="#111827">세 server stack은 대기 중 request를 붙잡는 단위가 다릅니다</text>
+<text data-source="root.0.1" x="64.000" y="336.750" font-size="22" font-weight="400" fill="#111827">성능 순위가 아니라 blocking call이 점유하는 실행 경계를 비교합니다. CPU 작업을 어디로 분리할지도 이 경계에서 결정됩니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="420.450" font-size="28" font-weight="700" fill="#111827">Node.js core HTTP</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="506.250" font-size="28" font-weight="700" fill="#111827">Main JavaScript flow</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="548.650" font-size="22" font-weight="400" fill="#111827">한 thread가 application code를 실행합니다.</text>
+<text data-source="root.0.2.0.1.1" x="112.000" y="656.350" font-size="28" font-weight="700" fill="#111827">Waiting costs a callback</text>
+<text data-source="root.0.2.0.1.1" x="112.000" y="698.750" font-size="22" font-weight="400" fill="#111827">I/O 대기 중 event loop가 다른 work로 이동합니다.</text>
+<text data-source="root.0.2.1.0" x="693.333" y="420.450" font-size="28" font-weight="700" fill="#111827">Spring Boot MVC</text>
+<text data-source="root.0.2.1.1.0" x="717.333" y="506.250" font-size="28" font-weight="700" fill="#111827">Servlet request thread</text>
+<text data-source="root.0.2.1.1.0" x="717.333" y="548.650" font-size="22" font-weight="400" fill="#111827">in-flight request마다 thread 하나가 붙습니다.</text>
+<text data-source="root.0.2.1.1.1" x="717.333" y="656.350" font-size="28" font-weight="700" fill="#111827">Waiting costs a thread</text>
+<text data-source="root.0.2.1.1.1" x="717.333" y="698.750" font-size="22" font-weight="400" fill="#111827">thread pool 크기가 동시 request 수를 제한합니다.</text>
+<text data-source="root.0.2.2.0" x="1298.667" y="420.450" font-size="28" font-weight="700" fill="#111827">Spring Boot WebFlux</text>
+<text data-source="root.0.2.2.1.0" x="1322.667" y="506.250" font-size="28" font-weight="700" fill="#111827">Event loop worker</text>
+<text data-source="root.0.2.2.1.0" x="1322.667" y="548.650" font-size="22" font-weight="400" fill="#111827">작은 고정 thread 집합이 pipeline을 실행합니다.</text>
+<text data-source="root.0.2.2.1.1" x="1322.667" y="656.350" font-size="28" font-weight="700" fill="#111827">Waiting costs a subscription</text>
+<text data-source="root.0.2.2.1.1" x="1322.667" y="698.750" font-size="22" font-weight="400" fill="#111827">Reactive Streams의 backpressure가 contract에</text>
+<text data-source="root.0.2.2.1.1" x="1322.667" y="728.450" font-size="22" font-weight="400" fill="#111827">포함됩니다.</text>
+<text data-source="root.0.3" x="64.000" y="830.150" font-size="22" font-weight="400" fill="#111827">blocking dependency를 어느 실행 단위에서 호출하는지와 CPU 작업을 분리할 위치를 함께 관찰해야 합니다.</text>
+</svg>
 </figure>

@@ -1,0 +1,15 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="42e721a939d70427293c07242d36ad45701c1fbe84c1efad2b382421dd5a092d">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="486.400" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="486.400" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 549.450 L 1020.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>direct connection</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,549.450 1010.000,555.450 1010.000,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="441.450" font-size="36" font-weight="700" fill="#111827">Traditional 구조에서는 Application이 직접 통신한다</text>
+<text data-source="root.0.1.0" x="120.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Application A</text>
+<text data-source="root.0.1.0" x="120.000" y="580.800" font-size="22" font-weight="400" fill="#111827">공통 proxy나 정책 계층 없이 요청을 시작합니다.</text>
+<text data-source="root.0.1.2" x="1056.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Application B</text>
+<text data-source="root.0.1.2" x="1056.000" y="580.800" font-size="22" font-weight="400" fill="#111827">호출을 직접 받아 처리합니다.</text>
+<text data-source="root.0.1.1" x="892.000" y="500.050" font-size="22" font-weight="400" fill="#111827">direct</text>
+<text data-source="root.0.1.1" x="892.000" y="529.750" font-size="22" font-weight="400" fill="#111827">connection</text>
+<text data-source="root.0.2" x="64.000" y="666.850" font-size="22" font-weight="400" fill="#111827">이 경로만으로는 traffic control, observability, security policy를 모든 Application에 일관되게 적용하기 어렵습니다.</text>
+</svg>

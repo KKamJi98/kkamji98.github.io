@@ -1,0 +1,38 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a370f7718a347a8ba051b9235070fd7d2d0e8d7611a255222dfbd8d0dd1edb90">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="195.700" width="884.000" height="665.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="195.700" width="884.000" height="707.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="88.000" y="281.500" width="836.000" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="88.000" y="475.600" width="836.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="88.000" y="711.400" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="996.000" y="281.500" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="996.000" y="517.300" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="996.000" y="753.100" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 506.000 377.900 L 506.000 463.600" fill="none" stroke="#475569" stroke-width="3"><title>I/O 대기</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="506.000,463.600 500.000,453.600 512.000,453.600" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 506.000 613.700 L 506.000 699.400" fill="none" stroke="#475569" stroke-width="3"><title>결과 도착</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="506.000,699.400 500.000,689.400 512.000,689.400" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1414.000 419.600 L 1414.000 505.300" fill="none" stroke="#475569" stroke-width="3"><title>callback 대기</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1414.000,505.300 1408.000,495.300 1420.000,495.300" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1414.000 655.400 L 1414.000 741.100" fill="none" stroke="#475569" stroke-width="3"><title>data 준비</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1414.000,741.100 1408.000,731.100 1420.000,731.100" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="159.100" font-size="36" font-weight="700" fill="#111827">Blocking과 non-blocking의 I/O 대기 차이</text>
+<text data-source="root.0.1.0.0" x="88.000" y="247.700" font-size="28" font-weight="700" fill="#111827">Blocking</text>
+<text data-source="root.0.1.0.1.0" x="112.000" y="333.500" font-size="28" font-weight="700" fill="#111827">call db.query()</text>
+<text data-source="root.0.1.0.1.2" x="112.000" y="527.600" font-size="28" font-weight="700" fill="#111827">thread blocked 상태</text>
+<text data-source="root.0.1.0.1.2" x="112.000" y="570.000" font-size="22" font-weight="400" fill="#111827">전체 대기 동안 점유되고 아무 일도 하지 않음</text>
+<text data-source="root.0.1.0.1.4" x="112.000" y="763.400" font-size="28" font-weight="700" fill="#111827">use(result)</text>
+<text data-source="root.0.1.0.1.4" x="112.000" y="805.800" font-size="22" font-weight="400" fill="#111827">같은 thread에서 재개</text>
+<text data-source="root.0.1.0.1.1" x="526.000" y="427.900" font-size="22" font-weight="400" fill="#111827">I/O 대기</text>
+<text data-source="root.0.1.0.1.3" x="526.000" y="663.700" font-size="22" font-weight="400" fill="#111827">결과 도착</text>
+<text data-source="root.0.1.1.0" x="996.000" y="247.700" font-size="28" font-weight="700" fill="#111827">Non-blocking</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="333.500" font-size="28" font-weight="700" fill="#111827">stream 선언</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="375.900" font-size="22" font-weight="400" fill="#111827">query().map(...).subscribe(...)</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="569.300" font-size="28" font-weight="700" fill="#111827">thread 반환</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="611.700" font-size="22" font-weight="400" fill="#111827">다른 요청을 처리할 수 있음</text>
+<text data-source="root.0.1.1.1.4" x="1020.000" y="805.100" font-size="28" font-weight="700" fill="#111827">data 도착, onNext 실행</text>
+<text data-source="root.0.1.1.1.4" x="1020.000" y="847.500" font-size="22" font-weight="400" fill="#111827">다른 thread에서 실행될 수 있음</text>
+<text data-source="root.0.1.1.1.1" x="1434.000" y="469.600" font-size="22" font-weight="400" fill="#111827">callback 대기</text>
+<text data-source="root.0.1.1.1.3" x="1434.000" y="705.400" font-size="22" font-weight="400" fill="#111827">data 준비</text>
+<text data-source="root.0.2" x="64.000" y="949.200" font-size="22" font-weight="400" fill="#111827">Blocking은 기다리는 동안 thread를 쓰고, non-blocking은 callback으로 이어져 작은 pool이 많은 connection을 처리할 수 있습니다.</text>
+</svg>

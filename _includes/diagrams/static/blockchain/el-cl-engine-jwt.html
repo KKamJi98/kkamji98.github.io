@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="sd-el-cl-engine-jwt" aria-labelledby="sd-title-el-cl-engine-jwt">
-  <figcaption class="sd-title" id="sd-title-el-cl-engine-jwt">실행과 합의 client는 JWT Engine API로 연결됩니다</figcaption>
+<figure class="sd sd--layers sd--fhd" id="sd-el-cl-engine-jwt" aria-labelledby="sd-title-el-cl-engine-jwt" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-el-cl-engine-jwt">실행과 합의 client는 JWT Engine API로 연결됩니다</figcaption><div class="sd-semantic-source">
   <div class="sd-stack">
     <section class="sd-band" aria-label="사용자 API">
       <div class="sd-band-title">사용자 API</div>
@@ -53,4 +53,54 @@
     </section>
   </div>
   <p class="sd-note">8545는 사용자가 보는 포트이고 8551은 execution과 consensus 사이의 인증 경계입니다. Anvil은 이 consensus 경로를 구현하지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2961e1de901896421dfc500836db11e133566bc0a5f688dd4690b99255c2a391">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="150.900" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="64.000" y="372.200" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="64.000" y="593.500" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="64.000" y="814.800" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="108.000" y="199.200" width="780.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="1032.000" y="199.200" width="780.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="76.000" y="420.500" width="878.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1" x="966.000" y="420.500" width="878.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="76.000" y="641.800" width="1768.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.0" x="76.000" y="863.100" width="878.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.1" x="966.000" y="863.100" width="878.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 900.000 239.700 L 1020.000 239.700" fill="none" stroke="#475569" stroke-width="3"><title>HTTP JSON-RPC</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="1020.000,239.700 1010.000,245.700 1010.000,233.700" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 960.000 304.200 L 960.000 360.200" fill="none" stroke="#475569" stroke-width="3"><title>execution 요청</title></path>
+<polygon data-arrowhead="root.0.1.1" points="960.000,360.200 954.000,350.200 966.000,350.200" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 960.000 525.500 L 960.000 581.500" fill="none" stroke="#475569" stroke-width="3"><title>위쪽 Execution client로 Engine 요청 / 아래쪽 Consensus client로 응답</title></path>
+<polygon data-arrowhead="root.0.1.3" points="960.000,581.500 954.000,571.500 966.000,571.500" fill="#475569"/>
+<polygon data-arrowhead="root.0.1.3.reverse" points="960.000,525.500 966.000,535.500 954.000,535.500" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 960.000 746.800 L 960.000 802.800" fill="none" stroke="#475569" stroke-width="3"><title>Consensus client가 위쪽 Engine API로 fork choice와 finality 전달 / 응답 수신</title></path>
+<polygon data-arrowhead="root.0.1.5" points="960.000,802.800 954.000,792.800 966.000,792.800" fill="#475569"/>
+<polygon data-arrowhead="root.0.1.5.reverse" points="960.000,746.800 966.000,756.800 954.000,756.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="126.300" font-size="36" font-weight="700" fill="#111827">실행과 합의 client는 JWT Engine API로 연결됩니다</text>
+<text data-source="root.0.1.0.0" x="76.000" y="180.900" font-size="18" font-weight="700" fill="#111827">사용자 API</text>
+<text data-source="root.0.1.0.1.0" x="120.000" y="229.200" font-size="18" font-weight="700" fill="#111827">Wallet / indexer</text>
+<text data-source="root.0.1.0.1.0" x="120.000" y="262.600" font-size="16" font-weight="400" fill="#111827">eth_*, net_*</text>
+<text data-source="root.0.1.0.1.2" x="1044.000" y="229.200" font-size="18" font-weight="700" fill="#111827">JSON-RPC 8545</text>
+<text data-source="root.0.1.0.1.2" x="1044.000" y="262.600" font-size="16" font-weight="400" fill="#111827">unauthenticated user API</text>
+<text data-source="root.0.1.0.1.1" x="892.000" y="222.100" font-size="16" font-weight="400" fill="#111827">HTTP JSON-RPC</text>
+<text data-source="root.0.1.2.0" x="76.000" y="402.200" font-size="18" font-weight="700" fill="#111827">Execution layer</text>
+<text data-source="root.0.1.2.1.0" x="88.000" y="450.500" font-size="18" font-weight="700" fill="#111827">Execution client</text>
+<text data-source="root.0.1.2.1.0" x="88.000" y="483.900" font-size="16" font-weight="400" fill="#111827">EVM, state, txpool</text>
+<text data-source="root.0.1.2.1.1" x="978.000" y="450.500" font-size="18" font-weight="700" fill="#111827">EL P2P</text>
+<text data-source="root.0.1.2.1.1" x="978.000" y="483.900" font-size="16" font-weight="400" fill="#111827">Execution client에서 EL P2P network로 transaction gossip</text>
+<text data-source="root.0.1.4.0" x="76.000" y="623.500" font-size="18" font-weight="700" fill="#111827">인증 경계</text>
+<text data-source="root.0.1.4.1" x="88.000" y="671.800" font-size="18" font-weight="700" fill="#111827">Engine API 8551</text>
+<text data-source="root.0.1.4.1" x="88.000" y="705.200" font-size="16" font-weight="400" fill="#111827">JWT HS256, iat 60s</text>
+<text data-source="root.0.1.6.0" x="76.000" y="844.800" font-size="18" font-weight="700" fill="#111827">Consensus layer</text>
+<text data-source="root.0.1.6.1.0" x="88.000" y="893.100" font-size="18" font-weight="700" fill="#111827">Consensus client</text>
+<text data-source="root.0.1.6.1.0" x="88.000" y="926.500" font-size="16" font-weight="400" fill="#111827">fork choice, finality</text>
+<text data-source="root.0.1.6.1.1" x="978.000" y="893.100" font-size="18" font-weight="700" fill="#111827">CL P2P</text>
+<text data-source="root.0.1.6.1.1" x="978.000" y="926.500" font-size="16" font-weight="400" fill="#111827">Consensus client에서 CL P2P network로 blocks, attestations</text>
+<text data-source="root.0.1.1" x="980.000" y="337.400" font-size="16" font-weight="400" fill="#111827">execution 요청</text>
+<text data-source="root.0.1.3" x="980.000" y="558.700" font-size="16" font-weight="400" fill="#111827">위쪽 Execution client로 Engine 요청 / 아래쪽 Consensus client로 응답</text>
+<text data-source="root.0.1.5" x="980.000" y="780.000" font-size="16" font-weight="400" fill="#111827">Consensus client가 위쪽 Engine API로 fork choice와 finality 전달 / 응답 수신</text>
+<text data-source="root.0.2" x="64.000" y="984.100" font-size="16" font-weight="400" fill="#111827">8545는 사용자가 보는 포트이고 8551은 execution과 consensus 사이의 인증 경계입니다. Anvil은 이 consensus 경로를 구현하지 않습니다.</text>
+</svg>
 </figure>

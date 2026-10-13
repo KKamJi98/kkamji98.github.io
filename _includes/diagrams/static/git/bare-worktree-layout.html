@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="bare-worktree-layout" aria-labelledby="bare-worktree-layout-title">
-  <figcaption class="sd-title" id="bare-worktree-layout-title">하나의 bare repository가 브랜치별 worktree를 공유합니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="bare-worktree-layout" aria-labelledby="bare-worktree-layout-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="bare-worktree-layout-title">하나의 bare repository가 브랜치별 worktree를 공유합니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note"><code>.bare/</code>에는 Git object database만 두고, 각 디렉터리는 같은 저장소를 공유하는 독립 checkout입니다.</p>
 
   <div class="sd-flow" aria-label="bare repository에서 worktree로 나뉘는 구조">
@@ -32,4 +32,32 @@
       </div>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="788fa64c492b6d62d0d786361ab5f740766fb74f552260182cd3066d5e63c2cc">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.2" x="1032.000" y="465.050" width="792.000" height="276.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="540.100" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.0" x="1032.000" y="465.050" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1" x="1440.000" y="465.050" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.2" x="1032.000" y="615.150" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.3" x="1440.000" y="615.150" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 603.150 L 1020.000 603.150" fill="none" stroke="#475569" stroke-width="3"><title>공유 object database를 참조</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,603.150 1010.000,609.150 1010.000,597.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="374.750" font-size="36" font-weight="700" fill="#111827">하나의 bare repository가 브랜치별 worktree를 공유합니다</text>
+<text data-source="root.0.1" x="64.000" y="433.350" font-size="22" font-weight="400" fill="#111827">.bare/에는 Git object database만 두고, 각 디렉터리는 같은 저장소를 공유하는 독립 checkout입니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="592.100" font-size="28" font-weight="700" fill="#111827">.bare/</text>
+<text data-source="root.0.2.0" x="120.000" y="634.500" font-size="22" font-weight="400" fill="#111827">working tree 없이 Git database를 보관합니다.</text>
+<text data-source="root.0.2.2.0" x="1056.000" y="517.050" font-size="28" font-weight="700" fill="#111827">master/</text>
+<text data-source="root.0.2.2.0" x="1056.000" y="559.450" font-size="22" font-weight="400" fill="#111827">master branch의 worktree</text>
+<text data-source="root.0.2.2.1" x="1464.000" y="517.050" font-size="28" font-weight="700" fill="#111827">staging/</text>
+<text data-source="root.0.2.2.1" x="1464.000" y="559.450" font-size="22" font-weight="400" fill="#111827">staging branch의 worktree</text>
+<text data-source="root.0.2.2.2" x="1056.000" y="667.150" font-size="28" font-weight="700" fill="#111827">feat-login/</text>
+<text data-source="root.0.2.2.2" x="1056.000" y="709.550" font-size="22" font-weight="400" fill="#111827">feat/login 작업용 worktree</text>
+<text data-source="root.0.2.2.3" x="1464.000" y="667.150" font-size="28" font-weight="700" fill="#111827">chore-tooling/</text>
+<text data-source="root.0.2.2.3" x="1464.000" y="709.550" font-size="22" font-weight="400" fill="#111827">chore/tooling 작업용 worktree</text>
+<text data-source="root.0.2.1" x="892.000" y="524.050" font-size="22" font-weight="400" fill="#111827">공유 object</text>
+<text data-source="root.0.2.1" x="892.000" y="553.750" font-size="22" font-weight="400" fill="#111827">database를</text>
+<text data-source="root.0.2.1" x="892.000" y="583.450" font-size="22" font-weight="400" fill="#111827">참조</text>
+</svg>
 </figure>

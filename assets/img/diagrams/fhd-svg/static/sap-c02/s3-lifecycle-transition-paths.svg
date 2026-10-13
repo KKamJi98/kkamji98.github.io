@@ -1,0 +1,33 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5853b1d66bef3262af07ff3819db69f9c7575058c2a5cba81b67f56de587f5c6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="64.000" y="160.150" width="884.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="972.000" y="160.150" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="64.000" y="339.950" width="884.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="972.000" y="339.950" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="64.000" y="549.450" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.5" x="972.000" y="549.450" width="884.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="64.000" y="729.250" width="884.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="123.550" font-size="36" font-weight="700" fill="#111827">S3 lifecycle 전환은 한 방향으로만 흐른다</text>
+<text data-source="root.0.1.0" x="88.000" y="212.150" font-size="28" font-weight="700" fill="#111827">S3 Standard</text>
+<text data-source="root.0.1.0" x="88.000" y="254.550" font-size="22" font-weight="400" fill="#111827">최소 보관 기간/과금 객체 크기 없음. 전환 대상: 아래 나머지 6개 class</text>
+<text data-source="root.0.1.1" x="996.000" y="212.150" font-size="28" font-weight="700" fill="#111827">Standard-IA</text>
+<text data-source="root.0.1.1" x="996.000" y="254.550" font-size="22" font-weight="400" fill="#111827">최소 30일, 과금 128 KB. 전환 대상: Intelligent-Tiering, One Zone-IA, Glacier</text>
+<text data-source="root.0.1.1" x="996.000" y="284.250" font-size="22" font-weight="400" fill="#111827">Instant Retrieval, Glacier Flexible Retrieval, Glacier Deep Archive</text>
+<text data-source="root.0.1.2" x="88.000" y="391.950" font-size="28" font-weight="700" fill="#111827">Intelligent-Tiering</text>
+<text data-source="root.0.1.2" x="88.000" y="434.350" font-size="22" font-weight="400" fill="#111827">최소 보관 기간/과금 객체 크기 없음. Frequent/Infrequent Access는 One Zone-IA</text>
+<text data-source="root.0.1.2" x="88.000" y="464.050" font-size="22" font-weight="400" fill="#111827">또는 Glacier 3종으로 전환. Archive Instant Access는 Glacier 3종, Archive</text>
+<text data-source="root.0.1.2" x="88.000" y="493.750" font-size="22" font-weight="400" fill="#111827">Access는 Flexible/Deep, Deep Archive Access는 Deep만 가능</text>
+<text data-source="root.0.1.3" x="996.000" y="391.950" font-size="28" font-weight="700" fill="#111827">One Zone-IA</text>
+<text data-source="root.0.1.3" x="996.000" y="434.350" font-size="22" font-weight="400" fill="#111827">최소 30일, 과금 128 KB, 단일 AZ, 설계 가용성 99.5%. 전환 대상: Glacier Flexible</text>
+<text data-source="root.0.1.3" x="996.000" y="464.050" font-size="22" font-weight="400" fill="#111827">Retrieval 또는 Glacier Deep Archive</text>
+<text data-source="root.0.1.4" x="88.000" y="601.450" font-size="28" font-weight="700" fill="#111827">Glacier Instant Retrieval</text>
+<text data-source="root.0.1.4" x="88.000" y="643.850" font-size="22" font-weight="400" fill="#111827">최소 90일, 과금 128 KB, 밀리초 조회. 전환 대상: Glacier Flexible Retrieval 또는</text>
+<text data-source="root.0.1.4" x="88.000" y="673.550" font-size="22" font-weight="400" fill="#111827">Glacier Deep Archive</text>
+<text data-source="root.0.1.5" x="996.000" y="601.450" font-size="28" font-weight="700" fill="#111827">Glacier Flexible Retrieval</text>
+<text data-source="root.0.1.5" x="996.000" y="643.850" font-size="22" font-weight="400" fill="#111827">최소 90일, 객체당 metadata overhead 40 KB. 전환 대상: Glacier Deep Archive</text>
+<text data-source="root.0.1.6" x="88.000" y="781.250" font-size="28" font-weight="700" fill="#111827">Glacier Deep Archive</text>
+<text data-source="root.0.1.6" x="88.000" y="823.650" font-size="22" font-weight="400" fill="#111827">최소 180일, 객체당 metadata overhead 40 KB. 나가는 lifecycle 전환 없음</text>
+<text data-source="root.0.2" x="64.000" y="901.350" font-size="22" font-weight="400" fill="#111827">각 카드의 전환 대상은 독립적으로 선택할 수 있는 edge이며 모든 class를 순서대로 거치지 않습니다. Intelligent-Tiering의 Archive Instant Access tier와 Glacier Instant Retrieval</text>
+<text data-source="root.0.2" x="64.000" y="931.050" font-size="22" font-weight="400" fill="#111827">storage class는 다릅니다. 보관 기간과 객체 크기 등 전환 제약도 확인해야 합니다.</text>
+<text data-source="root.0.3" x="64.000" y="984.750" font-size="22" font-weight="400" fill="#111827">archive class에서 다른 class로 복구하려면 필요한 restore 뒤 copy를 사용합니다. 역방향 lifecycle 규칙은 없습니다.</text>
+</svg>

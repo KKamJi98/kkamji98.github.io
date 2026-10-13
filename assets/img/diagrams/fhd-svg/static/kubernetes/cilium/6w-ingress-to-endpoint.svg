@@ -1,0 +1,91 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="45c9ffa4c7b139689ca5a6e193645ed684d042dcaae6e50d08d47dd82a391c2e">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="180.300" width="1792.000" height="184.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0" x="64.000" y="376.800" width="890.000" height="170.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="966.000" y="376.800" width="890.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="64.000" y="559.500" width="890.000" height="170.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.3" x="966.000" y="559.500" width="890.000" height="162.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.4" x="64.000" y="742.200" width="890.000" height="162.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="108.000" y="239.400" width="318.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="570.000" y="228.600" width="318.000" height="124.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.4" x="1032.000" y="239.400" width="318.000" height="102.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.6" x="1494.000" y="250.200" width="318.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="108.000" y="439.800" width="329.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="581.000" y="429.000" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="978.000" y="425.100" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.0" x="108.000" y="611.700" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.2" x="581.000" y="611.700" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.3.1.0" x="1010.000" y="618.600" width="329.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.3.1.2" x="1483.000" y="607.800" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4.1.0" x="108.000" y="790.500" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4.1.2" x="581.000" y="790.500" width="329.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 438.000 290.700 L 558.000 290.700" fill="none" stroke="#475569" stroke-width="3"><title>routing mode에 따른 처리</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="558.000,290.700 548.000,296.700 548.000,284.700" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 900.000 290.700 L 1020.000 290.700" fill="none" stroke="#475569" stroke-width="3"><title>endpoint hook</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1020.000,290.700 1010.000,296.700 1010.000,284.700" fill="#475569"/>
+<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 1362.000 290.700 L 1482.000 290.700" fill="none" stroke="#475569" stroke-width="3"><title>deliver to pod</title></path>
+<polygon data-arrowhead="root.0.1.1.5" points="1482.000,290.700 1472.000,296.700 1472.000,284.700" fill="#475569"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 449.000 480.300 L 569.000 480.300" fill="none" stroke="#475569" stroke-width="3"><title>decapsulate and route</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="569.000,480.300 559.000,486.300 559.000,474.300" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1" data-from="root.0.2.2.1.0" data-to="root.0.2.2.1.2" d="M 449.000 663.000 L 569.000 663.000" fill="none" stroke="#475569" stroke-width="3"><title>optional netfilter path</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1" points="569.000,663.000 559.000,669.000 559.000,657.000" fill="#475569"/>
+<path data-edge="root.0.2.3.1.1" data-from="root.0.2.3.1.0" data-to="root.0.2.3.1.2" d="M 1351.000 659.100 L 1471.000 659.100" fill="none" stroke="#475569" stroke-width="3"><title>xfrm and route</title></path>
+<polygon data-arrowhead="root.0.2.3.1.1" points="1471.000,659.100 1461.000,665.100 1461.000,653.100" fill="#475569"/>
+<path data-edge="root.0.2.4.1.1" data-from="root.0.2.4.1.0" data-to="root.0.2.4.1.2" d="M 449.000 841.800 L 569.000 841.800" fill="none" stroke="#475569" stroke-width="3"><title>INPUT</title></path>
+<polygon data-arrowhead="root.0.2.4.1.1" points="569.000,841.800 559.000,847.800 559.000,835.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="155.700" font-size="36" font-weight="700" fill="#111827">Cilium ingress packet은 NIC hook에서 endpoint enforcement까지 흐른다</text>
+<text data-source="root.0.1.0" x="76.000" y="210.300" font-size="18" font-weight="700" fill="#111827">Local endpoint delivery (개념 경로)</text>
+<text data-source="root.0.1.1.0" x="120.000" y="269.400" font-size="18" font-weight="700" fill="#111827">Network device / NIC</text>
+<text data-source="root.0.1.1.0" x="120.000" y="302.800" font-size="16" font-weight="400" fill="#111827">network device가 ingress packet을</text>
+<text data-source="root.0.1.1.0" x="120.000" y="324.400" font-size="16" font-weight="400" fill="#111827">받는다.</text>
+<text data-source="root.0.1.1.2" x="582.000" y="258.600" font-size="18" font-weight="700" fill="#111827">Host / overlay datapath</text>
+<text data-source="root.0.1.1.2" x="582.000" y="292.000" font-size="16" font-weight="400" fill="#111827">host 또는 overlay 경로를 거쳐 로컬</text>
+<text data-source="root.0.1.1.2" x="582.000" y="313.600" font-size="16" font-weight="400" fill="#111827">endpoint로 전달한다. cilium_host</text>
+<text data-source="root.0.1.1.2" x="582.000" y="335.200" font-size="16" font-weight="400" fill="#111827">경유는 필수가 아니다.</text>
+<text data-source="root.0.1.1.4" x="1044.000" y="269.400" font-size="18" font-weight="700" fill="#111827">Endpoint policy / delivery</text>
+<text data-source="root.0.1.1.4" x="1044.000" y="302.800" font-size="16" font-weight="400" fill="#111827">선택된 datapath의 endpoint 정책을</text>
+<text data-source="root.0.1.1.4" x="1044.000" y="324.400" font-size="16" font-weight="400" fill="#111827">검사한다.</text>
+<text data-source="root.0.1.1.6" x="1506.000" y="280.200" font-size="18" font-weight="700" fill="#111827">Endpoint / Pod</text>
+<text data-source="root.0.1.1.6" x="1506.000" y="313.600" font-size="16" font-weight="400" fill="#111827">정책 검사를 통과한 packet의 목적지</text>
+<text data-source="root.0.1.1.1" x="430.000" y="251.500" font-size="16" font-weight="400" fill="#111827">routing mode에</text>
+<text data-source="root.0.1.1.1" x="430.000" y="273.100" font-size="16" font-weight="400" fill="#111827">따른 처리</text>
+<text data-source="root.0.1.1.3" x="892.000" y="273.100" font-size="16" font-weight="400" fill="#111827">endpoint hook</text>
+<text data-source="root.0.1.1.5" x="1354.000" y="273.100" font-size="16" font-weight="400" fill="#111827">deliver to pod</text>
+<text data-source="root.0.2.0.0" x="76.000" y="406.800" font-size="18" font-weight="700" fill="#111827">Overlay mode</text>
+<text data-source="root.0.2.0.1.0" x="120.000" y="469.800" font-size="18" font-weight="700" fill="#111827">NIC</text>
+<text data-source="root.0.2.0.1.0" x="120.000" y="503.200" font-size="16" font-weight="400" fill="#111827">tunnel packet이 node에 들어온다.</text>
+<text data-source="root.0.2.0.1.2" x="593.000" y="459.000" font-size="18" font-weight="700" fill="#111827">Local endpoint delivery로 합류</text>
+<text data-source="root.0.2.0.1.2" x="593.000" y="492.400" font-size="16" font-weight="400" fill="#111827">decapsulation 뒤 위의 endpoint 정책</text>
+<text data-source="root.0.2.0.1.2" x="593.000" y="514.000" font-size="16" font-weight="400" fill="#111827">검사와 Pod 전달 경로로 합류한다.</text>
+<text data-source="root.0.2.0.1.1" x="441.000" y="441.100" font-size="16" font-weight="400" fill="#111827">decapsulate and</text>
+<text data-source="root.0.2.0.1.1" x="441.000" y="462.700" font-size="16" font-weight="400" fill="#111827">route</text>
+<text data-source="root.0.2.1.0" x="978.000" y="406.800" font-size="18" font-weight="700" fill="#111827">Optional prefilter</text>
+<text data-source="root.0.2.1.1.0" x="990.000" y="455.100" font-size="18" font-weight="700" fill="#111827">XDP @ NIC / bpf_xdp</text>
+<text data-source="root.0.2.1.1.0" x="990.000" y="488.500" font-size="16" font-weight="400" fill="#111827">TC load balancer보다 앞선 선택적 prefilter hook</text>
+<text data-source="root.0.2.2.0" x="76.000" y="589.500" font-size="18" font-weight="700" fill="#111827">Optional standalone load balancer</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="641.700" font-size="18" font-weight="700" fill="#111827">TC @ NIC / bpf_lb</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="675.100" font-size="16" font-weight="400" fill="#111827">Standalone load balancer가 켜진 경우</text>
+<text data-source="root.0.2.2.1.0" x="120.000" y="696.700" font-size="16" font-weight="400" fill="#111827">service backend를 선택한다.</text>
+<text data-source="root.0.2.2.1.2" x="593.000" y="641.700" font-size="18" font-weight="700" fill="#111827">PREROUTING and FORWARD</text>
+<text data-source="root.0.2.2.1.2" x="593.000" y="675.100" font-size="16" font-weight="400" fill="#111827">CILIUM_FORWARD를 포함한</text>
+<text data-source="root.0.2.2.1.2" x="593.000" y="696.700" font-size="16" font-weight="400" fill="#111827">forwarding hook이다.</text>
+<text data-source="root.0.2.2.1.1" x="441.000" y="623.800" font-size="16" font-weight="400" fill="#111827">optional netfilter</text>
+<text data-source="root.0.2.2.1.1" x="441.000" y="645.400" font-size="16" font-weight="400" fill="#111827">path</text>
+<text data-source="root.0.2.3.0" x="978.000" y="589.500" font-size="18" font-weight="700" fill="#111827">Optional L3 encryption (IPsec 예시)</text>
+<text data-source="root.0.2.3.1.0" x="1022.000" y="648.600" font-size="18" font-weight="700" fill="#111827">TC @ NIC / bpf_network</text>
+<text data-source="root.0.2.3.1.0" x="1022.000" y="682.000" font-size="16" font-weight="400" fill="#111827">L3 encryption 경계</text>
+<text data-source="root.0.2.3.1.2" x="1495.000" y="637.800" font-size="18" font-weight="700" fill="#111827">Encrypted path</text>
+<text data-source="root.0.2.3.1.2" x="1495.000" y="671.200" font-size="16" font-weight="400" fill="#111827">IPsec 수신 패킷을 xfrm으로 복호화한 뒤</text>
+<text data-source="root.0.2.3.1.2" x="1495.000" y="692.800" font-size="16" font-weight="400" fill="#111827">endpoint 전달 경로로 합류한다.</text>
+<text data-source="root.0.2.3.1.1" x="1343.000" y="641.500" font-size="16" font-weight="400" fill="#111827">xfrm and route</text>
+<text data-source="root.0.2.4.0" x="76.000" y="772.200" font-size="18" font-weight="700" fill="#111827">Optional L7 policy</text>
+<text data-source="root.0.2.4.1.0" x="120.000" y="820.500" font-size="18" font-weight="700" fill="#111827">PREROUTING</text>
+<text data-source="root.0.2.4.1.0" x="120.000" y="853.900" font-size="16" font-weight="400" fill="#111827">L7 policy feature가 선택되면 userspace</text>
+<text data-source="root.0.2.4.1.0" x="120.000" y="875.500" font-size="16" font-weight="400" fill="#111827">경로를 연다.</text>
+<text data-source="root.0.2.4.1.2" x="593.000" y="820.500" font-size="18" font-weight="700" fill="#111827">Userspace proxy</text>
+<text data-source="root.0.2.4.1.2" x="593.000" y="853.900" font-size="16" font-weight="400" fill="#111827">HTTP 같은 application protocol을</text>
+<text data-source="root.0.2.4.1.2" x="593.000" y="875.500" font-size="16" font-weight="400" fill="#111827">확인한다.</text>
+<text data-source="root.0.2.4.1.1" x="441.000" y="824.200" font-size="16" font-weight="400" fill="#111827">INPUT</text>
+<text data-source="root.0.3" x="64.000" y="933.100" font-size="16" font-weight="400" fill="#111827">그림의 hook 이름은 기존 TC/veth datapath의 선택 경로 예시이며, 버전과 routing/device mode에 따라 달라진다. Cilium 1.9부터의 eBPF host-routing은 상위 host stack을 우회할 수 있다. XDP, standalone LB, 암호화와 L7 proxy는 선택</text>
+<text data-source="root.0.3" x="64.000" y="954.700" font-size="16" font-weight="400" fill="#111827">기능이다.</text>
+</svg>

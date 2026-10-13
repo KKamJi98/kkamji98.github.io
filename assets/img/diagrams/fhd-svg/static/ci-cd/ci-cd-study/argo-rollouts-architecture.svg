@@ -1,0 +1,78 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="299d4e7e4aeb5258840d31e1bdcb129f13355d41db9a73a24a97e1215d18df02">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="153.600" width="792.000" height="794.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.0" x="116.000" y="226.000" width="366.000" height="492.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.1" x="502.000" y="226.000" width="366.000" height="702.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="167.100" width="792.000" height="767.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1.4.0" x="1052.000" y="711.900" width="366.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1.4.1" x="1438.000" y="711.900" width="366.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1.4" x="1052.000" y="711.900" width="752.000" height="202.600" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.1.0" x="136.000" y="298.400" width="326.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.1.2" x="136.000" y="561.600" width="326.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1.1.0" x="522.000" y="298.400" width="326.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1.1.2" x="522.000" y="534.600" width="326.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1.1.4" x="522.000" y="770.800" width="326.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1052.000" y="239.500" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1052.000" y="475.700" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.4.0.1.0" x="1072.000" y="784.300" width="326.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.4.1.1.0" x="1458.000" y="784.300" width="326.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.0.1.1" data-from="root.0.1.0.1.0.1.0" data-to="root.0.1.0.1.0.1.2" d="M 299.000 420.600 L 299.000 549.600" fill="none" stroke="#475569" stroke-width="3"><title>Controller가 Rollout spec을 watch</title></path>
+<polygon data-arrowhead="root.0.1.0.1.0.1.1" points="299.000,549.600 293.000,539.600 305.000,539.600" fill="#475569"/>
+<path data-edge="root.0.1.0.1.1.1.1" data-from="root.0.1.0.1.1.1.0" data-to="root.0.1.0.1.1.1.2" d="M 685.000 447.600 L 685.000 522.600" fill="none" stroke="#475569" stroke-width="3"><title>Rollout에 연결</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1.1.1" points="685.000,522.600 679.000,512.600 691.000,512.600" fill="#475569"/>
+<path data-edge="root.0.1.0.1.1.1.3" data-from="root.0.1.0.1.1.1.2" data-to="root.0.1.0.1.1.1.4" d="M 685.000 656.800 L 685.000 758.800" fill="none" stroke="#475569" stroke-width="3"><title>metric provider 조회</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1.1.3" points="685.000,758.800 679.000,748.800 691.000,748.800" fill="#475569"/>
+<path data-edge="root.0.1.2.1.1" data-from="root.0.1.2.1.0" data-to="root.0.1.2.1.2" d="M 1428.000 361.700 L 1428.000 463.700" fill="none" stroke="#475569" stroke-width="3"><title>traffic router가 weight에 따라 각 Service로 route</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1" points="1428.000,463.700 1422.000,453.700 1434.000,453.700" fill="#475569"/>
+<path data-edge="root.0.1.2.1.3" data-from="root.0.1.2.1.2" data-to="root.0.1.2.1.4" d="M 1428.000 597.900 L 1428.000 699.900" fill="none" stroke="#475569" stroke-width="3"><title>각 Service가 해당 ReplicaSet의 Pod로 전달</title></path>
+<polygon data-arrowhead="root.0.1.2.1.3" points="1428.000,699.900 1422.000,689.900 1434.000,689.900" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 550.800 L 1020.000 550.800" fill="none" stroke="#475569" stroke-width="3"><title>Controller가 분석 결과로 promote, pause, rollback과 routing 설정을 조정 (사용자 요청 경로 아님)</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,550.800 1010.000,556.800 1010.000,544.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="121.000" font-size="36" font-weight="700" fill="#111827">Argo Rollouts가 분석 결과와 traffic weight로 ReplicaSet을 조정</text>
+<text data-source="root.0.1.0.0" x="116.000" y="197.600" font-size="24" font-weight="700" fill="#111827">Control and analysis</text>
+<text data-source="root.0.1.0.1.0.0" x="136.000" y="270.000" font-size="24" font-weight="700" fill="#111827">Rollout control</text>
+<text data-source="root.0.1.0.1.0.1.0" x="156.000" y="342.400" font-size="24" font-weight="700" fill="#111827">Rollout</text>
+<text data-source="root.0.1.0.1.0.1.0" x="156.000" y="381.600" font-size="20" font-weight="400" fill="#111827">배포 단계와 traffic weight를 선언</text>
+<text data-source="root.0.1.0.1.0.1.2" x="156.000" y="605.600" font-size="24" font-weight="700" fill="#111827">Rollout Controller</text>
+<text data-source="root.0.1.0.1.0.1.2" x="156.000" y="644.800" font-size="20" font-weight="400" fill="#111827">Rollout 리소스 변경을 watch하고</text>
+<text data-source="root.0.1.0.1.0.1.2" x="156.000" y="671.800" font-size="20" font-weight="400" fill="#111827">상태를 reconcile</text>
+<text data-source="root.0.1.0.1.0.1.1" x="319.000" y="464.600" font-size="20" font-weight="400" fill="#111827">Controller가</text>
+<text data-source="root.0.1.0.1.0.1.1" x="319.000" y="491.600" font-size="20" font-weight="400" fill="#111827">Rollout</text>
+<text data-source="root.0.1.0.1.0.1.1" x="319.000" y="518.600" font-size="20" font-weight="400" fill="#111827">spec을 watch</text>
+<text data-source="root.0.1.0.1.1.0" x="522.000" y="270.000" font-size="24" font-weight="700" fill="#111827">Metric analysis</text>
+<text data-source="root.0.1.0.1.1.1.0" x="542.000" y="342.400" font-size="24" font-weight="700" fill="#111827">AnalysisTemplate</text>
+<text data-source="root.0.1.0.1.1.1.0" x="542.000" y="381.600" font-size="20" font-weight="400" fill="#111827">성공과 실패를 판단할 query와</text>
+<text data-source="root.0.1.0.1.1.1.0" x="542.000" y="408.600" font-size="20" font-weight="400" fill="#111827">threshold 정의</text>
+<text data-source="root.0.1.0.1.1.1.2" x="542.000" y="578.600" font-size="24" font-weight="700" fill="#111827">AnalysisRun</text>
+<text data-source="root.0.1.0.1.1.1.2" x="542.000" y="617.800" font-size="20" font-weight="400" fill="#111827">특정 Rollout의 실제 분석 실행</text>
+<text data-source="root.0.1.0.1.1.1.4" x="542.000" y="814.800" font-size="24" font-weight="700" fill="#111827">Metric providers</text>
+<text data-source="root.0.1.0.1.1.1.4" x="542.000" y="854.000" font-size="20" font-weight="400" fill="#111827">Prometheus, Wavefront,</text>
+<text data-source="root.0.1.0.1.1.1.4" x="542.000" y="881.000" font-size="20" font-weight="400" fill="#111827">Kayenta, Kubernetes Job, Web</text>
+<text data-source="root.0.1.0.1.1.1.1" x="705.000" y="491.600" font-size="20" font-weight="400" fill="#111827">Rollout에 연결</text>
+<text data-source="root.0.1.0.1.1.1.3" x="705.000" y="700.800" font-size="20" font-weight="400" fill="#111827">metric</text>
+<text data-source="root.0.1.0.1.1.1.3" x="705.000" y="727.800" font-size="20" font-weight="400" fill="#111827">provider 조회</text>
+<text data-source="root.0.1.2.0" x="1052.000" y="211.100" font-size="24" font-weight="700" fill="#111827">Traffic plane</text>
+<text data-source="root.0.1.2.1.0" x="1072.000" y="283.500" font-size="24" font-weight="700" fill="#111827">Ingress / service mesh traffic router</text>
+<text data-source="root.0.1.2.1.0" x="1072.000" y="322.700" font-size="20" font-weight="400" fill="#111827">외부 사용자의 live traffic을 Canary 20%, Stable 80%로 분할하는 예시</text>
+<text data-source="root.0.1.2.1.2" x="1072.000" y="519.700" font-size="24" font-weight="700" fill="#111827">Canary Service / Stable Service</text>
+<text data-source="root.0.1.2.1.2" x="1072.000" y="558.900" font-size="20" font-weight="400" fill="#111827">각 selector가 해당 버전의 Pod를 선택; Service 자체는 weight를 적용하지 않음</text>
+<text data-source="root.0.1.2.1.4.0.0" x="1072.000" y="755.900" font-size="24" font-weight="700" fill="#111827">Canary</text>
+<text data-source="root.0.1.2.1.4.0.1.0" x="1092.000" y="828.300" font-size="24" font-weight="700" fill="#111827">Canary ReplicaSet</text>
+<text data-source="root.0.1.2.1.4.0.1.0" x="1092.000" y="867.500" font-size="20" font-weight="400" fill="#111827">Canary Pod, 20% traffic</text>
+<text data-source="root.0.1.2.1.4.1.0" x="1458.000" y="755.900" font-size="24" font-weight="700" fill="#111827">Stable</text>
+<text data-source="root.0.1.2.1.4.1.1.0" x="1478.000" y="828.300" font-size="24" font-weight="700" fill="#111827">Stable ReplicaSet</text>
+<text data-source="root.0.1.2.1.4.1.1.0" x="1478.000" y="867.500" font-size="20" font-weight="400" fill="#111827">Stable Pod, 80% traffic</text>
+<text data-source="root.0.1.2.1.1" x="1448.000" y="405.700" font-size="20" font-weight="400" fill="#111827">traffic router가 weight에 따라 각</text>
+<text data-source="root.0.1.2.1.1" x="1448.000" y="432.700" font-size="20" font-weight="400" fill="#111827">Service로 route</text>
+<text data-source="root.0.1.2.1.3" x="1448.000" y="641.900" font-size="20" font-weight="400" fill="#111827">각 Service가 해당 ReplicaSet의 Pod로</text>
+<text data-source="root.0.1.2.1.3" x="1448.000" y="668.900" font-size="20" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.1.1" x="892.000" y="342.800" font-size="20" font-weight="400" fill="#111827">Controller가</text>
+<text data-source="root.0.1.1" x="892.000" y="369.800" font-size="20" font-weight="400" fill="#111827">분석 결과로</text>
+<text data-source="root.0.1.1" x="892.000" y="396.800" font-size="20" font-weight="400" fill="#111827">promote,</text>
+<text data-source="root.0.1.1" x="892.000" y="423.800" font-size="20" font-weight="400" fill="#111827">pause,</text>
+<text data-source="root.0.1.1" x="892.000" y="450.800" font-size="20" font-weight="400" fill="#111827">rollback과</text>
+<text data-source="root.0.1.1" x="892.000" y="477.800" font-size="20" font-weight="400" fill="#111827">routing 설정을</text>
+<text data-source="root.0.1.1" x="892.000" y="504.800" font-size="20" font-weight="400" fill="#111827">조정 (사용자</text>
+<text data-source="root.0.1.1" x="892.000" y="531.800" font-size="20" font-weight="400" fill="#111827">요청 경로 아님)</text>
+<text data-source="root.0.2" x="64.000" y="988.000" font-size="20" font-weight="400" fill="#111827">Analysis는 선택 기능입니다. 메트릭 대신 API나 CLI의 수동 pause와 promote를 사용할 수 있으며, Rollout Controller가 ReplicaSet과 Service 상태를 함께 조정합니다.</text>
+</svg>

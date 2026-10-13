@@ -1,0 +1,29 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d7f227c84a605cee7bddc39de4a46eacb90092ecea9d3ffe48370d3e5ca3f776">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="301.550" width="884.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="301.550" width="884.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="64.000" y="615.150" width="884.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.3" x="972.000" y="615.150" width="884.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.2" x="88.000" y="441.050" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="996.000" y="441.050" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.2" x="88.000" y="754.650" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.3.2" x="996.000" y="754.650" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="211.250" font-size="36" font-weight="700" fill="#111827">eBPF는 security, tracing, networking, observability를 hook으로 확장한다</text>
+<text data-source="root.0.1" x="64.000" y="269.850" font-size="22" font-weight="400" fill="#111827">네 영역은 같은 이름의 단일 pipeline이 아니라, 요구에 맞는 process와 kernel hook을 선택해 기능을 붙이는 사용 사례입니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="353.550" font-size="28" font-weight="700" fill="#111827">Security</text>
+<text data-source="root.0.2.0.1" x="88.000" y="409.350" font-size="22" font-weight="400" fill="#111827">정책 hook</text>
+<text data-source="root.0.2.0.2" x="112.000" y="493.050" font-size="28" font-weight="700" fill="#111827">Syscall과 device 경계</text>
+<text data-source="root.0.2.0.2" x="112.000" y="535.450" font-size="22" font-weight="400" fill="#111827">eBPF가 이벤트를 검사해 허용 또는 차단 결정을 내립니다.</text>
+<text data-source="root.0.2.1.0" x="996.000" y="353.550" font-size="28" font-weight="700" fill="#111827">Tracing</text>
+<text data-source="root.0.2.1.1" x="996.000" y="409.350" font-size="22" font-weight="400" fill="#111827">실행 추적</text>
+<text data-source="root.0.2.1.2" x="1020.000" y="493.050" font-size="28" font-weight="700" fill="#111827">Process와 Kernel hook</text>
+<text data-source="root.0.2.1.2" x="1020.000" y="535.450" font-size="22" font-weight="400" fill="#111827">eBPF가 stack trace와 함수 실행 지점을 수집합니다.</text>
+<text data-source="root.0.2.2.0" x="88.000" y="667.150" font-size="28" font-weight="700" fill="#111827">Networking</text>
+<text data-source="root.0.2.2.1" x="88.000" y="722.950" font-size="22" font-weight="400" fill="#111827">packet hook</text>
+<text data-source="root.0.2.2.2" x="112.000" y="806.650" font-size="28" font-weight="700" fill="#111827">Network device와 kernel path</text>
+<text data-source="root.0.2.2.2" x="112.000" y="849.050" font-size="22" font-weight="400" fill="#111827">eBPF가 packet을 kernel 안에서 필터링하고 전달합니다.</text>
+<text data-source="root.0.2.3.0" x="996.000" y="667.150" font-size="28" font-weight="700" fill="#111827">Observability</text>
+<text data-source="root.0.2.3.1" x="996.000" y="722.950" font-size="22" font-weight="400" fill="#111827">measurement hook</text>
+<text data-source="root.0.2.3.2" x="1020.000" y="806.650" font-size="28" font-weight="700" fill="#111827">VFS와 eBPF maps</text>
+<text data-source="root.0.2.3.2" x="1020.000" y="849.050" font-size="22" font-weight="400" fill="#111827">metrics, histograms와 events를 기록하고 조회합니다.</text>
+</svg>

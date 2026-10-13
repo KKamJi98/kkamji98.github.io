@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="rememberme-budget-alarm-workflow" aria-labelledby="rememberme-budget-alarm-workflow-title">
-  <figcaption class="sd-title" id="rememberme-budget-alarm-workflow-title">AWS Budgets 알림은 SNS와 Chatbot을 거쳐 Slack에 도착합니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="rememberme-budget-alarm-workflow" aria-labelledby="rememberme-budget-alarm-workflow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="rememberme-budget-alarm-workflow-title">AWS Budgets 알림은 SNS와 Chatbot을 거쳐 Slack에 도착합니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">비용 threshold를 넘으면 Budgets와 CloudWatch alarm이 notification을 만들고, SNS topic이 Chatbot integration을 호출합니다.</p>
 
   <div class="sd-flow">
@@ -23,4 +23,41 @@
       <span class="sd-detail">운영자가 예산 초과 경고를 확인합니다.</span>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5066025f52d2a461424068a4f2e0367cfb3842418c817fc7929cf2285d33baad">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="510.400" width="288.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="576.000" y="510.400" width="288.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1056.000" y="510.400" width="288.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1536.000" y="525.250" width="288.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 396.000 603.150 L 564.000 603.150" fill="none" stroke="#475569" stroke-width="3"><title>cost alarm notification</title></path>
+<polygon data-arrowhead="root.0.2.1" points="564.000,603.150 554.000,609.150 554.000,597.150" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 876.000 603.150 L 1044.000 603.150" fill="none" stroke="#475569" stroke-width="3"><title>topic subscription</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1044.000,603.150 1034.000,609.150 1034.000,597.150" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1356.000 603.150 L 1524.000 603.150" fill="none" stroke="#475569" stroke-width="3"><title>Slack delivery</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1524.000,603.150 1514.000,609.150 1514.000,597.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="420.100" font-size="36" font-weight="700" fill="#111827">AWS Budgets 알림은 SNS와 Chatbot을 거쳐 Slack에 도착합니다</text>
+<text data-source="root.0.1" x="64.000" y="478.700" font-size="22" font-weight="400" fill="#111827">비용 threshold를 넘으면 Budgets와 CloudWatch alarm이 notification을 만들고, SNS topic이 Chatbot integration을 호출합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="562.400" font-size="28" font-weight="700" fill="#111827">AWS Budgets</text>
+<text data-source="root.0.2.0" x="120.000" y="604.800" font-size="22" font-weight="400" fill="#111827">예산과 실제 비용을</text>
+<text data-source="root.0.2.0" x="120.000" y="634.500" font-size="22" font-weight="400" fill="#111827">비교해 threshold를</text>
+<text data-source="root.0.2.0" x="120.000" y="664.200" font-size="22" font-weight="400" fill="#111827">감지합니다.</text>
+<text data-source="root.0.2.2" x="600.000" y="562.400" font-size="28" font-weight="700" fill="#111827">Amazon SNS</text>
+<text data-source="root.0.2.2" x="600.000" y="604.800" font-size="22" font-weight="400" fill="#111827">알림 topic으로</text>
+<text data-source="root.0.2.2" x="600.000" y="634.500" font-size="22" font-weight="400" fill="#111827">이벤트를</text>
+<text data-source="root.0.2.2" x="600.000" y="664.200" font-size="22" font-weight="400" fill="#111827">fan-out합니다.</text>
+<text data-source="root.0.2.4" x="1080.000" y="562.400" font-size="28" font-weight="700" fill="#111827">AWS Chatbot</text>
+<text data-source="root.0.2.4" x="1080.000" y="604.800" font-size="22" font-weight="400" fill="#111827">SNS message를 Slack</text>
+<text data-source="root.0.2.4" x="1080.000" y="634.500" font-size="22" font-weight="400" fill="#111827">channel 알림으로</text>
+<text data-source="root.0.2.4" x="1080.000" y="664.200" font-size="22" font-weight="400" fill="#111827">변환합니다.</text>
+<text data-source="root.0.2.6" x="1560.000" y="577.250" font-size="28" font-weight="700" fill="#111827">Slack</text>
+<text data-source="root.0.2.6" x="1560.000" y="619.650" font-size="22" font-weight="400" fill="#111827">운영자가 예산 초과</text>
+<text data-source="root.0.2.6" x="1560.000" y="649.350" font-size="22" font-weight="400" fill="#111827">경고를 확인합니다.</text>
+<text data-source="root.0.2.1" x="388.000" y="553.750" font-size="22" font-weight="400" fill="#111827">cost alarm</text>
+<text data-source="root.0.2.1" x="388.000" y="583.450" font-size="22" font-weight="400" fill="#111827">notification</text>
+<text data-source="root.0.2.3" x="868.000" y="553.750" font-size="22" font-weight="400" fill="#111827">topic</text>
+<text data-source="root.0.2.3" x="868.000" y="583.450" font-size="22" font-weight="400" fill="#111827">subscription</text>
+<text data-source="root.0.2.5" x="1348.000" y="583.450" font-size="22" font-weight="400" fill="#111827">Slack delivery</text>
+</svg>
 </figure>

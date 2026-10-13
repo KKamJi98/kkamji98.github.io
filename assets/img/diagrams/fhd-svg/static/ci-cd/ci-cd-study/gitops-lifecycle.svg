@@ -1,0 +1,33 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="40d8ec65b6523c7fe16880934702802ef178f18a1be3906585780bc74638f49d">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0.0" x="96.000" y="435.550" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="564.000" y="435.550" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.4" x="1032.000" y="435.550" width="324.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.6" x="1500.000" y="435.550" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1" data-from="root.0.1.0.0" data-to="root.0.1.0.2" d="M 432.000 513.450 L 552.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>상태 관찰</title></path>
+<polygon data-arrowhead="root.0.1.0.1" points="552.000,513.450 542.000,519.450 542.000,507.450" fill="#475569"/>
+<path data-edge="root.0.1.0.3" data-from="root.0.1.0.2" data-to="root.0.1.0.4" d="M 900.000 513.450 L 1020.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>차이 탐지</title></path>
+<polygon data-arrowhead="root.0.1.0.3" points="1020.000,513.450 1010.000,519.450 1010.000,507.450" fill="#475569"/>
+<path data-edge="root.0.1.0.5" data-from="root.0.1.0.4" data-to="root.0.1.0.6" d="M 1368.000 513.450 L 1488.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>조정 실행</title></path>
+<polygon data-arrowhead="root.0.1.0.5" points="1488.000,513.450 1478.000,519.450 1478.000,507.450" fill="#475569"/>
+<path data-edge="root.0.1.loop" data-from="root.0.1.0.6" data-to="root.0.1.0.0" d="M 1836.000 513.450 L 1880.000 513.450 L 1880.000 623.350 L 40.000 623.350 L 40.000 513.450 L 84.000 513.450" fill="none" stroke="#475569" stroke-width="3"><title>반복</title></path>
+<polygon data-arrowhead="root.0.1.loop" points="84.000,513.450 74.000,519.450 74.000,507.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="398.950" font-size="36" font-weight="700" fill="#111827">GitOps Lifecycle: 배포에서 조정까지</text>
+<text data-source="root.0.1.0.0" x="120.000" y="487.550" font-size="28" font-weight="700" fill="#111827">Deploy</text>
+<text data-source="root.0.1.0.0" x="120.000" y="529.950" font-size="22" font-weight="400" fill="#111827">Git에 저장된 manifest를</text>
+<text data-source="root.0.1.0.0" x="120.000" y="559.650" font-size="22" font-weight="400" fill="#111827">클러스터에 반영</text>
+<text data-source="root.0.1.0.2" x="588.000" y="487.550" font-size="28" font-weight="700" fill="#111827">Monitoring</text>
+<text data-source="root.0.1.0.2" x="588.000" y="529.950" font-size="22" font-weight="400" fill="#111827">Git repository와 클러스터</text>
+<text data-source="root.0.1.0.2" x="588.000" y="559.650" font-size="22" font-weight="400" fill="#111827">상태를 모니터링</text>
+<text data-source="root.0.1.0.4" x="1056.000" y="487.550" font-size="28" font-weight="700" fill="#111827">Drift Detection</text>
+<text data-source="root.0.1.0.4" x="1056.000" y="529.950" font-size="22" font-weight="400" fill="#111827">원하는 상태와 live state의</text>
+<text data-source="root.0.1.0.4" x="1056.000" y="559.650" font-size="22" font-weight="400" fill="#111827">차이를 감지</text>
+<text data-source="root.0.1.0.6" x="1524.000" y="487.550" font-size="28" font-weight="700" fill="#111827">Take Action</text>
+<text data-source="root.0.1.0.6" x="1524.000" y="529.950" font-size="22" font-weight="400" fill="#111827">Rollback 또는 3-way-diff로</text>
+<text data-source="root.0.1.0.6" x="1524.000" y="559.650" font-size="22" font-weight="400" fill="#111827">상태를 수정</text>
+<text data-source="root.0.1.0.1" x="424.000" y="493.750" font-size="22" font-weight="400" fill="#111827">상태 관찰</text>
+<text data-source="root.0.1.0.3" x="892.000" y="493.750" font-size="22" font-weight="400" fill="#111827">차이 탐지</text>
+<text data-source="root.0.1.0.5" x="1360.000" y="493.750" font-size="22" font-weight="400" fill="#111827">조정 실행</text>
+<text data-source="root.0.2" x="64.000" y="709.350" font-size="22" font-weight="400" fill="#111827">Take Action 뒤 다시 Deploy로 돌아가는 폐쇄 루프이며, Git repository가 desired state의 단일 신뢰 소스입니다.</text>
+<text data-source="root.0.1.loop.meaning" x="88.000" y="647.350" font-size="14" font-weight="400" fill="#111827">반복</text>
+</svg>

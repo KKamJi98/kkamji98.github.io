@@ -1,0 +1,59 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="89389ddfe0ca58e08cf65f4c5fed730ffb6c9b02c93b7831d7697f8d412e2ee3">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="142.800" width="1792.000" height="618.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.0" x="84.000" y="215.200" width="1752.000" height="146.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.1" x="84.000" y="381.600" width="1752.000" height="146.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.2" x="84.000" y="548.000" width="1752.000" height="146.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="64.000" y="781.400" width="1792.000" height="224.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="116.000" y="864.700" width="314.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="574.000" y="864.700" width="314.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1032.000" y="864.700" width="314.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.6" x="1490.000" y="864.700" width="314.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 442.000 919.800 L 562.000 919.800" fill="none" stroke="#475569" stroke-width="3"><title>catalog 권한 추가</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="562.000,919.800 552.000,925.800 552.000,913.800" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 900.000 919.800 L 1020.000 919.800" fill="none" stroke="#475569" stroke-width="3"><title>database 권한 추가</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1020.000,919.800 1010.000,925.800 1010.000,913.800" fill="#475569"/>
+<path data-edge="root.0.1.1.1.5" data-from="root.0.1.1.1.4" data-to="root.0.1.1.1.6" d="M 1358.000 919.800 L 1478.000 919.800" fill="none" stroke="#475569" stroke-width="3"><title>table 권한 추가</title></path>
+<polygon data-arrowhead="root.0.1.1.1.5" points="1478.000,919.800 1468.000,925.800 1468.000,913.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="110.200" font-size="36" font-weight="700" fill="#111827">Catalog 계층마다 IAM action과 Lake Formation grant가 필요하다</text>
+<text data-source="root.0.1.0.0" x="84.000" y="186.800" font-size="24" font-weight="700" fill="#111827">Permission matrix: catalog, database, table</text>
+<text data-source="root.0.1.0.1.0.0.0" x="104.000" y="259.200" font-size="24" font-weight="700" fill="#111827">Layer</text>
+<text data-source="root.0.1.0.1.0.0.1" x="104.000" y="311.600" font-size="24" font-weight="700" fill="#111827">catalog</text>
+<text data-source="root.0.1.0.1.0.1.0" x="681.333" y="259.200" font-size="24" font-weight="700" fill="#111827">IAM API authorization</text>
+<text data-source="root.0.1.0.1.0.1.1" x="681.333" y="307.600" font-size="20" font-weight="400" fill="#111827">glue:GetCatalog, GetCatalogs</text>
+<text data-source="root.0.1.0.1.0.1.1" x="681.333" y="334.600" font-size="20" font-weight="400" fill="#111827">catalog/s3tablescatalog/{bucket} ARN</text>
+<text data-source="root.0.1.0.1.0.2.0" x="1258.667" y="259.200" font-size="24" font-weight="700" fill="#111827">Lake Formation data authorization</text>
+<text data-source="root.0.1.0.1.0.2.1" x="1258.667" y="307.600" font-size="20" font-weight="400" fill="#111827">DESCRIBE</text>
+<text data-source="root.0.1.0.1.0.2.1" x="1258.667" y="334.600" font-size="20" font-weight="400" fill="#111827">s3tablescatalog/{bucket}</text>
+<text data-source="root.0.1.0.1.1.0.0" x="104.000" y="425.600" font-size="24" font-weight="700" fill="#111827">Layer</text>
+<text data-source="root.0.1.0.1.1.0.1" x="104.000" y="478.000" font-size="24" font-weight="700" fill="#111827">database</text>
+<text data-source="root.0.1.0.1.1.1.0" x="681.333" y="425.600" font-size="24" font-weight="700" fill="#111827">IAM API authorization</text>
+<text data-source="root.0.1.0.1.1.1.1" x="681.333" y="474.000" font-size="20" font-weight="400" fill="#111827">glue:GetDatabase, GetDatabases</text>
+<text data-source="root.0.1.0.1.1.1.1" x="681.333" y="501.000" font-size="20" font-weight="400" fill="#111827">database/s3tablescatalog/{bucket}/{db} ARN</text>
+<text data-source="root.0.1.0.1.1.2.0" x="1258.667" y="425.600" font-size="24" font-weight="700" fill="#111827">Lake Formation data authorization</text>
+<text data-source="root.0.1.0.1.1.2.1" x="1258.667" y="474.000" font-size="20" font-weight="400" fill="#111827">DESCRIBE</text>
+<text data-source="root.0.1.0.1.1.2.1" x="1258.667" y="501.000" font-size="20" font-weight="400" fill="#111827">{db}</text>
+<text data-source="root.0.1.0.1.2.0.0" x="104.000" y="592.000" font-size="24" font-weight="700" fill="#111827">Layer</text>
+<text data-source="root.0.1.0.1.2.0.1" x="104.000" y="644.400" font-size="24" font-weight="700" fill="#111827">table</text>
+<text data-source="root.0.1.0.1.2.1.0" x="681.333" y="592.000" font-size="24" font-weight="700" fill="#111827">IAM API authorization</text>
+<text data-source="root.0.1.0.1.2.1.1" x="681.333" y="640.400" font-size="20" font-weight="400" fill="#111827">glue:GetTable, GetTables</text>
+<text data-source="root.0.1.0.1.2.1.1" x="681.333" y="667.400" font-size="20" font-weight="400" fill="#111827">table/s3tablescatalog/{bucket}/{db}/* ARN</text>
+<text data-source="root.0.1.0.1.2.2.0" x="1258.667" y="592.000" font-size="24" font-weight="700" fill="#111827">Lake Formation data authorization</text>
+<text data-source="root.0.1.0.1.2.2.1" x="1258.667" y="640.400" font-size="20" font-weight="400" fill="#111827">SELECT, DESCRIBE</text>
+<text data-source="root.0.1.0.1.2.2.1" x="1258.667" y="667.400" font-size="20" font-weight="400" fill="#111827">target table</text>
+<text data-source="root.0.1.0.2" x="84.000" y="734.400" font-size="20" font-weight="400" fill="#111827">lakeformation:GetDataAccess는 query principal이 credential vending을 받을 수 있게 하는 IAM action입니다.</text>
+<text data-source="root.0.1.1.0" x="84.000" y="825.400" font-size="24" font-weight="700" fill="#111827">Debugging timeline: 권한을 한 계층씩 추가</text>
+<text data-source="root.0.1.1.1.0" x="136.000" y="908.700" font-size="24" font-weight="700" fill="#111827">CATALOG_NOT_FOUND</text>
+<text data-source="root.0.1.1.1.0" x="136.000" y="947.900" font-size="20" font-weight="400" fill="#111827">TABLE_NOT_FOUND</text>
+<text data-source="root.0.1.1.1.2" x="594.000" y="908.700" font-size="24" font-weight="700" fill="#111827">glue:GetDatabases</text>
+<text data-source="root.0.1.1.1.2" x="594.000" y="947.900" font-size="20" font-weight="400" fill="#111827">AccessDenied</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="908.700" font-size="24" font-weight="700" fill="#111827">glue:GetTable</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="947.900" font-size="20" font-weight="400" fill="#111827">AccessDenied</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="908.700" font-size="24" font-weight="700" fill="#111827">query succeeds</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="947.900" font-size="20" font-weight="400" fill="#111827">short name resolves</text>
+<text data-source="root.0.1.1.1.1" x="434.000" y="873.800" font-size="20" font-weight="400" fill="#111827">catalog 권한</text>
+<text data-source="root.0.1.1.1.1" x="434.000" y="900.800" font-size="20" font-weight="400" fill="#111827">추가</text>
+<text data-source="root.0.1.1.1.3" x="892.000" y="873.800" font-size="20" font-weight="400" fill="#111827">database 권한</text>
+<text data-source="root.0.1.1.1.3" x="892.000" y="900.800" font-size="20" font-weight="400" fill="#111827">추가</text>
+<text data-source="root.0.1.1.1.5" x="1350.000" y="900.800" font-size="20" font-weight="400" fill="#111827">table 권한 추가</text>
+</svg>

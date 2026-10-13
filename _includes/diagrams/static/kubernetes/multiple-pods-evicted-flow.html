@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-kubernetes-multiple-pods-evicted-flow" aria-labelledby="sd-kubernetes-multiple-pods-evicted-flow-title">
-  <figcaption class="sd-title" id="sd-kubernetes-multiple-pods-evicted-flow-title">Disk pressure가 node를 unhealthy로 만들기 전에 kubelet이 Pod를 evict한다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-kubernetes-multiple-pods-evicted-flow" aria-labelledby="sd-kubernetes-multiple-pods-evicted-flow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-multiple-pods-evicted-flow-title">Disk pressure가 node를 unhealthy로 만들기 전에 kubelet이 Pod를 evict한다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--warning">
       <strong class="sd-label">Node disk pressure</strong>
@@ -27,4 +27,66 @@
     </div>
   </div>
   <p class="sd-note">Eviction은 scheduler나 controller가 요청하는 작업이 아니라 kubelet의 node-local 결정입니다. image GC가 공간을 회수하지 못하면 같은 순환이 반복될 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="526676e47c8ce17f65c309a02bf8626f4ddb4ed93c2b33ba9cc145bcf277f911">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="294.400" width="324.000" height="192.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="294.400" width="324.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="282.900" width="324.000" height="215.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="312.600" width="324.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="665.200" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.10" x="564.000" y="647.000" width="324.000" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 390.500 L 552.000 390.500" fill="none" stroke="#475569" stroke-width="3"><title>node-level resource 회수</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,390.500 542.000,396.500 542.000,384.500" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 390.500 L 1020.000 390.500" fill="none" stroke="#475569" stroke-width="3"><title>회수만으로 pressure가 해소되지 않으면 Pod eviction</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,390.500 1010.000,396.500 1010.000,384.500" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 390.500 L 1488.000 390.500" fill="none" stroke="#475569" stroke-width="3"><title>Pod 종료 처리</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,390.500 1478.000,396.500 1478.000,384.500" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 390.500 L 1848.000 390.500 L 1848.000 599.000 L 72.000 599.000 L 72.000 757.950 L 84.000 757.950" fill="none" stroke="#475569" stroke-width="3"><title>controller가 재생성할 수 있음</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,757.950 74.000,763.950 74.000,751.950" fill="#475569"/>
+<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.1.10" d="M 432.000 757.950 L 552.000 757.950" fill="none" stroke="#475569" stroke-width="3"><title>disk를 회수한 뒤 복구</title></path>
+<polygon data-arrowhead="root.0.1.9" points="552.000,757.950 542.000,763.950 542.000,751.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="193.400" font-size="36" font-weight="700" fill="#111827">Disk pressure가 node를 unhealthy로 만들기 전에 kubelet이 Pod를 evict한다</text>
+<text data-source="root.0.1.0" x="120.000" y="346.400" font-size="28" font-weight="700" fill="#111827">Node disk</text>
+<text data-source="root.0.1.0" x="120.000" y="382.800" font-size="28" font-weight="700" fill="#111827">pressure</text>
+<text data-source="root.0.1.0" x="120.000" y="425.200" font-size="22" font-weight="400" fill="#111827">nodefs 또는 imagefs가</text>
+<text data-source="root.0.1.0" x="120.000" y="454.900" font-size="22" font-weight="400" fill="#111827">threshold를 넘습니다.</text>
+<text data-source="root.0.1.2" x="588.000" y="346.400" font-size="28" font-weight="700" fill="#111827">Node-level</text>
+<text data-source="root.0.1.2" x="588.000" y="382.800" font-size="28" font-weight="700" fill="#111827">reclamation</text>
+<text data-source="root.0.1.2" x="588.000" y="425.200" font-size="22" font-weight="400" fill="#111827">미사용 image와 종료된</text>
+<text data-source="root.0.1.2" x="588.000" y="454.900" font-size="22" font-weight="400" fill="#111827">container를 회수</text>
+<text data-source="root.0.1.4" x="1056.000" y="334.900" font-size="28" font-weight="700" fill="#111827">kubelet eviction</text>
+<text data-source="root.0.1.4" x="1056.000" y="377.300" font-size="22" font-weight="400" fill="#111827">회수할 filesystem의</text>
+<text data-source="root.0.1.4" x="1056.000" y="407.000" font-size="22" font-weight="400" fill="#111827">사용량, requests 초과</text>
+<text data-source="root.0.1.4" x="1056.000" y="436.700" font-size="22" font-weight="400" fill="#111827">여부와 Pod priority로</text>
+<text data-source="root.0.1.4" x="1056.000" y="466.400" font-size="22" font-weight="400" fill="#111827">candidate를 판단합니다.</text>
+<text data-source="root.0.1.6" x="1524.000" y="364.600" font-size="28" font-weight="700" fill="#111827">Evicted Pods</text>
+<text data-source="root.0.1.6" x="1524.000" y="407.000" font-size="22" font-weight="400" fill="#111827">phase는 Failed, reason은</text>
+<text data-source="root.0.1.6" x="1524.000" y="436.700" font-size="22" font-weight="400" fill="#111827">Evicted입니다.</text>
+<text data-source="root.0.1.8" x="120.000" y="717.200" font-size="28" font-weight="700" fill="#111827">Workload impact</text>
+<text data-source="root.0.1.8" x="120.000" y="759.600" font-size="22" font-weight="400" fill="#111827">capacity가 부족하면 새</text>
+<text data-source="root.0.1.8" x="120.000" y="789.300" font-size="22" font-weight="400" fill="#111827">replica도 대기할 수</text>
+<text data-source="root.0.1.8" x="120.000" y="819.000" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
+<text data-source="root.0.1.10" x="588.000" y="699.000" font-size="28" font-weight="700" fill="#111827">Cleanup and</text>
+<text data-source="root.0.1.10" x="588.000" y="735.400" font-size="28" font-weight="700" fill="#111827">recovery</text>
+<text data-source="root.0.1.10" x="588.000" y="777.800" font-size="22" font-weight="400" fill="#111827">disk를 reclaim하고</text>
+<text data-source="root.0.1.10" x="588.000" y="807.500" font-size="22" font-weight="400" fill="#111827">threshold와 monitoring을</text>
+<text data-source="root.0.1.10" x="588.000" y="837.200" font-size="22" font-weight="400" fill="#111827">다시 점검합니다.</text>
+<text data-source="root.0.1.1" x="424.000" y="311.400" font-size="22" font-weight="400" fill="#111827">node-level</text>
+<text data-source="root.0.1.1" x="424.000" y="341.100" font-size="22" font-weight="400" fill="#111827">resource</text>
+<text data-source="root.0.1.1" x="424.000" y="370.800" font-size="22" font-weight="400" fill="#111827">회수</text>
+<text data-source="root.0.1.3" x="892.000" y="252.000" font-size="22" font-weight="400" fill="#111827">회수만으로</text>
+<text data-source="root.0.1.3" x="892.000" y="281.700" font-size="22" font-weight="400" fill="#111827">pressure가</text>
+<text data-source="root.0.1.3" x="892.000" y="311.400" font-size="22" font-weight="400" fill="#111827">해소되지</text>
+<text data-source="root.0.1.3" x="892.000" y="341.100" font-size="22" font-weight="400" fill="#111827">않으면 Pod</text>
+<text data-source="root.0.1.3" x="892.000" y="370.800" font-size="22" font-weight="400" fill="#111827">eviction</text>
+<text data-source="root.0.1.5" x="1360.000" y="341.100" font-size="22" font-weight="400" fill="#111827">Pod 종료</text>
+<text data-source="root.0.1.5" x="1360.000" y="370.800" font-size="22" font-weight="400" fill="#111827">처리</text>
+<text data-source="root.0.1.7" x="104.000" y="591.000" font-size="22" font-weight="400" fill="#111827">controller가 재생성할 수 있음</text>
+<text data-source="root.0.1.9" x="424.000" y="678.850" font-size="22" font-weight="400" fill="#111827">disk를</text>
+<text data-source="root.0.1.9" x="424.000" y="708.550" font-size="22" font-weight="400" fill="#111827">회수한 뒤</text>
+<text data-source="root.0.1.9" x="424.000" y="738.250" font-size="22" font-weight="400" fill="#111827">복구</text>
+<text data-source="root.0.2" x="64.000" y="914.900" font-size="22" font-weight="400" fill="#111827">Eviction은 scheduler나 controller가 요청하는 작업이 아니라 kubelet의 node-local 결정입니다. image GC가 공간을 회수하지 못하면 같은 순환이 반복될 수 있습니다.</text>
+</svg>
 </figure>

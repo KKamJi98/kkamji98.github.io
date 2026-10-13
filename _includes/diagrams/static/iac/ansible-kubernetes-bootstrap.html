@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="ansible-kubernetes-bootstrap" aria-labelledby="ansible-kubernetes-bootstrap-title">
-  <figcaption class="sd-title" id="ansible-kubernetes-bootstrap-title">Ansible playbook은 control plane을 먼저 만들고 worker를 join시킵니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="ansible-kubernetes-bootstrap" aria-labelledby="ansible-kubernetes-bootstrap-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="ansible-kubernetes-bootstrap-title">Ansible playbook은 control plane을 먼저 만들고 worker를 join시킵니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">control plane 초기화가 만든 join token을 worker 단계에서 사용하므로 순서가 고정됩니다.</p>
 
   <div class="sd-flow" aria-label="Ansible Kubernetes bootstrap flow">
@@ -36,4 +36,46 @@
       <span class="sd-detail">workload를 schedule할 수 있는 상태가 됩니다.</span>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="234f4f9248d09572d9ae13f198d729b0e5f4c11f424e6be686d6a351d0f6d5de">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="384.500" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="96.000" y="666.000" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 477.250 L 552.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>대상 group 순서 결정</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,477.250 542.000,483.250 542.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 477.250 L 1020.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>kubeadm init</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,477.250 1010.000,483.250 1010.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 477.250 L 1488.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>token으로 join</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,477.250 1478.000,483.250 1478.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 477.250 L 1848.000 477.250 L 1848.000 618.000 L 72.000 618.000 L 72.000 743.900 L 84.000 743.900" fill="none" stroke="#475569" stroke-width="3"><title>노드 준비 완료</title></path>
+<polygon data-arrowhead="root.0.2.7" points="84.000,743.900 74.000,749.900 74.000,737.900" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="294.200" font-size="36" font-weight="700" fill="#111827">Ansible playbook은 control plane을 먼저 만들고 worker를 join시킵니다</text>
+<text data-source="root.0.1" x="64.000" y="352.800" font-size="22" font-weight="400" fill="#111827">control plane 초기화가 만든 join token을 worker 단계에서 사용하므로 순서가 고정됩니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Inventory</text>
+<text data-source="root.0.2.0" x="120.000" y="493.750" font-size="22" font-weight="400" fill="#111827">control plane과 worker</text>
+<text data-source="root.0.2.0" x="120.000" y="523.450" font-size="22" font-weight="400" fill="#111827">group을 나눠 둡니다.</text>
+<text data-source="root.0.2.2" x="588.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Ansible control node</text>
+<text data-source="root.0.2.2" x="588.000" y="493.750" font-size="22" font-weight="400" fill="#111827">bootstrap play를 실행하고</text>
+<text data-source="root.0.2.2" x="588.000" y="523.450" font-size="22" font-weight="400" fill="#111827">결과를 모읍니다.</text>
+<text data-source="root.0.2.4" x="1056.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Control plane</text>
+<text data-source="root.0.2.4" x="1056.000" y="493.750" font-size="22" font-weight="400" fill="#111827">먼저 초기화하고 worker join</text>
+<text data-source="root.0.2.4" x="1056.000" y="523.450" font-size="22" font-weight="400" fill="#111827">token을 생성합니다.</text>
+<text data-source="root.0.2.6" x="1524.000" y="436.500" font-size="28" font-weight="700" fill="#111827">Worker nodes</text>
+<text data-source="root.0.2.6" x="1524.000" y="478.900" font-size="22" font-weight="400" fill="#111827">control plane이 발급한</text>
+<text data-source="root.0.2.6" x="1524.000" y="508.600" font-size="22" font-weight="400" fill="#111827">token으로 cluster에</text>
+<text data-source="root.0.2.6" x="1524.000" y="538.300" font-size="22" font-weight="400" fill="#111827">합류합니다.</text>
+<text data-source="root.0.2.8" x="120.000" y="718.000" font-size="28" font-weight="700" fill="#111827">Kubernetes cluster</text>
+<text data-source="root.0.2.8" x="120.000" y="760.400" font-size="22" font-weight="400" fill="#111827">workload를 schedule할 수</text>
+<text data-source="root.0.2.8" x="120.000" y="790.100" font-size="22" font-weight="400" fill="#111827">있는 상태가 됩니다.</text>
+<text data-source="root.0.2.1" x="424.000" y="427.850" font-size="22" font-weight="400" fill="#111827">대상 group</text>
+<text data-source="root.0.2.1" x="424.000" y="457.550" font-size="22" font-weight="400" fill="#111827">순서 결정</text>
+<text data-source="root.0.2.3" x="892.000" y="457.550" font-size="22" font-weight="400" fill="#111827">kubeadm init</text>
+<text data-source="root.0.2.5" x="1360.000" y="427.850" font-size="22" font-weight="400" fill="#111827">token으로</text>
+<text data-source="root.0.2.5" x="1360.000" y="457.550" font-size="22" font-weight="400" fill="#111827">join</text>
+<text data-source="root.0.2.7" x="104.000" y="610.000" font-size="22" font-weight="400" fill="#111827">노드 준비 완료</text>
+</svg>
 </figure>

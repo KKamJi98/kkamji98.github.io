@@ -1,0 +1,27 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1c9fa152c5c44ca68da2f411508d04d238b9b9e67d98ea636e9eab6467b9e773">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="176.750" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="64.000" y="292.050" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="64.000" y="407.350" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.3" x="64.000" y="522.650" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.4" x="64.000" y="637.950" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.5" x="64.000" y="753.250" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.6" x="64.000" y="868.550" width="1792.000" height="99.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="107.850" font-size="36" font-weight="700" fill="#111827">OSI stack은 코드가 아니라 장애를 묻는 순서를 정합니다</text>
+<text data-source="root.0.1" x="64.000" y="154.450" font-size="18" font-weight="400" fill="#111827">실제 TCP/IP stack은 여러 계층을 함께 구현할 수 있지만, L7에서 L1로 내려가는 순서가 증상과 책임 범위를 좁히는 기준이 됩니다.</text>
+<text data-source="root.0.2.0.0" x="80.000" y="212.750" font-size="20" font-weight="700" fill="#111827">L7 Application</text>
+<text data-source="root.0.2.0.1" x="80.000" y="253.750" font-size="18" font-weight="400" fill="#111827">HTTP, DNS, TLS handshake payloads</text>
+<text data-source="root.0.2.1.0" x="80.000" y="328.050" font-size="20" font-weight="700" fill="#111827">L6 Presentation</text>
+<text data-source="root.0.2.1.1" x="80.000" y="369.050" font-size="18" font-weight="400" fill="#111827">encoding, serialisation, encryption</text>
+<text data-source="root.0.2.2.0" x="80.000" y="443.350" font-size="20" font-weight="700" fill="#111827">L5 Session</text>
+<text data-source="root.0.2.2.1" x="80.000" y="484.350" font-size="18" font-weight="400" fill="#111827">dialogue setup, 유지, teardown</text>
+<text data-source="root.0.2.3.0" x="80.000" y="558.650" font-size="20" font-weight="700" fill="#111827">L4 Transport</text>
+<text data-source="root.0.2.3.1" x="80.000" y="599.650" font-size="18" font-weight="400" fill="#111827">TCP와 UDP의 port, segment, 흐름 제어</text>
+<text data-source="root.0.2.4.0" x="80.000" y="673.950" font-size="20" font-weight="700" fill="#111827">L3 Network</text>
+<text data-source="root.0.2.4.1" x="80.000" y="714.950" font-size="18" font-weight="400" fill="#111827">IP address, packet, routing</text>
+<text data-source="root.0.2.5.0" x="80.000" y="789.250" font-size="20" font-weight="700" fill="#111827">L2 Data Link</text>
+<text data-source="root.0.2.5.1" x="80.000" y="830.250" font-size="18" font-weight="400" fill="#111827">Ethernet의 MAC address와 frame</text>
+<text data-source="root.0.2.6.0" x="80.000" y="904.550" font-size="20" font-weight="700" fill="#111827">L1 Physical</text>
+<text data-source="root.0.2.6.1" x="80.000" y="945.550" font-size="18" font-weight="400" fill="#111827">electrical, optical, radio signal</text>
+<text data-source="root.0.3" x="64.000" y="1001.850" font-size="18" font-weight="400" fill="#111827">장비를 한 계층에만 고정하지 말고 실제로 처리하는 header와 policy를 확인합니다. 진단은 link와 IP에서 시작해 routing, port, DNS, TLS, HTTP 순으로 좁힐 수 있습니다.</text>
+</svg>

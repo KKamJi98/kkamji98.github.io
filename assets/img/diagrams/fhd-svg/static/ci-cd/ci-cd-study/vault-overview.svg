@@ -1,0 +1,48 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e7219cf66422a266418e5e8f7a82ee6fe1a7120330d8613d46c837f0006d6bf1">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.2" x="1032.000" y="226.200" width="792.000" height="649.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.3.0" x="1052.000" y="475.800" width="237.333" height="374.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.3.1" x="1309.333" y="475.800" width="237.333" height="379.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.3.2" x="1566.667" y="475.800" width="237.333" height="310.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="495.700" width="792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1052.000" y="298.600" width="752.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.3.0.1" x="1072.000" y="580.600" width="197.333" height="249.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.3.1.1" x="1329.333" y="613.000" width="197.333" height="222.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.3.2.1" x="1586.667" y="548.200" width="197.333" height="218.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 550.800 L 1020.000 550.800" fill="none" stroke="#475569" stroke-width="3"><title>request</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,550.800 1010.000,556.800 1010.000,544.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="193.600" font-size="36" font-weight="700" fill="#111827">Vault API는 인증, secret 관리, 암호화를 하나의 경계로 묶는다</text>
+<text data-source="root.0.1.0" x="116.000" y="539.700" font-size="24" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1.0" x="116.000" y="578.900" font-size="20" font-weight="400" fill="#111827">사람, 애플리케이션, 시스템이 credential과 secret 요청을 보낸다.</text>
+<text data-source="root.0.1.2.0" x="1052.000" y="270.200" font-size="24" font-weight="700" fill="#111827">Vault boundary</text>
+<text data-source="root.0.1.2.1" x="1072.000" y="342.600" font-size="24" font-weight="700" fill="#111827">Vault API hub</text>
+<text data-source="root.0.1.2.1" x="1072.000" y="381.800" font-size="20" font-weight="400" fill="#111827">모든 요청의 진입점이며 각 concern에 인증, policy, secret 처리를 적용한다.</text>
+<text data-source="root.0.1.2.2" x="1052.000" y="448.800" font-size="20" font-weight="400" fill="#111827">아래 세 concern은 API hub에 독립적으로 연결된다. 서로 이어지는 처리 단계가 아니다.</text>
+<text data-source="root.0.1.2.3.0.0" x="1072.000" y="519.800" font-size="24" font-weight="700" fill="#111827">Authentication</text>
+<text data-source="root.0.1.2.3.0.0" x="1072.000" y="551.000" font-size="24" font-weight="700" fill="#111827">spoke</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="624.600" font-size="24" font-weight="700" fill="#111827">Identity based</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="655.800" font-size="24" font-weight="700" fill="#111827">access</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="695.000" font-size="20" font-weight="400" fill="#111827">AWS, Azure, GCP,</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="722.000" font-size="20" font-weight="400" fill="#111827">GitHub 등의 Auth</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="749.000" font-size="20" font-weight="400" fill="#111827">Method가 client</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="776.000" font-size="20" font-weight="400" fill="#111827">identity를</text>
+<text data-source="root.0.1.2.3.0.1" x="1092.000" y="803.000" font-size="20" font-weight="400" fill="#111827">확인한다.</text>
+<text data-source="root.0.1.2.3.1.0" x="1329.333" y="519.800" font-size="24" font-weight="700" fill="#111827">Secrets</text>
+<text data-source="root.0.1.2.3.1.0" x="1329.333" y="551.000" font-size="24" font-weight="700" fill="#111827">management</text>
+<text data-source="root.0.1.2.3.1.0" x="1329.333" y="582.200" font-size="24" font-weight="700" fill="#111827">spoke</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="657.000" font-size="24" font-weight="700" fill="#111827">Secret Engines</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="688.200" font-size="24" font-weight="700" fill="#111827">and Policy</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="727.400" font-size="20" font-weight="400" fill="#111827">KV, PKI, Transit와</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="754.400" font-size="20" font-weight="400" fill="#111827">dynamic secret을</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="781.400" font-size="20" font-weight="400" fill="#111827">policy가 허용한</text>
+<text data-source="root.0.1.2.3.1.1" x="1349.333" y="808.400" font-size="20" font-weight="400" fill="#111827">path로 제공한다.</text>
+<text data-source="root.0.1.2.3.2.0" x="1586.667" y="519.800" font-size="24" font-weight="700" fill="#111827">Encryption spoke</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="592.200" font-size="24" font-weight="700" fill="#111827">Encryption</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="631.400" font-size="20" font-weight="400" fill="#111827">secret data를</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="658.400" font-size="20" font-weight="400" fill="#111827">암호화한 상태로</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="685.400" font-size="20" font-weight="400" fill="#111827">저장하고 Vault API</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="712.400" font-size="20" font-weight="400" fill="#111827">경계 안에서</text>
+<text data-source="root.0.1.2.3.2.1" x="1606.667" y="739.400" font-size="20" font-weight="400" fill="#111827">처리한다.</text>
+<text data-source="root.0.1.1" x="892.000" y="531.800" font-size="20" font-weight="400" fill="#111827">request</text>
+<text data-source="root.0.2" x="64.000" y="915.400" font-size="20" font-weight="400" fill="#111827">Audit logging과 lease 만료는 인증 및 secret 제공 흐름을 관찰하고 수명을 제한하는 보조 제어다.</text>
+</svg>

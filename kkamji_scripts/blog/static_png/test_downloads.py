@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from downloads import HELPER, Siblings, built_plan, discover, main, validate_source
+from downloads import HELPER, Siblings, built_plan, discover, main, validate_source, viewer_url
 
 
 class DownloadWiringTests(unittest.TestCase):
@@ -51,7 +51,7 @@ class DownloadWiringTests(unittest.TestCase):
         return (f'<figure class="sd" id="{entry["figure"]}"></figure>'
                 f'<p class="diagram-download"><img class="diagram-inline" src="{png}" alt="" '
                 f'width="1920" data-static-diagram="true">'
-                f'<a href="{png}" download>PNG</a><a href="{png}">Open</a></p>')
+                f'<a href="{png}" download>PNG</a><a href="{viewer_url(png)}">Open</a></p>')
 
     def test_sibling_outside_figure_and_native_download(self):
         text = '<main><figure class="sd" id="demo"><div>body</div></figure>\n<p class="diagram-download"><img class="diagram-inline" src="/x.png" alt="" width="1920" data-static-diagram="true"><a href="/x.png" download>PNG</a><a href="/x.png">Open</a></p></main>'
@@ -166,8 +166,8 @@ class DownloadWiringTests(unittest.TestCase):
                 figure = command[command.index('--figure') + 1]
                 raw = b'\x89PNG\r\n\x1a\n' + b'synthetic-adapter-fixture-not-a-real-image'
                 if '--check' not in command:
-                    (target/(figure + '-625-light.png')).write_bytes(raw)
-                    (target/(figure + '-625-light.json')).write_text(json.dumps({'png_sha256': digest(raw), 'quality_status': 'passed'}))
+                    (target/(figure + '-1920x1080-light.png')).write_bytes(raw)
+                    (target/(figure + '-1920x1080-light.json')).write_text(json.dumps({'png_sha256': digest(raw), 'quality_status': 'passed'}))
                 return SimpleNamespace(returncode=0)
             args = ['--root', str(self.root), '--site', str(site), '--out', str(out)]
             with patch('downloads.subprocess.run', side_effect=fake_pipeline):

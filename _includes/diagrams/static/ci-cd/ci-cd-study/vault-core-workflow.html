@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="vault-core-workflow" aria-labelledby="vault-core-workflow-title">
-  <figcaption class="sd-title" id="vault-core-workflow-title">Vault 요청은 Authenticate에서 Access까지 정책으로 이어진다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="vault-core-workflow" aria-labelledby="vault-core-workflow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="vault-core-workflow-title">Vault 요청은 Authenticate에서 Access까지 정책으로 이어진다</figcaption><div class="sd-semantic-source">
   <section class="sd-lane">
     <div class="sd-lane-title">Client to Vault core workflow</div>
     <div class="sd-flow">
@@ -30,4 +30,59 @@
     </div>
   </section>
   <p class="sd-note">Service token과 dynamic secret은 lease 수명 관리 대상입니다. Audit Device는 대부분의 요청과 응답을 기록하고 expiration manager는 lease 만료와 폐기를 처리합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="dd7418c90028b0bfe5872e5735e94e574bbd7d8a711eeadc2565ea7843d97572">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="163.600" width="1792.000" height="771.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="120.000" y="287.450" width="312.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="576.000" y="287.450" width="312.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.4" x="1032.000" y="287.450" width="312.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.6" x="1488.000" y="287.450" width="312.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.8" x="120.000" y="607.000" width="312.000" height="304.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 444.000 380.200 L 564.000 380.200" fill="none" stroke="#475569" stroke-width="3"><title>identity 제출</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="564.000,380.200 554.000,386.200 554.000,374.200" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 900.000 380.200 L 1020.000 380.200" fill="none" stroke="#475569" stroke-width="3"><title>로그인 중 Auth Method별 검증</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1020.000,380.200 1010.000,386.200 1010.000,374.200" fill="#475569"/>
+<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 1356.000 380.200 L 1476.000 380.200" fill="none" stroke="#475569" stroke-width="3"><title>이후 token으로 요청할 때마다 인가</title></path>
+<polygon data-arrowhead="root.0.1.1.5" points="1476.000,380.200 1466.000,386.200 1466.000,374.200" fill="#475569"/>
+<path data-edge="root.0.1.1.7" data-from="root.0.1.1.6" data-to="root.0.1.1.8" d="M 1812.000 380.200 L 1824.000 380.200 L 1824.000 559.000 L 96.000 559.000 L 96.000 759.150 L 108.000 759.150" fill="none" stroke="#475569" stroke-width="3"><title>허용된 secret path 요청</title></path>
+<polygon data-arrowhead="root.0.1.1.7" points="108.000,759.150 98.000,765.150 98.000,753.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="127.000" font-size="36" font-weight="700" fill="#111827">Vault 요청은 Authenticate에서 Access까지 정책으로 이어진다</text>
+<text data-source="root.0.1.0" x="88.000" y="215.600" font-size="28" font-weight="700" fill="#111827">Client to Vault core workflow</text>
+<text data-source="root.0.1.1.0" x="144.000" y="339.450" font-size="28" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1.1.0" x="144.000" y="381.850" font-size="22" font-weight="400" fill="#111827">사람, 애플리케이션, 시스템이</text>
+<text data-source="root.0.1.1.0" x="144.000" y="411.550" font-size="22" font-weight="400" fill="#111827">identity와 credential을</text>
+<text data-source="root.0.1.1.0" x="144.000" y="441.250" font-size="22" font-weight="400" fill="#111827">제출한다.</text>
+<text data-source="root.0.1.1.2" x="600.000" y="339.450" font-size="28" font-weight="700" fill="#111827">1 Authenticate</text>
+<text data-source="root.0.1.1.2" x="600.000" y="381.850" font-size="22" font-weight="400" fill="#111827">LDAP, OIDC, Kubernetes,</text>
+<text data-source="root.0.1.1.2" x="600.000" y="411.550" font-size="22" font-weight="400" fill="#111827">AWS IAM 같은 Auth</text>
+<text data-source="root.0.1.1.2" x="600.000" y="441.250" font-size="22" font-weight="400" fill="#111827">Method가 신원을 확인한다.</text>
+<text data-source="root.0.1.1.4" x="1056.000" y="339.450" font-size="28" font-weight="700" fill="#111827">2 Validate</text>
+<text data-source="root.0.1.1.4" x="1056.000" y="381.850" font-size="22" font-weight="400" fill="#111827">로그인 시 필요한 신원 검증</text>
+<text data-source="root.0.1.1.4" x="1056.000" y="411.550" font-size="22" font-weight="400" fill="#111827">후 policy가 연결된 client</text>
+<text data-source="root.0.1.1.4" x="1056.000" y="441.250" font-size="22" font-weight="400" fill="#111827">token을 반환한다.</text>
+<text data-source="root.0.1.1.6" x="1512.000" y="339.450" font-size="28" font-weight="700" fill="#111827">3 Authorize</text>
+<text data-source="root.0.1.1.6" x="1512.000" y="381.850" font-size="22" font-weight="400" fill="#111827">identity에 연결된 security</text>
+<text data-source="root.0.1.1.6" x="1512.000" y="411.550" font-size="22" font-weight="400" fill="#111827">policy가 요청 path와 허용</text>
+<text data-source="root.0.1.1.6" x="1512.000" y="441.250" font-size="22" font-weight="400" fill="#111827">동작을 결정한다.</text>
+<text data-source="root.0.1.1.8" x="144.000" y="659.000" font-size="28" font-weight="700" fill="#111827">4 Access</text>
+<text data-source="root.0.1.1.8" x="144.000" y="701.400" font-size="22" font-weight="400" fill="#111827">Secret Engine이 KV</text>
+<text data-source="root.0.1.1.8" x="144.000" y="731.100" font-size="22" font-weight="400" fill="#111827">secret을 조회하거나</text>
+<text data-source="root.0.1.1.8" x="144.000" y="760.800" font-size="22" font-weight="400" fill="#111827">dynamic credential을</text>
+<text data-source="root.0.1.1.8" x="144.000" y="790.500" font-size="22" font-weight="400" fill="#111827">발급한다. Dynamic</text>
+<text data-source="root.0.1.1.8" x="144.000" y="820.200" font-size="22" font-weight="400" fill="#111827">secret에는 lease를</text>
+<text data-source="root.0.1.1.8" x="144.000" y="849.900" font-size="22" font-weight="400" fill="#111827">등록하지만 KV 조회에는</text>
+<text data-source="root.0.1.1.8" x="144.000" y="879.600" font-size="22" font-weight="400" fill="#111827">등록하지 않는다.</text>
+<text data-source="root.0.1.1.1" x="436.000" y="360.500" font-size="22" font-weight="400" fill="#111827">identity 제출</text>
+<text data-source="root.0.1.1.3" x="892.000" y="301.100" font-size="22" font-weight="400" fill="#111827">로그인 중 Auth</text>
+<text data-source="root.0.1.1.3" x="892.000" y="330.800" font-size="22" font-weight="400" fill="#111827">Method별</text>
+<text data-source="root.0.1.1.3" x="892.000" y="360.500" font-size="22" font-weight="400" fill="#111827">검증</text>
+<text data-source="root.0.1.1.5" x="1348.000" y="271.400" font-size="22" font-weight="400" fill="#111827">이후</text>
+<text data-source="root.0.1.1.5" x="1348.000" y="301.100" font-size="22" font-weight="400" fill="#111827">token으로</text>
+<text data-source="root.0.1.1.5" x="1348.000" y="330.800" font-size="22" font-weight="400" fill="#111827">요청할 때마다</text>
+<text data-source="root.0.1.1.5" x="1348.000" y="360.500" font-size="22" font-weight="400" fill="#111827">인가</text>
+<text data-source="root.0.1.1.7" x="128.000" y="551.000" font-size="22" font-weight="400" fill="#111827">허용된 secret path 요청</text>
+<text data-source="root.0.2" x="64.000" y="981.300" font-size="22" font-weight="400" fill="#111827">Service token과 dynamic secret은 lease 수명 관리 대상입니다. Audit Device는 대부분의 요청과 응답을 기록하고 expiration manager는 lease 만료와 폐기를 처리합니다.</text>
+</svg>
 </figure>

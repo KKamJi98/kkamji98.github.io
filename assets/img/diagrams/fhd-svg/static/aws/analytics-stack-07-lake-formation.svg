@@ -1,0 +1,51 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="409c682d2cfe4395fb3f95adfe80e90d930928a5c51c144de5c778773b724994">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="327.450" width="304.765" height="162.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="570.412" y="345.650" width="304.765" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1044.824" y="286.250" width="304.765" height="244.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1519.235" y="297.750" width="304.765" height="221.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="627.150" width="304.765" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.10" x="570.412" y="656.850" width="304.765" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 412.765 408.700 L 558.412 408.700" fill="none" stroke="#475569" stroke-width="3"><title>query 제출</title></path>
+<polygon data-arrowhead="root.0.1.1" points="558.412,408.700 548.412,414.700 548.412,402.700" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 887.176 408.700 L 1032.824 408.700" fill="none" stroke="#475569" stroke-width="3"><title>API authorization</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1032.824,408.700 1022.824,414.700 1022.824,402.700" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1361.588 408.700 L 1507.235 408.700" fill="none" stroke="#475569" stroke-width="3"><title>data authorization</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1507.235,408.700 1497.235,414.700 1497.235,402.700" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 408.700 L 1848.000 408.700 L 1848.000 579.150 L 72.000 579.150 L 72.000 719.900 L 84.000 719.900" fill="none" stroke="#475569" stroke-width="3"><title>등록된 role을 assume</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,719.900 74.000,725.900 74.000,713.900" fill="#475569"/>
+<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.1.10" d="M 412.765 719.900 L 558.412 719.900" fill="none" stroke="#475569" stroke-width="3"><title>underlying objects read</title></path>
+<polygon data-arrowhead="root.0.1.9" points="558.412,719.900 548.412,725.900 548.412,713.900" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="249.650" font-size="36" font-weight="700" fill="#111827">IAM과 Lake Formation은 같은 query에 별도 gate를 둔다</text>
+<text data-source="root.0.1.0" x="120.000" y="379.450" font-size="28" font-weight="700" fill="#111827">analytics-</text>
+<text data-source="root.0.1.0" x="120.000" y="415.850" font-size="28" font-weight="700" fill="#111827">workload-role</text>
+<text data-source="root.0.1.0" x="120.000" y="458.250" font-size="22" font-weight="400" fill="#111827">query principal</text>
+<text data-source="root.0.1.2" x="594.412" y="397.650" font-size="28" font-weight="700" fill="#111827">Amazon Athena</text>
+<text data-source="root.0.1.2" x="594.412" y="440.050" font-size="22" font-weight="400" fill="#111827">query engine</text>
+<text data-source="root.0.1.4" x="1068.824" y="338.250" font-size="28" font-weight="700" fill="#111827">IAM gate</text>
+<text data-source="root.0.1.4" x="1068.824" y="380.650" font-size="22" font-weight="400" fill="#111827">athena:*, glue:Get* on</text>
+<text data-source="root.0.1.4" x="1068.824" y="410.350" font-size="22" font-weight="400" fill="#111827">target and ancestor</text>
+<text data-source="root.0.1.4" x="1068.824" y="440.050" font-size="22" font-weight="400" fill="#111827">ARN;</text>
+<text data-source="root.0.1.4" x="1068.824" y="469.750" font-size="22" font-weight="400" fill="#111827">lakeformation:</text>
+<text data-source="root.0.1.4" x="1068.824" y="499.450" font-size="22" font-weight="400" fill="#111827">GetDataAccess</text>
+<text data-source="root.0.1.6" x="1543.235" y="349.750" font-size="28" font-weight="700" fill="#111827">Lake Formation</text>
+<text data-source="root.0.1.6" x="1543.235" y="386.150" font-size="28" font-weight="700" fill="#111827">gate</text>
+<text data-source="root.0.1.6" x="1543.235" y="428.550" font-size="22" font-weight="400" fill="#111827">database와 table에</text>
+<text data-source="root.0.1.6" x="1543.235" y="458.250" font-size="22" font-weight="400" fill="#111827">SELECT, DESCRIBE</text>
+<text data-source="root.0.1.6" x="1543.235" y="487.950" font-size="22" font-weight="400" fill="#111827">grant</text>
+<text data-source="root.0.1.8" x="120.000" y="679.150" font-size="28" font-weight="700" fill="#111827">Registered role</text>
+<text data-source="root.0.1.8" x="120.000" y="721.550" font-size="22" font-weight="400" fill="#111827">Lake Formation이 data</text>
+<text data-source="root.0.1.8" x="120.000" y="751.250" font-size="22" font-weight="400" fill="#111827">access credential을</text>
+<text data-source="root.0.1.8" x="120.000" y="780.950" font-size="22" font-weight="400" fill="#111827">vending</text>
+<text data-source="root.0.1.10" x="594.412" y="708.850" font-size="28" font-weight="700" fill="#111827">S3 Tables data</text>
+<text data-source="root.0.1.10" x="594.412" y="751.250" font-size="22" font-weight="400" fill="#111827">실제 테이블 objects</text>
+<text data-source="root.0.1.1" x="404.765" y="389.000" font-size="22" font-weight="400" fill="#111827">query 제출</text>
+<text data-source="root.0.1.3" x="879.176" y="359.300" font-size="22" font-weight="400" fill="#111827">API</text>
+<text data-source="root.0.1.3" x="879.176" y="389.000" font-size="22" font-weight="400" fill="#111827">authorization</text>
+<text data-source="root.0.1.5" x="1353.588" y="359.300" font-size="22" font-weight="400" fill="#111827">data</text>
+<text data-source="root.0.1.5" x="1353.588" y="389.000" font-size="22" font-weight="400" fill="#111827">authorization</text>
+<text data-source="root.0.1.7" x="104.000" y="571.150" font-size="22" font-weight="400" fill="#111827">등록된 role을 assume</text>
+<text data-source="root.0.1.9" x="404.765" y="670.500" font-size="22" font-weight="400" fill="#111827">underlying</text>
+<text data-source="root.0.1.9" x="404.765" y="700.200" font-size="22" font-weight="400" fill="#111827">objects read</text>
+<text data-source="root.0.2" x="64.000" y="858.650" font-size="22" font-weight="400" fill="#111827">IAM Allow만 있고 Lake Formation grant가 없으면 데이터 gate에서 AccessDenied가 반환됩니다. 두 gate가 모두 Allow여야 합니다.</text>
+</svg>

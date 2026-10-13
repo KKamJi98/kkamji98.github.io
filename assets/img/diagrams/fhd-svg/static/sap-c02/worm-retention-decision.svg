@@ -1,0 +1,59 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="bfde33a09c053d390c6e565d55965609e40607e746719e9c1123e14b8e28cf76">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3.0" x="64.000" y="384.600" width="890.000" height="438.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="966.000" y="384.600" width="890.000" height="477.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.2.0" x="978.000" y="525.900" width="427.000" height="323.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.2.1" x="1417.000" y="525.900" width="427.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0.2" x="76.000" y="525.900" width="866.000" height="124.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="384.600" width="1792.000" height="477.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1" x="64.000" y="223.600" width="1792.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="76.000" y="432.900" width="866.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.2.0" x="76.000" y="525.900" width="280.667" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.0.2.1" x="368.667" y="525.900" width="280.667" height="124.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.2.2" x="661.333" y="525.900" width="280.667" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.4" x="76.000" y="730.100" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="978.000" y="432.900" width="866.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.2.0.1.0" x="990.000" y="574.200" width="403.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1.2.0.1.2" x="990.000" y="735.200" width="403.000" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1.2.1.1.0" x="1429.000" y="574.200" width="403.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.3.0.3" data-from="root.0.3.0.2" data-to="root.0.3.0.4" d="M 509.000 662.100 L 509.000 718.100" fill="none" stroke="#475569" stroke-width="3"><title>새 버전은 별도 기록</title></path>
+<polygon data-arrowhead="root.0.3.0.3" points="509.000,718.100 503.000,708.100 515.000,708.100" fill="#475569"/>
+<path data-edge="root.0.3.1.2.0.1.1" data-from="root.0.3.1.2.0.1.0" data-to="root.0.3.1.2.0.1.2" d="M 1191.500 667.200 L 1191.500 723.200" fill="none" stroke="#475569" stroke-width="3"><title>grace 종료</title></path>
+<polygon data-arrowhead="root.0.3.1.2.0.1.1" points="1191.500,723.200 1185.500,713.200 1197.500,713.200" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 316.600 L 960.000 372.600" fill="none" stroke="#475569" stroke-width="3"><title>보존 대상 확인</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,372.600 954.000,362.600 966.000,362.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="199.000" font-size="36" font-weight="700" fill="#111827">보존 대상이 객체인지 recovery point인지가 WORM 수단을 정합니다</text>
+<text data-source="root.0.1" x="76.000" y="253.600" font-size="18" font-weight="700" fill="#111827">변경 불가 보존 요구</text>
+<text data-source="root.0.1" x="76.000" y="287.000" font-size="16" font-weight="400" fill="#111827">규제 기간과 운영자 우회 허용 여부를 먼저 결정</text>
+<text data-source="root.0.3.0.0" x="76.000" y="414.600" font-size="18" font-weight="700" fill="#111827">S3 객체 버전</text>
+<text data-source="root.0.3.0.1.0" x="88.000" y="462.900" font-size="18" font-weight="700" fill="#111827">S3 Object Lock</text>
+<text data-source="root.0.3.0.1.0" x="88.000" y="496.300" font-size="16" font-weight="400" fill="#111827">versioning이 켜진 버킷의 object version 대상</text>
+<text data-source="root.0.3.0.2.0" x="88.000" y="555.900" font-size="18" font-weight="700" fill="#111827">compliance mode</text>
+<text data-source="root.0.3.0.2.0" x="88.000" y="589.300" font-size="16" font-weight="400" fill="#111827">보존 기간 중 root도 삭제 불가,</text>
+<text data-source="root.0.3.0.2.0" x="88.000" y="610.900" font-size="16" font-weight="400" fill="#111827">모드 변경과 기간 단축 불가</text>
+<text data-source="root.0.3.0.2.1" x="380.667" y="555.900" font-size="18" font-weight="700" fill="#111827">governance mode</text>
+<text data-source="root.0.3.0.2.1" x="380.667" y="589.300" font-size="16" font-weight="400" fill="#111827">s3:</text>
+<text data-source="root.0.3.0.2.1" x="380.667" y="610.900" font-size="16" font-weight="400" fill="#111827">BypassGovernanceRetention과</text>
+<text data-source="root.0.3.0.2.1" x="380.667" y="632.500" font-size="16" font-weight="400" fill="#111827">요청 header 필요</text>
+<text data-source="root.0.3.0.2.2" x="673.333" y="555.900" font-size="18" font-weight="700" fill="#111827">legal hold</text>
+<text data-source="root.0.3.0.2.2" x="673.333" y="589.300" font-size="16" font-weight="400" fill="#111827">만료일 없이 별도 해제까지 유지</text>
+<text data-source="root.0.3.0.4" x="88.000" y="760.100" font-size="18" font-weight="700" fill="#111827">새 버전과 delete marker</text>
+<text data-source="root.0.3.0.4" x="88.000" y="793.500" font-size="16" font-weight="400" fill="#111827">version ID 없는 DELETE는 delete marker를 남길 수 있음</text>
+<text data-source="root.0.3.0.3" x="529.000" y="695.300" font-size="16" font-weight="400" fill="#111827">새 버전은 별도 기록</text>
+<text data-source="root.0.3.1.0" x="978.000" y="414.600" font-size="18" font-weight="700" fill="#111827">AWS Backup recovery point</text>
+<text data-source="root.0.3.1.1.0" x="990.000" y="462.900" font-size="18" font-weight="700" fill="#111827">Backup Vault Lock</text>
+<text data-source="root.0.3.1.1.0" x="990.000" y="496.300" font-size="16" font-weight="400" fill="#111827">vault의 recovery point 대상</text>
+<text data-source="root.0.3.1.2.0.0" x="990.000" y="555.900" font-size="18" font-weight="700" fill="#111827">compliance mode</text>
+<text data-source="root.0.3.1.2.0.1.0" x="1002.000" y="604.200" font-size="18" font-weight="700" fill="#111827">grace time</text>
+<text data-source="root.0.3.1.2.0.1.0" x="1002.000" y="637.600" font-size="16" font-weight="400" fill="#111827">ChangeableForDays 지정, 최소 3일</text>
+<text data-source="root.0.3.1.2.0.1.2" x="1002.000" y="765.200" font-size="18" font-weight="700" fill="#111827">되돌릴 수 없는 구간</text>
+<text data-source="root.0.3.1.2.0.1.2" x="1002.000" y="798.600" font-size="16" font-weight="400" fill="#111827">lock 변경 불가, recovery point는 보존 기간 전에</text>
+<text data-source="root.0.3.1.2.0.1.2" x="1002.000" y="820.200" font-size="16" font-weight="400" fill="#111827">변경 및 삭제 불가</text>
+<text data-source="root.0.3.1.2.0.1.1" x="1211.500" y="700.400" font-size="16" font-weight="400" fill="#111827">grace 종료</text>
+<text data-source="root.0.3.1.2.1.0" x="1429.000" y="555.900" font-size="18" font-weight="700" fill="#111827">governance mode</text>
+<text data-source="root.0.3.1.2.1.1.0" x="1441.000" y="604.200" font-size="18" font-weight="700" fill="#111827">ChangeableForDays 생략</text>
+<text data-source="root.0.3.1.2.1.1.0" x="1441.000" y="637.600" font-size="16" font-weight="400" fill="#111827">IAM 권한자가 lock을 제거할 수 있음</text>
+<text data-source="root.0.4" x="64.000" y="889.800" font-size="16" font-weight="400" fill="#111827">S3 객체의 WORM은 Object Lock, AWS Backup 사본의 조기 삭제 방지는 Vault Lock입니다. grace time 뒤 immutable 상태가 되는 것은 Backup Vault Lock의 compliance mode입니다. S3 compliance는 설정된 보존 기간 동안 적용되며, legal</text>
+<text data-source="root.0.4" x="64.000" y="911.400" font-size="16" font-weight="400" fill="#111827">hold는 그 기간과 독립입니다.</text>
+<text data-source="root.0.2" x="980.000" y="349.800" font-size="16" font-weight="400" fill="#111827">보존 대상 확인</text>
+</svg>

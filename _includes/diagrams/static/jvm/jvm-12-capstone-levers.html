@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="jvm-12-capstone-levers" aria-labelledby="sd-title-jvm-12-capstone-levers">
-  <figcaption class="sd-title" id="sd-title-jvm-12-capstone-levers">누수가 아닐 때 관찰 원인과 조정 수단</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="jvm-12-capstone-levers" aria-labelledby="sd-title-jvm-12-capstone-levers" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-jvm-12-capstone-levers">누수가 아닐 때 관찰 원인과 조정 수단</figcaption><div class="sd-semantic-source">
 
   <div class="sd-grid">
     <section class="sd-lane">
@@ -45,4 +45,45 @@
   </div>
 
   <p class="sd-note">구체적인 수치는 workload별 baseline과 before-after 측정으로 결정합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="81c996cdc8da9cd4562eff91948cd519c7a787b3d7eaa8b8acc2c1996a5701a6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="281.700" width="884.000" height="481.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="281.700" width="884.000" height="535.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="88.000" y="367.500" width="406.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="518.000" y="367.500" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="88.000" y="583.700" width="406.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="996.000" y="367.500" width="406.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="1426.000" y="367.500" width="406.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="996.000" y="547.300" width="406.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.3" x="1426.000" y="547.300" width="406.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="245.100" font-size="36" font-weight="700" fill="#111827">누수가 아닐 때 관찰 원인과 조정 수단</text>
+<text data-source="root.0.1.0.0" x="88.000" y="333.700" font-size="28" font-weight="700" fill="#111827">관찰된 원인 (누수 아님)</text>
+<text data-source="root.0.1.0.1.0" x="112.000" y="419.500" font-size="28" font-weight="700" fill="#111827">JDK 업그레이드와 adaptive</text>
+<text data-source="root.0.1.0.1.0" x="112.000" y="455.900" font-size="28" font-weight="700" fill="#111827">IHOP</text>
+<text data-source="root.0.1.0.1.0" x="112.000" y="498.300" font-size="22" font-weight="400" fill="#111827">같은 workload에서도 Old baseline이</text>
+<text data-source="root.0.1.0.1.0" x="112.000" y="528.000" font-size="22" font-weight="400" fill="#111827">달라짐</text>
+<text data-source="root.0.1.0.1.1" x="542.000" y="419.500" font-size="28" font-weight="700" fill="#111827">G1의 점진 회수</text>
+<text data-source="root.0.1.0.1.1" x="542.000" y="461.900" font-size="22" font-weight="400" fill="#111827">IHOP 전까지 Old를 높게 유지하는 설계</text>
+<text data-source="root.0.1.0.1.2" x="112.000" y="635.700" font-size="28" font-weight="700" fill="#111827">off-heap은 -Xmx 바깥</text>
+<text data-source="root.0.1.0.1.2" x="112.000" y="678.100" font-size="22" font-weight="400" fill="#111827">Netty direct memory는 Heap 지표에</text>
+<text data-source="root.0.1.0.1.2" x="112.000" y="707.800" font-size="22" font-weight="400" fill="#111827">드러나지 않음</text>
+<text data-source="root.0.1.1.0" x="996.000" y="333.700" font-size="28" font-weight="700" fill="#111827">처방 (levers)</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="419.500" font-size="28" font-weight="700" fill="#111827">MaxNewSize</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="461.900" font-size="22" font-weight="400" fill="#111827">Young 상한으로 Old 증가와</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="491.600" font-size="22" font-weight="400" fill="#111827">promotion을 관리</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="419.500" font-size="28" font-weight="700" fill="#111827">IHOP 하향</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="461.900" font-size="22" font-weight="400" fill="#111827">Mixed GC를 일찍 시작해 Old 회수를</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="491.600" font-size="22" font-weight="400" fill="#111827">앞당김</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="599.300" font-size="28" font-weight="700" fill="#111827">MaxDirectMemorySize 명시</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="641.700" font-size="22" font-weight="400" fill="#111827">Direct memory 사용량을 코드 밖에서</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="671.400" font-size="22" font-weight="400" fill="#111827">제한</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="599.300" font-size="28" font-weight="700" fill="#111827">Container memory &gt;= Heap</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="635.700" font-size="28" font-weight="700" fill="#111827">+ off-heap</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="678.100" font-size="22" font-weight="400" fill="#111827">buildpack 계산과 실제 RSS를 함께</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="707.800" font-size="22" font-weight="400" fill="#111827">비교</text>
+<text data-source="root.0.1.1.2" x="996.000" y="785.500" font-size="22" font-weight="400" fill="#111827">각 lever는 원인과 측정 결과에 따라 선택합니다.</text>
+<text data-source="root.0.2" x="64.000" y="863.200" font-size="22" font-weight="400" fill="#111827">구체적인 수치는 workload별 baseline과 before-after 측정으로 결정합니다.</text>
+</svg>
 </figure>

@@ -1,0 +1,31 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="22190417b57d1784afb227f1b07377dfcc57595c7c792d066773b403b11386c7">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="250.400" width="1792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0" x="64.000" y="473.000" width="584.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="668.000" y="473.000" width="584.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.2" x="1272.000" y="473.000" width="584.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.4" x="64.000" y="695.600" width="1792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.1" x="84.000" y="322.800" width="1752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1" x="84.000" y="545.400" width="544.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1.1" x="688.000" y="545.400" width="544.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.2.1" x="1292.000" y="545.400" width="544.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.4.1" x="84.000" y="768.000" width="1752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="170.800" font-size="36" font-weight="700" fill="#111827">iptables rule 수가 늘면 latency, update 시간과 CPU overhead가 함께 커진다</text>
+<text data-source="root.0.1" x="64.000" y="223.400" font-size="20" font-weight="400" fill="#111827">Test cluster는 3,800 nodes와 19,000 pods이고 node당 약 24,000 rules를 유지하는 measured example입니다.</text>
+<text data-source="root.0.2.0" x="84.000" y="294.400" font-size="24" font-weight="700" fill="#111827">Measured test cluster</text>
+<text data-source="root.0.2.1" x="104.000" y="366.800" font-size="24" font-weight="700" fill="#111827">3,800 nodes, 19,000 pods</text>
+<text data-source="root.0.2.1" x="104.000" y="406.000" font-size="20" font-weight="400" fill="#111827">각 node에 약 24,000개의 iptables rules가 존재합니다.</text>
+<text data-source="root.0.3.0.0" x="84.000" y="517.000" font-size="24" font-weight="700" fill="#111827">Connection setup</text>
+<text data-source="root.0.3.0.1" x="104.000" y="589.400" font-size="24" font-weight="700" fill="#111827">+1.2 ms network latency</text>
+<text data-source="root.0.3.0.1" x="104.000" y="628.600" font-size="20" font-weight="400" fill="#111827">연결을 설정할 때 추가된 latency입니다.</text>
+<text data-source="root.0.3.1.0" x="688.000" y="517.000" font-size="24" font-weight="700" fill="#111827">Rule update</text>
+<text data-source="root.0.3.1.1" x="708.000" y="589.400" font-size="24" font-weight="700" fill="#111827">5분 초과</text>
+<text data-source="root.0.3.1.1" x="708.000" y="628.600" font-size="20" font-weight="400" fill="#111827">cluster iptables rules를 갱신하는 데 걸린 시간입니다.</text>
+<text data-source="root.0.3.2.0" x="1292.000" y="517.000" font-size="24" font-weight="700" fill="#111827">CPU overhead</text>
+<text data-source="root.0.3.2.1" x="1312.000" y="589.400" font-size="24" font-weight="700" fill="#111827">53% 초과</text>
+<text data-source="root.0.3.2.1" x="1312.000" y="628.600" font-size="20" font-weight="400" fill="#111827">rule 처리로 추가된 CPU overhead입니다.</text>
+<text data-source="root.0.4.0" x="84.000" y="739.600" font-size="24" font-weight="700" fill="#111827">Why the path becomes expensive</text>
+<text data-source="root.0.4.1" x="104.000" y="812.000" font-size="24" font-weight="700" fill="#111827">iptables chain traversal와 update churn</text>
+<text data-source="root.0.4.1" x="104.000" y="851.200" font-size="20" font-weight="400" fill="#111827">FORWARD, POSTROUTING, mangle, nat 같은 chain이 rule 수만큼 lookup과 갱신 작업을 늘립니다.</text>
+<text data-source="root.0.5" x="64.000" y="938.200" font-size="20" font-weight="400" fill="#111827">같은 city와 ISP 안의 cloud gaming end-to-end RTT가 15 ms인 상황에서는 이 측정 overhead가 허용하기 어렵다는 비교가 붙습니다.</text>
+</svg>

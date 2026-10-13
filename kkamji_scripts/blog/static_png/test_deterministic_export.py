@@ -18,7 +18,7 @@ class ExportTests(unittest.TestCase):
                 return subprocess.run(cmd+list(extra), capture_output=True, text=True, timeout=60)
             result = run()
             self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
-            png = d/'out/fixture-625-light.png'
+            png = d/'out/fixture-1920x1080-light.png'
             mobile = d/'out/fixture-360-light.png'
             before = (png.read_bytes(), mobile.read_bytes())
             result = run()

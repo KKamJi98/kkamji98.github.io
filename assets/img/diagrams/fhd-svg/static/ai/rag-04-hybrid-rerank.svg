@@ -1,0 +1,69 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="158420087f7d8a6132dadbe9003dd36a52d1b3cb475d9c9038a53bc1b2fcb591">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="64.000" y="462.100" width="200.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1" x="350.000" y="237.250" width="280.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1" x="350.000" y="657.250" width="280.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5" x="720.000" y="447.250" width="230.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.7" x="1040.000" y="447.250" width="250.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.9" x="1380.000" y="447.250" width="200.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.11" x="1670.000" y="429.050" width="210.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.dense" data-from="root.0.1.0" data-to="root.0.3.0.1" d="M 276.000 540.000 L 310.000 540.000 L 310.000 330.000 L 338.000 330.000" fill="none" stroke="#475569" stroke-width="3"><title>Dense 검색</title></path>
+<polygon data-arrowhead="root.0.2.dense" points="338.000,330.000 328.000,336.000 328.000,324.000" fill="#475569"/>
+<path data-edge="root.0.2.sparse" data-from="root.0.1.0" data-to="root.0.3.1.1" d="M 276.000 540.000 L 310.000 540.000 L 310.000 750.000 L 338.000 750.000" fill="none" stroke="#475569" stroke-width="3"><title>BM25 검색</title></path>
+<polygon data-arrowhead="root.0.2.sparse" points="338.000,750.000 328.000,756.000 328.000,744.000" fill="#475569"/>
+<path data-edge="root.0.4.dense" data-from="root.0.3.0.1" data-to="root.0.5" d="M 642.000 330.000 L 685.000 330.000 L 685.000 540.000 L 708.000 540.000" fill="none" stroke="#475569" stroke-width="3"><title>순위 결합</title></path>
+<polygon data-arrowhead="root.0.4.dense" points="708.000,540.000 698.000,546.000 698.000,534.000" fill="#475569"/>
+<path data-edge="root.0.4.sparse" data-from="root.0.3.1.1" data-to="root.0.5" d="M 642.000 750.000 L 685.000 750.000 L 685.000 540.000 L 708.000 540.000" fill="none" stroke="#475569" stroke-width="3"><title>순위 결합</title></path>
+<polygon data-arrowhead="root.0.4.sparse" points="708.000,540.000 698.000,546.000 698.000,534.000" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.5" data-to="root.0.7" d="M 962.000 540.000 L 1028.000 540.000" fill="none" stroke="#475569" stroke-width="3"><title>융합 후보</title></path>
+<polygon data-arrowhead="root.0.6" points="1028.000,540.000 1018.000,546.000 1018.000,534.000" fill="#475569"/>
+<path data-edge="root.0.8" data-from="root.0.7" data-to="root.0.9" d="M 1302.000 540.000 L 1368.000 540.000" fill="none" stroke="#475569" stroke-width="3"><title>재채점 순위</title></path>
+<polygon data-arrowhead="root.0.8" points="1368.000,540.000 1358.000,546.000 1358.000,534.000" fill="#475569"/>
+<path data-edge="root.0.10" data-from="root.0.9" data-to="root.0.11" d="M 1592.000 540.000 L 1658.000 540.000" fill="none" stroke="#475569" stroke-width="3"><title>context 전달</title></path>
+<polygon data-arrowhead="root.0.10" points="1658.000,540.000 1648.000,546.000 1648.000,534.000" fill="#475569"/>
+<text data-source="root.0.1.0" x="88.000" y="514.100" font-size="28" font-weight="700" fill="#111827">User query</text>
+<text data-source="root.0.1.0" x="88.000" y="556.500" font-size="22" font-weight="400" fill="#111827">하나의 질문을 두</text>
+<text data-source="root.0.1.0" x="88.000" y="586.200" font-size="22" font-weight="400" fill="#111827">검색기로 보냄</text>
+<text data-source="root.0.3.0.1" x="374.000" y="289.250" font-size="28" font-weight="700" fill="#111827">Dense retrieval</text>
+<text data-source="root.0.3.0.1" x="374.000" y="331.650" font-size="22" font-weight="400" fill="#111827">vector similarity로</text>
+<text data-source="root.0.3.0.1" x="374.000" y="361.350" font-size="22" font-weight="400" fill="#111827">paraphrase를 찾고</text>
+<text data-source="root.0.3.0.1" x="374.000" y="391.050" font-size="22" font-weight="400" fill="#111827">의도적으로 over-retrieve</text>
+<text data-source="root.0.3.1.1" x="374.000" y="709.250" font-size="28" font-weight="700" fill="#111827">Sparse retrieval</text>
+<text data-source="root.0.3.1.1" x="374.000" y="751.650" font-size="22" font-weight="400" fill="#111827">BM25 lexical match로</text>
+<text data-source="root.0.3.1.1" x="374.000" y="781.350" font-size="22" font-weight="400" fill="#111827">exact term을 찾고</text>
+<text data-source="root.0.3.1.1" x="374.000" y="811.050" font-size="22" font-weight="400" fill="#111827">의도적으로 over-retrieve</text>
+<text data-source="root.0.5" x="744.000" y="499.250" font-size="28" font-weight="700" fill="#111827">RRF fusion</text>
+<text data-source="root.0.5" x="744.000" y="541.650" font-size="22" font-weight="400" fill="#111827">reciprocal rank</text>
+<text data-source="root.0.5" x="744.000" y="571.350" font-size="22" font-weight="400" fill="#111827">fusion으로 하나의</text>
+<text data-source="root.0.5" x="744.000" y="601.050" font-size="22" font-weight="400" fill="#111827">후보 순위를 만듦</text>
+<text data-source="root.0.7" x="1064.000" y="499.250" font-size="28" font-weight="700" fill="#111827">Reranking</text>
+<text data-source="root.0.7" x="1064.000" y="541.650" font-size="22" font-weight="400" fill="#111827">shortlist만</text>
+<text data-source="root.0.7" x="1064.000" y="571.350" font-size="22" font-weight="400" fill="#111827">cross-encoder로</text>
+<text data-source="root.0.7" x="1064.000" y="601.050" font-size="22" font-weight="400" fill="#111827">함께 읽고 재채점</text>
+<text data-source="root.0.9" x="1404.000" y="499.250" font-size="28" font-weight="700" fill="#111827">Top-N</text>
+<text data-source="root.0.9" x="1404.000" y="541.650" font-size="22" font-weight="400" fill="#111827">model</text>
+<text data-source="root.0.9" x="1404.000" y="571.350" font-size="22" font-weight="400" fill="#111827">context에</text>
+<text data-source="root.0.9" x="1404.000" y="601.050" font-size="22" font-weight="400" fill="#111827">실제로 넣을 후보</text>
+<text data-source="root.0.11" x="1694.000" y="481.050" font-size="28" font-weight="700" fill="#111827">LLM</text>
+<text data-source="root.0.11" x="1694.000" y="517.450" font-size="28" font-weight="700" fill="#111827">generation</text>
+<text data-source="root.0.11" x="1694.000" y="559.850" font-size="22" font-weight="400" fill="#111827">선별된 context로</text>
+<text data-source="root.0.11" x="1694.000" y="589.550" font-size="22" font-weight="400" fill="#111827">grounded</text>
+<text data-source="root.0.11" x="1694.000" y="619.250" font-size="22" font-weight="400" fill="#111827">answer를 생성</text>
+<text data-source="root.0.0" x="64.000" y="100.000" font-size="36" font-weight="700" fill="#111827">Hybrid retrieval과 reranking의 다단계 흐름</text>
+<text data-source="root.0.3.0.0" x="350.000" y="188.000" font-size="28" font-weight="700" fill="#111827">Dense branch</text>
+<text data-source="root.0.3.1.0" x="350.000" y="618.000" font-size="28" font-weight="700" fill="#111827">Sparse branch</text>
+<text data-source="root.0.12" x="64.000" y="992.000" font-size="22" font-weight="400" fill="#111827">Dense와 sparse의 raw score는 서로 다른 척도이므로 RRF는 score가 아니라 rank를 합칩니다.</text>
+<text data-source="root.0.2" x="64.000" y="312.000" font-size="22" font-weight="400" fill="#111827">dense와 sparse로 병렬</text>
+<text data-source="root.0.2" x="64.000" y="341.700" font-size="22" font-weight="400" fill="#111827">over-retrieve</text>
+<text data-source="root.0.4" x="720.000" y="782.000" font-size="22" font-weight="400" fill="#111827">두 ranking을 순위만으로 결합</text>
+<text data-source="root.0.2.dense.meaning" x="190.000" y="278.000" font-size="18" font-weight="400" fill="#111827">Dense 검색</text>
+<text data-source="root.0.2.sparse.meaning" x="190.000" y="718.000" font-size="18" font-weight="400" fill="#111827">BM25 검색</text>
+<text data-source="root.0.4.dense.meaning" x="645.000" y="243.000" font-size="18" font-weight="400" fill="#111827">순위 결합</text>
+<text data-source="root.0.4.sparse.meaning" x="645.000" y="848.000" font-size="18" font-weight="400" fill="#111827">순위 결합</text>
+<text data-source="root.0.6.meaning" x="962.000" y="448.000" font-size="18" font-weight="400" fill="#111827">융합</text>
+<text data-source="root.0.6.meaning" x="962.000" y="472.300" font-size="18" font-weight="400" fill="#111827">후보</text>
+<text data-source="root.0.8.meaning" x="1302.000" y="448.000" font-size="18" font-weight="400" fill="#111827">재채점</text>
+<text data-source="root.0.8.meaning" x="1302.000" y="472.300" font-size="18" font-weight="400" fill="#111827">순위</text>
+<text data-source="root.0.10.meaning" x="1592.000" y="448.000" font-size="18" font-weight="400" fill="#111827">context</text>
+<text data-source="root.0.10.meaning" x="1592.000" y="472.300" font-size="18" font-weight="400" fill="#111827">전달</text>
+</svg>

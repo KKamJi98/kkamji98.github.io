@@ -1,0 +1,53 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7eb5d45485284b3fa6c37dc5d12c754b8a70d207e29655145c3286acf4ef0ba6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="398.450" width="786.766" height="302.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1037.234" y="224.650" width="786.766" height="649.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="152.000" y="484.250" width="265.383" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="561.383" y="502.450" width="265.383" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1093.234" y="310.450" width="265.383" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1502.617" y="310.450" width="265.383" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.4" x="1093.234" y="628.350" width="265.383" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 429.383 580.350 L 549.383 580.350" fill="none" stroke="#475569" stroke-width="3"><title>seed job이 DSL 실행</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="549.383,580.350 539.383,586.350 539.383,574.350" fill="#475569"/>
+<path data-edge="root.0.1.2.1.1" data-from="root.0.1.2.1.0" data-to="root.0.1.2.1.2" d="M 1370.617 421.400 L 1490.617 421.400" fill="none" stroke="#475569" stroke-width="3"><title>branch indexing 후 checkout</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1" points="1490.617,421.400 1480.617,427.400 1480.617,415.400" fill="#475569"/>
+<path data-edge="root.0.1.2.1.3" data-from="root.0.1.2.1.2" data-to="root.0.1.2.1.4" d="M 1780.000 421.400 L 1792.000 421.400 L 1792.000 580.350 L 1069.234 580.350 L 1069.234 739.300 L 1081.234 739.300" fill="none" stroke="#475569" stroke-width="3"><title>@Library 로드</title></path>
+<polygon data-arrowhead="root.0.1.2.1.3" points="1081.234,739.300 1071.234,745.300 1071.234,733.300" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 894.766 549.450 L 1025.234 549.450" fill="none" stroke="#475569" stroke-width="3"><title>Multibranch Pipeline job 생성</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1025.234,549.450 1015.234,555.450 1015.234,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="188.050" font-size="36" font-weight="700" fill="#111827">Pipeline 정의가 세 Repository와 하나의 Jenkins로 이어지는 구조</text>
+<text data-source="root.0.1.0.0" x="120.000" y="450.450" font-size="28" font-weight="700" fill="#111827">1. Jenkins item 생성</text>
+<text data-source="root.0.1.0.1.0" x="176.000" y="536.250" font-size="28" font-weight="700" fill="#111827">Central</text>
+<text data-source="root.0.1.0.1.0" x="176.000" y="572.650" font-size="28" font-weight="700" fill="#111827">repository</text>
+<text data-source="root.0.1.0.1.0" x="176.000" y="615.050" font-size="22" font-weight="400" fill="#111827">서비스별 Job DSL</text>
+<text data-source="root.0.1.0.1.0" x="176.000" y="644.750" font-size="22" font-weight="400" fill="#111827">script를 보관</text>
+<text data-source="root.0.1.0.1.2" x="585.383" y="554.450" font-size="28" font-weight="700" fill="#111827">Seed job</text>
+<text data-source="root.0.1.0.1.2" x="585.383" y="596.850" font-size="22" font-weight="400" fill="#111827">Multibranch item을</text>
+<text data-source="root.0.1.0.1.2" x="585.383" y="626.550" font-size="22" font-weight="400" fill="#111827">생성하거나 갱신</text>
+<text data-source="root.0.1.0.1.1" x="421.383" y="530.950" font-size="22" font-weight="400" fill="#111827">seed job이</text>
+<text data-source="root.0.1.0.1.1" x="421.383" y="560.650" font-size="22" font-weight="400" fill="#111827">DSL 실행</text>
+<text data-source="root.0.1.2.0" x="1061.234" y="276.650" font-size="28" font-weight="700" fill="#111827">2. Branch별 Pipeline 실행</text>
+<text data-source="root.0.1.2.1.0" x="1117.234" y="362.450" font-size="28" font-weight="700" fill="#111827">Multibranch</text>
+<text data-source="root.0.1.2.1.0" x="1117.234" y="398.850" font-size="28" font-weight="700" fill="#111827">Pipeline job</text>
+<text data-source="root.0.1.2.1.0" x="1117.234" y="441.250" font-size="22" font-weight="400" fill="#111827">branch와 pull</text>
+<text data-source="root.0.1.2.1.0" x="1117.234" y="470.950" font-size="22" font-weight="400" fill="#111827">request마다 하위</text>
+<text data-source="root.0.1.2.1.0" x="1117.234" y="500.650" font-size="22" font-weight="400" fill="#111827">job 생성</text>
+<text data-source="root.0.1.2.1.2" x="1526.617" y="362.450" font-size="28" font-weight="700" fill="#111827">Service</text>
+<text data-source="root.0.1.2.1.2" x="1526.617" y="398.850" font-size="28" font-weight="700" fill="#111827">repository</text>
+<text data-source="root.0.1.2.1.2" x="1526.617" y="441.250" font-size="22" font-weight="400" fill="#111827">코드와 함께</text>
+<text data-source="root.0.1.2.1.2" x="1526.617" y="470.950" font-size="22" font-weight="400" fill="#111827">versioned</text>
+<text data-source="root.0.1.2.1.2" x="1526.617" y="500.650" font-size="22" font-weight="400" fill="#111827">Jenkinsfile 보관</text>
+<text data-source="root.0.1.2.1.4" x="1117.234" y="680.350" font-size="28" font-weight="700" fill="#111827">Shared library</text>
+<text data-source="root.0.1.2.1.4" x="1117.234" y="716.750" font-size="28" font-weight="700" fill="#111827">repository</text>
+<text data-source="root.0.1.2.1.4" x="1117.234" y="759.150" font-size="22" font-weight="400" fill="#111827">vars/, src/,</text>
+<text data-source="root.0.1.2.1.4" x="1117.234" y="788.850" font-size="22" font-weight="400" fill="#111827">resources/의 공통</text>
+<text data-source="root.0.1.2.1.4" x="1117.234" y="818.550" font-size="22" font-weight="400" fill="#111827">코드</text>
+<text data-source="root.0.1.2.1.1" x="1362.617" y="342.300" font-size="22" font-weight="400" fill="#111827">branch</text>
+<text data-source="root.0.1.2.1.1" x="1362.617" y="372.000" font-size="22" font-weight="400" fill="#111827">indexing 후</text>
+<text data-source="root.0.1.2.1.1" x="1362.617" y="401.700" font-size="22" font-weight="400" fill="#111827">checkout</text>
+<text data-source="root.0.1.2.1.3" x="1101.234" y="572.350" font-size="22" font-weight="400" fill="#111827">@Library 로드</text>
+<text data-source="root.0.1.1" x="886.766" y="470.350" font-size="22" font-weight="400" fill="#111827">Multibranch</text>
+<text data-source="root.0.1.1" x="886.766" y="500.050" font-size="22" font-weight="400" fill="#111827">Pipeline job</text>
+<text data-source="root.0.1.1" x="886.766" y="529.750" font-size="22" font-weight="400" fill="#111827">생성</text>
+<text data-source="root.0.2" x="64.000" y="920.250" font-size="22" font-weight="400" fill="#111827">잡 생성은 중앙 Job DSL이 담당하고, 실행할 Pipeline은 Service repository의 Jenkinsfile이 정의합니다. 공통 단계는 Shared Library에서 재사용합니다.</text>
+</svg>

@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="sd-sap-c02-s3-lifecycle-waterfall" aria-labelledby="sd-title-s3-lifecycle-waterfall">
-  <figcaption class="sd-title" id="sd-title-s3-lifecycle-waterfall">S3 lifecycle 전환은 단방향이고 복원은 별도 경로입니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="sd-sap-c02-s3-lifecycle-waterfall" aria-labelledby="sd-title-s3-lifecycle-waterfall" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-s3-lifecycle-waterfall">S3 lifecycle 전환은 단방향이고 복원은 별도 경로입니다</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane" aria-label="lifecycle 전환 사슬">
       <div class="sd-lane-title">lifecycle 전환 사슬</div>
@@ -56,4 +56,76 @@
     </section>
   </div>
   <p class="sd-note">연속 전환은 각 클래스의 최소 저장 기간을 누적해 평가합니다. Deep Archive의 복귀는 restore 후 copy로만 만들 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cc3b7b0569baa7893fe8f0938bf09ffe7a6f83212d1fa9c4f68c41a7a0eea073">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="138.300" width="884.000" height="822.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="138.300" width="884.000" height="553.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="224.100" width="314.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="238.950" width="314.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="120.000" y="479.250" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.6" x="578.000" y="475.900" width="314.000" height="162.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.8" x="120.000" y="739.400" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.10" x="578.000" y="754.250" width="314.000" height="162.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="224.100" width="294.000" height="192.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1506.000" y="224.100" width="294.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1028.000" y="512.300" width="294.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 302.000 L 566.000 302.000" fill="none" stroke="#475569" stroke-width="3"><title>규칙 적용</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,302.000 556.000,308.000 556.000,296.000" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 904.000 302.000 L 916.000 302.000 L 916.000 427.900 L 96.000 427.900 L 96.000 557.150 L 108.000 557.150" fill="none" stroke="#475569" stroke-width="3"><title>30일 조건</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="108.000,557.150 98.000,563.150 98.000,551.150" fill="#475569"/>
+<path data-edge="root.0.1.0.1.5" data-from="root.0.1.0.1.4" data-to="root.0.1.0.1.6" d="M 446.000 557.150 L 566.000 557.150" fill="none" stroke="#475569" stroke-width="3"><title>90일 조건</title></path>
+<polygon data-arrowhead="root.0.1.0.1.5" points="566.000,557.150 556.000,563.150 556.000,551.150" fill="#475569"/>
+<path data-edge="root.0.1.0.1.7" data-from="root.0.1.0.1.6" data-to="root.0.1.0.1.8" d="M 904.000 557.150 L 916.000 557.150 L 916.000 686.400 L 96.000 686.400 L 96.000 835.500 L 108.000 835.500" fill="none" stroke="#475569" stroke-width="3"><title>다음 lifecycle 전환</title></path>
+<polygon data-arrowhead="root.0.1.0.1.7" points="108.000,835.500 98.000,841.500 98.000,829.500" fill="#475569"/>
+<path data-edge="root.0.1.0.1.9" data-from="root.0.1.0.1.8" data-to="root.0.1.0.1.10" d="M 446.000 835.500 L 566.000 835.500" fill="none" stroke="#475569" stroke-width="3"><title>Deep Archive 전환만 가능</title></path>
+<polygon data-arrowhead="root.0.1.0.1.9" points="566.000,835.500 556.000,841.500 556.000,829.500" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1334.000 320.200 L 1494.000 320.200" fill="none" stroke="#475569" stroke-width="3"><title>RestoreObject</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1494.000,320.200 1484.000,326.200 1484.000,314.200" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1812.000 320.200 L 1824.000 320.200 L 1824.000 464.300 L 1004.000 464.300 L 1004.000 590.200 L 1016.000 590.200" fill="none" stroke="#475569" stroke-width="3"><title>대상 클래스 지정</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1016.000,590.200 1006.000,596.200 1006.000,584.200" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="101.700" font-size="36" font-weight="700" fill="#111827">S3 lifecycle 전환은 단방향이고 복원은 별도 경로입니다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="190.300" font-size="28" font-weight="700" fill="#111827">lifecycle 전환 사슬</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="276.100" font-size="28" font-weight="700" fill="#111827">lifecycle 규칙</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="318.500" font-size="22" font-weight="400" fill="#111827">128 KB 미만은 size filter</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="348.200" font-size="22" font-weight="400" fill="#111827">없이는 전환되지 않음</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="290.950" font-size="28" font-weight="700" fill="#111827">S3 Standard</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="333.350" font-size="22" font-weight="400" fill="#111827">최소 저장 기간 없음</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="531.250" font-size="28" font-weight="700" fill="#111827">Standard-IA</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="573.650" font-size="22" font-weight="400" fill="#111827">최소 30일, 최소 과금 128</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="603.350" font-size="22" font-weight="400" fill="#111827">KB</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="527.900" font-size="28" font-weight="700" fill="#111827">Glacier Instant</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="564.300" font-size="28" font-weight="700" fill="#111827">Retrieval</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="606.700" font-size="22" font-weight="400" fill="#111827">최소 90일, 밀리초 액세스</text>
+<text data-source="root.0.1.0.1.8" x="144.000" y="791.400" font-size="28" font-weight="700" fill="#111827">Glacier Flexible</text>
+<text data-source="root.0.1.0.1.8" x="144.000" y="827.800" font-size="28" font-weight="700" fill="#111827">Retrieval</text>
+<text data-source="root.0.1.0.1.8" x="144.000" y="870.200" font-size="22" font-weight="400" fill="#111827">최소 90일, archive</text>
+<text data-source="root.0.1.0.1.8" x="144.000" y="899.900" font-size="22" font-weight="400" fill="#111827">read에는 restore 필요</text>
+<text data-source="root.0.1.0.1.10" x="602.000" y="806.250" font-size="28" font-weight="700" fill="#111827">Glacier Deep</text>
+<text data-source="root.0.1.0.1.10" x="602.000" y="842.650" font-size="28" font-weight="700" fill="#111827">Archive</text>
+<text data-source="root.0.1.0.1.10" x="602.000" y="885.050" font-size="22" font-weight="400" fill="#111827">최소 180일, lifecycle 종점</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="282.300" font-size="22" font-weight="400" fill="#111827">규칙 적용</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="419.900" font-size="22" font-weight="400" fill="#111827">30일 조건</text>
+<text data-source="root.0.1.0.1.5" x="438.000" y="537.450" font-size="22" font-weight="400" fill="#111827">90일 조건</text>
+<text data-source="root.0.1.0.1.7" x="128.000" y="678.400" font-size="22" font-weight="400" fill="#111827">다음 lifecycle 전환</text>
+<text data-source="root.0.1.0.1.9" x="438.000" y="756.400" font-size="22" font-weight="400" fill="#111827">Deep</text>
+<text data-source="root.0.1.0.1.9" x="438.000" y="786.100" font-size="22" font-weight="400" fill="#111827">Archive</text>
+<text data-source="root.0.1.0.1.9" x="438.000" y="815.800" font-size="22" font-weight="400" fill="#111827">전환만 가능</text>
+<text data-source="root.0.1.1.0" x="996.000" y="190.300" font-size="28" font-weight="700" fill="#111827">상위 클래스로 복원</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="276.100" font-size="28" font-weight="700" fill="#111827">Glacier Deep</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="312.500" font-size="28" font-weight="700" fill="#111827">Archive 객체</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="354.900" font-size="22" font-weight="400" fill="#111827">lifecycle 규칙으로</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="384.600" font-size="22" font-weight="400" fill="#111827">빠져나갈 수 없음</text>
+<text data-source="root.0.1.1.1.2" x="1530.000" y="276.100" font-size="28" font-weight="700" fill="#111827">복원된 객체를</text>
+<text data-source="root.0.1.1.1.2" x="1530.000" y="312.500" font-size="28" font-weight="700" fill="#111827">copy</text>
+<text data-source="root.0.1.1.1.2" x="1530.000" y="354.900" font-size="22" font-weight="400" fill="#111827">상위 클래스로 덮어쓰는</text>
+<text data-source="root.0.1.1.1.2" x="1530.000" y="384.600" font-size="22" font-weight="400" fill="#111827">별도 작업</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="564.300" font-size="28" font-weight="700" fill="#111827">S3 Standard</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="606.700" font-size="22" font-weight="400" fill="#111827">lifecycle 사슬과 별개의</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="636.400" font-size="22" font-weight="400" fill="#111827">복귀 결과</text>
+<text data-source="root.0.1.1.1.1" x="1326.000" y="300.500" font-size="22" font-weight="400" fill="#111827">RestoreObject</text>
+<text data-source="root.0.1.1.1.3" x="1036.000" y="456.300" font-size="22" font-weight="400" fill="#111827">대상 클래스 지정</text>
+<text data-source="root.0.2" x="64.000" y="1006.600" font-size="22" font-weight="400" fill="#111827">연속 전환은 각 클래스의 최소 저장 기간을 누적해 평가합니다. Deep Archive의 복귀는 restore 후 copy로만 만들 수 있습니다.</text>
+</svg>
 </figure>

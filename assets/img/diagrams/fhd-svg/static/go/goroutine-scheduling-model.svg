@@ -1,0 +1,40 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="4a6d23b2382bab7894589cceb991dc1bacee4473c1563cc976042133785f4ad6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="384.500" width="309.605" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="568.798" y="384.500" width="309.605" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1041.597" y="384.500" width="309.605" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1514.396" y="384.500" width="309.605" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="96.000" y="636.300" width="309.605" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 417.605 462.400 L 556.798 462.400" fill="none" stroke="#475569" stroke-width="3"><title>실행 단위 생성</title></path>
+<polygon data-arrowhead="root.0.2.1" points="556.798,462.400 546.798,468.400 546.798,456.400" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 890.403 462.400 L 1029.597 462.400" fill="none" stroke="#475569" stroke-width="3"><title>G, M, P와 work stealing</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1029.597,462.400 1019.597,468.400 1019.597,456.400" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1363.202 462.400 L 1502.396 462.400" fill="none" stroke="#475569" stroke-width="3"><title>blocking thread는 park</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1502.396,462.400 1492.396,468.400 1492.396,456.400" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 462.400 L 1848.000 462.400 L 1848.000 588.300 L 72.000 588.300 L 72.000 729.050 L 84.000 729.050" fill="none" stroke="#475569" stroke-width="3"><title>GOMAXPROCS 범위 안에서 병렬 실행</title></path>
+<polygon data-arrowhead="root.0.2.7" points="84.000,729.050 74.000,735.050 74.000,723.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="294.200" font-size="36" font-weight="700" fill="#111827">Go scheduler는 많은 goroutine을 적은 OS thread에 배치합니다</text>
+<text data-source="root.0.1" x="64.000" y="352.800" font-size="22" font-weight="400" fill="#111827">blocking syscall로 한 thread가 park되면 scheduler가 남은 goroutine을 다른 thread에 배치해 실행을 이어갑니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="436.500" font-size="28" font-weight="700" fill="#111827">Go program</text>
+<text data-source="root.0.2.0" x="120.000" y="478.900" font-size="22" font-weight="400" fill="#111827">go 키워드로 goroutine을</text>
+<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">계속 생성합니다.</text>
+<text data-source="root.0.2.2" x="592.798" y="436.500" font-size="28" font-weight="700" fill="#111827">Goroutines</text>
+<text data-source="root.0.2.2" x="592.798" y="478.900" font-size="22" font-weight="400" fill="#111827">각각 작은 stack을 가진 많은</text>
+<text data-source="root.0.2.2" x="592.798" y="508.600" font-size="22" font-weight="400" fill="#111827">작업입니다.</text>
+<text data-source="root.0.2.4" x="1065.597" y="436.500" font-size="28" font-weight="700" fill="#111827">Go scheduler</text>
+<text data-source="root.0.2.4" x="1065.597" y="478.900" font-size="22" font-weight="400" fill="#111827">goroutine을 실행 가능한</text>
+<text data-source="root.0.2.4" x="1065.597" y="508.600" font-size="22" font-weight="400" fill="#111827">thread에 multiplex합니다.</text>
+<text data-source="root.0.2.6" x="1538.396" y="436.500" font-size="28" font-weight="700" fill="#111827">OS threads</text>
+<text data-source="root.0.2.6" x="1538.396" y="478.900" font-size="22" font-weight="400" fill="#111827">goroutine 수보다 훨씬 적은</text>
+<text data-source="root.0.2.6" x="1538.396" y="508.600" font-size="22" font-weight="400" fill="#111827">OS thread가 동작합니다.</text>
+<text data-source="root.0.2.8" x="120.000" y="688.300" font-size="28" font-weight="700" fill="#111827">CPU cores</text>
+<text data-source="root.0.2.8" x="120.000" y="730.700" font-size="22" font-weight="400" fill="#111827">실제로 동시에 실행할 수</text>
+<text data-source="root.0.2.8" x="120.000" y="760.400" font-size="22" font-weight="400" fill="#111827">있는 core 수가 병렬성을</text>
+<text data-source="root.0.2.8" x="120.000" y="790.100" font-size="22" font-weight="400" fill="#111827">제한합니다.</text>
+<text data-source="root.0.2.1" x="409.605" y="442.700" font-size="22" font-weight="400" fill="#111827">실행 단위 생성</text>
+<text data-source="root.0.2.3" x="882.403" y="413.000" font-size="22" font-weight="400" fill="#111827">G, M, P와 work</text>
+<text data-source="root.0.2.3" x="882.403" y="442.700" font-size="22" font-weight="400" fill="#111827">stealing</text>
+<text data-source="root.0.2.5" x="1355.202" y="413.000" font-size="22" font-weight="400" fill="#111827">blocking</text>
+<text data-source="root.0.2.5" x="1355.202" y="442.700" font-size="22" font-weight="400" fill="#111827">thread는 park</text>
+<text data-source="root.0.2.7" x="104.000" y="580.300" font-size="22" font-weight="400" fill="#111827">GOMAXPROCS 범위 안에서 병렬 실행</text>
+</svg>

@@ -22,14 +22,14 @@ def _png_path(root, value):
 def record_checked(root, rows, out):
     """Called only after the adapter's complete fresh check succeeds."""
     from downloads import source_snapshot
-    from pipeline import digest, fingerprint
+    from pipeline import digest, fingerprint, png_dimensions
 
     entries = []
     browsers = set()
     for row in rows:
         directory = out / fingerprint(row)[:24]
         receipt = json.loads(
-            (directory / (row["figure"] + "-625-light.json")).read_text()
+            (directory / (row["figure"] + "-1920x1080-light.json")).read_text()
         )
         if (
             receipt["quality_status"] != "passed"
@@ -37,6 +37,8 @@ def record_checked(root, rows, out):
         ):
             raise ValueError("unverified export receipt")
         raw = _png_path(root, row["png"]).read_bytes()
+        if png_dimensions(raw) != [1920, 1080] or receipt.get("png_dimensions") != [1920, 1080]:
+            raise ValueError("PNG must be exactly 1920 x 1080")
         if digest(raw) != receipt["png_sha256"]:
             raise ValueError("PNG changed after check")
         entries.append(
@@ -48,7 +50,7 @@ def record_checked(root, rows, out):
                     (root / "_includes" / row["include"]).read_bytes()
                 ),
                 "receipt_sha256": digest(
-                    (directory / (row["figure"] + "-625-light.json")).read_bytes()
+                    (directory / (row["figure"] + "-1920x1080-light.json")).read_bytes()
                 ),
             }
         )
@@ -116,7 +118,9 @@ def staged_requires_verification(root):
         "Gemfile.lock",
         "docs/diagram-catalog.json",
         "docs/diagram-downloads.json",
+        "docs/diagram-fhd-reviews.json",
         MANIFEST,
+        "kkamji_scripts/blog/fhd_svg.py",
     }
     if any(path in exact or path.startswith(prefixes) for path in paths):
         return True
@@ -138,7 +142,7 @@ def staged_requires_verification(root):
 
 def verify_staged(root):
     from downloads import source_snapshot, validate_source
-    from pipeline import digest, fingerprint
+    from pipeline import digest, fingerprint, png_dimensions
 
     root = Path(root).resolve()
     plan = validate_source(root)
@@ -150,6 +154,26 @@ def verify_staged(root):
         raise ValueError(
             "source fingerprint changed; build, export and release-check again"
         )
+    catalog = json.loads((root / 'docs/diagram-catalog.json').read_text())['diagrams']
+    if (root / 'kkamji_scripts/blog/fhd_svg.py').is_file() and payload.get('schema') != 2:
+        raise ValueError('FHD sources require a fully reviewed schema 2 release')
+    if payload.get('schema') == 2:
+        if (payload.get('source_count') != len(catalog) or payload.get('visual_review') != 'all-sources-passed'
+                or payload.get('semantic_review') != 'all-sources-passed'):
+            raise ValueError('full FHD source visual/semantic review is incomplete')
+        review_file = root / 'docs/diagram-fhd-reviews.json'
+        if payload.get('review_file') != 'docs/diagram-fhd-reviews.json' or digest(review_file.read_bytes()) != payload.get('review_file_sha256'):
+            raise ValueError('FHD review evidence changed or is missing')
+        reviews = json.loads(review_file.read_text()).get('sources', [])
+        by_include = {row['include']: row for row in reviews}
+        if (len(by_include) != len(reviews) or set(by_include) != {row['include'] for row in catalog}
+                or any(row.get('visual_status') != 'passed' or row.get('semantic_status') != 'passed'
+                       or not row.get('notes') or not row.get('reviewed_at') for row in reviews)):
+            raise ValueError('FHD visual/semantic review coverage is incomplete')
+        for include, review in by_include.items():
+            svg = root / 'assets/img/diagrams/fhd-svg' / include.removeprefix('diagrams/').replace('.html', '.svg')
+            if review.get('svg_sha256') != digest(svg.read_bytes()):
+                raise ValueError('FHD authored SVG differs from its visual review')
     expected = {e["png"]: e for e in plan["entries"]}
     actual = {e["png"]: e for e in payload["entries"]}
     if (
@@ -160,12 +184,31 @@ def verify_staged(root):
     ):
         raise ValueError("release entry coverage differs from source")
     required = set(snapshot) | {MANIFEST}
+    if payload.get('schema') == 2:
+        required.add('docs/diagram-fhd-reviews.json')
+        unused = payload.get('unused_entries', [])
+        if len({row['include'] for row in unused}) != len(unused) or {row['include'] for row in unused} != set(plan['unused_includes']):
+            raise ValueError('unused FHD source coverage differs')
+        for row in unused:
+            expected_png = '/assets/img/diagrams/fhd-unused/' + row['include'].removeprefix('diagrams/').removesuffix('.html') + '.png'
+            if row['png'] != expected_png:
+                raise ValueError('unused FHD PNG identity differs')
+            raw = _png_path(root, row['png']).read_bytes()
+            if png_dimensions(raw) != [1920,1080] or row.get('dimensions') != [1920,1080] or digest(raw) != row['png_sha256']:
+                raise ValueError('unused FHD PNG changed or invalid')
+            required.add(row['png'].lstrip('/'))
+            if by_include[row['include']].get('png_sha256') != row['png_sha256']:
+                raise ValueError('unused PNG differs from its visual review')
     for png, row in actual.items():
         if any(row[k] != expected[png][k] for k in ("post", "include", "figure")):
             raise ValueError("release entry identity differs from source")
         raw = _png_path(root, png).read_bytes()
         if not raw.startswith(b"\x89PNG\r\n\x1a\n") or digest(raw) != row["png_sha256"]:
             raise ValueError("public PNG changed or is invalid: " + png)
+        if png_dimensions(raw) != [1920, 1080] or row.get("dimensions") != [1920, 1080]:
+            raise ValueError("public PNG is not exact FHD: " + png)
+        if payload.get('schema') == 2 and by_include[row['include']].get('png_sha256') != row['png_sha256']:
+            raise ValueError('occurrence PNG differs from its visual review')
         required.add(png.lstrip("/"))
     tracked = set(
         subprocess.check_output(["git", "ls-files", "-z"], cwd=root)

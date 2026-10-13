@@ -100,7 +100,7 @@ def main():
         if args.action == 'check': command += ['--check']
         code = subprocess.run(command, check=False).returncode
         results.append(dict(entry, exit_code=code))
-        receipt = out / (entry['figure'] + '-625-' + args.theme + '.json')
+        receipt = out / (entry['figure'] + '-1920x1080-' + args.theme + '.json')
         if receipt.is_file(): receipt_hashes[entry['output']] = digest(receipt.read_bytes())
     passed = bool(results) and all(r['exit_code'] == 0 for r in results)
     if args.action == 'check':

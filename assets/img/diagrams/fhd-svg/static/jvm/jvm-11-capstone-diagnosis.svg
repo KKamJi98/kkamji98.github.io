@@ -1,0 +1,32 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="bb8c716a04a2b3554653d6cc03c734a78f250d8d9d1b6d10991e5a28c2796164">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="416.650" width="884.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="416.650" width="884.000" height="415.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="266.550" width="792.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="266.550" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1" x="88.000" y="502.450" width="836.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="996.000" y="502.450" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.0" x="996.000" y="652.550" width="406.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1.1" x="1426.000" y="652.550" width="406.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 329.600 L 1020.000 329.600" fill="none" stroke="#475569" stroke-width="3"><title>첫 질문</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,329.600 1010.000,335.600 1010.000,323.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="229.950" font-size="36" font-weight="700" fill="#111827">Old 점유가 높을 때 누수와 정상 거동을 나누는 질문</text>
+<text data-source="root.0.1.0" x="120.000" y="318.550" font-size="28" font-weight="700" fill="#111827">Old generation이 높게 유지됨</text>
+<text data-source="root.0.1.0" x="120.000" y="360.950" font-size="22" font-weight="400" fill="#111827">컨테이너 메모리 압박이 함께 관측됨</text>
+<text data-source="root.0.1.2" x="1056.000" y="318.550" font-size="28" font-weight="700" fill="#111827">Mixed GC 후에도 live set이 계속 상승하는가?</text>
+<text data-source="root.0.1.2" x="1056.000" y="360.950" font-size="22" font-weight="400" fill="#111827">저점의 방향을 GC log와 JFR에서 비교</text>
+<text data-source="root.0.1.1" x="892.000" y="309.900" font-size="22" font-weight="400" fill="#111827">첫 질문</text>
+<text data-source="root.0.2.0.0" x="88.000" y="468.650" font-size="28" font-weight="700" fill="#111827">예: live set이 계속 상승</text>
+<text data-source="root.0.2.0.1" x="112.000" y="554.450" font-size="28" font-weight="700" fill="#111827">메모리 누수 의심</text>
+<text data-source="root.0.2.0.1" x="112.000" y="596.850" font-size="22" font-weight="400" fill="#111827">heap dump로 지배 객체와 reference chain 확인</text>
+<text data-source="root.0.2.1.0" x="996.000" y="468.650" font-size="28" font-weight="700" fill="#111827">아니오: 저점이 안정적</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="554.450" font-size="28" font-weight="700" fill="#111827">Heap은 여유인데 container가 OOMKill되는가?</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="596.850" font-size="22" font-weight="400" fill="#111827">Heap 외부 사용량을 확인할 분기</text>
+<text data-source="root.0.2.1.1.1.0" x="1020.000" y="704.550" font-size="28" font-weight="700" fill="#111827">예: off-heap 확인</text>
+<text data-source="root.0.2.1.1.1.0" x="1020.000" y="746.950" font-size="22" font-weight="400" fill="#111827">direct memory, Metaspace, thread</text>
+<text data-source="root.0.2.1.1.1.0" x="1020.000" y="776.650" font-size="22" font-weight="400" fill="#111827">stack</text>
+<text data-source="root.0.2.1.1.1.1" x="1450.000" y="704.550" font-size="28" font-weight="700" fill="#111827">아니오: G1의 지연 회수</text>
+<text data-source="root.0.2.1.1.1.1" x="1450.000" y="746.950" font-size="22" font-weight="400" fill="#111827">IHOP 전 Old를 유지하고 mixed에서</text>
+<text data-source="root.0.2.1.1.1.1" x="1450.000" y="776.650" font-size="22" font-weight="400" fill="#111827">점진 회수</text>
+<text data-source="root.0.3" x="64.000" y="878.350" font-size="22" font-weight="400" fill="#111827">Old가 높다는 한 가지 관측만으로 leak을 단정하지 않습니다. live set 추세와 Heap 밖 메모리를 각각 확인해야 합니다.</text>
+</svg>

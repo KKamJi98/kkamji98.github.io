@@ -1,0 +1,10 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="fee365880e3ce2d1d591d3dfed18b9e7a5112035a3cdf99a5be6c1877bb10c00">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="443.500" width="1792.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="88.000" y="529.300" width="1744.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="406.900" font-size="36" font-weight="700" fill="#111827">Cilium은 node 단위 Embedded Envoy Proxy로 L7을 처리한다</text>
+<text data-source="root.0.1.0" x="88.000" y="495.500" font-size="28" font-weight="700" fill="#111827">Node: Cilium</text>
+<text data-source="root.0.1.1" x="112.000" y="581.300" font-size="28" font-weight="700" fill="#111827">Embedded Envoy Proxy</text>
+<text data-source="root.0.1.1" x="112.000" y="623.700" font-size="22" font-weight="400" fill="#111827">일부 protocol의 L7 policy와 observability 처리. Service Mesh의 sidecar proxy와 같은 component를 Cilium에 내장하며, Pod마다 sidecar를 두지 않고 node당 Envoy</text>
+<text data-source="root.0.1.1" x="112.000" y="653.400" font-size="22" font-weight="400" fill="#111827">container 하나를 실행합니다.</text>
+</svg>

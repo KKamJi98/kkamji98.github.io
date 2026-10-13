@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="gcp-resource-hierarchy" aria-labelledby="gcp-resource-hierarchy-title">
-  <figcaption class="sd-title" id="gcp-resource-hierarchy-title">모든 GCP Resource는 Project 아래에 있고 정책은 아래로 흐릅니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="gcp-resource-hierarchy" aria-labelledby="gcp-resource-hierarchy-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="gcp-resource-hierarchy-title">모든 GCP Resource는 Project 아래에 있고 정책은 아래로 흐릅니다</figcaption><div class="sd-semantic-source">
   <p class="sd-intro">Organization, Folder, Project를 거친 뒤 실제 서비스 Resource가 배치되며, 각 상위 레벨의 IAM binding과 organization policy가 하위로 상속됩니다.</p>
 
   <div class="sd-flow" aria-label="GCP 리소스 계층 흐름">
@@ -44,4 +44,50 @@
   </div>
 
   <p class="sd-note">특정 Resource에 적용되는 정책은 자기 레벨과 모든 상위 레벨에서 inherited 된 정책을 함께 평가합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="34e324fe0a6b01fab877da9e2b261841c867731cefc764340d7969f527854ed8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.6" x="1032.885" y="604.100" width="791.115" height="302.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="314.250" width="791.115" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1032.885" y="314.250" width="791.115" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="96.000" y="692.050" width="791.115" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6.1.0" x="1056.885" y="689.900" width="231.705" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6.1.1" x="1312.590" y="689.900" width="231.705" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6.1.2" x="1568.295" y="689.900" width="231.705" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 899.115 377.300 L 1020.885 377.300" fill="none" stroke="#475569" stroke-width="3"><title>binding과 organization policy가 하위로 상속</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.885,377.300 1010.885,383.300 1010.885,371.300" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1836.000 377.300 L 1848.000 377.300 L 1848.000 556.100 L 72.000 556.100 L 72.000 755.100 L 84.000 755.100" fill="none" stroke="#475569" stroke-width="3"><title>Folder 범위의 정책을 계속 전달</title></path>
+<polygon data-arrowhead="root.0.2.3" points="84.000,755.100 74.000,761.100 74.000,749.100" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 899.115 755.100 L 1020.885 755.100" fill="none" stroke="#475569" stroke-width="3"><title>실제 서비스 Resource가 Project에 소속</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1020.885,755.100 1010.885,761.100 1010.885,749.100" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="156.200" font-size="36" font-weight="700" fill="#111827">모든 GCP Resource는 Project 아래에 있고 정책은 아래로 흐릅니다</text>
+<text data-source="root.0.1" x="64.000" y="214.800" font-size="22" font-weight="400" fill="#111827">Organization, Folder, Project를 거친 뒤 실제 서비스 Resource가 배치되며, 각 상위 레벨의 IAM binding과 organization policy가 하위로 상속됩니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="366.250" font-size="28" font-weight="700" fill="#111827">1. Organization</text>
+<text data-source="root.0.2.0" x="120.000" y="408.650" font-size="22" font-weight="400" fill="#111827">계층의 root node</text>
+<text data-source="root.0.2.2" x="1056.885" y="366.250" font-size="28" font-weight="700" fill="#111827">2. Folder</text>
+<text data-source="root.0.2.2" x="1056.885" y="408.650" font-size="22" font-weight="400" fill="#111827">선택 사항이며 중첩 가능</text>
+<text data-source="root.0.2.4" x="120.000" y="744.050" font-size="28" font-weight="700" fill="#111827">3. Project</text>
+<text data-source="root.0.2.4" x="120.000" y="786.450" font-size="22" font-weight="400" fill="#111827">billing과 quota의 기본 경계</text>
+<text data-source="root.0.2.6.0" x="1056.885" y="656.100" font-size="28" font-weight="700" fill="#111827">4. Resources</text>
+<text data-source="root.0.2.6.1.0" x="1080.885" y="741.900" font-size="28" font-weight="700" fill="#111827">Compute</text>
+<text data-source="root.0.2.6.1.0" x="1080.885" y="778.300" font-size="28" font-weight="700" fill="#111827">Engine</text>
+<text data-source="root.0.2.6.1.0" x="1080.885" y="820.700" font-size="22" font-weight="400" fill="#111827">Project의 VM</text>
+<text data-source="root.0.2.6.1.0" x="1080.885" y="850.400" font-size="22" font-weight="400" fill="#111827">resource</text>
+<text data-source="root.0.2.6.1.1" x="1336.590" y="741.900" font-size="28" font-weight="700" fill="#111827">Cloud Storage</text>
+<text data-source="root.0.2.6.1.1" x="1336.590" y="784.300" font-size="22" font-weight="400" fill="#111827">Project의 bucket</text>
+<text data-source="root.0.2.6.1.1" x="1336.590" y="814.000" font-size="22" font-weight="400" fill="#111827">resource</text>
+<text data-source="root.0.2.6.1.2" x="1592.295" y="741.900" font-size="28" font-weight="700" fill="#111827">GKE</text>
+<text data-source="root.0.2.6.1.2" x="1592.295" y="784.300" font-size="22" font-weight="400" fill="#111827">Project의 cluster</text>
+<text data-source="root.0.2.6.1.2" x="1592.295" y="814.000" font-size="22" font-weight="400" fill="#111827">resource</text>
+<text data-source="root.0.2.1" x="891.115" y="268.500" font-size="22" font-weight="400" fill="#111827">binding과</text>
+<text data-source="root.0.2.1" x="891.115" y="298.200" font-size="22" font-weight="400" fill="#111827">organization</text>
+<text data-source="root.0.2.1" x="891.115" y="327.900" font-size="22" font-weight="400" fill="#111827">policy가</text>
+<text data-source="root.0.2.1" x="891.115" y="357.600" font-size="22" font-weight="400" fill="#111827">하위로 상속</text>
+<text data-source="root.0.2.3" x="104.000" y="548.100" font-size="22" font-weight="400" fill="#111827">Folder 범위의 정책을 계속 전달</text>
+<text data-source="root.0.2.5" x="891.115" y="676.000" font-size="22" font-weight="400" fill="#111827">실제 서비스</text>
+<text data-source="root.0.2.5" x="891.115" y="705.700" font-size="22" font-weight="400" fill="#111827">Resource가</text>
+<text data-source="root.0.2.5" x="891.115" y="735.400" font-size="22" font-weight="400" fill="#111827">Project에 소속</text>
+<text data-source="root.0.3" x="64.000" y="952.100" font-size="22" font-weight="400" fill="#111827">특정 Resource에 적용되는 정책은 자기 레벨과 모든 상위 레벨에서 inherited 된 정책을 함께 평가합니다.</text>
+</svg>
 </figure>

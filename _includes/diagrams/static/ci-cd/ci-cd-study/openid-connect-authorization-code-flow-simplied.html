@@ -1,5 +1,5 @@
-<figure class="sd sd--sequence" id="openid-connect-authorization-code-flow-simplied" aria-labelledby="openid-connect-authorization-code-flow-simplied-title">
-  <figcaption class="sd-title" id="openid-connect-authorization-code-flow-simplied-title">OpenID Connect Authorization Code Flow</figcaption>
+<figure class="sd sd--sequence sd--fhd" id="openid-connect-authorization-code-flow-simplied" aria-labelledby="openid-connect-authorization-code-flow-simplied-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="openid-connect-authorization-code-flow-simplied-title">OpenID Connect Authorization Code Flow</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">1. Application redirects the browser</strong>
@@ -36,4 +36,68 @@
     </div>
   </div>
   <p class="sd-note">Application은 자격 증명을 직접 보관하지 않고 Keycloak이 발급한 token을 사용해 SSO를 완성합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="bc245d9c138bcd357e347594bb463b8630802e46c4f371ccf11076134495a5b1">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="761.400" width="1792.000" height="182.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="178.200" width="305.119" height="199.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="570.294" y="178.200" width="305.119" height="199.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1044.587" y="178.200" width="305.119" height="199.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1518.881" y="178.200" width="305.119" height="199.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="494.000" width="305.119" height="168.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.0" x="64.000" y="761.400" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 413.119 278.000 L 558.294 278.000" fill="none" stroke="#475569" stroke-width="3"><title>Application -&gt; User: redirect</title></path>
+<polygon data-arrowhead="root.0.1.1" points="558.294,278.000 548.294,284.000 548.294,272.000" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 887.413 278.000 L 1032.587 278.000" fill="none" stroke="#475569" stroke-width="3"><title>User -&gt; Keycloak: authorization request</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1032.587,278.000 1022.587,284.000 1022.587,272.000" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1361.706 278.000 L 1506.881 278.000" fill="none" stroke="#475569" stroke-width="3"><title>Keycloak -&gt; User: authentication</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1506.881,278.000 1496.881,284.000 1496.881,272.000" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 278.000 L 1848.000 278.000 L 1848.000 446.000 L 72.000 446.000 L 72.000 578.200 L 84.000 578.200" fill="none" stroke="#475569" stroke-width="3"><title>Keycloak -&gt; Application: Authorization Code</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,578.200 74.000,584.200 74.000,572.200" fill="#475569"/>
+<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.2" d="M 248.560 674.400 L 248.560 711.900 L 960.000 711.900 L 960.000 749.400" fill="none" stroke="#475569" stroke-width="3"><title>Application -&gt; Keycloak: Token Endpoint exchange</title></path>
+<polygon data-arrowhead="root.0.1.9" points="960.000,749.400 954.000,739.400 966.000,739.400" fill="#475569"/>
+<path data-edge="root.0.2.loop" data-from="root.0.2.0.0" data-to="root.0.2.0.0" d="M 1868.000 816.500 L 1880.000 816.500 L 1880.000 903.600 L 40.000 903.600 L 40.000 816.500 L 52.000 816.500" fill="none" stroke="#475569" stroke-width="3"><title>반복</title></path>
+<polygon data-arrowhead="root.0.2.loop" points="52.000,816.500 42.000,822.500 42.000,810.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="125.400" font-size="36" font-weight="700" fill="#111827">OpenID Connect Authorization Code Flow</text>
+<text data-source="root.0.1.0" x="116.000" y="222.200" font-size="24" font-weight="700" fill="#111827">1. Application</text>
+<text data-source="root.0.1.0" x="116.000" y="253.400" font-size="24" font-weight="700" fill="#111827">redirects the</text>
+<text data-source="root.0.1.0" x="116.000" y="284.600" font-size="24" font-weight="700" fill="#111827">browser</text>
+<text data-source="root.0.1.0" x="116.000" y="323.800" font-size="20" font-weight="400" fill="#111827">Argo CD가 사용자를</text>
+<text data-source="root.0.1.0" x="116.000" y="350.800" font-size="20" font-weight="400" fill="#111827">Keycloak으로 보냄</text>
+<text data-source="root.0.1.2" x="590.294" y="222.200" font-size="24" font-weight="700" fill="#111827">2. Browser sends an</text>
+<text data-source="root.0.1.2" x="590.294" y="253.400" font-size="24" font-weight="700" fill="#111827">authorization</text>
+<text data-source="root.0.1.2" x="590.294" y="284.600" font-size="24" font-weight="700" fill="#111827">request</text>
+<text data-source="root.0.1.2" x="590.294" y="323.800" font-size="20" font-weight="400" fill="#111827">Keycloak의 Authorization</text>
+<text data-source="root.0.1.2" x="590.294" y="350.800" font-size="20" font-weight="400" fill="#111827">Endpoint로 요청</text>
+<text data-source="root.0.1.4" x="1064.587" y="222.200" font-size="24" font-weight="700" fill="#111827">3. Keycloak</text>
+<text data-source="root.0.1.4" x="1064.587" y="253.400" font-size="24" font-weight="700" fill="#111827">authenticates the</text>
+<text data-source="root.0.1.4" x="1064.587" y="284.600" font-size="24" font-weight="700" fill="#111827">user</text>
+<text data-source="root.0.1.4" x="1064.587" y="323.800" font-size="20" font-weight="400" fill="#111827">Authorization Server와</text>
+<text data-source="root.0.1.4" x="1064.587" y="350.800" font-size="20" font-weight="400" fill="#111827">OpenID Provider 역할</text>
+<text data-source="root.0.1.6" x="1538.881" y="222.200" font-size="24" font-weight="700" fill="#111827">4. Keycloak returns</text>
+<text data-source="root.0.1.6" x="1538.881" y="253.400" font-size="24" font-weight="700" fill="#111827">an Authorization</text>
+<text data-source="root.0.1.6" x="1538.881" y="284.600" font-size="24" font-weight="700" fill="#111827">Code</text>
+<text data-source="root.0.1.6" x="1538.881" y="323.800" font-size="20" font-weight="400" fill="#111827">code를 Application(Argo</text>
+<text data-source="root.0.1.6" x="1538.881" y="350.800" font-size="20" font-weight="400" fill="#111827">CD)으로 전달</text>
+<text data-source="root.0.1.8" x="116.000" y="538.000" font-size="24" font-weight="700" fill="#111827">5. Application</text>
+<text data-source="root.0.1.8" x="116.000" y="569.200" font-size="24" font-weight="700" fill="#111827">exchanges the code</text>
+<text data-source="root.0.1.8" x="116.000" y="608.400" font-size="20" font-weight="400" fill="#111827">ID Token과 Access</text>
+<text data-source="root.0.1.8" x="116.000" y="635.400" font-size="20" font-weight="400" fill="#111827">Token을 발급받음</text>
+<text data-source="root.0.1.1" x="405.119" y="232.000" font-size="20" font-weight="400" fill="#111827">Application -&gt;</text>
+<text data-source="root.0.1.1" x="405.119" y="259.000" font-size="20" font-weight="400" fill="#111827">User: redirect</text>
+<text data-source="root.0.1.3" x="879.413" y="178.000" font-size="20" font-weight="400" fill="#111827">User -&gt;</text>
+<text data-source="root.0.1.3" x="879.413" y="205.000" font-size="20" font-weight="400" fill="#111827">Keycloak:</text>
+<text data-source="root.0.1.3" x="879.413" y="232.000" font-size="20" font-weight="400" fill="#111827">authorization</text>
+<text data-source="root.0.1.3" x="879.413" y="259.000" font-size="20" font-weight="400" fill="#111827">request</text>
+<text data-source="root.0.1.5" x="1353.706" y="205.000" font-size="20" font-weight="400" fill="#111827">Keycloak -&gt;</text>
+<text data-source="root.0.1.5" x="1353.706" y="232.000" font-size="20" font-weight="400" fill="#111827">User:</text>
+<text data-source="root.0.1.5" x="1353.706" y="259.000" font-size="20" font-weight="400" fill="#111827">authentication</text>
+<text data-source="root.0.1.7" x="104.000" y="438.000" font-size="20" font-weight="400" fill="#111827">Keycloak -&gt; Application: Authorization Code</text>
+<text data-source="root.0.2.0.0" x="84.000" y="805.400" font-size="24" font-weight="700" fill="#111827">6. Application establishes a session</text>
+<text data-source="root.0.2.0.0" x="84.000" y="844.600" font-size="20" font-weight="400" fill="#111827">Application -&gt; Application: ID Token으로 사용자 신원을 확인하고 session 생성</text>
+<text data-source="root.0.3" x="64.000" y="983.600" font-size="20" font-weight="400" fill="#111827">Application은 자격 증명을 직접 보관하지 않고 Keycloak이 발급한 token을 사용해 SSO를 완성합니다.</text>
+<text data-source="root.0.1.9" x="450.000" y="702.400" font-size="20" font-weight="400" fill="#111827">Application -&gt; Keycloak: Token Endpoint exchange</text>
+<text data-source="root.0.2.loop.meaning" x="88.000" y="927.600" font-size="14" font-weight="400" fill="#111827">반복</text>
+</svg>
 </figure>

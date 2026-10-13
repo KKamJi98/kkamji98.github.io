@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="spring-12-netty-direct-memory" aria-labelledby="spring-12-netty-direct-memory-title">
-  <figcaption class="sd-title" id="spring-12-netty-direct-memory-title">Netty socket I/O와 JVM heap 바깥의 direct memory</figcaption>
+<figure class="sd sd--layers sd--fhd" id="spring-12-netty-direct-memory" aria-labelledby="spring-12-netty-direct-memory-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="spring-12-netty-direct-memory-title">Netty socket I/O와 JVM heap 바깥의 direct memory</figcaption><div class="sd-semantic-source">
   <div class="sd-stack">
     <div class="sd-band">
       <strong class="sd-band-title">JVM heap (-Xmx)</strong>
@@ -15,4 +15,21 @@
     </div>
   </div>
   <p class="sd-note">direct buffer는 native memory라 GC heap 밖에 있습니다. pool이 잡은 direct memory는 GC가 회수하지 않아 상승이 곧 leak은 아닙니다. 그래서 heap이 healthy해 보여도 WebFlux process가 container limit을 넘을 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="479d5c24e157a2ccdeb3be5eb80431270868fa4b7a73c07fb9fb40deb347c391">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="301.350" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="64.000" y="464.850" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="64.000" y="628.350" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="264.750" font-size="36" font-weight="700" fill="#111827">Netty socket I/O와 JVM heap 바깥의 direct memory</text>
+<text data-source="root.0.1.0.0" x="88.000" y="353.350" font-size="28" font-weight="700" fill="#111827">JVM heap (-Xmx)</text>
+<text data-source="root.0.1.0.1" x="88.000" y="409.150" font-size="22" font-weight="400" fill="#111827">object, GC가 관리</text>
+<text data-source="root.0.1.1.0" x="88.000" y="516.850" font-size="28" font-weight="700" fill="#111827">Direct memory (off-heap)</text>
+<text data-source="root.0.1.1.1" x="88.000" y="572.650" font-size="22" font-weight="400" fill="#111827">Netty socket I/O buffer, PooledByteBufAllocator가 pool로 관리</text>
+<text data-source="root.0.1.2.0" x="88.000" y="680.350" font-size="28" font-weight="700" fill="#111827">Network socket</text>
+<text data-source="root.0.1.2.1" x="88.000" y="736.150" font-size="22" font-weight="400" fill="#111827">OS kernel</text>
+<text data-source="root.0.2" x="64.000" y="813.850" font-size="22" font-weight="400" fill="#111827">direct buffer는 native memory라 GC heap 밖에 있습니다. pool이 잡은 direct memory는 GC가 회수하지 않아 상승이 곧 leak은 아닙니다. 그래서 heap이 healthy해 보여도 WebFlux process가</text>
+<text data-source="root.0.2" x="64.000" y="843.550" font-size="22" font-weight="400" fill="#111827">container limit을 넘을 수 있습니다.</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison sd--layers" id="sd-kubernetes-l4-layer-policy" aria-labelledby="sd-kubernetes-l4-layer-policy-title">
-  <figcaption class="sd-title" id="sd-kubernetes-l4-layer-policy-title">L4 policy는 source identity와 TCP port를 검사한다</figcaption>
+<figure class="sd sd--comparison sd--layers sd--fhd" id="sd-kubernetes-l4-layer-policy" aria-labelledby="sd-kubernetes-l4-layer-policy-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-l4-layer-policy-title">L4 policy는 source identity와 TCP port를 검사한다</figcaption><div class="sd-semantic-source">
   <section class="sd-band" aria-labelledby="sd-kubernetes-l4-layer-policy-namespace-title">
     <div class="sd-band-title" id="sd-kubernetes-l4-layer-policy-namespace-title">namespace=default</div>
     <p class="sd-note">Ingress Network Policy: tiefighter to deathstar allow tcp/80</p>
@@ -39,4 +39,53 @@
     </div>
   </section>
   <p class="sd-note">L4 규칙은 HTTP method나 URL path를 검사하지 않으며, 이 조건은 L7 규칙에서 별도로 적용됩니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="bf16d84797e4658c60d615b69eff10bea68a77bcf5cf96d2d2e70d93d0bbde16">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="209.000" width="1792.000" height="680.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.0" x="88.000" y="348.500" width="860.000" height="517.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1" x="972.000" y="348.500" width="860.000" height="517.400" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.0" x="144.000" y="434.300" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.2" x="590.000" y="434.300" width="302.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.4" x="144.000" y="686.100" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.0" x="1028.000" y="449.150" width="302.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.2" x="1474.000" y="434.300" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.4" x="1028.000" y="686.100" width="302.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.2.0.1.1" data-from="root.0.1.2.0.1.0" data-to="root.0.1.2.0.1.2" d="M 458.000 512.200 L 578.000 512.200" fill="none" stroke="#475569" stroke-width="3"><title>TCP/80</title></path>
+<polygon data-arrowhead="root.0.1.2.0.1.1" points="578.000,512.200 568.000,518.200 568.000,506.200" fill="#475569"/>
+<path data-edge="root.0.1.2.0.1.3" data-from="root.0.1.2.0.1.2" data-to="root.0.1.2.0.1.4" d="M 904.000 512.200 L 916.000 512.200 L 916.000 638.100 L 120.000 638.100 L 120.000 764.000 L 132.000 764.000" fill="none" stroke="#475569" stroke-width="3"><title>allow</title></path>
+<polygon data-arrowhead="root.0.1.2.0.1.3" points="132.000,764.000 122.000,770.000 122.000,758.000" fill="#475569"/>
+<path data-edge="root.0.1.2.1.1.1" data-from="root.0.1.2.1.1.0" data-to="root.0.1.2.1.1.2" d="M 1342.000 512.200 L 1462.000 512.200" fill="none" stroke="#475569" stroke-width="3"><title>TCP/80</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1.1" points="1462.000,512.200 1452.000,518.200 1452.000,506.200" fill="#475569"/>
+<path data-edge="root.0.1.2.1.1.3" data-from="root.0.1.2.1.1.2" data-to="root.0.1.2.1.1.4" d="M 1788.000 512.200 L 1800.000 512.200 L 1800.000 638.100 L 1004.000 638.100 L 1004.000 764.000 L 1016.000 764.000" fill="none" stroke="#475569" stroke-width="3"><title>identity mismatch</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1.3" points="1016.000,764.000 1006.000,770.000 1006.000,758.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="172.400" font-size="36" font-weight="700" fill="#111827">L4 policy는 source identity와 TCP port를 검사한다</text>
+<text data-source="root.0.1.0" x="88.000" y="261.000" font-size="28" font-weight="700" fill="#111827">namespace=default</text>
+<text data-source="root.0.1.1" x="88.000" y="316.800" font-size="22" font-weight="400" fill="#111827">Ingress Network Policy: tiefighter to deathstar allow tcp/80</text>
+<text data-source="root.0.1.2.0.0" x="112.000" y="400.500" font-size="28" font-weight="700" fill="#111827">Allowed</text>
+<text data-source="root.0.1.2.0.1.0" x="168.000" y="486.300" font-size="28" font-weight="700" fill="#111827">tiefighter</text>
+<text data-source="root.0.1.2.0.1.0" x="168.000" y="528.700" font-size="22" font-weight="400" fill="#111827">org=empire,</text>
+<text data-source="root.0.1.2.0.1.0" x="168.000" y="558.400" font-size="22" font-weight="400" fill="#111827">class=tiefighter</text>
+<text data-source="root.0.1.2.0.1.2" x="614.000" y="486.300" font-size="28" font-weight="700" fill="#111827">deathstar</text>
+<text data-source="root.0.1.2.0.1.2" x="614.000" y="528.700" font-size="22" font-weight="400" fill="#111827">org=empire,</text>
+<text data-source="root.0.1.2.0.1.2" x="614.000" y="558.400" font-size="22" font-weight="400" fill="#111827">class=deathstar</text>
+<text data-source="root.0.1.2.0.1.4" x="168.000" y="738.100" font-size="28" font-weight="700" fill="#111827">Ingress accepted</text>
+<text data-source="root.0.1.2.0.1.4" x="168.000" y="780.500" font-size="22" font-weight="400" fill="#111827">L4 rule의 identity와 port</text>
+<text data-source="root.0.1.2.0.1.4" x="168.000" y="810.200" font-size="22" font-weight="400" fill="#111827">조건을 만족합니다.</text>
+<text data-source="root.0.1.2.0.1.1" x="450.000" y="492.500" font-size="22" font-weight="400" fill="#111827">TCP/80</text>
+<text data-source="root.0.1.2.0.1.3" x="152.000" y="630.100" font-size="22" font-weight="400" fill="#111827">allow</text>
+<text data-source="root.0.1.2.1.0" x="996.000" y="400.500" font-size="28" font-weight="700" fill="#111827">Denied</text>
+<text data-source="root.0.1.2.1.1.0" x="1052.000" y="501.150" font-size="28" font-weight="700" fill="#111827">xwing</text>
+<text data-source="root.0.1.2.1.1.0" x="1052.000" y="543.550" font-size="22" font-weight="400" fill="#111827">org=alliance, class=xwing</text>
+<text data-source="root.0.1.2.1.1.2" x="1498.000" y="486.300" font-size="28" font-weight="700" fill="#111827">deathstar</text>
+<text data-source="root.0.1.2.1.1.2" x="1498.000" y="528.700" font-size="22" font-weight="400" fill="#111827">org=empire,</text>
+<text data-source="root.0.1.2.1.1.2" x="1498.000" y="558.400" font-size="22" font-weight="400" fill="#111827">class=deathstar</text>
+<text data-source="root.0.1.2.1.1.4" x="1052.000" y="738.100" font-size="28" font-weight="700" fill="#111827">Ingress blocked</text>
+<text data-source="root.0.1.2.1.1.4" x="1052.000" y="780.500" font-size="22" font-weight="400" fill="#111827">port가 같아도 source</text>
+<text data-source="root.0.1.2.1.1.4" x="1052.000" y="810.200" font-size="22" font-weight="400" fill="#111827">identity가 rule과 다릅니다.</text>
+<text data-source="root.0.1.2.1.1.1" x="1334.000" y="492.500" font-size="22" font-weight="400" fill="#111827">TCP/80</text>
+<text data-source="root.0.1.2.1.1.3" x="1036.000" y="630.100" font-size="22" font-weight="400" fill="#111827">identity mismatch</text>
+<text data-source="root.0.2" x="64.000" y="935.900" font-size="22" font-weight="400" fill="#111827">L4 규칙은 HTTP method나 URL path를 검사하지 않으며, 이 조건은 L7 규칙에서 별도로 적용됩니다.</text>
+</svg>
 </figure>

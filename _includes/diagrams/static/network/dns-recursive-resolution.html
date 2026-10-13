@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="dns-recursive-resolution" aria-labelledby="dns-recursive-resolution-title">
-  <figcaption class="sd-title" id="dns-recursive-resolution-title">Recursive resolver가 DNS delegation을 걷고 stub은 한 번만 묻습니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="dns-recursive-resolution" aria-labelledby="dns-recursive-resolution-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="dns-recursive-resolution-title">Recursive resolver가 DNS delegation을 걷고 stub은 한 번만 묻습니다</figcaption><div class="sd-semantic-source">
   <p class="sd-intro">유효한 cache가 있으면 resolver 안에서 끝납니다. cache miss일 때만 root부터 TLD와 authoritative server까지 delegation을 따라갑니다.</p>
   <div class="sd-flow" aria-label="DNS recursive resolution 흐름">
     <div class="sd-node">
@@ -47,4 +47,53 @@
     </section>
   </div>
   <p class="sd-note">Stub은 root와 TLD를 직접 걷지 않습니다. resolver가 얻은 최종 answer를 반환한 뒤 유효 기간 동안 cache를 재사용합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cc946bacf1b6a2f58ce31ce533a2af978d7f36c8e9fdb02e8232371aa5c22a12">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.4.1" x="968.000" y="423.050" width="888.000" height="508.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="213.550" width="1792.000" height="121.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.4" x="64.000" y="423.050" width="1792.000" height="508.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="227.000" width="792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1032.000" y="227.000" width="792.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4.0" x="64.000" y="423.050" width="888.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4.1.1.0" x="1016.000" y="531.950" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.1.2" x="1484.000" y="531.950" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.1.4" x="1016.000" y="796.450" width="324.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 274.150 L 1020.000 274.150" fill="none" stroke="#475569" stroke-width="3"><title>설정된 resolver에 질의 전달</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,274.150 1010.000,280.150 1010.000,268.150" fill="#475569"/>
+<path data-edge="root.0.4.1.1.1" data-from="root.0.4.1.1.0" data-to="root.0.4.1.1.2" d="M 1352.000 591.250 L 1472.000 591.250" fill="none" stroke="#475569" stroke-width="3"><title>resolver가 root referral을 따라 .com 같은 TLD에 질의</title></path>
+<polygon data-arrowhead="root.0.4.1.1.1" points="1472.000,591.250 1462.000,597.250 1462.000,585.250" fill="#475569"/>
+<path data-edge="root.0.4.1.1.3" data-from="root.0.4.1.1.2" data-to="root.0.4.1.1.4" d="M 1820.000 591.250 L 1832.000 591.250 L 1832.000 748.450 L 992.000 748.450 L 992.000 855.750 L 1004.000 855.750" fill="none" stroke="#475569" stroke-width="3"><title>resolver가 TLD referral을 따라 대상 zone에 질의</title></path>
+<polygon data-arrowhead="root.0.4.1.1.3" points="1004.000,855.750 994.000,861.750 994.000,849.750" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 346.750 L 960.000 411.050" fill="none" stroke="#475569" stroke-width="3"><title>cache 상태에 따라 두 경로로 분기</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,411.050 954.000,401.050 966.000,401.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="144.650" font-size="36" font-weight="700" fill="#111827">Recursive resolver가 DNS delegation을 걷고 stub은 한 번만 묻습니다</text>
+<text data-source="root.0.1" x="64.000" y="191.250" font-size="18" font-weight="400" fill="#111827">유효한 cache가 있으면 resolver 안에서 끝납니다. cache miss일 때만 root부터 TLD와 authoritative server까지 delegation을 따라갑니다.</text>
+<text data-source="root.0.2.0" x="112.000" y="263.000" font-size="20" font-weight="700" fill="#111827">Browser or stub resolver</text>
+<text data-source="root.0.2.0" x="112.000" y="299.000" font-size="18" font-weight="400" fill="#111827">한 번 질의하고 최종 answer를 기다림</text>
+<text data-source="root.0.2.2" x="1048.000" y="263.000" font-size="20" font-weight="700" fill="#111827">Recursive resolver</text>
+<text data-source="root.0.2.2" x="1048.000" y="299.000" font-size="18" font-weight="400" fill="#111827">cache를 먼저 확인하고, miss면 delegation chain을 대신 탐색</text>
+<text data-source="root.0.2.1" x="892.000" y="231.550" font-size="18" font-weight="400" fill="#111827">설정된 resolver에</text>
+<text data-source="root.0.2.1" x="892.000" y="255.850" font-size="18" font-weight="400" fill="#111827">질의 전달</text>
+<text data-source="root.0.4.0" x="80.000" y="459.050" font-size="20" font-weight="700" fill="#111827">Cache hit</text>
+<text data-source="root.0.4.0" x="80.000" y="495.050" font-size="18" font-weight="400" fill="#111827">resolver를 벗어나지 않고 즉시 stub에 응답</text>
+<text data-source="root.0.4.1.0" x="984.000" y="459.050" font-size="20" font-weight="700" fill="#111827">Cache miss</text>
+<text data-source="root.0.4.1.1.0" x="1032.000" y="567.950" font-size="20" font-weight="700" fill="#111827">Root name server</text>
+<text data-source="root.0.4.1.1.0" x="1032.000" y="603.950" font-size="18" font-weight="400" fill="#111827">TLD name server를 가리키는 referral</text>
+<text data-source="root.0.4.1.1.0" x="1032.000" y="628.250" font-size="18" font-weight="400" fill="#111827">제공</text>
+<text data-source="root.0.4.1.1.2" x="1500.000" y="567.950" font-size="20" font-weight="700" fill="#111827">TLD name server</text>
+<text data-source="root.0.4.1.1.2" x="1500.000" y="603.950" font-size="18" font-weight="400" fill="#111827">zone의 authoritative name server를</text>
+<text data-source="root.0.4.1.1.2" x="1500.000" y="628.250" font-size="18" font-weight="400" fill="#111827">가리킴</text>
+<text data-source="root.0.4.1.1.4" x="1032.000" y="832.450" font-size="20" font-weight="700" fill="#111827">Authoritative server</text>
+<text data-source="root.0.4.1.1.4" x="1032.000" y="868.450" font-size="18" font-weight="400" fill="#111827">실제 record를 반환하고 resolver가</text>
+<text data-source="root.0.4.1.1.4" x="1032.000" y="892.750" font-size="18" font-weight="400" fill="#111827">answer와 delegation을 cache</text>
+<text data-source="root.0.4.1.1.1" x="1344.000" y="500.050" font-size="18" font-weight="400" fill="#111827">resolver가 root</text>
+<text data-source="root.0.4.1.1.1" x="1344.000" y="524.350" font-size="18" font-weight="400" fill="#111827">referral을 따라</text>
+<text data-source="root.0.4.1.1.1" x="1344.000" y="548.650" font-size="18" font-weight="400" fill="#111827">.com 같은 TLD에</text>
+<text data-source="root.0.4.1.1.1" x="1344.000" y="572.950" font-size="18" font-weight="400" fill="#111827">질의</text>
+<text data-source="root.0.4.1.1.3" x="1024.000" y="740.450" font-size="18" font-weight="400" fill="#111827">resolver가 TLD referral을 따라 대상 zone에 질의</text>
+<text data-source="root.0.5" x="64.000" y="965.050" font-size="18" font-weight="400" fill="#111827">Stub은 root와 TLD를 직접 걷지 않습니다. resolver가 얻은 최종 answer를 반환한 뒤 유효 기간 동안 cache를 재사용합니다.</text>
+<text data-source="root.0.3" x="980.000" y="384.750" font-size="18" font-weight="400" fill="#111827">cache 상태에 따라 두 경로로 분기</text>
+</svg>
 </figure>

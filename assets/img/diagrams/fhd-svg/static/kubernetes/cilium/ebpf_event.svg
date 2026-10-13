@@ -1,0 +1,40 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ab9f06fc0727812e1b63e5c960a2024f3f26de08a9b28ec3e34ff468fca6114e">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="491.700" width="884.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="491.700" width="884.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="341.600" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="341.600" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="120.000" y="577.500" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="578.000" y="592.350" width="314.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="577.500" width="314.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1486.000" y="577.500" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 404.650 L 1020.000 404.650" fill="none" stroke="#475569" stroke-width="3"><title>execve()</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,404.650 1010.000,410.650 1010.000,398.650" fill="#475569"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 655.400 L 566.000 655.400" fill="none" stroke="#475569" stroke-width="3"><title>scheduler dispatch</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,655.400 556.000,661.400 556.000,649.400" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 655.400 L 1474.000 655.400" fill="none" stroke="#475569" stroke-width="3"><title>submit event</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,655.400 1464.000,661.400 1464.000,649.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="305.000" font-size="36" font-weight="700" fill="#111827">eBPF는 syscall event를 hook하고 Linux kernel scheduling path와 함께 실행된다</text>
+<text data-source="root.0.1.0" x="120.000" y="393.600" font-size="28" font-weight="700" fill="#111827">Process</text>
+<text data-source="root.0.1.0" x="120.000" y="436.000" font-size="22" font-weight="400" fill="#111827">user-space process가 실행 요청을 만든다.</text>
+<text data-source="root.0.1.2" x="1056.000" y="393.600" font-size="28" font-weight="700" fill="#111827">Syscall</text>
+<text data-source="root.0.1.2" x="1056.000" y="436.000" font-size="22" font-weight="400" fill="#111827">Linux kernel 경계에서 event가 관찰될 수 있다.</text>
+<text data-source="root.0.1.1" x="892.000" y="384.950" font-size="22" font-weight="400" fill="#111827">execve()</text>
+<text data-source="root.0.2.0.0" x="88.000" y="543.700" font-size="28" font-weight="700" fill="#111827">Linux kernel path</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="629.500" font-size="28" font-weight="700" fill="#111827">Syscall</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="671.900" font-size="22" font-weight="400" fill="#111827">kernel이 일반 execution</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="701.600" font-size="22" font-weight="400" fill="#111827">path를 계속 처리한다.</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="644.350" font-size="28" font-weight="700" fill="#111827">Scheduler</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="686.750" font-size="22" font-weight="400" fill="#111827">다음 실행 작업을 선택한다.</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="606.000" font-size="22" font-weight="400" fill="#111827">scheduler</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="635.700" font-size="22" font-weight="400" fill="#111827">dispatch</text>
+<text data-source="root.0.2.1.0" x="996.000" y="543.700" font-size="28" font-weight="700" fill="#111827">eBPF hook path</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="629.500" font-size="28" font-weight="700" fill="#111827">eBPF program</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="671.900" font-size="22" font-weight="400" fill="#111827">syscall hook에서 process</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="701.600" font-size="22" font-weight="400" fill="#111827">event를 읽고 처리한다.</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="629.500" font-size="28" font-weight="700" fill="#111827">Event record</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="671.900" font-size="22" font-weight="400" fill="#111827">process id와 event type을</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="701.600" font-size="22" font-weight="400" fill="#111827">perf buffer로 보낸다.</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="635.700" font-size="22" font-weight="400" fill="#111827">submit event</text>
+<text data-source="root.0.3" x="64.000" y="803.300" font-size="22" font-weight="400" fill="#111827">syscall__ret_execve는 event를 만들고 comm_events.perf_submit으로 제출한다. kprobe나 uprobe를 사용하면 다른 hook 지점에도 program을 붙일 수 있다.</text>
+</svg>

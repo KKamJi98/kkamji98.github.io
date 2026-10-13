@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="spring-03-ioc-before-after" aria-labelledby="spring-03-ioc-before-after-title">
-  <figcaption class="sd-title" id="spring-03-ioc-before-after-title">생성 책임이 강결합을 느슨한 결합으로 바꾸는 과정</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="spring-03-ioc-before-after" aria-labelledby="spring-03-ioc-before-after-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="spring-03-ioc-before-after-title">생성 책임이 강결합을 느슨한 결합으로 바꾸는 과정</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane" aria-label="수동 생성 방식">
       <div class="sd-lane-title">수동 new: 강결합</div>
@@ -50,4 +50,49 @@
     </section>
   </div>
   <p class="sd-note">코드에 박힌 생성이 결합을 만들고, container의 construction과 injection이 그 결합을 끊습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="97914a057a8807ad5091a2db75a0ccd639c9dd6e36d217e861f7e4108cbef601">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="257.200" width="884.000" height="458.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="257.200" width="884.000" height="584.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="343.000" width="314.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="343.000" width="314.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="120.000" y="565.100" width="314.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="343.000" width="314.000" height="162.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1486.000" y="361.200" width="314.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1028.000" y="601.500" width="314.000" height="162.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 406.050 L 566.000 406.050" fill="none" stroke="#475569" stroke-width="3"><title>직접 생성</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,406.050 556.000,412.050 556.000,400.050" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 904.000 406.050 L 916.000 406.050 L 916.000 517.100 L 96.000 517.100 L 96.000 628.150 L 108.000 628.150" fill="none" stroke="#475569" stroke-width="3"><title>구체 타입 고정</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="108.000,628.150 98.000,634.150 98.000,622.150" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1354.000 424.250 L 1474.000 424.250" fill="none" stroke="#475569" stroke-width="3"><title>주입받은 의존성 참조</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1474.000,424.250 1464.000,430.250 1464.000,418.250" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1812.000 424.250 L 1824.000 424.250 L 1824.000 553.500 L 1004.000 553.500 L 1004.000 682.750 L 1016.000 682.750" fill="none" stroke="#475569" stroke-width="3"><title>주입받은 의존성 참조</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1016.000,682.750 1006.000,688.750 1006.000,676.750" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="220.600" font-size="36" font-weight="700" fill="#111827">생성 책임이 강결합을 느슨한 결합으로 바꾸는 과정</text>
+<text data-source="root.0.1.0.0" x="88.000" y="309.200" font-size="28" font-weight="700" fill="#111827">수동 new: 강결합</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="395.000" font-size="28" font-weight="700" fill="#111827">OrderController</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="437.400" font-size="22" font-weight="400" fill="#111827">new OrderService(...)</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="395.000" font-size="28" font-weight="700" fill="#111827">OrderService</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="437.400" font-size="22" font-weight="400" fill="#111827">new OrderRepository(...)</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="617.100" font-size="28" font-weight="700" fill="#111827">OrderRepository</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="659.500" font-size="22" font-weight="400" fill="#111827">구체 타입이 코드에 고정됨</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="386.350" font-size="22" font-weight="400" fill="#111827">직접 생성</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="509.100" font-size="22" font-weight="400" fill="#111827">구체 타입 고정</text>
+<text data-source="root.0.1.1.0" x="996.000" y="309.200" font-size="28" font-weight="700" fill="#111827">컨테이너 주입: 느슨한 결합</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="395.000" font-size="28" font-weight="700" fill="#111827">OrderController</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="431.400" font-size="28" font-weight="700" fill="#111827">(bean)</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="473.800" font-size="22" font-weight="400" fill="#111827">OrderService를 주입받음</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="413.200" font-size="28" font-weight="700" fill="#111827">OrderService (bean)</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="455.600" font-size="22" font-weight="400" fill="#111827">OrderRepository를 주입받음</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="653.500" font-size="28" font-weight="700" fill="#111827">OrderRepository</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="689.900" font-size="28" font-weight="700" fill="#111827">(bean)</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="732.300" font-size="22" font-weight="400" fill="#111827">타입 뒤에서 교체 가능</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="374.850" font-size="22" font-weight="400" fill="#111827">주입받은</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="404.550" font-size="22" font-weight="400" fill="#111827">의존성 참조</text>
+<text data-source="root.0.1.1.1.3" x="1036.000" y="545.500" font-size="22" font-weight="400" fill="#111827">주입받은 의존성 참조</text>
+<text data-source="root.0.1.1.2" x="996.000" y="810.000" font-size="22" font-weight="400" fill="#111827">Spring IoC container가 bean을 만들고 의존성을 주입합니다.</text>
+<text data-source="root.0.2" x="64.000" y="887.700" font-size="22" font-weight="400" fill="#111827">코드에 박힌 생성이 결합을 만들고, container의 construction과 injection이 그 결합을 끊습니다.</text>
+</svg>
 </figure>

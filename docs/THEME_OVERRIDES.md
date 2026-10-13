@@ -1,13 +1,13 @@
 ---
 title: Theme overrides registry
-updated: 2026-10-10
+updated: 2026-10-13
 type: architecture
 status: current
 ---
 
 # Theme Overrides (Gem Customizations)
 
-이 블로그는 `jekyll-theme-chirpy`를 **gem**으로 사용합니다 (`Gemfile`: `~> 7.3`, 현재 설치 `7.4.1`).
+이 블로그는 `jekyll-theme-chirpy`를 **gem**으로 사용합니다 (`Gemfile`: `~> 7.3`, 이 작업에서 검증한 설치 `7.6.0`).
 gem 테마 파일을 직접 수정할 수 없으므로, **같은 경로에 파일을 두어 덮어쓰는(override)** 방식으로 커스텀합니다.
 이 문서는 gem 기본 동작 위에 수동으로 얹은 변경을 추적하는 **레지스트리**입니다. 새 커스텀을 추가하면 여기에도 항목을 남깁니다.
 
@@ -39,10 +39,10 @@ bash tools/run.sh    # 로컬 미리보기
 ## Static diagram download helper
 
 - `_includes/diagrams/download.html` is an additive helper, not a gem override.
-- Invoke only outside `figure.sd`, with a same-origin PNG asset path from the verified export manifest. It renders the same PNG inline (empty `alt`, since the canonical figure stays in the accessibility tree), for native download and direct image links. No JavaScript, alternate drawing, or viewport-specific image variant.
-- CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The disposable export browser restores the figure's normal paint/flow and hides the sibling PNG for capture. The stored PNGs need a fresh full-corpus re-export and check after these CSS changes; old dark PNGs are not a verified light release.
+- Invoke only outside `figure.sd`, with a same-origin PNG asset path from the verified export manifest. It renders the same 1920 x 1080 PNG at fixed size in a keyboard-accessible scroll region (empty `alt`, since the canonical figure stays in the accessibility tree), for native download and a scriptless fixed HTML viewer with explicit 100%, 125% and 150% user-selected zoom. No JavaScript, alternate drawing, or viewport-specific image variant.
+- CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The fixed-coordinate SVG is rendered through the approved Aside path; the semantic source and the same SVG are verified together. The stored PNGs need a fresh full-corpus re-export and check after these CSS changes; old dark PNGs are not a verified light release.
 - Every referencing post occurrence is mapped by `docs/diagram-downloads.json`. The helper follows its canonical include as a sibling; a Jekyll-generated `assets/data/diagram-posts.json` sidecar binds source posts to actual rendered URLs. Source/build assets and exact PNG bytes must pass the export/check adapter before publication.
-- Connector acceptance now uses transformed paint and explicit cross-container roles; see [Connector acceptance and recurrence gates](static-diagrams.md#connector-acceptance-and-recurrence-gates). Existing flow/direct-arrow spacing remains a negative control, while gapless nested corridors and attached buses have separate rules.
+- Connector acceptance now uses transformed paint and explicit cross-container roles; see [Connector acceptance and recurrence gates](static-diagrams.md#connector-acceptance-and-recurrence-gates). The original role and endpoint contracts are preserved while SVG rectangles, routes, arrowheads, labels and images receive matching geometry and content checks.
 - Export and font policy: [Static diagrams](static-diagrams.md#same-source-png-export).
 - SAP-C02의 `scp-iam-effective-permissions`, `datasync-agent-requirement`, `transfer-family-endpoint-types`, `control-tower-landing-zone` include는 각각 identity-based 권한 경로의 적용 범위, AWS 스토리지 서비스 간 agent 조건, Internal private IP와 Internet Facing EIP 및 AS2 지원, Landing Zone 4.0의 선택적 구성을 구분한다. 원본과 게시용 PNG를 함께 검증하며 공통 테마 CSS는 변경하지 않는다.
 
@@ -122,7 +122,7 @@ bash tools/run.sh    # 로컬 미리보기
 - **파일**: `_includes/diagrams/aws-certification-map.html`, `_posts/2026/09/2026-08-22-aws-sap-c02-overview.md`, `assets/img/sap-c02/certification-badges/`
 - **구조**: Professional, Associate, Foundational의 큰 계층 제목과 별도 Specialty/Business 영역을 사용한다. 공식 배지 13개, 자격증 이름, 시험 코드를 정적으로 모두 표시한다. SAP만 핵심 강조를 적용한다.
 - **원본**: AWS 공식 배지의 URL과 원본/표시용 asset 해시는 `certification-badges/sources.json`에 기록한다. 배경/여백 정리와 WebP 압축을 적용한 표시용 자산을 사용한다.
-- **표시 정책**: 공통 `.sd` 스타일로 큰 라벨과 반응형 grid를 적용한다. 선택 버튼, script, 애니메이션은 없다. 이미지에는 `data-static-diagram="true"`를 붙인다.
+- **표시 정책**: 공통 `.sd` 스타일로 큰 라벨과 고정 FHD 좌표를 적용한다. 화면 크기에 따른 재배치를 금지한다. 선택 버튼, script, 애니메이션은 없다. 이미지에는 `data-static-diagram="true"`를 붙인다.
 - **rollback**: include를 이전 WebP 참조로 되돌린다. 원본 spec/Draw.io/WebP는 유지한다.
 
 ### 6. Packer Golden AMI 정적 다이어그램
@@ -138,17 +138,18 @@ bash tools/run.sh    # 로컬 미리보기
 
 - **적용일**: 2026-09-07
 - **파일**: `assets/css/jekyll-theme-chirpy.scss`, `_includes/refactor-content.html`, `_includes/diagrams/static/`, `kkamji_scripts/blog/validate_static_diagrams.py`
-- **스타일**: `.sd`로 범위를 제한한 정적 flow, branch, comparison, layer, table 컴포넌트다. 텍스트를 이미지처럼 축소하지 않고 grid를 재배치한다. 제작 기준과 source catalog는 [Static diagrams](static-diagrams.md)에 있다.
+- **스타일**: `.sd`로 범위를 제한한 정적 flow, branch, comparison, layer, table 컴포넌트다. 텍스트와 요소를 FHD 좌표에 설계하고 SVG와 PNG의 1920 x 1080 표시 크기를 고정한다. 좁은 화면은 스크롤하며 grid를 재배치하지 않는다. 제작 기준과 source catalog는 [Static diagrams](static-diagrams.md)에 있다.
 - **테마 override**: Chirpy 7.4.1의 `refactor-content.html` 전체를 기반으로, `data-static-diagram` 이미지에 한해 확대 anchor와 shimmer wrapper 생성 전에 원래 img를 그대로 통과시킨다. 일반 본문 이미지 처리는 gem과 동일하다.
-- **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, 실제 760/360/320px 텍스트 크기와 overflow 검사를 수행한다.
+- **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, 데스크톱과 360px/390px에서 고정 1920 x 1080 표시, 스크롤 도달, 텍스트와 간선 및 clipping을 검사한다.
 - **테마 업그레이드**: refactor-content gem 원본의 변경을 비교해 static marker 예외를 유지한다. 이 override는 전체 파일 대체이므로 gem 변경이 자동 병합되지 않는다.
 
-## Mobile layout and stylesheet cache
+## Fixed FHD diagram display and stylesheet cache
 
-- Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
-- Titles use `word-break: keep-all` with `overflow-wrap: anywhere` as the long-token fallback. Direct figure arrows receive `0.75rem` block margins; nested flow arrows keep their existing grid gap.
-- Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
-- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. Versioned CSS alone cannot refresh HTML held by the old cache-first worker.
+- Diagram canvases, inline SVG and PNG artwork use 1920 x 1080 fixed dimensions and SVG viewBox `0 0 1920 1080`. Desktop and mobile preserve those pixels and coordinates.
+- Viewport-driven diagram scaling, container-query reflow and breakpoint variants are prohibited. The download helper is a keyboard-accessible horizontal scroll region with an explicit fixed-viewer link.
+- Canonical HTML labels, conditions and image provenance remain in the accessibility tree. Direct-coordinate inline SVG is the visual source; every node, label, edge and image must map back to that preserved source.
+- Theme 7.6.0 `head.html` and `swconf.js` overrides retain the same `site.time` build timestamp on the theme stylesheet URL. Rebase both full-file overrides when upgrading the gem.
+- See [Static diagrams](static-diagrams.md) for the exact FHD authoring, Aside-only rendering, PNG dimension and release gates. Older 625px/DPR 3.072 or responsive-grid evidence does not prove this contract.
 
 ### PWA freshness and safe migration
 

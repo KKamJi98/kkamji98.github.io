@@ -1,0 +1,47 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7962d62eeb25addfb96cc982590df79ffc2b36169bbfbefc1a4868c64cdbf021">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="187.700" width="886.000" height="484.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="970.000" y="187.700" width="886.000" height="569.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="116.000" y="284.500" width="319.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="579.000" y="284.500" width="319.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4" x="116.000" y="542.100" width="319.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="990.000" y="260.100" width="846.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="990.000" y="469.300" width="846.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.3" x="990.000" y="599.500" width="846.000" height="137.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="850.700" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 447.000 353.100 L 567.000 353.100" fill="none" stroke="#475569" stroke-width="3"><title>web egress + was ingress: TCP 8080</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="567.000,353.100 557.000,359.100 557.000,347.100" fill="#475569"/>
+<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 910.000 353.100 L 922.000 353.100 L 922.000 494.100 L 92.000 494.100 L 92.000 597.200 L 104.000 597.200" fill="none" stroke="#475569" stroke-width="3"><title>was egress + db ingress: TCP 3306</title></path>
+<polygon data-arrowhead="root.0.2.0.1.3" points="104.000,597.200 94.000,603.200 94.000,591.200" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1413.000 382.300 L 1413.000 457.300" fill="none" stroke="#475569" stroke-width="3"><title>별도의 역방향 검토: db에서 was로</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1413.000,457.300 1407.000,447.300 1419.000,447.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="108.100" font-size="36" font-weight="700" fill="#111827">NetworkPolicy YAML의 신규 연결 방향과 충돌을 구분합니다</text>
+<text data-source="root.0.1" x="64.000" y="160.700" font-size="20" font-weight="400" fill="#111827">ClusterIP 실습입니다. Nginx는 web, Tomcat은 was, MySQL은 db namespace에 있습니다. 각 정책은 podSelector.matchLabels: {}로 해당 namespace의 모든 Pod를 선택합니다.</text>
+<text data-source="root.0.2.0.0" x="84.000" y="231.700" font-size="24" font-weight="700" fill="#111827">YAML 양쪽이 허용하는 신규 연결</text>
+<text data-source="root.0.2.0.1.0" x="136.000" y="328.500" font-size="24" font-weight="700" fill="#111827">web: Nginx</text>
+<text data-source="root.0.2.0.1.0" x="136.000" y="367.700" font-size="20" font-weight="400" fill="#111827">목적지 namespace label</text>
+<text data-source="root.0.2.0.1.0" x="136.000" y="394.700" font-size="20" font-weight="400" fill="#111827">name: was</text>
+<text data-source="root.0.2.0.1.2" x="599.000" y="328.500" font-size="24" font-weight="700" fill="#111827">was: Tomcat</text>
+<text data-source="root.0.2.0.1.2" x="599.000" y="367.700" font-size="20" font-weight="400" fill="#111827">목적지 namespace label</text>
+<text data-source="root.0.2.0.1.2" x="599.000" y="394.700" font-size="20" font-weight="400" fill="#111827">name: db</text>
+<text data-source="root.0.2.0.1.4" x="136.000" y="586.100" font-size="24" font-weight="700" fill="#111827">db: MySQL</text>
+<text data-source="root.0.2.0.1.4" x="136.000" y="625.300" font-size="20" font-weight="400" fill="#111827">was에서 시작한 DB 연결 허용</text>
+<text data-source="root.0.2.0.1.1" x="439.000" y="280.100" font-size="20" font-weight="400" fill="#111827">web egress +</text>
+<text data-source="root.0.2.0.1.1" x="439.000" y="307.100" font-size="20" font-weight="400" fill="#111827">was ingress:</text>
+<text data-source="root.0.2.0.1.1" x="439.000" y="334.100" font-size="20" font-weight="400" fill="#111827">TCP 8080</text>
+<text data-source="root.0.2.0.1.3" x="124.000" y="486.100" font-size="20" font-weight="400" fill="#111827">was egress + db ingress: TCP 3306</text>
+<text data-source="root.0.2.1.0" x="990.000" y="231.700" font-size="24" font-weight="700" fill="#111827">역방향 신규 연결은 별도 규칙</text>
+<text data-source="root.0.2.1.1.0" x="1010.000" y="304.100" font-size="24" font-weight="700" fill="#111827">was에서 web으로</text>
+<text data-source="root.0.2.1.1.0" x="1010.000" y="343.300" font-size="20" font-weight="400" fill="#111827">was egress와 web ingress가 모두 TCP 80 허용</text>
+<text data-source="root.0.2.1.1.2" x="1010.000" y="513.300" font-size="24" font-weight="700" fill="#111827">DB egress / WAS ingress 불일치</text>
+<text data-source="root.0.2.1.1.2" x="1010.000" y="552.500" font-size="20" font-weight="400" fill="#111827">db egress는 was의 TCP 8080, was ingress는 db에서 TCP 3306만 허용</text>
+<text data-source="root.0.2.1.1.3" x="1010.000" y="643.500" font-size="24" font-weight="700" fill="#111827">기록과 YAML의 충돌</text>
+<text data-source="root.0.2.1.1.3" x="1010.000" y="682.700" font-size="20" font-weight="400" fill="#111827">본문 DB의 WAS:8080 요청은 HTTP 404로 기록됨. 제시된 YAML만으로 그 도달 결과를</text>
+<text data-source="root.0.2.1.1.3" x="1010.000" y="709.700" font-size="20" font-weight="400" fill="#111827">설명할 수 없음</text>
+<text data-source="root.0.2.1.1.1" x="1433.000" y="426.300" font-size="20" font-weight="400" fill="#111827">별도의 역방향 검토: db에서 was로</text>
+<text data-source="root.0.3" x="64.000" y="796.700" font-size="20" font-weight="400" fill="#111827">허용 연결의 stateful reply는 역방향 신규 연결 허용과 다릅니다. web과 db 사이의 신규 연결 허용 규칙은 없습니다. namespaceSelector.matchLabels의 name: web, name: was, name: db</text>
+<text data-source="root.0.3" x="64.000" y="823.700" font-size="20" font-weight="400" fill="#111827">label이 실제 namespace에 있어야 합니다.</text>
+<text data-source="root.0.4" x="84.000" y="894.700" font-size="24" font-weight="700" fill="#111827">DNS egress: YAML은 kube-dns 전용 selector가 아님</text>
+<text data-source="root.0.4" x="84.000" y="933.900" font-size="20" font-weight="400" fill="#111827">세 정책 모두 namespaceSelector.matchLabels: {}에 UDP / TCP 53을 허용합니다. 모든 namespace의 Pod가 대상이며 kube-dns Pod만 선택하지 않습니다.</text>
+<text data-source="root.0.5" x="64.000" y="1000.900" font-size="20" font-weight="400" fill="#111827">DB/WAS 역방향은 실제 적용 정책과 테스트 시점 상태를 재확인해야 합니다. 포트를 임의로 고치거나 재실험 성공으로 표시하지 않습니다.</text>
+</svg>

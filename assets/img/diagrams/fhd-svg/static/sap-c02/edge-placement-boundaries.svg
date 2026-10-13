@@ -1,0 +1,53 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="4811174bc8e6a59885b8a9974b84b7b14684a51310e3537e6104af9e7370374c">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="204.850" width="581.333" height="560.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="669.333" y="204.850" width="581.333" height="471.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1274.667" y="204.850" width="581.333" height="471.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.3" x="88.000" y="526.450" width="533.333" height="215.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="204.850" width="1792.000" height="560.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0.1" x="88.000" y="290.650" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.3.0" x="88.000" y="526.450" width="254.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.3.1" x="366.667" y="526.450" width="254.667" height="215.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="693.333" y="290.650" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.3" x="693.333" y="526.450" width="533.333" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.2.1" x="1298.667" y="290.650" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.3" x="1298.667" y="526.450" width="533.333" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="875.350" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.2" data-from="root.0.2.0.1" data-to="root.0.2.0.3" d="M 354.667 428.750 L 354.667 514.450" fill="none" stroke="#475569" stroke-width="3"><title>두 위치로 선택</title></path>
+<polygon data-arrowhead="root.0.2.0.2" points="354.667,514.450 348.667,504.450 360.667,504.450" fill="#475569"/>
+<path data-edge="root.0.2.1.2" data-from="root.0.2.1.1" data-to="root.0.2.1.3" d="M 960.000 428.750 L 960.000 514.450" fill="none" stroke="#475569" stroke-width="3"><title>carrier gateway 전용</title></path>
+<polygon data-arrowhead="root.0.2.1.2" points="960.000,514.450 954.000,504.450 966.000,504.450" fill="#475569"/>
+<path data-edge="root.0.2.2.2" data-from="root.0.2.2.1" data-to="root.0.2.2.3" d="M 1565.333 428.750 L 1565.333 514.450" fill="none" stroke="#475569" stroke-width="3"><title>LGW 또는 LNI</title></path>
+<polygon data-arrowhead="root.0.2.2.2" points="1565.333,514.450 1559.333,504.450 1571.333,504.450" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 777.650 L 960.000 863.350" fill="none" stroke="#475569" stroke-width="3"><title>공통 관리 경계</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,863.350 954.000,853.350 966.000,853.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="114.550" font-size="36" font-weight="700" fill="#111827">엣지 배치는 시설 소유자와 진입 게이트웨이로 갈린다</text>
+<text data-source="root.0.1" x="64.000" y="173.150" font-size="22" font-weight="400" fill="#111827">인터넷 사용자, 통신사 단말, 시설 내부 시스템의 진입 경로가 다르고 네 배치 모두 부모 리전 control plane에 묶여 관리됩니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="256.850" font-size="28" font-weight="700" fill="#111827">AWS가 운영하는 위치</text>
+<text data-source="root.0.2.0.1" x="112.000" y="342.650" font-size="28" font-weight="700" fill="#111827">인터넷 사용자</text>
+<text data-source="root.0.2.0.1" x="112.000" y="385.050" font-size="22" font-weight="400" fill="#111827">유선과 일반 모바일 회선에서 들어옵니다.</text>
+<text data-source="root.0.2.0.3.0" x="112.000" y="578.450" font-size="28" font-weight="700" fill="#111827">리전 가용 영역</text>
+<text data-source="root.0.2.0.3.0" x="112.000" y="620.850" font-size="22" font-weight="400" fill="#111827">internet gateway로</text>
+<text data-source="root.0.2.0.3.0" x="112.000" y="650.550" font-size="22" font-weight="400" fill="#111827">진입합니다.</text>
+<text data-source="root.0.2.0.3.1" x="390.667" y="578.450" font-size="28" font-weight="700" fill="#111827">Local Zone</text>
+<text data-source="root.0.2.0.3.1" x="390.667" y="620.850" font-size="22" font-weight="400" fill="#111827">자체 인터넷과 Direct</text>
+<text data-source="root.0.2.0.3.1" x="390.667" y="650.550" font-size="22" font-weight="400" fill="#111827">Connect를 쓰며</text>
+<text data-source="root.0.2.0.3.1" x="390.667" y="680.250" font-size="22" font-weight="400" fill="#111827">zone마다 서비스가</text>
+<text data-source="root.0.2.0.3.1" x="390.667" y="709.950" font-size="22" font-weight="400" fill="#111827">다릅니다.</text>
+<text data-source="root.0.2.0.2" x="374.667" y="478.750" font-size="22" font-weight="400" fill="#111827">두 위치로 선택</text>
+<text data-source="root.0.2.1.0" x="693.333" y="256.850" font-size="28" font-weight="700" fill="#111827">통신사 데이터센터</text>
+<text data-source="root.0.2.1.1" x="717.333" y="342.650" font-size="28" font-weight="700" fill="#111827">통신사 네트워크 단말</text>
+<text data-source="root.0.2.1.1" x="717.333" y="385.050" font-size="22" font-weight="400" fill="#111827">5G 단말처럼 통신사 네트워크 안에서만 진입합니다.</text>
+<text data-source="root.0.2.1.3" x="717.333" y="578.450" font-size="28" font-weight="700" fill="#111827">Wavelength Zone</text>
+<text data-source="root.0.2.1.3" x="717.333" y="620.850" font-size="22" font-weight="400" fill="#111827">일반 인터넷 inbound는 제공하지 않습니다.</text>
+<text data-source="root.0.2.1.2" x="980.000" y="478.750" font-size="22" font-weight="400" fill="#111827">carrier gateway 전용</text>
+<text data-source="root.0.2.2.0" x="1298.667" y="256.850" font-size="28" font-weight="700" fill="#111827">고객이 확보한 시설</text>
+<text data-source="root.0.2.2.1" x="1322.667" y="342.650" font-size="28" font-weight="700" fill="#111827">시설 내부 시스템</text>
+<text data-source="root.0.2.2.1" x="1322.667" y="385.050" font-size="22" font-weight="400" fill="#111827">공정 제어망과 데이터 레지던시 대상입니다.</text>
+<text data-source="root.0.2.2.3" x="1322.667" y="578.450" font-size="28" font-weight="700" fill="#111827">Outposts</text>
+<text data-source="root.0.2.2.3" x="1322.667" y="620.850" font-size="22" font-weight="400" fill="#111827">데이터가 고객 시설을 벗어나지 않도록 배치합니다.</text>
+<text data-source="root.0.2.2.2" x="1585.333" y="478.750" font-size="22" font-weight="400" fill="#111827">LGW 또는 LNI</text>
+<text data-source="root.0.4" x="88.000" y="927.350" font-size="28" font-weight="700" fill="#111827">부모 리전 control plane</text>
+<text data-source="root.0.4" x="88.000" y="969.750" font-size="22" font-weight="400" fill="#111827">AZ, Local Zone, Wavelength Zone, Outposts 모두 부모 리전에 묶여 관리됩니다.</text>
+<text data-source="root.0.3" x="980.000" y="827.650" font-size="22" font-weight="400" fill="#111827">공통 관리 경계</text>
+</svg>

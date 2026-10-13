@@ -1,0 +1,25 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="fe0a1a2932b0a05a6bee3802998c4e433e1eafca7592bfadd7c13db2556b9604">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="191.750" width="1792.000" height="720.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="80.000" y="250.750" width="1760.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="80.000" y="361.050" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="80.000" y="471.350" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.4" x="80.000" y="581.650" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.5" x="80.000" y="691.950" width="1760.000" height="94.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.6" x="80.000" y="802.250" width="1760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="163.150" font-size="36" font-weight="700" fill="#111827">Container limit은 Heap과 다섯 native 영역의 합입니다</text>
+<text data-source="root.0.1.0.0" x="80.000" y="227.750" font-size="20" font-weight="700" fill="#111827">Container memory limit</text>
+<text data-source="root.0.1.0.1" x="96.000" y="286.750" font-size="20" font-weight="700" fill="#111827">Heap (-Xmx)</text>
+<text data-source="root.0.1.0.1" x="96.000" y="322.750" font-size="18" font-weight="400" fill="#111827">-Xmx가 직접 제어하는 유일한 조각</text>
+<text data-source="root.0.1.0.2" x="96.000" y="397.050" font-size="20" font-weight="700" fill="#111827">Metaspace</text>
+<text data-source="root.0.1.0.2" x="96.000" y="433.050" font-size="18" font-weight="400" fill="#111827">class metadata</text>
+<text data-source="root.0.1.0.3" x="96.000" y="507.350" font-size="20" font-weight="700" fill="#111827">Thread stacks</text>
+<text data-source="root.0.1.0.3" x="96.000" y="543.350" font-size="18" font-weight="400" fill="#111827">-Xss x thread count</text>
+<text data-source="root.0.1.0.4" x="96.000" y="617.650" font-size="20" font-weight="700" fill="#111827">Code cache</text>
+<text data-source="root.0.1.0.4" x="96.000" y="653.650" font-size="18" font-weight="400" fill="#111827">JIT output</text>
+<text data-source="root.0.1.0.5" x="96.000" y="727.950" font-size="20" font-weight="700" fill="#111827">Direct memory</text>
+<text data-source="root.0.1.0.5" x="96.000" y="763.950" font-size="18" font-weight="400" fill="#111827">off-heap buffer</text>
+<text data-source="root.0.1.0.6" x="96.000" y="838.250" font-size="20" font-weight="700" fill="#111827">Headroom and other native</text>
+<text data-source="root.0.1.0.6" x="96.000" y="874.250" font-size="18" font-weight="400" fill="#111827">allocator, GC structures, JNI</text>
+<text data-source="root.0.2" x="64.000" y="946.550" font-size="18" font-weight="400" fill="#111827">Container limit = heap + metaspace + thread stacks + code cache + direct memory + headroom. -Xmx만 limit까지 올리면 native 사용량을 위한 공간이 사라집니다.</text>
+</svg>

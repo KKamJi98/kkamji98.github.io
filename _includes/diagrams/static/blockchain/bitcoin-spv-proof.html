@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-bitcoin-spv-proof" aria-labelledby="sd-title-bitcoin-spv-proof">
-  <figcaption class="sd-title" id="sd-title-bitcoin-spv-proof">Merkle 경로만으로 block 포함을 검증합니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-bitcoin-spv-proof" aria-labelledby="sd-title-bitcoin-spv-proof" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-bitcoin-spv-proof">Merkle 경로만으로 block 포함을 검증합니다</figcaption><div class="sd-semantic-source">
   <section class="sd-lane" aria-label="증명 입력">
     <div class="sd-lane-title">증명 입력</div>
     <div class="sd-grid">
@@ -27,4 +27,34 @@
     </div>
   </div>
   <p class="sd-note">이 관측은 nTx=2인 local block의 증명이며, 메인넷 block 전체를 전송하지 않는 SPV 경로를 보여줍니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e3619f1f01809381eb1599993f5b487c775171bfef69b6cff76ed1f4c650a7bb">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="278.400" width="1792.000" height="289.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="677.700" width="1792.000" height="142.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="88.000" y="364.200" width="860.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="972.000" y="364.200" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0" x="96.000" y="686.050" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2" x="1032.000" y="686.050" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.3.1" data-from="root.0.3.0" data-to="root.0.3.2" d="M 900.000 749.100 L 1020.000 749.100" fill="none" stroke="#475569" stroke-width="3"><title>txid와 root 비교</title></path>
+<polygon data-arrowhead="root.0.3.1" points="1020.000,749.100 1010.000,755.100 1010.000,743.100" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 580.000 L 960.000 665.700" fill="none" stroke="#475569" stroke-width="3"><title>Merkle path 생성</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,665.700 954.000,655.700 966.000,655.700" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="241.800" font-size="36" font-weight="700" fill="#111827">Merkle 경로만으로 block 포함을 검증합니다</text>
+<text data-source="root.0.1.0" x="88.000" y="330.400" font-size="28" font-weight="700" fill="#111827">증명 입력</text>
+<text data-source="root.0.1.1.0" x="112.000" y="416.200" font-size="28" font-weight="700" fill="#111827">block 112</text>
+<text data-source="root.0.1.1.0" x="112.000" y="458.600" font-size="22" font-weight="400" fill="#111827">20fcf935, nTx=2</text>
+<text data-source="root.0.1.1.1" x="996.000" y="416.200" font-size="28" font-weight="700" fill="#111827">header merkleroot</text>
+<text data-source="root.0.1.1.1" x="996.000" y="458.600" font-size="22" font-weight="400" fill="#111827">38990380955e1609...</text>
+<text data-source="root.0.1.2" x="88.000" y="536.300" font-size="22" font-weight="400" fill="#111827">전체 block body 대신 block과 header root를 증명 계산에 사용합니다.</text>
+<text data-source="root.0.3.0" x="120.000" y="738.050" font-size="28" font-weight="700" fill="#111827">gettxoutproof</text>
+<text data-source="root.0.3.0" x="120.000" y="780.450" font-size="22" font-weight="400" fill="#111827">151 bytes</text>
+<text data-source="root.0.3.2" x="1056.000" y="738.050" font-size="28" font-weight="700" fill="#111827">verifytxoutproof</text>
+<text data-source="root.0.3.2" x="1056.000" y="780.450" font-size="22" font-weight="400" fill="#111827">같은 txid b50a5a25...</text>
+<text data-source="root.0.3.1" x="892.000" y="699.700" font-size="22" font-weight="400" fill="#111827">txid와 root</text>
+<text data-source="root.0.3.1" x="892.000" y="729.400" font-size="22" font-weight="400" fill="#111827">비교</text>
+<text data-source="root.0.4" x="64.000" y="866.500" font-size="22" font-weight="400" fill="#111827">이 관측은 nTx=2인 local block의 증명이며, 메인넷 block 전체를 전송하지 않는 SPV 경로를 보여줍니다.</text>
+<text data-source="root.0.2" x="980.000" y="630.000" font-size="22" font-weight="400" fill="#111827">Merkle path 생성</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="grafana-loki-overview" aria-labelledby="grafana-loki-overview-title">
-  <figcaption class="sd-title" id="grafana-loki-overview-title">Agent가 여러 애플리케이션 로그를 Loki로 모으고 Grafana가 조회한다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="grafana-loki-overview" aria-labelledby="grafana-loki-overview-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="grafana-loki-overview-title">Agent가 여러 애플리케이션 로그를 Loki로 모으고 Grafana가 조회한다</figcaption><div class="sd-semantic-source">
   <section class="sd-lane">
     <div class="sd-lane-title">Application boundary</div>
     <div class="sd-grid">
@@ -35,4 +35,42 @@
     </div>
   </div>
   <p class="sd-note">Loki의 Read와 Write 경로는 독립적으로 확장할 수 있고 multi-tenant 요청은 tenant header로 분리한다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3014c336fb1e03298e769eab47cb8d3cfb4833d8709ca912b844669574cc3aa0">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="135.700" width="1792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.7" x="64.000" y="855.700" width="1792.000" height="110.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="84.000" y="208.100" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="970.000" y="208.100" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="437.300" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5" x="64.000" y="646.500" width="1792.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.7.0" x="64.000" y="855.700" width="886.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.7.1" x="970.000" y="855.700" width="886.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 350.300 L 960.000 425.300" fill="none" stroke="#475569" stroke-width="3"><title>collect logs</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,425.300 954.000,415.300 966.000,415.300" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.3" data-to="root.0.5" d="M 960.000 559.500 L 960.000 634.500" fill="none" stroke="#475569" stroke-width="3"><title>write stream</title></path>
+<polygon data-arrowhead="root.0.4" points="960.000,634.500 954.000,624.500 966.000,624.500" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.5" data-to="root.0.7" d="M 960.000 768.700 L 960.000 843.700" fill="none" stroke="#475569" stroke-width="3"><title>Grafana / LogCLI가 Loki에 LogQL 요청; Loki가 결과 반환</title></path>
+<polygon data-arrowhead="root.0.6" points="960.000,843.700 954.000,833.700 966.000,833.700" fill="#475569"/>
+<polygon data-arrowhead="root.0.6.reverse" points="960.000,768.700 966.000,778.700 954.000,778.700" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="103.100" font-size="36" font-weight="700" fill="#111827">Agent가 여러 애플리케이션 로그를 Loki로 모으고 Grafana가 조회한다</text>
+<text data-source="root.0.1.0" x="84.000" y="179.700" font-size="24" font-weight="700" fill="#111827">Application boundary</text>
+<text data-source="root.0.1.1.0" x="104.000" y="252.100" font-size="24" font-weight="700" fill="#111827">App 1</text>
+<text data-source="root.0.1.1.0" x="104.000" y="291.300" font-size="20" font-weight="400" fill="#111827">로그와 label metadata를 생성한다.</text>
+<text data-source="root.0.1.1.1" x="990.000" y="252.100" font-size="24" font-weight="700" fill="#111827">App 2</text>
+<text data-source="root.0.1.1.1" x="990.000" y="291.300" font-size="20" font-weight="400" fill="#111827">같은 수집 경로로 로그를 내보낸다.</text>
+<text data-source="root.0.3" x="84.000" y="481.300" font-size="24" font-weight="700" fill="#111827">Agent</text>
+<text data-source="root.0.3" x="84.000" y="520.500" font-size="20" font-weight="400" fill="#111827">애플리케이션 로그를 읽고 label을 붙여 Loki write endpoint로 전송한다.</text>
+<text data-source="root.0.5" x="84.000" y="690.500" font-size="24" font-weight="700" fill="#111827">Grafana Loki</text>
+<text data-source="root.0.5" x="84.000" y="729.700" font-size="20" font-weight="400" fill="#111827">log body는 저장하고 label metadata를 index해 tenant별 stream을 관리한다.</text>
+<text data-source="root.0.7.0" x="84.000" y="899.700" font-size="24" font-weight="700" fill="#111827">Grafana</text>
+<text data-source="root.0.7.0" x="84.000" y="938.900" font-size="20" font-weight="400" fill="#111827">대시보드와 LogQL query로 로그를 탐색한다.</text>
+<text data-source="root.0.7.1" x="990.000" y="899.700" font-size="24" font-weight="700" fill="#111827">LogCLI</text>
+<text data-source="root.0.7.1" x="990.000" y="938.900" font-size="20" font-weight="400" fill="#111827">CLI에서 같은 Loki query API를 호출한다.</text>
+<text data-source="root.0.8" x="64.000" y="1005.900" font-size="20" font-weight="400" fill="#111827">Loki의 Read와 Write 경로는 독립적으로 확장할 수 있고 multi-tenant 요청은 tenant header로 분리한다.</text>
+<text data-source="root.0.2" x="980.000" y="394.300" font-size="20" font-weight="400" fill="#111827">collect logs</text>
+<text data-source="root.0.4" x="980.000" y="603.500" font-size="20" font-weight="400" fill="#111827">write stream</text>
+<text data-source="root.0.6" x="980.000" y="812.700" font-size="20" font-weight="400" fill="#111827">Grafana / LogCLI가 Loki에 LogQL 요청; Loki가 결과 반환</text>
+</svg>
 </figure>

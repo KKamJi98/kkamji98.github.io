@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-observability-kibana-query-flow" aria-labelledby="sd-title-observability-kibana-query-flow">
-  <figcaption class="sd-title" id="sd-title-observability-kibana-query-flow">Kibana는 데이터를 보관하지 않고 Elasticsearch query를 만든다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-observability-kibana-query-flow" aria-labelledby="sd-title-observability-kibana-query-flow" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-observability-kibana-query-flow">Kibana는 데이터를 보관하지 않고 Elasticsearch query를 만든다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">User</strong>
@@ -27,4 +27,46 @@
     </div>
   </div>
   <p class="sd-note">Kibana에 원본 log data가 쌓이는 것이 아니라 Elasticsearch query 결과가 표시됩니다. 넓은 time range는 index pattern이 많은 index를 건드려 비용이 커질 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="caed263f79a867653c96ef1040436c896487185e8d80ac58b2ea2a88b57b8bd3">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="345.650" width="318.729" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="565.757" y="345.650" width="318.729" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1035.514" y="360.500" width="318.729" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1505.271" y="345.650" width="318.729" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="620.650" width="318.729" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 426.729 423.550 L 553.757 423.550" fill="none" stroke="#475569" stroke-width="3"><title>panel 설정과 time range 전달</title></path>
+<polygon data-arrowhead="root.0.1.1" points="553.757,423.550 543.757,429.550 543.757,417.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 896.486 423.550 L 1023.514 423.550" fill="none" stroke="#475569" stroke-width="3"><title>Elasticsearch에 query 전송</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1023.514,423.550 1013.514,429.550 1013.514,417.550" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1366.243 423.550 L 1493.271 423.550" fill="none" stroke="#475569" stroke-width="3"><title>pattern이 대상 index 선택</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1493.271,423.550 1483.271,429.550 1483.271,417.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 423.550 L 1848.000 423.550 L 1848.000 572.650 L 72.000 572.650 L 72.000 698.550 L 84.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>결과를 panel에 반환</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,698.550 74.000,704.550 74.000,692.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="285.850" font-size="36" font-weight="700" fill="#111827">Kibana는 데이터를 보관하지 않고 Elasticsearch query를 만든다</text>
+<text data-source="root.0.1.0" x="120.000" y="397.650" font-size="28" font-weight="700" fill="#111827">User</text>
+<text data-source="root.0.1.0" x="120.000" y="440.050" font-size="22" font-weight="400" fill="#111827">dashboard 또는 log</text>
+<text data-source="root.0.1.0" x="120.000" y="469.750" font-size="22" font-weight="400" fill="#111827">search를 요청</text>
+<text data-source="root.0.1.2" x="589.757" y="397.650" font-size="28" font-weight="700" fill="#111827">Kibana</text>
+<text data-source="root.0.1.2" x="589.757" y="440.050" font-size="22" font-weight="400" fill="#111827">index pattern을 바탕으로</text>
+<text data-source="root.0.1.2" x="589.757" y="469.750" font-size="22" font-weight="400" fill="#111827">query 생성</text>
+<text data-source="root.0.1.4" x="1059.514" y="412.500" font-size="28" font-weight="700" fill="#111827">Elasticsearch</text>
+<text data-source="root.0.1.4" x="1059.514" y="454.900" font-size="22" font-weight="400" fill="#111827">여러 shard에서 query 실행</text>
+<text data-source="root.0.1.6" x="1529.271" y="397.650" font-size="28" font-weight="700" fill="#111827">Log indices</text>
+<text data-source="root.0.1.6" x="1529.271" y="440.050" font-size="22" font-weight="400" fill="#111827">time range와 index</text>
+<text data-source="root.0.1.6" x="1529.271" y="469.750" font-size="22" font-weight="400" fill="#111827">pattern이 정한 검색 대상</text>
+<text data-source="root.0.1.8" x="120.000" y="672.650" font-size="28" font-weight="700" fill="#111827">Search results</text>
+<text data-source="root.0.1.8" x="120.000" y="715.050" font-size="22" font-weight="400" fill="#111827">dashboard table, chart 또는</text>
+<text data-source="root.0.1.8" x="120.000" y="744.750" font-size="22" font-weight="400" fill="#111827">검색 목록</text>
+<text data-source="root.0.1.1" x="418.729" y="344.450" font-size="22" font-weight="400" fill="#111827">panel 설정과</text>
+<text data-source="root.0.1.1" x="418.729" y="374.150" font-size="22" font-weight="400" fill="#111827">time range</text>
+<text data-source="root.0.1.1" x="418.729" y="403.850" font-size="22" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.1.3" x="888.486" y="374.150" font-size="22" font-weight="400" fill="#111827">Elasticsearch</text>
+<text data-source="root.0.1.3" x="888.486" y="403.850" font-size="22" font-weight="400" fill="#111827">에 query 전송</text>
+<text data-source="root.0.1.5" x="1358.243" y="374.150" font-size="22" font-weight="400" fill="#111827">pattern이 대상</text>
+<text data-source="root.0.1.5" x="1358.243" y="403.850" font-size="22" font-weight="400" fill="#111827">index 선택</text>
+<text data-source="root.0.1.7" x="104.000" y="564.650" font-size="22" font-weight="400" fill="#111827">결과를 panel에 반환</text>
+<text data-source="root.0.2" x="64.000" y="822.450" font-size="22" font-weight="400" fill="#111827">Kibana에 원본 log data가 쌓이는 것이 아니라 Elasticsearch query 결과가 표시됩니다. 넓은 time range는 index pattern이 많은 index를 건드려 비용이 커질 수 있습니다.</text>
+</svg>
 </figure>

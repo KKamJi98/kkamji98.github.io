@@ -39,10 +39,13 @@
 
 ## Diagrams
 
-- 설명용 다이어그램은 정적 HTML로 작성한다. 원본은 `_includes/diagrams/static/` 및 Packer/AWS 인증의 개별 include이며, 제작 기준과 원본 매핑은 `docs/static-diagrams.md`를 따른다.
-- 공통 스타일은 `assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이다. 버튼, 클릭, hover 의존 정보, 애니메이션, script를 그림에 추가하지 않는다. 제목 22px, 라벨 16px, 보조 텍스트 14px 이상을 유지한다.
+- 설명용 다이어그램은 기존 HTML figure의 의미 구조를 보존하고 inline SVG의 박스, 연결과 텍스트 좌표를 직접 작성한다. 원본은 `_includes/diagrams/static/` 및 Packer/AWS 인증의 개별 include이며, 제작 기준과 원본 매핑은 `docs/static-diagrams.md`를 따른다.
+- 모든 SVG는 `width="1920"`, `height="1080"`, `viewBox="0 0 1920 1080"`을 사용한다. 모든 PNG의 실제 출력 치수도 정확히 1920 x 1080, 16:9이어야 한다. 글자 크기, 여백과 요소 배치를 설계하고 기존 그림을 resize, crop하거나 찌그러뜨려 맞추지 않는다.
+- 데스크톱과 모바일 모두 그림의 표시 크기를 1920 x 1080으로 고정한다. 화면 폭에 따른 자동 축소, 반응형 재배치, container query와 breakpoint별 변형은 금지한다. 좁은 화면은 키보드로도 접근 가능한 스크롤 영역과 사용자가 선택하는 원본 크기 확대 링크를 제공한다. 배치, 순서와 연결을 화면 크기에 따라 바꾸지 않는다.
+- 공통 스타일은 `assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이다. 흰 배경의 라이트 테마를 유지한다. 버튼, 클릭, hover 의존 정보, 애니메이션, script를 그림에 추가하지 않는다. 제목 22px, 라벨 16px, 보조 텍스트 14px 이상을 유지한다.
 - 그림 안 이미지에는 `data-static-diagram="true"`를 붙여 테마의 확대 링크 생성을 건너뛴다. 실제 관계와 조건을 보존하고 상세 설명은 본문에 둔다.
-- 검증: `uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .` 실행 후 production build와 360px/본문 폭의 렌더링을 확인한다.
+- 검증: `uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .` 실행 후 SVG 원본과 모든 PNG의 치수, 노드, 라벨, 조건과 간선의 대응을 확인한다. production build와 360px/390px 및 데스크톱 렌더링에서 고정 표시 크기, 스크롤 도달 범위, 폰트, 가독성, 겹침과 잘림을 검사한다. 구조 검증, 내용 검증, PNG 생성, 실제 시각 검토와 게시 수를 별도로 기록한다.
+- 브라우저 자동화는 전역 지침의 Aside 단일 경로를 따른다. 허용 Aside 경로가 없거나 캡처가 실패하면 정확한 미검증 범위를 남긴다. 기존 Playwright/Chromium exporter나 다른 브라우저 설치를 폴백으로 실행하지 않는다.
 - 기존 `assets/img/**/*.spec.json`, `.drawio`, `.webp`는 원본 증적과 rollback용으로 보존한다. 기존 Draw.io를 수정하는 경우에만 `rebuild_diagrams.sh`를 사용한다.
 
 ## Git Add, Commit, Push Convention

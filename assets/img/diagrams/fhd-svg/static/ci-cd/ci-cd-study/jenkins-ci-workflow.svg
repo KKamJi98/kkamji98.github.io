@@ -1,0 +1,61 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="11971f07cc88106776b9c2068c91d6a3dd68eb6a615ff5e7e96350b3d3fbd848">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="316.450" width="884.000" height="417.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="316.450" width="884.000" height="632.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.2" x="88.000" y="517.650" width="836.000" height="192.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.2.1.2" x="996.000" y="517.650" width="836.000" height="407.600" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="158.000" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="158.000" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.0" x="120.000" y="517.650" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.2" x="578.000" y="517.650" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2.0" x="1028.000" y="517.650" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2.2" x="1486.000" y="517.650" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2.4" x="1028.000" y="769.450" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 221.050 L 1020.000 221.050" fill="none" stroke="#475569" stroke-width="3"><title>source checkout</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,221.050 1010.000,227.050 1010.000,215.050" fill="#475569"/>
+<path data-edge="root.0.2.0.2.1" data-from="root.0.2.0.2.0" data-to="root.0.2.0.2.2" d="M 446.000 613.750 L 566.000 613.750" fill="none" stroke="#475569" stroke-width="3"><title>이미지 업로드</title></path>
+<polygon data-arrowhead="root.0.2.0.2.1" points="566.000,613.750 556.000,619.750 556.000,607.750" fill="#475569"/>
+<path data-edge="root.0.2.0.1" data-from="root.0.2.0.0" data-to="root.0.2.0.2" d="M 506.000 390.250 L 506.000 505.650" fill="none" stroke="#475569" stroke-width="3"><title>CI server (Jenkins) -&gt; Container image registry: image push</title></path>
+<polygon data-arrowhead="root.0.2.0.1" points="506.000,505.650 500.000,495.650 512.000,495.650" fill="#475569"/>
+<path data-edge="root.0.2.1.2.1" data-from="root.0.2.1.2.0" data-to="root.0.2.1.2.2" d="M 1354.000 595.550 L 1474.000 595.550" fill="none" stroke="#475569" stroke-width="3"><title>manifest 감시</title></path>
+<polygon data-arrowhead="root.0.2.1.2.1" points="1474.000,595.550 1464.000,601.550 1464.000,589.550" fill="#475569"/>
+<path data-edge="root.0.2.1.2.3" data-from="root.0.2.1.2.2" data-to="root.0.2.1.2.4" d="M 1812.000 595.550 L 1824.000 595.550 L 1824.000 721.450 L 1004.000 721.450 L 1004.000 847.350 L 1016.000 847.350" fill="none" stroke="#475569" stroke-width="3"><title>Argo CD -&gt; K8S: sync (삭제는 prune 설정 시) Container image registry -&gt; K8S: image pull</title></path>
+<polygon data-arrowhead="root.0.2.1.2.3" points="1016.000,847.350 1006.000,853.350 1006.000,841.350" fill="#475569"/>
+<path data-edge="root.0.2.1.1" data-from="root.0.2.1.0" data-to="root.0.2.1.2" d="M 1414.000 390.250 L 1414.000 505.650" fill="none" stroke="#475569" stroke-width="3"><title>별도 manifest-update 자동화를 추가한 경우</title></path>
+<polygon data-arrowhead="root.0.2.1.1" points="1414.000,505.650 1408.000,495.650 1420.000,495.650" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="113.050" font-size="36" font-weight="700" fill="#111827">Jenkins CI와 GitOps 확장 설계</text>
+<text data-source="root.0.1.0" x="120.000" y="210.000" font-size="28" font-weight="700" fill="#111827">개발팀 Repo</text>
+<text data-source="root.0.1.0" x="120.000" y="252.400" font-size="22" font-weight="400" fill="#111827">애플리케이션 source code</text>
+<text data-source="root.0.1.2" x="1056.000" y="210.000" font-size="28" font-weight="700" fill="#111827">CI server (Jenkins)</text>
+<text data-source="root.0.1.2" x="1056.000" y="252.400" font-size="22" font-weight="400" fill="#111827">실습 Jenkinsfile: source checkout과 image build/push</text>
+<text data-source="root.0.1.1" x="892.000" y="171.650" font-size="22" font-weight="400" fill="#111827">source</text>
+<text data-source="root.0.1.1" x="892.000" y="201.350" font-size="22" font-weight="400" fill="#111827">checkout</text>
+<text data-source="root.0.2.0.0" x="88.000" y="368.450" font-size="28" font-weight="700" fill="#111827">Container image path</text>
+<text data-source="root.0.2.0.2.0" x="144.000" y="569.650" font-size="28" font-weight="700" fill="#111827">Build container</text>
+<text data-source="root.0.2.0.2.0" x="144.000" y="606.050" font-size="28" font-weight="700" fill="#111827">image</text>
+<text data-source="root.0.2.0.2.0" x="144.000" y="648.450" font-size="22" font-weight="400" fill="#111827">CI 결과물을 배포 가능한</text>
+<text data-source="root.0.2.0.2.0" x="144.000" y="678.150" font-size="22" font-weight="400" fill="#111827">이미지로 생성</text>
+<text data-source="root.0.2.0.2.2" x="602.000" y="569.650" font-size="28" font-weight="700" fill="#111827">Container image</text>
+<text data-source="root.0.2.0.2.2" x="602.000" y="606.050" font-size="28" font-weight="700" fill="#111827">registry</text>
+<text data-source="root.0.2.0.2.2" x="602.000" y="648.450" font-size="22" font-weight="400" fill="#111827">Kubernetes가 가져갈 이미지</text>
+<text data-source="root.0.2.0.2.2" x="602.000" y="678.150" font-size="22" font-weight="400" fill="#111827">저장소</text>
+<text data-source="root.0.2.0.2.1" x="438.000" y="594.050" font-size="22" font-weight="400" fill="#111827">이미지 업로드</text>
+<text data-source="root.0.2.0.1" x="526.000" y="440.250" font-size="22" font-weight="400" fill="#111827">CI server (Jenkins) -&gt; Container image</text>
+<text data-source="root.0.2.0.1" x="526.000" y="469.950" font-size="22" font-weight="400" fill="#111827">registry: image push</text>
+<text data-source="root.0.2.1.0" x="996.000" y="368.450" font-size="28" font-weight="700" fill="#111827">GitOps 확장 예시 (실습 미구현)</text>
+<text data-source="root.0.2.1.2.0" x="1052.000" y="569.650" font-size="28" font-weight="700" fill="#111827">DevOps팀 Repo</text>
+<text data-source="root.0.2.1.2.0" x="1052.000" y="612.050" font-size="22" font-weight="400" fill="#111827">Kubernetes manifest 변경을</text>
+<text data-source="root.0.2.1.2.0" x="1052.000" y="641.750" font-size="22" font-weight="400" fill="#111827">보관</text>
+<text data-source="root.0.2.1.2.2" x="1510.000" y="569.650" font-size="28" font-weight="700" fill="#111827">CD server (Argo CD)</text>
+<text data-source="root.0.2.1.2.2" x="1510.000" y="612.050" font-size="22" font-weight="400" fill="#111827">Repo의 desired state를</text>
+<text data-source="root.0.2.1.2.2" x="1510.000" y="641.750" font-size="22" font-weight="400" fill="#111827">동기화</text>
+<text data-source="root.0.2.1.2.4" x="1052.000" y="821.450" font-size="28" font-weight="700" fill="#111827">K8S (kind)</text>
+<text data-source="root.0.2.1.2.4" x="1052.000" y="863.850" font-size="22" font-weight="400" fill="#111827">manifest를 적용하고</text>
+<text data-source="root.0.2.1.2.4" x="1052.000" y="893.550" font-size="22" font-weight="400" fill="#111827">registry에서 image를 pull</text>
+<text data-source="root.0.2.1.2.1" x="1346.000" y="575.850" font-size="22" font-weight="400" fill="#111827">manifest 감시</text>
+<text data-source="root.0.2.1.2.3" x="1036.000" y="713.450" font-size="22" font-weight="400" fill="#111827">Argo CD -&gt; K8S: sync (삭제는 prune 설정 시) Container image registry -&gt; K8S:</text>
+<text data-source="root.0.2.1.2.3" x="1036.000" y="743.150" font-size="22" font-weight="400" fill="#111827">image pull</text>
+<text data-source="root.0.2.1.1" x="1434.000" y="440.250" font-size="22" font-weight="400" fill="#111827">별도 manifest-update 자동화를 추가한</text>
+<text data-source="root.0.2.1.1" x="1434.000" y="469.950" font-size="22" font-weight="400" fill="#111827">경우</text>
+<text data-source="root.0.3" x="64.000" y="995.250" font-size="22" font-weight="400" fill="#111827">본문 실습은 image push 후 운영자가 kubectl set image로 0.0.3을 적용합니다. 오른쪽 GitOps 경로는 별도 확장 설계이며, 제시된 Jenkinsfile에는 manifest 갱신이나 Argo CD 연동이 없습니다.</text>
+</svg>

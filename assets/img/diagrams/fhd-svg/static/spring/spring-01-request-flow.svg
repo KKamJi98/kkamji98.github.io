@@ -1,0 +1,57 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5dd5c4e178cf27c41e6a58080c7ffd2be47193fafc94bd7fd906757c138495cd">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.2" x="1032.000" y="168.450" width="792.000" height="770.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="513.000" width="792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1076.000" y="216.750" width="280.000" height="104.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1500.000" y="228.450" width="280.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.4" x="1076.000" y="431.850" width="280.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.6" x="1500.000" y="431.850" width="280.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.8" x="1076.000" y="634.350" width="280.000" height="104.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.10" x="1500.000" y="623.550" width="280.000" height="126.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.12" x="1076.000" y="845.550" width="280.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.2.1.1" data-from="root.0.1.2.1.0" data-to="root.0.1.2.1.2" d="M 1368.000 268.950 L 1488.000 268.950" fill="none" stroke="#475569" stroke-width="3"><title>worker 1개 배정</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1" points="1488.000,268.950 1478.000,274.950 1478.000,262.950" fill="#475569"/>
+<path data-edge="root.0.1.2.1.3" data-from="root.0.1.2.1.2" data-to="root.0.1.2.1.4" d="M 1792.000 268.950 L 1804.000 268.950 L 1804.000 369.150 L 1052.000 369.150 L 1052.000 472.350 L 1064.000 472.350" fill="none" stroke="#475569" stroke-width="3"><title>공통 전처리</title></path>
+<polygon data-arrowhead="root.0.1.2.1.3" points="1064.000,472.350 1054.000,478.350 1054.000,466.350" fill="#475569"/>
+<path data-edge="root.0.1.2.1.5" data-from="root.0.1.2.1.4" data-to="root.0.1.2.1.6" d="M 1368.000 472.350 L 1488.000 472.350" fill="none" stroke="#475569" stroke-width="3"><title>front controller 진입</title></path>
+<polygon data-arrowhead="root.0.1.2.1.5" points="1488.000,472.350 1478.000,478.350 1478.000,466.350" fill="#475569"/>
+<path data-edge="root.0.1.2.1.7" data-from="root.0.1.2.1.6" data-to="root.0.1.2.1.8" d="M 1792.000 472.350 L 1804.000 472.350 L 1804.000 575.550 L 1052.000 575.550 L 1052.000 686.550 L 1064.000 686.550" fill="none" stroke="#475569" stroke-width="3"><title>handler 탐색과 호출</title></path>
+<polygon data-arrowhead="root.0.1.2.1.7" points="1064.000,686.550 1054.000,692.550 1054.000,680.550" fill="#475569"/>
+<path data-edge="root.0.1.2.1.9" data-from="root.0.1.2.1.8" data-to="root.0.1.2.1.10" d="M 1368.000 686.550 L 1488.000 686.550" fill="none" stroke="#475569" stroke-width="3"><title>bean 로직 실행</title></path>
+<polygon data-arrowhead="root.0.1.2.1.9" points="1488.000,686.550 1478.000,692.550 1478.000,680.550" fill="#475569"/>
+<path data-edge="root.0.1.2.1.11" data-from="root.0.1.2.1.10" data-to="root.0.1.2.1.12" d="M 1792.000 686.550 L 1804.000 686.550 L 1804.000 797.550 L 1052.000 797.550 L 1052.000 886.050 L 1064.000 886.050" fill="none" stroke="#475569" stroke-width="3"><title>JSON 직렬화</title></path>
+<polygon data-arrowhead="root.0.1.2.1.11" points="1064.000,886.050 1054.000,892.050 1054.000,880.050" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2.1.0" d="M 900.000 553.500 L 976.000 553.500 L 976.000 268.950 L 1064.000 268.950" fill="none" stroke="#475569" stroke-width="3"><title>HTTP 전달</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1064.000,268.950 1054.000,274.950 1054.000,262.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="143.850" font-size="36" font-weight="700" fill="#111827">Spring MVC 요청 한 건의 처리 경로</text>
+<text data-source="root.0.1.0" x="108.000" y="543.000" font-size="18" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1.0" x="108.000" y="576.400" font-size="16" font-weight="400" fill="#111827">HTTP request</text>
+<text data-source="root.0.1.2.0" x="1044.000" y="198.450" font-size="18" font-weight="700" fill="#111827">JVM process: java -jar app.jar</text>
+<text data-source="root.0.1.2.1.0" x="1088.000" y="246.750" font-size="18" font-weight="700" fill="#111827">Embedded Tomcat</text>
+<text data-source="root.0.1.2.1.0" x="1088.000" y="270.150" font-size="18" font-weight="700" fill="#111827">connector</text>
+<text data-source="root.0.1.2.1.0" x="1088.000" y="303.550" font-size="16" font-weight="400" fill="#111827">:8080에서 연결 수락</text>
+<text data-source="root.0.1.2.1.2" x="1512.000" y="258.450" font-size="18" font-weight="700" fill="#111827">Servlet container</text>
+<text data-source="root.0.1.2.1.2" x="1512.000" y="291.850" font-size="16" font-weight="400" fill="#111827">요청마다 worker thread 1개 할당</text>
+<text data-source="root.0.1.2.1.4" x="1088.000" y="461.850" font-size="18" font-weight="700" fill="#111827">Filter chain</text>
+<text data-source="root.0.1.2.1.4" x="1088.000" y="495.250" font-size="16" font-weight="400" fill="#111827">security, logging, encoding 처리</text>
+<text data-source="root.0.1.2.1.6" x="1512.000" y="461.850" font-size="18" font-weight="700" fill="#111827">DispatcherServlet</text>
+<text data-source="root.0.1.2.1.6" x="1512.000" y="495.250" font-size="16" font-weight="400" fill="#111827">front controller, / 경로에 매핑</text>
+<text data-source="root.0.1.2.1.8" x="1088.000" y="664.350" font-size="18" font-weight="700" fill="#111827">HandlerMapping and</text>
+<text data-source="root.0.1.2.1.8" x="1088.000" y="687.750" font-size="18" font-weight="700" fill="#111827">HandlerAdapter</text>
+<text data-source="root.0.1.2.1.8" x="1088.000" y="721.150" font-size="16" font-weight="400" fill="#111827">handler 탐색 후 인자 바인딩</text>
+<text data-source="root.0.1.2.1.10" x="1512.000" y="653.550" font-size="18" font-weight="700" fill="#111827">Controller, Service,</text>
+<text data-source="root.0.1.2.1.10" x="1512.000" y="676.950" font-size="18" font-weight="700" fill="#111827">Repository</text>
+<text data-source="root.0.1.2.1.10" x="1512.000" y="710.350" font-size="16" font-weight="400" fill="#111827">모든 bean이 같은 thread에서</text>
+<text data-source="root.0.1.2.1.10" x="1512.000" y="731.950" font-size="16" font-weight="400" fill="#111827">실행</text>
+<text data-source="root.0.1.2.1.12" x="1088.000" y="875.550" font-size="18" font-weight="700" fill="#111827">HttpMessageConverter</text>
+<text data-source="root.0.1.2.1.12" x="1088.000" y="908.950" font-size="16" font-weight="400" fill="#111827">반환 값을 JSON으로 직렬화</text>
+<text data-source="root.0.1.2.1.1" x="1360.000" y="251.350" font-size="16" font-weight="400" fill="#111827">worker 1개 배정</text>
+<text data-source="root.0.1.2.1.3" x="1084.000" y="361.150" font-size="16" font-weight="400" fill="#111827">공통 전처리</text>
+<text data-source="root.0.1.2.1.5" x="1360.000" y="433.150" font-size="16" font-weight="400" fill="#111827">front controller</text>
+<text data-source="root.0.1.2.1.5" x="1360.000" y="454.750" font-size="16" font-weight="400" fill="#111827">진입</text>
+<text data-source="root.0.1.2.1.7" x="1084.000" y="567.550" font-size="16" font-weight="400" fill="#111827">handler 탐색과 호출</text>
+<text data-source="root.0.1.2.1.9" x="1360.000" y="668.950" font-size="16" font-weight="400" fill="#111827">bean 로직 실행</text>
+<text data-source="root.0.1.2.1.11" x="1084.000" y="789.550" font-size="16" font-weight="400" fill="#111827">JSON 직렬화</text>
+<text data-source="root.0.1.1" x="892.000" y="535.900" font-size="16" font-weight="400" fill="#111827">HTTP 전달</text>
+<text data-source="root.0.2" x="64.000" y="966.550" font-size="16" font-weight="400" fill="#111827">worker thread는 I/O 대기를 포함해 요청 전체가 끝날 때까지 점유됩니다.</text>
+</svg>

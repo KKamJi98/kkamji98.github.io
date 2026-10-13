@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-ci-cd-jenkins-operator-reconcile-loop" aria-labelledby="sd-title-ci-cd-jenkins-operator-reconcile-loop">
-  <figcaption class="sd-title" id="sd-title-ci-cd-jenkins-operator-reconcile-loop">Jenkins Operator는 base를 맞춘 뒤 user configuration을 적용</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-ci-cd-jenkins-operator-reconcile-loop" aria-labelledby="sd-title-ci-cd-jenkins-operator-reconcile-loop" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-ci-cd-jenkins-operator-reconcile-loop">Jenkins Operator는 base를 맞춘 뒤 user configuration을 적용</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Jenkins CR</strong>
@@ -58,4 +58,75 @@
     </div>
   </div>
   <p class="sd-note">정상 pass는 CR status fields에서 끝나고, Validate 또는 base 단계가 실패하면 user 단계는 실행되지 않습니다. 같은 error가 10회 누적될 때만 반복 오류 경로에서 ReconcileLoopFailed로 중단되며, status와 Operator log에서 완료 지점을 확인할 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f731fb498a6e56c27011b582c7f1f87921e2bd8f9a425b50cc19167843c55f82">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.4.0" x="64.000" y="360.000" width="832.000" height="434.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.1" x="1024.000" y="360.000" width="832.000" height="410.800" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="160.000" width="760.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1096.000" y="160.000" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.0.1.0" x="112.000" y="419.000" width="296.000" height="144.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.0.1.2" x="552.000" y="432.000" width="296.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.0.1.4" x="112.000" y="659.600" width="296.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.0.1.6" x="552.000" y="659.600" width="296.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.0" x="1072.000" y="420.300" width="296.000" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.2" x="1512.000" y="432.450" width="296.000" height="94.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.4" x="1072.000" y="636.200" width="296.000" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 836.000 207.150 L 1084.000 207.150" fill="none" stroke="#475569" stroke-width="3"><title>watch 이벤트 수신</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1084.000,207.150 1074.000,213.150 1074.000,201.150" fill="#475569"/>
+<path data-edge="root.0.1.4.0.1.1" data-from="root.0.1.4.0.1.0" data-to="root.0.1.4.0.1.2" d="M 420.000 491.300 L 540.000 491.300" fill="none" stroke="#475569" stroke-width="3"><title>기본 자원 준비 완료</title></path>
+<polygon data-arrowhead="root.0.1.4.0.1.1" points="540.000,491.300 530.000,497.300 530.000,485.300" fill="#475569"/>
+<path data-edge="root.0.1.4.0.1.3" data-from="root.0.1.4.0.1.2" data-to="root.0.1.4.0.1.4" d="M 860.000 491.300 L 872.000 491.300 L 872.000 611.600 L 88.000 611.600 L 88.000 718.900 L 100.000 718.900" fill="none" stroke="#475569" stroke-width="3"><title>사용자 설정 반영</title></path>
+<polygon data-arrowhead="root.0.1.4.0.1.3" points="100.000,718.900 90.000,724.900 90.000,712.900" fill="#475569"/>
+<path data-edge="root.0.1.4.0.1.5" data-from="root.0.1.4.0.1.4" data-to="root.0.1.4.0.1.6" d="M 420.000 718.900 L 540.000 718.900" fill="none" stroke="#475569" stroke-width="3"><title>완료 시각 기록</title></path>
+<polygon data-arrowhead="root.0.1.4.0.1.5" points="540.000,718.900 530.000,724.900 530.000,712.900" fill="#475569"/>
+<path data-edge="root.0.1.4.1.1.1" data-from="root.0.1.4.1.1.0" data-to="root.0.1.4.1.1.2" d="M 1380.000 479.600 L 1500.000 479.600" fill="none" stroke="#475569" stroke-width="3"><title>현재 pass 재시도</title></path>
+<polygon data-arrowhead="root.0.1.4.1.1.1" points="1500.000,479.600 1490.000,485.600 1490.000,473.600" fill="#475569"/>
+<path data-edge="root.0.1.4.1.1.3" data-from="root.0.1.4.1.1.2" data-to="root.0.1.4.1.1.4" d="M 1820.000 479.600 L 1832.000 479.600 L 1832.000 588.200 L 1048.000 588.200 L 1048.000 695.500 L 1060.000 695.500" fill="none" stroke="#475569" stroke-width="3"><title>반복 오류 한도 도달</title></path>
+<polygon data-arrowhead="root.0.1.4.1.1.3" points="1060.000,695.500 1050.000,701.500 1050.000,689.500" fill="#475569"/>
+<path data-edge="root.0.1.3.branch-0" data-from="root.0.1.2" data-to="root.0.1.4.0.1.0" d="M 1476.000 266.300 L 1476.000 340.000 L 260.000 340.000 L 260.000 407.000" fill="none" stroke="#475569" stroke-width="3"><title>pass 결과에 따라 분기</title></path>
+<polygon data-arrowhead="root.0.1.3.branch-0" points="260.000,407.000 254.000,397.000 266.000,397.000" fill="#475569"/>
+<path data-edge="root.0.1.3.branch-1" data-from="root.0.1.2" data-to="root.0.1.4.1.1.0" d="M 1476.000 266.300 L 1476.000 340.000 L 1220.000 340.000 L 1220.000 408.300" fill="none" stroke="#475569" stroke-width="3"><title>pass 결과에 따라 분기</title></path>
+<polygon data-arrowhead="root.0.1.3.branch-1" points="1220.000,408.300 1214.000,398.300 1226.000,398.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="100.000" font-size="36" font-weight="700" fill="#111827">Jenkins Operator는 base를 맞춘 뒤 user configuration을 적용</text>
+<text data-source="root.0.1.0" x="80.000" y="196.000" font-size="20" font-weight="700" fill="#111827">Jenkins CR</text>
+<text data-source="root.0.1.0" x="80.000" y="232.000" font-size="18" font-weight="400" fill="#111827">master, plugins, seed jobs, CASC를 선언</text>
+<text data-source="root.0.1.2" x="1112.000" y="196.000" font-size="20" font-weight="700" fill="#111827">Jenkins Operator</text>
+<text data-source="root.0.1.2" x="1112.000" y="232.000" font-size="18" font-weight="400" fill="#111827">watch, Validate, Reconcile 수행</text>
+<text data-source="root.0.1.1" x="844.000" y="167.150" font-size="20" font-weight="400" fill="#111827">watch 이벤트 수신</text>
+<text data-source="root.0.1.4.0.0" x="80.000" y="396.000" font-size="20" font-weight="700" fill="#111827">정상 pass</text>
+<text data-source="root.0.1.4.0.1.0" x="128.000" y="455.000" font-size="20" font-weight="700" fill="#111827">Base reconciliation</text>
+<text data-source="root.0.1.4.0.1.0" x="128.000" y="481.000" font-size="20" font-weight="700" fill="#111827">loop</text>
+<text data-source="root.0.1.4.0.1.0" x="128.000" y="517.000" font-size="18" font-weight="400" fill="#111827">namespace, RBAC, master</text>
+<text data-source="root.0.1.4.0.1.0" x="128.000" y="541.300" font-size="18" font-weight="400" fill="#111827">Pod, API token, 보안 Groovy</text>
+<text data-source="root.0.1.4.0.1.2" x="568.000" y="468.000" font-size="20" font-weight="700" fill="#111827">User reconciliation loop</text>
+<text data-source="root.0.1.4.0.1.2" x="568.000" y="504.000" font-size="18" font-weight="400" fill="#111827">CASC, seed jobs, user Groovy,</text>
+<text data-source="root.0.1.4.0.1.2" x="568.000" y="528.300" font-size="18" font-weight="400" fill="#111827">backup와 restore job</text>
+<text data-source="root.0.1.4.0.1.4" x="128.000" y="695.600" font-size="20" font-weight="700" fill="#111827">Jenkins master Pod</text>
+<text data-source="root.0.1.4.0.1.4" x="128.000" y="731.600" font-size="18" font-weight="400" fill="#111827">base와 user configuration이</text>
+<text data-source="root.0.1.4.0.1.4" x="128.000" y="755.900" font-size="18" font-weight="400" fill="#111827">적용된 실행 인스턴스</text>
+<text data-source="root.0.1.4.0.1.6" x="568.000" y="695.600" font-size="20" font-weight="700" fill="#111827">CR status fields</text>
+<text data-source="root.0.1.4.0.1.6" x="568.000" y="731.600" font-size="18" font-weight="400" fill="#111827">provision과 configuration</text>
+<text data-source="root.0.1.4.0.1.6" x="568.000" y="755.900" font-size="18" font-weight="400" fill="#111827">timestamp</text>
+<text data-source="root.0.1.4.0.1.1" x="412.000" y="448.700" font-size="18" font-weight="400" fill="#111827">기본 자원 준비</text>
+<text data-source="root.0.1.4.0.1.1" x="412.000" y="473.000" font-size="18" font-weight="400" fill="#111827">완료</text>
+<text data-source="root.0.1.4.0.1.3" x="120.000" y="603.600" font-size="18" font-weight="400" fill="#111827">사용자 설정 반영</text>
+<text data-source="root.0.1.4.0.1.5" x="412.000" y="700.600" font-size="18" font-weight="400" fill="#111827">완료 시각 기록</text>
+<text data-source="root.0.1.4.1.0" x="1040.000" y="396.000" font-size="20" font-weight="700" fill="#111827">반복 오류 경로</text>
+<text data-source="root.0.1.4.1.1.0" x="1088.000" y="456.300" font-size="20" font-weight="700" fill="#111827">Reconcile step error</text>
+<text data-source="root.0.1.4.1.1.0" x="1088.000" y="492.300" font-size="18" font-weight="400" fill="#111827">Validate, base 또는 user</text>
+<text data-source="root.0.1.4.1.1.0" x="1088.000" y="516.600" font-size="18" font-weight="400" fill="#111827">단계의 조정 실패</text>
+<text data-source="root.0.1.4.1.1.2" x="1528.000" y="468.450" font-size="20" font-weight="700" fill="#111827">Same error 10 times</text>
+<text data-source="root.0.1.4.1.1.2" x="1528.000" y="504.450" font-size="18" font-weight="400" fill="#111827">같은 error가 한도까지 누적</text>
+<text data-source="root.0.1.4.1.1.4" x="1088.000" y="672.200" font-size="20" font-weight="700" fill="#111827">ReconcileLoopFailed</text>
+<text data-source="root.0.1.4.1.1.4" x="1088.000" y="708.200" font-size="18" font-weight="400" fill="#111827">CR status에 실패를 기록하고</text>
+<text data-source="root.0.1.4.1.1.4" x="1088.000" y="732.500" font-size="18" font-weight="400" fill="#111827">조정 loop를 중단</text>
+<text data-source="root.0.1.4.1.1.1" x="1372.000" y="437.000" font-size="18" font-weight="400" fill="#111827">현재 pass</text>
+<text data-source="root.0.1.4.1.1.1" x="1372.000" y="461.300" font-size="18" font-weight="400" fill="#111827">재시도</text>
+<text data-source="root.0.1.4.1.1.3" x="1080.000" y="580.200" font-size="18" font-weight="400" fill="#111827">반복 오류 한도 도달</text>
+<text data-source="root.0.1.3" x="64.000" y="324.000" font-size="20" font-weight="400" fill="#111827">pass 결과에 따라 분기</text>
+<text data-source="root.0.2" x="64.000" y="996.000" font-size="16" font-weight="400" fill="#111827">정상 pass는 CR status fields에서 끝나고, Validate 또는 base 단계가 실패하면 user 단계는 실행되지 않습니다. 같은 error가 10회 누적될 때만 반복 오류 경로에서 ReconcileLoopFailed로 중단되며, status와 Operator log에서 완료 지점을 확인할</text>
+<text data-source="root.0.2" x="64.000" y="1017.600" font-size="16" font-weight="400" fill="#111827">수 있습니다.</text>
+</svg>
 </figure>

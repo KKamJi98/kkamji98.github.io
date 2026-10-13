@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="jvm-03-jvm-memory-areas" aria-labelledby="sd-title-jvm-03-jvm-memory-areas">
-  <figcaption class="sd-title" id="sd-title-jvm-03-jvm-memory-areas">JVM 메모리: Heap과 Non-heap/native</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="jvm-03-jvm-memory-areas" aria-labelledby="sd-title-jvm-03-jvm-memory-areas" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-jvm-03-jvm-memory-areas">JVM 메모리: Heap과 Non-heap/native</figcaption><div class="sd-semantic-source">
 
   <div class="sd-grid">
     <section class="sd-lane">
@@ -41,4 +41,39 @@
   </div>
 
   <p class="sd-note"><code>-Xmx</code>는 Heap만 제한합니다. 컨테이너 RSS와 OOMKill을 판단할 때는 네 가지 native 영역도 함께 봐야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="81515cd13575b3e5d6f142e1accfc637ed643a97265adf15a1edef1f2f0cad65">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="356.450" width="884.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="356.450" width="884.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="442.250" width="314.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="442.250" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="996.000" y="442.250" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="1426.000" y="442.250" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="996.000" y="592.350" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.3" x="1426.000" y="592.350" width="406.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 520.150 L 566.000 520.150" fill="none" stroke="#475569" stroke-width="3"><title>반복 생존 후 promotion</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,520.150 556.000,526.150 556.000,514.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="319.850" font-size="36" font-weight="700" fill="#111827">JVM 메모리: Heap과 Non-heap/native</text>
+<text data-source="root.0.1.0.0" x="88.000" y="408.450" font-size="28" font-weight="700" fill="#111827">Heap: GC 관리, -Xmx 상한</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="494.250" font-size="28" font-weight="700" fill="#111827">Young generation</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="536.650" font-size="22" font-weight="400" fill="#111827">Eden과 Survivor S0, S1; 새</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="566.350" font-size="22" font-weight="400" fill="#111827">객체가 먼저 태어남</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="494.250" font-size="28" font-weight="700" fill="#111827">Old generation</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="536.650" font-size="22" font-weight="400" fill="#111827">오래 살아남았거나 승격된</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="566.350" font-size="22" font-weight="400" fill="#111827">객체</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="470.750" font-size="22" font-weight="400" fill="#111827">반복 생존 후</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="500.450" font-size="22" font-weight="400" fill="#111827">promotion</text>
+<text data-source="root.0.1.1.0" x="996.000" y="408.450" font-size="28" font-weight="700" fill="#111827">Non-heap/native: -Xmx 밖</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="494.250" font-size="28" font-weight="700" fill="#111827">Metaspace</text>
+<text data-source="root.0.1.1.1.0" x="1020.000" y="536.650" font-size="22" font-weight="400" fill="#111827">class metadata, JDK 8부터 native</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="494.250" font-size="28" font-weight="700" fill="#111827">Thread stacks</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="536.650" font-size="22" font-weight="400" fill="#111827">-Xss x thread count</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="644.350" font-size="28" font-weight="700" fill="#111827">Code cache</text>
+<text data-source="root.0.1.1.1.2" x="1020.000" y="686.750" font-size="22" font-weight="400" fill="#111827">JIT compiled machine code</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="644.350" font-size="28" font-weight="700" fill="#111827">Direct memory</text>
+<text data-source="root.0.1.1.1.3" x="1450.000" y="686.750" font-size="22" font-weight="400" fill="#111827">NIO와 Netty의 off-heap buffer</text>
+<text data-source="root.0.2" x="64.000" y="788.450" font-size="22" font-weight="400" fill="#111827">-Xmx는 Heap만 제한합니다. 컨테이너 RSS와 OOMKill을 판단할 때는 네 가지 native 영역도 함께 봐야 합니다.</text>
+</svg>
 </figure>

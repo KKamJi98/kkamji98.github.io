@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="gcp-iam-inheritance" aria-labelledby="gcp-iam-inheritance-title">
-  <figcaption class="sd-title" id="gcp-iam-inheritance-title">IAM Allow grant는 계층 아래로 누적되며 줄어들지 않습니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="gcp-iam-inheritance" aria-labelledby="gcp-iam-inheritance-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="gcp-iam-inheritance-title">IAM Allow grant는 계층 아래로 누적되며 줄어들지 않습니다</figcaption><div class="sd-semantic-source">
   <p class="sd-intro">하위 리소스의 effective allow policy는 자기 binding과 모든 상위 binding의 합집합입니다.</p>
 
   <div class="sd-flow" aria-label="GCP IAM 정책 상속 흐름">
@@ -31,4 +31,40 @@
   </div>
 
   <p class="sd-note">일반적인 Allow 상속은 additive입니다. 별도 IAM Deny 정책은 이 Allow 계산과 별도로 우선 평가됩니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="92d03700c7e05a702247bbb1a68c10383cc3f80818d58bf5a7f7aeb344927a18">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="513.250" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="513.250" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="480.200" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 576.300 L 552.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>상위 Allow가 하위로 상속</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,576.300 542.000,582.300 542.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 576.300 L 1020.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>상속된 Viewer를 유지</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,576.300 1010.000,582.300 1010.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 576.300 L 1488.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>자기 정책과 상위 정책을 합집합</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,576.300 1478.000,582.300 1478.000,570.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="384.900" font-size="36" font-weight="700" fill="#111827">IAM Allow grant는 계층 아래로 누적되며 줄어들지 않습니다</text>
+<text data-source="root.0.1" x="64.000" y="443.500" font-size="22" font-weight="400" fill="#111827">하위 리소스의 effective allow policy는 자기 binding과 모든 상위 binding의 합집합입니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="565.250" font-size="28" font-weight="700" fill="#111827">Organization</text>
+<text data-source="root.0.2.0" x="120.000" y="607.650" font-size="22" font-weight="400" fill="#111827">상위에 Viewer grant를 설정</text>
+<text data-source="root.0.2.2" x="588.000" y="550.400" font-size="28" font-weight="700" fill="#111827">Folder: engineering</text>
+<text data-source="root.0.2.2" x="588.000" y="592.800" font-size="22" font-weight="400" fill="#111827">자체 binding이 없어도</text>
+<text data-source="root.0.2.2" x="588.000" y="622.500" font-size="22" font-weight="400" fill="#111827">Organization grant를 받음</text>
+<text data-source="root.0.2.4" x="1056.000" y="565.250" font-size="28" font-weight="700" fill="#111827">Project: app-prod</text>
+<text data-source="root.0.2.4" x="1056.000" y="607.650" font-size="22" font-weight="400" fill="#111827">여기에 Editor grant를 추가</text>
+<text data-source="root.0.2.6" x="1524.000" y="532.200" font-size="28" font-weight="700" fill="#111827">Effective policy on</text>
+<text data-source="root.0.2.6" x="1524.000" y="568.600" font-size="28" font-weight="700" fill="#111827">app-prod</text>
+<text data-source="root.0.2.6" x="1524.000" y="611.000" font-size="22" font-weight="400" fill="#111827">Viewer + Editor. 하위에서</text>
+<text data-source="root.0.2.6" x="1524.000" y="640.700" font-size="22" font-weight="400" fill="#111827">상위 Allow를 좁히지 않음</text>
+<text data-source="root.0.2.1" x="424.000" y="526.900" font-size="22" font-weight="400" fill="#111827">상위 Allow가</text>
+<text data-source="root.0.2.1" x="424.000" y="556.600" font-size="22" font-weight="400" fill="#111827">하위로 상속</text>
+<text data-source="root.0.2.3" x="892.000" y="526.900" font-size="22" font-weight="400" fill="#111827">상속된</text>
+<text data-source="root.0.2.3" x="892.000" y="556.600" font-size="22" font-weight="400" fill="#111827">Viewer를 유지</text>
+<text data-source="root.0.2.5" x="1360.000" y="497.200" font-size="22" font-weight="400" fill="#111827">자기 정책과</text>
+<text data-source="root.0.2.5" x="1360.000" y="526.900" font-size="22" font-weight="400" fill="#111827">상위 정책을</text>
+<text data-source="root.0.2.5" x="1360.000" y="556.600" font-size="22" font-weight="400" fill="#111827">합집합</text>
+<text data-source="root.0.3" x="64.000" y="723.400" font-size="22" font-weight="400" fill="#111827">일반적인 Allow 상속은 additive입니다. 별도 IAM Deny 정책은 이 Allow 계산과 별도로 우선 평가됩니다.</text>
+</svg>
 </figure>
