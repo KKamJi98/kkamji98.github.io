@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="gcp-iam-model" aria-labelledby="gcp-iam-model-title">
-  <figcaption class="sd-title" id="gcp-iam-model-title">Binding은 하나 이상의 Principal과 한 Role을 Resource policy에 묶습니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="gcp-iam-model" aria-labelledby="gcp-iam-model-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="gcp-iam-model-title">Binding은 하나 이상의 Principal과 한 Role을 Resource policy에 묶습니다</figcaption><div class="sd-semantic-source">
   <p class="sd-intro">권한은 Principal에 직접 붙지 않습니다. Principal과 권한 묶음인 Role을 하나의 binding으로 만든 뒤 Resource의 policy에 저장합니다.</p>
   <section class="sd-band" aria-labelledby="gcp-iam-model-binding-title">
     <div class="sd-band-title" id="gcp-iam-model-binding-title">Binding: 하나 이상의 신원과 하나의 Role</div>
@@ -22,4 +22,26 @@
     <span class="sd-detail">여러 binding의 집합이 Allow Policy가 되고, 하위 리소스에 union으로 상속</span>
   </div>
   <p class="sd-note">Policy가 Principal에 붙는 identity-attached 모델과 달리, GCP IAM policy의 저장 위치는 Resource입니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="0d21a48f3bb81309377f98f1b3d09831444e590805d4c2cc4c78d0990016a53f">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="340.450" width="1792.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="88.000" y="426.250" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="972.000" y="426.250" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="686.050" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 588.350 L 960.000 674.050" fill="none" stroke="#475569" stroke-width="3"><title>두 요소를 binding으로 묶어 Resource에 부착</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,674.050 954.000,664.050 966.000,664.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="250.150" font-size="36" font-weight="700" fill="#111827">Binding은 하나 이상의 Principal과 한 Role을 Resource policy에 묶습니다</text>
+<text data-source="root.0.1" x="64.000" y="308.750" font-size="22" font-weight="400" fill="#111827">권한은 Principal에 직접 붙지 않습니다. Principal과 권한 묶음인 Role을 하나의 binding으로 만든 뒤 Resource의 policy에 저장합니다.</text>
+<text data-source="root.0.2.0" x="88.000" y="392.450" font-size="28" font-weight="700" fill="#111827">Binding: 하나 이상의 신원과 하나의 Role</text>
+<text data-source="root.0.2.1.0" x="112.000" y="478.250" font-size="28" font-weight="700" fill="#111827">Principals</text>
+<text data-source="root.0.2.1.0" x="112.000" y="520.650" font-size="22" font-weight="400" fill="#111827">하나 이상의 user, group 또는 service account</text>
+<text data-source="root.0.2.1.1" x="996.000" y="478.250" font-size="28" font-weight="700" fill="#111827">Role</text>
+<text data-source="root.0.2.1.1" x="996.000" y="520.650" font-size="22" font-weight="400" fill="#111827">predefined 또는 custom permission 묶음</text>
+<text data-source="root.0.4" x="88.000" y="738.050" font-size="28" font-weight="700" fill="#111827">Resource: Cloud Storage</text>
+<text data-source="root.0.4" x="88.000" y="780.450" font-size="22" font-weight="400" fill="#111827">여러 binding의 집합이 Allow Policy가 되고, 하위 리소스에 union으로 상속</text>
+<text data-source="root.0.5" x="64.000" y="858.150" font-size="22" font-weight="400" fill="#111827">Policy가 Principal에 붙는 identity-attached 모델과 달리, GCP IAM policy의 저장 위치는 Resource입니다.</text>
+<text data-source="root.0.3" x="980.000" y="638.350" font-size="22" font-weight="400" fill="#111827">두 요소를 binding으로 묶어 Resource에 부착</text>
+</svg>
 </figure>

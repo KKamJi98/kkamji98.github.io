@@ -1,0 +1,50 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="23442cb72bf0af5ed39e4e1fd491567b04b98f66bbb39fa407826d0e31aa3f50">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="329.600" width="884.000" height="531.100" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="329.600" width="884.000" height="547.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.1" x="88.000" y="415.400" width="836.000" height="185.500" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="88.000" y="415.400" width="262.667" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.1" x="374.667" y="415.400" width="262.667" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="661.333" y="415.400" width="262.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.3" x="88.000" y="710.600" width="836.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="415.400" width="312.103" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1487.897" y="415.400" width="312.103" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.4" x="1028.000" y="667.200" width="312.103" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.2" data-from="root.0.2.0.1" data-to="root.0.2.0.3" d="M 506.000 612.900 L 506.000 698.600" fill="none" stroke="#475569" stroke-width="3"><title>many east-west calls</title></path>
+<polygon data-arrowhead="root.0.2.0.2" points="506.000,698.600 500.000,688.600 512.000,688.600" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1352.103 493.300 L 1475.897 493.300" fill="none" stroke="#475569" stroke-width="3"><title>공통 proxy와 data plane</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1475.897,493.300 1465.897,499.300 1465.897,487.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.3" data-from="root.0.2.1.1.2" data-to="root.0.2.1.1.4" d="M 1812.000 493.300 L 1824.000 493.300 L 1824.000 619.200 L 1004.000 619.200 L 1004.000 759.950 L 1016.000 759.950" fill="none" stroke="#475569" stroke-width="3"><title>identity와 observability 적용</title></path>
+<polygon data-arrowhead="root.0.2.1.1.3" points="1016.000,759.950 1006.000,765.950 1006.000,753.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="239.300" font-size="36" font-weight="700" fill="#111827">Microservice가 늘수록 직접 연결의 운영 복잡도가 커진다</text>
+<text data-source="root.0.1" x="64.000" y="297.900" font-size="22" font-weight="400" fill="#111827">아래 EXAMPLE A, B, C는 특정 workload가 아닌 개념 예시입니다. 직접 호출이 늘수록 각 service가 retry, auth, traffic control, telemetry를 반복해서 관리해야 합니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="381.600" font-size="28" font-weight="700" fill="#111827">Application 직접 통신</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="467.400" font-size="28" font-weight="700" fill="#111827">EXAMPLE A</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="509.800" font-size="22" font-weight="400" fill="#111827">다른 example</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="539.500" font-size="22" font-weight="400" fill="#111827">service를 호출할 수</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="569.200" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
+<text data-source="root.0.2.0.1.1" x="398.667" y="467.400" font-size="28" font-weight="700" fill="#111827">EXAMPLE B</text>
+<text data-source="root.0.2.0.1.1" x="398.667" y="509.800" font-size="22" font-weight="400" fill="#111827">여러 example</text>
+<text data-source="root.0.2.0.1.1" x="398.667" y="539.500" font-size="22" font-weight="400" fill="#111827">service와 연결될 수</text>
+<text data-source="root.0.2.0.1.1" x="398.667" y="569.200" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
+<text data-source="root.0.2.0.1.2" x="685.333" y="467.400" font-size="28" font-weight="700" fill="#111827">EXAMPLE C</text>
+<text data-source="root.0.2.0.1.2" x="685.333" y="509.800" font-size="22" font-weight="400" fill="#111827">호출 조합이 늘어날 수</text>
+<text data-source="root.0.2.0.1.2" x="685.333" y="539.500" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
+<text data-source="root.0.2.0.3" x="112.000" y="762.600" font-size="28" font-weight="700" fill="#111827">운영 책임 분산</text>
+<text data-source="root.0.2.0.3" x="112.000" y="805.000" font-size="22" font-weight="400" fill="#111827">retry, auth, traffic control, telemetry를 service마다 반복합니다.</text>
+<text data-source="root.0.2.0.2" x="526.000" y="662.900" font-size="22" font-weight="400" fill="#111827">many east-west calls</text>
+<text data-source="root.0.2.1.0" x="996.000" y="381.600" font-size="28" font-weight="700" fill="#111827">공통 Service Mesh 계층</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="467.400" font-size="28" font-weight="700" fill="#111827">Application traffic</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="509.800" font-size="22" font-weight="400" fill="#111827">기존 application code는</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="539.500" font-size="22" font-weight="400" fill="#111827">그대로 둡니다.</text>
+<text data-source="root.0.2.1.1.2" x="1511.897" y="467.400" font-size="28" font-weight="700" fill="#111827">Service Mesh</text>
+<text data-source="root.0.2.1.1.2" x="1511.897" y="509.800" font-size="22" font-weight="400" fill="#111827">resilient connectivity와 L7</text>
+<text data-source="root.0.2.1.1.2" x="1511.897" y="539.500" font-size="22" font-weight="400" fill="#111827">traffic control을 공유합니다.</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="719.200" font-size="28" font-weight="700" fill="#111827">정책과 관측 결과</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="761.600" font-size="22" font-weight="400" fill="#111827">모든 service에 일관된</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="791.300" font-size="22" font-weight="400" fill="#111827">security와 tracing을</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="821.000" font-size="22" font-weight="400" fill="#111827">제공합니다.</text>
+<text data-source="root.0.2.1.1.1" x="1344.103" y="443.900" font-size="22" font-weight="400" fill="#111827">공통 proxy와</text>
+<text data-source="root.0.2.1.1.1" x="1344.103" y="473.600" font-size="22" font-weight="400" fill="#111827">data plane</text>
+<text data-source="root.0.2.1.1.3" x="1036.000" y="611.200" font-size="22" font-weight="400" fill="#111827">identity와 observability 적용</text>
+</svg>

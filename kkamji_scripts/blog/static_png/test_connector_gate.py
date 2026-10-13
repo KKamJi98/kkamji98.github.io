@@ -75,7 +75,7 @@ class ConnectorGateTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             import json
 
-            receipt = json.loads((temp / "out/fixture-625-light.json").read_text())
+            receipt = json.loads((temp / "out/fixture-1920x1080-light.json").read_text())
             self.assertTrue(receipt["quality"]["desktop"]["connector_issues"])
             balanced = (
                 (site / "index.html")
@@ -156,7 +156,7 @@ class ConnectorGateTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             import json
 
-            receipt = json.loads((temp / "out/fixture-625-light.json").read_text())
+            receipt = json.loads((temp / "out/fixture-1920x1080-light.json").read_text())
             self.assertTrue(receipt["quality"]["desktop"]["connector_issues"])
 
 

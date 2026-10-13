@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="sd-ci-cd-study-docker-build-workflow{{include.instance}}" aria-labelledby="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}">
-  <figcaption class="sd-title" id="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}">Docker는 Project와 Dockerfile로 Build Context를 만들고 Image를 Push</figcaption>
+<figure class="sd sd--layers sd--fhd" id="sd-ci-cd-study-docker-build-workflow{{include.instance}}" aria-labelledby="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-ci-cd-study-docker-build-workflow{{include.instance}}">Docker는 Project와 Dockerfile로 Build Context를 만들고 Image를 Push</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-grid">
       <section class="sd-lane" aria-labelledby="sd-ci-cd-study-docker-project-title{{include.instance}}">
@@ -46,4 +46,47 @@
     </div>
   </div>
   <p class="sd-note">Build Context에는 필요한 파일만 포함해야 합니다. Docker 방식은 Docker Daemon이 build와 cache를 맡고, 완성된 Image를 Registry로 push합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2ea13add9226e7ca93dfabe556ed9c98c1a79d419c06a1f602a9037c613bc027">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0.0" x="96.000" y="320.450" width="384.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="287.400" width="792.000" height="302.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0" x="96.000" y="320.450" width="792.000" height="235.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0.0.1.0" x="120.000" y="406.250" width="336.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="504.000" y="320.450" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1088.000" y="376.550" width="268.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1500.000" y="373.200" width="268.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="96.000" y="685.400" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.2.1.1" data-from="root.0.1.2.1.0" data-to="root.0.1.2.1.2" d="M 1368.000 469.300 L 1488.000 469.300" fill="none" stroke="#475569" stroke-width="3"><title>build와 layer cache</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1" points="1488.000,469.300 1478.000,475.300 1478.000,463.300" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 438.400 L 1020.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>docker build가 입력을 묶음</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,438.400 1010.000,444.400 1010.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 637.400 L 72.000 637.400 L 72.000 748.450 L 84.000 748.450" fill="none" stroke="#475569" stroke-width="3"><title>registry로 push</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,748.450 74.000,754.450 74.000,742.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="250.800" font-size="36" font-weight="700" fill="#111827">Docker는 Project와 Dockerfile로 Build Context를 만들고 Image를 Push</text>
+<text data-source="root.0.1.0.0.0" x="120.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Project</text>
+<text data-source="root.0.1.0.0.1.0" x="144.000" y="458.250" font-size="28" font-weight="700" fill="#111827">Application source</text>
+<text data-source="root.0.1.0.0.1.0" x="144.000" y="500.650" font-size="22" font-weight="400" fill="#111827">빌드에 포함할 코드와 파일</text>
+<text data-source="root.0.1.0.1" x="528.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Dockerfile</text>
+<text data-source="root.0.1.0.1" x="528.000" y="414.850" font-size="22" font-weight="400" fill="#111827">FROM, RUN, COPY 등 build 명령</text>
+<text data-source="root.0.1.2.0" x="1056.000" y="339.400" font-size="28" font-weight="700" fill="#111827">Docker installation</text>
+<text data-source="root.0.1.2.1.0" x="1112.000" y="428.550" font-size="28" font-weight="700" fill="#111827">Build Context</text>
+<text data-source="root.0.1.2.1.0" x="1112.000" y="470.950" font-size="22" font-weight="400" fill="#111827">Docker Daemon이</text>
+<text data-source="root.0.1.2.1.0" x="1112.000" y="500.650" font-size="22" font-weight="400" fill="#111827">읽는 source와</text>
+<text data-source="root.0.1.2.1.0" x="1112.000" y="530.350" font-size="22" font-weight="400" fill="#111827">Dockerfile의 범위</text>
+<text data-source="root.0.1.2.1.2" x="1524.000" y="425.200" font-size="28" font-weight="700" fill="#111827">Container Image</text>
+<text data-source="root.0.1.2.1.2" x="1524.000" y="461.600" font-size="28" font-weight="700" fill="#111827">(Docker cache)</text>
+<text data-source="root.0.1.2.1.2" x="1524.000" y="504.000" font-size="22" font-weight="400" fill="#111827">명령 결과를 Layer로</text>
+<text data-source="root.0.1.2.1.2" x="1524.000" y="533.700" font-size="22" font-weight="400" fill="#111827">쌓은 로컬 이미지</text>
+<text data-source="root.0.1.2.1.1" x="1360.000" y="419.900" font-size="22" font-weight="400" fill="#111827">build와 layer</text>
+<text data-source="root.0.1.2.1.1" x="1360.000" y="449.600" font-size="22" font-weight="400" fill="#111827">cache</text>
+<text data-source="root.0.1.4" x="120.000" y="737.400" font-size="28" font-weight="700" fill="#111827">Container Image (registry)</text>
+<text data-source="root.0.1.4" x="120.000" y="779.800" font-size="22" font-weight="400" fill="#111827">원격 Registry에 저장된 배포 이미지</text>
+<text data-source="root.0.1.1" x="892.000" y="359.300" font-size="22" font-weight="400" fill="#111827">docker</text>
+<text data-source="root.0.1.1" x="892.000" y="389.000" font-size="22" font-weight="400" fill="#111827">build가 입력을</text>
+<text data-source="root.0.1.1" x="892.000" y="418.700" font-size="22" font-weight="400" fill="#111827">묶음</text>
+<text data-source="root.0.1.3" x="104.000" y="629.400" font-size="22" font-weight="400" fill="#111827">registry로 push</text>
+<text data-source="root.0.2" x="64.000" y="857.500" font-size="22" font-weight="400" fill="#111827">Build Context에는 필요한 파일만 포함해야 합니다. Docker 방식은 Docker Daemon이 build와 cache를 맡고, 완성된 Image를 Registry로 push합니다.</text>
+</svg>
 </figure>

@@ -1,0 +1,46 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="be043d635c75483f85eede02dd9b658d959148d282a1932e8480f45d38a833aa">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3.0" x="64.000" y="504.850" width="884.000" height="325.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="972.000" y="504.850" width="884.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1" x="64.000" y="269.050" width="1792.000" height="126.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="504.850" width="1792.000" height="325.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="269.050" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="269.050" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="120.000" y="590.650" width="314.000" height="215.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.2" x="578.000" y="620.350" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="1028.000" y="605.500" width="314.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="1486.000" y="590.650" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 332.100 L 1020.000 332.100" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,332.100 1010.000,338.100 1010.000,326.100" fill="#475569"/>
+<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 446.000 698.250 L 566.000 698.250" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.3.0.1.1" points="566.000,698.250 556.000,704.250 556.000,692.250" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1354.000 668.550 L 1474.000 668.550" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="1474.000,668.550 1464.000,674.550 1464.000,662.550" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 407.150 L 960.000 492.850" fill="none" stroke="#475569" stroke-width="3"><title>vault 내용이 검색과 version 관리로 분기</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,492.850 954.000,482.850 966.000,482.850" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="232.450" font-size="36" font-weight="700" fill="#111827">LLM Wiki의 vault, index, hook 연결</text>
+<text data-source="root.0.1.0" x="120.000" y="321.050" font-size="28" font-weight="700" fill="#111827">Sources</text>
+<text data-source="root.0.1.0" x="120.000" y="363.450" font-size="22" font-weight="400" fill="#111827">docs, logs, decisions</text>
+<text data-source="root.0.1.2" x="1056.000" y="321.050" font-size="28" font-weight="700" fill="#111827">Obsidian vault</text>
+<text data-source="root.0.1.2" x="1056.000" y="363.450" font-size="22" font-weight="400" fill="#111827">markdown과 frontmatter를 보관하는 source of truth</text>
+<text data-source="root.0.3.0.0" x="88.000" y="556.850" font-size="28" font-weight="700" fill="#111827">검색 경로</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="642.650" font-size="28" font-weight="700" fill="#111827">BM25 index</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="685.050" font-size="22" font-weight="400" fill="#111827">로컬 BM25로 title, tags,</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="714.750" font-size="22" font-weight="400" fill="#111827">body를 색인하며 vector</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="744.450" font-size="22" font-weight="400" fill="#111827">database나 SaaS는</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="774.150" font-size="22" font-weight="400" fill="#111827">사용하지 않습니다.</text>
+<text data-source="root.0.3.0.1.2" x="602.000" y="672.350" font-size="28" font-weight="700" fill="#111827">Agent and search CLI</text>
+<text data-source="root.0.3.0.1.2" x="602.000" y="714.750" font-size="22" font-weight="400" fill="#111827">이 index를 읽는 유일한</text>
+<text data-source="root.0.3.0.1.2" x="602.000" y="744.450" font-size="22" font-weight="400" fill="#111827">consumer</text>
+<text data-source="root.0.3.1.0" x="996.000" y="556.850" font-size="28" font-weight="700" fill="#111827">버전과 갱신 trigger</text>
+<text data-source="root.0.3.1.1.0" x="1052.000" y="657.500" font-size="28" font-weight="700" fill="#111827">git</text>
+<text data-source="root.0.3.1.1.0" x="1052.000" y="699.900" font-size="22" font-weight="400" fill="#111827">history와 review를 남김</text>
+<text data-source="root.0.3.1.1.2" x="1510.000" y="642.650" font-size="28" font-weight="700" fill="#111827">Commit hook</text>
+<text data-source="root.0.3.1.1.2" x="1510.000" y="685.050" font-size="22" font-weight="400" fill="#111827">link를 검사하고 BM25</text>
+<text data-source="root.0.3.1.1.2" x="1510.000" y="714.750" font-size="22" font-weight="400" fill="#111827">index를 reindex</text>
+<text data-source="root.0.4" x="64.000" y="875.850" font-size="22" font-weight="400" fill="#111827">vault의 내용은 index로 읽히고 git으로 versioning됩니다. Commit hook에서 index를 갱신하는 연결은 데이터 복사가 아니라 freshness trigger입니다.</text>
+<text data-source="root.0.2" x="980.000" y="457.150" font-size="22" font-weight="400" fill="#111827">vault 내용이 검색과 version 관리로 분기</text>
+<text data-source="root.0.1.1.meaning" x="904.000" y="315.200" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.3.0.1.1.meaning" x="450.000" y="681.350" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.3.1.1.1.meaning" x="1358.000" y="651.650" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+</svg>

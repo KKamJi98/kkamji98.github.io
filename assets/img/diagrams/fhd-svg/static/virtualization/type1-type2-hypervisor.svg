@@ -1,0 +1,57 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="be3241030fbc05d1a421fb16cb16133ca1a338450ee1d2f3032108c90a70864b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="311.400" width="884.000" height="547.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="311.400" width="884.000" height="583.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="120.000" y="412.050" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="578.000" y="397.200" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4" x="120.000" y="678.700" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="412.050" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1486.000" y="397.200" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.4" x="1028.000" y="678.700" width="314.000" height="192.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.6" x="1486.000" y="696.900" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 489.950 L 566.000 489.950" fill="none" stroke="#475569" stroke-width="3"><title>직접 자원 중재</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,489.950 556.000,495.950 556.000,483.950" fill="#475569"/>
+<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 904.000 489.950 L 916.000 489.950 L 916.000 630.700 L 96.000 630.700 L 96.000 756.600 L 108.000 756.600" fill="none" stroke="#475569" stroke-width="3"><title>hardware access</title></path>
+<polygon data-arrowhead="root.0.2.0.1.3" points="108.000,756.600 98.000,762.600 98.000,750.600" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 489.950 L 1474.000 489.950" fill="none" stroke="#475569" stroke-width="3"><title>hypervisor 요청</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,489.950 1464.000,495.950 1464.000,483.950" fill="#475569"/>
+<path data-edge="root.0.2.1.1.3" data-from="root.0.2.1.1.2" data-to="root.0.2.1.1.4" d="M 1812.000 489.950 L 1824.000 489.950 L 1824.000 630.700 L 1004.000 630.700 L 1004.000 774.800 L 1016.000 774.800" fill="none" stroke="#475569" stroke-width="3"><title>추가 layer</title></path>
+<polygon data-arrowhead="root.0.2.1.1.3" points="1016.000,774.800 1006.000,780.800 1006.000,768.800" fill="#475569"/>
+<path data-edge="root.0.2.1.1.5" data-from="root.0.2.1.1.4" data-to="root.0.2.1.1.6" d="M 1354.000 774.800 L 1474.000 774.800" fill="none" stroke="#475569" stroke-width="3"><title>hardware access</title></path>
+<polygon data-arrowhead="root.0.2.1.1.5" points="1474.000,774.800 1464.000,780.800 1464.000,768.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="221.100" font-size="36" font-weight="700" fill="#111827">Type 1은 hardware 위에, Type 2는 host OS 위에 놓입니다</text>
+<text data-source="root.0.1" x="64.000" y="279.700" font-size="22" font-weight="400" fill="#111827">Type 2에만 host operating system layer가 추가되어 편의성을 얻는 대신 hardware 접근 경로가 길어집니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="363.400" font-size="28" font-weight="700" fill="#111827">Type 1 (bare metal)</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="464.050" font-size="28" font-weight="700" fill="#111827">Virtual machines</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="506.450" font-size="22" font-weight="400" fill="#111827">guest OS와 application을</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="536.150" font-size="22" font-weight="400" fill="#111827">실행합니다.</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="449.200" font-size="28" font-weight="700" fill="#111827">Type 1 hypervisor</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="491.600" font-size="22" font-weight="400" fill="#111827">ESXi, Hyper-V, KVM처럼</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="521.300" font-size="22" font-weight="400" fill="#111827">hardware에 직접</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="551.000" font-size="22" font-weight="400" fill="#111827">설치됩니다.</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="730.700" font-size="28" font-weight="700" fill="#111827">Hardware</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="773.100" font-size="22" font-weight="400" fill="#111827">host OS를 거치지 않고</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="802.800" font-size="22" font-weight="400" fill="#111827">hypervisor가 관리합니다.</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="470.250" font-size="22" font-weight="400" fill="#111827">직접 자원 중재</text>
+<text data-source="root.0.2.0.1.3" x="128.000" y="622.700" font-size="22" font-weight="400" fill="#111827">hardware access</text>
+<text data-source="root.0.2.1.0" x="996.000" y="363.400" font-size="28" font-weight="700" fill="#111827">Type 2 (hosted)</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="464.050" font-size="28" font-weight="700" fill="#111827">Virtual machines</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="506.450" font-size="22" font-weight="400" fill="#111827">hosted hypervisor가 실행을</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="536.150" font-size="22" font-weight="400" fill="#111827">관리합니다.</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="449.200" font-size="28" font-weight="700" fill="#111827">Type 2 hypervisor</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="491.600" font-size="22" font-weight="400" fill="#111827">VirtualBox와 VMware</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="521.300" font-size="22" font-weight="400" fill="#111827">Workstation처럼 OS 위에서</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="551.000" font-size="22" font-weight="400" fill="#111827">실행됩니다.</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="730.700" font-size="28" font-weight="700" fill="#111827">Host operating</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="767.100" font-size="28" font-weight="700" fill="#111827">system</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="809.500" font-size="22" font-weight="400" fill="#111827">hardware 자원 접근을 한</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="839.200" font-size="22" font-weight="400" fill="#111827">단계 더 중계합니다.</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="748.900" font-size="28" font-weight="700" fill="#111827">Hardware</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="791.300" font-size="22" font-weight="400" fill="#111827">host OS가 관리하는 물리</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="821.000" font-size="22" font-weight="400" fill="#111827">자원입니다.</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="440.550" font-size="22" font-weight="400" fill="#111827">hypervisor</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="470.250" font-size="22" font-weight="400" fill="#111827">요청</text>
+<text data-source="root.0.2.1.1.3" x="1036.000" y="622.700" font-size="22" font-weight="400" fill="#111827">추가 layer</text>
+<text data-source="root.0.2.1.1.5" x="1346.000" y="725.400" font-size="22" font-weight="400" fill="#111827">hardware</text>
+<text data-source="root.0.2.1.1.5" x="1346.000" y="755.100" font-size="22" font-weight="400" fill="#111827">access</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cfda11c7d471b7d16d4b504c08e9eefab642e61430a70287614d84f42d3b7050">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1" x="64.000" y="411.350" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="64.000" y="561.450" width="581.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1" x="669.333" y="561.450" width="581.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1274.667" y="561.450" width="581.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="374.750" font-size="36" font-weight="700" fill="#111827">Vault가 보호하는 정보시스템은 Confidentiality, Integrity, Availability를 함께 요구합니다</text>
+<text data-source="root.0.1" x="88.000" y="463.350" font-size="28" font-weight="700" fill="#111827">정보시스템</text>
+<text data-source="root.0.1" x="88.000" y="505.750" font-size="22" font-weight="400" fill="#111827">세 보안 목표가 동시에 지켜져야 하는 중심 대상</text>
+<text data-source="root.0.2.0" x="88.000" y="613.450" font-size="28" font-weight="700" fill="#111827">Confidentiality (기밀성)</text>
+<text data-source="root.0.2.0" x="88.000" y="655.850" font-size="22" font-weight="400" fill="#111827">권한이 검증된 entity만 secret과 key를 읽습니다.</text>
+<text data-source="root.0.2.1" x="693.333" y="613.450" font-size="28" font-weight="700" fill="#111827">Integrity (무결성)</text>
+<text data-source="root.0.2.1" x="693.333" y="655.850" font-size="22" font-weight="400" fill="#111827">승인되지 않은 변경과 롤백을 탐지하고 막습니다.</text>
+<text data-source="root.0.2.2" x="1298.667" y="613.450" font-size="28" font-weight="700" fill="#111827">Availability (가용성)</text>
+<text data-source="root.0.2.2" x="1298.667" y="655.850" font-size="22" font-weight="400" fill="#111827">필요한 시점에 응답하고 장애에서 복구합니다.</text>
+<text data-source="root.0.3" x="64.000" y="733.550" font-size="22" font-weight="400" fill="#111827">ACL과 짧은 lease는 기밀성을, Transit 서명과 KV version은 무결성을, Raft HA와 Auto Unseal은 가용성을 보강합니다.</text>
+</svg>

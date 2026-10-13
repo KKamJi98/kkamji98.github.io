@@ -1,4 +1,39 @@
-<figure class="sd sd--gateway-v2" id="litellm-architecture" aria-labelledby="litellm-architecture-title">
-  <figcaption class="sd-title" id="litellm-architecture-title">LiteLLM 요청과 저장소의 연결</figcaption>
+<figure class="sd sd--gateway-v2 sd--fhd" id="litellm-architecture" aria-labelledby="litellm-architecture-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="litellm-architecture-title">LiteLLM 요청과 저장소의 연결</figcaption><div class="sd-semantic-source">
 <div class="sd-v2-rail"><div class="sd-node"><strong class="sd-label">Application</strong><span class="sd-detail">가상 키로 추론 요청</span></div><div class="sd-v2-link" aria-hidden="true"></div><div class="sd-node sd-node--accent"><strong class="sd-label">LiteLLM Proxy</strong><span class="sd-detail">인증과 예산 검사<br>모델 선택</span></div><div class="sd-v2-link" aria-hidden="true"></div><div class="sd-node"><strong class="sd-label">Providers</strong><span class="sd-detail">OpenAI<br>AWS Bedrock 등</span></div></div><div class="sd-v2-adjunct"><div class="sd-v2-relation"><span class="sd-edge-label">관리 레코드 조회 / 저장</span></div><div class="sd-node"><strong class="sd-label">PostgreSQL</strong><span class="sd-detail">가상 키, 예산, spend 기록</span></div></div><aside class="sd-v2-setup"><strong class="sd-label">배포 시점 설정</strong><span class="sd-detail">migration Job: DB 스키마 갱신<br>모델/라우팅 YAML: Proxy 설정<br>ESO 관리 Secret: Proxy 환경변수로 주입</span></aside><p class="sd-note">매 요청의 직접 DB 조회나 강한 일관성을 뜻하지 않는다. 모든 설정이 DB에 저장되는 것은 아니다. 같은 변수는 명시적 env가 envFrom보다 우선하며 변경은 새 Pod에 반영한다.</p><p class="sd-note">Provider 경로는 일반 구조다. 기록된 호출 실험은 mock 모델이다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ede2c34e7aeec96cde148a01dfa7a33ef02f74accf3907c0526d3f051dca81a3">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="236.900" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="222.050" width="480.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="222.050" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1" x="64.000" y="487.550" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="637.650" width="1792.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 299.950 L 708.000 299.950" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,299.950 698.000,305.950 698.000,293.950" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 299.950 L 1332.000 299.950" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,299.950 1322.000,305.950 1322.000,293.950" fill="#475569"/>
+<path data-edge="root.0.2.0" data-from="root.0.1.2" data-to="root.0.2.1" d="M 960.000 389.850 L 960.000 432.700 L 960.000 432.700 L 960.000 475.550" fill="none" stroke="#475569" stroke-width="3"><title>관리 레코드 조회 / 저장</title></path>
+<text data-source="root.0.0" x="64.000" y="185.450" font-size="36" font-weight="700" fill="#111827">LiteLLM 요청과 저장소의 연결</text>
+<text data-source="root.0.1.0" x="120.000" y="288.900" font-size="28" font-weight="700" fill="#111827">Application</text>
+<text data-source="root.0.1.0" x="120.000" y="331.300" font-size="22" font-weight="400" fill="#111827">가상 키로 추론 요청</text>
+<text data-source="root.0.1.2" x="744.000" y="274.050" font-size="28" font-weight="700" fill="#111827">LiteLLM Proxy</text>
+<text data-source="root.0.1.2" x="744.000" y="316.450" font-size="22" font-weight="400" fill="#111827">인증과 예산 검사</text>
+<text data-source="root.0.1.2" x="744.000" y="346.150" font-size="22" font-weight="400" fill="#111827">모델 선택</text>
+<text data-source="root.0.1.4" x="1368.000" y="274.050" font-size="28" font-weight="700" fill="#111827">Providers</text>
+<text data-source="root.0.1.4" x="1368.000" y="316.450" font-size="22" font-weight="400" fill="#111827">OpenAI</text>
+<text data-source="root.0.1.4" x="1368.000" y="346.150" font-size="22" font-weight="400" fill="#111827">AWS Bedrock 등</text>
+<text data-source="root.0.2.1" x="88.000" y="539.550" font-size="28" font-weight="700" fill="#111827">PostgreSQL</text>
+<text data-source="root.0.2.1" x="88.000" y="581.950" font-size="22" font-weight="400" fill="#111827">가상 키, 예산, spend 기록</text>
+<text data-source="root.0.3" x="88.000" y="689.650" font-size="28" font-weight="700" fill="#111827">배포 시점 설정</text>
+<text data-source="root.0.3" x="88.000" y="732.050" font-size="22" font-weight="400" fill="#111827">migration Job: DB 스키마 갱신</text>
+<text data-source="root.0.3" x="88.000" y="761.750" font-size="22" font-weight="400" fill="#111827">모델/라우팅 YAML: Proxy 설정</text>
+<text data-source="root.0.3" x="88.000" y="791.450" font-size="22" font-weight="400" fill="#111827">ESO 관리 Secret: Proxy 환경변수로 주입</text>
+<text data-source="root.0.4" x="64.000" y="869.150" font-size="22" font-weight="400" fill="#111827">매 요청의 직접 DB 조회나 강한 일관성을 뜻하지 않는다. 모든 설정이 DB에 저장되는 것은 아니다. 같은 변수는 명시적 env가 envFrom보다 우선하며 변경은 새 Pod에 반영한다.</text>
+<text data-source="root.0.5" x="64.000" y="922.850" font-size="22" font-weight="400" fill="#111827">Provider 경로는 일반 구조다. 기록된 호출 실험은 mock 모델이다.</text>
+<text data-source="root.0.2.0" x="84.000" y="423.850" font-size="22" font-weight="400" fill="#111827">관리 레코드 조회 / 저장</text>
+<text data-source="root.0.1.1.meaning" x="592.000" y="283.050" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.1.3.meaning" x="1216.000" y="283.050" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+</svg>
 </figure>

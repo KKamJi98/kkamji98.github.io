@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" aria-labelledby="sap-c02-regional-failover-trigger-layers-title">
-  <figcaption class="sd-title" id="sap-c02-regional-failover-trigger-layers-title">Control plane 장애 중 지속적 리전 대피 수단을 비교한다</figcaption>
+<figure class="sd sd--comparison sd--fhd" aria-labelledby="sap-c02-regional-failover-trigger-layers-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sap-c02-regional-failover-trigger-layers-title">Control plane 장애 중 지속적 리전 대피 수단을 비교한다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--muted">
       <strong class="sd-label">클라이언트 요청</strong>
@@ -40,4 +40,49 @@
     <strong class="sd-label">DR 리전 엔드포인트</strong>
     <span class="sd-detail">도달 가능성과 control plane 비의존 지속 대피는 다른 조건이다. 애플리케이션과 데이터의 복구 준비도 별도로 필요하다.</span>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="9fbfacf4b308a87cf28b3f81c5a6641116e5037b37e8683b2735f5dcb0f7b0a8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="411.600" width="884.000" height="302.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="411.600" width="884.000" height="361.400" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="411.600" width="1792.000" height="361.400" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="175.800" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="88.000" y="497.400" width="406.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.1" x="518.000" y="497.400" width="406.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="996.000" y="497.400" width="406.000" height="251.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.1" x="1426.000" y="497.400" width="406.000" height="251.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="850.700" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.2" d="M 960.000 313.900 L 960.000 356.750 L 960.000 356.750 L 960.000 399.600" fill="none" stroke="#475569" stroke-width="3"><title>전환 계층 비교</title></path>
+<polygon data-arrowhead="root.0.1.1" points="960.000,399.600 954.000,389.600 966.000,389.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="139.200" font-size="36" font-weight="700" fill="#111827">Control plane 장애 중 지속적 리전 대피 수단을 비교한다</text>
+<text data-source="root.0.1.0" x="88.000" y="227.800" font-size="28" font-weight="700" fill="#111827">클라이언트 요청</text>
+<text data-source="root.0.1.0" x="88.000" y="270.200" font-size="22" font-weight="400" fill="#111827">primary 장애와 control plane 조작 불가를 가정해 전환 경로를 비교한다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="463.600" font-size="28" font-weight="700" fill="#111827">사전 구성된 data plane 기반 전환</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="549.400" font-size="28" font-weight="700" fill="#111827">Route 53 health check</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="585.800" font-size="28" font-weight="700" fill="#111827">failover</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="628.200" font-size="22" font-weight="400" fill="#111827">data plane 동작. 클라이언트 DNS</text>
+<text data-source="root.0.2.0.1.0" x="112.000" y="657.900" font-size="22" font-weight="400" fill="#111827">cache TTL만큼 지연될 수 있다.</text>
+<text data-source="root.0.2.0.1.1" x="542.000" y="549.400" font-size="28" font-weight="700" fill="#111827">ARC routing control</text>
+<text data-source="root.0.2.0.1.1" x="542.000" y="591.800" font-size="22" font-weight="400" fill="#111827">RECOVERY_CONTROL health</text>
+<text data-source="root.0.2.0.1.1" x="542.000" y="621.500" font-size="22" font-weight="400" fill="#111827">check를 on 또는 off로 바꾸는 data</text>
+<text data-source="root.0.2.0.1.1" x="542.000" y="651.200" font-size="22" font-weight="400" fill="#111827">plane API.</text>
+<text data-source="root.0.2.1.0" x="996.000" y="463.600" font-size="28" font-weight="700" fill="#111827">같은 대피 요건으로 볼 수 없는 수단</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="549.400" font-size="28" font-weight="700" fill="#111827">Global Accelerator</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="585.800" font-size="28" font-weight="700" fill="#111827">traffic dial</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="628.200" font-size="22" font-weight="400" fill="#111827">리전 간 traffic 분배와</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="657.900" font-size="22" font-weight="400" fill="#111827">active-standby가 가능하나 dial</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="687.600" font-size="22" font-weight="400" fill="#111827">변경은 control plane</text>
+<text data-source="root.0.2.1.1.0" x="1020.000" y="717.300" font-size="22" font-weight="400" fill="#111827">operation이다.</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="549.400" font-size="28" font-weight="700" fill="#111827">CloudFront origin</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="585.800" font-size="28" font-weight="700" fill="#111827">failover</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="628.200" font-size="22" font-weight="400" fill="#111827">설정된 실패 조건의 GET / HEAD /</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="657.900" font-size="22" font-weight="400" fill="#111827">OPTIONS를 secondary로</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="687.600" font-size="22" font-weight="400" fill="#111827">재시도한다. 이후 origin 요청은</text>
+<text data-source="root.0.2.1.1.1" x="1450.000" y="717.300" font-size="22" font-weight="400" fill="#111827">primary부터 시도한다.</text>
+<text data-source="root.0.3" x="64.000" y="819.000" font-size="22" font-weight="400" fill="#111827">본문의 리전 전환 불가 분류는 이 대피 요건으로 한정해야 합니다. GA도 리전 간 전환이 가능하고 CloudFront도 secondary origin에 도달할 수 있습니다.</text>
+<text data-source="root.0.4" x="88.000" y="902.700" font-size="28" font-weight="700" fill="#111827">DR 리전 엔드포인트</text>
+<text data-source="root.0.4" x="88.000" y="945.100" font-size="22" font-weight="400" fill="#111827">도달 가능성과 control plane 비의존 지속 대피는 다른 조건이다. 애플리케이션과 데이터의 복구 준비도 별도로 필요하다.</text>
+<text data-source="root.0.1.1" x="84.000" y="347.900" font-size="22" font-weight="400" fill="#111827">전환 계층 비교</text>
+</svg>
 </figure>

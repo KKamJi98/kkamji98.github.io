@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="kubernetes-cilium-multi-pool" aria-labelledby="kubernetes-cilium-multi-pool-title">
-  <figcaption class="sd-title" id="kubernetes-cilium-multi-pool-title">Multi-Pool은 workload 선택과 CiliumNode CIDR 할당을 연결한다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="kubernetes-cilium-multi-pool" aria-labelledby="kubernetes-cilium-multi-pool-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="kubernetes-cilium-multi-pool-title">Multi-Pool은 workload 선택과 CiliumNode CIDR 할당을 연결한다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">Pod와 Namespace의 <code>ipam.cilium.io/ip-pool</code> 선택이 Cilium Agent의 주소 pool을 정하고, Cilium Operator가 필요한 PodCIDR을 CiliumNode에 할당합니다.</p>
 
   <div class="sd-grid" aria-label="Cilium Multi-Pool selection과 allocation">
@@ -62,4 +62,68 @@
       <span class="sd-detail">Agent는 추가 주소를 요청하고, 사용을 끝낸 PodCIDR을 반환합니다. 주소 범위는 개념 예시이며 실측 Pod IP가 아닙니다. 본문의 beta 및 tunnel/IPsec 제약은 버전이 명시되지 않아 현재 일반 제약으로 단정하지 않습니다.</span>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="c028ea6b994a9c68a770bb2247fb1cda750eb919e1ad281a0ad17172e37a8264">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="196.100" width="888.000" height="583.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="968.000" y="196.100" width="888.000" height="498.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="795.200" width="1792.000" height="193.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.1.4" x="80.000" y="620.300" width="856.000" height="142.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="80.000" y="255.100" width="856.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="80.000" y="437.700" width="856.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4.0" x="80.000" y="620.300" width="274.667" height="142.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4.1" x="370.667" y="620.300" width="274.667" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4.2" x="661.333" y="620.300" width="274.667" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1016.000" y="255.100" width="324.000" height="144.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1484.000" y="268.100" width="324.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.4" x="1016.000" y="495.700" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="80.000" y="854.200" width="1760.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 508.000 361.400 L 508.000 425.700" fill="none" stroke="#475569" stroke-width="3"><title>pool lookup</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="508.000,425.700 502.000,415.700 514.000,415.700" fill="#475569"/>
+<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 508.000 544.000 L 508.000 608.300" fill="none" stroke="#475569" stroke-width="3"><title>개념 예시: allocated CIDR 안에서 할당</title></path>
+<polygon data-arrowhead="root.0.2.0.1.3" points="508.000,608.300 502.000,598.300 514.000,598.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1352.000 327.400 L 1472.000 327.400" fill="none" stroke="#475569" stroke-width="3"><title>reconcile</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1472.000,327.400 1462.000,333.400 1462.000,321.400" fill="#475569"/>
+<path data-edge="root.0.2.1.1.3" data-from="root.0.2.1.1.2" data-to="root.0.2.1.1.4" d="M 1820.000 327.400 L 1832.000 327.400 L 1832.000 447.700 L 992.000 447.700 L 992.000 555.000 L 1004.000 555.000" fill="none" stroke="#475569" stroke-width="3"><title>allocated CIDR</title></path>
+<polygon data-arrowhead="root.0.2.1.1.3" points="1004.000,555.000 994.000,561.000 994.000,549.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="127.200" font-size="36" font-weight="700" fill="#111827">Multi-Pool은 workload 선택과 CiliumNode CIDR 할당을 연결한다</text>
+<text data-source="root.0.1" x="64.000" y="173.800" font-size="18" font-weight="400" fill="#111827">Pod와 Namespace의 ipam.cilium.io/ip-pool 선택이 Cilium Agent의 주소 pool을 정하고, Cilium Operator가 필요한 PodCIDR을 CiliumNode에 할당합니다.</text>
+<text data-source="root.0.2.0.0" x="80.000" y="232.100" font-size="20" font-weight="700" fill="#111827">Workload selection on node1</text>
+<text data-source="root.0.2.0.1.0" x="96.000" y="291.100" font-size="20" font-weight="700" fill="#111827">Pod 또는 Namespace 선택</text>
+<text data-source="root.0.2.0.1.0" x="96.000" y="327.100" font-size="18" font-weight="400" fill="#111827">annotation이 있으면 지정 pool을 찾고, 없으면 Namespace와 global default를 확인합니다.</text>
+<text data-source="root.0.2.0.1.2" x="96.000" y="473.700" font-size="20" font-weight="700" fill="#111827">Cilium Agent</text>
+<text data-source="root.0.2.0.1.2" x="96.000" y="509.700" font-size="18" font-weight="400" fill="#111827">node에 배정된 pool에서 Pod IP를 선택합니다.</text>
+<text data-source="root.0.2.0.1.4.0" x="96.000" y="656.300" font-size="20" font-weight="700" fill="#111827">default</text>
+<text data-source="root.0.2.0.1.4.0" x="96.000" y="692.300" font-size="18" font-weight="400" fill="#111827">Pod 1, 2, 3: 표시된</text>
+<text data-source="root.0.2.0.1.4.0" x="96.000" y="716.600" font-size="18" font-weight="400" fill="#111827">10.0.10.0/24 또는</text>
+<text data-source="root.0.2.0.1.4.0" x="96.000" y="740.900" font-size="18" font-weight="400" fill="#111827">10.0.20.0/24 안에서 할당</text>
+<text data-source="root.0.2.0.1.4.1" x="386.667" y="656.300" font-size="20" font-weight="700" fill="#111827">mars</text>
+<text data-source="root.0.2.0.1.4.1" x="386.667" y="692.300" font-size="18" font-weight="400" fill="#111827">Pod 4, ...: 표시된</text>
+<text data-source="root.0.2.0.1.4.1" x="386.667" y="716.600" font-size="18" font-weight="400" fill="#111827">172.16.8.0/27 안에서 할당</text>
+<text data-source="root.0.2.0.1.4.2" x="677.333" y="656.300" font-size="20" font-weight="700" fill="#111827">jupiter</text>
+<text data-source="root.0.2.0.1.4.2" x="677.333" y="692.300" font-size="18" font-weight="400" fill="#111827">처음 요청되어 Pod n은</text>
+<text data-source="root.0.2.0.1.4.2" x="677.333" y="716.600" font-size="18" font-weight="400" fill="#111827">pending입니다.</text>
+<text data-source="root.0.2.0.1.1" x="528.000" y="399.400" font-size="18" font-weight="400" fill="#111827">pool lookup</text>
+<text data-source="root.0.2.0.1.3" x="528.000" y="582.000" font-size="18" font-weight="400" fill="#111827">개념 예시: allocated CIDR 안에서 할당</text>
+<text data-source="root.0.2.1.0" x="984.000" y="232.100" font-size="20" font-weight="700" fill="#111827">CiliumNode와 Operator control</text>
+<text data-source="root.0.2.1.1.0" x="1032.000" y="291.100" font-size="20" font-weight="700" fill="#111827">CiliumNode CRD</text>
+<text data-source="root.0.2.1.1.0" x="1032.000" y="317.100" font-size="20" font-weight="700" fill="#111827">requested</text>
+<text data-source="root.0.2.1.1.0" x="1032.000" y="353.100" font-size="18" font-weight="400" fill="#111827">default 64, mars 48, jupiter 8</text>
+<text data-source="root.0.2.1.1.0" x="1032.000" y="377.400" font-size="18" font-weight="400" fill="#111827">주소가 필요하다고 기록합니다.</text>
+<text data-source="root.0.2.1.1.2" x="1500.000" y="304.100" font-size="20" font-weight="700" fill="#111827">Cilium Operator</text>
+<text data-source="root.0.2.1.1.2" x="1500.000" y="340.100" font-size="18" font-weight="400" fill="#111827">requested pool을 보고 node에</text>
+<text data-source="root.0.2.1.1.2" x="1500.000" y="364.400" font-size="18" font-weight="400" fill="#111827">PodCIDR을 배정합니다.</text>
+<text data-source="root.0.2.1.1.4" x="1032.000" y="531.700" font-size="20" font-weight="700" fill="#111827">CiliumNode CRD allocated</text>
+<text data-source="root.0.2.1.1.4" x="1032.000" y="567.700" font-size="18" font-weight="400" fill="#111827">default: 10.0.10.0/24,</text>
+<text data-source="root.0.2.1.1.4" x="1032.000" y="592.000" font-size="18" font-weight="400" fill="#111827">10.0.20.0/24; mars: 172.16.8.0/27</text>
+<text data-source="root.0.2.1.1.1" x="1344.000" y="309.100" font-size="18" font-weight="400" fill="#111827">reconcile</text>
+<text data-source="root.0.2.1.1.3" x="1024.000" y="439.700" font-size="18" font-weight="400" fill="#111827">allocated CIDR</text>
+<text data-source="root.0.2.1.2" x="984.000" y="648.300" font-size="18" font-weight="400" fill="#111827">표시된 allocated는 현재 할당 상태입니다. mars의 추가 요청과 jupiter의 첫 요청은 reconcile을</text>
+<text data-source="root.0.2.1.2" x="984.000" y="672.600" font-size="18" font-weight="400" fill="#111827">기다리며, 새 CIDR은 아직 표시하지 않았습니다.</text>
+<text data-source="root.0.3.0" x="80.000" y="831.200" font-size="20" font-weight="700" fill="#111827">Pool lifecycle</text>
+<text data-source="root.0.3.1" x="96.000" y="890.200" font-size="20" font-weight="700" fill="#111827">사용량에 맞춰 확장과 정리</text>
+<text data-source="root.0.3.1" x="96.000" y="926.200" font-size="18" font-weight="400" fill="#111827">Agent는 추가 주소를 요청하고, 사용을 끝낸 PodCIDR을 반환합니다. 주소 범위는 개념 예시이며 실측 Pod IP가 아닙니다. 본문의 beta 및 tunnel/IPsec 제약은 버전이 명시되지 않아 현재 일반 제약으로 단정하지</text>
+<text data-source="root.0.3.1" x="96.000" y="950.500" font-size="18" font-weight="400" fill="#111827">않습니다.</text>
+</svg>
 </figure>

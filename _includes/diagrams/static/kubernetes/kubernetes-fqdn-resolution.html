@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-kubernetes-kubernetes-fqdn-resolution" aria-labelledby="sd-kubernetes-kubernetes-fqdn-resolution-title">
-  <figcaption class="sd-title" id="sd-kubernetes-kubernetes-fqdn-resolution-title">Pod의 search domain이 짧은 Service 이름을 FQDN으로 확장한다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-kubernetes-kubernetes-fqdn-resolution" aria-labelledby="sd-kubernetes-kubernetes-fqdn-resolution-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-kubernetes-fqdn-resolution-title">Pod의 search domain이 짧은 Service 이름을 FQDN으로 확장한다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
 <div class="sd-node"><strong class="sd-label">Pod resolver</strong><span class="sd-detail">/etc/resolv.conf의 search list와 ndots를 사용해 짧은 이름의 조회 후보를 생성</span></div>
 <div class="sd-arrow"><span class="sd-edge-label">예: web-service.apps.svc.cluster.local 질의</span></div>
@@ -15,4 +15,45 @@
 </div>
 </section>
   <p class="sd-note">web-service.apps.svc.cluster.local은 하나의 DNS 이름입니다. Service, Namespace, suffix는 순차 network hop이 아닙니다. 짧은 이름과 service.namespace의 확장은 Pod의 search list에 따라 달라집니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5f3307d83c1fba60598de31ba57d14245242ecfaf78db0133769fb972cb0dc2e">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="514.100" width="1792.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="251.700" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="251.700" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="266.550" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="88.000" y="599.900" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="972.000" y="599.900" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="88.000" y="750.000" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 329.600 L 708.000 329.600" fill="none" stroke="#475569" stroke-width="3"><title>예: web-service.apps.svc.cluster.local 질의</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,329.600 698.000,335.600 698.000,323.600" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 329.600 L 1332.000 329.600" fill="none" stroke="#475569" stroke-width="3"><title>조회 결과를 Pod에 응답</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,329.600 1322.000,335.600 1322.000,323.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="132.500" font-size="36" font-weight="700" fill="#111827">Pod의 search domain이 짧은 Service 이름을 FQDN으로 확장한다</text>
+<text data-source="root.0.1.0" x="120.000" y="303.700" font-size="28" font-weight="700" fill="#111827">Pod resolver</text>
+<text data-source="root.0.1.0" x="120.000" y="346.100" font-size="22" font-weight="400" fill="#111827">/etc/resolv.conf의 search list와 ndots를</text>
+<text data-source="root.0.1.0" x="120.000" y="375.800" font-size="22" font-weight="400" fill="#111827">사용해 짧은 이름의 조회 후보를 생성</text>
+<text data-source="root.0.1.2" x="744.000" y="303.700" font-size="28" font-weight="700" fill="#111827">CoreDNS</text>
+<text data-source="root.0.1.2" x="744.000" y="346.100" font-size="22" font-weight="400" fill="#111827">cluster DNS server가 Service record를</text>
+<text data-source="root.0.1.2" x="744.000" y="375.800" font-size="22" font-weight="400" fill="#111827">해석</text>
+<text data-source="root.0.1.4" x="1368.000" y="318.550" font-size="28" font-weight="700" fill="#111827">DNS 응답</text>
+<text data-source="root.0.1.4" x="1368.000" y="360.950" font-size="22" font-weight="400" fill="#111827">해당 Service 이름의 IP 주소</text>
+<text data-source="root.0.1.1" x="580.000" y="191.100" font-size="22" font-weight="400" fill="#111827">예:</text>
+<text data-source="root.0.1.1" x="580.000" y="220.800" font-size="22" font-weight="400" fill="#111827">web-service.</text>
+<text data-source="root.0.1.1" x="580.000" y="250.500" font-size="22" font-weight="400" fill="#111827">apps.svc.</text>
+<text data-source="root.0.1.1" x="580.000" y="280.200" font-size="22" font-weight="400" fill="#111827">cluster.local</text>
+<text data-source="root.0.1.1" x="580.000" y="309.900" font-size="22" font-weight="400" fill="#111827">질의</text>
+<text data-source="root.0.1.3" x="1204.000" y="280.200" font-size="22" font-weight="400" fill="#111827">조회 결과를</text>
+<text data-source="root.0.1.3" x="1204.000" y="309.900" font-size="22" font-weight="400" fill="#111827">Pod에 응답</text>
+<text data-source="root.0.2.0" x="88.000" y="566.100" font-size="28" font-weight="700" fill="#111827">한 FQDN을 구성하는 label</text>
+<text data-source="root.0.2.1.0" x="112.000" y="651.900" font-size="28" font-weight="700" fill="#111827">Service</text>
+<text data-source="root.0.2.1.0" x="112.000" y="694.300" font-size="22" font-weight="400" fill="#111827">web-service</text>
+<text data-source="root.0.2.1.1" x="996.000" y="651.900" font-size="28" font-weight="700" fill="#111827">Namespace</text>
+<text data-source="root.0.2.1.1" x="996.000" y="694.300" font-size="22" font-weight="400" fill="#111827">apps</text>
+<text data-source="root.0.2.1.2" x="112.000" y="802.000" font-size="28" font-weight="700" fill="#111827">Service suffix / cluster domain</text>
+<text data-source="root.0.2.1.2" x="112.000" y="844.400" font-size="22" font-weight="400" fill="#111827">svc.cluster.local; cluster.local은 이 예시의 cluster domain</text>
+<text data-source="root.0.3" x="64.000" y="946.100" font-size="22" font-weight="400" fill="#111827">web-service.apps.svc.cluster.local은 하나의 DNS 이름입니다. Service, Namespace, suffix는 순차 network hop이 아닙니다. 짧은 이름과 service.namespace의 확장은 Pod의</text>
+<text data-source="root.0.3" x="64.000" y="975.800" font-size="22" font-weight="400" fill="#111827">search list에 따라 달라집니다.</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="jvm-02-stack-vs-heap" aria-labelledby="sd-title-jvm-02-stack-vs-heap">
-  <figcaption class="sd-title" id="sd-title-jvm-02-stack-vs-heap">Stack frame은 reference를, Heap은 객체를 보관합니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="jvm-02-stack-vs-heap" aria-labelledby="sd-title-jvm-02-stack-vs-heap" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-jvm-02-stack-vs-heap">Stack frame은 reference를, Heap은 객체를 보관합니다</figcaption><div class="sd-semantic-source">
 
   <div class="sd-flow">
     <div class="sd-node sd-node--muted">
@@ -19,4 +19,29 @@
   </div>
 
   <p class="sd-note">함수가 반환되면 <code>count</code>와 reference는 frame과 함께 사라집니다. Heap 객체는 더 이상 도달할 reference가 없을 때 GC 대상이 됩니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1a277e1ecb5f3a6ca77c59bb183534f0433186aa892667a44a9e6d906b9fc3d4">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="471.550" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 549.450 L 708.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>호출 시 frame 생성</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,549.450 698.000,555.450 698.000,543.450" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 549.450 L 1332.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>new Order()가 가리키는 대상</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,549.450 1322.000,555.450 1322.000,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="434.950" font-size="36" font-weight="700" fill="#111827">Stack frame은 reference를, Heap은 객체를 보관합니다</text>
+<text data-source="root.0.1.0" x="120.000" y="523.550" font-size="28" font-weight="700" fill="#111827">void process()</text>
+<text data-source="root.0.1.0" x="120.000" y="565.950" font-size="22" font-weight="400" fill="#111827">int count = 10;</text>
+<text data-source="root.0.1.0" x="120.000" y="595.650" font-size="22" font-weight="400" fill="#111827">Order order = new Order();</text>
+<text data-source="root.0.1.2" x="744.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Stack: the process() frame</text>
+<text data-source="root.0.1.2" x="744.000" y="580.800" font-size="22" font-weight="400" fill="#111827">count = 10, order는 reference</text>
+<text data-source="root.0.1.4" x="1368.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Heap (shared)</text>
+<text data-source="root.0.1.4" x="1368.000" y="580.800" font-size="22" font-weight="400" fill="#111827">여러 thread가 접근할 수 있는 Order 객체</text>
+<text data-source="root.0.1.1" x="580.000" y="500.050" font-size="22" font-weight="400" fill="#111827">호출 시 frame</text>
+<text data-source="root.0.1.1" x="580.000" y="529.750" font-size="22" font-weight="400" fill="#111827">생성</text>
+<text data-source="root.0.1.3" x="1204.000" y="500.050" font-size="22" font-weight="400" fill="#111827">new Order()가</text>
+<text data-source="root.0.1.3" x="1204.000" y="529.750" font-size="22" font-weight="400" fill="#111827">가리키는 대상</text>
+<text data-source="root.0.2" x="64.000" y="673.350" font-size="22" font-weight="400" fill="#111827">함수가 반환되면 count와 reference는 frame과 함께 사라집니다. Heap 객체는 더 이상 도달할 reference가 없을 때 GC 대상이 됩니다.</text>
+</svg>
 </figure>

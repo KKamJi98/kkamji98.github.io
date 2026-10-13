@@ -26,6 +26,20 @@ def helper(entry, indent=''):
     return indent + '{% include diagrams/download.html png="' + entry['png'] + '" %}\n'
 
 
+def viewer_url(png):
+    if not png.startswith('/assets/img/diagrams/') or not png.endswith('.png'):
+        raise ValueError('invalid viewer PNG path')
+    return '/diagrams/view/' + png.removeprefix('/assets/img/diagrams/').removesuffix('.png') + '.html'
+
+
+def output_paths(plan):
+    """Exact generated outputs, including every preserved unused source."""
+    mapped = {e['png'].lstrip('/') for e in plan['entries']}
+    unused = {'assets/img/diagrams/fhd-unused/' + name.removeprefix('diagrams/').removesuffix('.html') + '.png'
+              for name in plan.get('unused_includes', [])}
+    return mapped | unused
+
+
 def discover(root):
     catalog = json.loads((root/'docs/diagram-catalog.json').read_text())
     records = {r['include']: r for r in catalog['diagrams']}
@@ -170,7 +184,7 @@ def built_plan(root, site, plan):
     for page in sorted(site.rglob('*.html')):
         for row in Siblings(page.read_text()).rows:
             links = row['links']; images = row['images']
-            if len(links) != 2 or links[0][0] != links[1][0] or not links[0][1] or links[1][1]:
+            if len(links) != 2 or not links[0][1] or links[1][1] or links[1][0] != viewer_url(links[0][0]):
                 raise ValueError('invalid native download links: ' + str(page))
             png = links[0][0]
             if len(images) != 1 or images[0] != (png, '', 'true', None, True, row['parent'] + ('p',)):
@@ -192,7 +206,7 @@ def built_plan(root, site, plan):
 
 
 def source_snapshot(root):
-    outputs = {e['png'].lstrip('/') for e in json.loads((root/MANIFEST).read_text())['entries']}
+    outputs = output_paths(json.loads((root/MANIFEST).read_text()))
     paths = set()
     for folder in ['_posts', '_includes', '_layouts', '_sass', '_plugins', '_data', 'assets/css', 'assets/js', 'assets/fonts', 'assets/img']:
         paths.update(p for p in (root/folder).rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in outputs)
@@ -200,12 +214,14 @@ def source_snapshot(root):
     paths.update(p for p in tools.glob('*') if p.is_file() and p.suffix in ('.py', '.json', '.js', '.sh'))
     for name in ['_config.yml', 'Gemfile', 'Gemfile.lock', MANIFEST, 'docs/diagram-catalog.json']:
         if (root/name).is_file(): paths.add(root/name)
+    author = root/'kkamji_scripts/blog/fhd_svg.py'
+    if author.is_file(): paths.add(author)
     return {p.relative_to(root).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
 
 
 def built_assets_snapshot(site, plan):
     # Conservatively bind every non-HTML build file, including the URL sidecar.
-    outputs = {e['png'].lstrip('/') for e in plan['entries']}
+    outputs = output_paths(plan)
     return {p.relative_to(site).as_posix(): digest(p.read_bytes())
             for p in sorted(site.rglob('*')) if p.is_file()
             and p.suffix != '.html' and p.name != '.diagram-download-build.json'
@@ -278,7 +294,7 @@ def main(argv=None):
         result = dict(entry, status='failed', exit_code=code)
         if code == 0:
             try:
-                stem = entry['figure'] + '-625-light'
+                stem = entry['figure'] + '-1920x1080-light'
                 png = target/(stem + '.png'); receipt_path = target/(stem + '.json')
                 receipt = json.loads(receipt_path.read_text()); raw = png.read_bytes()
                 if not raw.startswith(b'\x89PNG\r\n\x1a\n') or receipt['png_sha256'] != digest(raw) or receipt['quality_status'] != 'passed':

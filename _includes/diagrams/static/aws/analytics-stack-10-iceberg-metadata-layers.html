@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="sd-aws-analytics-stack-10-iceberg-metadata-layers" aria-labelledby="sd-title-aws-analytics-stack-10-iceberg-metadata-layers">
-  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-10-iceberg-metadata-layers">Iceberg read는 row 전에 metadata 네 단계를 지난다</figcaption>
+<figure class="sd sd--layers sd--fhd" id="sd-aws-analytics-stack-10-iceberg-metadata-layers" aria-labelledby="sd-title-aws-analytics-stack-10-iceberg-metadata-layers" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-10-iceberg-metadata-layers">Iceberg read는 row 전에 metadata 네 단계를 지난다</figcaption><div class="sd-semantic-source">
   <div class="sd-stack">
     <section class="sd-band" aria-label="Catalog layer">
       <div class="sd-band-title">1. Catalog</div>
@@ -48,4 +48,53 @@
     </section>
   </div>
   <p class="sd-note">Catalog는 pointer만 보유합니다. 어떤 파일을 열지는 metadata tree의 snapshot과 manifest 통계가 결정합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7b58a23a451a976c0b270e60186b54de6e9dbf2a89afb896cc163bd6a7e77441">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="150.900" width="792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="150.900" width="792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="96.000" y="449.500" width="792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="1032.000" y="449.500" width="792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.8" x="96.000" y="748.100" width="792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="116.000" y="223.300" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1052.000" y="223.300" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="116.000" y="521.900" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1" x="1052.000" y="521.900" width="752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8.1.0" x="116.000" y="820.500" width="366.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.8.1.1" x="502.000" y="820.500" width="366.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 252.200 L 1020.000 252.200" fill="none" stroke="#475569" stroke-width="3"><title>current pointer</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,252.200 1010.000,258.200 1010.000,246.200" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 252.200 L 1848.000 252.200 L 1848.000 401.500 L 72.000 401.500 L 72.000 550.800 L 84.000 550.800" fill="none" stroke="#475569" stroke-width="3"><title>current snapshot</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,550.800 74.000,556.800 74.000,544.800" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 900.000 550.800 L 1020.000 550.800" fill="none" stroke="#475569" stroke-width="3"><title>manifest paths and summaries</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1020.000,550.800 1010.000,556.800 1010.000,544.800" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 550.800 L 1848.000 550.800 L 1848.000 700.100 L 72.000 700.100 L 72.000 849.400 L 84.000 849.400" fill="none" stroke="#475569" stroke-width="3"><title>필요한 파일만 선택</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,849.400 74.000,855.400 74.000,843.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="118.300" font-size="36" font-weight="700" fill="#111827">Iceberg read는 row 전에 metadata 네 단계를 지난다</text>
+<text data-source="root.0.1.0.0" x="116.000" y="194.900" font-size="24" font-weight="700" fill="#111827">1. Catalog</text>
+<text data-source="root.0.1.0.1" x="136.000" y="267.300" font-size="24" font-weight="700" fill="#111827">Catalog</text>
+<text data-source="root.0.1.0.1" x="136.000" y="306.500" font-size="20" font-weight="400" fill="#111827">현재 metadata file location pointer</text>
+<text data-source="root.0.1.2.0" x="1052.000" y="194.900" font-size="24" font-weight="700" fill="#111827">2. Table state</text>
+<text data-source="root.0.1.2.1" x="1072.000" y="267.300" font-size="24" font-weight="700" fill="#111827">metadata file</text>
+<text data-source="root.0.1.2.1" x="1072.000" y="306.500" font-size="20" font-weight="400" fill="#111827">*.metadata.json - schema, partition specs, snapshot list</text>
+<text data-source="root.0.1.4.0" x="116.000" y="493.500" font-size="24" font-weight="700" fill="#111827">3. Snapshot index</text>
+<text data-source="root.0.1.4.1" x="136.000" y="565.900" font-size="24" font-weight="700" fill="#111827">manifest list</text>
+<text data-source="root.0.1.4.1" x="136.000" y="605.100" font-size="20" font-weight="400" fill="#111827">snap-*.avro - one snapshot and its manifest files</text>
+<text data-source="root.0.1.6.0" x="1052.000" y="493.500" font-size="24" font-weight="700" fill="#111827">4. File index</text>
+<text data-source="root.0.1.6.1" x="1072.000" y="565.900" font-size="24" font-weight="700" fill="#111827">manifest file</text>
+<text data-source="root.0.1.6.1" x="1072.000" y="605.100" font-size="20" font-weight="400" fill="#111827">*-m*.avro - one row per data or delete file; min/max and null counts</text>
+<text data-source="root.0.1.8.0" x="116.000" y="792.100" font-size="24" font-weight="700" fill="#111827">실제 파일</text>
+<text data-source="root.0.1.8.1.0" x="136.000" y="864.500" font-size="24" font-weight="700" fill="#111827">data file</text>
+<text data-source="root.0.1.8.1.0" x="136.000" y="903.700" font-size="20" font-weight="400" fill="#111827">*.parquet - actual rows</text>
+<text data-source="root.0.1.8.1.1" x="522.000" y="864.500" font-size="24" font-weight="700" fill="#111827">delete file</text>
+<text data-source="root.0.1.8.1.1" x="522.000" y="903.700" font-size="20" font-weight="400" fill="#111827">row-level delete markers</text>
+<text data-source="root.0.1.1" x="892.000" y="233.200" font-size="20" font-weight="400" fill="#111827">current pointer</text>
+<text data-source="root.0.1.3" x="104.000" y="393.500" font-size="20" font-weight="400" fill="#111827">current snapshot</text>
+<text data-source="root.0.1.5" x="892.000" y="477.800" font-size="20" font-weight="400" fill="#111827">manifest paths</text>
+<text data-source="root.0.1.5" x="892.000" y="504.800" font-size="20" font-weight="400" fill="#111827">and</text>
+<text data-source="root.0.1.5" x="892.000" y="531.800" font-size="20" font-weight="400" fill="#111827">summaries</text>
+<text data-source="root.0.1.7" x="104.000" y="692.100" font-size="20" font-weight="400" fill="#111827">필요한 파일만 선택</text>
+<text data-source="root.0.2" x="64.000" y="990.700" font-size="20" font-weight="400" fill="#111827">Catalog는 pointer만 보유합니다. 어떤 파일을 열지는 metadata tree의 snapshot과 manifest 통계가 결정합니다.</text>
+</svg>
 </figure>

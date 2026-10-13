@@ -1,0 +1,14 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2f297786cb32515f6989b68c0238046cc0ef3279061b7d61168f7f8a8a451b55">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="64.000" y="486.400" width="581.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="669.333" y="486.400" width="581.333" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1274.667" y="486.400" width="581.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="449.800" font-size="36" font-weight="700" fill="#111827">Vault 접근 제어의 AAA는 신원 확인, 권한 결정, 감사 추적입니다</text>
+<text data-source="root.0.1.0" x="88.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Authentication (인증)</text>
+<text data-source="root.0.1.0" x="88.000" y="580.800" font-size="22" font-weight="400" fill="#111827">사용자 또는 workload가 누구인지 확인합니다.</text>
+<text data-source="root.0.1.1" x="693.333" y="538.400" font-size="28" font-weight="700" fill="#111827">Authorization (인가)</text>
+<text data-source="root.0.1.1" x="693.333" y="580.800" font-size="22" font-weight="400" fill="#111827">token과 policy로 path별 capability를 결정합니다.</text>
+<text data-source="root.0.1.2" x="1298.667" y="538.400" font-size="28" font-weight="700" fill="#111827">Accounting / Auditing</text>
+<text data-source="root.0.1.2" x="1298.667" y="580.800" font-size="22" font-weight="400" fill="#111827">audit device가 요청과 응답을 기록해 책임성을 남깁니다.</text>
+<text data-source="root.0.2" x="64.000" y="658.500" font-size="22" font-weight="400" fill="#111827">Vault에서는 Authentication이 token을 만들고, Authorization이 허용 범위를 정하며, Accounting이 사후 접근 경로를 증빙합니다.</text>
+</svg>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-aws-codeartifact-domain-repository-model" aria-labelledby="sd-title-aws-codeartifact-domain-repository-model">
-  <figcaption class="sd-title" id="sd-title-aws-codeartifact-domain-repository-model">Domain이 storage를 소유하고 Repository가 access path를 제공한다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-aws-codeartifact-domain-repository-model" aria-labelledby="sd-title-aws-codeartifact-domain-repository-model" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-codeartifact-domain-repository-model">Domain이 storage를 소유하고 Repository가 access path를 제공한다</figcaption><div class="sd-semantic-source">
   <div class="sd-node"><strong class="sd-label">Build client</strong><span class="sd-detail">npm, pip, mvn</span></div>
   <div class="sd-arrow"><span class="sd-edge-label">Repository의 one endpoint로 package 요청</span></div>
   <section class="sd-lane"><div class="sd-lane-title">CodeArtifact Domain</div>
@@ -15,4 +15,42 @@
   <div class="sd-arrow"><span class="sd-edge-label">-store repository의 external connection으로 on-demand fetch</span></div>
   <div class="sd-node"><strong class="sd-label">Public registry</strong><span class="sd-detail">npmjs, PyPI, Maven Central</span></div>
   <p class="sd-note">콘솔에서 external connection을 구성하면 필요한 -store repository를 생성하거나 재사용하고 upstream으로 연결합니다. 공유 assets는 fetch 순서의 한 단계가 아닙니다. public registry에서 가져온 요청도 CodeArtifact request 과금에 포함됩니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="75aeeca8ed9fa6fd1d056cf126e317c1ad16671258bcea33e13e241333d60df0">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="64.000" y="378.600" width="1792.000" height="312.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1" x="64.000" y="142.800" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0.0" x="120.000" y="487.600" width="326.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.0.2" x="590.000" y="487.600" width="326.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1" x="972.000" y="464.400" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5" x="64.000" y="800.300" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.3.1.0.1" data-from="root.0.3.1.0.0" data-to="root.0.3.1.0.2" d="M 458.000 565.500 L 578.000 565.500" fill="none" stroke="#475569" stroke-width="3"><title>upstream repository로 조회</title></path>
+<polygon data-arrowhead="root.0.3.1.0.1" points="578.000,565.500 568.000,571.500 568.000,559.500" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 280.900 L 960.000 366.600" fill="none" stroke="#475569" stroke-width="3"><title>Repository의 one endpoint로 package 요청</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,366.600 954.000,356.600 966.000,356.600" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.3" data-to="root.0.5" d="M 960.000 702.600 L 960.000 788.300" fill="none" stroke="#475569" stroke-width="3"><title>-store repository의 external connection으로 on-demand fetch</title></path>
+<polygon data-arrowhead="root.0.4" points="960.000,788.300 954.000,778.300 966.000,778.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="106.200" font-size="36" font-weight="700" fill="#111827">Domain이 storage를 소유하고 Repository가 access path를 제공한다</text>
+<text data-source="root.0.1" x="88.000" y="194.800" font-size="28" font-weight="700" fill="#111827">Build client</text>
+<text data-source="root.0.1" x="88.000" y="237.200" font-size="22" font-weight="400" fill="#111827">npm, pip, mvn</text>
+<text data-source="root.0.3.0" x="88.000" y="430.600" font-size="28" font-weight="700" fill="#111827">CodeArtifact Domain</text>
+<text data-source="root.0.3.1.0.0" x="144.000" y="539.600" font-size="28" font-weight="700" fill="#111827">Repository</text>
+<text data-source="root.0.3.1.0.0" x="144.000" y="582.000" font-size="22" font-weight="400" fill="#111827">모든 package format을</text>
+<text data-source="root.0.3.1.0.0" x="144.000" y="611.700" font-size="22" font-weight="400" fill="#111827">받는 논리 단위</text>
+<text data-source="root.0.3.1.0.2" x="614.000" y="539.600" font-size="28" font-weight="700" fill="#111827">-store repository</text>
+<text data-source="root.0.3.1.0.2" x="614.000" y="582.000" font-size="22" font-weight="400" fill="#111827">public registry에서</text>
+<text data-source="root.0.3.1.0.2" x="614.000" y="611.700" font-size="22" font-weight="400" fill="#111827">fetch한 package를 cache</text>
+<text data-source="root.0.3.1.0.1" x="450.000" y="486.400" font-size="22" font-weight="400" fill="#111827">upstream</text>
+<text data-source="root.0.3.1.0.1" x="450.000" y="516.100" font-size="22" font-weight="400" fill="#111827">repository로</text>
+<text data-source="root.0.3.1.0.1" x="450.000" y="545.800" font-size="22" font-weight="400" fill="#111827">조회</text>
+<text data-source="root.0.3.1.1" x="996.000" y="516.400" font-size="28" font-weight="700" fill="#111827">Deduplicated assets</text>
+<text data-source="root.0.3.1.1" x="996.000" y="558.800" font-size="22" font-weight="400" fill="#111827">Domain KMS key로 암호화; Repository와 -store repository가 한 copy를 공유</text>
+<text data-source="root.0.5" x="88.000" y="852.300" font-size="28" font-weight="700" fill="#111827">Public registry</text>
+<text data-source="root.0.5" x="88.000" y="894.700" font-size="22" font-weight="400" fill="#111827">npmjs, PyPI, Maven Central</text>
+<text data-source="root.0.6" x="64.000" y="972.400" font-size="22" font-weight="400" fill="#111827">콘솔에서 external connection을 구성하면 필요한 -store repository를 생성하거나 재사용하고 upstream으로 연결합니다. 공유 assets는 fetch 순서의 한 단계가 아닙니다. public</text>
+<text data-source="root.0.6" x="64.000" y="1002.100" font-size="22" font-weight="400" fill="#111827">registry에서 가져온 요청도 CodeArtifact request 과금에 포함됩니다.</text>
+<text data-source="root.0.2" x="980.000" y="330.900" font-size="22" font-weight="400" fill="#111827">Repository의 one endpoint로 package 요청</text>
+<text data-source="root.0.4" x="980.000" y="752.600" font-size="22" font-weight="400" fill="#111827">-store repository의 external connection으로 on-demand fetch</text>
+</svg>
 </figure>

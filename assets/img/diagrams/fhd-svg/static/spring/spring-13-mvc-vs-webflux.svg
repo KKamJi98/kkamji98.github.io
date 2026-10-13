@@ -1,0 +1,32 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="934ab5add20cba9b281186655e4f5c31ba0cffc51b3275261113a2aa7410cdf8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="245.100" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="64.000" y="416.700" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="64.000" y="588.300" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.3" x="64.000" y="759.900" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="208.500" font-size="36" font-weight="700" fill="#111827">Spring MVC와 WebFlux의 차이</text>
+<text data-source="root.0.1.0.0.0" x="88.000" y="297.100" font-size="28" font-weight="700" fill="#111827">비교 항목</text>
+<text data-source="root.0.1.0.0.1" x="88.000" y="358.900" font-size="28" font-weight="700" fill="#111827">실행 모델</text>
+<text data-source="root.0.1.0.1.0" x="677.333" y="297.100" font-size="28" font-weight="700" fill="#111827">Spring MVC</text>
+<text data-source="root.0.1.0.1.1" x="677.333" y="352.900" font-size="22" font-weight="400" fill="#111827">동기, 명령형, thread-per-request</text>
+<text data-source="root.0.1.0.2.0" x="1266.667" y="297.100" font-size="28" font-weight="700" fill="#111827">Spring WebFlux</text>
+<text data-source="root.0.1.0.2.1" x="1266.667" y="352.900" font-size="22" font-weight="400" fill="#111827">비동기, 논블로킹, 선언형</text>
+<text data-source="root.0.1.1.0.0" x="88.000" y="468.700" font-size="28" font-weight="700" fill="#111827">비교 항목</text>
+<text data-source="root.0.1.1.0.1" x="88.000" y="530.500" font-size="28" font-weight="700" fill="#111827">스레드</text>
+<text data-source="root.0.1.1.1.0" x="677.333" y="468.700" font-size="28" font-weight="700" fill="#111827">Spring MVC</text>
+<text data-source="root.0.1.1.1.1" x="677.333" y="524.500" font-size="22" font-weight="400" fill="#111827">요청마다 1개를 점유하며 수백 개까지 사용</text>
+<text data-source="root.0.1.1.2.0" x="1266.667" y="468.700" font-size="28" font-weight="700" fill="#111827">Spring WebFlux</text>
+<text data-source="root.0.1.1.2.1" x="1266.667" y="524.500" font-size="22" font-weight="400" fill="#111827">CPU 코어 수에 가까운 작은 고정 event loop 풀</text>
+<text data-source="root.0.1.2.0.0" x="88.000" y="640.300" font-size="28" font-weight="700" fill="#111827">비교 항목</text>
+<text data-source="root.0.1.2.0.1" x="88.000" y="702.100" font-size="28" font-weight="700" fill="#111827">라이브러리</text>
+<text data-source="root.0.1.2.1.0" x="677.333" y="640.300" font-size="28" font-weight="700" fill="#111827">Spring MVC</text>
+<text data-source="root.0.1.2.1.1" x="677.333" y="696.100" font-size="22" font-weight="400" fill="#111827">JPA와 JDBC 같은 blocking library를 그대로 사용</text>
+<text data-source="root.0.1.2.2.0" x="1266.667" y="640.300" font-size="28" font-weight="700" fill="#111827">Spring WebFlux</text>
+<text data-source="root.0.1.2.2.1" x="1266.667" y="696.100" font-size="22" font-weight="400" fill="#111827">R2DBC와 WebClient 같은 논블로킹 stack 필요</text>
+<text data-source="root.0.1.3.0.0" x="88.000" y="811.900" font-size="28" font-weight="700" fill="#111827">비교 항목</text>
+<text data-source="root.0.1.3.0.1" x="88.000" y="873.700" font-size="28" font-weight="700" fill="#111827">적합한 작업</text>
+<text data-source="root.0.1.3.1.0" x="677.333" y="811.900" font-size="28" font-weight="700" fill="#111827">Spring MVC</text>
+<text data-source="root.0.1.3.1.1" x="677.333" y="867.700" font-size="22" font-weight="400" fill="#111827">대부분의 애플리케이션, 이해와 디버깅이 쉬운 경우</text>
+<text data-source="root.0.1.3.2.0" x="1266.667" y="811.900" font-size="28" font-weight="700" fill="#111827">Spring WebFlux</text>
+<text data-source="root.0.1.3.2.1" x="1266.667" y="867.700" font-size="22" font-weight="400" fill="#111827">고동시성 I/O bound 작업과 streaming</text>
+</svg>

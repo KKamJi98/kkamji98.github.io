@@ -1,193 +1,92 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-09-08
+updated: 2026-10-13
 type: rule
 status: current
 ---
 
 # Static diagrams
 
-블로그의 설명용 다이어그램은 정적 HTML을 정본으로 사용한다. 개별 그림은 `_includes/diagrams/static/`, 인증 지도와 Packer 그림은 `_includes/diagrams/`의 개별 include에 있다. 본문은 Liquid include로 그림을 삽입한다.
+설명용 도식의 정본은 `_includes/diagrams/static/` 및 Packer와 AWS 인증 지도 include의 HTML figure다. 기존 노드, 조건, 접근성 이름과 본문 사용처를 보존한다. 시각 도식은 동일 figure 안의 inline SVG에 박스, 라벨과 간선 좌표를 직접 쓴다. 원본 spec, Draw.io, raster와 출처 및 라이선스는 rollback 증적으로 유지한다. [Diagram catalog](diagram-catalog.json)는 391개 정본 include와 사용처를 연결한다.
 
-## 읽을 수 있는 구조
+## 고정 FHD 캔버스
 
-한 그림은 한 가지 관계나 차이를 설명한다. flow는 실제 전달 순서가 있을 때, comparison은 선택지의 차이를 볼 때, layer는 소속과 경계를 보여줄 때 사용한다. 속성 목록이나 서로 독립된 hook 사이에 실행 순서처럼 읽히는 화살표를 붙이지 않는다. 분기 조건과 실패 경로는 해당 위치에 명시한다.
+모든 SVG의 width는 1920, height는 1080, viewBox는 `0 0 1920 1080`이다. 모든 PNG의 실제 픽셀 치수도 정확히 1920 x 1080, 16:9이다. 기존 그림의 단순 확대, 축소, crop이나 비율 왜곡으로 캔버스를 맞추지 않는다. 카드 폭, 글자 크기, 여백과 분기 배치를 FHD 좌표에서 다시 설계한다.
 
-제목은 22px 이상, 주요 라벨은 16px 이상, 보조 라벨과 표/코드는 14px 이상이다. 긴 설명은 본문에 둔다. 그림의 제목, 부제, 노드, 캡션에서 같은 문장을 반복하지 않는다. 전문 식별자는 원문을 유지하고 설명 문장은 간결한 한국어로 쓴다.
+데스크톱과 모바일 모두 표시 크기를 1920 x 1080으로 고정한다. 반응형 재배치, 화면 폭에 따른 자동 축소, container query, breakpoint별 변형을 사용하지 않는다. 화면 폭에 관계없이 같은 노드, 순서, 연결과 16:9 캔버스를 표시한다. `width:100%`, `max-width:100%`, `height:auto`를 그림에 적용해 자동 축소하지 않는다. 스크롤 영역의 폭만 글의 폭을 따르며 내부 그림은 고정 크기다.
 
-그림의 버튼, 링크, hover 의존 정보, 숨겨진 내용, 재생, script, 애니메이션을 사용하지 않는다. 원본 HTML의 grid와 flow는 625px 본문 폭에서 export되며, 매핑된 본문 화면은 그 PNG만 비율을 유지해 축소한다. 좁은 화면에서 재배치한 별도 그림을 보여주지 않는다.
+좁은 화면에서는 가로 스크롤과 사용자가 선택하는 고정 HTML viewer와 직접 선택하는 확대 링크를 제공한다. 스크롤 영역은 키보드로 접근 가능해야 하고 가장자리 요소를 잘라 숨기지 않는다. 화면 캡처의 치수와 그림 PNG의 치수는 서로 다르므로 구분해 기록한다.
 
-## 단일 PNG 표시
+## 읽을 수 있는 의미 구조
 
-`figure.sd`는 계속 의미 구조와 접근성 텍스트, export의 정본이다. 모든 매핑된 사용처에서 바로 뒤의 `diagrams/download.html` helper는 동일한 PNG URL을 빈 `alt`의 inline 이미지, 다운로드 링크, 원본 열기 링크에 쓴다. 이미지의 중복 설명을 막고 figure의 `aria-labelledby`와 노드 텍스트를 보조 기술에 남긴다. helper가 없는 미사용 figure는 원래 HTML로 표시한다. `figure.sd:has(+ .diagram-download > img.diagram-inline)`는 해당 figure만 화면에서 시각적으로 클립한다. `display:none`, `visibility:hidden`, `aria-hidden`을 사용하지 않는다. 이미지에는 `data-static-diagram="true"`를 붙여 확대/래퍼 생성을 피한다.
+한 그림은 한 가지 관계나 차이를 설명한다. 주요 흐름은 가로로 배치하고 병렬 비교는 같은 축에 정렬한다. 실제 계층, 반복과 조건 분기는 의미에 맞게 유지한다. 비교 대상을 임의의 직렬 단계로 바꾸거나 모든 그림을 같은 정책 분기로 치환하지 않는다. 간선의 출발점, 도착점, 방향과 의미 라벨을 각각 확인한다.
 
-PNG는 각 그림의 내용 높이를 유지하며 Chromium에서 625px 원본 캔버스를 DPR 3.072로 직접 렌더해 가로 1920px로 만든다. 1920x1080 고정 비율에 맞추려고 텍스트를 축소하거나 이미지에 여백을 덧대지 않는다. PNG는 intrinsic 비율로 본문 폭까지 축소된다. 360px와 625px, light와 dark, 인쇄에서 화면상 도식 구성은 동일한 PNG 픽셀이다. 좁은 화면에서는 확대가 필요할 수 있으므로 원본 이미지 열기 링크를 유지한다. 이미지는 텍스트 선택이 불가능하지만 의미 정보는 figure에 남는다. export 브라우저는 스크린샷 전 클립만 복구하고 helper를 숨겨 figure HTML을 캡처한다. 이는 게시 HTML 변경이 아니라 일회용 브라우저 스타일 변경이다. 품질/connector gate와 모바일 진단 캡처는 계속 원본 figure에 적용한다.
+제목은 22px 이상, 주요 라벨은 16px 이상, 보조 텍스트와 표 및 코드는 14px 이상이다. FHD에는 충분한 공간이 있으므로 기본 프로필은 주요 라벨 28px와 설명 22px를 사용한다. 복잡한 그림은 정해진 밀도 프로필과 개별 좌표 설계를 적용한다. 글자 크기를 낮춰 겨우 맞춘 그림은 자동 통과로 가독성이 증명되지 않는다.
 
-CSS의 공통 figure 팔레트는 테마/인쇄 모드와 관계없이 흰 바탕과 진한 텍스트/선이다. 그림 안의 중복 시각 제목은 숨기고 접근성 캡션 ID는 유지한다. 의미상 비교 가능한 두 개의 최상위 lane만 원본 캔버스에서 나란히 두며, 세로 비교, 조건 분기, 반복, 시퀀스는 그 의미를 보존한다. 짧은 직렬 3단계 그림 중 opt-in한 것만 가로 카드로 배치한다. 모든 다이어그램을 Jev의 정책 분기 토폴로지로 치환하지 않는다. 화면용 PNG는 `--theme light`와 결정적 폰트 프로필로 생성한다. export 전용 브라우저에서 `html`/`body` 배경을 흰색으로 고정하고, 첫 raster 픽셀이 흰색인지 검사해 어두운 본문 배경이 소수점 크롭 가장자리로 스며드는 실패를 막는다. 최종 전수 PNG의 네 모서리와 잘림, 과도한 높이도 실제 픽셀에서 별도로 점검한다. 기존 저장소 PNG는 새 팔레트를 반영하지 않으므로 소스/CSS 변경 후 전체 mapped corpus를 fresh build에서 재export하고 전체 check/release를 통과시켜야 한다. 한 장만 갱신하거나 현재 이미지를 새 스타일이라고 표시하지 않는다.
+흰 배경과 진한 글자 및 선을 사용하고 같은 역할에 같은 강조색을 쓴다. 그림 안에는 버튼, 링크, hover 의존 정보, script, 재생이나 애니메이션을 넣지 않는다. 확대와 다운로드 링크는 figure 밖 helper에 둔다.
 
-## 공통 클래스
+## 정본과 표시
 
-`assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이 모든 그림의 스타일을 담당한다.
+`figure.sd.sd--fhd`가 기존 의미 소스와 `svg.sd-fhd-artwork`를 함께 소유한다. 원래 caption은 figure의 직접 자식으로 유지한다. `.sd-semantic-source`는 원래 노드, 조건, 설명과 IDs를 접근성 트리에 남기고 시각적으로만 클립한다. `display:none`, `visibility:hidden`, `aria-hidden`으로 원래 의미 소스를 제거하지 않는다. 중복 시각 SVG는 `aria-hidden="true"`를 사용한다. SVG의 노드, 텍스트, 이미지와 간선은 그 의미 소스와 전수 대응해야 한다.
 
-| 구조 | 클래스 |
-| :--- | :--- |
-| 그림과 제목 | `figure.sd`, `figcaption.sd-title` |
-| 흐름 | `sd-flow`, `sd-node`, `sd-arrow`, `sd-edge-label` |
-| 비교와 분기 | `sd-grid`, `sd-grid--three`, `sd-lane`, `sd-lane-title` |
-| 계층과 경계 | `sd-stack`, `sd-band`, `sd-band-title` |
-| 텍스트 | `sd-label`, `sd-detail`, `sd-note` |
-| 의미 강조 | `sd-node--accent`, `sd-node--warning`, `sd-node--muted` |
-| 비교 표 | `sd-table` |
-| 공식 아이콘과 배지 | `sd-icon`, `sd-cert-card`, `sd-cert-badge`, `sd-cert-code` |
+`kkamji_scripts/blog/fhd_svg.py`는 고정 작성 프로필의 좌표를 inline SVG와 독립 SVG 원본으로 저장한다. 같은 include에서 원래 HTML body를 바이트 그대로 복원해 원문 보존을 확인한다. 같은 source에 대해 결과가 다시 생성되는지도 검사한다. 정적 검사는 문자, 조건, 간선 역할, named endpoint, 이미지, 핀 폰트 glyph, 캔버스 경계와 겹침을 검사한다. 자동 그래프 런타임이나 Mermaid는 사용하지 않는다.
 
-내부 제목은 `div` 또는 `strong`으로 만들어 본문 TOC의 heading과 구분한다. 제목을 보여주는 그림은 figure의 `aria-labelledby`가 고유한 title id를 참조한다. 시각 제목이 본문과 중복되는 그림은 제목을 그리지 않고 figure에 비어 있지 않은 `aria-label`로 접근성 이름만 남긴다. 조건을 담은 edge label은 보조 기술에서도 읽을 수 있어야 한다.
+`_includes/diagrams/download.html`은 canonical figure의 바로 다음 sibling이다. inline PNG와 다운로드는 같은 PNG URL을 사용한다. 확대 링크는 동일 PNG를 1920 x 1080 고정 크기로 표시하는 script 없는 HTML viewer로 이동한다. 기본 이미지 브라우저의 자동 축소에 의존하지 않는다. viewer의 100%, 125%, 150% 확대는 사용자가 직접 선택할 때만 적용하며, 확대된 전체 크기만큼 스크롤 영역도 늘린다. 그림 이미지는 빈 alt를 사용하며 figure의 접근성 이름과 의미 소스가 설명을 제공한다. `data-static-diagram="true"`는 테마의 별도 확대 및 shimmer wrapper를 방지한다. mapped source figure만 시각적으로 클립하고 helper의 1920 x 1080 PNG를 스크롤 영역에서 표시한다.
 
-## 이미지와 원본 증적
+[Download mapping](diagram-downloads.json)은 392개 본문 참조를 PNG URL에 연결한다. 383개 used include, 8개 unused include와 반복 사용처를 구분한다. 사용처별 출력 392개와 미사용 정본 출력 8개를 합쳐 PNG 경로는 400개다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다.
 
-공식 아이콘은 로컬 파일로 제공하고 출처와 해시를 기록한다. 그림의 모든 `img`에는 명시적 크기와 `data-static-diagram="true"`를 붙인다. 이 속성이 있으면 테마의 확대 링크와 shimmer wrapper 생성을 건너뛴다.
+## 폰트와 아이콘
 
-기존 spec, Draw.io, raster 파일은 증적과 rollback을 위해 보존한다. 새 static HTML을 이전 raster로 다시 생성하지 않는다. [Diagram catalog](diagram-catalog.json)는 각 include와 기존 원본, 사용 포스트를 연결한다. 커버, 로고, 사진, 콘솔 및 명령 캡처는 설명용 구조도와 구분해 관리한다.
+FHD SVG는 로컬 OFL Noto Sans KR를 사용한다. `assets/fonts/deterministic-export/lock.json`이 Google Fonts revision, 원본 URL, 바이너리 SHA-256과 라이선스 파일을 고정한다. 외부 설치 폰트와 비밀 파일을 복사하지 않는다. 공식 아이콘과 인증 배지는 기존 로컬 자산 및 출처를 보존하며 SVG에서 비율을 유지한다. PNG 생성 때에는 같은 핀 폰트 bytes와 같은 이미지 bytes를 사용한다.
 
-## 검증
+핀 glyph coverage는 source 문자 지원을 증명한다. 실제 브라우저의 글꼴 로딩과 PNG의 가독성은 별도로 확인한다. 원래 article 글꼴과 새 FHD 폰트의 byte parity를 주장하지 않는다. 변경한 폰트, 이미지나 렌더 도구는 출력 freshness를 무효화한다.
+
+## 검증 순서
 
 ```bash
-uv run python kkamji_scripts/blog/validate_static_diagrams.py --root . --inventory docs/diagram-catalog.json
-JEKYLL_ENV=production bundle exec jekyll b -d /tmp/blog-static-site
-uv run python kkamji_scripts/blog/check_inline_scripts.py /tmp/blog-static-site
+uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .
+uv run python kkamji_scripts/blog/fhd_svg.py --root . --check --report /tmp/fhd-source-check.json
 uv run python docs/_meta/docs_lint.py --root .
+DIAGRAM_FHD_PROOF=1 JEKYLL_ENV=production uv run --no-project python kkamji_scripts/blog/static_png/downloads.py build --site /tmp/blog-fhd-site
+uv run python kkamji_scripts/blog/check_inline_scripts.py /tmp/blog-fhd-site
 ```
 
-빌드에는 저장소 lockfile에 맞는 Ruby/Bundler를 사용한다. 설치된 macOS 실행 환경의 경우 Ruby 3.4.7 경로를 PATH 앞에 넣어 Bundler 4.0.3을 사용할 수 있다.
+Ruby와 Bundler는 실제 설치 환경 및 repository dependency를 확인해서 선택한다. 공유 환경의 무거운 build와 전수 export는 한 번에 하나만 실행한다. 모든 source 변경 후 fresh production build를 만들고, 그 build에서 동일 SVG를 PNG로 렌더한다. 오래된 build, 이전 625px/DPR 3.072 출력이나 가변 높이 PNG는 새 FHD 검증 증거로 재사용하지 않는다.
 
-검증은 source 정적성, 원본과의 의미 대조, production HTML, 실제 브라우저 렌더링을 나누어 확인한다. 실제 본문 폭과 360px 폭에서 글자 크기, 잘림, 가로 넘침, 배지 로드, 의미 없는 상호작용이 없는지 검사한다. source parser 통과만으로 시각 품질이 검증됐다고 보고하지 않는다.
+다음 항목을 서로 다른 증거로 남긴다.
+
+- 정본 391개와 PNG 사용처 목록의 중복 및 누락 검사.
+- 기존 HTML 원문, 원본 이미지와 spec 및 Draw.io 보존 비교.
+- SVG width, height, viewBox와 모든 PNG의 실제 헤더 치수 검사.
+- 원래 노드, 텍스트, 순서, 조건, fork, merge, loop, 방향과 named endpoint의 SVG 대응.
+- 각 PNG를 실제 열어 글자, 선, 화살촉, 글꼴, 여백, 겹침과 잘림을 검토한 결과.
+- 데스크톱과 360px/390px에서 1920 x 1080 고정 표시 및 모든 영역의 스크롤 도달 검사.
+- source, built HTML, CSS, font, image, SVG, tool, browser와 PNG 해시의 freshness 검사.
+
+정적 parser, DOM 치수 또는 PNG 생성 성공만으로 시각 또는 내용 검토를 완료로 보고하지 않는다. 도식의 작성, 구조 검증, 의미 검증, PNG 생성, 실제 시각 검토와 게시 수를 나눠 기록한다.
 
 ## Same-source PNG export
 
-`kkamji_scripts/blog/static_png/` captures the canonical `figure.sd` from an actual Jekyll-built article with compiled theme CSS. It does not author another drawing. Page scripts and external network access are disabled; article width is 625px at a 1280px viewport, desktop PNG is natively rasterized at DPR 3.072 (1920px width, variable height), and mobile QA uses the native 360px viewport and gutters at the same DPR. Locale is `ko-KR`, timezone is UTC. Existing Playwright/Chromium and fontconfig are prerequisites; the runner never installs them. Select an existing Python environment using `DIAGRAM_PYTHON` and, if needed, `PYTHONPATH`.
+브라우저 자동화는 전역 AGENTS의 Aside 단일 경로를 따른다. MCP가 노출됐으면 `mcp__aside__repl`을 사용한다. MCP가 없으면 현재 help와 guide로 확인한 one-shot `aside repl --host local` 예외만 사용한다. 산출물은 Aside 세션의 `./artifacts/`에 저장하고 반환된 실제 경로와 파일 존재를 확인한 뒤 복사한다.
 
-```bash
-bash kkamji_scripts/blog/static_png/run.sh test
-JEKYLL_ENV=production bundle exec jekyll b -d /tmp/blog-static-site
-# Read-only whole-corpus discovery, no screenshots:
-bash kkamji_scripts/blog/static_png/run.sh corpus plan \
-  --site /tmp/blog-static-site --out /tmp/blog-png
-# One diagnostic image only. Never treat fallback as production-identical:
-bash kkamji_scripts/blog/static_png/run.sh \
-  --site /tmp/blog-static-site --page posts/litellm-gateway/index.html \
-  --figure litellm-architecture --out /tmp/blog-png-one \
-  --font-profile local-fallback
-# Add --check to the same command for read-only freshness and geometry checks.
-```
+허용된 Aside 경로가 없으면 렌더링을 차단으로 기록한다. 기존 `static_png/pipeline.py`, connector CDP scanner와 Playwright/Chromium test runner는 과거 구현 및 회귀 증거이며 현재 정책의 폴백 실행 경로가 아니다. 별도 Chromium 설치, 다른 브라우저 실행이나 Full Access 플래그로 우회하지 않는다. `file://` 접근 거절을 받으면 local-file 권한을 자동으로 넓히지 않는다. 승인된 공개 build fixture의 localhost HTTP 검증은 운영 담당자가 소유한다.
 
-### Font policy
+`fhd_export.py --site <fresh-site> --out <evidence-dir> --base-url <approved-local-http-url>`는 최대 10개의 SVG를 한 Aside 호출에서 렌더하고 자기 탭을 닫는다. `--start`, `--count`로 체크포인트 이후 범위만 이어갈 수 있다. fixture는 `DIAGRAM_FHD_PROOF=1`인 격리 검증 build에서만 생성된다. 일반 운영 build에 별도 검증 페이지를 게시하지 않는다.
 
-Default `--font-profile production` fails closed without `--font-bundle /path/lock.json`. The bundle is an offline snapshot of exact production stylesheet and font URLs, with local binary bytes, SHA-256, source and license provenance. It is not a font-family substitution and does not inject replacement CSS. Bundle structure:
-
-```json
-{"resources": [{"url": "https://fonts.example/font.woff2", "path": "font.woff2", "sha256": "<actual SHA-256>", "content_type": "font/woff2", "source": "<provenance URL and revision>", "license": "<license provenance>"}]}
-```
-
-Relative paths must stay inside the lock directory. Duplicate URLs, changed bytes and missing provenance fail. Include the original remote CSS as well as all required font subsets and weights. No fetch, font download or installation is performed. Chromium CDP records fonts actually used for glyphs at both widths; a production run rejects any system-font fallback or blocked stylesheet/font request. Actual loaded web-font binary hashes and all bundle resource hashes enter the receipt fingerprint. Local built CSS/font/image files and installed font binaries from fontconfig are also fingerprinted. Actual system PostScript names are resolved to binary candidates; duplicate installations and font collections retain every matching candidate hash rather than claiming a unique file. Unresolved actual system-font names fail. `local-fallback` is an explicit diagnostic profile; receipts always set `production_identical: false`, including pinned runs, because an offline snapshot is not live production attestation.
-
-The public snapshot is `assets/fonts/static-png/lock.json`: 41 exact-URL resources (Google Fonts CSS and fonts, third-party CDN stylesheets and Font Awesome webfonts), with SHA-256 and locally preserved OFL/MIT license evidence. `font_bundle.py` explicitly acquires public bytes; normal export never fetches them. It preserves CSS unchanged and does not copy installed Windows fonts. `coverage.json` records the single-five AI diagnostic coverage.
-
-```bash
-# Acquisition is an explicit online maintenance operation, not part of export:
-"$DIAGRAM_PYTHON" kkamji_scripts/blog/static_png/font_bundle.py --out assets/fonts/static-png
-# After a fresh production build:
-bash kkamji_scripts/blog/static_png/run.sh \
-  --site /tmp/blog-static-site --page posts/litellm-gateway/index.html \
-  --figure litellm-architecture --out /tmp/blog-png-one \
-  --font-profile production --font-bundle assets/fonts/static-png/lock.json
-```
-
-**Strict production remains blocked and unchanged.** `strict-production` is an explicit alias for `production`; `diagnostic-local` aliases `local-fallback`. The live article requests Lato and Source Sans Pro, neither supplying Hangul in these faces. The strict profile still rejects installed Korean/code fallback and blocked stylesheet/font requests. Do not relabel diagnostics as production parity.
-
-**Approved deterministic export:** `--font-profile deterministic-export` uses `assets/fonts/deterministic-export/lock.json` by default (`--export-font-bundle` can select another verified lock). It pins OFL Noto Sans KR for Korean/Latin and OFL Noto Sans Mono for code to google/fonts revision `5e35378e6bda803962ee6fd257e444a7d459660d`. Both upstream binaries, license text and SHA-256 are preserved locally. Export makes no online request: exact font URLs are fulfilled from verified local bytes. The existing production snapshot can still supply article stylesheet dependencies via `--font-bundle`.
-
-Only the export browser receives uniquely named `@font-face` rules and `figure.sd`-scoped family overrides; article source and shared webpage CSS are untouched. Code uses the pinned monospace face only; unsupported code glyphs fail closed rather than silently selecting another family. CDP rejects every system font and every unexpected webfont actually used within the figure at both widths. Receipts declare `profile: deterministic-export`, `production_identical: false`, record export CSS and font hashes, and retain browser/OS versions. Byte equality is verified on the recorded browser/host, not promised across different Chromium or rasterizer versions.
-
-```bash
-DIAGRAM_PYTHON=/home/kkamji/.local/bin/python3.11 bash kkamji_scripts/blog/static_png/run.sh \
-  --site /tmp/blog-static-site --page posts/litellm-gateway/index.html \
-  --figure litellm-architecture --out /tmp/blog-png-one \
-  --font-profile deterministic-export --font-bundle assets/fonts/static-png/lock.json
-# Repeat with --check for read-only freshness and quality verification.
-```
-
-Offline loading waits for the document load event, `document.fonts.ready`, and figure image decoding with explicit 30-second bounds. There is no network-idle dependency or fixed sleep. Tests cover missing Hangul, missing code fonts, unexpected fonts, byte-identical repeated desktop/mobile PNGs, and changed font freshness.
-
-The single-five diagnostic run uses this bundle with explicit `local-fallback`; its receipts record exact installed font binary hashes, `production_identical: false`, and actual fonts at both widths. These are reproducible inputs on the recorded host only, not release approval. Existing DejaVu fixtures remain synthetic integration tests, not production evidence. Review refreshed screenshots and pass all quality gates before releasing assets.
-
-### Corpus and freshness
-
-After the layout is final, run `corpus export` with the same `--site`, `--out`, `--theme` and production font bundle options, then `corpus check`. Do not batch-export during layout editing. Discovery inventories every catalog include and every built figure occurrence, including ID-less SAP figures selected through `aria-labelledby` and Docker `include.instance` variants. Unused includes are reported explicitly; missing used figures, unknown built figures and duplicate selectors fail. Each page occurrence has a separate output directory to prevent overwrites.
-
-The manifest binds the complete plan, source include hashes, catalog hash, theme/profile and every receipt hash. Check rebuilds the inventory, verifies the exact manifest, then reruns every receipt check. Receipts bind built page HTML, figure HTML, local dependencies, font inputs, browser/OS/tool versions, desktop and mobile PNG bytes. Missing or modified images and changed input fingerprints fail. Failed quality checks are diagnostic artifacts, not successful release gates.
-
-Freshness proves consistency with the supplied built site. It does not certify that a stale build reflects the current source tree. A fresh production build after all source edits is mandatory. Whole-page HTML hashing is intentionally conservative: build timestamps, prose or helper edits invalidate receipts. Add sibling download includes first, make the final build, then export from it; export itself never modifies built article HTML. Do not rebuild the HTML after capture without rerunning export/check.
-
-`_includes/diagrams/download.html` accepts `png="/assets/img/diagrams/...png"` and must be an immediate sibling after the canonical figure. It provides native download and direct image access without JavaScript. [Download mapping](diagram-downloads.json) accounts for every post occurrence, including repeated include instances, and reserves collision-checked paths. Its pending state is a source mapping, not an export receipt. [Verified export manifest](diagram-export-release.json) records the checked PNG hashes, source identities and rendering environment for the current local release candidate.
-
-`static_png/downloads.py` integrates source wiring, production build stamping, exact-path export and receipt checks. The build stamp binds source and built HTML; later edits require a fresh build. Export uses the approved deterministic font profile, writes per-occurrence evidence outside the repository and copies only passed PNG bytes to the linked repository and built-site paths. Any blocked or failed occurrence makes the complete release fail. Do not rebuild article HTML between export and check. Rebuilding for a later release requires renewed export evidence.
-
-```bash
-export DIAGRAM_PYTHON=/home/kkamji/.local/bin/python3.11
-SCRIPT=kkamji_scripts/blog/static_png/downloads.py
-SITE=/tmp/blog-static-release
-OUT=/tmp/blog-png-release
-"$DIAGRAM_PYTHON" "$SCRIPT" source-check
-"$DIAGRAM_PYTHON" "$SCRIPT" build --site "$SITE"
-FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
-  "$DIAGRAM_PYTHON" "$SCRIPT" export --site "$SITE" --out "$OUT" --jobs 4
-FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
-  "$DIAGRAM_PYTHON" "$SCRIPT" release --site "$SITE" --out "$OUT" --jobs 4
-```
-
-Keep canonical includes at block level: indentation inside Markdown lists can produce escaped closing tags and break sibling adjacency. Wiring preserves prose, frontmatter, dates and footer; every helper must also pass fresh built-DOM checks. Certification tier subtitles and code inside primary labels use 16px. Native comparison tables opt into `sd-quality-table` to prevent theme percentage fonts and nowrap rules from shrinking or overflowing their cells.
-
-For the Linux deterministic release environment, set `FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf"` for both export and check. This process-local fontconfig sees only the two approved open font files instead of hashing the host's entire Windows/Linux font inventory for every figure. It does not change user or system font configuration. The strict CDP gate still requires the figure to use custom webfonts; installed/system fallback remains a failure, even if it is the same font family. This is a distinct recorded export environment, not byte parity with earlier host-font captures. Use a fresh build and regenerate all images after switching environments.
-
-DOM geometry and selectable-text gates are not visual or semantic approval. Receipts retain `visual_review` and `semantic_review` as `not-run`. Height ratios are review flags, not universal vertical-layout failures. The source palette is light in both site modes. Dark-mode article QA checks the same PNG against its surrounding theme; a separate dark PNG is not a published variant.
+Aside viewport 캡처와 FHD PNG 생성을 구분한다. viewport가 1440 x 900이면 그림은 여전히 1920 x 1080으로 표시하며 스크롤한다. 같은 직접 좌표 SVG를 browser Canvas의 1920 x 1080에 1:1 렌더하는 PNG 경로는 원본 raster의 resize/crop과 다르다. 이 경로도 font 및 image bytes, canonical SVG, fresh build와 결과 PNG를 대응하고 모든 품질 검사를 통과해야 한다. 캡처나 저장 실패를 생성 성공으로 처리하지 않는다.
 
 ## Connector acceptance and recurrence gates
 
-Connector layout is checked against **paint**, not just the unrotated CSS layout box. The [corpus connector review](diagram-connector-review.json) records all include-level results and the scope of native-image review. `static_png/connector_audit.py` collects transformed CDP outer/padding quads without changing canonical HTML. `connector_geometry.py` decomposes painted border sides; empty corners of rotated arrowheads and L-shaped borders are not treated as strokes. Browser Range rectangles represent text layout, not segmented glyph ink.
+기존 normal commit hook의 `static_png/release_manifest.py --if-staged`는 source fingerprint, 모든 PNG 해시, 목록 coverage와 index 일치를 검사한다. 새 source나 renderer를 반영한 전수 build/export/check 증거가 없으면 기존 release manifest는 stale이다. old gate를 건너뛰거나 미검증 FHD 변경을 이전 passed manifest로 통과시키지 않는다. 새 schema 2 release는 391개 source의 검토와 392개 게시 사용처, 미사용 source 8개의 PNG를 각각 검증한다. `fhd_release.py`는 모든 PNG의 실제 검토가 `docs/diagram-fhd-reviews.json`에 해당 SVG 및 PNG 해시와 함께 기록된 뒤에만 release를 저장한다. 렌더 도구는 검토 상태를 자동으로 passed로 바꾸지 않는다. native PNG는 검토 cache에만 저장하며, 전수 자동 게이트와 실제 시각/의미 검토가 통과한 뒤 `fhd_release.py --promote`로 400개 게시 출력 경로에 복사하고 실제 치수와 bytes를 다시 검사한다.
 
-- Standalone markers reserve at least 4px from nearby endpoint boundaries and their own labels. Primary Gateway markers use the stricter 6px contract; outcome arrows retain 8px card clearance. Issuance arrows are centered between actual text ranges, with a 1.5px symmetry tolerance, rather than between oversized empty text tracks.
-- Attached edges retain intentional node-border contact. Collinear mobile bus strokes and their joins must agree within 0.5px. Gateway fork source and branch axes use a 0.25px tolerance. A standalone whitespace rule must not detach a real edge.
-- Rounded loops keep their return/self-action meaning. The head must meet the first action, and the source rail the last action, within 0.5px. `connector_loop.py` models straight border strips and quarter-elliptical annuli, with a 0.0001px curve approximation bound; uncertain numerical boundaries and unsupported paint styles fail closed.
-- Unknown connector roles, hidden registered markers, malformed named endpoints and unclassified painted pseudo relations are blocking findings, not advisory results or silent omissions. The single retained inline SVG boundary marker is matched by its exact reviewed path/stroke/dash signature, not merely the figure name.
+원래 CSS connector 검사는 continuation, reference, reference-note와 loop의 역할 및 paint를 검증했다. inline SVG 이관에서도 그 의미를 보존하고 대응 endpoint와 실제 좌표를 검사한다. 모르는 역할, 명명된 endpoint 누락, 칠해지지 않은 간선이나 clipping은 blocking finding이다. 원래 CSS가 아닌 SVG의 paint를 검증해야 하므로 과거 scanner 성공을 새 SVG 품질로 확대하지 않는다.
 
-Explicit roles resolve cross-container meanings without inventing nodes:
+[Verified export manifest](diagram-export-release.json)는 기존 release의 증거다. FHD 변경 후에는 새 검증된 전수 증거로 갱신해야 한다. 게시, 머지와 배포는 현재 사용자 승인 범위와 저장소 규칙을 따른다. 첫 시안은 사용자가 확인 후 승인했으므로 그 검토 대기를 다시 만들지 않는다. 이번 FHD 정정은 추가 머지 또는 운영 배포 권한을 부여하지 않았다.
 
-- `data-connector-role="continuation"`: a flow's terminal marker targets its immediate following structural group. Group members remain alternatives or a collective destination, not an invented serial chain.
-- `data-connector-role="reference"`: `data-from`/`data-to` name existing nodes. The following local boundary is still checked for clearance; a physically routed bus from a remote named source is not implied.
-- `data-connector-role="loop"`: named endpoints must match the actual last and first action nodes. A one-node self-action remains a self-action.
-- `data-connector-role="reference-note"`: an explicit named annotation, with no arrow class or painted pseudo arrowheads. This prevents misleading terminal glyphs from pointing at an unrelated next section.
+원문 visible text는 레이아웃 atom 추출기와 별도의 HTML data 수집으로 전체 coverage를 대조한다. 혼합 inline의 질문, 예시, 쉼표와 부정 표현도 유지한다. 실행 분기와 그룹 endpoint에는 실제 공통 경계 또는 개별 간선을 그리고, typed connector와 dashed reference의 paint를 보존한다. 긴 API 이름은 카드/간선 폭과 작성 density를 조정하며 단어 내부 분절을 검증 실패로 기록한다. return loop에는 footer와 겹치지 않는 별도 corridor를 배정한다.
 
-Both PNG export and read-only `check` call the connector gate at desktop and mobile sizes. `release` runs the same complete check and then records the public release manifest with a source fingerprint. Receipts bind the connector helper code hashes, and the build seal also includes exporter/gate sources. Changing a gate during an export cannot produce a valid mixed-version release.
+## Exact per-source freshness
 
-The normal pre-commit hook runs the fast `release_manifest.py --if-staged` consistency gate for staged diagram source/style/tool/font/PNG changes or changed diagram include lines. It verifies complete source/PNG coverage, current hashes and index agreement. Only confirmed Git-ignored Jekyll cache/build directories and an untracked local `Gemfile.lock` are exempt from index membership; their local hashes remain sealed, and ordinary source images are never exempt. A stale release manifest cannot silently accompany a diagram change. Ordinary prose-only commits do not trigger a whole-corpus export. No browser work is hidden inside the commit hook.
+전체 build fingerprint가 바뀌어도, 한 source의 모든 렌더 입력 bytes가 동일하면 그 source의 통과 native PNG만 재사용할 수 있다. 기존 의미 HTML SHA, authored SVG exact bytes, 고정 폰트 SHA, sealed build의 원본 이미지 bytes, 실제 HTTP fixture에서 읽은 style bytes, native renderer JavaScript SHA와 실제 Aside browser UA를 전부 비교한다. 누락, 변경 또는 이전 자동 실패가 하나라도 있으면 해당 source를 다시 렌더한다. SVG 또는 PNG bytes가 바뀌면 기존 실제 시각/의미 승인을 무효화한다.
 
-Before corpus publication, run the full connector scan after a stamped fresh build:
-
-```bash
-FONTCONFIG_FILE="$PWD/assets/fonts/deterministic-export/fontconfig.conf" \
-  /home/kkamji/.local/bin/python3.11 kkamji_scripts/blog/static_png/connector_corpus.py \
-  --site /tmp/blog-static-release --out /tmp/blog-connector-audit.json
-```
-
-The scan covers every referenced occurrence plus every unused canonical include, at native 360/390 viewports and target 625/720 figure-content widths, in both themes. Three opt-in fixed-canvas sources (Jev and two three-card landscape rows) retain their 625px outer artwork width in both desktop cases; the scanner identifies these as `fixed-source-content` and checks the actual content width after padding, rather than falsely reporting 625/720px reflow. Unused fragments are identified as isolated harness cases, never as article renders. Keep reports outside source/build trees. Geometry checks are supplemented by native-image review of representative problem families; screenshot generation alone is not visual approval. Tests preserve already-spaced flow/direct-arrow controls, role identities and typography floors.
-
-## Rollback
-
-catalog의 원본 경로를 사용해 해당 본문의 include를 이전 이미지 참조로 되돌릴 수 있다. 그림 일부를 되돌릴 때 공통 CSS와 refactor-content 예외는 다른 static 그림이 사용하는지 확인한 뒤 제거한다.
-
-## Mobile layout and stylesheet cache
-
-- Figure padding uses explicit viewport units, `clamp(1rem, 3.5vw, 2rem)`; only descendants use the figure container query. Removing the ineffective self-query preserves existing mobile and desktop spacing without adding a wrapper. Fixed `1rem` was rejected because it moved the multi-column breakpoint and introduced regressions at 720px figure width.
-- 시각적으로 중복되는 내부 제목은 숨기되 `figcaption.sd-title`과 `aria-labelledby`를 보존해 ID-less figure 식별과 보조 기술 접근성을 유지한다. 렌더 검사에서는 정확히 클립된 접근성 제목만 그림 내부 글자 크기 및 오버플로 검사에서 제외한다.
-- Only Packer detail code preserves its short HCL clauses with `white-space: nowrap`. Do not extend this selector to arbitrary long code.
-- Theme 7.6.0 `head.html` and `swconf.js` overrides append the same `site.time` build timestamp to the theme stylesheet URL after `relative_url`. Rebase both full-file overrides when upgrading the gem. No service-worker fetch, activation, purge, or cache-name behavior changes.
-- Old cached HTML can still request old CSS until the existing service-worker update lifecycle supplies new HTML. Versioned CSS is not an instant eviction mechanism.
+과거 receipt에 입력 필드가 없으면 sealed build stamp, 보존된 renderer source, actual HTTP fixture/font와 원본 receipt를 대조하는 명시적 migration을 수행한다. 원본 receipt와 원래 render build ID는 별도로 보존한다. 새 build에서 Aside가 실제 관측한 fixture/font SHA와 browser UA를 다시 확인한 뒤 revalidation build ID를 별도 기록한다. 전체 release gate의 source fingerprint, 검토 SHA와 index 검사도 계속 적용한다. 이 절차는 오래된 625px 출력이나 실패 PNG에 적용되지 않는다.

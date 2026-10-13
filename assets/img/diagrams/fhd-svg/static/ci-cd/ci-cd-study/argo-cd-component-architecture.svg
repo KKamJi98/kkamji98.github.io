@@ -1,0 +1,66 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a120251cc2a9939ed52b5015af6355ca70e97251db6a37522fb339ad34b510d5">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="160.800" width="792.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="175.650" width="792.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="96.000" y="549.550" width="792.000" height="361.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="1032.000" y="522.400" width="792.000" height="415.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="246.600" width="360.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="504.000" y="246.600" width="360.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1056.000" y="261.450" width="744.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.0" x="120.000" y="635.350" width="232.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1" x="376.000" y="635.350" width="232.000" height="251.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.2" x="632.000" y="635.350" width="232.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.0" x="1056.000" y="608.200" width="360.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.1" x="1440.000" y="608.200" width="360.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.2" x="1056.000" y="758.300" width="360.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.3" x="1440.000" y="758.300" width="360.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 293.600 L 1020.000 293.600" fill="none" stroke="#475569" stroke-width="3"><title>gRPC / REST 요청</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,293.600 1010.000,299.600 1010.000,287.600" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 293.600 L 1848.000 293.600 L 1848.000 474.400 L 72.000 474.400 L 72.000 730.250 L 84.000 730.250" fill="none" stroke="#475569" stroke-width="3"><title>Core component에 작업 위임</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,730.250 74.000,736.250 74.000,724.250" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 900.000 730.250 L 1020.000 730.250" fill="none" stroke="#475569" stroke-width="3"><title>저장, 인증, Git, Kubernetes API 호출</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1020.000,730.250 1010.000,736.250 1010.000,724.250" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="124.200" font-size="36" font-weight="700" fill="#111827">Argo CD 컴포넌트는 UI, API, Core, Infra 경계로 나뉜다</text>
+<text data-source="root.0.1.0.0" x="120.000" y="212.800" font-size="28" font-weight="700" fill="#111827">UI layer</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="298.600" font-size="28" font-weight="700" fill="#111827">Webapp</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="341.000" font-size="22" font-weight="400" fill="#111827">Application 상태와 sync 화면</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="370.700" font-size="22" font-weight="400" fill="#111827">제공</text>
+<text data-source="root.0.1.0.1.1" x="528.000" y="298.600" font-size="28" font-weight="700" fill="#111827">CLI</text>
+<text data-source="root.0.1.0.1.1" x="528.000" y="341.000" font-size="22" font-weight="400" fill="#111827">argocd 명령으로 작업 요청</text>
+<text data-source="root.0.1.2.0" x="1056.000" y="227.650" font-size="28" font-weight="700" fill="#111827">Application layer</text>
+<text data-source="root.0.1.2.1.0" x="1080.000" y="313.450" font-size="28" font-weight="700" fill="#111827">API Server</text>
+<text data-source="root.0.1.2.1.0" x="1080.000" y="355.850" font-size="22" font-weight="400" fill="#111827">Application 관리, RBAC, 인증, Webhook와 operation 처리</text>
+<text data-source="root.0.1.4.0" x="120.000" y="601.550" font-size="28" font-weight="700" fill="#111827">Core layer</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="687.350" font-size="28" font-weight="700" fill="#111827">Application</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="723.750" font-size="28" font-weight="700" fill="#111827">Controller</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="766.150" font-size="22" font-weight="400" fill="#111827">Git desired와</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="795.850" font-size="22" font-weight="400" fill="#111827">Cluster live를</text>
+<text data-source="root.0.1.4.1.0" x="144.000" y="825.550" font-size="22" font-weight="400" fill="#111827">비교하고 reconcile</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="687.350" font-size="28" font-weight="700" fill="#111827">ApplicationSet</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="723.750" font-size="28" font-weight="700" fill="#111827">Controller</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="766.150" font-size="22" font-weight="400" fill="#111827">template과</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="795.850" font-size="22" font-weight="400" fill="#111827">generator로</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="825.550" font-size="22" font-weight="400" fill="#111827">Application 생성,</text>
+<text data-source="root.0.1.4.1.1" x="400.000" y="855.250" font-size="22" font-weight="400" fill="#111827">수정, 삭제</text>
+<text data-source="root.0.1.4.1.2" x="656.000" y="687.350" font-size="28" font-weight="700" fill="#111827">Repo Server</text>
+<text data-source="root.0.1.4.1.2" x="656.000" y="729.750" font-size="22" font-weight="400" fill="#111827">Git source를 Helm,</text>
+<text data-source="root.0.1.4.1.2" x="656.000" y="759.450" font-size="22" font-weight="400" fill="#111827">Kustomize 등 최종</text>
+<text data-source="root.0.1.4.1.2" x="656.000" y="789.150" font-size="22" font-weight="400" fill="#111827">Manifest로 변환</text>
+<text data-source="root.0.1.6.0" x="1056.000" y="574.400" font-size="28" font-weight="700" fill="#111827">Infra layer</text>
+<text data-source="root.0.1.6.1.0" x="1080.000" y="660.200" font-size="28" font-weight="700" fill="#111827">Redis</text>
+<text data-source="root.0.1.6.1.0" x="1080.000" y="702.600" font-size="22" font-weight="400" fill="#111827">API와 Git 요청을 줄이는 cache</text>
+<text data-source="root.0.1.6.1.1" x="1464.000" y="660.200" font-size="28" font-weight="700" fill="#111827">Kube API</text>
+<text data-source="root.0.1.6.1.1" x="1464.000" y="702.600" font-size="22" font-weight="400" fill="#111827">실제 Cluster resource와 통신</text>
+<text data-source="root.0.1.6.1.2" x="1080.000" y="810.300" font-size="28" font-weight="700" fill="#111827">Git</text>
+<text data-source="root.0.1.6.1.2" x="1080.000" y="852.700" font-size="22" font-weight="400" fill="#111827">desired state와 Manifest 원본</text>
+<text data-source="root.0.1.6.1.3" x="1464.000" y="810.300" font-size="28" font-weight="700" fill="#111827">Dex</text>
+<text data-source="root.0.1.6.1.3" x="1464.000" y="852.700" font-size="22" font-weight="400" fill="#111827">OIDC 등 외부 Identity Provider</text>
+<text data-source="root.0.1.6.1.3" x="1464.000" y="882.400" font-size="22" font-weight="400" fill="#111827">연결</text>
+<text data-source="root.0.1.1" x="892.000" y="244.200" font-size="22" font-weight="400" fill="#111827">gRPC / REST</text>
+<text data-source="root.0.1.1" x="892.000" y="273.900" font-size="22" font-weight="400" fill="#111827">요청</text>
+<text data-source="root.0.1.3" x="104.000" y="466.400" font-size="22" font-weight="400" fill="#111827">Core component에 작업 위임</text>
+<text data-source="root.0.1.5" x="892.000" y="651.150" font-size="22" font-weight="400" fill="#111827">저장, 인증, Git,</text>
+<text data-source="root.0.1.5" x="892.000" y="680.850" font-size="22" font-weight="400" fill="#111827">Kubernetes</text>
+<text data-source="root.0.1.5" x="892.000" y="710.550" font-size="22" font-weight="400" fill="#111827">API 호출</text>
+<text data-source="root.0.2" x="64.000" y="984.100" font-size="22" font-weight="400" fill="#111827">UI와 CLI는 API Server를 통해 접근합니다. Core 컴포넌트는 상태 비교와 Manifest 생성 같은 역할을 나누고, Infra component는 저장소, 인증, Cluster API 호출을 제공합니다.</text>
+</svg>

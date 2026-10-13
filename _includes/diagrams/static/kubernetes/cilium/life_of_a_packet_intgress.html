@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="kubernetes-cilium-life-of-a-packet-ingress" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-title">
-  <figcaption class="sd-title" id="kubernetes-cilium-life-of-a-packet-ingress-title">Cilium ingress datapath는 NIC hook에서 endpoint enforcement까지 이어진다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="kubernetes-cilium-life-of-a-packet-ingress" aria-labelledby="kubernetes-cilium-life-of-a-packet-ingress-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="kubernetes-cilium-life-of-a-packet-ingress-title">Cilium ingress datapath는 NIC hook에서 endpoint enforcement까지 이어진다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">XDP prefilter, overlay decapsulation, L3 encryption, load balancing과 L7 policy는 구성에 따라 선택되며 모든 packet이 같은 순서로 거치지 않습니다.</p>
 
   <div class="sd-flow" aria-label="공통 ingress forwarding path">
@@ -108,4 +108,104 @@
       </section>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a7d150ae2bae0b3bf436de142c781795f40c43c1c8b1ccda3a7865a575b0f102">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="64.000" y="301.100" width="1792.000" height="665.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.0" x="74.000" y="342.700" width="881.000" height="142.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.1" x="965.000" y="342.700" width="881.000" height="142.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.2" x="74.000" y="494.900" width="881.000" height="142.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.3" x="965.000" y="494.900" width="881.000" height="309.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1.4" x="74.000" y="814.800" width="881.000" height="142.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="209.950" width="324.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="200.500" width="324.000" height="90.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="209.950" width="324.000" height="71.700" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="200.500" width="324.000" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0.1.0" x="116.000" y="384.300" width="326.500" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0.1.2" x="586.500" y="393.750" width="326.500" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.1.0" x="1007.000" y="384.300" width="326.500" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.1.2" x="1477.500" y="384.300" width="326.500" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2.1.0" x="116.000" y="545.950" width="326.500" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2.1.2" x="586.500" y="536.500" width="326.500" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.3.1.0" x="1007.000" y="545.950" width="326.500" height="71.700" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.3.1.2" x="1477.500" y="536.500" width="326.500" height="90.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.3.1.4" x="1007.000" y="723.100" width="326.500" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.4.1.0" x="116.000" y="856.400" width="326.500" height="90.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1.4.1.2" x="586.500" y="856.400" width="326.500" height="90.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 245.800 L 552.000 245.800" fill="none" stroke="#475569" stroke-width="3"><title>host forwarding</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,245.800 542.000,251.800 542.000,239.800" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 245.800 L 1020.000 245.800" fill="none" stroke="#475569" stroke-width="3"><title>endpoint policy</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,245.800 1010.000,251.800 1010.000,239.800" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 245.800 L 1488.000 245.800" fill="none" stroke="#475569" stroke-width="3"><title>deliver</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,245.800 1478.000,251.800 1478.000,239.800" fill="#475569"/>
+<path data-edge="root.0.3.1.0.1.1" data-from="root.0.3.1.0.1.0" data-to="root.0.3.1.0.1.2" d="M 454.500 429.600 L 574.500 429.600" fill="none" stroke="#475569" stroke-width="3"><title>decapsulate</title></path>
+<polygon data-arrowhead="root.0.3.1.0.1.1" points="574.500,429.600 564.500,435.600 564.500,423.600" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1.1" data-from="root.0.3.1.1.1.0" data-to="root.0.3.1.1.1.2" d="M 1345.500 429.600 L 1465.500 429.600" fill="none" stroke="#475569" stroke-width="3"><title>common path에 합류</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1.1" points="1465.500,429.600 1455.500,435.600 1455.500,423.600" fill="#475569"/>
+<path data-edge="root.0.3.1.2.1.1" data-from="root.0.3.1.2.1.0" data-to="root.0.3.1.2.1.2" d="M 454.500 581.800 L 574.500 581.800" fill="none" stroke="#475569" stroke-width="3"><title>kernel crypto state</title></path>
+<polygon data-arrowhead="root.0.3.1.2.1.1" points="574.500,581.800 564.500,587.800 564.500,575.800" fill="#475569"/>
+<path data-edge="root.0.3.1.3.1.1" data-from="root.0.3.1.3.1.0" data-to="root.0.3.1.3.1.2" d="M 1345.500 581.800 L 1465.500 581.800" fill="none" stroke="#475569" stroke-width="3"><title>forwarding hooks</title></path>
+<polygon data-arrowhead="root.0.3.1.3.1.1" points="1465.500,581.800 1455.500,587.800 1455.500,575.800" fill="#475569"/>
+<path data-edge="root.0.3.1.3.1.3" data-from="root.0.3.1.3.1.2" data-to="root.0.3.1.3.1.4" d="M 1816.000 581.800 L 1828.000 581.800 L 1828.000 675.100 L 983.000 675.100 L 983.000 758.950 L 995.000 758.950" fill="none" stroke="#475569" stroke-width="3"><title>host delivery</title></path>
+<polygon data-arrowhead="root.0.3.1.3.1.3" points="995.000,758.950 985.000,764.950 985.000,752.950" fill="#475569"/>
+<path data-edge="root.0.3.1.4.1.1" data-from="root.0.3.1.4.1.0" data-to="root.0.3.1.4.1.2" d="M 454.500 901.700 L 574.500 901.700" fill="none" stroke="#475569" stroke-width="3"><title>proxy redirect</title></path>
+<polygon data-arrowhead="root.0.3.1.4.1.1" points="574.500,901.700 564.500,907.700 564.500,895.700" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="149.000" font-size="36" font-weight="700" fill="#111827">Cilium ingress datapath는 NIC hook에서 endpoint enforcement까지 이어진다</text>
+<text data-source="root.0.1" x="64.000" y="185.600" font-size="14" font-weight="400" fill="#111827">XDP prefilter, overlay decapsulation, L3 encryption, load balancing과 L7 policy는 구성에 따라 선택되며 모든 packet이 같은 순서로 거치지 않습니다.</text>
+<text data-source="root.0.2.0" x="106.000" y="235.950" font-size="16" font-weight="700" fill="#111827">Network device</text>
+<text data-source="root.0.2.0" x="106.000" y="266.750" font-size="14" font-weight="400" fill="#111827">외부 또는 overlay packet이 NIC로 들어옵니다.</text>
+<text data-source="root.0.2.2" x="574.000" y="226.500" font-size="16" font-weight="700" fill="#111827">TC @ cilium_host</text>
+<text data-source="root.0.2.2" x="574.000" y="257.300" font-size="14" font-weight="400" fill="#111827">bpf_host 또는 bpf_overlay가 node forwarding을</text>
+<text data-source="root.0.2.2" x="574.000" y="276.200" font-size="14" font-weight="400" fill="#111827">처리합니다.</text>
+<text data-source="root.0.2.4" x="1042.000" y="235.950" font-size="16" font-weight="700" fill="#111827">TC @ Endpoint</text>
+<text data-source="root.0.2.4" x="1042.000" y="266.750" font-size="14" font-weight="400" fill="#111827">bpf_lxc가 Pod level enforcement를 적용합니다.</text>
+<text data-source="root.0.2.6" x="1510.000" y="226.500" font-size="16" font-weight="700" fill="#111827">Endpoint / Pod</text>
+<text data-source="root.0.2.6" x="1510.000" y="257.300" font-size="14" font-weight="400" fill="#111827">정책 검사를 통과한 packet이 application에</text>
+<text data-source="root.0.2.6" x="1510.000" y="276.200" font-size="14" font-weight="400" fill="#111827">도착합니다.</text>
+<text data-source="root.0.2.1" x="424.000" y="228.900" font-size="14" font-weight="400" fill="#111827">host forwarding</text>
+<text data-source="root.0.2.3" x="892.000" y="228.900" font-size="14" font-weight="400" fill="#111827">endpoint policy</text>
+<text data-source="root.0.2.5" x="1360.000" y="228.900" font-size="14" font-weight="400" fill="#111827">deliver</text>
+<text data-source="root.0.3.0" x="74.000" y="327.100" font-size="16" font-weight="700" fill="#111827">Optional feature paths and forwarding points</text>
+<text data-source="root.0.3.1.0.0" x="84.000" y="368.700" font-size="16" font-weight="700" fill="#111827">Overlay mode</text>
+<text data-source="root.0.3.1.0.1.0" x="126.000" y="410.300" font-size="16" font-weight="700" fill="#111827">NIC</text>
+<text data-source="root.0.3.1.0.1.0" x="126.000" y="441.100" font-size="14" font-weight="400" fill="#111827">VXLAN 또는 Geneve로 encapsulated traffic을</text>
+<text data-source="root.0.3.1.0.1.0" x="126.000" y="460.000" font-size="14" font-weight="400" fill="#111827">받습니다.</text>
+<text data-source="root.0.3.1.0.1.2" x="596.500" y="419.750" font-size="16" font-weight="700" fill="#111827">Decapsulate and route</text>
+<text data-source="root.0.3.1.0.1.2" x="596.500" y="450.550" font-size="14" font-weight="400" fill="#111827">inner packet을 꺼내 node datapath로 보냅니다.</text>
+<text data-source="root.0.3.1.0.1.1" x="446.500" y="412.700" font-size="14" font-weight="400" fill="#111827">decapsulate</text>
+<text data-source="root.0.3.1.1.0" x="975.000" y="368.700" font-size="16" font-weight="700" fill="#111827">Optional prefilter (if enabled)</text>
+<text data-source="root.0.3.1.1.1.0" x="1017.000" y="410.300" font-size="16" font-weight="700" fill="#111827">XDP @ NIC</text>
+<text data-source="root.0.3.1.1.1.0" x="1017.000" y="441.100" font-size="14" font-weight="400" fill="#111827">bpf_xdp가 설정된 경우에만 device 초기에 packet을</text>
+<text data-source="root.0.3.1.1.1.0" x="1017.000" y="460.000" font-size="14" font-weight="400" fill="#111827">검사합니다.</text>
+<text data-source="root.0.3.1.1.1.2" x="1487.500" y="410.300" font-size="16" font-weight="700" fill="#111827">TC @ cilium_host</text>
+<text data-source="root.0.3.1.1.1.2" x="1487.500" y="441.100" font-size="14" font-weight="400" fill="#111827">prefilter를 통과한 packet이 공통 host forwarding</text>
+<text data-source="root.0.3.1.1.1.2" x="1487.500" y="460.000" font-size="14" font-weight="400" fill="#111827">hook으로 들어갑니다.</text>
+<text data-source="root.0.3.1.1.1.1" x="1337.500" y="412.700" font-size="14" font-weight="400" fill="#111827">common path에 합류</text>
+<text data-source="root.0.3.1.2.0" x="84.000" y="520.900" font-size="16" font-weight="700" fill="#111827">L3 encryption</text>
+<text data-source="root.0.3.1.2.1.0" x="126.000" y="571.950" font-size="16" font-weight="700" fill="#111827">TC @ NIC</text>
+<text data-source="root.0.3.1.2.1.0" x="126.000" y="602.750" font-size="14" font-weight="400" fill="#111827">bpf_network가 encryption hook을 제공합니다.</text>
+<text data-source="root.0.3.1.2.1.2" x="596.500" y="562.500" font-size="16" font-weight="700" fill="#111827">xfrm와 route</text>
+<text data-source="root.0.3.1.2.1.2" x="596.500" y="593.300" font-size="14" font-weight="400" fill="#111827">xfrm 처리와 routing lookup이 함께 관여하며 return</text>
+<text data-source="root.0.3.1.2.1.2" x="596.500" y="612.200" font-size="14" font-weight="400" fill="#111827">path도 지원합니다.</text>
+<text data-source="root.0.3.1.2.1.1" x="446.500" y="564.900" font-size="14" font-weight="400" fill="#111827">kernel crypto state</text>
+<text data-source="root.0.3.1.3.0" x="975.000" y="520.900" font-size="16" font-weight="700" fill="#111827">Standalone load balancer</text>
+<text data-source="root.0.3.1.3.1.0" x="1017.000" y="571.950" font-size="16" font-weight="700" fill="#111827">TC @ NIC</text>
+<text data-source="root.0.3.1.3.1.0" x="1017.000" y="602.750" font-size="14" font-weight="400" fill="#111827">bpf_lb가 service lookup을 시작합니다.</text>
+<text data-source="root.0.3.1.3.1.2" x="1487.500" y="562.500" font-size="16" font-weight="700" fill="#111827">PREROUTING와 FORWARD</text>
+<text data-source="root.0.3.1.3.1.2" x="1487.500" y="593.300" font-size="14" font-weight="400" fill="#111827">CILIUM_FORWARD를 포함한 kernel forwarding</text>
+<text data-source="root.0.3.1.3.1.2" x="1487.500" y="612.200" font-size="14" font-weight="400" fill="#111827">point입니다.</text>
+<text data-source="root.0.3.1.3.1.4" x="1017.000" y="749.100" font-size="16" font-weight="700" fill="#111827">TC @ cilium_host</text>
+<text data-source="root.0.3.1.3.1.4" x="1017.000" y="779.900" font-size="14" font-weight="400" fill="#111827">bpf_host로 endpoint path에 합류합니다.</text>
+<text data-source="root.0.3.1.3.1.1" x="1337.500" y="564.900" font-size="14" font-weight="400" fill="#111827">forwarding hooks</text>
+<text data-source="root.0.3.1.3.1.3" x="1015.000" y="667.100" font-size="14" font-weight="400" fill="#111827">host delivery</text>
+<text data-source="root.0.3.1.4.0" x="84.000" y="840.800" font-size="16" font-weight="700" fill="#111827">L7 policy</text>
+<text data-source="root.0.3.1.4.1.0" x="126.000" y="882.400" font-size="16" font-weight="700" fill="#111827">PREROUTING와 INPUT</text>
+<text data-source="root.0.3.1.4.1.0" x="126.000" y="913.200" font-size="14" font-weight="400" fill="#111827">HTTP aware policy가 필요한 traffic의 control</text>
+<text data-source="root.0.3.1.4.1.0" x="126.000" y="932.100" font-size="14" font-weight="400" fill="#111827">point입니다.</text>
+<text data-source="root.0.3.1.4.1.2" x="596.500" y="882.400" font-size="16" font-weight="700" fill="#111827">Userspace proxy</text>
+<text data-source="root.0.3.1.4.1.2" x="596.500" y="913.200" font-size="14" font-weight="400" fill="#111827">L7 request를 해석한 뒤 endpoint enforcement로</text>
+<text data-source="root.0.3.1.4.1.2" x="596.500" y="932.100" font-size="14" font-weight="400" fill="#111827">돌려보냅니다.</text>
+<text data-source="root.0.3.1.4.1.1" x="446.500" y="884.800" font-size="14" font-weight="400" fill="#111827">proxy redirect</text>
+</svg>
 </figure>

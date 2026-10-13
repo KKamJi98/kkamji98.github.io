@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="spring-10-mono-flux-backpressure" aria-labelledby="spring-10-mono-flux-backpressure-title">
-  <figcaption class="sd-title" id="spring-10-mono-flux-backpressure-title">Mono와 Flux의 lazy flow, 그리고 backpressure</figcaption>
+<figure class="sd sd--flow sd--fhd" id="spring-10-mono-flux-backpressure" aria-labelledby="spring-10-mono-flux-backpressure-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="spring-10-mono-flux-backpressure-title">Mono와 Flux의 lazy flow, 그리고 backpressure</figcaption><div class="sd-semantic-source">
   <section class="sd-lane"><div class="sd-lane-title">구독 후 downstream signal</div>
 <div class="sd-flow">
 <div class="sd-node sd-node--accent"><strong class="sd-label">Publisher</strong><span class="sd-detail">Mono 0..1 or Flux 0..N</span></div>
@@ -17,4 +17,47 @@
 </div>
 </section>
   <p class="sd-note">subscribe()가 조립한 flow의 실행을 시작합니다. Subscription은 signal이 통과하는 별도 처리 단계가 아니라 각 구독의 request(n)과 cancel 계약입니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d4394275696ff769175a3d25cff1222cf91326abde81793f3236d53c91299d81">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="208.400" width="1792.000" height="278.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="506.800" width="1792.000" height="386.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="116.000" y="318.700" width="466.667" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="726.667" y="318.700" width="466.667" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.4" x="1337.333" y="318.700" width="466.667" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="116.000" y="671.100" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="1032.000" y="671.100" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 594.667 373.800 L 714.667 373.800" fill="none" stroke="#475569" stroke-width="3"><title>onNext, onComplete, onError</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="714.667,373.800 704.667,379.800 704.667,367.800" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1205.333 373.800 L 1325.333 373.800" fill="none" stroke="#475569" stroke-width="3"><title>변환된 signal을 downstream으로 전달</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1325.333,373.800 1315.333,379.800 1315.333,367.800" fill="#475569"/>
+<path data-edge="root.0.2.1.1" data-from="root.0.2.1.0" data-to="root.0.2.1.2" d="M 900.000 726.200 L 1020.000 726.200" fill="none" stroke="#475569" stroke-width="3"><title>operators를 거쳐 upstream으로 request 또는 cancel 전달</title></path>
+<polygon data-arrowhead="root.0.2.1.1" points="1020.000,726.200 1010.000,732.200 1010.000,720.200" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="175.800" font-size="36" font-weight="700" fill="#111827">Mono와 Flux의 lazy flow, 그리고 backpressure</text>
+<text data-source="root.0.1.0" x="84.000" y="252.400" font-size="24" font-weight="700" fill="#111827">구독 후 downstream signal</text>
+<text data-source="root.0.1.1.0" x="136.000" y="362.700" font-size="24" font-weight="700" fill="#111827">Publisher</text>
+<text data-source="root.0.1.1.0" x="136.000" y="401.900" font-size="20" font-weight="400" fill="#111827">Mono 0..1 or Flux 0..N</text>
+<text data-source="root.0.1.1.2" x="746.667" y="362.700" font-size="24" font-weight="700" fill="#111827">Operators</text>
+<text data-source="root.0.1.1.2" x="746.667" y="401.900" font-size="20" font-weight="400" fill="#111827">map, filter, flatMap; assembly에서는 계획만 구성</text>
+<text data-source="root.0.1.1.4" x="1357.333" y="362.700" font-size="24" font-weight="700" fill="#111827">Subscriber</text>
+<text data-source="root.0.1.1.4" x="1357.333" y="401.900" font-size="20" font-weight="400" fill="#111827">onNext, onComplete, onError 수신</text>
+<text data-source="root.0.1.1.1" x="586.667" y="300.800" font-size="20" font-weight="400" fill="#111827">onNext,</text>
+<text data-source="root.0.1.1.1" x="586.667" y="327.800" font-size="20" font-weight="400" fill="#111827">onComplete,</text>
+<text data-source="root.0.1.1.1" x="586.667" y="354.800" font-size="20" font-weight="400" fill="#111827">onError</text>
+<text data-source="root.0.1.1.3" x="1197.333" y="300.800" font-size="20" font-weight="400" fill="#111827">변환된 signal을</text>
+<text data-source="root.0.1.1.3" x="1197.333" y="327.800" font-size="20" font-weight="400" fill="#111827">downstream으</text>
+<text data-source="root.0.1.1.3" x="1197.333" y="354.800" font-size="20" font-weight="400" fill="#111827">로 전달</text>
+<text data-source="root.0.2.0" x="84.000" y="550.800" font-size="24" font-weight="700" fill="#111827">반대 방향의 demand와 취소</text>
+<text data-source="root.0.2.1.0" x="136.000" y="715.100" font-size="24" font-weight="700" fill="#111827">Subscriber의 Subscription</text>
+<text data-source="root.0.2.1.0" x="136.000" y="754.300" font-size="20" font-weight="400" fill="#111827">onSubscribe로 받은 계약의 request(n)과 cancel 호출</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="715.100" font-size="24" font-weight="700" fill="#111827">Publisher / upstream 단계</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="754.300" font-size="20" font-weight="400" fill="#111827">요청된 demand 한도 안에서 onNext 발행</text>
+<text data-source="root.0.2.1.1" x="892.000" y="599.200" font-size="20" font-weight="400" fill="#111827">operators를</text>
+<text data-source="root.0.2.1.1" x="892.000" y="626.200" font-size="20" font-weight="400" fill="#111827">거쳐</text>
+<text data-source="root.0.2.1.1" x="892.000" y="653.200" font-size="20" font-weight="400" fill="#111827">upstream으로</text>
+<text data-source="root.0.2.1.1" x="892.000" y="680.200" font-size="20" font-weight="400" fill="#111827">request 또는</text>
+<text data-source="root.0.2.1.1" x="892.000" y="707.200" font-size="20" font-weight="400" fill="#111827">cancel 전달</text>
+<text data-source="root.0.3" x="64.000" y="933.200" font-size="20" font-weight="400" fill="#111827">subscribe()가 조립한 flow의 실행을 시작합니다. Subscription은 signal이 통과하는 별도 처리 단계가 아니라 각 구독의 request(n)과 cancel 계약입니다.</text>
+</svg>
 </figure>

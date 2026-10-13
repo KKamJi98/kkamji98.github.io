@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="buildpacks-mechanism" aria-labelledby="buildpacks-mechanism-title">
-  <figcaption class="sd-title" id="buildpacks-mechanism-title">Cloud Native Buildpacks는 소스에서 OCI image를 자동으로 만듭니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="buildpacks-mechanism" aria-labelledby="buildpacks-mechanism-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="buildpacks-mechanism-title">Cloud Native Buildpacks는 소스에서 OCI image를 자동으로 만듭니다</figcaption><div class="sd-semantic-source">
 
   <div class="sd-flow">
     <div class="sd-node sd-node--muted">
@@ -24,4 +24,40 @@
   </div>
 
   <p class="sd-note">Dockerfile 없이 빌드하지만 daemon 요구는 runner에 따라 다릅니다. 본문의 <code>pack</code>은 Docker 호환 daemon을 사용하므로 daemonless라는 본문 설명과 구분해야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f7d66470abc6565665efdf5ba1e92938a2a4232da4f5dfeb89a19fbb879f5eaf">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="471.550" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="471.550" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="471.550" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="471.550" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 549.450 L 552.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>지원 buildpack 탐색</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,549.450 542.000,555.450 542.000,543.450" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 549.450 L 1020.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>선택된 빌드 단계 실행</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,549.450 1010.000,555.450 1010.000,543.450" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 549.450 L 1488.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>OCI image 생성</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,549.450 1478.000,555.450 1478.000,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="411.750" font-size="36" font-weight="700" fill="#111827">Cloud Native Buildpacks는 소스에서 OCI image를 자동으로 만듭니다</text>
+<text data-source="root.0.1.0" x="120.000" y="523.550" font-size="28" font-weight="700" fill="#111827">Application source</text>
+<text data-source="root.0.1.0" x="120.000" y="565.950" font-size="22" font-weight="400" fill="#111827">Dockerfile 없이 소스와</text>
+<text data-source="root.0.1.0" x="120.000" y="595.650" font-size="22" font-weight="400" fill="#111827">의존성을 준비합니다.</text>
+<text data-source="root.0.1.2" x="588.000" y="523.550" font-size="28" font-weight="700" fill="#111827">detect</text>
+<text data-source="root.0.1.2" x="588.000" y="565.950" font-size="22" font-weight="400" fill="#111827">소스에 맞는 buildpack을</text>
+<text data-source="root.0.1.2" x="588.000" y="595.650" font-size="22" font-weight="400" fill="#111827">선택합니다.</text>
+<text data-source="root.0.1.4" x="1056.000" y="523.550" font-size="28" font-weight="700" fill="#111827">build</text>
+<text data-source="root.0.1.4" x="1056.000" y="565.950" font-size="22" font-weight="400" fill="#111827">runtime과 애플리케이션</text>
+<text data-source="root.0.1.4" x="1056.000" y="595.650" font-size="22" font-weight="400" fill="#111827">layer를 구성합니다.</text>
+<text data-source="root.0.1.6" x="1524.000" y="523.550" font-size="28" font-weight="700" fill="#111827">Container image</text>
+<text data-source="root.0.1.6" x="1524.000" y="565.950" font-size="22" font-weight="400" fill="#111827">재사용 가능한 layer 묶음으로</text>
+<text data-source="root.0.1.6" x="1524.000" y="595.650" font-size="22" font-weight="400" fill="#111827">registry에 push합니다.</text>
+<text data-source="root.0.1.1" x="424.000" y="470.350" font-size="22" font-weight="400" fill="#111827">지원</text>
+<text data-source="root.0.1.1" x="424.000" y="500.050" font-size="22" font-weight="400" fill="#111827">buildpack</text>
+<text data-source="root.0.1.1" x="424.000" y="529.750" font-size="22" font-weight="400" fill="#111827">탐색</text>
+<text data-source="root.0.1.3" x="892.000" y="500.050" font-size="22" font-weight="400" fill="#111827">선택된 빌드</text>
+<text data-source="root.0.1.3" x="892.000" y="529.750" font-size="22" font-weight="400" fill="#111827">단계 실행</text>
+<text data-source="root.0.1.5" x="1360.000" y="500.050" font-size="22" font-weight="400" fill="#111827">OCI image</text>
+<text data-source="root.0.1.5" x="1360.000" y="529.750" font-size="22" font-weight="400" fill="#111827">생성</text>
+<text data-source="root.0.2" x="64.000" y="696.550" font-size="22" font-weight="400" fill="#111827">Dockerfile 없이 빌드하지만 daemon 요구는 runner에 따라 다릅니다. 본문의 pack은 Docker 호환 daemon을 사용하므로 daemonless라는 본문 설명과 구분해야 합니다.</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="route-selection-order" aria-labelledby="route-selection-order-title">
-  <figcaption class="sd-title" id="route-selection-order-title">경로 설치와 packet forwarding은 서로 다른 선택 과정입니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="route-selection-order" aria-labelledby="route-selection-order-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="route-selection-order-title">경로 설치와 packet forwarding은 서로 다른 선택 과정입니다</figcaption><div class="sd-semantic-source">
 <div class="sd-grid">
 <section class="sd-lane"><div class="sd-lane-title">Control plane: prefix별 경로 설치</div>
 <div class="sd-flow">
@@ -21,4 +21,62 @@
 </section>
 </div>
 <p class="sd-note">더 구체적인 설치 경로가 forwarding에서 우선합니다. 경로 설치의 세부 우선순위와 ECMP 처리는 장비 및 설정에 따라 다릅니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="336c3fd06a418e5ae8df89b83e6684948a2579d974fac90a6c3f7305d5eb4059">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="224.650" width="884.000" height="649.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="224.650" width="884.000" height="583.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="310.450" width="314.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="310.450" width="314.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="120.000" y="628.350" width="314.000" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="328.650" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1486.000" y="310.450" width="314.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1028.000" y="598.650" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 421.400 L 566.000 421.400" fill="none" stroke="#475569" stroke-width="3"><title>protocol별 선택 경로를 제시</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,421.400 556.000,427.400 556.000,415.400" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 904.000 421.400 L 916.000 421.400 L 916.000 580.350 L 96.000 580.350 L 96.000 739.300 L 108.000 739.300" fill="none" stroke="#475569" stroke-width="3"><title>선택 경로 설치</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="108.000,739.300 98.000,745.300 98.000,733.300" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1354.000 406.550 L 1474.000 406.550" fill="none" stroke="#475569" stroke-width="3"><title>이미 설치된 table 조회</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1474.000,406.550 1464.000,412.550 1464.000,400.550" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1812.000 406.550 L 1824.000 406.550 L 1824.000 550.650 L 1004.000 550.650 L 1004.000 691.400 L 1016.000 691.400" fill="none" stroke="#475569" stroke-width="3"><title>선택한 route의 next hop 사용</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1016.000,691.400 1006.000,697.400 1006.000,685.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="188.050" font-size="36" font-weight="700" fill="#111827">경로 설치와 packet forwarding은 서로 다른 선택 과정입니다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="276.650" font-size="28" font-weight="700" fill="#111827">Control plane: prefix별 경로 설치</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="362.450" font-size="28" font-weight="700" fill="#111827">Routing protocol</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="398.850" font-size="28" font-weight="700" fill="#111827">metric</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="441.250" font-size="22" font-weight="400" fill="#111827">같은 protocol 안의 후보</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="470.950" font-size="22" font-weight="400" fill="#111827">비교: RIP hop 수, OSPF</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="500.650" font-size="22" font-weight="400" fill="#111827">cost</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="362.450" font-size="28" font-weight="700" fill="#111827">Administrative</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="398.850" font-size="28" font-weight="700" fill="#111827">distance</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="441.250" font-size="22" font-weight="400" fill="#111827">같은 prefix를 제시한 서로</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="470.950" font-size="22" font-weight="400" fill="#111827">다른 출처의 로컬 선호도</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="500.650" font-size="22" font-weight="400" fill="#111827">비교</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="680.350" font-size="28" font-weight="700" fill="#111827">Routing /</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="716.750" font-size="28" font-weight="700" fill="#111827">forwarding table</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="759.150" font-size="22" font-weight="400" fill="#111827">prefix별 next hop을</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="788.850" font-size="22" font-weight="400" fill="#111827">설치하며 동등 경로 처리도</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="818.550" font-size="22" font-weight="400" fill="#111827">반영</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="342.300" font-size="22" font-weight="400" fill="#111827">protocol별</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="372.000" font-size="22" font-weight="400" fill="#111827">선택 경로를</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="401.700" font-size="22" font-weight="400" fill="#111827">제시</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="572.350" font-size="22" font-weight="400" fill="#111827">선택 경로 설치</text>
+<text data-source="root.0.1.1.0" x="996.000" y="276.650" font-size="28" font-weight="700" fill="#111827">Data plane: packet마다 lookup</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="380.650" font-size="28" font-weight="700" fill="#111827">Destination IP</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="423.050" font-size="22" font-weight="400" fill="#111827">forwarding할 packet의</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="452.750" font-size="22" font-weight="400" fill="#111827">목적지</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="362.450" font-size="28" font-weight="700" fill="#111827">Longest prefix</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="398.850" font-size="28" font-weight="700" fill="#111827">match</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="441.250" font-size="22" font-weight="400" fill="#111827">일치하는 설치 경로 중</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="470.950" font-size="22" font-weight="400" fill="#111827">가장 긴 prefix 선택</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="650.650" font-size="28" font-weight="700" fill="#111827">Forward packet</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="693.050" font-size="22" font-weight="400" fill="#111827">해당 경로로 전달하며</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="722.750" font-size="22" font-weight="400" fill="#111827">AD나 protocol metric을</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="752.450" font-size="22" font-weight="400" fill="#111827">다시 경쟁시키지 않음</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="357.150" font-size="22" font-weight="400" fill="#111827">이미 설치된</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="386.850" font-size="22" font-weight="400" fill="#111827">table 조회</text>
+<text data-source="root.0.1.1.1.3" x="1036.000" y="542.650" font-size="22" font-weight="400" fill="#111827">선택한 route의 next hop 사용</text>
+<text data-source="root.0.2" x="64.000" y="920.250" font-size="22" font-weight="400" fill="#111827">더 구체적인 설치 경로가 forwarding에서 우선합니다. 경로 설치의 세부 우선순위와 ECMP 처리는 장비 및 설정에 따라 다릅니다.</text>
+</svg>
 </figure>

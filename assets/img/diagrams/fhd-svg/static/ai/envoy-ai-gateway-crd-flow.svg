@@ -1,0 +1,47 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3cc28ff8907384a37e951d6b73f23086af0feddcf360a4dcd4ee767a5adca678">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.4" x="64.000" y="621.600" width="1792.000" height="349.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="182.000" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="182.000" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="182.000" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1" x="64.000" y="417.800" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.0" x="120.000" y="707.400" width="464.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.2" x="728.000" y="722.250" width="464.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.4" x="1336.000" y="722.250" width="464.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 245.050 L 708.000 245.050" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,245.050 698.000,251.050 698.000,239.050" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 245.050 L 1332.000 245.050" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,245.050 1322.000,251.050 1322.000,239.050" fill="#475569"/>
+<path data-edge="root.0.2.0" data-from="root.0.1.2" data-to="root.0.2.1" d="M 960.000 320.100 L 960.000 362.950 L 960.000 362.950 L 960.000 405.800" fill="none" stroke="#475569" stroke-width="3"><title>gRPC 처리 메시지 / 결과</title></path>
+<path data-edge="root.0.4.1.1" data-from="root.0.4.1.0" data-to="root.0.4.1.2" d="M 596.000 800.150 L 716.000 800.150" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.4.1.1" points="716.000,800.150 706.000,806.150 706.000,794.150" fill="#475569"/>
+<path data-edge="root.0.4.1.3" data-from="root.0.4.1.2" data-to="root.0.4.1.4" d="M 1204.000 800.150 L 1324.000 800.150" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.4.1.3" points="1324.000,800.150 1314.000,806.150 1314.000,794.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="145.400" font-size="36" font-weight="700" fill="#111827">Envoy 요청 경로와 외부 처리</text>
+<text data-source="root.0.1.0" x="120.000" y="234.000" font-size="28" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1.0" x="120.000" y="276.400" font-size="22" font-weight="400" fill="#111827">Gateway endpoint로 요청</text>
+<text data-source="root.0.1.2" x="744.000" y="234.000" font-size="28" font-weight="700" fill="#111827">Envoy Proxy</text>
+<text data-source="root.0.1.2" x="744.000" y="276.400" font-size="22" font-weight="400" fill="#111827">모델에 맞는 upstream 선택</text>
+<text data-source="root.0.1.4" x="1368.000" y="234.000" font-size="28" font-weight="700" fill="#111827">LLM provider</text>
+<text data-source="root.0.1.4" x="1368.000" y="276.400" font-size="22" font-weight="400" fill="#111827">지원되는 모델 API</text>
+<text data-source="root.0.2.1" x="88.000" y="469.800" font-size="28" font-weight="700" fill="#111827">AI Gateway external processor</text>
+<text data-source="root.0.2.1" x="88.000" y="512.200" font-size="22" font-weight="400" fill="#111827">API 변환, 토큰 사용량 추출</text>
+<text data-source="root.0.3" x="64.000" y="589.900" font-size="22" font-weight="400" fill="#111827">external processor는 Proxy와 통신한다. Provider 호출 홉이 아니다.</text>
+<text data-source="root.0.4.0" x="88.000" y="673.600" font-size="28" font-weight="700" fill="#111827">설정 반영: 요청 홉과 별개</text>
+<text data-source="root.0.4.1.0" x="144.000" y="759.400" font-size="28" font-weight="700" fill="#111827">CRD와 정책</text>
+<text data-source="root.0.4.1.0" x="144.000" y="801.800" font-size="22" font-weight="400" fill="#111827">AIGatewayRoute</text>
+<text data-source="root.0.4.1.0" x="144.000" y="831.500" font-size="22" font-weight="400" fill="#111827">BackendSecurityPolicy</text>
+<text data-source="root.0.4.1.0" x="144.000" y="861.200" font-size="22" font-weight="400" fill="#111827">사용량 제한 설정</text>
+<text data-source="root.0.4.1.2" x="752.000" y="774.250" font-size="28" font-weight="700" fill="#111827">Controllers</text>
+<text data-source="root.0.4.1.2" x="752.000" y="816.650" font-size="22" font-weight="400" fill="#111827">AI Gateway /</text>
+<text data-source="root.0.4.1.2" x="752.000" y="846.350" font-size="22" font-weight="400" fill="#111827">Envoy Gateway</text>
+<text data-source="root.0.4.1.4" x="1360.000" y="774.250" font-size="28" font-weight="700" fill="#111827">런타임 구성</text>
+<text data-source="root.0.4.1.4" x="1360.000" y="816.650" font-size="22" font-weight="400" fill="#111827">Proxy 라우팅/필터</text>
+<text data-source="root.0.4.1.4" x="1360.000" y="846.350" font-size="22" font-weight="400" fill="#111827">external processor 처리 설정</text>
+<text data-source="root.0.4.2" x="88.000" y="938.900" font-size="22" font-weight="400" fill="#111827">선언을 감시하고 구성으로 변환하여 두 런타임에 각각 반영한다. Controller별 내부 변환 단계는 생략했다.</text>
+<text data-source="root.0.2.0" x="84.000" y="354.100" font-size="22" font-weight="400" fill="#111827">gRPC 처리 메시지 / 결과</text>
+<text data-source="root.0.1.1.meaning" x="592.000" y="228.150" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.1.3.meaning" x="1216.000" y="228.150" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.4.1.1.meaning" x="600.000" y="783.250" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.4.1.3.meaning" x="1208.000" y="783.250" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+</svg>

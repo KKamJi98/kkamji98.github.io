@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-spring-17-transactional-proxy" aria-labelledby="sd-spring-17-title">
-  <figcaption class="sd-title" id="sd-spring-17-title">@Transactional은 AOP proxy를 통해 적용됩니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-spring-17-transactional-proxy" aria-labelledby="sd-spring-17-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-spring-17-title">@Transactional은 AOP proxy를 통해 적용됩니다</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane" aria-labelledby="sd-spring-17-main-title">
       <div class="sd-lane-title" id="sd-spring-17-main-title">외부 호출: AOP proxy 경유</div>
@@ -29,4 +29,76 @@
     </section>
   </div>
   <p class="sd-note">두 lane은 서로 이어지는 단계가 아니라 외부 호출과 객체 내부 직접 호출이라는 별도 진입 경로입니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="efe3d36ee0bce395c0fe4bb5c18194288016462aae5698745388ec129316ce09">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="201.700" width="888.000" height="700.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="968.000" y="201.700" width="888.000" height="456.800" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="112.000" y="298.450" width="346.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="558.000" y="273.300" width="346.000" height="144.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="112.000" y="527.800" width="346.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.6" x="558.000" y="527.800" width="346.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.8" x="112.000" y="743.700" width="346.000" height="142.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.10" x="558.000" y="786.150" width="346.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1016.000" y="272.850" width="324.000" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1484.000" y="260.700" width="324.000" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1016.000" y="499.600" width="324.000" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 470.000 345.600 L 546.000 345.600" fill="none" stroke="#475569" stroke-width="3"><title>외부 메서드 호출</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="546.000,345.600 536.000,351.600 536.000,339.600" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 916.000 345.600 L 928.000 345.600 L 928.000 478.500 L 88.000 478.500 L 88.000 587.100 L 100.000 587.100" fill="none" stroke="#475569" stroke-width="3"><title>intercept</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="100.000,587.100 90.000,593.100 90.000,581.100" fill="#475569"/>
+<path data-edge="root.0.1.0.1.5" data-from="root.0.1.0.1.4" data-to="root.0.1.0.1.6" d="M 470.000 587.100 L 546.000 587.100" fill="none" stroke="#475569" stroke-width="3"><title>메서드 실행</title></path>
+<polygon data-arrowhead="root.0.1.0.1.5" points="546.000,587.100 536.000,593.100 536.000,581.100" fill="#475569"/>
+<path data-edge="root.0.1.0.1.7" data-from="root.0.1.0.1.6" data-to="root.0.1.0.1.8" d="M 916.000 587.100 L 928.000 587.100 L 928.000 695.700 L 88.000 695.700 L 88.000 815.150 L 100.000 815.150" fill="none" stroke="#475569" stroke-width="3"><title>정상 종료 또는 예외</title></path>
+<polygon data-arrowhead="root.0.1.0.1.7" points="100.000,815.150 90.000,821.150 90.000,809.150" fill="#475569"/>
+<path data-edge="root.0.1.0.1.9" data-from="root.0.1.0.1.8" data-to="root.0.1.0.1.10" d="M 470.000 815.150 L 546.000 815.150" fill="none" stroke="#475569" stroke-width="3"><title>SQL 반영</title></path>
+<polygon data-arrowhead="root.0.1.0.1.9" points="546.000,815.150 536.000,821.150 536.000,809.150" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1352.000 332.150 L 1472.000 332.150" fill="none" stroke="#475569" stroke-width="3"><title>this.other()</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1472.000,332.150 1462.000,338.150 1462.000,326.150" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1820.000 332.150 L 1832.000 332.150 L 1832.000 451.600 L 992.000 451.600 L 992.000 571.050 L 1004.000 571.050" fill="none" stroke="#475569" stroke-width="3"><title>새 interception 경계 없음</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1004.000,571.050 994.000,577.050 994.000,565.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="173.100" font-size="36" font-weight="700" fill="#111827">@Transactional은 AOP proxy를 통해 적용됩니다</text>
+<text data-source="root.0.1.0.0" x="80.000" y="237.700" font-size="20" font-weight="700" fill="#111827">외부 호출: AOP proxy 경유</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="334.450" font-size="20" font-weight="700" fill="#111827">Caller</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="370.450" font-size="18" font-weight="400" fill="#111827">실제 빈이 아닌 proxy 참조를 보유</text>
+<text data-source="root.0.1.0.1.2" x="574.000" y="309.300" font-size="20" font-weight="700" fill="#111827">AOP proxy with</text>
+<text data-source="root.0.1.0.1.2" x="574.000" y="335.300" font-size="20" font-weight="700" fill="#111827">TransactionInterceptor</text>
+<text data-source="root.0.1.0.1.2" x="574.000" y="371.300" font-size="18" font-weight="400" fill="#111827">annotation이 실제로 적용되는</text>
+<text data-source="root.0.1.0.1.2" x="574.000" y="395.600" font-size="18" font-weight="400" fill="#111827">유일한 경계</text>
+<text data-source="root.0.1.0.1.4" x="128.000" y="563.800" font-size="20" font-weight="700" fill="#111827">begin transaction</text>
+<text data-source="root.0.1.0.1.4" x="128.000" y="599.800" font-size="18" font-weight="400" fill="#111827">PlatformTransactionManager가</text>
+<text data-source="root.0.1.0.1.4" x="128.000" y="624.100" font-size="18" font-weight="400" fill="#111827">트랜잭션 시작</text>
+<text data-source="root.0.1.0.1.6" x="574.000" y="563.800" font-size="20" font-weight="700" fill="#111827">@Transactional method</text>
+<text data-source="root.0.1.0.1.6" x="574.000" y="599.800" font-size="18" font-weight="400" fill="#111827">이 구간에서 persistence context가</text>
+<text data-source="root.0.1.0.1.6" x="574.000" y="624.100" font-size="18" font-weight="400" fill="#111827">활성</text>
+<text data-source="root.0.1.0.1.8" x="128.000" y="779.700" font-size="20" font-weight="700" fill="#111827">commit or rollback</text>
+<text data-source="root.0.1.0.1.8" x="128.000" y="815.700" font-size="18" font-weight="400" fill="#111827">RuntimeException과 Error는 기본</text>
+<text data-source="root.0.1.0.1.8" x="128.000" y="840.000" font-size="18" font-weight="400" fill="#111827">rollback, checked exception은 기본</text>
+<text data-source="root.0.1.0.1.8" x="128.000" y="864.300" font-size="18" font-weight="400" fill="#111827">commit</text>
+<text data-source="root.0.1.0.1.10" x="574.000" y="822.150" font-size="20" font-weight="700" fill="#111827">Database</text>
+<text data-source="root.0.1.0.1.1" x="462.000" y="278.700" font-size="18" font-weight="400" fill="#111827">외부</text>
+<text data-source="root.0.1.0.1.1" x="462.000" y="303.000" font-size="18" font-weight="400" fill="#111827">메서드</text>
+<text data-source="root.0.1.0.1.1" x="462.000" y="327.300" font-size="18" font-weight="400" fill="#111827">호출</text>
+<text data-source="root.0.1.0.1.3" x="120.000" y="470.500" font-size="18" font-weight="400" fill="#111827">intercept</text>
+<text data-source="root.0.1.0.1.5" x="462.000" y="544.500" font-size="18" font-weight="400" fill="#111827">메서드</text>
+<text data-source="root.0.1.0.1.5" x="462.000" y="568.800" font-size="18" font-weight="400" fill="#111827">실행</text>
+<text data-source="root.0.1.0.1.7" x="120.000" y="687.700" font-size="18" font-weight="400" fill="#111827">정상 종료 또는 예외</text>
+<text data-source="root.0.1.0.1.9" x="462.000" y="796.850" font-size="18" font-weight="400" fill="#111827">SQL 반영</text>
+<text data-source="root.0.1.1.0" x="984.000" y="237.700" font-size="20" font-weight="700" fill="#111827">대안 경로: self-invocation</text>
+<text data-source="root.0.1.1.1.0" x="1032.000" y="308.850" font-size="20" font-weight="700" fill="#111827">실제 bean</text>
+<text data-source="root.0.1.1.1.0" x="1032.000" y="344.850" font-size="18" font-weight="400" fill="#111827">객체 내부 코드가 자기 메서드를</text>
+<text data-source="root.0.1.1.1.0" x="1032.000" y="369.150" font-size="18" font-weight="400" fill="#111827">직접 호출</text>
+<text data-source="root.0.1.1.1.2" x="1500.000" y="296.700" font-size="20" font-weight="700" fill="#111827">Proxy 우회</text>
+<text data-source="root.0.1.1.1.2" x="1500.000" y="332.700" font-size="18" font-weight="400" fill="#111827">호출이 객체 밖으로 나가지 않아</text>
+<text data-source="root.0.1.1.1.2" x="1500.000" y="357.000" font-size="18" font-weight="400" fill="#111827">TransactionInterceptor를 거치지</text>
+<text data-source="root.0.1.1.1.2" x="1500.000" y="381.300" font-size="18" font-weight="400" fill="#111827">않음</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="535.600" font-size="20" font-weight="700" fill="#111827">새 트랜잭션 경계 없이 실행</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="571.600" font-size="18" font-weight="400" fill="#111827">대상 메서드의 @Transactional은</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="595.900" font-size="18" font-weight="400" fill="#111827">적용되지 않지만 이미 활성인</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="620.200" font-size="18" font-weight="400" fill="#111827">트랜잭션은 유지될 수 있음</text>
+<text data-source="root.0.1.1.1.1" x="1344.000" y="313.850" font-size="18" font-weight="400" fill="#111827">this.other()</text>
+<text data-source="root.0.1.1.1.3" x="1024.000" y="443.600" font-size="18" font-weight="400" fill="#111827">새 interception 경계 없음</text>
+<text data-source="root.0.2" x="64.000" y="936.600" font-size="18" font-weight="400" fill="#111827">두 lane은 서로 이어지는 단계가 아니라 외부 호출과 객체 내부 직접 호출이라는 별도 진입 경로입니다.</text>
+</svg>
 </figure>

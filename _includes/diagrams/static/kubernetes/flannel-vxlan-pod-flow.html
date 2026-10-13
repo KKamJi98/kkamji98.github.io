@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-kubernetes-flannel-vxlan-pod-flow" aria-labelledby="sd-kubernetes-flannel-vxlan-pod-flow-title">
-  <figcaption class="sd-title" id="sd-kubernetes-flannel-vxlan-pod-flow-title">Flannel VXLAN은 node 사이 UDP tunnel로 Pod traffic을 감싼다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-kubernetes-flannel-vxlan-pod-flow" aria-labelledby="sd-kubernetes-flannel-vxlan-pod-flow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-flannel-vxlan-pod-flow-title">Flannel VXLAN은 node 사이 UDP tunnel로 Pod traffic을 감싼다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Source Pod</strong>
@@ -27,4 +27,45 @@
     </div>
   </div>
   <p class="sd-note">underlay가 보는 것은 node to node UDP입니다. 그래서 underlay에는 destination Pod CIDR 경로가 필요하지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ef60392f1d849811ad804f39a5f5c594b7c614a786fdf380a8aa288746e58063">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="360.500" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="597.450" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 423.550 L 552.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>local bridge 전달</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,423.550 542.000,429.550 542.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 423.550 L 1020.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>UDP 8472로 전송</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,423.550 1010.000,429.550 1010.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 423.550 L 1488.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>remote node 도착</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,423.550 1478.000,429.550 1478.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 423.550 L 1848.000 423.550 L 1848.000 549.450 L 72.000 549.450 L 72.000 675.350 L 84.000 675.350" fill="none" stroke="#475569" stroke-width="3"><title>local bridge 전달</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,675.350 74.000,681.350 74.000,669.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">Flannel VXLAN은 node 사이 UDP tunnel로 Pod traffic을 감싼다</text>
+<text data-source="root.0.1.0" x="120.000" y="412.500" font-size="28" font-weight="700" fill="#111827">Source Pod</text>
+<text data-source="root.0.1.0" x="120.000" y="454.900" font-size="22" font-weight="400" fill="#111827">cni0 bridge를 통해 나갑니다.</text>
+<text data-source="root.0.1.2" x="588.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Source node</text>
+<text data-source="root.0.1.2" x="588.000" y="440.050" font-size="22" font-weight="400" fill="#111827">flannel.1 VTEP가 frame을</text>
+<text data-source="root.0.1.2" x="588.000" y="469.750" font-size="22" font-weight="400" fill="#111827">encapsulate합니다.</text>
+<text data-source="root.0.1.4" x="1056.000" y="397.650" font-size="28" font-weight="700" fill="#111827">VXLAN tunnel</text>
+<text data-source="root.0.1.4" x="1056.000" y="440.050" font-size="22" font-weight="400" fill="#111827">두 node 사이에서 Pod</text>
+<text data-source="root.0.1.4" x="1056.000" y="469.750" font-size="22" font-weight="400" fill="#111827">packet을 감쌉니다.</text>
+<text data-source="root.0.1.6" x="1524.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Remote node</text>
+<text data-source="root.0.1.6" x="1524.000" y="440.050" font-size="22" font-weight="400" fill="#111827">VTEP가 frame을</text>
+<text data-source="root.0.1.6" x="1524.000" y="469.750" font-size="22" font-weight="400" fill="#111827">decapsulate합니다.</text>
+<text data-source="root.0.1.8" x="120.000" y="649.450" font-size="28" font-weight="700" fill="#111827">Destination Pod</text>
+<text data-source="root.0.1.8" x="120.000" y="691.850" font-size="22" font-weight="400" fill="#111827">원래 Pod network로</text>
+<text data-source="root.0.1.8" x="120.000" y="721.550" font-size="22" font-weight="400" fill="#111827">배달됩니다.</text>
+<text data-source="root.0.1.1" x="424.000" y="374.150" font-size="22" font-weight="400" fill="#111827">local bridge</text>
+<text data-source="root.0.1.1" x="424.000" y="403.850" font-size="22" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.1.3" x="892.000" y="374.150" font-size="22" font-weight="400" fill="#111827">UDP 8472로</text>
+<text data-source="root.0.1.3" x="892.000" y="403.850" font-size="22" font-weight="400" fill="#111827">전송</text>
+<text data-source="root.0.1.5" x="1360.000" y="374.150" font-size="22" font-weight="400" fill="#111827">remote node</text>
+<text data-source="root.0.1.5" x="1360.000" y="403.850" font-size="22" font-weight="400" fill="#111827">도착</text>
+<text data-source="root.0.1.7" x="104.000" y="541.450" font-size="22" font-weight="400" fill="#111827">local bridge 전달</text>
+<text data-source="root.0.2" x="64.000" y="799.250" font-size="22" font-weight="400" fill="#111827">underlay가 보는 것은 node to node UDP입니다. 그래서 underlay에는 destination Pod CIDR 경로가 필요하지 않습니다.</text>
+</svg>
 </figure>

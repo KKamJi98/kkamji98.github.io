@@ -1,0 +1,67 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a5d0305daba67785a17c6264fdbd3ebb3b85f2d3b10ed84da348f6312a1392d2">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="172.600" width="586.667" height="549.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="666.667" y="172.600" width="586.667" height="549.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1269.333" y="172.600" width="586.667" height="799.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="112.000" y="231.600" width="490.667" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="112.000" y="421.900" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="112.000" y="612.200" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="714.667" y="231.600" width="490.667" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="714.667" y="421.900" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="714.667" y="612.200" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1317.333" y="231.600" width="490.667" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1317.333" y="421.900" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.4" x="1317.333" y="612.200" width="490.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.0" x="1285.333" y="722.500" width="269.333" height="144.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.1" x="1570.667" y="722.500" width="269.333" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 614.667 278.750 L 626.667 278.750 L 626.667 373.900 L 88.000 373.900 L 88.000 469.050 L 100.000 469.050" fill="none" stroke="#475569" stroke-width="3"><title>route table prefix list</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="100.000,469.050 90.000,475.050 90.000,463.050" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 614.667 469.050 L 626.667 469.050 L 626.667 564.200 L 88.000 564.200 L 88.000 659.350 L 100.000 659.350" fill="none" stroke="#475569" stroke-width="3"><title>endpoint route</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="100.000,659.350 90.000,665.350 90.000,653.350" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1217.333 278.750 L 1229.333 278.750 L 1229.333 373.900 L 690.667 373.900 L 690.667 469.050 L 702.667 469.050" fill="none" stroke="#475569" stroke-width="3"><title>서브넷 ENI의 private IP</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="702.667,469.050 692.667,475.050 692.667,463.050" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1217.333 469.050 L 1229.333 469.050 L 1229.333 564.200 L 690.667 564.200 L 690.667 659.350 L 702.667 659.350" fill="none" stroke="#475569" stroke-width="3"><title>PrivateLink 경로</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="702.667,659.350 692.667,665.350 692.667,653.350" fill="#475569"/>
+<path data-edge="root.0.1.2.1.1" data-from="root.0.1.2.1.0" data-to="root.0.1.2.1.2" d="M 1820.000 278.750 L 1832.000 278.750 L 1832.000 373.900 L 1293.333 373.900 L 1293.333 469.050 L 1305.333 469.050" fill="none" stroke="#475569" stroke-width="3"><title>private IP 도달</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1" points="1305.333,469.050 1295.333,475.050 1295.333,463.050" fill="#475569"/>
+<path data-edge="root.0.1.2.1.3" data-from="root.0.1.2.1.2" data-to="root.0.1.2.1.4" d="M 1820.000 469.050 L 1832.000 469.050 L 1832.000 564.200 L 1293.333 564.200 L 1293.333 659.350 L 1305.333 659.350" fill="none" stroke="#475569" stroke-width="3"><title>endpoint policy</title></path>
+<polygon data-arrowhead="root.0.1.2.1.3" points="1305.333,659.350 1295.333,665.350 1295.333,653.350" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="144.000" font-size="36" font-weight="700" fill="#111827">S3 접근 경로는 출발지와 endpoint 구현으로 갈립니다</text>
+<text data-source="root.0.1.0.0" x="80.000" y="208.600" font-size="20" font-weight="700" fill="#111827">VPC와 gateway endpoint</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="267.600" font-size="20" font-weight="700" fill="#111827">EC2 인스턴스</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="303.600" font-size="18" font-weight="400" fill="#111827">private subnet</text>
+<text data-source="root.0.1.0.1.2" x="128.000" y="457.900" font-size="20" font-weight="700" fill="#111827">Gateway endpoint</text>
+<text data-source="root.0.1.0.1.2" x="128.000" y="493.900" font-size="18" font-weight="400" fill="#111827">추가 요금 없음, S3 같은 리전만</text>
+<text data-source="root.0.1.0.1.4" x="128.000" y="648.200" font-size="20" font-weight="700" fill="#111827">Amazon S3</text>
+<text data-source="root.0.1.0.1.4" x="128.000" y="684.200" font-size="18" font-weight="400" fill="#111827">같은 리전 버킷</text>
+<text data-source="root.0.1.0.1.1" x="120.000" y="365.900" font-size="18" font-weight="400" fill="#111827">route table prefix list</text>
+<text data-source="root.0.1.0.1.3" x="120.000" y="556.200" font-size="18" font-weight="400" fill="#111827">endpoint route</text>
+<text data-source="root.0.1.1.0" x="682.667" y="208.600" font-size="20" font-weight="700" fill="#111827">VPC와 interface endpoint</text>
+<text data-source="root.0.1.1.1.0" x="730.667" y="267.600" font-size="20" font-weight="700" fill="#111827">EC2 인스턴스</text>
+<text data-source="root.0.1.1.1.0" x="730.667" y="303.600" font-size="18" font-weight="400" fill="#111827">private subnet</text>
+<text data-source="root.0.1.1.1.2" x="730.667" y="457.900" font-size="20" font-weight="700" fill="#111827">Interface endpoint</text>
+<text data-source="root.0.1.1.1.2" x="730.667" y="493.900" font-size="18" font-weight="400" fill="#111827">AZ당 10에서 100 Gbps 자동 확장</text>
+<text data-source="root.0.1.1.1.4" x="730.667" y="648.200" font-size="20" font-weight="700" fill="#111827">Amazon S3</text>
+<text data-source="root.0.1.1.1.4" x="730.667" y="684.200" font-size="18" font-weight="400" fill="#111827">endpoint policy 적용 가능</text>
+<text data-source="root.0.1.1.1.1" x="722.667" y="365.900" font-size="18" font-weight="400" fill="#111827">서브넷 ENI의 private IP</text>
+<text data-source="root.0.1.1.1.3" x="722.667" y="556.200" font-size="18" font-weight="400" fill="#111827">PrivateLink 경로</text>
+<text data-source="root.0.1.2.0" x="1285.333" y="208.600" font-size="20" font-weight="700" fill="#111827">온프레미스 출발</text>
+<text data-source="root.0.1.2.1.0" x="1333.333" y="267.600" font-size="20" font-weight="700" fill="#111827">온프레미스 서버</text>
+<text data-source="root.0.1.2.1.0" x="1333.333" y="303.600" font-size="18" font-weight="400" fill="#111827">Direct Connect 또는 VPN</text>
+<text data-source="root.0.1.2.1.2" x="1333.333" y="457.900" font-size="20" font-weight="700" fill="#111827">Interface endpoint</text>
+<text data-source="root.0.1.2.1.2" x="1333.333" y="493.900" font-size="18" font-weight="400" fill="#111827">VPC 밖 요청도 ENI로 수용</text>
+<text data-source="root.0.1.2.1.4" x="1333.333" y="648.200" font-size="20" font-weight="700" fill="#111827">Amazon S3</text>
+<text data-source="root.0.1.2.1.4" x="1333.333" y="684.200" font-size="18" font-weight="400" fill="#111827">같은 리전 버킷</text>
+<text data-source="root.0.1.2.1.1" x="1325.333" y="365.900" font-size="18" font-weight="400" fill="#111827">private IP 도달</text>
+<text data-source="root.0.1.2.1.3" x="1325.333" y="556.200" font-size="18" font-weight="400" fill="#111827">endpoint policy</text>
+<text data-source="root.0.1.2.2.0" x="1301.333" y="758.500" font-size="20" font-weight="700" fill="#111827">Gateway endpoint</text>
+<text data-source="root.0.1.2.2.0" x="1301.333" y="784.500" font-size="20" font-weight="700" fill="#111827">불가</text>
+<text data-source="root.0.1.2.2.0" x="1301.333" y="820.500" font-size="18" font-weight="400" fill="#111827">VPC 밖에서는 route table</text>
+<text data-source="root.0.1.2.2.0" x="1301.333" y="844.800" font-size="18" font-weight="400" fill="#111827">경로를 참조하지 못함</text>
+<text data-source="root.0.1.2.2.1" x="1586.667" y="758.500" font-size="20" font-weight="700" fill="#111827">S3 public endpoint</text>
+<text data-source="root.0.1.2.2.1" x="1586.667" y="794.500" font-size="18" font-weight="400" fill="#111827">public VIF로 도달하지만</text>
+<text data-source="root.0.1.2.2.1" x="1586.667" y="818.800" font-size="18" font-weight="400" fill="#111827">endpoint policy는 없음</text>
+<text data-source="root.0.1.2.3" x="1285.333" y="901.100" font-size="18" font-weight="400" fill="#111827">Gateway endpoint는 VPC route table 안에서만 동작합니다.</text>
+<text data-source="root.0.1.2.3" x="1285.333" y="925.400" font-size="18" font-weight="400" fill="#111827">public VIF의 S3 public endpoint에는 endpoint policy가</text>
+<text data-source="root.0.1.2.3" x="1285.333" y="949.700" font-size="18" font-weight="400" fill="#111827">적용되지 않습니다.</text>
+</svg>

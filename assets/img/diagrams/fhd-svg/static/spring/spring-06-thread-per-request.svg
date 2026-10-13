@@ -1,0 +1,33 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cda7085198a04772ac3d9bcfd2903f988b6d711a4b2f3e9eaf661b18322273da">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="218.250" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="64.000" y="389.850" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="64.000" y="561.450" width="1792.000" height="147.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.3" x="64.000" y="733.050" width="1792.000" height="147.600" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="181.650" font-size="36" font-weight="700" fill="#111827">Thread-per-request: 요청마다 worker 하나를 점유 (Tomcat thread pool 기본 약 200)</text>
+<text data-source="root.0.1.0.0.0" x="88.000" y="270.250" font-size="28" font-weight="700" fill="#111827">요청</text>
+<text data-source="root.0.1.0.0.1" x="88.000" y="332.050" font-size="28" font-weight="700" fill="#111827">Request A</text>
+<text data-source="root.0.1.0.1.0" x="677.333" y="270.250" font-size="28" font-weight="700" fill="#111827">할당된 worker</text>
+<text data-source="root.0.1.0.1.1" x="677.333" y="326.050" font-size="22" font-weight="400" fill="#111827">worker-1</text>
+<text data-source="root.0.1.0.2.0" x="1266.667" y="270.250" font-size="28" font-weight="700" fill="#111827">상태</text>
+<text data-source="root.0.1.0.2.1" x="1266.667" y="326.050" font-size="22" font-weight="400" fill="#111827">I/O 대기 중에도 worker 점유</text>
+<text data-source="root.0.1.1.0.0" x="88.000" y="441.850" font-size="28" font-weight="700" fill="#111827">요청</text>
+<text data-source="root.0.1.1.0.1" x="88.000" y="503.650" font-size="28" font-weight="700" fill="#111827">Request B</text>
+<text data-source="root.0.1.1.1.0" x="677.333" y="441.850" font-size="28" font-weight="700" fill="#111827">할당된 worker</text>
+<text data-source="root.0.1.1.1.1" x="677.333" y="497.650" font-size="22" font-weight="400" fill="#111827">worker-2</text>
+<text data-source="root.0.1.1.2.0" x="1266.667" y="441.850" font-size="28" font-weight="700" fill="#111827">상태</text>
+<text data-source="root.0.1.1.2.1" x="1266.667" y="497.650" font-size="22" font-weight="400" fill="#111827">I/O 대기 중에도 worker 점유</text>
+<text data-source="root.0.1.2.0.0" x="88.000" y="613.450" font-size="28" font-weight="700" fill="#111827">요청</text>
+<text data-source="root.0.1.2.0.1" x="88.000" y="675.250" font-size="28" font-weight="700" fill="#111827">Request C</text>
+<text data-source="root.0.1.2.1.0" x="677.333" y="613.450" font-size="28" font-weight="700" fill="#111827">할당된 worker</text>
+<text data-source="root.0.1.2.1.1" x="677.333" y="669.250" font-size="22" font-weight="400" fill="#111827">worker-3</text>
+<text data-source="root.0.1.2.2.0" x="1266.667" y="613.450" font-size="28" font-weight="700" fill="#111827">상태</text>
+<text data-source="root.0.1.2.2.1" x="1266.667" y="669.250" font-size="22" font-weight="400" fill="#111827">I/O 대기 중에도 worker 점유</text>
+<text data-source="root.0.1.3.0.0" x="88.000" y="785.050" font-size="28" font-weight="700" fill="#111827">요청</text>
+<text data-source="root.0.1.3.0.1" x="88.000" y="846.850" font-size="28" font-weight="700" fill="#111827">Request D, E, ...</text>
+<text data-source="root.0.1.3.1.0" x="677.333" y="785.050" font-size="28" font-weight="700" fill="#111827">할당된 worker</text>
+<text data-source="root.0.1.3.1.1" x="677.333" y="840.850" font-size="22" font-weight="400" fill="#111827">Pool full</text>
+<text data-source="root.0.1.3.2.0" x="1266.667" y="785.050" font-size="28" font-weight="700" fill="#111827">상태</text>
+<text data-source="root.0.1.3.2.1" x="1266.667" y="840.850" font-size="22" font-weight="400" fill="#111827">대기열 후 reject 또는 timeout</text>
+<text data-source="root.0.2" x="64.000" y="926.650" font-size="22" font-weight="400" fill="#111827">각 worker는 native memory에 자기 call stack을 가지므로 pool size가 커질수록 메모리 비용도 커집니다.</text>
+</svg>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="default-gateway-forwarding" aria-labelledby="default-gateway-forwarding-title">
-  <figcaption class="sd-title" id="default-gateway-forwarding-title">Host는 자기 subnet 밖의 목적지를 default gateway로 보냅니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="default-gateway-forwarding" aria-labelledby="default-gateway-forwarding-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="default-gateway-forwarding-title">Host는 자기 subnet 밖의 목적지를 default gateway로 보냅니다</figcaption><div class="sd-semantic-source">
   <p class="sd-intro">더 구체적인 경로가 없으면 host가 같은 link의 gateway를 next hop으로 선택하고, 그 뒤 router가 packet을 hop by hop 전달합니다.</p>
 
   <div class="sd-flow" aria-label="Default gateway forwarding 흐름">
@@ -31,4 +31,48 @@
   </div>
 
   <p class="sd-note">ARP 또는 NDP가 실패하면 default route가 있어도 첫 frame을 만들 수 없습니다. 같은 subnet 목적지는 gateway를 거치지 않고 직접 전송합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f825a5dea7632c2efa68a34941a96bc42b7ac5f5bbc649548022e45ed6b20590">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="483.550" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="483.550" width="324.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="483.550" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 576.300 L 552.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>다른 subnet이면 gateway를 next hop으로 결정</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,576.300 542.000,582.300 542.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 576.300 L 1020.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>첫 frame의 MAC 목적지는 gateway</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,576.300 1010.000,582.300 1010.000,570.300" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 576.300 L 1488.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>IP 목적지는 remote server를 유지</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,576.300 1478.000,582.300 1478.000,570.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="325.500" font-size="36" font-weight="700" fill="#111827">Host는 자기 subnet 밖의 목적지를 default gateway로 보냅니다</text>
+<text data-source="root.0.1" x="64.000" y="384.100" font-size="22" font-weight="400" fill="#111827">더 구체적인 경로가 없으면 host가 같은 link의 gateway를 next hop으로 선택하고, 그 뒤 router가 packet을 hop by hop 전달합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="535.550" font-size="28" font-weight="700" fill="#111827">Host</text>
+<text data-source="root.0.2.0" x="120.000" y="577.950" font-size="22" font-weight="400" fill="#111827">destination IP와 subnet</text>
+<text data-source="root.0.2.0" x="120.000" y="607.650" font-size="22" font-weight="400" fill="#111827">mask를 비교하고 default</text>
+<text data-source="root.0.2.0" x="120.000" y="637.350" font-size="22" font-weight="400" fill="#111827">route를 선택</text>
+<text data-source="root.0.2.2" x="588.000" y="535.550" font-size="28" font-weight="700" fill="#111827">Default gateway</text>
+<text data-source="root.0.2.2" x="588.000" y="577.950" font-size="22" font-weight="400" fill="#111827">같은 subnet의 router</text>
+<text data-source="root.0.2.2" x="588.000" y="607.650" font-size="22" font-weight="400" fill="#111827">interface. IPv4는 ARP, IPv6는</text>
+<text data-source="root.0.2.2" x="588.000" y="637.350" font-size="22" font-weight="400" fill="#111827">NDP로 MAC 확인</text>
+<text data-source="root.0.2.4" x="1056.000" y="535.550" font-size="28" font-weight="700" fill="#111827">Next network</text>
+<text data-source="root.0.2.4" x="1056.000" y="577.950" font-size="22" font-weight="400" fill="#111827">router가 frame을 벗기고 다음</text>
+<text data-source="root.0.2.4" x="1056.000" y="607.650" font-size="22" font-weight="400" fill="#111827">link용 frame으로 다시 만들어</text>
+<text data-source="root.0.2.4" x="1056.000" y="637.350" font-size="22" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.2.6" x="1524.000" y="550.400" font-size="28" font-weight="700" fill="#111827">Remote server</text>
+<text data-source="root.0.2.6" x="1524.000" y="592.800" font-size="22" font-weight="400" fill="#111827">응답은 reverse path를 따라</text>
+<text data-source="root.0.2.6" x="1524.000" y="622.500" font-size="22" font-weight="400" fill="#111827">돌아옴</text>
+<text data-source="root.0.2.1" x="424.000" y="437.800" font-size="22" font-weight="400" fill="#111827">다른</text>
+<text data-source="root.0.2.1" x="424.000" y="467.500" font-size="22" font-weight="400" fill="#111827">subnet이면</text>
+<text data-source="root.0.2.1" x="424.000" y="497.200" font-size="22" font-weight="400" fill="#111827">gateway를</text>
+<text data-source="root.0.2.1" x="424.000" y="526.900" font-size="22" font-weight="400" fill="#111827">next hop으로</text>
+<text data-source="root.0.2.1" x="424.000" y="556.600" font-size="22" font-weight="400" fill="#111827">결정</text>
+<text data-source="root.0.2.3" x="892.000" y="497.200" font-size="22" font-weight="400" fill="#111827">첫 frame의</text>
+<text data-source="root.0.2.3" x="892.000" y="526.900" font-size="22" font-weight="400" fill="#111827">MAC 목적지는</text>
+<text data-source="root.0.2.3" x="892.000" y="556.600" font-size="22" font-weight="400" fill="#111827">gateway</text>
+<text data-source="root.0.2.5" x="1360.000" y="497.200" font-size="22" font-weight="400" fill="#111827">IP 목적지는</text>
+<text data-source="root.0.2.5" x="1360.000" y="526.900" font-size="22" font-weight="400" fill="#111827">remote</text>
+<text data-source="root.0.2.5" x="1360.000" y="556.600" font-size="22" font-weight="400" fill="#111827">server를 유지</text>
+<text data-source="root.0.3" x="64.000" y="782.800" font-size="22" font-weight="400" fill="#111827">ARP 또는 NDP가 실패하면 default route가 있어도 첫 frame을 만들 수 없습니다. 같은 subnet 목적지는 gateway를 거치지 않고 직접 전송합니다.</text>
+</svg>
 </figure>

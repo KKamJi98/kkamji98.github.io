@@ -1,0 +1,38 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5785b8f458c3121ab3693d54667c116523b5e03f7e1f5cbce756560ca27fbb7a">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="381.500" width="1792.000" height="224.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.4" x="64.000" y="704.900" width="1792.000" height="224.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="172.300" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="116.000" y="464.800" width="772.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="1032.000" y="464.800" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.0" x="116.000" y="788.200" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.2" x="1032.000" y="788.200" width="772.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.2" d="M 960.000 294.500 L 960.000 332.000 L 960.000 332.000 L 960.000 369.500" fill="none" stroke="#475569" stroke-width="3"><title>모든 제어 요청은 API로 진입</title></path>
+<polygon data-arrowhead="root.0.1.1" points="960.000,369.500 954.000,359.500 966.000,359.500" fill="#475569"/>
+<path data-edge="root.0.2.1.1" data-from="root.0.2.1.0" data-to="root.0.2.1.2" d="M 900.000 519.900 L 1020.000 519.900" fill="none" stroke="#475569" stroke-width="3"><title>desired state 관찰</title></path>
+<polygon data-arrowhead="root.0.2.1.1" points="1020.000,519.900 1010.000,525.900 1010.000,513.900" fill="#475569"/>
+<path data-edge="root.0.4.1.1" data-from="root.0.4.1.0" data-to="root.0.4.1.2" d="M 900.000 843.300 L 1020.000 843.300" fill="none" stroke="#475569" stroke-width="3"><title>container 실행 요청</title></path>
+<polygon data-arrowhead="root.0.4.1.1" points="1020.000,843.300 1010.000,849.300 1010.000,837.300" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 617.900 L 960.000 692.900" fill="none" stroke="#475569" stroke-width="3"><title>binding과 상태를 API로 전달</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,692.900 954.000,682.900 966.000,682.900" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="139.700" font-size="36" font-weight="700" fill="#111827">모든 변경은 API server를 거쳐 node로 reconcile된다</text>
+<text data-source="root.0.1.0" x="84.000" y="216.300" font-size="24" font-weight="700" fill="#111827">Users and automation</text>
+<text data-source="root.0.1.0" x="84.000" y="255.500" font-size="20" font-weight="400" fill="#111827">kubectl, CI, operator가 요청을 보냅니다.</text>
+<text data-source="root.0.2.0" x="84.000" y="425.500" font-size="24" font-weight="700" fill="#111827">Control plane</text>
+<text data-source="root.0.2.1.0" x="136.000" y="508.800" font-size="24" font-weight="700" fill="#111827">API server and etcd</text>
+<text data-source="root.0.2.1.0" x="136.000" y="548.000" font-size="20" font-weight="400" fill="#111827">cluster state의 유일한 writer와 일관된 저장소입니다.</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="508.800" font-size="24" font-weight="700" fill="#111827">Controllers and scheduler</text>
+<text data-source="root.0.2.1.2" x="1052.000" y="548.000" font-size="20" font-weight="400" fill="#111827">desired state와 actual state의 차이를 reconcile합니다.</text>
+<text data-source="root.0.2.1.1" x="892.000" y="473.900" font-size="20" font-weight="400" fill="#111827">desired state</text>
+<text data-source="root.0.2.1.1" x="892.000" y="500.900" font-size="20" font-weight="400" fill="#111827">관찰</text>
+<text data-source="root.0.4.0" x="84.000" y="748.900" font-size="24" font-weight="700" fill="#111827">Worker node</text>
+<text data-source="root.0.4.1.0" x="136.000" y="832.200" font-size="24" font-weight="700" fill="#111827">kubelet on nodes</text>
+<text data-source="root.0.4.1.0" x="136.000" y="871.400" font-size="20" font-weight="400" fill="#111827">자신에게 binding된 Pod를 watch합니다.</text>
+<text data-source="root.0.4.1.2" x="1052.000" y="832.200" font-size="24" font-weight="700" fill="#111827">Container runtime and Pods</text>
+<text data-source="root.0.4.1.2" x="1052.000" y="871.400" font-size="20" font-weight="400" fill="#111827">container가 실제로 시작되는 위치입니다.</text>
+<text data-source="root.0.4.1.1" x="892.000" y="797.300" font-size="20" font-weight="400" fill="#111827">container 실행</text>
+<text data-source="root.0.4.1.1" x="892.000" y="824.300" font-size="20" font-weight="400" fill="#111827">요청</text>
+<text data-source="root.0.5" x="64.000" y="969.300" font-size="20" font-weight="400" fill="#111827">그림은 논리적 책임 경계를 보여줍니다. Managed Kubernetes에서는 control plane process가 worker와 다른 infrastructure에서 실행될 수 있습니다.</text>
+<text data-source="root.0.3" x="980.000" y="661.900" font-size="20" font-weight="400" fill="#111827">binding과 상태를 API로 전달</text>
+<text data-source="root.0.1.1" x="84.000" y="322.500" font-size="20" font-weight="400" fill="#111827">모든 제어 요청은 API로 진입</text>
+</svg>

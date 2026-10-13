@@ -1,0 +1,49 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3eeea05d12eb264e78c66a7cf7a966d47c1384b65af13680141f1d5200aeaef5">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.2.0" x="1032.000" y="227.350" width="390.000" height="184.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2.1" x="1434.000" y="227.350" width="390.000" height="719.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1032.000" y="227.350" width="792.000" height="719.500" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="546.600" width="792.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.0.1" x="1044.000" y="275.650" width="366.000" height="124.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.0" x="1446.000" y="275.650" width="366.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.2" x="1446.000" y="458.250" width="366.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.4" x="1446.000" y="640.850" width="366.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.5.0" x="1446.000" y="755.450" width="177.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.1.5.1" x="1635.000" y="755.450" width="177.000" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.2.1.1.1" data-from="root.0.2.2.1.1.0" data-to="root.0.2.2.1.1.2" d="M 1629.000 390.250 L 1629.000 446.250" fill="none" stroke="#475569" stroke-width="3"><title>먼저</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1.1" points="1629.000,446.250 1623.000,436.250 1635.000,436.250" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1.3" data-from="root.0.2.2.1.1.2" data-to="root.0.2.2.1.1.4" d="M 1629.000 572.850 L 1629.000 628.850" fill="none" stroke="#475569" stroke-width="3"><title>남은 태스크</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1.3" points="1629.000,628.850 1623.000,618.850 1635.000,618.850" fill="#475569"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 587.100 L 1020.000 587.100" fill="none" stroke="#475569" stroke-width="3"><title>하나만 선택</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,587.100 1010.000,593.100 1010.000,581.100" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="169.150" font-size="36" font-weight="700" fill="#111827">launchType과 capacityProviderStrategy는 함께 지정할 수 없다</text>
+<text data-source="root.0.1" x="64.000" y="209.750" font-size="16" font-weight="400" fill="#111827">호출에서 한 가지 용량 지정 방식만 고릅니다. strategy를 고르면 base를 먼저 채우고 남은 태스크를 weight 비율로 나눕니다.</text>
+<text data-source="root.0.2.0" x="108.000" y="576.600" font-size="18" font-weight="700" fill="#111827">RunTask 와 CreateService</text>
+<text data-source="root.0.2.0" x="108.000" y="610.000" font-size="16" font-weight="400" fill="#111827">둘 다 생략하면 클러스터의 defaultCapacityProviderStrategy를 사용합니다.</text>
+<text data-source="root.0.2.2.0.0" x="1044.000" y="257.350" font-size="18" font-weight="700" fill="#111827">launchType 경로</text>
+<text data-source="root.0.2.2.0.1" x="1056.000" y="305.650" font-size="18" font-weight="700" fill="#111827">launchType</text>
+<text data-source="root.0.2.2.0.1" x="1056.000" y="339.050" font-size="16" font-weight="400" fill="#111827">EC2, FARGATE, EXTERNAL,</text>
+<text data-source="root.0.2.2.0.1" x="1056.000" y="360.650" font-size="16" font-weight="400" fill="#111827">MANAGED_INSTANCES를 직접 지정합니다.</text>
+<text data-source="root.0.2.2.0.1" x="1056.000" y="382.250" font-size="16" font-weight="400" fill="#111827">Spot은 없습니다.</text>
+<text data-source="root.0.2.2.1.0" x="1446.000" y="257.350" font-size="18" font-weight="700" fill="#111827">capacityProviderStrategy 경로</text>
+<text data-source="root.0.2.2.1.1.0" x="1458.000" y="305.650" font-size="18" font-weight="700" fill="#111827">capacityProviderStrategy</text>
+<text data-source="root.0.2.2.1.1.0" x="1458.000" y="339.050" font-size="16" font-weight="400" fill="#111827">provider는 최대 20개이며 launchType을 생략해야</text>
+<text data-source="root.0.2.2.1.1.0" x="1458.000" y="360.650" font-size="16" font-weight="400" fill="#111827">합니다.</text>
+<text data-source="root.0.2.2.1.1.2" x="1458.000" y="488.250" font-size="18" font-weight="700" fill="#111827">base 를 먼저 채운다</text>
+<text data-source="root.0.2.2.1.1.2" x="1458.000" y="521.650" font-size="16" font-weight="400" fill="#111827">strategy 안에서 한 provider만 base를 가집니다.</text>
+<text data-source="root.0.2.2.1.1.2" x="1458.000" y="543.250" font-size="16" font-weight="400" fill="#111827">범위는 0에서 100,000입니다.</text>
+<text data-source="root.0.2.2.1.1.4" x="1458.000" y="670.850" font-size="18" font-weight="700" fill="#111827">남은 태스크를 weight 로 나눈다</text>
+<text data-source="root.0.2.2.1.1.4" x="1458.000" y="704.250" font-size="16" font-weight="400" fill="#111827">weight 범위는 0에서 1,000이며 전부 0이면 호출이</text>
+<text data-source="root.0.2.2.1.1.4" x="1458.000" y="725.850" font-size="16" font-weight="400" fill="#111827">실패합니다.</text>
+<text data-source="root.0.2.2.1.1.5.0" x="1458.000" y="785.450" font-size="18" font-weight="700" fill="#111827">FARGATE</text>
+<text data-source="root.0.2.2.1.1.5.0" x="1458.000" y="818.850" font-size="16" font-weight="400" fill="#111827">온디맨드 용량입니다.</text>
+<text data-source="root.0.2.2.1.1.5.1" x="1647.000" y="785.450" font-size="18" font-weight="700" fill="#111827">FARGATE_SPOT</text>
+<text data-source="root.0.2.2.1.1.5.1" x="1647.000" y="818.850" font-size="16" font-weight="400" fill="#111827">회수 시 2분 경고 후</text>
+<text data-source="root.0.2.2.1.1.5.1" x="1647.000" y="840.450" font-size="16" font-weight="400" fill="#111827">태스크를 중단합니다.</text>
+<text data-source="root.0.2.2.1.1.6" x="1446.000" y="886.050" font-size="16" font-weight="400" fill="#111827">ASG capacity provider는 managed scaling이</text>
+<text data-source="root.0.2.2.1.1.6" x="1446.000" y="907.650" font-size="16" font-weight="400" fill="#111827">targetCapacity로 ASG를 조정하는 별도</text>
+<text data-source="root.0.2.2.1.1.6" x="1446.000" y="929.250" font-size="16" font-weight="400" fill="#111827">provider입니다.</text>
+<text data-source="root.0.2.2.1.1.1" x="1649.000" y="423.450" font-size="16" font-weight="400" fill="#111827">먼저</text>
+<text data-source="root.0.2.2.1.1.3" x="1649.000" y="606.050" font-size="16" font-weight="400" fill="#111827">남은 태스크</text>
+<text data-source="root.0.2.1" x="892.000" y="569.500" font-size="16" font-weight="400" fill="#111827">하나만 선택</text>
+</svg>

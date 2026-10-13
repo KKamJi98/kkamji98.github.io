@@ -1,5 +1,5 @@
-<figure class="sd sd--flow sd--comparison" id="sd-ci-cd-argocd-multi-cluster-flow" aria-labelledby="sd-title-ci-cd-argocd-multi-cluster-flow">
-  <figcaption class="sd-title" id="sd-title-ci-cd-argocd-multi-cluster-flow">하나의 Argo CD가 등록한 Cluster별로 Application을 동기화</figcaption>
+<figure class="sd sd--flow sd--comparison sd--fhd" id="sd-ci-cd-argocd-multi-cluster-flow" aria-labelledby="sd-title-ci-cd-argocd-multi-cluster-flow" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-ci-cd-argocd-multi-cluster-flow">하나의 Argo CD가 등록한 Cluster별로 Application을 동기화</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">Git repository</strong>
@@ -38,4 +38,43 @@
     </div>
   </div>
   <p class="sd-note">두 대상에 대한 화살표는 순서가 아니라 각 Application의 destination이 선택한 별도 경로입니다. 다른 Cluster는 먼저 Argo CD에 등록하고 권한을 부여해야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d3845bcefe3427249c3363afc2065390fde60c8001b49526b0682c731e958834">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.6.0" x="1032.000" y="550.900" width="384.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6.1" x="1440.000" y="550.900" width="384.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="1032.000" y="550.900" width="792.000" height="235.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="320.450" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="320.450" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="96.000" y="605.800" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.0.1.0" x="1056.000" y="636.700" width="336.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.1.0" x="1464.000" y="636.700" width="336.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 383.500 L 1020.000 383.500" fill="none" stroke="#475569" stroke-width="3"><title>Application 정의를 읽음</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,383.500 1010.000,389.500 1010.000,377.500" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 383.500 L 1848.000 383.500 L 1848.000 502.900 L 72.000 502.900 L 72.000 668.850 L 84.000 668.850" fill="none" stroke="#475569" stroke-width="3"><title>등록된 대상 자격증명 조회</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,668.850 74.000,674.850 74.000,662.850" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 900.000 668.850 L 1020.000 668.850" fill="none" stroke="#475569" stroke-width="3"><title>Application의 destination에 따라 분기</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1020.000,668.850 1010.000,674.850 1010.000,662.850" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="275.500" font-size="36" font-weight="700" fill="#111827">하나의 Argo CD가 등록한 Cluster별로 Application을 동기화</text>
+<text data-source="root.0.1.0" x="120.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Git repository</text>
+<text data-source="root.0.1.0" x="120.000" y="414.850" font-size="22" font-weight="400" fill="#111827">여러 대상의 desired state를 한 곳에서 관리</text>
+<text data-source="root.0.1.2" x="1056.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Argo CD</text>
+<text data-source="root.0.1.2" x="1056.000" y="414.850" font-size="22" font-weight="400" fill="#111827">하나의 management Cluster에서 실행</text>
+<text data-source="root.0.1.4" x="120.000" y="657.800" font-size="28" font-weight="700" fill="#111827">Cluster credentials</text>
+<text data-source="root.0.1.4" x="120.000" y="700.200" font-size="22" font-weight="400" fill="#111827">등록한 Cluster마다 Kubernetes Secret 하나</text>
+<text data-source="root.0.1.6.0.0" x="1056.000" y="602.900" font-size="28" font-weight="700" fill="#111827">Destination A</text>
+<text data-source="root.0.1.6.0.1.0" x="1080.000" y="688.700" font-size="28" font-weight="700" fill="#111827">Cluster A workload</text>
+<text data-source="root.0.1.6.0.1.0" x="1080.000" y="731.100" font-size="22" font-weight="400" fill="#111827">등록된 Cluster A에 동기화</text>
+<text data-source="root.0.1.6.1.0" x="1464.000" y="602.900" font-size="28" font-weight="700" fill="#111827">Destination B</text>
+<text data-source="root.0.1.6.1.1.0" x="1488.000" y="688.700" font-size="28" font-weight="700" fill="#111827">Cluster B workload</text>
+<text data-source="root.0.1.6.1.1.0" x="1488.000" y="731.100" font-size="22" font-weight="400" fill="#111827">등록된 Cluster B에 동기화</text>
+<text data-source="root.0.1.1" x="892.000" y="334.100" font-size="22" font-weight="400" fill="#111827">Application</text>
+<text data-source="root.0.1.1" x="892.000" y="363.800" font-size="22" font-weight="400" fill="#111827">정의를 읽음</text>
+<text data-source="root.0.1.3" x="104.000" y="494.900" font-size="22" font-weight="400" fill="#111827">등록된 대상 자격증명 조회</text>
+<text data-source="root.0.1.5" x="892.000" y="589.750" font-size="22" font-weight="400" fill="#111827">Application의</text>
+<text data-source="root.0.1.5" x="892.000" y="619.450" font-size="22" font-weight="400" fill="#111827">destination에</text>
+<text data-source="root.0.1.5" x="892.000" y="649.150" font-size="22" font-weight="400" fill="#111827">따라 분기</text>
+<text data-source="root.0.2" x="64.000" y="832.800" font-size="22" font-weight="400" fill="#111827">두 대상에 대한 화살표는 순서가 아니라 각 Application의 destination이 선택한 별도 경로입니다. 다른 Cluster는 먼저 Argo CD에 등록하고 권한을 부여해야 합니다.</text>
+</svg>
 </figure>

@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-aws-analytics-stack-09-query-flow-gates" aria-labelledby="sd-title-aws-analytics-stack-09-query-flow-gates">
-  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-09-query-flow-gates">Athena query의 길목마다 권한 gate가 선다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-aws-analytics-stack-09-query-flow-gates" aria-labelledby="sd-title-aws-analytics-stack-09-query-flow-gates" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-analytics-stack-09-query-flow-gates">Athena query의 길목마다 권한 gate가 선다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label">Client</strong>
@@ -27,4 +27,41 @@
     </div>
   </div>
   <p class="sd-note">각 길목의 gate가 모두 Allow여야 query가 끝까지 진행됩니다. Athena는 data를 보관하지 않습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="21bcf308292f881312d7f5f56f7a9d6a21c893110d7f2c8da3d15d5ac4a574c6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="375.350" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="360.500" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="375.350" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="96.000" y="635.500" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="720.000" y="635.500" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 438.400 L 708.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>IAM</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,438.400 698.000,444.400 698.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 438.400 L 1332.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>IAM plus Lake Formation</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,438.400 1322.000,444.400 1322.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 587.500 L 72.000 587.500 L 72.000 698.550 L 84.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>IAM; S3 Tables는 LF도 평가</title></path>
+<polygon data-arrowhead="root.0.1.5" points="84.000,698.550 74.000,704.550 74.000,692.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 588.000 698.550 L 708.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>IAM</title></path>
+<polygon data-arrowhead="root.0.1.7" points="708.000,698.550 698.000,704.550 698.000,692.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="300.700" font-size="36" font-weight="700" fill="#111827">Athena query의 길목마다 권한 gate가 선다</text>
+<text data-source="root.0.1.0" x="120.000" y="427.350" font-size="28" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1.0" x="120.000" y="469.750" font-size="22" font-weight="400" fill="#111827">SQL 제출</text>
+<text data-source="root.0.1.2" x="744.000" y="412.500" font-size="28" font-weight="700" fill="#111827">StartQueryExecution</text>
+<text data-source="root.0.1.2" x="744.000" y="454.900" font-size="22" font-weight="400" fill="#111827">workgroup result location and scan</text>
+<text data-source="root.0.1.2" x="744.000" y="484.600" font-size="22" font-weight="400" fill="#111827">limit policy</text>
+<text data-source="root.0.1.4" x="1368.000" y="427.350" font-size="28" font-weight="700" fill="#111827">Glue Data Catalog 조회</text>
+<text data-source="root.0.1.4" x="1368.000" y="469.750" font-size="22" font-weight="400" fill="#111827">schema, S3 LOCATION, partitions</text>
+<text data-source="root.0.1.6" x="120.000" y="687.500" font-size="28" font-weight="700" fill="#111827">S3 or S3 Tables data scan</text>
+<text data-source="root.0.1.6" x="120.000" y="729.900" font-size="22" font-weight="400" fill="#111827">partition filter로 scan량 축소</text>
+<text data-source="root.0.1.8" x="744.000" y="687.500" font-size="28" font-weight="700" fill="#111827">query result location (S3)</text>
+<text data-source="root.0.1.8" x="744.000" y="729.900" font-size="22" font-weight="400" fill="#111827">결과 기록 후 client에 반환</text>
+<text data-source="root.0.1.1" x="580.000" y="418.700" font-size="22" font-weight="400" fill="#111827">IAM</text>
+<text data-source="root.0.1.3" x="1204.000" y="359.300" font-size="22" font-weight="400" fill="#111827">IAM plus</text>
+<text data-source="root.0.1.3" x="1204.000" y="389.000" font-size="22" font-weight="400" fill="#111827">Lake</text>
+<text data-source="root.0.1.3" x="1204.000" y="418.700" font-size="22" font-weight="400" fill="#111827">Formation</text>
+<text data-source="root.0.1.5" x="104.000" y="579.500" font-size="22" font-weight="400" fill="#111827">IAM; S3 Tables는 LF도 평가</text>
+<text data-source="root.0.1.7" x="580.000" y="678.850" font-size="22" font-weight="400" fill="#111827">IAM</text>
+<text data-source="root.0.2" x="64.000" y="807.600" font-size="22" font-weight="400" fill="#111827">각 길목의 gate가 모두 Allow여야 query가 끝까지 진행됩니다. Athena는 data를 보관하지 않습니다.</text>
+</svg>
 </figure>

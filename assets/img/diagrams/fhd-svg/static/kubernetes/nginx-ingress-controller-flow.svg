@@ -1,0 +1,28 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="c6b65187bd0f530a9ec13879fa7a4712abdf9fef575e0ced4e123d8ae45f3f1e">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="64.000" y="384.400" width="1792.000" height="332.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1" x="64.000" y="175.200" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="84.000" y="456.800" width="1752.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.2.0" x="84.000" y="587.000" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.1" x="970.000" y="587.000" width="866.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5" x="64.000" y="816.200" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 297.400 L 960.000 372.400" fill="none" stroke="#475569" stroke-width="3"><title>NGINX proxy에 직접 요청</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,372.400 954.000,362.400 966.000,362.400" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.3" data-to="root.0.5" d="M 960.000 729.200 L 960.000 804.200" fill="none" stroke="#475569" stroke-width="3"><title>기본 endpoint forwarding: Pod IP와 port로 proxy</title></path>
+<polygon data-arrowhead="root.0.4" points="960.000,804.200 954.000,794.200 966.000,794.200" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="142.600" font-size="36" font-weight="700" fill="#111827">Ingress는 설정이고 실제 proxy는 controller가 수행한다</text>
+<text data-source="root.0.1" x="84.000" y="219.200" font-size="24" font-weight="700" fill="#111827">Client</text>
+<text data-source="root.0.1" x="84.000" y="258.400" font-size="20" font-weight="400" fill="#111827">HTTP request</text>
+<text data-source="root.0.3.0" x="84.000" y="428.400" font-size="24" font-weight="700" fill="#111827">NGINX controller</text>
+<text data-source="root.0.3.1" x="104.000" y="500.800" font-size="24" font-weight="700" fill="#111827">NGINX proxy</text>
+<text data-source="root.0.3.1" x="104.000" y="540.000" font-size="20" font-weight="400" fill="#111827">host와 path rule을 적용해 backend endpoint로 전달</text>
+<text data-source="root.0.3.2.0" x="104.000" y="631.000" font-size="24" font-weight="700" fill="#111827">Ingress resource</text>
+<text data-source="root.0.3.2.0" x="104.000" y="670.200" font-size="20" font-weight="400" fill="#111827">controller가 watch하는 host/path 설정. 요청 hop 아님</text>
+<text data-source="root.0.3.2.1" x="990.000" y="631.000" font-size="24" font-weight="700" fill="#111827">Service / EndpointSlice</text>
+<text data-source="root.0.3.2.1" x="990.000" y="670.200" font-size="20" font-weight="400" fill="#111827">backend 선택과 endpoint discovery를 위한 API 정보</text>
+<text data-source="root.0.5" x="84.000" y="860.200" font-size="24" font-weight="700" fill="#111827">Pod</text>
+<text data-source="root.0.5" x="84.000" y="899.400" font-size="20" font-weight="400" fill="#111827">HTTP request 처리</text>
+<text data-source="root.0.6" x="64.000" y="966.400" font-size="20" font-weight="400" fill="#111827">Service ClusterIP를 upstream으로 쓰는 설정도 있습니다. Ingress object만 만들고 controller를 실행하지 않으면 proxy는 동작하지 않습니다.</text>
+<text data-source="root.0.2" x="980.000" y="341.400" font-size="20" font-weight="400" fill="#111827">NGINX proxy에 직접 요청</text>
+<text data-source="root.0.4" x="980.000" y="773.200" font-size="20" font-weight="400" fill="#111827">기본 endpoint forwarding: Pod IP와 port로 proxy</text>
+</svg>

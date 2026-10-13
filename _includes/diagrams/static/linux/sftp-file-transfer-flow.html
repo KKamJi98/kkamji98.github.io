@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sftp-file-transfer-flow" aria-labelledby="sftp-file-transfer-flow-title">
-  <figcaption class="sd-title" id="sftp-file-transfer-flow-title">SFTP는 SSH 연결 안에서 동작하는 subsystem입니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sftp-file-transfer-flow" aria-labelledby="sftp-file-transfer-flow-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sftp-file-transfer-flow-title">SFTP는 SSH 연결 안에서 동작하는 subsystem입니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">SFTP는 별도 port가 있는 독립 protocol이 아니라 SSH의 인증과 암호화 channel을 그대로 사용합니다.</p>
 
   <div class="sd-flow" aria-label="SFTP file transfer flow">
@@ -38,4 +38,48 @@
   </div>
 
   <p class="sd-note">SSH service를 끄면 같은 channel을 쓰는 SFTP도 함께 사용할 수 없습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="959d1864bacba482122af6936c4c7bde91e78aed7c8c15422f253853594d32df">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2.0" x="96.000" y="372.500" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="564.000" y="372.500" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1032.000" y="372.500" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1500.000" y="357.650" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="96.000" y="647.500" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 450.400 L 552.000 450.400" fill="none" stroke="#475569" stroke-width="3"><title>SSH credentials와 port</title></path>
+<polygon data-arrowhead="root.0.2.1" points="552.000,450.400 542.000,456.400 542.000,444.400" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 450.400 L 1020.000 450.400" fill="none" stroke="#475569" stroke-width="3"><title>subsystem 실행</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1020.000,450.400 1010.000,456.400 1010.000,444.400" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 450.400 L 1488.000 450.400" fill="none" stroke="#475569" stroke-width="3"><title>OS 권한 검사</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1488.000,450.400 1478.000,456.400 1478.000,444.400" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 450.400 L 1848.000 450.400 L 1848.000 599.500 L 72.000 599.500 L 72.000 725.400 L 84.000 725.400" fill="none" stroke="#475569" stroke-width="3"><title>파일 read/write</title></path>
+<polygon data-arrowhead="root.0.2.7" points="84.000,725.400 74.000,731.400 74.000,719.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="259.000" font-size="36" font-weight="700" fill="#111827">SFTP는 SSH 연결 안에서 동작하는 subsystem입니다</text>
+<text data-source="root.0.1" x="64.000" y="317.600" font-size="22" font-weight="400" fill="#111827">SFTP는 별도 port가 있는 독립 protocol이 아니라 SSH의 인증과 암호화 channel을 그대로 사용합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="424.500" font-size="28" font-weight="700" fill="#111827">SFTP client</text>
+<text data-source="root.0.2.0" x="120.000" y="466.900" font-size="22" font-weight="400" fill="#111827">sftp 명령이나 GUI client가</text>
+<text data-source="root.0.2.0" x="120.000" y="496.600" font-size="22" font-weight="400" fill="#111827">요청을 시작합니다.</text>
+<text data-source="root.0.2.2" x="588.000" y="424.500" font-size="28" font-weight="700" fill="#111827">SSH connection</text>
+<text data-source="root.0.2.2" x="588.000" y="466.900" font-size="22" font-weight="400" fill="#111827">로그인 인증과 암호화된</text>
+<text data-source="root.0.2.2" x="588.000" y="496.600" font-size="22" font-weight="400" fill="#111827">transport를 제공합니다.</text>
+<text data-source="root.0.2.4" x="1056.000" y="424.500" font-size="28" font-weight="700" fill="#111827">SFTP server</text>
+<text data-source="root.0.2.4" x="1056.000" y="466.900" font-size="22" font-weight="400" fill="#111827">SSH가 시작한 sftp subsystem</text>
+<text data-source="root.0.2.4" x="1056.000" y="496.600" font-size="22" font-weight="400" fill="#111827">process입니다.</text>
+<text data-source="root.0.2.6" x="1524.000" y="409.650" font-size="28" font-weight="700" fill="#111827">Filesystem</text>
+<text data-source="root.0.2.6" x="1524.000" y="452.050" font-size="22" font-weight="400" fill="#111827">접근 권한은 protocol이</text>
+<text data-source="root.0.2.6" x="1524.000" y="481.750" font-size="22" font-weight="400" fill="#111827">아니라 운영체제가</text>
+<text data-source="root.0.2.6" x="1524.000" y="511.450" font-size="22" font-weight="400" fill="#111827">판정합니다.</text>
+<text data-source="root.0.2.8" x="120.000" y="699.500" font-size="28" font-weight="700" fill="#111827">Transferred file</text>
+<text data-source="root.0.2.8" x="120.000" y="741.900" font-size="22" font-weight="400" fill="#111827">소유권과 권한은 login user</text>
+<text data-source="root.0.2.8" x="120.000" y="771.600" font-size="22" font-weight="400" fill="#111827">기준으로 남습니다.</text>
+<text data-source="root.0.2.1" x="424.000" y="371.300" font-size="22" font-weight="400" fill="#111827">SSH</text>
+<text data-source="root.0.2.1" x="424.000" y="401.000" font-size="22" font-weight="400" fill="#111827">credentials와</text>
+<text data-source="root.0.2.1" x="424.000" y="430.700" font-size="22" font-weight="400" fill="#111827">port</text>
+<text data-source="root.0.2.3" x="892.000" y="401.000" font-size="22" font-weight="400" fill="#111827">subsystem</text>
+<text data-source="root.0.2.3" x="892.000" y="430.700" font-size="22" font-weight="400" fill="#111827">실행</text>
+<text data-source="root.0.2.5" x="1360.000" y="430.700" font-size="22" font-weight="400" fill="#111827">OS 권한 검사</text>
+<text data-source="root.0.2.7" x="104.000" y="591.500" font-size="22" font-weight="400" fill="#111827">파일 read/write</text>
+<text data-source="root.0.3" x="64.000" y="849.300" font-size="22" font-weight="400" fill="#111827">SSH service를 끄면 같은 channel을 쓰는 SFTP도 함께 사용할 수 없습니다.</text>
+</svg>
 </figure>

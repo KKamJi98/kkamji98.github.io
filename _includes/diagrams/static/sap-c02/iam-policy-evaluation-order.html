@@ -1,5 +1,5 @@
-<figure class="sd sd--sequence" id="iam-policy-evaluation-order" aria-labelledby="iam-policy-evaluation-order-title">
-  <figcaption class="sd-title" id="iam-policy-evaluation-order-title">IAM은 explicit Deny와 적용 가능한 정책의 권한을 평가한다</figcaption>
+<figure class="sd sd--sequence sd--fhd" id="iam-policy-evaluation-order" aria-labelledby="iam-policy-evaluation-order-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="iam-policy-evaluation-order-title">IAM은 explicit Deny와 적용 가능한 정책의 권한을 평가한다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">요청에 적용되는 정책만 평가합니다. 평가 순서는 정책 객체를 호출하는 request hop이 아니며 모든 정책 종류에서 각각 Allow를 받아야 한다는 뜻도 아닙니다.</p>
   <div class="sd-flow">
     <div class="sd-node">
@@ -52,4 +52,48 @@
     </div>
   </div>
   <p class="sd-note">role trust policy와 KMS key policy는 explicit Allow 요구를 별도로 확인합니다. 정책의 적용 여부와 principal 종류를 먼저 확정해야 합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7b005a1eb315611639a3f99c3859210bf435a036789078e0b12dcd9c82ad557f">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="64.000" y="281.850" width="1792.000" height="606.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="174.150" width="792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1032.000" y="174.150" width="792.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="76.000" y="330.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2" x="76.000" y="423.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.3" x="76.000" y="516.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.4" x="76.000" y="609.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.5" x="76.000" y="702.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.6" x="76.000" y="795.150" width="1768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.0" x="64.000" y="900.150" width="890.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4.1" x="966.000" y="900.150" width="890.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 214.650 L 1020.000 214.650" fill="none" stroke="#475569" stroke-width="3"><title>적용 정책에서 explicit Deny 확인</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,214.650 1010.000,220.650 1010.000,208.650" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="101.250" font-size="36" font-weight="700" fill="#111827">IAM은 explicit Deny와 적용 가능한 정책의 권한을 평가한다</text>
+<text data-source="root.0.1" x="64.000" y="141.850" font-size="16" font-weight="400" fill="#111827">요청에 적용되는 정책만 평가합니다. 평가 순서는 정책 객체를 호출하는 request hop이 아니며 모든 정책 종류에서 각각 Allow를 받아야 한다는 뜻도 아닙니다.</text>
+<text data-source="root.0.2.0" x="108.000" y="204.150" font-size="18" font-weight="700" fill="#111827">API 요청</text>
+<text data-source="root.0.2.0" x="108.000" y="237.550" font-size="16" font-weight="400" fill="#111827">인증 후 request context를 만듭니다. 일반적인 기본값은 implicit deny이며 root user의 기본 권한은 별도입니다.</text>
+<text data-source="root.0.2.2" x="1044.000" y="204.150" font-size="18" font-weight="700" fill="#111827">1. Deny evaluation</text>
+<text data-source="root.0.2.2" x="1044.000" y="237.550" font-size="16" font-weight="400" fill="#111827">어느 적용 정책에든 explicit Deny가 있으면 즉시 거부합니다.</text>
+<text data-source="root.0.2.1" x="892.000" y="175.450" font-size="16" font-weight="400" fill="#111827">적용 정책에서</text>
+<text data-source="root.0.2.1" x="892.000" y="197.050" font-size="16" font-weight="400" fill="#111827">explicit Deny 확인</text>
+<text data-source="root.0.3.0" x="76.000" y="311.850" font-size="18" font-weight="700" fill="#111827">explicit Deny 없음: 적용 조건에 따른 평가</text>
+<text data-source="root.0.3.1" x="88.000" y="360.150" font-size="18" font-weight="700" fill="#111827">2. RCP</text>
+<text data-source="root.0.3.1" x="88.000" y="393.550" font-size="16" font-weight="400" fill="#111827">RCP가 활성화된 조직에서 지원 리소스에 적용합니다. 활성화 시 RCPFullAWSAccess가 자동 부착됩니다.</text>
+<text data-source="root.0.3.2" x="88.000" y="453.150" font-size="18" font-weight="700" fill="#111827">3. SCP</text>
+<text data-source="root.0.3.2" x="88.000" y="486.550" font-size="16" font-weight="400" fill="#111827">적용 대상 계정의 principal 권한 상한입니다. management account에는 적용되지 않습니다.</text>
+<text data-source="root.0.3.3" x="88.000" y="546.150" font-size="18" font-weight="700" fill="#111827">4. resource-based policy</text>
+<text data-source="root.0.3.3" x="88.000" y="579.550" font-size="16" font-weight="400" fill="#111827">리소스 정책이 권한을 준 principal ARN 종류와 동일 계정/교차 계정 여부에 따라 이후 결합이 달라집니다.</text>
+<text data-source="root.0.3.4" x="88.000" y="639.150" font-size="18" font-weight="700" fill="#111827">5. identity-based policy</text>
+<text data-source="root.0.3.4" x="88.000" y="672.550" font-size="16" font-weight="400" fill="#111827">principal에 권한을 부여합니다. 동일 계정의 resource policy 허용과는 일반적으로 합집합이며 모든 요청에 별도 identity Allow가 필요한 것은 아닙니다.</text>
+<text data-source="root.0.3.5" x="88.000" y="732.150" font-size="18" font-weight="700" fill="#111827">6. permissions boundary</text>
+<text data-source="root.0.3.5" x="88.000" y="765.550" font-size="16" font-weight="400" fill="#111827">부착된 user와 role의 상한입니다. 동일 계정에서 IAM user ARN 또는 session ARN에 직접 부여된 resource policy 권한의 implicit-deny 예외를 구분합니다.</text>
+<text data-source="root.0.3.6" x="88.000" y="825.150" font-size="18" font-weight="700" fill="#111827">7. session policy</text>
+<text data-source="root.0.3.6" x="88.000" y="858.550" font-size="16" font-weight="400" fill="#111827">세션에 전달된 정책이 적용될 때 권한을 제한합니다. role ARN과 직접 부여된 session ARN의 차이를 구분합니다.</text>
+<text data-source="root.0.4.0" x="76.000" y="930.150" font-size="18" font-weight="700" fill="#111827">허용</text>
+<text data-source="root.0.4.0" x="76.000" y="963.550" font-size="16" font-weight="400" fill="#111827">해당 요청에 필요한 권한이 성립하고 적용되는 상한을 만족할 때만 허용합니다.</text>
+<text data-source="root.0.4.1" x="978.000" y="930.150" font-size="18" font-weight="700" fill="#111827">거부</text>
+<text data-source="root.0.4.1" x="978.000" y="963.550" font-size="16" font-weight="400" fill="#111827">적용 정책의 explicit Deny 또는 필요한 권한 부재에 따른 implicit deny입니다.</text>
+<text data-source="root.0.5" x="64.000" y="1009.150" font-size="16" font-weight="400" fill="#111827">role trust policy와 KMS key policy는 explicit Allow 요구를 별도로 확인합니다. 정책의 적용 여부와 principal 종류를 먼저 확정해야 합니다.</text>
+</svg>
 </figure>

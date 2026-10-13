@@ -1,0 +1,20 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="06e8f370a9fb4e591c3d845f4979dbe14a05e8161a96b0f4bb4356deec069351">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="206.400" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="64.000" y="369.900" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="64.000" y="533.400" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.3" x="64.000" y="696.900" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.4" x="64.000" y="860.400" width="1792.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="116.100" font-size="36" font-weight="700" fill="#111827">Hypervisor가 하나의 physical machine을 여러 VM으로 나눕니다</text>
+<text data-source="root.0.1" x="64.000" y="174.700" font-size="22" font-weight="400" fill="#111827">각 guest가 자신의 kernel을 가지므로 virtual machine은 container와 다른 격리 단위를 제공합니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="258.400" font-size="28" font-weight="700" fill="#111827">Application</text>
+<text data-source="root.0.2.0.1" x="88.000" y="314.200" font-size="22" font-weight="400" fill="#111827">guest operating system 안에서 실행됩니다.</text>
+<text data-source="root.0.2.1.0" x="88.000" y="421.900" font-size="28" font-weight="700" fill="#111827">Guest operating system</text>
+<text data-source="root.0.2.1.1" x="88.000" y="477.700" font-size="22" font-weight="400" fill="#111827">각 VM이 자기 kernel을 가집니다.</text>
+<text data-source="root.0.2.2.0" x="88.000" y="585.400" font-size="28" font-weight="700" fill="#111827">Virtual machine</text>
+<text data-source="root.0.2.2.1" x="88.000" y="641.200" font-size="22" font-weight="400" fill="#111827">virtual CPU, memory, disk와 NIC를 제공합니다.</text>
+<text data-source="root.0.2.3.0" x="88.000" y="748.900" font-size="28" font-weight="700" fill="#111827">Hypervisor</text>
+<text data-source="root.0.2.3.1" x="88.000" y="804.700" font-size="22" font-weight="400" fill="#111827">여러 guest를 schedule하고 서로 격리합니다.</text>
+<text data-source="root.0.2.4.0" x="88.000" y="912.400" font-size="28" font-weight="700" fill="#111827">Physical hardware</text>
+<text data-source="root.0.2.4.1" x="88.000" y="968.200" font-size="22" font-weight="400" fill="#111827">CPU, memory, storage와 network의 실제 자원입니다.</text>
+</svg>

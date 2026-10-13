@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-kubernetes-helm-hook-lifecycle" aria-labelledby="sd-kubernetes-helm-hook-lifecycle-title">
-  <figcaption class="sd-title" id="sd-kubernetes-helm-hook-lifecycle-title">Helm hook은 release 앞뒤에서 별도 resource로 실행된다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-kubernetes-helm-hook-lifecycle" aria-labelledby="sd-kubernetes-helm-hook-lifecycle-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-helm-hook-lifecycle-title">Helm hook은 release 앞뒤에서 별도 resource로 실행된다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node">
       <strong class="sd-label"><code>helm install</code></strong>
@@ -27,4 +27,48 @@
     </div>
   </div>
   <p class="sd-note">Pre-install을 포함한 hook이 실패하면 다음 phase로 진행하지 않습니다. hook은 별도 resource이며 release manifest와 수명이 다를 수 있습니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3426735afb51e0ac771925d63dd93aed5172e3fe2564335b636295c5b589aef0">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="345.650" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="330.800" width="324.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="330.800" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="330.800" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="605.800" width="324.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 408.700 L 552.000 408.700" fill="none" stroke="#475569" stroke-width="3"><title>pre-install hook 실행 후 wait</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,408.700 542.000,414.700 542.000,402.700" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 408.700 L 1020.000 408.700" fill="none" stroke="#475569" stroke-width="3"><title>성공하면 다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,408.700 1010.000,414.700 1010.000,402.700" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 408.700 L 1488.000 408.700" fill="none" stroke="#475569" stroke-width="3"><title>post-install hook 실행 후 wait</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,408.700 1478.000,414.700 1478.000,402.700" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 408.700 L 1848.000 408.700 L 1848.000 557.800 L 72.000 557.800 L 72.000 698.550 L 84.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>hook 완료</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,698.550 74.000,704.550 74.000,692.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="271.000" font-size="36" font-weight="700" fill="#111827">Helm hook은 release 앞뒤에서 별도 resource로 실행된다</text>
+<text data-source="root.0.1.0" x="120.000" y="397.650" font-size="28" font-weight="700" fill="#111827">helm install</text>
+<text data-source="root.0.1.0" x="120.000" y="440.050" font-size="22" font-weight="400" fill="#111827">release 작업을 시작합니다.</text>
+<text data-source="root.0.1.2" x="588.000" y="382.800" font-size="28" font-weight="700" fill="#111827">Pre-install hook</text>
+<text data-source="root.0.1.2" x="588.000" y="425.200" font-size="22" font-weight="400" fill="#111827">Job이 성공해야 chart</text>
+<text data-source="root.0.1.2" x="588.000" y="454.900" font-size="22" font-weight="400" fill="#111827">manifest를 적용합니다.</text>
+<text data-source="root.0.1.4" x="1056.000" y="382.800" font-size="28" font-weight="700" fill="#111827">Release resources</text>
+<text data-source="root.0.1.4" x="1056.000" y="425.200" font-size="22" font-weight="400" fill="#111827">chart가 렌더링한 manifest를</text>
+<text data-source="root.0.1.4" x="1056.000" y="454.900" font-size="22" font-weight="400" fill="#111827">적용합니다.</text>
+<text data-source="root.0.1.6" x="1524.000" y="382.800" font-size="28" font-weight="700" fill="#111827">Post-install hook</text>
+<text data-source="root.0.1.6" x="1524.000" y="425.200" font-size="22" font-weight="400" fill="#111827">resource가 생성된 뒤 Job을</text>
+<text data-source="root.0.1.6" x="1524.000" y="454.900" font-size="22" font-weight="400" fill="#111827">실행합니다.</text>
+<text data-source="root.0.1.8" x="120.000" y="657.800" font-size="28" font-weight="700" fill="#111827">Release deployed</text>
+<text data-source="root.0.1.8" x="120.000" y="700.200" font-size="22" font-weight="400" fill="#111827">hook resource는 release</text>
+<text data-source="root.0.1.8" x="120.000" y="729.900" font-size="22" font-weight="400" fill="#111827">resource에 포함되지</text>
+<text data-source="root.0.1.8" x="120.000" y="759.600" font-size="22" font-weight="400" fill="#111827">않습니다.</text>
+<text data-source="root.0.1.1" x="424.000" y="329.600" font-size="22" font-weight="400" fill="#111827">pre-install</text>
+<text data-source="root.0.1.1" x="424.000" y="359.300" font-size="22" font-weight="400" fill="#111827">hook 실행 후</text>
+<text data-source="root.0.1.1" x="424.000" y="389.000" font-size="22" font-weight="400" fill="#111827">wait</text>
+<text data-source="root.0.1.3" x="892.000" y="359.300" font-size="22" font-weight="400" fill="#111827">성공하면 다음</text>
+<text data-source="root.0.1.3" x="892.000" y="389.000" font-size="22" font-weight="400" fill="#111827">단계</text>
+<text data-source="root.0.1.5" x="1360.000" y="329.600" font-size="22" font-weight="400" fill="#111827">post-install</text>
+<text data-source="root.0.1.5" x="1360.000" y="359.300" font-size="22" font-weight="400" fill="#111827">hook 실행 후</text>
+<text data-source="root.0.1.5" x="1360.000" y="389.000" font-size="22" font-weight="400" fill="#111827">wait</text>
+<text data-source="root.0.1.7" x="104.000" y="549.800" font-size="22" font-weight="400" fill="#111827">hook 완료</text>
+<text data-source="root.0.2" x="64.000" y="837.300" font-size="22" font-weight="400" fill="#111827">Pre-install을 포함한 hook이 실패하면 다음 phase로 진행하지 않습니다. hook은 별도 resource이며 release manifest와 수명이 다를 수 있습니다.</text>
+</svg>
 </figure>

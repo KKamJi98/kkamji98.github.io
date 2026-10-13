@@ -1,0 +1,54 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="c8c42f8ffed36747c1076420f5e848ffb61415405799739249f05df41ab74a75">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="442.700" width="1792.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="176.950" width="324.000" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="191.800" width="324.000" height="192.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="210.000" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="176.950" width="324.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="88.000" y="528.500" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="972.000" y="528.500" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="88.000" y="678.600" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 287.900 L 552.000 287.900" fill="none" stroke="#475569" stroke-width="3"><title>callback 종료</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,287.900 542.000,293.900 542.000,281.900" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 287.900 L 1020.000 287.900" fill="none" stroke="#475569" stroke-width="3"><title>그 다음 queue</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,287.900 1010.000,293.900 1010.000,281.900" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 287.900 L 1488.000 287.900" fill="none" stroke="#475569" stroke-width="3"><title>두 queue를 모두 비운 뒤 event loop 실행 재개</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,287.900 1478.000,293.900 1478.000,281.900" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="120.500" font-size="36" font-weight="700" fill="#111827">Callback 뒤에는 nextTick과 microtask가 먼저 drain됩니다</text>
+<text data-source="root.0.1.0" x="120.000" y="228.950" font-size="28" font-weight="700" fill="#111827">Synchronous</text>
+<text data-source="root.0.1.0" x="120.000" y="265.350" font-size="28" font-weight="700" fill="#111827">callback</text>
+<text data-source="root.0.1.0" x="120.000" y="307.750" font-size="22" font-weight="400" fill="#111827">CommonJS script 또는</text>
+<text data-source="root.0.1.0" x="120.000" y="337.450" font-size="22" font-weight="400" fill="#111827">일반 callback body가 끝날</text>
+<text data-source="root.0.1.0" x="120.000" y="367.150" font-size="22" font-weight="400" fill="#111827">때까지 실행</text>
+<text data-source="root.0.1.2" x="588.000" y="243.800" font-size="28" font-weight="700" fill="#111827">process.nextTick</text>
+<text data-source="root.0.1.2" x="588.000" y="280.200" font-size="28" font-weight="700" fill="#111827">queue</text>
+<text data-source="root.0.1.2" x="588.000" y="322.600" font-size="22" font-weight="400" fill="#111827">다음 phase 전에 먼저,</text>
+<text data-source="root.0.1.2" x="588.000" y="352.300" font-size="22" font-weight="400" fill="#111827">끝까지 drain</text>
+<text data-source="root.0.1.4" x="1056.000" y="262.000" font-size="28" font-weight="700" fill="#111827">V8 microtasks</text>
+<text data-source="root.0.1.4" x="1056.000" y="304.400" font-size="22" font-weight="400" fill="#111827">Promise continuation과</text>
+<text data-source="root.0.1.4" x="1056.000" y="334.100" font-size="22" font-weight="400" fill="#111827">queueMicrotask()</text>
+<text data-source="root.0.1.6" x="1524.000" y="228.950" font-size="28" font-weight="700" fill="#111827">JavaScript</text>
+<text data-source="root.0.1.6" x="1524.000" y="265.350" font-size="28" font-weight="700" fill="#111827">continuation</text>
+<text data-source="root.0.1.6" x="1524.000" y="307.750" font-size="22" font-weight="400" fill="#111827">현재 phase와 준비된</text>
+<text data-source="root.0.1.6" x="1524.000" y="337.450" font-size="22" font-weight="400" fill="#111827">callback에 따라 실행을</text>
+<text data-source="root.0.1.6" x="1524.000" y="367.150" font-size="22" font-weight="400" fill="#111827">계속함</text>
+<text data-source="root.0.1.1" x="424.000" y="238.500" font-size="22" font-weight="400" fill="#111827">callback</text>
+<text data-source="root.0.1.1" x="424.000" y="268.200" font-size="22" font-weight="400" fill="#111827">종료</text>
+<text data-source="root.0.1.3" x="892.000" y="238.500" font-size="22" font-weight="400" fill="#111827">그 다음</text>
+<text data-source="root.0.1.3" x="892.000" y="268.200" font-size="22" font-weight="400" fill="#111827">queue</text>
+<text data-source="root.0.1.5" x="1360.000" y="179.100" font-size="22" font-weight="400" fill="#111827">두 queue를</text>
+<text data-source="root.0.1.5" x="1360.000" y="208.800" font-size="22" font-weight="400" fill="#111827">모두 비운 뒤</text>
+<text data-source="root.0.1.5" x="1360.000" y="238.500" font-size="22" font-weight="400" fill="#111827">event loop</text>
+<text data-source="root.0.1.5" x="1360.000" y="268.200" font-size="22" font-weight="400" fill="#111827">실행 재개</text>
+<text data-source="root.0.2.0" x="88.000" y="494.700" font-size="28" font-weight="700" fill="#111827">주요 phase와 callback 종류 (고정된 다음 실행 순서가 아님)</text>
+<text data-source="root.0.2.1.0" x="112.000" y="580.500" font-size="28" font-weight="700" fill="#111827">timers phase</text>
+<text data-source="root.0.2.1.0" x="112.000" y="622.900" font-size="22" font-weight="400" fill="#111827">setTimeout, setInterval</text>
+<text data-source="root.0.2.1.1" x="996.000" y="580.500" font-size="28" font-weight="700" fill="#111827">poll phase</text>
+<text data-source="root.0.2.1.1" x="996.000" y="622.900" font-size="22" font-weight="400" fill="#111827">I/O callbacks</text>
+<text data-source="root.0.2.1.2" x="112.000" y="730.600" font-size="28" font-weight="700" fill="#111827">check phase</text>
+<text data-source="root.0.2.1.2" x="112.000" y="773.000" font-size="22" font-weight="400" fill="#111827">setImmediate</text>
+<text data-source="root.0.3" x="64.000" y="874.700" font-size="22" font-weight="400" fill="#111827">CommonJS script와 일반 callback boundary에서는 두 queue가 모두 소진될 때까지 다음 phase로 넘어가지 않습니다. recursive nextTick은 queue를 계속 채워 poll phase를</text>
+<text data-source="root.0.3" x="64.000" y="904.400" font-size="22" font-weight="400" fill="#111827">starvation시킬 수 있습니다.</text>
+<text data-source="root.0.4" x="64.000" y="958.100" font-size="22" font-weight="400" fill="#111827">ESM top-level 자체는 microtask context이므로 nextTick과 Promise 순서가 달라질 수 있습니다. setTimeout(0)과 setImmediate()의 top-level 우선순위도 고정 계약이</text>
+<text data-source="root.0.4" x="64.000" y="987.800" font-size="22" font-weight="400" fill="#111827">아닙니다.</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="35dc0560e013ac268d106ddb6dc039b3ba70114fd0c562bd01e09126ce9c3bf6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="96.000" y="184.550" width="792.000" height="359.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="224.550" width="792.000" height="279.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="96.000" y="640.150" width="792.000" height="279.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.6" x="1032.000" y="695.300" width="792.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="144.000" y="243.550" width="276.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="564.000" y="243.550" width="276.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="144.000" y="433.850" width="276.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1048.000" y="283.550" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.0" x="1048.000" y="393.850" width="372.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.1" x="1436.000" y="393.850" width="372.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.0" x="112.000" y="699.150" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.0" x="112.000" y="809.450" width="372.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.1" x="500.000" y="809.450" width="372.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.0" x="1080.000" y="754.300" width="276.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1.2" x="1500.000" y="754.300" width="276.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 432.000 290.700 L 552.000 290.700" fill="none" stroke="#475569" stroke-width="3"><title>traffic 라우팅</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="552.000,290.700 542.000,296.700 542.000,284.700" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 852.000 290.700 L 864.000 290.700 L 864.000 385.850 L 120.000 385.850 L 120.000 481.000 L 132.000 481.000" fill="none" stroke="#475569" stroke-width="3"><title>100% live traffic</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="132.000,481.000 122.000,487.000 122.000,475.000" fill="#475569"/>
+<path data-edge="root.0.1.6.1.1" data-from="root.0.1.6.1.0" data-to="root.0.1.6.1.2" d="M 1368.000 801.450 L 1488.000 801.450" fill="none" stroke="#475569" stroke-width="3"><title>100% live traffic</title></path>
+<polygon data-arrowhead="root.0.1.6.1.1" points="1488.000,801.450 1478.000,807.450 1478.000,795.450" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 364.350 L 1020.000 364.350" fill="none" stroke="#475569" stroke-width="3"><title>새 버전을 별도로 배포</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,364.350 1010.000,370.350 1010.000,358.350" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 364.350 L 1848.000 364.350 L 1848.000 592.150 L 72.000 592.150 L 72.000 779.950 L 84.000 779.950" fill="none" stroke="#475569" stroke-width="3"><title>새 버전 검증 후 traffic switch</title></path>
+<polygon data-arrowhead="root.0.1.3" points="84.000,779.950 74.000,785.950 74.000,773.950" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 900.000 779.950 L 1020.000 779.950" fill="none" stroke="#475569" stroke-width="3"><title>승격 완료 후 old ReplicaSet 축소</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1020.000,779.950 1010.000,785.950 1010.000,773.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="155.950" font-size="36" font-weight="700" fill="#111827">Blue-Green 배포는 검증 후 Live traffic을 새 버전으로 전환</text>
+<text data-source="root.0.1.0.0" x="112.000" y="220.550" font-size="20" font-weight="700" fill="#111827">1. Initial version</text>
+<text data-source="root.0.1.0.1.0" x="160.000" y="279.550" font-size="20" font-weight="700" fill="#111827">Users</text>
+<text data-source="root.0.1.0.1.0" x="160.000" y="315.550" font-size="18" font-weight="400" fill="#111827">Live traffic을 발생</text>
+<text data-source="root.0.1.0.1.2" x="580.000" y="279.550" font-size="20" font-weight="700" fill="#111827">Load Balancer</text>
+<text data-source="root.0.1.0.1.2" x="580.000" y="315.550" font-size="18" font-weight="400" fill="#111827">기존 버전으로 전달</text>
+<text data-source="root.0.1.0.1.4" x="160.000" y="469.850" font-size="20" font-weight="700" fill="#111827">Application version 34</text>
+<text data-source="root.0.1.0.1.4" x="160.000" y="505.850" font-size="18" font-weight="400" fill="#111827">현재 서비스 버전</text>
+<text data-source="root.0.1.0.1.1" x="424.000" y="272.400" font-size="18" font-weight="400" fill="#111827">traffic 라우팅</text>
+<text data-source="root.0.1.0.1.3" x="152.000" y="377.850" font-size="18" font-weight="400" fill="#111827">100% live traffic</text>
+<text data-source="root.0.1.2.0" x="1048.000" y="260.550" font-size="20" font-weight="700" fill="#111827">2. New version deployed</text>
+<text data-source="root.0.1.2.1.0" x="1064.000" y="319.550" font-size="20" font-weight="700" fill="#111827">Load Balancer</text>
+<text data-source="root.0.1.2.1.0" x="1064.000" y="355.550" font-size="18" font-weight="400" fill="#111827">아직 version 34로만 traffic 전달</text>
+<text data-source="root.0.1.2.1.1.0" x="1064.000" y="429.850" font-size="20" font-weight="700" fill="#111827">Version 34</text>
+<text data-source="root.0.1.2.1.1.0" x="1064.000" y="465.850" font-size="18" font-weight="400" fill="#111827">100% live traffic</text>
+<text data-source="root.0.1.2.1.1.1" x="1452.000" y="429.850" font-size="20" font-weight="700" fill="#111827">Version 35</text>
+<text data-source="root.0.1.2.1.1.1" x="1452.000" y="465.850" font-size="18" font-weight="400" fill="#111827">별도 배포 후 검증 대기</text>
+<text data-source="root.0.1.4.0" x="112.000" y="676.150" font-size="20" font-weight="700" fill="#111827">3. Switch traffic</text>
+<text data-source="root.0.1.4.1.0" x="128.000" y="735.150" font-size="20" font-weight="700" fill="#111827">Load Balancer</text>
+<text data-source="root.0.1.4.1.0" x="128.000" y="771.150" font-size="18" font-weight="400" fill="#111827">새 버전으로 route 변경</text>
+<text data-source="root.0.1.4.1.1.0" x="128.000" y="845.450" font-size="20" font-weight="700" fill="#111827">Version 35</text>
+<text data-source="root.0.1.4.1.1.0" x="128.000" y="881.450" font-size="18" font-weight="400" fill="#111827">Live traffic 수신</text>
+<text data-source="root.0.1.4.1.1.1" x="516.000" y="845.450" font-size="20" font-weight="700" fill="#111827">Version 34</text>
+<text data-source="root.0.1.4.1.1.1" x="516.000" y="881.450" font-size="18" font-weight="400" fill="#111827">rollback을 위해 잠시 유지</text>
+<text data-source="root.0.1.6.0" x="1048.000" y="731.300" font-size="20" font-weight="700" fill="#111827">4. Finish</text>
+<text data-source="root.0.1.6.1.0" x="1096.000" y="790.300" font-size="20" font-weight="700" fill="#111827">Load Balancer</text>
+<text data-source="root.0.1.6.1.0" x="1096.000" y="826.300" font-size="18" font-weight="400" fill="#111827">모든 요청을 새 버전으로 전달</text>
+<text data-source="root.0.1.6.1.2" x="1516.000" y="790.300" font-size="20" font-weight="700" fill="#111827">Application version 35</text>
+<text data-source="root.0.1.6.1.2" x="1516.000" y="826.300" font-size="18" font-weight="400" fill="#111827">운영 버전으로 승격</text>
+<text data-source="root.0.1.6.1.1" x="1360.000" y="783.150" font-size="18" font-weight="400" fill="#111827">100% live traffic</text>
+<text data-source="root.0.1.1" x="892.000" y="321.750" font-size="18" font-weight="400" fill="#111827">새 버전을 별도로</text>
+<text data-source="root.0.1.1" x="892.000" y="346.050" font-size="18" font-weight="400" fill="#111827">배포</text>
+<text data-source="root.0.1.3" x="104.000" y="584.150" font-size="18" font-weight="400" fill="#111827">새 버전 검증 후 traffic switch</text>
+<text data-source="root.0.1.5" x="892.000" y="737.350" font-size="18" font-weight="400" fill="#111827">승격 완료 후 old</text>
+<text data-source="root.0.1.5" x="892.000" y="761.650" font-size="18" font-weight="400" fill="#111827">ReplicaSet 축소</text>
+<text data-source="root.0.2" x="64.000" y="953.750" font-size="18" font-weight="400" fill="#111827">Blue-Green은 새 버전을 먼저 준비하고 검증한 뒤 Load Balancer의 대상만 바꿉니다. 전환 전에는 기존 버전이 계속 사용자 요청을 처리합니다.</text>
+</svg>

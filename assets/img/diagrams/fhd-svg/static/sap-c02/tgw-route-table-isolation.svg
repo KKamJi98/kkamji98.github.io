@@ -1,0 +1,27 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d6f649fd95efbb2011e8454faba998a3d4d0f28382014a45be02ca0c1e8ea9e6">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="596.450" width="1792.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="236.850" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="972.000" y="236.850" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="64.000" y="416.650" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="88.000" y="682.250" width="860.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="972.000" y="682.250" width="860.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="200.250" font-size="36" font-weight="700" fill="#111827">association은 볼 route table을, propagation은 실을 route를 정합니다</text>
+<text data-source="root.0.1.0" x="88.000" y="288.850" font-size="28" font-weight="700" fill="#111827">Spoke VPC A / Spoke VPC B</text>
+<text data-source="root.0.1.0" x="88.000" y="331.250" font-size="22" font-weight="400" fill="#111827">개발/운영 attachment: Spoke route table에 association, Shared route table로</text>
+<text data-source="root.0.1.0" x="88.000" y="360.950" font-size="22" font-weight="400" fill="#111827">propagation</text>
+<text data-source="root.0.1.1" x="996.000" y="288.850" font-size="28" font-weight="700" fill="#111827">온프레미스 VPN</text>
+<text data-source="root.0.1.1" x="996.000" y="331.250" font-size="22" font-weight="400" fill="#111827">Spoke route table에 association, Shared route table로 propagation. ECMP는</text>
+<text data-source="root.0.1.1" x="996.000" y="360.950" font-size="22" font-weight="400" fill="#111827">dynamic routing 필요</text>
+<text data-source="root.0.1.2" x="88.000" y="468.650" font-size="28" font-weight="700" fill="#111827">Shared services VPC</text>
+<text data-source="root.0.1.2" x="88.000" y="511.050" font-size="22" font-weight="400" fill="#111827">중앙 NAT, interface endpoint, 검사 어플라이언스. Shared route table에</text>
+<text data-source="root.0.1.2" x="88.000" y="540.750" font-size="22" font-weight="400" fill="#111827">association, Spoke route table로 shared CIDR propagation</text>
+<text data-source="root.0.2.0" x="88.000" y="648.450" font-size="28" font-weight="700" fill="#111827">Transit Gateway route configuration</text>
+<text data-source="root.0.2.1.0" x="112.000" y="734.250" font-size="28" font-weight="700" fill="#111827">Spoke route table</text>
+<text data-source="root.0.2.1.0" x="112.000" y="776.650" font-size="22" font-weight="400" fill="#111827">Spoke/VPN attachment의 lookup 대상. shared VPC route만 보유; 선택적</text>
+<text data-source="root.0.2.1.0" x="112.000" y="806.350" font-size="22" font-weight="400" fill="#111827">Blackhole route로 spoke CIDR 명시적 드롭</text>
+<text data-source="root.0.2.1.1" x="996.000" y="734.250" font-size="28" font-weight="700" fill="#111827">Shared route table</text>
+<text data-source="root.0.2.1.1" x="996.000" y="776.650" font-size="22" font-weight="400" fill="#111827">Shared attachment의 lookup 대상. spoke/VPN을 포함한 attachment route</text>
+<text data-source="root.0.2.1.1" x="996.000" y="806.350" font-size="22" font-weight="400" fill="#111827">수신</text>
+<text data-source="root.0.3" x="64.000" y="908.050" font-size="22" font-weight="400" fill="#111827">Association은 attachment가 조회할 table 하나를 선택합니다. Propagation은 attachment의 route를 table에 싣는 설정이며 packet forwarding hop이 아닙니다.</text>
+</svg>

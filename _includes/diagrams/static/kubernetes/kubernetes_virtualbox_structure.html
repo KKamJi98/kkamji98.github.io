@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="kubernetes-virtualbox-structure" aria-labelledby="kubernetes-virtualbox-structure-title">
-  <figcaption class="sd-title" id="kubernetes-virtualbox-structure-title">VirtualBox Kubernetes 실습은 NAT와 private network를 분리합니다</figcaption>
+<figure class="sd sd--layers sd--fhd" id="kubernetes-virtualbox-structure" aria-labelledby="kubernetes-virtualbox-structure-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="kubernetes-virtualbox-structure-title">VirtualBox Kubernetes 실습은 NAT와 private network를 분리합니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">Vagrant로 만든 세 VM은 모두 NAT <code>eth0=10.0.2.15</code>를 공유하고, 노드 간 통신과 Kubernetes 주소는 private <code>eth1</code>를 사용합니다.</p>
 
   <div class="sd-stack">
@@ -71,4 +71,53 @@
     </section>
   </div>
 
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="b8eabf6a5f3138aae8818492e1341f29cc10498327e8d0a6375fb264af782a4a">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="236.900" width="1792.000" height="499.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.2.0" x="84.000" y="356.300" width="570.667" height="229.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.2.1" x="674.667" y="356.300" width="570.667" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0.2.2" x="1265.333" y="356.300" width="570.667" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="64.000" y="756.100" width="1792.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.0.1.0" x="104.000" y="428.700" width="255.333" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.0.1.1" x="379.333" y="428.700" width="255.333" height="137.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.1.1.0" x="694.667" y="428.700" width="255.333" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.1.1.1" x="970.000" y="428.700" width="255.333" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.2.1.0" x="1285.333" y="428.700" width="255.333" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.2.2.1.1" x="1560.667" y="428.700" width="255.333" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.3" x="84.000" y="605.900" width="1752.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="116.000" y="828.500" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1032.000" y="828.500" width="772.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 900.000 883.600 L 1020.000 883.600" fill="none" stroke="#475569" stroke-width="3"><title>명시적 node IP</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1020.000,883.600 1010.000,889.600 1010.000,877.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="157.300" font-size="36" font-weight="700" fill="#111827">VirtualBox Kubernetes 실습은 NAT와 private network를 분리합니다</text>
+<text data-source="root.0.1" x="64.000" y="209.900" font-size="20" font-weight="400" fill="#111827">Vagrant로 만든 세 VM은 모두 NAT eth0=10.0.2.15를 공유하고, 노드 간 통신과 Kubernetes 주소는 private eth1를 사용합니다.</text>
+<text data-source="root.0.2.0.0" x="84.000" y="280.900" font-size="24" font-weight="700" fill="#111827">Kubernetes Cluster</text>
+<text data-source="root.0.2.0.1" x="84.000" y="329.300" font-size="20" font-weight="400" fill="#111827">kubeadm Pod CIDR: 10.244.0.0/16. CNI를 설치하기 전에는 모든 노드가 NotReady입니다.</text>
+<text data-source="root.0.2.0.2.0.0" x="104.000" y="400.300" font-size="24" font-weight="700" fill="#111827">cilium-m1</text>
+<text data-source="root.0.2.0.2.0.1.0" x="124.000" y="472.700" font-size="24" font-weight="700" fill="#111827">eth0 NAT</text>
+<text data-source="root.0.2.0.2.0.1.0" x="124.000" y="511.900" font-size="20" font-weight="400" fill="#111827">10.0.2.15, default route</text>
+<text data-source="root.0.2.0.2.0.1.1" x="399.333" y="472.700" font-size="24" font-weight="700" fill="#111827">eth1</text>
+<text data-source="root.0.2.0.2.0.1.1" x="399.333" y="511.900" font-size="20" font-weight="400" fill="#111827">192.168.10.100, control</text>
+<text data-source="root.0.2.0.2.0.1.1" x="399.333" y="538.900" font-size="20" font-weight="400" fill="#111827">plane</text>
+<text data-source="root.0.2.0.2.1.0" x="694.667" y="400.300" font-size="24" font-weight="700" fill="#111827">cilium-w1</text>
+<text data-source="root.0.2.0.2.1.1.0" x="714.667" y="472.700" font-size="24" font-weight="700" fill="#111827">eth0 NAT</text>
+<text data-source="root.0.2.0.2.1.1.0" x="714.667" y="511.900" font-size="20" font-weight="400" fill="#111827">10.0.2.15, default route</text>
+<text data-source="root.0.2.0.2.1.1.1" x="990.000" y="472.700" font-size="24" font-weight="700" fill="#111827">eth1</text>
+<text data-source="root.0.2.0.2.1.1.1" x="990.000" y="511.900" font-size="20" font-weight="400" fill="#111827">192.168.10.101, worker</text>
+<text data-source="root.0.2.0.2.2.0" x="1285.333" y="400.300" font-size="24" font-weight="700" fill="#111827">cilium-w2</text>
+<text data-source="root.0.2.0.2.2.1.0" x="1305.333" y="472.700" font-size="24" font-weight="700" fill="#111827">eth0 NAT</text>
+<text data-source="root.0.2.0.2.2.1.0" x="1305.333" y="511.900" font-size="20" font-weight="400" fill="#111827">10.0.2.15, default route</text>
+<text data-source="root.0.2.0.2.2.1.1" x="1580.667" y="472.700" font-size="24" font-weight="700" fill="#111827">eth1</text>
+<text data-source="root.0.2.0.2.2.1.1" x="1580.667" y="511.900" font-size="20" font-weight="400" fill="#111827">192.168.10.102, worker</text>
+<text data-source="root.0.2.0.3" x="104.000" y="649.900" font-size="24" font-weight="700" fill="#111827">VirtualBox Private Network</text>
+<text data-source="root.0.2.0.3" x="104.000" y="689.100" font-size="20" font-weight="400" fill="#111827">192.168.10.0/24에서 VM 간 통신과 API advertise가 이뤄집니다.</text>
+<text data-source="root.0.2.1.0" x="84.000" y="800.100" font-size="24" font-weight="700" fill="#111827">Node address selection</text>
+<text data-source="root.0.2.1.1.0" x="136.000" y="872.500" font-size="24" font-weight="700" fill="#111827">kubelet default route</text>
+<text data-source="root.0.2.1.1.0" x="136.000" y="911.700" font-size="20" font-weight="400" fill="#111827">worker가 default route의 eth0 주소를 고르면 INTERNAL-IP가 10.0.2.15가 됩니다.</text>
+<text data-source="root.0.2.1.1.2" x="1052.000" y="872.500" font-size="24" font-weight="700" fill="#111827">JoinConfiguration --node-ip</text>
+<text data-source="root.0.2.1.1.2" x="1052.000" y="911.700" font-size="20" font-weight="400" fill="#111827">각 worker를 192.168.10.101, 192.168.10.102로 고정합니다.</text>
+<text data-source="root.0.2.1.1.1" x="892.000" y="864.600" font-size="20" font-weight="400" fill="#111827">명시적 node IP</text>
+</svg>
 </figure>

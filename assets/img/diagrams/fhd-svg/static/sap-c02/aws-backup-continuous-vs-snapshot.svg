@@ -1,0 +1,49 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="c239ea5a820a4eb3368a72269dc8c4e20d5dd704a2ec84015156feea3943c130">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.2.0" x="1032.000" y="140.750" width="384.000" height="698.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1" x="1440.000" y="140.750" width="384.000" height="871.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="140.750" width="792.000" height="871.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="513.250" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.0" x="1056.000" y="226.550" width="336.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.1" x="1056.000" y="442.750" width="336.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1.2" x="1056.000" y="622.550" width="336.000" height="192.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.0" x="1464.000" y="226.550" width="336.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.1" x="1464.000" y="406.350" width="336.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.2" x="1464.000" y="622.550" width="336.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.3" x="1464.000" y="832.050" width="336.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 576.300 L 1020.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>plan에 두 종류 rule을 함께 둘 수 있음</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,576.300 1010.000,582.300 1010.000,570.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="104.150" font-size="36" font-weight="700" fill="#111827">AWS Backup rule별 보존 경로</text>
+<text data-source="root.0.1.0" x="120.000" y="565.250" font-size="28" font-weight="700" fill="#111827">Backup plan</text>
+<text data-source="root.0.1.0" x="120.000" y="607.650" font-size="22" font-weight="400" fill="#111827">리소스 1개당 continuous backup rule은 1개</text>
+<text data-source="root.0.1.2.0.0" x="1056.000" y="192.750" font-size="28" font-weight="700" fill="#111827">Continuous backup</text>
+<text data-source="root.0.1.2.0.1.0" x="1080.000" y="278.550" font-size="28" font-weight="700" fill="#111827">continuous backup</text>
+<text data-source="root.0.1.2.0.1.0" x="1080.000" y="314.950" font-size="28" font-weight="700" fill="#111827">rule</text>
+<text data-source="root.0.1.2.0.1.0" x="1080.000" y="357.350" font-size="22" font-weight="400" fill="#111827">1초 정밀도, 최대 35일, 최초 full</text>
+<text data-source="root.0.1.2.0.1.0" x="1080.000" y="387.050" font-size="22" font-weight="400" fill="#111827">뒤 transaction log 연결</text>
+<text data-source="root.0.1.2.0.1.1" x="1080.000" y="494.750" font-size="28" font-weight="700" fill="#111827">warm storage에 유지</text>
+<text data-source="root.0.1.2.0.1.1" x="1080.000" y="537.150" font-size="22" font-weight="400" fill="#111827">35일 상한이 cold 전환 최소</text>
+<text data-source="root.0.1.2.0.1.1" x="1080.000" y="566.850" font-size="22" font-weight="400" fill="#111827">90일 조건과 충돌</text>
+<text data-source="root.0.1.2.0.1.2" x="1080.000" y="674.550" font-size="28" font-weight="700" fill="#111827">RDS는 continuous 사본</text>
+<text data-source="root.0.1.2.0.1.2" x="1080.000" y="710.950" font-size="28" font-weight="700" fill="#111827">불가</text>
+<text data-source="root.0.1.2.0.1.2" x="1080.000" y="753.350" font-size="22" font-weight="400" fill="#111827">transaction log 복사 대신</text>
+<text data-source="root.0.1.2.0.1.2" x="1080.000" y="783.050" font-size="22" font-weight="400" fill="#111827">snapshot을 만들어 복사</text>
+<text data-source="root.0.1.2.1.0" x="1464.000" y="192.750" font-size="28" font-weight="700" fill="#111827">Snapshot backup</text>
+<text data-source="root.0.1.2.1.1.0" x="1488.000" y="278.550" font-size="28" font-weight="700" fill="#111827">snapshot backup rule</text>
+<text data-source="root.0.1.2.1.1.0" x="1488.000" y="320.950" font-size="22" font-weight="400" fill="#111827">최소 1시간 주기, 최장 100년</text>
+<text data-source="root.0.1.2.1.1.0" x="1488.000" y="350.650" font-size="22" font-weight="400" fill="#111827">보존</text>
+<text data-source="root.0.1.2.1.1.1" x="1488.000" y="458.350" font-size="28" font-weight="700" fill="#111827">cross-Region 및</text>
+<text data-source="root.0.1.2.1.1.1" x="1488.000" y="494.750" font-size="28" font-weight="700" fill="#111827">cross-account copy</text>
+<text data-source="root.0.1.2.1.1.1" x="1488.000" y="537.150" font-size="22" font-weight="400" fill="#111827">첫 복사는 full, 같은 vault와</text>
+<text data-source="root.0.1.2.1.1.1" x="1488.000" y="566.850" font-size="22" font-weight="400" fill="#111827">key면 이후 incremental</text>
+<text data-source="root.0.1.2.1.1.2" x="1488.000" y="674.550" font-size="28" font-weight="700" fill="#111827">cold storage 전환</text>
+<text data-source="root.0.1.2.1.1.2" x="1488.000" y="716.950" font-size="22" font-weight="400" fill="#111827">지원 리소스에 한해 가능, RDS와</text>
+<text data-source="root.0.1.2.1.1.2" x="1488.000" y="746.650" font-size="22" font-weight="400" fill="#111827">Aurora와 EC2와 S3는 지원 표시</text>
+<text data-source="root.0.1.2.1.1.2" x="1488.000" y="776.350" font-size="22" font-weight="400" fill="#111827">없음</text>
+<text data-source="root.0.1.2.1.1.3" x="1488.000" y="884.050" font-size="28" font-weight="700" fill="#111827">cold tier는 복사 불가</text>
+<text data-source="root.0.1.2.1.1.3" x="1488.000" y="926.450" font-size="22" font-weight="400" fill="#111827">cross-Region copy 미지원,</text>
+<text data-source="root.0.1.2.1.1.3" x="1488.000" y="956.150" font-size="22" font-weight="400" fill="#111827">최소 90일 보관</text>
+<text data-source="root.0.1.1" x="892.000" y="497.200" font-size="22" font-weight="400" fill="#111827">plan에 두 종류</text>
+<text data-source="root.0.1.1" x="892.000" y="526.900" font-size="22" font-weight="400" fill="#111827">rule을 함께 둘</text>
+<text data-source="root.0.1.1" x="892.000" y="556.600" font-size="22" font-weight="400" fill="#111827">수 있음</text>
+</svg>

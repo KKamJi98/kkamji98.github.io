@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-spring-16-entity-states" aria-labelledby="sd-spring-16-title">
-  <figcaption class="sd-title" id="sd-spring-16-title">JPA 엔티티의 네 상태와 전이</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-spring-16-entity-states" aria-labelledby="sd-spring-16-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-spring-16-title">JPA 엔티티의 네 상태와 전이</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node"><strong class="sd-label">transient (new)</strong><span class="sd-detail">어떤 persistence context에도 속하지 않음</span></div>
     <div class="sd-arrow"><span class="sd-edge-label">persist()</span></div>
@@ -30,4 +30,56 @@
       </section>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1a7329ed82c49640e93d0060c519c17b5a1494ab55aaeba07d33bcc18c99b93a">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.3.0" x="64.000" y="527.600" width="584.000" height="435.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.3.1" x="668.000" y="527.600" width="584.000" height="512.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.3.2" x="1272.000" y="527.600" width="584.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="148.200" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="64.000" y="357.400" width="1792.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3.0.1.0" x="116.000" y="600.000" width="480.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.0.1.2" x="116.000" y="833.200" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1.1.0" x="688.000" y="600.000" width="544.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1.1.2" x="688.000" y="809.200" width="544.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.2.1.0" x="1292.000" y="600.000" width="544.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.3.0.1.1" data-from="root.0.1.3.0.1.0" data-to="root.0.1.3.0.1.2" d="M 608.000 668.600 L 620.000 668.600 L 620.000 785.200 L 92.000 785.200 L 92.000 888.300 L 104.000 888.300" fill="none" stroke="#475569" stroke-width="3"><title>동기화</title></path>
+<polygon data-arrowhead="root.0.1.3.0.1.1" points="104.000,888.300 94.000,894.300 94.000,882.300" fill="#475569"/>
+<path data-edge="root.0.1.3.1.1.1" data-from="root.0.1.3.1.1.0" data-to="root.0.1.3.1.1.2" d="M 960.000 722.200 L 960.000 797.200" fill="none" stroke="#475569" stroke-width="3"><title>merge()</title></path>
+<polygon data-arrowhead="root.0.1.3.1.1.1" points="960.000,797.200 954.000,787.200 966.000,787.200" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 960.000 270.400 L 960.000 345.400" fill="none" stroke="#475569" stroke-width="3"><title>persist()</title></path>
+<polygon data-arrowhead="root.0.1.1" points="960.000,345.400 954.000,335.400 966.000,335.400" fill="#475569"/>
+<path data-edge="managed-transition.0" data-from="root.0.1.2" data-to="root.0.1.3.0.1.0" d="M 960.000 479.600 L 960.000 533.800 L 356.000 533.800 L 356.000 588.000" fill="none" stroke="#475569" stroke-width="3"><title>추적된 변경</title></path>
+<polygon data-arrowhead="managed-transition.0" points="356.000,588.000 350.000,578.000 362.000,578.000" fill="#475569"/>
+<path data-edge="managed-transition.1" data-from="root.0.1.2" data-to="root.0.1.3.1.1.0" d="M 960.000 479.600 L 960.000 533.800 L 960.000 533.800 L 960.000 588.000" fill="none" stroke="#475569" stroke-width="3"><title>context에서 분리</title></path>
+<polygon data-arrowhead="managed-transition.1" points="960.000,588.000 954.000,578.000 966.000,578.000" fill="#475569"/>
+<path data-edge="managed-transition.2" data-from="root.0.1.2" data-to="root.0.1.3.2.1.0" d="M 960.000 479.600 L 960.000 533.800 L 1564.000 533.800 L 1564.000 588.000" fill="none" stroke="#475569" stroke-width="3"><title>삭제 예약</title></path>
+<polygon data-arrowhead="managed-transition.2" points="1564.000,588.000 1558.000,578.000 1570.000,578.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="115.600" font-size="36" font-weight="700" fill="#111827">JPA 엔티티의 네 상태와 전이</text>
+<text data-source="root.0.1.0" x="84.000" y="192.200" font-size="24" font-weight="700" fill="#111827">transient (new)</text>
+<text data-source="root.0.1.0" x="84.000" y="231.400" font-size="20" font-weight="400" fill="#111827">어떤 persistence context에도 속하지 않음</text>
+<text data-source="root.0.1.2" x="84.000" y="401.400" font-size="24" font-weight="700" fill="#111827">managed (persistent)</text>
+<text data-source="root.0.1.2" x="84.000" y="440.600" font-size="20" font-weight="400" fill="#111827">context가 추적하며 변경이 dirty checking 대상</text>
+<text data-source="root.0.1.3.0.0" x="84.000" y="571.600" font-size="24" font-weight="700" fill="#111827">추적된 변경</text>
+<text data-source="root.0.1.3.0.1.0" x="136.000" y="644.000" font-size="24" font-weight="700" fill="#111827">flush</text>
+<text data-source="root.0.1.3.0.1.0" x="136.000" y="683.200" font-size="20" font-weight="400" fill="#111827">context가 추적한 상태를 Database에 INSERT,</text>
+<text data-source="root.0.1.3.0.1.0" x="136.000" y="710.200" font-size="20" font-weight="400" fill="#111827">UPDATE로 기록</text>
+<text data-source="root.0.1.3.0.1.2" x="136.000" y="877.200" font-size="24" font-weight="700" fill="#111827">Database</text>
+<text data-source="root.0.1.3.0.1.2" x="136.000" y="916.400" font-size="20" font-weight="400" fill="#111827">트랜잭션 commit 전까지 rollback 가능</text>
+<text data-source="root.0.1.3.0.1.1" x="124.000" y="777.200" font-size="20" font-weight="400" fill="#111827">동기화</text>
+<text data-source="root.0.1.3.1.0" x="688.000" y="571.600" font-size="24" font-weight="700" fill="#111827">context에서 분리</text>
+<text data-source="root.0.1.3.1.1.0" x="708.000" y="644.000" font-size="24" font-weight="700" fill="#111827">detached</text>
+<text data-source="root.0.1.3.1.1.0" x="708.000" y="683.200" font-size="20" font-weight="400" fill="#111827">id는 있지만 더 이상 추적되지 않음</text>
+<text data-source="root.0.1.3.1.1.2" x="708.000" y="853.200" font-size="24" font-weight="700" fill="#111827">managed copy</text>
+<text data-source="root.0.1.3.1.1.2" x="708.000" y="892.400" font-size="20" font-weight="400" fill="#111827">merge()가 반환한 인스턴스만 다시 context에서 추적</text>
+<text data-source="root.0.1.3.1.1.3" x="688.000" y="959.400" font-size="20" font-weight="400" fill="#111827">detach(), clear(), close(), 트랜잭션 종료로 detached가</text>
+<text data-source="root.0.1.3.1.1.3" x="688.000" y="986.400" font-size="20" font-weight="400" fill="#111827">됩니다. 원래 detached 인스턴스를 수정해도 dirty</text>
+<text data-source="root.0.1.3.1.1.3" x="688.000" y="1013.400" font-size="20" font-weight="400" fill="#111827">checking이 작동하지 않습니다.</text>
+<text data-source="root.0.1.3.1.1.1" x="980.000" y="766.200" font-size="20" font-weight="400" fill="#111827">merge()</text>
+<text data-source="root.0.1.3.2.0" x="1292.000" y="571.600" font-size="24" font-weight="700" fill="#111827">삭제 예약</text>
+<text data-source="root.0.1.3.2.1.0" x="1312.000" y="644.000" font-size="24" font-weight="700" fill="#111827">removed</text>
+<text data-source="root.0.1.3.2.1.0" x="1312.000" y="683.200" font-size="20" font-weight="400" fill="#111827">remove() 호출 후 flush 시 DELETE 예약</text>
+<text data-source="root.0.1.1" x="980.000" y="314.400" font-size="20" font-weight="400" fill="#111827">persist()</text>
+</svg>
 </figure>

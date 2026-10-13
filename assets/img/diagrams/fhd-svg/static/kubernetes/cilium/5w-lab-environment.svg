@@ -1,0 +1,27 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="0b207fe9f3444e7646190906c7337e75920508775e4cb3a4c3817af8e2da5c2b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="183.650" width="1792.000" height="549.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.0" x="88.000" y="269.450" width="860.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.1" x="972.000" y="269.450" width="860.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.1" x="112.000" y="355.250" width="812.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.2" x="112.000" y="505.350" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="996.000" y="355.250" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="842.850" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 745.150 L 960.000 830.850" fill="none" stroke="#475569" stroke-width="3"><title>두 underlay segment 사이 라우팅</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,830.850 954.000,820.850 966.000,820.850" fill="#475569"/>
+<polygon data-arrowhead="root.0.2.reverse" points="960.000,745.150 966.000,755.150 954.000,755.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="147.050" font-size="36" font-weight="700" fill="#111827">두 underlay 대역을 사용하는 Cilium 실습 cluster와 외부 router</text>
+<text data-source="root.0.1.0" x="88.000" y="235.650" font-size="28" font-weight="700" fill="#111827">Kubernetes cluster boundary</text>
+<text data-source="root.0.1.1.0.0" x="112.000" y="321.450" font-size="28" font-weight="700" fill="#111827">192.168.10.0/24</text>
+<text data-source="root.0.1.1.0.1" x="136.000" y="407.250" font-size="28" font-weight="700" fill="#111827">k8s-ctr</text>
+<text data-source="root.0.1.1.0.1" x="136.000" y="449.650" font-size="22" font-weight="400" fill="#111827">control plane, eth1 192.168.10.100</text>
+<text data-source="root.0.1.1.0.2" x="136.000" y="557.350" font-size="28" font-weight="700" fill="#111827">k8s-w1</text>
+<text data-source="root.0.1.1.0.2" x="136.000" y="599.750" font-size="22" font-weight="400" fill="#111827">worker, eth1 192.168.10.101</text>
+<text data-source="root.0.1.1.1.0" x="996.000" y="321.450" font-size="28" font-weight="700" fill="#111827">192.168.20.0/24</text>
+<text data-source="root.0.1.1.1.1" x="1020.000" y="407.250" font-size="28" font-weight="700" fill="#111827">k8s-w0</text>
+<text data-source="root.0.1.1.1.1" x="1020.000" y="449.650" font-size="22" font-weight="400" fill="#111827">worker, enp0s8 192.168.20.100</text>
+<text data-source="root.0.1.2" x="88.000" y="701.450" font-size="22" font-weight="400" fill="#111827">Pod CIDR: 172.20.0.0/16</text>
+<text data-source="root.0.3" x="88.000" y="894.850" font-size="28" font-weight="700" fill="#111827">FRR Router</text>
+<text data-source="root.0.3" x="88.000" y="937.250" font-size="22" font-weight="400" fill="#111827">cluster 밖 독립 서버. eth1: 192.168.10.200 (192.168.10.0/24); eth2: 192.168.20.200 (192.168.20.0/24). loop1: 10.10.1.200/32; loop2: 10.10.2.200/32</text>
+<text data-source="root.0.2" x="980.000" y="795.150" font-size="22" font-weight="400" fill="#111827">두 underlay segment 사이 라우팅</text>
+</svg>

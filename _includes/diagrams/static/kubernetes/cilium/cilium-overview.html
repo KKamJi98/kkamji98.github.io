@@ -1,5 +1,5 @@
-<figure class="sd sd--layers sd--flow" id="sd-kubernetes-cilium-overview" aria-labelledby="sd-kubernetes-cilium-overview-title">
-  <figcaption class="sd-title" id="sd-kubernetes-cilium-overview-title">Cilium의 control input은 kernel BPF program으로 내려간다</figcaption>
+<figure class="sd sd--layers sd--flow sd--fhd" id="sd-kubernetes-cilium-overview" aria-labelledby="sd-kubernetes-cilium-overview-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-overview-title">Cilium의 control input은 kernel BPF program으로 내려간다</figcaption><div class="sd-semantic-source">
   <section class="sd-band">
     <div class="sd-band-title">Cilium layer</div>
     <div class="sd-grid">
@@ -60,4 +60,55 @@
       </div>
     </div>
   </section>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e0834ec5279f1f8d1cdba61137d5739469c58d45d462bbf5bb677509bacfac65">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="178.600" width="1792.000" height="434.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="689.000" width="1792.000" height="271.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="74.000" y="220.200" width="1772.000" height="153.400" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-source="root.0.3.3" x="74.000" y="878.300" width="1772.000" height="71.700" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.0" x="106.000" y="220.200" width="336.500" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.2" x="586.500" y="220.200" width="336.500" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="965.000" y="220.200" width="881.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="74.000" y="301.900" width="881.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="74.000" y="449.600" width="1772.000" height="71.700" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="74.000" y="531.300" width="1772.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="74.000" y="730.600" width="1772.000" height="71.700" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.3.0" x="74.000" y="878.300" width="881.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.3.1" x="965.000" y="878.300" width="881.000" height="71.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.0.1" data-from="root.0.1.1.0.0" data-to="root.0.1.1.0.2" d="M 454.500 256.050 L 574.500 256.050" fill="none" stroke="#475569" stroke-width="3"><title>plugin event</title></path>
+<polygon data-arrowhead="root.0.1.1.0.1" points="574.500,256.050 564.500,262.050 564.500,250.050" fill="#475569"/>
+<path data-edge="root.0.1.2" data-from="root.0.1.1" data-to="root.0.1.3" d="M 960.000 385.600 L 960.000 437.600" fill="none" stroke="#475569" stroke-width="3"><title>독립 구성 입력</title></path>
+<polygon data-arrowhead="root.0.1.2" points="960.000,437.600 954.000,427.600 966.000,427.600" fill="#475569"/>
+<path data-edge="root.0.3.2" data-from="root.0.3.1" data-to="root.0.3.3" d="M 960.000 814.300 L 960.000 866.300" fill="none" stroke="#475569" stroke-width="3"><title>host interface와 workload hook에 독립 fan-out</title></path>
+<polygon data-arrowhead="root.0.3.2" points="960.000,866.300 954.000,856.300 966.000,856.300" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 625.000 L 960.000 677.000" fill="none" stroke="#475569" stroke-width="3"><title>bytecode injection</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,677.000 954.000,667.000 966.000,667.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="156.000" font-size="36" font-weight="700" fill="#111827">Cilium의 control input은 kernel BPF program으로 내려간다</text>
+<text data-source="root.0.1.0" x="74.000" y="204.600" font-size="16" font-weight="700" fill="#111827">Cilium layer</text>
+<text data-source="root.0.1.1.0.0" x="116.000" y="246.200" font-size="16" font-weight="700" fill="#111827">Orchestration systems</text>
+<text data-source="root.0.1.1.0.0" x="116.000" y="277.000" font-size="14" font-weight="400" fill="#111827">resource와 status를 Cilium Plugins와 교환합니다.</text>
+<text data-source="root.0.1.1.0.2" x="596.500" y="246.200" font-size="16" font-weight="700" fill="#111827">Cilium Plugins</text>
+<text data-source="root.0.1.1.0.2" x="596.500" y="277.000" font-size="14" font-weight="400" fill="#111827">orchestration API를 daemon 입력으로 전달합니다.</text>
+<text data-source="root.0.1.1.0.1" x="446.500" y="239.150" font-size="14" font-weight="400" fill="#111827">plugin event</text>
+<text data-source="root.0.1.1.1" x="975.000" y="246.200" font-size="16" font-weight="700" fill="#111827">Cilium CLI</text>
+<text data-source="root.0.1.1.1" x="975.000" y="277.000" font-size="14" font-weight="400" fill="#111827">운영자의 상태 조회와 정책 명령입니다.</text>
+<text data-source="root.0.1.1.2" x="84.000" y="327.900" font-size="16" font-weight="700" fill="#111827">Policy Repository</text>
+<text data-source="root.0.1.1.2" x="84.000" y="358.700" font-size="14" font-weight="400" fill="#111827">적용할 network policy의 원천입니다.</text>
+<text data-source="root.0.1.3" x="84.000" y="475.600" font-size="16" font-weight="700" fill="#111827">Cilium Daemon</text>
+<text data-source="root.0.1.3" x="84.000" y="506.400" font-size="14" font-weight="400" fill="#111827">Code Generation으로 node datapath와 정책을 구성하고 상태 조회를 처리합니다.</text>
+<text data-source="root.0.1.4" x="84.000" y="557.300" font-size="16" font-weight="700" fill="#111827">Cilium Monitor</text>
+<text data-source="root.0.1.4" x="84.000" y="588.100" font-size="14" font-weight="400" fill="#111827">datapath event 관찰. 구성 입력 경로와 구분합니다.</text>
+<text data-source="root.0.1.2" x="980.000" y="416.150" font-size="14" font-weight="400" fill="#111827">독립 구성 입력</text>
+<text data-source="root.0.3.0" x="74.000" y="715.000" font-size="16" font-weight="700" fill="#111827">Linux kernel data plane</text>
+<text data-source="root.0.3.1" x="84.000" y="756.600" font-size="16" font-weight="700" fill="#111827">BPF Programs</text>
+<text data-source="root.0.3.1" x="84.000" y="787.400" font-size="14" font-weight="400" fill="#111827">여러 network path에 적용하는 program 집합</text>
+<text data-source="root.0.3.3.0" x="84.000" y="904.300" font-size="16" font-weight="700" fill="#111827">eth0</text>
+<text data-source="root.0.3.3.0" x="84.000" y="935.100" font-size="14" font-weight="400" fill="#111827">host network interface에서 packet을 처리합니다.</text>
+<text data-source="root.0.3.3.1" x="975.000" y="904.300" font-size="16" font-weight="700" fill="#111827">Containers</text>
+<text data-source="root.0.3.3.1" x="975.000" y="935.100" font-size="14" font-weight="400" fill="#111827">각 workload network path에 policy와 관측을 적용합니다.</text>
+<text data-source="root.0.3.2" x="980.000" y="844.850" font-size="14" font-weight="400" fill="#111827">host interface와 workload hook에 독립 fan-out</text>
+<text data-source="root.0.2" x="980.000" y="655.550" font-size="14" font-weight="400" fill="#111827">bytecode injection</text>
+</svg>
 </figure>

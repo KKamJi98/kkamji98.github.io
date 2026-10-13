@@ -49,7 +49,7 @@ class ProductionBrowserTests(unittest.TestCase):
             cmd = [sys.executable, str(Path(pipeline.__file__)), '--site', str(site), '--page','index.html','--figure','test','--out',str(root/'out'),'--font-bundle',str(lock)]
             run = subprocess.run(cmd, capture_output=True, text=True)
             self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
-            receipt = json.loads((root/'out/test-625-light.json').read_text())
+            receipt = json.loads((root/'out/test-1920x1080-light.json').read_text())
             self.assertEqual(receipt['font_policy']['status'], 'pinned-web-fonts')
             self.assertFalse(receipt['font_policy']['production_identical'])
             self.assertIn(pipeline.digest(font.read_bytes()), receipt['inputs']['loaded_font_binaries'].values())

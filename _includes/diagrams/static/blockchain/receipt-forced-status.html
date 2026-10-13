@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-blockchain-receipt-forced-status" aria-labelledby="sd-title-blockchain-receipt-forced-status">
-  <figcaption class="sd-title" id="sd-title-blockchain-receipt-forced-status">강제 gas limit은 실패한 receipt도 block에 기록합니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-blockchain-receipt-forced-status" aria-labelledby="sd-title-blockchain-receipt-forced-status" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-blockchain-receipt-forced-status">강제 gas limit은 실패한 receipt도 block에 기록합니다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">cast send --gas-limit 100000</strong>
@@ -17,4 +17,28 @@
     </div>
   </div>
   <p class="sd-note">status 0x0이어도 실제 실행에 사용한 gasUsed 21492는 지불됩니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="df842be15cea5e36cefce3cc2fbdeaad678cde3e8cc95e8a79e7de558687a67e">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 549.450 L 708.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>estimate 건너뜀</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,549.450 698.000,555.450 698.000,543.450" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 549.450 L 1332.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>실패 실행도 포함</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,549.450 1322.000,555.450 1322.000,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="441.450" font-size="36" font-weight="700" fill="#111827">강제 gas limit은 실패한 receipt도 block에 기록합니다</text>
+<text data-source="root.0.1.0" x="120.000" y="538.400" font-size="28" font-weight="700" fill="#111827">cast send --gas-limit 100000</text>
+<text data-source="root.0.1.0" x="120.000" y="580.800" font-size="22" font-weight="400" fill="#111827">estimate 생략</text>
+<text data-source="root.0.1.2" x="744.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Anvil block 0x5</text>
+<text data-source="root.0.1.2" x="744.000" y="580.800" font-size="22" font-weight="400" fill="#111827">tx 0x5e5d58bb</text>
+<text data-source="root.0.1.4" x="1368.000" y="538.400" font-size="28" font-weight="700" fill="#111827">receipt status 0x0</text>
+<text data-source="root.0.1.4" x="1368.000" y="580.800" font-size="22" font-weight="400" fill="#111827">gasUsed 21492, revert boom</text>
+<text data-source="root.0.1.1" x="580.000" y="500.050" font-size="22" font-weight="400" fill="#111827">estimate</text>
+<text data-source="root.0.1.1" x="580.000" y="529.750" font-size="22" font-weight="400" fill="#111827">건너뜀</text>
+<text data-source="root.0.1.3" x="1204.000" y="500.050" font-size="22" font-weight="400" fill="#111827">실패 실행도</text>
+<text data-source="root.0.1.3" x="1204.000" y="529.750" font-size="22" font-weight="400" fill="#111827">포함</text>
+<text data-source="root.0.2" x="64.000" y="666.850" font-size="22" font-weight="400" fill="#111827">status 0x0이어도 실제 실행에 사용한 gasUsed 21492는 지불됩니다.</text>
+</svg>
 </figure>

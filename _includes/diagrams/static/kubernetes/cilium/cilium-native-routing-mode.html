@@ -1,5 +1,5 @@
-<figure class="sd sd--layers sd--comparison" id="sd-kubernetes-cilium-native-routing-mode" aria-labelledby="sd-kubernetes-cilium-native-routing-mode-title">
-  <figcaption class="sd-title" id="sd-kubernetes-cilium-native-routing-mode-title">Cilium Native Routing은 node route table에서 remote PodCIDR를 찾는다</figcaption>
+<figure class="sd sd--layers sd--comparison sd--fhd" id="sd-kubernetes-cilium-native-routing-mode" aria-labelledby="sd-kubernetes-cilium-native-routing-mode-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-kubernetes-cilium-native-routing-mode-title">Cilium Native Routing은 node route table에서 remote PodCIDR를 찾는다</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane sd-lane--accent" aria-label="Node 1 native routing path">
       <div class="sd-lane-title">Node 1</div>
@@ -51,4 +51,72 @@
     </section>
   </div>
   <p class="sd-note">Native Routing에서는 Cilium이 모든 node의 PodCIDR를 직접 캡슐화하지 않습니다. 각 node의 route table이 local /32와 remote /24 경로를 구분하고 underlay next hop을 선택합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="20b2db0fb9442bbd946051ec5c077187dd0b78e53254f9d31d5f134b33987f3f">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="257.700" width="884.000" height="583.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="257.700" width="884.000" height="583.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="343.500" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="361.700" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.4" x="120.000" y="631.700" width="314.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.6" x="578.000" y="646.550" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="343.500" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1486.000" y="361.700" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1028.000" y="631.700" width="314.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.6" x="1486.000" y="631.700" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 439.600 L 566.000 439.600" fill="none" stroke="#475569" stroke-width="3"><title>lxc device</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,439.600 556.000,445.600 556.000,433.600" fill="#475569"/>
+<path data-edge="root.0.1.0.1.3" data-from="root.0.1.0.1.2" data-to="root.0.1.0.1.4" d="M 904.000 439.600 L 916.000 439.600 L 916.000 583.700 L 96.000 583.700 L 96.000 724.450 L 108.000 724.450" fill="none" stroke="#475569" stroke-width="3"><title>eBPF datapath</title></path>
+<polygon data-arrowhead="root.0.1.0.1.3" points="108.000,724.450 98.000,730.450 98.000,718.450" fill="#475569"/>
+<path data-edge="root.0.1.0.1.5" data-from="root.0.1.0.1.4" data-to="root.0.1.0.1.6" d="M 446.000 724.450 L 566.000 724.450" fill="none" stroke="#475569" stroke-width="3"><title>underlay next hop</title></path>
+<polygon data-arrowhead="root.0.1.0.1.5" points="566.000,724.450 556.000,730.450 556.000,718.450" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1354.000 439.600 L 1474.000 439.600" fill="none" stroke="#475569" stroke-width="3"><title>lxc device</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1474.000,439.600 1464.000,445.600 1464.000,433.600" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1812.000 439.600 L 1824.000 439.600 L 1824.000 583.700 L 1004.000 583.700 L 1004.000 724.450 L 1016.000 724.450" fill="none" stroke="#475569" stroke-width="3"><title>eBPF datapath</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1016.000,724.450 1006.000,730.450 1006.000,718.450" fill="#475569"/>
+<path data-edge="root.0.1.1.1.5" data-from="root.0.1.1.1.4" data-to="root.0.1.1.1.6" d="M 1354.000 724.450 L 1474.000 724.450" fill="none" stroke="#475569" stroke-width="3"><title>underlay next hop</title></path>
+<polygon data-arrowhead="root.0.1.1.1.5" points="1474.000,724.450 1464.000,730.450 1464.000,718.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="221.100" font-size="36" font-weight="700" fill="#111827">Cilium Native Routing은 node route table에서 remote PodCIDR를 찾는다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="309.700" font-size="28" font-weight="700" fill="#111827">Node 1</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="395.500" font-size="28" font-weight="700" fill="#111827">Pods 10.10.10.1,</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="431.900" font-size="28" font-weight="700" fill="#111827">10.10.10.2</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="474.300" font-size="22" font-weight="400" fill="#111827">각 Pod의 virtual interface가</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="504.000" font-size="22" font-weight="400" fill="#111827">node 안으로 연결됩니다.</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="413.700" font-size="28" font-weight="700" fill="#111827">lxc1 / lxc2</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="456.100" font-size="22" font-weight="400" fill="#111827">Pod별 endpoint를 host</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="485.800" font-size="22" font-weight="400" fill="#111827">network path에 붙입니다.</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="683.700" font-size="28" font-weight="700" fill="#111827">Routing table</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="726.100" font-size="22" font-weight="400" fill="#111827">local /32는 lxc로,</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="755.800" font-size="22" font-weight="400" fill="#111827">10.10.20.0/24는</text>
+<text data-source="root.0.1.0.1.4" x="144.000" y="785.500" font-size="22" font-weight="400" fill="#111827">192.168.1.2로 보냅니다.</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="698.550" font-size="28" font-weight="700" fill="#111827">eth0 192.168.1.1</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="740.950" font-size="22" font-weight="400" fill="#111827">remote PodCIDR를 향한</text>
+<text data-source="root.0.1.0.1.6" x="602.000" y="770.650" font-size="22" font-weight="400" fill="#111827">host interface입니다.</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="419.900" font-size="22" font-weight="400" fill="#111827">lxc device</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="575.700" font-size="22" font-weight="400" fill="#111827">eBPF datapath</text>
+<text data-source="root.0.1.0.1.5" x="438.000" y="675.050" font-size="22" font-weight="400" fill="#111827">underlay next</text>
+<text data-source="root.0.1.0.1.5" x="438.000" y="704.750" font-size="22" font-weight="400" fill="#111827">hop</text>
+<text data-source="root.0.1.1.0" x="996.000" y="309.700" font-size="28" font-weight="700" fill="#111827">Node 2</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="395.500" font-size="28" font-weight="700" fill="#111827">Pods 10.10.20.1,</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="431.900" font-size="28" font-weight="700" fill="#111827">10.10.20.2</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="474.300" font-size="22" font-weight="400" fill="#111827">두 번째 PodCIDR의</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="504.000" font-size="22" font-weight="400" fill="#111827">endpoint입니다.</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="413.700" font-size="28" font-weight="700" fill="#111827">lxc1 / lxc2</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="456.100" font-size="22" font-weight="400" fill="#111827">Pod traffic을 host network</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="485.800" font-size="22" font-weight="400" fill="#111827">path로 넘깁니다.</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="683.700" font-size="28" font-weight="700" fill="#111827">Routing table</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="726.100" font-size="22" font-weight="400" fill="#111827">local /32는 lxc로,</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="755.800" font-size="22" font-weight="400" fill="#111827">10.10.10.0/24는</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="785.500" font-size="22" font-weight="400" fill="#111827">192.168.1.1로 보냅니다.</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="683.700" font-size="28" font-weight="700" fill="#111827">eth0 192.168.1.2</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="726.100" font-size="22" font-weight="400" fill="#111827">Node 1의 remote</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="755.800" font-size="22" font-weight="400" fill="#111827">PodCIDR를 향한 host</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="785.500" font-size="22" font-weight="400" fill="#111827">interface입니다.</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="419.900" font-size="22" font-weight="400" fill="#111827">lxc device</text>
+<text data-source="root.0.1.1.1.3" x="1036.000" y="575.700" font-size="22" font-weight="400" fill="#111827">eBPF datapath</text>
+<text data-source="root.0.1.1.1.5" x="1346.000" y="675.050" font-size="22" font-weight="400" fill="#111827">underlay next</text>
+<text data-source="root.0.1.1.1.5" x="1346.000" y="704.750" font-size="22" font-weight="400" fill="#111827">hop</text>
+<text data-source="root.0.2" x="64.000" y="887.200" font-size="22" font-weight="400" fill="#111827">Native Routing에서는 Cilium이 모든 node의 PodCIDR를 직접 캡슐화하지 않습니다. 각 node의 route table이 local /32와 remote /24 경로를 구분하고 underlay next hop을 선택합니다.</text>
+</svg>
 </figure>

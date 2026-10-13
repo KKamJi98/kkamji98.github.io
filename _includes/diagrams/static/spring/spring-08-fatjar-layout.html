@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="spring-08-fatjar-layout" aria-labelledby="spring-08-fatjar-layout-title">
-  <figcaption class="sd-title" id="spring-08-fatjar-layout-title">Executable fat jar의 내부와 실행 경로</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="spring-08-fatjar-layout" aria-labelledby="spring-08-fatjar-layout-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="spring-08-fatjar-layout-title">Executable fat jar의 내부와 실행 경로</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane" aria-label="app.jar 내부 구조">
       <div class="sd-lane-title">app.jar 내부</div>
@@ -47,4 +47,52 @@
     </section>
   </div>
   <p class="sd-note">java -jar가 먼저 실행하는 진입점은 application main이 아니라 MANIFEST의 JarLauncher입니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="164e77bfaa926162174d0b285eb393efb5372c0222cf8b856eed7a916774edc8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="179.550" width="884.000" height="739.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.0" x="88.000" y="265.350" width="836.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.1" x="88.000" y="428.850" width="836.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.2" x="88.000" y="592.350" width="836.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1.3" x="88.000" y="755.850" width="836.000" height="139.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="179.550" width="884.000" height="540.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="294.550" width="314.000" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1486.000" y="273.700" width="314.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1028.000" y="504.150" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.6" x="1486.000" y="519.000" width="314.000" height="162.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1354.000 336.750 L 1474.000 336.750" fill="none" stroke="#475569" stroke-width="3"><title>Main-Class 시작</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1474.000,336.750 1464.000,342.750 1464.000,330.750" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1812.000 336.750 L 1824.000 336.750 L 1824.000 456.150 L 1004.000 456.150 L 1004.000 600.250 L 1016.000 600.250" fill="none" stroke="#475569" stroke-width="3"><title>중첩 jar 탐색</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1016.000,600.250 1006.000,606.250 1006.000,594.250" fill="#475569"/>
+<path data-edge="root.0.1.1.1.5" data-from="root.0.1.1.1.4" data-to="root.0.1.1.1.6" d="M 1354.000 600.250 L 1474.000 600.250" fill="none" stroke="#475569" stroke-width="3"><title>Start-Class 호출</title></path>
+<polygon data-arrowhead="root.0.1.1.1.5" points="1474.000,600.250 1464.000,606.250 1464.000,594.250" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="142.950" font-size="36" font-weight="700" fill="#111827">Executable fat jar의 내부와 실행 경로</text>
+<text data-source="root.0.1.0.0" x="88.000" y="231.550" font-size="28" font-weight="700" fill="#111827">app.jar 내부</text>
+<text data-source="root.0.1.0.1.0.0" x="112.000" y="317.350" font-size="28" font-weight="700" fill="#111827">META-INF/MANIFEST.MF</text>
+<text data-source="root.0.1.0.1.0.1" x="112.000" y="373.150" font-size="22" font-weight="400" fill="#111827">Main-Class: JarLauncher; Start-Class: yours</text>
+<text data-source="root.0.1.0.1.1.0" x="112.000" y="480.850" font-size="28" font-weight="700" fill="#111827">org/springframework/boot/loader/</text>
+<text data-source="root.0.1.0.1.1.1" x="112.000" y="536.650" font-size="22" font-weight="400" fill="#111827">loader 클래스 자체</text>
+<text data-source="root.0.1.0.1.2.0" x="112.000" y="644.350" font-size="28" font-weight="700" fill="#111827">BOOT-INF/classes/</text>
+<text data-source="root.0.1.0.1.2.1" x="112.000" y="700.150" font-size="22" font-weight="400" fill="#111827">애플리케이션 코드</text>
+<text data-source="root.0.1.0.1.3.0" x="112.000" y="807.850" font-size="28" font-weight="700" fill="#111827">BOOT-INF/lib/</text>
+<text data-source="root.0.1.0.1.3.1" x="112.000" y="863.650" font-size="22" font-weight="400" fill="#111827">의존성 jar: tomcat, spring, jackson</text>
+<text data-source="root.0.1.1.0" x="996.000" y="231.550" font-size="28" font-weight="700" fill="#111827">java -jar 실행</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="346.550" font-size="28" font-weight="700" fill="#111827">java -jar app.jar</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="325.700" font-size="28" font-weight="700" fill="#111827">JarLauncher 실행</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="368.100" font-size="22" font-weight="400" fill="#111827">MANIFEST의 Main-Class</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="556.150" font-size="28" font-weight="700" fill="#111827">중첩 jar</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="592.550" font-size="28" font-weight="700" fill="#111827">classloader</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="634.950" font-size="22" font-weight="400" fill="#111827">BOOT-INF/lib/*.jar를</text>
+<text data-source="root.0.1.1.1.4" x="1052.000" y="664.650" font-size="22" font-weight="400" fill="#111827">열어 로드</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="571.000" font-size="28" font-weight="700" fill="#111827">Start-Class main</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="607.400" font-size="28" font-weight="700" fill="#111827">호출</text>
+<text data-source="root.0.1.1.1.6" x="1510.000" y="649.800" font-size="22" font-weight="400" fill="#111827">애플리케이션 시작</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="287.350" font-size="22" font-weight="400" fill="#111827">Main-Class</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="317.050" font-size="22" font-weight="400" fill="#111827">시작</text>
+<text data-source="root.0.1.1.1.3" x="1036.000" y="448.150" font-size="22" font-weight="400" fill="#111827">중첩 jar 탐색</text>
+<text data-source="root.0.1.1.1.5" x="1346.000" y="550.850" font-size="22" font-weight="400" fill="#111827">Start-Class</text>
+<text data-source="root.0.1.1.1.5" x="1346.000" y="580.550" font-size="22" font-weight="400" fill="#111827">호출</text>
+<text data-source="root.0.2" x="64.000" y="965.350" font-size="22" font-weight="400" fill="#111827">java -jar가 먼저 실행하는 진입점은 application main이 아니라 MANIFEST의 JarLauncher입니다.</text>
+</svg>
 </figure>

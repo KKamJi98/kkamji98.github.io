@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-22",
+  "updated": "2026-10-13",
   "format": "static-html",
   "summary": {
-    "components": 390,
-    "used_components": 381,
-    "post_references": 390,
-    "posts": 202,
+    "components": 391,
+    "used_components": 383,
+    "post_references": 392,
+    "posts": 203,
     "unconverted_diagram_images": 0
   },
   "diagrams": [
@@ -3083,8 +3083,10 @@
         "assets/img/kubernetes/pod-identity-workflow.jpg"
       ],
       "sha256": "68ea84894777cabafe63bf360f96fc8dbb6d7fb3ddab1fbfa587144f67e69946",
-      "posts": [],
-      "reference_count": 0
+      "posts": [
+        "_posts/2025/04/2025-04-16-eks_pod_identity.md"
+      ],
+      "reference_count": 1
     },
     {
       "include": "diagrams/static/kubernetes/probe-state-flow.html",
@@ -5254,6 +5256,19 @@
       "sha256": "06e8f370a9fb4e591c3d845f4979dbe14a05e8161a96b0f4bb4356deec069351",
       "posts": [
         "_posts/2024/03/2024-03-29-virtualization.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/ai/jev-system-one-banner.html",
+      "source_kind": "legacy-image",
+      "original_sources": [
+        "assets/img/ai/jev/jev-system-one-banner.svg",
+        "assets/img/ai/jev/jev-system-one-banner.webp"
+      ],
+      "sha256": "26567c6a7ff39170951545ebbc45dcf09b1ee118def9e6f6bb78b5b804f0f3a7",
+      "posts": [
+        "_posts/2026/09/2026-09-22-jev-system-one-decision-model.md"
       ],
       "reference_count": 1
     }

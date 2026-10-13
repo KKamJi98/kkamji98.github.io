@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="sd-foundry-counter-deploy" aria-labelledby="sd-title-foundry-counter-deploy">
-  <figcaption class="sd-title" id="sd-title-foundry-counter-deploy">EOA deploy가 Counter bytecode와 storage를 만듭니다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="sd-foundry-counter-deploy" aria-labelledby="sd-title-foundry-counter-deploy" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-foundry-counter-deploy">EOA deploy가 Counter bytecode와 storage를 만듭니다</figcaption><div class="sd-semantic-source">
   <div class="sd-flow">
     <div class="sd-node sd-node--accent">
       <strong class="sd-label">EOA deployer</strong>
@@ -17,4 +17,29 @@
     </div>
   </div>
   <p class="sd-note">EOA의 code는 0x이고 Counter address에는 실행 bytecode가 있습니다. increment()가 storage 값을 0에서 1로 바꿉니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="74a5ad12b0fd17ca06dd5f6e682952ea4274ab528227405fedee35c33988c2ba">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="486.400" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 549.450 L 708.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>contract-creation transaction</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,549.450 698.000,555.450 698.000,543.450" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 549.450 L 1332.000 549.450" fill="none" stroke="#475569" stroke-width="3"><title>increment() call</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,549.450 1322.000,555.450 1322.000,543.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="411.750" font-size="36" font-weight="700" fill="#111827">EOA deploy가 Counter bytecode와 storage를 만듭니다</text>
+<text data-source="root.0.1.0" x="120.000" y="538.400" font-size="28" font-weight="700" fill="#111827">EOA deployer</text>
+<text data-source="root.0.1.0" x="120.000" y="580.800" font-size="22" font-weight="400" fill="#111827">0xf39Fd6e5, code 0x</text>
+<text data-source="root.0.1.2" x="744.000" y="538.400" font-size="28" font-weight="700" fill="#111827">Counter 0xe7f1725E</text>
+<text data-source="root.0.1.2" x="744.000" y="580.800" font-size="22" font-weight="400" fill="#111827">bytecode at address, 964 hex</text>
+<text data-source="root.0.1.4" x="1368.000" y="538.400" font-size="28" font-weight="700" fill="#111827">number storage</text>
+<text data-source="root.0.1.4" x="1368.000" y="580.800" font-size="22" font-weight="400" fill="#111827">0 then increment to 1, gas 43482</text>
+<text data-source="root.0.1.1" x="580.000" y="470.350" font-size="22" font-weight="400" fill="#111827">contract-</text>
+<text data-source="root.0.1.1" x="580.000" y="500.050" font-size="22" font-weight="400" fill="#111827">creation</text>
+<text data-source="root.0.1.1" x="580.000" y="529.750" font-size="22" font-weight="400" fill="#111827">transaction</text>
+<text data-source="root.0.1.3" x="1204.000" y="500.050" font-size="22" font-weight="400" fill="#111827">increment()</text>
+<text data-source="root.0.1.3" x="1204.000" y="529.750" font-size="22" font-weight="400" fill="#111827">call</text>
+<text data-source="root.0.2" x="64.000" y="696.550" font-size="22" font-weight="400" fill="#111827">EOA의 code는 0x이고 Counter address에는 실행 bytecode가 있습니다. increment()가 storage 값을 0에서 1로 바꿉니다.</text>
+</svg>
 </figure>

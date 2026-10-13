@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="sd-aws-bedrock-kb-architecture" aria-labelledby="sd-title-aws-bedrock-kb-architecture">
-  <figcaption class="sd-title" id="sd-title-aws-bedrock-kb-architecture">Bedrock Knowledge Base는 ingestion과 query를 나눠 관리한다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="sd-aws-bedrock-kb-architecture" aria-labelledby="sd-title-aws-bedrock-kb-architecture" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-title-aws-bedrock-kb-architecture">Bedrock Knowledge Base는 ingestion과 query를 나눠 관리한다</figcaption><div class="sd-semantic-source">
   <div class="sd-grid">
     <section class="sd-lane" aria-label="Managed ingestion">
       <div class="sd-lane-title">1. Managed ingestion</div>
@@ -67,4 +67,75 @@
     </section>
   </div>
   <p class="sd-note">Ingestion은 문서를 미리 vector로 만들고, query는 그 index에서 검색한 뒤 foundation model을 ground합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="bf521eea2dfa91879bd5aabb65800dead987b99fea4880bc0de75c80c4615061">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="181.450" width="888.000" height="741.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="968.000" y="181.450" width="888.000" height="601.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.0" x="80.000" y="240.450" width="420.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.2" x="80.000" y="423.050" width="420.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.4" x="80.000" y="605.650" width="420.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0.6" x="80.000" y="788.250" width="420.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="516.000" y="240.450" width="420.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1016.000" y="253.900" width="289.913" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1518.087" y="253.900" width="289.913" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.4" x="1016.000" y="469.800" width="289.913" height="94.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.6" x="1518.087" y="457.650" width="289.913" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.8" x="1016.000" y="672.250" width="289.913" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.10" x="1518.087" y="672.250" width="289.913" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.0.1" data-from="root.0.1.0.1.0.0" data-to="root.0.1.0.1.0.2" d="M 290.000 346.750 L 290.000 411.050" fill="none" stroke="#475569" stroke-width="3"><title>fetch, parse, chunk</title></path>
+<polygon data-arrowhead="root.0.1.0.1.0.1" points="290.000,411.050 284.000,401.050 296.000,401.050" fill="#475569"/>
+<path data-edge="root.0.1.0.1.0.3" data-from="root.0.1.0.1.0.2" data-to="root.0.1.0.1.0.4" d="M 290.000 529.350 L 290.000 593.650" fill="none" stroke="#475569" stroke-width="3"><title>embed</title></path>
+<polygon data-arrowhead="root.0.1.0.1.0.3" points="290.000,593.650 284.000,583.650 296.000,583.650" fill="#475569"/>
+<path data-edge="root.0.1.0.1.0.5" data-from="root.0.1.0.1.0.4" data-to="root.0.1.0.1.0.6" d="M 290.000 711.950 L 290.000 776.250" fill="none" stroke="#475569" stroke-width="3"><title>vectorize</title></path>
+<polygon data-arrowhead="root.0.1.0.1.0.5" points="290.000,776.250 284.000,766.250 296.000,766.250" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1317.913 301.050 L 1506.087 301.050" fill="none" stroke="#475569" stroke-width="3"><title>Retrieve or RetrieveAndGenerate</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1506.087,301.050 1496.087,307.050 1496.087,295.050" fill="#475569"/>
+<path data-edge="root.0.1.1.1.3" data-from="root.0.1.1.1.2" data-to="root.0.1.1.1.4" d="M 1820.000 301.050 L 1832.000 301.050 L 1832.000 409.650 L 992.000 409.650 L 992.000 516.950 L 1004.000 516.950" fill="none" stroke="#475569" stroke-width="3"><title>IAM plus metadata filter</title></path>
+<polygon data-arrowhead="root.0.1.1.1.3" points="1004.000,516.950 994.000,522.950 994.000,510.950" fill="#475569"/>
+<path data-edge="root.0.1.1.1.5" data-from="root.0.1.1.1.4" data-to="root.0.1.1.1.6" d="M 1317.913 516.950 L 1506.087 516.950" fill="none" stroke="#475569" stroke-width="3"><title>top-k retrieval</title></path>
+<polygon data-arrowhead="root.0.1.1.1.5" points="1506.087,516.950 1496.087,522.950 1496.087,510.950" fill="#475569"/>
+<path data-edge="root.0.1.1.1.7" data-from="root.0.1.1.1.6" data-to="root.0.1.1.1.8" d="M 1820.000 516.950 L 1832.000 516.950 L 1832.000 624.250 L 992.000 624.250 L 992.000 719.400 L 1004.000 719.400" fill="none" stroke="#475569" stroke-width="3"><title>grounded generation</title></path>
+<polygon data-arrowhead="root.0.1.1.1.7" points="1004.000,719.400 994.000,725.400 994.000,713.400" fill="#475569"/>
+<path data-edge="root.0.1.1.1.9" data-from="root.0.1.1.1.8" data-to="root.0.1.1.1.10" d="M 1317.913 719.400 L 1506.087 719.400" fill="none" stroke="#475569" stroke-width="3"><title>source attribution</title></path>
+<polygon data-arrowhead="root.0.1.1.1.9" points="1506.087,719.400 1496.087,725.400 1496.087,713.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="152.850" font-size="36" font-weight="700" fill="#111827">Bedrock Knowledge Base는 ingestion과 query를 나눠 관리한다</text>
+<text data-source="root.0.1.0.0" x="80.000" y="217.450" font-size="20" font-weight="700" fill="#111827">1. Managed ingestion</text>
+<text data-source="root.0.1.0.1.0.0" x="96.000" y="276.450" font-size="20" font-weight="700" fill="#111827">Data sources</text>
+<text data-source="root.0.1.0.1.0.0" x="96.000" y="312.450" font-size="18" font-weight="400" fill="#111827">S3 and connectors</text>
+<text data-source="root.0.1.0.1.0.2" x="96.000" y="459.050" font-size="20" font-weight="700" fill="#111827">Bedrock KB</text>
+<text data-source="root.0.1.0.1.0.2" x="96.000" y="495.050" font-size="18" font-weight="400" fill="#111827">managed ingestion</text>
+<text data-source="root.0.1.0.1.0.4" x="96.000" y="641.650" font-size="20" font-weight="700" fill="#111827">Embedding model</text>
+<text data-source="root.0.1.0.1.0.4" x="96.000" y="677.650" font-size="18" font-weight="400" fill="#111827">Titan or Cohere</text>
+<text data-source="root.0.1.0.1.0.6" x="96.000" y="824.250" font-size="20" font-weight="700" fill="#111827">Vector store</text>
+<text data-source="root.0.1.0.1.0.6" x="96.000" y="860.250" font-size="18" font-weight="400" fill="#111827">managed or customer-managed:</text>
+<text data-source="root.0.1.0.1.0.6" x="96.000" y="884.550" font-size="18" font-weight="400" fill="#111827">OpenSearch, Aurora, S3 Vectors</text>
+<text data-source="root.0.1.0.1.0.1" x="310.000" y="384.750" font-size="18" font-weight="400" fill="#111827">fetch, parse, chunk</text>
+<text data-source="root.0.1.0.1.0.3" x="310.000" y="567.350" font-size="18" font-weight="400" fill="#111827">embed</text>
+<text data-source="root.0.1.0.1.0.5" x="310.000" y="749.950" font-size="18" font-weight="400" fill="#111827">vectorize</text>
+<text data-source="root.0.1.0.1.1" x="532.000" y="276.450" font-size="20" font-weight="700" fill="#111827">Ingestion controls</text>
+<text data-source="root.0.1.0.1.1" x="532.000" y="312.450" font-size="18" font-weight="400" fill="#111827">chunking, metadata, sync schedule</text>
+<text data-source="root.0.1.1.0" x="984.000" y="217.450" font-size="20" font-weight="700" fill="#111827">2. Query and grounding</text>
+<text data-source="root.0.1.1.1.0" x="1032.000" y="289.900" font-size="20" font-weight="700" fill="#111827">User or app</text>
+<text data-source="root.0.1.1.1.0" x="1032.000" y="325.900" font-size="18" font-weight="400" fill="#111827">natural language query</text>
+<text data-source="root.0.1.1.1.2" x="1534.087" y="289.900" font-size="20" font-weight="700" fill="#111827">Agent runtime</text>
+<text data-source="root.0.1.1.1.2" x="1534.087" y="325.900" font-size="18" font-weight="400" fill="#111827">Bedrock runtime API</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="505.800" font-size="20" font-weight="700" fill="#111827">Access filter</text>
+<text data-source="root.0.1.1.1.4" x="1032.000" y="541.800" font-size="18" font-weight="400" fill="#111827">문서별 권한과 tenant 범위</text>
+<text data-source="root.0.1.1.1.6" x="1534.087" y="493.650" font-size="20" font-weight="700" fill="#111827">Vector search</text>
+<text data-source="root.0.1.1.1.6" x="1534.087" y="529.650" font-size="18" font-weight="400" fill="#111827">ingestion에서 만든 index를</text>
+<text data-source="root.0.1.1.1.6" x="1534.087" y="553.950" font-size="18" font-weight="400" fill="#111827">조회</text>
+<text data-source="root.0.1.1.1.8" x="1032.000" y="708.250" font-size="20" font-weight="700" fill="#111827">Foundation model</text>
+<text data-source="root.0.1.1.1.8" x="1032.000" y="744.250" font-size="18" font-weight="400" fill="#111827">검색 근거를 포함해 생성</text>
+<text data-source="root.0.1.1.1.10" x="1534.087" y="708.250" font-size="20" font-weight="700" fill="#111827">Answer with citations</text>
+<text data-source="root.0.1.1.1.10" x="1534.087" y="744.250" font-size="18" font-weight="400" fill="#111827">원문 source로 추적 가능</text>
+<text data-source="root.0.1.1.1.1" x="1309.913" y="258.450" font-size="18" font-weight="400" fill="#111827">Retrieve or</text>
+<text data-source="root.0.1.1.1.1" x="1309.913" y="282.750" font-size="18" font-weight="400" fill="#111827">RetrieveAndGenerate</text>
+<text data-source="root.0.1.1.1.3" x="1024.000" y="401.650" font-size="18" font-weight="400" fill="#111827">IAM plus metadata filter</text>
+<text data-source="root.0.1.1.1.5" x="1309.913" y="498.650" font-size="18" font-weight="400" fill="#111827">top-k retrieval</text>
+<text data-source="root.0.1.1.1.7" x="1024.000" y="616.250" font-size="18" font-weight="400" fill="#111827">grounded generation</text>
+<text data-source="root.0.1.1.1.9" x="1309.913" y="701.100" font-size="18" font-weight="400" fill="#111827">source attribution</text>
+<text data-source="root.0.2" x="64.000" y="956.850" font-size="18" font-weight="400" fill="#111827">Ingestion은 문서를 미리 vector로 만들고, query는 그 index에서 검색한 뒤 foundation model을 ground합니다.</text>
+</svg>
 </figure>

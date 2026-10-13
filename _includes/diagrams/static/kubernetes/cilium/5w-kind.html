@@ -1,5 +1,5 @@
-<figure class="sd sd--layers" id="kind-architecture" aria-labelledby="kind-architecture-title">
-  <figcaption class="sd-title" id="kind-architecture-title">kind의 node container 안에서 kubelet과 containerd가 Pod를 실행한다</figcaption>
+<figure class="sd sd--layers sd--fhd" id="kind-architecture" aria-labelledby="kind-architecture-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="kind-architecture-title">kind의 node container 안에서 kubelet과 containerd가 Pod를 실행한다</figcaption><div class="sd-semantic-source">
 <section class="sd-lane"><div class="sd-lane-title">Host: 기록된 Docker 기반 kind 실습</div>
 <div class="sd-flow">
 <div class="sd-node"><strong class="sd-label">kind CLI</strong><span class="sd-detail">node container 생성과 kubeadm bootstrap 구성</span></div>
@@ -29,4 +29,59 @@
 </div>
 </section>
 <p class="sd-note">기록된 node runtime은 containerd 2.1.1이며 기본 CNI Pod는 kindnet입니다. 사용자 지정 CNI나 다른 host provider 구성과 구분합니다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="79d2e7c1d1c124381efc0b1c2ceb92cee878479a693580b0c0d71197c88fc547">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="165.300" width="1792.000" height="196.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="449.800" width="1792.000" height="489.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.2.0" x="80.000" y="619.100" width="576.000" height="303.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.2.1" x="672.000" y="619.100" width="576.000" height="279.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.2.2" x="1264.000" y="619.100" width="576.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="112.000" y="237.750" width="776.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1032.000" y="237.750" width="776.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0" x="112.000" y="508.800" width="776.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2" x="1032.000" y="508.800" width="776.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.2.0.1" x="96.000" y="678.100" width="544.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.0.2" x="96.000" y="788.400" width="544.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.1.1" x="688.000" y="678.100" width="544.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.1.2" x="688.000" y="788.400" width="544.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.2.1" x="1280.000" y="678.100" width="544.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 900.000 284.900 L 1020.000 284.900" fill="none" stroke="#475569" stroke-width="3"><title>Docker engine에 생성 요청</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="1020.000,284.900 1010.000,290.900 1010.000,278.900" fill="#475569"/>
+<path data-edge="root.0.3.1.1" data-from="root.0.3.1.0" data-to="root.0.3.1.2" d="M 900.000 555.950 L 1020.000 555.950" fill="none" stroke="#475569" stroke-width="3"><title>service 시작</title></path>
+<polygon data-arrowhead="root.0.3.1.1" points="1020.000,555.950 1010.000,561.950 1010.000,549.950" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 373.500 L 960.000 437.800" fill="none" stroke="#475569" stroke-width="3"><title>node container 경계</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,437.800 954.000,427.800 966.000,427.800" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="136.700" font-size="36" font-weight="700" fill="#111827">kind의 node container 안에서 kubelet과 containerd가 Pod를 실행한다</text>
+<text data-source="root.0.1.0" x="80.000" y="201.300" font-size="20" font-weight="700" fill="#111827">Host: 기록된 Docker 기반 kind 실습</text>
+<text data-source="root.0.1.1.0" x="128.000" y="273.750" font-size="20" font-weight="700" fill="#111827">kind CLI</text>
+<text data-source="root.0.1.1.0" x="128.000" y="309.750" font-size="18" font-weight="400" fill="#111827">node container 생성과 kubeadm bootstrap 구성</text>
+<text data-source="root.0.1.1.2" x="1048.000" y="273.750" font-size="20" font-weight="700" fill="#111827">Docker engine</text>
+<text data-source="root.0.1.1.2" x="1048.000" y="309.750" font-size="18" font-weight="400" fill="#111827">control-plane 및 worker 역할의 node container 실행</text>
+<text data-source="root.0.1.1.1" x="892.000" y="242.300" font-size="18" font-weight="400" fill="#111827">Docker engine에</text>
+<text data-source="root.0.1.1.1" x="892.000" y="266.600" font-size="18" font-weight="400" fill="#111827">생성 요청</text>
+<text data-source="root.0.3.0" x="80.000" y="485.800" font-size="20" font-weight="700" fill="#111827">Node container</text>
+<text data-source="root.0.3.1.0" x="128.000" y="544.800" font-size="20" font-weight="700" fill="#111827">systemd</text>
+<text data-source="root.0.3.1.0" x="128.000" y="580.800" font-size="18" font-weight="400" fill="#111827">node service인 kubelet과 containerd를 시작</text>
+<text data-source="root.0.3.1.2" x="1048.000" y="544.800" font-size="20" font-weight="700" fill="#111827">kubelet + containerd</text>
+<text data-source="root.0.3.1.2" x="1048.000" y="580.800" font-size="18" font-weight="400" fill="#111827">kubelet이 CRI로 containerd에 Pod container 실행 요청</text>
+<text data-source="root.0.3.1.1" x="892.000" y="537.650" font-size="18" font-weight="400" fill="#111827">service 시작</text>
+<text data-source="root.0.3.2.0.0" x="96.000" y="655.100" font-size="20" font-weight="700" fill="#111827">Control-plane node의 static Pods</text>
+<text data-source="root.0.3.2.0.1" x="112.000" y="714.100" font-size="20" font-weight="700" fill="#111827">kube-apiserver, etcd</text>
+<text data-source="root.0.3.2.0.1" x="112.000" y="750.100" font-size="18" font-weight="400" fill="#111827">kubeadm이 생성한 static Pod manifest를 kubelet이 관리</text>
+<text data-source="root.0.3.2.0.2" x="112.000" y="824.400" font-size="20" font-weight="700" fill="#111827">kube-controller-manager, kube-scheduler</text>
+<text data-source="root.0.3.2.0.2" x="112.000" y="860.400" font-size="18" font-weight="400" fill="#111827">같은 static Pod 방식. systemd가 직접 실행하는 control-plane</text>
+<text data-source="root.0.3.2.0.2" x="112.000" y="884.700" font-size="18" font-weight="400" fill="#111827">service가 아님</text>
+<text data-source="root.0.3.2.1.0" x="688.000" y="655.100" font-size="20" font-weight="700" fill="#111827">Network / DNS workloads</text>
+<text data-source="root.0.3.2.1.1" x="704.000" y="714.100" font-size="20" font-weight="700" fill="#111827">kube-proxy, kindnet</text>
+<text data-source="root.0.3.2.1.1" x="704.000" y="750.100" font-size="18" font-weight="400" fill="#111827">실습에 기록된 기본 Service 및 Pod network 구성</text>
+<text data-source="root.0.3.2.1.2" x="704.000" y="824.400" font-size="20" font-weight="700" fill="#111827">CoreDNS</text>
+<text data-source="root.0.3.2.1.2" x="704.000" y="860.400" font-size="18" font-weight="400" fill="#111827">cluster DNS workload. kubelet/runtime이 Pod를 실행</text>
+<text data-source="root.0.3.2.2.0" x="1280.000" y="655.100" font-size="20" font-weight="700" fill="#111827">Application workloads</text>
+<text data-source="root.0.3.2.2.1" x="1296.000" y="714.100" font-size="20" font-weight="700" fill="#111827">User Pods</text>
+<text data-source="root.0.3.2.2.1" x="1296.000" y="750.100" font-size="18" font-weight="400" fill="#111827">스케줄된 node의 kubelet/runtime이 실행</text>
+<text data-source="root.0.4" x="64.000" y="973.000" font-size="18" font-weight="400" fill="#111827">기록된 node runtime은 containerd 2.1.1이며 기본 CNI Pod는 kindnet입니다. 사용자 지정 CNI나 다른 host provider 구성과 구분합니다.</text>
+<text data-source="root.0.2" x="980.000" y="411.500" font-size="18" font-weight="400" fill="#111827">node container 경계</text>
+</svg>
 </figure>

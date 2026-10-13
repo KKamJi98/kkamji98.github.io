@@ -1,0 +1,52 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="479a20efb3c1e3bc9e895f98fca7a279004bb67d36c72dd738a71e5333682efa">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="213.400" width="1792.000" height="355.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="721.600" width="1792.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.0.0" x="80.000" y="272.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.0.0.1" x="968.000" y="272.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0.0" x="80.000" y="346.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0.1" x="968.000" y="346.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1.0" x="80.000" y="420.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1.1" x="968.000" y="420.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2.0" x="80.000" y="494.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2.1" x="968.000" y="494.400" width="872.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="585.700" width="480.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="720.000" y="597.850" width="480.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1344.000" y="585.700" width="480.000" height="118.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.0" x="80.000" y="780.600" width="576.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1" x="672.000" y="780.600" width="576.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2" x="1264.000" y="780.600" width="576.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 588.000 645.000 L 708.000 645.000" fill="none" stroke="#475569" stroke-width="3"><title>lookup</title></path>
+<polygon data-arrowhead="root.0.2.1" points="708.000,645.000 698.000,651.000 698.000,639.000" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1212.000 645.000 L 1332.000 645.000" fill="none" stroke="#475569" stroke-width="3"><title>response: identity 20</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1332.000,645.000 1322.000,651.000 1322.000,639.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="184.800" font-size="36" font-weight="700" fill="#111827">Cilium은 label 집합을 cluster 전역 numeric identity로 조회한다</text>
+<text data-source="root.0.1.0" x="80.000" y="249.400" font-size="20" font-weight="700" fill="#111827">Label to Identity map</text>
+<text data-source="root.0.1.1.0.0.0" x="96.000" y="308.400" font-size="20" font-weight="700" fill="#111827">Security labels</text>
+<text data-source="root.0.1.1.0.0.1" x="984.000" y="308.400" font-size="20" font-weight="700" fill="#111827">Identity</text>
+<text data-source="root.0.1.1.1.0.0" x="96.000" y="382.400" font-size="20" font-weight="700" fill="#111827">role=frontend</text>
+<text data-source="root.0.1.1.1.0.1" x="984.000" y="382.400" font-size="20" font-weight="700" fill="#111827">10</text>
+<text data-source="root.0.1.1.1.1.0" x="96.000" y="456.400" font-size="20" font-weight="700" fill="#111827">role=backend</text>
+<text data-source="root.0.1.1.1.1.1" x="984.000" y="456.400" font-size="20" font-weight="700" fill="#111827">20</text>
+<text data-source="root.0.1.1.1.2.0" x="96.000" y="530.400" font-size="20" font-weight="700" fill="#111827">role=backend, user=joe</text>
+<text data-source="root.0.1.1.1.2.1" x="984.000" y="530.400" font-size="20" font-weight="700" fill="#111827">30</text>
+<text data-source="root.0.2.0" x="112.000" y="621.700" font-size="20" font-weight="700" fill="#111827">정확한 label 집합: {role=backend}</text>
+<text data-source="root.0.2.0" x="112.000" y="657.700" font-size="18" font-weight="400" fill="#111827">Cilium이 전체 security label 집합에 해당하는 numeric</text>
+<text data-source="root.0.2.0" x="112.000" y="682.000" font-size="18" font-weight="400" fill="#111827">identity를 조회한다.</text>
+<text data-source="root.0.2.2" x="736.000" y="633.850" font-size="20" font-weight="700" fill="#111827">Key-Value Store</text>
+<text data-source="root.0.2.2" x="736.000" y="669.850" font-size="18" font-weight="400" fill="#111827">label 집합과 numeric identity 매핑을 보관한다.</text>
+<text data-source="root.0.2.4" x="1360.000" y="621.700" font-size="20" font-weight="700" fill="#111827">Identity 20</text>
+<text data-source="root.0.2.4" x="1360.000" y="657.700" font-size="18" font-weight="400" fill="#111827">정확히 role=backend만 포함한 집합의 cluster-wide</text>
+<text data-source="root.0.2.4" x="1360.000" y="682.000" font-size="18" font-weight="400" fill="#111827">identity</text>
+<text data-source="root.0.2.1" x="580.000" y="626.700" font-size="18" font-weight="400" fill="#111827">lookup</text>
+<text data-source="root.0.2.3" x="1204.000" y="602.400" font-size="18" font-weight="400" fill="#111827">response:</text>
+<text data-source="root.0.2.3" x="1204.000" y="626.700" font-size="18" font-weight="400" fill="#111827">identity 20</text>
+<text data-source="root.0.3.0" x="80.000" y="757.600" font-size="20" font-weight="700" fill="#111827">Endpoint identities</text>
+<text data-source="root.0.3.1.0" x="96.000" y="816.600" font-size="20" font-weight="700" fill="#111827">Node A</text>
+<text data-source="root.0.3.1.0" x="96.000" y="852.600" font-size="18" font-weight="400" fill="#111827">Identity 10, role=frontend</text>
+<text data-source="root.0.3.1.1" x="688.000" y="816.600" font-size="20" font-weight="700" fill="#111827">Node B</text>
+<text data-source="root.0.3.1.1" x="688.000" y="852.600" font-size="18" font-weight="400" fill="#111827">Identity 10, role=frontend</text>
+<text data-source="root.0.3.1.2" x="1280.000" y="816.600" font-size="20" font-weight="700" fill="#111827">Node C</text>
+<text data-source="root.0.3.1.2" x="1280.000" y="852.600" font-size="18" font-weight="400" fill="#111827">Identity 20, role=backend</text>
+<text data-source="root.0.4" x="64.000" y="924.900" font-size="18" font-weight="400" fill="#111827">더 구체적인 label 집합인 role=backend와 user=joe는 별도 Identity 30을 만들 수 있다. 이 예시의 정확한 집합 조회는 Identity 20입니다. 정책 selector role=backend는 Identity 20과 30 모두에 일치합니다. 숫자는 예시 매핑입니다.</text>
+</svg>

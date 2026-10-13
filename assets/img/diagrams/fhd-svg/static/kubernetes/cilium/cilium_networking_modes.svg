@@ -1,0 +1,40 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="8644cef6d83571f762285992f00657a946a4f3c86aa356d64094d4b057184db0">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="363.750" width="884.000" height="395.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="363.750" width="884.000" height="425.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="120.000" y="472.750" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="578.000" y="457.900" width="314.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1028.000" y="472.750" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1486.000" y="472.750" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.0.1.1" data-from="root.0.1.0.1.0" data-to="root.0.1.0.1.2" d="M 446.000 550.650 L 566.000 550.650" fill="none" stroke="#475569" stroke-width="3"><title>VXLAN or Geneve overlay</title></path>
+<polygon data-arrowhead="root.0.1.0.1.1" points="566.000,550.650 556.000,556.650 556.000,544.650" fill="#475569"/>
+<path data-edge="root.0.1.1.1.1" data-from="root.0.1.1.1.0" data-to="root.0.1.1.1.2" d="M 1354.000 550.650 L 1474.000 550.650" fill="none" stroke="#475569" stroke-width="3"><title>native Pod CIDR packet 전달</title></path>
+<polygon data-arrowhead="root.0.1.1.1.1" points="1474.000,550.650 1464.000,556.650 1464.000,544.650" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="327.150" font-size="36" font-weight="700" fill="#111827">Cilium networking은 VXLAN overlay와 native direct routing을 선택한다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="415.750" font-size="28" font-weight="700" fill="#111827">Encapsulation (Tunnel) Mode</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="524.750" font-size="28" font-weight="700" fill="#111827">Node A</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="567.150" font-size="22" font-weight="400" fill="#111827">Pod packet을 tunnel</text>
+<text data-source="root.0.1.0.1.0" x="144.000" y="596.850" font-size="22" font-weight="400" fill="#111827">endpoint로 보낸다.</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="509.900" font-size="28" font-weight="700" fill="#111827">Node B and Node C</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="552.300" font-size="22" font-weight="400" fill="#111827">Cilium이 node 사이</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="582.000" font-size="22" font-weight="400" fill="#111827">encapsulation과 routing을</text>
+<text data-source="root.0.1.0.1.2" x="602.000" y="611.700" font-size="22" font-weight="400" fill="#111827">처리한다.</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="471.550" font-size="22" font-weight="400" fill="#111827">VXLAN or</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="501.250" font-size="22" font-weight="400" fill="#111827">Geneve</text>
+<text data-source="root.0.1.0.1.1" x="438.000" y="530.950" font-size="22" font-weight="400" fill="#111827">overlay</text>
+<text data-source="root.0.1.0.2" x="88.000" y="697.750" font-size="22" font-weight="400" fill="#111827">하부 network는 node 간 IP connectivity만 제공하면 되며, Pod CIDR를 직접 라우팅하지</text>
+<text data-source="root.0.1.0.2" x="88.000" y="727.450" font-size="22" font-weight="400" fill="#111827">않는다.</text>
+<text data-source="root.0.1.1.0" x="996.000" y="415.750" font-size="28" font-weight="700" fill="#111827">Direct Routing (Native) Mode</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="524.750" font-size="28" font-weight="700" fill="#111827">Node A</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="567.150" font-size="22" font-weight="400" fill="#111827">Pod CIDR packet을</text>
+<text data-source="root.0.1.1.1.0" x="1052.000" y="596.850" font-size="22" font-weight="400" fill="#111827">encapsulation 없이 보낸다.</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="524.750" font-size="28" font-weight="700" fill="#111827">Node B and Node C</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="567.150" font-size="22" font-weight="400" fill="#111827">underlay의 native 경로로</text>
+<text data-source="root.0.1.1.1.2" x="1510.000" y="596.850" font-size="22" font-weight="400" fill="#111827">packet을 받는다.</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="471.550" font-size="22" font-weight="400" fill="#111827">native Pod</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="501.250" font-size="22" font-weight="400" fill="#111827">CIDR packet</text>
+<text data-source="root.0.1.1.1.1" x="1346.000" y="530.950" font-size="22" font-weight="400" fill="#111827">전달</text>
+<text data-source="root.0.1.1.2" x="996.000" y="697.750" font-size="22" font-weight="400" fill="#111827">성능과 IP 가시성을 얻는 대신 switch, router 또는 cloud network에 Pod CIDR routing이</text>
+<text data-source="root.0.1.1.2" x="996.000" y="727.450" font-size="22" font-weight="400" fill="#111827">필요하다. Cloud router의 전달 경로와 BGP daemon의 경로 배포는 별개이며, daemon은</text>
+<text data-source="root.0.1.1.2" x="996.000" y="757.150" font-size="22" font-weight="400" fill="#111827">packet의 중간 hop이 아니다.</text>
+</svg>

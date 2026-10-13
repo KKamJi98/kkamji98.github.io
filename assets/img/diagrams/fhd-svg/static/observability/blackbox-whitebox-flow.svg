@@ -1,0 +1,40 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="9cf0e838e82eeb36d24b51bbfec21a5c55ff1d680061f118a095c85034084d89">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="327.450" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="564.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1032.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1500.000" y="345.650" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="615.650" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 423.550 L 552.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>외부 결과 측정</title></path>
+<polygon data-arrowhead="root.0.1.1" points="552.000,423.550 542.000,429.550 542.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 423.550 L 1020.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>사용자 영향에 page</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1020.000,423.550 1010.000,429.550 1010.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 423.550 L 1488.000 423.550" fill="none" stroke="#475569" stroke-width="3"><title>내부 신호로 조사</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1488.000,423.550 1478.000,429.550 1478.000,417.550" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 423.550 L 1848.000 423.550 L 1848.000 567.650 L 72.000 567.650 L 72.000 693.550 L 84.000 693.550" fill="none" stroke="#475569" stroke-width="3"><title>같은 incident timeline에서 비교</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,693.550 74.000,699.550 74.000,687.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="290.850" font-size="36" font-weight="700" fill="#111827">Blackbox는 사용자 증상을 알리고 Whitebox는 원인을 좁힌다</text>
+<text data-source="root.0.1.0" x="120.000" y="379.450" font-size="28" font-weight="700" fill="#111827">User or synthetic</text>
+<text data-source="root.0.1.0" x="120.000" y="415.850" font-size="28" font-weight="700" fill="#111827">check</text>
+<text data-source="root.0.1.0" x="120.000" y="458.250" font-size="22" font-weight="400" fill="#111827">서비스 바깥에서 사용자</text>
+<text data-source="root.0.1.0" x="120.000" y="487.950" font-size="22" font-weight="400" fill="#111827">여정을 확인</text>
+<text data-source="root.0.1.2" x="588.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Blackbox symptom</text>
+<text data-source="root.0.1.2" x="588.000" y="440.050" font-size="22" font-weight="400" fill="#111827">latency, error rate,</text>
+<text data-source="root.0.1.2" x="588.000" y="469.750" font-size="22" font-weight="400" fill="#111827">availability</text>
+<text data-source="root.0.1.4" x="1056.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Symptom alert</text>
+<text data-source="root.0.1.4" x="1056.000" y="440.050" font-size="22" font-weight="400" fill="#111827">원인보다 먼저 실제 영향에</text>
+<text data-source="root.0.1.4" x="1056.000" y="469.750" font-size="22" font-weight="400" fill="#111827">반응</text>
+<text data-source="root.0.1.6" x="1524.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Whitebox telemetry</text>
+<text data-source="root.0.1.6" x="1524.000" y="440.050" font-size="22" font-weight="400" fill="#111827">서비스 안에서 수집한 logs,</text>
+<text data-source="root.0.1.6" x="1524.000" y="469.750" font-size="22" font-weight="400" fill="#111827">metrics, traces</text>
+<text data-source="root.0.1.8" x="120.000" y="667.650" font-size="28" font-weight="700" fill="#111827">Recovery decision</text>
+<text data-source="root.0.1.8" x="120.000" y="710.050" font-size="22" font-weight="400" fill="#111827">user journey SLI와 내부</text>
+<text data-source="root.0.1.8" x="120.000" y="739.750" font-size="22" font-weight="400" fill="#111827">신호로 복구 조치 선택</text>
+<text data-source="root.0.1.1" x="424.000" y="403.850" font-size="22" font-weight="400" fill="#111827">외부 결과 측정</text>
+<text data-source="root.0.1.3" x="892.000" y="374.150" font-size="22" font-weight="400" fill="#111827">사용자 영향에</text>
+<text data-source="root.0.1.3" x="892.000" y="403.850" font-size="22" font-weight="400" fill="#111827">page</text>
+<text data-source="root.0.1.5" x="1360.000" y="374.150" font-size="22" font-weight="400" fill="#111827">내부 신호로</text>
+<text data-source="root.0.1.5" x="1360.000" y="403.850" font-size="22" font-weight="400" fill="#111827">조사</text>
+<text data-source="root.0.1.7" x="104.000" y="559.650" font-size="22" font-weight="400" fill="#111827">같은 incident timeline에서 비교</text>
+<text data-source="root.0.2" x="64.000" y="817.450" font-size="22" font-weight="400" fill="#111827">증상과 원인은 관측하는 계층에 따라 달라집니다. Blackbox 경보로 사용자 영향을 확인하고 Whitebox 신호로 조사 범위를 좁힙니다.</text>
+</svg>

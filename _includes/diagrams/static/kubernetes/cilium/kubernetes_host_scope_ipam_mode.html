@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode" aria-labelledby="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title">
-  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title">Kubernetes Host Scope는 node의 PodCIDR 안에서만 Pod IP를 할당한다</figcaption>
+<figure class="sd sd--flow sd--fhd" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode" aria-labelledby="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="kubernetes-cilium-kubernetes-host-scope-ipam-mode-title">Kubernetes Host Scope는 node의 PodCIDR 안에서만 Pod IP를 할당한다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">Kubernetes control plane이 node별 CIDR을 정하고, Cilium agent는 해당 <code>v1.Node</code> 정보에서 읽은 범위만 사용합니다.</p>
 
   <div class="sd-flow" aria-label="Kubernetes Host Scope IPAM 흐름">
@@ -37,4 +37,42 @@
       <span class="sd-detail">한 node의 PodCIDR이 고갈되면 남은 다른 node 범위로 자동 확장되지 않습니다.</span>
     </div>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="46429f16ebfffb03630c5bf5f1bc23b1a8cb91c83be13514d724fcc94bb7edb7">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="64.000" y="679.650" width="1792.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.6" x="1032.000" y="521.200" width="792.000" height="126.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="290.750" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1032.000" y="290.750" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="96.000" y="521.200" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6.0" x="1032.000" y="521.200" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6.1" x="1440.000" y="521.200" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="88.000" y="765.450" width="1744.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 353.800 L 1020.000 353.800" fill="none" stroke="#475569" stroke-width="3"><title>PodCIDR 기록</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,353.800 1010.000,359.800 1010.000,347.800" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1836.000 353.800 L 1848.000 353.800 L 1848.000 464.850 L 72.000 464.850 L 72.000 584.250 L 84.000 584.250" fill="none" stroke="#475569" stroke-width="3"><title>node 정보 조회</title></path>
+<polygon data-arrowhead="root.0.2.3" points="84.000,584.250 74.000,590.250 74.000,578.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 900.000 584.250 L 1020.000 584.250" fill="none" stroke="#475569" stroke-width="3"><title>같은 CIDR에서 할당</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1020.000,584.250 1010.000,590.250 1010.000,578.250" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="200.450" font-size="36" font-weight="700" fill="#111827">Kubernetes Host Scope는 node의 PodCIDR 안에서만 Pod IP를 할당한다</text>
+<text data-source="root.0.1" x="64.000" y="259.050" font-size="22" font-weight="400" fill="#111827">Kubernetes control plane이 node별 CIDR을 정하고, Cilium agent는 해당 v1.Node 정보에서 읽은 범위만 사용합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="342.750" font-size="28" font-weight="700" fill="#111827">kube-controller-manager</text>
+<text data-source="root.0.2.0" x="120.000" y="385.150" font-size="22" font-weight="400" fill="#111827">각 node에 고유한 PodCIDR을 할당합니다.</text>
+<text data-source="root.0.2.2" x="1056.000" y="342.750" font-size="28" font-weight="700" fill="#111827">v1.Node</text>
+<text data-source="root.0.2.2" x="1056.000" y="385.150" font-size="22" font-weight="400" fill="#111827">spec.podCIDR 또는 spec.podCIDRs에 10.1.1.0/24와 선택적 IPv6 범위를 둡니다.</text>
+<text data-source="root.0.2.4" x="120.000" y="573.200" font-size="28" font-weight="700" fill="#111827">Cilium agent on node1</text>
+<text data-source="root.0.2.4" x="120.000" y="615.600" font-size="22" font-weight="400" fill="#111827">host-scope allocator가 node의 PodCIDR에서만 주소를 선택합니다.</text>
+<text data-source="root.0.2.6.0" x="1056.000" y="573.200" font-size="28" font-weight="700" fill="#111827">Pod 1</text>
+<text data-source="root.0.2.6.0" x="1056.000" y="615.600" font-size="22" font-weight="400" fill="#111827">10.1.1.1</text>
+<text data-source="root.0.2.6.1" x="1464.000" y="573.200" font-size="28" font-weight="700" fill="#111827">Pod 2</text>
+<text data-source="root.0.2.6.1" x="1464.000" y="615.600" font-size="22" font-weight="400" fill="#111827">10.1.1.2</text>
+<text data-source="root.0.2.1" x="892.000" y="334.100" font-size="22" font-weight="400" fill="#111827">PodCIDR 기록</text>
+<text data-source="root.0.2.3" x="104.000" y="456.850" font-size="22" font-weight="400" fill="#111827">node 정보 조회</text>
+<text data-source="root.0.2.5" x="892.000" y="534.850" font-size="22" font-weight="400" fill="#111827">같은 CIDR에서</text>
+<text data-source="root.0.2.5" x="892.000" y="564.550" font-size="22" font-weight="400" fill="#111827">할당</text>
+<text data-source="root.0.3.0" x="88.000" y="731.650" font-size="28" font-weight="700" fill="#111827">Node-local allocation boundary</text>
+<text data-source="root.0.3.1" x="112.000" y="817.450" font-size="28" font-weight="700" fill="#111827">다른 node의 유휴 IP는 사용하지 않음</text>
+<text data-source="root.0.3.1" x="112.000" y="859.850" font-size="22" font-weight="400" fill="#111827">한 node의 PodCIDR이 고갈되면 남은 다른 node 범위로 자동 확장되지 않습니다.</text>
+</svg>
 </figure>

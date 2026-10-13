@@ -1,0 +1,51 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="95bffe2f7c2d8822daee86fd7a3867c787270a9666c77340ae0cbb7546bbb5d4">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="150.100" width="586.667" height="414.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="666.667" y="150.100" width="586.667" height="414.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1269.333" y="150.100" width="586.667" height="389.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.3" x="64.000" y="580.300" width="586.667" height="414.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="80.000" y="209.100" width="554.667" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="80.000" y="343.700" width="554.667" height="94.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="80.000" y="454.000" width="554.667" height="94.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="682.667" y="209.100" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="682.667" y="319.400" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="682.667" y="429.700" width="554.667" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1285.333" y="209.100" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1" x="1285.333" y="319.400" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1285.333" y="429.700" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1.0" x="80.000" y="639.300" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1.1" x="80.000" y="749.600" width="554.667" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1.2" x="80.000" y="859.900" width="554.667" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="121.500" font-size="36" font-weight="700" fill="#111827">배포 위치가 롤백과 노출 구간을 결정한다</text>
+<text data-source="root.0.1.0.0" x="80.000" y="186.100" font-size="20" font-weight="700" fill="#111827">기존 인스턴스에 덮어쓰기</text>
+<text data-source="root.0.1.0.1.0" x="96.000" y="245.100" font-size="20" font-weight="700" fill="#111827">배포 경계 In-place 배포</text>
+<text data-source="root.0.1.0.1.0" x="96.000" y="281.100" font-size="18" font-weight="400" fill="#111827">Beanstalk All at once와 Rolling, CodeDeploy EC2 OneAtATime와</text>
+<text data-source="root.0.1.0.1.0" x="96.000" y="305.400" font-size="18" font-weight="400" fill="#111827">HalfAtATime</text>
+<text data-source="root.0.1.0.1.1" x="96.000" y="379.700" font-size="20" font-weight="700" fill="#111827">실패 시 롤백 이전 버전을 다시 배포</text>
+<text data-source="root.0.1.0.1.1" x="96.000" y="415.700" font-size="18" font-weight="400" fill="#111827">되돌리려면 재배포 필요, Rolling 계열은 single-instance 미지원</text>
+<text data-source="root.0.1.0.1.2" x="96.000" y="490.000" font-size="20" font-weight="700" fill="#111827">사용자 노출 실패 버전 노출 구간 있음</text>
+<text data-source="root.0.1.0.1.2" x="96.000" y="526.000" font-size="18" font-weight="400" fill="#111827">배치 하나가 서비스에서 빠진 상태가 남을 수 있음</text>
+<text data-source="root.0.1.1.0" x="682.667" y="186.100" font-size="20" font-weight="700" fill="#111827">두 번째 Auto Scaling group</text>
+<text data-source="root.0.1.1.1.0" x="698.667" y="245.100" font-size="20" font-weight="700" fill="#111827">배포 경계 Immutable 또는 Traffic splitting</text>
+<text data-source="root.0.1.1.1.0" x="698.667" y="281.100" font-size="18" font-weight="400" fill="#111827">같은 환경에 새 group을 별도로 생성</text>
+<text data-source="root.0.1.1.1.1" x="698.667" y="355.400" font-size="20" font-weight="700" fill="#111827">실패 시 롤백 새 인스턴스 종료</text>
+<text data-source="root.0.1.1.1.1" x="698.667" y="391.400" font-size="18" font-weight="400" fill="#111827">전부 교체하며 burst balance도 사라짐</text>
+<text data-source="root.0.1.1.1.2" x="698.667" y="465.700" font-size="20" font-weight="700" fill="#111827">사용자 노출 전환 전 격리, 시험 트래픽은 노출</text>
+<text data-source="root.0.1.1.1.2" x="698.667" y="501.700" font-size="18" font-weight="400" fill="#111827">Immutable은 전환 전 헬스 확인, Traffic splitting은 일부 실제</text>
+<text data-source="root.0.1.1.1.2" x="698.667" y="526.000" font-size="18" font-weight="400" fill="#111827">트래픽으로 새 버전을 평가</text>
+<text data-source="root.0.1.2.0" x="1285.333" y="186.100" font-size="20" font-weight="700" fill="#111827">두 번째 환경</text>
+<text data-source="root.0.1.2.1.0" x="1301.333" y="245.100" font-size="20" font-weight="700" fill="#111827">배포 경계 Beanstalk Blue/Green</text>
+<text data-source="root.0.1.2.1.0" x="1301.333" y="281.100" font-size="18" font-weight="400" fill="#111827">환경 자체를 하나 더 생성</text>
+<text data-source="root.0.1.2.1.1" x="1301.333" y="355.400" font-size="20" font-weight="700" fill="#111827">실패 시 롤백 URL을 다시 swap</text>
+<text data-source="root.0.1.2.1.1" x="1301.333" y="391.400" font-size="18" font-weight="400" fill="#111827">공식 비교표에서 DNS 변경이 필요한 유일한 방식</text>
+<text data-source="root.0.1.2.1.2" x="1301.333" y="465.700" font-size="20" font-weight="700" fill="#111827">사용자 노출 전환 전 이전 버전 유지</text>
+<text data-source="root.0.1.2.1.2" x="1301.333" y="501.700" font-size="18" font-weight="400" fill="#111827">URL swap 이후에는 새 버전이 사용자 트래픽을 받음</text>
+<text data-source="root.0.1.3.0" x="80.000" y="616.300" font-size="20" font-weight="700" fill="#111827">두 번째 target group</text>
+<text data-source="root.0.1.3.1.0" x="96.000" y="675.300" font-size="20" font-weight="700" fill="#111827">배포 경계 CodeDeploy ECS blue/green</text>
+<text data-source="root.0.1.3.1.0" x="96.000" y="711.300" font-size="18" font-weight="400" fill="#111827">새 task set, production listener 1개와 target group 2개 필요</text>
+<text data-source="root.0.1.3.1.1" x="96.000" y="785.600" font-size="20" font-weight="700" fill="#111827">실패 시 롤백 listener를 원래 group으로 복귀</text>
+<text data-source="root.0.1.3.1.1" x="96.000" y="821.600" font-size="18" font-weight="400" fill="#111827">NLB에서는 ECSAllAtOnce만 지원</text>
+<text data-source="root.0.1.3.1.2" x="96.000" y="895.900" font-size="20" font-weight="700" fill="#111827">사용자 노출 트래픽 이동 뒤 새 버전 노출</text>
+<text data-source="root.0.1.3.1.2" x="96.000" y="931.900" font-size="18" font-weight="400" fill="#111827">이동 전 헬스 확인 가능, 점진 이동 중에는 새 task set도 실제 요청을</text>
+<text data-source="root.0.1.3.1.2" x="96.000" y="956.200" font-size="18" font-weight="400" fill="#111827">받음</text>
+</svg>

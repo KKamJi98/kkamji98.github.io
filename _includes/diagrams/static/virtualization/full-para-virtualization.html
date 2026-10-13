@@ -1,5 +1,5 @@
-<figure class="sd sd--comparison" id="full-para-virtualization" aria-labelledby="full-para-virtualization-title">
-  <figcaption class="sd-title" id="full-para-virtualization-title">Full virtualization은 emulate하고 para virtualization은 guest가 협력합니다</figcaption>
+<figure class="sd sd--comparison sd--fhd" id="full-para-virtualization" aria-labelledby="full-para-virtualization-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="full-para-virtualization-title">Full virtualization은 emulate하고 para virtualization은 guest가 협력합니다</figcaption><div class="sd-semantic-source">
   <p class="sd-note">수정하지 않은 guest는 trap과 emulate를 거치고, 수정한 guest는 hypercall로 직접 요청합니다.</p>
 
   <div class="sd-grid">
@@ -44,4 +44,54 @@
     <strong class="sd-label">Hypervisor</strong>
     <span class="sd-detail">full과 para 두 모델의 hardware access를 중재합니다.</span>
   </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cbbb5299da503dff95384f646b4a0bb754a9ae2d09e0414b1a0b8b9ee10e3764">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2.0" x="64.000" y="304.550" width="884.000" height="331.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="304.550" width="884.000" height="361.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2" x="64.000" y="304.550" width="1792.000" height="361.400" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="120.000" y="405.200" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="578.000" y="390.350" width="314.000" height="221.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="390.350" width="314.000" height="251.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1486.000" y="423.400" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="775.650" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 501.300 L 566.000 501.300" fill="none" stroke="#475569" stroke-width="3"><title>privileged instruction trap</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,501.300 556.000,507.300 556.000,495.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 516.150 L 1474.000 516.150" fill="none" stroke="#475569" stroke-width="3"><title>직접 서비스 요청</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,516.150 1464.000,522.150 1464.000,510.150" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 677.950 L 960.000 763.650" fill="none" stroke="#475569" stroke-width="3"><title>두 경로가 같은 hypervisor에 도달</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,763.650 954.000,753.650 966.000,753.650" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="214.250" font-size="36" font-weight="700" fill="#111827">Full virtualization은 emulate하고 para virtualization은 guest가 협력합니다</text>
+<text data-source="root.0.1" x="64.000" y="272.850" font-size="22" font-weight="400" fill="#111827">수정하지 않은 guest는 trap과 emulate를 거치고, 수정한 guest는 hypercall로 직접 요청합니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="356.550" font-size="28" font-weight="700" fill="#111827">Full virtualization</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="457.200" font-size="28" font-weight="700" fill="#111827">Unmodified</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="493.600" font-size="28" font-weight="700" fill="#111827">guest OS</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="536.000" font-size="22" font-weight="400" fill="#111827">자신이 hardware를</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="565.700" font-size="22" font-weight="400" fill="#111827">소유한 것처럼 동작합니다.</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="442.350" font-size="28" font-weight="700" fill="#111827">Trap and</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="478.750" font-size="28" font-weight="700" fill="#111827">emulate</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="521.150" font-size="22" font-weight="400" fill="#111827">hypervisor가 명령을</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="550.850" font-size="22" font-weight="400" fill="#111827">가로채 hardware 동작을</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="580.550" font-size="22" font-weight="400" fill="#111827">흉내 냅니다.</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="422.200" font-size="22" font-weight="400" fill="#111827">privileged</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="451.900" font-size="22" font-weight="400" fill="#111827">instruction</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="481.600" font-size="22" font-weight="400" fill="#111827">trap</text>
+<text data-source="root.0.2.1.0" x="996.000" y="356.550" font-size="28" font-weight="700" fill="#111827">Paravirtualization</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="442.350" font-size="28" font-weight="700" fill="#111827">Modified guest</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="478.750" font-size="28" font-weight="700" fill="#111827">OS</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="521.150" font-size="22" font-weight="400" fill="#111827">modified kernel로</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="550.850" font-size="22" font-weight="400" fill="#111827">virtualized 상태를 알고 더</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="580.550" font-size="22" font-weight="400" fill="#111827">저렴한 hypercall path를</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="610.250" font-size="22" font-weight="400" fill="#111827">사용합니다.</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="475.400" font-size="28" font-weight="700" fill="#111827">Hypercall</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="517.800" font-size="22" font-weight="400" fill="#111827">emulation 없이</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="547.500" font-size="22" font-weight="400" fill="#111827">hypervisor API를</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="577.200" font-size="22" font-weight="400" fill="#111827">호출합니다.</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="466.750" font-size="22" font-weight="400" fill="#111827">직접 서비스</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="496.450" font-size="22" font-weight="400" fill="#111827">요청</text>
+<text data-source="root.0.4" x="88.000" y="827.650" font-size="28" font-weight="700" fill="#111827">Hypervisor</text>
+<text data-source="root.0.4" x="88.000" y="870.050" font-size="22" font-weight="400" fill="#111827">full과 para 두 모델의 hardware access를 중재합니다.</text>
+<text data-source="root.0.3" x="980.000" y="727.950" font-size="22" font-weight="400" fill="#111827">두 경로가 같은 hypervisor에 도달</text>
+</svg>
 </figure>

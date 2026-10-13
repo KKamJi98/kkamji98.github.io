@@ -1,0 +1,44 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="0d52cd58f3d48228341e4200f809551c0a45040d12dfff7753f3509b182a83a5">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0" x="96.000" y="327.450" width="317.294" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="566.235" y="360.500" width="317.294" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1036.471" y="342.300" width="317.294" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1506.706" y="345.650" width="317.294" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="96.000" y="645.350" width="317.294" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 425.294 438.400 L 554.235 438.400" fill="none" stroke="#475569" stroke-width="3"><title>operator allocation</title></path>
+<polygon data-arrowhead="root.0.1.1" points="554.235,438.400 544.235,444.400 544.235,432.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 895.529 438.400 L 1024.471 438.400" fill="none" stroke="#475569" stroke-width="3"><title>update CiliumNode CRD</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1024.471,438.400 1014.471,444.400 1014.471,432.400" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1365.765 438.400 L 1494.706 438.400" fill="none" stroke="#475569" stroke-width="3"><title>agent reads node CIDR</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1494.706,438.400 1484.706,444.400 1484.706,432.400" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 597.350 L 72.000 597.350 L 72.000 708.400 L 84.000 708.400" fill="none" stroke="#475569" stroke-width="3"><title>allocate Pod IPs</title></path>
+<polygon data-arrowhead="root.0.1.7" points="84.000,708.400 74.000,714.400 74.000,702.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="290.850" font-size="36" font-weight="700" fill="#111827">Cluster Scope IPAM은 operator가 node별 PodCIDR을 나누고 agent가 Pod IP를 할당한다</text>
+<text data-source="root.0.1.0" x="120.000" y="379.450" font-size="28" font-weight="700" fill="#111827">Cluster Scope IP</text>
+<text data-source="root.0.1.0" x="120.000" y="415.850" font-size="28" font-weight="700" fill="#111827">Pool</text>
+<text data-source="root.0.1.0" x="120.000" y="458.250" font-size="22" font-weight="400" fill="#111827">cluster 전체 주소 풀에서</text>
+<text data-source="root.0.1.0" x="120.000" y="487.950" font-size="22" font-weight="400" fill="#111827">node별 subnet을</text>
+<text data-source="root.0.1.0" x="120.000" y="517.650" font-size="22" font-weight="400" fill="#111827">선택한다.</text>
+<text data-source="root.0.1.2" x="590.235" y="412.500" font-size="28" font-weight="700" fill="#111827">Cilium Operator</text>
+<text data-source="root.0.1.2" x="590.235" y="454.900" font-size="22" font-weight="400" fill="#111827">node별 PodCIDR을</text>
+<text data-source="root.0.1.2" x="590.235" y="484.600" font-size="22" font-weight="400" fill="#111827">중앙에서 배정한다.</text>
+<text data-source="root.0.1.4" x="1060.471" y="394.300" font-size="28" font-weight="700" fill="#111827">v2.CiliumNode:</text>
+<text data-source="root.0.1.4" x="1060.471" y="430.700" font-size="28" font-weight="700" fill="#111827">node1</text>
+<text data-source="root.0.1.4" x="1060.471" y="473.100" font-size="22" font-weight="400" fill="#111827">spec.ipam.podCIDRs:</text>
+<text data-source="root.0.1.4" x="1060.471" y="502.800" font-size="22" font-weight="400" fill="#111827">10.1.1.0/24</text>
+<text data-source="root.0.1.6" x="1530.706" y="397.650" font-size="28" font-weight="700" fill="#111827">Cilium Agent</text>
+<text data-source="root.0.1.6" x="1530.706" y="440.050" font-size="22" font-weight="400" fill="#111827">할당받은 node subnet</text>
+<text data-source="root.0.1.6" x="1530.706" y="469.750" font-size="22" font-weight="400" fill="#111827">안에서 host-scope</text>
+<text data-source="root.0.1.6" x="1530.706" y="499.450" font-size="22" font-weight="400" fill="#111827">allocator를 실행한다.</text>
+<text data-source="root.0.1.8" x="120.000" y="697.350" font-size="28" font-weight="700" fill="#111827">Pods on node1</text>
+<text data-source="root.0.1.8" x="120.000" y="739.750" font-size="22" font-weight="400" fill="#111827">10.1.1.1 and 10.1.1.2</text>
+<text data-source="root.0.1.1" x="417.294" y="389.000" font-size="22" font-weight="400" fill="#111827">operator</text>
+<text data-source="root.0.1.1" x="417.294" y="418.700" font-size="22" font-weight="400" fill="#111827">allocation</text>
+<text data-source="root.0.1.3" x="887.529" y="359.300" font-size="22" font-weight="400" fill="#111827">update</text>
+<text data-source="root.0.1.3" x="887.529" y="389.000" font-size="22" font-weight="400" fill="#111827">CiliumNode</text>
+<text data-source="root.0.1.3" x="887.529" y="418.700" font-size="22" font-weight="400" fill="#111827">CRD</text>
+<text data-source="root.0.1.5" x="1357.765" y="389.000" font-size="22" font-weight="400" fill="#111827">agent reads</text>
+<text data-source="root.0.1.5" x="1357.765" y="418.700" font-size="22" font-weight="400" fill="#111827">node CIDR</text>
+<text data-source="root.0.1.7" x="104.000" y="589.350" font-size="22" font-weight="400" fill="#111827">allocate Pod IPs</text>
+<text data-source="root.0.2" x="64.000" y="817.450" font-size="22" font-weight="400" fill="#111827">v2.CiliumNode의 podCIDRs가 operator와 agent 사이의 allocation boundary다. 이 모드는 Kubernetes v1.Node의 PodCIDR 할당에 의존하지 않는다.</text>
+</svg>

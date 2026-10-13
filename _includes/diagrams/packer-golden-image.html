@@ -1,5 +1,5 @@
-<figure class="sd sd--flow" id="packer-golden-image" aria-labelledby="packer-golden-image-title">
-  <figcaption class="sd-title" id="packer-golden-image-title">Packer가 Golden AMI를 만드는 흐름</figcaption>
+<figure class="sd sd--flow sd--fhd" id="packer-golden-image" aria-labelledby="packer-golden-image-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="packer-golden-image-title">Packer가 Golden AMI를 만드는 흐름</figcaption><div class="sd-semantic-source">
 
   <section class="sd-band" aria-labelledby="packer-build-title">
     <div class="sd-band-title" id="packer-build-title"><strong>1. 이미지 빌드</strong></div>
@@ -37,4 +37,44 @@
       </div>
     </div>
   </section>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2bea76dd7d41f6bbf14cf609813fdf6934ea38254e44e2d6bf2f90463ee2904f">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="64.000" y="243.850" width="1792.000" height="319.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="672.850" width="1792.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="120.000" y="329.650" width="464.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="728.000" y="344.500" width="464.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.4" x="1336.000" y="329.650" width="464.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.0" x="88.000" y="758.650" width="1744.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 596.000 407.550 L 716.000 407.550" fill="none" stroke="#475569" stroke-width="3"><title>Builder가 임시 EC2 생성</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="716.000,407.550 706.000,413.550 706.000,401.550" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1204.000 407.550 L 1324.000 407.550" fill="none" stroke="#475569" stroke-width="3"><title>구성된 디스크 상태 캡처</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1324.000,407.550 1314.000,413.550 1314.000,401.550" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 575.150 L 960.000 660.850" fill="none" stroke="#475569" stroke-width="3"><title>Golden AMI를 배포에서 참조</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,660.850 954.000,650.850 966.000,650.850" fill="#475569"/>
+<image data-source="root.0.1.1.0.0.0" href="/assets/img/packer/diagram/packer.svg" x="144.000" y="375.550" width="64.000" height="64.000" preserveAspectRatio="xMidYMid meet"/>
+<image data-source="root.0.1.1.2.0.0" href="/assets/img/packer/diagram/ec2.png" x="752.000" y="375.550" width="64.000" height="64.000" preserveAspectRatio="xMidYMid meet"/>
+<image data-source="root.0.1.1.4.0.0" href="/assets/img/packer/diagram/ami.png" x="1360.000" y="375.550" width="64.000" height="64.000" preserveAspectRatio="xMidYMid meet"/>
+<image data-source="root.0.3.1.0.0.0" href="/assets/img/packer/diagram/ec2.png" x="112.000" y="789.700" width="64.000" height="64.000" preserveAspectRatio="xMidYMid meet"/>
+<text data-source="root.0.0" x="64.000" y="207.250" font-size="36" font-weight="700" fill="#111827">Packer가 Golden AMI를 만드는 흐름</text>
+<text data-source="root.0.1.0" x="88.000" y="295.850" font-size="28" font-weight="700" fill="#111827">1. 이미지 빌드</text>
+<text data-source="root.0.1.1.0" x="228.000" y="381.650" font-size="28" font-weight="700" fill="#111827">HCL 템플릿</text>
+<text data-source="root.0.1.1.0" x="228.000" y="424.050" font-size="22" font-weight="400" fill="#111827">source &quot;amazon-ebs&quot;와</text>
+<text data-source="root.0.1.1.0" x="228.000" y="453.750" font-size="22" font-weight="400" fill="#111827">provisioner &quot;shell&quot; 정의</text>
+<text data-source="root.0.1.1.2" x="836.000" y="396.500" font-size="28" font-weight="700" fill="#111827">임시 EC2</text>
+<text data-source="root.0.1.1.2" x="836.000" y="438.900" font-size="22" font-weight="400" fill="#111827">Provisioner: Nginx 설치와 설정 저장</text>
+<text data-source="root.0.1.1.4" x="1444.000" y="381.650" font-size="28" font-weight="700" fill="#111827">Golden AMI</text>
+<text data-source="root.0.1.1.4" x="1444.000" y="424.050" font-size="22" font-weight="400" fill="#111827">설치 결과를 담은 재사용 가능한 머신</text>
+<text data-source="root.0.1.1.4" x="1444.000" y="453.750" font-size="22" font-weight="400" fill="#111827">이미지</text>
+<text data-source="root.0.1.1.1" x="588.000" y="358.150" font-size="22" font-weight="400" fill="#111827">Builder가 임시</text>
+<text data-source="root.0.1.1.1" x="588.000" y="387.850" font-size="22" font-weight="400" fill="#111827">EC2 생성</text>
+<text data-source="root.0.1.1.3" x="1196.000" y="358.150" font-size="22" font-weight="400" fill="#111827">구성된 디스크</text>
+<text data-source="root.0.1.1.3" x="1196.000" y="387.850" font-size="22" font-weight="400" fill="#111827">상태 캡처</text>
+<text data-source="root.0.1.2" x="88.000" y="531.450" font-size="22" font-weight="400" fill="#111827">빌드가 끝나면 임시 인스턴스와 빌드 리소스를 정리합니다.</text>
+<text data-source="root.0.3.0" x="88.000" y="724.850" font-size="28" font-weight="700" fill="#111827">2. 이미지 사용</text>
+<text data-source="root.0.3.1.0" x="196.000" y="810.650" font-size="28" font-weight="700" fill="#111827">새 EC2 인스턴스들</text>
+<text data-source="root.0.3.1.0" x="196.000" y="853.050" font-size="22" font-weight="400" fill="#111827">Golden AMI의 Ubuntu, Nginx, 설정 파일을 포함해 부팅합니다.</text>
+<text data-source="root.0.2" x="980.000" y="625.150" font-size="22" font-weight="400" fill="#111827">Golden AMI를 배포에서 참조</text>
+</svg>
 </figure>
