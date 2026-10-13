@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from downloads import HELPER, Siblings, built_plan, discover, main, validate_source, viewer_url
+from downloads import HELPER, Siblings, built_plan, discover, main, validate_source, viewer_url, webp_url
 
 
 class DownloadWiringTests(unittest.TestCase):
@@ -47,16 +47,16 @@ class DownloadWiringTests(unittest.TestCase):
                 with self.assertRaises(ValueError): discover(self.root)
 
     def markup(self, entry):
-        png = entry['png']
+        png = webp_url(entry['png'])
         return (f'<figure class="sd" id="{entry["figure"]}"></figure>'
                 f'<p class="diagram-download"><img class="diagram-inline" src="{png}" alt="" '
-                f'width="1920" data-static-diagram="true">'
+                f'width="1920" height="1080" data-static-diagram="true">'
                 f'<a href="{png}" download>PNG</a><a href="{viewer_url(png)}">Open</a></p>')
 
     def test_sibling_outside_figure_and_native_download(self):
         text = '<main><figure class="sd" id="demo"><div>body</div></figure>\n<p class="diagram-download"><img class="diagram-inline" src="/x.png" alt="" width="1920" data-static-diagram="true"><a href="/x.png" download>PNG</a><a href="/x.png">Open</a></p></main>'
         rows = Siblings(text).rows
-        self.assertEqual(rows, [{'figure': 'demo', 'parent': ('main',), 'links': [('/x.png', True), ('/x.png', False)], 'images': [('/x.png', '', 'true', None, True, ('main', 'p'))]}])
+        self.assertEqual(rows, [{'figure': 'demo', 'parent': ('main',), 'links': [('/x.png', True), ('/x.png', False)], 'images': [('/x.png', '', 'true', None, True, ('main', 'p'))], 'image_dimensions': [('1920', None)]}])
         with self.assertRaises(ValueError): Siblings(text.replace('</figure>', ''))
         with self.assertRaises(ValueError): Siblings(text.replace('</figure>', '</figure><div>intervening</div>'))
 
@@ -64,7 +64,17 @@ class DownloadWiringTests(unittest.TestCase):
         path = site/'assets/data/diagram-posts.json'
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(mapping if mapping is not None else {'_posts/example.md': '/'}))
+        plan = json.loads((self.root/'docs/diagram-downloads.json').read_text())
+        for entry in plan['entries']:
+            webp = webp_url(entry['png'])
+            viewer = site/viewer_url(webp).lstrip('/')
+            viewer.parent.mkdir(parents=True, exist_ok=True)
+            viewer.write_text(f'<img class="diagram-canvas" src="{webp}" width="1920" height="1080"><a href="{webp}" download>WebP</a>')
         return path
+
+    def html_snapshot(self, site):
+        from downloads import digest
+        return {p.relative_to(site).as_posix(): digest(p.read_bytes()) for p in site.rglob('*.html')}
 
     def test_swapped_reused_include_urls_reject_wrong_post_ownership(self):
         self.post.write_text('{% include diagrams/example.html %}\n')
@@ -110,7 +120,7 @@ class DownloadWiringTests(unittest.TestCase):
         page = site/'index.html'
         text = '<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>'
         self.sidecar(site)
-        image = '<img class="diagram-inline" src="' + plan['entries'][0]['png'] + '" alt="" width="1920" data-static-diagram="true">'
+        image = '<img class="diagram-inline" src="' + webp_url(plan['entries'][0]['png']) + '" alt="" width="1920" height="1080" data-static-diagram="true">'
         self.assertIn(image, text)
         page.write_text(text)
         self.assertEqual(len(built_plan(self.root, site, plan)), 2)
@@ -120,7 +130,7 @@ class DownloadWiringTests(unittest.TestCase):
                       image.replace('data-static-diagram="true"', 'srcset="/other.png 2x" data-static-diagram="true"')]:
             with self.subTest(wrong=wrong):
                 page.write_text(text.replace(image, wrong, 1))
-                with self.assertRaisesRegex(ValueError, 'missing or mismatched accessible inline PNG'):
+                with self.assertRaisesRegex(ValueError, 'missing or mismatched accessible inline WebP'):
                     built_plan(self.root, site, plan)
 
     def test_built_coverage_missing_unknown_and_duplicate_fail(self):
@@ -133,9 +143,9 @@ class DownloadWiringTests(unittest.TestCase):
         self.assertEqual(len(built_plan(self.root, site, plan)), 2)
         page.write_text(content.replace('class="diagram-download"', 'class="other"', 1))
         with self.assertRaises(ValueError): built_plan(self.root, site, plan)
-        page.write_text(content.replace(plan['entries'][0]['png'], '/unknown.png'))
+        page.write_text(content.replace(webp_url(plan['entries'][0]['png']), '/assets/img/diagrams/unknown.webp'))
         with self.assertRaises(ValueError): built_plan(self.root, site, plan)
-        page.write_text(content.replace(plan['entries'][1]['png'], plan['entries'][0]['png']))
+        page.write_text(content.replace(webp_url(plan['entries'][1]['png']), webp_url(plan['entries'][0]['png'])))
         with self.assertRaises(ValueError): built_plan(self.root, site, plan)
 
     def test_indented_occurrence_is_explicitly_blocked(self):
@@ -157,7 +167,13 @@ class DownloadWiringTests(unittest.TestCase):
             page = site/'index.html'
             page.write_text('<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>')
             self.sidecar(site)
-            (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': {'index.html': digest(page.read_bytes())}}))
+            raw = b'\x89PNG\r\n\x1a\n' + b'synthetic-adapter-fixture-not-a-real-image'
+            for entry in plan['entries']:
+                for folder in (self.root, site):
+                    artifact = folder / entry['png'].lstrip('/')
+                    artifact.parent.mkdir(parents=True, exist_ok=True)
+                    artifact.write_bytes(raw)
+            (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': self.html_snapshot(site)}))
             calls = []
             def fake_pipeline(command, **kwargs):
                 calls.append(command)
@@ -191,7 +207,7 @@ class DownloadWiringTests(unittest.TestCase):
         page = site/'index.html'
         page.write_text('<main>' + ''.join(self.markup(e) for e in plan['entries']) + '</main>')
         self.sidecar(site)
-        (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': {'index.html': digest(page.read_bytes())}}))
+        (site/'.diagram-download-build.json').write_text(json.dumps({'source': source_snapshot(self.root), 'assets': built_assets_snapshot(site, plan), 'html': self.html_snapshot(site)}))
         return plan, site, out, ['--root', str(self.root), '--site', str(site), '--out', str(out)]
 
     def test_parallel_default_preserves_report_order_and_isolates_targets(self):
@@ -284,7 +300,7 @@ class DownloadWiringTests(unittest.TestCase):
                     stamp = site/'.diagram-download-build.json'
                     stamp.write_text(json.dumps({'source': source_snapshot(self.root),
                         'assets': built_assets_snapshot(site, plan),
-                        'html': {'index.html': digest((site/'index.html').read_bytes())}}))
+                        'html': self.html_snapshot(site)}))
                     added = path.with_name('new-input' + path.suffix)
                     def run(command, **kwargs):
                         if operation == 'change': path.write_text(before + '\nchanged during export\n')

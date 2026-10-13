@@ -119,6 +119,7 @@ def staged_requires_verification(root):
         "docs/diagram-catalog.json",
         "docs/diagram-downloads.json",
         "docs/diagram-fhd-reviews.json",
+        "docs/diagram-webp-release.json",
         MANIFEST,
         "kkamji_scripts/blog/fhd_svg.py",
     }
@@ -136,7 +137,12 @@ def staged_requires_verification(root):
             line[1:] for line in diff.splitlines()
             if line.startswith(("+", "-")) and not line.startswith(("+++", "---"))
         )
-        return INCLUDE.search(changed_lines) is not None
+        # Removing/replacing a diagram cover must trigger too, even if the new
+        # image path no longer belongs to this corpus. Ordinary prose stays out.
+        import re
+        return (INCLUDE.search(changed_lines) is not None
+                or '/assets/img/diagrams/' in changed_lines
+                or re.search(r'^\s*(?:image|path)\s*:', changed_lines, re.M) is not None)
     return False
 
 
@@ -145,6 +151,11 @@ def verify_staged(root):
     from pipeline import digest, fingerprint, png_dimensions
 
     root = Path(root).resolve()
+    helper = root / '_includes/diagrams/download.html'
+    if ((root / 'docs/diagram-webp-release.json').exists()
+            or helper.is_file() and '.webp' in helper.read_text()):
+        from webp_release import verify_staged as verify_webp_staged
+        return verify_webp_staged(root)
     plan = validate_source(root)
     payload = json.loads((root / MANIFEST).read_text())
     snapshot = source_snapshot(root)

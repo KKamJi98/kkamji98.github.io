@@ -95,6 +95,28 @@
     <!-- take out classes -->
     {% assign _wrapper_class = '' %}
 
+    {% assign _cover_context = false %}
+    {% if page.layout == 'home' %}
+      {% assign _cover_context = true %}
+    {% elsif _class contains 'preview-img' %}
+      {% assign _cover_context = true %}
+    {% endif %}
+    {% assign _cover_prefix = _src | slice: 0, 21 %}
+    {% assign _cover_suffix = _src | slice: -5, 5 %}
+    {% if _cover_context and _cover_prefix == '/assets/img/diagrams/' and _cover_suffix == '.webp' %}
+      {% assign _wrapper_class = ' diagram-cover' %}
+      {% for _size_attr in _attrs %}
+        {% assign _size_pair = _size_attr | split: '="' %}
+        {% assign _size_key = _size_pair | first %}
+        {% assign _size_value = _size_pair | last | remove: '"' %}
+        {% if _size_key == 'width' or _size_key == 'height' %}
+          {% capture _old_size_attr %}{{ _size_key }}="{{ _size_value }}"{% endcapture %}
+          {% assign _left = _left | remove: _old_size_attr %}
+        {% endif %}
+      {% endfor %}
+      {% assign _left = _left | append: ' width="1920" height="1080"' %}
+    {% endif %}
+
     {% if _class %}
       {% assign _remain = _class %}
       {% assign _class_array = _class | split: ' ' %}

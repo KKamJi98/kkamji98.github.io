@@ -2873,7 +2873,7 @@ def author(root, check=False, report=None):
         results.append(result)
     payload = {
         "canvas": [WIDTH, HEIGHT],
-        "display": "fixed-size-scroll",
+        "display": "responsive-proportional",
         "font_sha256": sha(font.raw),
         "counts": {
             status: sum(r["status"] == status for r in results)

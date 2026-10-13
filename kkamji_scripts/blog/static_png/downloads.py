@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Wire canonical PNG siblings, stamp a fresh build, export and verify exact URLs."""
+"""Wire native provenance siblings and verify fresh, same-WebP runtime delivery.
+
+The legacy export adapter remains a blocked native-production path. Use
+webp_release.py to derive and seal lossless delivery without rerender claims.
+"""
 import argparse
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -26,10 +30,16 @@ def helper(entry, indent=''):
     return indent + '{% include diagrams/download.html png="' + entry['png'] + '" %}\n'
 
 
-def viewer_url(png):
-    if not png.startswith('/assets/img/diagrams/') or not png.endswith('.png'):
-        raise ValueError('invalid viewer PNG path')
-    return '/diagrams/view/' + png.removeprefix('/assets/img/diagrams/').removesuffix('.png') + '.html'
+def webp_url(png):
+    if not re.fullmatch(r'/assets/img/diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png', png):
+        raise ValueError('invalid native PNG provenance path')
+    return png.removesuffix('.png') + '.webp'
+
+
+def viewer_url(asset):
+    if not isinstance(asset, str) or not re.fullmatch(r'/assets/img/diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.(?:png|webp)', asset):
+        raise ValueError('invalid viewer diagram path')
+    return '/diagrams/view/' + asset.removeprefix('/assets/img/diagrams/').rsplit('.', 1)[0] + '.html'
 
 
 def output_paths(plan):
@@ -38,6 +48,26 @@ def output_paths(plan):
     unused = {'assets/img/diagrams/fhd-unused/' + name.removeprefix('diagrams/').removesuffix('.html') + '.png'
               for name in plan.get('unused_includes', [])}
     return mapped | unused
+
+
+def delivery_output_paths(root, plan):
+    """Preserve the published native corpus even when a body row becomes a cover.
+
+    A body-unused include need not create another native or derivative output.
+    All original published paths are converted once, with explicit usage kept
+    by the derivative release adapter rather than fabricated render receipts.
+    """
+    native = output_paths(plan)
+    baseline = root / 'docs/diagram-export-release.json'
+    if baseline.is_file():
+        payload = json.loads(baseline.read_text())
+        if payload.get('schema') == 2:
+            rows = payload['entries'] + payload.get('unused_entries', [])
+            urls = [row['png'] for row in rows]
+            if len(set(urls)) != len(urls): raise ValueError('native output collision')
+            native = {url.lstrip('/') for url in urls}
+            for url in urls: webp_url(url)  # Reject unsafe manifest paths.
+    return native | {webp_url('/' + path).lstrip('/') for path in native}
 
 
 def discover(root):
@@ -121,11 +151,12 @@ class Siblings(HTMLParser):
             if 'figure' in self.stack or self.last is None or self.last[1] != tuple(self.stack):
                 raise ValueError(f'download is not an immediate figure sibling: stack={self.stack}, preceding={self.last}')
             self.active = {'figure': self.last[0], 'parent': tuple(self.stack),
-                           'links': [], 'images': []}
+                           'links': [], 'images': [], 'image_dimensions': []}
         if tag == 'img' and self.active is not None:
             self.active['images'].append((a.get('src'), a.get('alt'), a.get('data-static-diagram'),
                                           a.get('srcset'), 'diagram-inline' in (a.get('class') or '').split(),
                                           tuple(self.stack)))
+            self.active['image_dimensions'].append((a.get('width'), a.get('height')))
         if tag == 'a' and self.active is not None:
             self.active['links'].append((a.get('href'), 'download' in a))
         if tag not in VOID: self.stack.append(tag)
@@ -143,7 +174,38 @@ class Siblings(HTMLParser):
         if data.strip(): self.last = None
 
 
-def post_pages(site, plan):
+def cover_references(root):
+    """Explicit frontmatter image.path usage, separate from body figures."""
+    import yaml
+    class UniqueLoader(yaml.SafeLoader):
+        pass
+    def mapping(loader, node):
+        pairs = loader.construct_pairs(node, deep=True)
+        result = {}
+        for key, value in pairs:
+            if key in result: raise ValueError('duplicate frontmatter key: ' + str(key))
+            result[key] = value
+        return result
+    UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, mapping)
+    rows = []
+    for post in sorted((root / '_posts').rglob('*.md')):
+        raw = post.read_text()
+        if not raw.startswith('---\n'): continue
+        match = re.match(r'\A---\n(.*?)\n---(?:\n|\Z)', raw, re.S)
+        if not match: raise ValueError('unclosed post frontmatter: ' + str(post))
+        try: metadata = yaml.load(match.group(1), Loader=UniqueLoader)
+        except yaml.YAMLError as error: raise ValueError('invalid post frontmatter: ' + str(post)) from error
+        if not isinstance(metadata, dict): raise ValueError('post frontmatter must be a mapping')
+        image = metadata.get('image')
+        url = image.get('path') if isinstance(image, dict) else image
+        if isinstance(url, str) and url.startswith('/assets/img/diagrams/'):
+            if not url.endswith('.webp'): raise ValueError('diagram cover must deliver WebP')
+            viewer_url(url)  # Same safe local asset path contract, not a cover viewer.
+            rows.append({'post': post.relative_to(root).as_posix(), 'field': 'image.path' if isinstance(image, dict) else 'image', 'webp': url})
+    return rows
+
+
+def post_pages(site, plan, extra_posts=(), *, url_data=None, require_files=True):
     def unique_object(pairs):
         result = {}
         for key, value in pairs:
@@ -152,10 +214,10 @@ def post_pages(site, plan):
         return result
 
     try:
-        urls = json.loads((site/'assets/data/diagram-posts.json').read_text(), object_pairs_hook=unique_object)
+        urls = url_data if url_data is not None else json.loads((site/'assets/data/diagram-posts.json').read_text(), object_pairs_hook=unique_object)
     except OSError as exc:
         raise ValueError('missing/unreadable diagram-posts sidecar; run build again') from exc
-    if not isinstance(urls, dict) or set(urls) != {e['post'] for e in plan['entries']}:
+    if not isinstance(urls, dict) or set(urls) != ({e['post'] for e in plan['entries']} | set(extra_posts)):
         raise ValueError('diagram-posts sidecar coverage mismatch')
     pages = {}
     for post, url in urls.items():
@@ -168,18 +230,40 @@ def post_pages(site, plan):
         rel = path[1:] + ('index.html' if path.endswith('/') else '')
         if any(part in ('', '.', '..') for part in rel.split('/')) or '\\' in rel or '\x00' in rel:
             raise ValueError('unsafe post URL in diagram-posts sidecar')
-        if not (site/rel).resolve().is_relative_to(site.resolve()) or not (site/rel).is_file():
+        if require_files and (not (site/rel).resolve().is_relative_to(site.resolve()) or not (site/rel).is_file()):
             raise ValueError('post URL has no built page: ' + url)
         if rel in pages.values(): raise ValueError('duplicate page in diagram-posts sidecar: ' + rel)
         pages[post] = rel
     return pages
 
 
+class Viewer(HTMLParser):
+    def __init__(self, text):
+        super().__init__(); self.images = []; self.downloads = []; self.feed(text)
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == 'img': self.images.append(a)
+        if tag == 'a' and 'download' in a: self.downloads.append(a.get('href'))
+
+
+def validate_viewer(site, webp):
+    path = site / viewer_url(webp).lstrip('/')
+    if not path.resolve().is_relative_to(site.resolve()) or not path.is_file():
+        raise ValueError('missing diagram viewer: ' + str(path))
+    parsed = Viewer(path.read_text())
+    if (len(parsed.images) != 1 or parsed.images[0].get('src') != webp
+            or parsed.images[0].get('srcset') is not None
+            or parsed.images[0].get('width') != '1920' or parsed.images[0].get('height') != '1080'
+            or parsed.downloads != [webp]):
+        raise ValueError('diagram viewer does not deliver the same WebP: ' + str(path))
+
+
 def built_plan(root, site, plan):
-    pages = post_pages(site, plan)
+    pages = post_pages(site, plan, (row['post'] for row in cover_references(root)))
     inv = inventory(root, site, root/'docs/diagram-catalog.json')
     blocked = {e['png']: e for e in plan['entries'] if e['status'] == 'blocked-insertion'}
-    by_png = {e['png']: e for e in plan['entries'] if e['status'] != 'blocked-insertion'}; rows = []; seen = set()
+    by_png = {webp_url(e['png']): e for e in plan['entries'] if e['status'] != 'blocked-insertion'}; rows = []; seen = set()
     known = {(e['page'], e['figure'], e['include']) for e in inv['entries']}
     for page in sorted(site.rglob('*.html')):
         for row in Siblings(page.read_text()).rows:
@@ -187,8 +271,13 @@ def built_plan(root, site, plan):
             if len(links) != 2 or not links[0][1] or links[1][1] or links[1][0] != viewer_url(links[0][0]):
                 raise ValueError('invalid native download links: ' + str(page))
             png = links[0][0]
+            if not png.endswith('.webp'):
+                raise ValueError('runtime delivery must use WebP, not native PNG: ' + str(page))
             if len(images) != 1 or images[0] != (png, '', 'true', None, True, row['parent'] + ('p',)):
-                raise ValueError('missing or mismatched accessible inline PNG: ' + str(page))
+                raise ValueError('missing or mismatched accessible inline WebP: ' + str(page))
+            if row['image_dimensions'] != [('1920', '1080')]:
+                raise ValueError('inline intrinsic dimensions must be 1920 x 1080: ' + str(page))
+            validate_viewer(site, png)
             if png not in by_png or png in seen: raise ValueError('unknown/duplicate PNG URL: ' + str(png))
             entry = by_png[png]; rel = page.relative_to(site).as_posix()
             if pages[entry['post']] != rel: raise ValueError('post/page ownership mismatch: ' + png)
@@ -206,12 +295,13 @@ def built_plan(root, site, plan):
 
 
 def source_snapshot(root):
-    outputs = output_paths(json.loads((root/MANIFEST).read_text()))
+    outputs = delivery_output_paths(root, json.loads((root/MANIFEST).read_text()))
     paths = set()
     for folder in ['_posts', '_includes', '_layouts', '_sass', '_plugins', '_data', 'assets/css', 'assets/js', 'assets/fonts', 'assets/img']:
         paths.update(p for p in (root/folder).rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in outputs)
     tools = root/'kkamji_scripts/blog/static_png'
-    paths.update(p for p in tools.glob('*') if p.is_file() and p.suffix in ('.py', '.json', '.js', '.sh'))
+    paths.update(p for p in tools.rglob('*') if p.is_file() and p.suffix != '.pyc'
+                 and not any(part in ('__pycache__', '.pytest_cache') for part in p.relative_to(tools).parts))
     for name in ['_config.yml', 'Gemfile', 'Gemfile.lock', MANIFEST, 'docs/diagram-catalog.json']:
         if (root/name).is_file(): paths.add(root/name)
     author = root/'kkamji_scripts/blog/fhd_svg.py'
@@ -220,12 +310,11 @@ def source_snapshot(root):
 
 
 def built_assets_snapshot(site, plan):
-    # Conservatively bind every non-HTML build file, including the URL sidecar.
-    outputs = output_paths(plan)
+    # The build copies the frozen native corpus and its derivatives. Bind every
+    # actual non-HTML file, including those assets, to the fresh delivery build.
     return {p.relative_to(site).as_posix(): digest(p.read_bytes())
             for p in sorted(site.rglob('*')) if p.is_file()
-            and p.suffix != '.html' and p.name != '.diagram-download-build.json'
-            and p.relative_to(site).as_posix() not in outputs}
+            and p.suffix != '.html' and p.name != '.diagram-download-build.json'}
 
 
 def main(argv=None):

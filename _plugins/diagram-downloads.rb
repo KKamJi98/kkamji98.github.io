@@ -13,7 +13,12 @@ module Jekyll
       return unless File.file?(manifest)
 
       entries = JSON.parse(File.read(manifest)).fetch('entries')
-      wanted = entries.map { |entry| entry.fetch('post') }.uniq
+      covers = site.posts.docs.select do |post|
+        image = post.data['image']
+        path = image.is_a?(Hash) ? image['path'] : image
+        path.is_a?(String) && path.start_with?('/assets/img/diagrams/')
+      end.map { |post| post.relative_path.delete_prefix('/') }
+      wanted = (entries.map { |entry| entry.fetch('post') } + covers).uniq
       posts = site.posts.docs.to_h { |post| [post.relative_path.delete_prefix('/'), post.url] }
       missing = wanted - posts.keys
       raise "Diagram source posts missing: #{missing.join(', ')}" unless missing.empty?
@@ -37,7 +42,7 @@ module Jekyll
       caption = File.read(include_path)[%r{<figcaption[^>]*>(.*?)</figcaption>}m, 1]
       title = CGI.escapeHTML(CGI.unescapeHTML(caption.to_s.gsub(/<[^>]*>/, '').strip))
       base = site.config.fetch('baseurl', '').to_s
-      png_url = CGI.escapeHTML(base + png)
+      webp_url = CGI.escapeHTML(base + png.sub(/\.png\z/, '.webp'))
       post_url = CGI.escapeHTML(base + posts.fetch(entry.fetch('post')) + '#' + entry.fetch('figure'))
       page = PageWithoutAFile.new(site, site.source, File.join('diagrams/view', File.dirname(path)), File.basename(path))
       page.data['layout'] = nil
@@ -64,10 +69,10 @@ module Jekyll
         </style></head><body>
           <span class="zoom-target" id="zoom-100"></span><span class="zoom-target" id="zoom-125"></span><span class="zoom-target" id="zoom-150"></span>
           <h1>#{title}</h1>
-          <nav aria-label="다이어그램 확대 및 다운로드"><a href="#zoom-100">100%</a><a href="#zoom-125">125%</a><a href="#zoom-150">150%</a><a href="#{png_url}" download>PNG 다운로드</a><a href="#{post_url}">본문으로 돌아가기</a></nav>
+          <nav aria-label="다이어그램 확대 및 다운로드"><a href="#zoom-100">100%</a><a href="#zoom-125">125%</a><a href="#zoom-150">150%</a><a href="#{webp_url}" download>WebP 다운로드</a><a href="#{post_url}">본문으로 돌아가기</a></nav>
           <p>기본 크기는 1920 x 1080입니다. 좁은 화면에서는 스크롤하고, 확대 비율은 직접 선택하세요.</p>
           <div class="diagram-viewport" tabindex="0" role="region" aria-label="스크롤 가능한 고정 크기 다이어그램">
-            <div class="diagram-space"><img class="diagram-canvas" src="#{png_url}" width="1920" height="1080" alt="#{title}"></div>
+            <div class="diagram-space"><img class="diagram-canvas" src="#{webp_url}" width="1920" height="1080" alt="#{title}"></div>
           </div>
         </body></html>
       HTML

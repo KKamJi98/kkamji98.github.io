@@ -152,6 +152,22 @@ if [ -n "${staged_specs}" ]; then
   fi
 fi
 
+if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys.path.insert(0,str(root/"kkamji_scripts/blog/static_png")); from release_manifest import staged_requires_verification; raise SystemExit(0 if staged_requires_verification(root) else 1)' "${REPO_ROOT}"; then
+  step "반응형 표시, 커버와 증적 경계 회귀"
+  fixture_env=(env)
+  while IFS= read -r git_local_var; do
+    fixture_env+=(-u "${git_local_var}")
+  done < <(git rev-parse --local-env-vars)
+  if "${fixture_env[@]}" PYTHONDONTWRITEBYTECODE=1 "${PY}" -m pytest -p no:cacheprovider -q \
+    "${BLOG}/static_png/test_responsive_display.py" \
+    "${BLOG}/static_png/test_cover_contract.py" \
+    "${BLOG}/static_png/test_webp_review_regressions.py"; then
+    ok "원본 해상도, 표시 크기, 표지와 manifest/index 경계"
+  else
+    bad "다이어그램 회귀 테스트"
+  fi
+fi
+
 step "정적 다이어그램 release manifest"
 if "${PY}" "${BLOG}/static_png/release_manifest.py" --root "${REPO_ROOT}" --if-staged; then
   ok "검증된 source/PNG/index 일치"

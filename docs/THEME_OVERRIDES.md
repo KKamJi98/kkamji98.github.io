@@ -39,12 +39,13 @@ bash tools/run.sh    # 로컬 미리보기
 ## Static diagram download helper
 
 - `_includes/diagrams/download.html` is an additive helper, not a gem override.
-- Invoke only outside `figure.sd`, with a same-origin PNG asset path from the verified export manifest. It renders the same 1920 x 1080 PNG at fixed size in a keyboard-accessible scroll region (empty `alt`, since the canonical figure stays in the accessibility tree), for native download and a scriptless fixed HTML viewer with explicit 100%, 125% and 150% user-selected zoom. No JavaScript, alternate drawing, or viewport-specific image variant.
-- CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The fixed-coordinate SVG is rendered through the approved Aside path; the semantic source and the same SVG are verified together. The stored PNGs need a fresh full-corpus re-export and check after these CSS changes; old dark PNGs are not a verified light release.
-- Every referencing post occurrence is mapped by `docs/diagram-downloads.json`. The helper follows its canonical include as a sibling; a Jekyll-generated `assets/data/diagram-posts.json` sidecar binds source posts to actual rendered URLs. Source/build assets and exact PNG bytes must pass the export/check adapter before publication.
+- Invoke only outside `figure.sd`. The legacy `png=` input may retain a same-origin native PNG provenance path; the helper derives the public `.webp` delivery URL. Inline, download and the scriptless full-size viewer use the same native 1920 x 1080 WebP. Only the article image scales proportionally to article width; it has empty `alt` because the canonical figure stays in the accessibility tree. Full-size display and 100%, 125% and 150% zoom belong to the explicitly user-selected viewer. No JavaScript, alternate drawing, viewport-specific image variant, or forced inline image scrolling.
+- CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The fixed-coordinate SVG is rendered through the approved Aside path; the semantic source and the same SVG are verified together. Source/export input changes require fresh render evidence; inline-only display changes must preserve source/export geometry and require a fresh delivery build/check. Older dark or resized PNGs are not a verified native light release.
+- Covers are separate assets, not body diagrams selected by extension or FHD dimensions. `refactor-content.html` tags only explicit home/post preview covers in the verified `/assets/img/diagrams/*.webp` namespace with `diagram-cover`, supplies native 1920 x 1080 HTML dimensions, and uses a separate 16:9 cover rule. This avoids the gem's 1200 x 630 preview fallback without changing ordinary covers or opt-in body diagrams.
+- Every referencing body-diagram occurrence is mapped by `docs/diagram-downloads.json`. Covers are separate assets, not body diagrams selected by extension or FHD dimensions. The helper follows its canonical include as a sibling; a Jekyll-generated `assets/data/diagram-posts.json` sidecar binds source posts to actual rendered URLs. Source/build assets, native PNG evidence and exact WebP delivery bytes must pass the export/check adapter before publication. Lossless WebP must decode to the same full RGBA pixels as the preserved native PNG.
 - Connector acceptance now uses transformed paint and explicit cross-container roles; see [Connector acceptance and recurrence gates](static-diagrams.md#connector-acceptance-and-recurrence-gates). The original role and endpoint contracts are preserved while SVG rectangles, routes, arrowheads, labels and images receive matching geometry and content checks.
 - Export and font policy: [Static diagrams](static-diagrams.md#same-source-png-export).
-- SAP-C02의 `scp-iam-effective-permissions`, `datasync-agent-requirement`, `transfer-family-endpoint-types`, `control-tower-landing-zone` include는 각각 identity-based 권한 경로의 적용 범위, AWS 스토리지 서비스 간 agent 조건, Internal private IP와 Internet Facing EIP 및 AS2 지원, Landing Zone 4.0의 선택적 구성을 구분한다. 원본과 게시용 PNG를 함께 검증하며 공통 테마 CSS는 변경하지 않는다.
+- SAP-C02의 `scp-iam-effective-permissions`, `datasync-agent-requirement`, `transfer-family-endpoint-types`, `control-tower-landing-zone` include는 각각 identity-based 권한 경로의 적용 범위, AWS 스토리지 서비스 간 agent 조건, Internal private IP와 Internet Facing EIP 및 AS2 지원, Landing Zone 4.0의 선택적 구성을 구분한다. 의미 검토는 source, native PNG와 게시용 WebP를 대응하며 이들 include의 개별 의미 수정은 공통 테마 CSS를 변경하지 않는다.
 
 ## Overrides 목록
 
@@ -138,18 +139,19 @@ bash tools/run.sh    # 로컬 미리보기
 
 - **적용일**: 2026-09-07
 - **파일**: `assets/css/jekyll-theme-chirpy.scss`, `_includes/refactor-content.html`, `_includes/diagrams/static/`, `kkamji_scripts/blog/validate_static_diagrams.py`
-- **스타일**: `.sd`로 범위를 제한한 정적 flow, branch, comparison, layer, table 컴포넌트다. 텍스트와 요소를 FHD 좌표에 설계하고 SVG와 PNG의 1920 x 1080 표시 크기를 고정한다. 좁은 화면은 스크롤하며 grid를 재배치하지 않는다. 제작 기준과 source catalog는 [Static diagrams](static-diagrams.md)에 있다.
+- **스타일**: `.sd`로 범위를 제한한 정적 flow, branch, comparison, layer, table 컴포넌트다. 텍스트와 요소의 FHD 좌표 및 native SVG/PNG/WebP의 1920 x 1080 치수를 유지한다. 본문의 opt-in inline 이미지만 글 폭에 맞춰 비례 축소하며 grid를 재배치하지 않는다. 제작 기준과 source catalog는 [Static diagrams](static-diagrams.md)에 있다.
 - **테마 override**: Chirpy 7.4.1의 `refactor-content.html` 전체를 기반으로, `data-static-diagram` 이미지에 한해 확대 anchor와 shimmer wrapper 생성 전에 원래 img를 그대로 통과시킨다. 일반 본문 이미지 처리는 gem과 동일하다.
-- **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, 데스크톱과 360px/390px에서 고정 1920 x 1080 표시, 스크롤 도달, 텍스트와 간선 및 clipping을 검사한다.
+- **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, native 이미지 치수와 전체 decoded 픽셀 동일성을 검사한다. 데스크톱과 360px/390px의 실제 article에서 비례 표시, image/article/document의 가로 overflow 부재, 가독성과 clipping을 확인한다. source/export fixture와 full-size viewer는 별도 검사한다. 정적 CSS 테스트는 브라우저 및 실제 시각 검토를 대신하지 않는다.
 - **테마 업그레이드**: refactor-content gem 원본의 변경을 비교해 static marker 예외를 유지한다. 이 override는 전체 파일 대체이므로 gem 변경이 자동 병합되지 않는다.
 
-## Fixed FHD diagram display and stylesheet cache
+## Native FHD artwork, responsive article display and stylesheet cache
 
-- Diagram canvases, inline SVG and PNG artwork use 1920 x 1080 fixed dimensions and SVG viewBox `0 0 1920 1080`. Desktop and mobile preserve those pixels and coordinates.
-- Viewport-driven diagram scaling, container-query reflow and breakpoint variants are prohibited. The download helper is a keyboard-accessible horizontal scroll region with an explicit fixed-viewer link.
+- Diagram canvases, canonical SVG, native PNG and published WebP use exactly 1920 x 1080 pixels and SVG viewBox `0 0 1920 1080`. Preserve artwork and authored coordinates, not an oversized article CSS box. Archived SVG/PNG remain evidence; WebP is a lossless derivative with full decoded RGBA equality.
+- Canvas pixels and CSS display size are separate. Only `.diagram-download > img.diagram-inline` scales to article width with `width:100%`, `min-width:0`, `max-width:100%`, `height:auto`, `min-height:0`, `max-height:none` and `aspect-ratio:16 / 9`. Remove duplicate fixed-size inline overrides, including the landscape and Jev pilots. Covers and arbitrary `.webp` images are not selected by these rules.
+- Container-query reflow and breakpoint-specific artwork variants remain prohibited. The helper does not force horizontal image scrolling. Image, article and document overflow must be checked in a real browser after image loading. The explicit full-size viewer keeps native display and user-selected zoom; source SVG/export fixture CSS and semantic-source clipping stay unchanged.
 - Canonical HTML labels, conditions and image provenance remain in the accessibility tree. Direct-coordinate inline SVG is the visual source; every node, label, edge and image must map back to that preserved source.
 - Theme 7.6.0 `head.html` and `swconf.js` overrides retain the same `site.time` build timestamp on the theme stylesheet URL. Rebase both full-file overrides when upgrading the gem.
-- See [Static diagrams](static-diagrams.md) for the exact FHD authoring, Aside-only rendering, PNG dimension and release gates. Older 625px/DPR 3.072 or responsive-grid evidence does not prove this contract.
+- See [Static diagrams](static-diagrams.md) for exact FHD authoring, Aside-only rendering, native PNG/WebP dimensions and release gates. `test_responsive_display.py` verifies static rule contracts and `responsive-proportional` metadata, not browser overflow, pixel QA or visual approval. Older 625px/DPR 3.072 or responsive-grid evidence does not prove this contract.
 
 ### PWA freshness and safe migration
 

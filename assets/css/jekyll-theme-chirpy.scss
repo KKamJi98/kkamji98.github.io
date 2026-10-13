@@ -45,7 +45,10 @@
 }
 
 /* Shared static diagram system. The figure remains the semantic/export source;
-   mapped article occurrences display the same PNG used by both links. */
+   mapped article occurrences display the same native WebP used by both links.
+   Canvas pixels and authored coordinates stay FHD; CSS display scales only the
+   inline image proportionally to article width, without reflow or resampling
+   the stored artwork. */
 figure.sd {
   --sd-bg: #fff;
   --sd-surface: #fff;
@@ -84,16 +87,6 @@ figure.sd:has(+ .diagram-download > img.diagram-inline) {
   clip-path: inset(50%) !important;
 }
 
-.diagram-download > img.diagram-inline {
-  display: block;
-  width: 1920px;
-  height: 1080px;
-  max-width: 1920px;
-  margin: 0 0 0.75rem;
-  object-fit: contain;
-  filter: none !important;
-  mix-blend-mode: normal;
-}
 
 figure.sd,
 figure.sd * {
@@ -721,16 +714,10 @@ figure.sd.sd--linear-landscape:is(#sd-ethereum-account-fields, #jib-build-workfl
   }
 }
 
-/* Mapped semantic figures remain clipped; their fixed-size PNG is scrollable. */
+/* Mapped semantic figures remain clipped; only the inline image scales. */
 figure.sd.sd--linear-landscape:is(#sd-ethereum-account-fields, #jib-build-workflow):has(+ .diagram-download > img.diagram-inline) {
   min-width: 1px;
   max-width: 1px;
-}
-figure:is(#sd-ethereum-account-fields, #jib-build-workflow) + .diagram-download > img.diagram-inline {
-  width: 1920px;
-  max-width: 1920px;
-  height: 1080px;
-  margin-inline: auto;
 }
 
 /* Jev pilot: fixed white architecture canvas, independent of gateway-v2.
@@ -923,15 +910,8 @@ figure.sd.sd--jev#jev-decision-pipeline:has(+ .diagram-download > img.diagram-in
   max-width: 1px;
 }
 
-/* The inline image, original and download use the same artwork. */
-figure#jev-decision-pipeline + .diagram-download > img.diagram-inline {
-  width: 1920px;
-  max-width: 1920px;
-  height: 1080px;
-  margin-inline: auto;
-}
-
-/* FHD fixed-canvas contract. No viewport-based scaling, reflow or breakpoints. */
+/* Native FHD authoring/export contract. No coordinate reflow or breakpoints.
+   These source bounds are not the responsive article image's display size. */
 @font-face {
   font-family: "SD FHD Sans";
   src: url("../fonts/deterministic-export/NotoSansKR[wght].ttf") format("truetype");
@@ -983,19 +963,33 @@ figure.sd.sd--fhd:has(+ .diagram-download > img.diagram-inline) {
 .diagram-download {
   display: block;
   width: 100%;
+  min-width: 0;
   max-width: 100%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scrollbar-gutter: stable;
+  overflow-x: visible;
 }
+/* Explicit verified FHD covers are separate from inline body diagrams. */
+#main-wrapper .preview-img.diagram-cover {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+#main-wrapper .preview-img.diagram-cover img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+/* Opt-in body diagrams only: do not select covers or arbitrary image formats.
+   The source SVG/export fixture and standalone full-size viewer stay native. */
+.diagram-download > img.diagram-inline,
 #main-wrapper main .content .diagram-download > img.diagram-inline {
   display: block;
-  width: 1920px;
-  min-width: 1920px;
-  max-width: 1920px;
-  height: 1080px;
-  min-height: 1080px;
-  max-height: 1080px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
   margin: 0 0 .75rem;
   aspect-ratio: 16 / 9;
   object-fit: contain;

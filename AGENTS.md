@@ -40,13 +40,14 @@
 ## Diagrams
 
 - 설명용 다이어그램은 기존 HTML figure의 의미 구조를 보존하고 inline SVG의 박스, 연결과 텍스트 좌표를 직접 작성한다. 원본은 `_includes/diagrams/static/` 및 Packer/AWS 인증의 개별 include이며, 제작 기준과 원본 매핑은 `docs/static-diagrams.md`를 따른다.
-- 모든 SVG는 `width="1920"`, `height="1080"`, `viewBox="0 0 1920 1080"`을 사용한다. 모든 PNG의 실제 출력 치수도 정확히 1920 x 1080, 16:9이어야 한다. 글자 크기, 여백과 요소 배치를 설계하고 기존 그림을 resize, crop하거나 찌그러뜨려 맞추지 않는다.
-- 데스크톱과 모바일 모두 그림의 표시 크기를 1920 x 1080으로 고정한다. 화면 폭에 따른 자동 축소, 반응형 재배치, container query와 breakpoint별 변형은 금지한다. 좁은 화면은 키보드로도 접근 가능한 스크롤 영역과 사용자가 선택하는 원본 크기 확대 링크를 제공한다. 배치, 순서와 연결을 화면 크기에 따라 바꾸지 않는다.
+- 모든 SVG는 `width="1920"`, `height="1080"`, `viewBox="0 0 1920 1080"`을 사용한다. native PNG와 게시용 WebP의 실제 픽셀 치수도 정확히 1920 x 1080, 16:9이어야 한다. 원본 좌표와 artwork를 보존하고 resize, resampling, crop이나 비율 왜곡으로 맞추지 않는다. SVG와 native PNG는 원본 증적으로 보관하고, WebP는 PNG와 전체 decoded RGBA 픽셀이 같은 lossless 파생본을 사용한다.
+- 원본 캔버스 픽셀과 CSS 표시 크기를 구분한다. 데스크톱과 모바일 본문의 `.diagram-download > img.diagram-inline`만 글 폭에 맞춰 비례 축소한다. `width:100%`, `min-width:0`, `max-width:100%`, `height:auto`, `min-height:0`, `max-height:none`, `aspect-ratio:16 / 9`를 사용한다. 노드 재배치, container query와 breakpoint별 artwork 변형은 금지한다. 본문과 문서에 그림으로 인한 가로 overflow나 강제 스크롤을 만들지 않는다. 별도 full-size viewer의 고정 크기와 확대는 사용자가 링크와 배율을 직접 선택할 때만 적용한다.
+- 커버는 본문 도식과 별도 자산이다. 확장자나 FHD 치수만으로 커버를 `.diagram-inline` 대상으로 분류하거나 본문 도식으로 교체하지 않는다. source SVG와 export fixture의 1920 x 1080 CSS 경계 및 의미 소스의 clipping은 inline 표시 규칙과 분리해서 보존한다.
 - 공통 스타일은 `assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이다. 흰 배경의 라이트 테마를 유지한다. 버튼, 클릭, hover 의존 정보, 애니메이션, script를 그림에 추가하지 않는다. 제목 22px, 라벨 16px, 보조 텍스트 14px 이상을 유지한다.
 - 그림 안 이미지에는 `data-static-diagram="true"`를 붙여 테마의 확대 링크 생성을 건너뛴다. 실제 관계와 조건을 보존하고 상세 설명은 본문에 둔다.
-- 검증: `uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .` 실행 후 SVG 원본과 모든 PNG의 치수, 노드, 라벨, 조건과 간선의 대응을 확인한다. production build와 360px/390px 및 데스크톱 렌더링에서 고정 표시 크기, 스크롤 도달 범위, 폰트, 가독성, 겹침과 잘림을 검사한다. 구조 검증, 내용 검증, PNG 생성, 실제 시각 검토와 게시 수를 별도로 기록한다.
+- 검증: `uv run python kkamji_scripts/blog/validate_static_diagrams.py --root .` 실행 후 SVG 원본, native PNG와 모든 WebP의 실제 치수, decoded 픽셀 동일성, 노드, 라벨, 조건과 간선의 대응을 확인한다. production build의 360px/390px 및 데스크톱 article에서 이미지 로딩 완료 후 글 폭에 맞는 비례 표시와 이미지, article 및 document의 가로 overflow 부재를 검사한다. source/export fixture와 사용자가 선택한 full-size viewer는 별도로 검사한다. 폰트, 가독성, 겹침과 잘림은 실제 그림과 article 화면을 열어 검토한다. 정적 CSS 테스트를 브라우저 또는 픽셀 QA로 보고하지 않는다. 구조 검증, 내용 검증, native PNG 생성, WebP 변환, 실제 시각 검토와 게시 수를 별도로 기록한다.
 - 브라우저 자동화는 전역 지침의 Aside 단일 경로를 따른다. 허용 Aside 경로가 없거나 캡처가 실패하면 정확한 미검증 범위를 남긴다. 기존 Playwright/Chromium exporter나 다른 브라우저 설치를 폴백으로 실행하지 않는다.
-- 기존 `assets/img/**/*.spec.json`, `.drawio`, `.webp`는 원본 증적과 rollback용으로 보존한다. 기존 Draw.io를 수정하는 경우에만 `rebuild_diagrams.sh`를 사용한다.
+- 기존 `assets/img/**/*.spec.json`, `.drawio`, `.svg`, native `.png`와 이전 `.webp`는 원본 증적과 rollback용으로 보존한다. 기존 Draw.io를 수정하는 경우에만 `rebuild_diagrams.sh`를 사용한다.
 
 ## Git Add, Commit, Push Convention
 
@@ -59,7 +60,7 @@
 - 훅은 `.githooks/pre-commit`으로 추적한다. **클론마다 한 번 `git config core.hooksPath .githooks`를 실행**해야 동작한다. `.git/hooks/`에 사본을 두지 않는다.
 - 이 저장소는 CI에 품질 게이트를 두지 않는다. 되돌아가면 곤란한 규칙은 이 훅이 막는다.
   - `_posts/*.md` staged: `run_md_tools.sh`, staged 글에 대한 `audit_humanizer --strict`, `check_post_dates`, `check_series_order`, `check_high_impact_tldr`, 그리고 frontmatter/커버/내부 링크/금지 문자/footer 기계 검사.
-  - 정적 다이어그램, CSS, export 도구, PNG 또는 diagram include 줄 변경 staged: `kkamji_scripts/blog/static_png/release_manifest.py --if-staged`로 source fingerprint, PNG 해시, index 일치를 확인한다. 생성과 검증 절차는 `docs/static-diagrams.md`의 `Connector acceptance and recurrence gates`를 따른다. 일반 본문만 수정하면 이 게이트는 적용하지 않는다.
+  - 정적 다이어그램, CSS, export 도구, PNG, WebP 또는 diagram include 줄 변경 staged: `kkamji_scripts/blog/static_png/release_manifest.py --if-staged`로 source fingerprint, native PNG와 게시 WebP의 해시, index 일치를 확인한다. 생성과 검증 절차는 `docs/static-diagrams.md`의 `Connector acceptance and recurrence gates`를 따른다. 일반 본문만 수정하면 이 게이트는 적용하지 않는다.
   - `assets/img/**/*.spec.json` staged: spec을 compile + normalize한 결과와 커밋된 `.drawio`를 비교해 `rebuild_diagrams.sh` 누락을 잡고, `audit_diagram_badges`로 배지 위치를 확인한다.
 - 훅은 스크립트가 실제로 내용을 바꾼 staged 파일만 다시 stage한다. 커밋 대상이 아닌데 포매터가 건드린 글은 unstaged로 남기고 이름을 출력한다.
 - `jekyll build`, `check_inline_scripts`, 외부 링크 검사는 훅에 넣지 않는다. 발행 절차인 `kkamji_scripts/blog/pre_publish_check.sh`가 담당한다.
