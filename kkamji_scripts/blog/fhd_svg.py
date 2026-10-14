@@ -1624,6 +1624,12 @@ def complete_relation_labels(layout):
     for edge in layout.connectors:
         if "points" not in edge:
             continue
+        if edge.get("meaning_at_target") and any(
+            text["source"] in edge.get("to", [])
+            and text["label"] and text["text"] == edge.get("meaning")
+            for text in layout.texts
+        ):
+            continue
         keys = {edge["source"], edge.get("origin"), edge["source"] + ".meaning"}
         if any(t["source"] in keys for t in layout.texts):
             continue
@@ -2160,7 +2166,7 @@ def jev_layout(font, figure):
     """Keep Jev typed data separate from deterministic execution authority."""
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     layout = Layout(
-        font, 28, 22, 24, 24, {"bold_width_budget": 1.25, "regular_width_budget": 1.12}
+        font, 32, 26, 28, 28, {"bold_width_budget": 1.25, "regular_width_budget": 1.12}
     )
     layout.add_text(
         [figure.attrs["aria-label"]], 64, 64, 36, 1792, "jev-title.meaning", True
@@ -2171,27 +2177,31 @@ def jev_layout(font, figure):
                 "source": "root.0.0.0",
                 "classes": [],
                 "x": 40,
-                "y": 192,
-                "width": 1048,
-                "height": 280,
+                "y": 320,
+                "width": 848,
+                "height": 432,
             },
             {
                 "source": "root.0.0.2",
                 "classes": [],
-                "x": 1160,
-                "y": 144,
-                "width": 696,
-                "height": 652,
+                "x": 996,
+                "y": 320,
+                "width": 860,
+                "height": 432,
             },
         ]
     )
-    inputs = layout.draw(elements["root.0.0.0.0"], 64, 264, 420)
-    judge = layout.draw(elements["root.0.0.0.2"], 620, 264, 440)
-    authority = layout.draw(elements["root.0.0.2.1"], 1184, 264, 648)
-    layout.draw(elements["root.0.0.2.0"], 1184, 184, 648)
+    spine = 536
+    def on_axis(key, x, width, centre=spine):
+        element = elements[key]
+        return layout.draw(element, x, centre - layout.measure(element, width) / 2, width)
+    inputs = on_axis("root.0.0.0.0", 68, 340)
+    judge = on_axis("root.0.0.0.2", 540, 320)
+    authority = on_axis("root.0.0.2.1", 1024, 432)
+    layout.draw(elements["root.0.0.2.0"], 1024, 352, 804)
     outcomes = [
-        layout.draw(elements["root.0.0.2.3." + str(i)], x, 624, 288)
-        for i, x in enumerate((1184, 1544))
+        on_axis("root.0.0.2.3." + str(i), 1568, 264, centre)
+        for i, centre in enumerate((spine - 100, spine + 100))
     ]
     for key, a, b, label in [
         ("root.0.0.0.1", inputs, judge, "입력"),
@@ -2209,19 +2219,29 @@ def jev_layout(font, figure):
             }
         )
         source_key = key if key == "root.0.0.1" else key + ".meaning"
+        label_x = aa[0] + aa[2] + 12
+        label_width = bb[0] - aa[0] - aa[2] - 24
+        label_size = 22
+        if key == "root.0.0.1":
+            left, right = layout.groups[:2]
+            label_x = left["x"] + left["width"] + 12
+            label_width = right["x"] - label_x - 12
+            label_size = 20
         layout.add_text(
-            layout.wrap(label, bb[0] - aa[0] - aa[2] - 24, 22),
-            aa[0] + aa[2] + 12,
+            layout.wrap(label, label_width, label_size),
+            label_x,
             cy - 78,
-            22,
-            140,
+            label_size,
+            label_width,
             source_key,
         )
     a = authority["bounds"]
-    sx = a[0] + a[2] / 2
+    sx = a[0] + a[2] + 12
+    sy = a[1] + a[3] / 2
     for i, target in enumerate(outcomes):
         b = target["bounds"]
-        tx = b[0] + b[2] / 2
+        tx = b[0] - 12
+        ty = b[1] + b[3] / 2
         key = "root.0.0.2.2.branch-" + str(i)
         layout.connectors.append(
             {
@@ -2230,13 +2250,14 @@ def jev_layout(font, figure):
                 "from": [authority["element"].key],
                 "to": [target["element"].key],
                 "label": ("Shadow 경로" if i == 0 else "Escalate 경로"),
+                "meaning": ("Shadow" if i == 0 else "Escalate"),
+                "meaning_at_target": True,
                 "points": [
-                    [sx, a[1] + a[3] + 12],
-                    [sx, 528],
-                    [tx, 528],
-                    [tx, b[1] - 12],
+                    [sx, sy],
+                    [1506, sy],
+                    [1506, ty],
+                    [tx, ty],
                 ],
-                "meaning_bounds": [tx - 110, 564, 220],
             }
         )
     return layout

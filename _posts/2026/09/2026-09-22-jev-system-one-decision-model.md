@@ -26,7 +26,7 @@ image:
 Jev는 명령, 정규화한 인자, 대상 환경, 사용자 의도를 함께 보고 typed answer와 확률을 반환하는 hosted decision layer입니다. **LLM을 대체하는 생성 모델이 아니라 제한된 판단을 위한 보조 계층입니다.** 최종 실행 권한은 deterministic policy와 harness에 남깁니다.
 
 {% include diagrams/static/ai/jev-decision-pipeline.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ai/jev-decision-pipeline--730424ce5bbc600e.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261014/jev-decision-pipeline.png" %}
 
 ---
 

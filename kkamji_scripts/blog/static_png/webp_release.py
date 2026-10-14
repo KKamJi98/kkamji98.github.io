@@ -291,11 +291,23 @@ def usage_bindings(root, plan, native):
     if plan.get('blocked_count', 0) or any(row.get('status') == 'blocked-insertion' for row in plan['entries']):
         raise ValueError('incomplete/blocked body delivery mapping')
     by_png = native['rows']; bodies = []
+    published = {row['png']: row for row in native['baseline']['entries']}
+    updates = native['update']['sources'] if native['update'] else {}
     for entry in plan['entries']:
-        old = by_png.get(entry['png'])
-        if not old or any(old.get(key) != entry.get(key) for key in ('post', 'include', 'figure')):
+        original_png = entry.get('old_png', entry['png'])
+        original = published.get(original_png)
+        active = by_png.get(entry['png'])
+        if (not original or not active
+                or any(row.get(key) != entry.get(key)
+                       for row in (original, active) for key in ('post', 'include', 'figure'))):
             raise ValueError('body mapping lacks an exact published native occurrence')
-        bodies.append({key: entry[key] for key in ('post', 'include', 'figure', 'png')} | {'webp': webp_url(entry['png'])})
+        body = {key: entry[key] for key in ('post', 'include', 'figure', 'png')} | {'webp': webp_url(entry['png'])}
+        if 'old_png' in entry:
+            update = updates.get(entry['include'])
+            if not update or update['old_png'] != original_png or update['new_png'] != entry['png']:
+                raise ValueError('body mapping lacks an exact validated native update')
+            body['old_png'] = original_png
+        bodies.append(body)
     if len({row['webp'] for row in bodies}) != len(bodies): raise ValueError('body output collision')
     by_webp = {webp_url(png): row for png, row in by_png.items()}
     covers = []

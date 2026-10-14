@@ -34,7 +34,18 @@ module Jekyll
 
     def generate_viewer(site, entry, posts)
       png = entry.fetch('png')
-      unless png.match?(%r{\A/assets/img/diagrams/[a-zA-Z0-9_/-]+--[a-f0-9]{16}\.png\z})
+      legacy = png.match?(%r{\A/assets/img/diagrams/[a-zA-Z0-9_/-]+--[a-f0-9]{16}\.png\z})
+      update = false
+      update_file = File.join(site.source, 'docs', 'diagram-native-update.json')
+      if png.match?(%r{\A/assets/img/diagrams/native-updates/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png\z}) && File.file?(update_file)
+        declaration = JSON.parse(File.read(update_file))
+        update = declaration['schema'] == 1 && declaration['status'] == 'fresh-native-update-reviewed' &&
+          declaration.fetch('sources').any? do |record|
+            record['include'] == entry['include'] && record['old_png'] == entry['old_png'] &&
+              record['new_png'] == png && record['old_png'].to_s.match?(%r{\A/assets/img/diagrams/[a-zA-Z0-9_/-]+--[a-f0-9]{16}\.png\z})
+          end
+      end
+      unless legacy || update
         raise "Invalid diagram viewer PNG path: #{png}"
       end
       path = png.delete_prefix('/assets/img/diagrams/').sub(/\.png\z/, '.html')

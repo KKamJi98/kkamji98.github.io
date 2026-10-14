@@ -41,6 +41,7 @@
 
 - 설명용 다이어그램은 기존 HTML figure의 의미 구조를 보존하고 inline SVG의 박스, 연결과 텍스트 좌표를 직접 작성한다. 원본은 `_includes/diagrams/static/` 및 Packer/AWS 인증의 개별 include이며, 제작 기준과 원본 매핑은 `docs/static-diagrams.md`를 따른다.
 - 모든 SVG는 `width="1920"`, `height="1080"`, `viewBox="0 0 1920 1080"`을 사용한다. native PNG와 게시용 WebP의 실제 픽셀 치수도 정확히 1920 x 1080, 16:9이어야 한다. 원본 좌표와 artwork를 보존하고 resize, resampling, crop이나 비율 왜곡으로 맞추지 않는다. SVG와 native PNG는 원본 증적으로 보관하고, WebP는 PNG와 전체 decoded RGBA 픽셀이 같은 lossless 파생본을 사용한다.
+- 직렬 주 흐름은 박스 중심선뿐 아니라 전체 구도의 가로 균형을 맞춘다. ownership/authority boundary의 상하단과 높이를 비교하고 한쪽만 아래로 길어지는 ㄱ자/계단 배치를 만들지 않는다. 결과 분기는 주 흐름 오른쪽 열에서 공통 중심축을 기준으로 대칭 배치한다. 실제 계층·시퀀스에 필요한 세로 의미는 보존하며 모든 도식을 무조건 가로로 바꾸지 않는다.
 - 원본 캔버스 픽셀과 CSS 표시 크기를 구분한다. 데스크톱과 모바일 본문의 `.diagram-download > img.diagram-inline`만 글 폭에 맞춰 비례 축소한다. `width:100%`, `min-width:0`, `max-width:100%`, `height:auto`, `min-height:0`, `max-height:none`, `aspect-ratio:16 / 9`를 사용한다. 노드 재배치, container query와 breakpoint별 artwork 변형은 금지한다. 본문과 문서에 그림으로 인한 가로 overflow나 강제 스크롤을 만들지 않는다. 별도 full-size viewer의 고정 크기와 확대는 사용자가 링크와 배율을 직접 선택할 때만 적용한다.
 - 커버는 본문 도식과 별도 자산이다. 확장자나 FHD 치수만으로 커버를 `.diagram-inline` 대상으로 분류하거나 본문 도식으로 교체하지 않는다. source SVG와 export fixture의 1920 x 1080 CSS 경계 및 의미 소스의 clipping은 inline 표시 규칙과 분리해서 보존한다.
 - 공통 스타일은 `assets/css/jekyll-theme-chirpy.scss`의 `.sd` 규칙이다. 흰 배경의 라이트 테마를 유지한다. 버튼, 클릭, hover 의존 정보, 애니메이션, script를 그림에 추가하지 않는다. 제목 22px, 라벨 16px, 보조 텍스트 14px 이상을 유지한다.

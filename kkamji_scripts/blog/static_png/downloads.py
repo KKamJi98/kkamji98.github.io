@@ -50,12 +50,53 @@ def output_paths(plan):
     return mapped | unused
 
 
+def declared_native_updates(root):
+    """Safe, archive-bound routing declarations, not render/review approval.
+
+    checked_native must authenticate the original stamp and every delta receipt
+    before conversion or sealing. Discovery only chooses the explicitly named
+    new output for the exact old occurrence, leaving all other helpers alone.
+    """
+    from native_update import MANIFEST as update_manifest
+    from webp_release import NATIVE, load_json, public_path, safe_path
+    path = safe_path(root, update_manifest)
+    if not path.exists(): return {}
+    update = load_json(path.read_bytes())
+    if (not isinstance(update, dict) or type(update.get('schema')) is not int or update['schema'] != 1
+            or update.get('status') != 'fresh-native-update-reviewed'
+            or not isinstance(update.get('sources'), list) or not update['sources']):
+        raise ValueError('a reviewed schema 1 native update declaration is required')
+    baseline_raw = safe_path(root, NATIVE).read_bytes()
+    baseline = load_json(baseline_raw)
+    if baseline.get('schema') != 2 or digest(baseline_raw) != update.get('base_manifest_sha256'):
+        raise ValueError('native update routing baseline differs')
+    rows = baseline['entries'] + baseline.get('unused_entries', [])
+    archive = {row['png']: row for row in rows}
+    if len(archive) != len(rows): raise ValueError('native output collision')
+    updates = {}; includes = set(); destinations = set()
+    for row in update['sources']:
+        if not isinstance(row, dict): raise ValueError('native update declaration is not an object')
+        include, old, new = (row.get(key) for key in ('include', 'old_png', 'new_png'))
+        if not isinstance(include, str) or not re.fullmatch(r'diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.html', include):
+            raise ValueError('unsafe native update include')
+        if not isinstance(old, str) or not isinstance(new, str):
+            raise ValueError('native update routing paths are missing')
+        public_path(root, old, 'png'); public_path(root, new, 'png')
+        if old not in archive or archive[old]['include'] != include:
+            raise ValueError('native update routing lacks original PNG/include binding')
+        if (old in updates or include in includes or new in destinations or new in archive
+                or not new.startswith('/assets/img/diagrams/native-updates/')):
+            raise ValueError('unsafe or colliding native update routing')
+        updates[old] = row; includes.add(include); destinations.add(new)
+    return updates
+
+
 def delivery_output_paths(root, plan):
     """Preserve the published native corpus even when a body row becomes a cover.
 
     A body-unused include need not create another native or derivative output.
-    All original published paths are converted once, with explicit usage kept
-    by the derivative release adapter rather than fabricated render receipts.
+    All original paths remain provenance, alongside explicitly declared update
+    outputs. The release adapter authenticates active conversion and usage.
     """
     native = output_paths(plan)
     baseline = root / 'docs/diagram-export-release.json'
@@ -67,12 +108,14 @@ def delivery_output_paths(root, plan):
             if len(set(urls)) != len(urls): raise ValueError('native output collision')
             native = {url.lstrip('/') for url in urls}
             for url in urls: webp_url(url)  # Reject unsafe manifest paths.
+    native.update(row['new_png'][1:] for row in declared_native_updates(root).values())
     return native | {webp_url('/' + path).lstrip('/') for path in native}
 
 
 def discover(root):
     catalog = json.loads((root/'docs/diagram-catalog.json').read_text())
     records = {r['include']: r for r in catalog['diagrams']}
+    updates = declared_native_updates(root)
     entries = []; edits = {}; seen = defaultdict(list)
     for post in sorted((root/'_posts').rglob('*.md')):
         raw = post.read_text(); clean = HELPER.sub('', raw)
@@ -106,6 +149,10 @@ def discover(root):
             suffix = fingerprint(identity)[:16]
             png = '/assets/img/diagrams/' + name.removeprefix('diagrams/').removesuffix('.html') + '--' + suffix + '.png'
             entry = dict(identity, figure=figure, png=png, status='pending-export')
+            if png in updates:
+                update = updates[png]
+                if update['include'] != name: raise ValueError('native update occurrence/include mismatch')
+                entry.update(png=update['new_png'], old_png=png)
             if indent:
                 entry.update(status='blocked-insertion', reason='Indented canonical include requires markup review; sibling adjacency is not proven. No helper inserted.')
             entries.append(entry); seen[name].append(rel)
@@ -296,13 +343,6 @@ def built_plan(root, site, plan):
 
 def source_snapshot(root):
     outputs = delivery_output_paths(root, json.loads((root/MANIFEST).read_text()))
-    update = root/'docs/diagram-native-update.json'
-    if update.is_file():
-        for row in json.loads(update.read_text()).get('sources', []):
-            png = row.get('new_png', '')
-            if not re.fullmatch(r'/assets/img/diagrams/native-updates/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png', png):
-                raise ValueError('unsafe native update output path')
-            outputs.update((png[1:], webp_url(png)[1:]))
     paths = set()
     for folder in ['_posts', '_includes', '_layouts', '_sass', '_plugins', '_data', 'assets/css', 'assets/js', 'assets/fonts', 'assets/img']:
         paths.update(p for p in (root/folder).rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in outputs)
