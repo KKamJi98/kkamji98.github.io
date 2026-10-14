@@ -103,7 +103,13 @@
     {% endif %}
     {% assign _cover_prefix = _src | slice: 0, 21 %}
     {% assign _cover_suffix = _src | slice: -5, 5 %}
-    {% if _cover_context and _cover_prefix == '/assets/img/diagrams/' and _cover_suffix == '.webp' %}
+    {% assign _verified_fhd_cover = false %}
+    {% if _cover_prefix == '/assets/img/diagrams/' and _cover_suffix == '.webp' %}
+      {% assign _verified_fhd_cover = true %}
+    {% elsif _src == '/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp' %}
+      {% assign _verified_fhd_cover = true %}
+    {% endif %}
+    {% if _cover_context and _verified_fhd_cover %}
       {% assign _wrapper_class = ' diagram-cover' %}
       {% for _size_attr in _attrs %}
         {% assign _size_pair = _size_attr | split: '="' %}

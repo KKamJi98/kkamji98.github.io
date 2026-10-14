@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-13
+updated: 2026-10-14
 type: rule
 status: current
 ---
@@ -21,7 +21,7 @@ status: current
 
 ## 읽을 수 있는 의미 구조
 
-한 그림은 한 가지 관계나 차이를 설명한다. 주요 흐름은 가로로 배치하고 병렬 비교는 같은 축에 정렬한다. 실제 계층, 반복과 조건 분기는 의미에 맞게 유지한다. 비교 대상을 임의의 직렬 단계로 바꾸거나 모든 그림을 같은 정책 분기로 치환하지 않는다. 간선의 출발점, 도착점, 방향과 의미 라벨을 각각 확인한다.
+한 그림은 한 가지 관계나 차이를 설명한다. 그룹 외곽선과 내부 카드 외곽선을 같은 좌표에 그리지 않는다. 명시한 그룹 inset과 카드 사이 gap을 measure/draw에 동일하게 적용하고 네 방향 stroke clearance를 검사한다. Jev typed output 그룹은 32px inset이며 실제 2px stroke 사이 빈 공간은 30px 이상이다. 불필요한 `kkamji.net` watermark를 도식에 넣지 않고 FHD 여유 공간은 카드, 글자와 관계의 가독성에 사용한다. 이 Jev 교정은 opt-in 작성 프로필이며 다른 도식의 좌표를 일괄 재배치하지 않는다. 주요 흐름은 가로로 배치하고 병렬 비교는 같은 축에 정렬한다. 실제 계층, 반복과 조건 분기는 의미에 맞게 유지한다. 비교 대상을 임의의 직렬 단계로 바꾸거나 모든 그림을 같은 정책 분기로 치환하지 않는다. 간선의 출발점, 도착점, 방향과 의미 라벨을 각각 확인한다.
 
 제목은 22px 이상, 주요 라벨은 16px 이상, 보조 텍스트와 표 및 코드는 14px 이상이다. FHD에는 충분한 공간이 있으므로 기본 프로필은 주요 라벨 28px와 설명 22px를 사용한다. 복잡한 그림은 정해진 밀도 프로필과 개별 좌표 설계를 적용한다. 글자 크기를 낮춰 겨우 맞춘 그림은 자동 통과로 가독성이 증명되지 않는다.
 
@@ -35,7 +35,7 @@ status: current
 
 `_includes/diagrams/download.html`은 canonical figure의 바로 다음 sibling이다. legacy `png=` 입력은 native PNG provenance를 유지할 수 있지만 helper는 그 경로에서 공개 `.webp` URL을 계산한다. inline 이미지와 다운로드는 같은 native 1920 x 1080 WebP URL을 사용한다. 본문만 CSS로 비례 축소하고 확대 링크는 동일 WebP를 원본 크기로 표시하는 script 없는 HTML viewer로 이동한다. viewer의 100%, 125%, 150% 확대는 사용자가 직접 선택할 때만 적용하며, 확대된 전체 크기만큼 스크롤 영역도 늘린다. 그림 이미지는 빈 alt를 사용하며 figure의 접근성 이름과 의미 소스가 설명을 제공한다. `data-static-diagram="true"`는 테마의 별도 확대 및 shimmer wrapper를 방지한다. mapped source figure만 시각적으로 클립하며 고정 source의 min/max 경계가 document scrollWidth로 새지 않게 기존 1px 경계를 보존한다. 공개 WebP는 검토된 native PNG의 lossless 파생본이며 전체 decoded RGBA 픽셀 동일성을 검사한다. SVG와 native PNG는 삭제하거나 재압축하지 않고 원본 증적으로 보관한다.
 
-[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 391개 component이며, 203개 post의 391개 body reference에서 382개 include를 사용하고 body-unused include는 9개다. Jev banner는 별도 cover 사용처이며 body occurrence로 세지 않는다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
+[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 391개 component이며, 203개 post의 391개 body reference에서 382개 include를 사용하고 body-unused include는 9개다. Jev 커버는 `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp`의 별도 네온 자산이며 body occurrence나 FHD corpus cover로 세지 않는다. 흰색 Jev banner는 body-unused 9개 중 하나로 남기고 사용자가 요청한 artwork 교정을 별도 native update로 보관한다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
 
 ## 폰트와 아이콘
 
@@ -90,6 +90,12 @@ WebP 검증 환경은 `python3 -m venv .venv`와 `.venv/bin/python -m pip instal
 [Verified native export manifest](diagram-export-release.json)는 이전 native raster의 증거로 보존한다. SVG, font, source image나 renderer를 바꾸면 fresh native render와 전수 검토 증거를 갱신한다. 원본을 그대로 둔 format/inline display 변경은 [WebP delivery manifest](diagram-webp-release.json)의 무손실 변환, fresh delivery build와 실제 표시 증거를 갱신하며 이전 native fingerprint를 재계산해 덮어쓰지 않는다. 게시, 머지와 배포는 현재 사용자의 명시적 승인 범위와 저장소 규칙을 따른다. 이미 승인한 같은 목표의 검토나 게시 승인을 단계마다 다시 요구하지 않는다.
 
 원문 visible text는 레이아웃 atom 추출기와 별도의 HTML data 수집으로 전체 coverage를 대조한다. 혼합 inline의 질문, 예시, 쉼표와 부정 표현도 유지한다. 실행 분기와 그룹 endpoint에는 실제 공통 경계 또는 개별 간선을 그리고, typed connector와 dashed reference의 paint를 보존한다. 긴 API 이름은 카드/간선 폭과 작성 density를 조정하며 단어 내부 분절을 검증 실패로 기록한다. return loop에는 footer와 겹치지 않는 별도 corridor를 배정한다.
+
+## Reviewed native updates
+
+`docs/diagram-native-update.json`은 immutable 원래 native manifest/reviews/stamp와 변경 source의 새로운 렌더를 연결한다. native-updates 아래의 새로운 PNG URL만 허용하고 원래 PNG 경로를 덮어쓰지 않는다. old source/SVG는 pinned Git revision에서, old 400 PNG는 그대로 보존된 파일에서 해시를 대조한다. 현재 source/SVG/font/image/style/renderer, 새 렌더 build와 receipt, 실제 원본 PNG 시각·의미 검토를 각각 별도 해시로 검사한다. 그대로인 source만 기존 증적을 이어받는다. render receipt의 `not-run`을 자동으로 `passed`로 바꾸지 않는다.
+
+WebP release는 named delta의 새 PNG만 active output으로 연결하고 다른 399개는 같은 bytes를 사용한다. 새 파일 변환 뒤 fresh delivery build와 seal/check를 실행한다. archive 400 PNG와 delta/evidence는 index에서 actual Git blob으로 확인하며 manifest/input bytes가 검사 중 바뀌면 실패한다. source snapshot은 새 PNG/WebP를 output으로 구분하고 delta/evidence를 검증 input으로 포함한다. 전체 corpus 재렌더나 새 전수 육안 검수를 했다고 표시하지 않는다. 독립 네온 cover는 별도 원본 vector에서 native FHD로 렌더·WebP 변환하며 원래 1600 x 900 자산은 보존한다.
 
 ## Exact per-source freshness
 

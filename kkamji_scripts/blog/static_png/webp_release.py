@@ -181,9 +181,19 @@ def checked_native(root, stamp, revision='HEAD'):
             or baseline.get('post_count') != len({row['post'] for row in baseline['entries']})):
         raise ValueError('native output coverage/collision/count mismatch')
     production_inputs = {}
+    update = None
+    if (root / 'docs/diagram-native-update.json').is_file():
+        from native_update import checked_update
+        update = checked_update(root, revision, baseline, stamp)
+    changed = update['sources'] if update else {}
+    overrides = update['input_overrides'] if update else {}
     def sealed(relative, mapping):
         path = safe_path(root, relative)
         expected = stamp[mapping].get(relative)
+        if relative in overrides:
+            if digest(_git_blob(root, revision, relative)) != expected:
+                raise ValueError('native update lost immutable original input identity')
+            expected = overrides[relative]
         _same_hash(path, expected, 'native raster input: ' + relative)
         production_inputs[relative] = expected
         return path.read_bytes()
@@ -202,7 +212,8 @@ def checked_native(root, stamp, revision='HEAD'):
     native_style = proof_style(old_plugin)
     if proof_style(safe_path(root, PLUGIN).read_bytes()) != native_style:
         raise ValueError('native proof raster style changed; rerender rather than converting stale evidence')
-    for include, review in sorted(by_include.items()):
+    for include, original_review in sorted(by_include.items()):
+        review = changed[include]['review'] if include in changed else original_review
         if not re.fullmatch(r'diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.html', include):
             raise ValueError('unsafe canonical include')
         include_raw = sealed('_includes/' + include, 'source')
@@ -231,13 +242,20 @@ def checked_native(root, stamp, revision='HEAD'):
         if (row.get('dimensions') != [1920, 1080] or digest(raw) != row.get('png_sha256')
                 or by_include[row['include']]['png_sha256'] != digest(raw)):
             raise ValueError('native PNG changed or differs from its visual review: ' + png)
-        if 'include_sha256' in row and row['include_sha256'] != production_inputs['_includes/' + row['include']]:
+        if 'include_sha256' in row and row['include_sha256'] != stamp['source']['_includes/' + row['include']]:
             raise ValueError('native include provenance differs')
         if 'post' in row and not re.fullmatch(r'[a-f0-9]{64}', row.get('receipt_sha256', '')):
             raise ValueError('published native render receipt identity is missing')
+    archives = {row['png'][1:]: row['png_sha256'] for row in native_rows}
+    for include, replacement in changed.items():
+        old = by_png.pop(replacement['old_png'])
+        by_png[replacement['new_png']] = dict(old, png=replacement['new_png'],
+            png_sha256=replacement['png_sha256'], include_sha256=overrides['_includes/' + include],
+            receipt_sha256=replacement['receipt_sha256'])
     return {'revision': revision, 'baseline': baseline, 'baseline_sha256': digest(baseline_raw),
             'review_sha256': digest(review_raw), 'stamp': stamp, 'production_inputs': production_inputs,
-            'proof_style_sha256': digest(native_style.encode()), 'rows': by_png}
+            'proof_style_sha256': digest(native_style.encode()), 'rows': by_png,
+            'update': update, 'archive_inputs': archives}
 
 
 def convert(root, native_stamp, revision='HEAD'):
@@ -371,7 +389,7 @@ def _payload(root, native, stamp, site=None, *, verify_encoding=False):
         safe_path(root, page)  # Reject traversal, independently of the build root.
         if page not in stamp.get('html', {}): raise ValueError('sealed build lacks mapped page coverage')
     from PIL import __version__ as pillow_version, features
-    return {'schema': 1, 'status': 'lossless-conversion-and-built-delivery-checked',
+    payload = {'schema': 1, 'status': 'lossless-conversion-and-built-delivery-checked',
             'source_count': native['baseline']['source_count'], 'output_count': len(outputs),
             'reference_count': len(bodies), 'post_count': plan['post_count'], 'cover_count': len(covers),
             'body_unused_count': len(unused), 'genuinely_unused_count': sum(not row['cover_used'] for row in unused),
@@ -389,6 +407,14 @@ def _payload(root, native, stamp, site=None, *, verify_encoding=False):
             'unused_sources': unused,
             'browser_evidence': {'status': 'not-recorded-by-this-adapter',
                                  'scope': 'No native rerender, new visual review or browser responsiveness proof is claimed.'}}
+    if native['update']:
+        update = native['update']
+        payload['native_update'] = {'path': update['path'], 'sha256': update['sha256'],
+                                   'files': update['files'], 'changed_sources': sorted(update['sources'])}
+        payload['native_archive_inputs'] = native['archive_inputs']
+        payload['native_baseline']['review_scope'] = 'Immutable original corpus preserved; unchanged artifacts reused, changed sources require fresh native receipts and actual image review.'
+        payload['browser_evidence']['scope'] = 'Changed native sources use separately recorded fresh render and actual review. No new whole-corpus raster or browser review is claimed.'
+    return payload
 
 
 def seal(root, site, native_stamp, revision='HEAD'):
@@ -439,6 +465,8 @@ def verify_staged(root):
     saved = load_json(manifest_raw)
     snapshot = source_snapshot(root)
     required = set(snapshot) | {MANIFEST, NATIVE, REVIEWS} | set(saved['native_production_inputs'])
+    required.update(saved.get('native_archive_inputs', {}))
+    required.update(saved.get('native_update', {}).get('files', {}))
     for row in saved['outputs']: required.update((row['png'][1:], row['webp'][1:]))
     for relative in required: safe_path(root, relative)
     tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0'))
@@ -468,6 +496,8 @@ def verify_staged(root):
     if object_format not in ('sha1', 'sha256'): raise ValueError('unsupported Git object hash format')
     sealed = dict(saved['build']['source']) | saved['native_production_inputs']
     sealed.update({NATIVE: saved['native_baseline']['sha256'], REVIEWS: saved['native_baseline']['review_file_sha256']})
+    sealed.update(saved.get('native_archive_inputs', {}))
+    sealed.update(saved.get('native_update', {}).get('files', {}))
     for output in saved['outputs']:
         sealed[output['png'][1:]] = output['png_sha256']; sealed[output['webp'][1:]] = output['webp_sha256']
     for relative in sorted(required):

@@ -10,8 +10,8 @@ def test_jev_cover_is_frontmatter_not_duplicate_body_diagram():
     text = POST.read_text(encoding='utf-8')
     metadata = yaml.safe_load(text.split('---', 2)[1])
     assert metadata.get('image', {}).get('path') == (
-        '/assets/img/diagrams/static/ai/jev-system-one-banner--e97d9e6d4ae55b70.webp'
-    ), 'Jev must have its verified FHD WebP cover metadata'
+        '/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp'
+    ), 'Jev must keep the explicitly selected neon cover separate from body diagrams'
     assert '{% include diagrams/static/ai/jev-system-one-banner.html %}' not in text
     assert '{% include diagrams/static/ai/jev-decision-pipeline.html %}' in text
     assert '{% include diagrams/static/ai/jev-primitives.html %}' in text

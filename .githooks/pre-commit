@@ -161,7 +161,10 @@ if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys
   if "${fixture_env[@]}" PYTHONDONTWRITEBYTECODE=1 "${PY}" -m pytest -p no:cacheprovider -q \
     "${BLOG}/static_png/test_responsive_display.py" \
     "${BLOG}/static_png/test_cover_contract.py" \
-    "${BLOG}/static_png/test_webp_review_regressions.py"; then
+    "${BLOG}/static_png/test_webp_review_regressions.py" \
+    "${BLOG}/static_png/test_jev_layout.py" \
+    "${BLOG}/static_png/test_native_update.py" \
+    "${BLOG}/static_png/test_native_update_adapter.py"; then
     ok "원본 해상도, 표시 크기, 표지와 manifest/index 경계"
   else
     bad "다이어그램 회귀 테스트"

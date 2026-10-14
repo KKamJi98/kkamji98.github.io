@@ -540,14 +540,15 @@ class Layout:
         children = self.items(e)
         if not children:
             return 0
-        pad = (
+        pad = max(
+            self.profile.get("group_insets", {}).get(e.key, 0),
             self.padding
             if e.classes
             & (
                 {"sd-lane", "sd-band", "sd-v2-compare-lane", "sd-v2-group"}
                 | NODE_CLASSES
             )
-            else 0
+            else 0,
         )
         inner = width - 2 * pad
         if self.row(e, inner):
@@ -687,14 +688,15 @@ class Layout:
             "height": height,
         }
         children = self.items(e)
-        pad = (
+        pad = max(
+            self.profile.get("group_insets", {}).get(e.key, 0),
             self.padding
             if e.classes
             & (
                 {"sd-lane", "sd-band", "sd-v2-compare-lane", "sd-v2-group"}
                 | NODE_CLASSES
             )
-            else 0
+            else 0,
         )
         if pad:
             self.groups.append(
@@ -2113,25 +2115,26 @@ def banner_layout(font, figure):
     """Preserve the original banner's four columns and separate SVG text runs."""
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     layout = Layout(
-        font, 28, 22, 24, 24, {"bold_width_budget": 1.25, "regular_width_budget": 1.12}
+        font, 38, 30, 32, 28,
+        {"bold_width_budget": 1.25, "regular_width_budget": 1.12,
+         "group_insets": {"root.0.4.4": 32}},
     )
     for key, y in [
         ("root.0.0", 64),
         ("root.0.1", 132),
         ("root.0.2", 184),
         ("root.0.3", 230),
-        ("root.0.5", 900),
-        ("root.0.6", 952),
+        ("root.0.5", 952),
     ]:
         layout.draw(elements[key], 64, y, 1792)
     for key, x, width in [
-        ("root.0.4.0", 64, 384),
-        ("root.0.4.2", 608, 260),
-        ("root.0.4.4", 1032, 360),
-        ("root.0.4.6", 1536, 320),
+        ("root.0.4.0", 48, 416),
+        ("root.0.4.2", 572, 328),
+        ("root.0.4.4", 1008, 424),
+        ("root.0.4.6", 1540, 328),
     ]:
         element = elements[key]
-        layout.draw(element, x, 520 - layout.measure(element, width) / 2, width)
+        layout.draw(element, x, 584 - layout.measure(element, width) / 2, width)
     bounds = {b["source"]: b for b in layout.boxes}
     bounds.update(layout.group_bounds)
     for key, source, target, meaning in [
@@ -2147,7 +2150,7 @@ def banner_layout(font, figure):
                 "meaning": meaning,
                 "from": [source],
                 "to": [target],
-                "points": [[a["x"] + a["width"] + 12, 520], [b["x"] - 12, 520]],
+                "points": [[a["x"] + a["width"] + 12, 584], [b["x"] - 12, 584]],
             }
         )
     return layout

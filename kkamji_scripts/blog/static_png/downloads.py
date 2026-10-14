@@ -296,6 +296,13 @@ def built_plan(root, site, plan):
 
 def source_snapshot(root):
     outputs = delivery_output_paths(root, json.loads((root/MANIFEST).read_text()))
+    update = root/'docs/diagram-native-update.json'
+    if update.is_file():
+        for row in json.loads(update.read_text()).get('sources', []):
+            png = row.get('new_png', '')
+            if not re.fullmatch(r'/assets/img/diagrams/native-updates/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png', png):
+                raise ValueError('unsafe native update output path')
+            outputs.update((png[1:], webp_url(png)[1:]))
     paths = set()
     for folder in ['_posts', '_includes', '_layouts', '_sass', '_plugins', '_data', 'assets/css', 'assets/js', 'assets/fonts', 'assets/img']:
         paths.update(p for p in (root/folder).rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in outputs)
@@ -306,6 +313,10 @@ def source_snapshot(root):
         if (root/name).is_file(): paths.add(root/name)
     author = root/'kkamji_scripts/blog/fhd_svg.py'
     if author.is_file(): paths.add(author)
+    update = root/'docs/diagram-native-update.json'
+    if update.is_file():
+        paths.add(update)
+        paths.update(p for p in (root/'docs/diagram-native-updates').rglob('*') if p.is_file())
     return {p.relative_to(root).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
 
 

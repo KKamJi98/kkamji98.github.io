@@ -7,7 +7,7 @@ categories: [AI, Development]
 tags: [jev, system-one, typesafe-ai, agent, agent-harness, probabilistic-decision]
 comments: true
 image:
-  path: /assets/img/diagrams/static/ai/jev-system-one-banner--e97d9e6d4ae55b70.webp
+  path: /assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp
   alt: Jev System One
   width: 1920
   height: 1080
