@@ -104,7 +104,7 @@ _증명이 151바이트인 이유는 전체 거래 목록이 아니라 해당 �
 확인 block `20fcf935...`를 `invalidateblock`으로 무효화했습니다. 같은 거래의 `confirmations`는 다시 0이 되었고, mempool 크기는 1로 돌아왔습니다. 그 상태에서 block 두 개를 더 캐면 체인 팁은 이렇게 갈라집니다.
 
 {% include diagrams/static/blockchain/bitcoin-mempool-reorg.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/bitcoin-mempool-reorg--9a465693af6fe0fc.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-bitcoin-mempool-reorg-2d23beb675-01-0fc111de69a5.png" %}
 _block 112를 무효화하면 거래는 mempool로 돌아가고, 새로 캔 체인이 active 팁(높이 113)이 된다. 옛 팁은 invalid로 남는다._
 
 ```text

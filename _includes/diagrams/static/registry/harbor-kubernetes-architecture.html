@@ -50,41 +50,40 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="276b63d7048029f3c354b59d200f873d12a333b6edfdce3aef2c9c5d74cac2f9">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.2.4.0" x="96.000" y="442.150" width="384.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.4.1" x="504.000" y="442.150" width="384.000" height="560.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.4" x="96.000" y="442.150" width="792.000" height="560.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.2.0" x="96.000" y="211.700" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="1032.000" y="211.700" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.4.0.1.0" x="120.000" y="527.950" width="336.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4.1.1.0" x="528.000" y="527.950" width="336.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4.1.1.2" x="528.000" y="823.150" width="336.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.2.4.1.1.1" data-from="root.0.2.4.1.1.0" data-to="root.0.2.4.1.1.2" d="M 696.000 695.750 L 696.000 811.150" fill="none" stroke="#475569" stroke-width="3"><title>blob과 manifest 저장</title></path>
-<polygon data-arrowhead="root.0.2.4.1.1.1" points="696.000,811.150 690.000,801.150 702.000,801.150" fill="#475569"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 274.750 L 1020.000 274.750" fill="none" stroke="#475569" stroke-width="3"><title>TLS 종료와 path routing</title></path>
-<polygon data-arrowhead="root.0.2.1" points="1020.000,274.750 1010.000,280.750 1010.000,268.750" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1836.000 274.750 L 1848.000 274.750 L 1848.000 394.150 L 72.000 394.150 L 72.000 722.550 L 84.000 722.550" fill="none" stroke="#475569" stroke-width="3"><title>hostname 내부에서 경로 분기</title></path>
-<polygon data-arrowhead="root.0.2.3" points="84.000,722.550 74.000,728.550 74.000,716.550" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="113.050" font-size="36" font-weight="700" fill="#111827">Harbor는 하나의 Ingress 뒤에서 portal과 registry path를 나눕니다</text>
-<text data-source="root.0.1" x="64.000" y="171.650" font-size="22" font-weight="400" fill="#111827">같은 hostname으로 들어온 요청을 Ingress가 경로별로 분기하고, registry path만 image storage에 이어집니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="263.700" font-size="28" font-weight="700" fill="#111827">User</text>
-<text data-source="root.0.2.0" x="120.000" y="306.100" font-size="22" font-weight="400" fill="#111827">browser 또는 Docker CLI가 같은 Harbor hostname으로 접근합니다.</text>
-<text data-source="root.0.2.2" x="1056.000" y="263.700" font-size="28" font-weight="700" fill="#111827">Ingress</text>
-<text data-source="root.0.2.2" x="1056.000" y="306.100" font-size="22" font-weight="400" fill="#111827">요청 path에 따라 UI와 registry service를 선택합니다.</text>
-<text data-source="root.0.2.4.0.0" x="120.000" y="494.150" font-size="28" font-weight="700" fill="#111827">Portal path</text>
-<text data-source="root.0.2.4.0.1.0" x="144.000" y="579.950" font-size="28" font-weight="700" fill="#111827">Harbor portal</text>
-<text data-source="root.0.2.4.0.1.0" x="144.000" y="622.350" font-size="22" font-weight="400" fill="#111827">web UI와 core API를</text>
-<text data-source="root.0.2.4.0.1.0" x="144.000" y="652.050" font-size="22" font-weight="400" fill="#111827">제공합니다.</text>
-<text data-source="root.0.2.4.1.0" x="528.000" y="494.150" font-size="28" font-weight="700" fill="#111827">Registry path</text>
-<text data-source="root.0.2.4.1.1.0" x="552.000" y="579.950" font-size="28" font-weight="700" fill="#111827">Registry service</text>
-<text data-source="root.0.2.4.1.1.0" x="552.000" y="622.350" font-size="22" font-weight="400" fill="#111827">image distribution API를</text>
-<text data-source="root.0.2.4.1.1.0" x="552.000" y="652.050" font-size="22" font-weight="400" fill="#111827">처리합니다.</text>
-<text data-source="root.0.2.4.1.1.2" x="552.000" y="875.150" font-size="28" font-weight="700" fill="#111827">Image storage</text>
-<text data-source="root.0.2.4.1.1.2" x="552.000" y="917.550" font-size="22" font-weight="400" fill="#111827">object storage 또는</text>
-<text data-source="root.0.2.4.1.1.2" x="552.000" y="947.250" font-size="22" font-weight="400" fill="#111827">Kubernetes PVC에 보관합니다.</text>
-<text data-source="root.0.2.4.1.1.1" x="716.000" y="745.750" font-size="22" font-weight="400" fill="#111827">blob과</text>
-<text data-source="root.0.2.4.1.1.1" x="716.000" y="775.450" font-size="22" font-weight="400" fill="#111827">manifest 저장</text>
-<text data-source="root.0.2.1" x="892.000" y="225.350" font-size="22" font-weight="400" fill="#111827">TLS 종료와</text>
-<text data-source="root.0.2.1" x="892.000" y="255.050" font-size="22" font-weight="400" fill="#111827">path routing</text>
-<text data-source="root.0.2.3" x="104.000" y="386.150" font-size="22" font-weight="400" fill="#111827">hostname 내부에서 경로 분기</text>
+<rect data-source="root.0.2.4" x="564.000" y="441.400" width="792.000" height="540.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.4.0" x="588.000" y="465.400" width="362.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.4.1" x="970.000" y="465.400" width="362.000" height="492.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="96.000" y="224.300" width="792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="1032.000" y="224.300" width="792.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4.0.1.0" x="608.000" y="537.800" width="322.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4.1.1.0" x="990.000" y="537.800" width="322.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4.1.1.2" x="990.000" y="801.000" width="322.000" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.4.1.1.1" data-from="root.0.2.4.1.1.0" data-to="root.0.2.4.1.1.2" d="M 1151.000 687.000 L 1151.000 789.000" fill="none" stroke="#475569" stroke-width="3"><title>blob과 manifest 저장</title></path>
+<polygon data-arrowhead="root.0.2.4.1.1.1" points="1151.000,789.000 1145.000,779.000 1157.000,779.000" fill="#475569"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 900.000 279.400 L 1020.000 279.400" fill="none" stroke="#475569" stroke-width="3"><title>TLS 종료와 path routing</title></path>
+<polygon data-arrowhead="root.0.2.1" points="1020.000,279.400 1010.000,285.400 1010.000,273.400" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1428.000 346.500 L 1428.000 393.400 L 960.000 393.400 L 960.000 429.400" fill="none" stroke="#475569" stroke-width="3"><title>hostname 내부에서 경로 분기</title></path>
+<polygon data-arrowhead="root.0.2.3" points="960.000,429.400 954.000,419.400 966.000,419.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="133.800" font-size="36" font-weight="700" fill="#111827">Harbor는 하나의 Ingress 뒤에서 portal과 registry path를 나눕니다</text>
+<text data-source="root.0.1" x="64.000" y="186.400" font-size="20" font-weight="400" fill="#111827">같은 hostname으로 들어온 요청을 Ingress가 경로별로 분기하고, registry path만 image storage에 이어집니다.</text>
+<text data-source="root.0.2.0" x="116.000" y="268.300" font-size="24" font-weight="700" fill="#111827">User</text>
+<text data-source="root.0.2.0" x="116.000" y="307.500" font-size="20" font-weight="400" fill="#111827">browser 또는 Docker CLI가 같은 Harbor hostname으로 접근합니다.</text>
+<text data-source="root.0.2.2" x="1052.000" y="268.300" font-size="24" font-weight="700" fill="#111827">Ingress</text>
+<text data-source="root.0.2.2" x="1052.000" y="307.500" font-size="20" font-weight="400" fill="#111827">요청 path에 따라 UI와 registry service를 선택합니다.</text>
+<text data-source="root.0.2.4.0.0" x="608.000" y="509.400" font-size="24" font-weight="700" fill="#111827">Portal path</text>
+<text data-source="root.0.2.4.0.1.0" x="628.000" y="581.800" font-size="24" font-weight="700" fill="#111827">Harbor portal</text>
+<text data-source="root.0.2.4.0.1.0" x="628.000" y="621.000" font-size="20" font-weight="400" fill="#111827">web UI와 core API를 제공합니다.</text>
+<text data-source="root.0.2.4.1.0" x="990.000" y="509.400" font-size="24" font-weight="700" fill="#111827">Registry path</text>
+<text data-source="root.0.2.4.1.1.0" x="1010.000" y="581.800" font-size="24" font-weight="700" fill="#111827">Registry service</text>
+<text data-source="root.0.2.4.1.1.0" x="1010.000" y="621.000" font-size="20" font-weight="400" fill="#111827">image distribution API를</text>
+<text data-source="root.0.2.4.1.1.0" x="1010.000" y="648.000" font-size="20" font-weight="400" fill="#111827">처리합니다.</text>
+<text data-source="root.0.2.4.1.1.2" x="1010.000" y="845.000" font-size="24" font-weight="700" fill="#111827">Image storage</text>
+<text data-source="root.0.2.4.1.1.2" x="1010.000" y="884.200" font-size="20" font-weight="400" fill="#111827">object storage 또는 Kubernetes</text>
+<text data-source="root.0.2.4.1.1.2" x="1010.000" y="911.200" font-size="20" font-weight="400" fill="#111827">PVC에 보관합니다.</text>
+<text data-source="root.0.2.4.1.1.1" x="1171.000" y="731.000" font-size="20" font-weight="400" fill="#111827">blob과</text>
+<text data-source="root.0.2.4.1.1.1" x="1171.000" y="758.000" font-size="20" font-weight="400" fill="#111827">manifest 저장</text>
+<text data-source="root.0.2.1" x="892.000" y="233.400" font-size="20" font-weight="400" fill="#111827">TLS 종료와</text>
+<text data-source="root.0.2.1" x="892.000" y="260.400" font-size="20" font-weight="400" fill="#111827">path routing</text>
+<text data-source="root.0.2.3" x="972.000" y="385.400" font-size="20" font-weight="400" fill="#111827">hostname 내부에서 경로 분기</text>
 </svg>
 </figure>

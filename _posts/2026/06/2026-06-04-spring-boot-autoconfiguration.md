@@ -69,7 +69,7 @@ public class MyApplication {
 위 문서가 쓴 표현은 "backs away"지만, Spring Boot 내부에서 이 동작을 가리키는 정식 용어는 **back off**입니다. 자동설정 클래스에 붙은 조건(condition)이 어긋나면 그 빈을 만들지 않고 물러나며, 그래서 "기본은 알아서, 필요하면 내가 덮어쓰기"가 성립합니다.
 
 {% include diagrams/static/spring/spring-07-autoconfiguration-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-07-autoconfiguration-flow--3d2aaee4942bfb02.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-spring-spring-07-autoconfiguration-flow-8a92cb1297-01-8da4689a654d.png" %}
 _후보 로드 -> @Conditional 평가 -> 통과 시 빈 등록, 아니면 condition이 back off_
 
 이 "켜고 끄기"의 구현 메커니즘이 `@Conditional` 계열입니다. 문서가 정리한 대표 패턴은 이렇습니다.

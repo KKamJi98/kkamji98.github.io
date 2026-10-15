@@ -1,36 +1,36 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f5b825196ce3ba7e2d0c8e8c87add4dcd502adff9b9215241ccd212e8ed593e1">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1" x="64.000" y="353.650" width="1792.000" height="155.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="619.150" width="1792.000" height="126.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="353.650" width="426.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="746.667" y="353.650" width="426.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4" x="1397.333" y="353.650" width="426.667" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.0" x="64.000" y="619.150" width="884.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.1" x="972.000" y="619.150" width="884.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 534.667 431.550 L 734.667 431.550" fill="none" stroke="#475569" stroke-width="3"><title>/metrics/resource 제공</title></path>
-<polygon data-arrowhead="root.0.1.1" points="734.667,431.550 724.667,437.550 724.667,425.550" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1185.333 431.550 L 1385.333 431.550" fill="none" stroke="#475569" stroke-width="3"><title>metrics.k8s.io API 제공</title></path>
-<polygon data-arrowhead="root.0.1.3" points="1385.333,431.550 1375.333,437.550 1375.333,425.550" fill="#475569"/>
+<rect data-source="root.0.1" x="64.000" y="305.650" width="1792.000" height="203.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="619.150" width="1792.000" height="174.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="120.000" y="329.650" width="410.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="754.667" y="329.650" width="410.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1389.333" y="329.650" width="410.667" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0" x="88.000" y="643.150" width="860.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1" x="972.000" y="643.150" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 542.667 407.550 L 742.667 407.550" fill="none" stroke="#475569" stroke-width="3"><title>/metrics/resource 제공</title></path>
+<polygon data-arrowhead="root.0.1.1" points="742.667,407.550 732.667,413.550 732.667,401.550" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1177.333 407.550 L 1377.333 407.550" fill="none" stroke="#475569" stroke-width="3"><title>metrics.k8s.io API 제공</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1377.333,407.550 1367.333,413.550 1367.333,401.550" fill="#475569"/>
 <path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 521.450 L 960.000 607.150" fill="none" stroke="#475569" stroke-width="3"><title>서로 독립적으로 조회</title></path>
 <polygon data-arrowhead="root.0.2" points="960.000,607.150 954.000,597.150 966.000,597.150" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="317.050" font-size="36" font-weight="700" fill="#111827">Metrics API를 HPA와 kubectl top이 독립적으로 읽는다</text>
-<text data-source="root.0.1.0" x="120.000" y="405.650" font-size="28" font-weight="700" fill="#111827">kubelet on nodes</text>
-<text data-source="root.0.1.0" x="120.000" y="448.050" font-size="22" font-weight="400" fill="#111827">내장 cAdvisor가 node와 Pod</text>
-<text data-source="root.0.1.0" x="120.000" y="477.750" font-size="22" font-weight="400" fill="#111827">사용량을 요약합니다.</text>
-<text data-source="root.0.1.2" x="770.667" y="405.650" font-size="28" font-weight="700" fill="#111827">Metrics Server</text>
-<text data-source="root.0.1.2" x="770.667" y="448.050" font-size="22" font-weight="400" fill="#111827">각 kubelet을 주기적으로 pull하며</text>
-<text data-source="root.0.1.2" x="770.667" y="477.750" font-size="22" font-weight="400" fill="#111827">값은 memory에 둡니다.</text>
-<text data-source="root.0.1.4" x="1421.333" y="405.650" font-size="28" font-weight="700" fill="#111827">Metrics API</text>
-<text data-source="root.0.1.4" x="1421.333" y="448.050" font-size="22" font-weight="400" fill="#111827">metrics.k8s.io를 하나의 읽기 경로로</text>
-<text data-source="root.0.1.4" x="1421.333" y="477.750" font-size="22" font-weight="400" fill="#111827">노출합니다.</text>
-<text data-source="root.0.1.1" x="526.667" y="382.150" font-size="22" font-weight="400" fill="#111827">/metrics/resource</text>
-<text data-source="root.0.1.1" x="526.667" y="411.850" font-size="22" font-weight="400" fill="#111827">제공</text>
-<text data-source="root.0.1.3" x="1177.333" y="382.150" font-size="22" font-weight="400" fill="#111827">metrics.k8s.io API</text>
-<text data-source="root.0.1.3" x="1177.333" y="411.850" font-size="22" font-weight="400" fill="#111827">제공</text>
-<text data-source="root.0.3.0" x="88.000" y="671.150" font-size="28" font-weight="700" fill="#111827">HPA controller</text>
-<text data-source="root.0.3.0" x="88.000" y="713.550" font-size="22" font-weight="400" fill="#111827">현재 사용량을 읽고 workload를 scale합니다.</text>
-<text data-source="root.0.3.1" x="996.000" y="671.150" font-size="28" font-weight="700" fill="#111827">kubectl top</text>
-<text data-source="root.0.3.1" x="996.000" y="713.550" font-size="22" font-weight="400" fill="#111827">operator가 현재 사용량을 확인합니다.</text>
-<text data-source="root.0.4" x="64.000" y="791.250" font-size="22" font-weight="400" fill="#111827">두 소비자는 서로를 거치지 않고 같은 Metrics API를 읽습니다. Metrics Server는 durable storage가 아니므로 장기 추세는 별도 저장소가 필요합니다.</text>
+<text data-source="root.0.0" x="64.000" y="269.050" font-size="36" font-weight="700" fill="#111827">Metrics API를 HPA와 kubectl top이 독립적으로 읽는다</text>
+<text data-source="root.0.1.0" x="144.000" y="381.650" font-size="28" font-weight="700" fill="#111827">kubelet on nodes</text>
+<text data-source="root.0.1.0" x="144.000" y="424.050" font-size="22" font-weight="400" fill="#111827">내장 cAdvisor가 node와 Pod</text>
+<text data-source="root.0.1.0" x="144.000" y="453.750" font-size="22" font-weight="400" fill="#111827">사용량을 요약합니다.</text>
+<text data-source="root.0.1.2" x="778.667" y="381.650" font-size="28" font-weight="700" fill="#111827">Metrics Server</text>
+<text data-source="root.0.1.2" x="778.667" y="424.050" font-size="22" font-weight="400" fill="#111827">각 kubelet을 주기적으로 pull하며</text>
+<text data-source="root.0.1.2" x="778.667" y="453.750" font-size="22" font-weight="400" fill="#111827">값은 memory에 둡니다.</text>
+<text data-source="root.0.1.4" x="1413.333" y="381.650" font-size="28" font-weight="700" fill="#111827">Metrics API</text>
+<text data-source="root.0.1.4" x="1413.333" y="424.050" font-size="22" font-weight="400" fill="#111827">metrics.k8s.io를 하나의 읽기</text>
+<text data-source="root.0.1.4" x="1413.333" y="453.750" font-size="22" font-weight="400" fill="#111827">경로로 노출합니다.</text>
+<text data-source="root.0.1.1" x="534.667" y="358.150" font-size="22" font-weight="400" fill="#111827">/metrics/resource</text>
+<text data-source="root.0.1.1" x="534.667" y="387.850" font-size="22" font-weight="400" fill="#111827">제공</text>
+<text data-source="root.0.1.3" x="1169.333" y="358.150" font-size="22" font-weight="400" fill="#111827">metrics.k8s.io API</text>
+<text data-source="root.0.1.3" x="1169.333" y="387.850" font-size="22" font-weight="400" fill="#111827">제공</text>
+<text data-source="root.0.3.0" x="112.000" y="695.150" font-size="28" font-weight="700" fill="#111827">HPA controller</text>
+<text data-source="root.0.3.0" x="112.000" y="737.550" font-size="22" font-weight="400" fill="#111827">현재 사용량을 읽고 workload를 scale합니다.</text>
+<text data-source="root.0.3.1" x="996.000" y="695.150" font-size="28" font-weight="700" fill="#111827">kubectl top</text>
+<text data-source="root.0.3.1" x="996.000" y="737.550" font-size="22" font-weight="400" fill="#111827">operator가 현재 사용량을 확인합니다.</text>
+<text data-source="root.0.4" x="64.000" y="839.250" font-size="22" font-weight="400" fill="#111827">두 소비자는 서로를 거치지 않고 같은 Metrics API를 읽습니다. Metrics Server는 durable storage가 아니므로 장기 추세는 별도 저장소가 필요합니다.</text>
 <text data-source="root.0.2" x="980.000" y="571.450" font-size="22" font-weight="400" fill="#111827">서로 독립적으로 조회</text>
 </svg>

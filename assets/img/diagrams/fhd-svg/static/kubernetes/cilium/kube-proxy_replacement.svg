@@ -1,69 +1,64 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="da046ac106b6555f0e04de0cf7785922392be515e16ce654f919b0c8291bf722">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.3.0" x="64.000" y="373.600" width="888.000" height="432.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3.1" x="968.000" y="373.600" width="888.000" height="620.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="373.600" width="1792.000" height="620.300" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.2.0" x="64.000" y="191.000" width="1792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.0" x="112.000" y="432.600" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.2" x="580.000" y="432.600" width="324.000" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.4" x="112.000" y="647.200" width="324.000" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.6" x="580.000" y="659.350" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.0" x="1016.000" y="482.050" width="324.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.2" x="1484.000" y="432.600" width="324.000" height="217.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.4" x="1016.000" y="746.100" width="324.000" height="167.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.3" d="M 960.000 297.300 L 960.000 329.450 L 960.000 329.450 L 960.000 361.600" fill="none" stroke="#475569" stroke-width="3"><title>Service endpoint 선택</title></path>
-<polygon data-arrowhead="root.0.2.1" points="960.000,361.600 954.000,351.600 966.000,351.600" fill="#475569"/>
-<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 448.000 491.900 L 568.000 491.900" fill="none" stroke="#475569" stroke-width="3"><title>DNAT 규칙 조회</title></path>
-<polygon data-arrowhead="root.0.3.0.1.1" points="568.000,491.900 558.000,497.900 558.000,485.900" fill="#475569"/>
-<path data-edge="root.0.3.0.1.3" data-from="root.0.3.0.1.2" data-to="root.0.3.0.1.4" d="M 916.000 491.900 L 928.000 491.900 L 928.000 599.200 L 88.000 599.200 L 88.000 718.650 L 100.000 718.650" fill="none" stroke="#475569" stroke-width="3"><title>host stack traversal</title></path>
-<polygon data-arrowhead="root.0.3.0.1.3" points="100.000,718.650 90.000,724.650 90.000,712.650" fill="#475569"/>
-<path data-edge="root.0.3.0.1.5" data-from="root.0.3.0.1.4" data-to="root.0.3.0.1.6" d="M 448.000 718.650 L 568.000 718.650" fill="none" stroke="#475569" stroke-width="3"><title>endpoint 전달</title></path>
-<polygon data-arrowhead="root.0.3.0.1.5" points="568.000,718.650 558.000,724.650 558.000,712.650" fill="#475569"/>
-<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1352.000 541.350 L 1472.000 541.350" fill="none" stroke="#475569" stroke-width="3"><title>kernel service lookup</title></path>
-<polygon data-arrowhead="root.0.3.1.1.1" points="1472.000,541.350 1462.000,547.350 1462.000,535.350" fill="#475569"/>
-<path data-edge="root.0.3.1.1.3" data-from="root.0.3.1.1.2" data-to="root.0.3.1.1.4" d="M 1820.000 541.350 L 1832.000 541.350 L 1832.000 698.100 L 992.000 698.100 L 992.000 829.700 L 1004.000 829.700" fill="none" stroke="#475569" stroke-width="3"><title>host 작업을 줄여 전달</title></path>
-<polygon data-arrowhead="root.0.3.1.1.3" points="1004.000,829.700 994.000,835.700 994.000,823.700" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="122.100" font-size="36" font-weight="700" fill="#111827">kube-proxy replacement은 Service datapath 책임을 Cilium eBPF로 옮긴다</text>
-<text data-source="root.0.1" x="64.000" y="168.700" font-size="18" font-weight="400" fill="#111827">같은 Service 요청이라도 기존 경로는 kube-proxy가 만든 iptables와 host stack을 거치고, replacement 경로는 Cilium eBPF가 endpoint lookup과 forwarding을 맡습니다.</text>
-<text data-source="root.0.2.0" x="80.000" y="227.000" font-size="20" font-weight="700" fill="#111827">Pod A request</text>
-<text data-source="root.0.2.0" x="80.000" y="263.000" font-size="18" font-weight="400" fill="#111827">curl이 Service ClusterIP로 요청을 보냅니다.</text>
-<text data-source="root.0.3.0.0" x="80.000" y="409.600" font-size="20" font-weight="700" fill="#111827">기존 kube-proxy path</text>
-<text data-source="root.0.3.0.1.0" x="128.000" y="468.600" font-size="20" font-weight="700" fill="#111827">Pod A socket와 veth</text>
-<text data-source="root.0.3.0.1.0" x="128.000" y="504.600" font-size="18" font-weight="400" fill="#111827">Pod 네트워크에서 host 쪽으로</text>
-<text data-source="root.0.3.0.1.0" x="128.000" y="528.900" font-size="18" font-weight="400" fill="#111827">나옵니다.</text>
-<text data-source="root.0.3.0.1.2" x="596.000" y="468.600" font-size="20" font-weight="700" fill="#111827">kube-proxy iptables</text>
-<text data-source="root.0.3.0.1.2" x="596.000" y="504.600" font-size="18" font-weight="400" fill="#111827">Service와 endpoint를 DNAT</text>
-<text data-source="root.0.3.0.1.2" x="596.000" y="528.900" font-size="18" font-weight="400" fill="#111827">rule로 연결합니다.</text>
-<text data-source="root.0.3.0.1.4" x="128.000" y="683.200" font-size="20" font-weight="700" fill="#111827">Linux routing와 FORWARD</text>
-<text data-source="root.0.3.0.1.4" x="128.000" y="719.200" font-size="18" font-weight="400" fill="#111827">PREROUTING, FORWARD,</text>
-<text data-source="root.0.3.0.1.4" x="128.000" y="743.500" font-size="18" font-weight="400" fill="#111827">POSTROUTING chain을</text>
-<text data-source="root.0.3.0.1.4" x="128.000" y="767.800" font-size="18" font-weight="400" fill="#111827">통과합니다.</text>
-<text data-source="root.0.3.0.1.6" x="596.000" y="695.350" font-size="20" font-weight="700" fill="#111827">Pod B endpoint</text>
-<text data-source="root.0.3.0.1.6" x="596.000" y="731.350" font-size="18" font-weight="400" fill="#111827">반대쪽 veth와 socket으로</text>
-<text data-source="root.0.3.0.1.6" x="596.000" y="755.650" font-size="18" font-weight="400" fill="#111827">도착합니다.</text>
-<text data-source="root.0.3.0.1.1" x="440.000" y="473.600" font-size="18" font-weight="400" fill="#111827">DNAT 규칙 조회</text>
-<text data-source="root.0.3.0.1.3" x="120.000" y="591.200" font-size="18" font-weight="400" fill="#111827">host stack traversal</text>
-<text data-source="root.0.3.0.1.5" x="440.000" y="700.350" font-size="18" font-weight="400" fill="#111827">endpoint 전달</text>
-<text data-source="root.0.3.1.0" x="984.000" y="409.600" font-size="20" font-weight="700" fill="#111827">Cilium eBPF replacement</text>
-<text data-source="root.0.3.1.1.0" x="1032.000" y="518.050" font-size="20" font-weight="700" fill="#111827">Pod A Service request</text>
-<text data-source="root.0.3.1.1.0" x="1032.000" y="554.050" font-size="18" font-weight="400" fill="#111827">Service 주소에 대한 요청이며 적용</text>
-<text data-source="root.0.3.1.1.0" x="1032.000" y="578.350" font-size="18" font-weight="400" fill="#111827">hook은 구성에 따라 다릅니다.</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="468.600" font-size="20" font-weight="700" fill="#111827">Cilium eBPF service</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="494.600" font-size="20" font-weight="700" fill="#111827">datapath</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="530.600" font-size="18" font-weight="400" fill="#111827">기본 socket-LB는 socket에서</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="554.900" font-size="18" font-weight="400" fill="#111827">backend를 선택합니다. Pod</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="579.200" font-size="18" font-weight="400" fill="#111827">namespace 우회 구성은</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="603.500" font-size="18" font-weight="400" fill="#111827">tc/veth에서 Service lookup을</text>
-<text data-source="root.0.3.1.1.2" x="1500.000" y="627.800" font-size="18" font-weight="400" fill="#111827">수행합니다.</text>
-<text data-source="root.0.3.1.1.4" x="1032.000" y="782.100" font-size="20" font-weight="700" fill="#111827">Pod B endpoint</text>
-<text data-source="root.0.3.1.1.4" x="1032.000" y="818.100" font-size="18" font-weight="400" fill="#111827">kube-proxy의 Service NAT를</text>
-<text data-source="root.0.3.1.1.4" x="1032.000" y="842.400" font-size="18" font-weight="400" fill="#111827">대체하지만 모든 host</text>
-<text data-source="root.0.3.1.1.4" x="1032.000" y="866.700" font-size="18" font-weight="400" fill="#111827">networking을 우회하지는</text>
-<text data-source="root.0.3.1.1.4" x="1032.000" y="891.000" font-size="18" font-weight="400" fill="#111827">않습니다.</text>
-<text data-source="root.0.3.1.1.1" x="1344.000" y="498.750" font-size="18" font-weight="400" fill="#111827">kernel service</text>
-<text data-source="root.0.3.1.1.1" x="1344.000" y="523.050" font-size="18" font-weight="400" fill="#111827">lookup</text>
-<text data-source="root.0.3.1.1.3" x="1024.000" y="690.100" font-size="18" font-weight="400" fill="#111827">host 작업을 줄여 전달</text>
-<text data-source="root.0.3.1.2" x="984.000" y="947.300" font-size="18" font-weight="400" fill="#111827">socketLB.hostNamespaceOnly=true는 Pod namespace의 socket rewrite 대신 tc/veth fallback을</text>
-<text data-source="root.0.3.1.2" x="984.000" y="971.600" font-size="18" font-weight="400" fill="#111827">사용합니다. socket과 veth를 필수 연속 LB 단계로 읽으면 안 됩니다.</text>
-<text data-source="root.0.2.1" x="84.000" y="319.300" font-size="18" font-weight="400" fill="#111827">Service endpoint 선택</text>
+<rect data-source="root.0.3" x="64.000" y="402.850" width="1792.000" height="529.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0" x="88.000" y="426.850" width="866.000" height="361.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="966.000" y="426.850" width="866.000" height="481.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0" x="64.000" y="241.850" width="1792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="132.000" y="475.150" width="317.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.2" x="593.000" y="475.150" width="317.000" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.4" x="132.000" y="673.750" width="317.000" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.6" x="593.000" y="684.550" width="317.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="1010.000" y="496.750" width="317.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="1471.000" y="475.150" width="317.000" height="145.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.4" x="1010.000" y="716.950" width="317.000" height="124.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.3" d="M 960.000 334.850 L 960.000 362.850 L 960.000 362.850 L 960.000 390.850" fill="none" stroke="#475569" stroke-width="3"><title>Service endpoint 선택</title></path>
+<polygon data-arrowhead="root.0.2.1" points="960.000,390.850 954.000,380.850 966.000,380.850" fill="#475569"/>
+<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 461.000 526.450 L 581.000 526.450" fill="none" stroke="#475569" stroke-width="3"><title>DNAT 규칙 조회</title></path>
+<polygon data-arrowhead="root.0.3.0.1.1" points="581.000,526.450 571.000,532.450 571.000,520.450" fill="#475569"/>
+<path data-edge="root.0.3.0.1.3" data-from="root.0.3.0.1.2" data-to="root.0.3.0.1.4" d="M 922.000 526.450 L 934.000 526.450 L 934.000 625.750 L 108.000 625.750 L 108.000 725.050 L 120.000 725.050" fill="none" stroke="#475569" stroke-width="3"><title>host stack traversal</title></path>
+<polygon data-arrowhead="root.0.3.0.1.3" points="120.000,725.050 110.000,731.050 110.000,719.050" fill="#475569"/>
+<path data-edge="root.0.3.0.1.5" data-from="root.0.3.0.1.4" data-to="root.0.3.0.1.6" d="M 461.000 725.050 L 581.000 725.050" fill="none" stroke="#475569" stroke-width="3"><title>endpoint 전달</title></path>
+<polygon data-arrowhead="root.0.3.0.1.5" points="581.000,725.050 571.000,731.050 571.000,719.050" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1339.000 548.050 L 1459.000 548.050" fill="none" stroke="#475569" stroke-width="3"><title>kernel service lookup</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="1459.000,548.050 1449.000,554.050 1449.000,542.050" fill="#475569"/>
+<path data-edge="root.0.3.1.1.3" data-from="root.0.3.1.1.2" data-to="root.0.3.1.1.4" d="M 1800.000 548.050 L 1812.000 548.050 L 1812.000 668.950 L 986.000 668.950 L 986.000 779.050 L 998.000 779.050" fill="none" stroke="#475569" stroke-width="3"><title>host 작업을 줄여 전달</title></path>
+<polygon data-arrowhead="root.0.3.1.1.3" points="998.000,779.050 988.000,785.050 988.000,773.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="183.650" font-size="36" font-weight="700" fill="#111827">kube-proxy replacement은 Service datapath 책임을 Cilium eBPF로 옮긴다</text>
+<text data-source="root.0.1" x="64.000" y="224.250" font-size="16" font-weight="400" fill="#111827">같은 Service 요청이라도 기존 경로는 kube-proxy가 만든 iptables와 host stack을 거치고, replacement 경로는 Cilium eBPF가 endpoint lookup과 forwarding을 맡습니다.</text>
+<text data-source="root.0.2.0" x="76.000" y="271.850" font-size="18" font-weight="700" fill="#111827">Pod A request</text>
+<text data-source="root.0.2.0" x="76.000" y="305.250" font-size="16" font-weight="400" fill="#111827">curl이 Service ClusterIP로 요청을 보냅니다.</text>
+<text data-source="root.0.3.0.0" x="100.000" y="456.850" font-size="18" font-weight="700" fill="#111827">기존 kube-proxy path</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="505.150" font-size="18" font-weight="700" fill="#111827">Pod A socket와 veth</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="538.550" font-size="16" font-weight="400" fill="#111827">Pod 네트워크에서 host 쪽으로</text>
+<text data-source="root.0.3.0.1.0" x="144.000" y="560.150" font-size="16" font-weight="400" fill="#111827">나옵니다.</text>
+<text data-source="root.0.3.0.1.2" x="605.000" y="505.150" font-size="18" font-weight="700" fill="#111827">kube-proxy iptables</text>
+<text data-source="root.0.3.0.1.2" x="605.000" y="538.550" font-size="16" font-weight="400" fill="#111827">Service와 endpoint를 DNAT rule로</text>
+<text data-source="root.0.3.0.1.2" x="605.000" y="560.150" font-size="16" font-weight="400" fill="#111827">연결합니다.</text>
+<text data-source="root.0.3.0.1.4" x="144.000" y="703.750" font-size="18" font-weight="700" fill="#111827">Linux routing와 FORWARD</text>
+<text data-source="root.0.3.0.1.4" x="144.000" y="737.150" font-size="16" font-weight="400" fill="#111827">PREROUTING, FORWARD,</text>
+<text data-source="root.0.3.0.1.4" x="144.000" y="758.750" font-size="16" font-weight="400" fill="#111827">POSTROUTING chain을 통과합니다.</text>
+<text data-source="root.0.3.0.1.6" x="605.000" y="714.550" font-size="18" font-weight="700" fill="#111827">Pod B endpoint</text>
+<text data-source="root.0.3.0.1.6" x="605.000" y="747.950" font-size="16" font-weight="400" fill="#111827">반대쪽 veth와 socket으로 도착합니다.</text>
+<text data-source="root.0.3.0.1.1" x="453.000" y="508.850" font-size="16" font-weight="400" fill="#111827">DNAT 규칙 조회</text>
+<text data-source="root.0.3.0.1.3" x="140.000" y="617.750" font-size="16" font-weight="400" fill="#111827">host stack traversal</text>
+<text data-source="root.0.3.0.1.5" x="453.000" y="707.450" font-size="16" font-weight="400" fill="#111827">endpoint 전달</text>
+<text data-source="root.0.3.1.0" x="978.000" y="456.850" font-size="18" font-weight="700" fill="#111827">Cilium eBPF replacement</text>
+<text data-source="root.0.3.1.1.0" x="1022.000" y="526.750" font-size="18" font-weight="700" fill="#111827">Pod A Service request</text>
+<text data-source="root.0.3.1.1.0" x="1022.000" y="560.150" font-size="16" font-weight="400" fill="#111827">Service 주소에 대한 요청이며 적용</text>
+<text data-source="root.0.3.1.1.0" x="1022.000" y="581.750" font-size="16" font-weight="400" fill="#111827">hook은 구성에 따라 다릅니다.</text>
+<text data-source="root.0.3.1.1.2" x="1483.000" y="505.150" font-size="18" font-weight="700" fill="#111827">Cilium eBPF service datapath</text>
+<text data-source="root.0.3.1.1.2" x="1483.000" y="538.550" font-size="16" font-weight="400" fill="#111827">기본 socket-LB는 socket에서</text>
+<text data-source="root.0.3.1.1.2" x="1483.000" y="560.150" font-size="16" font-weight="400" fill="#111827">backend를 선택합니다. Pod</text>
+<text data-source="root.0.3.1.1.2" x="1483.000" y="581.750" font-size="16" font-weight="400" fill="#111827">namespace 우회 구성은 tc/veth에서</text>
+<text data-source="root.0.3.1.1.2" x="1483.000" y="603.350" font-size="16" font-weight="400" fill="#111827">Service lookup을 수행합니다.</text>
+<text data-source="root.0.3.1.1.4" x="1022.000" y="746.950" font-size="18" font-weight="700" fill="#111827">Pod B endpoint</text>
+<text data-source="root.0.3.1.1.4" x="1022.000" y="780.350" font-size="16" font-weight="400" fill="#111827">kube-proxy의 Service NAT를</text>
+<text data-source="root.0.3.1.1.4" x="1022.000" y="801.950" font-size="16" font-weight="400" fill="#111827">대체하지만 모든 host networking을</text>
+<text data-source="root.0.3.1.1.4" x="1022.000" y="823.550" font-size="16" font-weight="400" fill="#111827">우회하지는 않습니다.</text>
+<text data-source="root.0.3.1.1.1" x="1331.000" y="508.850" font-size="16" font-weight="400" fill="#111827">kernel service</text>
+<text data-source="root.0.3.1.1.1" x="1331.000" y="530.450" font-size="16" font-weight="400" fill="#111827">lookup</text>
+<text data-source="root.0.3.1.1.3" x="1018.000" y="660.950" font-size="16" font-weight="400" fill="#111827">host 작업을 줄여 전달</text>
+<text data-source="root.0.3.1.2" x="978.000" y="869.150" font-size="16" font-weight="400" fill="#111827">socketLB.hostNamespaceOnly=true는 Pod namespace의 socket rewrite 대신 tc/veth fallback을 사용합니다.</text>
+<text data-source="root.0.3.1.2" x="978.000" y="890.750" font-size="16" font-weight="400" fill="#111827">socket과 veth를 필수 연속 LB 단계로 읽으면 안 됩니다.</text>
+<text data-source="root.0.2.1" x="84.000" y="350.850" font-size="16" font-weight="400" fill="#111827">Service endpoint 선택</text>
 </svg>

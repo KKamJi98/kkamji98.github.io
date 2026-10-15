@@ -10,7 +10,7 @@ comments: true
 ---
 
 {% include diagrams/static/data-structures/priority-queue-heap-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/data-structures/priority-queue-heap-flow--f6360652a47dab17.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-data-structures-priority-queue-heap-flow-b969f60e3e-01-14e31a214b2a.png" %}
 
 ---
 

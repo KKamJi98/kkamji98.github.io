@@ -120,7 +120,7 @@ cd im-not-ai
 ## 5. 세 가지 경로
 
 {% include diagrams/static/ai/humanize/humanize-route-hint.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ai/humanize/humanize-route-hint--1c9592ce01d76f4d.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ai-humanize-humanize-route-hint-0c03aff764-01-d197e7398ece.png" %}
 
 입력이 들어오면 LLM이 아니라 파이썬 스크립트가 먼저 글을 읽습니다. `prepare_monolith_input.py`가 카운트형 지표와 위험 등급을 산출하고, 그 점수로 `route_hint`를 결정합니다.
 

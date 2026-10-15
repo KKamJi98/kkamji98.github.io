@@ -26,7 +26,7 @@ equal False
 ```
 
 {% include diagrams/static/blockchain/solc-pin-two-hashes.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/solc-pin-two-hashes--1abc4861616c57a0.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-solc-pin-two-hashes-552afa7ba6-01-0ffe866bce2a.png" %}
 _바이트 수는 같다. 내용은 다르다. 길이만 보고 동일 프로그램이라고 하면 안 된다._
 
 9편 Anvil 배포본의 `cast code` 길이도 5234 hex였습니다. 그 길이만 맞춰 놓고 컴파일러를 바꾸면, explorer에 보이는 코드 길이는 같고 실행은 다른 프로그램입니다. 검증은 길이가 아니라 해시입니다.

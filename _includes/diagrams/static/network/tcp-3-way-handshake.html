@@ -35,43 +35,43 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="7d209360182d4ac16bd773a529d36638ff2f82d8a1f1a1fff846527ec8d9c315">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.2.0" x="96.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="564.000" y="480.200" width="324.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4" x="1032.000" y="498.400" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.6" x="1500.000" y="480.200" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 576.300 L 552.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>server가 x + 1을 확인하고 자신의 sequence를 보냄</title></path>
-<polygon data-arrowhead="root.0.2.1" points="552.000,576.300 542.000,582.300 542.000,570.300" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 576.300 L 1020.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>client가 y + 1을 ACK</title></path>
-<polygon data-arrowhead="root.0.2.3" points="1020.000,576.300 1010.000,582.300 1010.000,570.300" fill="#475569"/>
-<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 576.300 L 1488.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>양쪽 endpoint의 sequence 확인 완료</title></path>
-<polygon data-arrowhead="root.0.2.5" points="1488.000,576.300 1478.000,582.300 1478.000,570.300" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="325.500" font-size="36" font-weight="700" fill="#111827">세 TCP segment가 양쪽을 ESTABLISHED로 옮깁니다</text>
-<text data-source="root.0.1" x="64.000" y="384.100" font-size="22" font-weight="400" fill="#111827">각 endpoint는 자기 sequence number가 확인된 것을 봐야 하므로 SYN, SYN plus ACK, 마지막 ACK의 세 단계가 필요합니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="550.400" font-size="28" font-weight="700" fill="#111827">SYN: client to server</text>
-<text data-source="root.0.2.0" x="120.000" y="592.800" font-size="22" font-weight="400" fill="#111827">client seq = x. client는</text>
-<text data-source="root.0.2.0" x="120.000" y="622.500" font-size="22" font-weight="400" fill="#111827">SYN-SENT로 이동</text>
-<text data-source="root.0.2.2" x="588.000" y="532.200" font-size="28" font-weight="700" fill="#111827">SYN, ACK: server to</text>
-<text data-source="root.0.2.2" x="588.000" y="568.600" font-size="28" font-weight="700" fill="#111827">client</text>
-<text data-source="root.0.2.2" x="588.000" y="611.000" font-size="22" font-weight="400" fill="#111827">server seq = y, ack = x + 1.</text>
-<text data-source="root.0.2.2" x="588.000" y="640.700" font-size="22" font-weight="400" fill="#111827">server는 SYN-RECEIVED</text>
-<text data-source="root.0.2.4" x="1056.000" y="550.400" font-size="28" font-weight="700" fill="#111827">ACK: client to server</text>
-<text data-source="root.0.2.4" x="1056.000" y="592.800" font-size="22" font-weight="400" fill="#111827">ack = y + 1. client는</text>
-<text data-source="root.0.2.4" x="1056.000" y="622.500" font-size="22" font-weight="400" fill="#111827">ESTABLISHED로 이동</text>
-<text data-source="root.0.2.6" x="1524.000" y="532.200" font-size="28" font-weight="700" fill="#111827">Both sides</text>
-<text data-source="root.0.2.6" x="1524.000" y="568.600" font-size="28" font-weight="700" fill="#111827">ESTABLISHED</text>
-<text data-source="root.0.2.6" x="1524.000" y="611.000" font-size="22" font-weight="400" fill="#111827">양방향 data transfer 시작</text>
-<text data-source="root.0.2.6" x="1524.000" y="640.700" font-size="22" font-weight="400" fill="#111827">가능</text>
-<text data-source="root.0.2.1" x="424.000" y="437.800" font-size="22" font-weight="400" fill="#111827">server가 x +</text>
-<text data-source="root.0.2.1" x="424.000" y="467.500" font-size="22" font-weight="400" fill="#111827">1을 확인하고</text>
-<text data-source="root.0.2.1" x="424.000" y="497.200" font-size="22" font-weight="400" fill="#111827">자신의</text>
-<text data-source="root.0.2.1" x="424.000" y="526.900" font-size="22" font-weight="400" fill="#111827">sequence를</text>
-<text data-source="root.0.2.1" x="424.000" y="556.600" font-size="22" font-weight="400" fill="#111827">보냄</text>
-<text data-source="root.0.2.3" x="892.000" y="526.900" font-size="22" font-weight="400" fill="#111827">client가 y +</text>
-<text data-source="root.0.2.3" x="892.000" y="556.600" font-size="22" font-weight="400" fill="#111827">1을 ACK</text>
-<text data-source="root.0.2.5" x="1360.000" y="467.500" font-size="22" font-weight="400" fill="#111827">양쪽</text>
-<text data-source="root.0.2.5" x="1360.000" y="497.200" font-size="22" font-weight="400" fill="#111827">endpoint의</text>
-<text data-source="root.0.2.5" x="1360.000" y="526.900" font-size="22" font-weight="400" fill="#111827">sequence</text>
-<text data-source="root.0.2.5" x="1360.000" y="556.600" font-size="22" font-weight="400" fill="#111827">확인 완료</text>
-<text data-source="root.0.3" x="64.000" y="782.800" font-size="22" font-weight="400" fill="#111827">이 그림은 일반적인 연결 수립 순서입니다. 실제 경로에서는 retransmission, simultaneous open, 거절과 보안 장비 정책으로 상태 전이가 달라질 수 있습니다.</text>
+<rect data-node="root.0.2.0" x="96.000" y="465.350" width="233.625" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="594.125" y="447.150" width="233.625" height="258.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1092.250" y="480.200" width="233.625" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="1590.375" y="465.350" width="233.625" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 341.625 576.300 L 582.125 576.300" fill="none" stroke="#475569" stroke-width="3"><title>server가 x + 1을 확인하고 자신의 sequence를 보냄</title></path>
+<polygon data-arrowhead="root.0.2.1" points="582.125,576.300 572.125,582.300 572.125,570.300" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 839.750 576.300 L 1080.250 576.300" fill="none" stroke="#475569" stroke-width="3"><title>client가 y + 1을 ACK</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1080.250,576.300 1070.250,582.300 1070.250,570.300" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1337.875 576.300 L 1578.375 576.300" fill="none" stroke="#475569" stroke-width="3"><title>양쪽 endpoint의 sequence 확인 완료</title></path>
+<polygon data-arrowhead="root.0.2.5" points="1578.375,576.300 1568.375,582.300 1568.375,570.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="356.850" font-size="36" font-weight="700" fill="#111827">세 TCP segment가 양쪽을 ESTABLISHED로 옮깁니다</text>
+<text data-source="root.0.1" x="64.000" y="415.450" font-size="22" font-weight="400" fill="#111827">각 endpoint는 자기 sequence number가 확인된 것을 봐야 하므로 SYN, SYN plus ACK, 마지막 ACK의 세 단계가 필요합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="517.350" font-size="28" font-weight="700" fill="#111827">SYN: client to</text>
+<text data-source="root.0.2.0" x="120.000" y="553.750" font-size="28" font-weight="700" fill="#111827">server</text>
+<text data-source="root.0.2.0" x="120.000" y="596.150" font-size="22" font-weight="400" fill="#111827">client seq = x.</text>
+<text data-source="root.0.2.0" x="120.000" y="625.850" font-size="22" font-weight="400" fill="#111827">client는</text>
+<text data-source="root.0.2.0" x="120.000" y="655.550" font-size="22" font-weight="400" fill="#111827">SYN-SENT로 이동</text>
+<text data-source="root.0.2.2" x="618.125" y="499.150" font-size="28" font-weight="700" fill="#111827">SYN, ACK:</text>
+<text data-source="root.0.2.2" x="618.125" y="535.550" font-size="28" font-weight="700" fill="#111827">server</text>
+<text data-source="root.0.2.2" x="618.125" y="571.950" font-size="28" font-weight="700" fill="#111827">to client</text>
+<text data-source="root.0.2.2" x="618.125" y="614.350" font-size="22" font-weight="400" fill="#111827">server seq = y, ack</text>
+<text data-source="root.0.2.2" x="618.125" y="644.050" font-size="22" font-weight="400" fill="#111827">= x + 1. server는</text>
+<text data-source="root.0.2.2" x="618.125" y="673.750" font-size="22" font-weight="400" fill="#111827">SYN-RECEIVED</text>
+<text data-source="root.0.2.4" x="1105.750" y="532.200" font-size="28" font-weight="700" fill="#111827">ACK: client</text>
+<text data-source="root.0.2.4" x="1105.750" y="568.600" font-size="28" font-weight="700" fill="#111827">to server</text>
+<text data-source="root.0.2.4" x="1105.750" y="611.000" font-size="22" font-weight="400" fill="#111827">ack = y + 1. client는</text>
+<text data-source="root.0.2.4" x="1105.750" y="640.700" font-size="22" font-weight="400" fill="#111827">ESTABLISHED로 이동</text>
+<text data-source="root.0.2.6" x="1614.375" y="517.350" font-size="28" font-weight="700" fill="#111827">Both sides</text>
+<text data-source="root.0.2.6" x="1614.375" y="553.750" font-size="28" font-weight="700" fill="#111827">ESTABLISHED</text>
+<text data-source="root.0.2.6" x="1614.375" y="596.150" font-size="22" font-weight="400" fill="#111827">양방향</text>
+<text data-source="root.0.2.6" x="1614.375" y="625.850" font-size="22" font-weight="400" fill="#111827">data transfer</text>
+<text data-source="root.0.2.6" x="1614.375" y="655.550" font-size="22" font-weight="400" fill="#111827">시작 가능</text>
+<text data-source="root.0.2.1" x="341.625" y="526.900" font-size="22" font-weight="400" fill="#111827">server가 x + 1을 확인하고</text>
+<text data-source="root.0.2.1" x="341.625" y="556.600" font-size="22" font-weight="400" fill="#111827">자신의 sequence를 보냄</text>
+<text data-source="root.0.2.3" x="839.750" y="556.600" font-size="22" font-weight="400" fill="#111827">client가 y + 1을 ACK</text>
+<text data-source="root.0.2.5" x="1337.875" y="526.900" font-size="22" font-weight="400" fill="#111827">양쪽 endpoint의</text>
+<text data-source="root.0.2.5" x="1337.875" y="556.600" font-size="22" font-weight="400" fill="#111827">sequence 확인 완료</text>
+<text data-source="root.0.3" x="64.000" y="751.450" font-size="22" font-weight="400" fill="#111827">이 그림은 일반적인 연결 수립 순서입니다. 실제 경로에서는 retransmission, simultaneous open, 거절과 보안 장비 정책으로 상태 전이가 달라질 수 있습니다.</text>
 </svg>
 </figure>

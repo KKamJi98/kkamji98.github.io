@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/kubernetes/cilium/cilium-native-routing-mode.html",
+  "source_sha256": "20b2db0fb9442bbd946051ec5c077187dd0b78e53254f9d31d5f134b33987f3f",
+  "svg_sha256": "b762684c0bc419f5f8b23d57bca0eab49504dcc0ab0037fac2587f978cb17cd0",
+  "png_sha256": "6bc6243ccf820e8687fc10e9f58377c526eb22214a7a2d636e35679c7a98de82",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T20:22:43.106349+00:00",
+  "notes": "두 node 내부의 카드, 경계와 연결선이 분리되어 읽기 좋습니다. 고립된 토큰이나 잘림이 없으며 /32, /24 경로와 next hop 주소, 비캡슐화 의미가 원문과 일치합니다.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "a1e3ae6217e51dbfcc6ccc657650564acdbaec9a972554e507176af79eed6105",
+  "original_bound_batch_index": 12,
+  "original_entry_index": 186,
+  "image_pixels_visible": true,
+  "blockers": []
+}

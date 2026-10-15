@@ -125,6 +125,8 @@ def staged_requires_verification(root):
         MANIFEST,
         "kkamji_scripts/blog/fhd_svg.py",
     }
+    from downloads import FHD_AUTHOR_INPUTS
+    exact.update(FHD_AUTHOR_INPUTS)
     if any(path in exact or path.startswith(prefixes) for path in paths):
         return True
     if any(path.startswith("_posts/") for path in paths):

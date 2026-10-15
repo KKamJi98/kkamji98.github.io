@@ -59,7 +59,7 @@ RUM instrumentation은 전적으로 client-side에 존재합니다. 브라우저
 RUM 데이터는 트리 구조입니다. 최상위 **Session**이 한 사용자의 여정 전체를 묶고, 그 아래 **View**가 페이지/화면 단위로 생기며, 나머지 이벤트는 모두 수집 시점의 active View에 귀속됩니다.
 
 {% include diagrams/static/observability/datadog-rum-01-data-model.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/observability/datadog-rum-01-data-model--dce64c5336bffd4c.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-observability-datadog-rum-01-data-model-35ca3c6f51-01-8b793496e428.png" %}
 _Session 아래에 View가 생기고, View에서 갈라지는 다섯 화살표는 순서가 아니라 수집 시점의 active View에 귀속되는 이벤트 종류다._
 
 | 이벤트         | 무엇을 캡처                                              | 대표 속성 / 예시                                   |

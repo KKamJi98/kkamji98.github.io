@@ -192,7 +192,7 @@ print(verify_proof(h(b"tx3: Alice->Bob:999999 BTC"), proof, root))  # False
 6건 예제에서는 형제 hash 3개, 96바이트만으로 Root와 대조됩니다. transaction이 4,000건인 block이라도 경로는 12단계, 384바이트로 늘어날 뿐입니다. SPV wallet이 header 80바이트와 이 경로만으로 자기 거래의 포함 여부를 확인하는 이유가 여기 있습니다.
 
 {% include diagrams/static/blockchain/merkle-inclusion-path.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/merkle-inclusion-path--4841a85b8b82e4bf.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-merkle-inclusion-path-310d406b54-01-70766ca78fe3.png" %}
 _header는 Root만 저장한다. 포함 증명은 leaf에서 Root까지 sibling을 따라간다._
 
 경로의 형제 hash는 원본 leaf 기준으로 계산된 값입니다. 다른 transaction을 끼워 넣으면 재계산된 Root가 header의 Root와 맞을 수 없습니다. Bitcoin SPV가 쓰는 것은 이 포함 증명입니다.

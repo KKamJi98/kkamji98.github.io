@@ -335,7 +335,7 @@ hosted connection이 VIF 하나만 지원한다는 사실이 문항의 축이 �
 virtual interface는 물리 연결 위에 올라가는 논리 인터페이스이고 종단점에 따라 세 종류입니다.
 
 {% include diagrams/static/sap-c02/dx-vif-reach-scope.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/dx-vif-reach-scope--0d7159ca3332f032.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-dx-vif-reach-scope-d134143990-01-38b541b8f755.png" %}
 
 같은 물리 회선에서 갈라진 세 VIF가 각각 어디에 종단하고 그 너머로 무엇에 도달하는지를 그린 그림입니다. 종단점이 다르다는 사실 하나에서 MTU 상한과 prefix 상한과 SiteLink 가능 여부가 함께 갈립니다.
 

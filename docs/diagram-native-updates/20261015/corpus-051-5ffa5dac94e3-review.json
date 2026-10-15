@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/aws/vpc-lattice-cross-vpc-flow.html",
+  "source_sha256": "0698c6e3988c4f5d5e607bd8bf4d03981ecc5be5807f830f3a482c72169537fa",
+  "svg_sha256": "21df4e0e9fe3118da117dac57bf1db537aab26e385f5b33aaf4efbcdfb5700f1",
+  "png_sha256": "2e9a4117279ea6faf3e5d537f955462e89d7dfc3170ee0b47f606c521ecbde6a",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T20:16:40.469928+00:00",
+  "notes": "두 account 영역과 하위 흐름이 대칭이며 겹침과 잘림이 없습니다. 서비스, listener rule, target group 구분과 연결 조건이 원문과 일치합니다.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "919f5461636cad07cabb7a83eb75ef2dcafbc968d1f6dbb6b1275ff50b014c8d",
+  "original_bound_batch_index": 2,
+  "original_entry_index": 51,
+  "image_pixels_visible": true,
+  "blockers": []
+}

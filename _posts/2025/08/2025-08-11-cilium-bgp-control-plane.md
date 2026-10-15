@@ -293,7 +293,7 @@ kubectl exec -n kube-system ds/cilium -- cilium-dbg map get cilium_ipcache_v2
 Cilium BGP Control Plane(BGPv2)는 Cilium의 Custom Resources로 BGP 구성을 선언적으로 관리합니다. 또한 Cilium BGP는 기본적으로 외부 경로를 커널 라우팅 테이블에 주입하지 않습니다.
 
 {% include diagrams/static/kubernetes/cilium/5w-bgp-control-plane-v2-architecture.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/5w-bgp-control-plane-v2-architecture--1cab7e72c1eb20cb.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-5w-bgp-control-plane-v2-architecture-31480de4b1-01-34286a937f2f.png" %}
 
 > [Cilium Docs - BGP Control Plane Resources](https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane-v2/)  
 > [Cilium GitHub - BGP Code](https://github.com/cilium/cilium/tree/main/operator/pkg/bgpv2)  

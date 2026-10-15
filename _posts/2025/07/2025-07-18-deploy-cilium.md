@@ -24,7 +24,7 @@ image:
 > - [Cilium Docs - Component Overview](https://docs.cilium.io/en/stable/overview/component-overview/)  
 
 {% include diagrams/static/kubernetes/cilium/cilium-overview.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/cilium-overview--14d8bf45486044c0.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-cilium-overview-394320b558-01-9b68ec5a5b82.png" %}
 > Cilium Overview - <https://docs.cilium.io/en/stable/overview/component-overview/>  
 
 Cilium은 크게 `Cilium Operator`, `Cilium Agent`, `Cilium Client`, `Hubble`, `DataStore` 로 나뉘며 각 구성 요소들은 다음과 같이 동작합니다.

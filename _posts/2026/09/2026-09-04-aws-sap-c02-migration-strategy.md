@@ -159,7 +159,7 @@ repurchase는 drop and shop입니다. 전통 라이선스에서 SaaS로 이동�
 이사회에 낼 숫자를 만드는 일과 move group을 만드는 일은 다른 도구가 맡습니다. 문항이 "CFO가 승인 전에 비용을 보고받으려 한다"로 시작하면 답이 좁혀집니다.
 
 {% include diagrams/static/sap-c02/migration-discovery-tool-ownership.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/migration-discovery-tool-ownership--a9adf2cd902f3463.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-migration-discovery-tool-ownership-d48a35e65e-01-afc827bee0b1.png" %}
 
 그림은 같은 온프레미스 자산을 대상으로 세 가지 수집 경로가 각각 어떤 산출물에 도달하는지를 담았습니다. 각 수집 도구 상자의 부제에 배포 단위와 수집 주기와 대상 제약이 적혀 있고, 산출물 쪽 상자에는 그 산출물을 만들 수 있는 도구가 무엇인지가 함께 적혀 있습니다. Migration Evaluator에서 나가는 선과 Discovery Agent에서 나가는 선이 서로 다른 상자에 도착하는 것이 이 그림의 요점입니다.
 
@@ -455,7 +455,7 @@ DMS 소스로 지원되는 온프레미스와 EC2 엔진은 Oracle, SQL Server, 
 heterogeneous 마이그레이션 문항이 갈리는 지점이 여기입니다. **DMS가 타깃에 만드는 것은 table과 primary key, 그리고 경우에 따라 unique index뿐입니다.**
 
 {% include diagrams/static/sap-c02/dms-schema-object-ownership.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/dms-schema-object-ownership--06440de1083954c6.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-dms-schema-object-ownership-cb1fdc37ff-01-70e79c5ddae2.png" %}
 
 그림은 같은 소스 데이터베이스에 두 도구가 붙었을 때 타깃에 생기는 오브젝트가 어떻게 나뉘는지를 담았습니다. 가운데 두 상자가 각 도구의 역할이고, 그 오른쪽 두 상자에 각 도구가 실제로 만드는 오브젝트 목록이 들어 있습니다. Secrets Manager 상자는 migration project가 자격증명을 어디에서 읽는지를 표시한 것입니다.
 

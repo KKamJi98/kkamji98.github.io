@@ -1,72 +1,82 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3842df32edae3865ad9b6f9c18494588522ae2299110dc671ad9fc656288e8bc">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.2.0" x="64.000" y="251.500" width="884.000" height="637.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.1" x="972.000" y="251.500" width="884.000" height="703.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.0" x="120.000" y="340.650" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.2" x="578.000" y="337.300" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.4" x="120.000" y="625.500" width="314.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.6" x="578.000" y="640.350" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.0" x="1028.000" y="340.650" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.2" x="1486.000" y="337.300" width="314.000" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.4" x="1028.000" y="625.500" width="314.000" height="221.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.6" x="1486.000" y="643.700" width="314.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 433.400 L 566.000 433.400" fill="none" stroke="#475569" stroke-width="3"><title>pod-side hooks</title></path>
-<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,433.400 556.000,439.400 556.000,427.400" fill="#475569"/>
-<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 904.000 433.400 L 916.000 433.400 L 916.000 577.500 L 96.000 577.500 L 96.000 718.250 L 108.000 718.250" fill="none" stroke="#475569" stroke-width="3"><title>veth pair</title></path>
-<polygon data-arrowhead="root.0.2.0.1.3" points="108.000,718.250 98.000,724.250 98.000,712.250" fill="#475569"/>
-<path data-edge="root.0.2.0.1.5" data-from="root.0.2.0.1.4" data-to="root.0.2.0.1.6" d="M 446.000 718.250 L 566.000 718.250" fill="none" stroke="#475569" stroke-width="3"><title>host egress</title></path>
-<polygon data-arrowhead="root.0.2.0.1.5" points="566.000,718.250 556.000,724.250 556.000,712.250" fill="#475569"/>
-<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 433.400 L 1474.000 433.400" fill="none" stroke="#475569" stroke-width="3"><title>veth 전달</title></path>
-<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,433.400 1464.000,439.400 1464.000,427.400" fill="#475569"/>
-<path data-edge="root.0.2.1.1.3" data-from="root.0.2.1.1.2" data-to="root.0.2.1.1.4" d="M 1812.000 433.400 L 1824.000 433.400 L 1824.000 577.500 L 1004.000 577.500 L 1004.000 736.450 L 1016.000 736.450" fill="none" stroke="#475569" stroke-width="3"><title>in-kernel host routing</title></path>
-<polygon data-arrowhead="root.0.2.1.1.3" points="1016.000,736.450 1006.000,742.450 1006.000,730.450" fill="#475569"/>
-<path data-edge="root.0.2.1.1.5" data-from="root.0.2.1.1.4" data-to="root.0.2.1.1.6" d="M 1354.000 736.450 L 1474.000 736.450" fill="none" stroke="#475569" stroke-width="3"><title>host chain 우회</title></path>
-<polygon data-arrowhead="root.0.2.1.1.5" points="1474.000,736.450 1464.000,742.450 1464.000,730.450" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="161.200" font-size="36" font-weight="700" fill="#111827">Standard networking은 host iptables를 거치고 Cilium eBPF는 host routing hook을 사용한다</text>
-<text data-source="root.0.1" x="64.000" y="219.800" font-size="22" font-weight="400" fill="#111827">두 lane 모두 Pod 안의 process와 socket에서 시작합니다. 차이는 host 쪽의 forwarding, NAT와 rule traversal을 누가 맡는지입니다.</text>
-<text data-source="root.0.2.0.0" x="88.000" y="303.500" font-size="28" font-weight="700" fill="#111827">Standard Container Networking</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="392.650" font-size="28" font-weight="700" fill="#111827">Pod process와 socket</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="435.050" font-size="22" font-weight="400" fill="#111827">Pod 내부 network</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="464.750" font-size="22" font-weight="400" fill="#111827">namespace에서 packet을</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="494.450" font-size="22" font-weight="400" fill="#111827">시작합니다.</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="389.300" font-size="28" font-weight="700" fill="#111827">iptables INPUT와</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="425.700" font-size="28" font-weight="700" fill="#111827">Linux routing</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="468.100" font-size="22" font-weight="400" fill="#111827">Pod namespace의 입력과</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="497.800" font-size="22" font-weight="400" fill="#111827">routing을 처리합니다.</text>
-<text data-source="root.0.2.0.1.4" x="144.000" y="677.500" font-size="28" font-weight="700" fill="#111827">Host iptables chains</text>
-<text data-source="root.0.2.0.1.4" x="144.000" y="719.900" font-size="22" font-weight="400" fill="#111827">FORWARD, POSTROUTING,</text>
-<text data-source="root.0.2.0.1.4" x="144.000" y="749.600" font-size="22" font-weight="400" fill="#111827">PREROUTING의 mangle와</text>
-<text data-source="root.0.2.0.1.4" x="144.000" y="779.300" font-size="22" font-weight="400" fill="#111827">nat를 통과합니다.</text>
-<text data-source="root.0.2.0.1.6" x="602.000" y="692.350" font-size="28" font-weight="700" fill="#111827">eth0</text>
-<text data-source="root.0.2.0.1.6" x="602.000" y="734.750" font-size="22" font-weight="400" fill="#111827">물리 network interface로</text>
-<text data-source="root.0.2.0.1.6" x="602.000" y="764.450" font-size="22" font-weight="400" fill="#111827">나갑니다.</text>
-<text data-source="root.0.2.0.1.1" x="438.000" y="384.000" font-size="22" font-weight="400" fill="#111827">pod-side</text>
-<text data-source="root.0.2.0.1.1" x="438.000" y="413.700" font-size="22" font-weight="400" fill="#111827">hooks</text>
-<text data-source="root.0.2.0.1.3" x="128.000" y="569.500" font-size="22" font-weight="400" fill="#111827">veth pair</text>
-<text data-source="root.0.2.0.1.5" x="438.000" y="698.550" font-size="22" font-weight="400" fill="#111827">host egress</text>
-<text data-source="root.0.2.0.2" x="88.000" y="857.000" font-size="22" font-weight="400" fill="#111827">많은 rule lookup과 context switch가 host path의 iptables overhead를 만듭니다.</text>
-<text data-source="root.0.2.1.0" x="996.000" y="303.500" font-size="28" font-weight="700" fill="#111827">Cilium eBPF Container Networking</text>
-<text data-source="root.0.2.1.1.0" x="1052.000" y="392.650" font-size="28" font-weight="700" fill="#111827">Pod process와 socket</text>
-<text data-source="root.0.2.1.1.0" x="1052.000" y="435.050" font-size="22" font-weight="400" fill="#111827">같은 Pod network</text>
-<text data-source="root.0.2.1.1.0" x="1052.000" y="464.750" font-size="22" font-weight="400" fill="#111827">namespace에서 packet을</text>
-<text data-source="root.0.2.1.1.0" x="1052.000" y="494.450" font-size="22" font-weight="400" fill="#111827">시작합니다.</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="389.300" font-size="28" font-weight="700" fill="#111827">Pod-side INPUT와</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="425.700" font-size="28" font-weight="700" fill="#111827">PREROUTING</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="468.100" font-size="22" font-weight="400" fill="#111827">Pod 안의 필요한 hook은</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="497.800" font-size="22" font-weight="400" fill="#111827">남을 수 있습니다.</text>
-<text data-source="root.0.2.1.1.4" x="1052.000" y="677.500" font-size="28" font-weight="700" fill="#111827">Cilium eBPF host</text>
-<text data-source="root.0.2.1.1.4" x="1052.000" y="713.900" font-size="28" font-weight="700" fill="#111827">routing</text>
-<text data-source="root.0.2.1.1.4" x="1052.000" y="756.300" font-size="22" font-weight="400" fill="#111827">eBPF가 host forwarding과</text>
-<text data-source="root.0.2.1.1.4" x="1052.000" y="786.000" font-size="22" font-weight="400" fill="#111827">service path를 kernel</text>
-<text data-source="root.0.2.1.1.4" x="1052.000" y="815.700" font-size="22" font-weight="400" fill="#111827">안에서 처리합니다.</text>
-<text data-source="root.0.2.1.1.6" x="1510.000" y="695.700" font-size="28" font-weight="700" fill="#111827">eth0</text>
-<text data-source="root.0.2.1.1.6" x="1510.000" y="738.100" font-size="22" font-weight="400" fill="#111827">host iptables FORWARD와</text>
-<text data-source="root.0.2.1.1.6" x="1510.000" y="767.800" font-size="22" font-weight="400" fill="#111827">NAT chain을 크게 줄인 뒤</text>
-<text data-source="root.0.2.1.1.6" x="1510.000" y="797.500" font-size="22" font-weight="400" fill="#111827">나갑니다.</text>
-<text data-source="root.0.2.1.1.1" x="1346.000" y="413.700" font-size="22" font-weight="400" fill="#111827">veth 전달</text>
-<text data-source="root.0.2.1.1.3" x="1036.000" y="569.500" font-size="22" font-weight="400" fill="#111827">in-kernel host routing</text>
-<text data-source="root.0.2.1.1.5" x="1346.000" y="687.050" font-size="22" font-weight="400" fill="#111827">host chain</text>
-<text data-source="root.0.2.1.1.5" x="1346.000" y="716.750" font-size="22" font-weight="400" fill="#111827">우회</text>
-<text data-source="root.0.2.1.2" x="996.000" y="893.400" font-size="22" font-weight="400" fill="#111827">Cilium은 host iptables forwarding과 NAT traversal을 크게 줄이며, Pod-side hook은 남을</text>
-<text data-source="root.0.2.1.2" x="996.000" y="923.100" font-size="22" font-weight="400" fill="#111827">수 있습니다.</text>
+<rect data-source="root.0.2.0" x="64.000" y="206.950" width="884.000" height="792.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="206.950" width="884.000" height="769.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="120.000" y="292.750" width="314.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="578.000" y="292.750" width="314.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4" x="120.000" y="610.650" width="314.000" height="281.300" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.6" x="578.000" y="673.400" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="296.100" width="314.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1486.000" y="292.750" width="314.000" height="228.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.4" x="1028.000" y="617.350" width="314.000" height="251.600" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.6" x="1486.000" y="635.550" width="314.000" height="215.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 403.700 L 566.000 403.700" fill="none" stroke="#475569" stroke-width="3"><title>pod-side hooks</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,403.700 556.000,409.700 556.000,397.700" fill="#475569"/>
+<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 904.000 403.700 L 916.000 403.700 L 916.000 562.650 L 96.000 562.650 L 96.000 751.300 L 108.000 751.300" fill="none" stroke="#475569" stroke-width="3"><title>veth pair</title></path>
+<polygon data-arrowhead="root.0.2.0.1.3" points="108.000,751.300 98.000,757.300 98.000,745.300" fill="#475569"/>
+<path data-edge="root.0.2.0.1.5" data-from="root.0.2.0.1.4" data-to="root.0.2.0.1.6" d="M 446.000 751.300 L 566.000 751.300" fill="none" stroke="#475569" stroke-width="3"><title>host egress</title></path>
+<polygon data-arrowhead="root.0.2.0.1.5" points="566.000,751.300 556.000,757.300 556.000,745.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 407.050 L 1474.000 407.050" fill="none" stroke="#475569" stroke-width="3"><title>veth 전달</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,407.050 1464.000,413.050 1464.000,401.050" fill="#475569"/>
+<path data-edge="root.0.2.1.1.3" data-from="root.0.2.1.1.2" data-to="root.0.2.1.1.4" d="M 1812.000 407.050 L 1824.000 407.050 L 1824.000 569.350 L 1004.000 569.350 L 1004.000 743.150 L 1016.000 743.150" fill="none" stroke="#475569" stroke-width="3"><title>in-kernel host routing</title></path>
+<polygon data-arrowhead="root.0.2.1.1.3" points="1016.000,743.150 1006.000,749.150 1006.000,737.150" fill="#475569"/>
+<path data-edge="root.0.2.1.1.5" data-from="root.0.2.1.1.4" data-to="root.0.2.1.1.6" d="M 1354.000 743.150 L 1474.000 743.150" fill="none" stroke="#475569" stroke-width="3"><title>host chain 우회</title></path>
+<polygon data-arrowhead="root.0.2.1.1.5" points="1474.000,743.150 1464.000,749.150 1464.000,737.150" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="116.650" font-size="36" font-weight="700" fill="#111827">Standard networking은 host iptables를 거치고 Cilium eBPF는 host routing hook을 사용한다</text>
+<text data-source="root.0.1" x="64.000" y="175.250" font-size="22" font-weight="400" fill="#111827">두 lane 모두 Pod 안의 process와 socket에서 시작합니다. 차이는 host 쪽의 forwarding, NAT와 rule traversal을 누가 맡는지입니다.</text>
+<text data-source="root.0.2.0.0" x="88.000" y="258.950" font-size="28" font-weight="700" fill="#111827">Standard Container Networking</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="344.750" font-size="28" font-weight="700" fill="#111827">Pod process와</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="381.150" font-size="28" font-weight="700" fill="#111827">socket</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="423.550" font-size="22" font-weight="400" fill="#111827">Pod 내부 network</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="453.250" font-size="22" font-weight="400" fill="#111827">namespace에서</text>
+<text data-source="root.0.2.0.1.0" x="144.000" y="482.950" font-size="22" font-weight="400" fill="#111827">packet을 시작합니다.</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="344.750" font-size="28" font-weight="700" fill="#111827">iptables INPUT와</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="381.150" font-size="28" font-weight="700" fill="#111827">Linux routing</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="423.550" font-size="22" font-weight="400" fill="#111827">Pod namespace의</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="453.250" font-size="22" font-weight="400" fill="#111827">입력과 routing을</text>
+<text data-source="root.0.2.0.1.2" x="602.000" y="482.950" font-size="22" font-weight="400" fill="#111827">처리합니다.</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="662.650" font-size="28" font-weight="700" fill="#111827">Host iptables</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="699.050" font-size="28" font-weight="700" fill="#111827">chains</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="741.450" font-size="22" font-weight="400" fill="#111827">FORWARD,</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="771.150" font-size="22" font-weight="400" fill="#111827">POSTROUTING,</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="800.850" font-size="22" font-weight="400" fill="#111827">PREROUTING의</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="830.550" font-size="22" font-weight="400" fill="#111827">mangle와 nat를</text>
+<text data-source="root.0.2.0.1.4" x="144.000" y="860.250" font-size="22" font-weight="400" fill="#111827">통과합니다.</text>
+<text data-source="root.0.2.0.1.6" x="602.000" y="725.400" font-size="28" font-weight="700" fill="#111827">eth0</text>
+<text data-source="root.0.2.0.1.6" x="602.000" y="767.800" font-size="22" font-weight="400" fill="#111827">물리 network interface로</text>
+<text data-source="root.0.2.0.1.6" x="602.000" y="797.500" font-size="22" font-weight="400" fill="#111827">나갑니다.</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="354.300" font-size="22" font-weight="400" fill="#111827">pod-side</text>
+<text data-source="root.0.2.0.1.1" x="438.000" y="384.000" font-size="22" font-weight="400" fill="#111827">hooks</text>
+<text data-source="root.0.2.0.1.3" x="128.000" y="554.650" font-size="22" font-weight="400" fill="#111827">veth pair</text>
+<text data-source="root.0.2.0.1.5" x="438.000" y="731.600" font-size="22" font-weight="400" fill="#111827">host egress</text>
+<text data-source="root.0.2.0.2" x="88.000" y="937.950" font-size="22" font-weight="400" fill="#111827">많은 rule lookup과 context switch가 host path의 iptables overhead를</text>
+<text data-source="root.0.2.0.2" x="88.000" y="967.650" font-size="22" font-weight="400" fill="#111827">만듭니다.</text>
+<text data-source="root.0.2.1.0" x="996.000" y="258.950" font-size="28" font-weight="700" fill="#111827">Cilium eBPF Container Networking</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="348.100" font-size="28" font-weight="700" fill="#111827">Pod process와</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="384.500" font-size="28" font-weight="700" fill="#111827">socket</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="426.900" font-size="22" font-weight="400" fill="#111827">같은 Pod network</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="456.600" font-size="22" font-weight="400" fill="#111827">namespace에서</text>
+<text data-source="root.0.2.1.1.0" x="1052.000" y="486.300" font-size="22" font-weight="400" fill="#111827">packet을 시작합니다.</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="344.750" font-size="28" font-weight="700" fill="#111827">Pod-side</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="381.150" font-size="28" font-weight="700" fill="#111827">INPUT와</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="417.550" font-size="28" font-weight="700" fill="#111827">PREROUTING</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="459.950" font-size="22" font-weight="400" fill="#111827">Pod 안의 필요한 hook은</text>
+<text data-source="root.0.2.1.1.2" x="1510.000" y="489.650" font-size="22" font-weight="400" fill="#111827">남을 수 있습니다.</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="669.350" font-size="28" font-weight="700" fill="#111827">Cilium eBPF host</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="705.750" font-size="28" font-weight="700" fill="#111827">routing</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="748.150" font-size="22" font-weight="400" fill="#111827">eBPF가 host</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="777.850" font-size="22" font-weight="400" fill="#111827">forwarding과 service</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="807.550" font-size="22" font-weight="400" fill="#111827">path를 kernel 안에서</text>
+<text data-source="root.0.2.1.1.4" x="1052.000" y="837.250" font-size="22" font-weight="400" fill="#111827">처리합니다.</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="687.550" font-size="28" font-weight="700" fill="#111827">eth0</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="729.950" font-size="22" font-weight="400" fill="#111827">host iptables</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="759.650" font-size="22" font-weight="400" fill="#111827">FORWARD와 NAT</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="789.350" font-size="22" font-weight="400" fill="#111827">chain을 크게 줄인 뒤</text>
+<text data-source="root.0.2.1.1.6" x="1510.000" y="819.050" font-size="22" font-weight="400" fill="#111827">나갑니다.</text>
+<text data-source="root.0.2.1.1.1" x="1346.000" y="387.350" font-size="22" font-weight="400" fill="#111827">veth 전달</text>
+<text data-source="root.0.2.1.1.3" x="1036.000" y="561.350" font-size="22" font-weight="400" fill="#111827">in-kernel host routing</text>
+<text data-source="root.0.2.1.1.5" x="1346.000" y="693.750" font-size="22" font-weight="400" fill="#111827">host chain</text>
+<text data-source="root.0.2.1.1.5" x="1346.000" y="723.450" font-size="22" font-weight="400" fill="#111827">우회</text>
+<text data-source="root.0.2.1.2" x="996.000" y="914.950" font-size="22" font-weight="400" fill="#111827">Cilium은 host iptables forwarding과 NAT traversal을 크게 줄이며, Pod-side</text>
+<text data-source="root.0.2.1.2" x="996.000" y="944.650" font-size="22" font-weight="400" fill="#111827">hook은 남을 수 있습니다.</text>
 </svg>

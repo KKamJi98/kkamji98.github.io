@@ -76,7 +76,7 @@ image:
   - 노드는 쿠버네티스 클러스터의 일부분으로 컨테이너 런타임 containerd 등, 노드의 컨테이너 런타임과 REST API와 소통을 담당하는 kubelet 그리고 노드 수준의 네트워크 추상화를 담당하는 kube-proxy로 구성된다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/kubernetes-architecture-overview.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/kubernetes-architecture-overview--886376a1dda027a6.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-kubernetes-architecture-overview-7b8c3ae59a-01-1593271d4b23.png" %}
 
 ### 2.2. HTTP REST API Server
 

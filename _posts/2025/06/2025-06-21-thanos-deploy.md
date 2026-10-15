@@ -63,7 +63,7 @@ Thanos의 모든 주요 컴포넌트는 무상태(stateless)로 동작하여 필
 | **Query Frontend** | Querier 앞에서 쿼리 캐싱,최적화 (대규모 환경)                       | Deployment                |
 
 {% include diagrams/static/kubernetes/thanos_architecture.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/thanos_architecture--e8ea8be48115bf76.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-thanos_architecture-4d6a0c09bd-01-d91c125cfbfb.png" %}
 
 ---
 

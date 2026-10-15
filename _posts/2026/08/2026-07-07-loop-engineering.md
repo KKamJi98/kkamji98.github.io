@@ -54,7 +54,7 @@ Peter Steinberger의 표현도 같은 방향을 가리킵니다. "코딩 에이�
 ## 3. 루프 하나의 해부
 
 {% include diagrams/static/ai/loop-anatomy.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ai/loop-anatomy--d6ca7731f799abe8.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ai-loop-anatomy-1f4ab82c21-01-6aa227b61288.png" %}
 
 한 바퀴의 루프는 보통 다섯 단계로 묘사됩니다.
 

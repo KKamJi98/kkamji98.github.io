@@ -1,43 +1,43 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1c6e1a50ca24ae3d3881c84f46ded654bf2deb18724bfd3ce6e73dcd3b991cca">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1" x="64.000" y="156.950" width="1792.000" height="204.600" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.5" x="64.000" y="670.450" width="1792.000" height="94.300" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="64.000" y="156.950" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1" x="968.000" y="156.950" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="64.000" y="267.250" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.3" x="968.000" y="267.250" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3" x="64.000" y="449.850" width="1792.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.4.0" x="64.000" y="560.150" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.4.1" x="968.000" y="560.150" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.5.0" x="64.000" y="670.450" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.5.1" x="968.000" y="670.450" width="888.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.7" x="64.000" y="853.050" width="1792.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 373.550 L 960.000 437.850" fill="none" stroke="#475569" stroke-width="3"><title>finding 집계</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,437.850 954.000,427.850 966.000,427.850" fill="#475569"/>
-<path data-edge="root.0.6" data-from="root.0.5" data-to="root.0.7" d="M 960.000 776.750 L 960.000 841.050" fill="none" stroke="#475569" stroke-width="3"><title>EventBridge route 또는 Config remediation이 실행 요청</title></path>
-<polygon data-arrowhead="root.0.6" points="960.000,841.050 954.000,831.050 966.000,831.050" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="128.350" font-size="36" font-weight="700" fill="#111827">Finding 탐지에서 자동 교정까지</text>
-<text data-source="root.0.1.0" x="80.000" y="192.950" font-size="20" font-weight="700" fill="#111827">GuardDuty</text>
-<text data-source="root.0.1.0" x="80.000" y="228.950" font-size="18" font-weight="400" fill="#111827">위협 finding; Detective 조사와 Security Hub 집계의 입력</text>
-<text data-source="root.0.1.1" x="984.000" y="192.950" font-size="20" font-weight="700" fill="#111827">Amazon Inspector</text>
-<text data-source="root.0.1.1" x="984.000" y="228.950" font-size="18" font-weight="400" fill="#111827">EC2, ECR, Lambda 취약점과 노출 경로</text>
-<text data-source="root.0.1.2" x="80.000" y="303.250" font-size="20" font-weight="700" fill="#111827">Amazon Macie</text>
-<text data-source="root.0.1.2" x="80.000" y="339.250" font-size="18" font-weight="400" fill="#111827">S3 민감 데이터 위치</text>
-<text data-source="root.0.1.3" x="984.000" y="303.250" font-size="20" font-weight="700" fill="#111827">AWS Config</text>
-<text data-source="root.0.1.3" x="984.000" y="339.250" font-size="18" font-weight="400" fill="#111827">구성 기록과 rule 평가; Security Hub control과 직접 remediation의 입력</text>
-<text data-source="root.0.3" x="80.000" y="485.850" font-size="20" font-weight="700" fill="#111827">Security Hub CSPM</text>
-<text data-source="root.0.3" x="80.000" y="521.850" font-size="18" font-weight="400" fill="#111827">표준 control 결과 집계, Config 기록에 의존</text>
-<text data-source="root.0.4.0" x="80.000" y="596.150" font-size="20" font-weight="700" fill="#111827">Detective</text>
-<text data-source="root.0.4.0" x="80.000" y="632.150" font-size="18" font-weight="400" fill="#111827">GuardDuty와 연계한 조사. 최대 1년 이력; Security Hub 후속 hop이 아님</text>
-<text data-source="root.0.4.1" x="984.000" y="596.150" font-size="20" font-weight="700" fill="#111827">Security Lake</text>
-<text data-source="root.0.4.1" x="984.000" y="632.150" font-size="18" font-weight="400" fill="#111827">지원 source의 security data를 OCSF / Parquet로 계정 S3에 선택적 장기 적재</text>
-<text data-source="root.0.5.0" x="80.000" y="706.450" font-size="20" font-weight="700" fill="#111827">EventBridge</text>
-<text data-source="root.0.5.0" x="80.000" y="742.450" font-size="18" font-weight="400" fill="#111827">Security Hub finding을 rule로 라우팅</text>
-<text data-source="root.0.5.1" x="984.000" y="706.450" font-size="20" font-weight="700" fill="#111827">Config remediation</text>
-<text data-source="root.0.5.1" x="984.000" y="742.450" font-size="18" font-weight="400" fill="#111827">AWS Config rule에 직접 연결. 수동 또는 자동 실행</text>
-<text data-source="root.0.7" x="80.000" y="889.050" font-size="20" font-weight="700" fill="#111827">SSM Automation document</text>
-<text data-source="root.0.7" x="80.000" y="925.050" font-size="18" font-weight="400" fill="#111827">교정 실행과 결과 기록</text>
-<text data-source="root.0.8" x="64.000" y="981.350" font-size="18" font-weight="400" fill="#111827">조사와 장기 적재는 remediation의 선행 조건이 아닙니다. 실행 뒤 실제 상태와 재평가 결과를 확인합니다.</text>
-<text data-source="root.0.2" x="980.000" y="411.550" font-size="18" font-weight="400" fill="#111827">finding 집계</text>
-<text data-source="root.0.6" x="980.000" y="814.750" font-size="18" font-weight="400" fill="#111827">EventBridge route 또는 Config remediation이 실행 요청</text>
+<rect data-source="root.0.1" x="64.000" y="164.500" width="1792.000" height="222.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.5" x="64.000" y="652.500" width="1792.000" height="129.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="88.000" y="188.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="966.000" y="188.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="88.000" y="281.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="966.000" y="281.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="466.500" width="1792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.0" x="64.000" y="559.500" width="890.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1" x="966.000" y="559.500" width="890.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5.0" x="88.000" y="676.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5.1" x="966.000" y="676.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.7" x="64.000" y="861.500" width="1792.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 398.500 L 960.000 454.500" fill="none" stroke="#475569" stroke-width="3"><title>finding 집계</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,454.500 954.000,444.500 966.000,444.500" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.5" data-to="root.0.7" d="M 960.000 793.500 L 960.000 849.500" fill="none" stroke="#475569" stroke-width="3"><title>EventBridge route 또는 Config remediation이 실행 요청</title></path>
+<polygon data-arrowhead="root.0.6" points="960.000,849.500 954.000,839.500 966.000,839.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="139.900" font-size="36" font-weight="700" fill="#111827">Finding 탐지에서 자동 교정까지</text>
+<text data-source="root.0.1.0" x="100.000" y="218.500" font-size="18" font-weight="700" fill="#111827">GuardDuty</text>
+<text data-source="root.0.1.0" x="100.000" y="251.900" font-size="16" font-weight="400" fill="#111827">위협 finding; Detective 조사와 Security Hub 집계의 입력</text>
+<text data-source="root.0.1.1" x="978.000" y="218.500" font-size="18" font-weight="700" fill="#111827">Amazon Inspector</text>
+<text data-source="root.0.1.1" x="978.000" y="251.900" font-size="16" font-weight="400" fill="#111827">EC2, ECR, Lambda 취약점과 노출 경로</text>
+<text data-source="root.0.1.2" x="100.000" y="311.500" font-size="18" font-weight="700" fill="#111827">Amazon Macie</text>
+<text data-source="root.0.1.2" x="100.000" y="344.900" font-size="16" font-weight="400" fill="#111827">S3 민감 데이터 위치</text>
+<text data-source="root.0.1.3" x="978.000" y="311.500" font-size="18" font-weight="700" fill="#111827">AWS Config</text>
+<text data-source="root.0.1.3" x="978.000" y="344.900" font-size="16" font-weight="400" fill="#111827">구성 기록과 rule 평가; Security Hub control과 직접 remediation의 입력</text>
+<text data-source="root.0.3" x="76.000" y="496.500" font-size="18" font-weight="700" fill="#111827">Security Hub CSPM</text>
+<text data-source="root.0.3" x="76.000" y="529.900" font-size="16" font-weight="400" fill="#111827">표준 control 결과 집계, Config 기록에 의존</text>
+<text data-source="root.0.4.0" x="76.000" y="589.500" font-size="18" font-weight="700" fill="#111827">Detective</text>
+<text data-source="root.0.4.0" x="76.000" y="622.900" font-size="16" font-weight="400" fill="#111827">GuardDuty와 연계한 조사. 최대 1년 이력; Security Hub 후속 hop이 아님</text>
+<text data-source="root.0.4.1" x="978.000" y="589.500" font-size="18" font-weight="700" fill="#111827">Security Lake</text>
+<text data-source="root.0.4.1" x="978.000" y="622.900" font-size="16" font-weight="400" fill="#111827">지원 source의 security data를 OCSF / Parquet로 계정 S3에 선택적 장기 적재</text>
+<text data-source="root.0.5.0" x="100.000" y="706.500" font-size="18" font-weight="700" fill="#111827">EventBridge</text>
+<text data-source="root.0.5.0" x="100.000" y="739.900" font-size="16" font-weight="400" fill="#111827">Security Hub finding을 rule로 라우팅</text>
+<text data-source="root.0.5.1" x="978.000" y="706.500" font-size="18" font-weight="700" fill="#111827">Config remediation</text>
+<text data-source="root.0.5.1" x="978.000" y="739.900" font-size="16" font-weight="400" fill="#111827">AWS Config rule에 직접 연결. 수동 또는 자동 실행</text>
+<text data-source="root.0.7" x="76.000" y="891.500" font-size="18" font-weight="700" fill="#111827">SSM Automation document</text>
+<text data-source="root.0.7" x="76.000" y="924.900" font-size="16" font-weight="400" fill="#111827">교정 실행과 결과 기록</text>
+<text data-source="root.0.8" x="64.000" y="970.500" font-size="16" font-weight="400" fill="#111827">조사와 장기 적재는 remediation의 선행 조건이 아닙니다. 실행 뒤 실제 상태와 재평가 결과를 확인합니다.</text>
+<text data-source="root.0.2" x="980.000" y="431.700" font-size="16" font-weight="400" fill="#111827">finding 집계</text>
+<text data-source="root.0.6" x="980.000" y="826.700" font-size="16" font-weight="400" fill="#111827">EventBridge route 또는 Config remediation이 실행 요청</text>
 </svg>

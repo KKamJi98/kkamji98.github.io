@@ -26,7 +26,7 @@ Sepolia RPC   chainId 11155111         balance 0
 ```
 
 {% include diagrams/static/blockchain/rpc-balance-is-local.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/rpc-balance-is-local--24776169a4298822.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-rpc-balance-is-local-e5f0c1e317-01-af6106fb9cce.png" %}
 _같은 키다. 각 RPC는 자기 상태 트리만 읽는다._
 
 두 Anvil은 둘 다 개발 체인이고 둘 다 31337입니다. 그래도 latest와 잔액이 다릅니다. 프로세스가 다르기 때문입니다. Sepolia에서 이 키의 잔액은 0입니다. 로컬 숫자를 보고 “이 계정에 만 ETH가 있다”고 쓰면, 그 문장은 그 node 밖에서는 거짓입니다.

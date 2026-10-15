@@ -10,7 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/flannel-vxlan-pod-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/flannel-vxlan-pod-flow--95625b055891e239.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-flannel-vxlan-pod-flow-82536b952d-01-498a98bfdc61.png" %}
 
 이번 포스트에서는 `Flannel CNI`를 Kubernetes Cluster에 배포해보도록 하겠습니다.
 

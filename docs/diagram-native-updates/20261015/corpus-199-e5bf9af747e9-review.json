@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode.html",
+  "source_sha256": "46429f16ebfffb03630c5bf5f1bc23b1a8cb91c83be13514d724fcc94bb7edb7",
+  "svg_sha256": "188e258c7eb9c5c9421ee3008ab371bf9ffb60e226cbc4af576819505e40817e",
+  "png_sha256": "a5c7de695f6b0a376b29a42cc11790554047ca60d1aea3346dab7fbd983a62ac",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T17:44:34.093893+00:00",
+  "notes": "카드, 경계, 화살표 사이 접촉과 잘림 없음. CIDR 지정 주체, node별 할당 범위와 다른 node로 자동 확장되지 않는 조건이 보존됨.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "7bc1481daded32e97632143f4b9c75a804d2aaf2b0f69a9d3ff7b6faa2d10155",
+  "original_bound_batch_index": 16,
+  "original_entry_index": 199,
+  "image_pixels_visible": true,
+  "blockers": []
+}

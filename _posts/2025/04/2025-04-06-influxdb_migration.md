@@ -10,7 +10,7 @@ image:
 ---
 
 {% include diagrams/static/database/influxdb-migration-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/database/influxdb-migration-flow--9cc1450c60ef4fd6.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-database-influxdb-migration-flow-aa4b1a9e9d-01-c27196e86def.png" %}
 
 Legacy EC2 Instance에 설치되어 있는 InfluxDB 1.x를 새로운 EC2 Instance로 마이그레이션 하는 방법에 대해 정리해보았습니다.
 

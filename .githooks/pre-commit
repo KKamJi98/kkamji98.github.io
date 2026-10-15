@@ -167,7 +167,18 @@ if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys
     "${BLOG}/static_png/test_native_update.py" \
     "${BLOG}/static_png/test_native_update_adapter.py" \
     "${BLOG}/static_png/test_native_body_update.py" \
-    "${BLOG}/static_png/test_native_update_viewer.py"; then
+    "${BLOG}/static_png/test_native_update_viewer.py" \
+    "${BLOG}/static_png/test_native_shared_updates.py" \
+    "${BLOG}/static_png/test_native_shared_viewer.py" \
+    "${BLOG}/static_png/test_corpus_clearance.py" \
+    "${BLOG}/static_png/test_corpus_flow_balance.py" \
+    "${BLOG}/static_png/test_corpus_typography.py" \
+    "${BLOG}/static_png/test_corpus_pod_identity.py" \
+    "${BLOG}/static_png/test_corpus_composition.py" \
+    "${BLOG}/static_png/test_corpus_semantic_relations.py" \
+    "${BLOG}/static_png/test_corpus_phrase_geometry.py" \
+    "${BLOG}/static_png/test_corpus_sealed_inputs.py" \
+    "${BLOG}/static_png/test_corpus_relation_clearance.py"; then
     ok "원본 해상도, 표시 크기, 표지와 manifest/index 경계"
   else
     bad "다이어그램 회귀 테스트"

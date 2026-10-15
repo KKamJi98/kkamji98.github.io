@@ -252,7 +252,7 @@ ALTER TABLE sales_db.daily_sales DROP PARTITION FIELD day(sale_date);
 행 단위 수정/삭제(`UPDATE`, `DELETE`, `MERGE`)는 데이터 파일을 다시 쓰는 방식과 delete file을 추가하는 방식으로 설명할 수 있습니다. Iceberg의 write mode 설정과 기본값, 지원 범위는 엔진과 테이블 포맷 버전에 따라 달라지므로, 사용하는 엔진 문서에서 확인해야 합니다.
 
 {% include diagrams/static/aws/analytics-stack-11-iceberg-cow-vs-mor.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/aws/analytics-stack-11-iceberg-cow-vs-mor--b81addbf91eec70b.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-aws-analytics-stack-11-iceberg-cow-vs-mor-934d66ba93-01-4bb7636cb80f.png" %}
 
 ### 7.1. Copy-on-Write (CoW)
 

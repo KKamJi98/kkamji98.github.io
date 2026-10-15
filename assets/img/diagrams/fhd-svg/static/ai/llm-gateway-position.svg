@@ -1,36 +1,36 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="9861142619661d1b6375d2047b3454b0458a689ee93a5b3c62b780614626ea79">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0" x="96.000" y="148.550" width="792.000" height="389.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4" x="96.000" y="634.450" width="792.000" height="281.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-node="root.0.1.0.1" x="112.000" y="207.550" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.2" x="112.000" y="317.850" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.3" x="112.000" y="428.150" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="1032.000" y="272.050" width="792.000" height="142.900" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.4.1" x="112.000" y="693.450" width="760.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.2" x="112.000" y="767.450" width="760.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.3" x="112.000" y="841.450" width="760.000" height="58.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 343.500 L 1020.000 343.500" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,343.500 1010.000,349.500 1010.000,337.500" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 343.500 L 1848.000 343.500 L 1848.000 586.450 L 72.000 586.450 L 72.000 774.950 L 84.000 774.950" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
-<polygon data-arrowhead="root.0.1.3" points="84.000,774.950 74.000,780.950 74.000,768.950" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="119.950" font-size="36" font-weight="700" fill="#111827">애플리케이션과 모델 사이의 Gateway</text>
-<text data-source="root.0.1.0.0" x="112.000" y="184.550" font-size="20" font-weight="700" fill="#111827">애플리케이션</text>
-<text data-source="root.0.1.0.1" x="128.000" y="243.550" font-size="20" font-weight="700" fill="#111827">Chatbot</text>
-<text data-source="root.0.1.0.1" x="128.000" y="279.550" font-size="18" font-weight="400" fill="#111827">팀 A 가상 키</text>
-<text data-source="root.0.1.0.2" x="128.000" y="353.850" font-size="20" font-weight="700" fill="#111827">RAG Service</text>
-<text data-source="root.0.1.0.2" x="128.000" y="389.850" font-size="18" font-weight="400" fill="#111827">팀 B 가상 키</text>
-<text data-source="root.0.1.0.3" x="128.000" y="464.150" font-size="20" font-weight="700" fill="#111827">Agent</text>
-<text data-source="root.0.1.0.3" x="128.000" y="500.150" font-size="18" font-weight="400" fill="#111827">팀 C 가상 키</text>
-<text data-source="root.0.1.2" x="1048.000" y="308.050" font-size="20" font-weight="700" fill="#111827">LLM Gateway</text>
-<text data-source="root.0.1.2" x="1048.000" y="344.050" font-size="18" font-weight="400" fill="#111827">인증과 예산 검사</text>
-<text data-source="root.0.1.2" x="1048.000" y="368.350" font-size="18" font-weight="400" fill="#111827">감사 기록</text>
-<text data-source="root.0.1.2" x="1048.000" y="392.650" font-size="18" font-weight="400" fill="#111827">모델 라우팅</text>
-<text data-source="root.0.1.4.0" x="112.000" y="670.450" font-size="20" font-weight="700" fill="#111827">LLM Providers</text>
-<text data-source="root.0.1.4.1" x="128.000" y="729.450" font-size="20" font-weight="700" fill="#111827">OpenAI</text>
-<text data-source="root.0.1.4.2" x="128.000" y="803.450" font-size="20" font-weight="700" fill="#111827">Anthropic</text>
-<text data-source="root.0.1.4.3" x="128.000" y="877.450" font-size="20" font-weight="700" fill="#111827">Azure OpenAI</text>
-<text data-source="root.0.2" x="64.000" y="949.450" font-size="18" font-weight="400" fill="#111827">클라이언트는 Gateway endpoint에 가상 키로 인증한다. Gateway는 허용된 요청을 선택한 provider의 자격증명으로 전달한다.</text>
-<text data-source="root.0.3" x="64.000" y="989.750" font-size="18" font-weight="400" fill="#111827">가상 키의 접근 범위는 부여한 권한과 예산 정책에 따른다.</text>
-<text data-source="root.0.1.1.meaning" x="904.000" y="326.600" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
-<text data-source="root.0.1.3.meaning" x="76.000" y="569.550" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<rect data-source="root.0.1.0" x="96.000" y="254.550" width="480.000" height="536.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="1344.000" y="317.100" width="480.000" height="411.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="120.000" y="340.350" width="432.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="120.000" y="490.450" width="432.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="120.000" y="640.550" width="432.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="429.850" width="480.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="1368.000" y="402.900" width="432.000" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.2" x="1368.000" y="511.300" width="432.000" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.3" x="1368.000" y="619.700" width="432.000" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 522.600 L 708.000 522.600" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,522.600 698.000,528.600 698.000,516.600" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 522.600 L 1332.000 522.600" fill="none" stroke="#475569" stroke-width="3"><title>다음 단계</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,522.600 1322.000,528.600 1322.000,516.600" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="217.950" font-size="36" font-weight="700" fill="#111827">애플리케이션과 모델 사이의 Gateway</text>
+<text data-source="root.0.1.0.0" x="120.000" y="306.550" font-size="28" font-weight="700" fill="#111827">애플리케이션</text>
+<text data-source="root.0.1.0.1" x="144.000" y="392.350" font-size="28" font-weight="700" fill="#111827">Chatbot</text>
+<text data-source="root.0.1.0.1" x="144.000" y="434.750" font-size="22" font-weight="400" fill="#111827">팀 A 가상 키</text>
+<text data-source="root.0.1.0.2" x="144.000" y="542.450" font-size="28" font-weight="700" fill="#111827">RAG Service</text>
+<text data-source="root.0.1.0.2" x="144.000" y="584.850" font-size="22" font-weight="400" fill="#111827">팀 B 가상 키</text>
+<text data-source="root.0.1.0.3" x="144.000" y="692.550" font-size="28" font-weight="700" fill="#111827">Agent</text>
+<text data-source="root.0.1.0.3" x="144.000" y="734.950" font-size="22" font-weight="400" fill="#111827">팀 C 가상 키</text>
+<text data-source="root.0.1.2" x="744.000" y="481.850" font-size="28" font-weight="700" fill="#111827">LLM Gateway</text>
+<text data-source="root.0.1.2" x="744.000" y="524.250" font-size="22" font-weight="400" fill="#111827">인증과 예산 검사</text>
+<text data-source="root.0.1.2" x="744.000" y="553.950" font-size="22" font-weight="400" fill="#111827">감사 기록</text>
+<text data-source="root.0.1.2" x="744.000" y="583.650" font-size="22" font-weight="400" fill="#111827">모델 라우팅</text>
+<text data-source="root.0.1.4.0" x="1368.000" y="369.100" font-size="28" font-weight="700" fill="#111827">LLM Providers</text>
+<text data-source="root.0.1.4.1" x="1392.000" y="454.900" font-size="28" font-weight="700" fill="#111827">OpenAI</text>
+<text data-source="root.0.1.4.2" x="1392.000" y="563.300" font-size="28" font-weight="700" fill="#111827">Anthropic</text>
+<text data-source="root.0.1.4.3" x="1392.000" y="671.700" font-size="28" font-weight="700" fill="#111827">Azure OpenAI</text>
+<text data-source="root.0.2" x="64.000" y="836.650" font-size="22" font-weight="400" fill="#111827">클라이언트는 Gateway endpoint에 가상 키로 인증한다. Gateway는 허용된 요청을 선택한 provider의 자격증명으로 전달한다.</text>
+<text data-source="root.0.3" x="64.000" y="890.350" font-size="22" font-weight="400" fill="#111827">가상 키의 접근 범위는 부여한 권한과 예산 정책에 따른다.</text>
+<text data-source="root.0.1.1.meaning" x="592.000" y="505.700" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
+<text data-source="root.0.1.3.meaning" x="1216.000" y="505.700" font-size="14" font-weight="400" fill="#111827">다음 단계</text>
 </svg>

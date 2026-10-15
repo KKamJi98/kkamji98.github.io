@@ -133,7 +133,7 @@ purchase queuing 은 만료 시점에 맞춰 다음 RI 구매를 예약해 두�
 비용 문항에서 가장 많이 틀리는 축이 여기입니다. **Savings Plans 는 capacity reservation 을 제공하지 않습니다.** 커밋을 늘려도 특정 AZ 에서 인스턴스가 뜬다는 보장은 생기지 않습니다.
 
 {% include diagrams/static/sap-c02/capacity-versus-discount-matrix.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/capacity-versus-discount-matrix--0b600d28333611de.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-capacity-versus-discount-matrix-8c9d6898ea-01-3d99513786f4.png" %}
 
 그림은 워크로드 요구를 용량 보장과 요금 할인 두 갈래로 나눈 뒤 각 갈래에 어떤 수단이 놓이는지, 그리고 두 갈래를 모두 만족시키려면 무엇을 겹쳐야 하는지를 보여줍니다. Zonal Reserved Instance 만 두 갈래 모두에 걸쳐 있습니다.
 
@@ -446,7 +446,7 @@ Marketplace 서드파티 소프트웨어 구독이 갑자기 뛰는 상황은 Co
 Compute Optimizer 를 켰는데 권고가 부실하다는 상황에는 원인이 정해져 있습니다. 각각 다른 전제 조건에 대응합니다.
 
 {% include diagrams/static/sap-c02/cost-recommendation-sources.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/cost-recommendation-sources--f6097c21fc30ec20.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-cost-recommendation-sources-d68a83270d-01-cdb1760d826a.png" %}
 
 그림은 세 권고 도구가 각각 무엇을 입력으로 받고 결과가 어디로 모이는지를 보여줍니다. Cost Explorer 활성화가 두 도구의 공통 전제라는 것과, Cost Explorer rightsizing 결과와 Compute Optimizer 결과 사이의 포함 관계도 여기에 있습니다.
 
@@ -501,7 +501,7 @@ Trusted Advisor 는 비용, 성능, 보안, 내결함성, 서비스 한도 카�
 커밋 할인이 닿지 않는 축 중 가장 큰 것이 데이터 전송입니다. 같은 바이트라도 어느 경로를 지나느냐에 따라 붙는 요금이 달라집니다.
 
 {% include diagrams/static/sap-c02/data-transfer-charge-points.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/data-transfer-charge-points--1db6aa295d8cb8c2.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-data-transfer-charge-points-6507b9385b-01-ca192e992f50.png" %}
 
 그림은 private subnet 의 컴퓨트에서 출발한 트래픽이 통과할 수 있는 다섯 가지 경로와 각 경로에 붙는 요금 항목을 담고 있습니다. 무과금 경로와 유료 경로가 함께 있습니다.
 

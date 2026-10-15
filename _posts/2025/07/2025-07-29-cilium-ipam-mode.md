@@ -57,7 +57,7 @@ Kubernetes Host Scope Mode에서는 쿠버네티스 컨트롤 플레인이 각 �
 {: .prompt-danger}
 
 {% include diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode--f5dd54538c2f2e76.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-kubernetes_host_scope_ipam_mode-e5bf9af747-02-8cf43cc4de1f.png" %}
 
 - Kubernetes 호스트 범위 IPAM 모드는 `ipam: Kubernetes`에서 활성화되며, 클러스터의 각 개별 노드가 가진 `PodCIDR`에서 Pod IP 할당
 - Cilium 에이전트는 시작 시, 활성화된 IP Address Family마다 `v1.Node`에 `PodCIDR`이 제공될 때까지 대기
@@ -97,7 +97,7 @@ Cluster Scope의 장점은 IP 주소 활용 효율이 높다는 것입니다. �
 > [Cilium Docs - Cluster Scope IPAM Mode](https://docs.cilium.io/en/stable/network/concepts/ipam/cluster-pool/)  
 
 {% include diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode--12e23990f250e779.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-cluster_scope_ipam_mode-2d5d68525f-01-c400a04908e4.png" %}
 
 - 클러스터 범위 IPAM 모드는 각 노드에 노드별 PodCIDR을 할당하고 각 노드에 호스트 범위 할당기를 사용하여 IP를 할당
 - 차이점은 Kubernetes가 `Kubernetes v1.Node` 리소스를 통해 노드별 PodCIDR을 할당하는 대신, Cilium 운영자가 `v2.CiliumNode` 리소스(CRD)를 통해 노드별 PodCIDR을 관리
@@ -117,7 +117,7 @@ Multi-Pool 모드는 `Cluster Scope`의 확장된 형태로, 여러 개의 `Pod 
 > Multi-Pool - <https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/>  
 
 {% include diagrams/static/kubernetes/cilium/multi-pool.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/multi-pool--39c00bea76b0fb80.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-multi-pool-86b1f4a5a9-01-b0c63204eb5a.png" %}
 
 - 팀/환경/워크로드 특성별 IP 대역 분리 가능
 - 네임스페이스 또는 Pod에 어노테이션으로 원하는 풀 지정

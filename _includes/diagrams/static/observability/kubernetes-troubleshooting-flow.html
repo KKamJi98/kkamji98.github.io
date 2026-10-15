@@ -36,54 +36,47 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="06a95ae532f19ee3d540b8bb6f4e9156cff9f9598a8314a579c228dd6b49beb0">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.1.0" x="96.000" y="327.450" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="564.000" y="327.450" width="324.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.4" x="1032.000" y="327.450" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.6" x="1500.000" y="297.750" width="324.000" height="215.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.8" x="96.000" y="627.150" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.10" x="564.000" y="608.950" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 405.350 L 552.000 405.350" fill="none" stroke="#475569" stroke-width="3"><title>restart 여부 확인</title></path>
-<polygon data-arrowhead="root.0.1.1" points="552.000,405.350 542.000,411.350 542.000,399.350" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 405.350 L 1020.000 405.350" fill="none" stroke="#475569" stroke-width="3"><title>종료한 인스턴스의 증거 조회</title></path>
-<polygon data-arrowhead="root.0.1.3" points="1020.000,405.350 1010.000,411.350 1010.000,399.350" fill="#475569"/>
-<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 405.350 L 1488.000 405.350" fill="none" stroke="#475569" stroke-width="3"><title>현재 트래픽 수용 조건 확인</title></path>
-<polygon data-arrowhead="root.0.1.5" points="1488.000,405.350 1478.000,411.350 1478.000,399.350" fill="#475569"/>
-<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 405.350 L 1848.000 405.350 L 1848.000 560.950 L 72.000 560.950 L 72.000 705.050 L 84.000 705.050" fill="none" stroke="#475569" stroke-width="3"><title>Node 포화와 eviction 확인</title></path>
-<polygon data-arrowhead="root.0.1.7" points="84.000,705.050 74.000,711.050 74.000,699.050" fill="#475569"/>
-<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.1.10" d="M 432.000 705.050 L 552.000 705.050" fill="none" stroke="#475569" stroke-width="3"><title>metrics와 대조</title></path>
-<polygon data-arrowhead="root.0.1.9" points="552.000,705.050 542.000,711.050 542.000,699.050" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="261.150" font-size="36" font-weight="700" fill="#111827">가설보다 먼저 Event와 이전 Container log를 확인</text>
-<text data-source="root.0.1.0" x="120.000" y="379.450" font-size="28" font-weight="700" fill="#111827">Events and Pod state</text>
-<text data-source="root.0.1.0" x="120.000" y="421.850" font-size="22" font-weight="400" fill="#111827">kubectl describe로 최근 상태</text>
-<text data-source="root.0.1.0" x="120.000" y="451.550" font-size="22" font-weight="400" fill="#111827">변화부터 확인</text>
-<text data-source="root.0.1.2" x="588.000" y="379.450" font-size="28" font-weight="700" fill="#111827">Restarted container</text>
-<text data-source="root.0.1.2" x="588.000" y="421.850" font-size="22" font-weight="400" fill="#111827">restartCount와 last state</text>
-<text data-source="root.0.1.2" x="588.000" y="451.550" font-size="22" font-weight="400" fill="#111827">확인</text>
-<text data-source="root.0.1.4" x="1056.000" y="379.450" font-size="28" font-weight="700" fill="#111827">Previous logs</text>
-<text data-source="root.0.1.4" x="1056.000" y="421.850" font-size="22" font-weight="400" fill="#111827">kubectl logs --previous로</text>
-<text data-source="root.0.1.4" x="1056.000" y="451.550" font-size="22" font-weight="400" fill="#111827">직전 log 확인</text>
-<text data-source="root.0.1.6" x="1524.000" y="349.750" font-size="28" font-weight="700" fill="#111827">Ready condition</text>
-<text data-source="root.0.1.6" x="1524.000" y="392.150" font-size="22" font-weight="400" fill="#111827">Running은 ready/serving</text>
-<text data-source="root.0.1.6" x="1524.000" y="421.850" font-size="22" font-weight="400" fill="#111827">endpoint를 보장하지 않음.</text>
-<text data-source="root.0.1.6" x="1524.000" y="451.550" font-size="22" font-weight="400" fill="#111827">EndpointSlice conditions와</text>
-<text data-source="root.0.1.6" x="1524.000" y="481.250" font-size="22" font-weight="400" fill="#111827">Service 설정 확인</text>
-<text data-source="root.0.1.8" x="120.000" y="679.150" font-size="28" font-weight="700" fill="#111827">Node resources</text>
-<text data-source="root.0.1.8" x="120.000" y="721.550" font-size="22" font-weight="400" fill="#111827">pressure, allocatable,</text>
-<text data-source="root.0.1.8" x="120.000" y="751.250" font-size="22" font-weight="400" fill="#111827">evictions</text>
-<text data-source="root.0.1.10" x="588.000" y="660.950" font-size="28" font-weight="700" fill="#111827">Hypothesis and</text>
-<text data-source="root.0.1.10" x="588.000" y="697.350" font-size="28" font-weight="700" fill="#111827">telemetry</text>
-<text data-source="root.0.1.10" x="588.000" y="739.750" font-size="22" font-weight="400" fill="#111827">가설을 확인한 뒤에만 변경을</text>
-<text data-source="root.0.1.10" x="588.000" y="769.450" font-size="22" font-weight="400" fill="#111827">결정</text>
-<text data-source="root.0.1.1" x="424.000" y="355.950" font-size="22" font-weight="400" fill="#111827">restart 여부</text>
-<text data-source="root.0.1.1" x="424.000" y="385.650" font-size="22" font-weight="400" fill="#111827">확인</text>
-<text data-source="root.0.1.3" x="892.000" y="326.250" font-size="22" font-weight="400" fill="#111827">종료한</text>
-<text data-source="root.0.1.3" x="892.000" y="355.950" font-size="22" font-weight="400" fill="#111827">인스턴스의</text>
-<text data-source="root.0.1.3" x="892.000" y="385.650" font-size="22" font-weight="400" fill="#111827">증거 조회</text>
-<text data-source="root.0.1.5" x="1360.000" y="355.950" font-size="22" font-weight="400" fill="#111827">현재 트래픽</text>
-<text data-source="root.0.1.5" x="1360.000" y="385.650" font-size="22" font-weight="400" fill="#111827">수용 조건 확인</text>
-<text data-source="root.0.1.7" x="104.000" y="552.950" font-size="22" font-weight="400" fill="#111827">Node 포화와 eviction 확인</text>
-<text data-source="root.0.1.9" x="424.000" y="655.650" font-size="22" font-weight="400" fill="#111827">metrics와</text>
-<text data-source="root.0.1.9" x="424.000" y="685.350" font-size="22" font-weight="400" fill="#111827">대조</text>
-<text data-source="root.0.2" x="64.000" y="847.150" font-size="22" font-weight="400" fill="#111827">Container가 재시작하면 현재 log가 버려질 수 있어 이전 log가 핵심 증거가 됩니다. Running 상태와 Ready condition은 별도로 확인합니다.</text>
+<rect data-node="root.0.1.0" x="96.000" y="345.650" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="345.650" width="480.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="345.650" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="96.000" y="605.800" width="480.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="720.000" y="635.500" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.10" x="1344.000" y="635.500" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 408.700 L 708.000 408.700" fill="none" stroke="#475569" stroke-width="3"><title>restart 여부 확인</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,408.700 698.000,414.700 698.000,402.700" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 408.700 L 1332.000 408.700" fill="none" stroke="#475569" stroke-width="3"><title>종료한 인스턴스의 증거 조회</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,408.700 1322.000,414.700 1322.000,402.700" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1584.000 483.750 L 1584.000 557.800 L 336.000 557.800 L 336.000 593.800" fill="none" stroke="#475569" stroke-width="3"><title>현재 트래픽 수용 조건 확인</title></path>
+<polygon data-arrowhead="root.0.1.5" points="336.000,593.800 330.000,583.800 342.000,583.800" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 588.000 698.550 L 708.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>Node 포화와 eviction 확인</title></path>
+<polygon data-arrowhead="root.0.1.7" points="708.000,698.550 698.000,704.550 698.000,692.550" fill="#475569"/>
+<path data-edge="root.0.1.9" data-from="root.0.1.8" data-to="root.0.1.10" d="M 1212.000 698.550 L 1332.000 698.550" fill="none" stroke="#475569" stroke-width="3"><title>metrics와 대조</title></path>
+<polygon data-arrowhead="root.0.1.9" points="1332.000,698.550 1322.000,704.550 1322.000,692.550" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="271.000" font-size="36" font-weight="700" fill="#111827">가설보다 먼저 Event와 이전 Container log를 확인</text>
+<text data-source="root.0.1.0" x="120.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Events and Pod state</text>
+<text data-source="root.0.1.0" x="120.000" y="440.050" font-size="22" font-weight="400" fill="#111827">kubectl describe로 최근 상태 변화부터 확인</text>
+<text data-source="root.0.1.2" x="744.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Restarted container</text>
+<text data-source="root.0.1.2" x="744.000" y="440.050" font-size="22" font-weight="400" fill="#111827">restartCount와 last state 확인</text>
+<text data-source="root.0.1.4" x="1368.000" y="397.650" font-size="28" font-weight="700" fill="#111827">Previous logs</text>
+<text data-source="root.0.1.4" x="1368.000" y="440.050" font-size="22" font-weight="400" fill="#111827">kubectl logs --previous로 직전 log 확인</text>
+<text data-source="root.0.1.6" x="120.000" y="657.800" font-size="28" font-weight="700" fill="#111827">Ready condition</text>
+<text data-source="root.0.1.6" x="120.000" y="700.200" font-size="22" font-weight="400" fill="#111827">Running은 ready/serving endpoint를</text>
+<text data-source="root.0.1.6" x="120.000" y="729.900" font-size="22" font-weight="400" fill="#111827">보장하지 않음. EndpointSlice conditions와</text>
+<text data-source="root.0.1.6" x="120.000" y="759.600" font-size="22" font-weight="400" fill="#111827">Service 설정 확인</text>
+<text data-source="root.0.1.8" x="744.000" y="687.500" font-size="28" font-weight="700" fill="#111827">Node resources</text>
+<text data-source="root.0.1.8" x="744.000" y="729.900" font-size="22" font-weight="400" fill="#111827">pressure, allocatable, evictions</text>
+<text data-source="root.0.1.10" x="1368.000" y="687.500" font-size="28" font-weight="700" fill="#111827">Hypothesis and telemetry</text>
+<text data-source="root.0.1.10" x="1368.000" y="729.900" font-size="22" font-weight="400" fill="#111827">가설을 확인한 뒤에만 변경을 결정</text>
+<text data-source="root.0.1.1" x="580.000" y="359.300" font-size="22" font-weight="400" fill="#111827">restart 여부</text>
+<text data-source="root.0.1.1" x="580.000" y="389.000" font-size="22" font-weight="400" fill="#111827">확인</text>
+<text data-source="root.0.1.3" x="1204.000" y="329.600" font-size="22" font-weight="400" fill="#111827">종료한</text>
+<text data-source="root.0.1.3" x="1204.000" y="359.300" font-size="22" font-weight="400" fill="#111827">인스턴스의</text>
+<text data-source="root.0.1.3" x="1204.000" y="389.000" font-size="22" font-weight="400" fill="#111827">증거 조회</text>
+<text data-source="root.0.1.5" x="348.000" y="549.800" font-size="22" font-weight="400" fill="#111827">현재 트래픽 수용 조건 확인</text>
+<text data-source="root.0.1.7" x="580.000" y="649.150" font-size="22" font-weight="400" fill="#111827">Node 포화와</text>
+<text data-source="root.0.1.7" x="580.000" y="678.850" font-size="22" font-weight="400" fill="#111827">eviction 확인</text>
+<text data-source="root.0.1.9" x="1204.000" y="649.150" font-size="22" font-weight="400" fill="#111827">metrics와</text>
+<text data-source="root.0.1.9" x="1204.000" y="678.850" font-size="22" font-weight="400" fill="#111827">대조</text>
+<text data-source="root.0.2" x="64.000" y="837.300" font-size="22" font-weight="400" fill="#111827">Container가 재시작하면 현재 log가 버려질 수 있어 이전 log가 핵심 증거가 됩니다. Running 상태와 Ready condition은 별도로 확인합니다.</text>
 </svg>
 </figure>

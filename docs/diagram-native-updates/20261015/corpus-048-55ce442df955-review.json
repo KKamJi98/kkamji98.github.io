@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/aws/eks-token-cache-flow.html",
+  "source_sha256": "3f375f19425d2f9143a0baa52c5028299670806b4e7d95c52fa7253ca6c0a487",
+  "svg_sha256": "74c0c04db09198808d204e8737d2faf44c1f45b9e65d9aec72cd7d94d299aa7e",
+  "png_sha256": "bba61e75b608e1e782b4d11cd2202aacf158c40c8d981ea7500de8a632484cd4",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-15T08:43:08.851408+00:00",
+  "notes": "실제 픽셀 확인. 두 대안 분기가 구분되고 글자가 읽힙니다. 경계 접촉이나 잘림은 없습니다. token 재사용, AWS call 없음, 만료 60초 전 갱신 조건이 원문과 일치합니다.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "cb034177a53d214f5f685165306c160ec99d12e2e3969ec4be3a48aa71194b90",
+  "original_bound_batch_index": 0,
+  "original_entry_index": 48,
+  "image_pixels_visible": true,
+  "blockers": []
+}

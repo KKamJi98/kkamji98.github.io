@@ -64,7 +64,7 @@ Organization은 사용자가 직접 만들지 못합니다. **Google Workspace**
 - Folder에 설정한 정책은 그 안의 모든 하위 Folder와 Project로 상속됩니다.
 
 {% include diagrams/static/gcp/gcp-org-tree.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/gcp/gcp-org-tree--35f5187839a76a69.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-gcp-gcp-org-tree-4036e4f463-01-525d981f99cb.png" %}
 _Folder로 부서/환경을 묶고 그 아래 Project를 배치한 구성 예시_
 
 > Folder는 **Organization이 존재할 때만** 생성할 수 있습니다. 개인 계정에는 Organization이 없으므로 Folder도 만들 수 없습니다.  

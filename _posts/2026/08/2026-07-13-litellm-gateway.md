@@ -21,7 +21,7 @@ LiteLLM에서 `max_budget: 0`으로 발급한 virtual key는 지출이 `0.0`인 
 ## 1. Proxy 설정과 DB에 저장하는 상태
 
 {% include diagrams/static/ai/litellm-architecture.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ai/litellm-architecture--39ece6e6e8007745.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ai-litellm-architecture-c04d657058-01-1f2ef5fbc4e3.png" %}
 
 LiteLLM Proxy는 클라이언트와 LLM provider 사이에서 OpenAI 호환 HTTP 요청을 받는 독립 프록시입니다. 클라이언트는 Gateway endpoint와 발급된 키를 사용해 HTTP 또는 호환 SDK로 호출합니다.
 

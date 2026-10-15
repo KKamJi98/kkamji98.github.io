@@ -1,33 +1,32 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d363e14a62bd5974543a80f477709c5c8984949b01e3706e4ba06bdd47927e2f">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.1.0" x="96.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="564.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4" x="1032.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.6" x="1500.000" y="375.350" width="324.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.8" x="96.000" y="605.800" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 432.000 438.400 L 552.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>rule match</title></path>
-<polygon data-arrowhead="root.0.1.1" points="552.000,438.400 542.000,444.400 542.000,432.400" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 900.000 438.400 L 1020.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>alarm trigger</title></path>
-<polygon data-arrowhead="root.0.1.3" points="1020.000,438.400 1010.000,444.400 1010.000,432.400" fill="#475569"/>
-<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1368.000 438.400 L 1488.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>notification publish</title></path>
-<polygon data-arrowhead="root.0.1.5" points="1488.000,438.400 1478.000,444.400 1478.000,432.400" fill="#475569"/>
-<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 557.800 L 72.000 557.800 L 72.000 668.850 L 84.000 668.850" fill="none" stroke="#475569" stroke-width="3"><title>Slack delivery</title></path>
-<polygon data-arrowhead="root.0.1.7" points="84.000,668.850 74.000,674.850 74.000,662.850" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="330.400" font-size="36" font-weight="700" fill="#111827">WAF 이벤트를 Slack 알림으로 전달합니다</text>
+<rect data-node="root.0.1.0" x="96.000" y="375.350" width="456.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="732.000" y="375.350" width="456.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1368.000" y="375.350" width="456.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="414.000" y="597.450" width="456.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.8" x="1050.000" y="597.450" width="456.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 564.000 438.400 L 720.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>rule match</title></path>
+<polygon data-arrowhead="root.0.1.1" points="720.000,438.400 710.000,444.400 710.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1200.000 438.400 L 1356.000 438.400" fill="none" stroke="#475569" stroke-width="3"><title>alarm trigger</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1356.000,438.400 1346.000,444.400 1346.000,432.400" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1596.000 513.450 L 1596.000 549.450 L 642.000 549.450 L 642.000 585.450" fill="none" stroke="#475569" stroke-width="3"><title>notification publish</title></path>
+<polygon data-arrowhead="root.0.1.5" points="642.000,585.450 636.000,575.450 648.000,575.450" fill="#475569"/>
+<path data-edge="root.0.1.7" data-from="root.0.1.6" data-to="root.0.1.8" d="M 882.000 660.500 L 1038.000 660.500" fill="none" stroke="#475569" stroke-width="3"><title>Slack delivery</title></path>
+<polygon data-arrowhead="root.0.1.7" points="1038.000,660.500 1028.000,666.500 1028.000,654.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="338.750" font-size="36" font-weight="700" fill="#111827">WAF 이벤트를 Slack 알림으로 전달합니다</text>
 <text data-source="root.0.1.0" x="120.000" y="427.350" font-size="28" font-weight="700" fill="#111827">AWS WAF</text>
 <text data-source="root.0.1.0" x="120.000" y="469.750" font-size="22" font-weight="400" fill="#111827">규칙에 맞는 traffic event</text>
-<text data-source="root.0.1.2" x="588.000" y="427.350" font-size="28" font-weight="700" fill="#111827">CloudWatch Metric</text>
-<text data-source="root.0.1.2" x="588.000" y="469.750" font-size="22" font-weight="400" fill="#111827">WAF event metric</text>
-<text data-source="root.0.1.4" x="1056.000" y="427.350" font-size="28" font-weight="700" fill="#111827">Amazon SNS</text>
-<text data-source="root.0.1.4" x="1056.000" y="469.750" font-size="22" font-weight="400" fill="#111827">Simple Notification Service</text>
-<text data-source="root.0.1.6" x="1524.000" y="427.350" font-size="28" font-weight="700" fill="#111827">AWS Chatbot</text>
-<text data-source="root.0.1.6" x="1524.000" y="469.750" font-size="22" font-weight="400" fill="#111827">Slack integration</text>
-<text data-source="root.0.1.8" x="120.000" y="657.800" font-size="28" font-weight="700" fill="#111827">Slack</text>
-<text data-source="root.0.1.8" x="120.000" y="700.200" font-size="22" font-weight="400" fill="#111827">운영 채널에 알림 표시</text>
-<text data-source="root.0.1.1" x="424.000" y="418.700" font-size="22" font-weight="400" fill="#111827">rule match</text>
-<text data-source="root.0.1.3" x="892.000" y="418.700" font-size="22" font-weight="400" fill="#111827">alarm trigger</text>
-<text data-source="root.0.1.5" x="1360.000" y="389.000" font-size="22" font-weight="400" fill="#111827">notification</text>
-<text data-source="root.0.1.5" x="1360.000" y="418.700" font-size="22" font-weight="400" fill="#111827">publish</text>
-<text data-source="root.0.1.7" x="104.000" y="549.800" font-size="22" font-weight="400" fill="#111827">Slack delivery</text>
-<text data-source="root.0.2" x="64.000" y="777.900" font-size="22" font-weight="400" fill="#111827">예시 규칙은 같은 IP가 1분에 300회 이상 요청할 때 traffic을 제한하는 경우입니다.</text>
+<text data-source="root.0.1.2" x="756.000" y="427.350" font-size="28" font-weight="700" fill="#111827">CloudWatch Metric</text>
+<text data-source="root.0.1.2" x="756.000" y="469.750" font-size="22" font-weight="400" fill="#111827">WAF event metric</text>
+<text data-source="root.0.1.4" x="1392.000" y="427.350" font-size="28" font-weight="700" fill="#111827">Amazon SNS</text>
+<text data-source="root.0.1.4" x="1392.000" y="469.750" font-size="22" font-weight="400" fill="#111827">Simple Notification Service</text>
+<text data-source="root.0.1.6" x="438.000" y="649.450" font-size="28" font-weight="700" fill="#111827">AWS Chatbot</text>
+<text data-source="root.0.1.6" x="438.000" y="691.850" font-size="22" font-weight="400" fill="#111827">Slack integration</text>
+<text data-source="root.0.1.8" x="1074.000" y="649.450" font-size="28" font-weight="700" fill="#111827">Slack</text>
+<text data-source="root.0.1.8" x="1074.000" y="691.850" font-size="22" font-weight="400" fill="#111827">운영 채널에 알림 표시</text>
+<text data-source="root.0.1.1" x="556.000" y="418.700" font-size="22" font-weight="400" fill="#111827">rule match</text>
+<text data-source="root.0.1.3" x="1192.000" y="418.700" font-size="22" font-weight="400" fill="#111827">alarm trigger</text>
+<text data-source="root.0.1.5" x="654.000" y="541.450" font-size="22" font-weight="400" fill="#111827">notification publish</text>
+<text data-source="root.0.1.7" x="882.000" y="640.800" font-size="22" font-weight="400" fill="#111827">Slack delivery</text>
+<text data-source="root.0.2" x="64.000" y="769.550" font-size="22" font-weight="400" fill="#111827">예시 규칙은 같은 IP가 1분에 300회 이상 요청할 때 traffic을 제한하는 경우입니다.</text>
 </svg>

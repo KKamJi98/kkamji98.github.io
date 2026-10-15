@@ -81,7 +81,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 {% include diagrams/static/kubernetes/cilium/bgp_network_flow.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/bgp_network_flow--4b6f86526cfcb75f.png" %}
 {% include diagrams/static/kubernetes/cilium/standard_vs_cilium_ebpf_networing.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/standard_vs_cilium_ebpf_networing--2b3b5c44fbc22649.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-standard_vs_cilium_ebpf_networing-75c4ea7756-01-f8c04650cbad.png" %}
 
 {% include diagrams/static/kubernetes/cilium/ebpf_summary.html %}
 {% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_summary--492a2839c4be795c.png" %}
@@ -130,7 +130,7 @@ Kubernetes에서는 주로 kube-proxy와 iptables와 같은 전통적인 **Linux
 **eBPF**는 특정 요구 사항에 맞는 사전 정의된 후크가 없는 경우 Kernel 프로브(kprobe)나 사용자 프로브(uprobe)를 만들어 Kernel이나 사용자 애플리케이션의 어느 곳에나 eBPF 프로그램을 첨부할 수 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/ebpf_scenario.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/ebpf_scenario--fc7e247083238f3f.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-ebpf_scenario-5b3cd88417-01-03e1d0139ca8.png" %}
 
 - XDP (eXpress Data Path): 네트워크 드라이버 단에서 가장 먼저 패킷을 처리하여 최고 속도를 보장
 - TC (Traffic Control): Kernel의 트래픽 제어 계층에서 패킷을 처리
@@ -173,7 +173,7 @@ Cilium에는 크게 **Encapsulation (Tunnel) Mode**와 **Direct Routing (Native)
 ### 6.2. Direct Routing (Native) Mode
 
 {% include diagrams/static/kubernetes/cilium/native_routing.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/native_routing--8a53ea159db58604.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-native_routing-e0a62d9fe5-01-e5d2b12a7452.png" %}
 
 캡슐화를 쓰지 않고, Pod CIDR 자체를 물리 스위치, 라우터 또는 클라우드 네트워크가 전달하도록 해 패킷을 바로 전달합니다. 현재 Cilium에서는 `routing-mode: native`로 활성화합니다. 이 모드에서는 노드와 네트워크가 다른 노드의 Pod CIDR를 전달할 수 있어야 하며, 같은 L2(Layer 2) 구간에서는 direct node route를 사용하거나 그 밖의 환경에서는 BGP(Border Gateway Protocol) 같은 경로 배포 방식을 선택합니다.
 
@@ -208,7 +208,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 노드마다 부여된 `PodCIDR` 범위 안에서 **kube-controller-manager**가 직접 IP를 할당하는 방식입니다.
 
 {% include diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kubernetes_host_scope_ipam_mode--221aed3a16b7b4cc.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-kubernetes_host_scope_ipam_mode-e5bf9af747-01-d933b31d8f1a.png" %}
 
 
 ### 7.2. Cluster Scope
@@ -216,7 +216,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 각 노드에 노드별 `PodCIDR`을 할당하고, 각 노드의 호스트 범위 할당자를 사용하여 IP를 할당한다는 점에서 `Kubernetes Host Scope`와 비슷하지만 **Cilium operator**가 `v2.CiliumNode` 리소스를 통해 노드별 `PodCIDR`을 관리한다는 점에서 차이가 있습니다. 따라서 Kubernetes `v1.Node` 리소스에 의존하지 않아 Kubernetes가 `PodCIDR`을 배포하도록 구성할 수 없거나 더 많은 제어가 필요한 경우에 유용하게 사용할 수 있습니다.
 
 {% include diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/cluster_scope_ipam_mode--c697c4483b8124a0.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-cluster_scope_ipam_mode-2d5d68525f-02-38a41acaefe4.png" %}
 
 
 ### 7.3. Multi-Pool (Beta)
@@ -224,7 +224,7 @@ IP 주소 관리(IPAM)는 Cilium endpoint가 사용할 IP 주소의 할당자와
 사용자가 정의한 작업 주석 및 노드 레이블에 따라 여러 개의 다른 IPAM 풀에서 PodCIDR을 할당하는 것을 지원합니다.
 
 {% include diagrams/static/kubernetes/cilium/multi-pool.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/multi-pool--4ae535c7e21675d7.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-multi-pool-86b1f4a5a9-02-2620a9223c4e.png" %}
 
 ---
 
@@ -236,7 +236,7 @@ Cilium은 eBPF service datapath로 kube-proxy의 Service 구현을 대체할 수
 {% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/problems_with_iptables--823a484949fd57d4.png" %}
 
 {% include diagrams/static/kubernetes/cilium/kube-proxy_replacement.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/kube-proxy_replacement--21061e829a40cb5a.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-kube-proxy_replacement-05fbc3627f-01-c99ff1da39fa.png" %}
 
 기존 cluster에서 kube-proxy를 제거하거나 replacement를 켜고 끄는 작업은 기존 Service 연결을 끊을 수 있습니다. 새 cluster에서 지원되는 구성으로 시작하는 편이 가장 단순하며, migration이라면 Service connectivity, source IP 보존, NodePort, health check를 사전 검증하고 즉시 되돌릴 수 있는 절차를 준비해야 합니다.
 

@@ -34,7 +34,7 @@ index 2  0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
 이 세 address는 4편, 9편에서 쓴 buyer, seller, arbiter와 같습니다. HD wallet는 한 시드에서 인덱스로 여러 키를 뽑습니다. 시드가 공개되면 인덱스를 숨겨도 소용이 없습니다.
 
 {% include diagrams/static/blockchain/hd-mnemonic-three-addresses.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/hd-mnemonic-three-addresses--f1b776199603547f.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-hd-mnemonic-three-addresses-57e2c605c4-01-c4a55cb78512.png" %}
 _같은 12단어다. 인덱스만 바꾸면 address가 바뀐다. 누구나 같은 계산을 할 수 있다._
 
 운영 사고의 전형적인 모양은 이 문구를 Sepolia faucet에 넣는 일입니다. 로컬 실습용 키가 공개망 잔액을 갖게 되면, 그 잔액은 튜토리얼을 읽은 사람 모두의 것이 됩니다. 이번 랩은 그 키로 공개망에 보내지 않았습니다.
@@ -51,7 +51,7 @@ verify tampered   exit 1
 ```
 
 {% include diagrams/static/blockchain/sign-verify-tamper.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/sign-verify-tamper--39c2b1455f823660.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-sign-verify-tamper-0225f06f54-01-910c49a52815.png" %}
 _signature는 메시지 전체를 덮는다. 한 글자가 바뀌면 같은 키가 아니다._
 
 1편의 InvalidSignature와 같은 층입니다. 여기서 추가된 것은 운영 절차입니다. 검증에 쓰는 것은 개인키가 아니라 address와 메시지와 signature입니다. 개인키는 signer 프로세스 안에만 있어야 합니다.

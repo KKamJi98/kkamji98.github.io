@@ -1,49 +1,49 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3ac2977ba039187bf6c732a2fdf0e5c05045138a4c08a6ade7616e165d312b86">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.3.0" x="64.000" y="453.000" width="884.000" height="445.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3.1" x="972.000" y="453.000" width="884.000" height="312.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1" x="64.000" y="200.500" width="1792.000" height="142.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="453.000" width="1792.000" height="445.400" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="208.850" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="1032.000" y="208.850" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.0" x="88.000" y="538.800" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.0.2.0" x="88.000" y="688.900" width="406.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.0.2.1" x="518.000" y="688.900" width="406.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.0" x="1028.000" y="562.000" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.2" x="1486.000" y="562.000" width="314.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 271.900 L 1020.000 271.900" fill="none" stroke="#475569" stroke-width="3"><title>먼저 startup probe 실행</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,271.900 1010.000,277.900 1010.000,265.900" fill="#475569"/>
-<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1354.000 639.900 L 1474.000 639.900" fill="none" stroke="#475569" stroke-width="3"><title>failure threshold 도달</title></path>
-<polygon data-arrowhead="root.0.3.1.1.1" points="1474.000,639.900 1464.000,645.900 1464.000,633.900" fill="#475569"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 355.300 L 960.000 441.000" fill="none" stroke="#475569" stroke-width="3"><title>startup 성공 뒤 두 probe가 독립 실행</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,441.000 954.000,431.000 966.000,431.000" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="163.900" font-size="36" font-weight="700" fill="#111827">Startup이 두 probe를 열고 readiness와 liveness가 독립적으로 판단한다</text>
-<text data-source="root.0.1.0" x="120.000" y="260.850" font-size="28" font-weight="700" fill="#111827">Container starting</text>
-<text data-source="root.0.1.0" x="120.000" y="303.250" font-size="22" font-weight="400" fill="#111827">process는 실행 중이지만 아직 상태를 판정하지 않습니다.</text>
-<text data-source="root.0.1.2" x="1056.000" y="260.850" font-size="28" font-weight="700" fill="#111827">Startup probe</text>
-<text data-source="root.0.1.2" x="1056.000" y="303.250" font-size="22" font-weight="400" fill="#111827">첫 성공 전까지 readiness와 liveness를 block합니다.</text>
-<text data-source="root.0.1.1" x="892.000" y="222.500" font-size="22" font-weight="400" fill="#111827">먼저 startup</text>
-<text data-source="root.0.1.1" x="892.000" y="252.200" font-size="22" font-weight="400" fill="#111827">probe 실행</text>
-<text data-source="root.0.3.0.0" x="88.000" y="505.000" font-size="28" font-weight="700" fill="#111827">Readiness path</text>
-<text data-source="root.0.3.0.1.0" x="112.000" y="590.800" font-size="28" font-weight="700" fill="#111827">Readiness probe</text>
-<text data-source="root.0.3.0.1.0" x="112.000" y="633.200" font-size="22" font-weight="400" fill="#111827">지금 traffic을 받아도 되는지 판단합니다.</text>
-<text data-source="root.0.3.0.2.0" x="112.000" y="740.900" font-size="28" font-weight="700" fill="#111827">성공</text>
-<text data-source="root.0.3.0.2.0" x="112.000" y="783.300" font-size="22" font-weight="400" fill="#111827">EndpointSlice에 들어가 Service</text>
-<text data-source="root.0.3.0.2.0" x="112.000" y="813.000" font-size="22" font-weight="400" fill="#111827">traffic을 받습니다.</text>
-<text data-source="root.0.3.0.2.1" x="542.000" y="740.900" font-size="28" font-weight="700" fill="#111827">실패</text>
-<text data-source="root.0.3.0.2.1" x="542.000" y="783.300" font-size="22" font-weight="400" fill="#111827">EndpointSlice에서 빠지지만</text>
-<text data-source="root.0.3.0.2.1" x="542.000" y="813.000" font-size="22" font-weight="400" fill="#111827">process는 살아 있고 kubelet이</text>
-<text data-source="root.0.3.0.2.1" x="542.000" y="842.700" font-size="22" font-weight="400" fill="#111827">재시도합니다.</text>
+<rect data-source="root.0.3" x="64.000" y="429.000" width="1792.000" height="493.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0" x="88.000" y="453.000" width="860.000" height="445.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="972.000" y="453.000" width="860.000" height="312.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1" x="64.000" y="176.500" width="1792.000" height="142.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="184.850" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="184.850" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="112.000" y="538.800" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.2.0" x="112.000" y="688.900" width="394.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.2.1" x="530.000" y="688.900" width="394.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="1028.000" y="562.000" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="1474.000" y="562.000" width="302.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 247.900 L 1020.000 247.900" fill="none" stroke="#475569" stroke-width="3"><title>먼저 startup probe 실행</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,247.900 1010.000,253.900 1010.000,241.900" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1342.000 639.900 L 1462.000 639.900" fill="none" stroke="#475569" stroke-width="3"><title>failure threshold 도달</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="1462.000,639.900 1452.000,645.900 1452.000,633.900" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 331.300 L 960.000 417.000" fill="none" stroke="#475569" stroke-width="3"><title>startup 성공 뒤 두 probe가 독립 실행</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,417.000 954.000,407.000 966.000,407.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="139.900" font-size="36" font-weight="700" fill="#111827">Startup이 두 probe를 열고 readiness와 liveness가 독립적으로 판단한다</text>
+<text data-source="root.0.1.0" x="120.000" y="236.850" font-size="28" font-weight="700" fill="#111827">Container starting</text>
+<text data-source="root.0.1.0" x="120.000" y="279.250" font-size="22" font-weight="400" fill="#111827">process는 실행 중이지만 아직 상태를 판정하지 않습니다.</text>
+<text data-source="root.0.1.2" x="1056.000" y="236.850" font-size="28" font-weight="700" fill="#111827">Startup probe</text>
+<text data-source="root.0.1.2" x="1056.000" y="279.250" font-size="22" font-weight="400" fill="#111827">첫 성공 전까지 readiness와 liveness를 block합니다.</text>
+<text data-source="root.0.1.1" x="892.000" y="198.500" font-size="22" font-weight="400" fill="#111827">먼저 startup</text>
+<text data-source="root.0.1.1" x="892.000" y="228.200" font-size="22" font-weight="400" fill="#111827">probe 실행</text>
+<text data-source="root.0.3.0.0" x="112.000" y="505.000" font-size="28" font-weight="700" fill="#111827">Readiness path</text>
+<text data-source="root.0.3.0.1.0" x="136.000" y="590.800" font-size="28" font-weight="700" fill="#111827">Readiness probe</text>
+<text data-source="root.0.3.0.1.0" x="136.000" y="633.200" font-size="22" font-weight="400" fill="#111827">지금 traffic을 받아도 되는지 판단합니다.</text>
+<text data-source="root.0.3.0.2.0" x="136.000" y="740.900" font-size="28" font-weight="700" fill="#111827">성공</text>
+<text data-source="root.0.3.0.2.0" x="136.000" y="783.300" font-size="22" font-weight="400" fill="#111827">EndpointSlice에 들어가 Service</text>
+<text data-source="root.0.3.0.2.0" x="136.000" y="813.000" font-size="22" font-weight="400" fill="#111827">traffic을 받습니다.</text>
+<text data-source="root.0.3.0.2.1" x="554.000" y="740.900" font-size="28" font-weight="700" fill="#111827">실패</text>
+<text data-source="root.0.3.0.2.1" x="554.000" y="783.300" font-size="22" font-weight="400" fill="#111827">EndpointSlice에서 빠지지만</text>
+<text data-source="root.0.3.0.2.1" x="554.000" y="813.000" font-size="22" font-weight="400" fill="#111827">process는 살아 있고 kubelet이</text>
+<text data-source="root.0.3.0.2.1" x="554.000" y="842.700" font-size="22" font-weight="400" fill="#111827">재시도합니다.</text>
 <text data-source="root.0.3.1.0" x="996.000" y="505.000" font-size="28" font-weight="700" fill="#111827">Liveness path</text>
 <text data-source="root.0.3.1.1.0" x="1052.000" y="614.000" font-size="28" font-weight="700" fill="#111827">Liveness probe</text>
 <text data-source="root.0.3.1.1.0" x="1052.000" y="656.400" font-size="22" font-weight="400" fill="#111827">stuck 상태라 재시작이</text>
 <text data-source="root.0.3.1.1.0" x="1052.000" y="686.100" font-size="22" font-weight="400" fill="#111827">복구가 되는지 판단합니다.</text>
-<text data-source="root.0.3.1.1.2" x="1510.000" y="614.000" font-size="28" font-weight="700" fill="#111827">Container restart</text>
-<text data-source="root.0.3.1.1.2" x="1510.000" y="656.400" font-size="22" font-weight="400" fill="#111827">restart policy에 따라</text>
-<text data-source="root.0.3.1.1.2" x="1510.000" y="686.100" font-size="22" font-weight="400" fill="#111827">container를 재시작합니다.</text>
-<text data-source="root.0.3.1.1.1" x="1346.000" y="560.800" font-size="22" font-weight="400" fill="#111827">failure</text>
-<text data-source="root.0.3.1.1.1" x="1346.000" y="590.500" font-size="22" font-weight="400" fill="#111827">threshold</text>
-<text data-source="root.0.3.1.1.1" x="1346.000" y="620.200" font-size="22" font-weight="400" fill="#111827">도달</text>
-<text data-source="root.0.4" x="64.000" y="944.400" font-size="22" font-weight="400" fill="#111827">Readiness 실패는 process를 종료하지 않고 traffic 대상만 바꿉니다. Startup이 계속 실패하면 container는 restart policy의 대상이 될 수 있습니다.</text>
-<text data-source="root.0.2" x="980.000" y="405.300" font-size="22" font-weight="400" fill="#111827">startup 성공 뒤 두 probe가 독립 실행</text>
+<text data-source="root.0.3.1.1.2" x="1498.000" y="614.000" font-size="28" font-weight="700" fill="#111827">Container restart</text>
+<text data-source="root.0.3.1.1.2" x="1498.000" y="656.400" font-size="22" font-weight="400" fill="#111827">restart policy에 따라</text>
+<text data-source="root.0.3.1.1.2" x="1498.000" y="686.100" font-size="22" font-weight="400" fill="#111827">container를 재시작합니다.</text>
+<text data-source="root.0.3.1.1.1" x="1334.000" y="560.800" font-size="22" font-weight="400" fill="#111827">failure</text>
+<text data-source="root.0.3.1.1.1" x="1334.000" y="590.500" font-size="22" font-weight="400" fill="#111827">threshold</text>
+<text data-source="root.0.3.1.1.1" x="1334.000" y="620.200" font-size="22" font-weight="400" fill="#111827">도달</text>
+<text data-source="root.0.4" x="64.000" y="968.400" font-size="22" font-weight="400" fill="#111827">Readiness 실패는 process를 종료하지 않고 traffic 대상만 바꿉니다. Startup이 계속 실패하면 container는 restart policy의 대상이 될 수 있습니다.</text>
+<text data-source="root.0.2" x="980.000" y="381.300" font-size="22" font-weight="400" fill="#111827">startup 성공 뒤 두 probe가 독립 실행</text>
 </svg>

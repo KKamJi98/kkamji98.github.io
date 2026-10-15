@@ -1,57 +1,58 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="0aa087574b55c0bf81b35ea8aab6a7b8d8d3d15e78ea96d3fe236110ef5178d6">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0" x="96.000" y="202.850" width="792.000" height="427.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4" x="96.000" y="725.950" width="792.000" height="215.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.0" x="112.000" y="261.850" width="242.667" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.1" x="370.667" y="261.850" width="242.667" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.2" x="629.333" y="261.850" width="242.667" height="167.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.3" x="112.000" y="445.050" width="242.667" height="168.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="1032.000" y="369.250" width="792.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.4.0" x="96.000" y="725.950" width="253.333" height="168.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.1" x="365.333" y="725.950" width="253.333" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.2" x="634.667" y="725.950" width="253.333" height="215.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 416.400 L 1020.000 416.400" fill="none" stroke="#475569" stroke-width="3"><title>event pattern 매칭</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,416.400 1010.000,422.400 1010.000,410.400" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 416.400 L 1848.000 416.400 L 1848.000 677.950 L 72.000 677.950 L 72.000 833.850 L 84.000 833.850" fill="none" stroke="#475569" stroke-width="3"><title>target으로 분기</title></path>
-<polygon data-arrowhead="root.0.1.3" points="84.000,833.850 74.000,839.850 74.000,827.850" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="174.250" font-size="36" font-weight="700" fill="#111827">운영 신호를 EventBridge 한 곳으로 모은다</text>
-<text data-source="root.0.1.0.0" x="112.000" y="238.850" font-size="20" font-weight="700" fill="#111827">운영 신호의 출처</text>
-<text data-source="root.0.1.0.1.0" x="128.000" y="297.850" font-size="20" font-weight="700" fill="#111827">CloudWatch alarm</text>
-<text data-source="root.0.1.0.1.0" x="128.000" y="333.850" font-size="18" font-weight="400" fill="#111827">ALARM 전이. composite</text>
-<text data-source="root.0.1.0.1.0" x="128.000" y="358.150" font-size="18" font-weight="400" fill="#111827">alarm도 같은 전이</text>
-<text data-source="root.0.1.0.1.0" x="128.000" y="382.450" font-size="18" font-weight="400" fill="#111827">신호를 낸다.</text>
-<text data-source="root.0.1.0.1.1" x="386.667" y="297.850" font-size="20" font-weight="700" fill="#111827">Config rule</text>
-<text data-source="root.0.1.0.1.1" x="386.667" y="333.850" font-size="18" font-weight="400" fill="#111827">구성이 기준을 벗어난</text>
-<text data-source="root.0.1.0.1.1" x="386.667" y="358.150" font-size="18" font-weight="400" fill="#111827">NON_COMPLIANT</text>
-<text data-source="root.0.1.0.1.1" x="386.667" y="382.450" font-size="18" font-weight="400" fill="#111827">상태다.</text>
-<text data-source="root.0.1.0.1.2" x="645.333" y="297.850" font-size="20" font-weight="700" fill="#111827">AWS Health 이벤트</text>
-<text data-source="root.0.1.0.1.2" x="645.333" y="333.850" font-size="18" font-weight="400" fill="#111827">EventBridge 수신은 모든</text>
-<text data-source="root.0.1.0.1.2" x="645.333" y="358.150" font-size="18" font-weight="400" fill="#111827">고객에게 무료다. Health</text>
-<text data-source="root.0.1.0.1.2" x="645.333" y="382.450" font-size="18" font-weight="400" fill="#111827">API는 Business</text>
-<text data-source="root.0.1.0.1.2" x="645.333" y="406.750" font-size="18" font-weight="400" fill="#111827">Support+ 이상이다.</text>
-<text data-source="root.0.1.0.1.3" x="128.000" y="481.050" font-size="20" font-weight="700" fill="#111827">CloudTrail API</text>
-<text data-source="root.0.1.0.1.3" x="128.000" y="507.050" font-size="20" font-weight="700" fill="#111827">이벤트</text>
-<text data-source="root.0.1.0.1.3" x="128.000" y="543.050" font-size="18" font-weight="400" fill="#111827">평균 약 5분 안에</text>
-<text data-source="root.0.1.0.1.3" x="128.000" y="567.350" font-size="18" font-weight="400" fill="#111827">전달되지만 보장 지연은</text>
-<text data-source="root.0.1.0.1.3" x="128.000" y="591.650" font-size="18" font-weight="400" fill="#111827">아니다.</text>
-<text data-source="root.0.1.2" x="1048.000" y="405.250" font-size="20" font-weight="700" fill="#111827">EventBridge rule</text>
-<text data-source="root.0.1.2" x="1048.000" y="441.250" font-size="18" font-weight="400" fill="#111827">bus당 기본 300개 rule, rule당 target 5개로 고정되며 pattern은 최대 2,048자다.</text>
-<text data-source="root.0.1.4.0" x="112.000" y="761.950" font-size="20" font-weight="700" fill="#111827">SSM Automation</text>
-<text data-source="root.0.1.4.0" x="112.000" y="787.950" font-size="20" font-weight="700" fill="#111827">runbook</text>
-<text data-source="root.0.1.4.0" x="112.000" y="823.950" font-size="18" font-weight="400" fill="#111827">승인 단계와 rate</text>
-<text data-source="root.0.1.4.0" x="112.000" y="848.250" font-size="18" font-weight="400" fill="#111827">control을 넣어 무인</text>
-<text data-source="root.0.1.4.0" x="112.000" y="872.550" font-size="18" font-weight="400" fill="#111827">교정으로 잇는다.</text>
-<text data-source="root.0.1.4.1" x="381.333" y="761.950" font-size="20" font-weight="700" fill="#111827">SNS 토픽</text>
-<text data-source="root.0.1.4.1" x="381.333" y="797.950" font-size="18" font-weight="400" fill="#111827">target 5개를 넘길 때 추가</text>
-<text data-source="root.0.1.4.1" x="381.333" y="822.250" font-size="18" font-weight="400" fill="#111827">팬아웃 지점이 된다.</text>
-<text data-source="root.0.1.4.2" x="650.667" y="761.950" font-size="20" font-weight="700" fill="#111827">OpsCenter OpsItem</text>
-<text data-source="root.0.1.4.2" x="650.667" y="797.950" font-size="18" font-weight="400" fill="#111827">Open, In progress,</text>
-<text data-source="root.0.1.4.2" x="650.667" y="822.250" font-size="18" font-weight="400" fill="#111827">Resolved 상태로</text>
-<text data-source="root.0.1.4.2" x="650.667" y="846.550" font-size="18" font-weight="400" fill="#111827">추적한다. related</text>
-<text data-source="root.0.1.4.2" x="650.667" y="870.850" font-size="18" font-weight="400" fill="#111827">resource 최대 100개와</text>
-<text data-source="root.0.1.4.2" x="650.667" y="895.150" font-size="18" font-weight="400" fill="#111827">deduplication string을</text>
-<text data-source="root.0.1.4.2" x="650.667" y="919.450" font-size="18" font-weight="400" fill="#111827">지원한다.</text>
-<text data-source="root.0.1.1" x="892.000" y="373.800" font-size="18" font-weight="400" fill="#111827">event pattern</text>
-<text data-source="root.0.1.1" x="892.000" y="398.100" font-size="18" font-weight="400" fill="#111827">매칭</text>
-<text data-source="root.0.1.3" x="104.000" y="669.950" font-size="18" font-weight="400" fill="#111827">target으로 분기</text>
+<rect data-source="root.0.1.0" x="96.000" y="165.850" width="792.000" height="427.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4" x="564.000" y="688.950" width="792.000" height="289.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="112.000" y="224.850" width="242.667" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="370.667" y="224.850" width="242.667" height="142.900" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="629.333" y="224.850" width="242.667" height="167.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.3" x="112.000" y="408.050" width="242.667" height="168.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="332.250" width="792.000" height="94.300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.0" x="588.000" y="712.950" width="237.333" height="168.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="841.333" y="712.950" width="237.333" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.2" x="1094.667" y="712.950" width="237.333" height="241.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 379.400 L 1020.000 379.400" fill="none" stroke="#475569" stroke-width="3"><title>event pattern 매칭</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,379.400 1010.000,385.400 1010.000,373.400" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1428.000 438.550 L 1428.000 640.950 L 960.000 640.950 L 960.000 676.950" fill="none" stroke="#475569" stroke-width="3"><title>target으로 분기</title></path>
+<polygon data-arrowhead="root.0.1.3" points="960.000,676.950 954.000,666.950 966.000,666.950" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="137.250" font-size="36" font-weight="700" fill="#111827">운영 신호를 EventBridge 한 곳으로 모은다</text>
+<text data-source="root.0.1.0.0" x="112.000" y="201.850" font-size="20" font-weight="700" fill="#111827">운영 신호의 출처</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="260.850" font-size="20" font-weight="700" fill="#111827">CloudWatch alarm</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="296.850" font-size="18" font-weight="400" fill="#111827">ALARM 전이. composite</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="321.150" font-size="18" font-weight="400" fill="#111827">alarm도 같은 전이</text>
+<text data-source="root.0.1.0.1.0" x="128.000" y="345.450" font-size="18" font-weight="400" fill="#111827">신호를 낸다.</text>
+<text data-source="root.0.1.0.1.1" x="386.667" y="260.850" font-size="20" font-weight="700" fill="#111827">Config rule</text>
+<text data-source="root.0.1.0.1.1" x="386.667" y="296.850" font-size="18" font-weight="400" fill="#111827">구성이 기준을 벗어난</text>
+<text data-source="root.0.1.0.1.1" x="386.667" y="321.150" font-size="18" font-weight="400" fill="#111827">NON_COMPLIANT</text>
+<text data-source="root.0.1.0.1.1" x="386.667" y="345.450" font-size="18" font-weight="400" fill="#111827">상태다.</text>
+<text data-source="root.0.1.0.1.2" x="645.333" y="260.850" font-size="20" font-weight="700" fill="#111827">AWS Health 이벤트</text>
+<text data-source="root.0.1.0.1.2" x="645.333" y="296.850" font-size="18" font-weight="400" fill="#111827">EventBridge 수신은 모든</text>
+<text data-source="root.0.1.0.1.2" x="645.333" y="321.150" font-size="18" font-weight="400" fill="#111827">고객에게 무료다. Health</text>
+<text data-source="root.0.1.0.1.2" x="645.333" y="345.450" font-size="18" font-weight="400" fill="#111827">API는 Business</text>
+<text data-source="root.0.1.0.1.2" x="645.333" y="369.750" font-size="18" font-weight="400" fill="#111827">Support+ 이상이다.</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="444.050" font-size="20" font-weight="700" fill="#111827">CloudTrail API</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="470.050" font-size="20" font-weight="700" fill="#111827">이벤트</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="506.050" font-size="18" font-weight="400" fill="#111827">평균 약 5분 안에</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="530.350" font-size="18" font-weight="400" fill="#111827">전달되지만 보장 지연은</text>
+<text data-source="root.0.1.0.1.3" x="128.000" y="554.650" font-size="18" font-weight="400" fill="#111827">아니다.</text>
+<text data-source="root.0.1.2" x="1048.000" y="368.250" font-size="20" font-weight="700" fill="#111827">EventBridge rule</text>
+<text data-source="root.0.1.2" x="1048.000" y="404.250" font-size="18" font-weight="400" fill="#111827">bus당 기본 300개 rule, rule당 target 5개로 고정되며 pattern은 최대 2,048자다.</text>
+<text data-source="root.0.1.4.0" x="604.000" y="748.950" font-size="20" font-weight="700" fill="#111827">SSM Automation</text>
+<text data-source="root.0.1.4.0" x="604.000" y="774.950" font-size="20" font-weight="700" fill="#111827">runbook</text>
+<text data-source="root.0.1.4.0" x="604.000" y="810.950" font-size="18" font-weight="400" fill="#111827">승인 단계와 rate</text>
+<text data-source="root.0.1.4.0" x="604.000" y="835.250" font-size="18" font-weight="400" fill="#111827">control을 넣어 무인</text>
+<text data-source="root.0.1.4.0" x="604.000" y="859.550" font-size="18" font-weight="400" fill="#111827">교정으로 잇는다.</text>
+<text data-source="root.0.1.4.1" x="857.333" y="748.950" font-size="20" font-weight="700" fill="#111827">SNS 토픽</text>
+<text data-source="root.0.1.4.1" x="857.333" y="784.950" font-size="18" font-weight="400" fill="#111827">target 5개를 넘길 때</text>
+<text data-source="root.0.1.4.1" x="857.333" y="809.250" font-size="18" font-weight="400" fill="#111827">추가 팬아웃 지점이 된다.</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="748.950" font-size="20" font-weight="700" fill="#111827">OpsCenter</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="774.950" font-size="20" font-weight="700" fill="#111827">OpsItem</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="810.950" font-size="18" font-weight="400" fill="#111827">Open, In progress,</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="835.250" font-size="18" font-weight="400" fill="#111827">Resolved 상태로</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="859.550" font-size="18" font-weight="400" fill="#111827">추적한다. related</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="883.850" font-size="18" font-weight="400" fill="#111827">resource 최대 100개와</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="908.150" font-size="18" font-weight="400" fill="#111827">deduplication string을</text>
+<text data-source="root.0.1.4.2" x="1110.667" y="932.450" font-size="18" font-weight="400" fill="#111827">지원한다.</text>
+<text data-source="root.0.1.1" x="892.000" y="336.800" font-size="18" font-weight="400" fill="#111827">event pattern</text>
+<text data-source="root.0.1.1" x="892.000" y="361.100" font-size="18" font-weight="400" fill="#111827">매칭</text>
+<text data-source="root.0.1.3" x="972.000" y="632.950" font-size="18" font-weight="400" fill="#111827">target으로 분기</text>
 </svg>

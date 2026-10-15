@@ -1,50 +1,50 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="b7042ad1e379370e0d953196258f67fc13059ef9aeaaa865bf8ed3a007353e44">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.2.0" x="64.000" y="371.400" width="584.000" height="615.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.1" x="668.000" y="371.400" width="584.000" height="408.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.2" x="1272.000" y="371.400" width="584.000" height="408.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2" x="64.000" y="371.400" width="1792.000" height="615.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="64.000" y="162.200" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.0" x="116.000" y="443.800" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.2" x="116.000" y="650.000" width="480.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.4" x="116.000" y="856.200" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.0" x="720.000" y="443.800" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.2" x="720.000" y="650.000" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2.1.0" x="1324.000" y="443.800" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2.1.2" x="1324.000" y="650.000" width="480.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.2" d="M 960.000 284.400 L 960.000 321.900 L 960.000 321.900 L 960.000 359.400" fill="none" stroke="#475569" stroke-width="3"><title>순서, 버퍼, 라우팅, 승인 요구 확인</title></path>
-<polygon data-arrowhead="root.0.1.1" points="960.000,359.400 954.000,349.400 966.000,349.400" fill="#475569"/>
-<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 608.000 498.900 L 620.000 498.900 L 620.000 602.000 L 92.000 602.000 L 92.000 705.100 L 104.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>팬아웃</title></path>
-<polygon data-arrowhead="root.0.2.0.1.1" points="104.000,705.100 94.000,711.100 94.000,699.100" fill="#475569"/>
-<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 608.000 705.100 L 620.000 705.100 L 620.000 808.200 L 92.000 808.200 L 92.000 911.300 L 104.000 911.300" fill="none" stroke="#475569" stroke-width="3"><title>소비자별 큐</title></path>
-<polygon data-arrowhead="root.0.2.0.1.3" points="104.000,911.300 94.000,917.300 94.000,905.300" fill="#475569"/>
-<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1212.000 498.900 L 1224.000 498.900 L 1224.000 602.000 L 696.000 602.000 L 696.000 705.100 L 708.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>rule 매칭</title></path>
-<polygon data-arrowhead="root.0.2.1.1.1" points="708.000,705.100 698.000,711.100 698.000,699.100" fill="#475569"/>
-<path data-edge="root.0.2.2.1.1" data-from="root.0.2.2.1.0" data-to="root.0.2.2.1.2" d="M 1816.000 498.900 L 1828.000 498.900 L 1828.000 602.000 L 1300.000 602.000 L 1300.000 705.100 L 1312.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>상태 있는 실행</title></path>
-<polygon data-arrowhead="root.0.2.2.1.1" points="1312.000,705.100 1302.000,711.100 1302.000,699.100" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="129.600" font-size="36" font-weight="700" fill="#111827">전달 요구가 통합 서비스를 가른다</text>
-<text data-source="root.0.1.0" x="84.000" y="206.200" font-size="24" font-weight="700" fill="#111827">모놀리스 모듈</text>
-<text data-source="root.0.1.0" x="84.000" y="245.400" font-size="20" font-weight="400" fill="#111827">기존 동기 호출을 어떤 보장으로 분리할지 정한다.</text>
-<text data-source="root.0.2.0.0" x="84.000" y="415.400" font-size="24" font-weight="700" fill="#111827">순서와 소비자별 버퍼</text>
-<text data-source="root.0.2.0.1.0" x="136.000" y="487.800" font-size="24" font-weight="700" fill="#111827">FIFO 전달</text>
-<text data-source="root.0.2.0.1.0" x="136.000" y="527.000" font-size="20" font-weight="400" fill="#111827">소비자마다 보존된 순서와 버퍼가 필요하다.</text>
-<text data-source="root.0.2.0.1.2" x="136.000" y="694.000" font-size="24" font-weight="700" fill="#111827">SNS FIFO</text>
-<text data-source="root.0.2.0.1.2" x="136.000" y="733.200" font-size="20" font-weight="400" fill="#111827">필터링과 팬아웃을 담당한다.</text>
-<text data-source="root.0.2.0.1.4" x="136.000" y="900.200" font-size="24" font-weight="700" fill="#111827">SQS FIFO</text>
-<text data-source="root.0.2.0.1.4" x="136.000" y="939.400" font-size="20" font-weight="400" fill="#111827">소비자별 보존과 순서를 보장한다.</text>
-<text data-source="root.0.2.0.1.1" x="124.000" y="594.000" font-size="20" font-weight="400" fill="#111827">팬아웃</text>
-<text data-source="root.0.2.0.1.3" x="124.000" y="800.200" font-size="20" font-weight="400" fill="#111827">소비자별 큐</text>
-<text data-source="root.0.2.1.0" x="688.000" y="415.400" font-size="24" font-weight="700" fill="#111827">콘텐츠 기반 라우팅</text>
-<text data-source="root.0.2.1.1.0" x="740.000" y="487.800" font-size="24" font-weight="700" fill="#111827">이벤트 패턴</text>
-<text data-source="root.0.2.1.1.0" x="740.000" y="527.000" font-size="20" font-weight="400" fill="#111827">내용에 따라 서로 다른 대상이 필요하다.</text>
-<text data-source="root.0.2.1.1.2" x="740.000" y="694.000" font-size="24" font-weight="700" fill="#111827">Amazon EventBridge</text>
-<text data-source="root.0.2.1.1.2" x="740.000" y="733.200" font-size="20" font-weight="400" fill="#111827">rule로 이벤트를 대상에 라우팅한다.</text>
-<text data-source="root.0.2.1.1.1" x="728.000" y="594.000" font-size="20" font-weight="400" fill="#111827">rule 매칭</text>
-<text data-source="root.0.2.2.0" x="1292.000" y="415.400" font-size="24" font-weight="700" fill="#111827">긴 대기와 사람 승인</text>
-<text data-source="root.0.2.2.1.0" x="1344.000" y="487.800" font-size="24" font-weight="700" fill="#111827">비멱등 작업</text>
-<text data-source="root.0.2.2.1.0" x="1344.000" y="527.000" font-size="20" font-weight="400" fill="#111827">긴 실행과 콜백, 승인 단계가 필요하다.</text>
-<text data-source="root.0.2.2.1.2" x="1344.000" y="694.000" font-size="24" font-weight="700" fill="#111827">Step Functions Standard</text>
-<text data-source="root.0.2.2.1.2" x="1344.000" y="733.200" font-size="20" font-weight="400" fill="#111827">승인과 callback을 포함한 긴 워크플로다.</text>
-<text data-source="root.0.2.2.1.1" x="1332.000" y="594.000" font-size="20" font-weight="400" fill="#111827">상태 있는 실행</text>
-<text data-source="root.0.1.1" x="84.000" y="312.400" font-size="20" font-weight="400" fill="#111827">순서, 버퍼, 라우팅, 승인 요구 확인</text>
+<rect data-source="root.0.2" x="64.000" y="347.400" width="1792.000" height="663.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0" x="88.000" y="371.400" width="568.000" height="615.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="676.000" y="371.400" width="568.000" height="408.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1264.000" y="371.400" width="568.000" height="408.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="64.000" y="138.200" width="1792.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="140.000" y="443.800" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="140.000" y="650.000" width="464.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.4" x="140.000" y="856.200" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="728.000" y="443.800" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="728.000" y="650.000" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.0" x="1316.000" y="443.800" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1.2" x="1316.000" y="650.000" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.2" d="M 960.000 260.400 L 960.000 297.900 L 960.000 297.900 L 960.000 335.400" fill="none" stroke="#475569" stroke-width="3"><title>순서, 버퍼, 라우팅, 승인 요구 확인</title></path>
+<polygon data-arrowhead="root.0.1.1" points="960.000,335.400 954.000,325.400 966.000,325.400" fill="#475569"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 616.000 498.900 L 628.000 498.900 L 628.000 602.000 L 116.000 602.000 L 116.000 705.100 L 128.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>팬아웃</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="128.000,705.100 118.000,711.100 118.000,699.100" fill="#475569"/>
+<path data-edge="root.0.2.0.1.3" data-from="root.0.2.0.1.2" data-to="root.0.2.0.1.4" d="M 616.000 705.100 L 628.000 705.100 L 628.000 808.200 L 116.000 808.200 L 116.000 911.300 L 128.000 911.300" fill="none" stroke="#475569" stroke-width="3"><title>소비자별 큐</title></path>
+<polygon data-arrowhead="root.0.2.0.1.3" points="128.000,911.300 118.000,917.300 118.000,905.300" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1204.000 498.900 L 1216.000 498.900 L 1216.000 602.000 L 704.000 602.000 L 704.000 705.100 L 716.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>rule 매칭</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="716.000,705.100 706.000,711.100 706.000,699.100" fill="#475569"/>
+<path data-edge="root.0.2.2.1.1" data-from="root.0.2.2.1.0" data-to="root.0.2.2.1.2" d="M 1792.000 498.900 L 1804.000 498.900 L 1804.000 602.000 L 1292.000 602.000 L 1292.000 705.100 L 1304.000 705.100" fill="none" stroke="#475569" stroke-width="3"><title>상태 있는 실행</title></path>
+<polygon data-arrowhead="root.0.2.2.1.1" points="1304.000,705.100 1294.000,711.100 1294.000,699.100" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="105.600" font-size="36" font-weight="700" fill="#111827">전달 요구가 통합 서비스를 가른다</text>
+<text data-source="root.0.1.0" x="84.000" y="182.200" font-size="24" font-weight="700" fill="#111827">모놀리스 모듈</text>
+<text data-source="root.0.1.0" x="84.000" y="221.400" font-size="20" font-weight="400" fill="#111827">기존 동기 호출을 어떤 보장으로 분리할지 정한다.</text>
+<text data-source="root.0.2.0.0" x="108.000" y="415.400" font-size="24" font-weight="700" fill="#111827">순서와 소비자별 버퍼</text>
+<text data-source="root.0.2.0.1.0" x="160.000" y="487.800" font-size="24" font-weight="700" fill="#111827">FIFO 전달</text>
+<text data-source="root.0.2.0.1.0" x="160.000" y="527.000" font-size="20" font-weight="400" fill="#111827">소비자마다 보존된 순서와 버퍼가 필요하다.</text>
+<text data-source="root.0.2.0.1.2" x="160.000" y="694.000" font-size="24" font-weight="700" fill="#111827">SNS FIFO</text>
+<text data-source="root.0.2.0.1.2" x="160.000" y="733.200" font-size="20" font-weight="400" fill="#111827">필터링과 팬아웃을 담당한다.</text>
+<text data-source="root.0.2.0.1.4" x="160.000" y="900.200" font-size="24" font-weight="700" fill="#111827">SQS FIFO</text>
+<text data-source="root.0.2.0.1.4" x="160.000" y="939.400" font-size="20" font-weight="400" fill="#111827">소비자별 보존과 순서를 보장한다.</text>
+<text data-source="root.0.2.0.1.1" x="148.000" y="594.000" font-size="20" font-weight="400" fill="#111827">팬아웃</text>
+<text data-source="root.0.2.0.1.3" x="148.000" y="800.200" font-size="20" font-weight="400" fill="#111827">소비자별 큐</text>
+<text data-source="root.0.2.1.0" x="696.000" y="415.400" font-size="24" font-weight="700" fill="#111827">콘텐츠 기반 라우팅</text>
+<text data-source="root.0.2.1.1.0" x="748.000" y="487.800" font-size="24" font-weight="700" fill="#111827">이벤트 패턴</text>
+<text data-source="root.0.2.1.1.0" x="748.000" y="527.000" font-size="20" font-weight="400" fill="#111827">내용에 따라 서로 다른 대상이 필요하다.</text>
+<text data-source="root.0.2.1.1.2" x="748.000" y="694.000" font-size="24" font-weight="700" fill="#111827">Amazon EventBridge</text>
+<text data-source="root.0.2.1.1.2" x="748.000" y="733.200" font-size="20" font-weight="400" fill="#111827">rule로 이벤트를 대상에 라우팅한다.</text>
+<text data-source="root.0.2.1.1.1" x="736.000" y="594.000" font-size="20" font-weight="400" fill="#111827">rule 매칭</text>
+<text data-source="root.0.2.2.0" x="1284.000" y="415.400" font-size="24" font-weight="700" fill="#111827">긴 대기와 사람 승인</text>
+<text data-source="root.0.2.2.1.0" x="1336.000" y="487.800" font-size="24" font-weight="700" fill="#111827">비멱등 작업</text>
+<text data-source="root.0.2.2.1.0" x="1336.000" y="527.000" font-size="20" font-weight="400" fill="#111827">긴 실행과 콜백, 승인 단계가 필요하다.</text>
+<text data-source="root.0.2.2.1.2" x="1336.000" y="694.000" font-size="24" font-weight="700" fill="#111827">Step Functions Standard</text>
+<text data-source="root.0.2.2.1.2" x="1336.000" y="733.200" font-size="20" font-weight="400" fill="#111827">승인과 callback을 포함한 긴 워크플로다.</text>
+<text data-source="root.0.2.2.1.1" x="1324.000" y="594.000" font-size="20" font-weight="400" fill="#111827">상태 있는 실행</text>
+<text data-source="root.0.1.1" x="84.000" y="288.400" font-size="20" font-weight="400" fill="#111827">순서, 버퍼, 라우팅, 승인 요구 확인</text>
 </svg>

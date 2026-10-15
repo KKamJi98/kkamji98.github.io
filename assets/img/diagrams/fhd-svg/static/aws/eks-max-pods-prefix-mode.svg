@@ -1,44 +1,44 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e0442415a236909aa8a2f0491c8bd41363ffa30985fd332d91c014609e3ec91d">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1" x="64.000" y="146.150" width="1792.000" height="806.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1.4.0" x="120.000" y="470.750" width="372.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1.4.1" x="516.000" y="470.750" width="372.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1.4" x="120.000" y="470.750" width="768.000" height="235.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.1.0" x="120.000" y="240.300" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.2" x="1032.000" y="240.300" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.4.0.1" x="144.000" y="556.550" width="324.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.1.4.1.1" x="540.000" y="556.550" width="324.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.1.6" x="1032.000" y="525.650" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.8" x="120.000" y="802.650" width="768.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 900.000 303.350 L 1020.000 303.350" fill="none" stroke="#475569" stroke-width="3"><title>warm pool에서 할당</title></path>
-<polygon data-arrowhead="root.0.1.1.1" points="1020.000,303.350 1010.000,309.350 1010.000,297.350" fill="#475569"/>
-<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1812.000 303.350 L 1824.000 303.350 L 1824.000 422.750 L 96.000 422.750 L 96.000 588.700 L 108.000 588.700" fill="none" stroke="#475569" stroke-width="3"><title>address mode 선택</title></path>
-<polygon data-arrowhead="root.0.1.1.3" points="108.000,588.700 98.000,594.700 98.000,582.700" fill="#475569"/>
-<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 900.000 588.700 L 1020.000 588.700" fill="none" stroke="#475569" stroke-width="3"><title>ENIs x slots x address 수</title></path>
-<polygon data-arrowhead="root.0.1.1.5" points="1020.000,588.700 1010.000,594.700 1010.000,582.700" fill="#475569"/>
-<path data-edge="root.0.1.1.7" data-from="root.0.1.1.6" data-to="root.0.1.1.8" d="M 1812.000 588.700 L 1824.000 588.700 L 1824.000 754.650 L 96.000 754.650 L 96.000 865.700 L 108.000 865.700" fill="none" stroke="#475569" stroke-width="3"><title>kubelet admission limit</title></path>
-<polygon data-arrowhead="root.0.1.1.7" points="108.000,865.700 98.000,871.700 98.000,859.700" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="109.550" font-size="36" font-weight="700" fill="#111827">Prefix mode는 ENI slot 하나가 건네는 IP 수를 키운다</text>
-<text data-source="root.0.1.0" x="88.000" y="198.150" font-size="28" font-weight="700" fill="#111827">EKS worker node</text>
-<text data-source="root.0.1.1.0" x="144.000" y="292.300" font-size="28" font-weight="700" fill="#111827">Pod requests an IP</text>
-<text data-source="root.0.1.1.0" x="144.000" y="334.700" font-size="22" font-weight="400" fill="#111827">scheduler가 Pod 배치</text>
-<text data-source="root.0.1.1.2" x="1056.000" y="292.300" font-size="28" font-weight="700" fill="#111827">Amazon VPC CNI</text>
-<text data-source="root.0.1.1.2" x="1056.000" y="334.700" font-size="22" font-weight="400" fill="#111827">ipamd가 IP 자원을 관리</text>
-<text data-source="root.0.1.1.4.0.0" x="144.000" y="522.750" font-size="28" font-weight="700" fill="#111827">Secondary IP mode</text>
-<text data-source="root.0.1.1.4.0.1" x="168.000" y="608.550" font-size="28" font-weight="700" fill="#111827">ENI slot = one IP</text>
-<text data-source="root.0.1.1.4.0.1" x="168.000" y="650.950" font-size="22" font-weight="400" fill="#111827">각 Pod에 secondary IP 하나</text>
-<text data-source="root.0.1.1.4.1.0" x="540.000" y="522.750" font-size="28" font-weight="700" fill="#111827">Prefix delegation</text>
-<text data-source="root.0.1.1.4.1.1" x="564.000" y="608.550" font-size="28" font-weight="700" fill="#111827">ENI prefix</text>
-<text data-source="root.0.1.1.4.1.1" x="564.000" y="650.950" font-size="22" font-weight="400" fill="#111827">slot마다 /28 prefix = 16 IPs</text>
-<text data-source="root.0.1.1.6" x="1056.000" y="577.650" font-size="28" font-weight="700" fill="#111827">Node IP capacity</text>
-<text data-source="root.0.1.1.6" x="1056.000" y="620.050" font-size="22" font-weight="400" fill="#111827">prefix mode에서 address pool이 크게 증가</text>
-<text data-source="root.0.1.1.8" x="144.000" y="854.650" font-size="28" font-weight="700" fill="#111827">max-pods</text>
-<text data-source="root.0.1.1.8" x="144.000" y="897.050" font-size="22" font-weight="400" fill="#111827">t4g.small 계산값 146, low-CPU ceiling은 110</text>
-<text data-source="root.0.1.1.1" x="892.000" y="253.950" font-size="22" font-weight="400" fill="#111827">warm</text>
-<text data-source="root.0.1.1.1" x="892.000" y="283.650" font-size="22" font-weight="400" fill="#111827">pool에서 할당</text>
-<text data-source="root.0.1.1.3" x="128.000" y="414.750" font-size="22" font-weight="400" fill="#111827">address mode 선택</text>
-<text data-source="root.0.1.1.5" x="892.000" y="539.300" font-size="22" font-weight="400" fill="#111827">ENIs x slots x</text>
-<text data-source="root.0.1.1.5" x="892.000" y="569.000" font-size="22" font-weight="400" fill="#111827">address 수</text>
-<text data-source="root.0.1.1.7" x="128.000" y="746.650" font-size="22" font-weight="400" fill="#111827">kubelet admission limit</text>
-<text data-source="root.0.2" x="64.000" y="998.750" font-size="22" font-weight="400" fill="#111827">Prefix mode를 켜도 kubelet의 max-pods 설정은 별도로 갱신해야 하며, 실제 반영에는 node replacement가 필요합니다.</text>
+<rect data-source="root.0.1" x="64.000" y="162.200" width="1792.000" height="777.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.4" x="116.000" y="462.600" width="772.000" height="250.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.4.0" x="140.000" y="486.600" width="352.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.4.1" x="512.000" y="486.600" width="352.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="116.000" y="245.500" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1032.000" y="245.500" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.4.0.1" x="160.000" y="559.000" width="312.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.4.1.1" x="532.000" y="559.000" width="312.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.6" x="1032.000" y="532.800" width="772.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.8" x="116.000" y="809.200" width="772.000" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 900.000 300.600 L 1020.000 300.600" fill="none" stroke="#475569" stroke-width="3"><title>warm pool에서 할당</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="1020.000,300.600 1010.000,306.600 1010.000,294.600" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1816.000 300.600 L 1828.000 300.600 L 1828.000 414.600 L 92.000 414.600 L 92.000 587.900 L 104.000 587.900" fill="none" stroke="#475569" stroke-width="3"><title>address mode 선택</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="104.000,587.900 94.000,593.900 94.000,581.900" fill="#475569"/>
+<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 900.000 587.900 L 1020.000 587.900" fill="none" stroke="#475569" stroke-width="3"><title>ENIs x slots x address 수</title></path>
+<polygon data-arrowhead="root.0.1.1.5" points="1020.000,587.900 1010.000,593.900 1010.000,581.900" fill="#475569"/>
+<path data-edge="root.0.1.1.7" data-from="root.0.1.1.6" data-to="root.0.1.1.8" d="M 1816.000 587.900 L 1828.000 587.900 L 1828.000 761.200 L 92.000 761.200 L 92.000 864.300 L 104.000 864.300" fill="none" stroke="#475569" stroke-width="3"><title>kubelet admission limit</title></path>
+<polygon data-arrowhead="root.0.1.1.7" points="104.000,864.300 94.000,870.300 94.000,858.300" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="129.600" font-size="36" font-weight="700" fill="#111827">Prefix mode는 ENI slot 하나가 건네는 IP 수를 키운다</text>
+<text data-source="root.0.1.0" x="84.000" y="206.200" font-size="24" font-weight="700" fill="#111827">EKS worker node</text>
+<text data-source="root.0.1.1.0" x="136.000" y="289.500" font-size="24" font-weight="700" fill="#111827">Pod requests an IP</text>
+<text data-source="root.0.1.1.0" x="136.000" y="328.700" font-size="20" font-weight="400" fill="#111827">scheduler가 Pod 배치</text>
+<text data-source="root.0.1.1.2" x="1052.000" y="289.500" font-size="24" font-weight="700" fill="#111827">Amazon VPC CNI</text>
+<text data-source="root.0.1.1.2" x="1052.000" y="328.700" font-size="20" font-weight="400" fill="#111827">ipamd가 IP 자원을 관리</text>
+<text data-source="root.0.1.1.4.0.0" x="160.000" y="530.600" font-size="24" font-weight="700" fill="#111827">Secondary IP mode</text>
+<text data-source="root.0.1.1.4.0.1" x="180.000" y="603.000" font-size="24" font-weight="700" fill="#111827">ENI slot = one IP</text>
+<text data-source="root.0.1.1.4.0.1" x="180.000" y="642.200" font-size="20" font-weight="400" fill="#111827">각 Pod에 secondary IP 하나</text>
+<text data-source="root.0.1.1.4.1.0" x="532.000" y="530.600" font-size="24" font-weight="700" fill="#111827">Prefix delegation</text>
+<text data-source="root.0.1.1.4.1.1" x="552.000" y="603.000" font-size="24" font-weight="700" fill="#111827">ENI prefix</text>
+<text data-source="root.0.1.1.4.1.1" x="552.000" y="642.200" font-size="20" font-weight="400" fill="#111827">slot마다 /28 prefix = 16 IPs</text>
+<text data-source="root.0.1.1.6" x="1052.000" y="576.800" font-size="24" font-weight="700" fill="#111827">Node IP capacity</text>
+<text data-source="root.0.1.1.6" x="1052.000" y="616.000" font-size="20" font-weight="400" fill="#111827">prefix mode에서 address pool이 크게 증가</text>
+<text data-source="root.0.1.1.8" x="136.000" y="853.200" font-size="24" font-weight="700" fill="#111827">max-pods</text>
+<text data-source="root.0.1.1.8" x="136.000" y="892.400" font-size="20" font-weight="400" fill="#111827">t4g.small 계산값 146, low-CPU ceiling은 110</text>
+<text data-source="root.0.1.1.1" x="892.000" y="254.600" font-size="20" font-weight="400" fill="#111827">warm pool에서</text>
+<text data-source="root.0.1.1.1" x="892.000" y="281.600" font-size="20" font-weight="400" fill="#111827">할당</text>
+<text data-source="root.0.1.1.3" x="124.000" y="406.600" font-size="20" font-weight="400" fill="#111827">address mode 선택</text>
+<text data-source="root.0.1.1.5" x="892.000" y="541.900" font-size="20" font-weight="400" fill="#111827">ENIs x slots x</text>
+<text data-source="root.0.1.1.5" x="892.000" y="568.900" font-size="20" font-weight="400" fill="#111827">address 수</text>
+<text data-source="root.0.1.1.7" x="124.000" y="753.200" font-size="20" font-weight="400" fill="#111827">kubelet admission limit</text>
+<text data-source="root.0.2" x="64.000" y="979.400" font-size="20" font-weight="400" fill="#111827">Prefix mode를 켜도 kubelet의 max-pods 설정은 별도로 갱신해야 하며, 실제 반영에는 node replacement가 필요합니다.</text>
 </svg>

@@ -20,6 +20,12 @@ from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 
+from corpus_clearance import corpus_clearance_profile, check_corpus_clearance
+from corpus_flow_balance import corpus_flow_balance_profile
+from corpus_typography import corpus_typography_profile, typography_repair, wrap_text
+from corpus_pod_identity import repair_pod_identity_clearance
+from corpus_relation_clearance import scoped_profile, repair_relations
+
 WIDTH, HEIGHT = 1920, 1080
 EDGE_WIDTH = 144
 VOID = {
@@ -42,6 +48,56 @@ SVG_BEGIN = "<!-- FHD artwork: generated from the preserved semantic source. -->
 SEMANTIC_BEGIN = '<div class="sd-semantic-source">'
 FONT = "assets/fonts/deterministic-export/NotoSansKR[wght].ttf"
 FIXED_LAYOUT_PROFILES = {
+    "diagrams/packer-golden-image.html": {
+        "edge_widths": {"root.0.1.1": 168},
+    },
+    "diagrams/static/network/tcp-3-way-handshake.html": {
+        "edge_widths": {"root.0.2": 264.5},
+        "edge_label_insets": {"root.0.2.1": 12, "root.0.2.3": 12, "root.0.2.5": 12},
+        "node_text_insets": {"root.0.2.4": 13.5},
+        "bold_text_width_budgets": {"root.0.2.2": 1.25},
+    },
+    "diagrams/static/kubernetes/endpoint_vs_endpointslice.html": {
+        "text_width_budgets": {"root.0.2.1.2": 1.12},
+    },
+    "diagrams/static/kubernetes/karpenter-provisioning-flow.html": {
+        "edge_widths": {"root.0.1": 192},
+        "edge_label_insets": {"root.0.1.1": 12},
+    },
+    "diagrams/static/kubernetes/mysql-kubernetes-deployment.html": {
+        "edge_widths": {"root.0.4": 192},
+        "edge_label_insets": {"root.0.4.1": 12},
+    },
+    "diagrams/static/observability/log_monitoring.html": {
+        "edge_widths": {"root.0.2": 224},
+        "edge_label_insets": {"root.0.2.1": 12, "root.0.2.3": 12},
+    },
+    "diagrams/static/sap-c02/eks-compute-option-split.html": {
+        "columns": {"root.0.2.2": 2},
+    },
+    "diagrams/static/jvm/jvm-02-stack-vs-heap.html": {
+        "edge_widths": {"root.0.1": 180},
+    },
+    "diagrams/static/observability/kibana-query-flow.html": {
+        "edge_widths": {"root.0.1": 200},
+        "edge_label_insets": {"root.0.1.1": 12, "root.0.1.3": 12},
+    },
+    "diagrams/static/kubernetes/cilium/cilium_l7_layer_policy.html": {
+        "column_weights": {"root.0.1.2.1.1": [460, 346]},
+    },
+    "diagrams/static/spring/spring-20-n-plus-1-fix.html": {
+        "center_partial_rows": ["root.0.1.1.1"],
+        "equal_boundary_sets": [("root.0.1.0", "root.0.1.1")],
+    },
+    "diagrams/static/kubernetes/kubernetes-fqdn-resolution.html": {
+        "edge_widths": {"root.0.1": 400}
+    },
+    "diagrams/static/ai/graph-system-intelligence.html": {
+        "columns": {"root.0.1": 3}
+    },
+    "diagrams/static/ci-cd/ci-cd-study/openid-connect-authorization-code-flow-simplied.html": {
+        "group_insets": {"root.0.2": 48}
+    },
     "diagrams/static/aws/analytics-stack-03-distributed-sql-mpp.html": {
         "columns": {"root.0.1.4": 1}
     },
@@ -56,7 +112,8 @@ FIXED_LAYOUT_PROFILES = {
         "columns": {"root.0.2.8.0.1": 2}
     },
     "diagrams/static/sap-c02/kinesis-efo-vs-shared-consumers.html": {
-        "columns": {"root.0.2.4.0.1.1": 1, "root.0.2.4.1.1.1": 1}
+        "columns": {"root.0.2.4.0.1.1": 1, "root.0.2.4.1.1.1": 1},
+        "center_partial_rows": ["root.0.2"],
     },
     "diagrams/static/sap-c02/modernization-database-target-selection.html": {
         "edge_widths": {"root.0.2.1.1": 224}
@@ -248,11 +305,24 @@ class Layout:
             [],
         )
 
-    def wrap(self, text, width, size, label=False):
+    def grid_widths(self, element, width, columns):
+        available = width - self.gap * (columns - 1)
+        weights = self.profile.get("column_weights", {}).get(element.key)
+        if weights is None:
+            return [available / columns] * columns
+        if len(weights) != columns or any(w <= 0 for w in weights):
+            raise ValueError("Column weights must match the positive column count")
+        return [available * weight / sum(weights) for weight in weights]
+
+    def wrap(self, text, width, size, label=False, source=""):
         budget = self.profile.get(
             "bold_width_budget" if label else "regular_width_budget", 1
         )
-        return self.font.wrap(text, width / budget, size)
+        budget = self.profile.get("text_width_budgets", {}).get(source, budget)
+        if label:
+            budget = self.profile.get("bold_text_width_budgets", {}).get(source, budget)
+        return wrap_text(text, width, size, include=self.profile.get("typography_include", ""),
+                         source=source, font=self.font, width_budget=budget)
 
     def icon(self, e):
         return next((c for c in e.descendants() if c.tag == "img"), None)
@@ -375,6 +445,10 @@ class Layout:
     def row_heights(self, e, inner, cards, columns, col):
         heights = []
         children = self.items(e)
+        row_widths = getattr(self, "_row_edge_widths", {})
+        row_widths.update({child.key: max(self.edge_width(e) - 2 * self.profile.get("edge_label_insets", {}).get(child.key, 4), 24)
+                           for child in children if self.kind(child) == "edge"})
+        self._row_edge_widths = row_widths
         for start in range(0, len(cards), columns):
             subset = cards[start : start + columns]
             h = max(self.measure(c, col) for c in subset)
@@ -384,7 +458,7 @@ class Layout:
                     continue
                 label = (
                     self.wrap(
-                        edge.text(), max(self.edge_width(e) - 8, 24), self.detail_size
+                        edge.text(), self._row_edge_widths[edge.key], self.detail_size, source=edge.key
                     )
                     if edge.text()
                     else []
@@ -480,10 +554,11 @@ class Layout:
             icon_width = (
                 96 if image and "sd-cert-badge" in image.classes else 64 if image else 0
             )
-            text_width = width - 2 * self.padding - (icon_width + 20 if image else 0)
+            text_inset = self.profile.get("node_text_insets", {}).get(e.key, self.padding)
+            text_width = width - 2 * text_inset - (icon_width + 20 if image else 0)
             return (
-                self.wrap(head, text_width, self.label_size, label=True),
-                self.wrap(detail, text_width, self.detail_size) if detail else [],
+                self.wrap(head, text_width, self.label_size, label=True, source=e.key),
+                self.wrap(detail, text_width, self.detail_size, source=e.key) if detail else [],
             )
         size = (
             36
@@ -493,7 +568,7 @@ class Layout:
             else self.detail_size
         )
         return self.wrap(
-            e.text(), width, size, label=bool(e.classes & HEAD_CLASSES)
+            e.text(), width, size, label=bool(e.classes & HEAD_CLASSES), source=e.key
         ), []
 
     def measure(self, e, width):
@@ -503,9 +578,12 @@ class Layout:
         if e.key in self.profile.get("phase_flows", {}):
             return self.measure_phase(e, width)
         if kind == "edge":
+            label_width = max(width / 2 - 36, 60)
+            if typography_repair(self.profile.get("typography_include", ""), e.key):
+                label_width = getattr(self, "_row_edge_widths", {}).get(e.key, label_width)
             return max(
                 56,
-                len(self.wrap(e.text(), max(width / 2 - 36, 60), self.detail_size))
+                len(self.wrap(e.text(), label_width, self.detail_size, source=e.key))
                 * (self.detail_size * 1.35)
                 + 32,
             )
@@ -564,11 +642,11 @@ class Layout:
             return 2 * pad + sum(heights) + 96 * (len(heights) - 1) + tail
         columns = self.columns(e)
         if columns:
-            col = (inner - self.gap * (columns - 1)) / columns
+            widths = self.grid_widths(e, inner, columns)
             return (
                 2 * pad
                 + sum(
-                    max(self.measure(c, col) for c in children[i : i + columns])
+                    max(self.measure(c, widths[j]) for j, c in enumerate(children[i : i + columns]))
                     for i in range(0, len(children), columns)
                 )
                 + self.gap * ((len(children) - 1) // columns)
@@ -632,7 +710,7 @@ class Layout:
             )
             head, detail = self.lines(e, width)
             image = self.icon(e)
-            tx = x + self.padding
+            tx = x + self.profile.get("node_text_insets", {}).get(e.key, self.padding)
             if image:
                 icon_width = 96 if "sd-cert-badge" in image.classes else 64
                 icon_height = (
@@ -740,18 +818,21 @@ class Layout:
                     + column * (col + edge_width)
                     + (col if self.kind(child) == "edge" else 0)
                 )
+                if e.key in self.profile.get("center_partial_rows", []):
+                    count = min(columns, len(cards) - row * columns)
+                    px += (columns - count) * (col + edge_width) / 2
                 h = self.measure(child, w)
                 rows.append(self.draw(child, px, py + (row_heights[row] - h) / 2, w))
         elif self.columns(e):
             columns = self.columns(e)
-            col = (inner - self.gap * (columns - 1)) / columns
+            widths = self.grid_widths(e, inner, columns)
             py = y + pad
             for i in range(0, len(children), columns):
                 subset = children[i : i + columns]
-                h = max(self.measure(c, col) for c in subset)
+                h = max(self.measure(c, widths[j]) for j, c in enumerate(subset))
                 for j, child in enumerate(subset):
                     rows.append(
-                        self.draw(child, x + pad + j * (col + self.gap), py, col)
+                        self.draw(child, x + pad + sum(widths[:j]) + j * self.gap, py, widths[j])
                     )
                 py += h + self.gap
         else:
@@ -759,6 +840,19 @@ class Layout:
             for child in children:
                 rows.append(self.draw(child, x + pad, py, inner))
                 py += self.measure(child, inner) + self.gap
+        for keys in self.profile.get("equal_boundary_sets", []):
+            peers = [r for r in rows if r["element"].key in keys and self.kind(r["element"]) == "group"]
+            if len(peers) != len(keys):
+                continue
+            top = min(r["bounds"][1] for r in peers)
+            bottom = max(r["bounds"][1] + r["bounds"][3] for r in peers)
+            for peer in peers:
+                key = peer["element"].key
+                peer["bounds"][1], peer["bounds"][3] = top, bottom - top
+                self.group_bounds[key].update(y=top, height=bottom - top)
+                for group in self.groups:
+                    if group["source"] == key:
+                        group.update(y=top, height=bottom - top)
         for i, row in enumerate(rows):
             if self.kind(row["element"]) != "edge":
                 continue
@@ -787,6 +881,10 @@ class Layout:
                     (points[0][0] + points[1][0] - label_width) / 2,
                     min(points[0][1], points[1][1]) - self.detail_size - 12,
                 )
+                inset = self.profile.get("edge_label_insets", {}).get(row["element"].key)
+                if inset is not None:
+                    label_width = max(24, b[0] - a[0] - a[2] - 2 * inset)
+                    tx = a[0] + a[2] + inset
             elif self.row(e, inner) and b[1] > a[1]:
                 # The row transition is an explicit routed edge, not a change
                 # of DOM order or an implied connection between adjacent rows.
@@ -803,6 +901,11 @@ class Layout:
                     [b[0] - 12, b[1] + b[3] / 2],
                 ]
                 tx, ty, label_width = x + 40, middle - self.detail_size - 8, width - 80
+                if e.key in self.profile.get("center_partial_rows", []):
+                    sx, target_x = a[0] + a[2] / 2, b[0] + b[2] / 2
+                    points = [[sx, a[1] + a[3] + 12], [sx, middle], [target_x, middle], [target_x, b[1] - 12]]
+                    tx = min(sx, target_x) + 12
+                    label_width = max(abs(sx - target_x) - 24, 120)
             else:
                 points = [
                     [a[0] + a[2] / 2, a[1] + a[3] + 12],
@@ -824,7 +927,7 @@ class Layout:
                 }
             )
             if row["element"].text():
-                lines = self.wrap(row["element"].text(), label_width, self.detail_size)
+                lines = self.wrap(row["element"].text(), label_width, self.detail_size, source=row["element"].key)
                 text_height = len(lines) * self.detail_size * 1.35
                 if horizontal:
                     ty = min(points[0][1], points[-1][1]) - text_height - 12
@@ -916,7 +1019,7 @@ class Layout:
                 }
             )
             self.add_text(
-                self.wrap(child.text(), label_width, self.detail_size)
+                self.wrap(child.text(), label_width, self.detail_size, source=child.key)
                 if child.text()
                 else [],
                 tx,
@@ -959,7 +1062,7 @@ class Layout:
             }
         )
         self.add_text(
-            self.wrap(edge.text(), width / 2 - 40, self.detail_size)
+            self.wrap(edge.text(), width / 2 - 40, self.detail_size, source=edge.key)
             if edge.text()
             else [],
             x + width / 2 + 20,
@@ -1058,7 +1161,7 @@ class Layout:
             del edge["unresolved"]
             x, y, width, _height = edge["bounds"]
             lines = (
-                self.wrap(e.text(), max(width - 40, 60), self.detail_size)
+                self.wrap(e.text(), max(width - 40, 60), self.detail_size, source=e.key)
                 if e.text()
                 else []
             )
@@ -1332,6 +1435,24 @@ def check_layout(layout):
                     }
                 )
     for group in layout.groups:
+        inset = layout.profile.get("group_insets", {}).get(group["source"])
+        if inset is not None:
+            required = max(1, inset - 2)
+            for child in layout.boxes + layout.groups:
+                if not child["source"].startswith(group["source"] + "."):
+                    continue
+                gaps = [
+                    child["x"] - group["x"], child["y"] - group["y"],
+                    group["x"] + group["width"] - child["x"] - child["width"],
+                    group["y"] + group["height"] - child["y"] - child["height"],
+                ]
+                painted = min(gaps) - 2
+                if painted < required - 0.1:
+                    issues.append({
+                        "code": "declared-inner-stroke-clearance",
+                        "source": child["source"], "group": group["source"],
+                        "painted_clearance": painted, "required": required,
+                    })
         for node in layout.boxes:
             if node["source"].startswith(group["source"] + ".") and (
                 node["x"] < group["x"] - 0.1
@@ -1624,10 +1745,12 @@ def complete_relation_labels(layout):
     for edge in layout.connectors:
         if "points" not in edge:
             continue
-        if edge.get("meaning_at_target") and any(
-            text["source"] in edge.get("to", [])
-            and text["label"] and text["text"] == edge.get("meaning")
-            for text in layout.texts
+        if edge.get("meaning_at_target") and edge.get("meaning") and any(
+            "".join(" ".join(
+                text["text"] for text in layout.texts
+                if text["source"] == target and text["label"]
+            ).split()) == "".join(edge.get("meaning", "").split())
+            for target in edge.get("to", [])
         ):
             continue
         keys = {edge["source"], edge.get("origin"), edge["source"] + ".meaning"}
@@ -1662,6 +1785,11 @@ def manual_relation_fixes(layout, figure, include):
     """Source-backed relations that an HTML grid/sequence alone cannot paint."""
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     boxes = {b["source"]: b for b in layout.boxes}
+    if include == "diagrams/static/ai/litellm-architecture.html":
+        edge = next(e for e in layout.connectors if e["source"] == "root.0.2.0")
+        for text in layout.texts:
+            if text["source"] == edge["source"]:
+                text["x"] = edge["points"][0][0] + 24
 
     def fork(source, targets, key, labels, bus=None):
         a = boxes[source]
@@ -1683,6 +1811,21 @@ def manual_relation_fixes(layout, figure, include):
                 }
             )
 
+    target_relations = {
+        "diagrams/static/ai/agentic-development-workspace.html": ("root.0.4",),
+        "diagrams/static/ai/graph-system-intelligence.html": ("root.0.4",),
+        "diagrams/static/sap-c02/directory-service-selection.html": ("root.0.1.0.3.0.1.1",),
+        "diagrams/static/sap-c02/dms-schema-object-ownership.html": ("root.0.1.2.0.1.1", "root.0.1.2.1.1.1"),
+        "diagrams/static/sap-c02/aurora-global-switchover-failover.html": ("root.0.1.1",),
+    }.get(include, ())
+    for key in target_relations:
+        edge = next(e for e in layout.connectors if e["source"] == key)
+        assert edge["label"] == "" and len(edge["to"]) == 1
+        edge["meaning"] = next(
+            e.text() for e in elements[edge["to"][0]].children
+            if "sd-label" in e.classes
+        )
+        edge["meaning_at_target"] = True
     if include.endswith("litellm-virtual-key-flow.html"):
         for index in range(2):
             edge = next(
@@ -1694,10 +1837,58 @@ def manual_relation_fixes(layout, figure, include):
             bus = edge["points"][0][1] + 2
             edge["points"][1][1] = edge["points"][2][1] = bus
             edge["origin"] = f"root.0.2.2.{index}.0"
+    elif include.endswith("config-evaluation-remediation.html"):
+        edge = next(e for e in layout.connectors if e["source"] == "root.0.1.0.0.2")
+        source, target = boxes["root.0.1.0.0.1"], boxes["root.0.1.0.0.3.0"]
+        sx, sy = source["x"] + source["width"] / 2, source["y"] + source["height"] + 12
+        tx, ty = target["x"] + target["width"] / 2, target["y"] - 12
+        bus = (sy + ty) / 2
+        edge["from"], edge["to"] = [source["source"]], [target["source"]]
+        edge["points"] = [[sx, sy], [sx, bus], [tx, bus], [tx, ty]]
+    elif include.endswith("jenkins-ci-overview.html"):
+        edge = next(e for e in layout.connectors if e["source"] == "root.0.2.1.2.3")
+        registry, pod = boxes["root.0.2.0.2.2"], boxes["root.0.2.1.2.4"]
+        bus = (registry["x"] + registry["width"] + pod["x"]) / 2
+        sy = registry["y"] + registry["height"] / 2
+        ty = pod["y"] + pod["height"] / 2
+        edge["from"] = [registry["source"]]
+        edge["points"] = [[registry["x"] + registry["width"] + 12, sy], [bus, sy], [bus, ty], [pod["x"] - 12, ty]]
+        layout.texts = [t for t in layout.texts if t["source"] != edge["source"]]
+        width = registry["width"]
+        layout.add_text(layout.wrap(edge["label"], width, layout.detail_size), registry["x"], ty - 80, layout.detail_size, width, edge["source"])
+    elif include.endswith("kubernetes-gitops-loop.html"):
+        edge = next(e for e in layout.connectors if e["source"] == "root.0.2.1.2.3")
+        labels = [e for e in elements[edge["source"]].children if "sd-edge-label" in e.classes]
+        assert len(labels) == 2
+        edge["label"], edge["origin"] = labels[0].text(), edge["source"]
+        layout.texts = [t for t in layout.texts if t["source"] != edge["source"]]
+        registry, cluster = boxes["root.0.2.0.2.0"], boxes["root.0.2.1.2.4"]
+        bus = (registry["x"] + registry["width"] + cluster["x"]) / 2
+        sy = registry["y"] + registry["height"] / 2
+        ty = cluster["y"] + cluster["height"] / 2
+        layout.connectors.append({
+            "source": edge["source"] + ".image-pull", "origin": edge["source"],
+            "label": labels[1].text(), "from": [registry["source"]], "to": [cluster["source"]],
+            "points": [[registry["x"] + registry["width"] + 12, sy], [bus, sy], [bus, ty], [cluster["x"] - 12, ty]],
+            "meaning_bounds": (registry["x"], ty - 80, registry["width"]),
+        })
+        layout.add_text(layout.wrap(labels[0].text(), cluster["width"], layout.detail_size), cluster["x"], cluster["y"] - 72, layout.detail_size, cluster["width"], edge["source"])
+        layout.add_text(layout.wrap(labels[1].text(), registry["width"], layout.detail_size), registry["x"], ty - 80, layout.detail_size, registry["width"], edge["source"])
     elif include.endswith("openid-connect-authorization-code-flow-simplied.html"):
         for text in layout.texts:
             if text["source"] == "root.0.1.9":
                 text["x"] = 450
+        edge = next(e for e in layout.connectors if e["source"] == "root.0.2.loop")
+        box = boxes["root.0.2.0.0"]
+        frame = next(g for g in layout.groups if g["source"] == "root.0.2")
+        edge["label"] = elements[box["source"]].children[1].text()
+        right = frame["x"] + frame["width"] - 12
+        sx = box["x"] + box["width"] + 12
+        sy, ty = box["y"] + box["height"] * .3, box["y"] + box["height"] * .7
+        edge["points"] = [[sx, sy], [right, sy], [right, ty], [sx, ty]]
+        edge["meaning_at_target"] = True
+        edge["meaning"] = next(e.text() for e in elements[box["source"]].children if "sd-label" in e.classes)
+        layout.texts = [t for t in layout.texts if t["source"] not in {"root.0.2.loop", "root.0.2.loop.meaning"}]
     elif include.endswith("kubernetes-architecture-overview.html"):
         api = boxes["root.0.1.1.0"]
         for index in range(3):
@@ -1736,14 +1927,12 @@ def manual_relation_fixes(layout, figure, include):
         )
         vault = boxes["root.0.4.0.1.1"]
         edge = next(e for e in layout.connectors if e["source"] == "root.0.4.0.0")
-        vx = vault["x"] + vault["width"] + 12
-        vy = vault["y"] + vault["height"] / 2
+        vx = vault["x"] + vault["width"] / 2
         edge["points"] = [
             [controller["x"] + 48, sy],
             [controller["x"] + 48, bus],
-            [vx + 12, bus],
-            [vx + 12, vy],
-            [vx, vy],
+            [vx, bus],
+            [vx, vault["y"] - 12],
         ]
         edge.pop("remote_reference", None)
         for index, source_x in [(1, controller["x"] + 248), (2, controller["x"] + 668)]:
@@ -1942,6 +2131,9 @@ def alarm_layout(font, figure):
             "regular_width_budget": 1.12,
             "vertical_flows": ["root.0.1.6.0.1", "root.0.1.6.1.1"],
             "columns": {"root.0.1.6.0.1.2": 2},
+            "column_weights": {"root.0.1.6.1.1.2": [220, 220, 296]},
+            **corpus_typography_profile("diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"),
+            **corpus_clearance_profile("diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"),
         },
     )
     layout.draw(elements["root.0.0"], 64, 64, 1792)
@@ -2489,6 +2681,10 @@ def rag_layout(font, figure):
 def config_layout(font, figure, typography=None):
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     profile = {"phase_flows": {"root.0.1.0.0.3": 2}, **(typography or {})}
+    profile["group_insets"] = {
+        **profile.get("group_insets", {}),
+        **corpus_clearance_profile("diagrams/static/sap-c02/config-evaluation-remediation.html")["group_insets"],
+    }
     for label, detail, gap, padding in [
         (20, 16, 12, 12),
         (18, 14, 10, 10),
@@ -2524,8 +2720,8 @@ def jenkins_layout(font, figure):
         ("root.0.1", 64, 150, 1792),
         ("root.0.3", 64, 410, 850),
         ("root.0.5", 1120, 410, 736),
-        ("root.0.8", 64, 640, 850),
-        ("root.0.7", 64, 860, 1792),
+        ("root.0.8", 64, 684, 850),
+        ("root.0.7", 64, 904, 1792),
     ]:
         layout.draw(elements[key], x, y, width)
     layout.add_text(
@@ -2534,6 +2730,10 @@ def jenkins_layout(font, figure):
     checkout = next(b for b in layout.boxes if b["source"] == "root.0.1.8")
     build = next(b for b in layout.groups if b["source"] == "root.0.3")
     test = next(b for b in layout.groups if b["source"] == "root.0.5")
+    common_height = max(build["height"], test["height"])
+    for group in (build, test):
+        group["height"] = common_height
+        layout.group_bounds[group["source"]]["height"] = common_height
     result = next(b for b in layout.boxes if b["source"] == "root.0.7.0")
     cx, cy = (
         checkout["x"] + checkout["width"] / 2,
@@ -2568,8 +2768,8 @@ def jenkins_layout(font, figure):
             "root.0.7.0",
             [
                 [tx, test["y"] + test["height"] + 12],
-                [tx, 850],
-                [rx, 850],
+                [tx, 884],
+                [rx, 884],
                 [rx, result["y"] - 12],
             ],
             1060,
@@ -2725,7 +2925,7 @@ def pod_identity_layout(font, figure, typography=None):
         font.wrap(elements["root.0.3"].text(), 550, 14), 64, 998, 14, 550, "root.0.3"
     )
     layout.resolve_boundary_edges(figure)
-    return layout
+    return repair_pod_identity_clearance(layout, figure)
 
 
 def arc_layout(font, figure):
@@ -2804,8 +3004,43 @@ def author(root, check=False, report=None):
                 {
                     **FIXED_LAYOUT_PROFILES.get(record["include"], {}),
                     **typography.get(record["include"], {}),
+                    "column_weights": (
+                        {"root.0.1": [544, 656, 544]}
+                        if record["include"] == "diagrams/static/ai/rag-02-chunking-strategies.html"
+                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("column_weights", {})
+                    ),
+                    "edge_label_insets": (
+                        {"root.0.1.1.1": 12}
+                        if record["include"] == "diagrams/packer-golden-image.html"
+                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("edge_label_insets", {})
+                    ),
+                    "equal_boundary_sets": (
+                        [["root.0.1.0", "root.0.1.2"]]
+                        if record["include"] in {
+                            "diagrams/static/ci-cd/ci-cd-study/ci-cd-workflow.html",
+                            "diagrams/static/ci-cd/jenkins/jenkins-pipeline-layers.html",
+                            "diagrams/static/sap-c02/sts-assume-role-cross-account.html",
+                            "diagrams/static/spring/spring-24-authn-authz.html",
+                        } else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("equal_boundary_sets", [])
+                    ),
                 },
             )
+            layout.profile.update(corpus_typography_profile(record["include"]))
+            for key, value in corpus_flow_balance_profile(record["include"]).items():
+                if isinstance(value, dict):
+                    layout.profile[key] = {**layout.profile.get(key, {}), **value}
+                else:
+                    layout.profile[key] = list(dict.fromkeys([*layout.profile.get(key, []), *value]))
+            for key, value in scoped_profile(record["include"]).items():
+                layout.profile[key] = {**layout.profile.get(key, {}), **value}
+            clearance = corpus_clearance_profile(record["include"])
+            if clearance:
+                current_insets = layout.profile.get("group_insets", {})
+                layout.profile["group_insets"] = {
+                    **current_insets,
+                    **{key: max(value, current_insets.get(key, 0))
+                       for key, value in clearance["group_insets"].items()},
+                }
             try:
                 measured = layout.measure(figure, WIDTH - 128)
             except ValueError:
@@ -2880,10 +3115,12 @@ def author(root, check=False, report=None):
             continue
         manual_relation_fixes(selected, figure, record["include"])
         complete_group_boundaries(selected)
+        repair_relations(selected, figure, record["include"])
         if not selected.profile.get("no_connector_labels"):
             complete_relation_labels(selected)
         issues = (
             check_layout(selected)
+            + check_corpus_clearance(selected, record["include"])
             + semantic_check(selected, figure)
             + visible_text_coverage(selected, original)
         )

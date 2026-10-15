@@ -123,7 +123,7 @@ void process() {
 ```
 
 {% include diagrams/static/jvm/jvm-02-stack-vs-heap.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-02-stack-vs-heap--bdec3bac14e79531.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-jvm-jvm-02-stack-vs-heap-9922804520-01-bd2f92dc728f.png" %}
 _참조(order)는 stack 프레임에, 객체(Order)는 heap에_
 
 | | Stack | Heap |

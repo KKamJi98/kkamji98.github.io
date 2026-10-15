@@ -56,7 +56,7 @@ image:
 HCP Terraform을 GitHub와 연동해 Terraform Cloud 환경을 구축했고 Terraform 코드가 변경되면 인프라가 자동으로 업데이트됩니다. 모든 AWS 리소스(VPC, Lambda, API Gateway, S3, CloudFront 등)를 코드로 정의해 관리하기 쉽고 설정도 일관되게 유지했습니다.
 
 {% include diagrams/static/project/rememberme/architecture.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/architecture--30b7819d5fb0c04d.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-project-rememberme-architecture-85b6591531-01-d870e93b37a9.png" %}
 
 ### 3.1. Logging
 
@@ -74,7 +74,7 @@ AWS WAF 규칙으로 과도한 트래픽(예: 동일 IP에서 분당 300회 이�
 #### 3.2.1. WAF Alarm
 
 {% include diagrams/static/project/rememberme/waf_alarm_workflow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/project/rememberme/waf_alarm_workflow--cb7149532df8d11e.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-project-rememberme-waf_alarm_workflow-b1b40418a8-01-abc855eaeac4.png" %}
 ![WAF Alarm](/assets/img/project/rememberme/waf_alarm.webp)
 
 #### 3.2.2. Budget Alarm

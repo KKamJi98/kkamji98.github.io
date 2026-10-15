@@ -1,31 +1,31 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="33be8c796097c5cf22bf8d9fb5cca3c7f79d7d5f951abd0e513844aa5e6be0cc">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.4.1" x="966.000" y="376.500" width="890.000" height="395.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.5" x="64.000" y="783.800" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.4" x="64.000" y="376.500" width="1792.000" height="395.300" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.2" x="64.000" y="215.500" width="1792.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.4.0" x="64.000" y="376.500" width="890.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.4.1.1" x="978.000" y="424.800" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.4.1.3" x="978.000" y="585.800" width="866.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.4.1.4.0" x="978.000" y="678.800" width="427.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.4.1.4.1" x="1417.000" y="678.800" width="427.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.5.1.0" x="108.000" y="832.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.5.1.2" x="724.000" y="832.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.5.1.4" x="1340.000" y="832.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.4.1.2" data-from="root.0.4.1.1" data-to="root.0.4.1.3" d="M 1411.000 517.800 L 1411.000 573.800" fill="none" stroke="#475569" stroke-width="3"><title>Lambda integration</title></path>
-<polygon data-arrowhead="root.0.4.1.2" points="1411.000,573.800 1405.000,563.800 1417.000,563.800" fill="#475569"/>
-<path data-edge="root.0.5.1.1" data-from="root.0.5.1.0" data-to="root.0.5.1.2" d="M 592.000 872.600 L 712.000 872.600" fill="none" stroke="#475569" stroke-width="3"><title>SNS notification</title></path>
-<polygon data-arrowhead="root.0.5.1.1" points="712.000,872.600 702.000,878.600 702.000,866.600" fill="#475569"/>
-<path data-edge="root.0.5.1.3" data-from="root.0.5.1.2" data-to="root.0.5.1.4" d="M 1208.000 872.600 L 1328.000 872.600" fill="none" stroke="#475569" stroke-width="3"><title>chat delivery</title></path>
-<polygon data-arrowhead="root.0.5.1.3" points="1328.000,872.600 1318.000,878.600 1318.000,866.600" fill="#475569"/>
-<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 308.500 L 960.000 364.500" fill="none" stroke="#475569" stroke-width="3"><title>static origin fetch 또는 API route</title></path>
-<polygon data-arrowhead="root.0.3" points="960.000,364.500 954.000,354.500 966.000,354.500" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="157.300" font-size="36" font-weight="700" fill="#111827">Remember Me는 CloudFront edge에서 API와 정적 자산을 나눕니다</text>
-<text data-source="root.0.1" x="64.000" y="197.900" font-size="16" font-weight="400" fill="#111827">DNS: client가 Route53에서 CloudFront 주소를 조회합니다. DNS는 HTTP forwarding hop이 아닙니다.</text>
-<text data-source="root.0.2" x="76.000" y="245.500" font-size="18" font-weight="700" fill="#111827">CloudFront + WAF</text>
-<text data-source="root.0.2" x="76.000" y="278.900" font-size="16" font-weight="400" fill="#111827">하나의 edge에서 static/API 요청 분기</text>
-<text data-source="root.0.4.0" x="76.000" y="406.500" font-size="18" font-weight="700" fill="#111827">Amazon S3</text>
-<text data-source="root.0.4.0" x="76.000" y="439.900" font-size="16" font-weight="400" fill="#111827">frontend 정적 파일 origin</text>
+<rect data-source="root.0.4" x="64.000" y="352.500" width="1792.000" height="443.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.4.1" x="966.000" y="376.500" width="866.000" height="395.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.5" x="64.000" y="807.800" width="1792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.2" x="64.000" y="191.500" width="1792.000" height="81.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.4.0" x="88.000" y="376.500" width="866.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.1" x="978.000" y="424.800" width="842.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.3" x="978.000" y="585.800" width="842.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.4.1.4.0" x="978.000" y="678.800" width="415.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4.1.4.1" x="1405.000" y="678.800" width="415.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5.1.0" x="108.000" y="856.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5.1.2" x="724.000" y="856.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5.1.4" x="1340.000" y="856.100" width="472.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.4.1.2" data-from="root.0.4.1.1" data-to="root.0.4.1.3" d="M 1399.000 517.800 L 1399.000 573.800" fill="none" stroke="#475569" stroke-width="3"><title>Lambda integration</title></path>
+<polygon data-arrowhead="root.0.4.1.2" points="1399.000,573.800 1393.000,563.800 1405.000,563.800" fill="#475569"/>
+<path data-edge="root.0.5.1.1" data-from="root.0.5.1.0" data-to="root.0.5.1.2" d="M 592.000 896.600 L 712.000 896.600" fill="none" stroke="#475569" stroke-width="3"><title>SNS notification</title></path>
+<polygon data-arrowhead="root.0.5.1.1" points="712.000,896.600 702.000,902.600 702.000,890.600" fill="#475569"/>
+<path data-edge="root.0.5.1.3" data-from="root.0.5.1.2" data-to="root.0.5.1.4" d="M 1208.000 896.600 L 1328.000 896.600" fill="none" stroke="#475569" stroke-width="3"><title>chat delivery</title></path>
+<polygon data-arrowhead="root.0.5.1.3" points="1328.000,896.600 1318.000,902.600 1318.000,890.600" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 284.500 L 960.000 340.500" fill="none" stroke="#475569" stroke-width="3"><title>static origin fetch 또는 API route</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,340.500 954.000,330.500 966.000,330.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="133.300" font-size="36" font-weight="700" fill="#111827">Remember Me는 CloudFront edge에서 API와 정적 자산을 나눕니다</text>
+<text data-source="root.0.1" x="64.000" y="173.900" font-size="16" font-weight="400" fill="#111827">DNS: client가 Route53에서 CloudFront 주소를 조회합니다. DNS는 HTTP forwarding hop이 아닙니다.</text>
+<text data-source="root.0.2" x="76.000" y="221.500" font-size="18" font-weight="700" fill="#111827">CloudFront + WAF</text>
+<text data-source="root.0.2" x="76.000" y="254.900" font-size="16" font-weight="400" fill="#111827">하나의 edge에서 static/API 요청 분기</text>
+<text data-source="root.0.4.0" x="100.000" y="406.500" font-size="18" font-weight="700" fill="#111827">Amazon S3</text>
+<text data-source="root.0.4.0" x="100.000" y="439.900" font-size="16" font-weight="400" fill="#111827">frontend 정적 파일 origin</text>
 <text data-source="root.0.4.1.0" x="978.000" y="406.500" font-size="18" font-weight="700" fill="#111827">Serverless backend</text>
 <text data-source="root.0.4.1.1" x="990.000" y="454.800" font-size="18" font-weight="700" fill="#111827">API Gateway + WAF</text>
 <text data-source="root.0.4.1.1" x="990.000" y="488.200" font-size="16" font-weight="400" fill="#111827">API request rule과 integration</text>
@@ -33,18 +33,18 @@
 <text data-source="root.0.4.1.3" x="990.000" y="649.200" font-size="16" font-weight="400" fill="#111827">단어 목록과 퀴즈 처리</text>
 <text data-source="root.0.4.1.4.0" x="990.000" y="708.800" font-size="18" font-weight="700" fill="#111827">Parameter Store and Secrets Manager</text>
 <text data-source="root.0.4.1.4.0" x="990.000" y="742.200" font-size="16" font-weight="400" fill="#111827">Lambda가 config와 secret read</text>
-<text data-source="root.0.4.1.4.1" x="1429.000" y="708.800" font-size="18" font-weight="700" fill="#111827">MongoDB</text>
-<text data-source="root.0.4.1.4.1" x="1429.000" y="742.200" font-size="16" font-weight="400" fill="#111827">Lambda가 사용자 단어 data read/write</text>
-<text data-source="root.0.4.1.2" x="1431.000" y="551.000" font-size="16" font-weight="400" fill="#111827">Lambda integration</text>
-<text data-source="root.0.5.0" x="76.000" y="813.800" font-size="18" font-weight="700" fill="#111827">비용 알림</text>
-<text data-source="root.0.5.1.0" x="120.000" y="862.100" font-size="18" font-weight="700" fill="#111827">AWS Budgets</text>
-<text data-source="root.0.5.1.0" x="120.000" y="895.500" font-size="16" font-weight="400" fill="#111827">비용 threshold 감시</text>
-<text data-source="root.0.5.1.2" x="736.000" y="862.100" font-size="18" font-weight="700" fill="#111827">AWS Chatbot</text>
-<text data-source="root.0.5.1.2" x="736.000" y="895.500" font-size="16" font-weight="400" fill="#111827">Slack channel 형식 변환</text>
-<text data-source="root.0.5.1.4" x="1352.000" y="862.100" font-size="18" font-weight="700" fill="#111827">Slack</text>
-<text data-source="root.0.5.1.4" x="1352.000" y="895.500" font-size="16" font-weight="400" fill="#111827">운영자 비용 경고</text>
-<text data-source="root.0.5.1.1" x="584.000" y="855.000" font-size="16" font-weight="400" fill="#111827">SNS notification</text>
-<text data-source="root.0.5.1.3" x="1200.000" y="855.000" font-size="16" font-weight="400" fill="#111827">chat delivery</text>
-<text data-source="root.0.6" x="64.000" y="953.100" font-size="16" font-weight="400" fill="#111827">HCP Terraform이 VPC와 위 serverless resources를 코드로 provisioning합니다.</text>
-<text data-source="root.0.3" x="980.000" y="341.700" font-size="16" font-weight="400" fill="#111827">static origin fetch 또는 API route</text>
+<text data-source="root.0.4.1.4.1" x="1417.000" y="708.800" font-size="18" font-weight="700" fill="#111827">MongoDB</text>
+<text data-source="root.0.4.1.4.1" x="1417.000" y="742.200" font-size="16" font-weight="400" fill="#111827">Lambda가 사용자 단어 data read/write</text>
+<text data-source="root.0.4.1.2" x="1419.000" y="551.000" font-size="16" font-weight="400" fill="#111827">Lambda integration</text>
+<text data-source="root.0.5.0" x="76.000" y="837.800" font-size="18" font-weight="700" fill="#111827">비용 알림</text>
+<text data-source="root.0.5.1.0" x="120.000" y="886.100" font-size="18" font-weight="700" fill="#111827">AWS Budgets</text>
+<text data-source="root.0.5.1.0" x="120.000" y="919.500" font-size="16" font-weight="400" fill="#111827">비용 threshold 감시</text>
+<text data-source="root.0.5.1.2" x="736.000" y="886.100" font-size="18" font-weight="700" fill="#111827">AWS Chatbot</text>
+<text data-source="root.0.5.1.2" x="736.000" y="919.500" font-size="16" font-weight="400" fill="#111827">Slack channel 형식 변환</text>
+<text data-source="root.0.5.1.4" x="1352.000" y="886.100" font-size="18" font-weight="700" fill="#111827">Slack</text>
+<text data-source="root.0.5.1.4" x="1352.000" y="919.500" font-size="16" font-weight="400" fill="#111827">운영자 비용 경고</text>
+<text data-source="root.0.5.1.1" x="584.000" y="879.000" font-size="16" font-weight="400" fill="#111827">SNS notification</text>
+<text data-source="root.0.5.1.3" x="1200.000" y="879.000" font-size="16" font-weight="400" fill="#111827">chat delivery</text>
+<text data-source="root.0.6" x="64.000" y="977.100" font-size="16" font-weight="400" fill="#111827">HCP Terraform이 VPC와 위 serverless resources를 코드로 provisioning합니다.</text>
+<text data-source="root.0.3" x="980.000" y="317.700" font-size="16" font-weight="400" fill="#111827">static origin fetch 또는 API route</text>
 </svg>

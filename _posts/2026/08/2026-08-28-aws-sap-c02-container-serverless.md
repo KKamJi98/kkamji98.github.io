@@ -125,7 +125,7 @@ ephemeral storage는 platform version 1.4.0 이상에서 최소 20 GiB이고 `ep
 용량을 지정하는 방법은 두 가지이고, 둘 중 하나만 씁니다. 어느 쪽도 지정하지 않으면 클러스터의 `defaultCapacityProviderStrategy`가 적용됩니다.
 
 {% include diagrams/static/sap-c02/ecs-capacity-provider-placement.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/ecs-capacity-provider-placement--31f0fcc4a4b4154c.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-ecs-capacity-provider-placement-222851ecbb-01-2d742d822f40.png" %}
 
 용량 지정이 두 갈래로 나뉘는 지점과, strategy 쪽에서 태스크가 실제로 배치되는 순서를 담은 그림입니다. `base`와 `weight`가 각각 어떤 범위를 갖고 어떤 값에서 호출이 실패하는지도 함께 적어 두었습니다.
 
@@ -265,7 +265,7 @@ cross-account 복제에 필요한 정책은 목적지 계정의 registry permiss
 EKS 클러스터가 Pod를 스케줄할 수 있는 대상은 EKS Auto Mode managed node, self-managed node, managed node group, Fargate, Hybrid Nodes입니다. hybrid node를 제외한 노드는 클러스터를 만들 때 지정한 서브넷과 같은 VPC 안에 있어야 하고, 같은 서브넷일 필요는 없습니다.
 
 {% include diagrams/static/sap-c02/eks-compute-option-split.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/eks-compute-option-split--3ae70fefcdc94329.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-eks-compute-option-split-4351f71cda-01-caf7f72c72dd.png" %}
 
 포기할 수 없는 요구 하나가 컴퓨트 선택을 확정하는 구조를 담은 그림입니다. 네 갈래 각각에 그 선택지가 못 하는 것을 함께 적어 두었습니다.
 
@@ -391,7 +391,7 @@ VPC에 연결되지 않은 함수는 대역폭 증설을 요청할 수 있고, �
 동시성은 세 층으로 되어 있고 각 층이 다른 것을 제한합니다.
 
 {% include diagrams/static/sap-c02/lambda-concurrency-gates.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/lambda-concurrency-gates--5cddd694c3978ade.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-lambda-concurrency-gates-d259273f26-01-ddf904b9fea3.png" %}
 
 호출이 실제로 실행 환경에 도달하기까지 지나는 게이트 세 개와, 각 게이트에서 스로틀될 때 어떤 응답이 나가는지를 담은 그림입니다. provisioned 환경과 새 실행 환경이 갈리는 지점도 함께 표시했습니다.
 

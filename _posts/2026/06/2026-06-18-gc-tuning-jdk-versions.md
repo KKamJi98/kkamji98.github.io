@@ -55,7 +55,7 @@ _각 플래그가 제어하는 것_
 ## 2. 인과 사슬: JDK가 올라가면 왜 Old 거동이 바뀌나
 
 {% include diagrams/static/jvm/jvm-10-jdk-version-gc-shift.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/jvm/jvm-10-jdk-version-gc-shift--77a9c2283776e36c.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-jvm-jvm-10-jdk-version-gc-shift-d5de181176-01-5e63892129e9.png" %}
 _faster G1 -> young 비대 -> minor GC 감소 -> IHOP 지연 -> 승격 -> Old 톱니 (일반 예시)_
 
 위 building block(young = pause 레버, 비용 비례, adaptive IHOP)을 이으면 다음 연쇄가 됩니다.

@@ -1,40 +1,37 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="6e6b8a542613dc7c54dd976686f561c5ab9889cceea07dc4d7c6b59b66c9a50d">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.2.0" x="96.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="564.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.4" x="1032.000" y="366.300" width="324.000" height="221.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.6" x="1500.000" y="399.350" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.8" x="96.000" y="684.200" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 477.250 L 552.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>대상 group 선택</title></path>
-<polygon data-arrowhead="root.0.2.1" points="552.000,477.250 542.000,483.250 542.000,471.250" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 477.250 L 1020.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>task 순서 해석</title></path>
-<polygon data-arrowhead="root.0.2.3" points="1020.000,477.250 1010.000,483.250 1010.000,471.250" fill="#475569"/>
-<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 477.250 L 1488.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>원격 실행 요청</title></path>
-<polygon data-arrowhead="root.0.2.5" points="1488.000,477.250 1478.000,483.250 1478.000,471.250" fill="#475569"/>
-<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 477.250 L 1848.000 477.250 L 1848.000 636.200 L 72.000 636.200 L 72.000 762.100 L 84.000 762.100" fill="none" stroke="#475569" stroke-width="3"><title>module 실행과 report</title></path>
-<polygon data-arrowhead="root.0.2.7" points="84.000,762.100 74.000,768.100 74.000,756.100" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="276.000" font-size="36" font-weight="700" fill="#111827">Ansible은 control node에서 SSH로 managed host를 관리합니다</text>
-<text data-source="root.0.1" x="64.000" y="334.600" font-size="22" font-weight="400" fill="#111827">Inventory와 playbook은 control node에 있고, managed host에는 사전에 Ansible agent를 설치하지 않습니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Inventory</text>
-<text data-source="root.0.2.0" x="120.000" y="493.750" font-size="22" font-weight="400" fill="#111827">관리할 hosts와 group, host</text>
-<text data-source="root.0.2.0" x="120.000" y="523.450" font-size="22" font-weight="400" fill="#111827">변수를 정의합니다.</text>
-<text data-source="root.0.2.2" x="588.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Ansible control node</text>
-<text data-source="root.0.2.2" x="588.000" y="493.750" font-size="22" font-weight="400" fill="#111827">ansible-playbook가 실행되는</text>
-<text data-source="root.0.2.2" x="588.000" y="523.450" font-size="22" font-weight="400" fill="#111827">위치입니다.</text>
-<text data-source="root.0.2.4" x="1056.000" y="418.300" font-size="28" font-weight="700" fill="#111827">Playbook and</text>
-<text data-source="root.0.2.4" x="1056.000" y="454.700" font-size="28" font-weight="700" fill="#111827">modules</text>
-<text data-source="root.0.2.4" x="1056.000" y="497.100" font-size="22" font-weight="400" fill="#111827">순서가 있는 task와 대체로</text>
-<text data-source="root.0.2.4" x="1056.000" y="526.800" font-size="22" font-weight="400" fill="#111827">idempotent한</text>
-<text data-source="root.0.2.4" x="1056.000" y="556.500" font-size="22" font-weight="400" fill="#111827">module입니다.</text>
-<text data-source="root.0.2.6" x="1524.000" y="451.350" font-size="28" font-weight="700" fill="#111827">SSH</text>
-<text data-source="root.0.2.6" x="1524.000" y="493.750" font-size="22" font-weight="400" fill="#111827">인증, 명령 전송과 결과 회신에</text>
-<text data-source="root.0.2.6" x="1524.000" y="523.450" font-size="22" font-weight="400" fill="#111827">필요한 channel입니다.</text>
-<text data-source="root.0.2.8" x="120.000" y="736.200" font-size="28" font-weight="700" fill="#111827">Managed hosts</text>
-<text data-source="root.0.2.8" x="120.000" y="778.600" font-size="22" font-weight="400" fill="#111827">원격 host에서 module이</text>
-<text data-source="root.0.2.8" x="120.000" y="808.300" font-size="22" font-weight="400" fill="#111827">실행되고 상태를 돌려줍니다.</text>
-<text data-source="root.0.2.1" x="424.000" y="427.850" font-size="22" font-weight="400" fill="#111827">대상 group</text>
-<text data-source="root.0.2.1" x="424.000" y="457.550" font-size="22" font-weight="400" fill="#111827">선택</text>
-<text data-source="root.0.2.3" x="892.000" y="457.550" font-size="22" font-weight="400" fill="#111827">task 순서 해석</text>
-<text data-source="root.0.2.5" x="1360.000" y="457.550" font-size="22" font-weight="400" fill="#111827">원격 실행 요청</text>
-<text data-source="root.0.2.7" x="104.000" y="628.200" font-size="22" font-weight="400" fill="#111827">module 실행과 report</text>
+<rect data-node="root.0.2.0" x="96.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="720.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1344.000" y="399.350" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="408.000" y="651.150" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="1032.000" y="651.150" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 588.000 477.250 L 708.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>대상 group 선택</title></path>
+<polygon data-arrowhead="root.0.2.1" points="708.000,477.250 698.000,483.250 698.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1212.000 477.250 L 1332.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>task 순서 해석</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1332.000,477.250 1322.000,483.250 1322.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1584.000 567.150 L 1584.000 603.150 L 648.000 603.150 L 648.000 639.150" fill="none" stroke="#475569" stroke-width="3"><title>원격 실행 요청</title></path>
+<polygon data-arrowhead="root.0.2.5" points="648.000,639.150 642.000,629.150 654.000,629.150" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 900.000 729.050 L 1020.000 729.050" fill="none" stroke="#475569" stroke-width="3"><title>module 실행과 report</title></path>
+<polygon data-arrowhead="root.0.2.7" points="1020.000,729.050 1010.000,735.050 1010.000,723.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">Ansible은 control node에서 SSH로 managed host를 관리합니다</text>
+<text data-source="root.0.1" x="64.000" y="367.650" font-size="22" font-weight="400" fill="#111827">Inventory와 playbook은 control node에 있고, managed host에는 사전에 Ansible agent를 설치하지 않습니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Inventory</text>
+<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">관리할 hosts와 group, host 변수를 정의합니다.</text>
+<text data-source="root.0.2.2" x="744.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Ansible control node</text>
+<text data-source="root.0.2.2" x="744.000" y="508.600" font-size="22" font-weight="400" fill="#111827">ansible-playbook가 실행되는 위치입니다.</text>
+<text data-source="root.0.2.4" x="1368.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Playbook and modules</text>
+<text data-source="root.0.2.4" x="1368.000" y="493.750" font-size="22" font-weight="400" fill="#111827">순서가 있는 task와 대체로 idempotent한</text>
+<text data-source="root.0.2.4" x="1368.000" y="523.450" font-size="22" font-weight="400" fill="#111827">module입니다.</text>
+<text data-source="root.0.2.6" x="432.000" y="703.150" font-size="28" font-weight="700" fill="#111827">SSH</text>
+<text data-source="root.0.2.6" x="432.000" y="745.550" font-size="22" font-weight="400" fill="#111827">인증, 명령 전송과 결과 회신에 필요한</text>
+<text data-source="root.0.2.6" x="432.000" y="775.250" font-size="22" font-weight="400" fill="#111827">channel입니다.</text>
+<text data-source="root.0.2.8" x="1056.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Managed hosts</text>
+<text data-source="root.0.2.8" x="1056.000" y="745.550" font-size="22" font-weight="400" fill="#111827">원격 host에서 module이 실행되고 상태를</text>
+<text data-source="root.0.2.8" x="1056.000" y="775.250" font-size="22" font-weight="400" fill="#111827">돌려줍니다.</text>
+<text data-source="root.0.2.1" x="580.000" y="427.850" font-size="22" font-weight="400" fill="#111827">대상 group</text>
+<text data-source="root.0.2.1" x="580.000" y="457.550" font-size="22" font-weight="400" fill="#111827">선택</text>
+<text data-source="root.0.2.3" x="1204.000" y="457.550" font-size="22" font-weight="400" fill="#111827">task 순서 해석</text>
+<text data-source="root.0.2.5" x="660.000" y="595.150" font-size="22" font-weight="400" fill="#111827">원격 실행 요청</text>
+<text data-source="root.0.2.7" x="892.000" y="679.650" font-size="22" font-weight="400" fill="#111827">module</text>
+<text data-source="root.0.2.7" x="892.000" y="709.350" font-size="22" font-weight="400" fill="#111827">실행과 report</text>
 </svg>

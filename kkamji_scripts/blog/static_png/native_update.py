@@ -53,6 +53,8 @@ def checked_update(root, revision, baseline, stamp):
     archive = {row['png']: row for row in rows}
     records = update.get('sources')
     if not isinstance(records, list) or not records: raise ValueError('native update source list is empty')
+    from downloads import declared_native_updates
+    routing = declared_native_updates(root)
     sources = {}; overrides = {}; destinations = set()
     old_plugin = w._git_blob(root, revision, w.PLUGIN)
     if digest(old_plugin) != stamp['source'].get(w.PLUGIN): raise ValueError('original native proof plugin differs')
@@ -69,7 +71,8 @@ def checked_update(root, revision, baseline, stamp):
         if not isinstance(row.get('old_png'), str): raise ValueError('original native PNG path is missing')
         old = archive.get(row['old_png'])
         if old is None or old['include'] != include: raise ValueError('update does not bind its original native PNG')
-        old_raw = w.public_path(root, old['png'], 'png').read_bytes(); w._decode(old_raw, 'PNG')
+        old_raw = w.public_path(root, old['png'], 'png').read_bytes()
+        old_pixels = w._decode(old_raw, 'PNG').tobytes()
         if digest(old_raw) != old.get('png_sha256'): raise ValueError('original native PNG changed')
         files[old['png'][1:]] = digest(old_raw)
         new = row.get('new_png')
@@ -87,8 +90,18 @@ def checked_update(root, revision, baseline, stamp):
                     or (png_raw[offset+4:offset+8] == b'IEND' and end + 4 != len(png_raw))):
                 raise ValueError('invalid native update PNG chunk CRC or boundary')
             offset = end + 4
-        if digest(png_raw) == digest(old_raw): raise ValueError('native update cannot relabel the original PNG')
-        destinations.add(new)
+        occurrences = [dict(post=item['post'], figure=item['figure'], old_png=item['old_png'], new_png=item['new_png'])
+                       for item in routing.values() if item['include'] == include]
+        master_pixels = w._decode(png_raw, 'PNG').tobytes()
+        for occurrence in occurrences:
+            original = archive[occurrence['old_png']]
+            archived_raw = sealed(original['png'][1:], original.get('png_sha256', ''))
+            if archived_raw != old_raw or w._decode(archived_raw, 'PNG').tobytes() != old_pixels:
+                raise ValueError('shared original native PNG copies differ')
+            copy_raw = sealed(occurrence['new_png'][1:], row.get('png_sha256', ''))
+            if copy_raw != png_raw or w._decode(copy_raw, 'PNG').tobytes() != master_pixels:
+                raise ValueError('native update delivery copy differs from reviewed master')
+            destinations.add(occurrence['new_png'])
         evidence = {}
         for key in ('receipt', 'review', 'render_build'):
             relative = row.get(key + '_file')
@@ -107,6 +120,12 @@ def checked_update(root, revision, baseline, stamp):
         except ET.ParseError as error: raise ValueError('invalid updated SVG') from error
         if (svg.get('width') != '1920' or svg.get('height') != '1080' or svg.get('viewBox') != '0 0 1920 1080'
                 or svg.get('data-source-sha256') != source_sha): raise ValueError('updated SVG canvas/source identity differs')
+        # Pixel identity is legitimate only with a real changed native input and
+        # the fresh receipt/build/independent review checks below. A different
+        # global stamp alone cannot turn the original capture into a new delta.
+        if (master_pixels == old_pixels and digest(include_raw) == stamp['source'].get(include_rel)
+                and digest(svg_raw) == stamp['source'].get(svg_rel)):
+            raise ValueError('identical native PNG cannot relabel unchanged source/SVG as a delta')
         images = {}; assets = {FONT: digest(font_raw)}
         for image in svg.iter('{http://www.w3.org/2000/svg}image'):
             href = image.get('href', image.get('{http://www.w3.org/1999/xlink}href', ''))
@@ -142,7 +161,7 @@ def checked_update(root, revision, baseline, stamp):
                 or review.get('actual_original_png_viewed') is not True
                 or not all(isinstance(review.get(key), str) and review[key].strip() for key in ('reviewed_at', 'notes'))):
             raise ValueError('independent original PNG visual/semantic review is missing')
-        sources[include] = dict(row, receipt=receipt, review=review)
+        sources[include] = dict(row, receipt=receipt, review=review, occurrences=occurrences)
         overrides.update({include_rel: digest(include_raw), svg_rel: digest(svg_raw)})
     for relative, sha in files.items(): w._same_hash(w.safe_path(root, relative), sha, 'native update readback')
     return {'path': MANIFEST, 'sha256': digest(raw), 'sources': sources, 'files': files, 'input_overrides': overrides}

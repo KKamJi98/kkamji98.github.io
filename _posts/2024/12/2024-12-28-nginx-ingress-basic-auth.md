@@ -10,7 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/nginx-basic-auth-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/nginx-basic-auth-flow--a2b3897f3b35d2fa.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-nginx-basic-auth-flow-50e996951c-01-148287ee3575.png" %}
 
 Basic Auth는 별도 identity provider 없이 HTTP request에 사용자 이름과 password를 보내는 단순한 인증 방식입니다. 이 글은 `ingress-nginx` controller를 이미 설치한 cluster에서 특정 Ingress path를 htpasswd Secret으로 보호하는 방법을 다룹니다.
 

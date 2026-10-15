@@ -26,7 +26,7 @@ image:
 ## 1. Workflows
 
 {% include diagrams/static/observability/log_monitoring.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/observability/log_monitoring--69ec7e0ec04fc9e8.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-observability-log_monitoring-221c80e722-01-aa4d66a0147d.png" %}
 
 ---
 

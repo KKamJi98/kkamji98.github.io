@@ -1,60 +1,51 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="73942c328c2b832797c7e3736597ef3eff5109c9108fc9549f4689ba029777db">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0" x="64.000" y="372.100" width="581.333" height="378.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1" x="669.333" y="372.100" width="581.333" height="385.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.2" x="1274.667" y="372.100" width="581.333" height="408.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.0" x="88.000" y="457.900" width="161.778" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.1" x="273.778" y="457.900" width="161.778" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.2" x="459.556" y="457.900" width="161.778" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.1.0" x="693.333" y="457.900" width="161.778" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.1.1" x="879.111" y="457.900" width="161.778" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.1.2" x="1064.889" y="457.900" width="161.778" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.0" x="1298.667" y="457.900" width="161.778" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.1" x="1484.444" y="457.900" width="161.778" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.2" x="1670.222" y="457.900" width="161.778" height="215.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<text data-source="root.0.0" x="64.000" y="335.500" font-size="36" font-weight="700" fill="#111827">Chunking 전략이 만드는 검색 단위의 차이</text>
-<text data-source="root.0.1.0.0" x="88.000" y="424.100" font-size="28" font-weight="700" fill="#111827">Fixed size</text>
-<text data-source="root.0.1.0.1.0" x="112.000" y="509.900" font-size="28" font-weight="700" fill="#111827">Chunk 1</text>
-<text data-source="root.0.1.0.1.0" x="112.000" y="552.300" font-size="22" font-weight="400" fill="#111827">같은 token</text>
-<text data-source="root.0.1.0.1.0" x="112.000" y="582.000" font-size="22" font-weight="400" fill="#111827">또는 문자 수</text>
-<text data-source="root.0.1.0.1.1" x="297.778" y="509.900" font-size="28" font-weight="700" fill="#111827">Chunk 2</text>
-<text data-source="root.0.1.0.1.1" x="297.778" y="552.300" font-size="22" font-weight="400" fill="#111827">앞 chunk와</text>
-<text data-source="root.0.1.0.1.1" x="297.778" y="582.000" font-size="22" font-weight="400" fill="#111827">일부</text>
-<text data-source="root.0.1.0.1.1" x="297.778" y="611.700" font-size="22" font-weight="400" fill="#111827">overlap</text>
-<text data-source="root.0.1.0.1.2" x="483.556" y="509.900" font-size="28" font-weight="700" fill="#111827">Chunk 3</text>
-<text data-source="root.0.1.0.1.2" x="483.556" y="552.300" font-size="22" font-weight="400" fill="#111827">의미 경계를</text>
-<text data-source="root.0.1.0.1.2" x="483.556" y="582.000" font-size="22" font-weight="400" fill="#111827">보지 않음</text>
-<text data-source="root.0.1.0.2" x="88.000" y="689.400" font-size="22" font-weight="400" fill="#111827">저렴하고 예측 가능하지만 문장이나 조항 중간을 자를 수</text>
-<text data-source="root.0.1.0.2" x="88.000" y="719.100" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
-<text data-source="root.0.1.1.0" x="693.333" y="424.100" font-size="28" font-weight="700" fill="#111827">Structure aware</text>
-<text data-source="root.0.1.1.1.0" x="717.333" y="509.900" font-size="28" font-weight="700" fill="#111827">Section</text>
-<text data-source="root.0.1.1.1.0" x="717.333" y="546.300" font-size="28" font-weight="700" fill="#111827">1</text>
-<text data-source="root.0.1.1.1.0" x="717.333" y="588.700" font-size="22" font-weight="400" fill="#111827">heading</text>
-<text data-source="root.0.1.1.1.0" x="717.333" y="618.400" font-size="22" font-weight="400" fill="#111827">경계</text>
-<text data-source="root.0.1.1.1.1" x="903.111" y="509.900" font-size="28" font-weight="700" fill="#111827">Section</text>
-<text data-source="root.0.1.1.1.1" x="903.111" y="546.300" font-size="28" font-weight="700" fill="#111827">2</text>
-<text data-source="root.0.1.1.1.1" x="903.111" y="588.700" font-size="22" font-weight="400" fill="#111827">문단과</text>
-<text data-source="root.0.1.1.1.1" x="903.111" y="618.400" font-size="22" font-weight="400" fill="#111827">clause 경계</text>
-<text data-source="root.0.1.1.1.2" x="1088.889" y="509.900" font-size="28" font-weight="700" fill="#111827">Section</text>
-<text data-source="root.0.1.1.1.2" x="1088.889" y="546.300" font-size="28" font-weight="700" fill="#111827">3</text>
-<text data-source="root.0.1.1.1.2" x="1088.889" y="588.700" font-size="22" font-weight="400" fill="#111827">큰 단위부터</text>
-<text data-source="root.0.1.1.1.2" x="1088.889" y="618.400" font-size="22" font-weight="400" fill="#111827">재귀 분할</text>
-<text data-source="root.0.1.1.2" x="693.333" y="696.100" font-size="22" font-weight="400" fill="#111827">문서 heading과 clause를 우선해 의미가 이어지는 단위를</text>
-<text data-source="root.0.1.1.2" x="693.333" y="725.800" font-size="22" font-weight="400" fill="#111827">보존합니다.</text>
-<text data-source="root.0.1.2.0" x="1298.667" y="424.100" font-size="28" font-weight="700" fill="#111827">Semantic</text>
-<text data-source="root.0.1.2.1.0" x="1322.667" y="509.900" font-size="28" font-weight="700" fill="#111827">Topic A</text>
-<text data-source="root.0.1.2.1.0" x="1322.667" y="552.300" font-size="22" font-weight="400" fill="#111827">문장 의미가</text>
-<text data-source="root.0.1.2.1.0" x="1322.667" y="582.000" font-size="22" font-weight="400" fill="#111827">이어지는</text>
-<text data-source="root.0.1.2.1.0" x="1322.667" y="611.700" font-size="22" font-weight="400" fill="#111827">구간</text>
-<text data-source="root.0.1.2.1.1" x="1508.444" y="509.900" font-size="28" font-weight="700" fill="#111827">Topic B</text>
-<text data-source="root.0.1.2.1.1" x="1508.444" y="552.300" font-size="22" font-weight="400" fill="#111827">embedding</text>
-<text data-source="root.0.1.2.1.1" x="1508.444" y="582.000" font-size="22" font-weight="400" fill="#111827">distance가</text>
-<text data-source="root.0.1.2.1.1" x="1508.444" y="611.700" font-size="22" font-weight="400" fill="#111827">증가하기 전</text>
-<text data-source="root.0.1.2.1.2" x="1694.222" y="509.900" font-size="28" font-weight="700" fill="#111827">Topic C</text>
-<text data-source="root.0.1.2.1.2" x="1694.222" y="552.300" font-size="22" font-weight="400" fill="#111827">의미가</text>
-<text data-source="root.0.1.2.1.2" x="1694.222" y="582.000" font-size="22" font-weight="400" fill="#111827">바뀌는</text>
-<text data-source="root.0.1.2.1.2" x="1694.222" y="611.700" font-size="22" font-weight="400" fill="#111827">지점에서</text>
-<text data-source="root.0.1.2.1.2" x="1694.222" y="641.400" font-size="22" font-weight="400" fill="#111827">분할</text>
-<text data-source="root.0.1.2.2" x="1298.667" y="719.100" font-size="22" font-weight="400" fill="#111827">embedding distance의 급격한 변화로 경계를 잡지만 사전</text>
-<text data-source="root.0.1.2.2" x="1298.667" y="748.800" font-size="22" font-weight="400" fill="#111827">계산 비용과 이득의 불확실성이 있습니다.</text>
+<rect data-source="root.0.1.0" x="64.000" y="409.000" width="546.495" height="303.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="630.495" y="409.000" width="659.009" height="276.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1309.505" y="409.000" width="546.495" height="330.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.0" x="84.000" y="481.400" width="155.498" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="259.498" y="481.400" width="155.498" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.2" x="434.997" y="481.400" width="155.498" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="650.495" y="481.400" width="193.003" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="863.498" y="481.400" width="193.003" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.2" x="1076.502" y="481.400" width="193.003" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.0" x="1329.505" y="481.400" width="155.498" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1" x="1505.003" y="481.400" width="155.498" height="164.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.2" x="1680.502" y="481.400" width="155.498" height="137.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="376.400" font-size="36" font-weight="700" fill="#111827">Chunking 전략이 만드는 검색 단위의 차이</text>
+<text data-source="root.0.1.0.0" x="84.000" y="453.000" font-size="24" font-weight="700" fill="#111827">Fixed size</text>
+<text data-source="root.0.1.0.1.0" x="104.000" y="525.400" font-size="24" font-weight="700" fill="#111827">Chunk 1</text>
+<text data-source="root.0.1.0.1.0" x="104.000" y="564.600" font-size="20" font-weight="400" fill="#111827">같은 token</text>
+<text data-source="root.0.1.0.1.0" x="104.000" y="591.600" font-size="20" font-weight="400" fill="#111827">또는 문자 수</text>
+<text data-source="root.0.1.0.1.1" x="279.498" y="525.400" font-size="24" font-weight="700" fill="#111827">Chunk 2</text>
+<text data-source="root.0.1.0.1.1" x="279.498" y="564.600" font-size="20" font-weight="400" fill="#111827">앞 chunk와</text>
+<text data-source="root.0.1.0.1.1" x="279.498" y="591.600" font-size="20" font-weight="400" fill="#111827">일부 overlap</text>
+<text data-source="root.0.1.0.1.2" x="454.997" y="525.400" font-size="24" font-weight="700" fill="#111827">Chunk 3</text>
+<text data-source="root.0.1.0.1.2" x="454.997" y="564.600" font-size="20" font-weight="400" fill="#111827">의미 경계를</text>
+<text data-source="root.0.1.0.1.2" x="454.997" y="591.600" font-size="20" font-weight="400" fill="#111827">보지 않음</text>
+<text data-source="root.0.1.0.2" x="84.000" y="658.600" font-size="20" font-weight="400" fill="#111827">저렴하고 예측 가능하지만 문장이나 조항 중간을 자를</text>
+<text data-source="root.0.1.0.2" x="84.000" y="685.600" font-size="20" font-weight="400" fill="#111827">수 있습니다.</text>
+<text data-source="root.0.1.1.0" x="650.495" y="453.000" font-size="24" font-weight="700" fill="#111827">Structure aware</text>
+<text data-source="root.0.1.1.1.0" x="670.495" y="525.400" font-size="24" font-weight="700" fill="#111827">Section 1</text>
+<text data-source="root.0.1.1.1.0" x="670.495" y="564.600" font-size="20" font-weight="400" fill="#111827">heading 경계</text>
+<text data-source="root.0.1.1.1.1" x="883.498" y="525.400" font-size="24" font-weight="700" fill="#111827">Section 2</text>
+<text data-source="root.0.1.1.1.1" x="883.498" y="564.600" font-size="20" font-weight="400" fill="#111827">문단과</text>
+<text data-source="root.0.1.1.1.1" x="883.498" y="591.600" font-size="20" font-weight="400" fill="#111827">clause 경계</text>
+<text data-source="root.0.1.1.1.2" x="1096.502" y="525.400" font-size="24" font-weight="700" fill="#111827">Section 3</text>
+<text data-source="root.0.1.1.1.2" x="1096.502" y="564.600" font-size="20" font-weight="400" fill="#111827">큰 단위부터</text>
+<text data-source="root.0.1.1.1.2" x="1096.502" y="591.600" font-size="20" font-weight="400" fill="#111827">재귀 분할</text>
+<text data-source="root.0.1.1.2" x="650.495" y="658.600" font-size="20" font-weight="400" fill="#111827">문서 heading과 clause를 우선해 의미가 이어지는 단위를 보존합니다.</text>
+<text data-source="root.0.1.2.0" x="1329.505" y="453.000" font-size="24" font-weight="700" fill="#111827">Semantic</text>
+<text data-source="root.0.1.2.1.0" x="1349.505" y="525.400" font-size="24" font-weight="700" fill="#111827">Topic A</text>
+<text data-source="root.0.1.2.1.0" x="1349.505" y="564.600" font-size="20" font-weight="400" fill="#111827">문장 의미가</text>
+<text data-source="root.0.1.2.1.0" x="1349.505" y="591.600" font-size="20" font-weight="400" fill="#111827">이어지는 구간</text>
+<text data-source="root.0.1.2.1.1" x="1525.003" y="525.400" font-size="24" font-weight="700" fill="#111827">Topic B</text>
+<text data-source="root.0.1.2.1.1" x="1525.003" y="564.600" font-size="20" font-weight="400" fill="#111827">embedding</text>
+<text data-source="root.0.1.2.1.1" x="1525.003" y="591.600" font-size="20" font-weight="400" fill="#111827">distance가</text>
+<text data-source="root.0.1.2.1.1" x="1525.003" y="618.600" font-size="20" font-weight="400" fill="#111827">증가하기 전</text>
+<text data-source="root.0.1.2.1.2" x="1700.502" y="525.400" font-size="24" font-weight="700" fill="#111827">Topic C</text>
+<text data-source="root.0.1.2.1.2" x="1700.502" y="564.600" font-size="20" font-weight="400" fill="#111827">의미가 바뀌는</text>
+<text data-source="root.0.1.2.1.2" x="1700.502" y="591.600" font-size="20" font-weight="400" fill="#111827">지점에서 분할</text>
+<text data-source="root.0.1.2.2" x="1329.505" y="685.600" font-size="20" font-weight="400" fill="#111827">embedding distance의 급격한 변화로 경계를 잡지만 사전</text>
+<text data-source="root.0.1.2.2" x="1329.505" y="712.600" font-size="20" font-weight="400" fill="#111827">계산 비용과 이득의 불확실성이 있습니다.</text>
 </svg>

@@ -57,43 +57,44 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="81fc3553ddf6e16a6461c973de33845905e6c58c7fc5312fee2f963c94853853">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0.0" x="64.000" y="183.650" width="884.000" height="471.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.0.1" x="64.000" y="679.350" width="884.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1" x="972.000" y="183.650" width="884.000" height="525.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.0.0.1" x="88.000" y="269.450" width="836.000" height="126.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.1.1.1" x="996.000" y="269.450" width="836.000" height="126.100" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0.0.1.0" x="88.000" y="269.450" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.0.1.1" x="518.000" y="269.450" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.0.3" x="88.000" y="505.250" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.0.1.1" x="88.000" y="765.150" width="836.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.1.1.1.0" x="996.000" y="269.450" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.1.1" x="1426.000" y="269.450" width="406.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.3" x="996.000" y="505.250" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.0.0.2" data-from="root.0.1.0.0.1" data-to="root.0.1.0.0.3" d="M 506.000 407.550 L 506.000 493.250" fill="none" stroke="#475569" stroke-width="3"><title>같은 AZ에서만 attach</title></path>
-<polygon data-arrowhead="root.0.1.0.0.2" points="506.000,493.250 500.000,483.250 512.000,483.250" fill="#475569"/>
-<path data-edge="root.0.1.1.2" data-from="root.0.1.1.1" data-to="root.0.1.1.3" d="M 1414.000 407.550 L 1414.000 493.250" fill="none" stroke="#475569" stroke-width="3"><title>리전 안 모든 AZ</title></path>
-<polygon data-arrowhead="root.0.1.1.2" points="1414.000,493.250 1408.000,483.250 1420.000,483.250" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="147.050" font-size="36" font-weight="700" fill="#111827">EBS Multi-Attach는 AZ 안에 머물고 EFS는 리전에 걸칩니다</text>
-<text data-source="root.0.1.0.0.0" x="88.000" y="235.650" font-size="28" font-weight="700" fill="#111827">AZ-A 안의 block 공유</text>
-<text data-source="root.0.1.0.0.1.0" x="112.000" y="321.450" font-size="28" font-weight="700" fill="#111827">Nitro 인스턴스 1</text>
-<text data-source="root.0.1.0.0.1.0" x="112.000" y="363.850" font-size="22" font-weight="400" fill="#111827">clustered file system 필요</text>
-<text data-source="root.0.1.0.0.1.1" x="542.000" y="321.450" font-size="28" font-weight="700" fill="#111827">Nitro 인스턴스 2</text>
-<text data-source="root.0.1.0.0.1.1" x="542.000" y="363.850" font-size="22" font-weight="400" fill="#111827">인스턴스당 block device mapping 1개</text>
-<text data-source="root.0.1.0.0.3" x="112.000" y="557.250" font-size="28" font-weight="700" fill="#111827">io2 볼륨 Multi-Attach</text>
-<text data-source="root.0.1.0.0.3" x="112.000" y="599.650" font-size="22" font-weight="400" fill="#111827">io1 또는 io2, Nitro 최대 16대, 부팅 볼륨 불가</text>
-<text data-source="root.0.1.0.0.2" x="526.000" y="457.550" font-size="22" font-weight="400" fill="#111827">같은 AZ에서만 attach</text>
-<text data-source="root.0.1.0.1.0" x="88.000" y="731.350" font-size="28" font-weight="700" fill="#111827">AZ-B: EBS 연결 금지</text>
-<text data-source="root.0.1.0.1.1" x="112.000" y="817.150" font-size="28" font-weight="700" fill="#111827">다른 AZ 인스턴스</text>
-<text data-source="root.0.1.0.1.1" x="112.000" y="859.550" font-size="22" font-weight="400" fill="#111827">같은 io2 볼륨에 attach할 수 없음</text>
-<text data-source="root.0.1.1.0" x="996.000" y="235.650" font-size="28" font-weight="700" fill="#111827">리전 범위의 file 공유</text>
-<text data-source="root.0.1.1.1.0" x="1020.000" y="321.450" font-size="28" font-weight="700" fill="#111827">AZ-A 클라이언트</text>
-<text data-source="root.0.1.1.1.0" x="1020.000" y="363.850" font-size="22" font-weight="400" fill="#111827">NFS mount</text>
-<text data-source="root.0.1.1.1.1" x="1450.000" y="321.450" font-size="28" font-weight="700" fill="#111827">AZ-B 클라이언트</text>
-<text data-source="root.0.1.1.1.1" x="1450.000" y="363.850" font-size="22" font-weight="400" fill="#111827">NFS mount</text>
-<text data-source="root.0.1.1.3" x="1020.000" y="557.250" font-size="28" font-weight="700" fill="#111827">Regional EFS</text>
-<text data-source="root.0.1.1.3" x="1020.000" y="599.650" font-size="22" font-weight="400" fill="#111827">수천 클라이언트 동시 마운트, AZ를 넘어 공유</text>
-<text data-source="root.0.1.1.4" x="996.000" y="677.350" font-size="22" font-weight="400" fill="#111827">AZ를 넘는 공유와 표준 파일 계층이 필요하면 EBS가 아니라 EFS를 선택합니다.</text>
-<text data-source="root.0.1.1.2" x="1434.000" y="457.550" font-size="22" font-weight="400" fill="#111827">리전 안 모든 AZ</text>
-<text data-source="root.0.2" x="64.000" y="961.250" font-size="22" font-weight="400" fill="#111827">io2의 I/O fencing은 io2에서만 지원됩니다. Multi-Attach는 clustered file system을 전제로 합니다.</text>
+<rect data-source="root.0.1.0.0" x="64.000" y="144.800" width="884.000" height="549.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.0.1" x="88.000" y="230.600" width="836.000" height="203.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.1" x="64.000" y="718.200" width="884.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="144.800" width="884.000" height="573.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1.1" x="996.000" y="230.600" width="836.000" height="174.100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.0.1.0" x="112.000" y="254.600" width="382.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.0.1.1" x="518.000" y="254.600" width="382.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.0.3" x="88.000" y="544.100" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.1.1" x="88.000" y="804.000" width="836.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.0" x="1020.000" y="254.600" width="382.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1.1" x="1426.000" y="254.600" width="382.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.3" x="996.000" y="514.400" width="836.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.0.0.2" data-from="root.0.1.0.0.1" data-to="root.0.1.0.0.3" d="M 506.000 446.400 L 506.000 532.100" fill="none" stroke="#475569" stroke-width="3"><title>같은 AZ에서만 attach</title></path>
+<polygon data-arrowhead="root.0.1.0.0.2" points="506.000,532.100 500.000,522.100 512.000,522.100" fill="#475569"/>
+<path data-edge="root.0.1.1.2" data-from="root.0.1.1.1" data-to="root.0.1.1.3" d="M 1414.000 416.700 L 1414.000 502.400" fill="none" stroke="#475569" stroke-width="3"><title>리전 안 모든 AZ</title></path>
+<polygon data-arrowhead="root.0.1.1.2" points="1414.000,502.400 1408.000,492.400 1420.000,492.400" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="108.200" font-size="36" font-weight="700" fill="#111827">EBS Multi-Attach는 AZ 안에 머물고 EFS는 리전에 걸칩니다</text>
+<text data-source="root.0.1.0.0.0" x="88.000" y="196.800" font-size="28" font-weight="700" fill="#111827">AZ-A 안의 block 공유</text>
+<text data-source="root.0.1.0.0.1.0" x="136.000" y="306.600" font-size="28" font-weight="700" fill="#111827">Nitro 인스턴스 1</text>
+<text data-source="root.0.1.0.0.1.0" x="136.000" y="349.000" font-size="22" font-weight="400" fill="#111827">clustered file system 필요</text>
+<text data-source="root.0.1.0.0.1.1" x="542.000" y="306.600" font-size="28" font-weight="700" fill="#111827">Nitro 인스턴스 2</text>
+<text data-source="root.0.1.0.0.1.1" x="542.000" y="349.000" font-size="22" font-weight="400" fill="#111827">인스턴스당 block device</text>
+<text data-source="root.0.1.0.0.1.1" x="542.000" y="378.700" font-size="22" font-weight="400" fill="#111827">mapping 1개</text>
+<text data-source="root.0.1.0.0.3" x="112.000" y="596.100" font-size="28" font-weight="700" fill="#111827">io2 볼륨 Multi-Attach</text>
+<text data-source="root.0.1.0.0.3" x="112.000" y="638.500" font-size="22" font-weight="400" fill="#111827">io1 또는 io2, Nitro 최대 16대, 부팅 볼륨 불가</text>
+<text data-source="root.0.1.0.0.2" x="526.000" y="496.400" font-size="22" font-weight="400" fill="#111827">같은 AZ에서만 attach</text>
+<text data-source="root.0.1.0.1.0" x="88.000" y="770.200" font-size="28" font-weight="700" fill="#111827">AZ-B: EBS 연결 금지</text>
+<text data-source="root.0.1.0.1.1" x="112.000" y="856.000" font-size="28" font-weight="700" fill="#111827">다른 AZ 인스턴스</text>
+<text data-source="root.0.1.0.1.1" x="112.000" y="898.400" font-size="22" font-weight="400" fill="#111827">같은 io2 볼륨에 attach할 수 없음</text>
+<text data-source="root.0.1.1.0" x="996.000" y="196.800" font-size="28" font-weight="700" fill="#111827">리전 범위의 file 공유</text>
+<text data-source="root.0.1.1.1.0" x="1044.000" y="306.600" font-size="28" font-weight="700" fill="#111827">AZ-A 클라이언트</text>
+<text data-source="root.0.1.1.1.0" x="1044.000" y="349.000" font-size="22" font-weight="400" fill="#111827">NFS mount</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="306.600" font-size="28" font-weight="700" fill="#111827">AZ-B 클라이언트</text>
+<text data-source="root.0.1.1.1.1" x="1450.000" y="349.000" font-size="22" font-weight="400" fill="#111827">NFS mount</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="566.400" font-size="28" font-weight="700" fill="#111827">Regional EFS</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="608.800" font-size="22" font-weight="400" fill="#111827">수천 클라이언트 동시 마운트, AZ를 넘어 공유</text>
+<text data-source="root.0.1.1.4" x="996.000" y="686.500" font-size="22" font-weight="400" fill="#111827">AZ를 넘는 공유와 표준 파일 계층이 필요하면 EBS가 아니라 EFS를 선택합니다.</text>
+<text data-source="root.0.1.1.2" x="1434.000" y="466.700" font-size="22" font-weight="400" fill="#111827">리전 안 모든 AZ</text>
+<text data-source="root.0.2" x="64.000" y="1000.100" font-size="22" font-weight="400" fill="#111827">io2의 I/O fencing은 io2에서만 지원됩니다. Multi-Attach는 clustered file system을 전제로 합니다.</text>
 </svg>
 </figure>

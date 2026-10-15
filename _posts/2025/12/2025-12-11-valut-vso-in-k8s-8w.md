@@ -1050,7 +1050,7 @@ VSO는 Kubernetes 네이티브 시크릿 리소스를 Vault 시크릿과 동기�
 이를 통해 Kubernetes 네이티브 시크릿을 사용하는 애플리케이션이 Vault 시크릿을 안전하게 사용할 수 있고, 개발자가 Vault 도구를 따로 학습하지 않아도 됩니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-secrets-operator--b717b44ba786936d.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-vault-secrets-operator-33e51b2da8-01-b59e1d6f3872.png" %}
 
 - 기존에 Vault를 사용하기 위해 **애플리케이션에서 직접 구현해야 했던 Vault Login, Vault Secret Read 등의 동작을 VSO가 대신 수행합니다.**
 - **VSO는 Vault에 저장된 Secret을 Kubernetes Native Secret으로 동기화합니다.**
@@ -1440,7 +1440,7 @@ kubectl rolesum -n vault-secrets-operator-system vault-secrets-operator-controll
 Static Secret(고정 암호) 실습 시나리오는 다음과 같습니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-static-secrets-senario.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-static-secrets-senario--60b2fcc70b72478e.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-vault-static-secrets-senario-305c18ebc7-01-bbfd2d476e78.png" %}
 
 1. Vault에 시크릿(Secret)과 접근을 위한 Policy/Role을 생성합니다.
 2. VSO는 `VaultAuth` CRD 설정을 기반으로 Vault에 로그인하고 토큰(Token)을 발급받습니다.
@@ -1614,7 +1614,7 @@ secretkv   Opaque   3      8m
 ## 8. Dynamic Secret(동적 암호) 실습
 
 {% include diagrams/static/ci-cd/ci-cd-study/vault-dynamic-secrets-senario.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/vault-dynamic-secrets-senario--611ab0295f22b42e.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-vault-dynamic-secrets-senario-f16b87bf34-01-6bbe841d178c.png" %}
 
 - 동적 암호 주기 관리는 **Vault** 가 자동으로 **암호를 갱신**(삭제/재생성)하고, **VSO**가 해당 암호를 **Kubernetes Secret 에 동기화**
     - Dynamic secrets lifecycle is managed by Vault and will be automatically rotated

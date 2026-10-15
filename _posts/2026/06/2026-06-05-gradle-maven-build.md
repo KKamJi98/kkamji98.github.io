@@ -40,7 +40,7 @@ Gradle과 Maven은 접근이 다릅니다.
 빌드의 흐름과 최종 산출물을 정리하면 다음과 같습니다.
 
 {% include diagrams/static/spring/spring-21-build-pipeline.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-21-build-pipeline--0c16122cebf59797.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-spring-spring-21-build-pipeline-0133b777c3-01-d74555dfba7b.png" %}
 _compile + test -> Spring Boot 플러그인 패키징 -> 앱과 모든 의존성을 담은 실행 가능 jar -> java -jar로 실행._
 
 Spring Boot Gradle 플러그인은 `bootJar` 태스크로 실행 가능 jar를 만듭니다.

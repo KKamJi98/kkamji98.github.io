@@ -1,51 +1,49 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ab20fd7f3df062d30d045c25e543ce5b26a614e5a90b0381e8b8b35f1e03b826">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1" x="64.000" y="160.800" width="1792.000" height="517.400" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.0" x="64.000" y="702.200" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.1" x="669.333" y="702.200" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.2" x="1274.667" y="702.200" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-node="root.0.1.1.0" x="120.000" y="261.450" width="312.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.1.2" x="576.000" y="246.600" width="312.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.1.4" x="1032.000" y="261.450" width="312.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.6" x="1488.000" y="261.450" width="312.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.8" x="120.000" y="498.400" width="312.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.0.1" x="88.000" y="788.000" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1" x="693.333" y="788.000" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2.1" x="1298.667" y="788.000" width="533.333" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 444.000 324.500 L 564.000 324.500" fill="none" stroke="#475569" stroke-width="3"><title>진입</title></path>
-<polygon data-arrowhead="root.0.1.1.1" points="564.000,324.500 554.000,330.500 554.000,318.500" fill="#475569"/>
-<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 900.000 324.500 L 1020.000 324.500" fill="none" stroke="#475569" stroke-width="3"><title>부모 결정 전파</title></path>
-<polygon data-arrowhead="root.0.1.1.3" points="1020.000,324.500 1010.000,330.500 1010.000,318.500" fill="#475569"/>
-<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 1356.000 324.500 L 1476.000 324.500" fill="none" stroke="#475569" stroke-width="3"><title>부모 결정 전파</title></path>
-<polygon data-arrowhead="root.0.1.1.5" points="1476.000,324.500 1466.000,330.500 1466.000,318.500" fill="#475569"/>
-<path data-edge="root.0.1.1.7" data-from="root.0.1.1.6" data-to="root.0.1.1.8" d="M 1812.000 324.500 L 1824.000 324.500 L 1824.000 450.400 L 96.000 450.400 L 96.000 576.300 L 108.000 576.300" fill="none" stroke="#475569" stroke-width="3"><title>수집 비율 유지</title></path>
-<polygon data-arrowhead="root.0.1.1.7" points="108.000,576.300 98.000,582.300 98.000,570.300" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="124.200" font-size="36" font-weight="700" fill="#111827">sampling 결정은 trace 진입 서비스에서 한 번만 일어납니다</text>
-<text data-source="root.0.1.0" x="88.000" y="212.800" font-size="28" font-weight="700" fill="#111827">parent-based trace 경로</text>
-<text data-source="root.0.1.1.0" x="144.000" y="313.450" font-size="28" font-weight="700" fill="#111827">클라이언트 요청</text>
-<text data-source="root.0.1.1.0" x="144.000" y="355.850" font-size="22" font-weight="400" fill="#111827">trace가 시작되는 지점</text>
-<text data-source="root.0.1.1.2" x="600.000" y="298.600" font-size="28" font-weight="700" fill="#111827">서비스 A</text>
-<text data-source="root.0.1.1.2" x="600.000" y="341.000" font-size="22" font-weight="400" fill="#111827">sampled 여부를 결정하고</text>
-<text data-source="root.0.1.1.2" x="600.000" y="370.700" font-size="22" font-weight="400" fill="#111827">하위로 전파</text>
-<text data-source="root.0.1.1.4" x="1056.000" y="313.450" font-size="28" font-weight="700" fill="#111827">서비스 B</text>
-<text data-source="root.0.1.1.4" x="1056.000" y="355.850" font-size="22" font-weight="400" fill="#111827">부모 결정을 그대로 따름</text>
-<text data-source="root.0.1.1.6" x="1512.000" y="313.450" font-size="28" font-weight="700" fill="#111827">서비스 C</text>
-<text data-source="root.0.1.1.6" x="1512.000" y="355.850" font-size="22" font-weight="400" fill="#111827">부모 결정을 그대로 따름</text>
-<text data-source="root.0.1.1.8" x="144.000" y="550.400" font-size="28" font-weight="700" fill="#111827">수집된 trace</text>
-<text data-source="root.0.1.1.8" x="144.000" y="592.800" font-size="22" font-weight="400" fill="#111827">진입 rule이 정한 비율만큼</text>
-<text data-source="root.0.1.1.8" x="144.000" y="622.500" font-size="22" font-weight="400" fill="#111827">남음</text>
-<text data-source="root.0.1.1.1" x="436.000" y="304.800" font-size="22" font-weight="400" fill="#111827">진입</text>
-<text data-source="root.0.1.1.3" x="892.000" y="304.800" font-size="22" font-weight="400" fill="#111827">부모 결정 전파</text>
-<text data-source="root.0.1.1.5" x="1348.000" y="304.800" font-size="22" font-weight="400" fill="#111827">부모 결정 전파</text>
-<text data-source="root.0.1.1.7" x="128.000" y="442.400" font-size="22" font-weight="400" fill="#111827">수집 비율 유지</text>
-<text data-source="root.0.2.0.0" x="88.000" y="754.200" font-size="28" font-weight="700" fill="#111827">A의 결정 입력</text>
-<text data-source="root.0.2.0.1" x="112.000" y="840.000" font-size="28" font-weight="700" fill="#111827">진입 sampling rule</text>
-<text data-source="root.0.2.0.1" x="112.000" y="882.400" font-size="22" font-weight="400" fill="#111827">reservoir 1, fixed rate 5%, priority 1에서 9999</text>
-<text data-source="root.0.2.1.0" x="693.333" y="754.200" font-size="28" font-weight="700" fill="#111827">sampling API 호출</text>
-<text data-source="root.0.2.1.1" x="717.333" y="840.000" font-size="28" font-weight="700" fill="#111827">CloudWatch agent proxy</text>
-<text data-source="root.0.2.1.1" x="717.333" y="882.400" font-size="22" font-weight="400" fill="#111827">SDK와 ADOT가 TCP 2000으로 호출</text>
-<text data-source="root.0.2.2.0" x="1298.667" y="754.200" font-size="28" font-weight="700" fill="#111827">C에만 둔 rule</text>
-<text data-source="root.0.2.2.1" x="1322.667" y="840.000" font-size="28" font-weight="700" fill="#111827">fixed rate 100%</text>
-<text data-source="root.0.2.2.1" x="1322.667" y="882.400" font-size="22" font-weight="400" fill="#111827">이미 내려진 parent 결정을 바꾸지 못함</text>
-<text data-source="root.0.3" x="64.000" y="984.100" font-size="22" font-weight="400" fill="#111827">진입 rule과 sampling proxy는 서비스 A의 결정 입력입니다. C에만 둔 100% rule은 이미 선택된 parent 결정을 뒤집지 못하므로 비율을 바꾸려면 A의 매칭 rule을 수정해야 합니다.</text>
+<rect data-source="root.0.1" x="64.000" y="190.500" width="1792.000" height="458.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0" x="64.000" y="672.500" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="669.333" y="672.500" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.2" x="1274.667" y="672.500" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="120.000" y="276.300" width="464.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="728.000" y="276.300" width="464.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.4" x="1336.000" y="276.300" width="464.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.6" x="424.000" y="498.400" width="464.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.8" x="1032.000" y="498.400" width="464.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1" x="88.000" y="758.300" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="693.333" y="758.300" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2.1" x="1298.667" y="758.300" width="533.333" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1.1" data-from="root.0.1.1.0" data-to="root.0.1.1.2" d="M 596.000 339.350 L 716.000 339.350" fill="none" stroke="#475569" stroke-width="3"><title>진입</title></path>
+<polygon data-arrowhead="root.0.1.1.1" points="716.000,339.350 706.000,345.350 706.000,333.350" fill="#475569"/>
+<path data-edge="root.0.1.1.3" data-from="root.0.1.1.2" data-to="root.0.1.1.4" d="M 1204.000 339.350 L 1324.000 339.350" fill="none" stroke="#475569" stroke-width="3"><title>부모 결정 전파</title></path>
+<polygon data-arrowhead="root.0.1.1.3" points="1324.000,339.350 1314.000,345.350 1314.000,333.350" fill="#475569"/>
+<path data-edge="root.0.1.1.5" data-from="root.0.1.1.4" data-to="root.0.1.1.6" d="M 1568.000 414.400 L 1568.000 450.400 L 656.000 450.400 L 656.000 486.400" fill="none" stroke="#475569" stroke-width="3"><title>부모 결정 전파</title></path>
+<polygon data-arrowhead="root.0.1.1.5" points="656.000,486.400 650.000,476.400 662.000,476.400" fill="#475569"/>
+<path data-edge="root.0.1.1.7" data-from="root.0.1.1.6" data-to="root.0.1.1.8" d="M 900.000 561.450 L 1020.000 561.450" fill="none" stroke="#475569" stroke-width="3"><title>수집 비율 유지</title></path>
+<polygon data-arrowhead="root.0.1.1.7" points="1020.000,561.450 1010.000,567.450 1010.000,555.450" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="153.900" font-size="36" font-weight="700" fill="#111827">sampling 결정은 trace 진입 서비스에서 한 번만 일어납니다</text>
+<text data-source="root.0.1.0" x="88.000" y="242.500" font-size="28" font-weight="700" fill="#111827">parent-based trace 경로</text>
+<text data-source="root.0.1.1.0" x="144.000" y="328.300" font-size="28" font-weight="700" fill="#111827">클라이언트 요청</text>
+<text data-source="root.0.1.1.0" x="144.000" y="370.700" font-size="22" font-weight="400" fill="#111827">trace가 시작되는 지점</text>
+<text data-source="root.0.1.1.2" x="752.000" y="328.300" font-size="28" font-weight="700" fill="#111827">서비스 A</text>
+<text data-source="root.0.1.1.2" x="752.000" y="370.700" font-size="22" font-weight="400" fill="#111827">sampled 여부를 결정하고 하위로 전파</text>
+<text data-source="root.0.1.1.4" x="1360.000" y="328.300" font-size="28" font-weight="700" fill="#111827">서비스 B</text>
+<text data-source="root.0.1.1.4" x="1360.000" y="370.700" font-size="22" font-weight="400" fill="#111827">부모 결정을 그대로 따름</text>
+<text data-source="root.0.1.1.6" x="448.000" y="550.400" font-size="28" font-weight="700" fill="#111827">서비스 C</text>
+<text data-source="root.0.1.1.6" x="448.000" y="592.800" font-size="22" font-weight="400" fill="#111827">부모 결정을 그대로 따름</text>
+<text data-source="root.0.1.1.8" x="1056.000" y="550.400" font-size="28" font-weight="700" fill="#111827">수집된 trace</text>
+<text data-source="root.0.1.1.8" x="1056.000" y="592.800" font-size="22" font-weight="400" fill="#111827">진입 rule이 정한 비율만큼 남음</text>
+<text data-source="root.0.1.1.1" x="588.000" y="319.650" font-size="22" font-weight="400" fill="#111827">진입</text>
+<text data-source="root.0.1.1.3" x="1196.000" y="319.650" font-size="22" font-weight="400" fill="#111827">부모 결정 전파</text>
+<text data-source="root.0.1.1.5" x="668.000" y="442.400" font-size="22" font-weight="400" fill="#111827">부모 결정 전파</text>
+<text data-source="root.0.1.1.7" x="892.000" y="541.750" font-size="22" font-weight="400" fill="#111827">수집 비율 유지</text>
+<text data-source="root.0.2.0.0" x="88.000" y="724.500" font-size="28" font-weight="700" fill="#111827">A의 결정 입력</text>
+<text data-source="root.0.2.0.1" x="112.000" y="810.300" font-size="28" font-weight="700" fill="#111827">진입 sampling rule</text>
+<text data-source="root.0.2.0.1" x="112.000" y="852.700" font-size="22" font-weight="400" fill="#111827">reservoir 1, fixed rate 5%, priority 1에서 9999</text>
+<text data-source="root.0.2.1.0" x="693.333" y="724.500" font-size="28" font-weight="700" fill="#111827">sampling API 호출</text>
+<text data-source="root.0.2.1.1" x="717.333" y="810.300" font-size="28" font-weight="700" fill="#111827">CloudWatch agent proxy</text>
+<text data-source="root.0.2.1.1" x="717.333" y="852.700" font-size="22" font-weight="400" fill="#111827">SDK와 ADOT가 TCP 2000으로 호출</text>
+<text data-source="root.0.2.2.0" x="1298.667" y="724.500" font-size="28" font-weight="700" fill="#111827">C에만 둔 rule</text>
+<text data-source="root.0.2.2.1" x="1322.667" y="810.300" font-size="28" font-weight="700" fill="#111827">fixed rate 100%</text>
+<text data-source="root.0.2.2.1" x="1322.667" y="852.700" font-size="22" font-weight="400" fill="#111827">이미 내려진 parent 결정을 바꾸지 못함</text>
+<text data-source="root.0.3" x="64.000" y="954.400" font-size="22" font-weight="400" fill="#111827">진입 rule과 sampling proxy는 서비스 A의 결정 입력입니다. C에만 둔 100% rule은 이미 선택된 parent 결정을 뒤집지 못하므로 비율을 바꾸려면 A의 매칭 rule을 수정해야 합니다.</text>
 </svg>

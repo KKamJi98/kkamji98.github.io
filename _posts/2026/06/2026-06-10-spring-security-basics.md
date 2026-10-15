@@ -55,7 +55,7 @@ _DelegatingFilterProxy가 Servlet 컨테이너와 Spring을 잇고, FilterChainP
 인증은 "이 요청의 주체가 누구인지" 확정하는 단계입니다.
 
 {% include diagrams/static/spring/spring-24-authn-authz.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-24-authn-authz--dd987ca53ccaa5a7.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-spring-spring-24-authn-authz-beee495ad9-01-b0ff00e41cf3.png" %}
 _인증: credentials -> AuthenticationManager -> 인증된 Authentication을 SecurityContextHolder에 저장. 인가: AuthorizationFilter가 권한을 접근 규칙과 비교해 허용/거부._
 
 인증을 수행하는 API가 **`AuthenticationManager`**입니다.

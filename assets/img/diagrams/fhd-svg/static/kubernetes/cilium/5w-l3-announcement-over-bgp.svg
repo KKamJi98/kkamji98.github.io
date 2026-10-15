@@ -1,38 +1,38 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="a246fe1f46b92c29b36523e9a14adae2c09ef4fd13a86d7e8ee5a9aa8593ff67">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0" x="64.000" y="175.300" width="884.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.1" x="972.000" y="175.300" width="884.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="671.000" width="1792.000" height="252.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1" x="64.000" y="175.300" width="1792.000" height="386.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0.1" x="88.000" y="261.100" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.2" x="88.000" y="411.200" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.1" x="996.000" y="261.100" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1.2" x="996.000" y="411.200" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.0" x="120.000" y="765.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.2" x="1032.000" y="765.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.3.1.1" data-from="root.0.3.1.0" data-to="root.0.3.1.2" d="M 900.000 828.200 L 1020.000 828.200" fill="none" stroke="#475569" stroke-width="3"><title>BGP peering: route 교환</title></path>
-<polygon data-arrowhead="root.0.3.1.1" points="1020.000,828.200 1010.000,834.200 1010.000,822.200" fill="#475569"/>
-<polygon data-arrowhead="root.0.3.1.1.reverse" points="900.000,828.200 910.000,822.200 910.000,834.200" fill="#475569"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 573.300 L 960.000 659.000" fill="none" stroke="#475569" stroke-width="3"><title>Daemon A는 Router-A에, Daemon B는 Router-B에 announce</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,659.000 954.000,649.000 966.000,649.000" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="138.700" font-size="36" font-weight="700" fill="#111827">LoadBalancer 경로는 각 node의 BGP daemon을 거쳐 외부 router에 광고된다</text>
-<text data-source="root.0.1.0.0" x="88.000" y="227.300" font-size="28" font-weight="700" fill="#111827">Node A</text>
-<text data-source="root.0.1.0.1" x="112.000" y="313.100" font-size="28" font-weight="700" fill="#111827">Pods</text>
-<text data-source="root.0.1.0.1" x="112.000" y="355.500" font-size="22" font-weight="400" fill="#111827">endpoint와 Service route</text>
-<text data-source="root.0.1.0.2" x="112.000" y="463.200" font-size="28" font-weight="700" fill="#111827">BGP Daemon A</text>
-<text data-source="root.0.1.0.2" x="112.000" y="505.600" font-size="22" font-weight="400" fill="#111827">선택된 LoadBalancer 외부 IP의 IPv4/IPv6 route 광고</text>
+<rect data-source="root.0.1" x="64.000" y="151.300" width="1792.000" height="434.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0" x="88.000" y="175.300" width="860.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="175.300" width="860.000" height="386.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="695.000" width="1792.000" height="252.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="112.000" y="261.100" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="112.000" y="411.200" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="996.000" y="261.100" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="996.000" y="411.200" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.0" x="120.000" y="789.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2" x="1032.000" y="789.150" width="768.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.3.1.1" data-from="root.0.3.1.0" data-to="root.0.3.1.2" d="M 900.000 852.200 L 1020.000 852.200" fill="none" stroke="#475569" stroke-width="3"><title>BGP peering: route 교환</title></path>
+<polygon data-arrowhead="root.0.3.1.1" points="1020.000,852.200 1010.000,858.200 1010.000,846.200" fill="#475569"/>
+<polygon data-arrowhead="root.0.3.1.1.reverse" points="900.000,852.200 910.000,846.200 910.000,858.200" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 597.300 L 960.000 683.000" fill="none" stroke="#475569" stroke-width="3"><title>Daemon A는 Router-A에, Daemon B는 Router-B에 announce</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,683.000 954.000,673.000 966.000,673.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="114.700" font-size="36" font-weight="700" fill="#111827">LoadBalancer 경로는 각 node의 BGP daemon을 거쳐 외부 router에 광고된다</text>
+<text data-source="root.0.1.0.0" x="112.000" y="227.300" font-size="28" font-weight="700" fill="#111827">Node A</text>
+<text data-source="root.0.1.0.1" x="136.000" y="313.100" font-size="28" font-weight="700" fill="#111827">Pods</text>
+<text data-source="root.0.1.0.1" x="136.000" y="355.500" font-size="22" font-weight="400" fill="#111827">endpoint와 Service route</text>
+<text data-source="root.0.1.0.2" x="136.000" y="463.200" font-size="28" font-weight="700" fill="#111827">BGP Daemon A</text>
+<text data-source="root.0.1.0.2" x="136.000" y="505.600" font-size="22" font-weight="400" fill="#111827">선택된 LoadBalancer 외부 IP의 IPv4/IPv6 route 광고</text>
 <text data-source="root.0.1.1.0" x="996.000" y="227.300" font-size="28" font-weight="700" fill="#111827">Node B</text>
 <text data-source="root.0.1.1.1" x="1020.000" y="313.100" font-size="28" font-weight="700" fill="#111827">Pods</text>
 <text data-source="root.0.1.1.1" x="1020.000" y="355.500" font-size="22" font-weight="400" fill="#111827">두 번째 node의 endpoint와 Service route</text>
 <text data-source="root.0.1.1.2" x="1020.000" y="463.200" font-size="28" font-weight="700" fill="#111827">BGP Daemon B</text>
 <text data-source="root.0.1.1.2" x="1020.000" y="505.600" font-size="22" font-weight="400" fill="#111827">선택된 LoadBalancer 외부 IP의 IPv4/IPv6 route 광고</text>
-<text data-source="root.0.3.0" x="88.000" y="723.000" font-size="28" font-weight="700" fill="#111827">External BGP peers</text>
-<text data-source="root.0.3.1.0" x="144.000" y="817.150" font-size="28" font-weight="700" fill="#111827">Router-A</text>
-<text data-source="root.0.3.1.0" x="144.000" y="859.550" font-size="22" font-weight="400" fill="#111827">Node A의 광고 수신</text>
-<text data-source="root.0.3.1.2" x="1056.000" y="817.150" font-size="28" font-weight="700" fill="#111827">Router-B</text>
-<text data-source="root.0.3.1.2" x="1056.000" y="859.550" font-size="22" font-weight="400" fill="#111827">Node B의 광고 수신</text>
-<text data-source="root.0.3.1.1" x="892.000" y="778.800" font-size="22" font-weight="400" fill="#111827">BGP peering:</text>
-<text data-source="root.0.3.1.1" x="892.000" y="808.500" font-size="22" font-weight="400" fill="#111827">route 교환</text>
-<text data-source="root.0.4" x="64.000" y="969.600" font-size="22" font-weight="400" fill="#111827">Service 외부 IP route의 광고와 ingress node 선택은 다릅니다. externalTrafficPolicy가 광고 대상과 traffic 처리에 영향을 줍니다.</text>
-<text data-source="root.0.2" x="980.000" y="623.300" font-size="22" font-weight="400" fill="#111827">Daemon A는 Router-A에, Daemon B는 Router-B에 announce</text>
+<text data-source="root.0.3.0" x="88.000" y="747.000" font-size="28" font-weight="700" fill="#111827">External BGP peers</text>
+<text data-source="root.0.3.1.0" x="144.000" y="841.150" font-size="28" font-weight="700" fill="#111827">Router-A</text>
+<text data-source="root.0.3.1.0" x="144.000" y="883.550" font-size="22" font-weight="400" fill="#111827">Node A의 광고 수신</text>
+<text data-source="root.0.3.1.2" x="1056.000" y="841.150" font-size="28" font-weight="700" fill="#111827">Router-B</text>
+<text data-source="root.0.3.1.2" x="1056.000" y="883.550" font-size="22" font-weight="400" fill="#111827">Node B의 광고 수신</text>
+<text data-source="root.0.3.1.1" x="892.000" y="802.800" font-size="22" font-weight="400" fill="#111827">BGP peering:</text>
+<text data-source="root.0.3.1.1" x="892.000" y="832.500" font-size="22" font-weight="400" fill="#111827">route 교환</text>
+<text data-source="root.0.4" x="64.000" y="993.600" font-size="22" font-weight="400" fill="#111827">Service 외부 IP route의 광고와 ingress node 선택은 다릅니다. externalTrafficPolicy가 광고 대상과 traffic 처리에 영향을 줍니다.</text>
+<text data-source="root.0.2" x="980.000" y="647.300" font-size="22" font-weight="400" fill="#111827">Daemon A는 Router-A에, Daemon B는 Router-B에 announce</text>
 </svg>

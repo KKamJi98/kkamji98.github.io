@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/kubernetes/cilium/kube-proxy_replacement.html",
+  "source_sha256": "da046ac106b6555f0e04de0cf7785922392be515e16ce654f919b0c8291bf722",
+  "svg_sha256": "48d5bf903ede90eaa0ac96a5d70d401f3e61d170658306e2373567e822f2aff6",
+  "png_sha256": "d1a22bf341352b3124b5c02ad92cc188eb09269ac83b3aedbbdbc5ce9c806577",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T17:44:34.093893+00:00",
+  "notes": "두 대안 경로가 명확히 구분되며 겹침과 잘림 없음. 구성별 hook, 전체 host 우회에 대한 부정, socket/veth 비연속 조건이 원문대로 보존됨.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "7bc1481daded32e97632143f4b9c75a804d2aaf2b0f69a9d3ff7b6faa2d10155",
+  "original_bound_batch_index": 16,
+  "original_entry_index": 197,
+  "image_pixels_visible": true,
+  "blockers": []
+}

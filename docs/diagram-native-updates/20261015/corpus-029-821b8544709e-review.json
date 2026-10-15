@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/aws/analytics-stack-03-distributed-sql-mpp.html",
+  "source_sha256": "862fa95c88ddebe39c0e4993da58a654caac82fa8d0c35a822a9f87aa6f0b23f",
+  "svg_sha256": "97bab3aeb8af0860c80f8a1888fb000d94499f1c3917d2cd01a0b9646d5bf2aa",
+  "png_sha256": "283b3e43f7646d508f4d86ecc79fb8bf0aa311f2344f7ba79bf6fa641eb5069d",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T20:49:31.515692+00:00",
+  "notes": "상단 라벨과 Coordinator 경계는 가깝지만 실제 접촉이나 잘림은 보이지 않습니다. 병렬 worker 계층과 전체 균형이 자연스럽고, 직접 scan하지 않는다는 원문 의미도 보존됩니다.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "2de2e536ff4ace281f741c6025e2616c7d17a6d5a27751ece092f19d6bd342d7",
+  "original_bound_batch_index": 0,
+  "original_entry_index": 29,
+  "image_pixels_visible": true,
+  "blockers": []
+}

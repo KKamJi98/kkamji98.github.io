@@ -1,45 +1,45 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="9718ba59f382de6378246cc18e326f3b5f9b91ce359333a495436ac75d58a641">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.4.0" x="96.000" y="356.100" width="792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4.1" x="96.000" y="509.400" width="792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4.2" x="96.000" y="662.700" width="792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4.3" x="96.000" y="816.000" width="792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.4" x="96.000" y="356.100" width="792.000" height="601.200" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="164.400" width="792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="1032.000" y="164.400" width="792.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.4.0.1.0" x="108.000" y="404.400" width="768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.1.1.0" x="108.000" y="557.700" width="378.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.1.1.1" x="498.000" y="557.700" width="378.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.4.2.1.0" x="108.000" y="711.000" width="378.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4.2.1.1" x="498.000" y="711.000" width="378.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.4.3.1.0" x="108.000" y="864.300" width="768.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 204.900 L 1020.000 204.900" fill="none" stroke="#475569" stroke-width="3"><title>모든 phase의 공통 진입</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,204.900 1010.000,210.900 1010.000,198.900" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 204.900 L 1848.000 204.900 L 1848.000 308.100 L 72.000 308.100 L 72.000 656.700 L 84.000 656.700" fill="none" stroke="#475569" stroke-width="3"><title>canary weight 단계 진행</title></path>
-<polygon data-arrowhead="root.0.1.3" points="84.000,656.700 74.000,662.700 74.000,650.700" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="125.100" font-size="36" font-weight="700" fill="#111827">Canary 배포는 새 버전의 traffic weight를 단계적으로 높인다</text>
-<text data-source="root.0.1.0" x="108.000" y="194.400" font-size="18" font-weight="700" fill="#111827">Users</text>
-<text data-source="root.0.1.0" x="108.000" y="227.800" font-size="16" font-weight="400" fill="#111827">Live traffic을 발생</text>
-<text data-source="root.0.1.2" x="1044.000" y="194.400" font-size="18" font-weight="700" fill="#111827">Load Balancer</text>
-<text data-source="root.0.1.2" x="1044.000" y="227.800" font-size="16" font-weight="400" fill="#111827">phase별 weight로 두 버전에 분배</text>
-<text data-source="root.0.1.4.0.0" x="108.000" y="386.100" font-size="18" font-weight="700" fill="#111827">1. Initial version</text>
-<text data-source="root.0.1.4.0.1.0" x="120.000" y="434.400" font-size="18" font-weight="700" fill="#111827">Application version 34</text>
-<text data-source="root.0.1.4.0.1.0" x="120.000" y="467.800" font-size="16" font-weight="400" fill="#111827">100% traffic</text>
-<text data-source="root.0.1.4.1.0" x="108.000" y="539.400" font-size="18" font-weight="700" fill="#111827">2. New version used by 10%</text>
-<text data-source="root.0.1.4.1.1.0" x="120.000" y="587.700" font-size="18" font-weight="700" fill="#111827">Version 34</text>
-<text data-source="root.0.1.4.1.1.0" x="120.000" y="621.100" font-size="16" font-weight="400" fill="#111827">90% traffic</text>
-<text data-source="root.0.1.4.1.1.1" x="510.000" y="587.700" font-size="18" font-weight="700" fill="#111827">Version 35</text>
-<text data-source="root.0.1.4.1.1.1" x="510.000" y="621.100" font-size="16" font-weight="400" fill="#111827">10% canary traffic</text>
-<text data-source="root.0.1.4.2.0" x="108.000" y="692.700" font-size="18" font-weight="700" fill="#111827">3. New version used by about one third</text>
-<text data-source="root.0.1.4.2.1.0" x="120.000" y="741.000" font-size="18" font-weight="700" fill="#111827">Version 34</text>
-<text data-source="root.0.1.4.2.1.0" x="120.000" y="774.400" font-size="16" font-weight="400" fill="#111827">약 66.7% traffic</text>
-<text data-source="root.0.1.4.2.1.1" x="510.000" y="741.000" font-size="18" font-weight="700" fill="#111827">Version 35</text>
-<text data-source="root.0.1.4.2.1.1" x="510.000" y="774.400" font-size="16" font-weight="400" fill="#111827">약 33.3% canary traffic</text>
-<text data-source="root.0.1.4.3.0" x="108.000" y="846.000" font-size="18" font-weight="700" fill="#111827">4. New version used by all users</text>
-<text data-source="root.0.1.4.3.1.0" x="120.000" y="894.300" font-size="18" font-weight="700" fill="#111827">Application version 35</text>
-<text data-source="root.0.1.4.3.1.0" x="120.000" y="927.700" font-size="16" font-weight="400" fill="#111827">100% traffic, rollout complete</text>
-<text data-source="root.0.1.1" x="892.000" y="165.700" font-size="16" font-weight="400" fill="#111827">모든 phase의 공통</text>
-<text data-source="root.0.1.1" x="892.000" y="187.300" font-size="16" font-weight="400" fill="#111827">진입</text>
-<text data-source="root.0.1.3" x="104.000" y="300.100" font-size="16" font-weight="400" fill="#111827">canary weight 단계 진행</text>
-<text data-source="root.0.2" x="64.000" y="985.300" font-size="16" font-weight="400" fill="#111827">각 단계에서 새 버전의 결과를 확인한 뒤 다음 weight로 승격합니다. 문제가 발견되면 이전 버전에 남은 traffic을 유지하거나 rollback할 수 있습니다.</text>
+<rect data-source="root.0.1.4" x="564.000" y="332.100" width="792.000" height="649.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.0" x="588.000" y="356.100" width="744.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.1" x="588.000" y="509.400" width="744.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.2" x="588.000" y="662.700" width="744.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.4.3" x="588.000" y="816.000" width="744.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="140.400" width="792.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="140.400" width="792.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.0.1.0" x="600.000" y="404.400" width="720.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.0" x="600.000" y="557.700" width="354.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1.1.1" x="966.000" y="557.700" width="354.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.2.1.0" x="600.000" y="711.000" width="354.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.2.1.1" x="966.000" y="711.000" width="354.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.3.1.0" x="600.000" y="864.300" width="720.000" height="81.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 180.900 L 1020.000 180.900" fill="none" stroke="#475569" stroke-width="3"><title>모든 phase의 공통 진입</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,180.900 1010.000,186.900 1010.000,174.900" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1428.000 233.400 L 1428.000 284.100 L 960.000 284.100 L 960.000 320.100" fill="none" stroke="#475569" stroke-width="3"><title>canary weight 단계 진행</title></path>
+<polygon data-arrowhead="root.0.1.3" points="960.000,320.100 954.000,310.100 966.000,310.100" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="101.100" font-size="36" font-weight="700" fill="#111827">Canary 배포는 새 버전의 traffic weight를 단계적으로 높인다</text>
+<text data-source="root.0.1.0" x="108.000" y="170.400" font-size="18" font-weight="700" fill="#111827">Users</text>
+<text data-source="root.0.1.0" x="108.000" y="203.800" font-size="16" font-weight="400" fill="#111827">Live traffic을 발생</text>
+<text data-source="root.0.1.2" x="1044.000" y="170.400" font-size="18" font-weight="700" fill="#111827">Load Balancer</text>
+<text data-source="root.0.1.2" x="1044.000" y="203.800" font-size="16" font-weight="400" fill="#111827">phase별 weight로 두 버전에 분배</text>
+<text data-source="root.0.1.4.0.0" x="600.000" y="386.100" font-size="18" font-weight="700" fill="#111827">1. Initial version</text>
+<text data-source="root.0.1.4.0.1.0" x="612.000" y="434.400" font-size="18" font-weight="700" fill="#111827">Application version 34</text>
+<text data-source="root.0.1.4.0.1.0" x="612.000" y="467.800" font-size="16" font-weight="400" fill="#111827">100% traffic</text>
+<text data-source="root.0.1.4.1.0" x="600.000" y="539.400" font-size="18" font-weight="700" fill="#111827">2. New version used by 10%</text>
+<text data-source="root.0.1.4.1.1.0" x="612.000" y="587.700" font-size="18" font-weight="700" fill="#111827">Version 34</text>
+<text data-source="root.0.1.4.1.1.0" x="612.000" y="621.100" font-size="16" font-weight="400" fill="#111827">90% traffic</text>
+<text data-source="root.0.1.4.1.1.1" x="978.000" y="587.700" font-size="18" font-weight="700" fill="#111827">Version 35</text>
+<text data-source="root.0.1.4.1.1.1" x="978.000" y="621.100" font-size="16" font-weight="400" fill="#111827">10% canary traffic</text>
+<text data-source="root.0.1.4.2.0" x="600.000" y="692.700" font-size="18" font-weight="700" fill="#111827">3. New version used by about one third</text>
+<text data-source="root.0.1.4.2.1.0" x="612.000" y="741.000" font-size="18" font-weight="700" fill="#111827">Version 34</text>
+<text data-source="root.0.1.4.2.1.0" x="612.000" y="774.400" font-size="16" font-weight="400" fill="#111827">약 66.7% traffic</text>
+<text data-source="root.0.1.4.2.1.1" x="978.000" y="741.000" font-size="18" font-weight="700" fill="#111827">Version 35</text>
+<text data-source="root.0.1.4.2.1.1" x="978.000" y="774.400" font-size="16" font-weight="400" fill="#111827">약 33.3% canary traffic</text>
+<text data-source="root.0.1.4.3.0" x="600.000" y="846.000" font-size="18" font-weight="700" fill="#111827">4. New version used by all users</text>
+<text data-source="root.0.1.4.3.1.0" x="612.000" y="894.300" font-size="18" font-weight="700" fill="#111827">Application version 35</text>
+<text data-source="root.0.1.4.3.1.0" x="612.000" y="927.700" font-size="16" font-weight="400" fill="#111827">100% traffic, rollout complete</text>
+<text data-source="root.0.1.1" x="892.000" y="141.700" font-size="16" font-weight="400" fill="#111827">모든 phase의 공통</text>
+<text data-source="root.0.1.1" x="892.000" y="163.300" font-size="16" font-weight="400" fill="#111827">진입</text>
+<text data-source="root.0.1.3" x="972.000" y="276.100" font-size="16" font-weight="400" fill="#111827">canary weight 단계 진행</text>
+<text data-source="root.0.2" x="64.000" y="1009.300" font-size="16" font-weight="400" fill="#111827">각 단계에서 새 버전의 결과를 확인한 뒤 다음 weight로 승격합니다. 문제가 발견되면 이전 버전에 남은 traffic을 유지하거나 rollback할 수 있습니다.</text>
 </svg>

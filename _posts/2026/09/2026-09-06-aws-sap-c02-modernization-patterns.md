@@ -58,7 +58,7 @@ SAP-C02 Domain 4의 Task 4.3과 4.4는 이 판단을 묻습니다. 서비스 이
 이 과정을 거치면 같은 애플리케이션 안에서도 컴퓨트와 스토리지와 데이터베이스의 타깃이 달라질 수 있습니다. 예를 들어 Windows 애플리케이션은 EC2에서 계속 실행하면서 SMB 파일 계층만 FSx for Windows File Server로 옮기고, 읽기 중심 세션 데이터는 DynamoDB나 ElastiCache로 별도 분리할 수 있습니다. 하나의 서비스로 모두 옮겨야 한다는 가정이 오히려 변경 범위를 키웁니다.
 
 {% include diagrams/static/sap-c02/modernization-compute-target-decision.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/modernization-compute-target-decision--a61792e5a659de27.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-modernization-compute-target-decision-ad52921698-01-80d839639d46.png" %}
 
 그림은 기존 워크로드의 실행 시간과 상태와 OS 제어 요구가 Lambda, Fargate, EC2로 갈라지는 지점을 보여줍니다. 짧은 무상태 이벤트와 장시간 컨테이너와 호스트 수준 제어가 필요한 작업을 같은 방식으로 옮길 수 없는 이유가 드러납니다.
 
@@ -189,7 +189,7 @@ Fargate의 capacity provider는 Fargate와 Fargate Spot입니다. Fargate Spot�
 컨테이너 이미지는 실행 플랫폼과 분리해 관리합니다. 소스에서 Docker 이미지를 만들고 Amazon ECR에 버전을 저장한 뒤 오케스트레이터가 해당 digest를 배포하는 흐름을 고정하면, ECS와 EKS 사이의 선택이 이미지 재작성 작업으로 번지지 않습니다.
 
 {% include diagrams/static/sap-c02/modernization-container-hosting-boundaries.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/modernization-container-hosting-boundaries--5d0d822779b499a7.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-modernization-container-hosting-boundaries-f7bcd518a5-01-6d9d0115fdeb.png" %}
 
 그림은 같은 ECR 이미지가 ECS on Fargate와 EKS on Fargate로 갈라지고, 각 플랫폼의 제약을 거쳐 IP target 서비스에 연결되는 경계를 보여줍니다. ECS는 capacity provider와 태스크 단위 운영을 사용하고, EKS는 Fargate profile과 Kubernetes Pod 스케줄링을 사용합니다.
 
@@ -272,7 +272,7 @@ cached 모드는 로컬 캐시보다 큰 데이터 집합을 운영할 수 있�
 관계형 데이터베이스를 다른 이름의 데이터베이스로 복사하는 것과 데이터 모델을 다시 설계하는 것은 다른 작업입니다. SQL 조인과 다중 테이블 트랜잭션을 유지해야 하는지, 키로 한 항목을 읽는지, 검색어와 집계를 처리하는지, 운영체제와 엔진을 직접 패치해야 하는지를 분리해 적습니다.
 
 {% include diagrams/static/sap-c02/modernization-database-target-selection.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/modernization-database-target-selection--f7b545e2451756b5.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-modernization-database-target-selection-59cb2e2287-01-3f7103170955.png" %}
 
 그림에서 RDS와 Aurora는 관계형 계약을 유지하면서 데이터베이스 운영을 위임하는 경로이고, DynamoDB와 OpenSearch는 목적에 맞는 액세스 패턴을 다시 설계하는 경로입니다. EC2 self-managed는 관리형 서비스가 제공하지 않는 OS와 엔진 제어를 남기는 대신 패치와 백업 책임도 남깁니다.
 
@@ -324,7 +324,7 @@ provisioned 클러스터에서 serverless로 점진 전환할 때는 기존 클�
 모놀리스의 동기 호출을 이벤트로 바꿀 때는 어떤 서비스가 최신인지보다 소비자가 얼마나 늦게 처리해도 되는지, 순서가 필요한지, 메시지를 얼마 동안 보존해야 하는지, 한 이벤트를 몇 곳에 전달할지를 먼저 정합니다. SQS와 SNS와 EventBridge는 모두 메시지나 이벤트를 다루지만 pull, push, rule 기반 라우팅과 보존 의미가 서로 다릅니다.
 
 {% include diagrams/static/sap-c02/modernization-integration-choice-boundaries.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/modernization-integration-choice-boundaries--7baf1478e5b376ca.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-modernization-integration-choice-boundaries-a870bd5e62-01-9e004143d255.png" %}
 
 그림은 생산자에서 요구사항을 읽고 소비자별 버퍼와 순서가 필요한지, 콘텐츠에 따라 여러 대상에 보내는지, 긴 워크플로와 사람의 응답을 기다리는지를 차례로 가르는 흐름을 보여줍니다. Amazon MQ는 기존 브로커 프로토콜을 보존해야 하는 별도 경로입니다.
 

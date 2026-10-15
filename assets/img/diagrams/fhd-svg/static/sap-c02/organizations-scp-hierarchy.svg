@@ -1,53 +1,53 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="f660b655bd93245d088c37e3f3d25412e2d9a85ccf68868436f934df15cf4c37">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0" x="96.000" y="467.500" width="792.000" height="169.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.2.0" x="1032.000" y="142.800" width="388.000" height="193.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.2.1" x="1436.000" y="142.800" width="388.000" height="426.500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.2.2" x="1032.000" y="585.300" width="388.000" height="376.200" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-source="root.0.1.2.1.1.2" x="1452.000" y="384.400" width="356.000" height="168.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.1.2" x="1032.000" y="142.800" width="792.000" height="818.700" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0.1" x="112.000" y="526.500" width="760.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.0.1" x="1048.000" y="201.800" width="356.000" height="118.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.1.0" x="1452.000" y="201.800" width="356.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.1.2.0" x="1452.000" y="384.400" width="170.000" height="142.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.1.1.2.1" x="1638.000" y="384.400" width="170.000" height="168.900" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.2.1.0" x="1048.000" y="644.300" width="356.000" height="94.300" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2.2.1.2" x="1048.000" y="826.900" width="356.000" height="118.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<path data-edge="root.0.1.2.1.1.1" data-from="root.0.1.2.1.1.0" data-to="root.0.1.2.1.1.2" d="M 1630.000 308.100 L 1630.000 372.400" fill="none" stroke="#475569" stroke-width="3"><title>계정에 상속</title></path>
-<polygon data-arrowhead="root.0.1.2.1.1.1" points="1630.000,372.400 1624.000,362.400 1636.000,362.400" fill="#475569"/>
-<path data-edge="root.0.1.2.2.1.1" data-from="root.0.1.2.2.1.0" data-to="root.0.1.2.2.1.2" d="M 1226.000 750.600 L 1226.000 814.900" fill="none" stroke="#475569" stroke-width="3"><title>계정에 상속</title></path>
-<polygon data-arrowhead="root.0.1.2.2.1.1" points="1226.000,814.900 1220.000,804.900 1232.000,804.900" fill="#475569"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 552.150 L 1020.000 552.150" fill="none" stroke="#475569" stroke-width="3"><title>Root에서 자식 경로로 분기</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,552.150 1010.000,558.150 1010.000,546.150" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="114.200" font-size="36" font-weight="700" fill="#111827">SCP는 경로의 모든 레벨에서 교집합으로 적용된다</text>
-<text data-source="root.0.1.0.0" x="112.000" y="503.500" font-size="20" font-weight="700" fill="#111827">조직 Root</text>
-<text data-source="root.0.1.0.1" x="128.000" y="562.500" font-size="20" font-weight="700" fill="#111827">Root SCP</text>
-<text data-source="root.0.1.0.1" x="128.000" y="598.500" font-size="18" font-weight="400" fill="#111827">Root는 모든 OU와 계정에 내려가는 SCP 부착 지점이다.</text>
-<text data-source="root.0.1.2.0.0" x="1048.000" y="178.800" font-size="20" font-weight="700" fill="#111827">management account 예외</text>
-<text data-source="root.0.1.2.0.1" x="1064.000" y="237.800" font-size="20" font-weight="700" fill="#111827">management account</text>
-<text data-source="root.0.1.2.0.1" x="1064.000" y="273.800" font-size="18" font-weight="400" fill="#111827">management account의 principal에는</text>
-<text data-source="root.0.1.2.0.1" x="1064.000" y="298.100" font-size="18" font-weight="400" fill="#111827">SCP가 적용되지 않는다.</text>
-<text data-source="root.0.1.2.1.0" x="1452.000" y="178.800" font-size="20" font-weight="700" fill="#111827">Security OU</text>
-<text data-source="root.0.1.2.1.1.0" x="1468.000" y="237.800" font-size="20" font-weight="700" fill="#111827">Security OU SCP</text>
-<text data-source="root.0.1.2.1.1.0" x="1468.000" y="273.800" font-size="18" font-weight="400" fill="#111827">OU 경로에 정책을 부착한다.</text>
-<text data-source="root.0.1.2.1.1.2.0" x="1468.000" y="420.400" font-size="20" font-weight="700" fill="#111827">Audit 계정</text>
-<text data-source="root.0.1.2.1.1.2.0" x="1468.000" y="456.400" font-size="18" font-weight="400" fill="#111827">Root와 Security</text>
-<text data-source="root.0.1.2.1.1.2.0" x="1468.000" y="480.700" font-size="18" font-weight="400" fill="#111827">OU SCP가 모두</text>
-<text data-source="root.0.1.2.1.1.2.0" x="1468.000" y="505.000" font-size="18" font-weight="400" fill="#111827">적용된다.</text>
-<text data-source="root.0.1.2.1.1.2.1" x="1654.000" y="420.400" font-size="20" font-weight="700" fill="#111827">Log archive</text>
-<text data-source="root.0.1.2.1.1.2.1" x="1654.000" y="446.400" font-size="20" font-weight="700" fill="#111827">계정</text>
-<text data-source="root.0.1.2.1.1.2.1" x="1654.000" y="482.400" font-size="18" font-weight="400" fill="#111827">Root와 Security</text>
-<text data-source="root.0.1.2.1.1.2.1" x="1654.000" y="506.700" font-size="18" font-weight="400" fill="#111827">OU SCP가 모두</text>
-<text data-source="root.0.1.2.1.1.2.1" x="1654.000" y="531.000" font-size="18" font-weight="400" fill="#111827">적용된다.</text>
-<text data-source="root.0.1.2.1.1.1" x="1650.000" y="346.100" font-size="18" font-weight="400" fill="#111827">계정에 상속</text>
-<text data-source="root.0.1.2.2.0" x="1048.000" y="621.300" font-size="20" font-weight="700" fill="#111827">Workloads OU</text>
-<text data-source="root.0.1.2.2.1.0" x="1064.000" y="680.300" font-size="20" font-weight="700" fill="#111827">Workloads OU SCP</text>
-<text data-source="root.0.1.2.2.1.0" x="1064.000" y="716.300" font-size="18" font-weight="400" fill="#111827">운영 계정의 추가 제약을 정의한다.</text>
-<text data-source="root.0.1.2.2.1.2" x="1064.000" y="862.900" font-size="20" font-weight="700" fill="#111827">Prod 계정</text>
-<text data-source="root.0.1.2.2.1.2" x="1064.000" y="898.900" font-size="18" font-weight="400" fill="#111827">root user를 포함한 principal에도 SCP가</text>
-<text data-source="root.0.1.2.2.1.2" x="1064.000" y="923.200" font-size="18" font-weight="400" fill="#111827">적용된다.</text>
-<text data-source="root.0.1.2.2.1.1" x="1246.000" y="788.600" font-size="18" font-weight="400" fill="#111827">계정에 상속</text>
-<text data-source="root.0.1.1" x="892.000" y="509.550" font-size="18" font-weight="400" fill="#111827">Root에서 자식</text>
-<text data-source="root.0.1.1" x="892.000" y="533.850" font-size="18" font-weight="400" fill="#111827">경로로 분기</text>
-<text data-source="root.0.2" x="64.000" y="995.500" font-size="18" font-weight="400" fill="#111827">실행 가능 권한은 Root, OU, 계정에 붙은 정책의 교집합으로 결정된다.</text>
+<rect data-source="root.0.1.0" x="96.000" y="482.850" width="792.000" height="141.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1032.000" y="153.100" width="792.000" height="800.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.0" x="1056.000" y="177.100" width="366.000" height="162.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1" x="1434.000" y="177.100" width="366.000" height="416.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.1.1.2" x="1446.000" y="386.400" width="342.000" height="195.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2.2" x="1056.000" y="606.000" width="366.000" height="323.900" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="108.000" y="531.150" width="768.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.0.1" x="1068.000" y="225.400" width="342.000" height="102.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.0" x="1446.000" y="225.400" width="342.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.2.0" x="1470.000" y="410.400" width="141.000" height="124.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1.1.2.1" x="1623.000" y="410.400" width="141.000" height="147.600" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.1.0" x="1068.000" y="654.300" width="342.000" height="81.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.2.1.2" x="1068.000" y="815.300" width="342.000" height="102.600" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.2.1.1.1" data-from="root.0.1.2.1.1.0" data-to="root.0.1.2.1.1.2" d="M 1617.000 318.400 L 1617.000 374.400" fill="none" stroke="#475569" stroke-width="3"><title>계정에 상속</title></path>
+<polygon data-arrowhead="root.0.1.2.1.1.1" points="1617.000,374.400 1611.000,364.400 1623.000,364.400" fill="#475569"/>
+<path data-edge="root.0.1.2.2.1.1" data-from="root.0.1.2.2.1.0" data-to="root.0.1.2.2.1.2" d="M 1239.000 747.300 L 1239.000 803.300" fill="none" stroke="#475569" stroke-width="3"><title>계정에 상속</title></path>
+<polygon data-arrowhead="root.0.1.2.2.1.1" points="1239.000,803.300 1233.000,793.300 1245.000,793.300" fill="#475569"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 553.500 L 1020.000 553.500" fill="none" stroke="#475569" stroke-width="3"><title>Root에서 자식 경로로 분기</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,553.500 1010.000,559.500 1010.000,547.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="128.500" font-size="36" font-weight="700" fill="#111827">SCP는 경로의 모든 레벨에서 교집합으로 적용된다</text>
+<text data-source="root.0.1.0.0" x="108.000" y="512.850" font-size="18" font-weight="700" fill="#111827">조직 Root</text>
+<text data-source="root.0.1.0.1" x="120.000" y="561.150" font-size="18" font-weight="700" fill="#111827">Root SCP</text>
+<text data-source="root.0.1.0.1" x="120.000" y="594.550" font-size="16" font-weight="400" fill="#111827">Root는 모든 OU와 계정에 내려가는 SCP 부착 지점이다.</text>
+<text data-source="root.0.1.2.0.0" x="1068.000" y="207.100" font-size="18" font-weight="700" fill="#111827">management account 예외</text>
+<text data-source="root.0.1.2.0.1" x="1080.000" y="255.400" font-size="18" font-weight="700" fill="#111827">management account</text>
+<text data-source="root.0.1.2.0.1" x="1080.000" y="288.800" font-size="16" font-weight="400" fill="#111827">management account의 principal에는 SCP가</text>
+<text data-source="root.0.1.2.0.1" x="1080.000" y="310.400" font-size="16" font-weight="400" fill="#111827">적용되지 않는다.</text>
+<text data-source="root.0.1.2.1.0" x="1446.000" y="207.100" font-size="18" font-weight="700" fill="#111827">Security OU</text>
+<text data-source="root.0.1.2.1.1.0" x="1458.000" y="255.400" font-size="18" font-weight="700" fill="#111827">Security OU SCP</text>
+<text data-source="root.0.1.2.1.1.0" x="1458.000" y="288.800" font-size="16" font-weight="400" fill="#111827">OU 경로에 정책을 부착한다.</text>
+<text data-source="root.0.1.2.1.1.2.0" x="1482.000" y="440.400" font-size="18" font-weight="700" fill="#111827">Audit 계정</text>
+<text data-source="root.0.1.2.1.1.2.0" x="1482.000" y="473.800" font-size="16" font-weight="400" fill="#111827">Root와 Security</text>
+<text data-source="root.0.1.2.1.1.2.0" x="1482.000" y="495.400" font-size="16" font-weight="400" fill="#111827">OU SCP가 모두</text>
+<text data-source="root.0.1.2.1.1.2.0" x="1482.000" y="517.000" font-size="16" font-weight="400" fill="#111827">적용된다.</text>
+<text data-source="root.0.1.2.1.1.2.1" x="1635.000" y="440.400" font-size="18" font-weight="700" fill="#111827">Log archive</text>
+<text data-source="root.0.1.2.1.1.2.1" x="1635.000" y="463.800" font-size="18" font-weight="700" fill="#111827">계정</text>
+<text data-source="root.0.1.2.1.1.2.1" x="1635.000" y="497.200" font-size="16" font-weight="400" fill="#111827">Root와 Security</text>
+<text data-source="root.0.1.2.1.1.2.1" x="1635.000" y="518.800" font-size="16" font-weight="400" fill="#111827">OU SCP가 모두</text>
+<text data-source="root.0.1.2.1.1.2.1" x="1635.000" y="540.400" font-size="16" font-weight="400" fill="#111827">적용된다.</text>
+<text data-source="root.0.1.2.1.1.1" x="1637.000" y="351.600" font-size="16" font-weight="400" fill="#111827">계정에 상속</text>
+<text data-source="root.0.1.2.2.0" x="1068.000" y="636.000" font-size="18" font-weight="700" fill="#111827">Workloads OU</text>
+<text data-source="root.0.1.2.2.1.0" x="1080.000" y="684.300" font-size="18" font-weight="700" fill="#111827">Workloads OU SCP</text>
+<text data-source="root.0.1.2.2.1.0" x="1080.000" y="717.700" font-size="16" font-weight="400" fill="#111827">운영 계정의 추가 제약을 정의한다.</text>
+<text data-source="root.0.1.2.2.1.2" x="1080.000" y="845.300" font-size="18" font-weight="700" fill="#111827">Prod 계정</text>
+<text data-source="root.0.1.2.2.1.2" x="1080.000" y="878.700" font-size="16" font-weight="400" fill="#111827">root user를 포함한 principal에도 SCP가</text>
+<text data-source="root.0.1.2.2.1.2" x="1080.000" y="900.300" font-size="16" font-weight="400" fill="#111827">적용된다.</text>
+<text data-source="root.0.1.2.2.1.1" x="1259.000" y="780.500" font-size="16" font-weight="400" fill="#111827">계정에 상속</text>
+<text data-source="root.0.1.1" x="892.000" y="514.300" font-size="16" font-weight="400" fill="#111827">Root에서 자식</text>
+<text data-source="root.0.1.1" x="892.000" y="535.900" font-size="16" font-weight="400" fill="#111827">경로로 분기</text>
+<text data-source="root.0.2" x="64.000" y="981.900" font-size="16" font-weight="400" fill="#111827">실행 가능 권한은 Root, OU, 계정에 붙은 정책의 교집합으로 결정된다.</text>
 </svg>

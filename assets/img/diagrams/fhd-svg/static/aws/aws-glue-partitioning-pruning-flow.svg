@@ -1,25 +1,25 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="134a26b1420a7eeb95c4f85a5fb6640dd497323a73a6a74791624b8444ba0db6">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1" x="64.000" y="235.750" width="1792.000" height="155.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="64.000" y="235.750" width="884.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.1" x="972.000" y="235.750" width="884.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3" x="64.000" y="501.250" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.5" x="64.000" y="737.050" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 403.550 L 960.000 489.250" fill="none" stroke="#475569" stroke-width="3"><title>SQL predicate와 설정된 metadata를 함께 입력</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,489.250 954.000,479.250 966.000,479.250" fill="#475569"/>
-<path data-edge="root.0.4" data-from="root.0.3" data-to="root.0.5" d="M 960.000 639.350 L 960.000 725.050" fill="none" stroke="#475569" stroke-width="3"><title>planner output</title></path>
-<polygon data-arrowhead="root.0.4" points="960.000,725.050 954.000,715.050 966.000,715.050" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="199.150" font-size="36" font-weight="700" fill="#111827">Partition pruning은 Athena가 열 S3 prefix 수를 결정한다</text>
-<text data-source="root.0.1.0" x="88.000" y="287.750" font-size="28" font-weight="700" fill="#111827">SQL query</text>
-<text data-source="root.0.1.0" x="88.000" y="330.150" font-size="22" font-weight="400" fill="#111827">WHERE dt, region, hour</text>
+<rect data-source="root.0.1" x="64.000" y="211.750" width="1792.000" height="203.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="88.000" y="235.750" width="860.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="972.000" y="235.750" width="860.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="64.000" y="525.250" width="1792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.5" x="64.000" y="761.050" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 427.550 L 960.000 513.250" fill="none" stroke="#475569" stroke-width="3"><title>SQL predicate와 설정된 metadata를 함께 입력</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,513.250 954.000,503.250 966.000,503.250" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.3" data-to="root.0.5" d="M 960.000 663.350 L 960.000 749.050" fill="none" stroke="#475569" stroke-width="3"><title>planner output</title></path>
+<polygon data-arrowhead="root.0.4" points="960.000,749.050 954.000,739.050 966.000,739.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="175.150" font-size="36" font-weight="700" fill="#111827">Partition pruning은 Athena가 열 S3 prefix 수를 결정한다</text>
+<text data-source="root.0.1.0" x="112.000" y="287.750" font-size="28" font-weight="700" fill="#111827">SQL query</text>
+<text data-source="root.0.1.0" x="112.000" y="330.150" font-size="22" font-weight="400" fill="#111827">WHERE dt, region, hour</text>
 <text data-source="root.0.1.1" x="996.000" y="287.750" font-size="28" font-weight="700" fill="#111827">Metadata 선택</text>
-<text data-source="root.0.1.1" x="996.000" y="330.150" font-size="22" font-weight="400" fill="#111827">Glue Data Catalog의 registered partition list 또는 Athena partition projection의 date,</text>
-<text data-source="root.0.1.1" x="996.000" y="359.850" font-size="22" font-weight="400" fill="#111827">enum, integer rules</text>
-<text data-source="root.0.3" x="88.000" y="553.250" font-size="28" font-weight="700" fill="#111827">Athena planning</text>
-<text data-source="root.0.3" x="88.000" y="595.650" font-size="22" font-weight="400" fill="#111827">partition list 조회 또는 projection 계산으로 prefix 선택</text>
-<text data-source="root.0.5" x="88.000" y="789.050" font-size="28" font-weight="700" fill="#111827">S3 prefixes scanned</text>
-<text data-source="root.0.5" x="88.000" y="831.450" font-size="22" font-weight="400" fill="#111827">선택된 locations만 읽음</text>
-<text data-source="root.0.6" x="64.000" y="909.150" font-size="22" font-weight="400" fill="#111827">Partition projection은 Athena 기능이며 등록 partition list를 조회하지 않습니다. Redshift Spectrum 같은 다른 engine은 catalog partition을 읽습니다.</text>
-<text data-source="root.0.2" x="980.000" y="453.550" font-size="22" font-weight="400" fill="#111827">SQL predicate와 설정된 metadata를 함께 입력</text>
-<text data-source="root.0.4" x="980.000" y="689.350" font-size="22" font-weight="400" fill="#111827">planner output</text>
+<text data-source="root.0.1.1" x="996.000" y="330.150" font-size="22" font-weight="400" fill="#111827">Glue Data Catalog의 registered partition list 또는 Athena partition</text>
+<text data-source="root.0.1.1" x="996.000" y="359.850" font-size="22" font-weight="400" fill="#111827">projection의 date, enum, integer rules</text>
+<text data-source="root.0.3" x="88.000" y="577.250" font-size="28" font-weight="700" fill="#111827">Athena planning</text>
+<text data-source="root.0.3" x="88.000" y="619.650" font-size="22" font-weight="400" fill="#111827">partition list 조회 또는 projection 계산으로 prefix 선택</text>
+<text data-source="root.0.5" x="88.000" y="813.050" font-size="28" font-weight="700" fill="#111827">S3 prefixes scanned</text>
+<text data-source="root.0.5" x="88.000" y="855.450" font-size="22" font-weight="400" fill="#111827">선택된 locations만 읽음</text>
+<text data-source="root.0.6" x="64.000" y="933.150" font-size="22" font-weight="400" fill="#111827">Partition projection은 Athena 기능이며 등록 partition list를 조회하지 않습니다. Redshift Spectrum 같은 다른 engine은 catalog partition을 읽습니다.</text>
+<text data-source="root.0.2" x="980.000" y="477.550" font-size="22" font-weight="400" fill="#111827">SQL predicate와 설정된 metadata를 함께 입력</text>
+<text data-source="root.0.4" x="980.000" y="713.350" font-size="22" font-weight="400" fill="#111827">planner output</text>
 </svg>

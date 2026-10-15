@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/sap-c02/kinesis-firehose-replay-boundary.html",
+  "source_sha256": "e7a40b05a666d05e91fab3cad8a4662682d2c5e1add3ba99d550bb6422fb9429",
+  "svg_sha256": "31609a0fe7f29b03d82c540951653b700cc850367ec9e313bdc005a8b9aa9825",
+  "png_sha256": "3a91cf27cb4da18d2425e8503b66fd8ff1c29872a77a33610bab1067af48a7c6",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T17:52:44.564690+00:00",
+  "notes": "경계 접촉, 잘림, 겹침 없음. 주 흐름과 재처리 구간이 구분되며 보존, 전달, replay 가능/불가 의미가 원문과 일치함.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "b5148bbb2c2684961574796ca190f77abe895f195fd0f64b1b6cd6a2bfacf32c",
+  "original_bound_batch_index": 29,
+  "original_entry_index": 312,
+  "image_pixels_visible": true,
+  "blockers": []
+}

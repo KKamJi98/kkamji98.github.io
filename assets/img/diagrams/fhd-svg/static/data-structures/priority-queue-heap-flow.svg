@@ -1,41 +1,36 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2bbe36fdeec3f6ff784cb8bd7154cded3d3799c5782cb954bf4726fba4439b68">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.2.0" x="96.000" y="381.150" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="564.000" y="381.150" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4" x="1032.000" y="362.950" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.6" x="1500.000" y="366.300" width="324.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.8" x="96.000" y="651.150" width="324.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 459.050 L 552.000 459.050" fill="none" stroke="#475569" stroke-width="3"><title>우선순위 비교</title></path>
-<polygon data-arrowhead="root.0.2.1" points="552.000,459.050 542.000,465.050 542.000,453.050" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 459.050 L 1020.000 459.050" fill="none" stroke="#475569" stroke-width="3"><title>루트 확인</title></path>
-<polygon data-arrowhead="root.0.2.3" points="1020.000,459.050 1010.000,465.050 1010.000,453.050" fill="#475569"/>
-<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 459.050 L 1488.000 459.050" fill="none" stroke="#475569" stroke-width="3"><title>pop 실행</title></path>
-<polygon data-arrowhead="root.0.2.5" points="1488.000,459.050 1478.000,465.050 1478.000,453.050" fill="#475569"/>
-<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 459.050 L 1848.000 459.050 L 1848.000 603.150 L 72.000 603.150 L 72.000 747.250 L 84.000 747.250" fill="none" stroke="#475569" stroke-width="3"><title>한 경로만 복구</title></path>
-<polygon data-arrowhead="root.0.2.7" points="84.000,747.250 74.000,753.250 74.000,741.250" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="272.650" font-size="36" font-weight="700" fill="#111827">우선순위 큐는 힙의 루트에서 다음 원소를 꺼냅니다</text>
-<text data-source="root.0.1" x="64.000" y="331.250" font-size="22" font-weight="400" fill="#111827">전체 배열을 정렬하지 않고 루트까지 이어진 한 경로만 복구하므로 heappush와 heappop은 O(log n), root peek은 O(1)입니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="433.150" font-size="28" font-weight="700" fill="#111827">Input items</text>
-<text data-source="root.0.2.0" x="120.000" y="475.550" font-size="22" font-weight="400" fill="#111827">각 원소에 priority가 붙어</text>
-<text data-source="root.0.2.0" x="120.000" y="505.250" font-size="22" font-weight="400" fill="#111827">있습니다.</text>
-<text data-source="root.0.2.2" x="588.000" y="433.150" font-size="28" font-weight="700" fill="#111827">Binary heap</text>
-<text data-source="root.0.2.2" x="588.000" y="475.550" font-size="22" font-weight="400" fill="#111827">부모가 자식보다 높은</text>
-<text data-source="root.0.2.2" x="588.000" y="505.250" font-size="22" font-weight="400" fill="#111827">우선순위를 유지합니다.</text>
-<text data-source="root.0.2.4" x="1056.000" y="414.950" font-size="28" font-weight="700" fill="#111827">Highest priority at</text>
-<text data-source="root.0.2.4" x="1056.000" y="451.350" font-size="28" font-weight="700" fill="#111827">the root</text>
-<text data-source="root.0.2.4" x="1056.000" y="493.750" font-size="22" font-weight="400" fill="#111827">다음 원소를 constant</text>
-<text data-source="root.0.2.4" x="1056.000" y="523.450" font-size="22" font-weight="400" fill="#111827">time에 읽습니다.</text>
-<text data-source="root.0.2.6" x="1524.000" y="418.300" font-size="28" font-weight="700" fill="#111827">Pop</text>
-<text data-source="root.0.2.6" x="1524.000" y="460.700" font-size="22" font-weight="400" fill="#111827">마지막 원소를 올린 뒤 sift</text>
-<text data-source="root.0.2.6" x="1524.000" y="490.400" font-size="22" font-weight="400" fill="#111827">down으로 조건을</text>
-<text data-source="root.0.2.6" x="1524.000" y="520.100" font-size="22" font-weight="400" fill="#111827">복구합니다.</text>
-<text data-source="root.0.2.8" x="120.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Next item</text>
-<text data-source="root.0.2.8" x="120.000" y="739.550" font-size="28" font-weight="700" fill="#111827">surfaces</text>
-<text data-source="root.0.2.8" x="120.000" y="781.950" font-size="22" font-weight="400" fill="#111827">다음 우선순위 원소가</text>
-<text data-source="root.0.2.8" x="120.000" y="811.650" font-size="22" font-weight="400" fill="#111827">루트로 올라옵니다.</text>
-<text data-source="root.0.2.1" x="424.000" y="409.650" font-size="22" font-weight="400" fill="#111827">우선순위</text>
-<text data-source="root.0.2.1" x="424.000" y="439.350" font-size="22" font-weight="400" fill="#111827">비교</text>
-<text data-source="root.0.2.3" x="892.000" y="439.350" font-size="22" font-weight="400" fill="#111827">루트 확인</text>
-<text data-source="root.0.2.5" x="1360.000" y="439.350" font-size="22" font-weight="400" fill="#111827">pop 실행</text>
-<text data-source="root.0.2.7" x="104.000" y="595.150" font-size="22" font-weight="400" fill="#111827">한 경로만 복구</text>
+<rect data-node="root.0.2.0" x="96.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="720.000" y="399.350" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1344.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="408.000" y="651.150" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="1032.000" y="666.000" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 588.000 477.250 L 708.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>우선순위 비교</title></path>
+<polygon data-arrowhead="root.0.2.1" points="708.000,477.250 698.000,483.250 698.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1212.000 477.250 L 1332.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>루트 확인</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1332.000,477.250 1322.000,483.250 1322.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1584.000 552.300 L 1584.000 603.150 L 648.000 603.150 L 648.000 639.150" fill="none" stroke="#475569" stroke-width="3"><title>pop 실행</title></path>
+<polygon data-arrowhead="root.0.2.5" points="648.000,639.150 642.000,629.150 654.000,629.150" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 900.000 729.050 L 1020.000 729.050" fill="none" stroke="#475569" stroke-width="3"><title>한 경로만 복구</title></path>
+<polygon data-arrowhead="root.0.2.7" points="1020.000,729.050 1010.000,735.050 1010.000,723.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">우선순위 큐는 힙의 루트에서 다음 원소를 꺼냅니다</text>
+<text data-source="root.0.1" x="64.000" y="367.650" font-size="22" font-weight="400" fill="#111827">전체 배열을 정렬하지 않고 루트까지 이어진 한 경로만 복구하므로 heappush와 heappop은 O(log n), root peek은 O(1)입니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Input items</text>
+<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">각 원소에 priority가 붙어 있습니다.</text>
+<text data-source="root.0.2.2" x="744.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Binary heap</text>
+<text data-source="root.0.2.2" x="744.000" y="493.750" font-size="22" font-weight="400" fill="#111827">부모가 자식보다 높은 우선순위를</text>
+<text data-source="root.0.2.2" x="744.000" y="523.450" font-size="22" font-weight="400" fill="#111827">유지합니다.</text>
+<text data-source="root.0.2.4" x="1368.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Highest priority at the root</text>
+<text data-source="root.0.2.4" x="1368.000" y="508.600" font-size="22" font-weight="400" fill="#111827">다음 원소를 constant time에 읽습니다.</text>
+<text data-source="root.0.2.6" x="432.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Pop</text>
+<text data-source="root.0.2.6" x="432.000" y="745.550" font-size="22" font-weight="400" fill="#111827">마지막 원소를 올린 뒤 sift down으로</text>
+<text data-source="root.0.2.6" x="432.000" y="775.250" font-size="22" font-weight="400" fill="#111827">조건을 복구합니다.</text>
+<text data-source="root.0.2.8" x="1056.000" y="718.000" font-size="28" font-weight="700" fill="#111827">Next item surfaces</text>
+<text data-source="root.0.2.8" x="1056.000" y="760.400" font-size="22" font-weight="400" fill="#111827">다음 우선순위 원소가 루트로 올라옵니다.</text>
+<text data-source="root.0.2.1" x="580.000" y="427.850" font-size="22" font-weight="400" fill="#111827">우선순위</text>
+<text data-source="root.0.2.1" x="580.000" y="457.550" font-size="22" font-weight="400" fill="#111827">비교</text>
+<text data-source="root.0.2.3" x="1204.000" y="457.550" font-size="22" font-weight="400" fill="#111827">루트 확인</text>
+<text data-source="root.0.2.5" x="660.000" y="595.150" font-size="22" font-weight="400" fill="#111827">pop 실행</text>
+<text data-source="root.0.2.7" x="892.000" y="679.650" font-size="22" font-weight="400" fill="#111827">한 경로만</text>
+<text data-source="root.0.2.7" x="892.000" y="709.350" font-size="22" font-weight="400" fill="#111827">복구</text>
 </svg>

@@ -1,54 +1,54 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="b874eed4e6eaa086a217e00c18613ec1880f003681107a568ad21fa5da4667cf">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.3.0" x="64.000" y="467.850" width="884.000" height="265.600" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-source="root.0.3.1" x="972.000" y="467.850" width="884.000" height="415.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1" x="64.000" y="215.350" width="1792.000" height="142.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="467.850" width="1792.000" height="415.700" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="223.700" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="720.000" y="223.700" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4" x="1344.000" y="223.700" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.0" x="120.000" y="568.500" width="314.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.2" x="578.000" y="553.650" width="314.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.0" x="1028.000" y="553.650" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.2" x="1486.000" y="568.500" width="314.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.2" x="996.000" y="733.450" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 286.750 L 708.000 286.750" fill="none" stroke="#475569" stroke-width="3"><title>mempool 수신</title></path>
-<polygon data-arrowhead="root.0.1.1" points="708.000,286.750 698.000,292.750 698.000,280.750" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 286.750 L 1332.000 286.750" fill="none" stroke="#475569" stroke-width="3"><title>block 112 편입</title></path>
-<polygon data-arrowhead="root.0.1.3" points="1332.000,286.750 1322.000,292.750 1322.000,280.750" fill="#475569"/>
-<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 446.000 631.550 L 566.000 631.550" fill="none" stroke="#475569" stroke-width="3"><title>거래 반환</title></path>
-<polygon data-arrowhead="root.0.3.0.1.1" points="566.000,631.550 556.000,637.550 556.000,625.550" fill="#475569"/>
-<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1354.000 631.550 L 1474.000 631.550" fill="none" stroke="#475569" stroke-width="3"><title>현재 chain tip</title></path>
-<polygon data-arrowhead="root.0.3.1.1.1" points="1474.000,631.550 1464.000,637.550 1464.000,625.550" fill="#475569"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 370.150 L 960.000 455.850" fill="none" stroke="#475569" stroke-width="3"><title>invalidateblock 뒤 두 branch</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,455.850 954.000,445.850 966.000,445.850" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="178.750" font-size="36" font-weight="700" fill="#111827">무효화된 block의 거래는 mempool로 돌아옵니다</text>
-<text data-source="root.0.1.0" x="120.000" y="275.700" font-size="28" font-weight="700" fill="#111827">wallet tx b50a5a25</text>
-<text data-source="root.0.1.0" x="120.000" y="318.100" font-size="22" font-weight="400" fill="#111827">1.25 BTC P2WPKH, vsize 141</text>
-<text data-source="root.0.1.2" x="744.000" y="275.700" font-size="28" font-weight="700" fill="#111827">mempool</text>
-<text data-source="root.0.1.2" x="744.000" y="318.100" font-size="22" font-weight="400" fill="#111827">confirmations=0, pool size=1</text>
-<text data-source="root.0.1.4" x="1368.000" y="275.700" font-size="28" font-weight="700" fill="#111827">block 112</text>
-<text data-source="root.0.1.4" x="1368.000" y="318.100" font-size="22" font-weight="400" fill="#111827">20fcf935, nTx=2</text>
-<text data-source="root.0.1.1" x="580.000" y="237.350" font-size="22" font-weight="400" fill="#111827">mempool</text>
-<text data-source="root.0.1.1" x="580.000" y="267.050" font-size="22" font-weight="400" fill="#111827">수신</text>
-<text data-source="root.0.1.3" x="1204.000" y="237.350" font-size="22" font-weight="400" fill="#111827">block 112</text>
-<text data-source="root.0.1.3" x="1204.000" y="267.050" font-size="22" font-weight="400" fill="#111827">편입</text>
-<text data-source="root.0.3.0.0" x="88.000" y="519.850" font-size="28" font-weight="700" fill="#111827">무효화된 branch</text>
-<text data-source="root.0.3.0.1.0" x="144.000" y="620.500" font-size="28" font-weight="700" fill="#111827">invalid tip</text>
-<text data-source="root.0.3.0.1.0" x="144.000" y="662.900" font-size="22" font-weight="400" fill="#111827">height 112, branchlen 1</text>
-<text data-source="root.0.3.0.1.2" x="602.000" y="605.650" font-size="28" font-weight="700" fill="#111827">mempool</text>
-<text data-source="root.0.3.0.1.2" x="602.000" y="648.050" font-size="22" font-weight="400" fill="#111827">같은 tx, confirmations=0,</text>
-<text data-source="root.0.3.0.1.2" x="602.000" y="677.750" font-size="22" font-weight="400" fill="#111827">pool size=1</text>
-<text data-source="root.0.3.0.1.1" x="438.000" y="611.850" font-size="22" font-weight="400" fill="#111827">거래 반환</text>
+<rect data-source="root.0.3" x="64.000" y="443.850" width="1792.000" height="463.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0" x="88.000" y="467.850" width="860.000" height="265.600" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="972.000" y="467.850" width="860.000" height="415.700" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1" x="64.000" y="191.350" width="1792.000" height="142.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="199.700" width="480.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="720.000" y="199.700" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1344.000" y="199.700" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="144.000" y="568.500" width="302.000" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.2" x="590.000" y="553.650" width="302.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="1028.000" y="553.650" width="302.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="1474.000" y="568.500" width="302.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.2" x="996.000" y="733.450" width="812.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 588.000 262.750 L 708.000 262.750" fill="none" stroke="#475569" stroke-width="3"><title>mempool 수신</title></path>
+<polygon data-arrowhead="root.0.1.1" points="708.000,262.750 698.000,268.750 698.000,256.750" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1212.000 262.750 L 1332.000 262.750" fill="none" stroke="#475569" stroke-width="3"><title>block 112 편입</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1332.000,262.750 1322.000,268.750 1322.000,256.750" fill="#475569"/>
+<path data-edge="root.0.3.0.1.1" data-from="root.0.3.0.1.0" data-to="root.0.3.0.1.2" d="M 458.000 631.550 L 578.000 631.550" fill="none" stroke="#475569" stroke-width="3"><title>거래 반환</title></path>
+<polygon data-arrowhead="root.0.3.0.1.1" points="578.000,631.550 568.000,637.550 568.000,625.550" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1342.000 631.550 L 1462.000 631.550" fill="none" stroke="#475569" stroke-width="3"><title>현재 chain tip</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="1462.000,631.550 1452.000,637.550 1452.000,625.550" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 346.150 L 960.000 431.850" fill="none" stroke="#475569" stroke-width="3"><title>invalidateblock 뒤 두 branch</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,431.850 954.000,421.850 966.000,421.850" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="154.750" font-size="36" font-weight="700" fill="#111827">무효화된 block의 거래는 mempool로 돌아옵니다</text>
+<text data-source="root.0.1.0" x="120.000" y="251.700" font-size="28" font-weight="700" fill="#111827">wallet tx b50a5a25</text>
+<text data-source="root.0.1.0" x="120.000" y="294.100" font-size="22" font-weight="400" fill="#111827">1.25 BTC P2WPKH, vsize 141</text>
+<text data-source="root.0.1.2" x="744.000" y="251.700" font-size="28" font-weight="700" fill="#111827">mempool</text>
+<text data-source="root.0.1.2" x="744.000" y="294.100" font-size="22" font-weight="400" fill="#111827">confirmations=0, pool size=1</text>
+<text data-source="root.0.1.4" x="1368.000" y="251.700" font-size="28" font-weight="700" fill="#111827">block 112</text>
+<text data-source="root.0.1.4" x="1368.000" y="294.100" font-size="22" font-weight="400" fill="#111827">20fcf935, nTx=2</text>
+<text data-source="root.0.1.1" x="580.000" y="213.350" font-size="22" font-weight="400" fill="#111827">mempool</text>
+<text data-source="root.0.1.1" x="580.000" y="243.050" font-size="22" font-weight="400" fill="#111827">수신</text>
+<text data-source="root.0.1.3" x="1204.000" y="213.350" font-size="22" font-weight="400" fill="#111827">block 112</text>
+<text data-source="root.0.1.3" x="1204.000" y="243.050" font-size="22" font-weight="400" fill="#111827">편입</text>
+<text data-source="root.0.3.0.0" x="112.000" y="519.850" font-size="28" font-weight="700" fill="#111827">무효화된 branch</text>
+<text data-source="root.0.3.0.1.0" x="168.000" y="620.500" font-size="28" font-weight="700" fill="#111827">invalid tip</text>
+<text data-source="root.0.3.0.1.0" x="168.000" y="662.900" font-size="22" font-weight="400" fill="#111827">height 112, branchlen 1</text>
+<text data-source="root.0.3.0.1.2" x="614.000" y="605.650" font-size="28" font-weight="700" fill="#111827">mempool</text>
+<text data-source="root.0.3.0.1.2" x="614.000" y="648.050" font-size="22" font-weight="400" fill="#111827">같은 tx, confirmations=0,</text>
+<text data-source="root.0.3.0.1.2" x="614.000" y="677.750" font-size="22" font-weight="400" fill="#111827">pool size=1</text>
+<text data-source="root.0.3.0.1.1" x="450.000" y="611.850" font-size="22" font-weight="400" fill="#111827">거래 반환</text>
 <text data-source="root.0.3.1.0" x="996.000" y="519.850" font-size="28" font-weight="700" fill="#111827">새 active branch</text>
 <text data-source="root.0.3.1.1.0" x="1052.000" y="605.650" font-size="28" font-weight="700" fill="#111827">두 block 추가 채굴</text>
-<text data-source="root.0.3.1.1.0" x="1052.000" y="648.050" font-size="22" font-weight="400" fill="#111827">새 chain이 기존 branch를</text>
-<text data-source="root.0.3.1.1.0" x="1052.000" y="677.750" font-size="22" font-weight="400" fill="#111827">앞섬</text>
-<text data-source="root.0.3.1.1.2" x="1510.000" y="620.500" font-size="28" font-weight="700" fill="#111827">active tip 113</text>
-<text data-source="root.0.3.1.1.2" x="1510.000" y="662.900" font-size="22" font-weight="400" fill="#111827">6d72f32e, 두 새 block 뒤</text>
-<text data-source="root.0.3.1.1.1" x="1346.000" y="611.850" font-size="22" font-weight="400" fill="#111827">현재 chain tip</text>
+<text data-source="root.0.3.1.1.0" x="1052.000" y="648.050" font-size="22" font-weight="400" fill="#111827">새 chain이 기존</text>
+<text data-source="root.0.3.1.1.0" x="1052.000" y="677.750" font-size="22" font-weight="400" fill="#111827">branch를 앞섬</text>
+<text data-source="root.0.3.1.1.2" x="1498.000" y="620.500" font-size="28" font-weight="700" fill="#111827">active tip 113</text>
+<text data-source="root.0.3.1.1.2" x="1498.000" y="662.900" font-size="22" font-weight="400" fill="#111827">6d72f32e, 두 새 block 뒤</text>
+<text data-source="root.0.3.1.1.1" x="1334.000" y="611.850" font-size="22" font-weight="400" fill="#111827">현재 chain tip</text>
 <text data-source="root.0.3.1.2" x="1020.000" y="785.450" font-size="28" font-weight="700" fill="#111827">옛 block 112</text>
 <text data-source="root.0.3.1.2" x="1020.000" y="827.850" font-size="22" font-weight="400" fill="#111827">invalid 상태로 남음</text>
-<text data-source="root.0.4" x="64.000" y="929.550" font-size="22" font-weight="400" fill="#111827">confirmation은 저장된 balance flag가 아니라 현재 active tip에 대한 깊이입니다. block 112가 무효화되면 transaction confirmation도 0으로 되돌아갑니다.</text>
-<text data-source="root.0.2" x="980.000" y="420.150" font-size="22" font-weight="400" fill="#111827">invalidateblock 뒤 두 branch</text>
+<text data-source="root.0.4" x="64.000" y="953.550" font-size="22" font-weight="400" fill="#111827">confirmation은 저장된 balance flag가 아니라 현재 active tip에 대한 깊이입니다. block 112가 무효화되면 transaction confirmation도 0으로 되돌아갑니다.</text>
+<text data-source="root.0.2" x="980.000" y="396.150" font-size="22" font-weight="400" fill="#111827">invalidateblock 뒤 두 branch</text>
 </svg>

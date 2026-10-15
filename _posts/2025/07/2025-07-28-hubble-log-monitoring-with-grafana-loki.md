@@ -27,7 +27,7 @@ image:
 ## 1. Grafana Loki란?
 
 {% include diagrams/static/kubernetes/cilium/2w-grafana-loki-overview.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/2w-grafana-loki-overview--ea041a25df3dac43.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-2w-grafana-loki-overview-c4d26a00c9-01-8bfbc83fc5c3.png" %}
 > [Grafana Docs - Loki overview](https://grafana.com/docs/loki/latest/get-started/overview/)  
 
 Grafana Loki는 Prometheus에서 영감을 받아 개발된 수평 확장성과 고가용성을 갖춘 멀티테넌트 로그 집계 시스템입니다. 기존 로깅 시스템과 달리 Loki는 로그 전체 내용을 인덱싱하지 않고, 각 로그 스트림의 레이블(Label) 메타데이터만 인덱싱합니다. 이 설계 덕분에 작은 인덱스와 고도로 압축된 청크(Chunk) 구조로 저장이 가능하여 저장 비용이 저렴하고 운영이 간편합니다.
@@ -101,7 +101,7 @@ Loki 2.0 이후 Index Shipper 모드를 기본으로 사용하며, 인덱스(Ind
 Grafana Alloy는 OpenTelemetry Collector를 기반으로 한 고성능, 유연한, 벤더 중립형(vendor-neutral) 수집기(Collector)로, 로그(Log), 메트릭(Metrics), 트레이스(Traces), 프로파일링(Profiling) 데이터를 단일 파이프라인에서 수집, 처리, 전송할 수 있도록 설계되었습니다. Promtail, Grafana Agent의 기능을 통합하면서도, 엔터프라이즈 환경에서의 확장성과 관리성까지 고려한 차세대 수집기입니다.
 
 {% include diagrams/static/kubernetes/cilium/2w-grafana-alloy-overview.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/2w-grafana-alloy-overview--78cc58fe879fc26f.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-2w-grafana-alloy-overview-59c85c39c2-01-243188969a4e.png" %}
 > [Grafana Docs - Grafana Alloy](https://grafana.com/docs/alloy/latest/)  
 
 ### 2.1. Grafana Alloy의 특징

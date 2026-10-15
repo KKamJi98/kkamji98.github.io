@@ -24,7 +24,7 @@ Ethereum 공개 Sepolia는 `latest`, `safe`, `finalized`를 줬습니다. 같은
 Solana RPC 문서는 commitment를 세 단계로 적습니다. `processed`는 노드가 가장 최근에 처리한 block이고 롤백될 수 있습니다. `confirmed`는 활성 stake의 2/3 초과가 직접 투표한 block입니다. `finalized`는 cluster가 maximum lockout으로 인정한, 그 네트워크가 쓰는 가장 강한 확인입니다. 인자를 생략하면 기본값은 보통 `finalized`입니다.
 
 {% include diagrams/static/blockchain/commitment-tag-compare.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/blockchain/commitment-tag-compare--8e8d873b1d48cd3e.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-blockchain-commitment-tag-compare-5c9154291c-01-0da06f80e085.png" %}
 _세 이름이 같은 시계가 아니다. 각각 다른 객체다._
 
 운영자가 하면 안 되는 번역은 “confirmation 1 = finalized = confirmed”입니다. 입금 정책은 체인마다 다른 필드를 고르고, 그 필드가 무엇을 센 값인지 적어야 합니다.

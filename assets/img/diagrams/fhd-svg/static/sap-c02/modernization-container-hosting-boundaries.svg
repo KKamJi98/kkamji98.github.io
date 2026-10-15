@@ -1,52 +1,54 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="35027a7eac20282a93c67154faf7533b3e9eb19a35d420d85ccece533161a886">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.2.0" x="64.000" y="437.000" width="884.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2.1" x="972.000" y="437.000" width="884.000" height="295.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.2" x="64.000" y="437.000" width="1792.000" height="295.300" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="192.850" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="1032.000" y="192.850" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.0" x="120.000" y="522.800" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.0.1.2" x="578.000" y="522.800" width="314.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.0" x="1028.000" y="522.800" width="314.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.1.1.2" x="1486.000" y="522.800" width="314.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.4" x="64.000" y="842.000" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 255.900 L 1020.000 255.900" fill="none" stroke="#475569" stroke-width="3"><title>이미지 push와 scan</title></path>
-<polygon data-arrowhead="root.0.1.1" points="1020.000,255.900 1010.000,261.900 1010.000,249.900" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.2" d="M 1428.000 330.950 L 1428.000 377.975 L 960.000 377.975 L 960.000 425.000" fill="none" stroke="#475569" stroke-width="3"><title>오케스트레이터 선택</title></path>
-<polygon data-arrowhead="root.0.1.3" points="960.000,425.000 954.000,415.000 966.000,415.000" fill="#475569"/>
-<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 446.000 600.700 L 566.000 600.700" fill="none" stroke="#475569" stroke-width="3"><title>태스크 배치</title></path>
-<polygon data-arrowhead="root.0.2.0.1.1" points="566.000,600.700 556.000,606.700 556.000,594.700" fill="#475569"/>
-<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1354.000 615.550 L 1474.000 615.550" fill="none" stroke="#475569" stroke-width="3"><title>Pod 배치</title></path>
-<polygon data-arrowhead="root.0.2.1.1.1" points="1474.000,615.550 1464.000,621.550 1464.000,609.550" fill="#475569"/>
-<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 744.300 L 960.000 830.000" fill="none" stroke="#475569" stroke-width="3"><title>두 경로 모두 IP target으로 연결</title></path>
-<polygon data-arrowhead="root.0.3" points="960.000,830.000 954.000,820.000 966.000,820.000" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="147.900" font-size="36" font-weight="700" fill="#111827">ECR 이후 ECS와 EKS Fargate의 경계를 비교한다</text>
-<text data-source="root.0.1.0" x="120.000" y="244.850" font-size="28" font-weight="700" fill="#111827">애플리케이션 소스</text>
-<text data-source="root.0.1.0" x="120.000" y="287.250" font-size="22" font-weight="400" fill="#111827">Dockerfile과 런타임 정의에서 이미지를 만든다.</text>
-<text data-source="root.0.1.2" x="1056.000" y="244.850" font-size="28" font-weight="700" fill="#111827">Amazon ECR</text>
-<text data-source="root.0.1.2" x="1056.000" y="287.250" font-size="22" font-weight="400" fill="#111827">버전이 있는 공통 이미지 공급 경로다.</text>
-<text data-source="root.0.1.1" x="892.000" y="206.500" font-size="22" font-weight="400" fill="#111827">이미지 push와</text>
-<text data-source="root.0.1.1" x="892.000" y="236.200" font-size="22" font-weight="400" fill="#111827">scan</text>
-<text data-source="root.0.2.0.0" x="88.000" y="489.000" font-size="28" font-weight="700" fill="#111827">ECS on Fargate</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="574.800" font-size="28" font-weight="700" fill="#111827">ECS 선택</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="617.200" font-size="22" font-weight="400" fill="#111827">IP target을 사용하며 Fargate</text>
-<text data-source="root.0.2.0.1.0" x="144.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Spot을 선택할 수 있다.</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="574.800" font-size="28" font-weight="700" fill="#111827">ECS Fargate 태스크</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="617.200" font-size="22" font-weight="400" fill="#111827">awsvpc ENI와 EBS, Fargate</text>
-<text data-source="root.0.2.0.1.2" x="602.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Spot을 사용할 수 있다.</text>
-<text data-source="root.0.2.0.1.1" x="438.000" y="581.000" font-size="22" font-weight="400" fill="#111827">태스크 배치</text>
+<rect data-source="root.0.2" x="64.000" y="413.000" width="1792.000" height="343.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.0" x="88.000" y="437.000" width="860.000" height="295.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2.1" x="972.000" y="437.000" width="860.000" height="295.300" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="168.850" width="792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="1032.000" y="168.850" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.0" x="144.000" y="522.800" width="302.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.0.1.2" x="590.000" y="522.800" width="302.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.0" x="1028.000" y="522.800" width="302.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1.2" x="1474.000" y="522.800" width="302.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.4" x="64.000" y="866.000" width="1792.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 900.000 231.900 L 1020.000 231.900" fill="none" stroke="#475569" stroke-width="3"><title>이미지 push와 scan</title></path>
+<polygon data-arrowhead="root.0.1.1" points="1020.000,231.900 1010.000,237.900 1010.000,225.900" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.2" d="M 1428.000 306.950 L 1428.000 353.975 L 960.000 353.975 L 960.000 401.000" fill="none" stroke="#475569" stroke-width="3"><title>오케스트레이터 선택</title></path>
+<polygon data-arrowhead="root.0.1.3" points="960.000,401.000 954.000,391.000 966.000,391.000" fill="#475569"/>
+<path data-edge="root.0.2.0.1.1" data-from="root.0.2.0.1.0" data-to="root.0.2.0.1.2" d="M 458.000 615.550 L 578.000 615.550" fill="none" stroke="#475569" stroke-width="3"><title>태스크 배치</title></path>
+<polygon data-arrowhead="root.0.2.0.1.1" points="578.000,615.550 568.000,621.550 568.000,609.550" fill="#475569"/>
+<path data-edge="root.0.2.1.1.1" data-from="root.0.2.1.1.0" data-to="root.0.2.1.1.2" d="M 1342.000 615.550 L 1462.000 615.550" fill="none" stroke="#475569" stroke-width="3"><title>Pod 배치</title></path>
+<polygon data-arrowhead="root.0.2.1.1.1" points="1462.000,615.550 1452.000,621.550 1452.000,609.550" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.2" data-to="root.0.4" d="M 960.000 768.300 L 960.000 854.000" fill="none" stroke="#475569" stroke-width="3"><title>두 경로 모두 IP target으로 연결</title></path>
+<polygon data-arrowhead="root.0.3" points="960.000,854.000 954.000,844.000 966.000,844.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="123.900" font-size="36" font-weight="700" fill="#111827">ECR 이후 ECS와 EKS Fargate의 경계를 비교한다</text>
+<text data-source="root.0.1.0" x="120.000" y="220.850" font-size="28" font-weight="700" fill="#111827">애플리케이션 소스</text>
+<text data-source="root.0.1.0" x="120.000" y="263.250" font-size="22" font-weight="400" fill="#111827">Dockerfile과 런타임 정의에서 이미지를 만든다.</text>
+<text data-source="root.0.1.2" x="1056.000" y="220.850" font-size="28" font-weight="700" fill="#111827">Amazon ECR</text>
+<text data-source="root.0.1.2" x="1056.000" y="263.250" font-size="22" font-weight="400" fill="#111827">버전이 있는 공통 이미지 공급 경로다.</text>
+<text data-source="root.0.1.1" x="892.000" y="182.500" font-size="22" font-weight="400" fill="#111827">이미지 push와</text>
+<text data-source="root.0.1.1" x="892.000" y="212.200" font-size="22" font-weight="400" fill="#111827">scan</text>
+<text data-source="root.0.2.0.0" x="112.000" y="489.000" font-size="28" font-weight="700" fill="#111827">ECS on Fargate</text>
+<text data-source="root.0.2.0.1.0" x="168.000" y="574.800" font-size="28" font-weight="700" fill="#111827">ECS 선택</text>
+<text data-source="root.0.2.0.1.0" x="168.000" y="617.200" font-size="22" font-weight="400" fill="#111827">IP target을 사용하며</text>
+<text data-source="root.0.2.0.1.0" x="168.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Fargate Spot을 선택할 수</text>
+<text data-source="root.0.2.0.1.0" x="168.000" y="676.600" font-size="22" font-weight="400" fill="#111827">있다.</text>
+<text data-source="root.0.2.0.1.2" x="614.000" y="574.800" font-size="28" font-weight="700" fill="#111827">ECS Fargate 태스크</text>
+<text data-source="root.0.2.0.1.2" x="614.000" y="617.200" font-size="22" font-weight="400" fill="#111827">awsvpc ENI와 EBS,</text>
+<text data-source="root.0.2.0.1.2" x="614.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Fargate Spot을 사용할 수</text>
+<text data-source="root.0.2.0.1.2" x="614.000" y="676.600" font-size="22" font-weight="400" fill="#111827">있다.</text>
+<text data-source="root.0.2.0.1.1" x="450.000" y="595.850" font-size="22" font-weight="400" fill="#111827">태스크 배치</text>
 <text data-source="root.0.2.1.0" x="996.000" y="489.000" font-size="28" font-weight="700" fill="#111827">EKS on Fargate</text>
 <text data-source="root.0.2.1.1.0" x="1052.000" y="574.800" font-size="28" font-weight="700" fill="#111827">EKS 선택</text>
 <text data-source="root.0.2.1.1.0" x="1052.000" y="617.200" font-size="22" font-weight="400" fill="#111827">Fargate profile이 매칭되고</text>
 <text data-source="root.0.2.1.1.0" x="1052.000" y="646.900" font-size="22" font-weight="400" fill="#111827">private subnet에서</text>
 <text data-source="root.0.2.1.1.0" x="1052.000" y="676.600" font-size="22" font-weight="400" fill="#111827">실행한다.</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="574.800" font-size="28" font-weight="700" fill="#111827">EKS Fargate Pod</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="617.200" font-size="22" font-weight="400" fill="#111827">DaemonSet, EBS, GPU,</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Fargate Spot을 지원하지</text>
-<text data-source="root.0.2.1.1.2" x="1510.000" y="676.600" font-size="22" font-weight="400" fill="#111827">않는다.</text>
-<text data-source="root.0.2.1.1.1" x="1346.000" y="595.850" font-size="22" font-weight="400" fill="#111827">Pod 배치</text>
-<text data-source="root.0.4" x="88.000" y="894.000" font-size="28" font-weight="700" fill="#111827">IP target 서비스</text>
-<text data-source="root.0.4" x="88.000" y="936.400" font-size="22" font-weight="400" fill="#111827">각 태스크 또는 Pod의 awsvpc ENI 주소를 대상에 등록한다.</text>
-<text data-source="root.0.3" x="980.000" y="794.300" font-size="22" font-weight="400" fill="#111827">두 경로 모두 IP target으로 연결</text>
-<text data-source="root.0.1.3" x="84.000" y="373.300" font-size="22" font-weight="400" fill="#111827">오케스트레이터 선택</text>
+<text data-source="root.0.2.1.1.2" x="1498.000" y="574.800" font-size="28" font-weight="700" fill="#111827">EKS Fargate Pod</text>
+<text data-source="root.0.2.1.1.2" x="1498.000" y="617.200" font-size="22" font-weight="400" fill="#111827">DaemonSet, EBS, GPU,</text>
+<text data-source="root.0.2.1.1.2" x="1498.000" y="646.900" font-size="22" font-weight="400" fill="#111827">Fargate Spot을 지원하지</text>
+<text data-source="root.0.2.1.1.2" x="1498.000" y="676.600" font-size="22" font-weight="400" fill="#111827">않는다.</text>
+<text data-source="root.0.2.1.1.1" x="1334.000" y="595.850" font-size="22" font-weight="400" fill="#111827">Pod 배치</text>
+<text data-source="root.0.4" x="88.000" y="918.000" font-size="28" font-weight="700" fill="#111827">IP target 서비스</text>
+<text data-source="root.0.4" x="88.000" y="960.400" font-size="22" font-weight="400" fill="#111827">각 태스크 또는 Pod의 awsvpc ENI 주소를 대상에 등록한다.</text>
+<text data-source="root.0.3" x="980.000" y="818.300" font-size="22" font-weight="400" fill="#111827">두 경로 모두 IP target으로 연결</text>
+<text data-source="root.0.1.3" x="84.000" y="349.300" font-size="22" font-weight="400" fill="#111827">오케스트레이터 선택</text>
 </svg>

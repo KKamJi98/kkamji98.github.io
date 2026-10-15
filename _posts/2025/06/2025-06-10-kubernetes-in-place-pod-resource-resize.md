@@ -10,7 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/in-place-pod-resource-resize.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/in-place-pod-resource-resize--aaf3c6d975f8024c.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-in-place-pod-resource-resize-afb14b91da-01-7cb2407a764c.png" %}
 
 **Kubernetes v1.33 Release Note** - <https://kubernetes.io/blog/2025/04/23/kubernetes-v1-33-release/>  
 **In-Place Pod Resource Resize 소개** - <https://kubernetes.io/blog/2025/05/16/kubernetes-v1-33-in-place-pod-resize-beta/>  

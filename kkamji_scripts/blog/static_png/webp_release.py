@@ -252,10 +252,11 @@ def checked_native(root, stamp, revision='HEAD'):
             raise ValueError('published native render receipt identity is missing')
     archives = {row['png'][1:]: row['png_sha256'] for row in native_rows}
     for include, replacement in changed.items():
-        old = by_png.pop(replacement['old_png'])
-        by_png[replacement['new_png']] = dict(old, png=replacement['new_png'],
-            png_sha256=replacement['png_sha256'], include_sha256=overrides['_includes/' + include],
-            receipt_sha256=replacement['receipt_sha256'])
+        for occurrence in replacement['occurrences']:
+            old = by_png.pop(occurrence['old_png'])
+            by_png[occurrence['new_png']] = dict(old, png=occurrence['new_png'],
+                png_sha256=replacement['png_sha256'], include_sha256=overrides['_includes/' + include],
+                receipt_sha256=replacement['receipt_sha256'])
     if additions:
         if (set(by_png) & set(additions['rows']) or changed.keys() & additions['sources'].keys()
                 or {row['png_sha256'] for row in by_png.values()} & {row['png_sha256'] for row in additions['rows'].values()}):
@@ -324,7 +325,9 @@ def usage_bindings(root, plan, native):
         body = {key: entry[key] for key in ('post', 'include', 'figure', 'png')} | {'webp': webp_url(entry['png'])}
         if 'old_png' in entry:
             update = updates.get(entry['include'])
-            if not update or update['old_png'] != original_png or update['new_png'] != entry['png']:
+            if not update or not any(occurrence['old_png'] == original_png and occurrence['new_png'] == entry['png']
+                                     and all(occurrence.get(key) == entry.get(key) for key in ('post', 'figure'))
+                                     for occurrence in update['occurrences']):
                 raise ValueError('body mapping lacks an exact validated native update')
             body['old_png'] = original_png
         bodies.append(body)

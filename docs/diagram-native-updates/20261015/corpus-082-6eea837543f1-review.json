@@ -1,0 +1,17 @@
+{
+  "include": "diagrams/static/blockchain/reentrancy-cei.html",
+  "source_sha256": "2e91f90db816c369fbc804bc9e32f66a27e980ee5d687a5f3c294408e18f749d",
+  "svg_sha256": "4f040256f7f3925fbf39ee639f1588c3a512b6f8d3dcf3a3f23546bc762a1884",
+  "png_sha256": "0da77f504ec833087f0366aea770356d6ced4d687165f57a65366736931033fa",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-14T20:17:08.504472+00:00",
+  "notes": "경계 접촉, 잘림, 겹침 없음. send 단독 행도 읽기 가능하며, 두 대안의 높이 차이는 단계 차이에 대응함. 원문 조건과 부정 의미 보존.",
+  "reviewed_at_provenance": "original-bound-batch-filesystem-mtime-UTC-not-model-timestamp",
+  "original_bound_batch_sha256": "ecad65a31ef1568a4f908fed999c789c1910a6eae92245609c213c282caac3c1",
+  "original_bound_batch_index": 4,
+  "original_entry_index": 82,
+  "image_pixels_visible": true,
+  "blockers": []
+}

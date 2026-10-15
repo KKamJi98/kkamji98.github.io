@@ -10,7 +10,7 @@ image:
 ---
 
 {% include diagrams/static/kubernetes/cilium-native-routing-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium-native-routing-flow--c24770731c52b311.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-native-routing-flow-3e9ff24024-01-d0dd41764614.png" %}
 
 지난 글 [Cilium Network Routing 이해하기 - Encapsulation과 Native Routing 비교 [Cilium Study 3주차]]({% post_url 2025/08/2025-08-03-cilium-routing %})에서는 Native Routing 모드에서 **각 노드/라우터가 다른 노드의 PodCIDR 경로를 알고 있어야 한다**는 점을 살펴봤습니다.  
 

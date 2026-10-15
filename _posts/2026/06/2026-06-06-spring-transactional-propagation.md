@@ -63,7 +63,7 @@ public void saveStrict() throws IOException { ... }
 트랜잭션 메서드가 또 다른 트랜잭션 메서드를 호출할 때, 트랜잭션을 합칠지 새로 만들지를 정하는 것이 **전파(propagation)**입니다.
 
 {% include diagrams/static/spring/spring-18-propagation.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-18-propagation--b08651115aa5bf77.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-spring-spring-18-propagation-46fbf014d4-01-022c728b8053.png" %}
 _REQUIRED는 기존 트랜잭션에 합류해 1개의 물리 트랜잭션(inner rollback이 전체에 영향). REQUIRES_NEW는 독립된 물리 트랜잭션(독립 commit/rollback)._
 
 기본값은 **`REQUIRED`**입니다.

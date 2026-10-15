@@ -142,7 +142,7 @@ Aurora Global Database는 primary 1개 리전과 read-only secondary 최대 10�
 전환 절차는 두 가지이고 용도가 다릅니다.
 
 {% include diagrams/static/sap-c02/aurora-global-switchover-failover.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/aurora-global-switchover-failover--bbc7ab92e910c0d1.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-aurora-global-switchover-failover-72e8f22ec9-02-bd15f6b12201.png" %}
 
 그림은 두 전환 절차가 어떤 사전 조건을 공유하고 각각 어떤 결과에 도달하는지를 보여줍니다.
 
@@ -295,7 +295,7 @@ DR 리전에서 컨테이너 워크로드를 띄우려면 이미지가 그 리�
 AWS Backup의 backup plan에는 continuous backup rule과 snapshot backup rule을 둘 수 있고, 둘의 역할이 다릅니다.
 
 {% include diagrams/static/sap-c02/aws-backup-continuous-vs-snapshot.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/aws-backup-continuous-vs-snapshot--39ba0500a6d09ecc.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-aws-backup-continuous-vs-snapshot-5a3a43f255-01-f2c687652b65.png" %}
 
 그림은 두 rule이 각각 어떤 보존 경로로 이어지고 어디서 막히는지를 보여줍니다.
 
@@ -390,7 +390,7 @@ EBS만 대상으로 삼는 경우에는 더 가벼운 선택지가 있습니다.
 전환 수단은 네 가지가 자주 함께 등장하고, 그중 둘만 리전 단위 전환을 만듭니다.
 
 {% include diagrams/static/sap-c02/regional-failover-trigger-layers.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/regional-failover-trigger-layers--4658823a025c82fa.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-regional-failover-trigger-layers-db8b1bea83-01-0326c89dc920.png" %}
 
 그림은 네 전환 수단을 리전 단위 전환을 만드는 것과 만들지 못하는 것으로 나누어 보여줍니다.
 
@@ -539,7 +539,7 @@ MRSC는 강한 일관성과 RPO 0을 제공하지만 쓰기와 강한 일관성 
 DR 설계는 문서 위에서 완성되지 않습니다. 실제로 전환하고 복원해 봐야 격차가 드러납니다. 도입부의 quota, 엔진 버전, health check 세 가지는 전부 훈련에서만 발견되는 종류입니다.
 
 {% include diagrams/static/sap-c02/dr-verification-loop.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/sap-c02/dr-verification-loop--2e00c29857c72eed.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-sap-c02-dr-verification-loop-95497e1a9b-01-62a04dc4c201.png" %}
 
 그림은 복구 목표가 실험과 복원 검증을 거쳐 격차와 교정으로 이어지는 순환을 보여줍니다.
 

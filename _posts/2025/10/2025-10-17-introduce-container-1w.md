@@ -225,7 +225,7 @@ docker inspect kind | jq
 ### 3.1. Docker를 사용한 Container Image Build 흐름
 
 {% include diagrams/static/ci-cd/ci-cd-study/docker-build-workflow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/docker-build-workflow--b6b3e0ed23609e3d.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-docker-build-workflow-686aa56653-02-8747351338e3.png" %}
 
 ### 3.2. Docker를 사용한 Container Image Build 실습
 
@@ -411,7 +411,7 @@ docker rm -f myweb
 Jib은 아래와 같이 Dockerfile 없이 Build 단계에서 Container Image Registry로 Container Image Push까지 처리하므로, 개발자는 개발에만 집중합니다. 애플리케이션을 종속 항목, 리소스, 클래스 등 별개의 레이어로 구성하고 Docker Image Layer Caching을 활용해 변경사항만 다시 빌드하므로 빌드가 빠릅니다. Jib 레이어 구성과 작은 기본 이미지는 전체 이미지를 작게 유지하여 성능과 이식성을 향상시킵니다.
 
 {% include diagrams/static/ci-cd/ci-cd-study/docker-build-workflow.html instance="-comparison" %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/docker-build-workflow--1a2e14f23d39a851.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-docker-build-workflow-686aa56653-01-2bb7b5388080.png" %}
 > Docker Build Workflow  
 
 {% include diagrams/static/ci-cd/ci-cd-study/jib-build-workflow.html %}

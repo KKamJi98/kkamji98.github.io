@@ -34,15 +34,38 @@ module Jekyll
 
     def generate_viewer(site, entry, posts)
       png = entry.fetch('png')
-      legacy = png.match?(%r{\A/assets/img/diagrams/[a-zA-Z0-9_/-]+--[a-f0-9]{16}\.png\z})
+      legacy = !png.start_with?('/assets/img/diagrams/native-updates/') &&
+        png.match?(%r{\A/assets/img/diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+--[a-f0-9]{16}\.png\z})
       update = false
       update_file = File.join(site.source, 'docs', 'diagram-native-update.json')
       if png.match?(%r{\A/assets/img/diagrams/native-updates/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png\z}) && File.file?(update_file)
         declaration = JSON.parse(File.read(update_file))
         update = declaration['schema'] == 1 && declaration['status'] == 'fresh-native-update-reviewed' &&
           declaration.fetch('sources').any? do |record|
-            record['include'] == entry['include'] && record['old_png'] == entry['old_png'] &&
-              record['new_png'] == png && record['old_png'].to_s.match?(%r{\A/assets/img/diagrams/[a-zA-Z0-9_/-]+--[a-f0-9]{16}\.png\z})
+            next false unless record.is_a?(Hash) && record['include'] == entry['include']
+            baseline = JSON.parse(File.read(File.join(site.source, 'docs', 'diagram-export-release.json')))
+            all_archived = baseline.fetch('entries') + baseline.fetch('unused_entries', [])
+            archived = all_archived.select { |row| row['include'] == record['include'] }
+            occurrences = record['occurrences']
+            unless record.key?('occurrences')
+              occurrences = archived.length == 1 ? [archived.first.merge('old_png' => record['old_png'], 'new_png' => record['new_png'])] : []
+            end
+            next false unless occurrences.is_a?(Array) && !occurrences.empty? && occurrences.length == archived.length
+            originals = occurrences.map { |row| row.is_a?(Hash) && row['old_png'] }
+            destinations = occurrences.map { |row| row.is_a?(Hash) && row['new_png'] }
+            next false unless originals.uniq.length == originals.length && destinations.uniq.length == destinations.length &&
+              originals.sort == archived.map { |row| row.fetch('png') }.sort &&
+              (destinations & all_archived.map { |row| row.fetch('png') }).empty? &&
+              occurrences.any? { |row| row['old_png'] == record['old_png'] && row['new_png'] == record['new_png'] }
+            next false unless occurrences.all? do |occurrence|
+              original = archived.find { |row| row['png'] == occurrence['old_png'] }
+              original && %w[post figure].all? { |key| original[key].is_a?(String) && occurrence[key] == original[key] } &&
+                occurrence['old_png'].to_s.match?(%r{\A/assets/img/diagrams/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+--[a-f0-9]{16}\.png\z}) &&
+                occurrence['new_png'].to_s.match?(%r{\A/assets/img/diagrams/native-updates/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.png\z})
+            end
+            occurrences.any? do |occurrence|
+              %w[post figure old_png].all? { |key| occurrence[key] == entry[key] } && occurrence['new_png'] == png
+            end
           end
       end
       unless legacy || update

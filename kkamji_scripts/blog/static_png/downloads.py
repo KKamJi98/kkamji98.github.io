@@ -21,6 +21,14 @@ from pipeline import digest, fingerprint
 
 ROOT = Path(__file__).resolve().parents[3]
 MANIFEST = 'docs/diagram-downloads.json'
+FHD_AUTHOR_INPUTS = (
+    'kkamji_scripts/blog/fhd_svg.py',
+    'kkamji_scripts/blog/corpus_clearance.py',
+    'kkamji_scripts/blog/corpus_flow_balance.py',
+    'kkamji_scripts/blog/corpus_typography.py',
+    'kkamji_scripts/blog/corpus_pod_identity.py',
+    'kkamji_scripts/blog/corpus_relation_clearance.py',
+)
 INCLUDE = re.compile(r'{%\s*include\s+(diagrams/[^\s%]+)(.*?)%}', re.S)
 HELPER = re.compile(r'^[ \t]*{% include diagrams/download.html png="[^"]+" %}\r?\n', re.M)
 VOID = set('area base br col embed hr img input link meta param source track wbr'.split())
@@ -87,7 +95,40 @@ def declared_native_updates(root):
         if (old in updates or include in includes or new in destinations or new in archive
                 or not new.startswith('/assets/img/diagrams/native-updates/')):
             raise ValueError('unsafe or colliding native update routing')
-        updates[old] = row; includes.add(include); destinations.add(new)
+        archived = [item for item in rows if item['include'] == include]
+        explicit = row.get('occurrences')
+        if 'occurrences' in row:
+            if not isinstance(explicit, list) or not explicit or len(explicit) != len(archived):
+                raise ValueError('native update requires complete archived occurrence coverage')
+            occurrences = explicit
+        elif len(archived) != 1:
+            raise ValueError('shared native update requires explicit complete occurrences')
+        else:
+            occurrences = [dict(post=archive[old].get('post'), figure=archive[old].get('figure'),
+                                old_png=old, new_png=new)]
+        covered = set(); master = False
+        for occurrence in occurrences:
+            if not isinstance(occurrence, dict): raise ValueError('native update occurrence is not an object')
+            original, destination = occurrence.get('old_png'), occurrence.get('new_png')
+            if not isinstance(original, str) or not isinstance(destination, str):
+                raise ValueError('native update occurrence paths are missing')
+            public_path(root, original, 'png'); public_path(root, destination, 'png')
+            archived_row = archive.get(original)
+            if (not archived_row or archived_row['include'] != include
+                    or any(occurrence.get(key) != archived_row.get(key) for key in ('post', 'figure'))
+                    or ('occurrences' in row and any(not isinstance(occurrence.get(key), str)
+                                                     or not occurrence[key] for key in ('post', 'figure')))):
+                raise ValueError('native update lacks exact archived occurrence ownership')
+            if (original in covered or original in updates or destination in destinations
+                    or destination in archive or not destination.startswith('/assets/img/diagrams/native-updates/')):
+                raise ValueError('unsafe or colliding native update occurrence routing')
+            updates[original] = dict(row, post=archived_row.get('post'), figure=archived_row.get('figure'),
+                                     old_png=original, new_png=destination)
+            covered.add(original); destinations.add(destination)
+            master |= original == old and destination == new
+        if covered != {item['png'] for item in archived} or not master:
+            raise ValueError('native update occurrence coverage or master binding differs')
+        includes.add(include)
     return updates
 
 
@@ -155,7 +196,8 @@ def discover(root):
             entry = dict(identity, figure=figure, png=png, status='pending-export')
             if png in updates:
                 update = updates[png]
-                if update['include'] != name: raise ValueError('native update occurrence/include mismatch')
+                if (update['include'] != name or update.get('post') != rel or update.get('figure') != figure):
+                    raise ValueError('native update occurrence/include ownership mismatch')
                 entry.update(png=update['new_png'], old_png=png)
             if indent:
                 entry.update(status='blocked-insertion', reason='Indented canonical include requires markup review; sibling adjacency is not proven. No helper inserted.')
@@ -355,8 +397,8 @@ def source_snapshot(root):
                  and not any(part in ('__pycache__', '.pytest_cache') for part in p.relative_to(tools).parts))
     for name in ['_config.yml', 'Gemfile', 'Gemfile.lock', MANIFEST, 'docs/diagram-catalog.json']:
         if (root/name).is_file(): paths.add(root/name)
-    author = root/'kkamji_scripts/blog/fhd_svg.py'
-    if author.is_file(): paths.add(author)
+    for name in FHD_AUTHOR_INPUTS:
+        if (root/name).is_file(): paths.add(root/name)
     update = root/'docs/diagram-native-update.json'
     if update.is_file():
         paths.add(update)

@@ -239,7 +239,7 @@ docker compose logs jenkins -f
 #### 1.3.2. Jenkins 컨테이너에서 호스트에 도커 데몬 설정 (Docker-out-of-Docker)
 
 {% include diagrams/static/ci-cd/ci-cd-study/d-in-d_vs_d-out-d.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/ci-cd-study/d-in-d_vs_d-out-d--b1dbc4b65e44a01b.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-ci-cd-ci-cd-study-d-in-d_vs_d-out-d-f6bb1fdef5-01-bebf385e3353.png" %}
 > <https://daniel00324.tistory.com/17>  
 
 ```shell

@@ -12,7 +12,7 @@ image:
 **Service란 특정 비즈니스 기능을 제공하는 독립 배포 가능한 소프트웨어 단위**입니다. Micro Service Architecture는 수십 개 이상의 서비스가 상호 호출하며 전체 제품을 구성합니다. 이로 인해 각 서비스마다의 가용성 확보, Service 종단 간 암호화, 복잡해진 트래픽 흐름에 대한 가시성 확보 등의 추가적인 요구사항이 더욱 중요해졌습니다. 이런 문제를 해결하기 위해 초기에는 각 Application에 해당 기능의 역할을 수행하는 라이브러리를 사용해 해결했지만 규모가 커질수록 Code 중복과 일관성 저하 문제가 생기게 되었습니다.  
 
 {% include diagrams/static/kubernetes/cilium/6w-micro-service-architecture-complexity.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/6w-micro-service-architecture-complexity--992d6b277f87380b.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-6w-micro-service-architecture-complexity-6657b7988f-01-d3cd1afb3f07.png" %}
 
 **Service Mesh**는 아래와 같은 요구사항을 충족 시키기 위한 기능들을 Application 바깥의 Infra 구성요소로 추상화해 모든 Application이 공통 기능을 재사용하도록 합니다.
 
@@ -62,7 +62,7 @@ image:
 ### 2.2. Proxy 도입을 통한 제어
 
 {% include diagrams/static/kubernetes/cilium/6w-proxy-injected.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/6w-proxy-injected--3fd5766f0f69e67b.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-6w-proxy-injected-a97fa7d008-01-a164bc4328cb.png" %}
 
 - 모든 Application 통신 사이에 Proxy를 두어 통신 흐름을 가로챔
 - Proxy는 파드 내 **Sidecar Container**로 주입되어 동작
@@ -72,7 +72,7 @@ image:
 ### 2.3. Control Plane을 통한 중앙 관리
 
 {% include diagrams/static/kubernetes/cilium/6w-controlplane-managed.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/6w-controlplane-managed--aa255b0110a9d6a8.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-cilium-6w-controlplane-managed-6db7baeaac-01-f49be4d0da6a.png" %}
 
 - Proxy는 결국 **Data Plane**이므로 중앙에서 관리할 **Control Plane** 필요
 - Control Plane 역할

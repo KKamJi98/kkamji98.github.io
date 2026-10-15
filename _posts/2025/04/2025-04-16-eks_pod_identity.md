@@ -48,7 +48,7 @@ image:
 ## 2. Pod Identity 동작 원리
 
 {% include diagrams/static/kubernetes/pod-identity-workflow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/pod-identity-workflow--6cb5d342c166eba9.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-kubernetes-pod-identity-workflow-ca594492b3-01-a39fb54615af.png" %}
 
 1. 서비스 어카운트와 IAM Role을 연결하는 SA-Role Association을 만들면, **EKS Auth API**가 이 정보를 메타데이터로 저장합니다.
 2. Pod가 연결된 SA를 사용해 배포되면, **EKS API가 자동으로 Pod Manifest에 다음 두 환경 변수(ENV)**를 삽입하고 Credential 볼륨을 생성

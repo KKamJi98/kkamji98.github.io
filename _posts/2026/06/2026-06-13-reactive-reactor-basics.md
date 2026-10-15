@@ -60,7 +60,7 @@ _블로킹: I/O 대기 동안 스레드 점유 vs 논블로킹: 파이프라인 
 - **Processor**: Publisher이자 Subscriber (중간 변환)
 
 {% include diagrams/static/spring/spring-10-mono-flux-backpressure.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/spring/spring-10-mono-flux-backpressure--8d55e834be2f1dd5.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-spring-spring-10-mono-flux-backpressure-654da3e710-01-07a067581259.png" %}
 _Publisher -> operators -> Subscriber, 그리고 Subscriber가 request(n)으로 demand를 거꾸로 신호_
 
 핵심은 **backpressure**입니다. 소비자가 `request(n)`으로 **받을 양을 직접 신호**하므로, 빠른 생산자가 느린 소비자를 압도하지 않습니다.

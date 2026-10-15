@@ -61,56 +61,55 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="0d0adb12209a7d31399f7809ea628d1d3c66c25096cd41f811e5e4d987d5f295">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.3.0" x="64.000" y="453.200" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3.1" x="669.333" y="453.200" width="581.333" height="458.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.3.2" x="1274.667" y="453.200" width="581.333" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1" x="64.000" y="187.700" width="1792.000" height="155.800" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-source="root.0.3" x="64.000" y="453.200" width="1792.000" height="458.000" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0" x="96.000" y="202.550" width="296.108" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.1.2" x="573.298" y="202.550" width="296.108" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.4" x="1050.595" y="187.700" width="296.108" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.6" x="1527.892" y="187.700" width="296.108" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.3.0.1.0" x="88.000" y="539.000" width="533.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.0" x="725.333" y="539.000" width="469.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.1.1.2" x="725.333" y="761.100" width="469.333" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.3.2.1.0" x="1298.667" y="539.000" width="533.333" height="126.100" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 404.108 265.600 L 561.298 265.600" fill="none" stroke="#475569" stroke-width="3"><title>메시지 보존</title></path>
-<polygon data-arrowhead="root.0.1.1" points="561.298,265.600 551.298,271.600 551.298,259.600" fill="#475569"/>
-<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 881.405 265.600 L 1038.595 265.600" fill="none" stroke="#475569" stroke-width="3"><title>ReceiveMessage</title></path>
-<polygon data-arrowhead="root.0.1.3" points="1038.595,265.600 1028.595,271.600 1028.595,259.600" fill="#475569"/>
-<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1358.703 265.600 L 1515.892 265.600" fill="none" stroke="#475569" stroke-width="3"><title>컨슈머가 처리</title></path>
-<polygon data-arrowhead="root.0.1.5" points="1515.892,265.600 1505.892,271.600 1505.892,259.600" fill="#475569"/>
-<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1206.667 602.050 L 1218.667 602.050 L 1218.667 713.100 L 701.333 713.100 L 701.333 824.150 L 713.333 824.150" fill="none" stroke="#475569" stroke-width="3"><title>수신 횟수 증가</title></path>
-<polygon data-arrowhead="root.0.3.1.1.1" points="713.333,824.150 703.333,830.150 703.333,818.150" fill="#475569"/>
-<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 355.500 L 960.000 441.200" fill="none" stroke="#475569" stroke-width="3"><title>처리 결과</title></path>
-<polygon data-arrowhead="root.0.2" points="960.000,441.200 954.000,431.200 966.000,431.200" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="151.100" font-size="36" font-weight="700" fill="#111827">SQS 메시지는 성공하면 삭제되고 반복 실패하면 DLQ로 이동합니다</text>
-<text data-source="root.0.1.0" x="120.000" y="254.550" font-size="28" font-weight="700" fill="#111827">Producer</text>
-<text data-source="root.0.1.0" x="120.000" y="296.950" font-size="22" font-weight="400" fill="#111827">SendMessage</text>
-<text data-source="root.0.1.2" x="597.298" y="254.550" font-size="28" font-weight="700" fill="#111827">Source queue</text>
-<text data-source="root.0.1.2" x="597.298" y="296.950" font-size="22" font-weight="400" fill="#111827">retention 최대 14일</text>
-<text data-source="root.0.1.4" x="1074.595" y="239.700" font-size="28" font-weight="700" fill="#111827">In-flight</text>
-<text data-source="root.0.1.4" x="1074.595" y="282.100" font-size="22" font-weight="400" fill="#111827">visibility timeout 최대</text>
-<text data-source="root.0.1.4" x="1074.595" y="311.800" font-size="22" font-weight="400" fill="#111827">12시간</text>
-<text data-source="root.0.1.6" x="1551.892" y="239.700" font-size="28" font-weight="700" fill="#111827">Consumer</text>
-<text data-source="root.0.1.6" x="1551.892" y="282.100" font-size="22" font-weight="400" fill="#111827">처리 성공 여부에 따라 다음</text>
-<text data-source="root.0.1.6" x="1551.892" y="311.800" font-size="22" font-weight="400" fill="#111827">경로 선택</text>
-<text data-source="root.0.1.1" x="396.107" y="245.900" font-size="22" font-weight="400" fill="#111827">메시지 보존</text>
-<text data-source="root.0.1.3" x="873.405" y="245.900" font-size="22" font-weight="400" fill="#111827">ReceiveMessage</text>
-<text data-source="root.0.1.5" x="1350.703" y="245.900" font-size="22" font-weight="400" fill="#111827">컨슈머가 처리</text>
-<text data-source="root.0.3.0.0" x="88.000" y="505.200" font-size="28" font-weight="700" fill="#111827">성공</text>
-<text data-source="root.0.3.0.1.0" x="112.000" y="591.000" font-size="28" font-weight="700" fill="#111827">DeleteMessage</text>
-<text data-source="root.0.3.0.1.0" x="112.000" y="633.400" font-size="22" font-weight="400" fill="#111827">삭제 성공 후 메시지 제거</text>
-<text data-source="root.0.3.1.0" x="693.333" y="505.200" font-size="28" font-weight="700" fill="#111827">재시도</text>
-<text data-source="root.0.3.1.1.0" x="749.333" y="591.000" font-size="28" font-weight="700" fill="#111827">Retry</text>
-<text data-source="root.0.3.1.1.0" x="749.333" y="633.400" font-size="22" font-weight="400" fill="#111827">visibility timeout 만료로 다시 보임</text>
-<text data-source="root.0.3.1.1.2" x="749.333" y="813.100" font-size="28" font-weight="700" fill="#111827">Source queue</text>
-<text data-source="root.0.3.1.1.2" x="749.333" y="855.500" font-size="22" font-weight="400" fill="#111827">maxReceiveCount 전까지 반복</text>
-<text data-source="root.0.3.1.1.1" x="733.333" y="705.100" font-size="22" font-weight="400" fill="#111827">수신 횟수 증가</text>
-<text data-source="root.0.3.2.0" x="1298.667" y="505.200" font-size="28" font-weight="700" fill="#111827">반복 실패</text>
-<text data-source="root.0.3.2.1.0" x="1322.667" y="591.000" font-size="28" font-weight="700" fill="#111827">Dead-letter queue</text>
-<text data-source="root.0.3.2.1.0" x="1322.667" y="633.400" font-size="22" font-weight="400" fill="#111827">maxReceiveCount 도달 시 이동</text>
-<text data-source="root.0.4" x="64.000" y="957.200" font-size="22" font-weight="400" fill="#111827">visibility timeout 안에 DeleteMessage를 못 보내면 재수신됩니다. timeout을 처리 시간보다 짧게 잡으면 중복 전달이 생깁니다.</text>
-<text data-source="root.0.2" x="980.000" y="405.500" font-size="22" font-weight="400" fill="#111827">처리 결과</text>
+<rect data-source="root.0.1" x="64.000" y="180.300" width="1792.000" height="185.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3" x="64.000" y="464.500" width="1792.000" height="456.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.0" x="88.000" y="488.500" width="568.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.1" x="676.000" y="488.500" width="568.000" height="408.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.3.2" x="1264.000" y="488.500" width="568.000" height="202.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="120.000" y="217.800" width="294.825" height="110.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="581.725" y="217.800" width="294.825" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1043.450" y="217.800" width="294.825" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1505.175" y="204.300" width="294.825" height="137.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.0.1.0" x="108.000" y="560.900" width="528.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.0" x="728.000" y="560.900" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.1.1.2" x="728.000" y="767.100" width="464.000" height="110.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.2.1.0" x="1284.000" y="560.900" width="528.000" height="110.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 426.825 272.900 L 569.725 272.900" fill="none" stroke="#475569" stroke-width="3"><title>메시지 보존</title></path>
+<polygon data-arrowhead="root.0.1.1" points="569.725,272.900 559.725,278.900 559.725,266.900" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 888.550 272.900 L 1031.450 272.900" fill="none" stroke="#475569" stroke-width="3"><title>ReceiveMessage</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1031.450,272.900 1021.450,278.900 1021.450,266.900" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1350.275 272.900 L 1493.175 272.900" fill="none" stroke="#475569" stroke-width="3"><title>컨슈머가 처리</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1493.175,272.900 1483.175,278.900 1483.175,266.900" fill="#475569"/>
+<path data-edge="root.0.3.1.1.1" data-from="root.0.3.1.1.0" data-to="root.0.3.1.1.2" d="M 1204.000 616.000 L 1216.000 616.000 L 1216.000 719.100 L 704.000 719.100 L 704.000 822.200 L 716.000 822.200" fill="none" stroke="#475569" stroke-width="3"><title>수신 횟수 증가</title></path>
+<polygon data-arrowhead="root.0.3.1.1.1" points="716.000,822.200 706.000,828.200 706.000,816.200" fill="#475569"/>
+<path data-edge="root.0.2" data-from="root.0.1" data-to="root.0.3" d="M 960.000 377.500 L 960.000 452.500" fill="none" stroke="#475569" stroke-width="3"><title>처리 결과</title></path>
+<polygon data-arrowhead="root.0.2" points="960.000,452.500 954.000,442.500 966.000,442.500" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="147.700" font-size="36" font-weight="700" fill="#111827">SQS 메시지는 성공하면 삭제되고 반복 실패하면 DLQ로 이동합니다</text>
+<text data-source="root.0.1.0" x="140.000" y="261.800" font-size="24" font-weight="700" fill="#111827">Producer</text>
+<text data-source="root.0.1.0" x="140.000" y="301.000" font-size="20" font-weight="400" fill="#111827">SendMessage</text>
+<text data-source="root.0.1.2" x="601.725" y="261.800" font-size="24" font-weight="700" fill="#111827">Source queue</text>
+<text data-source="root.0.1.2" x="601.725" y="301.000" font-size="20" font-weight="400" fill="#111827">retention 최대 14일</text>
+<text data-source="root.0.1.4" x="1063.450" y="261.800" font-size="24" font-weight="700" fill="#111827">In-flight</text>
+<text data-source="root.0.1.4" x="1063.450" y="301.000" font-size="20" font-weight="400" fill="#111827">visibility timeout 최대 12시간</text>
+<text data-source="root.0.1.6" x="1525.175" y="248.300" font-size="24" font-weight="700" fill="#111827">Consumer</text>
+<text data-source="root.0.1.6" x="1525.175" y="287.500" font-size="20" font-weight="400" fill="#111827">처리 성공 여부에 따라 다음</text>
+<text data-source="root.0.1.6" x="1525.175" y="314.500" font-size="20" font-weight="400" fill="#111827">경로 선택</text>
+<text data-source="root.0.1.1" x="418.825" y="253.900" font-size="20" font-weight="400" fill="#111827">메시지 보존</text>
+<text data-source="root.0.1.3" x="880.550" y="253.900" font-size="20" font-weight="400" fill="#111827">ReceiveMessage</text>
+<text data-source="root.0.1.5" x="1342.275" y="253.900" font-size="20" font-weight="400" fill="#111827">컨슈머가 처리</text>
+<text data-source="root.0.3.0.0" x="108.000" y="532.500" font-size="24" font-weight="700" fill="#111827">성공</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="604.900" font-size="24" font-weight="700" fill="#111827">DeleteMessage</text>
+<text data-source="root.0.3.0.1.0" x="128.000" y="644.100" font-size="20" font-weight="400" fill="#111827">삭제 성공 후 메시지 제거</text>
+<text data-source="root.0.3.1.0" x="696.000" y="532.500" font-size="24" font-weight="700" fill="#111827">재시도</text>
+<text data-source="root.0.3.1.1.0" x="748.000" y="604.900" font-size="24" font-weight="700" fill="#111827">Retry</text>
+<text data-source="root.0.3.1.1.0" x="748.000" y="644.100" font-size="20" font-weight="400" fill="#111827">visibility timeout 만료로 다시 보임</text>
+<text data-source="root.0.3.1.1.2" x="748.000" y="811.100" font-size="24" font-weight="700" fill="#111827">Source queue</text>
+<text data-source="root.0.3.1.1.2" x="748.000" y="850.300" font-size="20" font-weight="400" fill="#111827">maxReceiveCount 전까지 반복</text>
+<text data-source="root.0.3.1.1.1" x="736.000" y="711.100" font-size="20" font-weight="400" fill="#111827">수신 횟수 증가</text>
+<text data-source="root.0.3.2.0" x="1284.000" y="532.500" font-size="24" font-weight="700" fill="#111827">반복 실패</text>
+<text data-source="root.0.3.2.1.0" x="1304.000" y="604.900" font-size="24" font-weight="700" fill="#111827">Dead-letter queue</text>
+<text data-source="root.0.3.2.1.0" x="1304.000" y="644.100" font-size="20" font-weight="400" fill="#111827">maxReceiveCount 도달 시 이동</text>
+<text data-source="root.0.4" x="64.000" y="961.300" font-size="20" font-weight="400" fill="#111827">visibility timeout 안에 DeleteMessage를 못 보내면 재수신됩니다. timeout을 처리 시간보다 짧게 잡으면 중복 전달이 생깁니다.</text>
+<text data-source="root.0.2" x="980.000" y="421.500" font-size="20" font-weight="400" fill="#111827">처리 결과</text>
 </svg>
 </figure>

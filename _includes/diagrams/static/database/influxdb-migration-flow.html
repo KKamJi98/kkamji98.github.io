@@ -40,46 +40,39 @@
 <!-- FHD artwork: generated from the preserved semantic source. -->
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="d30ab449e118a4923c380f06bc9b7697cd9d546917c4ac562ed199535d0345e8">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.2.0" x="96.000" y="384.500" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="564.000" y="384.500" width="324.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4" x="1032.000" y="354.800" width="324.000" height="215.200" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
-<rect data-node="root.0.2.6" x="1500.000" y="354.800" width="324.000" height="215.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.8" x="96.000" y="666.000" width="324.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 432.000 462.400 L 552.000 462.400" fill="none" stroke="#475569" stroke-width="3"><title>데이터 추출</title></path>
-<polygon data-arrowhead="root.0.2.1" points="552.000,462.400 542.000,468.400 542.000,456.400" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 900.000 462.400 L 1020.000 462.400" fill="none" stroke="#475569" stroke-width="3"><title>export 파일 정리</title></path>
-<polygon data-arrowhead="root.0.2.3" points="1020.000,462.400 1010.000,468.400 1010.000,456.400" fill="#475569"/>
-<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1368.000 462.400 L 1488.000 462.400" fill="none" stroke="#475569" stroke-width="3"><title>새 인스턴스에 기록</title></path>
-<polygon data-arrowhead="root.0.2.5" points="1488.000,462.400 1478.000,468.400 1478.000,456.400" fill="#475569"/>
-<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 462.400 L 1848.000 462.400 L 1848.000 618.000 L 72.000 618.000 L 72.000 758.750 L 84.000 758.750" fill="none" stroke="#475569" stroke-width="3"><title>건수와 구간 확인</title></path>
-<polygon data-arrowhead="root.0.2.7" points="84.000,758.750 74.000,764.750 74.000,752.750" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="264.500" font-size="36" font-weight="700" fill="#111827">InfluxDB 1.x EC2 이전: export, 파일 정리, import</text>
-<text data-source="root.0.1" x="64.000" y="323.100" font-size="22" font-weight="400" fill="#111827">v1.11.8 실습은 database 이름과 measurement, tag, field, timestamp를 유지한 채 Line Protocol로 옮깁니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="436.500" font-size="28" font-weight="700" fill="#111827">Source InfluxDB</text>
-<text data-source="root.0.2.0" x="120.000" y="478.900" font-size="22" font-weight="400" fill="#111827">기존 EC2의 InfluxDB v1.11.8</text>
-<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">database</text>
-<text data-source="root.0.2.2" x="588.000" y="436.500" font-size="28" font-weight="700" fill="#111827">Export data</text>
-<text data-source="root.0.2.2" x="588.000" y="478.900" font-size="22" font-weight="400" fill="#111827">influx_inspect export</text>
-<text data-source="root.0.2.2" x="588.000" y="508.600" font-size="22" font-weight="400" fill="#111827">-lponly로 추출합니다.</text>
-<text data-source="root.0.2.4" x="1056.000" y="406.800" font-size="28" font-weight="700" fill="#111827">Clean export file</text>
-<text data-source="root.0.2.4" x="1056.000" y="449.200" font-size="22" font-weight="400" fill="#111827">실습 스크립트는 CREATE</text>
-<text data-source="root.0.2.4" x="1056.000" y="478.900" font-size="22" font-weight="400" fill="#111827">DATABASE 행을 제거합니다.</text>
-<text data-source="root.0.2.4" x="1056.000" y="508.600" font-size="22" font-weight="400" fill="#111827">데이터 이름은 바꾸지</text>
-<text data-source="root.0.2.4" x="1056.000" y="538.300" font-size="22" font-weight="400" fill="#111827">않습니다.</text>
-<text data-source="root.0.2.6" x="1524.000" y="406.800" font-size="28" font-weight="700" fill="#111827">Import data</text>
-<text data-source="root.0.2.6" x="1524.000" y="449.200" font-size="22" font-weight="400" fill="#111827">target에 같은 이름의</text>
-<text data-source="root.0.2.6" x="1524.000" y="478.900" font-size="22" font-weight="400" fill="#111827">database를 생성한 뒤</text>
-<text data-source="root.0.2.6" x="1524.000" y="508.600" font-size="22" font-weight="400" fill="#111827">/write에 Line Protocol을</text>
-<text data-source="root.0.2.6" x="1524.000" y="538.300" font-size="22" font-weight="400" fill="#111827">전송합니다.</text>
-<text data-source="root.0.2.8" x="120.000" y="718.000" font-size="28" font-weight="700" fill="#111827">Target InfluxDB</text>
-<text data-source="root.0.2.8" x="120.000" y="760.400" font-size="22" font-weight="400" fill="#111827">삭제 복원, 누락 구간과 덮어쓴</text>
-<text data-source="root.0.2.8" x="120.000" y="790.100" font-size="22" font-weight="400" fill="#111827">값의 복구를 Grafana로</text>
-<text data-source="root.0.2.8" x="120.000" y="819.800" font-size="22" font-weight="400" fill="#111827">비교합니다.</text>
-<text data-source="root.0.2.1" x="424.000" y="442.700" font-size="22" font-weight="400" fill="#111827">데이터 추출</text>
-<text data-source="root.0.2.3" x="892.000" y="413.000" font-size="22" font-weight="400" fill="#111827">export 파일</text>
-<text data-source="root.0.2.3" x="892.000" y="442.700" font-size="22" font-weight="400" fill="#111827">정리</text>
-<text data-source="root.0.2.5" x="1360.000" y="413.000" font-size="22" font-weight="400" fill="#111827">새 인스턴스에</text>
-<text data-source="root.0.2.5" x="1360.000" y="442.700" font-size="22" font-weight="400" fill="#111827">기록</text>
-<text data-source="root.0.2.7" x="104.000" y="610.000" font-size="22" font-weight="400" fill="#111827">건수와 구간 확인</text>
+<rect data-node="root.0.2.0" x="96.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="720.000" y="414.200" width="480.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1344.000" y="399.350" width="480.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="408.000" y="651.150" width="480.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="1032.000" y="651.150" width="480.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 588.000 477.250 L 708.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>데이터 추출</title></path>
+<polygon data-arrowhead="root.0.2.1" points="708.000,477.250 698.000,483.250 698.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1212.000 477.250 L 1332.000 477.250" fill="none" stroke="#475569" stroke-width="3"><title>export 파일 정리</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1332.000,477.250 1322.000,483.250 1322.000,471.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1584.000 567.150 L 1584.000 603.150 L 648.000 603.150 L 648.000 639.150" fill="none" stroke="#475569" stroke-width="3"><title>새 인스턴스에 기록</title></path>
+<polygon data-arrowhead="root.0.2.5" points="648.000,639.150 642.000,629.150 654.000,629.150" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 900.000 729.050 L 1020.000 729.050" fill="none" stroke="#475569" stroke-width="3"><title>건수와 구간 확인</title></path>
+<polygon data-arrowhead="root.0.2.7" points="1020.000,729.050 1010.000,735.050 1010.000,723.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">InfluxDB 1.x EC2 이전: export, 파일 정리, import</text>
+<text data-source="root.0.1" x="64.000" y="367.650" font-size="22" font-weight="400" fill="#111827">v1.11.8 실습은 database 이름과 measurement, tag, field, timestamp를 유지한 채 Line Protocol로 옮깁니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Source InfluxDB</text>
+<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">기존 EC2의 InfluxDB v1.11.8 database</text>
+<text data-source="root.0.2.2" x="744.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Export data</text>
+<text data-source="root.0.2.2" x="744.000" y="508.600" font-size="22" font-weight="400" fill="#111827">influx_inspect export -lponly로 추출합니다.</text>
+<text data-source="root.0.2.4" x="1368.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Clean export file</text>
+<text data-source="root.0.2.4" x="1368.000" y="493.750" font-size="22" font-weight="400" fill="#111827">실습 스크립트는 CREATE DATABASE 행을</text>
+<text data-source="root.0.2.4" x="1368.000" y="523.450" font-size="22" font-weight="400" fill="#111827">제거합니다. 데이터 이름은 바꾸지 않습니다.</text>
+<text data-source="root.0.2.6" x="432.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Import data</text>
+<text data-source="root.0.2.6" x="432.000" y="745.550" font-size="22" font-weight="400" fill="#111827">target에 같은 이름의 database를 생성한 뒤</text>
+<text data-source="root.0.2.6" x="432.000" y="775.250" font-size="22" font-weight="400" fill="#111827">/write에 Line Protocol을 전송합니다.</text>
+<text data-source="root.0.2.8" x="1056.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Target InfluxDB</text>
+<text data-source="root.0.2.8" x="1056.000" y="745.550" font-size="22" font-weight="400" fill="#111827">삭제 복원, 누락 구간과 덮어쓴 값의 복구를</text>
+<text data-source="root.0.2.8" x="1056.000" y="775.250" font-size="22" font-weight="400" fill="#111827">Grafana로 비교합니다.</text>
+<text data-source="root.0.2.1" x="580.000" y="457.550" font-size="22" font-weight="400" fill="#111827">데이터 추출</text>
+<text data-source="root.0.2.3" x="1204.000" y="427.850" font-size="22" font-weight="400" fill="#111827">export 파일</text>
+<text data-source="root.0.2.3" x="1204.000" y="457.550" font-size="22" font-weight="400" fill="#111827">정리</text>
+<text data-source="root.0.2.5" x="660.000" y="595.150" font-size="22" font-weight="400" fill="#111827">새 인스턴스에 기록</text>
+<text data-source="root.0.2.7" x="892.000" y="679.650" font-size="22" font-weight="400" fill="#111827">건수와 구간</text>
+<text data-source="root.0.2.7" x="892.000" y="709.350" font-size="22" font-weight="400" fill="#111827">확인</text>
 </svg>
 </figure>

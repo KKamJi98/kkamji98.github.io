@@ -53,7 +53,7 @@ OSI는 Open Systems Interconnection의 약자로, 시스템 간 상호 연결을
 응용이 만든 데이터는 네트워크로 내려갈수록 각 계층의 제어 정보와 결합합니다. 이를 **캡슐화(encapsulation)**라고 합니다. 수신 측은 반대 순서로 헤더와 트레일러를 해석하고 제거하여 응용 데이터까지 전달하는데, 이를 **역캡슐화(decapsulation)**라고 합니다.
 
 {% include diagrams/static/network/osi-encapsulation-flow.html %}
-{% include diagrams/download.html png="/assets/img/diagrams/static/network/osi-encapsulation-flow--266678bb73da24df.png" %}
+{% include diagrams/download.html png="/assets/img/diagrams/native-updates/20261015/corpus-static-network-osi-encapsulation-flow-3131159d4d-01-cc9b43d5cd7d.png" %}
 
 PDU(Protocol Data Unit) 이름은 문맥에 따라 조금씩 다르지만, 전송 계층에서는 TCP 세그먼트 또는 UDP 데이터그램, 네트워크 계층에서는 IP 패킷, 링크 계층에서는 프레임이라고 부르는 것이 일반적입니다. 중요한 점은 목적지까지 가는 동안 모든 헤더가 그대로 유지되는 것은 아니라는 사실입니다.
 

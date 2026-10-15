@@ -1,50 +1,43 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="96f8694f8bb48442bbdc27dfa6c3f514cf8d34d9502eb3c53efb422b185cef13">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-node="root.0.2.0" x="96.000" y="399.350" width="321.666" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.2" x="564.778" y="381.150" width="321.666" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.4" x="1033.556" y="381.150" width="321.666" height="192.200" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.6" x="1502.334" y="399.350" width="321.666" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.2.8" x="96.000" y="669.350" width="321.666" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<rect data-node="root.0.2.10" x="564.778" y="669.350" width="321.666" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
-<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 429.666 477.250 L 552.778 477.250" fill="none" stroke="#475569" stroke-width="3"><title>function별 log stream</title></path>
-<polygon data-arrowhead="root.0.2.1" points="552.778,477.250 542.778,483.250 542.778,471.250" fill="#475569"/>
-<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 898.444 477.250 L 1021.556 477.250" fill="none" stroke="#475569" stroke-width="3"><title>Subscription Filter</title></path>
-<polygon data-arrowhead="root.0.2.3" points="1021.556,477.250 1011.556,483.250 1011.556,471.250" fill="#475569"/>
-<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1367.222 477.250 L 1490.334 477.250" fill="none" stroke="#475569" stroke-width="3"><title>HTTP input :5044</title></path>
-<polygon data-arrowhead="root.0.2.5" points="1490.334,477.250 1480.334,483.250 1480.334,471.250" fill="#475569"/>
-<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 1836.000 477.250 L 1848.000 477.250 L 1848.000 621.350 L 72.000 621.350 L 72.000 747.250 L 84.000 747.250" fill="none" stroke="#475569" stroke-width="3"><title>index and store</title></path>
-<polygon data-arrowhead="root.0.2.7" points="84.000,747.250 74.000,753.250 74.000,741.250" fill="#475569"/>
-<path data-edge="root.0.2.9" data-from="root.0.2.8" data-to="root.0.2.10" d="M 429.666 747.250 L 552.778 747.250" fill="none" stroke="#475569" stroke-width="3"><title>dashboard query</title></path>
-<polygon data-arrowhead="root.0.2.9" points="552.778,747.250 542.778,753.250 542.778,741.250" fill="#475569"/>
-<text data-source="root.0.0" x="64.000" y="290.850" font-size="36" font-weight="700" fill="#111827">CloudWatch Logs Subscription Filter가 Lambda 로그를 ELK로 모읍니다</text>
-<text data-source="root.0.1" x="64.000" y="349.450" font-size="22" font-weight="400" fill="#111827">여러 Lambda의 Log Group을 하나의 forwarding Lambda로 수렴시킨 뒤 Logstash HTTP input 5044로 전달합니다.</text>
-<text data-source="root.0.2.0" x="120.000" y="451.350" font-size="28" font-weight="700" fill="#111827">Lambda functions x4</text>
-<text data-source="root.0.2.0" x="120.000" y="493.750" font-size="22" font-weight="400" fill="#111827">각 함수가 실행 로그를</text>
-<text data-source="root.0.2.0" x="120.000" y="523.450" font-size="22" font-weight="400" fill="#111827">남깁니다.</text>
-<text data-source="root.0.2.2" x="588.778" y="433.150" font-size="28" font-weight="700" fill="#111827">CloudWatch Logs Log</text>
-<text data-source="root.0.2.2" x="588.778" y="469.550" font-size="28" font-weight="700" fill="#111827">Groups</text>
-<text data-source="root.0.2.2" x="588.778" y="511.950" font-size="22" font-weight="400" fill="#111827">Lambda별 그룹에 로그가</text>
-<text data-source="root.0.2.2" x="588.778" y="541.650" font-size="22" font-weight="400" fill="#111827">분산 저장됩니다.</text>
-<text data-source="root.0.2.4" x="1057.556" y="433.150" font-size="28" font-weight="700" fill="#111827">Log forwarding</text>
-<text data-source="root.0.2.4" x="1057.556" y="469.550" font-size="28" font-weight="700" fill="#111827">Lambda</text>
-<text data-source="root.0.2.4" x="1057.556" y="511.950" font-size="22" font-weight="400" fill="#111827">구독 payload를 읽고 필요한</text>
-<text data-source="root.0.2.4" x="1057.556" y="541.650" font-size="22" font-weight="400" fill="#111827">로그를 필터링합니다.</text>
-<text data-source="root.0.2.6" x="1526.334" y="451.350" font-size="28" font-weight="700" fill="#111827">Logstash</text>
-<text data-source="root.0.2.6" x="1526.334" y="493.750" font-size="22" font-weight="400" fill="#111827">정제된 event를 수신해</text>
-<text data-source="root.0.2.6" x="1526.334" y="523.450" font-size="22" font-weight="400" fill="#111827">pipeline으로 전달합니다.</text>
-<text data-source="root.0.2.8" x="120.000" y="721.350" font-size="28" font-weight="700" fill="#111827">Elasticsearch</text>
-<text data-source="root.0.2.8" x="120.000" y="763.750" font-size="22" font-weight="400" fill="#111827">중앙 검색용 로그 index를</text>
-<text data-source="root.0.2.8" x="120.000" y="793.450" font-size="22" font-weight="400" fill="#111827">보관합니다.</text>
-<text data-source="root.0.2.10" x="588.778" y="721.350" font-size="28" font-weight="700" fill="#111827">Kibana</text>
-<text data-source="root.0.2.10" x="588.778" y="763.750" font-size="22" font-weight="400" fill="#111827">여러 Lambda 로그를 한</text>
-<text data-source="root.0.2.10" x="588.778" y="793.450" font-size="22" font-weight="400" fill="#111827">화면에서 시각화합니다.</text>
-<text data-source="root.0.2.1" x="421.666" y="427.850" font-size="22" font-weight="400" fill="#111827">function별 log</text>
-<text data-source="root.0.2.1" x="421.666" y="457.550" font-size="22" font-weight="400" fill="#111827">stream</text>
-<text data-source="root.0.2.3" x="890.444" y="427.850" font-size="22" font-weight="400" fill="#111827">Subscription</text>
-<text data-source="root.0.2.3" x="890.444" y="457.550" font-size="22" font-weight="400" fill="#111827">Filter</text>
-<text data-source="root.0.2.5" x="1359.222" y="427.850" font-size="22" font-weight="400" fill="#111827">HTTP input</text>
-<text data-source="root.0.2.5" x="1359.222" y="457.550" font-size="22" font-weight="400" fill="#111827">:5044</text>
-<text data-source="root.0.2.7" x="104.000" y="613.350" font-size="22" font-weight="400" fill="#111827">index and store</text>
-<text data-source="root.0.2.9" x="421.666" y="697.850" font-size="22" font-weight="400" fill="#111827">dashboard</text>
-<text data-source="root.0.2.9" x="421.666" y="727.550" font-size="22" font-weight="400" fill="#111827">query</text>
+<rect data-node="root.0.2.0" x="96.000" y="414.200" width="426.667" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="746.667" y="399.350" width="426.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1397.333" y="399.350" width="426.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.6" x="96.000" y="651.150" width="426.667" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.8" x="746.667" y="666.000" width="426.667" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.10" x="1397.333" y="651.150" width="426.667" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2.1" data-from="root.0.2.0" data-to="root.0.2.2" d="M 534.667 477.250 L 734.667 477.250" fill="none" stroke="#475569" stroke-width="3"><title>function별 log stream</title></path>
+<polygon data-arrowhead="root.0.2.1" points="734.667,477.250 724.667,483.250 724.667,471.250" fill="#475569"/>
+<path data-edge="root.0.2.3" data-from="root.0.2.2" data-to="root.0.2.4" d="M 1185.333 477.250 L 1385.333 477.250" fill="none" stroke="#475569" stroke-width="3"><title>Subscription Filter</title></path>
+<polygon data-arrowhead="root.0.2.3" points="1385.333,477.250 1375.333,483.250 1375.333,471.250" fill="#475569"/>
+<path data-edge="root.0.2.5" data-from="root.0.2.4" data-to="root.0.2.6" d="M 1610.667 567.150 L 1610.667 603.150 L 309.333 603.150 L 309.333 639.150" fill="none" stroke="#475569" stroke-width="3"><title>HTTP input :5044</title></path>
+<polygon data-arrowhead="root.0.2.5" points="309.333,639.150 303.333,629.150 315.333,629.150" fill="#475569"/>
+<path data-edge="root.0.2.7" data-from="root.0.2.6" data-to="root.0.2.8" d="M 534.667 729.050 L 734.667 729.050" fill="none" stroke="#475569" stroke-width="3"><title>index and store</title></path>
+<polygon data-arrowhead="root.0.2.7" points="734.667,729.050 724.667,735.050 724.667,723.050" fill="#475569"/>
+<path data-edge="root.0.2.9" data-from="root.0.2.8" data-to="root.0.2.10" d="M 1185.333 729.050 L 1385.333 729.050" fill="none" stroke="#475569" stroke-width="3"><title>dashboard query</title></path>
+<polygon data-arrowhead="root.0.2.9" points="1385.333,729.050 1375.333,735.050 1375.333,723.050" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="309.050" font-size="36" font-weight="700" fill="#111827">CloudWatch Logs Subscription Filter가 Lambda 로그를 ELK로 모읍니다</text>
+<text data-source="root.0.1" x="64.000" y="367.650" font-size="22" font-weight="400" fill="#111827">여러 Lambda의 Log Group을 하나의 forwarding Lambda로 수렴시킨 뒤 Logstash HTTP input 5044로 전달합니다.</text>
+<text data-source="root.0.2.0" x="120.000" y="466.200" font-size="28" font-weight="700" fill="#111827">Lambda functions x4</text>
+<text data-source="root.0.2.0" x="120.000" y="508.600" font-size="22" font-weight="400" fill="#111827">각 함수가 실행 로그를 남깁니다.</text>
+<text data-source="root.0.2.2" x="770.667" y="451.350" font-size="28" font-weight="700" fill="#111827">CloudWatch Logs Log Groups</text>
+<text data-source="root.0.2.2" x="770.667" y="493.750" font-size="22" font-weight="400" fill="#111827">Lambda별 그룹에 로그가 분산</text>
+<text data-source="root.0.2.2" x="770.667" y="523.450" font-size="22" font-weight="400" fill="#111827">저장됩니다.</text>
+<text data-source="root.0.2.4" x="1421.333" y="451.350" font-size="28" font-weight="700" fill="#111827">Log forwarding Lambda</text>
+<text data-source="root.0.2.4" x="1421.333" y="493.750" font-size="22" font-weight="400" fill="#111827">구독 payload를 읽고 필요한 로그를</text>
+<text data-source="root.0.2.4" x="1421.333" y="523.450" font-size="22" font-weight="400" fill="#111827">필터링합니다.</text>
+<text data-source="root.0.2.6" x="120.000" y="703.150" font-size="28" font-weight="700" fill="#111827">Logstash</text>
+<text data-source="root.0.2.6" x="120.000" y="745.550" font-size="22" font-weight="400" fill="#111827">정제된 event를 수신해 pipeline으로</text>
+<text data-source="root.0.2.6" x="120.000" y="775.250" font-size="22" font-weight="400" fill="#111827">전달합니다.</text>
+<text data-source="root.0.2.8" x="770.667" y="718.000" font-size="28" font-weight="700" fill="#111827">Elasticsearch</text>
+<text data-source="root.0.2.8" x="770.667" y="760.400" font-size="22" font-weight="400" fill="#111827">중앙 검색용 로그 index를 보관합니다.</text>
+<text data-source="root.0.2.10" x="1421.333" y="703.150" font-size="28" font-weight="700" fill="#111827">Kibana</text>
+<text data-source="root.0.2.10" x="1421.333" y="745.550" font-size="22" font-weight="400" fill="#111827">여러 Lambda 로그를 한 화면에서</text>
+<text data-source="root.0.2.10" x="1421.333" y="775.250" font-size="22" font-weight="400" fill="#111827">시각화합니다.</text>
+<text data-source="root.0.2.1" x="534.667" y="427.850" font-size="22" font-weight="400" fill="#111827">function별 log</text>
+<text data-source="root.0.2.1" x="534.667" y="457.550" font-size="22" font-weight="400" fill="#111827">stream</text>
+<text data-source="root.0.2.3" x="1185.333" y="457.550" font-size="22" font-weight="400" fill="#111827">Subscription Filter</text>
+<text data-source="root.0.2.5" x="321.333" y="595.150" font-size="22" font-weight="400" fill="#111827">HTTP input :5044</text>
+<text data-source="root.0.2.7" x="526.667" y="709.350" font-size="22" font-weight="400" fill="#111827">index and store</text>
+<text data-source="root.0.2.9" x="1177.333" y="709.350" font-size="22" font-weight="400" fill="#111827">dashboard query</text>
 </svg>

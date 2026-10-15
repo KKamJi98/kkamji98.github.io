@@ -1,10 +1,10 @@
 <svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="2ea13add9226e7ca93dfabe556ed9c98c1a79d419c06a1f602a9037c613bc027">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.1.0.0" x="96.000" y="320.450" width="384.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0" x="96.000" y="296.450" width="792.000" height="283.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.0.0" x="120.000" y="320.450" width="360.000" height="235.900" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
 <rect data-source="root.0.1.2" x="1032.000" y="287.400" width="792.000" height="302.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.1.0" x="96.000" y="320.450" width="792.000" height="235.900" rx="16" fill="none" stroke="#64748b" stroke-width="2"/>
-<rect data-node="root.0.1.0.0.1.0" x="120.000" y="406.250" width="336.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.1.0.1" x="504.000" y="320.450" width="384.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.0.1.0" x="144.000" y="406.250" width="312.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="504.000" y="320.450" width="360.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
 <rect data-node="root.0.1.2.1.0" x="1088.000" y="376.550" width="268.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
 <rect data-node="root.0.1.2.1.2" x="1500.000" y="373.200" width="268.000" height="192.200" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
 <rect data-node="root.0.1.4" x="96.000" y="685.400" width="792.000" height="126.100" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
@@ -15,9 +15,9 @@
 <path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 1836.000 438.400 L 1848.000 438.400 L 1848.000 637.400 L 72.000 637.400 L 72.000 748.450 L 84.000 748.450" fill="none" stroke="#475569" stroke-width="3"><title>registry로 push</title></path>
 <polygon data-arrowhead="root.0.1.3" points="84.000,748.450 74.000,754.450 74.000,742.450" fill="#475569"/>
 <text data-source="root.0.0" x="64.000" y="250.800" font-size="36" font-weight="700" fill="#111827">Docker는 Project와 Dockerfile로 Build Context를 만들고 Image를 Push</text>
-<text data-source="root.0.1.0.0.0" x="120.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Project</text>
-<text data-source="root.0.1.0.0.1.0" x="144.000" y="458.250" font-size="28" font-weight="700" fill="#111827">Application source</text>
-<text data-source="root.0.1.0.0.1.0" x="144.000" y="500.650" font-size="22" font-weight="400" fill="#111827">빌드에 포함할 코드와 파일</text>
+<text data-source="root.0.1.0.0.0" x="144.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Project</text>
+<text data-source="root.0.1.0.0.1.0" x="168.000" y="458.250" font-size="28" font-weight="700" fill="#111827">Application source</text>
+<text data-source="root.0.1.0.0.1.0" x="168.000" y="500.650" font-size="22" font-weight="400" fill="#111827">빌드에 포함할 코드와 파일</text>
 <text data-source="root.0.1.0.1" x="528.000" y="372.450" font-size="28" font-weight="700" fill="#111827">Dockerfile</text>
 <text data-source="root.0.1.0.1" x="528.000" y="414.850" font-size="22" font-weight="400" fill="#111827">FROM, RUN, COPY 등 build 명령</text>
 <text data-source="root.0.1.2.0" x="1056.000" y="339.400" font-size="28" font-weight="700" fill="#111827">Docker installation</text>
