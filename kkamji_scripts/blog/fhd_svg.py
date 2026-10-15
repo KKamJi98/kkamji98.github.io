@@ -2915,7 +2915,7 @@ def author(root, check=False, report=None):
             )
         result = {
             "include": record["include"],
-            "display": "fixed-fhd-scroll" if record["include"] == "diagrams/static/ci-cd/arc-overview.html" else "responsive-proportional",
+            "display": "responsive-proportional",
             "source_sha256": sha(original.encode()),
             "svg_sha256": sha(svg.encode()),
             "density": {"label": selected.label_size, "detail": selected.detail_size},

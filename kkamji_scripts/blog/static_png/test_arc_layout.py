@@ -27,7 +27,7 @@ def test_arc_layout_has_horizontal_nodes_and_unlabelled_explicit_edges():
     assert not fhd_svg.visible_text_coverage(layout, original)
 
 
-def test_arc_author_report_records_the_fixed_display_exception(tmp_path):
+def test_arc_author_report_matches_responsive_article_display(tmp_path):
     import json
     name = 'diagrams/static/ci-cd/arc-overview.html'
     for relative in [fhd_svg.FONT, '_includes/' + name]:
@@ -43,7 +43,7 @@ def test_arc_author_report_records_the_fixed_display_exception(tmp_path):
     report = tmp_path / 'arc-report.json'
     assert fhd_svg.author(tmp_path, check=True, report=report) == 0
     payload = json.loads(report.read_text())
-    assert payload['display'] == 'fixed-fhd-scroll'
-    assert payload['display_overrides'] == {name: 'fixed-fhd-scroll'}
-    assert payload['entries'][0]['display'] == 'fixed-fhd-scroll'
+    assert payload['display'] == 'responsive-proportional'
+    assert payload['display_overrides'] == {}
+    assert payload['entries'][0]['display'] == 'responsive-proportional'
     assert payload['entries'][0]['rendered_visual_review'] == 'not-run'

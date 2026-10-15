@@ -1,4 +1,4 @@
-"""The ARC article alone opts into fixed-FHD internal scrolling."""
+"""The ARC article keeps native FHD artwork but uses normal article sizing."""
 import re
 from pathlib import Path
 from test_responsive_display import style_rules
@@ -21,7 +21,7 @@ def test_fixed_fhd_image_never_implicitly_scales():
         assert rules[selector].get('object-fit') == 'contain'
 
 
-def test_only_explicit_article_flag_selects_fixed_helper():
+def test_arc_article_does_not_enable_the_legacy_fixed_display():
     helper = (ROOT / '_includes/diagrams/download.html').read_text()
     assert 'page.arc_diagram_fixed_fhd' in helper
     assert 'diagram-download--fixed-fhd' in helper
@@ -29,7 +29,7 @@ def test_only_explicit_article_flag_selects_fixed_helper():
     assert 'tabindex="0"' in helper
     opted = [p.relative_to(ROOT).as_posix() for p in (ROOT/'_posts').rglob('*.md')
              if re.search(r'^arc_diagram_fixed_fhd: true$', p.read_text(), re.M)]
-    assert opted == ['_posts/2026/10/2026-10-15-actions-runner-controller-overview.md']
+    assert opted == []
 
 
 def test_fixed_fhd_scroll_is_bounded_inside_article():
