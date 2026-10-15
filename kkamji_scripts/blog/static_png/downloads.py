@@ -109,6 +109,10 @@ def delivery_output_paths(root, plan):
             native = {url.lstrip('/') for url in urls}
             for url in urls: webp_url(url)  # Reject unsafe manifest paths.
     native.update(row['new_png'][1:] for row in declared_native_updates(root).values())
+    from native_additions import declared_additions
+    additions = declared_additions(root)
+    if additions:
+        native.update(row['png'][1:] for row in additions['data']['sources'])
     return native | {webp_url('/' + path).lstrip('/') for path in native}
 
 
@@ -357,6 +361,10 @@ def source_snapshot(root):
     if update.is_file():
         paths.add(update)
         paths.update(p for p in (root/'docs/diagram-native-updates').rglob('*') if p.is_file())
+    additions = root/'docs/diagram-native-additions.json'
+    if additions.is_file():
+        paths.add(additions)
+        paths.update(p for p in (root/'docs/diagram-native-additions').rglob('*') if p.is_file())
     return {p.relative_to(root).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
 
 

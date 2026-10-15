@@ -111,6 +111,7 @@ def staged_requires_verification(root):
         "assets/fonts/",
         "assets/img/",
         "kkamji_scripts/blog/static_png/",
+        "docs/diagram-native-additions/",
     )
     exact = {
         "_config.yml",
@@ -120,6 +121,7 @@ def staged_requires_verification(root):
         "docs/diagram-downloads.json",
         "docs/diagram-fhd-reviews.json",
         "docs/diagram-webp-release.json",
+        "docs/diagram-native-additions.json",
         MANIFEST,
         "kkamji_scripts/blog/fhd_svg.py",
     }
@@ -142,7 +144,7 @@ def staged_requires_verification(root):
         import re
         return (INCLUDE.search(changed_lines) is not None
                 or '/assets/img/diagrams/' in changed_lines
-                or re.search(r'^\s*(?:image|path)\s*:', changed_lines, re.M) is not None)
+                or re.search(r"""^\s*(?:image|path|["']?arc_diagram_fixed_fhd["']?)\s*:""", changed_lines, re.M) is not None)
     return False
 
 

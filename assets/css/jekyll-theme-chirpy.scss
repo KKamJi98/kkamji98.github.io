@@ -996,3 +996,23 @@ figure.sd.sd--fhd:has(+ .diagram-download > img.diagram-inline) {
   filter: none !important;
   mix-blend-mode: normal;
 }
+
+/* ARC article only: explicit native-size display, never automatic scaling. */
+.diagram-download.diagram-download--fixed-fhd {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.diagram-download.diagram-download--fixed-fhd > img.diagram-inline,
+#main-wrapper main .content .diagram-download.diagram-download--fixed-fhd > img.diagram-inline {
+  width: 1920px !important;
+  min-width: 1920px !important;
+  max-width: 1920px !important;
+  height: 1080px !important;
+  min-height: 1080px !important;
+  max-height: 1080px !important;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}

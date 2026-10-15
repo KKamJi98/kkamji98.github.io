@@ -15,6 +15,10 @@ from fhd_svg import FONT, author
 
 ROOT = Path(__file__).resolve().parents[3]
 STYLESHEET = ROOT / "assets/css/jekyll-theme-chirpy.scss"
+FIXED_FHD_SELECTORS = {
+    ".diagram-download.diagram-download--fixed-fhd > img.diagram-inline",
+    "#main-wrapper main .content .diagram-download.diagram-download--fixed-fhd > img.diagram-inline",
+}
 RESPONSIVE_SIZE = {
     "width": "100%",
     "min-width": "0",
@@ -44,6 +48,7 @@ def inline_rules():
         (selectors, declarations)
         for selectors, declarations in style_rules()
         if any(re.search(r"(?:^|[\s>])img\.diagram-inline$", s) for s in selectors)
+        and not set(selectors) <= FIXED_FHD_SELECTORS
     ]
 
 
@@ -94,6 +99,8 @@ def test_responsive_sizing_is_opt_in_for_body_diagrams_not_covers_or_viewers():
         "#main-wrapper main .content .diagram-download > img.diagram-inline",
     }
     for selectors, declarations in style_rules():
+        if set(selectors) <= FIXED_FHD_SELECTORS:
+            continue  # Explicit fixed-FHD sizing has its own strict contract tests.
         responsive = all(declarations.get(k) == v for k, v in RESPONSIVE_SIZE.items())
         if responsive or any("diagram-inline" in s and s.endswith("img.diagram-inline") for s in selectors):
             assert set(selectors) <= allowed, selectors
