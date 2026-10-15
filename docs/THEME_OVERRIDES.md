@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-10-15
+updated: 2026-10-15T20:00:59+09:00
 type: architecture
 status: current
 ---
