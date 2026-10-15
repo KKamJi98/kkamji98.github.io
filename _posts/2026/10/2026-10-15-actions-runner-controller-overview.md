@@ -5,7 +5,6 @@ author: kkamji
 categories: [CI/CD, GitHub Actions]
 tags: [github-actions, arc, actions-runner-controller, kubernetes, self-hosted-runner, security]
 comments: true
-arc_diagram_fixed_fhd: true
 image:
   path: /assets/img/github/github.webp
 ---

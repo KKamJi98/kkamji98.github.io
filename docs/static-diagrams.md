@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-15
+updated: 2026-10-15T20:00:59+09:00
 type: rule
 status: current
 ---
@@ -73,9 +73,9 @@ New artwork is admitted by `docs/diagram-native-additions.json` and the narrowly
 
 Only the new native PNG is losslessly encoded. A current delivery manifest/build may add its output and record the present input hashes; this does not regenerate or reapprove the historical native corpus. No old review is upgraded to a new whole-corpus visual check. The private original renderer receipt is retained unchanged; a public receipt may omit only the host-local `artifact` locator, declare that privacy projection and the original receipt hash, and preserve every validated rendering field and generated `not-run` review flag. Actual image acceptance belongs in the separate review file.
 
-## Fixed-FHD ARC article exception
+## ARC article display
 
-The ARC Overview article alone sets `arc_diagram_fixed_fhd: true`. Its download helper adds `diagram-download--fixed-fhd`; that region keeps a native 1920 x 1080 CSS image and exposes keyboard-focusable internal horizontal scrolling. It never scales or rearranges the artwork on mobile. The document itself remains bounded by article width. All other posts retain responsive-proportional inline display. ARC-only author reports declare `display: fixed-fhd-scroll`; mixed-corpus reports retain the default `display` and enumerate the ARC entry in `display_overrides`. These labels describe the intended CSS contract, not completed browser or visual approval. Source, native PNG, lossless WebP and independent visual/semantic evidence are still required. This explicit user requirement does not waive any export, review or release gate.
+The ARC Overview article uses the same responsive-proportional inline display as existing posts. Its single image fits the article width with its 16:9 ratio intact; the original SVG, native PNG and lossless WebP remain exactly 1920 x 1080 with unchanged coordinates and connections. No nodes are rearranged and no alternate artwork is selected on mobile. The explicit full-size/zoom link remains available. The article does not enable the legacy `arc_diagram_fixed_fhd` flag. Author reports declare `display: responsive-proportional` with no ARC display override. Full reading-flow comparison must include title, code, diagram, following sections and footer at desktop and mobile document viewports. Native-source evidence remains separate from article display verification; a display-only correction does not require corpus rerendering or rewriting original reviews.
 
 ## Same-source PNG export
 
