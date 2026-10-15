@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-14
+updated: 2026-10-15
 type: rule
 status: current
 ---
@@ -66,6 +66,16 @@ Ruby와 Bundler는 실제 설치 환경 및 repository dependency를 확인해�
 - source, built HTML, CSS, font, image, SVG, tool, browser, native PNG와 게시 WebP 해시의 freshness 검사.
 
 정적 parser, CSS 계약 테스트, DOM 치수 또는 이미지 생성 성공만으로 시각 또는 내용 검토를 완료로 보고하지 않는다. `static_png/test_responsive_display.py`는 inline 규칙, source 경계, clipping과 보고값만 검사하며 브라우저 cascade, document overflow나 raster 가독성을 증명하지 않는다. 도식의 작성, 구조 검증, 의미 검증, native PNG 생성, WebP 변환, 실제 시각 검토와 게시 수를 나눠 기록한다.
+
+## New-source native additions
+
+New artwork is admitted by `docs/diagram-native-additions.json` and the narrowly scoped `static_png/native_additions.py` validator. The immutable native manifest, original reviews and archived PNGs remain byte-identical. An addition must bind the exact live post/include/figure/occurrence/PNG tuple, authored source and SVG, unchanged native renderer/font/proof style, real render build and HTTP fixture, actual original PNG and a separate visual/semantic review. Missing review or stale evidence is blocking. Existing replacement records remain separate; an addition cannot alias or relabel an old output.
+
+Only the new native PNG is losslessly encoded. A current delivery manifest/build may add its output and record the present input hashes; this does not regenerate or reapprove the historical native corpus. No old review is upgraded to a new whole-corpus visual check. The private original renderer receipt is retained unchanged; a public receipt may omit only the host-local `artifact` locator, declare that privacy projection and the original receipt hash, and preserve every validated rendering field and generated `not-run` review flag. Actual image acceptance belongs in the separate review file.
+
+## Fixed-FHD ARC article exception
+
+The ARC Overview article alone sets `arc_diagram_fixed_fhd: true`. Its download helper adds `diagram-download--fixed-fhd`; that region keeps a native 1920 x 1080 CSS image and exposes keyboard-focusable internal horizontal scrolling. It never scales or rearranges the artwork on mobile. The document itself remains bounded by article width. All other posts retain responsive-proportional inline display. ARC-only author reports declare `display: fixed-fhd-scroll`; mixed-corpus reports retain the default `display` and enumerate the ARC entry in `display_overrides`. These labels describe the intended CSS contract, not completed browser or visual approval. Source, native PNG, lossless WebP and independent visual/semantic evidence are still required. This explicit user requirement does not waive any export, review or release gate.
 
 ## Same-source PNG export
 

@@ -2728,6 +2728,47 @@ def pod_identity_layout(font, figure, typography=None):
     return layout
 
 
+def arc_layout(font, figure):
+    """One fixed horizontal management path plus direct GitHub/runner traffic."""
+    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
+    layout = Layout(font, 32, 26, 24, 28, {
+        'bold_width_budget': 1.12, 'regular_width_budget': 1.08,
+        'no_connector_labels': True,
+    })
+    layout.draw(named['sd-arc-title'], 60, 50, 1800)
+    for key, x, width in [('arc-github', 40, 390), ('arc-kubernetes', 470, 1410)]:
+        layout.groups.append({'source': named[key].key, 'classes': [],
+                              'x': x, 'y': 155, 'width': width, 'height': 775})
+    layout.draw(named['arc-github-title'], 75, 185, 320)
+    layout.draw(named['arc-kubernetes-title'], 510, 185, 1300)
+    layout.draw(named['arc-scale-set'], 510, 260, 1300)
+    nodes = {}
+    for key, x, width in [('arc-service', 75, 320), ('arc-listener', 525, 320),
+                          ('arc-controller', 975, 320), ('arc-runner', 1425, 390)]:
+        nodes[key] = layout.draw(named[key], x, 385, width)
+        layout.boxes[-1]['height'] = 230
+        nodes[key]['bounds'][3] = 230
+    for key, x, y, width in [('arc-management', 525, 655, 780),
+                            ('arc-ephemeral', 1425, 655, 390),
+                            ('arc-direct', 510, 815, 1300),
+                            ('arc-idle', 60, 970, 1800)]:
+        layout.draw(named[key], x, y, width)
+    routes = {
+        'arc-notify': [[407, 500], [513, 500]],
+        'arc-replicas': [[857, 500], [963, 500]],
+        'arc-create': [[1307, 500], [1413, 500]],
+        'arc-job': [[235, 373], [235, 335], [1620, 335], [1620, 373]],
+        'arc-result': [[1795, 627], [1795, 770], [235, 770], [235, 627]],
+    }
+    for key, points in routes.items():
+        edge = named[key]
+        layout.connectors.append({'source': edge.key,
+            'from': [named[edge.attrs['data-from']].key],
+            'to': [named[edge.attrs['data-to']].key],
+            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points})
+    return layout
+
+
 def author(root, check=False, report=None):
     font = Font(root / FONT)
     catalog = json.loads((root / "docs/diagram-catalog.json").read_text())
@@ -2792,6 +2833,8 @@ def author(root, check=False, report=None):
             == "diagrams/static/spring/spring-23-security-filter-chain.html"
         ):
             selected = security_layout(font, figure)
+        elif record["include"] == "diagrams/static/ci-cd/arc-overview.html":
+            selected = arc_layout(font, figure)
         elif record["include"] == "diagrams/static/ai/jev-decision-pipeline.html":
             selected = jev_layout(font, figure)
         elif record["include"] == "diagrams/static/ai/jev-system-one-banner.html":
@@ -2837,7 +2880,8 @@ def author(root, check=False, report=None):
             continue
         manual_relation_fixes(selected, figure, record["include"])
         complete_group_boundaries(selected)
-        complete_relation_labels(selected)
+        if not selected.profile.get("no_connector_labels"):
+            complete_relation_labels(selected)
         issues = (
             check_layout(selected)
             + semantic_check(selected, figure)
@@ -2871,6 +2915,7 @@ def author(root, check=False, report=None):
             )
         result = {
             "include": record["include"],
+            "display": "fixed-fhd-scroll" if record["include"] == "diagrams/static/ci-cd/arc-overview.html" else "responsive-proportional",
             "source_sha256": sha(original.encode()),
             "svg_sha256": sha(svg.encode()),
             "density": {"label": selected.label_size, "detail": selected.detail_size},
@@ -2897,7 +2942,8 @@ def author(root, check=False, report=None):
         results.append(result)
     payload = {
         "canvas": [WIDTH, HEIGHT],
-        "display": "responsive-proportional",
+        "display": "fixed-fhd-scroll" if results and all(r.get("display") == "fixed-fhd-scroll" for r in results) else "responsive-proportional",
+        "display_overrides": {r["include"]: r["display"] for r in results if r.get("display") == "fixed-fhd-scroll"},
         "font_sha256": sha(font.raw),
         "counts": {
             status: sum(r["status"] == status for r in results)

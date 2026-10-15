@@ -6,7 +6,7 @@ No second diagram source and no script/clipboard permissions.
 {% if include.png %}
 {% assign diagram_webp = include.png | replace: '.png', '.webp' %}
 {% assign diagram_viewer = diagram_webp | replace_first: '/assets/img/diagrams/', '/diagrams/view/' | replace: '.webp', '.html' %}
-<p class="diagram-download" tabindex="0" role="region" aria-label="1920 x 1080 원본 다이어그램. 화면 폭에 맞춰 비율을 유지하며 표시합니다. 원본 크기와 확대 보기는 링크를 선택하세요.">
+<p class="diagram-download{% if page.arc_diagram_fixed_fhd %} diagram-download--fixed-fhd{% endif %}" tabindex="0" role="region" aria-label="{% if page.arc_diagram_fixed_fhd %}고정 1920 x 1080 다이어그램. 가로 스크롤로 전체 그림을 확인하세요. 자동 축소하지 않습니다.{% else %}1920 x 1080 원본 다이어그램. 화면 폭에 맞춰 비율을 유지하며 표시합니다. 원본 크기와 확대 보기는 링크를 선택하세요.{% endif %}">
   <img class="diagram-inline" src="{{ diagram_webp | relative_url | escape }}" alt="" width="1920" height="1080" loading="lazy" decoding="async" data-static-diagram="true">
   <a href="{{ diagram_webp | relative_url | escape }}" download>WebP 다운로드</a>
   <a href="{{ diagram_viewer | relative_url | escape }}">원본 크기로 열기 및 확대 보기</a>

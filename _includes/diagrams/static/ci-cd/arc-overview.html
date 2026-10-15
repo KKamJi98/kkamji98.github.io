@@ -1,0 +1,68 @@
+<figure class="sd sd--flow sd--comparison sd--fhd" id="sd-arc-overview" aria-labelledby="sd-arc-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-arc-title">GitHub는 작업을 관리하고 Kubernetes는 코드를 실행합니다</figcaption><div class="sd-semantic-source">
+  <div class="sd-grid">
+    <section class="sd-lane" id="arc-github">
+      <div class="sd-lane-title" id="arc-github-title">GitHub</div>
+      <div class="sd-node" id="arc-service"><strong class="sd-label">GitHub Actions</strong><span class="sd-detail">Job 대기열<br>배정과 결과 관리</span></div>
+    </section>
+    <section class="sd-lane" id="arc-kubernetes">
+      <div class="sd-lane-title" id="arc-kubernetes-title">개인 Kubernetes</div>
+      <p class="sd-note" id="arc-scale-set">Runner scale set: 작업 배정 대상과 runner 수량을 연결하는 논리 구성</p>
+      <div class="sd-flow">
+        <div class="sd-node" id="arc-listener"><strong class="sd-label">Listener</strong><span class="sd-detail">Job 알림 수신<br>원하는 수량 갱신</span></div>
+        <div class="sd-arrow" id="arc-replicas" data-from="arc-listener" data-to="arc-controller" aria-label="Kubernetes API로 원하는 runner 수 갱신"></div>
+        <div class="sd-node" id="arc-controller"><strong class="sd-label">Controller</strong><span class="sd-detail">Runner 리소스 조정<br>Pod 준비와 정리</span></div>
+        <div class="sd-arrow" id="arc-create" data-from="arc-controller" data-to="arc-runner" aria-label="Runner Pod 준비"></div>
+        <div class="sd-node sd-node--accent" id="arc-runner"><strong class="sd-label">Runner Pod</strong><span class="sd-detail">Job 하나 실행<br>테스트와 빌드</span></div>
+      </div>
+      <p class="sd-note" id="arc-management">Controller와 listener: 상시 관리 Pod</p>
+      <p class="sd-note" id="arc-ephemeral">일회성 runner: 완료 후 정리</p>
+      <p class="sd-note" id="arc-direct">Runner는 GitHub와 직접 연결하여 job을 받고 결과를 전달합니다</p>
+    </section>
+  </div>
+  <div class="sd-arrow" id="arc-notify" data-from="arc-service" data-to="arc-listener" aria-label="작업 알림"></div>
+  <div class="sd-arrow" id="arc-job" data-from="arc-service" data-to="arc-runner" aria-label="Runner가 연결하여 job 정보를 수신"></div>
+  <div class="sd-arrow" id="arc-result" data-from="arc-runner" data-to="arc-service" aria-label="로그와 실행 결과 전달"></div>
+  <p class="sd-note" id="arc-idle">유휴 runner가 0개여도 관리 Pod와 Kubernetes VM은 남습니다</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="09a8b83c47faaadd440bb54181a5fc6024abc1a3d6a0cd7a27ab58c1a5af0ca5">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="155.000" width="390.000" height="775.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="470.000" y="155.000" width="1410.000" height="775.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="75.000" y="385.000" width="320.000" height="230.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2.0" x="525.000" y="385.000" width="320.000" height="230.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2.2" x="975.000" y="385.000" width="320.000" height="230.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2.4" x="1425.000" y="385.000" width="390.000" height="230.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1.0.1" data-to="root.0.1.1.2.0" d="M 407.000 500.000 L 513.000 500.000" fill="none" stroke="#475569" stroke-width="3"><title>작업 알림</title></path>
+<polygon data-arrowhead="root.0.2" points="513.000,500.000 503.000,506.000 503.000,494.000" fill="#475569"/>
+<path data-edge="root.0.1.1.2.1" data-from="root.0.1.1.2.0" data-to="root.0.1.1.2.2" d="M 857.000 500.000 L 963.000 500.000" fill="none" stroke="#475569" stroke-width="3"><title>Kubernetes API로 원하는 runner 수 갱신</title></path>
+<polygon data-arrowhead="root.0.1.1.2.1" points="963.000,500.000 953.000,506.000 953.000,494.000" fill="#475569"/>
+<path data-edge="root.0.1.1.2.3" data-from="root.0.1.1.2.2" data-to="root.0.1.1.2.4" d="M 1307.000 500.000 L 1413.000 500.000" fill="none" stroke="#475569" stroke-width="3"><title>Runner Pod 준비</title></path>
+<polygon data-arrowhead="root.0.1.1.2.3" points="1413.000,500.000 1403.000,506.000 1403.000,494.000" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.1.0.1" data-to="root.0.1.1.2.4" d="M 235.000 373.000 L 235.000 335.000 L 1620.000 335.000 L 1620.000 373.000" fill="none" stroke="#475569" stroke-width="3"><title>Runner가 연결하여 job 정보를 수신</title></path>
+<polygon data-arrowhead="root.0.3" points="1620.000,373.000 1614.000,363.000 1626.000,363.000" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.1.1.2.4" data-to="root.0.1.0.1" d="M 1795.000 627.000 L 1795.000 770.000 L 235.000 770.000 L 235.000 627.000" fill="none" stroke="#475569" stroke-width="3"><title>로그와 실행 결과 전달</title></path>
+<polygon data-arrowhead="root.0.4" points="235.000,627.000 241.000,637.000 229.000,637.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">GitHub는 작업을 관리하고 Kubernetes는 코드를 실행합니다</text>
+<text data-source="root.0.1.0.0" x="75.000" y="217.000" font-size="32" font-weight="700" fill="#111827">GitHub</text>
+<text data-source="root.0.1.1.0" x="510.000" y="217.000" font-size="32" font-weight="700" fill="#111827">개인 Kubernetes</text>
+<text data-source="root.0.1.1.1" x="510.000" y="286.000" font-size="26" font-weight="400" fill="#111827">Runner scale set: 작업 배정 대상과 runner 수량을 연결하는 논리 구성</text>
+<text data-source="root.0.1.0.1" x="103.000" y="445.000" font-size="32" font-weight="700" fill="#111827">GitHub Actions</text>
+<text data-source="root.0.1.0.1" x="103.000" y="492.600" font-size="26" font-weight="400" fill="#111827">Job 대기열</text>
+<text data-source="root.0.1.0.1" x="103.000" y="527.700" font-size="26" font-weight="400" fill="#111827">배정과 결과 관리</text>
+<text data-source="root.0.1.1.2.0" x="553.000" y="445.000" font-size="32" font-weight="700" fill="#111827">Listener</text>
+<text data-source="root.0.1.1.2.0" x="553.000" y="492.600" font-size="26" font-weight="400" fill="#111827">Job 알림 수신</text>
+<text data-source="root.0.1.1.2.0" x="553.000" y="527.700" font-size="26" font-weight="400" fill="#111827">원하는 수량 갱신</text>
+<text data-source="root.0.1.1.2.2" x="1003.000" y="445.000" font-size="32" font-weight="700" fill="#111827">Controller</text>
+<text data-source="root.0.1.1.2.2" x="1003.000" y="492.600" font-size="26" font-weight="400" fill="#111827">Runner 리소스 조정</text>
+<text data-source="root.0.1.1.2.2" x="1003.000" y="527.700" font-size="26" font-weight="400" fill="#111827">Pod 준비와 정리</text>
+<text data-source="root.0.1.1.2.4" x="1453.000" y="445.000" font-size="32" font-weight="700" fill="#111827">Runner Pod</text>
+<text data-source="root.0.1.1.2.4" x="1453.000" y="492.600" font-size="26" font-weight="400" fill="#111827">Job 하나 실행</text>
+<text data-source="root.0.1.1.2.4" x="1453.000" y="527.700" font-size="26" font-weight="400" fill="#111827">테스트와 빌드</text>
+<text data-source="root.0.1.1.3" x="525.000" y="681.000" font-size="26" font-weight="400" fill="#111827">Controller와 listener: 상시 관리 Pod</text>
+<text data-source="root.0.1.1.4" x="1425.000" y="681.000" font-size="26" font-weight="400" fill="#111827">일회성 runner: 완료 후 정리</text>
+<text data-source="root.0.1.1.5" x="510.000" y="841.000" font-size="26" font-weight="400" fill="#111827">Runner는 GitHub와 직접 연결하여 job을 받고 결과를 전달합니다</text>
+<text data-source="root.0.5" x="60.000" y="996.000" font-size="26" font-weight="400" fill="#111827">유휴 runner가 0개여도 관리 Pod와 Kubernetes VM은 남습니다</text>
+</svg>
+</figure>

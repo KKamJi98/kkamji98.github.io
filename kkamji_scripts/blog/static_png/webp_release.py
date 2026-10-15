@@ -171,12 +171,16 @@ def checked_native(root, stamp, revision='HEAD'):
     by_include = {row['include']: row for row in reviews}
     catalog = load_json(safe_path(root, 'docs/diagram-catalog.json').read_bytes())['diagrams']
     includes = {row['include'] for row in catalog}
-    if (len(includes) != len(catalog) or len(by_include) != len(reviews) or includes != set(by_include)
-            or baseline.get('source_count') != len(includes)):
+    from native_additions import checked_additions
+    additions = checked_additions(root, revision, baseline, stamp)
+    added = set(additions['sources']) if additions else set()
+    originals = includes - added
+    if (len(includes) != len(catalog) or len(by_include) != len(reviews) or originals != set(by_include)
+            or baseline.get('source_count') != len(originals)):
         raise ValueError('native/catalog/review source coverage differs')
     native_rows = baseline['entries'] + baseline.get('unused_entries', [])
     by_png = {row['png']: row for row in native_rows}
-    if (len(by_png) != len(native_rows) or {row['include'] for row in native_rows} != includes
+    if (len(by_png) != len(native_rows) or {row['include'] for row in native_rows} != originals
             or baseline.get('reference_count') != len(baseline['entries'])
             or baseline.get('post_count') != len({row['post'] for row in baseline['entries']})):
         raise ValueError('native output coverage/collision/count mismatch')
@@ -252,10 +256,16 @@ def checked_native(root, stamp, revision='HEAD'):
         by_png[replacement['new_png']] = dict(old, png=replacement['new_png'],
             png_sha256=replacement['png_sha256'], include_sha256=overrides['_includes/' + include],
             receipt_sha256=replacement['receipt_sha256'])
+    if additions:
+        if (set(by_png) & set(additions['rows']) or changed.keys() & additions['sources'].keys()
+                or {row['png_sha256'] for row in by_png.values()} & {row['png_sha256'] for row in additions['rows'].values()}):
+            raise ValueError('native additions collide with active native evidence')
+        by_png.update(additions['rows'])
+        production_inputs.update(additions['production_inputs'])
     return {'revision': revision, 'baseline': baseline, 'baseline_sha256': digest(baseline_raw),
             'review_sha256': digest(review_raw), 'stamp': stamp, 'production_inputs': production_inputs,
             'proof_style_sha256': digest(native_style.encode()), 'rows': by_png,
-            'update': update, 'archive_inputs': archives}
+            'update': update, 'additions': additions, 'source_count': len(includes), 'archive_inputs': archives}
 
 
 def convert(root, native_stamp, revision='HEAD'):
@@ -282,7 +292,7 @@ def convert(root, native_stamp, revision='HEAD'):
         compare_pixels(raw, destination.read_bytes())
     checked_native(root, stamp, native['revision'])
     if before != source_snapshot(root): raise ValueError('source changed during conversion')
-    return {'source_count': native['baseline']['source_count'], 'outputs': len(destinations),
+    return {'source_count': native.get('source_count', native['baseline']['source_count']), 'outputs': len(destinations),
             'status': 'lossless-converted-not-release-sealed'}
 
 
@@ -293,10 +303,20 @@ def usage_bindings(root, plan, native):
     by_png = native['rows']; bodies = []
     published = {row['png']: row for row in native['baseline']['entries']}
     updates = native['update']['sources'] if native['update'] else {}
+    additions = native.get('additions')
+    admitted = additions['rows'] if additions else {}
+    bound_additions = set()
     for entry in plan['entries']:
         original_png = entry.get('old_png', entry['png'])
         original = published.get(original_png)
         active = by_png.get(entry['png'])
+        if entry['png'] in admitted:
+            from native_additions import TUPLE
+            original = admitted[entry['png']]
+            if ('old_png' in entry or any(original.get(key) != entry.get(key) for key in TUPLE)
+                    or entry['png'] in bound_additions):
+                raise ValueError('body mapping lacks an exact validated native addition')
+            bound_additions.add(entry['png'])
         if (not original or not active
                 or any(row.get(key) != entry.get(key)
                        for row in (original, active) for key in ('post', 'include', 'figure'))):
@@ -308,6 +328,7 @@ def usage_bindings(root, plan, native):
                 raise ValueError('body mapping lacks an exact validated native update')
             body['old_png'] = original_png
         bodies.append(body)
+    if bound_additions != set(admitted): raise ValueError('body native addition coverage differs')
     if len({row['webp'] for row in bodies}) != len(bodies): raise ValueError('body output collision')
     by_webp = {webp_url(png): row for png, row in by_png.items()}
     covers = []
@@ -402,7 +423,7 @@ def _payload(root, native, stamp, site=None, *, verify_encoding=False):
         if page not in stamp.get('html', {}): raise ValueError('sealed build lacks mapped page coverage')
     from PIL import __version__ as pillow_version, features
     payload = {'schema': 1, 'status': 'lossless-conversion-and-built-delivery-checked',
-            'source_count': native['baseline']['source_count'], 'output_count': len(outputs),
+            'source_count': native.get('source_count', native['baseline']['source_count']), 'output_count': len(outputs),
             'reference_count': len(bodies), 'post_count': plan['post_count'], 'cover_count': len(covers),
             'body_unused_count': len(unused), 'genuinely_unused_count': sum(not row['cover_used'] for row in unused),
             'conversion': CONVERSION,
@@ -426,6 +447,13 @@ def _payload(root, native, stamp, site=None, *, verify_encoding=False):
         payload['native_archive_inputs'] = native['archive_inputs']
         payload['native_baseline']['review_scope'] = 'Immutable original corpus preserved; unchanged artifacts reused, changed sources require fresh native receipts and actual image review.'
         payload['browser_evidence']['scope'] = 'Changed native sources use separately recorded fresh render and actual review. No new whole-corpus raster or browser review is claimed.'
+    if native.get('additions'):
+        additions = native['additions']
+        payload['native_additions'] = {'path': additions['path'], 'sha256': additions['sha256'],
+                                       'files': additions['files'], 'added_sources': sorted(additions['sources'])}
+        payload['native_archive_inputs'] = native['archive_inputs']
+        payload['native_baseline']['review_scope'] = 'Immutable original corpus preserved; additions and replacements use separate fresh native receipts and actual PNG review.'
+        payload['browser_evidence']['scope'] = 'Added and changed sources use separately recorded fresh render and actual review. No new whole-corpus raster or browser review is claimed.'
     return payload
 
 
@@ -479,13 +507,19 @@ def verify_staged(root):
     required = set(snapshot) | {MANIFEST, NATIVE, REVIEWS} | set(saved['native_production_inputs'])
     required.update(saved.get('native_archive_inputs', {}))
     required.update(saved.get('native_update', {}).get('files', {}))
+    required.update(saved.get('native_additions', {}).get('files', {}))
     for row in saved['outputs']: required.update((row['png'][1:], row['webp'][1:]))
     for relative in required: safe_path(root, relative)
     tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0'))
     missing = required - tracked
+    protected = {MANIFEST, NATIVE, REVIEWS} | set(saved['native_production_inputs'])
+    protected.update(saved.get('native_archive_inputs', {}))
+    protected.update(saved.get('native_update', {}).get('files', {}))
+    protected.update(saved.get('native_additions', {}).get('files', {}))
+    for row in saved['outputs']: protected.update((row['png'][1:], row['webp'][1:]))
     # Retain the normal gate's deliberately local, ignored Bundler/cache inputs;
     # never waive a real authored image, native artifact, WebP or release record.
-    local = {path for path in missing if path in snapshot and (path == 'Gemfile.lock'
+    local = {path for path in missing if path not in protected and path in snapshot and (path == 'Gemfile.lock'
              or any(part in ('.jekyll-cache', '_site') for part in Path(path).parts))}
     if local:
         ignored = subprocess.run(['git', 'check-ignore', '-z', '--stdin'], cwd=root,
@@ -510,6 +544,7 @@ def verify_staged(root):
     sealed.update({NATIVE: saved['native_baseline']['sha256'], REVIEWS: saved['native_baseline']['review_file_sha256']})
     sealed.update(saved.get('native_archive_inputs', {}))
     sealed.update(saved.get('native_update', {}).get('files', {}))
+    sealed.update(saved.get('native_additions', {}).get('files', {}))
     for output in saved['outputs']:
         sealed[output['png'][1:]] = output['png_sha256']; sealed[output['webp'][1:]] = output['webp_sha256']
     for relative in sorted(required):

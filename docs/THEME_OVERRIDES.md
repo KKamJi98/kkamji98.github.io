@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-10-14
+updated: 2026-10-15
 type: architecture
 status: current
 ---
@@ -40,6 +40,7 @@ bash tools/run.sh    # 로컬 미리보기
 
 - `_includes/diagrams/download.html` is an additive helper, not a gem override.
 - Invoke only outside `figure.sd`. The legacy `png=` input may retain a same-origin native PNG provenance path; the helper derives the public `.webp` delivery URL. Inline, download and the scriptless full-size viewer use the same native 1920 x 1080 WebP. Only the article image scales proportionally to article width; it has empty `alt` because the canonical figure stays in the accessibility tree. Full-size display and 100%, 125% and 150% zoom belong to the explicitly user-selected viewer. No JavaScript, alternate drawing, viewport-specific image variant, or forced inline image scrolling.
+- Only the ARC Overview post explicitly opts into `arc_diagram_fixed_fhd: true`. The helper adds `diagram-download--fixed-fhd` and native-size scroll guidance. Its image stays exactly 1920 x 1080 CSS pixels in a keyboard-focusable, bounded horizontal scroll region. Default images, covers, source/export fixtures and viewers retain their existing behavior. Actual 360px, 390px and desktop DOM checks must verify both the exception and an unchanged default post.
 - CSS clips mapped semantic figures visually without `display:none` or `aria-hidden`, and fixes the source/export palette to white with dark text in all site modes. The fixed-coordinate SVG is rendered through the approved Aside path; the semantic source and the same SVG are verified together. Source/export input changes require fresh render evidence; inline-only display changes must preserve source/export geometry and require a fresh delivery build/check. Older dark or resized PNGs are not a verified native light release.
 - Covers are separate assets, not body diagrams selected by extension or FHD dimensions. `refactor-content.html` tags only explicit home/post preview covers in the verified `/assets/img/diagrams/*.webp` namespace or the exact selected `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp` path with `diagram-cover`, supplies native 1920 x 1080 HTML dimensions, and uses a separate 16:9 cover rule. The neon cover is independent of the white explanatory diagram; preserve the original 1600 x 900 neon SVG/WebP as rollback inputs and render the vector source to native FHD without resampling its old raster. This avoids the gem's 1200 x 630 preview fallback without changing ordinary covers or opt-in body diagrams.
 - Reviewed BODY native updates retain `old_png` as original occurrence provenance and render their exact declared `new_png`/WebP in the article and viewer. The viewer generator accepts the date-scoped update namespace only when the declared include, old hashed path and new path match the mapped occurrence; do not widen its URL regex to arbitrary PNG files. The same native-update evidence is authenticated by the release gate before publication.
