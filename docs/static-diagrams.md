@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-15T20:00:59+09:00
+updated: 2026-10-18T04:30+09:00
 type: rule
 status: current
 ---
