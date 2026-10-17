@@ -1,0 +1,12 @@
+{
+  "include": "diagrams/static/ai/jev-decision-pipeline.html",
+  "source_sha256": "cadad634cd3b5d00462a3a235f2930bce728398e677b0f4db6c012d1d0a72ce5",
+  "svg_sha256": "fff929eae22b724bbefa0707eb4e5fc1873adc263f2b6887e91a4b69b7e97692",
+  "png_sha256": "bdbc62b3e22ab13c53fc88170a79f9f91e844de1e095a362d0a64aec75d80903",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-18T03:49:54+09:00",
+  "notes": "Aside native PNG 1920 x 1080 원본을 직접 열어 확인했습니다. 두 권한 경계의 상하단과 높이가 같고 State, Jev, Deterministic Policy가 같은 수평축과 같은 제목 baseline, 28px 안쪽 여백을 공유합니다. Shadow와 Escalate는 오른쪽 열에서 Policy 중심축 위아래로 대칭 분기합니다. Jev 카드와 세 신호 카드는 커버와 같은 보라/청록 neon을 쓰고 연결선은 공통 회색입니다. State 입력 필드, Choice/Noul/Score 값, 정책 조건 다섯 개와 세 측정 결과는 본문 예시 코드와 표의 값과 같습니다. 세 신호는 병렬 신호로 남고 실행 단계로 바뀌지 않았습니다. 글자, 선, 화살촉의 겹침, 잘림, 설명 없는 큰 빈 영역은 없습니다.",
+  "review_method": "Actual Aside native PNG opened and inspected; semantic values compared with the post body table and policy code."
+}

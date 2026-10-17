@@ -1,14 +1,23 @@
 <figure class="sd sd--jev sd--fhd" id="jev-decision-pipeline" aria-label="Jev 판단과 실행 권한의 경계" data-canvas-width="1920" data-canvas-height="1080"><div class="sd-semantic-source">
   <div class="sd-jev-flow">
-    <div class="sd-jev-signals" role="group" aria-label="입력을 받아 판단 신호를 반환하는 Jev">
+    <div class="sd-jev-signals" role="group" aria-label="Jev 판단 신호">
       <section class="sd-node sd-jev-inputs" aria-label="입력: State와 Typed Questions">
         <strong class="sd-label">State</strong>
         <strong class="sd-label">Typed Questions</strong>
+        <span class="sd-jev-field">tool: kubectl</span>
+        <span class="sd-jev-field">canonical_args:</span>
+        <span class="sd-jev-field">delete, namespace, production</span>
+        <span class="sd-jev-field">environment: production</span>
+        <span class="sd-jev-field">caller_role: release-bot</span>
+        <span class="sd-jev-field">change_window: closed</span>
       </section>
       <div class="sd-jev-input-link" aria-hidden="true"></div>
       <div class="sd-node sd-jev-judge" role="group" aria-label="Jev: 범위가 제한된 병렬 판단, 실행 권한 없음">
         <strong class="sd-label">Jev</strong>
         <strong class="sd-detail">실행 권한 없음</strong>
+        <span class="sd-jev-signal sd-jev-signal--choice"><b>Choice / tool_risk</b> <span>review_required, 1.0</span></span>
+        <span class="sd-jev-signal sd-jev-signal--noul"><b>Noul / irreversible</b> <span>noul 0.78</span></span>
+        <span class="sd-jev-signal sd-jev-signal--score"><b>Score / blast_radius</b> <span>score 2.78, confidence 0.78</span></span>
       </div>
     </div>
 
@@ -22,6 +31,12 @@
       <div class="sd-node sd-jev-authority">
         <strong class="sd-label">Deterministic Policy</strong>
         <span class="sd-detail">코드와 정책이 결정</span>
+        <code class="sd-jev-rule">risk.choice != "bounded"</code>
+        <code class="sd-jev-rule">risk.confidence &lt; 0.90</code>
+        <code class="sd-jev-rule">irreversible.noul &gt;= 0.10</code>
+        <code class="sd-jev-rule">blast_radius.score &gt;= 2</code>
+        <code class="sd-jev-rule">blast_radius.confidence &lt; 0.90</code>
+        <span class="sd-jev-rule-result">하나라도 참이면 Escalate</span>
       </div>
       <div class="sd-jev-fork" aria-hidden="true">
         <span class="sd-jev-fork-stem"></span>
@@ -41,39 +56,81 @@
       </div>
     </section>
   </div>
+  <section class="sd-node sd-jev-measured" aria-label="본문 측정 예시: 정책 결과이며 실행 허가가 아님">
+    <strong class="sd-label">본문 측정 결과</strong>
+    <span class="sd-detail">실행 허가 아님, 임계값은 예시</span>
+    <span class="sd-jev-case"><code>kubectl delete namespace production</code> <b>Escalate</b></span>
+    <span class="sd-jev-case"><code>git status --short</code> <b>Shadow</b></span>
+    <span class="sd-jev-case"><code>rm -rf ./build</code> <b>Escalate</b></span>
+  </section>
 </div>
 <!-- FHD artwork: generated from the preserved semantic source. -->
-<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1bf219ce630240b446b4ef54b0943b4429975ed5eb09fe1250a5e7b819ef2872">
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="cadad634cd3b5d00462a3a235f2930bce728398e677b0f4db6c012d1d0a72ce5">
 <rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
-<rect data-source="root.0.0.0" x="40.000" y="320.000" width="848.000" height="432.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-source="root.0.0.2" x="996.000" y="320.000" width="860.000" height="432.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-<rect data-node="root.0.0.0.0" x="68.000" y="463.650" width="340.000" height="144.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.0.0.2" x="540.000" y="463.650" width="320.000" height="144.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.0.2.1" x="1024.000" y="463.650" width="432.000" height="144.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.0.2.3.0" x="1568.000" y="363.650" width="264.000" height="144.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<rect data-node="root.0.0.2.3.1" x="1568.000" y="563.650" width="264.000" height="144.700" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
-<path data-edge="root.0.0.0.1" data-from="root.0.0.0.0" data-to="root.0.0.0.2" d="M 420.000 536.000 L 528.000 536.000" fill="none" stroke="#475569" stroke-width="3"><title>입력</title></path>
-<polygon data-arrowhead="root.0.0.0.1" points="528.000,536.000 518.000,542.000 518.000,530.000" fill="#475569"/>
-<path data-edge="root.0.0.1" data-from="root.0.0.0.2" data-to="root.0.0.2.1" d="M 872.000 536.000 L 1012.000 536.000" fill="none" stroke="#475569" stroke-width="3"><title>typed answers</title></path>
-<polygon data-arrowhead="root.0.0.1" points="1012.000,536.000 1002.000,542.000 1002.000,530.000" fill="#475569"/>
-<path data-edge="root.0.0.2.2.branch-0" data-from="root.0.0.2.1" data-to="root.0.0.2.3.0" d="M 1468.000 536.000 L 1506.000 536.000 L 1506.000 436.000 L 1556.000 436.000" fill="none" stroke="#475569" stroke-width="3"><title>Shadow</title></path>
-<polygon data-arrowhead="root.0.0.2.2.branch-0" points="1556.000,436.000 1546.000,442.000 1546.000,430.000" fill="#475569"/>
-<path data-edge="root.0.0.2.2.branch-1" data-from="root.0.0.2.1" data-to="root.0.0.2.3.1" d="M 1468.000 536.000 L 1506.000 536.000 L 1506.000 636.000 L 1556.000 636.000" fill="none" stroke="#475569" stroke-width="3"><title>Escalate</title></path>
-<polygon data-arrowhead="root.0.0.2.2.branch-1" points="1556.000,636.000 1546.000,642.000 1546.000,630.000" fill="#475569"/>
-<text data-source="jev-title.meaning" x="64.000" y="100.000" font-size="36" font-weight="700" fill="#111827">Jev 판단과 실행 권한의 경계</text>
-<text data-source="root.0.0.0.0" x="96.000" y="523.650" font-size="32" font-weight="700" fill="#111827">State</text>
-<text data-source="root.0.0.0.0" x="96.000" y="571.250" font-size="26" font-weight="400" fill="#111827">Typed Questions</text>
-<text data-source="root.0.0.0.2" x="568.000" y="523.650" font-size="32" font-weight="700" fill="#111827">Jev</text>
-<text data-source="root.0.0.0.2" x="568.000" y="571.250" font-size="26" font-weight="400" fill="#111827">실행 권한 없음</text>
-<text data-source="root.0.0.2.1" x="1052.000" y="523.650" font-size="32" font-weight="700" fill="#111827">Deterministic Policy</text>
-<text data-source="root.0.0.2.1" x="1052.000" y="571.250" font-size="26" font-weight="400" fill="#111827">코드와 정책이 결정</text>
-<text data-source="root.0.0.2.0" x="1024.000" y="384.000" font-size="32" font-weight="700" fill="#111827">실행 권한 판단</text>
-<text data-source="root.0.0.2.3.0" x="1596.000" y="423.650" font-size="32" font-weight="700" fill="#111827">Shadow</text>
-<text data-source="root.0.0.2.3.0" x="1596.000" y="471.250" font-size="26" font-weight="400" fill="#111827">실행 없이 비교</text>
-<text data-source="root.0.0.2.3.1" x="1596.000" y="623.650" font-size="32" font-weight="700" fill="#111827">Escalate</text>
-<text data-source="root.0.0.2.3.1" x="1596.000" y="671.250" font-size="26" font-weight="400" fill="#111827">사람 / 상위 제어</text>
-<text data-source="root.0.0.0.1.meaning" x="420.000" y="480.000" font-size="22" font-weight="400" fill="#111827">입력</text>
-<text data-source="root.0.0.1" x="900.000" y="478.000" font-size="20" font-weight="400" fill="#111827">typed</text>
-<text data-source="root.0.0.1" x="900.000" y="505.000" font-size="20" font-weight="400" fill="#111827">answers</text>
+<defs><linearGradient id="jev-neon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6e77ff"/><stop offset="1" stop-color="#2ed6b8"/></linearGradient></defs>
+<rect data-source="root.0.0.0" x="64.000" y="128.000" width="932.000" height="608.000" rx="16" fill="#f7f8ff" stroke="#c7d2fe" stroke-width="2"/>
+<rect data-source="root.0.0.2" x="1116.000" y="128.000" width="740.000" height="608.000" rx="16" fill="#f0fdfa" stroke="#99d6cd" stroke-width="2"/>
+<rect data-node="root.0.0.0.0" x="96.000" y="208.000" width="396.000" height="496.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.0.0.2" x="564.000" y="208.000" width="400.000" height="496.000" rx="12" fill="#fff" stroke="url(#jev-neon)" stroke-width="3"/>
+<rect data-source="root.0.0.0.2.inset-0" x="588.000" y="336.000" width="352.000" height="100.000" rx="10" fill="#f3f2ff" stroke="#6e77ff" stroke-width="2"/>
+<rect data-source="root.0.0.0.2.inset-1" x="588.000" y="454.000" width="352.000" height="100.000" rx="10" fill="#edfdf8" stroke="#2ed6b8" stroke-width="2"/>
+<rect data-source="root.0.0.0.2.inset-2" x="588.000" y="572.000" width="352.000" height="100.000" rx="10" fill="#f5f0ff" stroke="#9271e3" stroke-width="2"/>
+<rect data-node="root.0.0.2.1" x="1148.000" y="208.000" width="388.000" height="496.000" rx="12" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.0.2.3.0" x="1600.000" y="286.000" width="224.000" height="140.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.0.2.3.1" x="1600.000" y="486.000" width="224.000" height="140.000" rx="12" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1" x="64.000" y="768.000" width="1792.000" height="248.000" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.inset-0" x="96.000" y="852.000" width="560.000" height="132.000" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+<rect data-source="root.0.1.inset-1" x="680.000" y="852.000" width="560.000" height="132.000" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+<rect data-source="root.0.1.inset-2" x="1264.000" y="852.000" width="560.000" height="132.000" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+<path data-edge="root.0.0.0.1" data-from="root.0.0.0.0" data-to="root.0.0.0.2" d="M 504.000 456.000 L 552.000 456.000" fill="none" stroke="#475569" stroke-width="3"><title>입력</title></path>
+<polygon data-arrowhead="root.0.0.0.1" points="552.000,456.000 542.000,462.000 542.000,450.000" fill="#475569"/>
+<path data-edge="root.0.0.1" data-from="root.0.0.0.2" data-to="root.0.0.2.1" d="M 976.000 456.000 L 1136.000 456.000" fill="none" stroke="#475569" stroke-width="3"><title>typed answers</title></path>
+<polygon data-arrowhead="root.0.0.1" points="1136.000,456.000 1126.000,462.000 1126.000,450.000" fill="#475569"/>
+<path data-edge="root.0.0.2.2.branch-0" data-from="root.0.0.2.1" data-to="root.0.0.2.3.0" d="M 1548.000 456.000 L 1572.000 456.000 L 1572.000 356.000 L 1588.000 356.000" fill="none" stroke="#475569" stroke-width="3"><title>Shadow</title></path>
+<polygon data-arrowhead="root.0.0.2.2.branch-0" points="1588.000,356.000 1578.000,362.000 1578.000,350.000" fill="#475569"/>
+<path data-edge="root.0.0.2.2.branch-1" data-from="root.0.0.2.1" data-to="root.0.0.2.3.1" d="M 1548.000 456.000 L 1572.000 456.000 L 1572.000 556.000 L 1588.000 556.000" fill="none" stroke="#475569" stroke-width="3"><title>Escalate</title></path>
+<polygon data-arrowhead="root.0.0.2.2.branch-1" points="1588.000,556.000 1578.000,562.000 1578.000,550.000" fill="#475569"/>
+<text data-source="jev-title.meaning" x="64.000" y="88.000" font-size="40" font-weight="700" fill="#111827">Jev 판단과 실행 권한의 경계</text>
+<text data-source="root.0.0.0.meaning" x="96.000" y="180.000" font-size="28" font-weight="700" fill="#4438a5">Jev 판단 신호</text>
+<text data-source="root.0.0.2.0" x="1148.000" y="180.000" font-size="28" font-weight="700" fill="#0f766e">실행 권한 판단</text>
+<text data-source="root.0.0.0.0" x="124.000" y="266.000" font-size="30" font-weight="700" fill="#111827">State</text>
+<text data-source="root.0.0.0.0" x="124.000" y="302.000" font-size="24" font-weight="400" fill="#111827">Typed Questions</text>
+<text data-source="root.0.0.0.0" x="124.000" y="362.000" font-size="22" font-weight="400" fill="#111827">tool: kubectl</text>
+<text data-source="root.0.0.0.0" x="124.000" y="412.000" font-size="22" font-weight="400" fill="#111827">canonical_args:</text>
+<text data-source="root.0.0.0.0" x="144.000" y="448.000" font-size="22" font-weight="400" fill="#111827">delete, namespace, production</text>
+<text data-source="root.0.0.0.0" x="124.000" y="498.000" font-size="22" font-weight="400" fill="#111827">environment: production</text>
+<text data-source="root.0.0.0.0" x="124.000" y="548.000" font-size="22" font-weight="400" fill="#111827">caller_role: release-bot</text>
+<text data-source="root.0.0.0.0" x="124.000" y="598.000" font-size="22" font-weight="400" fill="#111827">change_window: closed</text>
+<text data-source="root.0.0.0.2" x="592.000" y="266.000" font-size="30" font-weight="700" fill="#111827">Jev</text>
+<text data-source="root.0.0.0.2" x="592.000" y="302.000" font-size="24" font-weight="400" fill="#111827">실행 권한 없음</text>
+<text data-source="root.0.0.0.2" x="612.000" y="378.000" font-size="24" font-weight="700" fill="#4438a5">Choice / tool_risk</text>
+<text data-source="root.0.0.0.2" x="612.000" y="412.000" font-size="22" font-weight="400" fill="#111827">review_required, 1.0</text>
+<text data-source="root.0.0.0.2" x="612.000" y="496.000" font-size="24" font-weight="700" fill="#0f766e">Noul / irreversible</text>
+<text data-source="root.0.0.0.2" x="612.000" y="530.000" font-size="22" font-weight="400" fill="#111827">noul 0.78</text>
+<text data-source="root.0.0.0.2" x="612.000" y="614.000" font-size="24" font-weight="700" fill="#6843a6">Score / blast_radius</text>
+<text data-source="root.0.0.0.2" x="612.000" y="648.000" font-size="22" font-weight="400" fill="#111827">score 2.78, confidence 0.78</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="266.000" font-size="30" font-weight="700" fill="#111827">Deterministic Policy</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="302.000" font-size="24" font-weight="400" fill="#111827">코드와 정책이 결정</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="362.000" font-size="22" font-weight="400" fill="#111827">risk.choice != &quot;bounded&quot;</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="412.000" font-size="22" font-weight="400" fill="#111827">risk.confidence &lt; 0.90</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="462.000" font-size="22" font-weight="400" fill="#111827">irreversible.noul &gt;= 0.10</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="512.000" font-size="22" font-weight="400" fill="#111827">blast_radius.score &gt;= 2</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="562.000" font-size="22" font-weight="400" fill="#111827">blast_radius.confidence &lt; 0.90</text>
+<text data-source="root.0.0.2.1" x="1176.000" y="624.000" font-size="24" font-weight="700" fill="#b45309">하나라도 참이면 Escalate</text>
+<text data-source="root.0.0.2.3.0" x="1628.000" y="342.000" font-size="30" font-weight="700" fill="#111827">Shadow</text>
+<text data-source="root.0.0.2.3.0" x="1628.000" y="384.000" font-size="22" font-weight="400" fill="#111827">실행 없이 비교</text>
+<text data-source="root.0.0.2.3.1" x="1628.000" y="542.000" font-size="30" font-weight="700" fill="#111827">Escalate</text>
+<text data-source="root.0.0.2.3.1" x="1628.000" y="584.000" font-size="22" font-weight="400" fill="#111827">사람 / 상위 제어</text>
+<text data-source="root.0.0.0.1.meaning" x="508.000" y="432.000" font-size="22" font-weight="400" fill="#111827">입력</text>
+<text data-source="root.0.0.1" x="1012.000" y="398.000" font-size="22" font-weight="400" fill="#111827">typed</text>
+<text data-source="root.0.0.1" x="1012.000" y="428.000" font-size="22" font-weight="400" fill="#111827">answers</text>
+<text data-source="root.0.1" x="96.000" y="820.000" font-size="28" font-weight="700" fill="#111827">본문 측정 결과</text>
+<text data-source="root.0.1" x="316.000" y="820.000" font-size="22" font-weight="400" fill="#475569">실행 허가 아님, 임계값은 예시</text>
+<text data-source="root.0.1" x="124.000" y="896.000" font-size="24" font-weight="400" fill="#111827">kubectl delete namespace production</text>
+<text data-source="root.0.1" x="124.000" y="946.000" font-size="26" font-weight="700" fill="#b45309">Escalate</text>
+<text data-source="root.0.1" x="708.000" y="896.000" font-size="24" font-weight="400" fill="#111827">git status --short</text>
+<text data-source="root.0.1" x="708.000" y="946.000" font-size="26" font-weight="700" fill="#0f766e">Shadow</text>
+<text data-source="root.0.1" x="1292.000" y="896.000" font-size="24" font-weight="400" fill="#111827">rm -rf ./build</text>
+<text data-source="root.0.1" x="1292.000" y="946.000" font-size="26" font-weight="700" fill="#b45309">Escalate</text>
 </svg>
 </figure>
