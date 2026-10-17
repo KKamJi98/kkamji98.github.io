@@ -40,3 +40,40 @@ def test_transfer_caption_stays_between_authority_boundaries():
     for caption in captions:
         assert caption['x'] >= left['x'] + left['width'] + 8
         assert caption['x'] + caption['width'] <= right['x'] - 8
+
+
+def test_primary_card_titles_share_one_baseline_and_inset():
+    drawing = layout()
+    boxes = {b['source']: b for b in drawing.boxes}
+    keys = ('root.0.0.0.0', 'root.0.0.0.2', 'root.0.0.2.1')
+    titles = [next(t for t in drawing.texts if t['source'] == k and t['label']) for k in keys]
+    assert len({t['y'] for t in titles}) == 1
+    assert {t['x'] - boxes[k]['x'] for t, k in zip(titles, keys)} == {28}
+    assert len({(boxes[k]['y'], boxes[k]['height']) for k in keys}) == 1
+
+
+def test_jev_keeps_the_cover_neon_palette_without_recolouring_connectors():
+    from fhd_svg import svg_document
+    drawing = layout()
+    svg = svg_document(drawing, None, 'x' * 64)
+    assert '#6e77ff' in svg and '#2ed6b8' in svg, 'Jev neon must match the cover gradient'
+    judge = next(b for b in drawing.boxes if b['source'] == 'root.0.0.0.2')
+    assert judge['border'] == 'url(#jev-neon)'
+    signals = [g for g in drawing.groups if g.get('owner') == 'root.0.0.0.2']
+    assert len(signals) == 3 and len({g['border'] for g in signals}) == 3
+    assert 'stroke="#475569"' in svg and 'url(#jev-neon)" stroke-width="3"' in svg
+
+
+def test_measured_outcomes_match_the_post_policy_table():
+    import re
+    post = (ROOT / '_posts/2026/09/2026-09-22-jev-system-one-decision-model.md').read_text()
+    table = dict(re.findall(r'^\| `([^`]+)` \|.*\| `(escalate|shadow)` \|$', post, re.M))
+    assert len(table) == 3
+    painted = [t['text'] for t in layout().texts if t['source'] == 'root.0.1']
+    for command, outcome in table.items():
+        index = painted.index(command)
+        assert painted[index + 1] == outcome.capitalize()
+
+
+def test_every_painted_label_stays_readable_after_article_scaling():
+    assert min(t['size'] for t in layout().texts) >= 22

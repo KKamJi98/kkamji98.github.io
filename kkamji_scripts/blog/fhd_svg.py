@@ -1255,7 +1255,11 @@ def svg_document(layout, figure, source_hash, instance=""):
         f'<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="{source_hash}">',
         '<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>',
     ]
+    if layout.profile.get("defs"):
+        out.append(layout.profile["defs"])
     for g in layout.groups:
+        if g.get("owner"):
+            continue
         warning = (
             "sd-node--warning" in g.get("classes", [])
             or "sd-lane--warning" in g.get("classes", [])
@@ -1264,6 +1268,7 @@ def svg_document(layout, figure, source_hash, instance=""):
         fill, border = ("#fffbeb", "#b45309") if warning else ("#f8fafc", "#cbd5e1")
         if g.get("relation_boundary"):
             fill, border = "none", "#64748b"
+        fill, border = g.get("fill", fill), g.get("border", border)
         out.append(
             f'<rect data-source="{g["source"]}" x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="16" fill="{fill}" stroke="{border}" stroke-width="2"/>'
         )
@@ -1272,6 +1277,7 @@ def svg_document(layout, figure, source_hash, instance=""):
         accent = "sd-node--accent" in b["classes"]
         border = "#b45309" if warning else "#0f766e" if accent else "#94a3b8"
         fill = "#fffbeb" if warning else "#f0fdfa" if accent else "#fff"
+        fill, border = b.get("fill", fill), b.get("border", border)
         dash = (
             ' stroke-dasharray="10 8"'
             if b.get("connector_role") == "reference-note"
@@ -1287,8 +1293,13 @@ def svg_document(layout, figure, source_hash, instance=""):
             if value
         )
         out.append(
-            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="2"{dash}/>'
+            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="{b.get('border_width', 2)}"{dash}/>'
         )
+        for g in layout.groups:
+            if g.get("owner") == b["source"]:
+                out.append(
+                    f'<rect data-source="{g["source"]}" x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="10" fill="{g["fill"]}" stroke="{g["border"]}" stroke-width="2"/>'
+                )
     for edge in layout.connectors:
         if "points" not in edge:
             continue
@@ -1333,7 +1344,7 @@ def svg_document(layout, figure, source_hash, instance=""):
     for text in layout.texts:
         weight = 700 if text["label"] else 400
         out.append(
-            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="#111827">{html.escape(text["text"])}</text>'
+            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="{text.get('fill', '#111827')}">{html.escape(text["text"])}</text>'
         )
     out.append("</svg>")
     return "\n".join(out)
@@ -2354,104 +2365,175 @@ def banner_layout(font, figure):
     return layout
 
 
+JEV_NEON = (
+    '<defs><linearGradient id="jev-neon" x1="0" y1="0" x2="1" y2="1">'
+    '<stop offset="0" stop-color="#6e77ff"/><stop offset="1" stop-color="#2ed6b8"/>'
+    "</linearGradient></defs>"
+)
+
+
 def jev_layout(font, figure):
-    """Keep Jev typed data separate from deterministic execution authority."""
+    """Keep Jev typed data separate from deterministic execution authority.
+
+    State, Jev and Policy share one horizontal axis and the outcomes branch to
+    the rightmost column. Field rows and policy rows share baselines. The neon
+    accents repeat the Jev cover palette; connectors keep the corpus grey.
+    """
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     layout = Layout(
-        font, 32, 26, 28, 28, {"bold_width_budget": 1.25, "regular_width_budget": 1.12}
+        font,
+        30,
+        22,
+        28,
+        28,
+        {"bold_width_budget": 1.25, "regular_width_budget": 1.12, "defs": JEV_NEON},
     )
-    layout.add_text(
-        [figure.attrs["aria-label"]], 64, 64, 36, 1792, "jev-title.meaning", True
-    )
+
+    def text(value, x, top, size, key, label=False, fill=None):
+        layout.add_text([value], x, top, size, WIDTH - 32 - x, key, label)
+        if fill:
+            layout.texts[-1]["fill"] = fill
+
+    def card(key, x, y, width, height, **paint):
+        layout.boxes.append(
+            {
+                "source": key,
+                "label": elements[key].text(),
+                "classes": sorted(elements[key].classes),
+                "x": x,
+                "y": y,
+                "width": width,
+                "height": height,
+                **paint,
+            }
+        )
+        return {"element": elements[key], "bounds": [x, y, width, height]}
+
+    def inset(owner, index, x, y, width, height, fill, border):
+        layout.groups.append(
+            {
+                "source": owner + ".inset-" + str(index),
+                "owner": owner,
+                "classes": [],
+                "x": x,
+                "y": y,
+                "width": width,
+                "height": height,
+                "fill": fill,
+                "border": border,
+            }
+        )
+
+    def parts(key):
+        return [c for c in elements[key].children if c.text()]
+
+    text(figure.attrs["aria-label"], 64, 48, 40, "jev-title.meaning", True)
     layout.groups.extend(
         [
-            {
-                "source": "root.0.0.0",
-                "classes": [],
-                "x": 40,
-                "y": 320,
-                "width": 848,
-                "height": 432,
-            },
-            {
-                "source": "root.0.0.2",
-                "classes": [],
-                "x": 996,
-                "y": 320,
-                "width": 860,
-                "height": 432,
-            },
+            {"source": "root.0.0.0", "classes": [], "x": 64, "y": 128,
+             "width": 932, "height": 608, "fill": "#f7f8ff", "border": "#c7d2fe"},
+            {"source": "root.0.0.2", "classes": [], "x": 1116, "y": 128,
+             "width": 740, "height": 608, "fill": "#f0fdfa", "border": "#99d6cd"},
         ]
     )
-    spine = 536
-    def on_axis(key, x, width, centre=spine):
-        element = elements[key]
-        return layout.draw(element, x, centre - layout.measure(element, width) / 2, width)
-    inputs = on_axis("root.0.0.0.0", 68, 340)
-    judge = on_axis("root.0.0.0.2", 540, 320)
-    authority = on_axis("root.0.0.2.1", 1024, 432)
-    layout.draw(elements["root.0.0.2.0"], 1024, 352, 804)
-    outcomes = [
-        on_axis("root.0.0.2.3." + str(i), 1568, 264, centre)
-        for i, centre in enumerate((spine - 100, spine + 100))
+    text(elements["root.0.0.0"].attrs["aria-label"], 96, 152, 28,
+         "root.0.0.0.meaning", True, "#4438a5")
+    text(elements["root.0.0.2.0"].text(), 1148, 152, 28, "root.0.0.2.0", True, "#0f766e")
+
+    spine, top, height = 456, 208, 496
+    rows = [340 + 50 * i for i in range(6)]
+
+    def heading(key, x):
+        title, detail = parts(key)[:2]
+        text(title.text(), x + 28, top + 28, 30, key, True)
+        text(detail.text(), x + 28, top + 70, 24, key)
+
+    inputs = card("root.0.0.0.0", 96, top, 396, height)
+    heading("root.0.0.0.0", 96)
+    # canonical_args wraps its value onto an indented continuation row.
+    for field, row, indent in zip(
+        parts("root.0.0.0.0")[2:], [340, 390, 426, 476, 526, 576], [0, 0, 20, 0, 0, 0]
+    ):
+        text(field.text(), 124 + indent, row, 22, "root.0.0.0.0")
+
+    judge = card("root.0.0.0.2", 564, top, 400, height,
+                 border="url(#jev-neon)", border_width=3)
+    heading("root.0.0.0.2", 564)
+    palette = [
+        ("#f3f2ff", "#6e77ff", "#4438a5"),
+        ("#edfdf8", "#2ed6b8", "#0f766e"),
+        ("#f5f0ff", "#9271e3", "#6843a6"),
     ]
-    for key, a, b, label in [
-        ("root.0.0.0.1", inputs, judge, "입력"),
-        ("root.0.0.1", judge, authority, "typed answers"),
+    for i, (signal, (fill, border, ink)) in enumerate(zip(parts("root.0.0.0.2")[2:], palette)):
+        y = 336 + 118 * i
+        inset("root.0.0.0.2", i, 588, y, 352, 100, fill, border)
+        label, value = [c for c in signal.children if c.text()]
+        text(label.text(), 612, y + 18, 24, "root.0.0.0.2", True, ink)
+        text(value.text(), 612, y + 54, 22, "root.0.0.0.2")
+
+    authority = card("root.0.0.2.1", 1148, top, 388, height, border="#0f766e")
+    heading("root.0.0.2.1", 1148)
+    *rules, result = parts("root.0.0.2.1")[2:]
+    for rule, row in zip(rules, rows):
+        text(rule.text(), 1176, row, 22, "root.0.0.2.1")
+    text(result.text(), 1176, rows[-1] + 10, 24, "root.0.0.2.1", True, "#b45309")
+
+    outcomes = []
+    for i, (fill, border) in enumerate([("#f0fdfa", "#0f766e"), ("#fff7ed", "#b45309")]):
+        key = "root.0.0.2.3." + str(i)
+        y = spine - 70 + (200 * i - 100)
+        outcomes.append(card(key, 1600, y, 224, 140, fill=fill, border=border))
+        title, detail = parts(key)
+        text(title.text(), 1628, y + 26, 30, key, True)
+        text(detail.text(), 1628, y + 76, 22, key)
+
+    for key, a, b in [
+        ("root.0.0.0.1", inputs, judge),
+        ("root.0.0.1", judge, authority),
     ]:
         aa, bb = a["bounds"], b["bounds"]
-        cy = (aa[1] + aa[3] / 2 + bb[1] + bb[3] / 2) / 2
+        label = "입력" if key == "root.0.0.0.1" else "typed answers"
         layout.connectors.append(
             {
                 "source": key,
                 "from": [a["element"].key],
                 "to": [b["element"].key],
                 "label": label,
-                "points": [[aa[0] + aa[2] + 12, cy], [bb[0] - 12, cy]],
+                "points": [[aa[0] + aa[2] + 12, spine], [bb[0] - 12, spine]],
             }
         )
-        source_key = key if key == "root.0.0.1" else key + ".meaning"
-        label_x = aa[0] + aa[2] + 12
-        label_width = bb[0] - aa[0] - aa[2] - 24
-        label_size = 22
-        if key == "root.0.0.1":
-            left, right = layout.groups[:2]
-            label_x = left["x"] + left["width"] + 12
-            label_width = right["x"] - label_x - 12
-            label_size = 20
-        layout.add_text(
-            layout.wrap(label, label_width, label_size),
-            label_x,
-            cy - 78,
-            label_size,
-            label_width,
-            source_key,
-        )
+    text("입력", 508, spine - 46, 22, "root.0.0.0.1.meaning")
+    text("typed", 1012, spine - 80, 22, "root.0.0.1")
+    text("answers", 1012, spine - 50, 22, "root.0.0.1")
+
     a = authority["bounds"]
-    sx = a[0] + a[2] + 12
-    sy = a[1] + a[3] / 2
     for i, target in enumerate(outcomes):
         b = target["bounds"]
-        tx = b[0] - 12
         ty = b[1] + b[3] / 2
-        key = "root.0.0.2.2.branch-" + str(i)
         layout.connectors.append(
             {
-                "source": key,
+                "source": "root.0.0.2.2.branch-" + str(i),
                 "origin": "root.0.0.2.2",
                 "from": [authority["element"].key],
                 "to": [target["element"].key],
                 "label": ("Shadow 경로" if i == 0 else "Escalate 경로"),
                 "meaning": ("Shadow" if i == 0 else "Escalate"),
                 "meaning_at_target": True,
-                "points": [
-                    [sx, sy],
-                    [1506, sy],
-                    [1506, ty],
-                    [tx, ty],
-                ],
+                "points": [[a[0] + a[2] + 12, spine], [1572, spine], [1572, ty], [b[0] - 12, ty]],
             }
         )
+
+    card("root.0.1", 64, 768, 1792, 248, fill="#fff", border="#cbd5e1")
+    title, detail, *cases = parts("root.0.1")
+    text(title.text(), 96, 792, 28, "root.0.1", True)
+    text(detail.text(), 316, 798, 22, "root.0.1", fill="#475569")
+    for i, case in enumerate(cases):
+        x = 96 + 584 * i
+        command, outcome = [c for c in case.children if c.text()]
+        inset("root.0.1", i, x, 852, 560, 132, "#f8fafc", "#e2e8f0")
+        text(command.text(), x + 28, 872, 24, "root.0.1")
+        ink = "#0f766e" if outcome.text() == "Shadow" else "#b45309"
+        text(outcome.text(), x + 28, 920, 26, "root.0.1", True, ink)
     return layout
 
 
