@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-18T04:30+09:00
+updated: 2026-10-19T01:40+09:00
 type: rule
 status: current
 ---
@@ -99,7 +99,7 @@ Aside article viewport 캡처와 FHD PNG 생성을 구분한다. native export f
 
 ## Connector acceptance and recurrence gates
 
-normal commit hook의 `static_png/release_manifest.py --if-staged`는 현재 delivery의 source fingerprint, native PNG와 게시 WebP 해시, 목록 coverage와 index 일치를 검사해야 한다. source, renderer나 delivery CSS 변경을 반영한 fresh build/check 증거가 없으면 기존 release manifest는 stale이다. old gate를 건너뛰거나 미검증 변경을 이전 passed manifest로 통과시키지 않는다. native schema 2 release와 400개 PNG snapshot은 원래 source 검토 및 당시 occurrence 출력에 대한 보존 증거이며 현재 body delivery 개수를 증명하지 않는다. `fhd_release.py`는 모든 native PNG의 실제 검토가 `docs/diagram-fhd-reviews.json`에 해당 SVG 및 PNG 해시와 함께 기록된 뒤에만 native release를 저장한다. `fhd_release.py --promote`는 native PNG 승격 경로이며 WebP 변환 증거를 대신하지 않는다. 공개 delivery는 현재 mapping의 모든 대상에 대해 WebP bytes, 실제 치수, native PNG와의 전체 decoded RGBA 픽셀 동일성, built inline/download/viewer URL과 index coverage를 추가로 검사해야 한다. cover와 body-unused source의 별도 사용처도 각각 보고한다. 원본 SVG, PNG, 검토 receipt와 이전 manifest는 원본 증적으로 남긴다. 렌더나 변환 도구는 실제 시각/의미 검토 상태를 자동으로 passed로 바꾸지 않는다.
+normal commit hook의 `static_png/release_manifest.py --if-staged`는 다이어그램 입력이 staged일 때만 실행된다. `assets/img`의 일반 커버와 사진, 다이어그램 커버가 아닌 frontmatter `image.path`는 본문과 같이 이 판정에서 제외하고, `assets/img/diagrams/` 출력, SVG/Draw.io/spec 원본, catalog 원본, 다이어그램 include가 참조하는 이미지는 포함한다. 이 게이트는 현재 delivery의 source fingerprint, native PNG와 게시 WebP 해시, 목록 coverage와 index 일치를 검사해야 한다. source, renderer나 delivery CSS 변경을 반영한 fresh build/check 증거가 없으면 기존 release manifest는 stale이다. old gate를 건너뛰거나 미검증 변경을 이전 passed manifest로 통과시키지 않는다. native schema 2 release와 400개 PNG snapshot은 원래 source 검토 및 당시 occurrence 출력에 대한 보존 증거이며 현재 body delivery 개수를 증명하지 않는다. `fhd_release.py`는 모든 native PNG의 실제 검토가 `docs/diagram-fhd-reviews.json`에 해당 SVG 및 PNG 해시와 함께 기록된 뒤에만 native release를 저장한다. `fhd_release.py --promote`는 native PNG 승격 경로이며 WebP 변환 증거를 대신하지 않는다. 공개 delivery는 현재 mapping의 모든 대상에 대해 WebP bytes, 실제 치수, native PNG와의 전체 decoded RGBA 픽셀 동일성, built inline/download/viewer URL과 index coverage를 추가로 검사해야 한다. cover와 body-unused source의 별도 사용처도 각각 보고한다. 원본 SVG, PNG, 검토 receipt와 이전 manifest는 원본 증적으로 남긴다. 렌더나 변환 도구는 실제 시각/의미 검토 상태를 자동으로 passed로 바꾸지 않는다.
 
 normal commit hook는 diagram 변경 시 반응형 표시, cover, manifest/index, native shared occurrence와 source-bound corpus policy 회귀를 실행한다. corpus 검사는 clearance, flow balance, typography, 의미 endpoint, Pod Identity, relation caption, 단어 폭과 sealed author dependency를 포함한다. 이미지 픽셀 치수와 CSS 표시 크기 혼동, 표지 누락 및 비율, 검증 중 manifest/index 변경과 cover `srcset` 대체가 다시 들어오면 커밋을 막는다. 이 빠른 CPU 회귀는 실제 Aside 검사와 원본/변환 이미지의 byte 검증을 대신하지 않는다.
 

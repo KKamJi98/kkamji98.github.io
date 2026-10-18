@@ -228,6 +228,61 @@ class ReleaseManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "absent from index"):
             verify_staged(self.root)
 
+    def commit_baseline(self):
+        subprocess.run(
+            ["git", "-c", "user.name=Test", "-c", "user.email=test@example.invalid",
+             "commit", "-qm", "baseline"],
+            cwd=self.root, check=True,
+        )
+
+    def test_new_post_with_ordinary_cover_does_not_trigger(self):
+        self.commit_baseline()
+        cover = self.root / "assets/img/data/topic/topic.webp"
+        cover.parent.mkdir(parents=True)
+        cover.write_bytes(b"ordinary cover")
+        (self.root / "_posts/new.md").write_text(
+            "---\ntitle: New\nimage:\n  path: /assets/img/data/topic/topic.webp\n---\nProse.\n"
+        )
+        subprocess.run(["git", "add", "--", "_posts/new.md", "assets/img/data/topic/topic.webp"],
+                       cwd=self.root, check=True)
+        self.assertFalse(staged_requires_verification(self.root))
+
+    def test_diagram_bound_images_still_trigger(self):
+        self.commit_baseline()
+        include = self.root / "_includes/diagrams/example.html"
+        include.write_text(include.read_text() + '<img src="/assets/img/icons/badge.webp">')
+        catalog = self.root / "docs/diagram-catalog.json"
+        data = json.loads(catalog.read_text())
+        data["diagrams"][0]["original_sources"] = ["assets/img/legacy/flow.webp"]
+        catalog.write_text(json.dumps(data))
+        self.stage()
+        self.commit_baseline()
+        for name in (
+            "assets/img/icons/badge.webp",
+            "assets/img/legacy/flow.webp",
+            "assets/img/anywhere/source.svg",
+            "assets/img/anywhere/flow.drawio",
+            "assets/img/anywhere/flow.spec.json",
+            "assets/img/diagrams/static/new.webp",
+        ):
+            with self.subTest(path=name):
+                path = self.root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"diagram input")
+                subprocess.run(["git", "add", "--", name], cwd=self.root, check=True)
+                self.assertTrue(staged_requires_verification(self.root))
+                subprocess.run(["git", "reset", "-q", "--", name], cwd=self.root, check=True)
+                path.unlink()
+
+    def test_replacing_a_diagram_cover_still_triggers(self):
+        post = self.root / "_posts/cover.md"
+        post.write_text("---\nimage:\n  path: /assets/img/diagrams/static/x--0123456789abcdef.webp\n---\n")
+        self.stage()
+        self.commit_baseline()
+        post.write_text("---\nimage:\n  path: /assets/img/data/topic/topic.webp\n---\n")
+        subprocess.run(["git", "add", "--", "_posts/cover.md"], cwd=self.root, check=True)
+        self.assertTrue(staged_requires_verification(self.root))
+
     def test_current_staged_release_passes(self):
         verify_staged(self.root)
 
