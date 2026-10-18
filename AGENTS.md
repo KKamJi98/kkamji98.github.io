@@ -64,7 +64,8 @@
   - `_posts/*.md` staged: `run_md_tools.sh`, staged 글에 대한 `audit_humanizer --strict`, `check_post_dates`, `check_series_order`, `check_high_impact_tldr`, 그리고 frontmatter/커버/내부 링크/금지 문자/footer 기계 검사.
   - 정적 다이어그램, CSS, export 도구, PNG, WebP 또는 diagram include 줄 변경 staged: `kkamji_scripts/blog/static_png/release_manifest.py --if-staged`로 source fingerprint, native PNG와 게시 WebP의 해시, index 일치를 확인한다. 생성과 검증 절차는 `docs/static-diagrams.md`의 `Connector acceptance and recurrence gates`를 따른다. 일반 본문만 수정하면 이 게이트는 적용하지 않는다.
   - `assets/img`에서는 다이어그램 출력(`assets/img/diagrams/`), SVG/Draw.io/spec 원본, catalog 원본과 다이어그램 include가 참조하는 이미지만 이 게이트 대상이다. 일반 커버와 사진, 그리고 다이어그램 커버가 아닌 frontmatter `image.path` 변경은 본문과 같이 제외한다.
-  - 다이어그램 게이트에 필요한 pytest, Pillow, PyYAML이 `PYTHON_BIN`(기본 `python3`)에 없으면 훅이 `uv run --with`로 임시 환경을 만든다. 폰트 렌더 회귀는 deterministic export 환경(WSL) 기준이다.
+  - 다이어그램 게이트는 `kkamji_scripts/blog/static_png/requirements-webp.txt`의 고정 버전으로 실행한다. `PYTHON_BIN`(기본 `python3`)의 Pillow가 고정 버전이 아니면 훅이 `uv run --with-requirements`로 임시 환경을 만든다. 폰트 회귀 테스트는 Pillow 버전에 따라 글리프 메트릭이 달라지므로 다른 버전으로 통과시키지 않는다. macOS는 Pillow wheel의 Raqm이 쓸 `brew install fribidi`가 필요하다.
+  - 봉인(seal)과 훅의 release 검사는 host와 무관하다. source snapshot은 git-ignored인 `.DS_Store`, `Gemfile.lock`, `.jekyll-cache`, `_site`, `.sass-cache`를 제외하므로 Mac과 WSL 어느 쪽에서 봉인해도 같은 추적 파일이면 같은 결과가 나온다. `--site` live 검사만 봉인한 host의 build 디렉터리에 묶인다.
   - `assets/img/**/*.spec.json` staged: spec을 compile + normalize한 결과와 커밋된 `.drawio`를 비교해 `rebuild_diagrams.sh` 누락을 잡고, `audit_diagram_badges`로 배지 위치를 확인한다.
 - 훅은 스크립트가 실제로 내용을 바꾼 staged 파일만 다시 stage한다. 커밋 대상이 아닌데 포매터가 건드린 글은 unstaged로 남기고 이름을 출력한다.
 - `jekyll build`, `check_inline_scripts`, 외부 링크 검사는 훅에 넣지 않는다. 발행 절차인 `kkamji_scripts/blog/pre_publish_check.sh`가 담당한다.

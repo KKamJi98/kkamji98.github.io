@@ -387,6 +387,26 @@ def built_plan(root, site, plan):
     return sorted(rows, key=lambda e: e['png'])
 
 
+HOST_LOCAL_NAMES = {'.DS_Store', 'Gemfile.lock'}
+HOST_LOCAL_DIRS = {'.jekyll-cache', '_site', '.sass-cache'}
+
+
+def host_local_paths(root, paths):
+    """Git-ignored OS, Bundler and Jekyll cache files differ per checkout.
+
+    Jekyll never publishes them, and Gemfile.lock is not versioned here, so
+    sealing them would bind a release to the host that built it. Ignored files
+    outside these names stay sealed and the index gate still demands them.
+    """
+    candidates = {p.relative_to(root).as_posix(): p for p in paths
+                  if p.name in HOST_LOCAL_NAMES or HOST_LOCAL_DIRS & set(p.relative_to(root).parts)}
+    if not candidates or not (root/'.git').exists(): return set()
+    result = subprocess.run(['git', 'check-ignore', '-z', '--stdin'], cwd=root,
+                            input='\0'.join(sorted(candidates)).encode() + b'\0', capture_output=True)
+    if result.returncode not in (0, 1): raise ValueError('cannot verify local input ignore policy')
+    return {candidates[r] for r in result.stdout.decode().split('\0') if r in candidates}
+
+
 def source_snapshot(root):
     outputs = delivery_output_paths(root, json.loads((root/MANIFEST).read_text()))
     paths = set()
@@ -399,6 +419,7 @@ def source_snapshot(root):
         if (root/name).is_file(): paths.add(root/name)
     for name in FHD_AUTHOR_INPUTS:
         if (root/name).is_file(): paths.add(root/name)
+    paths -= host_local_paths(root, paths)
     update = root/'docs/diagram-native-update.json'
     if update.is_file():
         paths.add(update)

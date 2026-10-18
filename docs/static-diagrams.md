@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-19T01:40+09:00
+updated: 2026-10-19T03:30+09:00
 type: rule
 status: current
 ---
@@ -105,7 +105,7 @@ normal commit hook는 diagram 변경 시 반응형 표시, cover, manifest/index
 
 `downloads.FHD_AUTHOR_INPUTS`는 compiler와 source-scoped policy helper의 정확한 경로를 한곳에서 선언한다. source snapshot과 staged release trigger가 같은 목록을 사용한다. 새 helper를 분리하면 두 경계에 반드시 포함하고 수정 후 fingerprint 변경 및 staged-only 검증을 RED/GREEN으로 재현한다. 일반 editorial script까지 전체 디렉터리를 확대해 불필요한 재렌더를 요구하지 않는다. caption 측정은 실제 draw의 좌우 inset을 차감한 폭을 사용하며, 임시 edge box 폭과 실제 글자 corridor를 혼동하지 않는다. 보호한 API/상태 이름이 맞지 않으면 해당 카드/열/간선 폭을 늘리고 기존 글자 크기를 유지한다. 자동 density 감소로 단어 보호 실패를 숨기지 않는다. source별 `node_text_insets`는 measure와 draw에 같은 값을 사용하며 해당 카드의 실제 glyph와 좌우 stroke 사이에 12px 이상을 남긴다. 넓어진 caption이 모든 카드 폭을 줄이는 경우 간선 corridor와 해당 카드의 안쪽 여유를 함께 조정하고 기존 폰트 크기를 검증한다.
 
-WebP 검증 환경은 `python3 -m venv .venv`와 `.venv/bin/python -m pip install -r kkamji_scripts/blog/static_png/requirements-webp.txt`로 준비한다. 실제 설치 Ruby/Bundler dependency를 확인한 뒤 해당 Python을 `PYTHON_BIN`으로 사용한다. `downloads.py wire`, `webp_release.py convert --native-stamp <original-stamp> --native-revision <native-commit>`, `downloads.py build --site <fresh-external-site>`, `webp_release.py seal --site <fresh-external-site> --native-stamp <original-stamp> --native-revision <native-commit>`, `webp_release.py check --site <fresh-external-site>` 순서다. 원래 stamp가 없으면 현재 snapshot을 대신 만들어 넣지 않는다. 검증된 이전 WebP release에 보존된 `native_build_stamp` 데이터의 원래 두 fingerprint를 대조해 복원하거나 fresh native render/review를 수행한다.
+WebP 검증 환경은 `python3 -m venv .venv`와 `.venv/bin/python -m pip install -r kkamji_scripts/blog/static_png/requirements-webp.txt`로 준비한다. 실제 설치 Ruby/Bundler dependency를 확인한 뒤 해당 Python을 `PYTHON_BIN`으로 사용한다. `downloads.py wire`, `webp_release.py convert --native-stamp <original-stamp> --native-revision <native-commit>`, `downloads.py build --site <fresh-external-site>`, `webp_release.py seal --site <fresh-external-site> --native-stamp <original-stamp> --native-revision <native-commit>`, `webp_release.py check --site <fresh-external-site>` 순서다. source snapshot은 git-ignored인 host-local 파일(`.DS_Store`, `Gemfile.lock`, `.jekyll-cache`, `_site`, `.sass-cache`)을 제외한다. 그래서 seal과 `--site` 없는 check는 host와 무관하고, 같은 추적 파일이면 Mac과 WSL에서 같은 결과를 낸다. ignore된 실제 이미지나 증적은 계속 snapshot과 index 검사 대상이다. 원래 stamp가 없으면 현재 snapshot을 대신 만들어 넣지 않는다. 검증된 이전 WebP release에 보존된 `native_build_stamp` 데이터의 원래 두 fingerprint를 대조해 복원하거나 fresh native render/review를 수행한다.
 
 원래 CSS connector 검사는 continuation, reference, reference-note와 loop의 역할 및 paint를 검증했다. inline SVG 이관에서도 그 의미를 보존하고 대응 endpoint와 실제 좌표를 검사한다. 모르는 역할, 명명된 endpoint 누락, 칠해지지 않은 간선이나 clipping은 blocking finding이다. 원래 CSS가 아닌 SVG의 paint를 검증해야 하므로 과거 scanner 성공을 새 SVG 품질로 확대하지 않는다.
 
