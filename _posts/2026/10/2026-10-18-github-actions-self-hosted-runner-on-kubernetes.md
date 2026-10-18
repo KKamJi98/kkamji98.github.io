@@ -11,7 +11,7 @@ image:
 
 개인 저장소 두 곳의 GitHub Actions job이 시작되지 않았습니다. Hosted runner는 계정 결제 한도에 걸려 있었고, workflow는 대기열에서 움직이지 않았습니다. 저는 같은 Windows PC의 Hyper-V VM으로 운영하는 홈랩 Kubernetes에 Actions Runner Controller(ARC)를 설치하고 두 저장소의 CI를 옮겼습니다. ARC의 구성 요소와 수명주기, 실행 방식과 신뢰 경계는 [GitHub Actions Runner Controller - 개념과 아키텍처]({% post_url 2026-10-15-actions-runner-controller-overview %})에 정리했습니다.
 
-옮긴 뒤 첫 측정에서 Rust 저장소의 gate workflow는 약 2시간이 걸렸습니다. 같은 job이 hosted runner에서는 병렬로 약 25분이었습니다. 이후 runner 슬롯, CPU 한도, job 배치를 바꾸면서 측정한 값과, CI를 15분 안팎으로 줄이기 위한 설계를 함께 기록합니다.
+옮긴 뒤 첫 측정에서 Rust 저장소의 gate workflow는 약 2시간이 걸렸습니다. hosted runner에서 마지막으로 성공한 gate run은 job 5개를 병렬로 실행해 23분이 걸렸습니다. 그 뒤 job과 오라클 테스트가 늘어서 두 값을 그대로 비교할 수는 없습니다. 이후 runner 슬롯, CPU 한도, job 배치를 바꾸면서 측정한 값과, CI를 15분 안팎으로 줄이기 위한 설계를 함께 기록합니다.
 
 > **TL;DR**  
 > - Docker가 필요 없는 제어 job은 light 풀, 빌드와 테스트는 rootless DinD를 쓰는 full 풀로 나눴다.  
