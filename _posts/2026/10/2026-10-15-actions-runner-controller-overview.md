@@ -1,6 +1,7 @@
 ---
-title: GitHub Actions Runner Controller - Overview
+title: GitHub Actions Runner Controller - 개념과 아키텍처
 date: 2026-10-15 16:00:00 +0900
+last_modified_at: 2026-10-18 19:00:00 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]
 tags: [github-actions, arc, actions-runner-controller, kubernetes, self-hosted-runner, security]
@@ -11,7 +12,7 @@ image:
 
 GitHub Actions의 테스트와 빌드를 개인 PC에서 실행하려면 어디까지 직접 운영해야 할까요? Workflow 파일을 개인 PC로 옮기는 것은 아닙니다. GitHub는 계속 작업을 접수하고 결과를 보여 주며, 실제 명령을 실행할 runner만 개인 환경에 둡니다. Kubernetes에서 이 runner를 필요할 때 만들고 정리하는 도구가 **Actions Runner Controller(ARC)**입니다.
 
-저는 같은 Windows PC의 Hyper-V VM에서 운영하는 개인 Kubernetes에 ARC를 설치해 CI를 실행하려고 합니다. 아직 ARC 설치, GitHub runner 등록, 실제 job 실행을 검증한 상태는 아닙니다. 먼저 작업이 어디서 실행되는지, 어떤 비용과 권한을 직접 책임져야 하는지 정리했습니다. 아래의 구성과 설정값은 도입 설계이며 운영 성공 기록이 아닙니다.
+저는 같은 Windows PC의 Hyper-V VM에서 운영하는 개인 Kubernetes에 ARC를 설치해 개인 저장소 두 곳의 CI를 옮겼습니다. 설치 전에 작업이 어디서 실행되는지, 어떤 비용과 권한을 직접 책임져야 하는지부터 정리했고, 아래 내용이 그 기준입니다. 설정 예시는 개념 설명용이며, 실제로 적용한 구성과 측정값은 [GitHub Actions Self-hosted Runner 환경 구축하기]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 따로 기록했습니다.
 
 > **TL;DR**  
 > - GitHub는 workflow의 작업 대기열과 결과를 관리하고, 개인 Kubernetes의 runner가 테스트와 빌드를 실행한다. ARC는 runner의 수량과 수명주기를 관리한다.  
@@ -89,7 +90,7 @@ Pod의 임시 파일이 사라지는 것과 PVC, `hostPath`, 노드의 이미지
 
 ## 4. Runner 0개는 PC가 꺼진다는 뜻이 아닙니다
 
-다음은 개인 환경에서 작은 규모로 시작하기 위한 values 일부의 설계 예시입니다. 설치 명령이나 적용 완료 설정이 아닙니다.
+다음은 작은 규모로 시작할 때의 scale set values 일부입니다.
 
 ```yaml
 minRunners: 0
@@ -134,6 +135,8 @@ Kubernetes mode는 runner container hooks를 이용하는 방식입니다. Workf
 
 **Docker 호환성을 위해 privileged를 허용하는 결정은 별도의 보안 판단입니다.** 개인 클러스터라는 이유로 기존 서비스와 같은 노드에서 바로 허용하지 않고, 실행할 코드의 신뢰 수준과 노드 분리 가능성, 호스트 접근 경로를 먼저 검토해야 합니다.
 
+저는 privileged 대신 Pod user namespace, 세 개로 좁힌 capability, 전용 seccomp profile, device plugin으로 할당한 TUN 장치를 조합해 rootless DinD를 실행했습니다. 공식 구성보다 준비할 것이 많고, 각 단계에서 막힌 지점은 [구축 기록]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 남겼습니다.
+
 ---
 
 ## 6. Self-hosted 실행 요금과 전체 운영 비용
@@ -149,7 +152,7 @@ Kubernetes mode는 runner container hooks를 이용하는 방식입니다. Workf
 
 Artifact와 cache도 같은 저장 한도를 공유한다고 가정하면 안 됩니다. 현재 공식 문서는 artifact와 GitHub Packages의 공유 저장량, repository별 cache 포함량을 구분합니다. Cache는 포함량보다 큰 저장 한도를 설정했는지에 따라서도 초과 과금 조건이 달라집니다. 실행 위치를 개인 클러스터로 바꿔도 `upload-artifact`나 cache 기능이 자동으로 로컬 저장소로 바뀌지는 않습니다.
 
-이미 켜 둔 개인 PC를 사용하더라도 추가 전력과 저장 공간이 0이라고 단정할 수 없습니다. 실제 비용 판단에는 job 횟수와 실행 시간, VM의 상시 자원, 이미지 및 cache가 쌓이는 속도를 측정해야 합니다. 아직 실행하지 않은 제 환경의 절감액을 수치로 제시하지 않는 이유입니다.
+이미 켜 둔 개인 PC를 사용하더라도 추가 전력과 저장 공간이 0이라고 단정할 수 없습니다. 실제 비용 판단에는 job 횟수와 실행 시간, VM의 상시 자원, 이미지 및 cache가 쌓이는 속도를 측정해야 합니다. 절감액을 계산하려면 이 기록이 먼저 쌓여야 합니다.
 
 ### 6.1. 계정 결제 잠금은 별도로 해결해야 합니다
 
@@ -180,18 +183,16 @@ PR 테스트에 배포 secret을 주지 않는 것만으로 모든 문제가 끝
 
 ---
 
-## 8. 개인 환경에서 확인할 실행 결과
+## 8. ARC가 맡는 일과 직접 책임질 일
 
-개인 Hyper-V Kubernetes에서 ARC를 실제 운영하는 것이 목표입니다. 설치 작업에서는 먼저 controller와 runner의 namespace, RBAC, 사용할 실행 모드와 자원 예산을 확정해야 합니다. 이 글을 작성하는 과정에서는 클러스터 설치나 runner 등록, 자격증명 생성 및 권한 변경을 수행하지 않았습니다.
+ARC는 GitHub의 작업 관리 기능을 그대로 두고, Kubernetes가 준비한 일회성 runner에서 코드를 실행하도록 연결합니다. 그 대신 **실행 환경의 호환성, 격리와 유지 비용은 직접 책임져야 합니다.**
 
-설치 후에는 최소한 다음 결과를 구분해서 기록하려고 합니다.
+설치한 뒤에는 다음 결과를 서로 다른 증거로 기록해야 합니다. 하나가 성공했다고 다른 항목까지 성공한 것은 아닙니다.
 
 - 관리 리소스의 준비 완료와 GitHub의 scale set 연결 상태
 - 테스트 job의 배정, runner Pod 준비, 실제 테스트 및 빌드 결과
 - Job 완료 후 runner Pod 정리와 잔여 볼륨, 이미지 및 로그 상태
 - PR 코드와 배포 경로의 권한 분리, 실제 네트워크 차단 결과
-
-이 기록이 있어야 구성 예시를 제 환경의 운영 결과로 바꿀 수 있습니다. 지금 단계에서 ARC의 역할은 명확합니다. GitHub의 작업 관리 기능은 유지하면서, 개인 Kubernetes가 준비한 일회성 runner에서 코드를 실행하도록 연결합니다. 그 대신 **실행 환경의 호환성, 격리와 유지 비용은 직접 책임져야 합니다.**
 
 ---
 
