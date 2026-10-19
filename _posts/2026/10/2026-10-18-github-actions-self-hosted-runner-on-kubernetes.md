@@ -221,12 +221,12 @@ Rust로 바뀐 API와 검색 서버 이미지는 빌드 cache를 GitHub Actions 
 
 세 tier가 각자 컴파일하던 것을 job 하나에서 `cargo test --no-run`으로 한 번만 빌드하도록 바꿨습니다. 테스트 바이너리를 archive로 묶고, 각 tier는 원래 컨테이너 설정 그대로 archive에서 실행합니다. 테스트 바이너리 346개를 담은 archive는 2.2GB이고, 원래 target 디렉터리는 12GB였습니다. 첫 시도는 archive를 테스트 scratch에 통째로 풀다가 3Gi 한도를 넘어 eviction됐고, archive를 제자리에서 검증하고 없는 파일만 놓도록 바꾼 뒤 통과했습니다.
 
-| 지표 | 변경 전(11건 중앙값) | 변경 후(1건) |
+| 지표 | 변경 전(11건 중앙값) | 변경 후(2건) |
 | --- | --- | --- |
-| 테스트 결과 | | 342개 suite, 3367 passed, 0 failed |
-| Rust tier runner 점유 | 88.3분(job 3개) | 73.6분(job 1개) |
-| run 전체 runner 점유 | 106.5분 | 95.6분 |
-| 슬롯이 비어 있을 때 가장 긴 경로 | 약 39분(tier 병렬) | 73.6분(tier 직렬) |
+| 테스트 결과 | | 342개 suite 3367 passed, 343개 suite 3377 passed, 모두 0 failed |
+| Rust tier runner 점유 | 88.3분(job 3개) | 73.6분, 75.7분(job 1개) |
+| run 전체 runner 점유 | 106.5분 | 95.6분, 94.6분 |
+| 슬롯이 비어 있을 때 가장 긴 경로 | 약 39분(tier 병렬) | 73.6분, 75.7분(tier 직렬) |
 
 **runner 점유는 10% 줄었지만, 슬롯이 비어 있을 때의 전체 시간은 오히려 늘었습니다.** tier들이 한 job 안에서 차례로 실행되기 때문입니다. 슬롯 대기가 시간의 대부분인 지금은 점유를 줄이는 쪽이 낫다고 보고 적용했습니다. 다음 단계는 archive를 클러스터 내부 registry로 넘겨 tier를 다시 병렬로 실행하는 것이고, 단계별 시간으로 계산한 가장 긴 경로는 약 56분입니다(**예상**).
 
@@ -263,8 +263,8 @@ Docker Hub mirror는 이미 실제 job에서 쓰이고 있습니다. 비교할 �
 | 측정(웹 저장소) | mirror 전 | mirror 후 |
 | --- | --- | --- |
 | Rust base image 338MB, cold | 40.5초 | 41.4초 |
-| 같은 image를 테스트 job에서 `docker run`, warm | 50.0초, 38.8초 | 7.2초(1건) |
-| PostgreSQL image, cold | 19.0초, 21.3초 | 16.2초 |
+| 같은 image를 테스트 job에서 `docker run`, warm | 50.0초, 38.8초 | 7.2초, 8.5초 |
+| PostgreSQL image, 첫 요청 cold, 다음 요청 warm | 19.0초, 21.3초 | 16.2초, 5.5초 |
 
 Rust 저장소는 Docker Hub에서 42MB짜리 base image 하나만 받습니다. 그래서 이미지 빌드 단계는 94초로, 이전 66건의 중앙값 102초(90~126초) 범위 안이었습니다. **mirror의 효과는 큰 base image를 반복해서 받는 저장소에서 나오고, Rust 저장소는 CI 이미지 전체를 내부에서 받아야 줄어듭니다.**
 
@@ -290,9 +290,9 @@ registry가 응답하지 않으면 Docker는 Docker Hub로 다시 시도합니�
 
 | 대상 | 지금까지 측정 | 다음 단계 적용 후(**예상**) |
 | --- | --- | --- |
-| 웹 저장소 main push | 9.3~10.5분(2건) | warm mirror에서 base image pull이 약 40초에서 약 7초로 줄어든 만큼 짧아진다 |
-| Rust 저장소 runner 점유 | 95.6분(1건) | 오라클 fixture와 내부 CI 이미지 적용 후 측정해서 쓴다 |
-| Rust 저장소 가장 긴 경로 | 73.6분(1건) | tier 병렬화 후 약 56분, 비교 모드 시간에 따라 더 줄어든다 |
+| 웹 저장소 main push | 9.3~10.5분(2건) | warm mirror에서 base image pull이 약 40초에서 7~9초로 줄어든 만큼 짧아진다 |
+| Rust 저장소 runner 점유 | 94.6~95.6분(2건) | 오라클 fixture와 내부 CI 이미지 적용 후 측정해서 쓴다 |
+| Rust 저장소 가장 긴 경로 | 73.6~75.7분(2건) | tier 병렬화 후 약 56분, 비교 모드 시간에 따라 더 줄어든다 |
 
 ---
 

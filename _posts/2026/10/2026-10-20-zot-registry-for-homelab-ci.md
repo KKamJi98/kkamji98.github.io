@@ -17,7 +17,7 @@ HomeLab Kubernetes의 GitHub Self-hosted Runner에서 웹 저장소의 테스트
 > - zot v2.1.22 하나로 Docker Hub mirror와 CI 이미지 저장소를 함께 운영한다. 배포 직후 메모리는 46Mi였다.  
 > - v2.1.22에서 sync의 `preserveDigest`는 무시된다. digest로 고정한 base image를 그대로 받으려면 `http.compat: ["docker2s2"]`가 필요하다.  
 > - registry에 닿는 job이 tag를 먼저 만들 수 있으므로 tag를 신뢰하지 않는다. main이 GitHub Actions cache에 기록한 digest로만 pull한다.  
-> - warm mirror에서 338MB image pull은 50.0초, 38.8초에서 7.2초가 됐다. 처음 받는 cold 요청은 이전과 같은 약 41초였다.  
+> - warm mirror에서 338MB image pull은 50.0초, 38.8초에서 7.2초, 8.5초가 됐다. 처음 받는 cold 요청은 이전과 같은 약 41초였다.  
 {: .prompt-info}
 
 측정은 2026-10-19부터 2026-10-20까지의 실제 CI run과, 같은 버전의 zot과 Docker로 한 로컬 실험 기준입니다. 표본이 적은 값은 건수를 함께 적었습니다.
@@ -246,8 +246,9 @@ cold 요청과 warm 요청을 나눠야 비교가 맞았습니다. 처음 받는
 | 측정(웹 저장소) | mirror 전 | mirror 후 | 요청 |
 | --- | --- | --- | --- |
 | Rust base image 338MB, BuildKit `load metadata`와 `FROM` 합계 | 40.5초 | 41.4초 | cold |
-| 같은 image를 테스트 job에서 `docker run` | 50.0초, 38.8초 | 7.2초(1건) | warm |
+| 같은 image를 테스트 job에서 `docker run` | 50.0초, 38.8초 | 7.2초, 8.5초 | warm |
 | PostgreSQL image, 테스트 job | 19.0초, 21.3초 | 16.2초 | cold |
+| PostgreSQL image, 테스트 job | 19.0초, 21.3초 | 5.5초 | warm |
 
 warm 요청에서 273MB layer 하나를 내주는 데 zot 로그 기준 1초가 걸렸습니다. Docker Hub에서는 같은 layer를 받는 데 33.2초가 걸렸습니다.
 
@@ -259,7 +260,7 @@ Rust 저장소는 Docker Hub에서 42MB짜리 Ubuntu base image 하나만 받습
 
 - 저장소가 emptyDir라 Pod가 다시 만들어지면 cold 상태로 시작한다. 설정을 바꿀 때마다 Pod가 다시 만들어지므로, 측정 중에는 설정 변경을 몰아서 한다.
 - 익명 `create`로 저장 공간을 채울 수 있다. 상한 30Gi와 보존 정책으로만 막는다.
-- warm 표본은 아직 1건이다. 다음 CI run들로 늘린다.
+- warm 표본은 Rust image 2건, PostgreSQL 1건이다. 다음 CI run들로 늘린다.
 - CI 이미지 저장소의 CI 효과는 아직 측정하지 않았다. 로컬 실험 기준 **예상**은 job당 약 90초 감소다.
 - 클러스터 내부 평문 HTTP다. 무결성은 digest로 지키지만, 전송 내용은 암호화되지 않는다.
 
