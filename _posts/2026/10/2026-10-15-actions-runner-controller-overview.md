@@ -1,7 +1,7 @@
 ---
 title: GitHub Actions Runner Controller - 개념과 아키텍처
 date: 2026-10-15 16:00:00 +0900
-last_modified_at: 2026-10-18 19:00:00 +0900
+last_modified_at: 2026-10-20 02:00:00 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]
 tags: [github-actions, arc, actions-runner-controller, kubernetes, self-hosted-runner, security]
@@ -10,13 +10,13 @@ image:
   path: /assets/img/github/github.webp
 ---
 
-GitHub Actions의 테스트와 빌드를 개인 PC에서 실행하려면 어디까지 직접 운영해야 할까요? Workflow 파일을 개인 PC로 옮기는 것은 아닙니다. GitHub는 계속 작업을 접수하고 결과를 보여 주며, 실제 명령을 실행할 runner만 개인 환경에 둡니다. Kubernetes에서 이 runner를 필요할 때 만들고 정리하는 도구가 **Actions Runner Controller(ARC)**입니다.
+GitHub Actions의 테스트와 빌드를 HomeLab에서 실행하려면 어디까지 직접 운영해야 할까요? Workflow 파일을 HomeLab으로 옮기는 것은 아닙니다. GitHub는 계속 작업을 접수하고 결과를 보여 주며, 실제 명령을 실행할 runner만 직접 운영하는 환경에 둡니다. Kubernetes에서 이 runner를 필요할 때 만들고 정리하는 도구가 **Actions Runner Controller(ARC)**입니다.
 
-저는 같은 Windows PC의 Hyper-V VM에서 운영하는 개인 Kubernetes에 ARC를 설치해 개인 저장소 두 곳의 CI를 옮겼습니다. 설치 전에 작업이 어디서 실행되는지, 어떤 비용과 권한을 직접 책임져야 하는지부터 정리했고, 아래 내용이 그 기준입니다. 설정 예시는 개념 설명용이며, 실제로 적용한 구성과 측정값은 [GitHub Actions Self-hosted Runner 환경 구축하기]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 따로 기록했습니다.
+저는 HomeLab Kubernetes에서 GitHub Self-hosted Runner를 쓰려고 ARC를 설치했고, 개인 저장소 두 곳의 CI를 옮겼습니다. 지금은 두 저장소의 PR과 main CI가 모두 이 runner에서 실행됩니다. 설치 전에 작업이 어디서 실행되는지, 어떤 비용과 권한을 직접 책임져야 하는지부터 정리했고, 아래 내용이 그 기준입니다. 설정 예시는 개념 설명용이며, 실제로 적용한 구성과 측정값은 [GitHub Actions Self-hosted Runner 환경 구축하기]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 따로 기록했습니다.
 
 > **TL;DR**  
-> - GitHub는 workflow의 작업 대기열과 결과를 관리하고, 개인 Kubernetes의 runner가 테스트와 빌드를 실행한다. ARC는 runner의 수량과 수명주기를 관리한다.  
-> - 일회성 runner Pod가 사라져도 controller, listener, Kubernetes VM과 외부 저장 데이터는 남을 수 있다.  
+> - GitHub는 workflow의 작업 대기열과 결과를 관리하고, HomeLab Kubernetes의 runner가 테스트와 빌드를 실행한다. ARC는 runner의 수량과 수명주기를 관리한다.  
+> - 일회성 runner Pod가 사라져도 controller, listener, Kubernetes 노드와 외부 저장 데이터는 남을 수 있다.  
 > - 실행 위치를 바꿔도 Docker 명령, 계정 결제 잠금, PR 코드의 신뢰 문제까지 자동으로 해결되지는 않는다.  
 {: .prompt-info}
 
@@ -99,7 +99,7 @@ maxRunners: 1
 
 `minRunners`는 유지할 유휴 runner 수입니다. `maxRunners`는 scale set이 늘릴 수 있는 runner 수의 상한입니다. 위 예시는 작업이 없을 때 runner를 0개로 줄이고, 작업이 생기면 최대 1개까지 준비하는 구성입니다. 동시 job 요청이 많아도 이 scale set에서 처리할 runner는 1개이므로 나머지 작업은 기다릴 수 있습니다.
 
-**줄어드는 것은 job을 실행하는 runner이며, ARC 관리 Pod나 Hyper-V VM이 아닙니다.** Controller와 listener, Kubernetes의 관리 및 시스템 Pod는 계속 필요합니다. VM을 자동 종료하고 다시 켜는 기능도 이 설정에 포함되지 않습니다.
+**줄어드는 것은 job을 실행하는 runner이며, ARC 관리 Pod나 Kubernetes 노드가 아닙니다.** Controller와 listener, Kubernetes의 관리 및 시스템 Pod는 계속 필요합니다. 노드를 자동으로 끄고 다시 켜는 기능도 이 설정에 포함되지 않습니다.
 
 또한 최대 runner 1개가 클러스터 전체 Pod 1개를 의미하지는 않습니다. Kubernetes mode에서는 job이나 service를 위한 추가 Pod가 생성될 수 있습니다. CPU와 메모리 예산에는 이 작업용 Pod와 상시 관리 리소스를 함께 포함해야 합니다.
 
@@ -147,12 +147,12 @@ Kubernetes mode는 runner container hooks를 이용하는 방식입니다. Workf
 | --- | --- |
 | GitHub-hosted runner의 실행 시간 | Self-hosted로 배정한 job은 개인 실행 환경을 사용 |
 | GitHub Actions artifact와 cache | GitHub 저장 서비스의 포함량, 보존 기간과 과금 정책을 별도 확인 |
-| 개인 PC와 Hyper-V VM | 전기, CPU와 메모리 사용, 장비 및 운영 부담 유지 |
+| HomeLab 장비와 Kubernetes 노드 | 전기, CPU와 메모리 사용, 장비 및 운영 부담 유지 |
 | 로컬 디스크와 registry | 이미지 layer, 빌드 cache, 볼륨, 로그 및 외부 저장 공간 관리 필요 |
 
 Artifact와 cache도 같은 저장 한도를 공유한다고 가정하면 안 됩니다. 현재 공식 문서는 artifact와 GitHub Packages의 공유 저장량, repository별 cache 포함량을 구분합니다. Cache는 포함량보다 큰 저장 한도를 설정했는지에 따라서도 초과 과금 조건이 달라집니다. 실행 위치를 개인 클러스터로 바꿔도 `upload-artifact`나 cache 기능이 자동으로 로컬 저장소로 바뀌지는 않습니다.
 
-이미 켜 둔 개인 PC를 사용하더라도 추가 전력과 저장 공간이 0이라고 단정할 수 없습니다. 실제 비용 판단에는 job 횟수와 실행 시간, VM의 상시 자원, 이미지 및 cache가 쌓이는 속도를 측정해야 합니다. 절감액을 계산하려면 이 기록이 먼저 쌓여야 합니다.
+이미 켜 둔 HomeLab 장비를 사용하더라도 추가 전력과 저장 공간이 0이라고 단정할 수 없습니다. 실제 비용 판단에는 job 횟수와 실행 시간, 노드의 상시 자원, 이미지 및 cache가 쌓이는 속도를 측정해야 합니다. 절감액을 계산하려면 이 기록이 먼저 쌓여야 합니다.
 
 ### 6.1. 계정 결제 잠금은 별도로 해결해야 합니다
 
