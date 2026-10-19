@@ -93,6 +93,9 @@ SERIES: dict[str, list[str]] = {
         "llm-wiki-building",
         "llm-wiki-evaluation",
     ],
+    "Databricks": [
+        "databricks-overview",
+    ],
 }
 
 

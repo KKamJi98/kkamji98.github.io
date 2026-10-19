@@ -6,6 +6,13 @@ from pathlib import Path
 import subprocess
 
 MANIFEST = "docs/diagram-export-release.json"
+DIAGRAM_SOURCE_SUFFIXES = (".svg", ".drawio", ".spec.json")
+DIAGRAM_REFERENCE_DOCS = (
+    "docs/diagram-catalog.json",
+    "docs/diagram-downloads.json",
+    "docs/diagram-webp-release.json",
+    MANIFEST,
+)
 
 
 def _png_path(root, value):
@@ -92,7 +99,28 @@ def record_checked(root, rows, out):
     )
 
 
+def _diagram_bound_image(root, path):
+    """assets/img mixes diagram inputs with ordinary post covers and photos.
+
+    Diagram outputs, vector or Draw.io sources, catalogued originals and any
+    image a diagram include references are render inputs. Other images behave
+    like prose: they reach the site but do not demand a diagram reexport.
+    """
+    if path.startswith("assets/img/diagrams/") or path.endswith(DIAGRAM_SOURCE_SUFFIXES):
+        return True
+    for name in DIAGRAM_REFERENCE_DOCS:
+        doc = root / name
+        if doc.is_file() and path in doc.read_text(errors="replace"):
+            return True
+    includes = root / "_includes"
+    return includes.is_dir() and any(
+        path in include.read_text(errors="replace")
+        for include in includes.rglob("*.html") if include.is_file()
+    )
+
+
 def staged_requires_verification(root):
+    root = Path(root)
     paths = subprocess.check_output(
         ["git", "diff", "--cached", "--name-only"], cwd=root, text=True
     ).splitlines()
@@ -109,7 +137,6 @@ def staged_requires_verification(root):
         "assets/css/",
         "assets/js/",
         "assets/fonts/",
-        "assets/img/",
         "kkamji_scripts/blog/static_png/",
         "docs/diagram-native-additions/",
     )
@@ -129,6 +156,8 @@ def staged_requires_verification(root):
     exact.update(FHD_AUTHOR_INPUTS)
     if any(path in exact or path.startswith(prefixes) for path in paths):
         return True
+    if any(path.startswith("assets/img/") and _diagram_bound_image(root, path) for path in paths):
+        return True
     if any(path.startswith("_posts/") for path in paths):
         diff = subprocess.check_output(
             ["git", "diff", "--cached", "--unified=0", "--", "_posts"],
@@ -142,11 +171,13 @@ def staged_requires_verification(root):
             if line.startswith(("+", "-")) and not line.startswith(("+++", "---"))
         )
         # Removing/replacing a diagram cover must trigger too, even if the new
-        # image path no longer belongs to this corpus. Ordinary prose stays out.
+        # image path no longer belongs to this corpus: the removed line still
+        # carries the diagram URL. Ordinary covers and prose stay out, so a new
+        # post with a regular image.path does not demand a diagram reexport.
         import re
         return (INCLUDE.search(changed_lines) is not None
                 or '/assets/img/diagrams/' in changed_lines
-                or re.search(r"""^\s*(?:image|path|["']?arc_diagram_fixed_fhd["']?)\s*:""", changed_lines, re.M) is not None)
+                or re.search(r"""^\s*["']?arc_diagram_fixed_fhd["']?\s*:""", changed_lines, re.M) is not None)
     return False
 
 

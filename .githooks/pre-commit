@@ -16,6 +16,21 @@ cd "${REPO_ROOT}"
 BLOG="${REPO_ROOT}/kkamji_scripts/blog"
 PY="${PYTHON_BIN:-python3}"
 
+# 다이어그램 게이트는 requirements-webp.txt 의 고정 버전이 필요하다. 폰트 회귀 테스트와 WebP release
+# 검사는 Pillow 버전에 따라 글리프 메트릭과 encoder 기록이 달라진다. PY 의 Pillow 가 고정 버전이
+# 아니면 uv 임시 환경에서 같은 버전으로 실행해 host 와 무관하게 같은 결과를 낸다.
+REQ="${BLOG}/static_png/requirements-webp.txt"
+PILLOW_PIN="$(sed -n 's/^Pillow==//p' "${REQ}")"
+DPY=("${PY}")
+if ! "${PY}" -c 'import sys, pytest, yaml, PIL; sys.exit(PIL.__version__ != sys.argv[1])' "${PILLOW_PIN}" >/dev/null 2>&1 \
+   && command -v uv >/dev/null 2>&1; then
+  DPY=(uv run --no-project --quiet --with-requirements "${REQ}" python)
+fi
+# macOS Pillow wheel 의 Raqm 은 libfribidi 를 런타임에 찾는데 Homebrew 경로는 기본 탐색 경로가 아니다.
+if [ "$(uname -s)" = Darwin ] && [ -e /opt/homebrew/lib/libfribidi.0.dylib ]; then
+  DPY=(env "DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib${DYLD_FALLBACK_LIBRARY_PATH:+:${DYLD_FALLBACK_LIBRARY_PATH}}" "${DPY[@]}")
+fi
+
 # 런타임마다 스킬 설치 경로가 다르다. 명시 지정을 우선하고, 없으면 알려진 곳을 훑는다.
 SKILL="${DRAWIO_SKILL_DIR:-}"
 if [ -z "${SKILL}" ]; then
@@ -158,7 +173,7 @@ if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys
   while IFS= read -r git_local_var; do
     fixture_env+=(-u "${git_local_var}")
   done < <(git rev-parse --local-env-vars)
-  if "${fixture_env[@]}" PYTHONDONTWRITEBYTECODE=1 "${PY}" -m pytest -p no:cacheprovider -q \
+  if "${fixture_env[@]}" PYTHONDONTWRITEBYTECODE=1 "${DPY[@]}" -m pytest -p no:cacheprovider -q \
     "${BLOG}/static_png/test_responsive_display.py" \
     "${BLOG}/static_png/test_cover_contract.py" \
     "${BLOG}/static_png/test_webp_review_regressions.py" \
@@ -186,7 +201,7 @@ if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys
 fi
 
 step "정적 다이어그램 release manifest"
-if "${PY}" "${BLOG}/static_png/release_manifest.py" --root "${REPO_ROOT}" --if-staged; then
+if "${DPY[@]}" "${BLOG}/static_png/release_manifest.py" --root "${REPO_ROOT}" --if-staged; then
   ok "검증된 source/PNG/index 일치"
 else
   bad "다이어그램 변경은 fresh build, export, release 검증 필요"
