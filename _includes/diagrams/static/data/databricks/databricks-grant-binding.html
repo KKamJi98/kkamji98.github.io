@@ -1,0 +1,60 @@
+<figure class="sd sd--flow sd--fhd" id="sd-dbx-grant" aria-labelledby="sd-dbx-grant-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-dbx-grant-title">GRANT는 metastore 범위에서 유효하고, binding이 catalog를 workspace에 묶습니다</figcaption><div class="sd-semantic-source">
+  <div class="sd-node sd-node--warning" id="dg-dev"><strong class="sd-label">Workspace dev</strong><span class="sd-detail">GRANT가 있어도<br>catalog main 접근 거부</span></div>
+  <div class="sd-node sd-node--accent" id="dg-prod"><strong class="sd-label">Workspace prod</strong><span class="sd-detail">binding된 catalog main을<br>GRANT대로 사용</span></div>
+  <section class="sd-lane" id="dg-metastore">
+    <div class="sd-lane-title" id="dg-metastore-title">Metastore, region당 1개</div>
+    <p class="sd-note" id="dg-metastore-note">data-readers group에 준 GRANT</p>
+    <div class="sd-node" id="dg-catalog"><strong class="sd-label">catalog main</strong><span class="sd-detail">USE CATALOG<br>binding 대상: prod</span></div>
+    <div class="sd-node" id="dg-schema"><strong class="sd-label">schema sales</strong><span class="sd-detail">USE SCHEMA<br>SELECT, 아래 테이블에 상속</span></div>
+    <div class="sd-node" id="dg-table"><strong class="sd-label">table orders</strong><span class="sd-detail">Parquet와 _delta_log<br>S3 external location</span></div>
+  </section>
+  <div class="sd-arrow" id="dg-dev-link" data-from="dg-dev" data-to="dg-metastore" aria-label="dev workspace가 metastore에 연결"></div>
+  <div class="sd-arrow" id="dg-prod-link" data-from="dg-prod" data-to="dg-metastore" aria-label="prod workspace가 metastore에 연결"></div>
+  <div class="sd-arrow" id="dg-binding" data-from="dg-catalog" data-to="dg-prod" aria-label="workspace-catalog binding으로 catalog main을 prod에만 묶음"></div>
+  <p class="sd-note" id="dg-binding-note">workspace-catalog binding</p>
+  <div class="sd-arrow" id="dg-contains-schema" data-from="dg-catalog" data-to="dg-schema" aria-label="catalog가 schema를 포함"></div>
+  <div class="sd-arrow" id="dg-contains-table" data-from="dg-schema" data-to="dg-table" aria-label="schema가 table을 포함"></div>
+  <p class="sd-note" id="dg-default">binding이 없으면 같은 metastore를 쓰는 모든 workspace에서 GRANT가 그대로 유효합니다</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="87ddb2b743f0acf10f8e9de60d20015730a2561bbc862901ae1801f17885d602">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.3" x="40.000" y="430.000" width="1840.000" height="405.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1" x="80.000" y="150.000" width="560.000" height="175.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2" x="1280.000" y="150.000" width="560.000" height="175.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3.2" x="75.000" y="600.000" width="520.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.3" x="700.000" y="600.000" width="520.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3.4" x="1325.000" y="600.000" width="520.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.4" data-from="root.0.1" data-to="root.0.3" d="M 360.000 337.000 L 360.000 418.000" fill="none" stroke="#475569" stroke-width="3"><title>dev workspace가 metastore에 연결</title></path>
+<polygon data-arrowhead="root.0.4" points="360.000,418.000 354.000,408.000 366.000,408.000" fill="#475569"/>
+<path data-edge="root.0.5" data-from="root.0.2" data-to="root.0.3" d="M 1680.000 337.000 L 1680.000 418.000" fill="none" stroke="#475569" stroke-width="3"><title>prod workspace가 metastore에 연결</title></path>
+<polygon data-arrowhead="root.0.5" points="1680.000,418.000 1674.000,408.000 1686.000,408.000" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.3.2" data-to="root.0.2" d="M 560.000 588.000 L 560.000 380.000 L 1460.000 380.000 L 1460.000 337.000" fill="none" stroke="#475569" stroke-width="3"><title>workspace-catalog binding으로 catalog main을 prod에만 묶음</title></path>
+<polygon data-arrowhead="root.0.6" points="1460.000,337.000 1466.000,347.000 1454.000,347.000" fill="#475569"/>
+<path data-edge="root.0.8" data-from="root.0.3.2" data-to="root.0.3.3" d="M 607.000 688.000 L 688.000 688.000" fill="none" stroke="#475569" stroke-width="3"><title>catalog가 schema를 포함</title></path>
+<polygon data-arrowhead="root.0.8" points="688.000,688.000 678.000,694.000 678.000,682.000" fill="#475569"/>
+<path data-edge="root.0.9" data-from="root.0.3.3" data-to="root.0.3.4" d="M 1232.000 688.000 L 1313.000 688.000" fill="none" stroke="#475569" stroke-width="3"><title>schema가 table을 포함</title></path>
+<polygon data-arrowhead="root.0.9" points="1313.000,688.000 1303.000,694.000 1303.000,682.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">GRANT는 metastore 범위에서 유효하고, binding이 catalog를 workspace에 묶습니다</text>
+<text data-source="root.0.1" x="108.000" y="208.000" font-size="30" font-weight="700" fill="#111827">Workspace dev</text>
+<text data-source="root.0.1" x="108.000" y="253.000" font-size="24" font-weight="400" fill="#111827">GRANT가 있어도</text>
+<text data-source="root.0.1" x="108.000" y="285.400" font-size="24" font-weight="400" fill="#111827">catalog main 접근 거부</text>
+<text data-source="root.0.2" x="1308.000" y="208.000" font-size="30" font-weight="700" fill="#111827">Workspace prod</text>
+<text data-source="root.0.2" x="1308.000" y="253.000" font-size="24" font-weight="400" fill="#111827">binding된 catalog main을</text>
+<text data-source="root.0.2" x="1308.000" y="285.400" font-size="24" font-weight="400" fill="#111827">GRANT대로 사용</text>
+<text data-source="root.0.3.2" x="103.000" y="658.000" font-size="30" font-weight="700" fill="#111827">catalog main</text>
+<text data-source="root.0.3.2" x="103.000" y="703.000" font-size="24" font-weight="400" fill="#111827">USE CATALOG</text>
+<text data-source="root.0.3.2" x="103.000" y="735.400" font-size="24" font-weight="400" fill="#111827">binding 대상: prod</text>
+<text data-source="root.0.3.3" x="728.000" y="658.000" font-size="30" font-weight="700" fill="#111827">schema sales</text>
+<text data-source="root.0.3.3" x="728.000" y="703.000" font-size="24" font-weight="400" fill="#111827">USE SCHEMA</text>
+<text data-source="root.0.3.3" x="728.000" y="735.400" font-size="24" font-weight="400" fill="#111827">SELECT, 아래 테이블에 상속</text>
+<text data-source="root.0.3.4" x="1353.000" y="658.000" font-size="30" font-weight="700" fill="#111827">table orders</text>
+<text data-source="root.0.3.4" x="1353.000" y="703.000" font-size="24" font-weight="400" fill="#111827">Parquet와 _delta_log</text>
+<text data-source="root.0.3.4" x="1353.000" y="735.400" font-size="24" font-weight="400" fill="#111827">S3 external location</text>
+<text data-source="root.0.3.0" x="75.000" y="485.000" font-size="30" font-weight="700" fill="#111827">Metastore, region당 1개</text>
+<text data-source="root.0.3.1" x="75.000" y="534.000" font-size="24" font-weight="400" fill="#111827">data-readers group에 준 GRANT</text>
+<text data-source="root.0.7" x="700.000" y="364.000" font-size="24" font-weight="400" fill="#111827">workspace-catalog binding</text>
+<text data-source="root.0.10" x="60.000" y="909.000" font-size="24" font-weight="400" fill="#111827">binding이 없으면 같은 metastore를 쓰는 모든 workspace에서 GRANT가 그대로 유효합니다</text>
+</svg>
+</figure>

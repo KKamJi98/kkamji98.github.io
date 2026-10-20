@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/registry/zot-digest-trust.html",
+  "source_sha256": "20db0217691e8cd0ac0e8752cec27a61506dcce4edd962e74ef8a7ac05b2a5ca",
+  "svg_sha256": "d0591b3ccae939c7b95486b8c4ea84369245d04c886a915c863468ae3f0346fd",
+  "png_sha256": "4355f7dd147667b1e6696151554b0696a49d41d9ab31fd77eba8a8b9926cb351",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Left steps (main workflow, main-scoped cache, PR job) and right zot objects share row axes; arrows 1 to 4 read push, save, restore, pull in order and point at the intended cards. The PR-push warning card explains why tags are not trusted and is not connected as a step. No clipped text, overlaps or border contacts. Content matches the post section 5 trust model and measurements. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

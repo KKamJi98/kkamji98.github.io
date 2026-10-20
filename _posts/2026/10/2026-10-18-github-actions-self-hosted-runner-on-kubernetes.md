@@ -1,7 +1,7 @@
 ---
 title: GitHub Actions Self-hosted Runner 환경 구축하기 - HomeLab Kubernetes와 ARC
 date: 2026-10-18 19:00:00 +0900
-last_modified_at: 2026-10-20 02:00:00 +0900
+last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]
 tags: [github-actions, arc, actions-runner-controller, kubernetes, self-hosted-runner, rootless-docker, ci-performance]
@@ -12,13 +12,14 @@ image:
 
 개인 저장소 두 곳의 GitHub Actions job이 시작되지 않았습니다. Hosted runner는 계정 결제 한도에 걸려 있었고, workflow는 대기열에서 움직이지 않았습니다. 저는 HomeLab Kubernetes에 Actions Runner Controller(ARC)를 설치해 GitHub Self-hosted Runner를 만들고 두 저장소의 CI를 옮겼습니다. ARC의 구성 요소와 수명주기, 실행 방식과 신뢰 경계는 [GitHub Actions Runner Controller - 개념과 아키텍처]({% post_url 2026-10-15-actions-runner-controller-overview %})에 정리했습니다.
 
-옮긴 뒤 첫 측정에서 Rust 저장소의 gate workflow는 약 2시간이 걸렸습니다. hosted runner에서 마지막으로 성공한 gate run은 job 5개를 병렬로 실행해 23분이 걸렸습니다. 그 뒤 job과 오라클 테스트가 늘어서 두 값을 그대로 비교할 수는 없습니다. 이 글에는 runner 슬롯, CPU와 디스크 한도, job 배치, 클러스터 내부 registry를 바꾸면서 측정한 값을 기록합니다. 처음 세운 예상 중 틀린 것도 그대로 남겼습니다.
+옮긴 뒤 첫 측정에서 Rust 저장소의 gate workflow는 약 2시간이 걸렸습니다. hosted runner에서 마지막으로 성공한 gate run은 job 5개를 병렬로 실행해 23분이 걸렸습니다. 그 뒤 job과 오라클 테스트가 늘어서 두 값을 그대로 비교할 수는 없습니다.
 
 > **TL;DR**  
 > - Docker가 필요 없는 제어 job은 light 풀, 빌드와 테스트는 rootless DinD를 쓰는 full 풀로 나눴다.  
 > - full 풀은 privileged 없이 Pod user namespace, capability 3개, 전용 seccomp profile, device plugin으로 할당한 TUN 장치로 Docker를 실행한다.  
-> - 노드마다 저장소별 크기의 슬롯을 하나씩 두고, ARC 0.15가 quota에 거부된 runner Pod를 30초마다 다시 만드는 동작으로 동시 실행을 제한했다.  
-> - 웹 저장소 main CI는 20~25분에서 약 10분이 됐다. Rust 저장소는 build once로 runner 점유가 10% 줄었지만, 오라클 fixture가 한 번도 녹화되지 않아 PR마다 오라클 테스트에 약 30분을 쓰고 있었다. 녹화 조건을 고친 뒤 첫 PR run에서 runner 점유는 106.5분에서 54.7분, 슬롯이 비어 있을 때 run 전체는 50.3분이 됐다(1건).  
+> - 노드마다 저장소별 크기의 슬롯을 하나씩 두고, quota에 거부된 runner를 ARC 0.15가 30초 뒤 다시 만드는 동작으로 동시 실행을 제한했다.  
+> - 웹 저장소 main CI는 20~25분에서 약 10분이 됐다.  
+> - Rust 저장소는 build once로 runner 점유가 10% 줄었지만, 오라클 fixture가 한 번도 녹화되지 않아 PR마다 오라클 테스트에 약 30분을 썼다. 녹화 조건을 고친 뒤 PR run 2건에서 runner 점유는 106.5분에서 54.7분, 54.8분이 됐다.  
 {: .prompt-info}
 
 측정은 2026-10-15부터 2026-10-20까지의 실제 run 기준입니다. 아직 적용하지 않았거나 표본이 부족한 효과는 **예상** 또는 표본 수로 따로 표시했습니다.
@@ -41,6 +42,8 @@ image:
 | --- | --- | --- |
 | 웹 플랫폼 | API와 검색 서버, Node 프런트엔드, 이미지 빌드와 e2e | 처음에는 Java/Gradle API였고 측정 기간 중 Rust로 바뀌었다. main merge는 이미지 게시와 배포로 이어진다 |
 | Rust 퀀트 연구 | Ubuntu 26.04 컨테이너에서 Tier A/B 테스트, Python 오라클 비교, release 빌드 | 컴파일이 무겁고 bwrap sandbox 테스트가 user namespace와 새 `/proc` mount를 요구한다 |
+
+오라클 테스트는 같은 입력을 Python 참조 구현(오라클)과 Rust 구현에 넣고 결과가 같은지 비교하는 테스트입니다. Tier A, Tier B, source qualification은 Rust 저장소 gate가 테스트를 나눈 묶음의 이름입니다.
 
 Rust 저장소의 sandbox 테스트가 이 작업의 가장 큰 제약이었습니다. 기존 workflow는 hosted runner에서 호스트 sysctl을 바꾸고 컨테이너의 seccomp와 AppArmor를 끈 상태로 실행했습니다. **runs-on만 바꾸거나 실패하는 sandbox 테스트를 빼는 방식은 처음부터 선택지에서 제외했습니다.**
 
@@ -171,6 +174,9 @@ worker 메모리를 16GiB로 늘린 뒤 슬롯을 저장소 크기에 맞춰 나
 
 다섯 번째 runner는 노드에서 Pending으로 남지 않고 quota에서 거부됩니다. ARC 0.15의 `ephemeralrunner_controller.go`는 `exceeded quota:` 오류를 받으면 30초 뒤 다시 시도하고, 만든 지 10분이 지난 EphemeralRunner는 지워서 새로 만들게 합니다. job은 실패하지 않고 기다립니다. runner set을 교체할 때 job을 실행 중인 runner는 건너뛰므로(`ephemeralrunnerset_controller.go`), 템플릿을 바꾸는 merge가 진행 중인 job을 끊지 않습니다.
 
+{% include diagrams/static/ci-cd/arc-runner-slots.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/arc-runner-slots--0a06a85ea0ac4957.png" %}
+
 **이제 두 저장소는 서로의 슬롯을 기다리지 않습니다.** 대신 같은 저장소의 job끼리는 여전히 슬롯 2개를 두고 경쟁합니다. Rust 저장소 PR이 여러 개 열리면 그 대기가 그대로 남습니다(8절).
 
 ---
@@ -211,7 +217,7 @@ Rust로 바뀐 API와 검색 서버 이미지는 빌드 cache를 GitHub Actions 
 
 | 구분 | 시간 | 내용 |
 | --- | --- | --- |
-| 컴파일 | 약 48분 | job 5개가 같은 소스를 각자 처음부터 컴파일. Tier A 19분 21초, Tier B 10분 9초, source qualification 6분 24초, release 5분 48초. `CARGO_BUILD_JOBS=1` |
+| 컴파일 | 약 48분 | job 5개가 같은 소스를 각자 처음부터 컴파일. 시간을 확인한 네 job은 Tier A 19분 21초, Tier B 10분 9초, source qualification 6분 24초, release 5분 48초. `CARGO_BUILD_JOBS=1` |
 | 테스트 | 약 38분 | source qualification 1659초 중 오라클 테스트 2개가 1652초(1081초, 571초) |
 | 이미지 빌드 | 약 10분 | job마다 Ubuntu 26.04 CI 이미지를 92~138초 동안 빌드 |
 
@@ -228,15 +234,19 @@ Rust로 바뀐 API와 검색 서버 이미지는 빌드 cache를 GitHub Actions 
 | run 전체 runner 점유 | 106.5분 | 95.6분, 94.6분 |
 | 슬롯이 비어 있을 때 가장 긴 경로 | 약 39분(tier 병렬) | 73.6분, 75.7분(tier 직렬) |
 
-**runner 점유는 10% 줄었지만, 슬롯이 비어 있을 때의 전체 시간은 오히려 늘었습니다.** tier들이 한 job 안에서 차례로 실행되기 때문입니다. 슬롯 대기가 시간의 대부분인 지금은 점유를 줄이는 쪽이 낫다고 보고 적용했습니다. 다음 단계는 archive를 클러스터 내부 registry로 넘겨 tier를 다시 병렬로 실행하는 것이고, 단계별 시간으로 계산한 가장 긴 경로는 약 56분입니다(**예상**).
+**runner 점유는 10% 줄었지만, 슬롯이 비어 있을 때의 전체 시간은 오히려 늘었습니다.** tier들이 한 job 안에서 차례로 실행되기 때문입니다. 슬롯 대기가 시간의 대부분인 지금은 점유를 줄이는 쪽이 낫다고 보고 적용했습니다. 다음 단계는 archive를 클러스터 내부 registry로 넘겨 tier를 다시 병렬로 실행하는 것이고, 단계별 시간으로 계산한 가장 긴 경로는 약 56분이었습니다(**예상**). 오라클 fixture를 적용하기 전 기준이고, 적용 후 예상은 8.6절에 있습니다.
 
 ### 8.3. 녹화된 적 없는 오라클 fixture
 
-source qualification의 1878.6초 중 1871초가 오라클 테스트 두 개였습니다. 이 둘을 줄이려고 Python 오라클의 결과를 fixture로 기록하는 workflow를 미리 만들어 두었습니다. 오라클 커밋과 driver, 테스트, CI 이미지 정의, Python 환경 고정 스크립트의 hash를 key로 쓰고, 기록은 main에서만 두 번 실행해 byte 단위로 같을 때만 저장합니다. PR job은 저장된 fixture를 복원해 Rust 결과와 비교하고, fixture가 없으면 오라클을 직접 실행합니다.
+build once를 적용한 run에서 source qualification의 1878.6초 중 1871초가 오라클 테스트 두 개였습니다. 이 둘을 줄이려고 Python 오라클의 결과를 fixture로 기록하는 workflow를 미리 만들어 두었습니다. 오라클 커밋과 driver, 테스트, CI 이미지 정의, Python 환경 고정 스크립트의 hash를 key로 쓰고, 기록은 main에서만 두 번 실행해 byte 단위로 같을 때만 저장합니다. PR job은 저장된 fixture를 복원해 Rust 결과와 비교하고, fixture가 없으면 오라클을 직접 실행합니다.
 
 시간이 줄지 않아 로그를 확인했습니다. 비교한 run마다 `Cache not found for input keys`가 찍혀 있었습니다. 저장소의 Actions cache는 0개였고, 기록 workflow는 추가된 뒤 한 번도 실행되지 않았습니다. 하루 한 번 schedule로 실행되도록 설정했는데 그 실행이 없었고, 원인은 아직 확인하지 못했습니다. **결과적으로 모든 PR이 오라클을 직접 실행해 약 30분을 썼습니다.**
 
-기록 workflow를 main에서 직접 실행했지만 두 번 모두 330분 제한에 걸려 끝났고, 첫 실행은 로그도 남지 않았습니다. 두 번째 실행을 runner 안에서 지켜보니 두 차례 기록은 각각 약 30분 만에 끝났습니다. 그 뒤 runner 프로세스가 CPU 1개와 메모리 4.9GB를 쓰면서 로그를 더 쓰지 않았습니다. 기록 뒤에 남은 출력은 두 결과를 비교하는 `diff -r` 하나뿐이고, fixture는 한 줄짜리 JSON이라 조금만 달라도 수 MB짜리 한 줄이 출력됩니다. 그래서 비교 출력을 차이 위치와 주변 내용으로 제한했습니다. 다음 실행에서 runner는 멈추지 않았고, 두 기록은 크기가 byte 단위까지 같은데 내용이 달랐습니다. 차이를 파일 단위로 짝지어 보니, 첫 차이는 이벤트 hash chain의 첫 항목이 가리키는 이전 hash 값이었습니다. 시각과 원본 데이터 필드는 같았습니다. hash chain의 시작 값은 기록 디렉터리의 파일시스템 식별자(device와 inode)를 담은 첫 기록의 hash였습니다. 새로 만든 디렉터리는 inode가 매번 다르므로, **두 번 기록해서 byte 단위로 같기를 요구한 제 검증 조건이 처음부터 만족될 수 없었습니다.** 오라클이 의도해서 넣은 값이라 고칠 대상도 아니었습니다.
+기록 workflow를 main에서 직접 실행했지만 두 번 모두 330분 제한에 걸려 끝났고, 첫 실행은 로그도 남지 않았습니다. 두 번째 실행을 runner 안에서 지켜보니 두 차례 기록은 각각 약 30분 만에 끝났습니다. 그 뒤 runner 프로세스가 CPU 1개와 메모리 4.9GB를 쓰면서 로그를 더 쓰지 않았습니다. 기록 뒤에 남은 출력은 두 결과를 비교하는 `diff -r` 하나뿐이고, fixture는 한 줄짜리 JSON이라 조금만 달라도 수 MB짜리 한 줄이 출력됩니다.
+
+그래서 비교 출력을 차이 위치와 주변 내용으로 제한했습니다. 다음 실행에서 runner는 멈추지 않았고, 두 기록은 크기가 byte 단위까지 같은데 내용이 달랐습니다.
+
+차이를 파일 단위로 짝지어 보니, 첫 차이는 이벤트 hash chain의 첫 항목이 가리키는 이전 hash 값이었습니다. 시각과 원본 데이터 필드는 같았습니다. hash chain의 시작 값은 기록 디렉터리의 파일시스템 식별자(device와 inode)를 담은 첫 기록의 hash였습니다. 새로 만든 디렉터리는 inode가 매번 다르므로, **두 번 기록해서 byte 단위로 같기를 요구한 제 검증 조건이 처음부터 만족될 수 없었습니다.** 오라클이 의도해서 넣은 값이라 고칠 대상도 아니었습니다.
 
 그래서 조건을 바꿨습니다. 한 번 기록한 뒤 같은 job에서 그 fixture로 비교 모드를 실행하고, 통과할 때만 저장합니다. 이 방식으로 처음 fixture가 저장됐고, 같은 job에서 두 모드의 시간을 바로 비교할 수 있었습니다.
 
@@ -246,53 +256,38 @@ source qualification의 1878.6초 중 1871초가 오라클 테스트 두 개였�
 | lockstep 테스트 | 579.9초 | 20.0초 |
 | replay CLI 테스트 | 1181.0초 | 53.0초 |
 
-fixture는 원본 약 885MB이고 cache에는 압축되어 64MB로 저장됩니다. fixture 저장 뒤 첫 PR run에서는 cache 복원이 22초, source qualification 단계가 2.8분이었습니다. 이전 PR들의 같은 단계는 29.4~32.7분이었습니다(1건).
+fixture는 원본 약 885MB이고 cache에는 압축되어 64MB로 저장됩니다. fixture 저장 뒤 PR run 2건에서 cache 복원은 22초와 24초, source qualification 단계는 2.8분과 2.6분이었습니다. 이전 PR들의 같은 단계는 29.4~32.7분이었습니다.
+
+run 단위 결과는 세 값으로 나눠 봐야 합니다. runner 점유는 full 풀 job의 실행 시간을 모두 더한 값이고, 가장 긴 경로는 tier를 모두 실행하는 job 하나의 시간입니다. run 전체 시간에는 슬롯 대기가 더해집니다.
+
+| 지표 | 첫 run | 두 번째 run |
+| --- | --- | --- |
+| runner 점유 | 54.7분 | 54.8분 |
+| 가장 긴 경로(tier job) | 40.8분 | 41.4분 |
+| run 전체 | 50.3분 | 42.1분 |
+
+첫 run에서는 짧은 job 두 개가 슬롯 2개를 먼저 잡아서 tier job이 9.1분 늦게 시작했습니다. 두 번째 run에서는 tier job이 바로 시작해 run 전체가 그 job보다 0.7분 길었습니다. **같은 저장소의 job이 슬롯 2개를 나눠 쓰는 동안에는 tier job이 먼저 슬롯을 잡는지에 따라 run 전체가 8분 넘게 달라집니다.**
+
+{% include diagrams/static/ci-cd/arc-rust-gate-stages.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/ci-cd/arc-rust-gate-stages--c41aa42dd555b03a.png" %}
 
 ### 8.4. 클러스터 내부 registry
 
-CI 이미지를 미리 GHCR에 올려 두는 방법은 처음에 이득이 없었습니다. 이미지가 1.65GB이고 회선 다운로드가 약 8MB/s라 pull에 60~90초가 걸려, 로컬 빌드 92초와 차이가 거의 없었습니다. 병목이 WAN이라 registry를 클러스터 안에 두기로 했고, 메모리를 적게 쓰면서 push와 pull-through mirror를 함께 지원하는 zot을 골랐습니다. 배포 직후 메모리 사용량은 46Mi였습니다. zot 설정과 측정은 [zot으로 HomeLab CI registry 구성하기]({% post_url 2026-10-20-zot-registry-for-homelab-ci %})에 따로 정리했습니다.
+CI 이미지를 미리 GHCR에 올려 두는 방법은 처음에 이득이 없었습니다. 이미지가 1.65GB이고 회선 다운로드가 약 8MB/s라 pull에 60~90초가 걸려, 로컬 빌드 92초와 차이가 거의 없었습니다. 병목이 WAN이라 registry를 클러스터 안에 두기로 했고, push와 Docker Hub pull-through mirror를 한 인스턴스에서 지원하는 zot을 골랐습니다. registry 설정, 신뢰 경계와 실패 방식별 측정은 [zot으로 HomeLab CI registry 구성하기]({% post_url 2026-10-20-zot-registry-for-homelab-ci %})에 정리했고, 여기에는 runner 쪽 변경과 CI에 준 효과만 남깁니다.
 
-| 설정 | 이유 |
-| --- | --- |
-| `ci-full`의 job Pod만 5000 포트로 접근 | light 풀과 다른 namespace는 닿지 않는다 |
-| Docker Hub `library/**`를 요청 시에만 mirror | 주기 동기화를 켜지 않아 필요한 이미지만 받는다 |
-| `http.compat: ["docker2s2"]` | digest로 고정한 base image가 같은 digest로 응답받는다 |
-| 저장소를 크기 제한이 있는 emptyDir 30Gi에 둠 | local-path PVC는 크기를 강제하지 않는다. 넘으면 cache만 초기화된다 |
-| `ci/**`에는 새 tag 추가만 허용하고 덮어쓰기와 삭제는 막음 | 한 번 올린 tag가 바뀌지 않는다 |
-
-**tag가 불변이어도 tag를 신뢰할 수는 없습니다.** registry에 닿는 job은 PR job과 그 job이 실행하는 서드파티 build script까지 포함하므로, 예측 가능한 tag를 먼저 만들어 둘 수 있습니다. 그래서 CI 이미지는 main에서만 실행되는 workflow가 실행마다 고유한 tag로 push하고, 그 이미지의 digest를 GitHub Actions cache에 저장하도록 바꾸고 있습니다. PR job은 그 digest로만 pull합니다. main이 저장한 cache는 PR이 읽을 수 있지만 쓸 수 없다는 점이 이 방식의 근거입니다. CI에 넣기 전에 로컬에서 같은 버전의 zot과 Docker로 확인한 결과는 다음과 같습니다.
-
-- 빌드와 push는 96초, 빈 daemon에서 digest로 pull하는 데는 9.6초가 걸렸다. 두 daemon의 이미지 ID는 같았다.
-- 같은 tag로 다시 push하면 거부되고 digest를 기록하지 않았다.
-- digest가 없거나 형식이 틀리거나 registry가 내려가 있으면 0.3초 안에 로컬 빌드로 넘어갔다.
+- `ci-full`의 job Pod만 registry Pod의 5000 포트로 나갈 수 있다. 2절의 사설 대역 차단에서 하나뿐인 예외다.
+- runner의 rootless Docker daemon은 `--registry-mirror`로 zot을 먼저 쓰고, zot에 닿지 못하면 Docker Hub에서 직접 받는다.
+- CI 이미지는 main에서만 실행되는 workflow가 실행마다 고유한 tag로 push하고, 그 digest를 main 범위의 GitHub Actions cache에 저장한다. PR job은 그 digest로만 pull한다. registry에 닿는 PR job도 tag를 먼저 만들 수 있으므로 tag는 신뢰하지 않는다.
 
 main에 적용한 뒤 첫 PR run에서 이미지 단계는 job당 12~13초였습니다. digest 복원에 2~3초, pull에 10~11초가 걸렸습니다. 이전 66건의 중앙값 102초보다 약 89초 짧고, job 4개를 합치면 PR 하나당 약 6분입니다(1건).
 
-Docker Hub mirror는 이미 실제 job에서 쓰이고 있습니다. 비교할 때는 registry가 이미지를 처음 받는 cold 요청과 이미 가진 이미지를 내주는 warm 요청을 나눠야 했습니다. cold 요청에서는 registry가 Docker Hub에서 받는 시간이 BuildKit의 `FROM` 단계가 아니라 그 앞의 `load metadata` 단계로 옮겨 가기 때문입니다. 웹 저장소의 PR 이미지 빌드에서 `FROM` 단계만 보면 38.5초가 7.6초로 줄었지만, 두 단계를 합치면 40.5초와 41.4초로 같았습니다.
-
-| 측정(웹 저장소) | mirror 전 | mirror 후 |
-| --- | --- | --- |
-| Rust base image 338MB, cold | 40.5초 | 41.4초 |
-| 같은 image를 테스트 job에서 `docker run`, warm | 50.0초, 38.8초 | 7.2초, 8.5초 |
-| PostgreSQL image, 첫 요청 cold, 다음 요청 warm | 19.0초, 21.3초 | 16.2초, 5.5초 |
-
-Rust 저장소는 Docker Hub에서 42MB짜리 base image 하나만 받습니다. 그래서 이미지 빌드 단계는 94초로, 이전 66건의 중앙값 102초(90~126초) 범위 안이었습니다. **mirror의 효과는 큰 base image를 반복해서 받는 저장소에서 나오고, Rust 저장소는 CI 이미지 전체를 내부에서 받아야 줄어듭니다.**
-
-registry가 응답하지 않으면 Docker는 Docker Hub로 다시 시도합니다. 같은 버전의 Docker로 실패 방식마다 걸리는 시간을 쟀습니다.
-
-| mirror 실패 방식 | `docker pull` | BuildKit `FROM` |
-| --- | --- | --- |
-| 연결 거부 | 3.1초 | 3.5초 |
-| 이름 해석 실패 | 3.3초 | 3.4초 |
-| 응답 없이 패킷이 버려짐 | 3분 34초 | 2분 35초 |
-
-**잘못된 network policy는 마지막 경우를 만들기 때문에, 정책을 바꾼 뒤에는 첫 CI run의 pull 시간을 확인합니다.** 실제로 registry namespace의 default-deny 정책을 `ingress: []`, `egress: []`로 썼다가 Cilium이 이 정책을 `Valid: False`로 거부한 것을 배포 후에 발견했습니다. registry Pod에는 ingress와 egress를 각각 선택하는 유효한 정책이 따로 있어서, Cilium 규칙상 두 방향 모두 이미 허용 목록 방식으로 동작하고 있었습니다. 거부된 정책은 아무것도 허용하지 않는 규칙 `[{}]`로 고쳤습니다.
+Docker Hub mirror는 Rust 저장소에는 효과가 없었습니다. Docker Hub에서 받는 base image가 42MB 하나뿐이라, mirror 적용 뒤 이미지 빌드 단계는 94초로 이전 66건의 중앙값 102초(90~126초) 범위 안이었습니다. 웹 저장소는 338MB base image를 테스트 job마다 받기 때문에, warm mirror에서 `docker run`이 50.0초, 38.8초에서 7.2초, 8.5초가 됐습니다. 처음 받는 cold 요청은 이전과 같은 약 41초였습니다.
 
 ### 8.5. merge된 PR의 run이 슬롯을 계속 점유
 
 슬롯 대기를 보다가 이미 merge된 PR의 gate run이 슬롯 두 개를 모두 쓰고 있는 것을 발견했습니다. workflow의 concurrency group은 같은 브랜치에 새 push가 올 때만 이전 run을 취소하고, PR이 merge되거나 닫힐 때는 아무것도 취소하지 않습니다.
 
-최근 닫힌 PR 30건 중 6건이 merge 후에도 run을 계속 실행했고, runner를 실제로 받은 job만 세면 합계 590.6분이었습니다. 한 건은 merge 후 124분 동안 실행됐습니다. PR이 닫히면 그 브랜치의 끝나지 않은 gate run을 취소하는 workflow를 light 풀에 추가하고 있습니다. 이 workflow는 checkout 없이 REST API만 호출하고 `actions: write` 권한만 씁니다.
+최근 닫힌 PR 30건 중 6건이 merge 후에도 run을 계속 실행했고, runner를 실제로 받은 job만 세면 합계 590.6분이었습니다. 한 건은 merge 후 124분 동안 실행됐습니다. PR이 닫히면 그 브랜치의 끝나지 않은 gate run을 취소하는 workflow를 light 풀에 추가했고, 이후 닫힌 PR의 남은 gate run이 취소되는 것을 확인했습니다. 이 workflow는 checkout 없이 REST API만 호출하고 `actions: write` 권한만 씁니다.
 
 ### 8.6. 처음 세운 예상과 지금 예상
 
@@ -300,9 +295,11 @@ registry가 응답하지 않으면 Docker는 Docker Hub로 다시 시도합니�
 
 | 대상 | 지금까지 측정 | 다음 단계 적용 후(**예상**) |
 | --- | --- | --- |
-| 웹 저장소 main push | 9.3~10.5분(2건) | warm mirror에서 base image pull이 약 40초에서 7~9초로 줄어든 만큼 짧아진다 |
-| Rust 저장소 runner 점유 | build once 후 94.6~95.6분(2건), 내부 CI 이미지 적용 후 82.7분(1건), 오라클 fixture까지 적용 후 54.7분(1건) | tier를 병렬로 나눠도 점유는 비슷하다 |
-| Rust 저장소 가장 긴 경로 | build once 후 73.6~75.7분(2건), 오라클 fixture까지 적용 후 40.8분(1건) | tier 병렬화 후 약 30분(archive 빌드 20분과 가장 긴 tier 10분) |
+| 웹 저장소 main push | 9.3~10.5분(2건), mirror 적용 후는 아직 측정하지 않음 | warm mirror에서 base image가 든 `docker run`이 약 40초에서 7~9초로 줄어든 만큼 짧아진다. cold 빌드는 줄지 않았다 |
+| Rust 저장소 runner 점유 | build once 후 94.6~95.6분(2건), 내부 CI 이미지 적용 후 82.7분(1건), 오라클 fixture까지 적용 후 54.7~54.8분(2건) | tier를 병렬로 나눠도 점유는 비슷하다 |
+| Rust 저장소 가장 긴 경로 | build once 후 73.6~75.7분(2건), 오라클 fixture까지 적용 후 40.8~41.4분(2건) | tier 병렬화 후 약 30분(archive 빌드 20분과 가장 긴 tier 10분) |
+
+내부 CI 이미지를 적용한 run의 82.7분은 1건이고, build once 직후보다 12분 이상 짧습니다. 이미지 단계로 줄어든 시간은 PR 하나당 약 6분이라 나머지 차이의 원인은 확인하지 못했습니다. 그래서 이 차이 전체를 내부 이미지의 효과로 보지 않습니다.
 
 ---
 

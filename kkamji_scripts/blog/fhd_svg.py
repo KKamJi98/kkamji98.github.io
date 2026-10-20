@@ -3051,6 +3051,145 @@ def arc_layout(font, figure):
     return layout
 
 
+def authored_layout(font, figure, title, groups, nodes, texts, routes):
+    """Explicit coordinates per id: groups/nodes (x, y, w, h), texts (x, y, w)."""
+    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
+    layout = Layout(font, 30, 24, 24, 28, {
+        'bold_width_budget': 1.12, 'regular_width_budget': 1.08,
+        'no_connector_labels': True,
+    })
+    layout.draw(named[title], 60, 50, 1800)
+    for key, (x, y, width, height) in groups.items():
+        layout.groups.append({'source': named[key].key, 'classes': [],
+                              'x': x, 'y': y, 'width': width, 'height': height})
+    for key, (x, y, width, height) in nodes.items():
+        layout.draw(named[key], x, y, width)
+        layout.boxes[-1]['height'] = height
+    for key, (x, y, width) in texts.items():
+        layout.draw(named[key], x, y, width)
+    for key, points in routes.items():
+        edge = named[key]
+        layout.connectors.append({'source': edge.key,
+            'from': [named[edge.attrs['data-from']].key],
+            'to': [named[edge.attrs['data-to']].key],
+            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points})
+    return layout
+
+
+def zot_mirror_layout(font, figure):
+    """Three namespaces left to right, fail-open path below, failure costs last."""
+    lanes = {'zm-runner-ns': 40, 'zm-cache-ns': 700, 'zm-internet': 1360}
+    nodes = {'zm-dockerd': 70, 'zm-zot': 730, 'zm-hub': 1390}
+    texts = {}
+    for lane, x in lanes.items():
+        texts[lane + '-title'] = (x + 30, 165, 420)
+    for key, x in [('zm-runner-policy', 70), ('zm-cache-policy', 730), ('zm-internet-policy', 1390)]:
+        texts[key] = (x, 220, 420)
+    texts.update({
+        'zm-pull-note': (545, 327, 150), 'zm-sync-note': (1205, 327, 150),
+        'zm-fallback-note': (560, 630, 1000), 'zm-failure-title': (60, 720, 1800),
+        'zm-warm': (60, 965, 1800),
+    })
+    return authored_layout(font, figure, 'sd-zot-mirror-title',
+        {key: (x, 140, 480, 380) for key, x in lanes.items()},
+        {**{key: (x, 295, 420, 175) for key, x in nodes.items()},
+         'zm-refused': (60, 770, 573, 145), 'zm-dns': (673, 770, 573, 145),
+         'zm-drop': (1286, 770, 573, 145)},
+        texts,
+        {'zm-pull': [[502, 382], [718, 382]], 'zm-sync': [[1162, 382], [1378, 382]],
+         'zm-fallback': [[280, 482], [280, 610], [1600, 610], [1600, 482]]})
+
+
+def zot_digest_layout(font, figure):
+    """GitHub steps stacked on the left; the zot objects they touch on the right."""
+    left = {'zd-main': 225, 'zd-cache': 475, 'zd-pr': 725}
+    right = {'zd-tag': 225, 'zd-squat': 475, 'zd-digest': 725}
+    return authored_layout(font, figure, 'sd-zot-digest-title',
+        {'zd-github': (40, 140, 680, 790), 'zd-zot': (1200, 140, 680, 790)},
+        {**{key: (75, y, 610, 170) for key, y in left.items()},
+         **{key: (1235, y, 610, 170) for key, y in right.items()}},
+        {'zd-github-title': (75, 165, 610), 'zd-zot-title': (1235, 165, 610),
+         'zd-push-note': (760, 255, 440), 'zd-save-note': (400, 417, 280),
+         'zd-restore-note': (400, 667, 280), 'zd-pull-note': (760, 755, 440),
+         'zd-fallback': (60, 955, 1800), 'zd-result': (60, 1000, 1800)},
+        {'zd-push': [[697, 310], [1223, 310]], 'zd-save': [[380, 407], [380, 463]],
+         'zd-restore': [[380, 657], [380, 713]], 'zd-pull': [[697, 810], [1223, 810]]})
+
+
+def arc_slots_layout(font, figure):
+    """Two equal workers above; the quota rejection loop below."""
+    return authored_layout(font, figure, 'sd-arc-slots-title',
+        {'as-w1': (40, 150, 900, 340), 'as-w2': (980, 150, 900, 340)},
+        {'as-w1-web': (75, 240, 400, 205), 'as-w1-rust': (505, 240, 400, 205),
+         'as-w2-web': (1015, 240, 400, 205), 'as-w2-rust': (1445, 240, 400, 205),
+         'as-controller': (60, 630, 480, 175), 'as-quota': (660, 630, 600, 175),
+         'as-reject': (1380, 630, 480, 175)},
+        {'as-w1-title': (75, 175, 830), 'as-w2-title': (1015, 175, 830),
+         'as-spread': (60, 535, 1800), 'as-retry-note': (330, 920, 1500)},
+        {'as-create': [[552, 718], [648, 718]], 'as-deny': [[1272, 718], [1368, 718]],
+         'as-retry': [[1620, 817], [1620, 900], [300, 900], [300, 817]]})
+
+
+def arc_gate_layout(font, figure):
+    """Three equal comparison lanes; arrows mark the change between stages."""
+    lanes = {'ag-before': 40, 'ag-once': 660, 'ag-fixture': 1280}
+    rows = {'ag-before': ('ag-before-compile', 'ag-before-oracle'),
+            'ag-once': ('ag-once-archive', 'ag-once-serial'),
+            'ag-fixture': ('ag-fixture-archive', 'ag-fixture-compare')}
+    nodes, texts = {}, {'ag-next': (60, 890, 1800)}
+    for lane, x in lanes.items():
+        nodes[rows[lane][0]] = (x + 35, 245, 490, 175)
+        nodes[rows[lane][1]] = (x + 35, 470, 490, 205)
+        texts[lane + '-title'] = (x + 35, 175, 490)
+        texts[lane + '-slot'] = (x + 35, 725, 490)
+        texts[lane + '-path'] = (x + 35, 780, 490)
+    return authored_layout(font, figure, 'sd-arc-gate-title',
+        {key: (x, 150, 560, 690) for key, x in lanes.items()}, nodes, texts,
+        {'ag-merge': [[577, 332], [683, 332]], 'ag-record': [[1197, 572], [1303, 572]]})
+
+
+def databricks_query_layout(font, figure):
+    """Numbered steps in the Databricks account; storage in the customer account."""
+    return authored_layout(font, figure, 'sd-dbx-query-title',
+        {'dq-databricks': (40, 140, 1260, 730), 'dq-aws': (1360, 140, 520, 730)},
+        {'dq-control': (75, 300, 350, 175), 'dq-warehouse': (495, 300, 350, 175),
+         'dq-uc': (915, 300, 350, 175), 'dq-credential': (1395, 300, 450, 175),
+         'dq-system': (75, 640, 350, 175), 'dq-s3': (1395, 640, 450, 175)},
+        {'dq-databricks-title': (75, 165, 1190), 'dq-aws-title': (1395, 165, 450),
+         'dq-databricks-note': (75, 220, 1190), 'dq-aws-note': (1395, 220, 450),
+         'dq-read-note': (930, 680, 400), 'dq-classic': (60, 920, 1800)},
+        {'dq-run': [[437, 388], [483, 388]], 'dq-check': [[857, 388], [903, 388]],
+         'dq-assume': [[1277, 388], [1383, 388]],
+         'dq-access': [[1620, 487], [1620, 628]],
+         'dq-read': [[720, 487], [720, 728], [1383, 728]],
+         'dq-record': [[560, 487], [560, 728], [437, 728]]})
+
+
+def databricks_grant_layout(font, figure):
+    """Workspaces above one metastore; binding ties catalog main to prod only."""
+    return authored_layout(font, figure, 'sd-dbx-grant-title',
+        {'dg-metastore': (40, 430, 1840, 405)},
+        {'dg-dev': (80, 150, 560, 175), 'dg-prod': (1280, 150, 560, 175),
+         'dg-catalog': (75, 600, 520, 175), 'dg-schema': (700, 600, 520, 175),
+         'dg-table': (1325, 600, 520, 175)},
+        {'dg-metastore-title': (75, 455, 700), 'dg-metastore-note': (75, 510, 700),
+         'dg-binding-note': (700, 340, 500), 'dg-default': (60, 885, 1800)},
+        {'dg-dev-link': [[360, 337], [360, 418]], 'dg-prod-link': [[1680, 337], [1680, 418]],
+         'dg-binding': [[560, 588], [560, 380], [1460, 380], [1460, 337]],
+         'dg-contains-schema': [[607, 688], [688, 688]],
+         'dg-contains-table': [[1232, 688], [1313, 688]]})
+
+
+AUTHORED_LAYOUTS = {
+    "diagrams/static/registry/zot-mirror-path.html": zot_mirror_layout,
+    "diagrams/static/registry/zot-digest-trust.html": zot_digest_layout,
+    "diagrams/static/ci-cd/arc-runner-slots.html": arc_slots_layout,
+    "diagrams/static/ci-cd/arc-rust-gate-stages.html": arc_gate_layout,
+    "diagrams/static/data/databricks/databricks-query-path.html": databricks_query_layout,
+    "diagrams/static/data/databricks/databricks-grant-binding.html": databricks_grant_layout,
+}
+
+
 def author(root, check=False, report=None):
     font = Font(root / FONT)
     catalog = json.loads((root / "docs/diagram-catalog.json").read_text())
@@ -3152,6 +3291,8 @@ def author(root, check=False, report=None):
             selected = security_layout(font, figure)
         elif record["include"] == "diagrams/static/ci-cd/arc-overview.html":
             selected = arc_layout(font, figure)
+        elif record["include"] in AUTHORED_LAYOUTS:
+            selected = AUTHORED_LAYOUTS[record["include"]](font, figure)
         elif record["include"] == "diagrams/static/ai/jev-decision-pipeline.html":
             selected = jev_layout(font, figure)
         elif record["include"] == "diagrams/static/ai/jev-system-one-banner.html":

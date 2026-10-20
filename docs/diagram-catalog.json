@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-20",
   "format": "static-html",
   "summary": {
-    "components": 392,
-    "used_components": 383,
-    "post_references": 392,
-    "posts": 204,
+    "components": 398,
+    "used_components": 389,
+    "post_references": 398,
+    "posts": 207,
     "unconverted_diagram_images": 0
   },
   "diagrams": [
@@ -5279,6 +5279,78 @@
       "sha256": "09a8b83c47faaadd440bb54181a5fc6024abc1a3d6a0cd7a27ab58c1a5af0ca5",
       "posts": [
         "_posts/2026/10/2026-10-15-actions-runner-controller-overview.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/registry/zot-mirror-path.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/registry/zot-mirror-path.svg"
+      ],
+      "sha256": "1aa528b25e2ad3e9bca6c1db2cbfc271fa1ac5788cf5adcf55c1cf33308b9f02",
+      "posts": [
+        "_posts/2026/10/2026-10-20-zot-registry-for-homelab-ci.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/registry/zot-digest-trust.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/registry/zot-digest-trust.svg"
+      ],
+      "sha256": "20db0217691e8cd0ac0e8752cec27a61506dcce4edd962e74ef8a7ac05b2a5ca",
+      "posts": [
+        "_posts/2026/10/2026-10-20-zot-registry-for-homelab-ci.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/ci-cd/arc-runner-slots.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/ci-cd/arc-runner-slots.svg"
+      ],
+      "sha256": "4281ccbe227c86e1fff03f3c23a288700b2026fdb2074d605f283ef66bc2534c",
+      "posts": [
+        "_posts/2026/10/2026-10-18-github-actions-self-hosted-runner-on-kubernetes.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/ci-cd/arc-rust-gate-stages.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/ci-cd/arc-rust-gate-stages.svg"
+      ],
+      "sha256": "1edae29b95279451958348aa92cbd8ea0d7d72afe281a5ad0a5b3b80caac82d8",
+      "posts": [
+        "_posts/2026/10/2026-10-18-github-actions-self-hosted-runner-on-kubernetes.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/data/databricks/databricks-query-path.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/data/databricks/databricks-query-path.svg"
+      ],
+      "sha256": "6f83b45384a79315fcc1e017753127ff021a7f6d4f8344242056d99bc3e0ba48",
+      "posts": [
+        "_posts/2026/10/2026-10-19-databricks-overview.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/data/databricks/databricks-grant-binding.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/data/databricks/databricks-grant-binding.svg"
+      ],
+      "sha256": "87ddb2b743f0acf10f8e9de60d20015730a2561bbc862901ae1801f17885d602",
+      "posts": [
+        "_posts/2026/10/2026-10-19-databricks-overview.md"
       ],
       "reference_count": 1
     }

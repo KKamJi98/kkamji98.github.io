@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/registry/zot-mirror-path.html",
+  "source_sha256": "1aa528b25e2ad3e9bca6c1db2cbfc271fa1ac5788cf5adcf55c1cf33308b9f02",
+  "svg_sha256": "665681b49d1d6b3cce44c4a3891ef5de93f8846600cf46a27411bfa749303b49",
+  "png_sha256": "7d28ced7fa34c17758df8550afd1cbb012dbe80aa397cd3e85f2f7bc47ed13de",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Three namespace lanes share top, bottom and card axis; the image request and cold-only sync arrows run left to right, and the fail-open path leaves the runner card and enters the Docker Hub card from below without crossing text. Failure cards have equal size; only the packet-drop case uses the warning colour. No clipped text, overlaps or border contacts. Labels, values and directions match the source and the post sections 3, 4, 6 and 7. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

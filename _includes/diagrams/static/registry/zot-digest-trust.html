@@ -1,0 +1,75 @@
+<figure class="sd sd--flow sd--fhd" id="sd-zot-digest" aria-labelledby="sd-zot-digest-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-zot-digest-title">PR job은 tag가 아니라 main이 기록한 digest로만 CI 이미지를 받습니다</figcaption><div class="sd-semantic-source">
+  <div class="sd-grid">
+    <section class="sd-lane" id="zd-github">
+      <div class="sd-lane-title" id="zd-github-title">GitHub Actions</div>
+      <div class="sd-node" id="zd-main"><strong class="sd-label">main: ci-image.yml</strong><span class="sd-detail">CI 이미지를 직접 빌드<br>실행마다 고유한 tag로 push</span></div>
+      <div class="sd-node sd-node--accent" id="zd-cache"><strong class="sd-label">Actions cache, main 범위</strong><span class="sd-detail">main이 저장한 digest<br>PR은 읽기만 가능</span></div>
+      <div class="sd-node" id="zd-pr"><strong class="sd-label">PR job</strong><span class="sd-detail">cache에서 digest 복원<br>이미지@sha256 형식으로만 pull</span></div>
+    </section>
+    <section class="sd-lane" id="zd-zot">
+      <div class="sd-lane-title" id="zd-zot-title">zot ci/**, 익명 read와 create</div>
+      <div class="sd-node" id="zd-tag"><strong class="sd-label">ci/이미지:실행별 tag</strong><span class="sd-detail">같은 tag로 다시 push하면 거부<br>update와 delete 권한 없음</span></div>
+      <div class="sd-node sd-node--warning" id="zd-squat"><strong class="sd-label">PR job도 push할 수 있음</strong><span class="sd-detail">예측한 tag를 먼저 만들면 main이 덮어쓸 수 없음<br>그래서 tag는 신뢰하지 않음</span></div>
+      <div class="sd-node" id="zd-digest"><strong class="sd-label">ci/이미지@sha256</strong><span class="sd-detail">digest가 같으면 내용도 같음<br>Docker가 manifest와 layer를 검증</span></div>
+    </section>
+  </div>
+  <div class="sd-arrow" id="zd-push" data-from="zd-main" data-to="zd-tag" aria-label="빌드한 이미지를 고유 tag로 push"></div>
+  <p class="sd-note" id="zd-push-note">1. 빌드 후 push</p>
+  <div class="sd-arrow" id="zd-save" data-from="zd-main" data-to="zd-cache" aria-label="push한 이미지의 digest를 main 범위 cache에 저장"></div>
+  <p class="sd-note" id="zd-save-note">2. digest 저장</p>
+  <div class="sd-arrow" id="zd-restore" data-from="zd-cache" data-to="zd-pr" aria-label="PR job이 main 범위 cache에서 digest를 읽음"></div>
+  <p class="sd-note" id="zd-restore-note">3. digest 복원</p>
+  <div class="sd-arrow" id="zd-pull" data-from="zd-pr" data-to="zd-digest" aria-label="digest로 이미지를 pull"></div>
+  <p class="sd-note" id="zd-pull-note">4. digest로 pull</p>
+  <p class="sd-note" id="zd-fallback">digest가 없거나 pull이 실패하면 약 0.3초 안에 로컬 빌드로 전환</p>
+  <p class="sd-note" id="zd-result">첫 PR run의 이미지 단계: job당 102초(이전 66건 중앙값)에서 12~13초</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="20db0217691e8cd0ac0e8752cec27a61506dcce4edd962e74ef8a7ac05b2a5ca">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="140.000" width="680.000" height="790.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="1200.000" y="140.000" width="680.000" height="790.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="75.000" y="225.000" width="610.000" height="170.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="75.000" y="475.000" width="610.000" height="170.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="75.000" y="725.000" width="610.000" height="170.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="1235.000" y="225.000" width="610.000" height="170.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1235.000" y="475.000" width="610.000" height="170.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.3" x="1235.000" y="725.000" width="610.000" height="170.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1.0.1" data-to="root.0.1.1.1" d="M 697.000 310.000 L 1223.000 310.000" fill="none" stroke="#475569" stroke-width="3"><title>빌드한 이미지를 고유 tag로 push</title></path>
+<polygon data-arrowhead="root.0.2" points="1223.000,310.000 1213.000,316.000 1213.000,304.000" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.1.0.1" data-to="root.0.1.0.2" d="M 380.000 407.000 L 380.000 463.000" fill="none" stroke="#475569" stroke-width="3"><title>push한 이미지의 digest를 main 범위 cache에 저장</title></path>
+<polygon data-arrowhead="root.0.4" points="380.000,463.000 374.000,453.000 386.000,453.000" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.1.0.2" data-to="root.0.1.0.3" d="M 380.000 657.000 L 380.000 713.000" fill="none" stroke="#475569" stroke-width="3"><title>PR job이 main 범위 cache에서 digest를 읽음</title></path>
+<polygon data-arrowhead="root.0.6" points="380.000,713.000 374.000,703.000 386.000,703.000" fill="#475569"/>
+<path data-edge="root.0.8" data-from="root.0.1.0.3" data-to="root.0.1.1.3" d="M 697.000 810.000 L 1223.000 810.000" fill="none" stroke="#475569" stroke-width="3"><title>digest로 이미지를 pull</title></path>
+<polygon data-arrowhead="root.0.8" points="1223.000,810.000 1213.000,816.000 1213.000,804.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">PR job은 tag가 아니라 main이 기록한 digest로만 CI 이미지를 받습니다</text>
+<text data-source="root.0.1.0.1" x="103.000" y="283.000" font-size="30" font-weight="700" fill="#111827">main: ci-image.yml</text>
+<text data-source="root.0.1.0.1" x="103.000" y="328.000" font-size="24" font-weight="400" fill="#111827">CI 이미지를 직접 빌드</text>
+<text data-source="root.0.1.0.1" x="103.000" y="360.400" font-size="24" font-weight="400" fill="#111827">실행마다 고유한 tag로 push</text>
+<text data-source="root.0.1.0.2" x="103.000" y="533.000" font-size="30" font-weight="700" fill="#111827">Actions cache, main 범위</text>
+<text data-source="root.0.1.0.2" x="103.000" y="578.000" font-size="24" font-weight="400" fill="#111827">main이 저장한 digest</text>
+<text data-source="root.0.1.0.2" x="103.000" y="610.400" font-size="24" font-weight="400" fill="#111827">PR은 읽기만 가능</text>
+<text data-source="root.0.1.0.3" x="103.000" y="783.000" font-size="30" font-weight="700" fill="#111827">PR job</text>
+<text data-source="root.0.1.0.3" x="103.000" y="828.000" font-size="24" font-weight="400" fill="#111827">cache에서 digest 복원</text>
+<text data-source="root.0.1.0.3" x="103.000" y="860.400" font-size="24" font-weight="400" fill="#111827">이미지@sha256 형식으로만 pull</text>
+<text data-source="root.0.1.1.1" x="1263.000" y="283.000" font-size="30" font-weight="700" fill="#111827">ci/이미지:실행별 tag</text>
+<text data-source="root.0.1.1.1" x="1263.000" y="328.000" font-size="24" font-weight="400" fill="#111827">같은 tag로 다시 push하면 거부</text>
+<text data-source="root.0.1.1.1" x="1263.000" y="360.400" font-size="24" font-weight="400" fill="#111827">update와 delete 권한 없음</text>
+<text data-source="root.0.1.1.2" x="1263.000" y="533.000" font-size="30" font-weight="700" fill="#111827">PR job도 push할 수 있음</text>
+<text data-source="root.0.1.1.2" x="1263.000" y="578.000" font-size="24" font-weight="400" fill="#111827">예측한 tag를 먼저 만들면 main이 덮어쓸 수 없음</text>
+<text data-source="root.0.1.1.2" x="1263.000" y="610.400" font-size="24" font-weight="400" fill="#111827">그래서 tag는 신뢰하지 않음</text>
+<text data-source="root.0.1.1.3" x="1263.000" y="783.000" font-size="30" font-weight="700" fill="#111827">ci/이미지@sha256</text>
+<text data-source="root.0.1.1.3" x="1263.000" y="828.000" font-size="24" font-weight="400" fill="#111827">digest가 같으면 내용도 같음</text>
+<text data-source="root.0.1.1.3" x="1263.000" y="860.400" font-size="24" font-weight="400" fill="#111827">Docker가 manifest와 layer를 검증</text>
+<text data-source="root.0.1.0.0" x="75.000" y="195.000" font-size="30" font-weight="700" fill="#111827">GitHub Actions</text>
+<text data-source="root.0.1.1.0" x="1235.000" y="195.000" font-size="30" font-weight="700" fill="#111827">zot ci/**, 익명 read와 create</text>
+<text data-source="root.0.3" x="760.000" y="279.000" font-size="24" font-weight="400" fill="#111827">1. 빌드 후 push</text>
+<text data-source="root.0.5" x="400.000" y="441.000" font-size="24" font-weight="400" fill="#111827">2. digest 저장</text>
+<text data-source="root.0.7" x="400.000" y="691.000" font-size="24" font-weight="400" fill="#111827">3. digest 복원</text>
+<text data-source="root.0.9" x="760.000" y="779.000" font-size="24" font-weight="400" fill="#111827">4. digest로 pull</text>
+<text data-source="root.0.10" x="60.000" y="979.000" font-size="24" font-weight="400" fill="#111827">digest가 없거나 pull이 실패하면 약 0.3초 안에 로컬 빌드로 전환</text>
+<text data-source="root.0.11" x="60.000" y="1024.000" font-size="24" font-weight="400" fill="#111827">첫 PR run의 이미지 단계: job당 102초(이전 66건 중앙값)에서 12~13초</text>
+</svg>
+</figure>

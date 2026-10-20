@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/ci-cd/arc-runner-slots.html",
+  "source_sha256": "4281ccbe227c86e1fff03f3c23a288700b2026fdb2074d605f283ef66bc2534c",
+  "svg_sha256": "416b15fd9144668f5446b84717d5bf5078a256f6659aa4f7b6183d8178f192a6",
+  "png_sha256": "2441da8fcdabde3cd594cdd513dd9df7b3b47a69beddb7c1308b864ce72bb17d",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Two equal worker lanes each hold one web and one Rust runner card with matching sizes; Rust cards share the accent colour. The lower path controller to quota to rejection and the retry loop back to the controller are unambiguous. No clipped text, overlaps or border contacts. Budgets, quota values, anti-affinity and the 30 second retry and 10 minute recreation match the post section 6. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

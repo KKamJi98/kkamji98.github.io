@@ -1,6 +1,7 @@
 ---
 title: Databricks란 무엇인가 - SQL 한 줄로 따라가는 계정, 컴퓨트, 권한 구조 [Databricks 1]
 date: 2026-10-19 00:30:00 +0900
+last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji
 categories: [Data, Databricks]
 tags: [databricks, lakehouse, unity-catalog, delta-lake, photon, sql-warehouse, aws, data-platform]     # TAG names should always be lowercase
@@ -14,7 +15,7 @@ Databricks 화면에서 `SELECT * FROM main.sales.orders LIMIT 10`을 실행하�
 > **TL;DR**  
 >
 > - Databricks는 고객 클라우드 스토리지의 데이터를 Unity Catalog라는 하나의 거버넌스 아래에서 SQL, ETL, ML로 처리하는 레이크하우스 플랫폼이다.  
-> - 관리 화면과 API(control plane)는 Databricks 계정에 있다. 쿼리를 실행하는 compute는 serverless면 Databricks 계정, classic이면 고객 VPC에서 돈다.  
+> - 관리 화면과 API(control plane)는 Databricks 계정에 있다. 쿼리를 실행하는 compute는 serverless면 Databricks 계정, classic compute나 pro, classic SQL warehouse면 고객 VPC에서 돈다.  
 > - 사용자의 데이터 권한은 IAM이 아니라 Unity Catalog GRANT가 결정한다. S3는 storage credential(IAM role)과 external location으로만 연결하고, 비용과 감사 기록은 system tables에서 SQL로 확인한다.  
 {: .prompt-info}
 
@@ -58,6 +59,9 @@ Databricks는 관리 범위를 세 단계로 나눕니다.
 
 `main.sales.orders`라는 이름은 이 계층 위에서 읽힙니다. `main`은 catalog, `sales`는 schema, `orders`는 table이고, 셋 모두 metastore 안에 있습니다. metastore가 workspace 위에 걸쳐 있다는 점이 중요합니다. **한 workspace에서 준 GRANT는 같은 metastore를 쓰는 모든 workspace에서 유효합니다.** dev workspace에서 prod 데이터를 막으려면 catalog를 특정 workspace에만 묶는 workspace-catalog binding을 걸어야 하고, binding이 걸린 catalog는 다른 workspace에서 GRANT가 있어도 접근이 거부됩니다.
 
+{% include diagrams/static/data/databricks/databricks-grant-binding.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/data/databricks/databricks-grant-binding--1e956449354a6e64.png" %}
+
 ### 2.1. AWS 분석 스택으로 바꿔 읽기
 
 Athena, Glue, Lake Formation을 운영해 봤다면 익숙한 개념에 대응시켜 읽는 편이 빠릅니다. AWS 쪽 구성은 [AWS 데이터 분석 스택 Overview](/posts/aws-analytics-stack-overview/)에 정리했습니다.
@@ -70,7 +74,7 @@ Athena, Glue, Lake Formation을 운영해 봤다면 익숙한 개념에 대응�
 | Storage credential | cross-account trust가 걸린 IAM role | 반드시 자기 자신을 assume할 수 있어야 함 |
 | External location | S3 prefix와 그 prefix를 쓰는 IAM role의 묶음 | S3 경로 단위로 GRANT |
 | SQL warehouse | Athena workgroup, Redshift Serverless | serverless, pro, classic 3종 |
-| Photon | Redshift와 Athena의 native 실행 엔진 | Spark JVM 실행을 대체, DBU 단가가 다름 |
+| Photon | 직접 대응하는 개념 없음 | Spark의 JVM 실행을 C++ vectorized 엔진으로 대체, DBU 소비율이 다름 |
 | Service principal | 자동화용 IAM role | OAuth client ID와 secret으로 인증 |
 | system tables | CUR + CloudTrail Lake를 SQL로 조회 | `system.billing.usage`, `system.access.audit` |
 
@@ -80,19 +84,22 @@ Athena, Glue, Lake Formation을 운영해 봤다면 익숙한 개념에 대응�
 
 ## 3. SQL 한 줄이 지나가는 다섯 단계
 
-이제 `SELECT * FROM main.sales.orders LIMIT 10`을 SQL Editor에서 serverless SQL warehouse로 실행했다고 가정하고 따라가 봅니다. 아래 표는 각 단계가 어느 계정에서 일어나는지와, 문제가 생겼을 때 무엇을 확인하면 되는지를 함께 정리한 것입니다.
+이제 `SELECT * FROM main.sales.orders LIMIT 10`을 SQL Editor에서 serverless SQL warehouse로 실행했다고 가정하고 따라가 봅니다.
 
 | 단계 | 일어나는 곳 | 하는 일 | 확인 방법 |
 | :--- | :--- | :--- | :--- |
 | 1. 로그인과 요청 | Databricks 계정(control plane) | SSO로 사용자를 확인하고 workspace의 web application이 쿼리를 받음 | `databricks current-user me` |
-| 2. compute 선택 | serverless: Databricks 계정, classic: 고객 VPC | SQL warehouse가 쿼리를 실행. 이때 Photon 엔진을 씀 | `databricks warehouses list` |
+| 2. compute 선택 | serverless: Databricks 계정, pro와 classic: 고객 VPC | SQL warehouse가 쿼리를 실행. 이때 Photon 엔진을 씀 | `databricks warehouses list` |
 | 3. 권한 판정 | Unity Catalog | `USE CATALOG`, `USE SCHEMA`, `SELECT`와 workspace binding을 확인 | `SHOW GRANTS ON TABLE ...` |
 | 4. 데이터 읽기 | 고객 AWS 계정의 S3 | storage credential의 IAM role로 table 경로의 파일을 읽음 | `DESCRIBE EXTERNAL LOCATION ...` |
 | 5. 결과와 기록 | workspace storage, system tables | 결과를 반환하고 사용량과 감사 이벤트를 남김 | `system.billing.usage`, `system.access.audit` |
 
+{% include diagrams/static/data/databricks/databricks-query-path.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/data/databricks/databricks-query-path--a4cec70460648a1c.png" %}
+
 ### 3.1. 로그인과 요청: control plane
 
-Databricks 아키텍처 문서의 첫 문장은 경계를 정합니다. **control plane은 고객 클라우드 계정이 아니라 Databricks 계정에 있습니다.** web application, REST API, 각종 backend 서비스가 여기에 있고, 사용자는 SSO로 로그인한 뒤 workspace URL로 접근합니다. 인프라 담당자가 control plane을 직접 볼 수는 없으므로, 이 단계에서 확인할 수 있는 것은 "누가 어떤 identity로 들어왔는가"입니다.
+Databricks 아키텍처 문서는 경계를 이렇게 정합니다. **control plane은 고객 클라우드 계정이 아니라 Databricks 계정에 있습니다.** web application, REST API, 각종 backend 서비스가 여기에 있고, 사용자는 SSO로 로그인한 뒤 workspace URL로 접근합니다. 인프라 담당자가 control plane을 직접 볼 수는 없으므로, 이 단계에서 확인할 수 있는 것은 "누가 어떤 identity로 들어왔는가"입니다.
 
 ### 3.2. compute 선택: 쿼리가 실행되는 계정
 
@@ -101,7 +108,7 @@ compute plane은 데이터가 처리되는 곳이고, 실행 위치에 따라 �
 - **Serverless compute plane**: Databricks 계정 안에서 실행된다. workspace와 같은 region에 만들어지고, 네트워크 통제는 account 수준의 NCC(network connectivity configuration)로 한다.
 - **Classic compute plane**: 고객 AWS 계정의 workspace VPC 안에서 실행된다. Databricks가 cross-account IAM role을 assume해서 EC2를 띄운다.
 
-serverless SQL warehouse로 실행한 이 쿼리는 고객 VPC가 아니라 Databricks 계정에서 돌았습니다. 같은 쿼리를 classic SQL warehouse로 실행하면 EC2가 고객 계정에서 뜨고 비용도 AWS 청구서에 함께 잡힙니다. **"Databricks의 서버가 우리 VPC 안에 있다"는 말은 classic compute에만 맞습니다.**
+serverless SQL warehouse로 실행한 이 쿼리는 고객 VPC가 아니라 Databricks 계정에서 돌았습니다. 같은 쿼리를 pro나 classic SQL warehouse로 실행하면 EC2가 고객 계정에서 뜨고 비용도 AWS 청구서에 함께 잡힙니다. **"Databricks의 서버가 우리 VPC 안에 있다"는 말은 classic compute plane에서 도는 compute에만 맞습니다.**
 
 ### 3.3. 권한 판정: Unity Catalog
 
@@ -115,7 +122,7 @@ GRANT SELECT ON SCHEMA main.sales TO `data-readers`;
 SHOW GRANTS ON TABLE main.sales.orders;
 ```
 
-catalog나 schema에 준 권한은 그 아래의 현재 객체와 앞으로 만들어질 객체에 모두 상속됩니다. 위 예시처럼 schema에 `SELECT`를 주면 나중에 추가되는 테이블도 같은 group이 읽게 됩니다. `ALL PRIVILEGES`조차 `MANAGE`, `EXTERNAL USE SCHEMA`, `EXTERNAL USE LOCATION`은 포함하지 않는다는 점도 기억해 둘 만합니다. 데이터 유출 경로가 되는 권한을 일부러 분리한 설계입니다.
+catalog나 schema에 준 권한은 그 아래의 현재 객체와 앞으로 만들어질 객체에 모두 상속됩니다. 위 예시처럼 schema에 `SELECT`를 주면 나중에 추가되는 테이블도 같은 group이 읽게 됩니다. `ALL PRIVILEGES`도 `MANAGE`, `EXTERNAL USE SCHEMA`, `EXTERNAL USE LOCATION`, `READ METADATA`는 포함하지 않으므로, 이 권한들은 따로 줘야 합니다.
 
 ### 3.4. 데이터 읽기: storage credential과 external location
 
@@ -157,7 +164,7 @@ Databricks 밖의 엔진이 Unity Catalog 테이블을 읽는 경로도 있습�
 
 쿼리 결과는 사용자에게 돌아가고, 그 과정은 두 군데에 남습니다. classic workspace라면 쿼리 결과, job 결과, notebook revision, cluster log 같은 workspace system data가 고객 계정의 workspace storage bucket에 저장됩니다. **이 bucket을 지우거나 다른 bucket으로 바꾸면 workspace를 복구할 수 없습니다.** 일반 데이터 bucket과 같은 수명주기 정책을 걸지 않도록 분리해서 관리해야 합니다.
 
-사용량과 감사 이벤트는 system tables에 남습니다. 앞의 쿼리가 쓴 DBU는 `system.billing.usage`에서 warehouse 단위로 볼 수 있습니다.
+사용량과 감사 이벤트는 system tables에 남습니다. 앞의 쿼리를 실행한 warehouse의 DBU는 `system.billing.usage`에서 볼 수 있습니다. 사용량은 warehouse 단위로 집계되므로 쿼리 하나의 DBU가 따로 남지는 않습니다.
 
 ```sql
 SELECT
@@ -270,7 +277,7 @@ DESCRIBE EXTERNAL LOCATION `<location-name>`;
 SHOW GRANTS ON EXTERNAL LOCATION `<location-name>`;
 ```
 
-`DESCRIBE EXTERNAL LOCATION` 결과의 URL과 credential 이름을 따라가면 3.4절의 IAM role까지 이어집니다. 여기서 `READ FILES`가 넓은 group에 걸려 있다면 view로 컬럼을 감춘 설계를 경로 직접 조회로 우회할 수 있다는 뜻이므로 먼저 확인할 대상입니다.
+`DESCRIBE EXTERNAL LOCATION` 결과의 URL과 credential 이름을 따라가면 3.4절의 IAM role까지 이어집니다. 이때 `SHOW GRANTS ON EXTERNAL LOCATION` 결과의 `READ FILES`도 확인합니다. 이 권한은 external location의 파일을 테이블을 거치지 않고 직접 읽게 하고, 공식 문서는 파일을 직접 읽는 방식을 권하지 않습니다.
 
 ---
 
@@ -281,7 +288,7 @@ SHOW GRANTS ON EXTERNAL LOCATION `<location-name>`;
 | 오해 | 실제 | 근거 |
 | :--- | :--- | :--- |
 | Databricks가 데이터를 자기 저장소로 가져간다 | classic workspace의 데이터는 고객 계정 S3에 남는다. serverless workspace의 default storage는 Databricks가 구성한다 | High-level architecture |
-| Databricks 서버는 모두 우리 VPC 안에서 돈다 | classic compute만 고객 VPC에서 돈다. serverless는 Databricks 계정에서 실행된다 | High-level architecture |
+| Databricks 서버는 모두 우리 VPC 안에서 돈다 | classic compute와 pro, classic SQL warehouse만 고객 VPC에서 돈다. serverless는 Databricks 계정에서 실행된다 | High-level architecture |
 | 사용자에게 S3 IAM 권한을 줘야 데이터를 읽는다 | 사용자 권한은 Unity Catalog GRANT로 준다. 사용자에게 bucket 직접 접근을 주지 않는 것이 원칙이다 | Cloud storage 문서 |
 | workspace마다 권한이 따로 관리된다 | GRANT는 metastore 범위다. 분리하려면 workspace-catalog binding을 건다 | Workspace-catalog binding |
 | Budget을 걸면 비용이 넘지 않는다 | Budget은 기본적으로 알림만 보내고 알림은 최대 24시간 늦을 수 있다 | Budgets 문서 |

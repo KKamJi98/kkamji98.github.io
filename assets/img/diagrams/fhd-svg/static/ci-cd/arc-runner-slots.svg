@@ -1,0 +1,48 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="4281ccbe227c86e1fff03f3c23a288700b2026fdb2074d605f283ef66bc2534c">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="150.000" width="900.000" height="340.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="980.000" y="150.000" width="900.000" height="340.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="75.000" y="240.000" width="400.000" height="205.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="505.000" y="240.000" width="400.000" height="205.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="1015.000" y="240.000" width="400.000" height="205.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1445.000" y="240.000" width="400.000" height="205.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.3" x="60.000" y="630.000" width="480.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.4" x="660.000" y="630.000" width="600.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.5" x="1380.000" y="630.000" width="480.000" height="175.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.6" data-from="root.0.3" data-to="root.0.4" d="M 552.000 718.000 L 648.000 718.000" fill="none" stroke="#475569" stroke-width="3"><title>runner Pod 생성 요청이 quota 검사를 받음</title></path>
+<polygon data-arrowhead="root.0.6" points="648.000,718.000 638.000,724.000 638.000,712.000" fill="#475569"/>
+<path data-edge="root.0.7" data-from="root.0.4" data-to="root.0.5" d="M 1272.000 718.000 L 1368.000 718.000" fill="none" stroke="#475569" stroke-width="3"><title>슬롯 4개가 모두 차면 생성 거부</title></path>
+<polygon data-arrowhead="root.0.7" points="1368.000,718.000 1358.000,724.000 1358.000,712.000" fill="#475569"/>
+<path data-edge="root.0.8" data-from="root.0.5" data-to="root.0.3" d="M 1620.000 817.000 L 1620.000 900.000 L 300.000 900.000 L 300.000 817.000" fill="none" stroke="#475569" stroke-width="3"><title>30초 뒤 다시 시도</title></path>
+<polygon data-arrowhead="root.0.8" points="300.000,817.000 306.000,827.000 294.000,827.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">노드마다 저장소별 슬롯을 하나씩 두고, 넘치는 runner는 quota가 거부합니다</text>
+<text data-source="root.0.1.0.1" x="103.000" y="298.000" font-size="30" font-weight="700" fill="#111827">웹 저장소 runner</text>
+<text data-source="root.0.1.0.1" x="103.000" y="343.000" font-size="24" font-weight="400" fill="#111827">메모리 3584Mi</text>
+<text data-source="root.0.1.0.1" x="103.000" y="375.400" font-size="24" font-weight="400" fill="#111827">디스크 11Gi</text>
+<text data-source="root.0.1.0.1" x="103.000" y="407.800" font-size="24" font-weight="400" fill="#111827">TUN 슬롯 1개</text>
+<text data-source="root.0.1.0.2" x="533.000" y="298.000" font-size="30" font-weight="700" fill="#111827">Rust 저장소 runner</text>
+<text data-source="root.0.1.0.2" x="533.000" y="343.000" font-size="24" font-weight="400" fill="#111827">메모리 7Gi</text>
+<text data-source="root.0.1.0.2" x="533.000" y="375.400" font-size="24" font-weight="400" fill="#111827">디스크 34Gi</text>
+<text data-source="root.0.1.0.2" x="533.000" y="407.800" font-size="24" font-weight="400" fill="#111827">TUN 슬롯 1개</text>
+<text data-source="root.0.1.1.1" x="1043.000" y="298.000" font-size="30" font-weight="700" fill="#111827">웹 저장소 runner</text>
+<text data-source="root.0.1.1.1" x="1043.000" y="343.000" font-size="24" font-weight="400" fill="#111827">메모리 3584Mi</text>
+<text data-source="root.0.1.1.1" x="1043.000" y="375.400" font-size="24" font-weight="400" fill="#111827">디스크 11Gi</text>
+<text data-source="root.0.1.1.1" x="1043.000" y="407.800" font-size="24" font-weight="400" fill="#111827">TUN 슬롯 1개</text>
+<text data-source="root.0.1.1.2" x="1473.000" y="298.000" font-size="30" font-weight="700" fill="#111827">Rust 저장소 runner</text>
+<text data-source="root.0.1.1.2" x="1473.000" y="343.000" font-size="24" font-weight="400" fill="#111827">메모리 7Gi</text>
+<text data-source="root.0.1.1.2" x="1473.000" y="375.400" font-size="24" font-weight="400" fill="#111827">디스크 34Gi</text>
+<text data-source="root.0.1.1.2" x="1473.000" y="407.800" font-size="24" font-weight="400" fill="#111827">TUN 슬롯 1개</text>
+<text data-source="root.0.3" x="88.000" y="688.000" font-size="30" font-weight="700" fill="#111827">ARC controller</text>
+<text data-source="root.0.3" x="88.000" y="733.000" font-size="24" font-weight="400" fill="#111827">job 수만큼</text>
+<text data-source="root.0.3" x="88.000" y="765.400" font-size="24" font-weight="400" fill="#111827">runner Pod 생성 요청</text>
+<text data-source="root.0.4" x="688.000" y="688.000" font-size="30" font-weight="700" fill="#111827">ci-full ResourceQuota</text>
+<text data-source="root.0.4" x="688.000" y="733.000" font-size="24" font-weight="400" fill="#111827">runner 4개, arc-tun 4개</text>
+<text data-source="root.0.4" x="688.000" y="765.400" font-size="24" font-weight="400" fill="#111827">메모리 요청 22016Mi, 디스크 92Gi</text>
+<text data-source="root.0.5" x="1408.000" y="688.000" font-size="30" font-weight="700" fill="#111827">5번째 runner 거부</text>
+<text data-source="root.0.5" x="1408.000" y="733.000" font-size="24" font-weight="400" fill="#111827">exceeded quota</text>
+<text data-source="root.0.5" x="1408.000" y="765.400" font-size="24" font-weight="400" fill="#111827">job은 실패하지 않고 대기</text>
+<text data-source="root.0.1.0.0" x="75.000" y="205.000" font-size="30" font-weight="700" fill="#111827">worker 1: 8 vCPU, 16GiB</text>
+<text data-source="root.0.1.1.0" x="1015.000" y="205.000" font-size="30" font-weight="700" fill="#111827">worker 2: 8 vCPU, 16GiB</text>
+<text data-source="root.0.2" x="60.000" y="559.000" font-size="24" font-weight="400" fill="#111827">같은 저장소의 runner 2개는 anti-affinity로 서로 다른 노드에 놓입니다</text>
+<text data-source="root.0.9" x="330.000" y="944.000" font-size="24" font-weight="400" fill="#111827">30초 뒤 다시 시도, 만든 지 10분이 지난 EphemeralRunner는 지우고 새로 만듦</text>
+</svg>

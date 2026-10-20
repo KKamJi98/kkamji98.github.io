@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/ci-cd/arc-overview.html",
+  "source_sha256": "09a8b83c47faaadd440bb54181a5fc6024abc1a3d6a0cd7a27ab58c1a5af0ca5",
+  "svg_sha256": "7d08a0ebd2b0dfff508a90cc56f4b6bf096dbf22c4b671d3d717d8aae7533bec",
+  "png_sha256": "cd9b846917ec0e40a13b3bd47e08aafd014a3db8a8d94996b4dfd31908586343",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG re-rendered in the 2026-10-20 build through native image input (claude-opus-5-5). Render inputs (source, SVG, font, style, renderer, browser) equal the 2026-10-15 receipt; the pixel difference to the previous PNG is limited to glyph and corner anti-aliasing (1.8 percent of pixels), with identical layout. Four cards share one horizontal axis, both ownership boundaries have matching tops and bottoms, and the management, direct job and result paths are visible. No clipped text, overlaps or border contacts. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

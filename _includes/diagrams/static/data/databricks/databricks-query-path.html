@@ -1,0 +1,77 @@
+<figure class="sd sd--flow sd--fhd" id="sd-dbx-query" aria-labelledby="sd-dbx-query-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-dbx-query-title">serverless SQL 한 줄은 Databricks 계정에서 실행되고, 데이터는 고객 AWS 계정에서 읽습니다</figcaption><div class="sd-semantic-source">
+  <div class="sd-grid">
+    <section class="sd-lane" id="dq-databricks">
+      <div class="sd-lane-title" id="dq-databricks-title">Databricks 계정</div>
+      <p class="sd-note" id="dq-databricks-note">serverless SQL warehouse로 실행한 경우</p>
+      <div class="sd-node" id="dq-control"><strong class="sd-label">1. control plane</strong><span class="sd-detail">SSO 로그인<br>web app, REST API</span></div>
+      <div class="sd-node sd-node--accent" id="dq-warehouse"><strong class="sd-label">2. SQL warehouse</strong><span class="sd-detail">serverless, Photon<br>쿼리 실행</span></div>
+      <div class="sd-node" id="dq-uc"><strong class="sd-label">3. Unity Catalog</strong><span class="sd-detail">GRANT와 binding으로<br>권한 판정</span></div>
+      <div class="sd-node" id="dq-system"><strong class="sd-label">5. system tables</strong><span class="sd-detail">billing.usage<br>access.audit</span></div>
+    </section>
+    <section class="sd-lane" id="dq-aws">
+      <div class="sd-lane-title" id="dq-aws-title">고객 AWS 계정</div>
+      <p class="sd-note" id="dq-aws-note">사용자는 S3 권한을 받지 않음</p>
+      <div class="sd-node" id="dq-credential"><strong class="sd-label">4. storage credential</strong><span class="sd-detail">IAM role 하나로 S3 접근<br>external location과 묶임</span></div>
+      <div class="sd-node" id="dq-s3"><strong class="sd-label">S3 데이터 파일</strong><span class="sd-detail">Parquet와 _delta_log<br>main.sales.orders</span></div>
+    </section>
+  </div>
+  <div class="sd-arrow" id="dq-run" data-from="dq-control" data-to="dq-warehouse" aria-label="쿼리를 SQL warehouse로 전달"></div>
+  <div class="sd-arrow" id="dq-check" data-from="dq-warehouse" data-to="dq-uc" aria-label="테이블 권한 확인"></div>
+  <div class="sd-arrow" id="dq-assume" data-from="dq-uc" data-to="dq-credential" aria-label="storage credential의 IAM role 사용"></div>
+  <div class="sd-arrow" id="dq-access" data-from="dq-credential" data-to="dq-s3" aria-label="IAM role 권한으로 S3에 접근"></div>
+  <div class="sd-arrow" id="dq-read" data-from="dq-warehouse" data-to="dq-s3" aria-label="table 경로의 파일 읽기"></div>
+  <p class="sd-note" id="dq-read-note">파일 읽기</p>
+  <div class="sd-arrow" id="dq-record" data-from="dq-warehouse" data-to="dq-system" aria-label="사용량과 감사 이벤트 기록"></div>
+  <p class="sd-note" id="dq-classic">pro나 classic SQL warehouse로 실행하면 2단계의 compute가 고객 VPC의 EC2에서 실행됩니다</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="6f83b45384a79315fcc1e017753127ff021a7f6d4f8344242056d99bc3e0ba48">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="140.000" width="1260.000" height="730.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="1360.000" y="140.000" width="520.000" height="730.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="75.000" y="300.000" width="350.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="495.000" y="300.000" width="350.000" height="175.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.0.4" x="915.000" y="300.000" width="350.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1395.000" y="300.000" width="450.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.5" x="75.000" y="640.000" width="350.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.3" x="1395.000" y="640.000" width="450.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1.0.2" data-to="root.0.1.0.3" d="M 437.000 388.000 L 483.000 388.000" fill="none" stroke="#475569" stroke-width="3"><title>쿼리를 SQL warehouse로 전달</title></path>
+<polygon data-arrowhead="root.0.2" points="483.000,388.000 473.000,394.000 473.000,382.000" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.1.0.3" data-to="root.0.1.0.4" d="M 857.000 388.000 L 903.000 388.000" fill="none" stroke="#475569" stroke-width="3"><title>테이블 권한 확인</title></path>
+<polygon data-arrowhead="root.0.3" points="903.000,388.000 893.000,394.000 893.000,382.000" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.1.0.4" data-to="root.0.1.1.2" d="M 1277.000 388.000 L 1383.000 388.000" fill="none" stroke="#475569" stroke-width="3"><title>storage credential의 IAM role 사용</title></path>
+<polygon data-arrowhead="root.0.4" points="1383.000,388.000 1373.000,394.000 1373.000,382.000" fill="#475569"/>
+<path data-edge="root.0.5" data-from="root.0.1.1.2" data-to="root.0.1.1.3" d="M 1620.000 487.000 L 1620.000 628.000" fill="none" stroke="#475569" stroke-width="3"><title>IAM role 권한으로 S3에 접근</title></path>
+<polygon data-arrowhead="root.0.5" points="1620.000,628.000 1614.000,618.000 1626.000,618.000" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.1.0.3" data-to="root.0.1.1.3" d="M 720.000 487.000 L 720.000 728.000 L 1383.000 728.000" fill="none" stroke="#475569" stroke-width="3"><title>table 경로의 파일 읽기</title></path>
+<polygon data-arrowhead="root.0.6" points="1383.000,728.000 1373.000,734.000 1373.000,722.000" fill="#475569"/>
+<path data-edge="root.0.8" data-from="root.0.1.0.3" data-to="root.0.1.0.5" d="M 560.000 487.000 L 560.000 728.000 L 437.000 728.000" fill="none" stroke="#475569" stroke-width="3"><title>사용량과 감사 이벤트 기록</title></path>
+<polygon data-arrowhead="root.0.8" points="437.000,728.000 447.000,722.000 447.000,734.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">serverless SQL 한 줄은 Databricks 계정에서 실행되고, 데이터는 고객 AWS 계정에서 읽습니다</text>
+<text data-source="root.0.1.0.2" x="103.000" y="358.000" font-size="30" font-weight="700" fill="#111827">1. control plane</text>
+<text data-source="root.0.1.0.2" x="103.000" y="403.000" font-size="24" font-weight="400" fill="#111827">SSO 로그인</text>
+<text data-source="root.0.1.0.2" x="103.000" y="435.400" font-size="24" font-weight="400" fill="#111827">web app, REST API</text>
+<text data-source="root.0.1.0.3" x="523.000" y="358.000" font-size="30" font-weight="700" fill="#111827">2. SQL warehouse</text>
+<text data-source="root.0.1.0.3" x="523.000" y="403.000" font-size="24" font-weight="400" fill="#111827">serverless, Photon</text>
+<text data-source="root.0.1.0.3" x="523.000" y="435.400" font-size="24" font-weight="400" fill="#111827">쿼리 실행</text>
+<text data-source="root.0.1.0.4" x="943.000" y="358.000" font-size="30" font-weight="700" fill="#111827">3. Unity Catalog</text>
+<text data-source="root.0.1.0.4" x="943.000" y="403.000" font-size="24" font-weight="400" fill="#111827">GRANT와 binding으로</text>
+<text data-source="root.0.1.0.4" x="943.000" y="435.400" font-size="24" font-weight="400" fill="#111827">권한 판정</text>
+<text data-source="root.0.1.1.2" x="1423.000" y="358.000" font-size="30" font-weight="700" fill="#111827">4. storage credential</text>
+<text data-source="root.0.1.1.2" x="1423.000" y="403.000" font-size="24" font-weight="400" fill="#111827">IAM role 하나로 S3 접근</text>
+<text data-source="root.0.1.1.2" x="1423.000" y="435.400" font-size="24" font-weight="400" fill="#111827">external location과 묶임</text>
+<text data-source="root.0.1.0.5" x="103.000" y="698.000" font-size="30" font-weight="700" fill="#111827">5. system tables</text>
+<text data-source="root.0.1.0.5" x="103.000" y="743.000" font-size="24" font-weight="400" fill="#111827">billing.usage</text>
+<text data-source="root.0.1.0.5" x="103.000" y="775.400" font-size="24" font-weight="400" fill="#111827">access.audit</text>
+<text data-source="root.0.1.1.3" x="1423.000" y="698.000" font-size="30" font-weight="700" fill="#111827">S3 데이터 파일</text>
+<text data-source="root.0.1.1.3" x="1423.000" y="743.000" font-size="24" font-weight="400" fill="#111827">Parquet와 _delta_log</text>
+<text data-source="root.0.1.1.3" x="1423.000" y="775.400" font-size="24" font-weight="400" fill="#111827">main.sales.orders</text>
+<text data-source="root.0.1.0.0" x="75.000" y="195.000" font-size="30" font-weight="700" fill="#111827">Databricks 계정</text>
+<text data-source="root.0.1.1.0" x="1395.000" y="195.000" font-size="30" font-weight="700" fill="#111827">고객 AWS 계정</text>
+<text data-source="root.0.1.0.1" x="75.000" y="244.000" font-size="24" font-weight="400" fill="#111827">serverless SQL warehouse로 실행한 경우</text>
+<text data-source="root.0.1.1.1" x="1395.000" y="244.000" font-size="24" font-weight="400" fill="#111827">사용자는 S3 권한을 받지 않음</text>
+<text data-source="root.0.7" x="930.000" y="704.000" font-size="24" font-weight="400" fill="#111827">파일 읽기</text>
+<text data-source="root.0.9" x="60.000" y="944.000" font-size="24" font-weight="400" fill="#111827">pro나 classic SQL warehouse로 실행하면 2단계의 compute가 고객 VPC의 EC2에서 실행됩니다</text>
+</svg>
+</figure>

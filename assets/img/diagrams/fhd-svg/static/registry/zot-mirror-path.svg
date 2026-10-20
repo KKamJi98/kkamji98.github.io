@@ -1,0 +1,45 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1aa528b25e2ad3e9bca6c1db2cbfc271fa1ac5788cf5adcf55c1cf33308b9f02">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="140.000" width="480.000" height="380.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="700.000" y="140.000" width="480.000" height="380.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1360.000" y="140.000" width="480.000" height="380.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="70.000" y="295.000" width="420.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="730.000" y="295.000" width="420.000" height="175.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.2" x="1390.000" y="295.000" width="420.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.9" x="60.000" y="770.000" width="573.000" height="145.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.10" x="673.000" y="770.000" width="573.000" height="145.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.11" x="1286.000" y="770.000" width="573.000" height="145.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1.0.2" data-to="root.0.1.1.2" d="M 502.000 382.000 L 718.000 382.000" fill="none" stroke="#475569" stroke-width="3"><title>mirror로 image 요청, 클러스터 내부 HTTP 5000</title></path>
+<polygon data-arrowhead="root.0.2" points="718.000,382.000 708.000,388.000 708.000,376.000" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.1.1.2" data-to="root.0.1.2.2" d="M 1162.000 382.000 L 1378.000 382.000" fill="none" stroke="#475569" stroke-width="3"><title>처음 받는 image만 Docker Hub에서 받아 저장</title></path>
+<polygon data-arrowhead="root.0.4" points="1378.000,382.000 1368.000,388.000 1368.000,376.000" fill="#475569"/>
+<path data-edge="root.0.6" data-from="root.0.1.0.2" data-to="root.0.1.2.2" d="M 280.000 482.000 L 280.000 610.000 L 1600.000 610.000 L 1600.000 482.000" fill="none" stroke="#475569" stroke-width="3"><title>mirror가 실패하면 Docker Hub에서 직접 pull</title></path>
+<polygon data-arrowhead="root.0.6" points="1600.000,482.000 1606.000,492.000 1594.000,492.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">runner는 클러스터 안의 zot에서 받고, zot이 실패하면 Docker Hub로 직접 갑니다</text>
+<text data-source="root.0.1.0.2" x="98.000" y="353.000" font-size="30" font-weight="700" fill="#111827">Runner Pod</text>
+<text data-source="root.0.1.0.2" x="98.000" y="398.000" font-size="24" font-weight="400" fill="#111827">rootless dockerd</text>
+<text data-source="root.0.1.0.2" x="98.000" y="430.400" font-size="24" font-weight="400" fill="#111827">--registry-mirror 설정</text>
+<text data-source="root.0.1.1.2" x="758.000" y="353.000" font-size="30" font-weight="700" fill="#111827">zot v2.1.22</text>
+<text data-source="root.0.1.1.2" x="758.000" y="398.000" font-size="24" font-weight="400" fill="#111827">library/** 요청 시 mirror</text>
+<text data-source="root.0.1.1.2" x="758.000" y="430.400" font-size="24" font-weight="400" fill="#111827">emptyDir 30Gi 상한</text>
+<text data-source="root.0.1.2.2" x="1418.000" y="353.000" font-size="30" font-weight="700" fill="#111827">Docker Hub</text>
+<text data-source="root.0.1.2.2" x="1418.000" y="398.000" font-size="24" font-weight="400" fill="#111827">registry-1.docker.io</text>
+<text data-source="root.0.1.2.2" x="1418.000" y="430.400" font-size="24" font-weight="400" fill="#111827">blob은 CDN으로 redirect</text>
+<text data-source="root.0.9" x="88.000" y="828.000" font-size="30" font-weight="700" fill="#111827">연결 거부: 3.1초</text>
+<text data-source="root.0.9" x="88.000" y="873.000" font-size="24" font-weight="400" fill="#111827">registry Pod 없이 Service만 남음</text>
+<text data-source="root.0.10" x="701.000" y="828.000" font-size="30" font-weight="700" fill="#111827">이름 해석 실패: 3.3초</text>
+<text data-source="root.0.10" x="701.000" y="873.000" font-size="24" font-weight="400" fill="#111827">registry namespace가 없음</text>
+<text data-source="root.0.11" x="1314.000" y="828.000" font-size="30" font-weight="700" fill="#111827">패킷 drop: 3분 34초</text>
+<text data-source="root.0.11" x="1314.000" y="873.000" font-size="24" font-weight="400" fill="#111827">network policy가 막음</text>
+<text data-source="root.0.1.0.0" x="70.000" y="195.000" font-size="30" font-weight="700" fill="#111827">ci-full namespace</text>
+<text data-source="root.0.1.1.0" x="730.000" y="195.000" font-size="30" font-weight="700" fill="#111827">ci-cache namespace</text>
+<text data-source="root.0.1.2.0" x="1390.000" y="195.000" font-size="30" font-weight="700" fill="#111827">인터넷</text>
+<text data-source="root.0.1.0.1" x="70.000" y="244.000" font-size="24" font-weight="400" fill="#111827">사설 대역 중 zot 5000 포트만 허용</text>
+<text data-source="root.0.1.1.1" x="730.000" y="244.000" font-size="24" font-weight="400" fill="#111827">DNS와 Docker Hub로만 나감</text>
+<text data-source="root.0.1.2.1" x="1390.000" y="244.000" font-size="24" font-weight="400" fill="#111827">FQDN 허용 목록에 CDN 포함</text>
+<text data-source="root.0.3" x="545.000" y="351.000" font-size="24" font-weight="400" fill="#111827">image 요청</text>
+<text data-source="root.0.5" x="1205.000" y="351.000" font-size="24" font-weight="400" fill="#111827">cold 요청만</text>
+<text data-source="root.0.7" x="560.000" y="654.000" font-size="24" font-weight="400" fill="#111827">zot에 닿지 못하면 Docker Hub에서 직접 받음(fail-open)</text>
+<text data-source="root.0.8" x="60.000" y="744.000" font-size="24" font-weight="400" fill="#111827">mirror 실패 방식별 docker pull 시간(같은 버전 Docker로 측정)</text>
+<text data-source="root.0.12" x="60.000" y="989.000" font-size="24" font-weight="400" fill="#111827">warm mirror에서 338MB image pull: 50.0초, 38.8초에서 7.2초, 8.5초</text>
+</svg>
