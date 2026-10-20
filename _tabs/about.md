@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/envoyproxy/gateway/pull/10066" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>envoyproxy/gateway</span>
+      <span class="cv-oss-pr">PR #10066</span>
+    </div>
+    <p class="cv-oss-desc">Gateway 이름의 공통 접두사로 인한 ClientTrafficPolicy 포트 중복 검증 오류 수정과 회귀 테스트 추가</p>
+  </a>
   <a class="cv-oss" href="https://github.com/kyverno/kyverno/pull/17840" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
