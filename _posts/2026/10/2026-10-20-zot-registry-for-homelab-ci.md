@@ -1,6 +1,7 @@
 ---
 title: zot으로 HomeLab CI registry 구성하기 - Docker Hub mirror와 digest로 고정한 CI 이미지
 date: 2026-10-20 01:30:00 +0900
+last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]
 tags: [zot, container-registry, docker-hub-mirror, github-actions, self-hosted-runner, kubernetes, cilium, ci-performance]
@@ -11,7 +12,7 @@ image:
 
 HomeLab Kubernetes의 GitHub Self-hosted Runner에서 웹 저장소의 테스트 job은 매번 Rust base image 338MB를 Docker Hub에서 받았습니다. 한 번 받는 데 38.8초와 50.0초가 걸렸습니다. Rust 저장소는 job마다 1.65GB짜리 CI 이미지를 직접 빌드했고, 그 이미지를 GHCR에 미리 올려 두어도 회선 다운로드가 약 8MB/s라 pull 시간이 빌드 시간과 비슷했습니다. 병목은 runner가 아니라 WAN이었습니다.
 
-그래서 클러스터 안에 registry 하나를 두고 두 가지 용도로 쓰기로 했습니다. 하나는 Docker Hub pull-through mirror이고, 다른 하나는 CI 이미지 저장소입니다. 저는 zot을 골랐고, 이 글에는 배포하면서 확인한 설정과 측정값을 기록합니다. runner 구성 전체는 [GitHub Actions Self-hosted Runner 환경 구축하기]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 있습니다.
+그래서 클러스터 안에 registry 하나를 두고 두 가지 용도로 쓰기로 했습니다. 하나는 Docker Hub pull-through mirror이고, 다른 하나는 CI 이미지 저장소입니다. 저는 zot을 골랐습니다. runner 구성 전체는 [GitHub Actions Self-hosted Runner 환경 구축하기]({% post_url 2026-10-18-github-actions-self-hosted-runner-on-kubernetes %})에 있습니다.
 
 > **TL;DR**  
 > - zot v2.1.22 하나로 Docker Hub mirror와 CI 이미지 저장소를 함께 운영한다. 배포 직후 메모리는 46Mi였다.  
@@ -90,6 +91,8 @@ zot의 search 확장은 CVE 검사를 위해 trivy DB를 내려받습니다. 이
 
 ## 3. Docker Hub mirror 설정
 
+전체 zot 설정입니다. 경로별 접근 정책(`accessControl`)은 5절에서 다룹니다.
+
 ```json
 {
   "http": {
@@ -135,7 +138,7 @@ skipping missing manifest blob in image index, continuing sync with other manife
 
 ### 3.3. runner의 Docker daemon 설정
 
-runner Pod의 rootless Docker daemon은 시작 인자로 mirror를 받습니다. 클러스터 내부 평문 HTTP라 `--insecure-registry`도 함께 줍니다. 이미지 무결성은 Docker가 layer와 manifest를 digest로 검증합니다.
+runner Pod의 rootless Docker daemon은 시작 인자로 mirror를 받습니다. 클러스터 내부 평문 HTTP라 `--insecure-registry`도 함께 줍니다. digest로 고정한 pull은 Docker가 manifest와 layer를 digest로 검증합니다. tag로 받는 mirror 이미지는 클러스터 내부 경로와 network policy를 신뢰합니다.
 
 ```text
 --registry-mirror=http://zot.ci-cache.svc.cluster.local:5000
@@ -150,6 +153,9 @@ runner Pod의 rootless Docker daemon은 시작 인자로 mirror를 받습니다.
 
 runner namespace의 job Pod는 원래 사설 대역으로 나갈 수 없습니다. 예외로 registry Pod의 5000 포트 하나만 열었고, registry 쪽에서도 그 job Pod만 받습니다. registry가 나갈 수 있는 곳은 DNS와 Docker Hub뿐입니다.
 
+{% include diagrams/static/registry/zot-mirror-path.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/registry/zot-mirror-path--182f9bdc1efb90da.png" %}
+
 ```yaml
 # registry namespace: 받는 쪽
 endpointSelector:
@@ -163,7 +169,7 @@ ingress:
   - ports: [{port: "5000", protocol: TCP}]
 ```
 
-Docker Hub는 blob 요청을 CDN으로 redirect합니다. 제가 확인했을 때의 redirect 호스트는 `production.cloudfront.docker.com`이었고, Docker 문서에 나온 Cloudflare 호스트와 함께 FQDN 허용 목록에 넣었습니다. 목록이 틀리면 zot의 sync가 실패하고, Docker는 Docker Hub에서 직접 받습니다. CI가 깨지지는 않지만 mirror 효과가 사라지므로 측정에서 드러납니다.
+Docker Hub는 blob 요청을 CDN으로 redirect합니다. 제가 확인했을 때의 redirect 호스트는 `production.cloudfront.docker.com`이었습니다. 이 호스트는 Docker Desktop allowlist 문서에도 있고, Cloudflare 쪽 blob 호스트 두 개와 함께 FQDN 허용 목록에 넣었습니다. 목록이 틀리면 zot의 sync가 실패하고, Docker는 Docker Hub에서 직접 받습니다. CI가 깨지지는 않지만 mirror 효과가 사라지므로 측정에서 드러납니다.
 
 namespace 전체의 default-deny 정책은 처음에 `ingress: []`, `egress: []`로 썼습니다. 배포 후 `kubectl get cnp`에서 이 정책만 `VALID False`였고, 상태 메시지는 `rule must have at least one of Ingress, IngressDeny, Egress, EgressDeny`였습니다. **빈 목록은 아무것도 막지 않는 무효 정책이 됩니다.** registry Pod에는 ingress와 egress를 각각 선택하는 유효한 정책이 따로 있어서, Cilium 규칙상 두 방향 모두 이미 허용 목록 방식으로 동작하고 있었습니다. default-deny는 아무것도 허용하지 않는 규칙 `[{}]`로 고쳤고, 고친 뒤 세 정책 모두 `VALID True`가 됐습니다.
 
@@ -180,7 +186,7 @@ namespace 전체의 default-deny 정책은 처음에 `ingress: []`, `egress: []`
 | `library/**` | `read` | Docker Hub mirror |
 | `ci/**` | `read`, `create` | CI 이미지. `update`와 `delete`가 없어 한 번 올린 tag는 바뀌지 않는다 |
 
-처음에는 tag를 입력 hash로 만들고 덮어쓰기를 막으면 충분하다고 판단했습니다. commit 직후 보안 리뷰에서 이 판단이 틀렸다는 지적을 받았습니다. **registry에 닿는 job에는 PR job과, 그 job이 실행하는 서드파티 build script도 포함됩니다.** 주차가 들어간 key는 미리 계산할 수 있으므로, 누군가 다음 주 key로 다른 이미지를 먼저 올려 두면 main은 그 tag를 덮어쓸 수 없습니다.
+처음에는 tag를 입력 hash와 주차로 만들고 덮어쓰기를 막으면 충분하다고 판단했습니다. commit 직후 보안 리뷰에서 이 판단이 틀렸다는 지적을 받았습니다. **registry에 닿는 job에는 PR job과, 그 job이 실행하는 서드파티 build script도 포함됩니다.** 주차가 들어간 key는 미리 계산할 수 있으므로, 누군가 다음 주 key로 다른 이미지를 먼저 올려 두면 main은 그 tag를 덮어쓸 수 없습니다.
 
 그래서 tag 대신 digest를 신뢰의 기준으로 바꿨습니다.
 
@@ -188,7 +194,10 @@ namespace 전체의 default-deny 정책은 처음에 `ingress: []`, `egress: []`
 2. 그 workflow가 push한 이미지의 digest를 GitHub Actions cache에 저장한다.
 3. PR job은 cache에서 digest를 읽고 `이미지@sha256:...` 형식으로만 pull한다. 실패하면 이전처럼 직접 빌드한다.
 
-GitHub Actions cache는 main에서 저장한 항목을 PR이 읽을 수 있고, PR에서 저장한 항목은 그 PR 안에만 남깁니다. 이 범위 규칙이 credential 없이도 "main이 기록한 것만 믿는다"를 보장합니다. 남는 위험은 익명 `create`로 저장 공간을 채우는 것뿐이고, 이는 30Gi 상한과 보존 정책으로 막습니다. 채워지더라도 결과는 느려지는 것이지 틀린 이미지가 아닙니다.
+{% include diagrams/static/registry/zot-digest-trust.html %}
+{% include diagrams/download.html png="/assets/img/diagrams/static/registry/zot-digest-trust--788bcdc06460e404.png" %}
+
+GitHub Actions cache는 main에서 저장한 항목을 PR이 읽을 수 있고, PR에서 저장한 항목은 그 PR 안에만 남깁니다. 이 범위 규칙이 credential 없이도 "main이 기록한 것만 믿는다"를 보장합니다. 이 신뢰 경계에서 남는 위험은 익명 `create`로 저장 공간을 채우는 것뿐이고, 이는 30Gi 상한과 보존 정책으로 막습니다. 채워지더라도 결과는 느려지는 것이지 틀린 이미지가 아닙니다.
 
 CI에 넣기 전에 같은 버전의 zot과 Docker 29.9.1로 실제 CI 이미지를 써서 확인했습니다.
 
@@ -231,7 +240,7 @@ registry를 넣으면 CI가 registry에 의존하게 됩니다. Docker는 mirror
 | 이름 해석 실패 | registry namespace가 없는 경우 | 3.3초 | 3.4초 |
 | 응답 없이 패킷이 버려짐 | network policy가 막는 경우 | 3분 34초 | 2분 35초 |
 
-**registry가 죽는 것보다 network policy를 잘못 바꾸는 쪽이 훨씬 비쌉니다.** 마지막 경우에는 pull 한 번마다 2~3분이 더 걸립니다. 그래서 정책을 바꾼 뒤에는 첫 CI run의 pull 시간을 확인합니다. CI 이미지 스크립트는 registry 확인에 `curl -m 5`를 써서, 이 경우에도 5초 안에 로컬 빌드로 넘어갑니다.
+**registry가 죽는 것보다 network policy를 잘못 바꾸는 쪽이 훨씬 비쌉니다.** 마지막 경우에는 pull 한 번에 2분 35초~3분 34초가 걸립니다. 그래서 정책을 바꾼 뒤에는 첫 CI run의 pull 시간을 확인합니다. CI 이미지 스크립트는 registry 확인에 `curl -m 5`를 써서, 이 경우에도 5초 안에 로컬 빌드로 넘어갑니다.
 
 이 대비가 실제로 쓰인 적도 있습니다. 처음 배포에서 registry의 Argo CD Application이 참조할 프로젝트를 만들지 못해 registry가 생성되지 않았습니다. 그 사이 runner의 mirror 요청은 이름 해석 실패로 Docker Hub에서 바로 받았고, 그 시간대의 job은 실패하지 않았습니다.
 
@@ -247,8 +256,7 @@ cold 요청과 warm 요청을 나눠야 비교가 맞았습니다. 처음 받는
 | --- | --- | --- | --- |
 | Rust base image 338MB, BuildKit `load metadata`와 `FROM` 합계 | 40.5초 | 41.4초 | cold |
 | 같은 image를 테스트 job에서 `docker run` | 50.0초, 38.8초 | 7.2초, 8.5초 | warm |
-| PostgreSQL image, 테스트 job | 19.0초, 21.3초 | 16.2초 | cold |
-| PostgreSQL image, 테스트 job | 19.0초, 21.3초 | 5.5초 | warm |
+| PostgreSQL image, 테스트 job | 19.0초, 21.3초 | 16.2초, 5.5초 | 첫 요청 cold, 다음 요청 warm |
 
 warm 요청에서 273MB layer 하나를 내주는 데 zot 로그 기준 1초가 걸렸습니다. Docker Hub에서는 같은 layer를 받는 데 33.2초가 걸렸습니다.
 
@@ -262,7 +270,7 @@ Rust 저장소는 Docker Hub에서 42MB짜리 Ubuntu base image 하나만 받습
 - 익명 `create`로 저장 공간을 채울 수 있다. 상한 30Gi와 보존 정책으로만 막는다.
 - warm 표본은 Rust image 2건, PostgreSQL 1건이다. 다음 CI run들로 늘린다.
 - CI 이미지 저장소의 CI 효과 표본은 1건이다(job당 102초에서 12~13초). 다음 PR run으로 늘린다.
-- 클러스터 내부 평문 HTTP다. 무결성은 digest로 지키지만, 전송 내용은 암호화되지 않는다.
+- 클러스터 내부 평문 HTTP다. digest로 고정한 pull만 무결성을 검증하고, tag로 받는 mirror 이미지와 전송 내용은 클러스터 내부 경로를 신뢰한다.
 
 ---
 
@@ -275,8 +283,10 @@ Rust 저장소는 Docker Hub에서 42MB짜리 Ubuntu base image 하나만 받습
 - [GitHub - zot Helm charts](https://github.com/project-zot/helm-charts)
 - [CNCF Distribution - Registry as a pull through cache](https://distribution.github.io/distribution/recipes/mirror/)
 - [Harbor Docs - Installation and Configuration](https://goharbor.io/docs/main/install-config/)
+- [GitHub - goharbor/harbor-helm](https://github.com/goharbor/harbor-helm)
 - [Docker Docs - Mirror the Docker Hub library](https://docs.docker.com/docker-hub/image-library/mirror/)
 - [Docker Docs - dockerd](https://docs.docker.com/reference/cli/dockerd/)
+- [Docker Docs - Allowlist for Docker Desktop](https://docs.docker.com/desktop/setup/allow-list/)
 - [GitHub Docs - Dependency caching reference](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching)
 - [Cilium Docs - Policy language](https://docs.cilium.io/en/stable/security/policy/language/)
 

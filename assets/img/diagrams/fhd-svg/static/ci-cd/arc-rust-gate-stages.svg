@@ -1,0 +1,46 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="1edae29b95279451958348aa92cbd8ea0d7d72afe281a5ad0a5b3b80caac82d8">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="40.000" y="150.000" width="560.000" height="690.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="660.000" y="150.000" width="560.000" height="690.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.1.2" x="1280.000" y="150.000" width="560.000" height="690.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="75.000" y="245.000" width="490.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="75.000" y="470.000" width="490.000" height="205.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="695.000" y="245.000" width="490.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="695.000" y="470.000" width="490.000" height="205.000" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="1315.000" y="245.000" width="490.000" height="175.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.2" x="1315.000" y="470.000" width="490.000" height="205.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.2" data-from="root.0.1.0.1" data-to="root.0.1.1.1" d="M 577.000 332.000 L 683.000 332.000" fill="none" stroke="#475569" stroke-width="3"><title>컴파일을 한 번으로 합침</title></path>
+<polygon data-arrowhead="root.0.2" points="683.000,332.000 673.000,338.000 673.000,326.000" fill="#475569"/>
+<path data-edge="root.0.3" data-from="root.0.1.1.2" data-to="root.0.1.2.2" d="M 1197.000 572.000 L 1303.000 572.000" fill="none" stroke="#475569" stroke-width="3"><title>fixture를 녹화해 비교 모드로 바꿈</title></path>
+<polygon data-arrowhead="root.0.3" points="1303.000,572.000 1293.000,578.000 1293.000,566.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">Rust 저장소 gate의 runner 점유는 106.5분에서 약 55분이 됐습니다</text>
+<text data-source="root.0.1.0.1" x="103.000" y="303.000" font-size="30" font-weight="700" fill="#111827">job마다 각자 컴파일</text>
+<text data-source="root.0.1.0.1" x="103.000" y="348.000" font-size="24" font-weight="400" fill="#111827">Tier A, Tier B와</text>
+<text data-source="root.0.1.0.1" x="103.000" y="380.400" font-size="24" font-weight="400" fill="#111827">source qualification 병렬</text>
+<text data-source="root.0.1.0.2" x="103.000" y="528.000" font-size="30" font-weight="700" fill="#111827">오라클 직접 실행</text>
+<text data-source="root.0.1.0.2" x="103.000" y="573.000" font-size="24" font-weight="400" fill="#111827">녹화된 fixture 없음</text>
+<text data-source="root.0.1.0.2" x="103.000" y="605.400" font-size="24" font-weight="400" fill="#111827">PR마다 약 30분</text>
+<text data-source="root.0.1.1.1" x="723.000" y="303.000" font-size="30" font-weight="700" fill="#111827">한 번만 컴파일</text>
+<text data-source="root.0.1.1.1" x="723.000" y="348.000" font-size="24" font-weight="400" fill="#111827">cargo test --no-run</text>
+<text data-source="root.0.1.1.1" x="723.000" y="380.400" font-size="24" font-weight="400" fill="#111827">테스트 archive 2.2GB</text>
+<text data-source="root.0.1.1.2" x="723.000" y="528.000" font-size="30" font-weight="700" fill="#111827">tier를 한 job에서 차례로</text>
+<text data-source="root.0.1.1.2" x="723.000" y="573.000" font-size="24" font-weight="400" fill="#111827">오라클은 여전히 직접 실행</text>
+<text data-source="root.0.1.1.2" x="723.000" y="605.400" font-size="24" font-weight="400" fill="#111827">가장 긴 경로가 길어짐</text>
+<text data-source="root.0.1.2.1" x="1343.000" y="303.000" font-size="30" font-weight="700" fill="#111827">archive 빌드 20~21분</text>
+<text data-source="root.0.1.2.1" x="1343.000" y="348.000" font-size="24" font-weight="400" fill="#111827">Tier A 약 10분</text>
+<text data-source="root.0.1.2.1" x="1343.000" y="380.400" font-size="24" font-weight="400" fill="#111827">Tier B 1.9분</text>
+<text data-source="root.0.1.2.2" x="1343.000" y="528.000" font-size="30" font-weight="700" fill="#111827">오라클 비교 모드</text>
+<text data-source="root.0.1.2.2" x="1343.000" y="573.000" font-size="24" font-weight="400" fill="#111827">fixture 복원 22~24초</text>
+<text data-source="root.0.1.2.2" x="1343.000" y="605.400" font-size="24" font-weight="400" fill="#111827">source qualification</text>
+<text data-source="root.0.1.2.2" x="1343.000" y="637.800" font-size="24" font-weight="400" fill="#111827">2.6~2.8분</text>
+<text data-source="root.0.4" x="60.000" y="914.000" font-size="24" font-weight="400" fill="#111827">다음 단계(예상): tier를 다시 병렬로 나누면 가장 긴 경로는 약 30분</text>
+<text data-source="root.0.1.0.0" x="75.000" y="205.000" font-size="30" font-weight="700" fill="#111827">처음: 11건 중앙값</text>
+<text data-source="root.0.1.0.3" x="75.000" y="749.000" font-size="24" font-weight="400" fill="#111827">runner 점유 106.5분</text>
+<text data-source="root.0.1.0.4" x="75.000" y="804.000" font-size="24" font-weight="400" fill="#111827">가장 긴 경로 약 39분</text>
+<text data-source="root.0.1.1.0" x="695.000" y="205.000" font-size="30" font-weight="700" fill="#111827">build once: 2건</text>
+<text data-source="root.0.1.1.3" x="695.000" y="749.000" font-size="24" font-weight="400" fill="#111827">runner 점유 94.6분, 95.6분</text>
+<text data-source="root.0.1.1.4" x="695.000" y="804.000" font-size="24" font-weight="400" fill="#111827">가장 긴 경로 73.6분, 75.7분</text>
+<text data-source="root.0.1.2.0" x="1315.000" y="205.000" font-size="30" font-weight="700" fill="#111827">fixture 비교: 2건</text>
+<text data-source="root.0.1.2.3" x="1315.000" y="749.000" font-size="24" font-weight="400" fill="#111827">runner 점유 54.7분, 54.8분</text>
+<text data-source="root.0.1.2.4" x="1315.000" y="804.000" font-size="24" font-weight="400" fill="#111827">가장 긴 경로 40.8분, 41.4분</text>
+</svg>

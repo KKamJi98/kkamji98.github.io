@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/data/databricks/databricks-query-path.html",
+  "source_sha256": "6f83b45384a79315fcc1e017753127ff021a7f6d4f8344242056d99bc3e0ba48",
+  "svg_sha256": "321fcfe1ace75bdb0fbb63aac74b056b7cd88d8c48955a8cd16c884b53740c84",
+  "png_sha256": "458eea6dfa230903d2910e6f6bf6275ed7879c88fc7e8758355c918ce8336102",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Numbered steps 1 to 4 run left to right on one axis across the Databricks and customer AWS account lanes; the warehouse branches down to the system tables and to the S3 file read, and the storage credential points down to S3. No clipped text, overlaps or border contacts. Account placement for serverless, the pro and classic warehouse note, Unity Catalog checks and system tables match the post section 3 and the cited documentation. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

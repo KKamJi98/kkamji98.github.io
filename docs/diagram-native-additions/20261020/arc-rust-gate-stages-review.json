@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/ci-cd/arc-rust-gate-stages.html",
+  "source_sha256": "1edae29b95279451958348aa92cbd8ea0d7d72afe281a5ad0a5b3b80caac82d8",
+  "svg_sha256": "86034967c0ef2f6c65cb8e2d546eb05d15f05a03e732725ff7df4275f61e8239",
+  "png_sha256": "df8403b3f65f971f3eb40857c757bfc71a412f83dbeee398a40313a5854a382d",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Three equal comparison lanes keep card rows and metric baselines aligned; the arrows mark only the change between stages and do not imply parallel execution across lanes. Warning colour marks the two costs that were later removed, accent marks the fixture compare mode. No clipped text, overlaps or border contacts. Values match run data and post sections 8.1 to 8.3 and 8.6, with sample counts stated. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

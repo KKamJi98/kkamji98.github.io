@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/data/databricks/databricks-grant-binding.html",
+  "source_sha256": "87ddb2b743f0acf10f8e9de60d20015730a2561bbc862901ae1801f17885d602",
+  "svg_sha256": "fdb9c3379fb6b4afe52441e2034f1aeda6527480cda795d8de88a105728a8297",
+  "png_sha256": "356a29d5caa95e0e2abb3775d004381a372a477d0017a87c1bead5b0fdc564ab",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-20T21:26:57+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Both workspaces connect to one metastore lane; the binding route leaves catalog main and enters only the prod workspace, and the dev card carries the warning colour for the denied access. Catalog, schema and table cards share one axis with containment arrows. No clipped text, overlaps or border contacts. GRANT scope, privilege inheritance and binding behaviour match the post section 2 and the workspace-catalog binding documentation. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}
