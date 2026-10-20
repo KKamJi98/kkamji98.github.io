@@ -18,7 +18,7 @@ image:
 > - Docker가 필요 없는 제어 job은 light 풀, 빌드와 테스트는 rootless DinD를 쓰는 full 풀로 나눴다.  
 > - full 풀은 privileged 없이 Pod user namespace, capability 3개, 전용 seccomp profile, device plugin으로 할당한 TUN 장치로 Docker를 실행한다.  
 > - 노드마다 저장소별 크기의 슬롯을 하나씩 두고, ARC 0.15가 quota에 거부된 runner Pod를 30초마다 다시 만드는 동작으로 동시 실행을 제한했다.  
-> - 웹 저장소 main CI는 20~25분에서 약 10분이 됐다. Rust 저장소는 build once로 runner 점유가 10% 줄었지만, 오라클 fixture가 한 번도 녹화되지 않아 PR마다 오라클 테스트에 약 30분을 쓰고 있었다. 녹화 조건을 고친 뒤 source qualification은 1768.5초에서 80.5초가 됐다.  
+> - 웹 저장소 main CI는 20~25분에서 약 10분이 됐다. Rust 저장소는 build once로 runner 점유가 10% 줄었지만, 오라클 fixture가 한 번도 녹화되지 않아 PR마다 오라클 테스트에 약 30분을 쓰고 있었다. 녹화 조건을 고친 뒤 첫 PR run에서 runner 점유는 106.5분에서 54.7분, 슬롯이 비어 있을 때 run 전체는 50.3분이 됐다(1건).  
 {: .prompt-info}
 
 측정은 2026-10-15부터 2026-10-20까지의 실제 run 기준입니다. 아직 적용하지 않았거나 표본이 부족한 효과는 **예상** 또는 표본 수로 따로 표시했습니다.
@@ -246,7 +246,7 @@ source qualification의 1878.6초 중 1871초가 오라클 테스트 두 개였�
 | lockstep 테스트 | 579.9초 | 20.0초 |
 | replay CLI 테스트 | 1181.0초 | 53.0초 |
 
-fixture는 원본 약 885MB이고 cache에는 압축되어 64MB로 저장됩니다. PR job에서 cache를 복원하는 시간까지 포함한 효과는 다음 PR run에서 측정합니다.
+fixture는 원본 약 885MB이고 cache에는 압축되어 64MB로 저장됩니다. fixture 저장 뒤 첫 PR run에서는 cache 복원이 22초, source qualification 단계가 2.8분이었습니다. 이전 PR들의 같은 단계는 29.4~32.7분이었습니다(1건).
 
 ### 8.4. 클러스터 내부 registry
 
@@ -301,8 +301,8 @@ registry가 응답하지 않으면 Docker는 Docker Hub로 다시 시도합니�
 | 대상 | 지금까지 측정 | 다음 단계 적용 후(**예상**) |
 | --- | --- | --- |
 | 웹 저장소 main push | 9.3~10.5분(2건) | warm mirror에서 base image pull이 약 40초에서 7~9초로 줄어든 만큼 짧아진다 |
-| Rust 저장소 runner 점유 | build once 후 94.6~95.6분(2건), 내부 CI 이미지 적용 후 82.7분(1건, 다른 PR) | 비교 모드로 source qualification이 약 28분 줄어 50분대 |
-| Rust 저장소 가장 긴 경로 | 73.6~75.7분(2건) | 비교 모드로 약 45분, tier 병렬화까지 하면 30분 안팎 |
+| Rust 저장소 runner 점유 | build once 후 94.6~95.6분(2건), 내부 CI 이미지 적용 후 82.7분(1건), 오라클 fixture까지 적용 후 54.7분(1건) | tier를 병렬로 나눠도 점유는 비슷하다 |
+| Rust 저장소 가장 긴 경로 | build once 후 73.6~75.7분(2건), 오라클 fixture까지 적용 후 40.8분(1건) | tier 병렬화 후 약 30분(archive 빌드 20분과 가장 긴 tier 10분) |
 
 ---
 
