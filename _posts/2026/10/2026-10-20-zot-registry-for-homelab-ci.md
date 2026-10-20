@@ -16,7 +16,7 @@ HomeLab Kubernetes의 GitHub Self-hosted Runner에서 웹 저장소의 테스트
 > **TL;DR**  
 > - zot v2.1.22 하나로 Docker Hub mirror와 CI 이미지 저장소를 함께 운영한다. 배포 직후 메모리는 46Mi였다.  
 > - v2.1.22에서 sync의 `preserveDigest`는 무시된다. digest로 고정한 base image를 그대로 받으려면 `http.compat: ["docker2s2"]`가 필요하다.  
-> - registry에 닿는 job이 tag를 먼저 만들 수 있으므로 tag를 신뢰하지 않는다. main이 GitHub Actions cache에 기록한 digest로만 pull한다.  
+> - registry에 닿는 job이 tag를 먼저 만들 수 있으므로 tag를 신뢰하지 않는다. main이 GitHub Actions cache에 기록한 digest로만 pull한다. 첫 PR run에서 CI 이미지 단계가 job당 102초에서 12~13초가 됐다.  
 > - warm mirror에서 338MB image pull은 50.0초, 38.8초에서 7.2초, 8.5초가 됐다. 처음 받는 cold 요청은 이전과 같은 약 41초였다.  
 {: .prompt-info}
 
@@ -199,7 +199,7 @@ CI에 넣기 전에 같은 버전의 zot과 Docker 29.9.1로 실제 CI 이미지
 | 같은 tag로 다시 push | `authorization failed`로 거부, digest를 기록하지 않음 |
 | digest 없음, 형식 오류, 없는 digest, registry 중지 | 각각 약 0.3초 안에 로컬 빌드로 전환 |
 
-CI에서의 효과는 이 변경이 main에 들어간 뒤 측정할 예정입니다.
+main에 적용한 뒤 첫 PR run에서 이미지 단계는 job당 12~13초였습니다. digest 복원에 2~3초, pull에 10~11초가 걸렸습니다. 이전 66건의 중앙값 102초보다 약 89초 짧고, job 4개를 합치면 PR 하나당 약 6분입니다. 표본은 아직 1건입니다.
 
 ### 5.1. 보존 정책
 
@@ -261,7 +261,7 @@ Rust 저장소는 Docker Hub에서 42MB짜리 Ubuntu base image 하나만 받습
 - 저장소가 emptyDir라 Pod가 다시 만들어지면 cold 상태로 시작한다. 설정을 바꿀 때마다 Pod가 다시 만들어지므로, 측정 중에는 설정 변경을 몰아서 한다.
 - 익명 `create`로 저장 공간을 채울 수 있다. 상한 30Gi와 보존 정책으로만 막는다.
 - warm 표본은 Rust image 2건, PostgreSQL 1건이다. 다음 CI run들로 늘린다.
-- CI 이미지 저장소의 CI 효과는 아직 측정하지 않았다. 로컬 실험 기준 **예상**은 job당 약 90초 감소다.
+- CI 이미지 저장소의 CI 효과 표본은 1건이다(job당 102초에서 12~13초). 다음 PR run으로 늘린다.
 - 클러스터 내부 평문 HTTP다. 무결성은 digest로 지키지만, 전송 내용은 암호화되지 않는다.
 
 ---
