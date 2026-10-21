@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-rule-group-capacity.html",
+  "source_sha256": "b7acdb8f1e4ab4a979c9b91542a80a5e2eabbadcd7aad6c6f9b7e5cfde925cbb",
+  "svg_sha256": "33cbe0c7bda9c70af3ecb6f32163a2a7553e80d50d72fe7b175b057d1e28c5cf",
+  "png_sha256": "7fc350fbb835eda712e08f5b53a52bd9e9b6585677780c49bd4399a3a4d528c8",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-22T00:19:34+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). The lanes are symmetric with 24 px card insets and equal card heights across lanes; nothing is clipped and the margins are balanced. The counted-value card is warning on the left and accent on the right. Numbers match post section 9: 60 WCU of rules, capacity 300 versus 80, 1,375 + 300 = 1,675 at $0.80 and 1,375 + 80 = 1,455 at $0.60, and the note on immutable capacity matches the bold sentence. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-regex-merge.html",
+  "source_sha256": "479879df3bdb1744c793130cc3442bb90fb3520059df396de3ed42811815c84e",
+  "svg_sha256": "419727350d7ad366347fa25da6880737113d0295c676b5ff7c8d3abfc5dfd46a",
+  "png_sha256": "d4634336e6d873ad8f2579249c9a823383cf88b4fd1da1ce19955eb1e5fcb2f8",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-22T00:19:34+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). The two lanes are symmetric with 24 px card insets, the three card pairs match in height and baseline, and nothing is clipped. The CONTAINS card is warning and the REGEX card is accent; the accent lane renders neutral grey by the exporter convention. Numbers match post section 5: 7 x 10 = 70, LOWERCASE counted once = 10, CheckCapacity 80 (140 if counted per statement), regex 3, LOWERCASE 10, total 13, 74 characters, and 200,000 random strings with 0 differences. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

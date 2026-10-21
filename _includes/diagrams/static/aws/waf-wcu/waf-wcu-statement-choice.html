@@ -1,0 +1,55 @@
+<figure class="sd sd--comparison sd--fhd" id="sd-waf-wcu-statement-choice" aria-labelledby="sd-waf-wcu-statement-choice-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-waf-wcu-statement-choice-title">같은 판정이면 더 싼 statement로 쓸 수 있다</figcaption><div class="sd-semantic-source">
+  <table class="sd-table">
+    <tr><th>찾는 것</th><th>비싼 선택</th><th>싼 선택</th></tr>
+    <tr><td>값 전체, 앞, 뒤 일치</td><td class="sd-node--warning">정규식: 3</td><td class="sd-node--accent">EXACTLY, STARTS/ENDS_WITH: 2</td></tr>
+    <tr><td>부분 문자열 하나</td><td class="sd-node--warning">CONTAINS: 10</td><td class="sd-node--accent">앵커 없는 정규식: 3</td></tr>
+    <tr><td>단어 단위 일치</td><td class="sd-node--warning">CONTAINS_WORD: 10</td><td class="sd-node--accent">경계 클래스 정규식: 3</td></tr>
+    <tr><td>패턴 여러 개</td><td class="sd-node--warning">CONTAINS N개: 10 x N</td><td class="sd-node--accent">|로 이은 정규식: 3</td></tr>
+    <tr><td>패턴이 1,600자를 넘음</td><td class="sd-node--warning">정규식 9개 이상: 27~</td><td class="sd-node--accent">regex pattern set: 25</td></tr>
+  </table>
+  <p class="sd-note">정규식 하나는 200자까지다. 정규식 8개(1,600자, 24 WCU)까지는 regex pattern set의 25보다 싸다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="3e1d7b536913b2598a556edc62b488a4e8a7882aeea4b0d7f9a4691afe1c526b">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0.0" x="64.000" y="236.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="669.333" y="236.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="1274.667" y="236.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="64.000" y="344.650" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="669.333" y="344.650" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1274.667" y="344.650" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.0" x="64.000" y="453.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="669.333" y="453.050" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.2.2" x="1274.667" y="453.050" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3.0" x="64.000" y="561.450" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1" x="669.333" y="561.450" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.3.2" x="1274.667" y="561.450" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4.0" x="64.000" y="669.850" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="669.333" y="669.850" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4.2" x="1274.667" y="669.850" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.5.0" x="64.000" y="778.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.5.1" x="669.333" y="778.250" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.5.2" x="1274.667" y="778.250" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="199.650" font-size="36" font-weight="700" fill="#111827">같은 판정이면 더 싼 statement로 쓸 수 있다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="288.250" font-size="28" font-weight="700" fill="#111827">찾는 것</text>
+<text data-source="root.0.1.0.1" x="693.333" y="288.250" font-size="28" font-weight="700" fill="#111827">비싼 선택</text>
+<text data-source="root.0.1.0.2" x="1298.667" y="288.250" font-size="28" font-weight="700" fill="#111827">싼 선택</text>
+<text data-source="root.0.1.1.0" x="88.000" y="396.650" font-size="28" font-weight="700" fill="#111827">값 전체, 앞, 뒤 일치</text>
+<text data-source="root.0.1.1.1" x="693.333" y="396.650" font-size="28" font-weight="700" fill="#111827">정규식: 3</text>
+<text data-source="root.0.1.1.2" x="1298.667" y="396.650" font-size="28" font-weight="700" fill="#111827">EXACTLY, STARTS/ENDS_WITH: 2</text>
+<text data-source="root.0.1.2.0" x="88.000" y="505.050" font-size="28" font-weight="700" fill="#111827">부분 문자열 하나</text>
+<text data-source="root.0.1.2.1" x="693.333" y="505.050" font-size="28" font-weight="700" fill="#111827">CONTAINS: 10</text>
+<text data-source="root.0.1.2.2" x="1298.667" y="505.050" font-size="28" font-weight="700" fill="#111827">앵커 없는 정규식: 3</text>
+<text data-source="root.0.1.3.0" x="88.000" y="613.450" font-size="28" font-weight="700" fill="#111827">단어 단위 일치</text>
+<text data-source="root.0.1.3.1" x="693.333" y="613.450" font-size="28" font-weight="700" fill="#111827">CONTAINS_WORD: 10</text>
+<text data-source="root.0.1.3.2" x="1298.667" y="613.450" font-size="28" font-weight="700" fill="#111827">경계 클래스 정규식: 3</text>
+<text data-source="root.0.1.4.0" x="88.000" y="721.850" font-size="28" font-weight="700" fill="#111827">패턴 여러 개</text>
+<text data-source="root.0.1.4.1" x="693.333" y="721.850" font-size="28" font-weight="700" fill="#111827">CONTAINS N개: 10 x N</text>
+<text data-source="root.0.1.4.2" x="1298.667" y="721.850" font-size="28" font-weight="700" fill="#111827">|로 이은 정규식: 3</text>
+<text data-source="root.0.1.5.0" x="88.000" y="830.250" font-size="28" font-weight="700" fill="#111827">패턴이 1,600자를 넘음</text>
+<text data-source="root.0.1.5.1" x="693.333" y="830.250" font-size="28" font-weight="700" fill="#111827">정규식 9개 이상: 27~</text>
+<text data-source="root.0.1.5.2" x="1298.667" y="830.250" font-size="28" font-weight="700" fill="#111827">regex pattern set: 25</text>
+<text data-source="root.0.2" x="64.000" y="908.650" font-size="22" font-weight="400" fill="#111827">정규식 하나는 200자까지다. 정규식 8개(1,600자, 24 WCU)까지는 regex pattern set의 25보다 싸다.</text>
+</svg>
+</figure>

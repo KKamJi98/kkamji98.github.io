@@ -1,0 +1,62 @@
+<figure class="sd sd--comparison sd--fhd" id="sd-waf-wcu-transform-sharing" aria-labelledby="sd-waf-wcu-transform-sharing-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-waf-wcu-transform-sharing-title">변환 비용은 component, 변환 목록과 순서가 같을 때만 한 번 잡힌다</figcaption><div class="sd-semantic-source">
+  <table class="sd-table">
+    <tr><th>조합</th><th>실측 / 따로 셀 때</th><th>변환 비용</th></tr>
+    <tr><td>path 같은 변환, rule 3개</td><td>29 / 69</td><td class="sd-node--accent">한 번만 잡힘</td></tr>
+    <tr><td>UA LOWERCASE, rule 3개</td><td>40 / 60</td><td class="sd-node--accent">한 번만 잡힘</td></tr>
+    <tr><td>변환 하나가 빠짐</td><td>36 / 36</td><td class="sd-node--warning">따로 잡힘</td></tr>
+    <tr><td>변환 순서만 반대</td><td>46 / 46</td><td class="sd-node--warning">따로 잡힘</td></tr>
+    <tr><td>header 이름 표기만 다름</td><td>26 / 26</td><td class="sd-node--warning">따로 잡힘</td></tr>
+    <tr><td>component가 다름</td><td>26 / 26</td><td class="sd-node--warning">따로 잡힘</td></tr>
+  </table>
+  <p class="sd-note">path 비교는 URL_DECODE와 LOWERCASE를 건 23 WCU 정규식, UA 비교는 CONTAINS와 LOWERCASE다. 2026년 10월 21일 CheckCapacity 실측이다.</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="8f33fe28399a71bc6767e81571b7aa0971dad66f5821f7749f117b70ee9bcbc2">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.1.0.0" x="64.000" y="182.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="669.333" y="182.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="1274.667" y="182.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.0" x="64.000" y="290.450" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="669.333" y="290.450" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="1274.667" y="290.450" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.2.0" x="64.000" y="398.850" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.1" x="669.333" y="398.850" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2.2" x="1274.667" y="398.850" width="581.333" height="84.400" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3.0" x="64.000" y="507.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.1" x="669.333" y="507.250" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.3.2" x="1274.667" y="507.250" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.4.0" x="64.000" y="615.650" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.1" x="669.333" y="615.650" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4.2" x="1274.667" y="615.650" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.5.0" x="64.000" y="724.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.5.1" x="669.333" y="724.050" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.5.2" x="1274.667" y="724.050" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.6.0" x="64.000" y="832.450" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.1" x="669.333" y="832.450" width="581.333" height="84.400" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.6.2" x="1274.667" y="832.450" width="581.333" height="84.400" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="145.450" font-size="36" font-weight="700" fill="#111827">변환 비용은 component, 변환 목록과 순서가 같을 때만 한 번 잡힌다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="234.050" font-size="28" font-weight="700" fill="#111827">조합</text>
+<text data-source="root.0.1.0.1" x="693.333" y="234.050" font-size="28" font-weight="700" fill="#111827">실측 / 따로 셀 때</text>
+<text data-source="root.0.1.0.2" x="1298.667" y="234.050" font-size="28" font-weight="700" fill="#111827">변환 비용</text>
+<text data-source="root.0.1.1.0" x="88.000" y="342.450" font-size="28" font-weight="700" fill="#111827">path 같은 변환, rule 3개</text>
+<text data-source="root.0.1.1.1" x="693.333" y="342.450" font-size="28" font-weight="700" fill="#111827">29 / 69</text>
+<text data-source="root.0.1.1.2" x="1298.667" y="342.450" font-size="28" font-weight="700" fill="#111827">한 번만 잡힘</text>
+<text data-source="root.0.1.2.0" x="88.000" y="450.850" font-size="28" font-weight="700" fill="#111827">UA LOWERCASE, rule 3개</text>
+<text data-source="root.0.1.2.1" x="693.333" y="450.850" font-size="28" font-weight="700" fill="#111827">40 / 60</text>
+<text data-source="root.0.1.2.2" x="1298.667" y="450.850" font-size="28" font-weight="700" fill="#111827">한 번만 잡힘</text>
+<text data-source="root.0.1.3.0" x="88.000" y="559.250" font-size="28" font-weight="700" fill="#111827">변환 하나가 빠짐</text>
+<text data-source="root.0.1.3.1" x="693.333" y="559.250" font-size="28" font-weight="700" fill="#111827">36 / 36</text>
+<text data-source="root.0.1.3.2" x="1298.667" y="559.250" font-size="28" font-weight="700" fill="#111827">따로 잡힘</text>
+<text data-source="root.0.1.4.0" x="88.000" y="667.650" font-size="28" font-weight="700" fill="#111827">변환 순서만 반대</text>
+<text data-source="root.0.1.4.1" x="693.333" y="667.650" font-size="28" font-weight="700" fill="#111827">46 / 46</text>
+<text data-source="root.0.1.4.2" x="1298.667" y="667.650" font-size="28" font-weight="700" fill="#111827">따로 잡힘</text>
+<text data-source="root.0.1.5.0" x="88.000" y="776.050" font-size="28" font-weight="700" fill="#111827">header 이름 표기만 다름</text>
+<text data-source="root.0.1.5.1" x="693.333" y="776.050" font-size="28" font-weight="700" fill="#111827">26 / 26</text>
+<text data-source="root.0.1.5.2" x="1298.667" y="776.050" font-size="28" font-weight="700" fill="#111827">따로 잡힘</text>
+<text data-source="root.0.1.6.0" x="88.000" y="884.450" font-size="28" font-weight="700" fill="#111827">component가 다름</text>
+<text data-source="root.0.1.6.1" x="693.333" y="884.450" font-size="28" font-weight="700" fill="#111827">26 / 26</text>
+<text data-source="root.0.1.6.2" x="1298.667" y="884.450" font-size="28" font-weight="700" fill="#111827">따로 잡힘</text>
+<text data-source="root.0.2" x="64.000" y="962.850" font-size="22" font-weight="400" fill="#111827">path 비교는 URL_DECODE와 LOWERCASE를 건 23 WCU 정규식, UA 비교는 CONTAINS와 LOWERCASE다. 2026년 10월 21일 CheckCapacity 실측이다.</text>
+</svg>
+</figure>

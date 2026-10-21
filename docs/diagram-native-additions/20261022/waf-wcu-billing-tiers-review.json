@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-billing-tiers.html",
+  "source_sha256": "f37edce74c35abd1d96f745358b9b339a5208dafd4ef509efe935156d06fd7e5",
+  "svg_sha256": "8522f51871b08c27d7dd305a94ab0b2266e9fc8159efeb46b70058c7db1e7dc4",
+  "png_sha256": "6a72f9be17c3825202f998f60d874ad9e944e66a18b161c5aae1991ee9b601d6",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-22T00:19:34+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). The four tier cards are the same size and centred on one row, inset 32 px inside the managed-group box; the six managed-rule cards form an equal 3 x 2 grid and the space above and below is balanced. Edge labels start 12 to 13 px after the preceding card border and arrowheads stop 12 px before the next card. Values match the source and post section 2: $0.60/$180, $0.80/$240, $1.00/$300, $2.00/$600, 700 + 200 + 200 + 200 + 25 + 50 = 1,375 and a 125 WCU budget. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

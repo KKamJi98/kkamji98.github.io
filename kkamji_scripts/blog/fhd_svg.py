@@ -48,6 +48,14 @@ SVG_BEGIN = "<!-- FHD artwork: generated from the preserved semantic source. -->
 SEMANTIC_BEGIN = '<div class="sd-semantic-source">'
 FONT = "assets/fonts/deterministic-export/NotoSansKR[wght].ttf"
 FIXED_LAYOUT_PROFILES = {
+    "diagrams/static/aws/waf-wcu/waf-wcu-billing-tiers.html": {
+        "edge_widths": {"root.0.1": 168},
+        "edge_label_insets": {"root.0.1.1": 12, "root.0.1.3": 12, "root.0.1.5": 12},
+    },
+    "diagrams/static/aws/waf-wcu/waf-wcu-label-decision.html": {
+        "edge_widths": {"root.0.1": 168},
+        "edge_label_insets": {"root.0.1.1": 12, "root.0.1.3": 12, "root.0.1.5": 12},
+    },
     "diagrams/packer-golden-image.html": {
         "edge_widths": {"root.0.1.1": 168},
     },
