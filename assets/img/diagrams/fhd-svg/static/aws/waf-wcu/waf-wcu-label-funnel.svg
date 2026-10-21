@@ -1,0 +1,48 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="e6d182f8287de2d6dab6f6f67876eab0ec7ccb5f973e1bbbd440c6e9921436c2">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.2" x="64.000" y="521.400" width="1792.000" height="265.600" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0" x="96.000" y="311.900" width="306.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="570.000" y="311.900" width="306.000" height="185.500" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1044.000" y="311.900" width="306.000" height="185.500" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.6" x="1518.000" y="311.900" width="306.000" height="185.500" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.2.1.0" x="88.000" y="607.200" width="565.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.1" x="677.333" y="607.200" width="565.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.2.1.2" x="1266.667" y="607.200" width="565.333" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<path data-edge="root.0.1.1" data-from="root.0.1.0" data-to="root.0.1.2" d="M 414.000 404.650 L 558.000 404.650" fill="none" stroke="#475569" stroke-width="3"><title>통과</title></path>
+<polygon data-arrowhead="root.0.1.1" points="558.000,404.650 548.000,410.650 548.000,398.650" fill="#475569"/>
+<path data-edge="root.0.1.3" data-from="root.0.1.2" data-to="root.0.1.4" d="M 888.000 404.650 L 1032.000 404.650" fill="none" stroke="#475569" stroke-width="3"><title>통과</title></path>
+<polygon data-arrowhead="root.0.1.3" points="1032.000,404.650 1022.000,410.650 1022.000,398.650" fill="#475569"/>
+<path data-edge="root.0.1.5" data-from="root.0.1.4" data-to="root.0.1.6" d="M 1362.000 404.650 L 1506.000 404.650" fill="none" stroke="#475569" stroke-width="3"><title>label 읽기</title></path>
+<polygon data-arrowhead="root.0.1.5" points="1506.000,404.650 1496.000,410.650 1496.000,398.650" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="275.300" font-size="36" font-weight="700" fill="#111827">탐지 룰은 label만 붙이고 차단은 마지막 룰 하나가 한다</text>
+<text data-source="root.0.1.0" x="120.000" y="363.900" font-size="28" font-weight="700" fill="#111827">Block 40~52</text>
+<text data-source="root.0.1.0" x="120.000" y="406.300" font-size="22" font-weight="400" fill="#111827">IP set, UA 블랙리스트</text>
+<text data-source="root.0.1.0" x="120.000" y="436.000" font-size="22" font-weight="400" fill="#111827">JA4, 관리형 룰 그룹</text>
+<text data-source="root.0.1.0" x="120.000" y="465.700" font-size="22" font-weight="400" fill="#111827">매칭되면 종결</text>
+<text data-source="root.0.1.2" x="594.000" y="363.900" font-size="28" font-weight="700" fill="#111827">Challenge 80</text>
+<text data-source="root.0.1.2" x="594.000" y="406.300" font-size="22" font-weight="400" fill="#111827">의심 ASN</text>
+<text data-source="root.0.1.2" x="594.000" y="436.000" font-size="22" font-weight="400" fill="#111827">토큰이 없으면</text>
+<text data-source="root.0.1.2" x="594.000" y="465.700" font-size="22" font-weight="400" fill="#111827">202로 종결</text>
+<text data-source="root.0.1.4" x="1068.000" y="363.900" font-size="28" font-weight="700" fill="#111827">Count 91~97</text>
+<text data-source="root.0.1.4" x="1068.000" y="406.300" font-size="22" font-weight="400" fill="#111827">ua-spoof:version</text>
+<text data-source="root.0.1.4" x="1068.000" y="436.000" font-size="22" font-weight="400" fill="#111827">ua-spoof:platform</text>
+<text data-source="root.0.1.4" x="1068.000" y="465.700" font-size="22" font-weight="400" fill="#111827">allow:crawler</text>
+<text data-source="root.0.1.6" x="1542.000" y="363.900" font-size="28" font-weight="700" fill="#111827">Block 99</text>
+<text data-source="root.0.1.6" x="1542.000" y="406.300" font-size="22" font-weight="400" fill="#111827">ua-spoof: 있음</text>
+<text data-source="root.0.1.6" x="1542.000" y="436.000" font-size="22" font-weight="400" fill="#111827">AND NOT allow:crawler</text>
+<text data-source="root.0.1.6" x="1542.000" y="465.700" font-size="22" font-weight="400" fill="#111827">label match 2개, 2 WCU</text>
+<text data-source="root.0.1.1" x="414.000" y="384.950" font-size="22" font-weight="400" fill="#111827">통과</text>
+<text data-source="root.0.1.3" x="888.000" y="384.950" font-size="22" font-weight="400" fill="#111827">통과</text>
+<text data-source="root.0.1.5" x="1362.000" y="384.950" font-size="22" font-weight="400" fill="#111827">label 읽기</text>
+<text data-source="root.0.2.0" x="88.000" y="573.400" font-size="28" font-weight="700" fill="#111827">판정을 한 룰에 모으면 얻는 것</text>
+<text data-source="root.0.2.1.0" x="112.000" y="659.200" font-size="28" font-weight="700" fill="#111827">예외는 한 곳</text>
+<text data-source="root.0.2.1.0" x="112.000" y="701.600" font-size="22" font-weight="400" fill="#111827">검증된 크롤러 조건을</text>
+<text data-source="root.0.2.1.0" x="112.000" y="731.300" font-size="22" font-weight="400" fill="#111827">룰마다 반복하지 않는다</text>
+<text data-source="root.0.2.1.1" x="701.333" y="659.200" font-size="28" font-weight="700" fill="#111827">전환은 한 번</text>
+<text data-source="root.0.2.1.1" x="701.333" y="701.600" font-size="22" font-weight="400" fill="#111827">Block과 롤백 모두</text>
+<text data-source="root.0.2.1.1" x="701.333" y="731.300" font-size="22" font-weight="400" fill="#111827">룰 99의 action 변경</text>
+<text data-source="root.0.2.1.2" x="1290.667" y="659.200" font-size="28" font-weight="700" fill="#111827">label별 지표</text>
+<text data-source="root.0.2.1.2" x="1290.667" y="701.600" font-size="22" font-weight="400" fill="#111827">통과한 요청만 세어</text>
+<text data-source="root.0.2.1.2" x="1290.667" y="731.300" font-size="22" font-weight="400" fill="#111827">오탐 검토 대상이 바로 나온다</text>
+<text data-source="root.0.3" x="64.000" y="833.000" font-size="22" font-weight="400" fill="#111827">label은 먼저 평가된 rule이 붙인 것만 보이므로 탐지 룰의 priority 숫자가 판정 룰보다 작아야 한다.</text>
+</svg>

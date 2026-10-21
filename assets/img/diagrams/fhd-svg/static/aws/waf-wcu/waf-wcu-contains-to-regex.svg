@@ -1,0 +1,29 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="09d2ddc7de681473cd48ad2e188c42b90bc8c195d2e4676ad74c18a21e86a522">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="266.550" width="884.000" height="565.800" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="266.550" width="884.000" height="565.800" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="88.000" y="352.350" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="88.000" y="502.450" width="836.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="88.000" y="682.250" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="996.000" y="352.350" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="996.000" y="502.450" width="836.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.1.3" x="996.000" y="682.250" width="836.000" height="126.100" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="229.950" font-size="36" font-weight="700" fill="#111827">같은 판정을 CONTAINS 7개 대신 정규식 1개로 쓰면 82 WCU가 15 WCU가 된다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="318.550" font-size="28" font-weight="700" fill="#111827">바꾸기 전: 82 WCU</text>
+<text data-source="root.0.1.0.1" x="112.000" y="404.350" font-size="28" font-weight="700" fill="#111827">JA4 EXACTLY</text>
+<text data-source="root.0.1.0.1" x="112.000" y="446.750" font-size="22" font-weight="400" fill="#111827">봇 TLS 지문 일치: 2 WCU</text>
+<text data-source="root.0.1.0.2" x="112.000" y="554.450" font-size="28" font-weight="700" fill="#111827">CONTAINS x 7</text>
+<text data-source="root.0.1.0.2" x="112.000" y="596.850" font-size="22" font-weight="400" fill="#111827">chrome/118. ... firefox/121.</text>
+<text data-source="root.0.1.0.2" x="112.000" y="626.550" font-size="22" font-weight="400" fill="#111827">7 x 10 = 70 WCU</text>
+<text data-source="root.0.1.0.3" x="112.000" y="734.250" font-size="28" font-weight="700" fill="#111827">LOWERCASE</text>
+<text data-source="root.0.1.0.3" x="112.000" y="776.650" font-size="22" font-weight="400" fill="#111827">같은 변환 7개를 1회로 계산: 10 WCU</text>
+<text data-source="root.0.1.1.0" x="996.000" y="318.550" font-size="28" font-weight="700" fill="#111827">바꾼 뒤: 15 WCU</text>
+<text data-source="root.0.1.1.1" x="1020.000" y="404.350" font-size="28" font-weight="700" fill="#111827">JA4 EXACTLY</text>
+<text data-source="root.0.1.1.1" x="1020.000" y="446.750" font-size="22" font-weight="400" fill="#111827">봇 TLS 지문 일치: 2 WCU</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="554.450" font-size="28" font-weight="700" fill="#111827">REGEX x 1</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="596.850" font-size="22" font-weight="400" fill="#111827">chrome/118\.|...|firefox/121\.</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="626.550" font-size="22" font-weight="400" fill="#111827">3 WCU, 패턴이 늘어도 3</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="734.250" font-size="28" font-weight="700" fill="#111827">LOWERCASE</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="776.650" font-size="22" font-weight="400" fill="#111827">판정을 지키려고 유지: 10 WCU</text>
+<text data-source="root.0.2" x="64.000" y="878.350" font-size="22" font-weight="400" fill="#111827">앵커 없는 정규식은 부분 문자열 검색이라 CONTAINS와 판정이 같다. 며칠치 WAF 로그 재생에서 한쪽만 매칭된 요청은 0건이었다.</text>
+</svg>

@@ -1,0 +1,51 @@
+<figure class="sd sd--comparison sd--fhd" id="sd-waf-wcu-version-pairs-vs-bits" aria-labelledby="sd-waf-wcu-version-pairs-vs-bits-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-waf-wcu-version-pairs-vs-bits-title">버전마다 쌍을 나열하는 대신 비트마다 쌍을 두면 범위가 넓어지고 WCU는 줄어든다</figcaption><div class="sd-semantic-source">
+  <div class="sd-grid">
+    <section class="sd-lane sd-lane--warning">
+      <span class="sd-lane-title">버전마다 1쌍</span>
+      <div class="sd-node"><strong class="sd-label">쌍 1개 = 6 WCU</strong><span class="sd-detail">Sec-CH-UA v="146"<br>AND NOT UA Chrome/146\.</span></div>
+      <div class="sd-node sd-node--warning"><strong class="sd-label">130~160: 31쌍</strong><span class="sd-detail">31 x 6 = 186<br>CheckCapacity 실측 187 WCU</span></div>
+      <div class="sd-node sd-node--warning"><strong class="sd-label">범위 밖 버전은 놓친다</strong><span class="sd-detail">약 4주마다 범위를 사람이 갱신<br>NOT은 헤더가 없어도 참</span></div>
+    </section>
+    <section class="sd-lane sd-lane--accent">
+      <span class="sd-lane-title">비트마다 2쌍</span>
+      <div class="sd-node"><strong class="sd-label">b0~b6 x 2방향 = 14쌍</strong><span class="sd-detail">뒤 두 자리 00~99를 7비트로 비교<br>14 x 6 = 84 WCU</span></div>
+      <div class="sd-node"><strong class="sd-label">보조 쌍과 예외</strong><span class="sd-detail">UA 10~99 쌍 6 WCU<br>예외 정규식 2개 6 WCU</span></div>
+      <div class="sd-node sd-node--accent"><strong class="sd-label">UA 10~199 전체: 97 WCU</strong><span class="sd-detail">CheckCapacity 실측<br>범위 갱신 없음</span></div>
+    </section>
+  </div>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="645eb26a769ce1e4d1fc2267b1640c49ada313586c392ec3d76e244cd589a0a7">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1.0" x="64.000" y="263.700" width="884.000" height="625.200" rx="16" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-source="root.0.1.1" x="972.000" y="263.700" width="884.000" height="625.200" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.0.1" x="88.000" y="349.500" width="836.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.0.2" x="88.000" y="529.300" width="836.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.0.3" x="88.000" y="709.100" width="836.000" height="155.800" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<rect data-node="root.0.1.1.1" x="996.000" y="349.500" width="836.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.2" x="996.000" y="529.300" width="836.000" height="155.800" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.1.3" x="996.000" y="709.100" width="836.000" height="155.800" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<text data-source="root.0.0" x="64.000" y="227.100" font-size="36" font-weight="700" fill="#111827">버전마다 쌍을 나열하는 대신 비트마다 쌍을 두면 범위가 넓어지고 WCU는 줄어든다</text>
+<text data-source="root.0.1.0.0" x="88.000" y="315.700" font-size="28" font-weight="700" fill="#111827">버전마다 1쌍</text>
+<text data-source="root.0.1.0.1" x="112.000" y="401.500" font-size="28" font-weight="700" fill="#111827">쌍 1개 = 6 WCU</text>
+<text data-source="root.0.1.0.1" x="112.000" y="443.900" font-size="22" font-weight="400" fill="#111827">Sec-CH-UA v=&quot;146&quot;</text>
+<text data-source="root.0.1.0.1" x="112.000" y="473.600" font-size="22" font-weight="400" fill="#111827">AND NOT UA Chrome/146\.</text>
+<text data-source="root.0.1.0.2" x="112.000" y="581.300" font-size="28" font-weight="700" fill="#111827">130~160: 31쌍</text>
+<text data-source="root.0.1.0.2" x="112.000" y="623.700" font-size="22" font-weight="400" fill="#111827">31 x 6 = 186</text>
+<text data-source="root.0.1.0.2" x="112.000" y="653.400" font-size="22" font-weight="400" fill="#111827">CheckCapacity 실측 187 WCU</text>
+<text data-source="root.0.1.0.3" x="112.000" y="761.100" font-size="28" font-weight="700" fill="#111827">범위 밖 버전은 놓친다</text>
+<text data-source="root.0.1.0.3" x="112.000" y="803.500" font-size="22" font-weight="400" fill="#111827">약 4주마다 범위를 사람이 갱신</text>
+<text data-source="root.0.1.0.3" x="112.000" y="833.200" font-size="22" font-weight="400" fill="#111827">NOT은 헤더가 없어도 참</text>
+<text data-source="root.0.1.1.0" x="996.000" y="315.700" font-size="28" font-weight="700" fill="#111827">비트마다 2쌍</text>
+<text data-source="root.0.1.1.1" x="1020.000" y="401.500" font-size="28" font-weight="700" fill="#111827">b0~b6 x 2방향 = 14쌍</text>
+<text data-source="root.0.1.1.1" x="1020.000" y="443.900" font-size="22" font-weight="400" fill="#111827">뒤 두 자리 00~99를 7비트로 비교</text>
+<text data-source="root.0.1.1.1" x="1020.000" y="473.600" font-size="22" font-weight="400" fill="#111827">14 x 6 = 84 WCU</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="581.300" font-size="28" font-weight="700" fill="#111827">보조 쌍과 예외</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="623.700" font-size="22" font-weight="400" fill="#111827">UA 10~99 쌍 6 WCU</text>
+<text data-source="root.0.1.1.2" x="1020.000" y="653.400" font-size="22" font-weight="400" fill="#111827">예외 정규식 2개 6 WCU</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="761.100" font-size="28" font-weight="700" fill="#111827">UA 10~199 전체: 97 WCU</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="803.500" font-size="22" font-weight="400" fill="#111827">CheckCapacity 실측</text>
+<text data-source="root.0.1.1.3" x="1020.000" y="833.200" font-size="22" font-weight="400" fill="#111827">범위 갱신 없음</text>
+</svg>
+</figure>
