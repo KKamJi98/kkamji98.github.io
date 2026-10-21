@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-statement-choice.html",
+  "source_sha256": "3e1d7b536913b2598a556edc62b488a4e8a7882aeea4b0d7f9a4691afe1c526b",
+  "svg_sha256": "5e7650090fa0d791fbf004ec8206fd3ea974973c5aac5075926fa1e6d28d7e92",
+  "png_sha256": "4cf4a5ca67b9df8bc6e1fa7f3a27e941d65410eb6b00b10926aaacfaf8542270",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-22T00:19:53+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). The 18 cells are equal (581 x 84) on an even 108 px pitch, nothing is clipped and the margins are balanced. After the re-render every cell in the expensive column is warning and every cell in the cheap column is accent, so each row shows the pairing the same way. Values match post section 4: 3 versus 2, 10 versus 3, 10 versus 3, 10 x N versus 3, 27 and up versus 25, and the note on 8 regexes (1,600 characters, 24 WCU). Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

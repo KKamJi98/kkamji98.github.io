@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-label-decision.html",
+  "source_sha256": "18220c75580a78aa6c9de286ddced331983de3a7da771019248a17ed2e493ee6",
+  "svg_sha256": "ea5bcde73f3e2b3ce6d301d6acc2e698d6b8bf8d8e5168f7f070e325aa3b79b0",
+  "png_sha256": "1e33525d6487247ec80effb05c5a1929ebb44fcb71f422b6232ce0dc412f7c26",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-22T00:19:34+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). The four flow cards and the three band cards are equal, the flow row has a symmetric 32 px inset and the space above and below is balanced. Edge labels start 13 px after the preceding card border and arrowheads stop 12 px before the next card. Values match post section 7: 1 WCU per detection rule, a 4 WCU exception evaluated once, a 2 WCU decision rule, 20 versus 11 including the 1 WCU label overhead, and the example:bot: and example:allow:crawler namespaces. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}

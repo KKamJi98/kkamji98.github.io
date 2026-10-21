@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-10-20T22:30+09:00
+updated: 2026-10-21T23:59+09:00
 type: architecture
 status: current
 ---
@@ -147,6 +147,7 @@ bash tools/run.sh    # 로컬 미리보기
 - **검증**: static validator, production build, built HTML의 `.sd` 내부 interactive 요소 0, native 이미지 치수와 전체 decoded 픽셀 동일성을 검사한다. 데스크톱과 360px/390px의 실제 article에서 비례 표시, image/article/document의 가로 overflow 부재, 가독성과 clipping을 확인한다. source/export fixture와 full-size viewer는 별도 검사한다. 정적 CSS 테스트는 브라우저 및 실제 시각 검토를 대신하지 않는다.
 - **테마 업그레이드**: refactor-content gem 원본의 변경을 비교해 static marker 예외를 유지한다. 이 override는 전체 파일 대체이므로 gem 변경이 자동 병합되지 않는다.
 - **2026-10-20 추가 source**: `ci-cd/arc-runner-slots.html`, `ci-cd/arc-rust-gate-stages.html`, `registry/zot-mirror-path.html`, `registry/zot-digest-trust.html`, `data/databricks/databricks-query-path.html`, `data/databricks/databricks-grant-binding.html`. 새 `.sd` 컴포넌트나 테마 override는 없다. 기존 클래스(`sd-lane`, `sd-node`, `sd-arrow`, `sd-note`)만 쓰고 좌표는 `fhd_svg.py`의 `AUTHORED_LAYOUTS`에 직접 적는다.
+- **2026-10-21 추가 source**: `aws/waf-wcu/waf-wcu-billing-tiers.html`, `aws/waf-wcu/waf-wcu-statement-choice.html`, `aws/waf-wcu/waf-wcu-regex-merge.html`, `aws/waf-wcu/waf-wcu-transform-sharing.html`, `aws/waf-wcu/waf-wcu-label-decision.html`, `aws/waf-wcu/waf-wcu-rule-group-capacity.html`. 새 `.sd` 컴포넌트나 테마 override는 없다. 기존 클래스(`sd-flow`, `sd-node`, `sd-arrow`, `sd-lane`, `sd-band`, `sd-table`, `sd-note`)만 쓰고, 좌표는 `fhd_svg.py`의 기본 밀도 프로필이 정한다. `waf-wcu-billing-tiers`와 `waf-wcu-label-decision`은 간선 라벨이 앞 카드 테두리에 붙지 않도록 `FIXED_LAYOUT_PROFILES`에 `edge_widths` 168과 `edge_label_insets` 12만 지정한다. 카탈로그가 바뀌어 2026-10-20 추가 source 7개도 같은 build에서 다시 렌더한다.
 
 ## Native FHD artwork, responsive article display and stylesheet cache
 
