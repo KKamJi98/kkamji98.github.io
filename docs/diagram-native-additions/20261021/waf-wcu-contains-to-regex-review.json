@@ -1,0 +1,11 @@
+{
+  "include": "diagrams/static/aws/waf-wcu/waf-wcu-contains-to-regex.html",
+  "source_sha256": "09d2ddc7de681473cd48ad2e188c42b90bc8c195d2e4676ad74c18a21e86a522",
+  "svg_sha256": "ef55aac1341a9dd7d61304e4751518ec71b8ad67ba0a8e55d752023f6531114f",
+  "png_sha256": "9a09d6d63d82f6b15cd7e799b87e13f20be3ffbf069ba21d80b606e8d6d798c0",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-10-21T22:31:44+09:00",
+  "notes": "Reviewed the actual original 1920 x 1080 PNG through native image input (claude-opus-5-5). Two equal 884 px lanes hold three cards each, and matching cards share identical heights and baselines; no text is clipped or overlapping and the regex chrome/118\\.|...|firefox/121\\. is legible. Values match the source and post sections 4 and 4.1: 2 + 7 x 10 + 10 = 82 and 2 + 3 + 10 = 15, and the log replay note with 0 one-sided matches matches the post. The after lane renders neutral grey because the exporter colours only warning lanes; the accent REGEX card still carries the emphasis. Single-diagram visual and semantic approval only; no article, mobile, whole-corpus or deployment approval is claimed."
+}
