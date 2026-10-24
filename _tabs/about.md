@@ -808,7 +808,7 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
   <li class="cv-timeline-item">
     <div class="cv-timeline-head">
       <h3 class="cv-timeline-title">Warepoint <small>/ Technical Architect</small></h3>
-      <span class="cv-period">2024.12 ~ 2025.10</span>
+      <span class="cv-period">2024.12 ~ 2025.11</span>
     </div>
     <div class="cv-timeline-body">
       <ul>
