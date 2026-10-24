@@ -115,7 +115,7 @@ statefulset.apps/elasticsearch-es-default   1/1     4m37s
 
 ### 2.2. Kibana 배포
 
-```bash
+```text
 ## Kibana 리소스 manifest 파일 생성 -> kibana.yaml
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
@@ -149,7 +149,7 @@ Rkxxxxx19xxxxxmVxxxa
 
 ### 2.4. Logstash 배포
 
-```bash
+```yaml
 apiVersion: logstash.k8s.elastic.co/v1alpha1
 kind: Logstash
 metadata:

@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-19T03:30+09:00
+updated: 2026-10-24
 type: rule
 status: current
 ---
@@ -110,6 +110,8 @@ WebP 검증 환경은 `python3 -m venv .venv`와 `.venv/bin/python -m pip instal
 원래 CSS connector 검사는 continuation, reference, reference-note와 loop의 역할 및 paint를 검증했다. inline SVG 이관에서도 그 의미를 보존하고 대응 endpoint와 실제 좌표를 검사한다. 모르는 역할, 명명된 endpoint 누락, 칠해지지 않은 간선이나 clipping은 blocking finding이다. 원래 CSS가 아닌 SVG의 paint를 검증해야 하므로 과거 scanner 성공을 새 SVG 품질로 확대하지 않는다.
 
 [Verified native export manifest](diagram-export-release.json)는 이전 native raster의 증거로 보존한다. SVG, font, source image나 renderer를 바꾸면 fresh native render와 전수 검토 증거를 갱신한다. 원본을 그대로 둔 format/inline display 변경은 [WebP delivery manifest](diagram-webp-release.json)의 무손실 변환, fresh delivery build와 실제 표시 증거를 갱신하며 이전 native fingerprint를 재계산해 덮어쓰지 않는다. 게시, 머지와 배포는 현재 사용자의 명시적 승인 범위와 저장소 규칙을 따른다. 이미 승인한 같은 목표의 검토나 게시 승인을 단계마다 다시 요구하지 않는다.
+
+코드 문법 강조 plugin처럼 이미지 원본을 바꾸지 않는 `_plugins` 변경도 delivery snapshot에 포함된다. 이때는 원래 native stamp의 두 fingerprint를 먼저 확인하고, unchanged PNG/WebP와 검토 증거를 보존한 채 fresh delivery build, `webp_release.py seal`, `check --site`와 exact index 검사를 수행한다. 새 native render나 전수 시각 검토로 기록하지 않으며 게이트를 건너뛰지 않는다.
 
 원문 visible text는 레이아웃 atom 추출기와 별도의 HTML data 수집으로 전체 coverage를 대조한다. 혼합 inline의 질문, 예시, 쉼표와 부정 표현도 유지한다. 실행 분기와 그룹 endpoint에는 실제 공통 경계 또는 개별 간선을 그리고, typed connector와 dashed reference의 paint를 보존한다. 긴 API 이름은 카드/간선 폭과 작성 density를 조정하며 단어 내부 분절을 검증 실패로 기록한다. return loop에는 footer와 겹치지 않는 별도 corridor를 배정한다.
 

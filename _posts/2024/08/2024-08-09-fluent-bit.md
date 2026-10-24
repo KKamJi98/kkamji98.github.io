@@ -66,7 +66,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 1. 특정 정보 추가 - 이벤트에 IP 주소나 메타데이터와 같은 정보 추가
 
-    ```bash
+    ```ini
     # 모든 로그에 key1, value1과 key2, value2에 해당하는 Key/Value Metadata 추가
     [FILTER]
         Name            modify
@@ -77,7 +77,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 2. 특정 내용 선택 - 이벤트의 내용 중 특정 부분만을 선택
 
-    ```bash
+    ```ini
     # 로그 메시지가 ERROR로 시작하는 항목만 선택
     [FILTER]
         Name            grep
@@ -87,7 +87,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 
 3. 특정 패턴과 일치하는 이벤트 삭제 - 특정 패턴과 일치하는 이벤트 삭제
 
-    ```bash
+    ```ini
     # 로그 메시지가 DEBUG로 시작하는 모든 이벤트 삭제
     [FILTER]
         Name            grep

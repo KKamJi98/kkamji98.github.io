@@ -394,7 +394,7 @@ kubectl apply -f karpenter.yaml
 > **NodePool**은 **Karpenter**에서 관리되는 Kubernetes 노드의 집합입니다. 이 **NodePool**은 정의된 사항에 따라 EC2 인스턴스를 자동으로 생성하고 조정합니다. **EC2NodeClass**는 **Karpenter**가 사용할 EC2 인스턴스의 세부 사항을 정의합니다. 현재 사용하고 있는 인스턴스 타입으로 `t3.medium`을 지정했습니다. 주석된 부분처럼 `karpenter.k8s.aws/instance-category` 항목에 인스턴스 타입을, `karpenter.k8s.aws/instance-cpu` 항목에 사용할 vCPU 크기를 나열할 수도 있습니다. 현재는 t3.medium 인스턴스 외에 다른 인스턴스를 사용하지 않기 때문에 `karpenter.sh/capacity-type` 옵션을 사용해 지정해주었습니다.  
 {: .prompt-info}
 
-```bash
+```yaml
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool
 metadata:

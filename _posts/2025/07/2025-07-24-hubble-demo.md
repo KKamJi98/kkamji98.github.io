@@ -298,7 +298,7 @@ Cilium은 stateful connection tracking을 수행합니다. Frontend -> Backend �
 {% include diagrams/download.html png="/assets/img/diagrams/static/kubernetes/cilium/l4_layer_policy--404496983549e6e8.png" %}
 > [L4 Layer Policy](https://docs.cilium.io/en/stable/gettingstarted/demo/)  
 
-```shell
+```text
 ## Network Policy 생성
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
@@ -432,7 +432,7 @@ main.main()
 
 **Cilium**은 HTTP 계층(L7 Layer) 정책을 적용하여 `tiefighter`가 접근할 수 있는 URL을 제한할 수 있습니다. 아래 정책은 기존 L3/L4 정책(rule1)을 확장하여, `tiefighter`가 `POST /v1/request-landing` 요청만 보낼 수 있도록 제한합니다. 다른 모든 HTTP 호출(ex: `PUT /v1/exhaust-port`)은 차단됩니다.
 
-```shell
+```text
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:

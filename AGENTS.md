@@ -36,6 +36,7 @@
 - 필자가 겪은 일을 다룬 글(장애, 취약점 발견, 마이그레이션, 실험 기록)은 `docs/first-person-experience-posts.md`의 체크리스트를 함께 적용한다. `audit_humanizer.py`는 화자 부재를 검출하지 못하므로 strict 통과를 생략 근거로 쓰지 않는다.
 - 화자를 되돌리는 것과 서사로 각색하는 것은 다르다. `범인은`, `그 순간`, `드디어`, `결국 ~에 닿았습니다`, `헤맸습니다`, `숨은 원인`, `아무리 ~해 봐도` 같은 연출 표현은 쓰지 않고 관측값 그대로 쓴다. 금지선은 `docs/first-person-experience-posts.md`.
 - 본문 강조는 `docs/emphasis-and-bold.md`를 따른다. 3,000자 이상 글은 판단이 걸린 문장에 볼드를 둔다. 확인은 `python3 kkamji_scripts/blog/check_emphasis.py --file <post>`.
+- 코드 블록은 `docs/code-block-rendering.md`를 따른다. 초안에서 지원 언어, 콘솔 출력 구분과 원문 보존을 검사하고, 발행 전에 production HTML의 오류 토큰도 확인한다. CSS로 오류 표시만 숨기거나 escape를 삭제하지 않는다.
 
 ## Diagrams
 
@@ -60,7 +61,7 @@
 ### pre-commit 게이트
 
 - 훅은 `.githooks/pre-commit`으로 추적한다. **클론마다 한 번 `git config core.hooksPath .githooks`를 실행**해야 동작한다. `.git/hooks/`에 사본을 두지 않는다.
-- 이 저장소는 CI에 품질 게이트를 두지 않는다. 되돌아가면 곤란한 규칙은 이 훅이 막는다.
+- 산문 품질은 이 훅에서 검사한다. 코드 렌더링 회귀는 이 훅과 Pages 배포 build 양쪽에서 막는다.
   - `_posts/*.md` staged: `run_md_tools.sh`, staged 글에 대한 `audit_humanizer --strict`, `check_post_dates`, `check_series_order`, `check_high_impact_tldr`, 그리고 frontmatter/커버/내부 링크/금지 문자/footer 기계 검사.
   - 정적 다이어그램, CSS, export 도구, PNG, WebP 또는 diagram include 줄 변경 staged: `kkamji_scripts/blog/static_png/release_manifest.py --if-staged`로 source fingerprint, native PNG와 게시 WebP의 해시, index 일치를 확인한다. 생성과 검증 절차는 `docs/static-diagrams.md`의 `Connector acceptance and recurrence gates`를 따른다. 일반 본문만 수정하면 이 게이트는 적용하지 않는다.
   - `assets/img`에서는 다이어그램 출력(`assets/img/diagrams/`), SVG/Draw.io/spec 원본, catalog 원본과 다이어그램 include가 참조하는 이미지만 이 게이트 대상이다. 일반 커버와 사진, 그리고 다이어그램 커버가 아닌 frontmatter `image.path` 변경은 본문과 같이 제외한다.

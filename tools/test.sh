@@ -60,6 +60,10 @@ main() {
   JEKYLL_ENV=production bundle exec jekyll b \
     -d "$SITE_DIR$_baseurl" -c "$_config"
 
+  bundle exec ruby tools/test_code_highlighting.rb
+  bundle exec ruby kkamji_scripts/blog/check_code_blocks.rb
+  bundle exec ruby kkamji_scripts/blog/check_code_blocks.rb --site "$SITE_DIR"
+
   # test
   bundle exec htmlproofer "$SITE_DIR" \
     --disable-external \

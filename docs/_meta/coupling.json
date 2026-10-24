@@ -14,6 +14,11 @@
   "docs/blog-content-quality-harness.md": [
     "kkamji_scripts/blog/audit_content_depth.py"
   ],
+  "docs/code-block-rendering.md": [
+    "_plugins/code-highlighting.rb",
+    "kkamji_scripts/blog/check_code_blocks.rb",
+    "tools/test_code_highlighting.rb"
+  ],
   "docs/blog-refresh-backlog.md": [
     "kkamji_scripts/blog/generate_refresh_backlog.py",
     "kkamji_scripts/blog/audit_blog_quality.py"

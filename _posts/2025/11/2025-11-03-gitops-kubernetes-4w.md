@@ -137,7 +137,7 @@ kubectl delete namespace test-imperative
 - Deployment와 같이 복잡한 리소스의 경우 명령형 커맨드를 사용한 직접 명령 방식은 명령어에 컨테이너 이미지, 이미지 태그, 이미지 풀 정책 같은 수많은 정보를 플래그 옵션으로 지정해야 하는 불편함이 있다.
 - 이러한 경우 아래와 같이 구성 파일(Configuration File)을 만들어 사용할 수도 있다. 이런 방식은 명령에 전달하는 플래그의 수가 많이 줄어들기 때문에 작업을 더 쉽게 할 수 있다.
 
-```bash
+```text
 # namespace.yaml
 apiVersion: v1 
 kind: Namespace 
@@ -153,7 +153,7 @@ kubectl create -f namespace.yaml
 - 구성 폴더와 함께: `kubectl apply` 명령으로 폴더에 존재하는 모든 파일에서 찾은 리소스를 각각 계산해 변경 사항을 API 서버로 호출할 수 있다.
 - 파일을 수정하고 폴더를 apply하면 모든 변경 사항이 적용된다.
 
-```shell
+```text
 # namespace.yaml
 apiVersion: v1 
 kind: Namespace 

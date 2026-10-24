@@ -1,6 +1,6 @@
 ---
 title: Technical post template
-updated: 2026-08-23
+updated: 2026-10-24
 type: rule
 status: current
 ---
@@ -9,7 +9,7 @@ status: current
 
 이 문서는 신규 기술 글 작성 시 기본 구조로 사용한다. 실제 글에서는 주제 성격에 맞게 섹션명을 조정하되, 문제 의식, 핵심 요약, 운영 관점, Reference, footer는 유지한다.
 
-```md
+```text
 ---
 title: <검색 키워드가 포함된 한국어 기술 제목>
 date: YYYY-MM-DD HH:MM:SS +0900

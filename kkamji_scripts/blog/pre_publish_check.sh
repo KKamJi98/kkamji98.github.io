@@ -9,6 +9,10 @@ cd "${REPO_ROOT}"
 
 echo "=== Blog pre-publish check ==="
 
+echo "=== Code block rendering ==="
+bundle exec ruby tools/test_code_highlighting.rb
+bundle exec ruby "${SCRIPT_DIR}/check_code_blocks.rb"
+
 if ! command -v gitleaks >/dev/null 2>&1; then
   echo "ERROR: gitleaks not found; install gitleaks before publishing" >&2
   exit 1

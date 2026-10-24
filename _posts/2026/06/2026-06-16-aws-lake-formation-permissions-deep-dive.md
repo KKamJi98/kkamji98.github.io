@@ -178,6 +178,7 @@ on resource: arn:aws:glue:ap-northeast-2:<account-id>:database/s3tablescatalog/a
 여기에 credential vending을 승인할 `lakeformation:GetDataAccess`와, federated 카탈로그를 참조할 `athena:GetDataCatalog`를 더합니다.
 
 ```json
+[
 {
   "Sid": "LakeFormationDataAccess",
   "Effect": "Allow",
@@ -190,6 +191,7 @@ on resource: arn:aws:glue:ap-northeast-2:<account-id>:database/s3tablescatalog/a
   "Action": ["athena:GetDataCatalog", "athena:GetDatabase"],
   "Resource": "arn:aws:athena:ap-northeast-2:<account-id>:datacatalog/AwsDataCatalog"
 }
+]
 ```
 
 federated 카탈로그를 참조하는 쿼리에는 `athena:GetDataCatalog`가 필수입니다. AWS 공식 문서의 federated query 권한 예시도 이 action을 가장 먼저 명시합니다.
