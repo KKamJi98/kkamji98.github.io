@@ -2,7 +2,7 @@
 #
 # 블로그 pre-commit 게이트.
 #
-# 이 저장소는 주인님과 Hermes agent만 커밋하므로 CI에 게이트를 두지 않는다.
+# 산문 품질은 이 훅에서, 실제 코드 렌더링은 이 훅과 배포 build 양쪽에서 검사한다.
 # 그래서 되돌아가면 곤란한 규칙을 여기서 막는다. 무거운 검사(jekyll build,
 # check_inline_scripts, 외부 링크)는 발행 절차인 pre_publish_check.sh에 남긴다.
 #
@@ -49,6 +49,7 @@ bad()  { printf 'FAIL %s\n' "$1"; fails=$((fails + 1)); }
 staged_posts="$(git diff --cached --name-only --diff-filter=ACM -- '_posts' | grep '\.md$' || true)"
 staged_specs="$(git diff --cached --name-only --diff-filter=ACM -- 'assets/img' | grep '\.spec\.json$' || true)"
 
+highlighting_inputs="$(git diff --cached --name-only --diff-filter=ACMD -- _posts _tabs docs kkamji_scripts README.md AGENTS.md _plugins/code-highlighting.rb tools/test_code_highlighting.rb Gemfile _config.yml)"
 # ---------------------------------------------------------------------------
 # 1. 마크다운 포매팅 (구분선, 헤더 번호, blockquote 공백)
 #
@@ -125,6 +126,19 @@ PY
     ok "frontmatter, 커버, 내부 링크, 금지 문자, footer"
   else
     bad "기계적 품질"; echo "${out}" | sed 's/^/     /'
+  fi
+fi
+
+if [ -n "${highlighting_inputs}" ]; then
+  step "코드 블록 문법 강조"
+  if ! git ls-files --error-unmatch -- _plugins/code-highlighting.rb kkamji_scripts/blog/check_code_blocks.rb tools/test_code_highlighting.rb Gemfile _config.yml >/dev/null 2>&1; then
+    bad "문법 강조 설정과 검사 도구가 모두 index에 있어야 한다"
+  elif ! git diff --quiet -- _plugins/code-highlighting.rb kkamji_scripts/blog/check_code_blocks.rb tools/test_code_highlighting.rb Gemfile _config.yml; then
+    bad "문법 강조 설정과 검사 도구는 부분 staging 없이 검증해야 한다"
+  elif bundle exec ruby tools/test_code_highlighting.rb && bundle exec ruby "${BLOG}/check_code_blocks.rb" --staged; then
+    ok "staged 코드 원문, 지원 언어와 오류 토큰"
+  else
+    bad "코드 블록 문법 강조"
   fi
 fi
 

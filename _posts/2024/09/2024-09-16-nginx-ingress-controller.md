@@ -72,7 +72,7 @@ service/nginx-test-service exposed
 > 기존에 사용하고 있는 kkamji.net 도메인을 사용하였습니다.  
 {: .prompt-info}
 
-```bash
+```text
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

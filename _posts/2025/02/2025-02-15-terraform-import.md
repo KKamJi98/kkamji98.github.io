@@ -197,8 +197,11 @@ run "terraform apply" now.
 ```shell
 ❯ terraform state show aws_instance.kkamji-ec2 | grep -i "instance_type"
     instance_type                        = "t2.micro"
+```
 
-## 코드 변경 (instance_type 수정)
+---
+
+## 3. 코드 변경 (instance_type 수정)
 ```hcl
 resource "aws_instance" "kkamji-ec2" {
   ami           = "ami-024ea438ab0376a47"
@@ -216,7 +219,7 @@ resource "aws_instance" "kkamji-ec2" {
 }
 ```
 
-### 7. `terraform plan` - 변경사항 확인
+### 3.1. `terraform plan` - 변경사항 확인
 
 > 아래와 같이 `No changes. Your infrastructure matches the configuration.` 메시지가 나오면 변경사항이 없다는 뜻입니다. terraform import 성공!  
 {: .prompt-tip}
@@ -256,13 +259,15 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 run "terraform apply" now.
 ```
 
-## 마무리
+---
+
+## 4. 마무리
 
 terraform import를 통해 클라우드 환경에서 수동으로 생성한 리소스를 Terraform 상태에 가져오고, terraform state show를 활용해 코드와 실제 리소스 설정을 손쉽게 맞추는 과정을 다뤄봤습니다.
 
 ---
 
-## 3. Reference
+## 5. Reference
 
 - [app.terraform.io - run ZzGZrWmaZWg2vCwP](https://app.terraform.io/app/xxx/import_ec2/runs/run-ZzGZrWmaZWg2vCwP)
 - [app.terraform.io - run fJbdtF2CXXbSMFdS](https://app.terraform.io/app/xxx/import_ec2/runs/run-fJbdtF2CXXbSMFdS)

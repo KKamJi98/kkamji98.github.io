@@ -68,7 +68,7 @@ test용 nginx pod를 생성하고, In-Place Pod Resource Resize 기능을 활용
 
 ### 3.1. 테스트용 nginx Pod 생성
 
-```shell
+```yaml
 # pod.yaml
 apiVersion: v1
 kind: Pod

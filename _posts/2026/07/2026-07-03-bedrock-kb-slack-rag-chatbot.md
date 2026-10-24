@@ -586,6 +586,7 @@ rerank는 Retrieve 호출 안의 `rerankingConfiguration`으로 통합했습니�
 - **해결**: 두 role에 필요한 권한을 모두 부여하고, `bedrock:Rerank`는 `Resource: "*"`로 열어야 합니다. `bedrock:InvokeModel`은 resource-level을 지원하므로 rerank 모델 ARN 제한을 유지하되 별도 Sid로 분리했습니다. 아래 정책 조각은 KB service role에도 같은 방식으로 적용합니다.
 
 ```json
+[
 {
   "Sid": "Rerank",
   "Effect": "Allow",
@@ -598,6 +599,7 @@ rerank는 Retrieve 호출 안의 `rerankingConfiguration`으로 통합했습니�
   "Action": "bedrock:InvokeModel",
   "Resource": "arn:aws:bedrock:ap-northeast-1::foundation-model/cohere.rerank-v3-5:0"
 }
+]
 ```
 
 검색은 n8n Python Code 노드에서 boto3로 호출합니다. IRSA로 받은 자격증명으로 전용 role을 assume한 뒤 `bedrock-agent-runtime`의 `retrieve`를 부릅니다(전용 role 체인은 다음 섹션 참고). reranking은 텍스트 데이터에만 적용하므로, 이 실습처럼 Markdown 텍스트를 반환하는 흐름에 사용합니다.

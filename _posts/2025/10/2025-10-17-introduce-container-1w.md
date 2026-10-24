@@ -1277,17 +1277,17 @@ kubectl delete build,buildrun --all
 - 실제 빌드 작업 수행은 텍톤이 수행하므로, 쿠버네티스 위에서 좀 더 큰 규모의 파이프라인을 운용하고 싶을 때 좋다.
 - 참고로 카니코 대신 빌다를 사용하려면 Build API를 이용할 때 ClusterBuildStrategy 에 다른 값을 지정하기만 하면 된다.
 
-```shell
+```yaml
 apiVersion: shipwright.io/v1alpha1
 kind: Build
 metadata:
-  name: **buildpack**-nodejs-build
+  name: buildpack-nodejs-build
 spec:
   source:
     url: https://github.com/shipwright-io/sample-nodejs
-    **contextDir: source-build** # 빌다는 소스 코드에서 바로 컨테이너 이미지를 생성할 수 있다. 도커파일은 필요 없다
+    contextDir: source-build # 빌다는 소스 코드에서 바로 컨테이너 이미지를 생성할 수 있다. 도커파일은 필요 없다
   strategy:
-    name: **buildah**            # 빌다를 ClusterBuildStrategy로 선택
+    name: buildah            # 빌다를 ClusterBuildStrategy로 선택
     kind: ClusterBuildStrategy
   output:
     image: quay.io/gitops-cookbook/sample-nodejs:latest

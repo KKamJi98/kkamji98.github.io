@@ -17,7 +17,7 @@ python -m pip install --upgrade boto3 botocore
 
 - SG 대상 목록(`sg_list`) 파일을 미리 작성합니다.
 
-```txt
+```text
 # 예시: sg_list.txt
 sg-0123456789abcdef0
 sg-0fedcba9876543210

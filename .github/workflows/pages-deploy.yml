@@ -27,6 +27,11 @@ on:
       - .github/workflows/docs-lint.yml
       - .github/dependabot.yml
 
+  pull_request:
+    branches:
+      - main
+      - master
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -71,6 +76,12 @@ jobs:
         env:
           JEKYLL_ENV: "production"
 
+      - name: Check code block rendering
+        run: |
+          bundle exec ruby tools/test_code_highlighting.rb
+          bundle exec ruby kkamji_scripts/blog/check_code_blocks.rb
+          bundle exec ruby kkamji_scripts/blog/check_code_blocks.rb --site _site
+
       - name: Test site
         run: |
           bundle exec htmlproofer _site \
@@ -78,11 +89,13 @@ jobs:
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
       - name: Upload site artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

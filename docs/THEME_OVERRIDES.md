@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-10-21T23:59+09:00
+updated: 2026-10-24
 type: architecture
 status: current
 ---
@@ -51,6 +51,11 @@ bash tools/run.sh    # 로컬 미리보기
 - SAP-C02의 `scp-iam-effective-permissions`, `datasync-agent-requirement`, `transfer-family-endpoint-types`, `control-tower-landing-zone` include는 각각 identity-based 권한 경로의 적용 범위, AWS 스토리지 서비스 간 agent 조건, Internal private IP와 Internet Facing EIP 및 AS2 지원, Landing Zone 4.0의 선택적 구성을 구분한다. 의미 검토는 source, native PNG와 게시용 WebP를 대응하며 이들 include의 개별 의미 수정은 공통 테마 CSS를 변경하지 않는다.
 
 ## Overrides 목록
+
+### Code syntax highlighting
+
+- `_plugins/code-highlighting.rb`는 Rouge HCL의 정상 escape, 함수 구두점과 중첩 구분자 처리, Markdown hard line break를 보정하고 Solidity lexer를 등록한다. gem 파일과 `.err` CSS는 변경하지 않는다.
+- 언어 지정과 원문 보존 기준, 전체 index 및 production HTML 검사, 업데이트와 rollback은 [Code block rendering](code-block-rendering.md)을 따른다. `tools/test_code_highlighting.rb`와 `kkamji_scripts/blog/check_code_blocks.rb`가 로컬 hook, pre-publish와 Pages build에 연결된다.
 
 ### 1. Sidebar quote spacing
 

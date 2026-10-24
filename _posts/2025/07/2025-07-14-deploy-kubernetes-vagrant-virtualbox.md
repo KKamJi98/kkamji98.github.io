@@ -298,7 +298,7 @@ echo ">>>> Kubernetes Node config End <<<<"
 
 위에서 작성한 Vagrantfile, Init Script가 존재하는 디렉토리에서 `vagrant up`를 사용해 Kubernetes Cluster를 배포합니다.
 
-```powershell
+```text
 PS C:\Code\cilium-lab\vagrant> ls
 
     Directory: C:\Code\cilium-lab\vagrant

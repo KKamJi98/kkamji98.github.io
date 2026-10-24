@@ -173,7 +173,7 @@ alias microctl='microk8s kubectl'
 
 ### 8.1. 테스트용 nginx manifest 파일 (nginx_test.yml)
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
