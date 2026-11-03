@@ -1,13 +1,13 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-10-24
+updated: 2026-11-04
 type: rule
 status: current
 ---
 
 # Static diagrams
 
-설명용 도식의 정본은 `_includes/diagrams/static/` 및 Packer와 AWS 인증 지도 include의 HTML figure다. 기존 노드, 조건, 접근성 이름과 본문 사용처를 보존한다. 시각 도식은 동일 figure 안의 inline SVG에 박스, 라벨과 간선 좌표를 직접 쓴다. 원본 spec, Draw.io, raster와 출처 및 라이선스는 rollback 증적으로 유지한다. [Diagram catalog](diagram-catalog.json)는 391개 정본 include와 사용처를 연결한다.
+설명용 도식의 정본은 `_includes/diagrams/static/` 및 Packer와 AWS 인증 지도 include의 HTML figure다. 기존 노드, 조건, 접근성 이름과 본문 사용처를 보존한다. 시각 도식은 동일 figure 안의 inline SVG에 박스, 라벨과 간선 좌표를 직접 쓴다. 원본 spec, Draw.io, raster와 출처 및 라이선스는 rollback 증적으로 유지한다. [Diagram catalog](diagram-catalog.json)는 406개 정본 include와 사용처를 연결한다.
 
 ## 고정 FHD 캔버스
 
@@ -45,7 +45,7 @@ FHD의 큰 빈 영역은 본문에 있는 입력 필드, typed answer, 정책 �
 
 `_includes/diagrams/download.html`은 canonical figure의 바로 다음 sibling이다. legacy `png=` 입력은 native PNG provenance를 유지할 수 있지만 helper는 그 경로에서 공개 `.webp` URL을 계산한다. inline 이미지와 다운로드는 같은 native 1920 x 1080 WebP URL을 사용한다. 본문만 CSS로 비례 축소하고 확대 링크는 동일 WebP를 원본 크기로 표시하는 script 없는 HTML viewer로 이동한다. viewer의 100%, 125%, 150% 확대는 사용자가 직접 선택할 때만 적용하며, 확대된 전체 크기만큼 스크롤 영역도 늘린다. 그림 이미지는 빈 alt를 사용하며 figure의 접근성 이름과 의미 소스가 설명을 제공한다. `data-static-diagram="true"`는 테마의 별도 확대 및 shimmer wrapper를 방지한다. mapped source figure만 시각적으로 클립하며 고정 source의 min/max 경계가 document scrollWidth로 새지 않게 기존 1px 경계를 보존한다. 공개 WebP는 검토된 native PNG의 lossless 파생본이며 전체 decoded RGBA 픽셀 동일성을 검사한다. SVG와 native PNG는 삭제하거나 재압축하지 않고 원본 증적으로 보관한다.
 
-[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 391개 component이며, 203개 post의 391개 body reference에서 382개 include를 사용하고 body-unused include는 9개다. Jev 커버는 `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp`의 별도 네온 자산이며 body occurrence나 FHD corpus cover로 세지 않는다. 흰색 Jev banner는 body-unused 9개 중 하나로 남기고 사용자가 요청한 artwork 교정을 별도 native update로 보관한다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
+[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 406개 component이며, 209개 post의 406개 body reference에서 397개 include를 사용하고 body-unused include는 9개다. Jev 커버는 `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp`의 별도 네온 자산이며 body occurrence나 FHD corpus cover로 세지 않는다. 흰색 Jev banner는 body-unused 9개 중 하나로 남기고 사용자가 요청한 artwork 교정을 별도 native update로 보관한다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
 
 ## 폰트와 아이콘
 
@@ -67,7 +67,7 @@ Ruby와 Bundler는 실제 설치 환경 및 repository dependency를 확인해�
 
 다음 항목을 서로 다른 증거로 남긴다.
 
-- 정본 391개와 현재 body delivery mapping의 중복 및 누락 검사. native snapshot coverage와 body delivery coverage는 별도로 기록하며 커버는 본문 occurrence에 포함하지 않는다.
+- 정본 406개와 현재 body delivery mapping의 중복 및 누락 검사. native snapshot coverage와 body delivery coverage는 별도로 기록하며 커버는 본문 occurrence에 포함하지 않는다.
 - 기존 HTML 원문, 원본 이미지와 spec 및 Draw.io 보존 비교.
 - SVG width, height, viewBox와 모든 native PNG 및 WebP의 실제 decoded 치수 검사. PNG와 WebP의 전체 decoded RGBA 픽셀 동일성을 별도로 검사한다.
 - 원래 노드, 텍스트, 순서, 조건, fork, merge, loop, 방향과 named endpoint의 SVG 대응.
@@ -80,6 +80,8 @@ Ruby와 Bundler는 실제 설치 환경 및 repository dependency를 확인해�
 ## New-source native additions
 
 New artwork is admitted by `docs/diagram-native-additions.json` and the narrowly scoped `static_png/native_additions.py` validator. The immutable native manifest, original reviews and archived PNGs remain byte-identical. An addition must bind the exact live post/include/figure/occurrence/PNG tuple, authored source and SVG, unchanged native renderer/font/proof style, real render build and HTTP fixture, actual original PNG and a separate visual/semantic review. Missing review or stale evidence is blocking. Existing replacement records remain separate; an addition cannot alias or relabel an old output.
+
+An append-only catalog extension preserves the exact render-time catalog under `docs/diagram-native-additions/catalogs/<saved-sha>.json`. Its raw bytes must match the saved SHA-256, its rows must be a strictly shorter exact prefix of the current catalog, and the reviewed source must remain at the same index. Both catalogs remain sealed and index-checked. Missing archives, changed bytes, reordered or changed old rows, and missing sources fail closed; no previous receipt, build or review is rebased. Normal diagram hooks include the native-addition and WebP-addition regression suites.
 
 Only the new native PNG is losslessly encoded. A current delivery manifest/build may add its output and record the present input hashes; this does not regenerate or reapprove the historical native corpus. No old review is upgraded to a new whole-corpus visual check. The private original renderer receipt is retained unchanged; a public receipt may omit only the host-local `artifact` locator, declare that privacy projection and the original receipt hash, and preserve every validated rendering field and generated `not-run` review flag. Actual image acceptance belongs in the separate review file.
 
@@ -130,3 +132,10 @@ WebP release는 named delta의 새 PNG만 active output으로 연결하고 다�
 전체 build fingerprint가 바뀌어도, 한 source의 모든 렌더 입력 bytes가 동일하면 그 source의 통과 native PNG만 재사용할 수 있다. 기존 의미 HTML SHA, authored SVG exact bytes, 고정 폰트 SHA, sealed build의 원본 이미지 bytes, 실제 HTTP fixture에서 읽은 style bytes, native renderer JavaScript SHA와 실제 Aside browser UA를 전부 비교한다. 누락, 변경 또는 이전 자동 실패가 하나라도 있으면 해당 source를 다시 렌더한다. SVG 또는 PNG bytes가 바뀌면 기존 실제 시각/의미 승인을 무효화한다.
 
 과거 receipt에 입력 필드가 없으면 sealed build stamp, 보존된 renderer source, actual HTTP fixture/font와 원본 receipt를 대조하는 명시적 migration을 수행한다. 원본 receipt와 원래 render build ID는 별도로 보존한다. 새 build에서 Aside가 실제 관측한 fixture/font SHA와 browser UA를 다시 확인한 뒤 revalidation build ID를 별도 기록한다. 전체 release gate의 source fingerprint, 검토 SHA와 index 검사도 계속 적용한다. 이 절차는 오래된 625px 출력이나 실패 PNG에 적용되지 않는다.
+
+## LoRA sources
+
+- Canonical includes: `_includes/diagrams/static/ai/lora/lora-update-path.html` and `_includes/diagrams/static/ai/lora/lora-parameter-budget.html`. Their editable SVGs use the matching names under `assets/img/diagrams/fhd-svg/static/ai/lora/`.
+- The forward artwork distinguishes frozen W0 from trainable A/B and preserves the shared-input, rank-8 bottleneck, scaling and addition relationships. The parameter artwork compares 16,777,216 with 65,536 on a common zero-based linear scale; its 1728px and 6.75px bars are not magnified. The ratio describes one selected matrix, not VRAM, time or the full model.
+- The separate cover source is `assets/img/ai/lora/lora-overview-cover.svg`; it is not a body-diagram occurrence. Its matrix textures are schematic, not measured weights or parameter-area ratios. All three native rasters use the pinned font at 1920 x 1080, with lossless WebP delivery.
+- The two body artworks have separate fresh native receipts and actual original-PNG visual/semantic reviews under `docs/diagram-native-additions/20261103/`. The cover review is separate from body occurrence admission. Publication requires a current delivery seal and normal hooks.

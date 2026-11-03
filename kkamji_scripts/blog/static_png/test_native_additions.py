@@ -35,35 +35,38 @@ def addition(tmp_path, monkeypatch):
     return add_source(root, baseline, stamp_path)
 
 
-def add_source(root, baseline, stamp_path):
-    """Append test bytes to either the unchanged or replacement fixture corpus."""
+def add_source(root, baseline, stamp_path, *, name='addition', color=(255, 255, 255, 255)):
+    """Append test bytes to unchanged, replacement or prior additive fixture corpora."""
     stamp = json.loads(stamp_path.read_text())
+    declaration = root / 'docs/diagram-native-additions.json'
+    prior = json.loads(declaration.read_text())['sources'] if declaration.exists() else []
     archived = {row['png'][1:]: (root / row['png'][1:]).read_bytes()
                 for row in baseline['entries'] + baseline['unused_entries']}
     archived.update({path: (root / path).read_bytes() for path in (w.NATIVE, w.REVIEWS)})
-    include = 'diagrams/static/addition.html'
+    include = 'diagrams/static/' + name + '.html'
     source = '_includes/' + include
-    text = '<figure class="sd" id="addition"><figcaption>New TEST relationship</figcaption></figure>'
-    path = root / source; path.parent.mkdir(parents=True); path.write_text(text)
-    svg = 'assets/img/diagrams/fhd-svg/static/addition.svg'
+    text = '<figure class="sd" id="' + name + '"><figcaption>New TEST relationship</figcaption></figure>'
+    path = root / source; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(text)
+    svg = 'assets/img/diagrams/fhd-svg/static/' + name + '.svg'
     artwork = ('<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" '
                'viewBox="0 0 1920 1080" data-source-sha256="' + digest(text.encode()) + '">'
                '<rect width="1920" height="1080" fill="white"/></svg>')
-    path = root / svg; path.parent.mkdir(parents=True); path.write_text(artwork)
-    post = root / '_posts/addition.md'
+    path = root / svg; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(artwork)
+    post = root / ('_posts/' + name + '.md')
     post.write_text('---\ntitle: Addition TEST only\n---\n{% include ' + include + ' %}\n')
     catalog_path = root / 'docs/diagram-catalog.json'
     catalog = json.loads(catalog_path.read_text())
-    catalog['diagrams'].append({'include': include, 'posts': ['_posts/addition.md'], 'reference_count': 1})
-    catalog['summary'] = {'post_references': 2, 'posts': 2}
+    catalog['diagrams'].append({'include': include, 'posts': [post.relative_to(root).as_posix()], 'reference_count': 1})
+    catalog['summary'] = {key: catalog['summary'][key] + 1 for key in ('post_references', 'posts')}
+    index = len(catalog['diagrams']) - 1
     catalog_path.write_text(json.dumps(catalog))
     downloads.main(['wire', '--root', str(root)])
     entry = next(row for row in downloads.validate_source(root)['entries'] if row['include'] == include)
-    out = BytesIO(); Image.new('RGBA', (1920, 1080), (255, 255, 255, 255)).save(out, format='PNG')
-    path = root / entry['png'][1:]; path.parent.mkdir(parents=True); path.write_bytes(out.getvalue())
-    directory = 'docs/diagram-native-additions/20990101/'
+    out = BytesIO(); Image.new('RGBA', (1920, 1080), color).save(out, format='PNG')
+    path = root / entry['png'][1:]; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(out.getvalue())
+    directory = 'docs/diagram-native-additions/20990101/' + name + '/'
     proof_text = ('<style>' + w.proof_style((root / w.PLUGIN).read_bytes()) + '</style>'
-                  '<section class="proof-card" data-index="2" data-include="' + escape(include, quote=True) + '">'
+                  '<section class="proof-card" data-index="' + str(index) + '" data-include="' + escape(include, quote=True) + '">'
                   '<h2>' + escape(include, quote=True) + '</h2>' + artwork + '</section>')
     path = root / (directory + 'fixture.html'); path.parent.mkdir(parents=True); path.write_text(proof_text)
     build = copy.deepcopy(stamp)
@@ -77,7 +80,7 @@ def add_source(root, baseline, stamp_path):
               'browser': 'TEST browser only, not a real render claim'}
     identity = {'include': include, 'source_sha256': digest(text.encode()),
                 'svg_sha256': digest(artwork.encode()), 'png_sha256': digest(out.getvalue())}
-    receipt = dict(identity, index=2, automated_status='passed', metrics={'issues': [], 'canvas': [1920, 1080],
+    receipt = dict(identity, index=index, automated_status='passed', metrics={'issues': [], 'canvas': [1920, 1080],
                    'viewBox': '0 0 1920 1080', 'browser': inputs['browser']},
                    png_dimensions=[1920, 1080], font_sha256=inputs['font_sha256'],
                    build_identity=fingerprint(build), per_source_inputs=inputs,
@@ -92,7 +95,7 @@ def add_source(root, baseline, stamp_path):
                 'base_manifest_sha256': digest((root / w.NATIVE).read_bytes()),
                 'base_review_sha256': digest((root / w.REVIEWS).read_bytes()),
                 'base_catalog_sha256': digest(w._git_blob(root, 'HEAD', 'docs/diagram-catalog.json')),
-                'sources': [row]}
+                'sources': prior + [row]}
     def save():
         for key, data in [('receipt', receipt), ('review', review), ('render_build', build)]:
             relative = directory + key + '.json'
@@ -107,6 +110,126 @@ def add_source(root, baseline, stamp_path):
 
 def check(s):
     return module().checked_additions(s.root, s.manifest['base_revision'], s.baseline, s.stamp)
+
+
+@pytest.fixture
+def appended_addition(addition):
+    s = addition
+    raw = (s.root / 'docs/diagram-catalog.json').read_bytes()
+    relative = 'docs/diagram-native-additions/catalogs/' + digest(raw) + '.json'
+    path = s.root / relative; path.parent.mkdir(parents=True); path.write_bytes(raw)
+    later = add_source(s.root, s.baseline, s.stamp_path, name='later', color=(240, 250, 255, 255))
+    return SimpleNamespace(earlier=s, later=later, catalog_file=relative, catalog_raw=raw)
+
+
+def save_earlier(s):
+    """Rebind deliberately damaged TEST evidence without dropping the later source."""
+    s.earlier.receipt['build_identity'] = fingerprint(s.earlier.build)
+    s.earlier.save()
+    s.later.manifest['sources'][0].update(s.earlier.row)
+    s.later.save()
+
+
+def test_append_only_catalog_preserves_prior_native_addition_evidence(appended_addition):
+    s = appended_addition; earlier = s.earlier; later = s.later
+    before = {p: p.read_bytes() for p in earlier.root.rglob('*') if p.is_file()}
+    original = copy.deepcopy((earlier.manifest, earlier.receipt, earlier.review, earlier.build))
+    report = check(later)
+    assert set(report['sources']) == {earlier.row['include'], later.row['include']}
+    assert report['files'][s.catalog_file] == earlier.build['source']['docs/diagram-catalog.json']
+    assert report['files']['docs/diagram-catalog.json'] == digest((earlier.root / 'docs/diagram-catalog.json').read_bytes())
+    assert report['files'][s.catalog_file] != report['files']['docs/diagram-catalog.json']
+    assert (earlier.manifest, earlier.receipt, earlier.review, earlier.build) == original
+    assert before == {p: p.read_bytes() for p in earlier.root.rglob('*') if p.is_file()}
+    for key in ('receipt', 'review', 'render_build'):
+        assert w.load_json((earlier.root / earlier.row[key + '_file']).read_bytes()) == getattr(earlier, key if key != 'render_build' else 'build')
+
+
+@pytest.mark.parametrize('damage,match', [
+    ('missing', 'No such file'), ('bytes', 'artifact hash differs'),
+    ('reencoded', 'artifact hash differs'), ('arbitrary-sha', 'artifact hash differs'),
+    ('reordered', 'strict prefix'), ('mutated-old-row', 'strict prefix'),
+    ('mutated-own-row', 'strict prefix'), ('missing-source', 'strict prefix'),
+    ('same-length', 'strict prefix'), ('longer', 'strict prefix'),
+    ('current-old-row', 'strict prefix'), ('current-own-row', 'strict prefix'),
+    ('current-reordered', 'strict prefix'),
+    ('missing-diagrams', 'strict prefix'), ('wrong-diagrams-type', 'strict prefix'),
+    ('non-object', 'strict prefix'), ('duplicate-json', 'duplicate JSON key'),
+    ('symlink', 'escapes root|symlinked rooted input'),
+])
+def test_archived_catalog_requires_exact_bytes_and_strict_source_prefix(appended_addition, damage, match):
+    s = appended_addition; earlier = s.earlier; later = s.later
+    path = earlier.root / s.catalog_file
+    if damage == 'missing': path.unlink()
+    elif damage == 'bytes': path.write_bytes(s.catalog_raw + b'\n')
+    elif damage == 'reencoded': path.write_text(json.dumps(json.loads(s.catalog_raw), indent=2))
+    elif damage == 'symlink':
+        outside = earlier.root.parent / 'outside-catalog.json'; path.rename(outside); path.symlink_to(outside)
+    elif damage.startswith('current-'):
+        if damage == 'current-reordered': later.catalog['diagrams'][:2] = reversed(later.catalog['diagrams'][:2])
+        else:
+            index = 0 if damage == 'current-old-row' else earlier.receipt['index']
+            later.catalog['diagrams'][index]['changed'] = True
+        (earlier.root / 'docs/diagram-catalog.json').write_text(json.dumps(later.catalog))
+    else:
+        catalog = json.loads(s.catalog_raw)
+        if damage == 'reordered': catalog['diagrams'][:2] = reversed(catalog['diagrams'][:2])
+        elif damage in ('mutated-old-row', 'mutated-own-row'):
+            index = 0 if damage == 'mutated-old-row' else earlier.receipt['index']
+            catalog['diagrams'][index]['changed'] = True
+        elif damage == 'missing-source': catalog['diagrams'] = catalog['diagrams'][:earlier.receipt['index']]
+        elif damage in ('same-length', 'longer'):
+            catalog = copy.deepcopy(later.catalog)
+            if damage == 'longer': catalog['diagrams'].append({'include': 'diagrams/extra.html'})
+        elif damage == 'missing-diagrams': catalog.pop('diagrams')
+        elif damage == 'wrong-diagrams-type': catalog['diagrams'] = {}
+        elif damage == 'non-object': catalog = []
+        raw = json.dumps(catalog, indent=2).encode()
+        if damage == 'duplicate-json': raw = b'{"diagrams": [],' + raw[1:]
+        sha = '0'*64 if damage == 'arbitrary-sha' else digest(raw)
+        (earlier.root / ('docs/diagram-native-additions/catalogs/' + sha + '.json')).write_bytes(raw)
+        earlier.build['source']['docs/diagram-catalog.json'] = sha
+        save_earlier(s)
+    with pytest.raises((ValueError, OSError), match=match): check(later)
+
+
+@pytest.mark.parametrize('sha', [None, True, 64, [], {}, 'A'*64, 'a'*63, 'a'*65,
+                                'a'*64 + '\n', '../' + 'a'*64, '/catalog.json', 'catalogs/a.json'])
+def test_saved_catalog_hash_is_validated_before_deriving_archive_path(appended_addition, sha):
+    s = appended_addition
+    s.earlier.build['source']['docs/diagram-catalog.json'] = sha
+    save_earlier(s)
+    with pytest.raises(ValueError, match='lowercase SHA-256'): check(s.later)
+
+
+@pytest.mark.parametrize('key', ['source', 'svg', 'renderer', 'plugin', 'font-lock', 'font'])
+def test_archived_catalog_does_not_waive_other_saved_render_inputs(appended_addition, key):
+    s = appended_addition; earlier = s.earlier
+    relative = {'source': earlier.source, 'svg': earlier.svg, 'renderer': w.NATIVE_RENDERER,
+                'plugin': w.PLUGIN, 'font-lock': 'assets/fonts/deterministic-export/lock.json', 'font': FONT}[key]
+    earlier.build['assets' if key == 'font' else 'source'][relative] = '0'*64
+    save_earlier(s)
+    with pytest.raises(ValueError, match='saved additive render build lacks actual'): check(s.later)
+
+
+def test_archived_catalog_rejects_own_authored_svg_byte_drift(appended_addition):
+    s = appended_addition
+    path = s.earlier.root / s.earlier.svg
+    path.write_text(path.read_text().replace('<rect ', '<g/><rect '))
+    with pytest.raises(ValueError, match='artifact hash differs: ' + s.earlier.svg): check(s.later)
+
+
+@pytest.mark.parametrize('target', ['archive', 'current'])
+def test_catalog_readback_rejects_input_changes_during_validation(appended_addition, monkeypatch, target):
+    s = appended_addition
+    relative = s.catalog_file if target == 'archive' else 'docs/diagram-catalog.json'
+    path = s.earlier.root / relative
+    same_hash = w._same_hash
+    def mutate(candidate, sha, label):
+        if candidate == path: candidate.write_bytes(candidate.read_bytes() + b'\n')
+        return same_hash(candidate, sha, label)
+    monkeypatch.setattr(w, '_same_hash', mutate)
+    with pytest.raises(ValueError, match='native additions readback'): check(s.later)
 
 
 def test_absent_additions_leave_default_native_path_untouched(tmp_path):

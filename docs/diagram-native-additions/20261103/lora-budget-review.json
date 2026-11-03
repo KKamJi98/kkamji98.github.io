@@ -1,0 +1,14 @@
+{
+  "include": "diagrams/static/ai/lora/lora-parameter-budget.html",
+  "source_sha256": "f530e0eb08d134fcd019e984647c6029752c3951ed4193bf2694e25964c596a0",
+  "svg_sha256": "e2518739750a73c8e5e69dde945a98e1a4391031a7ee858c3858653ea93410f6",
+  "png_sha256": "92dad513937d266906fa8b5e84b7cdbe3a07595bd83b73258a6b64f24025a38f",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-11-04T00:33:52.932501+09:00",
+  "notes": "두 막대의 왼쪽 시작점이 같고 0 기준과 Same linear scale 설명이 보인다. 작은 LoRA 막대를 과장해 확대한 흔적은 없다. 4096 x 4096 = 16,777,216, 32,768 + 32,768 = 65,536, 1/256 = 0.390625%가 모두 정확하다. 주요 비교 수치와 하단 보조 계산의 위계가 구분된다. 글자, 막대 경계와 하단 주석에 잘림이나 겹침이 없다. 하단 주석이 단일 행렬의 학습 파라미터 비교임을 명시하고 VRAM, 시간, 전체 모델 비율로의 오해를 제한한다.",
+  "review_method": "Codex CLI native --image input; read-only sandbox; no tools; exact original PNG attachment hashes verified by parent",
+  "review_artifact_sha256": "861bdf82be8f918521112a8f3c27f9ece933f537e88d625821e5ccaefc530199",
+  "review_input_manifest_sha256": "11c7a247e1add84c30fb226ce9d040b447f3c915c28efc2c9b1ed4771d8a5007"
+}

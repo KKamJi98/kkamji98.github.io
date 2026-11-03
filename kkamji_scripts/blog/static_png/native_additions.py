@@ -75,7 +75,7 @@ def checked_additions(root, revision, baseline, stamp):
     if data['base_revision'] != revision: raise ValueError('native additions base revision differs')
     files = {MANIFEST: digest(raw)}
 
-    def sealed(relative, expected=...):
+    def sealed(relative, expected: object = ...):
         content = w.safe_path(root, relative).read_bytes(); sha = digest(content)
         if expected is not ... and (not isinstance(expected, str) or not re.fullmatch(r'[a-f0-9]{64}', expected) or sha != expected):
             raise ValueError('native addition artifact hash differs: ' + relative)
@@ -214,7 +214,17 @@ def checked_additions(root, revision, baseline, stamp):
         name = escape(include, quote=True)
         card = f'<section class="proof-card" data-index="{index}" data-include="{name}"><h2>{name}</h2>{svg_raw.decode()}</section>'
         if fixture.decode().count(card) != 1: raise ValueError('actual render fixture lacks the exact authored SVG card')
-        actual_source = {source_rel: digest(include_raw), svg_rel: digest(svg_raw), CATALOG: files[CATALOG],
+        catalog_sha = build['source'].get(CATALOG)
+        if catalog_sha != files[CATALOG]:
+            if not isinstance(catalog_sha, str) or not re.fullmatch(r'[a-f0-9]{64}', catalog_sha):
+                raise ValueError('saved additive catalog hash must be lowercase SHA-256')
+            saved_catalog = w.load_json(sealed(EVIDENCE + 'catalogs/' + catalog_sha + '.json', catalog_sha))
+            saved_rows = saved_catalog.get('diagrams') if isinstance(saved_catalog, dict) else None
+            if (not isinstance(saved_rows, list) or len(saved_rows) >= len(catalog)
+                    or saved_rows != catalog[:len(saved_rows)] or index >= len(saved_rows)
+                    or saved_rows[index] != catalog[index]):
+                raise ValueError('saved additive catalog must be a strict prefix containing the exact source row')
+        actual_source = {source_rel: digest(include_raw), svg_rel: digest(svg_raw), CATALOG: catalog_sha,
                          w.NATIVE_RENDERER: digest(renderer_raw), w.PLUGIN: digest(plugin_raw)}
         actual_source.update({relative: files[relative] for relative in fonts - {FONT}})
         if (any(build['source'].get(p) != sha for p, sha in actual_source.items())

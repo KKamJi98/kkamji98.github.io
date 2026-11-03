@@ -1277,8 +1277,13 @@ def svg_document(layout, figure, source_hash, instance=""):
         if g.get("relation_boundary"):
             fill, border = "none", "#64748b"
         fill, border = g.get("fill", fill), g.get("border", border)
+        data = "".join(
+            f' {name}="{html.escape(value, quote=True)}"'
+            for name, value in (("data-value", g.get("data_value")),
+                                ("data-encoding", g.get("data_encoding"))) if value
+        )
         out.append(
-            f'<rect data-source="{g["source"]}" x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="16" fill="{fill}" stroke="{border}" stroke-width="2"/>'
+            f'<rect data-source="{g["source"]}"{data} x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="{g.get('radius', 16)}" fill="{fill}" stroke="{border}" stroke-width="{g.get('border_width', 2)}"/>'
         )
     for b in layout.boxes:
         warning = "sd-node--warning" in b["classes"]
@@ -1724,6 +1729,41 @@ def semantic_check(layout, figure):
                 "actual": sorted(i["source"] for i in layout.images),
             }
         )
+    # Opt-in, source-declared bar lengths use existing band rectangles. Require
+    # a one-to-one painted mark, exact count, square/no-stroke paint, and a
+    # common linear scale. Existing source nodes opt into none of this.
+    scales = {}
+    for element in elements:
+        if element.attrs.get("data-encoding") != "bar-length":
+            continue
+        key = element.key
+        marks = [b for b in layout.boxes + layout.groups if b["source"] == key]
+        value, scale = element.attrs.get("data-value", ""), element.attrs.get("data-scale")
+        if not re.fullmatch(r"[1-9][0-9]*", value) or not scale:
+            issues.append({"code": "invalid-source-data-bar", "source": key})
+            continue
+        if len(marks) != 1:
+            issues.append({"code": "missing-source-data-bar" if not marks else
+                           "duplicate-source-data-bar", "source": key})
+            continue
+        mark = marks[0]
+        if mark.get("data_value") != value or mark.get("data_encoding") != "bar-length":
+            issues.append({"code": "data-bar-value-mismatch", "source": key})
+        if (mark.get("radius") != 0 or mark.get("border_width") != 0 or mark.get("owner")
+                or not re.fullmatch(r"#[0-9A-Fa-f]{6}", mark.get("fill", ""))
+                or not all(math.isfinite(mark[k]) and mark[k] > 0 for k in ("width", "height"))):
+            issues.append({"code": "data-bar-paint-mismatch", "source": key})
+        signature = (mark["x"], mark["height"], mark["width"] / int(value))
+        if scale in scales and any(not math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-12)
+                                   for a, b in zip(signature, scales[scale])):
+            issues.append({"code": "data-bar-scale-mismatch", "source": key})
+        scales.setdefault(scale, signature)
+        for text in layout.texts:
+            if (min(text["x"] + text["width"], mark["x"] + mark["width"]) > max(text["x"], mark["x"])
+                    and min(text["y"] + text["size"] * 0.25, mark["y"] + mark["height"])
+                    > max(text["y"] - text["size"], mark["y"])):
+                issues.append({"code": "data-bar-text-overlap", "source": key,
+                               "text_source": text["source"]})
     for text in layout.texts:
         missing = sorted(
             {
@@ -3188,7 +3228,125 @@ def databricks_grant_layout(font, figure):
          'dg-contains-table': [[1232, 688], [1313, 688]]})
 
 
+def lora_update_layout(font, figure):
+    """Shared input and symmetric frozen/trainable rails, at authored coordinates."""
+    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
+    layout = Layout(font, 88, 40, 24, 24, {
+        'bold_width_budget': 1.30, 'regular_width_budget': 1.08,
+        'no_connector_labels': True,
+    })
+    for key, x, y, width, size, bold in [
+        ('sd-lora-update-path-title', 64, 48, 1792, 72, True),
+        ('lora-equation', 64, 158, 1792, 48, False),
+        ('lora-rank', 750, 706, 132, 40, False),
+        ('lora-scale', 872, 924, 600, 44, False),
+        ('lora-parameters', 64, 928, 790, 40, True),
+        ('lora-scope', 64, 988, 1792, 36, False),
+    ]:
+        layout.add_text([named[key].text()], x, y, size, width, named[key].key, bold)
+    # The two branches share x=400..1200, with centers 390/780 around 585.
+    nodes = {
+        'lora-input': (64, 465, 184, 240),
+        'lora-base': (472, 258, 656, 264),
+        'lora-a': (400, 648, 328, 264),
+        'lora-b': (872, 648, 328, 264),
+        'lora-add': (1368, 465, 184, 240),
+        'lora-output': (1672, 465, 184, 240),
+    }
+    for key, (x, y, width, height) in nodes.items():
+        element = named[key]
+        box = {'source': element.key, 'label': element.text(),
+               'classes': sorted(element.classes),
+               'x': x, 'y': y, 'width': width, 'height': height}
+        if key == 'lora-base':
+            box.update(fill='#f1f5f9', border='#64748b')
+        elif key == 'lora-output':
+            box.update(fill='#eff6ff', border='#5176a8')
+        layout.boxes.append(box)
+        label = next(c for c in element.children if 'sd-label' in c.classes)
+        detail = next(c for c in element.children if 'sd-detail' in c.classes)
+        if key == 'lora-base':
+            layout.add_text([label.text()], x + 32, 282, 88, 330, element.key, True)
+            lines = detail.text().split('\n')
+            layout.add_text([lines[0]], x + 32, 394, 44, 330, element.key)
+            layout.add_text([lines[1]], x + 32, 450, 40, 330, element.key)
+            layout.add_text([lines[2]], 888, 326, 88, 280, element.key, True)
+        elif key in ('lora-a', 'lora-b'):
+            layout.add_text([label.text()], x + 32, 673, 88, width - 64, element.key, True)
+            lines = detail.text().split('\n')
+            layout.add_text([lines[0]], x + 32, 783, 44, width - 64, element.key)
+            if key == 'lora-b':
+                layout.add_text([lines[1]], x + 112, 721, 40, width - 144, element.key)
+                layout.add_text([lines[2]], x + 32, 844, 40, width - 64, element.key)
+            else:
+                layout.add_text([lines[1]], x + 32, 844, 40, width - 64, element.key)
+        else:
+            layout.add_text([label.text()], x + 24, 495, 88, width - 48, element.key, True)
+            layout.add_text([detail.text()], x + 24, 607, 40, width - 48, element.key)
+    routes = {
+        'lora-input-base': [[260, 585], [324, 585], [324, 390], [460, 390]],
+        'lora-input-a': [[260, 585], [324, 585], [324, 780], [388, 780]],
+        'lora-a-b': [[740, 780], [860, 780]],
+        'lora-base-add': [[1140, 390], [1284, 390], [1284, 545], [1356, 545]],
+        'lora-b-add': [[1212, 780], [1284, 780], [1284, 625], [1356, 625]],
+        'lora-add-output': [[1564, 585], [1660, 585]],
+    }
+    for key, points in routes.items():
+        edge = named[key]
+        layout.connectors.append({
+            'source': edge.key,
+            'from': [named[edge.attrs['data-from']].key],
+            'to': [named[edge.attrs['data-to']].key],
+            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points,
+        })
+    return layout
+
+
+def lora_parameter_budget_layout(font, figure):
+    """Exact length comparison, using existing source-backed semantic bands."""
+    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
+    layout = Layout(font, 72, 44, profile={
+        'bold_width_budget': 1.30, 'regular_width_budget': 1.08,
+        'no_connector_labels': True,
+    })
+    for key, x, y, size, bold in [
+        ('sd-lora-parameter-budget-title', 96, 48, 72, True),
+        ('budget-example', 96, 162, 44, False),
+        ('budget-full-name', 96, 244, 56, True),
+        ('budget-full-count', 1370, 228, 72, True),
+        ('budget-lora-name', 96, 456, 56, True),
+        ('budget-lora-count', 312, 440, 72, True),
+        ('budget-zero', 96, 636, 40, False),
+        ('budget-axis', 160, 636, 40, False),
+        ('budget-ratio', 960, 600, 76, True),
+        ('budget-plus', 526, 818, 64, False),
+        ('budget-equals', 1130, 818, 64, False),
+        ('budget-scope', 96, 984, 36, False),
+    ]:
+        layout.add_text([named[key].text()], x, y, size, 1824 - x, named[key].key, bold)
+    for key, x in [('budget-a', 96), ('budget-b', 686), ('budget-sum', 1340)]:
+        lines = named[key].text().split('\n')
+        layout.add_text([lines[0]], x, 748, 44, 450, named[key].key)
+        layout.add_text([lines[1]], x, 826, 56, 450, named[key].key, True)
+        for text in layout.texts[-2:]:
+            text['fill'] = '#0f766e'
+    # Equal bar height and a shared zero. No min-width, magnification, or log axis.
+    full = int(named['budget-full-bar'].attrs['data-value'])
+    for key, y, fill in [('budget-full-bar', 340, '#64748b'),
+                         ('budget-lora-bar', 552, '#0f766e')]:
+        element = named[key]
+        value = int(element.attrs['data-value'])
+        layout.groups.append({
+            'source': element.key, 'label': '', 'classes': sorted(element.classes),
+            'x': 96, 'y': y, 'width': 1728 * value / full, 'height': 64,
+            'fill': fill, 'border': fill, 'border_width': 0, 'radius': 0,
+            'data_value': str(value), 'data_encoding': 'bar-length',
+        })
+    return layout
+
 AUTHORED_LAYOUTS = {
+    "diagrams/static/ai/lora/lora-update-path.html": lora_update_layout,
+    "diagrams/static/ai/lora/lora-parameter-budget.html": lora_parameter_budget_layout,
     "diagrams/static/registry/zot-mirror-path.html": zot_mirror_layout,
     "diagrams/static/registry/zot-digest-trust.html": zot_digest_layout,
     "diagrams/static/ci-cd/arc-runner-slots.html": arc_slots_layout,

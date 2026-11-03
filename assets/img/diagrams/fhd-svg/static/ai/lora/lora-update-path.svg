@@ -1,0 +1,44 @@
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="ad212983fb4ce9e4f45d15c388e6e8dc033a1149273a2fc32e94cdc5e140e240">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-node="root.0.2" x="64.000" y="465.000" width="184.000" height="240.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.3" x="472.000" y="258.000" width="656.000" height="264.000" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+<rect data-node="root.0.4" x="400.000" y="648.000" width="328.000" height="264.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.5" x="872.000" y="648.000" width="328.000" height="264.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.6" x="1368.000" y="465.000" width="184.000" height="240.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.7" x="1672.000" y="465.000" width="184.000" height="240.000" rx="12" fill="#eff6ff" stroke="#5176a8" stroke-width="2"/>
+<path data-edge="root.0.8" data-from="root.0.2" data-to="root.0.3" d="M 260.000 585.000 L 324.000 585.000 L 324.000 390.000 L 460.000 390.000" fill="none" stroke="#475569" stroke-width="3"><title>Apply frozen W0 to input x</title></path>
+<polygon data-arrowhead="root.0.8" points="460.000,390.000 450.000,396.000 450.000,384.000" fill="#475569"/>
+<path data-edge="root.0.9" data-from="root.0.2" data-to="root.0.4" d="M 260.000 585.000 L 324.000 585.000 L 324.000 780.000 L 388.000 780.000" fill="none" stroke="#475569" stroke-width="3"><title>Apply trainable A to the same input x</title></path>
+<polygon data-arrowhead="root.0.9" points="388.000,780.000 378.000,786.000 378.000,774.000" fill="#475569"/>
+<path data-edge="root.0.10" data-from="root.0.4" data-to="root.0.5" d="M 740.000 780.000 L 860.000 780.000" fill="none" stroke="#475569" stroke-width="3"><title>Apply trainable B to the rank-8 intermediate Ax</title></path>
+<polygon data-arrowhead="root.0.10" points="860.000,780.000 850.000,786.000 850.000,774.000" fill="#475569"/>
+<path data-edge="root.0.11" data-from="root.0.3" data-to="root.0.6" d="M 1140.000 390.000 L 1284.000 390.000 L 1284.000 545.000 L 1356.000 545.000" fill="none" stroke="#475569" stroke-width="3"><title>Send W0x to the addition</title></path>
+<polygon data-arrowhead="root.0.11" points="1356.000,545.000 1346.000,551.000 1346.000,539.000" fill="#475569"/>
+<path data-edge="root.0.12" data-from="root.0.5" data-to="root.0.6" d="M 1212.000 780.000 L 1284.000 780.000 L 1284.000 625.000 L 1356.000 625.000" fill="none" stroke="#475569" stroke-width="3"><title>Send sB(Ax) to the addition, with s = alpha/r</title></path>
+<polygon data-arrowhead="root.0.12" points="1356.000,625.000 1346.000,631.000 1346.000,619.000" fill="#475569"/>
+<path data-edge="root.0.13" data-from="root.0.6" data-to="root.0.7" d="M 1564.000 585.000 L 1660.000 585.000" fill="none" stroke="#475569" stroke-width="3"><title>Return h = W0x + sB(Ax)</title></path>
+<polygon data-arrowhead="root.0.13" points="1660.000,585.000 1650.000,591.000 1650.000,579.000" fill="#475569"/>
+<text data-source="root.0.0" x="64.000" y="120.000" font-size="72" font-weight="700" fill="#111827">LoRA in one linear layer</text>
+<text data-source="root.0.1" x="64.000" y="206.000" font-size="48" font-weight="400" fill="#111827">h = W0x + sB(Ax), s = alpha/r</text>
+<text data-source="root.0.14" x="750.000" y="746.000" font-size="40" font-weight="400" fill="#111827">r = 8</text>
+<text data-source="root.0.15" x="872.000" y="968.000" font-size="44" font-weight="400" fill="#111827">s = alpha/r</text>
+<text data-source="root.0.16" x="64.000" y="968.000" font-size="40" font-weight="700" fill="#111827">A + B: 65,536 trainable parameters</text>
+<text data-source="root.0.17" x="64.000" y="1024.000" font-size="36" font-weight="400" fill="#111827">One selected matrix; bias/dropout omitted</text>
+<text data-source="root.0.2" x="88.000" y="583.000" font-size="88" font-weight="700" fill="#111827">x</text>
+<text data-source="root.0.2" x="88.000" y="647.000" font-size="40" font-weight="400" fill="#111827">4096</text>
+<text data-source="root.0.3" x="504.000" y="370.000" font-size="88" font-weight="700" fill="#111827">W0</text>
+<text data-source="root.0.3" x="504.000" y="438.000" font-size="44" font-weight="400" fill="#111827">Frozen</text>
+<text data-source="root.0.3" x="504.000" y="490.000" font-size="40" font-weight="400" fill="#111827">4096 x 4096</text>
+<text data-source="root.0.3" x="888.000" y="414.000" font-size="88" font-weight="700" fill="#111827">W0x</text>
+<text data-source="root.0.4" x="432.000" y="761.000" font-size="88" font-weight="700" fill="#111827">A</text>
+<text data-source="root.0.4" x="432.000" y="827.000" font-size="44" font-weight="400" fill="#111827">8 x 4096</text>
+<text data-source="root.0.4" x="432.000" y="884.000" font-size="40" font-weight="400" fill="#111827">Trainable</text>
+<text data-source="root.0.5" x="904.000" y="761.000" font-size="88" font-weight="700" fill="#111827">B</text>
+<text data-source="root.0.5" x="904.000" y="827.000" font-size="44" font-weight="400" fill="#111827">4096 x 8</text>
+<text data-source="root.0.5" x="984.000" y="761.000" font-size="40" font-weight="400" fill="#111827">Trainable</text>
+<text data-source="root.0.5" x="904.000" y="884.000" font-size="40" font-weight="400" fill="#111827">sB(Ax)</text>
+<text data-source="root.0.6" x="1392.000" y="583.000" font-size="88" font-weight="700" fill="#111827">+</text>
+<text data-source="root.0.6" x="1392.000" y="647.000" font-size="40" font-weight="400" fill="#111827">Add</text>
+<text data-source="root.0.7" x="1696.000" y="583.000" font-size="88" font-weight="700" fill="#111827">h</text>
+<text data-source="root.0.7" x="1696.000" y="647.000" font-size="40" font-weight="400" fill="#111827">4096</text>
+</svg>

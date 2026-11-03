@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-11-04T00:33:52.932501+09:00",
+  "svg_sha256": "f7aa26c6ee9625c8e5cfeeaab55100003f1f6edb9b3dddbac2d43179edec2b6e",
+  "png_sha256": "05f907373c9d79e58ca62589330c114c25ece71098b20dd94d199bc28151878f",
+  "webp_sha256": "fbadec0d61b78cca3a4fdb2d3329b95b47b141935a5da6b6cf1b0be7398f1a44",
+  "actual_original_png_viewed": true,
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "notes": [
+    "제목, 수식, 행렬 경계와 하단 설명에 잘림이나 겹침이 없다. W0와 W_eff는 의도된 ASCII 표기로 읽히며 깨진 글리프가 아니다.",
+    "B(4096 x 8)와 A(8 x 4096)의 곱 순서가 맞다. 저랭크 업데이트 sBA와 유효 가중치 W_eff가 구분된다.",
+    "16,777,216 frozen과 65,536 trainable이 정확하다. All grids 주석이 격자의 도식적 성격과 면적비 해석 제한을 명시한다."
+  ],
+  "optional_note_accepted_without_further_artwork_change": [
+    "선택적 미관: '*'의 가시 중심이 '+'와 '='보다 약간 높고 작게 보인다. 광학 중심과 크기를 미세 조정할 여지는 있지만 필수 수정 결함은 아니다."
+  ],
+  "review_artifact_sha256": "861bdf82be8f918521112a8f3c27f9ece933f537e88d625821e5ccaefc530199",
+  "review_method": "Codex CLI native --image input; read-only sandbox; no tool execution; parent verified frozen original PNG hash"
+}

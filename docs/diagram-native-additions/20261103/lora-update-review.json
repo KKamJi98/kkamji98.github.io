@@ -1,0 +1,14 @@
+{
+  "include": "diagrams/static/ai/lora/lora-update-path.html",
+  "source_sha256": "ad212983fb4ce9e4f45d15c388e6e8dc033a1149273a2fc32e94cdc5e140e240",
+  "svg_sha256": "6220c7efdc7ccf141a869f36d7a400af05aa90a23789d411eaa3aa5dc49703d5",
+  "png_sha256": "3f86c9c90165748c3919270791612496cfd236b86a9708c20fc5f30b51eca717",
+  "visual_status": "passed",
+  "semantic_status": "passed",
+  "actual_original_png_viewed": true,
+  "reviewed_at": "2026-11-04T00:33:52.932501+09:00",
+  "notes": "입력 분기, W0 경로, A -> B 경로와 합산 후 h로 향하는 화살촉이 명확하다. 연결선과 글자에 겹침이 없고 상자 경계 주변 간격도 일관적이다. r = 8에 충분한 여유가 있다. B 내부의 sB(Ax)와 아래쪽 s = alpha/r 표기로 출력 스케일링을 읽을 수 있다. 행렬과 벡터 차원, A + B의 65,536개 학습 파라미터가 정확하다. 식은 h = W0x + (alpha/r)B(Ax)와 일치한다. 폰트와 글리프가 정상이며 제목, 두 경로, 합산과 출력의 위계가 명확하다.",
+  "review_method": "Codex CLI native --image input; read-only sandbox; no tools; exact original PNG attachment hashes verified by parent",
+  "review_artifact_sha256": "861bdf82be8f918521112a8f3c27f9ece933f537e88d625821e5ccaefc530199",
+  "review_input_manifest_sha256": "11c7a247e1add84c30fb226ce9d040b447f3c915c28efc2c9b1ed4771d8a5007"
+}

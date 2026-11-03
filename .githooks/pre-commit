@@ -191,6 +191,8 @@ if "${PY}" -c 'import sys; from pathlib import Path; root=Path(sys.argv[1]); sys
     "${BLOG}/static_png/test_responsive_display.py" \
     "${BLOG}/static_png/test_cover_contract.py" \
     "${BLOG}/static_png/test_webp_review_regressions.py" \
+    "${BLOG}/static_png/test_native_additions.py" \
+    "${BLOG}/static_png/test_webp_additions.py" \
     "${BLOG}/static_png/test_jev_layout.py" \
     "${BLOG}/static_png/test_jev_horizontal.py" \
     "${BLOG}/static_png/test_native_update.py" \

@@ -9,7 +9,7 @@ import pytest
 import downloads
 import webp_release as w
 from pipeline import digest
-from test_native_additions import addition
+from test_native_additions import addition, appended_addition
 from test_native_update import delta
 
 
@@ -70,6 +70,42 @@ def test_additive_roundtrip_preserves_original_archive_and_seals_all_active_outp
     for path, raw in s.archived.items():
         assert (s.root / path).read_bytes() == raw
         assert saved['native_archive_inputs'].get(path, digest(raw)) == digest(raw)
+
+
+@pytest.mark.parametrize('index_target', ['archive', 'current'])
+def test_append_only_catalog_survives_conversion_seal_and_exact_index_checks(appended_addition, index_target):
+    s = appended_addition; earlier = s.earlier; later = s.later
+    original_stamp = earlier.stamp_path.read_bytes()
+    original_rows = copy.deepcopy(later.manifest['sources'])
+    preserved = dict(earlier.archived)
+    preserved[s.catalog_file] = s.catalog_raw
+    for row in original_rows:
+        for key in ('receipt', 'review', 'render_build', 'render_fixture'):
+            relative = row[key + '_file']; preserved[relative] = (earlier.root / relative).read_bytes()
+        preserved[row['png'][1:]] = (earlier.root / row['png'][1:]).read_bytes()
+    assert w.convert(later.root, later.stamp_path, later.manifest['base_revision'])['source_count'] == 4
+    snapshot = downloads.source_snapshot(later.root)
+    assert snapshot[s.catalog_file] == digest(s.catalog_raw)
+    assert snapshot['docs/diagram-catalog.json'] != snapshot[s.catalog_file]
+    site = later.root.parent / 'delivery-site'; built_site(later, site)
+    assert w.seal(later.root, site, later.stamp_path, later.manifest['base_revision'])['outputs'] == 4
+    saved = json.loads((later.root / w.MANIFEST).read_text())
+    assert saved['native_additions']['files'][s.catalog_file] == digest(s.catalog_raw)
+    assert saved['native_additions']['files']['docs/diagram-catalog.json'] == snapshot['docs/diagram-catalog.json']
+    assert saved['native_build_stamp'] == earlier.stamp
+    assert w.check(later.root, site)['passed'] and w.check(later.root)['passed']
+    subprocess.run(['git', 'add', '.'], cwd=later.root, check=True)  # private test repo
+    assert w.verify_staged(later.root)['indexed'] is True
+    relative = s.catalog_file if index_target == 'archive' else 'docs/diagram-catalog.json'
+    bad = subprocess.check_output(['git', 'hash-object', '-w', '--stdin'], cwd=later.root,
+                                  input=b'TEST catalog index divergence only').decode().strip()
+    subprocess.run(['git', 'update-index', '--cacheinfo', '100644,' + bad + ',' + relative], cwd=later.root, check=True)
+    with pytest.raises(ValueError, match='index differs'): w.verify_staged(later.root)
+    subprocess.run(['git', 'add', '--', relative], cwd=later.root, check=True)
+    assert w.verify_staged(later.root)['indexed'] is True
+    assert earlier.stamp_path.read_bytes() == original_stamp
+    assert json.loads((later.root / 'docs/diagram-native-additions.json').read_text())['sources'] == original_rows
+    for relative, raw in preserved.items(): assert (later.root / relative).read_bytes() == raw
 
 
 @pytest.mark.parametrize('key', ['manifest', 'receipt', 'review', 'render_build', 'render_fixture'])
