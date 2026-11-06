@@ -143,6 +143,20 @@ if [ -n "${description_inputs}" ]; then
   fi
 fi
 
+watch_inputs="$(git diff --cached --name-only -- _posts/2024/06/2024-06-05-aws-seminar.md assets/css/jekyll-theme-chirpy.scss tools/test_video_watch_page.rb .githooks/pre-commit .github/workflows/pages-deploy.yml)"
+if [ -n "${watch_inputs}" ]; then
+  step "Presentation watch page"
+  if ! git ls-files --error-unmatch -- tools/test_video_watch_page.rb >/dev/null 2>&1; then
+    bad "Watch-page checks must be tracked in the index"
+  elif ! git diff --quiet -- tools/test_video_watch_page.rb; then
+    bad "Watch-page checks must be staged in full"
+  elif bundle exec ruby tools/test_video_watch_page.rb --staged; then
+    ok "Indexed player position, provider metadata and scoped presentation"
+  else
+    bad "Presentation watch page"
+  fi
+fi
+
 if [ -n "${highlighting_inputs}" ]; then
   step "코드 블록 문법 강조"
   if ! git ls-files --error-unmatch -- _plugins/code-highlighting.rb kkamji_scripts/blog/check_code_blocks.rb tools/test_code_highlighting.rb Gemfile _config.yml >/dev/null 2>&1; then

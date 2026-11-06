@@ -81,6 +81,9 @@ jobs:
         env:
           JEKYLL_ENV: "production"
 
+      - name: Check presentation watch page
+        run: bundle exec ruby tools/test_video_watch_page.rb --site _site
+
       - name: Check code block rendering
         run: |
           bundle exec ruby tools/test_code_highlighting.rb

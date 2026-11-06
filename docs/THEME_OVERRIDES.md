@@ -1,6 +1,6 @@
 ---
 title: Theme overrides registry
-updated: 2026-11-03
+updated: 2026-11-06
 type: architecture
 status: current
 ---
@@ -35,6 +35,15 @@ bash tools/run.sh    # 로컬 미리보기
 빌드 후 `_site` 산출물에서 커스텀이 실제 반영됐는지 grep으로 확인한다 (빌드 성공 != override 반영).
 
 ---
+
+## Presentation watch page
+
+- `posts/aws-seminar/` presents the existing seminar recording before the retained first-person retrospective. Its canonical URL, publication date, author, source video ID, cover asset and immutable footer remain unchanged.
+- `.watch-video` provides a responsive 16:9 player. Only an article containing that player hides its decorative header cover with `article:has(.watch-video) > header .post-meta > .mt-3.mb-3`; cards, social previews and ordinary article covers keep their existing behavior.
+- The player loads eagerly without autoplay. Frontmatter `video` is the single source for its embed URL, title and `VideoObject` JSON-LD. The verified YouTube upload time, duration and available thumbnail are not inferred from the blog publication date. `embedUrl` points to the player; a watch-page URL is not a video-file `contentUrl`.
+- Run `bundle exec ruby tools/test_video_watch_page.rb` for source and negative controls, `--staged` for indexed inputs, and `--site <production-site>` for the generated page and compiled stylesheet. Pre-commit and Pages CI run the corresponding checks. Confirm actual player prominence, header-cover behavior and overflow in Aside at mobile and desktop widths.
+- This makes the page eligible for Google's watch-page assessment; schema alone does not establish the page's main purpose or guarantee video indexing. Search Console validation remains a separate Google-operated outcome after recrawling.
+- Official criteria: [Video SEO best practices](https://developers.google.com/search/docs/appearance/video), [Video structured data](https://developers.google.com/search/docs/appearance/structured-data/video).
 
 ## Static diagram download helper
 
