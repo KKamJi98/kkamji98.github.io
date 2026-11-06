@@ -844,6 +844,14 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 {: #open-source-contributions .cv-h2}
 
 <div class="cv-oss-grid">
+  <a class="cv-oss" href="https://github.com/prometheus/client_rust/pull/371" target="_blank" rel="noopener">
+    <div class="cv-oss-head">
+      <i class="fab fa-github"></i>
+      <span>prometheus/client_rust</span>
+      <span class="cv-oss-pr">PR #371</span>
+    </div>
+    <p class="cv-oss-desc">debug assertions 활성화 시 <code>_total</code>로 끝나는 Counter 이름 등록을 거부하고 panic 진단 메시지 개선</p>
+  </a>
   <a class="cv-oss" href="https://github.com/envoyproxy/gateway/pull/10066" target="_blank" rel="noopener">
     <div class="cv-oss-head">
       <i class="fab fa-github"></i>
