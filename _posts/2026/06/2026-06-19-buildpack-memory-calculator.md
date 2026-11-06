@@ -1,5 +1,6 @@
 ---
 title: buildpack과 JVM Memory Calculator
+description: "Paketo buildpack이 fat jar를 OCI 이미지로 만드는 흐름을 설명합니다. Memory Calculator가 컨테이너 한도에서 non-heap을 차감해 -Xmx를 정하는 계산식과 스레드 수의 영향을 정리합니다."
 date: 2026-06-19 09:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]

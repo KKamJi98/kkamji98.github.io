@@ -1,5 +1,6 @@
 ---
 title: Datadog RUM 알아보기 - Real User Monitoring 개념과 Observability [Datadog 1]
+description: "Datadog RUM의 Session과 View 중심 데이터 모델로 실제 사용자 성능과 오류를 관측하는 방식을 설명합니다. Core Web Vitals, APM 연계, Synthetic과의 차이 및 샘플링과 비용을 정리합니다."
 date: 2026-06-29 11:00:00 +0900
 author: kkamji
 categories: [Monitoring & Observability]

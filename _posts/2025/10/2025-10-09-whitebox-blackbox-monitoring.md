@@ -1,5 +1,6 @@
 ---
 title: White-Box vs Black-Box 모니터링 방법론 소개
+description: "외부 사용자 동작을 확인하는 Black-box와 내부 신호로 원인을 좁히는 White-box 모니터링을 비교합니다. 사용자 영향에 맞춘 경보, 응답 내용 점검 및 Golden Signals를 활용하는 운영 흐름을 설명합니다."
 date: 2025-10-09 01:02:31 +0900
 author: kkamji
 categories: [Monitoring & Observability]

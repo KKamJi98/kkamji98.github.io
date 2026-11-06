@@ -1,5 +1,6 @@
 ---
 title: Istio Overview & Installation Guide
+description: "Istio의 Control Plane과 Data Plane, Sidecar 및 Ambient 차이를 설명합니다. 설치와 Bookinfo 배포, Gateway API 노출 및 Prometheus와 Kiali 연결을 다룹니다."
 date: 2025-12-16 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]

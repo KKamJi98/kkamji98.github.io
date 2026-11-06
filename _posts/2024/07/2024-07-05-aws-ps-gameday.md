@@ -1,5 +1,6 @@
 ---
 title: AWS PS GameDay 후기 및 느낀점
+description: "생성형 AI를 주제로 한 AWS Public Sector Day Seoul 2024 GameDay 참가 후기입니다. 공개된 서비스 목록으로 예상 시나리오를 준비한 과정과 4인 팀의 대회 진행, 최종 5위 결과 및 소감을 담습니다."
 date: 2024-07-05 20:41:14 +0900
 author: kkamji
 categories: [Cloud, AWS]

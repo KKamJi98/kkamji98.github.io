@@ -1,5 +1,6 @@
 ---
 title: Deep Learning과 TensorFlow
+description: "TensorFlow와 Keras로 퍼셉트론과 MNIST 분류를 다루며 딥러닝의 학습 과정을 정리합니다. 역전파와 손실 함수, 옵티마이저 및 과적합을 줄이는 학습 전략을 설명합니다."
 date: 2023-06-13 13:15:55 +0900
 author: kkamji
 categories: [Personal, University]

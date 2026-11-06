@@ -1,5 +1,6 @@
 ---
 title: AWS Bedrock Knowledge Base로 관리형 RAG 구축하기
+description: "Bedrock Knowledge Bases의 Customer-managed 구성에서 청킹과 벡터스토어 선택을 설명합니다. 콘솔 및 IaC 구축, Retrieve와 RetrieveAndGenerate, 접근제어를 정리합니다."
 date: 2026-07-02 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

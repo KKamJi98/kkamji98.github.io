@@ -1,5 +1,6 @@
 ---
 title: Amazon CloudFront VPC Origins 알아보기
+description: "CloudFront VPC Origins가 프라이빗 ALB, NLB, EC2를 서비스 관리형 ENI로 연결하는 구조를 설명하고, 퍼블릭 오리진 방식과의 차이 및 설정 전제와 제약을 정리합니다."
 date: 2026-02-04 18:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

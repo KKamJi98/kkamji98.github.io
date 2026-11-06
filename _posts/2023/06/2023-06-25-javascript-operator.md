@@ -1,5 +1,6 @@
 ---
 title: JavaScript 연산자
+description: "JavaScript 연산자가 값을 계산하고 타입을 변환하는 방식을 정리합니다. 동등 비교와 일치 비교의 차이, NaN과 null 판별 및 typeof 사용 시 주의점을 설명합니다."
 date: 2023-06-25 18:38:55 +0900
 author: kkamji
 categories: [Programming Language, JavaScript]

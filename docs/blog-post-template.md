@@ -1,6 +1,6 @@
 ---
 title: Technical post template
-updated: 2026-10-24
+updated: 2026-11-06
 type: rule
 status: current
 ---
@@ -12,6 +12,7 @@ status: current
 ```text
 ---
 title: <검색 키워드가 포함된 한국어 기술 제목>
+description: "<글에서 실제로 설명하는 원리, 방법과 구별점을 담은 40-160자 요약>"
 date: YYYY-MM-DD HH:MM:SS +0900
 author: kkamji
 categories: [Category]
@@ -58,6 +59,7 @@ image:
 
 ## 작성 원칙
 
+- 모든 글에 독자적인 `description`을 작성한다. 화면 부제와 검색 및 공유 메타데이터의 계약은 [Post descriptions](post-descriptions.md)를 따른다.
 - 공식 문서, release note, source code, issue를 우선 근거로 사용한다.
 - 외부 링크는 하단 `Reference`에 모은다.
 - 본문에서는 핵심 용어를 자연스럽게 영어로 유지해도 된다.

@@ -1,5 +1,6 @@
 ---
 title: "LLM Wiki 구축하기 - Obsidian Vault와 검색 계층 [LLM Wiki 2]"
+description: "Obsidian과 git으로 검색 가능한 LLM Wiki를 구성하는 방법을 설명합니다. 원문과 정리본 분리, 신뢰도 frontmatter, 링크 검사와 검색 계층, 사람과 에이전트가 나누는 수집 절차를 정리합니다."
 date: 2026-08-02 12:08:00 +0900
 author: kkamji
 categories: [AI, Knowledge Base]

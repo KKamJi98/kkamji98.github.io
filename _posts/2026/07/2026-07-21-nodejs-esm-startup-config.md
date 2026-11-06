@@ -1,5 +1,6 @@
 ---
 title: "Node.js ESM 모듈 경계와 Startup Configuration Validation"
+description: "Node.js v26의 ESM 모듈 해석과 애플리케이션 설정 검증을 구분합니다. --env-file 로딩 이후 필수값, 포트와 URL을 listen 전에 확인하고 모듈 로딩 및 포트 바인딩 실패를 나눠 다룹니다."
 date: 2026-07-21 10:48:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

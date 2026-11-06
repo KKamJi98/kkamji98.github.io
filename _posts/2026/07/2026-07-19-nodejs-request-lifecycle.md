@@ -1,5 +1,6 @@
 ---
 title: "Node.js HTTP 서버 요청 경로 - HTTP, TCP, 프로세스, 컨테이너"
+description: "TCP 연결과 HTTP 요청을 구분하고 Node.js handler까지의 요청 경로를 설명합니다. keep-alive 연결 재사용과 SIGTERM 관찰 예시로 컨테이너 종료 시 애플리케이션의 drain 책임을 정리합니다."
 date: 2026-07-19 02:36:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

@@ -1,5 +1,6 @@
 ---
 title: Remember Me 프로젝트 후기
+description: "서버리스 단어 암기 서비스 Remember Me의 인프라 구축을 회고합니다. HCP Terraform과 GitHub Actions 구성, 분산된 Lambda 로그를 ELK로 모은 과정과 알림 체계를 다룹니다."
 date: 2024-12-14 14:36:37 +0900
 author: kkamji
 categories: [Project]

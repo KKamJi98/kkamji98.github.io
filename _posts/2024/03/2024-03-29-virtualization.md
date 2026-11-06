@@ -1,5 +1,6 @@
 ---
 title: 가상화(Virtualization)의 종류와 개념
+description: "서버뿐 아니라 네트워크, 스토리지, 데스크탑, 애플리케이션, 데이터 계층에 적용되는 가상화를 설명합니다. 각 방식이 추상화하는 자원과 제공하는 접근 방식, 활용 목적을 구분합니다."
 date: 2024-03-29 21:53:31 +0900
 author: kkamji
 categories: [CS, Virtualization]

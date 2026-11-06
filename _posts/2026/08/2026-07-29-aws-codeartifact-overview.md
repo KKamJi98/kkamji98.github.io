@@ -1,5 +1,6 @@
 ---
 title: "AWS CodeArtifact Overview - 프라이빗 패키지 저장소 구조와 보안"
+description: "AWS CodeArtifact의 Domain과 Repository 구조, 공개 registry 연계와 패키지 인증 흐름을 설명합니다. dependency confusion 방어, 과금과 리전 제약을 함께 정리합니다."
 date: 2026-07-29 02:38:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

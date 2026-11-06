@@ -1,5 +1,6 @@
 ---
 title: RAG 청킹과 임베딩, Contextual Retrieval - 검색 품질을 좌우하는 인덱싱 설계 [RAG 2]
+description: "RAG의 청크 경계와 임베딩 선택이 검색에 미치는 영향을 설명합니다. 고정 크기, 구조 및 의미 기반 분할과 Parent-Child를 비교하고 Contextual Retrieval의 맥락 보강 및 메타데이터 설계를 다룹니다."
 date: 2026-06-23 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

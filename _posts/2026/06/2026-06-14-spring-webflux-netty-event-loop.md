@@ -1,5 +1,6 @@
 ---
 title: Spring WebFlux와 netty event loop - 적은 스레드, 그리고 off-heap 메모리
+description: "WebFlux의 Netty event loop가 적은 스레드로 여러 연결을 처리하는 방식을 설명합니다. 블로킹 작업을 별도 스레드로 격리하는 이유와 소켓 I/O용 direct memory의 off-heap 특성을 다룹니다."
 date: 2026-06-14 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

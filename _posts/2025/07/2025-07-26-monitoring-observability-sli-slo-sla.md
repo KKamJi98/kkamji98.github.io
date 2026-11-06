@@ -1,5 +1,6 @@
 ---
 title: Monitoring VS Observability + SLI/SLO/SLA 알아보기 [Cilium Study 2주차]
+description: "Monitoring과 Observability의 역할 및 관측 신호를 연결하는 기준을 설명합니다. 사용자 여정의 good events와 total events에서 SLI, SLO와 오류 예산을 정하는 방법을 다룹니다."
 date: 2025-07-26 01:29:14 +0900
 author: kkamji
 categories: [Monitoring & Observability]

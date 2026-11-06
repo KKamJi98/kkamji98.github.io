@@ -1,5 +1,6 @@
 ---
 title: Databricks란 무엇인가 - SQL 한 줄로 따라가는 계정, 컴퓨트, 권한 구조 [Databricks 1]
+description: "Databricks의 SQL 경로로 계정, 컴퓨트와 권한 구조를 설명합니다. control plane, serverless 및 classic compute, Unity Catalog와 S3 연결 및 비용과 감사 기록을 구분합니다."
 date: 2026-10-19 00:30:00 +0900
 last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji

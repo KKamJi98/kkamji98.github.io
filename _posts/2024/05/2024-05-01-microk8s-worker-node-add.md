@@ -1,5 +1,6 @@
 ---
 title: MicroK8s에 Worker Node 추가하기
+description: "EC2 private network에서 MicroK8s worker 조인과 Ready, Pod 배치를 확인하는 방법을 설명합니다. control plane HA와의 차이, 통신 범위와 node-local 스토리지 제약도 다룹니다."
 date: 2024-05-01 23:41:11 +0900
 author: kkamji
 categories: [Kubernetes, Cluster]

@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 13 - 마이그레이션 전략"
+description: "7R 분류에서 move group과 wave, 컷오버로 이어지는 AWS 마이그레이션 판단을 정리합니다. SAP-C02의 공통 AD 의존성, MGN 복제와 되돌림, DMS 및 스키마 변환 도구의 범위를 비교합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, migration, 7r, mgn, dms, sct, migration-hub, application-discovery]

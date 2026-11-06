@@ -1,5 +1,6 @@
 ---
 title: Argo CD in Practice (1) - GitOps와 Kubernetes
+description: "OpenGitOps 원칙을 Kubernetes API와 컨트롤러의 조정 구조에 연결해 설명합니다. 명령형 및 선언형 리소스 적용을 비교하고 Git 복제와 적용을 반복하는 간단한 GitOps Operator를 구성합니다."
 date: 2025-11-03 11:40:31 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

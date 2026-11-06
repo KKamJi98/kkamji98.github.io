@@ -1,5 +1,6 @@
 ---
 title: GitHub Actions Self-hosted Runner 환경 구축하기 - HomeLab Kubernetes와 ARC
+description: "HomeLab에 ARC runner를 구축해 웹과 Rust 저장소 CI를 옮긴 기록입니다. light와 rootless DinD 풀 분리, 슬롯 및 quota 제한, 캐시와 오라클 fixture 조정에 따른 run 관측을 정리합니다."
 date: 2026-10-18 19:00:00 +0900
 last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji

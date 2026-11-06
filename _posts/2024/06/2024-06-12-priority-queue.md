@@ -1,5 +1,6 @@
 ---
 title: Priority queue 개념, 사용 방법
+description: "Python heapq의 최소 힙 원리와 연산별 동작을 설명하고, sequence 값으로 같은 우선순위의 순서를 보존하는 큐를 구성합니다. Python 3.14의 최대 힙 API와 PriorityQueue 선택 기준도 정리합니다."
 date: 2024-06-12 20:31:44 +0900
 author: kkamji
 categories: [CS, Data Structure]

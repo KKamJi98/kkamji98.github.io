@@ -1,5 +1,6 @@
 ---
 title: Kubernetes 환경에서 TLS 인증서 적용하기 - (1)
+description: "TLS와 SSL의 관계 및 통신의 기밀성, 무결성, 인증을 위한 역할을 설명합니다. Client Hello부터 서버 인증, 키 교환, 세션 키를 이용한 암호화 통신까지 TLS handshake의 흐름을 정리합니다."
 date: 2024-10-19 23:44:21 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

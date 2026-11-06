@@ -1,5 +1,6 @@
 ---
 title: TCP & UDP 개념
+description: "TCP의 순서 보장 바이트 스트림과 UDP의 데이터그램 전달 방식을 비교합니다. TCP 연결 수립과 메시지 경계, 재전송 및 혼잡 제어 책임을 바탕으로 프로토콜 선택과 운영 관측 항목을 정리합니다."
 date: 2023-10-11 21:44:32 +0900
 author: kkamji
 categories: [System, Network]

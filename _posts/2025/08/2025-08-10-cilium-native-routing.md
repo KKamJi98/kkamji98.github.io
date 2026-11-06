@@ -1,5 +1,6 @@
 ---
 title: Cilium Native Routing 통신 확인 및 문제 해결 - Static Route & BGP [Cilium Study 4주차]
+description: "Cilium Native Routing에서 라우터의 PodCIDR 경로 누락으로 통신이 실패한 사례입니다. tcpdump와 Hubble로 추적하고 Static Route 및 BGP로 해결하는 방법을 설명합니다."
 date: 2025-08-10 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

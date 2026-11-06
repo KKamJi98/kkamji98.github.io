@@ -1,5 +1,6 @@
 ---
 title: 소프트웨어 생명 주기 (Software LifeCycle)
+description: "요구사항의 확정 시점과 변화에 대한 대응을 기준으로 폭포수, 프로토타입, 나선형, 애자일 모형을 비교합니다. 각 모형의 개발 흐름과 나선형의 반복 단계, 애자일의 핵심 가치를 정리합니다."
 date: 2023-07-08 23:36:55 +0900
 author: kkamji
 categories: [Personal, University]

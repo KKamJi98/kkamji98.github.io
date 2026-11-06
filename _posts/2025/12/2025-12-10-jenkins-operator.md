@@ -1,5 +1,6 @@
 ---
 title: "Jenkins Operator 알아보기 - Kubernetes 선언적 운영 [Jenkins 3]"
+description: "Jenkins CR로 플러그인, JCasC, seed job과 백업을 선언하는 Operator를 설명합니다. base와 user의 reconcile 단계, Pod 재생성 조건 및 설치와 운영 제약을 다룹니다."
 date: 2025-12-10 19:50:12 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

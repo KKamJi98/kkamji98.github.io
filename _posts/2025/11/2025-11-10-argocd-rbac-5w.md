@@ -1,5 +1,6 @@
 ---
 title: Argo CD in Practice (4) - 접근제어
+description: "Argo CD의 로컬 사용자와 자동화용 계정, 프로젝트 역할 및 토큰을 통한 접근제어를 설명합니다. admin 비활성화와 policy.csv 권한 구성, Keycloak OIDC를 이용한 SSO 연동을 다룹니다."
 date: 2025-11-10 23:51:44 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

@@ -1,5 +1,6 @@
 ---
 title: WSL2에서 Hermes Agent로 개인 ChatGPT 구독 기반 자율 AI Agent 구축하기
+description: "WSL2에 Hermes Agent를 설치하고 openai-codex provider와 runtime을 구분하는 방법을 설명합니다. memory, cron, Telegram gateway와 systemd 운영 조건을 정리합니다."
 date: 2026-07-01 09:00:00 +0900
 author: kkamji
 categories: [AI, Agent]

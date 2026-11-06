@@ -1,5 +1,6 @@
 ---
 title: InfluxDB Migration 1.x to 1.x
+description: "InfluxDB 1.x를 다른 EC2로 이전하는 Line Protocol export와 import 절차를 설명합니다. 더미 데이터를 이용해 전체 복원과 시간 구간 복구, 값 덮어쓰기를 Grafana로 비교한 실습을 다룹니다."
 date: 2025-04-06 10:49:55 +0900
 author: kkamji
 categories: [System, DB]

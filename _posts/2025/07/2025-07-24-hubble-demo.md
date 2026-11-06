@@ -1,5 +1,6 @@
 ---
 title: Star Wars Demo와 함께 Cilium Network Policy 알아보기 [Cilium Study 2주차]
+description: "Star Wars Demo의 deathstar 접근을 예로 Cilium 네트워크 정책을 실습합니다. 라벨 기반 L3/L4 제어와 HTTP 경로 기반 L7 제어를 적용하고 Hubble로 허용 및 거부 흐름을 확인합니다."
 date: 2025-07-24 02:02:50 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

@@ -1,5 +1,6 @@
 ---
 title: Cilium Service Mesh [Cilium Study 6주차]
+description: "사이드카 방식과 Cilium의 Envoy 및 eBPF 기반 Service Mesh를 비교합니다. Cilium Ingress의 정책, 소스 IP 전달, externalTrafficPolicy와 경로 매칭을 설명합니다."
 date: 2025-08-18 01:02:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

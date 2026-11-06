@@ -129,6 +129,20 @@ PY
   fi
 fi
 
+description_inputs="$(git diff --cached --name-only -- _posts _plugins/post-descriptions.rb kkamji_scripts/blog/check_post_descriptions.rb tools/test_post_descriptions.rb .githooks/pre-commit)"
+if [ -n "${description_inputs}" ]; then
+  step "Post descriptions"
+  if ! git ls-files --error-unmatch -- _plugins/post-descriptions.rb kkamji_scripts/blog/check_post_descriptions.rb tools/test_post_descriptions.rb >/dev/null 2>&1; then
+    bad "Post description checks must be tracked in the index"
+  elif ! git diff --quiet -- _plugins/post-descriptions.rb kkamji_scripts/blog/check_post_descriptions.rb tools/test_post_descriptions.rb; then
+    bad "Post description checks must be staged in full"
+  elif bundle exec ruby tools/test_post_descriptions.rb && bundle exec ruby "${BLOG}/check_post_descriptions.rb" --staged; then
+    ok "Authored descriptions in the complete staged post collection"
+  else
+    bad "Post descriptions"
+  fi
+fi
+
 if [ -n "${highlighting_inputs}" ]; then
   step "코드 블록 문법 강조"
   if ! git ls-files --error-unmatch -- _plugins/code-highlighting.rb kkamji_scripts/blog/check_code_blocks.rb tools/test_code_highlighting.rb Gemfile _config.yml >/dev/null 2>&1; then

@@ -1,5 +1,6 @@
 ---
 title: "Jenkins Operator 심화 - Reconcile 루프와 소스 코드 [Jenkins 5]"
+description: "Jenkins Operator의 reconcile 호출 순서를 소스 코드로 추적하고 CR status로 실패 지점을 좁히는 방법을 설명합니다. 반복 실패 중단, Groovy 변경 감지와 PVC 백업의 범위를 정리합니다."
 date: 2026-07-31 02:12:00 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

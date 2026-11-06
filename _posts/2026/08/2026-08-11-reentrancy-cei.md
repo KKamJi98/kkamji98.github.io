@@ -1,5 +1,6 @@
 ---
 title: "Smart contract 보안 기초 - 재진입, CEI [Blockchain 6]"
+description: "이더를 보낸 뒤 잔액을 지우는 금고에서 재진입이 발생하는 호출 순서를 설명합니다. 같은 공격 contract를 Foundry 테스트에 적용해 취약 구현과 상태를 먼저 갱신하는 CEI 구현의 결과를 비교합니다."
 date: 2026-08-11 11:09:00 +0900
 author: kkamji
 categories: [Blockchain]

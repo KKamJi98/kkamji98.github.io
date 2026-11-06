@@ -1,5 +1,6 @@
 ---
 title: JPA 영속성 컨텍스트 - 1차 캐시, 엔티티 상태, dirty checking
+description: "JPA 영속성 컨텍스트의 1차 캐시와 엔티티 상태 전이를 설명합니다. managed 엔티티의 변경이 dirty checking과 flush로 DB에 반영되는 과정, 대량 처리 시 메모리 주의점을 정리합니다."
 date: 2026-06-07 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

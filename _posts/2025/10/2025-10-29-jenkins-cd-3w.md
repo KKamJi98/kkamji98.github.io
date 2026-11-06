@@ -1,5 +1,6 @@
 ---
 title: Jenkins CD with Kubernetes
+description: "Jenkins에 kubectl, helm과 kubeconfig credential을 준비해 Kubernetes CD를 구성합니다. Service selector를 이용한 blue-green 전환 및 rollback을 실습합니다."
 date: 2025-10-29 01:30:31 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

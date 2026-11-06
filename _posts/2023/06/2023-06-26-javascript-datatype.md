@@ -1,5 +1,6 @@
 ---
 title: JavaScript 데이터 타입
+description: "ECMAScript의 8개 언어 타입을 원시 값과 객체로 구분하고, 값과 변수의 타입 관계를 설명합니다. Number의 정밀도 한계와 BigInt의 용도, typeof null 해석 시 주의점을 정리합니다."
 date: 2023-06-26 18:38:55 +0900
 author: kkamji
 categories: [Programming Language, JavaScript]

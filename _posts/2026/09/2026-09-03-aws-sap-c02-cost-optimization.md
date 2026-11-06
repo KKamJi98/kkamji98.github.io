@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 12 - 비용 최적화"
+description: "SAP-C02 비용 문제를 요금 항목과 절감 수단의 적용 범위로 나눠 설명합니다. 커밋 할인과 용량 예약의 차이, 스토리지 전환 비용, 청구 분석 도구와 NAT 및 전송 경로의 비용을 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, cost-optimization, savings-plans, reserved-instances, data-transfer, budgets, trusted-advisor]

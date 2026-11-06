@@ -1,5 +1,6 @@
 ---
 title: AWS WAF Self-Managed Rule 알아보기 - ASN Match, Rate Limit, IP Set 운영
+description: "AWS WAF의 ASN Match, IP Set, rate-based rule을 차단 조건별로 비교합니다. forwarded IP의 신뢰 경계와 ASN 차단의 한계, Count 관찰 및 만료와 rollback 운영을 정리합니다."
 date: 2026-07-15 09:39:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

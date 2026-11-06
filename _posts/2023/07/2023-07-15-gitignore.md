@@ -1,6 +1,6 @@
 ---
 title: .gitignore 파일 설정 [gitignore.io]
-description: Git을 사용하다 보면 퍼블릭에 올라가서는 안 될 자료들까지 올라가는 경우가 있습니다. 해당 문제는 .gitignore 파일을 편집해서 해결할 수 있습니다.
+description: ".gitignore로 추적 대상에서 제외할 파일과 디렉터리를 지정하는 규칙을 정리합니다. 운영체제, 개발 환경, 언어에 맞는 설정을 gitignore.io에서 생성해 적용하는 방법을 설명합니다."
 date: 2023-07-15 07:24:00 +0900
 author: kkamji
 categories: [DevOps, Git & Github]

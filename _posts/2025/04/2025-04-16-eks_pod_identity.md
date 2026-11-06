@@ -1,5 +1,6 @@
 ---
 title: EKS Pod Identity 개념, PoC
+description: "EKS Pod Identity와 IRSA의 구성 차이, Agent를 통한 임시 자격 증명 전달 흐름을 설명합니다. IAM Role과 Service Account 연결, Pod 권한 확인 및 Terraform 예제를 다룹니다."
 date: 2025-04-16 22:49:55 +0900
 author: kkamji
 categories: [Kubernetes, EKS]

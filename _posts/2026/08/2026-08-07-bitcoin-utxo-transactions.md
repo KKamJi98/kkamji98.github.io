@@ -1,5 +1,6 @@
 ---
 title: "비트코인 transaction 기초 - UTXO, fee, confirmation [Blockchain 2]"
+description: "비트코인 잔액이 UTXO의 합으로 계산되는 이유와 transaction이 이전 출력을 소비하는 구조를 설명합니다. Python 장부와 Bitcoin Core regtest로 거스름돈, 수수료와 confirmation을 살펴봅니다."
 date: 2026-08-07 09:49:00 +0900
 author: kkamji
 categories: [Blockchain]

@@ -1,5 +1,6 @@
 ---
 title: "JA4 TLS Fingerprinting 알아보기 - 봇 트래픽 식별과 차단"
+description: "TLS Client Hello에서 JA4 핑거프린트를 만드는 방식과 JA3와의 차이를 설명합니다. AWS WAF의 요청 매칭과 rate limit 적용 방법, 위조와 미계산 사례를 고려한 봇 완화 전략을 정리합니다."
 date: 2026-07-25 12:32:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

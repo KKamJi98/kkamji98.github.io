@@ -1,5 +1,6 @@
 ---
 title: 분산 SQL 엔진이란 - Trino/Presto와 단일 노드 SQL 엔진의 차이
+description: "Trino와 Presto가 쿼리를 coordinator와 worker에 나눠 처리하는 구조를 단일 노드 엔진과 비교합니다. stage, task, split과 connector 기반 연합 쿼리, Athena와의 관계를 설명합니다."
 date: 2026-04-14 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

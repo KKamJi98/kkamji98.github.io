@@ -1,5 +1,6 @@
 ---
 title: Goroutine이란?
+description: "Go의 동시성과 병렬성을 구분하고, go 키워드로 함수를 비동기 실행하는 예제를 설명합니다. GOMAXPROCS의 실행 병렬도 설정과 WaitGroup으로 goroutine 완료를 기다리는 방법을 정리합니다."
 date: 2024-01-15 15:54:32 +0900
 author: kkamji
 categories: [Programming Language, Go]

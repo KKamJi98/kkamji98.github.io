@@ -1,5 +1,6 @@
 ---
 title: Argo CD Multi Cluster Management
+description: "Kind로 관리, 개발, 운영 클러스터를 만들고 중앙 Argo CD에 등록합니다. kubeconfig를 준비하고 GitHub의 Nginx Helm Chart를 대상별 Application으로 배포하는 실습입니다."
 date: 2025-11-18 21:33:18 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

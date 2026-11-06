@@ -1,5 +1,6 @@
 ---
 title: "Graph engineering 기초 - 루프에서 시스템으로 [AI Agent 2]"
+description: "여러 에이전트와 루프를 작업 의존성, 협업 및 공유 상태의 그래프로 조직하는 관점을 설명합니다. 온톨로지와 개인 규모 적용 예시를 살펴보고 graph engineering 개념과 자료의 신뢰 한계를 구분합니다."
 date: 2026-07-08 02:17:00 +0900
 author: kkamji
 categories: [AI, Agent]

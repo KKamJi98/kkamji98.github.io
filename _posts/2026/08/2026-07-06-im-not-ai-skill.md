@@ -1,5 +1,6 @@
 ---
 title: "im-not-ai 스킬 알아보기"
+description: "한국어 윤문 스킬 im-not-ai의 설치와 호출 방법을 설명합니다. 글 상태에 따른 light, standard, heavy 경로와 의미 보존 게이트를 살펴보고 인용 및 짧은 글의 판정 한계를 정리합니다."
 date: 2026-07-06 14:10:00 +0900
 author: kkamji
 categories: [AI, Claude Code]

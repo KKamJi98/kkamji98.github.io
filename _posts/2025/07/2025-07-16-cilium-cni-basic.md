@@ -1,5 +1,6 @@
 ---
 title: Cilium CNI 알아보기 [Cilium Study 1주차]
+description: "Cilium의 eBPF 네트워킹을 iptables의 한계와 연결해 설명합니다. 터널 및 native routing, IPAM의 선택 조건과 kube-proxy replacement의 Service datapath 전환을 다룹니다."
 date: 2025-07-16 23:50:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

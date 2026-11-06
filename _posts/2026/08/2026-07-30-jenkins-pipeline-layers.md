@@ -1,5 +1,6 @@
 ---
 title: "Jenkins 파이프라인 알아보기 - Jenkinsfile, Multibranch, Shared Library [Jenkins 4]"
+description: "Jenkins 파이프라인 정의를 UI에서 Jenkinsfile로 옮기고 Multibranch, Shared Library와 Job DSL로 확장하는 구조를 설명합니다. 재사용 방식과 Groovy 실행 권한의 경계를 정리합니다."
 date: 2026-07-30 08:18:00 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

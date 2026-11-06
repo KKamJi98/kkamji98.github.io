@@ -1,5 +1,6 @@
 ---
 title: Kubernetes Command Cheat Sheet
+description: "kubectl 명령을 컨텍스트와 리소스 종류별로 찾아볼 수 있게 정리합니다. 라벨 및 API 쿼리로 대상을 추리고 로그와 사용량, CoreDNS 및 RBAC 상태를 확인하는 디버깅 예제를 설명합니다."
 date: 2025-07-05 01:12:59 +0900
 author: kkamji
 categories: [Kubernetes]

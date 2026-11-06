@@ -1,5 +1,6 @@
 ---
 title: RAG 개념과 파이프라인 Overview - LLM의 한계와 검색 증강 파이프라인 [RAG 1]
+description: "LLM의 지식 한계와 근거 부재에 대응하는 RAG의 원리를 설명합니다. 문서 인덱싱과 질의 시 검색 및 생성 흐름을 나누고, 정책 문서 예시로 정확도, 지연, 접근제어의 설계 목표를 정리합니다."
 date: 2026-06-22 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

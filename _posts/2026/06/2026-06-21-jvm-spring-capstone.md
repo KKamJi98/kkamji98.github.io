@@ -1,5 +1,6 @@
 ---
 title: Spring/JVM Capstone - 업그레이드 후 Old gen과 off-heap 메모리 진단
+description: "Spring과 JDK 업그레이드 뒤 Old 점유 증가를 재구성한 예시로 분석합니다. mixed GC 이후 추이와 off-heap을 살펴 누수, G1 회수 거동, 컨테이너 메모리 부족을 구분하는 관점을 정리합니다."
 date: 2026-06-21 09:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]

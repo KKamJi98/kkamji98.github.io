@@ -1,5 +1,6 @@
 ---
 title: "이더리움 상태 머신 기초 - Account, Nonce, Gas [Blockchain 4]"
+description: "Anvil 로컬 체인에서 이더리움 계정의 balance와 nonce가 거래 전후에 바뀌는 모습을 살펴봅니다. 중복 및 건너뛴 nonce 처리, gas 소비량과 송신자가 내는 수수료의 관계를 설명합니다."
 date: 2026-08-09 07:09:00 +0900
 author: kkamji
 categories: [Blockchain]

@@ -1,5 +1,6 @@
 ---
 title: Liveness, Readiness, Startup Probes 개념, 사용방법
+description: "Kubernetes의 Startup, Liveness, Readiness Probe가 기동과 재시작, 트래픽 수신을 판단하는 방식을 구분합니다. 검사 방식과 시간 설정, 외부 의존성 장애 시 주의점을 설명합니다."
 date: 2024-11-25 21:51:24 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

@@ -1,5 +1,6 @@
 ---
 title: "Escrow 컨트랙트 기초 - 권한, event, runbook [Blockchain 9]"
+description: "Foundry와 Anvil의 3자 Escrow 예제로 입금, release와 refund의 권한을 설명합니다. 호출 거절과 자금 이동을 receipt, event 및 잔액으로 확인하는 로컬 runbook을 정리합니다."
 date: 2026-08-14 02:44:00 +0900
 author: kkamji
 categories: [Blockchain]

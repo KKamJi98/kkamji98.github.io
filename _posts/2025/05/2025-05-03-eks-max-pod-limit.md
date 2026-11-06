@@ -1,5 +1,6 @@
 ---
 title: EKS Max-Pods Limit과 Prefix Mode PoC
+description: "EKS에서 CPU와 메모리가 남아도 Pod 수가 제한되는 ENI 및 IP 할당 구조를 설명합니다. Prefix Mode 활성화와 kubelet max-pods 변경, 노드 교체로 한도를 조정하는 PoC를 다룹니다."
 date: 2025-05-03 20:35:43 +0900
 author: kkamji
 categories: [Kubernetes, EKS]

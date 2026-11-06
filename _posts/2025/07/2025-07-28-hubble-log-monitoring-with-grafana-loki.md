@@ -1,5 +1,6 @@
 ---
 title: Cilium Log Monitoring with Grafana Loki + Grafana Alloy [Cilium Study 2주차]
+description: "Cilium과 Hubble의 로그 관측을 위한 Grafana Loki와 Alloy의 구조를 설명합니다. Loki의 라벨 인덱스와 읽기 및 쓰기 경로, Alloy의 수집, 변환, 전송 단계를 다룹니다."
 date: 2025-07-28 10:21:35 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

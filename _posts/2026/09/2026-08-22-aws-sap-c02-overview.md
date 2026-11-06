@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 0 - 시험 구조와 학습 로드맵"
+description: "SAP-C02의 문항 구성, scaled score와 복수 응답 채점 규칙을 설명합니다. SAA와 다른 설계 판단, 도메인별 학습 우선순위와 시간 배분, 시험 버전 전환 일정 및 7주 로드맵을 정리합니다."
 date: 2026-08-22 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]

@@ -1,5 +1,6 @@
 ---
 title: Jenkins CI with Kubernetes
+description: "Jenkins Pipeline 구문과 Gogs Webhook을 이용한 이미지 빌드 및 Docker Hub push를 설명합니다. Jenkinsfile 기반 CI와 Kubernetes Deployment 이미지 갱신을 실습합니다."
 date: 2025-10-27 22:52:51 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

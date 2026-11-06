@@ -1,5 +1,6 @@
 ---
 title: EC2 위의 MicroK8s Cluster에 Local에서 명령하기
+description: "EC2 MicroK8s의 로컬 접속에서 발생한 private IP 연결 오류와 TLS 인증서 오류를 구분합니다. kubeconfig 주소와 csr.conf.template를 수정해 public IP를 반영하는 과정을 정리합니다."
 date: 2024-04-28 16:34:31 +0900
 author: kkamji
 categories: [Kubernetes, Cluster]

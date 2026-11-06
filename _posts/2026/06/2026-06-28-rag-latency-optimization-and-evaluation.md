@@ -1,5 +1,6 @@
 ---
 title: RAG 지연 최적화와 평가 - 캐싱, 인덱스 튜닝, Ragas [RAG 6]
+description: "RAG 지연을 검색, reranking, 생성 단계로 나눠 측정하고 ANN 및 top-k 튜닝과 캐싱의 절충을 설명합니다. 캐시 반환 전 인가, prompt cache 배치, Ragas와 정답 셋 기반 회귀 평가를 다룹니다."
 date: 2026-06-28 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

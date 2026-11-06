@@ -1,5 +1,6 @@
 ---
 title: "Node.js 서버 Overview - 무엇 위에서 동작하는가"
+description: "Node.js를 JavaScript, 웹 프레임워크, OS 및 컨테이너와 구분해 서버의 책임 경계를 설명합니다. I/O 대기와 CPU 작업의 차이를 살펴보고 node:http로 최소 HTTP 서버를 구성합니다."
 date: 2026-07-18 10:24:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

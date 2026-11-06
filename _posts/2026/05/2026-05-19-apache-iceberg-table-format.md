@@ -1,5 +1,6 @@
 ---
 title: Apache Iceberg 테이블 포맷 Deep Dive - 메타데이터 계층과 ACID, 그리고 진화
+description: "Iceberg의 파일 추적과 메타데이터 계층을 바탕으로 snapshot 및 원자적 커밋을 설명합니다. 시간여행, 스키마와 파티션 진화, Copy-on-Write와 Merge-on-Read의 차이를 다룹니다."
 date: 2026-05-19 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

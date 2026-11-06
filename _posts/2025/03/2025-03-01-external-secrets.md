@@ -1,5 +1,6 @@
 ---
 title: External Secrets와 AWS Secrets Manager, SSM Parameter Store 연동하기
+description: "External Secrets Operator로 AWS Secrets Manager와 SSM Parameter Store의 값을 Kubernetes Secret에 동기화합니다. CRD 범위와 인증, 네임스페이스별 배포를 설명합니다."
 date: 2025-03-01 15:39:01 +0900
 author: kkamji
 categories: [Kubernetes, Security]

@@ -1,5 +1,6 @@
 ---
 title: Kubernetes Monitoring Tool 개발 (KMP)
+description: "Kubernetes 이벤트와 컨테이너 재시작, 이전 로그 및 자원 사용량을 조회하는 Python CLI KMP를 소개합니다. 실행 전 context와 권한 확인, Metrics API 수치를 해석할 때의 한계를 설명합니다."
 date: 2025-03-15 16:55:36 +0900
 author: kkamji
 categories: [Monitoring & Observability, Metric]

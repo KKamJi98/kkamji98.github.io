@@ -1,5 +1,6 @@
 ---
 title: Multiple Pods Evicted 문제 Trouble Shooting
+description: "다수 Pod가 Evicted되고 ArgoCD Sync 알림이 반복된 사례에서 노드 디스크 부족과 이미지 GC 실패를 추적합니다. 디스크 확장 및 정리, ephemeral-storage 설정과 모니터링 방안을 정리합니다."
 date: 2025-06-18 20:43:04 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

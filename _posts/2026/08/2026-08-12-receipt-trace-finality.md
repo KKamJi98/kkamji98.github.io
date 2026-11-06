@@ -1,5 +1,6 @@
 ---
 title: "온체인 디버깅 기초 - receipt, trace, finality [Blockchain 7]"
+description: "Anvil에서 gas 추정 중단과 block에 기록된 revert를 구분합니다. receipt와 호출 trace로 실패를 읽고, Sepolia의 읽기 전용 조회로 latest, safe와 finalized의 차이를 설명합니다."
 date: 2026-08-12 03:13:00 +0900
 author: kkamji
 categories: [Blockchain]

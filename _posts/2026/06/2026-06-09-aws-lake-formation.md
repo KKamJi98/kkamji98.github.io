@@ -1,5 +1,6 @@
 ---
 title: AWS Lake Formation 알아보기 - IAM 위의 데이터 접근 권한
+description: "Lake Formation이 IAM과 별도로 데이터 접근을 제어하는 grant 모델을 설명합니다. 메타데이터와 실데이터 권한, GetDataAccess 기반 임시 자격증명 발급 및 hybrid access mode를 다룹니다."
 date: 2026-06-09 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

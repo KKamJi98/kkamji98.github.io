@@ -1,5 +1,6 @@
 ---
 title: "컨트랙트 공급망 기초 - compiler pin, 재현 빌드 [Blockchain 15]"
+description: "같은 Escrow 소스를 서로 다른 solc 버전으로 빌드해 길이는 같아도 bytecode 해시가 달라지는 사례를 살펴봅니다. foundry.toml의 컴파일러 pin과 해시를 배포 전 확인값으로 남기는 방법을 설명합니다."
 date: 2026-08-20 07:57:00 +0900
 author: kkamji
 categories: [Blockchain]

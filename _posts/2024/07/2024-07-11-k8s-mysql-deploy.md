@@ -1,5 +1,6 @@
 ---
 title: Kubernetes를 사용해 MySQL 서버 구축 & 배포하기
+description: "RDS 도입 전 개발 및 테스트용 MySQL을 Kubernetes에 배포하는 과정을 정리합니다. PV와 PVC로 저장 공간을 구성하고 ConfigMap의 초기화 스크립트, Secret 및 NodePort Service를 연결합니다."
 date: 2024-07-11 19:43:16 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

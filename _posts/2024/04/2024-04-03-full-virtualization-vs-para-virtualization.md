@@ -1,5 +1,6 @@
 ---
 title: 전가상화 & 반가상화 개념
+description: "Guest OS 수정 여부와 하이퍼바이저에 서비스를 요청하는 방식을 기준으로 전가상화와 반가상화를 비교합니다. Hyper Call의 역할과 운영체제 호환성, 자원 사용 및 구현 복잡성의 차이를 정리합니다."
 date: 2024-04-03 21:34:31 +0900
 author: kkamji
 categories: [CS, Virtualization]

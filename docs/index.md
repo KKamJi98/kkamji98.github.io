@@ -1,6 +1,6 @@
 ---
 title: Docs index
-updated: 2026-10-24
+updated: 2026-11-06
 type: architecture
 status: current
 ---
@@ -15,6 +15,8 @@ status: current
 - [Blog content-quality harness](blog-content-quality-harness.md) - `kkamji_scripts/blog/audit_content_depth.py`의 설계 의도와 사용법.
 
 ## Rules
+
+- [Post descriptions](post-descriptions.md) - 글별 요약의 작성 기준, 전체 source 검사와 부제 및 검색/공유 메타데이터의 production 일치 검사.
 
 - [Code block rendering](code-block-rendering.md) - 언어 지정, 원문 보존, Rouge 보정과 source/index/production HTML 검사.
 

@@ -1,5 +1,6 @@
 ---
 title: Kubernetes에서 Harbor 구축하기
+description: "ECR 대신 온프레미스에서 이미지를 관리하기 위해 Kubernetes에 Harbor를 구축한 기록입니다. Ingress와 스토리지 등 설치 조건을 살피고 Helm 설정부터 배포와 로그인 확인까지 정리합니다."
 date: 2024-09-27 21:31:41 +0900
 author: kkamji
 categories: [DevOps, Container]

@@ -1,5 +1,6 @@
 ---
 title: Spring Boot 자동설정, 스타터, fat jar 동작 원리
+description: "Spring Boot가 클래스패스와 조건에 따라 기본 Bean을 구성하고 사용자 정의 Bean에 양보하는 원리를 설명합니다. 스타터의 의존성 묶음과 fat jar를 통한 단일 프로세스 실행도 정리합니다."
 date: 2026-06-04 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

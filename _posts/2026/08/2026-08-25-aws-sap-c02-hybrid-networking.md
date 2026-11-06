@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 3 - 하이브리드 네트워크"
+description: "SAP-C02 하이브리드 네트워크 문제에서 답을 가르는 라우팅 규칙과 지원되지 않는 연결 조합을 정리합니다. VPC, TGW, Direct Connect, VPN과 endpoint의 경계 및 제한을 비교하고 예상 문제로 점검합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, vpc, transit-gateway, direct-connect, vpn, privatelink, networking]

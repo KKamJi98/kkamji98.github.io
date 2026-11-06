@@ -1,5 +1,6 @@
 ---
 title: Minio 개념 및 실습 (1) - Object Storage
+description: "S3 호환 오브젝트 스토리지 Minio를 Windows에 설치하고 Linux의 Minio Client로 연결하는 과정을 설명합니다. 버킷에 파일을 업로드하고 다운로드하는 실습을 다룹니다."
 date: 2025-01-02 01:12:09 +0900
 author: kkamji
 categories: [DevOps, Storage]

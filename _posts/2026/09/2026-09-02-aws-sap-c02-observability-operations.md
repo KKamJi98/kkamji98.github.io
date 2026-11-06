@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 11 - 관측성과 운영 자동화"
+description: "CloudWatch 신호 수집부터 Config 평가와 SSM 교정, 배포 롤백까지 AWS 운영 도구의 경계를 설명합니다. SAP-C02의 알람 결측 처리, 로그 전달 및 감사 조회와 자동화 제약을 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, cloudwatch, cloudtrail, x-ray, systems-manager, cloudformation, codedeploy, observability]

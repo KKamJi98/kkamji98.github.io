@@ -1,5 +1,6 @@
 ---
 title: Secret 안전하게 관리하기 - etcd 암호화
+description: "Kubernetes Secret의 Base64 인코딩과 저장 암호화의 차이를 확인합니다. EncryptionConfiguration의 aescbc 설정을 API 서버에 적용하고 신규 Secret과 재저장한 기존 값을 비교합니다."
 date: 2024-09-01 22:51:41 +0900
 author: kkamji
 categories: [Kubernetes, Security]

@@ -1,5 +1,6 @@
 ---
 title: Vagrant와 VirtualBox로 Kubernetes Cluster 구축하기 [Cilium Study 1주차]
+description: "Vagrant와 VirtualBox로 VM 3대에 kubeadm 클러스터를 구성합니다. CNI 미설치 상태, NAT와 Private Network 차이, worker INTERNAL-IP 및 WSL 접속 설정을 설명합니다."
 date: 2025-07-14 23:55:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

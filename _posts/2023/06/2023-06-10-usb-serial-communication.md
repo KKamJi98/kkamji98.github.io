@@ -1,5 +1,6 @@
 ---
 title: Section 01 아두이노 시리얼 통신 기능 이해
+description: "UART와 USB의 차이, UNO R3의 USB 브리지와 D0/D1 공유 구조를 설명합니다. 에코 예제와 Serial/Serial1 구분을 통해 보드별 통신 연결 시 확인할 조건을 정리합니다."
 date: 2023-06-10 23:36:55 +0900
 author: kkamji
 categories: [Personal, University]

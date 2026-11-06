@@ -1,5 +1,6 @@
 ---
 title: "Node.js 이벤트 루프 - 콜백 실행 순서와 스케줄링"
+description: "Node.js의 nextTick, microtask, setImmediate와 timer 실행 경계를 설명합니다. CommonJS와 ESM, top-level과 I/O callback의 차이를 실험 기록으로 비교합니다."
 date: 2026-07-23 11:09:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

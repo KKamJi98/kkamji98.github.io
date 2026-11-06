@@ -1,5 +1,6 @@
 ---
 title: Spring MVC 깊이 보기 - DispatcherServlet과 thread-per-request
+description: "DispatcherServlet이 HandlerMapping과 HandlerAdapter에 매칭과 호출을 위임하는 과정을 설명합니다. MVC의 블로킹 처리와 워커 스레드 스택의 native 메모리 비용을 다룹니다."
 date: 2026-06-03 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

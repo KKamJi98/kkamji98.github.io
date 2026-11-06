@@ -1,5 +1,6 @@
 ---
 title: Terraform templatefile() 함수 개념, 사용 방법
+description: "Terraform의 templatefile()로 외부 파일에 변수를 적용해 문자열을 만드는 방법을 설명합니다. EC2 User Data를 user_data.tpl로 분리하고 환경별 값을 주입하는 예제를 다룹니다."
 date: 2025-02-09 16:55:42 +0900
 author: kkamji
 categories: [IaC, Terraform]

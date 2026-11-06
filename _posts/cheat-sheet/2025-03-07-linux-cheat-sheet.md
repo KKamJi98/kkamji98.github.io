@@ -1,5 +1,6 @@
 ---
 title: Linux Command Cheat Sheet
+description: "Linux 파일과 프로세스 관리부터 네트워크 점검까지 CLI 사용 예제를 정리합니다. grep과 rg 검색, systemd 서비스 조회, mtr 경로 추적과 tcpdump 필터를 상황별로 설명합니다."
 date: 2025-03-07 21:28:11 +0900
 author: kkamji
 categories: [System, Linux]

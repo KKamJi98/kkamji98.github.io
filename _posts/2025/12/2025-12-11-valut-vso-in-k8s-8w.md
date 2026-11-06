@@ -1,5 +1,6 @@
 ---
 title: HashiCorp Vault/VSO in Kubernetes
+description: "Kubernetes에 Vault를 배포하고 ServiceAccount 토큰 기반 인증과 Policy를 연결합니다. VSO를 통한 정적 시크릿 동기화 및 회전, PostgreSQL 동적 자격 증명 발급과 Secret 반영을 실습합니다."
 date: 2025-12-11 19:42:33 +0900
 author: kkamji
 categories: [DevOps, Vault]

@@ -1,5 +1,6 @@
 ---
 title: gcloud CLI Command Cheat Sheet
+description: "gcloud의 인증 계정과 프로젝트 설정, Google Cloud 서비스별 관리 명령을 정리합니다. Compute Engine 조회 예제로 상태 및 라벨 필터링, 출력 필드 지정과 정렬 및 개수 제한 방법을 설명합니다."
 date: 2026-06-12 17:21:06 +0900
 author: kkamji
 categories: [Cloud, GCP]

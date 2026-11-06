@@ -1,5 +1,6 @@
 ---
 title: "TDD 알아보기 - 테스트가 먼저 실패하는 개발 루프"
+description: "Python과 pytest의 PIN 검증 예제로 TDD의 RED, GREEN, REFACTOR 사이클을 설명합니다. 동작 부재로 인한 실패를 먼저 확인하는 이유와 품질 및 생산성에 관한 실증 연구, 적용 조건을 정리합니다."
 date: 2026-08-06 10:54:00 +0900
 author: kkamji
 categories: [Development]

@@ -1,5 +1,6 @@
 ---
 title: "Node.js와 Spring Boot 서버 비교 - 실행 스택 중심으로"
+description: "Node.js core HTTP, Spring Boot MVC, WebFlux를 요청 실행 단위와 I/O 대기 및 블로킹 비용으로 비교합니다. Worker Thread와 요청 스레드의 차이, 스타터에 따른 웹 스택 선택을 설명합니다."
 date: 2026-07-22 03:01:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

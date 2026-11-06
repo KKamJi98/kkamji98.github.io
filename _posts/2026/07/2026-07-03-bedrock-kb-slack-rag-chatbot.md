@@ -1,5 +1,6 @@
 ---
 title: Bedrock Knowledge Bases와 n8n으로 Slack RAG 챗봇 구축하기
+description: "Google Docs를 섹션별 Markdown으로 바꿔 Bedrock Knowledge Bases와 S3 Vectors에 색인하고, n8n Slack 멘션에서 검색, rerank, 외부 LLM과 출처 링크를 연결합니다."
 date: 2026-07-03 01:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

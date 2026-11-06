@@ -1,5 +1,6 @@
 ---
 title: "LiteLLM - 배포 관측과 0 예산 키의 요청 거절 [AI Gateway 3]"
+description: "LiteLLM Proxy의 Kubernetes 배포 기록을 바탕으로 이미지와 메모리 문제, master key 설정을 정리합니다. virtual key의 mock 응답과 0 예산 요청의 HTTP 429를 구분해 설명합니다."
 date: 2026-07-13 01:47:00 +0900
 last_modified_at: 2026-09-08 00:00:00 +0900
 author: kkamji

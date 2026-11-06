@@ -1,5 +1,6 @@
 ---
 title: 빌드 도구와 의존성 관리 - Gradle/Maven과 Spring Boot 패키징
+description: "Gradle의 태스크 그래프와 Maven의 빌드 생명주기를 비교하고, Spring Boot 플러그인이 실행 가능 jar를 만드는 과정을 설명합니다. BOM의 의존성 버전 관리 역할과 빌드 시 주의점을 정리합니다."
 date: 2026-06-05 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

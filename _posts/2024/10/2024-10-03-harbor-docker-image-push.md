@@ -1,5 +1,6 @@
 ---
 title: Harbor에 컨테이너 이미지 업로드하기
+description: "Harbor에 이미지를 tag하고 push한 뒤 digest로 pull을 검증합니다. 사설 CA 신뢰와 로그인 설정, CI용 project-scoped robot account 및 최소 권한 기준을 정리합니다."
 date: 2024-10-03 23:44:21 +0900
 author: kkamji
 categories: [DevOps, Container]

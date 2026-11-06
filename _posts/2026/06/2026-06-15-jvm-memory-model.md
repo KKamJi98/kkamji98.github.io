@@ -1,5 +1,6 @@
 ---
 title: JVM 메모리 모델 - Heap과 Non-heap, -Xmx가 제한하는 영역
+description: "-Xmx가 제한하는 Heap과 그 밖의 metaspace, 스레드 스택, code cache, direct memory를 구분합니다. 영역별 진단 명령과 JVM 옵션을 통해 컨테이너 메모리를 산정하는 관점을 설명합니다."
 date: 2026-06-15 09:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]

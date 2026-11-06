@@ -1,5 +1,6 @@
 ---
 title: zot으로 HomeLab CI registry 구성하기 - Docker Hub mirror와 digest로 고정한 CI 이미지
+description: "zot으로 HomeLab CI의 Docker Hub mirror와 이미지 저장소를 구성한 기록입니다. digest 보존과 태그 신뢰 경계, 네트워크 제한 및 cold와 warm pull을 실제 CI run과 로컬 실험으로 설명합니다."
 date: 2026-10-20 01:30:00 +0900
 last_modified_at: 2026-10-20 21:30:00 +0900
 author: kkamji

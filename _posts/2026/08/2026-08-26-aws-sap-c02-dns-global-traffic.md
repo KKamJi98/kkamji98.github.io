@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 4 - DNS와 글로벌 트래픽"
+description: "Route 53의 DNS, Global Accelerator의 애니캐스트와 CloudFront 캐시를 구분합니다. SAP-C02의 Resolver 우선순위, 상태 판정과 origin failover 제약을 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, route53, dns, global-accelerator, cloudfront, failover, latency-routing]

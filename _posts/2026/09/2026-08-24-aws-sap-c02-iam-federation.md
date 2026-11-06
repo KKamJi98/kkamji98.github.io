@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 2 - IAM과 페더레이션"
+description: "SAP-C02의 IAM 정책 평가 순서와 합집합 및 교집합 관계를 설명합니다. resource policy의 principal ARN에 따른 boundary 차이, STS 세션과 교차 계정 신뢰, 페더레이션의 연결 경계를 정리합니다."
 date: 2026-08-24 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]

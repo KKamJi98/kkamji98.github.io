@@ -1,5 +1,6 @@
 ---
 title: "LLM Wiki와 OKF - 같은 마크다운, 다른 문제 [LLM Wiki 4]"
+description: "OKF v0.2의 frontmatter와 링크 규칙을 살펴보고 LLM Wiki 패턴과 목적이 다른 이유를 설명합니다. 운영 중인 마크다운 위키를 규격과 비교해 채택 여부와 가져올 요소를 판단한 과정을 정리합니다."
 date: 2026-08-04 03:45:00 +0900
 author: kkamji
 categories: [AI, Knowledge Base]

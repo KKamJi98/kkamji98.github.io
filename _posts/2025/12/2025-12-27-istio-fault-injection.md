@@ -1,5 +1,6 @@
 ---
 title: Istio Fault Injection
+description: "Bookinfo에 Istio VirtualService로 지연과 HTTP 오류를 주입하고, 애플리케이션 타임아웃과 Envoy 액세스 로그를 비교해 장애 조건을 분석하는 방법을 설명합니다."
 date: 2025-12-27 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]

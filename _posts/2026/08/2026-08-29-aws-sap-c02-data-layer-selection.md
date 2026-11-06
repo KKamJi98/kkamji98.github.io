@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 7 - 데이터 계층 선택"
+description: "액세스 패턴, 일관성과 비용 요구에 따라 AWS 스토리지와 데이터베이스를 고르는 기준을 정리합니다. SAP-C02의 EBS 및 S3 제약, RDS 배포 차이와 DynamoDB 인덱스의 경계를 비교합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, rds, aurora, dynamodb, elasticache, s3, ebs, efs, fsx, caching]

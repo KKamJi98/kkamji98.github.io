@@ -1,5 +1,6 @@
 ---
 title: GCP Workload Identity Federation으로 외부 워크로드에 키 없이 권한 부여하기
+description: "외부 CI에서 GCP의 단기 자격증명을 얻는 WIF 흐름을 설명합니다. attribute mapping과 condition, 직접 권한 및 Service Account impersonation의 경계를 정리합니다."
 date: 2026-07-17 01:05:00 +0900
 author: kkamji
 categories: [Cloud, GCP]

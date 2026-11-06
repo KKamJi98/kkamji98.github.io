@@ -1,5 +1,6 @@
 ---
 title: Kubernetes 리소스 모니터링 (4) - Prometheus & Thanos 연동
+description: "Thanos의 구성요소와 Prometheus 데이터의 장기 저장 및 통합 조회 구조를 설명합니다. MinIO를 저장소로 쓰는 Thanos와 Prometheus Operator의 Helm 배포를 다룹니다."
 date: 2025-06-21 01:31:49 +0900
 author: kkamji
 categories: [Monitoring & Observability, Metric]

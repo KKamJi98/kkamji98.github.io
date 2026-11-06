@@ -1,5 +1,6 @@
 ---
 title: tmux Command Cheat Sheet
+description: "tmux로 macOS와 Linux의 장시간 AI 코딩 세션을 유지하는 명령과 단축키를 정리합니다. session, window와 pane, detach와 재연결, copy-mode 및 종료와 재부팅 복구의 한계를 설명합니다."
 date: 2026-07-11 02:30:00 +0900
 author: kkamji
 categories: [System, Linux]

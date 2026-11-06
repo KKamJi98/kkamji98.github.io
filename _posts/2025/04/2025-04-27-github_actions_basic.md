@@ -1,5 +1,6 @@
 ---
 title: GitHub Actions 소개 및 구성 요소
+description: "GitHub Actions의 Workflow, Job, Step과 Runner의 실행 관계를 설명합니다. 테스트 예제로 Job 의존성 및 파일 공유, 최소 권한과 외부 Action 고정을 다룹니다."
 date: 2025-04-27 23:01:05 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]

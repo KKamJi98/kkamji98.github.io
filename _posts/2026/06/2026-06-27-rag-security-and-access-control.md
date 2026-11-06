@@ -1,5 +1,6 @@
 ---
 title: RAG 보안과 접근제어 - RBAC, PII, Prompt Injection과 캐시-권한 충돌 [RAG 5]
+description: "사내 문서 RAG에서 검색 시 권한 필터링과 PII 정제, indirect prompt injection 대응을 설명합니다. semantic cache의 교차 사용자 노출 및 시간 차이 위험과 감사 로그, 테넌트 격리를 다룹니다."
 date: 2026-06-27 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

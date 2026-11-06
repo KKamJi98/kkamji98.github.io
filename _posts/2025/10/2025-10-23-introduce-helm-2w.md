@@ -1,5 +1,6 @@
 ---
 title: Helm 소개
+description: "Helm Chart 구조와 템플릿을 설명하고 생성, 업그레이드 및 저장소 배포를 실습합니다. 의존성 Chart 배포 문제와 ConfigMap checksum으로 Rolling Update를 유발하는 방법을 다룹니다."
 date: 2025-10-23 23:42:31 +0900
 author: kkamji
 categories: [Kubernetes, Helm]

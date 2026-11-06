@@ -1,5 +1,6 @@
 ---
 title: Spring Boot HTTP 요청 처리 흐름 개요
+description: "HTTP 요청이 Spring Boot의 내장 Tomcat에서 DispatcherServlet, Controller와 데이터 계층을 거쳐 응답으로 나가는 경로를 설명하고, 단일 JVM 프로세스와 워커 스레드의 관계를 정리합니다."
 date: 2026-06-02 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

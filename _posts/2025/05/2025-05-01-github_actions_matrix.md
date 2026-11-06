@@ -1,5 +1,6 @@
 ---
 title: GitHub Actions Matrix Strategy & Multi Architecture Build
+description: "GitHub Actions Matrix로 amd64와 arm64 이미지를 병렬 빌드하는 구성을 설명합니다. 단일 러너의 QEMU 빌드와 아키텍처별 네이티브 빌드 후 Manifest 병합을 비교한 PoC를 다룹니다."
 date: 2025-05-01 22:21:01 +0900
 author: kkamji
 categories: [CI/CD, GitHub Actions]

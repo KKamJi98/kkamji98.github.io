@@ -1,5 +1,6 @@
 ---
 title: EFK Stack 구축하기 (1) - Fluent Bit 
+description: "Fluent Bit의 로그 수집 역할과 Fluentd와의 차이, Event 및 Tag/Match 기반 처리 구조를 설명합니다. Helm chart와 values.yaml로 Kubernetes에 배포하는 방법을 정리합니다."
 date: 2024-08-09 06:48:43 +0900
 author: kkamji
 categories: [Monitoring & Observability, Log]

@@ -1,5 +1,6 @@
 ---
 title: Kubernetes 리소스 모니터링 (1) - Prometheus
+description: "Prometheus의 시계열 모델과 Pull 수집 방식, Exporter와 알림 구성 요소를 설명합니다. Helm 배포 후 Prometheus Server, Alert Manager, Push Gateway 접속을 확인합니다."
 date: 2024-11-07 19:15:30 +0900
 author: kkamji
 categories: [Monitoring & Observability, Metric]

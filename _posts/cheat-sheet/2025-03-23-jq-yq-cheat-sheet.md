@@ -1,5 +1,6 @@
 ---
 title: jq & yq Command Cheat Sheet
+description: "jq와 yq로 JSON 및 YAML의 중첩 값 조회, 조건 필터링과 데이터 수정을 수행하는 예제를 정리합니다. Kubernetes 및 AWS CLI 출력 추출, 설정 변경과 로그 분석에 쓰는 표현식을 함께 설명합니다."
 date: 2025-03-23 01:41:04 +0900
 author: kkamji
 categories: [System, Linux]

@@ -1,5 +1,6 @@
 ---
 title: 제로부터 시작하는 러스트 백엔드 프로그래밍 - [서평단]
+description: "Spring Boot와 Go 백엔드 개발 경험을 바탕으로 Rust에 관심을 갖고 읽은 서평입니다. 한글 자료의 접근성과 초보자를 위한 설명에 대한 인상, 백엔드 입문자에게 추천하는 이유를 담습니다."
 date: 2024-03-19 15:34:52 +0900
 author: kkamji
 categories: [Programming Language, Rust]

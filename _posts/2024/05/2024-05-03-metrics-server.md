@@ -1,5 +1,6 @@
 ---
 title: Metrics-Server란? (구축 방법)
+description: "Metrics Server가 kubelet에서 리소스 사용량을 수집해 HPA와 kubectl top에 제공하는 흐름을 설명합니다. 설치 및 조회 방법과 worker의 10250 포트 통신 문제, 장기 저장이 없는 제약을 정리합니다."
 date: 2024-05-03 23:35:15 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

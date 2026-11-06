@@ -1,5 +1,6 @@
 ---
 title: "이더리움 노드 운영 기초 - sync, peer, Engine JWT [Blockchain 8]"
+description: "HTTP 200과 eth_syncing 결과만으로 이더리움 노드의 동기화 상태를 판단할 수 없는 이유를 설명합니다. Anvil과 공개 RPC 관측을 바탕으로 peer, 합의 머리와 Engine API의 JWT 경계를 정리합니다."
 date: 2026-08-13 01:35:00 +0900
 author: kkamji
 categories: [Blockchain]

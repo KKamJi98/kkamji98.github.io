@@ -1,5 +1,6 @@
 ---
 title: AWS에서 도메인 구매하기 (Route53)
+description: "kkamji.net을 Route 53에서 등록한 과정을 바탕으로 도메인 검색과 결제, 연락처 및 이메일 검증 항목을 정리합니다. 자동 갱신과 개인정보 보호 설정을 살피고, 도메인 등록과 DNS 연결을 구분합니다."
 date: 2024-06-06 21:33:31 +0900
 author: kkamji
 categories: [Cloud, AWS]

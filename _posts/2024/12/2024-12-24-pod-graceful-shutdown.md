@@ -1,5 +1,6 @@
 ---
 title: Kubernetes Graceful Shutdown이란?
+description: "Kubernetes Pod 종료 시 트래픽 제외와 preStop, SIGTERM, 종료 유예 시간이 맞물리는 과정을 설명합니다. FastAPI 예제로 Pod 삭제 후 상태와 로그를 살펴봅니다."
 date: 2024-12-24 22:05:51 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

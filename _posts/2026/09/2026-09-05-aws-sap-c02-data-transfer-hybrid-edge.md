@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 14 - 데이터 전송과 하이브리드 엣지"
+description: "전송량, 대역폭과 기한으로 데이터 이동 경로를 고르는 방법을 설명합니다. SAP-C02의 DataSync 및 Transfer Family 제약, Storage Gateway 인터페이스와 Outposts 지원 범위를 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, snowball, datasync, transfer-family, storage-gateway, outposts, local-zones, wavelength]

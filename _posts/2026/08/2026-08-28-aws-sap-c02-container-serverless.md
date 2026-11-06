@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 6 - 컨테이너와 서버리스"
+description: "SAP-C02에서 컨테이너와 서버리스 선택을 가르는 조합 규칙과 하드 리밋을 정리합니다. ECS capacity provider, EKS 컴퓨트, Lambda 동시성과 재시도, API Gateway 통합의 경계를 비교합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, ecs, eks, fargate, lambda, api-gateway, appsync, containers, serverless]

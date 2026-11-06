@@ -1,5 +1,6 @@
 ---
 title: Amazon Athena & Glue Data Catalog 알아보기 - 서버리스 쿼리와 메타스토어
+description: "Athena의 비동기 쿼리 흐름과 Glue Data Catalog의 메타스토어 역할을 설명합니다. workgroup과 파티션 활용, 테이블뿐 아니라 상위 Glue 리소스에도 필요한 IAM 권한을 정리합니다."
 date: 2026-05-12 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

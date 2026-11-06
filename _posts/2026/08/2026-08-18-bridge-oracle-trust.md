@@ -1,5 +1,6 @@
 ---
 title: "브리지와 오라클 기초 - 신뢰경계, DA [Blockchain 13]"
+description: "같은 주소의 잔액도 RPC가 보는 체인 상태에 따라 달라지는 관측에서 브리지의 신뢰 경계를 설명합니다. lock-and-mint의 verifier와 오라클이 체인 밖 사실을 온체인 입력으로 바꾸는 역할을 정리합니다."
 date: 2026-08-18 05:47:00 +0900
 author: kkamji
 categories: [Blockchain]

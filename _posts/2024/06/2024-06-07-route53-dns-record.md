@@ -1,5 +1,6 @@
 ---
 title: DNS 레코드 설정하기 (Route 53)
+description: "Route 53의 hosted zone과 등록기관의 name server 위임 관계를 설명합니다. public과 private zone, 레코드와 TTL, CNAME 및 Alias 차이를 살펴 DNS 설정과 검증 절차를 정리합니다."
 date: 2024-06-07 08:31:44 +0900
 author: kkamji
 categories: [Cloud, AWS]

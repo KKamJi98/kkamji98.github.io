@@ -1,5 +1,6 @@
 ---
 title: Cilium BGP Control Plane [Cilium Study 5주차]
+description: "Cilium BGP Control Plane의 CRD와 FRR 라우터를 구성해 PodCIDR을 광고하는 실습을 다룹니다. BGP 패킷 분석과 다중 NIC 환경에서 노드 라우팅을 보정한 과정을 설명합니다."
 date: 2025-08-11 01:04:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

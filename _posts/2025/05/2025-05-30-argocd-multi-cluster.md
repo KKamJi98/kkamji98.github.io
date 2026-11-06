@@ -1,5 +1,6 @@
 ---
 title: ArgoCD로 Multi-Cluster Application 배포하기
+description: "중앙 ArgoCD에 외부 Kubernetes 클러스터를 등록하고 guestbook을 배포합니다. 대상의 ServiceAccount 생성과 Application의 destination.name 지정을 설명합니다."
 date: 2025-05-30 20:19:03 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

@@ -1,5 +1,6 @@
 ---
 title: AWS 데이터 분석 스택 Overview
+description: "S3 데이터를 옮기지 않고 SQL로 분석할 때 Athena, Glue, S3 Tables가 맡는 역할을 설명합니다. 쿼리 흐름과 IAM 및 Lake Formation의 권한 경계, Redshift와의 선택 기준을 정리합니다."
 date: 2026-04-07 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

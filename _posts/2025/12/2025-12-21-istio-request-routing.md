@@ -1,5 +1,6 @@
 ---
 title: Istio Request Routing
+description: "Bookinfo의 reviews에 DestinationRule과 VirtualService로 헤더별 버전 선택을 적용합니다. Envoy 로그와 Kiali로 경로를 확인하고 Gateway API의 동일 구성을 다룹니다."
 date: 2025-12-21 21:00:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]

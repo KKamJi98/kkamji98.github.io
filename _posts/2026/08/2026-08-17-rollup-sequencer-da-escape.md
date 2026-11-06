@@ -1,5 +1,6 @@
 ---
 title: "롤업과 L2 운영 기초 - sequencer, DA, 탈출창 [Blockchain 12]"
+description: "Ethereum 공식 문서를 바탕으로 롤업의 sequencer, 데이터 가용성과 L1 정착을 구분합니다. 검열 시 L1을 통한 탈출 경로, optimistic challenge와 ZK 증명의 역할을 설명합니다."
 date: 2026-08-17 12:44:00 +0900
 author: kkamji
 categories: [Blockchain]

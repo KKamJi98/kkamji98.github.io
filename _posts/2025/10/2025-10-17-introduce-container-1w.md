@@ -1,5 +1,6 @@
 ---
 title: Container 개념과 Container Image Build 방식 정리
+description: "OCI 표준과 레이어 구조를 바탕으로 Docker, Jib, Buildah, Buildpacks 빌드를 비교합니다. 이미지 빌드와 push, Shipwright 및 Kaniko 기반 Kubernetes 빌드를 다룹니다."
 date: 2025-10-17 06:22:31 +0900
 author: kkamji
 categories: [DevOps, Container]

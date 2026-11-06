@@ -1,5 +1,6 @@
 ---
 title: "분산 합의 기초 - BFT, Nakamoto, finality [Blockchain 10]"
+description: "비트코인의 confirmation과 이더리움의 finality를 활성 팁 및 checkpoint 기준으로 구분합니다. regtest와 Sepolia 관측, reorg와 합의 지연 및 고전 BFT의 중단 특성을 설명합니다."
 date: 2026-08-15 04:18:00 +0900
 author: kkamji
 categories: [Blockchain]

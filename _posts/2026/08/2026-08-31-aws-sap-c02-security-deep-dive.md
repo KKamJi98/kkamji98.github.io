@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 9 - 보안 심화"
+description: "SAP-C02 보안 설계를 키 소유, 접근 경계와 감사 증적의 관점에서 정리합니다. KMS 및 CloudHSM의 책임, WAF 검사 범위와 탐지 서비스의 역할을 구분하고 교정 및 보존 요구로 연결합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, kms, cloudhsm, secrets-manager, acm, waf, shield, guardduty, config, security-hub]

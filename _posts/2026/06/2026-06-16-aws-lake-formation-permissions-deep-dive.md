@@ -1,5 +1,6 @@
 ---
 title: AWS Lake Formation 권한 Deep Dive - CATALOG_NOT_FOUND / TABLE_NOT_FOUND 진단과 해소
+description: "S3 Tables의 TABLE_NOT_FOUND와 CATALOG_NOT_FOUND를 대상 role로 진단합니다. federated ARN의 IAM 권한과 Lake Formation grant를 세 리소스 계층별로 점검합니다."
 date: 2026-06-16 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

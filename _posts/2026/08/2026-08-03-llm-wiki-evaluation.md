@@ -1,5 +1,6 @@
 ---
 title: "LLM Wiki 고도화 - 검색 품질 측정과 지식 그래프 [LLM Wiki 3]"
+description: "문서가 늘면서 LLM Wiki 검색 품질이 떨어진 사례를 평가셋과 Recall, MRR로 분석합니다. 결정론적 검색기와 회귀 게이트를 구성하고 지식 그래프 도입 실험을 도구 선택에 반영한 과정을 정리합니다."
 date: 2026-08-03 06:22:00 +0900
 author: kkamji
 categories: [AI, Knowledge Base]

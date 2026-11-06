@@ -1,5 +1,6 @@
 ---
 title: ArgoCD Application 선언적으로 구성하기
+description: "ArgoCD Application을 Web UI, CLI, YAML로 생성하는 방법을 비교합니다. 저장소와 배포 대상을 선언하고 namespace 생성 옵션을 적용해 Git으로 배포 정의를 관리하는 과정을 설명합니다."
 date: 2025-05-22 22:35:43 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

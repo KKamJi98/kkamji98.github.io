@@ -1,5 +1,6 @@
 ---
 title: Cilium 구성요소 & 배포하기 (kube-proxy replacement) [Cilium Study 1주차]
+description: "Cilium Operator와 Agent, CLI, Hubble, DataStore의 역할을 설명합니다. CPU 아키텍처와 커널 옵션을 점검하고 Helm으로 kube-proxy를 대체하는 Cilium을 배포하는 과정을 다룹니다."
 date: 2025-07-18 21:23:05 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

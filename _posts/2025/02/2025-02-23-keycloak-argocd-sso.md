@@ -1,5 +1,6 @@
 ---
 title: Keycloak & ArgoCD SSO 구현하기
+description: "Keycloak을 ArgoCD의 OIDC 인증에 연결하는 SSO 구성 절차를 설명합니다. Client와 PKCE S256, 그룹 mapper를 설정하고 argocd-cm 및 RBAC에 그룹 권한을 연결합니다."
 date: 2025-02-23 22:52:55 +0900
 author: kkamji
 categories: [DevOps, SSO]

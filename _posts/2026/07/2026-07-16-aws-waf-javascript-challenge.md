@@ -1,5 +1,6 @@
 ---
 title: "AWS WAF Challenge Action - 브라우저 토큰과 SPA 요청 경계"
+description: "AWS WAF Challenge의 브라우저 토큰 획득과 202 응답을 설명하고, token domain list와 cookie Domain을 구분합니다. 토큰을 얻는 HTML 경로와 보호 API를 나눠 적용하는 방법을 정리합니다."
 date: 2026-07-16 03:17:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

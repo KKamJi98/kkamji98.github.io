@@ -1,5 +1,6 @@
 ---
 title: "체인 비교와 장애 런북 - 계층 대조, commitment [Blockchain 16]"
+description: "Solana commitment를 Bitcoin 확인 횟수 및 Ethereum block tag와 비교합니다. 앞선 로컬 관측을 바탕으로 RPC 응답, 실행 결과, 체인 머리와 bytecode의 점검 순서를 정리합니다."
 date: 2026-08-21 01:07:00 +0900
 author: kkamji
 categories: [Blockchain]

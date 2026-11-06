@@ -1,5 +1,6 @@
 ---
 title: S3 Tables & Catalog Federation 알아보기 - 관리형 Iceberg 레이크하우스
+description: "S3 Tables가 Iceberg 테이블의 compaction과 snapshot 관리를 맡는 방식을 설명합니다. Glue의 s3tablescatalog로 연결되는 계층과 ARN 구조를 살펴보고 Athena 조회 절차를 정리합니다."
 date: 2026-05-26 09:00:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

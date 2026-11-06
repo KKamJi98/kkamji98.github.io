@@ -1,5 +1,6 @@
 ---
 title: "MEV와 블록 빌드 기초 - searcher, PBS, relay [Blockchain 14]"
+description: "거래 포함 순서에서 생기는 MEV와 searcher, relay, builder 및 proposer의 역할을 설명합니다. PBS의 분리 구조와 Anvil의 거래 순서를 공개망에 그대로 적용할 수 없는 이유를 정리합니다."
 date: 2026-08-19 06:10:00 +0900
 author: kkamji
 categories: [Blockchain]

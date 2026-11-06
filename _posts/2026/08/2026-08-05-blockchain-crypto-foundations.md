@@ -1,5 +1,6 @@
 ---
 title: "암호학 기초 - hash, signature, Merkle Tree [Blockchain 1]"
+description: "블록체인에서 hash pointer, 전자서명과 Merkle Tree가 무결성, 인증과 포함 증명을 맡는 원리를 Python 예제로 설명합니다. 암호화와 해시, 공개키와 주소의 차이도 구분합니다."
 date: 2026-08-05 03:53:00 +0900
 author: kkamji
 categories: [Blockchain]

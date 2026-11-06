@@ -1,5 +1,6 @@
 ---
 title: Spring MVC vs WebFlux - 선택 기준과 트레이드오프
+description: "Spring MVC와 WebFlux를 스레드 모델, 블로킹 의존성, 고동시성 I/O 및 팀의 학습 비용으로 비교합니다. 기존 MVC 유지와 WebClient 부분 도입을 포함해 워크로드별 선택 기준을 정리합니다."
 date: 2026-06-11 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

@@ -1,5 +1,6 @@
 ---
 title: GC 튜닝과 JDK 버전별 G1 거동 변화
+description: "JDK 변경 후 G1의 young 크기, 승격과 adaptive IHOP가 Old 점유 양상에 미치는 영향을 설명합니다. GC 로그와 JFR로 누수 여부를 구분하고 young 크기 제한의 트레이드오프를 살펴봅니다."
 date: 2026-06-18 09:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]

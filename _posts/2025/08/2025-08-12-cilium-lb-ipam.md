@@ -1,5 +1,6 @@
 ---
 title: Cilium Service LoadBalancer BGP Advertisement & ExternalTrafficPolicy [Cilium Study 5주차]
+description: "Cilium LB IPAM으로 Service 외부 IP를 할당하고 BGP로 광고합니다. ExternalTrafficPolicy의 Cluster와 Local에 따른 소스 IP 및 광고 대상 차이, ECMP 해시를 설명합니다."
 date: 2025-08-12 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

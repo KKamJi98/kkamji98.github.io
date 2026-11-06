@@ -1,5 +1,6 @@
 ---
 title: "Vite Overview - Native ESM과 Rolldown 빌드 도구"
+description: "Vite가 의존성 pre-bundling과 Native ESM으로 개발 서버의 처리 방식을 나누는 원리를 설명합니다. 모듈 단위 HMR, Rolldown 기반 빌드와 Environment API의 역할을 정리합니다."
 date: 2026-07-27 06:18:00 +0900
 author: kkamji
 categories: [Frontend, Build Tool]

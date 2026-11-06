@@ -1,5 +1,6 @@
 ---
 title: Kubernetes 리소스 모니터링 (3) - Prometheus & Grafana 연동
+description: "Grafana에 Prometheus를 Data Source로 등록하고 연결을 테스트합니다. 클러스터 내부 FQDN 설정과 Grafana Labs 대시보드를 ID로 가져와 Kubernetes 지표를 시각화하는 과정을 정리합니다."
 date: 2024-11-09 23:18:20 +0900
 author: kkamji
 categories: [Monitoring & Observability, Metric]

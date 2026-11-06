@@ -1,5 +1,6 @@
 ---
 title: "EC2 위에 Jenkins Server 구축하기 [Jenkins 1]"
+description: "Ubuntu 24.04 EC2에 Java 21과 Jenkins LTS를 설치합니다. controller와 agent의 책임을 구분하고, 초기 관리자 설정과 HTTPS 접근 경로, 영속 데이터 및 백업 준비를 정리합니다."
 date: 2024-05-02 22:42:36 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

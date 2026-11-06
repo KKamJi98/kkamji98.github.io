@@ -1,5 +1,6 @@
 ---
 title: EFK Stack 구축하기 (2) - Elasticsearch
+description: "EKS에서 ECK로 Elasticsearch를 배포해 로그 저장 기반을 구성합니다. CRD와 Operator 설치, PVC를 포함한 클러스터 정의 및 Pod 초기화 확인 과정을 정리합니다."
 date: 2024-08-10 04:51:41 +0900
 author: kkamji
 categories: [Monitoring & Observability, Log]

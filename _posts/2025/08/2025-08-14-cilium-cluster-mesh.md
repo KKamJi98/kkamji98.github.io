@@ -1,5 +1,6 @@
 ---
 title: Cilium Cluster Mesh [Cilium Study 5주차]
+description: "Kind 클러스터 두 개를 Cilium Cluster Mesh로 연결하는 실습입니다. 주소와 통신 전제조건, 클러스터 간 Pod 통신 및 글로벌 서비스의 affinity와 shared 설정을 다룹니다."
 date: 2025-08-14 00:05:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

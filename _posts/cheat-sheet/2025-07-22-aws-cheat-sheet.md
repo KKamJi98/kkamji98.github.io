@@ -1,5 +1,6 @@
 ---
 title: AWS CLI Command Cheat Sheet
+description: "AWS CLI의 profile 및 리전 설정과 서비스별 리소스 관리 명령을 정리합니다. EC2 및 S3 조회 예제로 태그 필터와 JMESPath query를 적용하고 필요한 필드를 출력하는 방법을 설명합니다."
 date: 2025-07-22 23:15:53 +0900
 author: kkamji
 categories: [Cloud, AWS]

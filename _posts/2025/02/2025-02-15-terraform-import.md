@@ -1,5 +1,6 @@
 ---
 title: Terraform Import 개념, 사용 방법
+description: "수동으로 생성한 EC2를 terraform import로 state에 등록하는 과정을 설명합니다. HCL이 자동 생성되지 않는 점과 state show로 속성을 맞춘 뒤 plan에서 변경을 확인하는 방법을 다룹니다."
 date: 2025-02-15 09:02:29 +0900
 author: kkamji
 categories: [IaC, Terraform]

@@ -1,5 +1,6 @@
 ---
 title: Kubernetes Cluster 구성 및 개념
+description: "Kubernetes를 원하는 상태와 실제 상태를 맞추는 분산 제어 시스템으로 설명합니다. API 서버 중심의 구성 요소별 역할, Deployment에서 Pod 실행까지의 흐름과 장애 시 확인 순서를 정리합니다."
 date: 2023-12-13 22:54:32 +0900
 author: kkamji
 categories: [Kubernetes, Cluster]

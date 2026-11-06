@@ -71,6 +71,11 @@ jobs:
           ruby-version: 3.3
           bundler-cache: true
 
+      - name: Check post descriptions
+        run: |
+          bundle exec ruby tools/test_post_descriptions.rb
+          bundle exec ruby kkamji_scripts/blog/check_post_descriptions.rb
+
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:

@@ -1,5 +1,6 @@
 ---
 title: MicroK8s로 클러스터 구축하기 세션 진행 - AWS 강의실 온라인 세미나
+description: "AWS 강의실 온라인 세미나에서 MicroK8s 클러스터 구축 세션을 발표한 후기입니다. 다수를 대상으로 한 온라인 발표의 아쉬움과 준비 과정 및 참석자 질문을 통해 돌아본 점을 영상과 함께 공유합니다."
 date: 2024-06-05 23:53:31 +0900
 author: kkamji
 categories: [Kubernetes, Cluster]

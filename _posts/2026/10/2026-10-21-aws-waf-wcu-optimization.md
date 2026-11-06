@@ -1,5 +1,6 @@
 ---
 title: "AWS WAF WCU 아끼기 - 1,500 WCU 안에서 봇 대응 룰을 설계하는 방법"
+description: "AWS WAF의 1,500 WCU 초과 과금 구조와 동일 판정을 더 적은 WCU로 구성하는 방법을 설명합니다. CheckCapacity 측정으로 정규식 대체, 변환 공유와 rule group capacity의 비용을 비교합니다."
 date: 2026-10-21 23:30:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

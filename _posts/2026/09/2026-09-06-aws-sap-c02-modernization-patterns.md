@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 15 - 모더나이제이션 패턴"
+description: "기존 워크로드의 실행 시간, 상태와 운영 제약에서 현대화 타깃을 고르는 방법을 설명합니다. SAP-C02의 strangler fig과 branch by abstraction, 컴퓨트 및 데이터 전환과 계층별 롤백 조건을 비교합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, modernization, strangler-fig, containerization, serverless, refactoring, microservices]

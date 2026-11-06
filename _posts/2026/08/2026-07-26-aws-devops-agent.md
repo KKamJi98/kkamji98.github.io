@@ -1,5 +1,6 @@
 ---
 title: "AWS DevOps Agent Overview"
+description: "AWS DevOps Agent가 알림과 관측 데이터를 연결해 인시던트를 조사하는 흐름을 설명합니다. Production Operations와 Release Management의 상태, 도구 통합과 권한 제약, 요금 구조를 정리합니다."
 date: 2026-07-26 07:23:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

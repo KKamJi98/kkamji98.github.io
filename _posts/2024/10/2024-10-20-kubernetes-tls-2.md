@@ -1,5 +1,6 @@
 ---
 title: Kubernetes 환경에서 TLS 인증서 적용하기 - (2)
+description: "cert-manager와 ClusterIssuer로 Let's Encrypt의 ACME 발급을 설정하는 방법을 설명합니다. Helm 설치부터 Jenkins Ingress의 TLS 설정 변경과 인증서 적용 전후 확인까지 정리합니다."
 date: 2024-10-20 01:44:21 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

@@ -1,5 +1,6 @@
 ---
 title: RAG 벡터 DB와 인덱스 - HNSW/IVF와 pgvector vs Qdrant [RAG 3]
+description: "정확 벡터 검색과 ANN을 비교하고 HNSW 및 IVFFlat의 recall, 지연, 메모리 조절 방식을 설명합니다. pgvector와 Qdrant의 운영 및 필터링 특성을 바탕으로 저장소 선택 기준을 정리합니다."
 date: 2026-06-24 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

@@ -1,5 +1,6 @@
 ---
 title: 리액티브 프로그래밍과 Reactor 기초 - Reactive Streams, backpressure, Mono/Flux
+description: "블로킹 호출과 리액티브 데이터 흐름을 비교하고, Reactive Streams의 request(n) 기반 backpressure를 설명합니다. Reactor의 Mono와 Flux, 구독 전 파이프라인 조립의 의미를 정리합니다."
 date: 2026-06-13 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

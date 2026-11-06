@@ -1,5 +1,6 @@
 ---
 title: Hubble Exporter와 Dynamic Exporter Configuration [Cilium Study 2주차]
+description: "Hubble Exporter로 네트워크 흐름을 파일에 저장하는 설정을 설명합니다. Static과 Dynamic Export의 차이, filter와 field mask, 파일 로테이션 및 수집 부하 조정 방법을 다룹니다."
 date: 2025-07-25 02:32:50 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

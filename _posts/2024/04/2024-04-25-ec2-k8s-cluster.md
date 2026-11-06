@@ -1,5 +1,6 @@
 ---
 title: EC2위에 Kubernetes Cluster 구축하기 (MicroK8s)
+description: "개인 실습용 EC2 t4g.small에 MicroK8s를 설치하고 대시보드 접근과 nginx 배포를 확인하는 과정을 담습니다. 작은 인스턴스에서 겪은 자원 제약과 준비 상태 및 포트 설정을 함께 정리합니다."
 date: 2024-04-25 22:54:32 +0900
 author: kkamji
 categories: [Kubernetes, Cluster]

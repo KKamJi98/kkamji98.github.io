@@ -1,5 +1,6 @@
 ---
 title: "LLM Wiki 개념 - AI가 읽는 지식 베이스 구조 [LLM Wiki 1]"
+description: "원문을 수집할 때 지식을 정리하고 연결하는 LLM Wiki의 개념을 설명합니다. RAG와의 계층 관계, 마크다운 구조와 문서별 갱신 시점 및 신뢰도 관리가 필요한 이유를 정리합니다."
 date: 2026-08-01 05:11:00 +0900
 author: kkamji
 categories: [AI, Knowledge Base]

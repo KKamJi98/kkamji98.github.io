@@ -1,5 +1,6 @@
 ---
 title: Spring IoC/DI와 Bean 개념
+description: "객체를 직접 생성할 때의 강결합 문제를 바탕으로 Spring의 IoC와 생성자 DI를 설명합니다. 컨테이너의 Bean 등록, 싱글톤 공유 및 생명주기를 요청 처리 계층과 연결해 정리합니다."
 date: 2026-06-01 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

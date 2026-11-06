@@ -1,5 +1,6 @@
 ---
 title: AWS Lambda 로그 모니터링 하기 - ELK, CloudWatch Logs Subscription Filter
+description: "CloudWatch Logs의 구독 필터와 Lambda로 로그를 Logstash에 전송하는 구성입니다. 디코딩과 압축 해제 후 Kubernetes의 Elasticsearch에 저장하고 Kibana로 모아 조회하는 과정을 정리합니다."
 date: 2024-11-19 19:12:30 +0900
 author: kkamji
 categories: [Monitoring & Observability, Log]

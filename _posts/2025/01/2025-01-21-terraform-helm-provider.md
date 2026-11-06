@@ -1,5 +1,6 @@
 ---
 title: Terraform Helm Provider 사용 방법
+description: "Terraform Helm Provider를 kubeconfig 또는 클러스터 인증 정보로 연결하는 방법을 설명합니다. helm_release의 주요 옵션을 살펴보고 Nginx Chart를 배포하는 예제를 다룹니다."
 date: 2025-01-21 23:11:55 +0900
 author: kkamji
 categories: [IaC, Terraform]

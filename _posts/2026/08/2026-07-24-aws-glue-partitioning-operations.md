@@ -1,5 +1,6 @@
 ---
 title: "AWS Glue 파티셔닝 운영하기 - Catalog, Projection, S3 스캔 최소화"
+description: "Athena의 S3 스캔을 줄이기 위해 파티션 경로, Glue Catalog 메타데이터와 쿼리 조건이 맞아야 하는 이유를 설명합니다. 등록형 파티션과 projection의 차이, index와 권한의 역할을 정리합니다."
 date: 2026-07-24 07:09:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

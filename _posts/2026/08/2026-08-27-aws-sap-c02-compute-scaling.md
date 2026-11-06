@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 5 - 컴퓨트 선택과 확장"
+description: "EC2 요금 할인과 용량 예약이 별개인 이유를 설명하고 SAP-C02의 컴퓨트 선택 기준을 정리합니다. Spot 중단, placement group과 Auto Scaling 정책 및 인스턴스 수명주기의 제약을 비교합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, ec2, auto-scaling, spot, savings-plans, placement-group, graviton]

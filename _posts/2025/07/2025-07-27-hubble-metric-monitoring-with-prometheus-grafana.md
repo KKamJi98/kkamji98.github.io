@@ -1,5 +1,6 @@
 ---
 title: Cilium Metric Monitoring with Prometheus + Grafana [Cilium Study 2주차]
+description: "Cilium 프로세스 상태 지표와 Hubble 네트워크 흐름 지표의 차이를 설명합니다. Helm으로 메트릭을 활성화하고 Prometheus Scrape Config, 쿼리 및 Grafana 대시보드 연결을 구성합니다."
 date: 2025-07-27 10:21:35 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

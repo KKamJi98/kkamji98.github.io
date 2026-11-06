@@ -1,5 +1,6 @@
 ---
 title: GC 기초와 G1GC - 동작 원리와 튜닝 손잡이
+description: "GC가 도달 가능성으로 객체를 회수하는 원리와 세대별 수집을 설명합니다. G1의 region, marking과 mixed collection을 연결하고 pause 목표와 adaptive IHOP의 역할을 정리합니다."
 date: 2026-06-17 09:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]

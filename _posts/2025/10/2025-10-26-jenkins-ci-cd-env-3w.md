@@ -1,5 +1,6 @@
 ---
 title: Jenkins + ArgoCD 실습 환경 구축
+description: "WSL2에서 Kind와 Docker Compose 기반 Jenkins 및 Gogs를 준비합니다. Docker-out-of-Docker 설정과 저장소, 토큰 및 Docker Hub 실습 환경 구성을 다룹니다."
 date: 2025-10-26 23:25:51 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

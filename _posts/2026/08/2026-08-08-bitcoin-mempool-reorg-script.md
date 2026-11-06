@@ -1,5 +1,6 @@
 ---
 title: "비트코인 시스템 기초 - mempool, reorg, Script [Blockchain 3]"
+description: "Bitcoin Core regtest에서 거래가 mempool에 들어가고 block에 포함된 뒤 무효화로 되돌아오는 과정을 관측합니다. Script의 출력 잠금과 헤더 및 Merkle 경로를 이용한 증명도 설명합니다."
 date: 2026-08-08 05:19:00 +0900
 author: kkamji
 categories: [Blockchain]

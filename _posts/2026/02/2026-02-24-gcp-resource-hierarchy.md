@@ -1,5 +1,6 @@
 ---
 title: GCP 리소스 계층 알아보기 - Organization, Folder, Project
+description: "Organization, Folder, Project로 이어지는 GCP 리소스 계층과 IAM 및 조직 정책의 상속을 설명합니다. 프로젝트 식별자와 결제 경계, gcloud 관리 방법 및 개인 계정의 차이를 정리합니다."
 date: 2026-02-24 12:00:00 +0900
 author: kkamji
 categories: [Cloud, GCP]

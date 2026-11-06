@@ -1,5 +1,6 @@
 ---
 title: Git Command Cheat Sheet
+description: "Git 설정과 별칭부터 브랜치 병합, 리베이스와 변경 되돌리기까지 명령 예제를 정리합니다. 전역 gitignore와 저장소 규칙의 구분, 충돌 처리 및 원격 동기화에 필요한 옵션을 설명합니다."
 date: 2025-04-12 01:22:42 +0900
 author: kkamji
 categories: [DevOps, Git & Github]

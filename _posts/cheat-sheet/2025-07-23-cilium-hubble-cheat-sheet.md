@@ -1,5 +1,6 @@
 ---
 title: Cilium & Hubble Command Cheat Sheet [Cilium Study 2주차]
+description: "Cilium agent 상태와 BPF 데이터, 서비스 및 정책을 조회하는 CLI 명령을 정리합니다. Hubble로 drop과 HTTP 흐름을 필터링하고 Pod 별칭, sysdump 및 연결성 테스트를 활용하는 예제를 설명합니다."
 date: 2025-07-23 20:41:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

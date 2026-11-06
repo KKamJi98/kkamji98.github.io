@@ -1,5 +1,6 @@
 ---
 title: Spring Security 기초 - 보안 필터 체인, 인증과 인가
+description: "Spring Security가 DispatcherServlet 앞에서 요청을 처리하는 필터 체인 구조를 설명합니다. 인증 결과의 SecurityContextHolder 저장과 인가 규칙 평가를 구분하고 최소 설정 예시를 정리합니다."
 date: 2026-06-10 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

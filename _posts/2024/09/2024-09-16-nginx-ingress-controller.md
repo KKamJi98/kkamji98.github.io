@@ -1,5 +1,6 @@
 ---
 title: Nginx Ingress Controller 구축하기
+description: "NGINX Ingress Controller의 역할과 Helm 설치 방법을 설명합니다. controller Pod와 LoadBalancer를 확인하고 test.kkamji.net으로 애플리케이션 라우팅을 테스트합니다."
 date: 2024-09-16 20:20:45 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

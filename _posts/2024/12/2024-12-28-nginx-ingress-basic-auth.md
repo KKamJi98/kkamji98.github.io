@@ -1,5 +1,6 @@
 ---
 title: Nginx Ingress에 간단 인증 절차 추가하기(Basic Auth)
+description: "ingress-nginx에서 htpasswd Secret과 전용 annotation으로 Basic Auth를 적용하는 방법을 설명합니다. auth 키와 TLS 설정, 인증 동작 확인 및 중앙 인증이 필요한 조건을 다룹니다."
 date: 2024-12-28 02:16:33 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

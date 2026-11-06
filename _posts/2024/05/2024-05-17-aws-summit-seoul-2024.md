@@ -1,5 +1,6 @@
 ---
 title: AWS Summit Seoul 2024
+description: "AWS Summit Seoul 2024에서 들은 리멤버의 OpenSearch 활용과 삼성계정의 글로벌 리전 장애 조치 사례를 정리한 참석 후기입니다. 강연과 부스 방문을 통해 관심을 넓힌 기술과 학습 계기를 담습니다."
 date: 2024-05-17 21:53:31 +0900
 author: kkamji
 categories: [Cloud, AWS]

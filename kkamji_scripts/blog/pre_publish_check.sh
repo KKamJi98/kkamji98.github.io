@@ -9,6 +9,10 @@ cd "${REPO_ROOT}"
 
 echo "=== Blog pre-publish check ==="
 
+echo "=== Post descriptions ==="
+bundle exec ruby tools/test_post_descriptions.rb
+bundle exec ruby "${SCRIPT_DIR}/check_post_descriptions.rb"
+
 echo "=== Code block rendering ==="
 bundle exec ruby tools/test_code_highlighting.rb
 bundle exec ruby "${SCRIPT_DIR}/check_code_blocks.rb"

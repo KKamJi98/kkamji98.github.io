@@ -1,5 +1,6 @@
 ---
 title: Istioctl Command Cheat Sheet
+description: "istioctl로 Istio 상태와 Envoy 설정을 점검하는 명령을 정리합니다. proxy-config 조회, xDS 동기화와 mTLS 추적, Ambient Mesh의 Waypoint 관리 예제를 설명합니다."
 date: 2026-01-06 22:30:00 +0900
 author: kkamji
 categories: [Kubernetes, Istio]

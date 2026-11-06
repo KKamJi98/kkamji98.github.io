@@ -1,5 +1,6 @@
 ---
 title: CI/CD + ArgoCD + Vault Study Start!
+description: "CloudNet@의 CI/CD + ArgoCD + Vault Study에 참여한 동기와 학습 기록 계획을 소개합니다. 이전 Cilium Study에서 익힌 공식 문서 읽기, 문제 접근 방식과 정리 습관을 돌아봅니다."
 date: 2025-10-13 02:12:31 +0900
 author: kkamji
 categories: [CI/CD, GitOps]

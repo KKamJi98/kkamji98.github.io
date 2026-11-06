@@ -1,5 +1,6 @@
 ---
 title: In-Place Pod Resource Resize 소개 및 PoC
+description: "Kubernetes v1.33의 In-Place Pod Resource Resize로 자원을 변경하는 방법을 설명합니다. EKS nginx PoC와 재시작 횟수, 메모리 limit 감소 시 제약을 다룹니다."
 date: 2025-06-10 21:52:33 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

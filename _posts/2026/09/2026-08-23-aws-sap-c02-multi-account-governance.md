@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 1 - 멀티 계정 거버넌스"
+description: "Organizations의 계정과 OU 경계로 SCP, RCP와 declarative policy의 통제 대상을 구분합니다. SAP-C02의 Control Tower, RAM 공유, 로그 집계와 비용 배분 제약을 정리합니다."
 date: 2026-08-23 10:00:00 +0900
 author: kkamji
 categories: [Certification, AWS SAP-C02]

@@ -1,5 +1,6 @@
 ---
 title: GCP (Google Cloud Platform) 개요
+description: "Google의 글로벌 인프라를 사용하는 GCP의 성격과 리전 및 존 구조를 설명합니다. 서비스 분야별 특징과 Console, gcloud CLI, Cloud Shell 등 접근 수단을 정리합니다."
 date: 2026-02-17 09:00:00 +0900
 author: kkamji
 categories: [Cloud, GCP]

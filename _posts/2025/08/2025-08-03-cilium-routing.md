@@ -1,5 +1,6 @@
 ---
 title: Cilium Network Routing 이해하기 - Encapsulation과 Native Routing 비교 [Cilium Study 3주차]
+description: "Cilium의 VXLAN 및 GENEVE 캡슐화와 Native Routing을 네트워크 요구사항 및 오버헤드 관점에서 비교합니다. 각 모드의 설정과 서로 다른 노드의 Pod 통신 경로를 확인하는 실습을 다룹니다."
 date: 2025-08-03 07:14:41 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

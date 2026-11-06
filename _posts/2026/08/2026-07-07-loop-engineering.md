@@ -1,5 +1,6 @@
 ---
 title: "Loop engineering 기초 - prompt, context, loop [AI Agent 1]"
+description: "prompt와 context 설계에서 에이전트를 반복 호출하는 loop engineering으로 확장되는 관점을 설명합니다. 일거리 탐색, 위임, 검증, 기록과 다음 판단을 pre-commit, cron, CI에 연결합니다."
 date: 2026-07-07 04:48:00 +0900
 author: kkamji
 categories: [AI, Agent]

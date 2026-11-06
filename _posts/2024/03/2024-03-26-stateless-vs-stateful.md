@@ -1,5 +1,6 @@
 ---
 title: Stateful과 Stateless 개념 (NACL vs Security Group)
+description: "요청마다 필요한 정보를 전달하는 Stateless와 이전 상태를 기억하는 Stateful의 장단점을 비교합니다. AWS NACL과 Security Group을 사례로 적용 범위와 상태 유지 여부의 차이를 정리합니다."
 date: 2024-03-26 14:17:48 +0900
 author: kkamji
 categories: [System, Network]

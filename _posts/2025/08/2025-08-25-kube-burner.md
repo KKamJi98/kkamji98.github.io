@@ -1,5 +1,6 @@
 ---
 title: Kube-burner 소개 및 실습 [Cilium Study 7주차]
+description: "Kind 클러스터에서 Kube-burner로 Kubernetes 리소스 부하를 만드는 실습을 다룹니다. qps와 burst 설정을 살펴보고 노드의 max_pods 및 PodCIDR 크기를 넘겨 Pod를 생성할 때의 동작을 확인합니다."
 date: 2025-08-25 00:25:11 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

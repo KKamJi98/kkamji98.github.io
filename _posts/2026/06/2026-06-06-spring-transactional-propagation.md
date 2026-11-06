@@ -1,5 +1,6 @@
 ---
 title: Spring @Transactional과 트랜잭션 전파 - 프록시, 롤백 규칙, REQUIRED vs REQUIRES_NEW
+description: "Spring @Transactional의 AOP 프록시 동작과 기본 롤백 규칙을 설명합니다. REQUIRED와 REQUIRES_NEW의 물리 트랜잭션 경계를 비교하고 self-invocation으로 프록시를 우회하는 함정을 다룹니다."
 date: 2026-06-06 09:00:00 +0900
 author: kkamji
 categories: [Backend, Spring]

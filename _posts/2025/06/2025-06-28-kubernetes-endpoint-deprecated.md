@@ -1,5 +1,6 @@
 ---
 title: Kubernetes v1.33 Endpoints API Deprecated
+description: "Kubernetes v1.33의 Endpoints API 사용 중단 권고 배경과 EndpointSlice의 분할 저장 방식을 설명합니다. 컨트롤러, 스크립트, 모니터링 지표 및 RBAC 권한을 전환할 때의 점검 항목을 다룹니다."
 date: 2025-06-28 01:01:29 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

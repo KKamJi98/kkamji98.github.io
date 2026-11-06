@@ -1,5 +1,6 @@
 ---
 title: "Agent Router - Envoy 기반 AI 트래픽 제어 [AI Gateway 2]"
+description: "Envoy AI Gateway에서 이름이 바뀐 Agent Router의 요청 처리 구조와 유지되는 배포 식별자를 설명합니다. v1.1의 토큰 quota, provider 인증과 연동 기능의 범위를 정리합니다."
 date: 2026-07-10 02:41:00 +0900
 last_modified_at: 2026-10-06 00:00:00 +0900
 author: kkamji

@@ -1,5 +1,6 @@
 ---
 title: "Typesafe AI Jev Overview"
+description: "Typesafe Jev의 Choice, Score와 Noul 응답을 에이전트의 정책 입력으로 연결하는 구조를 설명합니다. 판단 확률과 실행 권한의 차이, state 구성과 실제 호출의 지연 및 반복성 관측을 정리합니다."
 date: 2026-09-22 03:43:29 +0900
 last_modified_at: 2026-09-25 01:00:00 +0900
 author: kkamji

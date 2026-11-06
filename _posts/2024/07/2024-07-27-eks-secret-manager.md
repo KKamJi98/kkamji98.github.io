@@ -1,5 +1,6 @@
 ---
 title: EKS에서 AWS Secret Manager Secret 사용하기
+description: "Helm으로 Secrets Store CSI Driver와 ASCP를 설치하고 SecretProviderClass로 EKS Pod에 시크릿 파일을 마운트합니다. namespace 조건과 Fargate 미지원 제약도 정리합니다."
 date: 2024-07-27 04:42:41 +0900
 author: kkamji
 categories: [Kubernetes, EKS]

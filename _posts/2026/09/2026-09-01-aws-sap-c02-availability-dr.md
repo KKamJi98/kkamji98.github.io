@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 10 - 가용성과 재해복구"
+description: "RPO와 RTO를 기준으로 네 가지 DR 전략과 AWS 복제 및 복구 수단을 비교합니다. SAP-C02의 리전 quota, Aurora 전환 조건과 data plane 의존성, 백업 복원 점검 및 트래픽 전환 제약을 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, disaster-recovery, rto, rpo, multi-region, aurora-global, aws-backup, resilience]

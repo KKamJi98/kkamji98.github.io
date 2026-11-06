@@ -1,5 +1,6 @@
 ---
 title: Type 1 & Type 2 가상화의 개념
+description: "하이퍼바이저가 하드웨어에 직접 올라가는 Type 1과 호스트 OS 위에서 실행되는 Type 2를 비교합니다. 자원 접근 구조에 따른 오버헤드와 관리 특성, 서버 및 개발 환경의 사용 사례를 정리합니다."
 date: 2024-04-01 21:54:36 +0900
 author: kkamji
 categories: [CS, Virtualization]

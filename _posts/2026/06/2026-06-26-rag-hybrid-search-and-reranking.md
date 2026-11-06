@@ -1,5 +1,6 @@
 ---
 title: RAG 검색 정확도 - Hybrid Search와 Reranking [RAG 4]
+description: "의미 검색과 BM25를 결합하는 Hybrid Search, 순위 기반 RRF와 cross-encoder reranking을 설명합니다. 후보 수와 지연 예산, Query Rewriting 및 HyDE의 절충을 정리합니다."
 date: 2026-06-26 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

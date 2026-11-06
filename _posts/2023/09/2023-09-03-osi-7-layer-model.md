@@ -1,5 +1,6 @@
 ---
 title: OSI 7 Layer Model
+description: "OSI 7계층의 역할과 송수신 시 캡슐화 과정을 설명하고, 실제 TCP/IP 구현과의 차이를 정리합니다. 접속 실패를 링크, 라우팅, 전송, 응용 계층으로 나누어 조사하는 관점을 제시합니다."
 date: 2023-09-03 19:17:48 +0900
 author: kkamji
 categories: [System, Network]

@@ -1,5 +1,6 @@
 ---
 title: Flannel CNI 배포하기 [Cilium Study 1주차]
+description: "VirtualBox 기반 Kubernetes 클러스터에 Flannel CNI를 배포하는 과정을 다룹니다. NAT용 eth0 대신 VM 간 통신용 eth1을 지정하고 노드 상태와 샘플 애플리케이션 통신을 확인합니다."
 date: 2025-07-15 19:41:29 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

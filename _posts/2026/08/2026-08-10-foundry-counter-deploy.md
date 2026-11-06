@@ -1,5 +1,6 @@
 ---
 title: "Foundry contract 기초 - forge, Counter, deploy [Blockchain 5]"
+description: "Foundry의 Counter 예제로 forge test, forge create와 cast가 다루는 대상을 구분합니다. 테스트 EVM과 Anvil 배포 상태의 차이, 바이트코드 확인 및 권한 없는 함수 호출을 설명합니다."
 date: 2026-08-10 12:06:00 +0900
 author: kkamji
 categories: [Blockchain]

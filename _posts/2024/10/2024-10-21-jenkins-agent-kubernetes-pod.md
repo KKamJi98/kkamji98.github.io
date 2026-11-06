@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes Pod로 Jenkins Agent 구성하기 [Jenkins 2]"
+description: "Jenkins Kubernetes plugin에 kubeconfig를 등록하고 Cloud와 Pod Template을 설정합니다. 테스트 파이프라인에서 빌드용 Agent Pod가 생성되고 작업 후 제거되는 동적 구성을 확인합니다."
 date: 2024-10-21 00:30:21 +0900
 author: kkamji
 categories: [CI/CD, Jenkins]

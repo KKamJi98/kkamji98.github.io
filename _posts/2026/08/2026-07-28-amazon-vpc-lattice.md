@@ -1,5 +1,6 @@
 ---
 title: "Amazon VPC Lattice 알아보기 - Service Network와 서비스 간 통신"
+description: "VPC Lattice의 Service Network가 여러 VPC와 계정의 서비스를 연결하는 구조와 요청 경로를 설명합니다. 접근 제어 계층, EKS 연동과 기존 로드 밸런서의 역할 차이를 정리합니다."
 date: 2026-07-28 09:47:00 +0900
 author: kkamji
 categories: [Cloud, AWS]

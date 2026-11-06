@@ -1,5 +1,6 @@
 ---
 title: Cilium Network Security [Cilium Study 8주차]
+description: "Cilium 네트워크 정책의 stateful 동작과 기본 허용 정책이 바뀌는 조건을 설명합니다. 레이블에서 파생되는 Identity를 조회하고 변경하는 실습, 예약된 Special Identity의 역할을 다룹니다."
 date: 2025-09-03 23:30:22 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

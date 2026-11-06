@@ -1,5 +1,6 @@
 ---
 title: EKS Karpenter 적용기
+description: "EKS에 Karpenter를 도입해 HPA만으로 부족한 노드 확장을 보완한 기록입니다. Cluster Autoscaler와의 차이, IAM과 태그 준비, Helm 설치 및 NodePool과 EC2NodeClass 구성을 정리합니다."
 date: 2024-08-06 21:51:43 +0900
 author: kkamji
 categories: [Kubernetes, EKS]

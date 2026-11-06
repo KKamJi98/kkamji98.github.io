@@ -1,5 +1,6 @@
 ---
 title: "블록체인 키 관리 기초 - HD wallet, signer, 운영키 [Blockchain 11]"
+description: "Anvil의 공개 니모닉에서 HD wallet 주소를 유도하고 일회성 메시지 서명과 변조 검증을 살펴봅니다. 개발키, 운영 signer와 백업 시드의 역할을 나누고 공개 테스트 키를 운영에 쓰지 않는 이유를 설명합니다."
 date: 2026-08-16 12:26:00 +0900
 author: kkamji
 categories: [Blockchain]

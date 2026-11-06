@@ -1,5 +1,6 @@
 ---
 title: "Node.js 비동기 HTTP 처리 - Promise, async/await, 오류 경계"
+description: "native node:http에서 Promise rejection을 HTTP 오류 응답으로 처리하는 경계를 설명합니다. 단일 응답 소유권과 AbortSignal로 timeout 및 연결 종료를 전파하는 방법을 정리합니다."
 date: 2026-07-20 10:56:00 +0900
 author: kkamji
 categories: [Backend, Node.js]

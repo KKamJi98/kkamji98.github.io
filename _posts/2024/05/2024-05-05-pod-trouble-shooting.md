@@ -1,5 +1,6 @@
 ---
 title: Pod가 계속 종료되지 않음 + EBS Volume 확장
+description: "Terminating 상태가 이어진 Pod를 조사하며 worker node의 저장 공간 부족을 확인한 사례입니다. EBS 증설 뒤 growpart와 resize2fs로 파티션과 파일시스템을 확장하는 절차를 정리합니다."
 date: 2024-05-05 21:46:52 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

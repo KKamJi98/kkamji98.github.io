@@ -1,5 +1,6 @@
 ---
 title: Git Worktree Multi-Agent Development Environment
+description: "Bare Repository와 Git Worktree로 브랜치별 작업 공간을 분리하는 방법을 설명합니다. 여러 AI 에이전트의 병렬 작업, 추적 브랜치 문제와 wt CLI 활용을 다룹니다."
 date: 2026-01-21 16:43:08 +0900
 author: kkamji
 categories: [DevOps, Git & Github]

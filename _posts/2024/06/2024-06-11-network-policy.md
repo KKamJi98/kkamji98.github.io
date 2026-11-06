@@ -1,5 +1,6 @@
 ---
 title: Network Policy 개념, 실습
+description: "WEB, WAS, DB를 namespace로 나누고 NetworkPolicy로 통신 방향과 포트를 제한합니다. 연결 테스트를 통해 namespaceSelector의 label 설정과 DNS를 위한 egress 허용 조건을 정리합니다."
 date: 2024-06-11 22:31:44 +0900
 author: kkamji
 categories: [Kubernetes, Networking]

@@ -1,5 +1,6 @@
 ---
 title: RAG LLM API 연동과 고급 기법 - Citation, GraphRAG, Agentic RAG [RAG 7]
+description: "검색된 문맥을 LLM에 전달하고 Claude Citations로 출처를 반환하는 방법을 설명합니다. structured output과의 응답 계약 제약, GraphRAG 및 Agentic RAG의 적용 대상과 추가 비용을 다룹니다."
 date: 2026-06-30 09:00:00 +0900
 author: kkamji
 categories: [AI, RAG]

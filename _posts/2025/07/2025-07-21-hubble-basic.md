@@ -1,5 +1,6 @@
 ---
 title: Cilium Hubble 알아보기 [Cilium Study 2주차]
+description: "Hubble이 Cilium의 네트워크 흐름을 관측하는 구조와 Relay의 집계 역할을 설명합니다. Helm 배포 후 포트와 UI를 확인하고 Hubble CLI의 API 접근 및 자동 포트포워딩을 설정합니다."
 date: 2025-07-21 01:43:55 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

@@ -1,5 +1,6 @@
 ---
 title: Argo CD Rollout 소개 및 실습
+description: "Argo Rollouts의 Blue-Green과 Canary 전략 및 구성요소를 설명합니다. 컨트롤러와 Argo CD Extension 설치, Canary 배포의 일시 정지와 Promote 과정을 실습합니다."
 date: 2025-11-13 22:18:29 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

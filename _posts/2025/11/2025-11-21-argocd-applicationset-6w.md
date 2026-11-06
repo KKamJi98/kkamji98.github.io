@@ -1,5 +1,6 @@
 ---
 title: Argo CD App of Apps & ApplicationSet
+description: "App of Apps와 ApplicationSet의 앱 관리 방식을 비교합니다. List 및 Cluster Generator로 멀티 클러스터에 배포하고 라벨로 대상을 필터링하는 실습을 다룹니다."
 date: 2025-11-21 22:19:02 +0900
 author: kkamji
 categories: [CI/CD, ArgoCD]

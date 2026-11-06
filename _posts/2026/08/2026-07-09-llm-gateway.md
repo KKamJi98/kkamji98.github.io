@@ -1,5 +1,6 @@
 ---
 title: "LLM Gateway - 키 정책, 비용 집계와 감사 [AI Gateway 1]"
+description: "LLM Gateway가 여러 프로바이더 호출의 키 정책, 팀별 비용과 감사를 중앙화하는 구조를 설명합니다. LiteLLM, Portkey, Kong, Higress를 살펴보고 폴백, 민감 로그 및 추가 운영 비용을 다룹니다."
 date: 2026-07-09 01:17:00 +0900
 last_modified_at: 2026-09-08 00:00:00 +0900
 author: kkamji

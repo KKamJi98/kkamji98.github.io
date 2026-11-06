@@ -1,5 +1,6 @@
 ---
 title: "SAP-C02 박살내기 8 - 디커플링과 데이터 파이프라인"
+description: "큐, 토픽, 이벤트 버스와 스트림이 맡는 전달 및 보존 역할을 SAP-C02 관점에서 비교합니다. FIFO의 DLQ 순서 문제, 워크플로 실행 의미와 데이터 처리량 및 분석 계층의 제약을 정리합니다."
 author: kkamji
 categories: [Certification, AWS SAP-C02]
 tags: [aws, sap-c02, certification, sqs, sns, eventbridge, kinesis, step-functions, glue, athena, redshift]

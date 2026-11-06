@@ -1,5 +1,6 @@
 ---
 title: GitOps 소개
+description: "Git에 선언된 상태를 Kubernetes의 실제 상태와 지속적으로 맞추는 GitOps를 설명합니다. GitOps Cookbook과 OpenGitOps의 원칙을 비교하고 앱 배포 Lifecycle 및 프로젝트 구조를 다룹니다."
 date: 2025-10-16 06:22:31 +0900
 author: kkamji
 categories: [CI/CD, GitOps]

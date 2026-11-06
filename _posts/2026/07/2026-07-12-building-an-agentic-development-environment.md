@@ -1,5 +1,6 @@
 ---
 title: "Agentic Development Environment 구축하기 - AI 코딩 에이전트 인프라"
+description: "macOS에서 cmux를 작업 상태와 알림의 중심으로 두고 Ghostty와 tmux를 보조로 쓰는 AI 에이전트 환경을 설명합니다. 작업별 소유권, 단일 작성자 규칙, 세션 복구와 프로세스 유지의 차이를 정리합니다."
 date: 2026-07-12 02:31:00 +0900
 author: kkamji
 categories: [AI, Development Environment]

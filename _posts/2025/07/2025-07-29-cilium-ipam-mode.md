@@ -1,5 +1,6 @@
 ---
 title: IPAM 개념 및 Kubernetes Host Scope -> Cluster Scope Migration 실습 [Cilium Study 3주차]
+description: "Cilium의 Host Scope, Cluster Scope, Multi-Pool IPAM 차이를 설명합니다. Host Scope에서 Cluster Scope로 전환하며 클러스터 상태와 샘플 Pod 통신을 살펴봅니다."
 date: 2025-07-29 01:13:54 +0900
 author: kkamji
 categories: [Kubernetes, Cilium]

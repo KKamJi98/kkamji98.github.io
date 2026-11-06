@@ -1,5 +1,6 @@
 ---
 title: Kubernetes에 MongoDB 배포하기
+description: "단어장 데이터를 문서와 배열로 다루기 위해 MongoDB를 선택한 배경을 설명합니다. Helm으로 Operator를 설치하고 Custom Resource와 StorageClass를 지정해 배포 및 접속을 확인합니다."
 date: 2024-11-12 19:15:30 +0900
 author: kkamji
 categories: [Kubernetes, Workload]

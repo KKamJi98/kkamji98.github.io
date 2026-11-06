@@ -1,5 +1,6 @@
 ---
 title: EKS kubectl 토큰 캐싱으로 응답 속도 개선하기
+description: "EKS의 exec 인증으로 반복되는 토큰 발급 지연을 설명하고, 만료 시각에 따라 토큰을 파일에 캐싱하는 스크립트와 kubeconfig 적용, 캐시 권한 및 멀티 프로파일 처리를 정리합니다."
 date: 2026-01-30 12:00:00 +0900
 author: kkamji
 categories: [Kubernetes, EKS]

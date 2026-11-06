@@ -1,5 +1,6 @@
 ---
 title: GitHub Actions Runner Controller - 개념과 아키텍처
+description: "ARC가 GitHub의 작업 대기열과 Kubernetes runner를 연결하는 구조와 수명주기를 설명합니다. 일회성 등록과 저장 데이터 정리의 차이, Kubernetes mode 및 DinD의 제약과 운영 책임을 정리합니다."
 date: 2026-10-15 16:00:00 +0900
 last_modified_at: 2026-10-20 02:00:00 +0900
 author: kkamji

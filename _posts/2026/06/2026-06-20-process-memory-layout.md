@@ -1,5 +1,6 @@
 ---
 title: 프로세스 메모리 레이아웃과 stack vs heap
+description: "프로세스의 가상 주소공간을 text, data, bss, heap, stack으로 나눠 설명합니다. 스레드별 호출 스택과 공유 동적 메모리의 수명 및 할당 방식을 비교하고 JVM 메모리 구조와 연결합니다."
 date: 2026-06-20 11:00:00 +0900
 author: kkamji
 categories: [Backend, JVM]
