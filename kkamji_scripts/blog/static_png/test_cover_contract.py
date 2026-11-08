@@ -51,3 +51,22 @@ def test_lora_cover_is_an_exact_opt_in_not_a_body_diagram():
     template = (ROOT / '_includes/refactor-content.html').read_text()
     assert "{% elsif _src == '" + cover + "' %}" in template
     assert "_cover_prefix == '/assets/img/ai/'" not in template
+
+
+def test_vllm_native_cover_is_an_exact_preview_opt_in():
+    post = ROOT / '_posts/2026/11/2026-11-09-vllm-overview.md'
+    text = post.read_text(encoding='utf-8')
+    image = yaml.safe_load(text.split('---', 2)[1])['image']
+    cover = '/assets/img/ai/vllm/vllm-overview-cover.webp'
+    assert image['path'] == cover
+    assert (image['width'], image['height']) == (1920, 1080)
+    template = (ROOT / '_includes/refactor-content.html').read_text()
+    assert "{% elsif _src == '" + cover + "' %}" in template
+    assert "_cover_prefix == '/assets/img/ai/'" not in template
+    assert 'diagram-inline' not in text
+    from PIL import Image
+    with Image.open(ROOT / cover.lstrip('/')) as webp:
+        with Image.open(ROOT / 'assets/img/ai/vllm/vllm-overview-cover.png') as png:
+            assert webp.format == 'WEBP' and png.format == 'PNG'
+            assert webp.size == png.size == (1920, 1080)
+            assert webp.convert('RGBA').tobytes() == png.convert('RGBA').tobytes()

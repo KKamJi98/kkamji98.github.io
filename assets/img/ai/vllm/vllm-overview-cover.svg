@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="vllm-cover-title vllm-cover-desc" font-family="Noto Sans KR">
+  <title id="vllm-cover-title">vLLM - LLM 추론과 서빙의 원리</title>
+  <desc id="vllm-cover-desc">vLLM 개념 글의 표지. 입력 처리, 토큰 생성, KV cache와 요청 스케줄링을 다룹니다. 오른쪽 도형은 장식이며 메모리 배치나 성능 측정값을 나타내지 않습니다.</desc>
+  <rect width="1920" height="1080" fill="#ffffff"/>
+  <rect x="128" y="180" width="100" height="12" rx="6" fill="#2563eb"/>
+  <text x="128" y="430" font-size="224" font-weight="750" fill="#0f172a">vLLM</text>
+  <text x="136" y="570" font-size="76" font-weight="600" fill="#1e293b">LLM 추론과 서빙의 원리</text>
+  <text x="138" y="700" font-size="42" font-weight="400" fill="#475569">Prefill / Decode / KV cache</text>
+  <text x="138" y="770" font-size="42" font-weight="400" fill="#475569">Continuous batching / API serving</text>
+  <g aria-hidden="true">
+    <rect x="1300" y="240" width="470" height="560" rx="32" fill="#f8fafc" stroke="#e2e8f0" stroke-width="3"/>
+    <rect x="1350" y="300" width="370" height="84" rx="16" fill="#dbeafe"/>
+    <rect x="1350" y="418" width="370" height="84" rx="16" fill="#bfdbfe"/>
+    <rect x="1350" y="536" width="370" height="84" rx="16" fill="#93c5fd"/>
+    <rect x="1350" y="654" width="370" height="84" rx="16" fill="#60a5fa"/>
+  </g>
+  <line x1="136" y1="900" x2="1770" y2="900" stroke="#e2e8f0" stroke-width="3"/>
+  <text x="138" y="972" font-size="32" font-weight="500" letter-spacing="4" fill="#64748b">MODEL / ENGINE / SERVICE</text>
+</svg>
