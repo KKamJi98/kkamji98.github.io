@@ -1159,6 +1159,13 @@ Cloud Native 환경에서 운영, 배포, 보안, 관측 가능성을 연결해 
 
 <div class="cv-cert-grid">
   <div class="cv-cert">
+    <span class="cv-cert-dot aws" aria-hidden="true"></span>
+    <div class="cv-cert-body">
+      <span class="cv-cert-name">AWS Solutions Architect - Professional</span>
+      <span class="cv-cert-meta">AWS / 2026.11</span>
+    </div>
+  </div>
+  <div class="cv-cert">
     <span class="cv-cert-dot hashicorp" aria-hidden="true"></span>
     <div class="cv-cert-body">
       <span class="cv-cert-name">Terraform Associate (003)</span>
