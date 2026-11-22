@@ -1,13 +1,13 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-11-04
+updated: 2026-11-23
 type: rule
 status: current
 ---
 
 # Static diagrams
 
-설명용 도식의 정본은 `_includes/diagrams/static/` 및 Packer와 AWS 인증 지도 include의 HTML figure다. 기존 노드, 조건, 접근성 이름과 본문 사용처를 보존한다. 시각 도식은 동일 figure 안의 inline SVG에 박스, 라벨과 간선 좌표를 직접 쓴다. 원본 spec, Draw.io, raster와 출처 및 라이선스는 rollback 증적으로 유지한다. [Diagram catalog](diagram-catalog.json)는 406개 정본 include와 사용처를 연결한다.
+설명용 도식의 정본은 `_includes/diagrams/static/` 및 Packer와 AWS 인증 지도 include의 HTML figure다. 기존 노드, 조건, 접근성 이름과 본문 사용처를 보존한다. 시각 도식은 동일 figure 안의 inline SVG에 박스, 라벨과 간선 좌표를 직접 쓴다. 원본 spec, Draw.io, raster와 출처 및 라이선스는 rollback 증적으로 유지한다. [Diagram catalog](diagram-catalog.json)는 408개 정본 include와 사용처를 연결한다.
 
 ## 고정 FHD 캔버스
 
@@ -45,7 +45,7 @@ FHD의 큰 빈 영역은 본문에 있는 입력 필드, typed answer, 정책 �
 
 `_includes/diagrams/download.html`은 canonical figure의 바로 다음 sibling이다. legacy `png=` 입력은 native PNG provenance를 유지할 수 있지만 helper는 그 경로에서 공개 `.webp` URL을 계산한다. inline 이미지와 다운로드는 같은 native 1920 x 1080 WebP URL을 사용한다. 본문만 CSS로 비례 축소하고 확대 링크는 동일 WebP를 원본 크기로 표시하는 script 없는 HTML viewer로 이동한다. viewer의 100%, 125%, 150% 확대는 사용자가 직접 선택할 때만 적용하며, 확대된 전체 크기만큼 스크롤 영역도 늘린다. 그림 이미지는 빈 alt를 사용하며 figure의 접근성 이름과 의미 소스가 설명을 제공한다. `data-static-diagram="true"`는 테마의 별도 확대 및 shimmer wrapper를 방지한다. mapped source figure만 시각적으로 클립하며 고정 source의 min/max 경계가 document scrollWidth로 새지 않게 기존 1px 경계를 보존한다. 공개 WebP는 검토된 native PNG의 lossless 파생본이며 전체 decoded RGBA 픽셀 동일성을 검사한다. SVG와 native PNG는 삭제하거나 재압축하지 않고 원본 증적으로 보관한다.
 
-[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 406개 component이며, 209개 post의 406개 body reference에서 397개 include를 사용하고 body-unused include는 9개다. Jev 커버는 `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp`의 별도 네온 자산이며 body occurrence나 FHD corpus cover로 세지 않는다. 흰색 Jev banner는 body-unused 9개 중 하나로 남기고 사용자가 요청한 artwork 교정을 별도 native update로 보관한다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
+[Download mapping](diagram-downloads.json)은 본문 참조를 게시 WebP URL과 native PNG 증적에 연결한다. 현재 source catalog는 408개 component이며, 210개 post의 408개 body reference에서 399개 include를 사용하고 body-unused include는 9개다. Jev 커버는 `/assets/img/ai/jev/jev-system-one-banner-neon-fhd.webp`의 별도 네온 자산이며 body occurrence나 FHD corpus cover로 세지 않는다. 흰색 Jev banner는 body-unused 9개 중 하나로 남기고 사용자가 요청한 artwork 교정을 별도 native update로 보관한다. 보존된 native snapshot의 400개 PNG 출력과 현재 body delivery coverage는 별도 지표다. 변경 전 snapshot의 occurrence 수를 현재 본문 참조 수로 보고하지 않는다. 사용처 수를 정본 작성 수나 시각 검토 완료 수로 보고하지 않는다. mapping의 `png` 같은 legacy 필드명만으로 실제 파일 형식을 추정하지 않고 URL, 응답 bytes와 image decoder로 확인한다.
 
 ## 폰트와 아이콘
 
@@ -139,3 +139,10 @@ WebP release는 named delta의 새 PNG만 active output으로 연결하고 다�
 - The forward artwork distinguishes frozen W0 from trainable A/B and preserves the shared-input, rank-8 bottleneck, scaling and addition relationships. The parameter artwork compares 16,777,216 with 65,536 on a common zero-based linear scale; its 1728px and 6.75px bars are not magnified. The ratio describes one selected matrix, not VRAM, time or the full model.
 - The separate cover source is `assets/img/ai/lora/lora-overview-cover.svg`; it is not a body-diagram occurrence. Its matrix textures are schematic, not measured weights or parameter-area ratios. All three native rasters use the pinned font at 1920 x 1080, with lossless WebP delivery.
 - The two body artworks have separate fresh native receipts and actual original-PNG visual/semantic reviews under `docs/diagram-native-additions/20261103/`. The cover review is separate from body occurrence admission. Publication requires a current delivery seal and normal hooks.
+
+## Linux TCP CVE sources
+
+- Canonical includes: `_includes/diagrams/static/linux/cve-2026-99634-mptcp-tfo-uaf.html` and `_includes/diagrams/static/linux/cve-2026-99676-refcount-ordering.html`. Their editable SVGs use the matching names under `assets/img/diagrams/fhd-svg/static/linux/`.
+- Both diagrams use symmetric before/after horizontal lanes in `fhd_svg.py` (`AUTHORED_LAYOUTS`) with light backgrounds, orthogonal H/V connectors and verified kernel function/flag names (`subflow_syn_recv_sock`, `tcp_fastopen_create_child`, `drop_req`, `refcount_set_release`, `refcount_inc_not_zero_acquire`).
+- The separate cover source is `assets/img/linux/linux-tcp-cve-2026-99634-99676-cover.svg`; it is not a body-diagram occurrence. All three native rasters use the pinned Noto Sans KR font at 1920 x 1080, with lossless WebP delivery.
+- The two body artworks have separate fresh native receipts and actual original-PNG visual/semantic reviews under `docs/diagram-native-additions/20261123/`. Publication requires a current delivery seal and normal hooks.

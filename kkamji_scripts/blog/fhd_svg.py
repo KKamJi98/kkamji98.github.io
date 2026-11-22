@@ -100,9 +100,7 @@ FIXED_LAYOUT_PROFILES = {
     "diagrams/static/kubernetes/kubernetes-fqdn-resolution.html": {
         "edge_widths": {"root.0.1": 400}
     },
-    "diagrams/static/ai/graph-system-intelligence.html": {
-        "columns": {"root.0.1": 3}
-    },
+    "diagrams/static/ai/graph-system-intelligence.html": {"columns": {"root.0.1": 3}},
     "diagrams/static/ci-cd/ci-cd-study/openid-connect-authorization-code-flow-simplied.html": {
         "group_insets": {"root.0.2": 48}
     },
@@ -329,8 +327,15 @@ class Layout:
         budget = self.profile.get("text_width_budgets", {}).get(source, budget)
         if label:
             budget = self.profile.get("bold_text_width_budgets", {}).get(source, budget)
-        return wrap_text(text, width, size, include=self.profile.get("typography_include", ""),
-                         source=source, font=self.font, width_budget=budget)
+        return wrap_text(
+            text,
+            width,
+            size,
+            include=self.profile.get("typography_include", ""),
+            source=source,
+            font=self.font,
+            width_budget=budget,
+        )
 
     def icon(self, e):
         return next((c for c in e.descendants() if c.tag == "img"), None)
@@ -454,8 +459,17 @@ class Layout:
         heights = []
         children = self.items(e)
         row_widths = getattr(self, "_row_edge_widths", {})
-        row_widths.update({child.key: max(self.edge_width(e) - 2 * self.profile.get("edge_label_insets", {}).get(child.key, 4), 24)
-                           for child in children if self.kind(child) == "edge"})
+        row_widths.update(
+            {
+                child.key: max(
+                    self.edge_width(e)
+                    - 2 * self.profile.get("edge_label_insets", {}).get(child.key, 4),
+                    24,
+                )
+                for child in children
+                if self.kind(child) == "edge"
+            }
+        )
         self._row_edge_widths = row_widths
         for start in range(0, len(cards), columns):
             subset = cards[start : start + columns]
@@ -466,7 +480,10 @@ class Layout:
                     continue
                 label = (
                     self.wrap(
-                        edge.text(), self._row_edge_widths[edge.key], self.detail_size, source=edge.key
+                        edge.text(),
+                        self._row_edge_widths[edge.key],
+                        self.detail_size,
+                        source=edge.key,
                     )
                     if edge.text()
                     else []
@@ -562,11 +579,15 @@ class Layout:
             icon_width = (
                 96 if image and "sd-cert-badge" in image.classes else 64 if image else 0
             )
-            text_inset = self.profile.get("node_text_insets", {}).get(e.key, self.padding)
+            text_inset = self.profile.get("node_text_insets", {}).get(
+                e.key, self.padding
+            )
             text_width = width - 2 * text_inset - (icon_width + 20 if image else 0)
             return (
                 self.wrap(head, text_width, self.label_size, label=True, source=e.key),
-                self.wrap(detail, text_width, self.detail_size, source=e.key) if detail else [],
+                self.wrap(detail, text_width, self.detail_size, source=e.key)
+                if detail
+                else [],
             )
         size = (
             36
@@ -588,7 +609,9 @@ class Layout:
         if kind == "edge":
             label_width = max(width / 2 - 36, 60)
             if typography_repair(self.profile.get("typography_include", ""), e.key):
-                label_width = getattr(self, "_row_edge_widths", {}).get(e.key, label_width)
+                label_width = getattr(self, "_row_edge_widths", {}).get(
+                    e.key, label_width
+                )
             return max(
                 56,
                 len(self.wrap(e.text(), label_width, self.detail_size, source=e.key))
@@ -654,7 +677,10 @@ class Layout:
             return (
                 2 * pad
                 + sum(
-                    max(self.measure(c, widths[j]) for j, c in enumerate(children[i : i + columns]))
+                    max(
+                        self.measure(c, widths[j])
+                        for j, c in enumerate(children[i : i + columns])
+                    )
                     for i in range(0, len(children), columns)
                 )
                 + self.gap * ((len(children) - 1) // columns)
@@ -840,7 +866,12 @@ class Layout:
                 h = max(self.measure(c, widths[j]) for j, c in enumerate(subset))
                 for j, child in enumerate(subset):
                     rows.append(
-                        self.draw(child, x + pad + sum(widths[:j]) + j * self.gap, py, widths[j])
+                        self.draw(
+                            child,
+                            x + pad + sum(widths[:j]) + j * self.gap,
+                            py,
+                            widths[j],
+                        )
                     )
                 py += h + self.gap
         else:
@@ -849,7 +880,11 @@ class Layout:
                 rows.append(self.draw(child, x + pad, py, inner))
                 py += self.measure(child, inner) + self.gap
         for keys in self.profile.get("equal_boundary_sets", []):
-            peers = [r for r in rows if r["element"].key in keys and self.kind(r["element"]) == "group"]
+            peers = [
+                r
+                for r in rows
+                if r["element"].key in keys and self.kind(r["element"]) == "group"
+            ]
             if len(peers) != len(keys):
                 continue
             top = min(r["bounds"][1] for r in peers)
@@ -889,7 +924,9 @@ class Layout:
                     (points[0][0] + points[1][0] - label_width) / 2,
                     min(points[0][1], points[1][1]) - self.detail_size - 12,
                 )
-                inset = self.profile.get("edge_label_insets", {}).get(row["element"].key)
+                inset = self.profile.get("edge_label_insets", {}).get(
+                    row["element"].key
+                )
                 if inset is not None:
                     label_width = max(24, b[0] - a[0] - a[2] - 2 * inset)
                     tx = a[0] + a[2] + inset
@@ -911,7 +948,12 @@ class Layout:
                 tx, ty, label_width = x + 40, middle - self.detail_size - 8, width - 80
                 if e.key in self.profile.get("center_partial_rows", []):
                     sx, target_x = a[0] + a[2] / 2, b[0] + b[2] / 2
-                    points = [[sx, a[1] + a[3] + 12], [sx, middle], [target_x, middle], [target_x, b[1] - 12]]
+                    points = [
+                        [sx, a[1] + a[3] + 12],
+                        [sx, middle],
+                        [target_x, middle],
+                        [target_x, b[1] - 12],
+                    ]
                     tx = min(sx, target_x) + 12
                     label_width = max(abs(sx - target_x) - 24, 120)
             else:
@@ -935,7 +977,12 @@ class Layout:
                 }
             )
             if row["element"].text():
-                lines = self.wrap(row["element"].text(), label_width, self.detail_size, source=row["element"].key)
+                lines = self.wrap(
+                    row["element"].text(),
+                    label_width,
+                    self.detail_size,
+                    source=row["element"].key,
+                )
                 text_height = len(lines) * self.detail_size * 1.35
                 if horizontal:
                     ty = min(points[0][1], points[-1][1]) - text_height - 12
@@ -1279,11 +1326,14 @@ def svg_document(layout, figure, source_hash, instance=""):
         fill, border = g.get("fill", fill), g.get("border", border)
         data = "".join(
             f' {name}="{html.escape(value, quote=True)}"'
-            for name, value in (("data-value", g.get("data_value")),
-                                ("data-encoding", g.get("data_encoding"))) if value
+            for name, value in (
+                ("data-value", g.get("data_value")),
+                ("data-encoding", g.get("data_encoding")),
+            )
+            if value
         )
         out.append(
-            f'<rect data-source="{g["source"]}"{data} x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="{g.get('radius', 16)}" fill="{fill}" stroke="{border}" stroke-width="{g.get('border_width', 2)}"/>'
+            f'<rect data-source="{g["source"]}"{data} x="{g["x"]:.3f}" y="{g["y"]:.3f}" width="{g["width"]:.3f}" height="{g["height"]:.3f}" rx="{g.get("radius", 16)}" fill="{fill}" stroke="{border}" stroke-width="{g.get("border_width", 2)}"/>'
         )
     for b in layout.boxes:
         warning = "sd-node--warning" in b["classes"]
@@ -1306,7 +1356,7 @@ def svg_document(layout, figure, source_hash, instance=""):
             if value
         )
         out.append(
-            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="{b.get('border_width', 2)}"{dash}/>'
+            f'<rect data-node="{b["source"]}"{relation} x="{b["x"]:.3f}" y="{b["y"]:.3f}" width="{b["width"]:.3f}" height="{b["height"]:.3f}" rx="12" fill="{fill}" stroke="{border}" stroke-width="{b.get("border_width", 2)}"{dash}/>'
         )
         for g in layout.groups:
             if g.get("owner") == b["source"]:
@@ -1357,7 +1407,7 @@ def svg_document(layout, figure, source_hash, instance=""):
     for text in layout.texts:
         weight = 700 if text["label"] else 400
         out.append(
-            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="{text.get('fill', '#111827')}">{html.escape(text["text"])}</text>'
+            f'<text data-source="{text["source"]}" x="{text["x"]:.3f}" y="{text["y"]:.3f}" font-size="{text["size"]}" font-weight="{weight}" fill="{text.get("fill", "#111827")}">{html.escape(text["text"])}</text>'
         )
     out.append("</svg>")
     return "\n".join(out)
@@ -1466,17 +1516,22 @@ def check_layout(layout):
                 if not child["source"].startswith(group["source"] + "."):
                     continue
                 gaps = [
-                    child["x"] - group["x"], child["y"] - group["y"],
+                    child["x"] - group["x"],
+                    child["y"] - group["y"],
                     group["x"] + group["width"] - child["x"] - child["width"],
                     group["y"] + group["height"] - child["y"] - child["height"],
                 ]
                 painted = min(gaps) - 2
                 if painted < required - 0.1:
-                    issues.append({
-                        "code": "declared-inner-stroke-clearance",
-                        "source": child["source"], "group": group["source"],
-                        "painted_clearance": painted, "required": required,
-                    })
+                    issues.append(
+                        {
+                            "code": "declared-inner-stroke-clearance",
+                            "source": child["source"],
+                            "group": group["source"],
+                            "painted_clearance": painted,
+                            "required": required,
+                        }
+                    )
         for node in layout.boxes:
             if node["source"].startswith(group["source"] + ".") and (
                 node["x"] < group["x"] - 0.1
@@ -1738,32 +1793,56 @@ def semantic_check(layout, figure):
             continue
         key = element.key
         marks = [b for b in layout.boxes + layout.groups if b["source"] == key]
-        value, scale = element.attrs.get("data-value", ""), element.attrs.get("data-scale")
+        value, scale = (
+            element.attrs.get("data-value", ""),
+            element.attrs.get("data-scale"),
+        )
         if not re.fullmatch(r"[1-9][0-9]*", value) or not scale:
             issues.append({"code": "invalid-source-data-bar", "source": key})
             continue
         if len(marks) != 1:
-            issues.append({"code": "missing-source-data-bar" if not marks else
-                           "duplicate-source-data-bar", "source": key})
+            issues.append(
+                {
+                    "code": "missing-source-data-bar"
+                    if not marks
+                    else "duplicate-source-data-bar",
+                    "source": key,
+                }
+            )
             continue
         mark = marks[0]
         if mark.get("data_value") != value or mark.get("data_encoding") != "bar-length":
             issues.append({"code": "data-bar-value-mismatch", "source": key})
-        if (mark.get("radius") != 0 or mark.get("border_width") != 0 or mark.get("owner")
-                or not re.fullmatch(r"#[0-9A-Fa-f]{6}", mark.get("fill", ""))
-                or not all(math.isfinite(mark[k]) and mark[k] > 0 for k in ("width", "height"))):
+        if (
+            mark.get("radius") != 0
+            or mark.get("border_width") != 0
+            or mark.get("owner")
+            or not re.fullmatch(r"#[0-9A-Fa-f]{6}", mark.get("fill", ""))
+            or not all(
+                math.isfinite(mark[k]) and mark[k] > 0 for k in ("width", "height")
+            )
+        ):
             issues.append({"code": "data-bar-paint-mismatch", "source": key})
         signature = (mark["x"], mark["height"], mark["width"] / int(value))
-        if scale in scales and any(not math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-12)
-                                   for a, b in zip(signature, scales[scale])):
+        if scale in scales and any(
+            not math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-12)
+            for a, b in zip(signature, scales[scale])
+        ):
             issues.append({"code": "data-bar-scale-mismatch", "source": key})
         scales.setdefault(scale, signature)
         for text in layout.texts:
-            if (min(text["x"] + text["width"], mark["x"] + mark["width"]) > max(text["x"], mark["x"])
-                    and min(text["y"] + text["size"] * 0.25, mark["y"] + mark["height"])
-                    > max(text["y"] - text["size"], mark["y"])):
-                issues.append({"code": "data-bar-text-overlap", "source": key,
-                               "text_source": text["source"]})
+            if min(text["x"] + text["width"], mark["x"] + mark["width"]) > max(
+                text["x"], mark["x"]
+            ) and min(
+                text["y"] + text["size"] * 0.25, mark["y"] + mark["height"]
+            ) > max(text["y"] - text["size"], mark["y"]):
+                issues.append(
+                    {
+                        "code": "data-bar-text-overlap",
+                        "source": key,
+                        "text_source": text["source"],
+                    }
+                )
     for text in layout.texts:
         missing = sorted(
             {
@@ -1804,12 +1883,20 @@ def complete_relation_labels(layout):
     for edge in layout.connectors:
         if "points" not in edge:
             continue
-        if edge.get("meaning_at_target") and edge.get("meaning") and any(
-            "".join(" ".join(
-                text["text"] for text in layout.texts
-                if text["source"] == target and text["label"]
-            ).split()) == "".join(edge.get("meaning", "").split())
-            for target in edge.get("to", [])
+        if (
+            edge.get("meaning_at_target")
+            and edge.get("meaning")
+            and any(
+                "".join(
+                    " ".join(
+                        text["text"]
+                        for text in layout.texts
+                        if text["source"] == target and text["label"]
+                    ).split()
+                )
+                == "".join(edge.get("meaning", "").split())
+                for target in edge.get("to", [])
+            )
         ):
             continue
         keys = {edge["source"], edge.get("origin"), edge["source"] + ".meaning"}
@@ -1873,15 +1960,23 @@ def manual_relation_fixes(layout, figure, include):
     target_relations = {
         "diagrams/static/ai/agentic-development-workspace.html": ("root.0.4",),
         "diagrams/static/ai/graph-system-intelligence.html": ("root.0.4",),
-        "diagrams/static/sap-c02/directory-service-selection.html": ("root.0.1.0.3.0.1.1",),
-        "diagrams/static/sap-c02/dms-schema-object-ownership.html": ("root.0.1.2.0.1.1", "root.0.1.2.1.1.1"),
-        "diagrams/static/sap-c02/aurora-global-switchover-failover.html": ("root.0.1.1",),
+        "diagrams/static/sap-c02/directory-service-selection.html": (
+            "root.0.1.0.3.0.1.1",
+        ),
+        "diagrams/static/sap-c02/dms-schema-object-ownership.html": (
+            "root.0.1.2.0.1.1",
+            "root.0.1.2.1.1.1",
+        ),
+        "diagrams/static/sap-c02/aurora-global-switchover-failover.html": (
+            "root.0.1.1",
+        ),
     }.get(include, ())
     for key in target_relations:
         edge = next(e for e in layout.connectors if e["source"] == key)
         assert edge["label"] == "" and len(edge["to"]) == 1
         edge["meaning"] = next(
-            e.text() for e in elements[edge["to"][0]].children
+            e.text()
+            for e in elements[edge["to"][0]].children
             if "sd-label" in e.classes
         )
         edge["meaning_at_target"] = True
@@ -1911,13 +2006,27 @@ def manual_relation_fixes(layout, figure, include):
         sy = registry["y"] + registry["height"] / 2
         ty = pod["y"] + pod["height"] / 2
         edge["from"] = [registry["source"]]
-        edge["points"] = [[registry["x"] + registry["width"] + 12, sy], [bus, sy], [bus, ty], [pod["x"] - 12, ty]]
+        edge["points"] = [
+            [registry["x"] + registry["width"] + 12, sy],
+            [bus, sy],
+            [bus, ty],
+            [pod["x"] - 12, ty],
+        ]
         layout.texts = [t for t in layout.texts if t["source"] != edge["source"]]
         width = registry["width"]
-        layout.add_text(layout.wrap(edge["label"], width, layout.detail_size), registry["x"], ty - 80, layout.detail_size, width, edge["source"])
+        layout.add_text(
+            layout.wrap(edge["label"], width, layout.detail_size),
+            registry["x"],
+            ty - 80,
+            layout.detail_size,
+            width,
+            edge["source"],
+        )
     elif include.endswith("kubernetes-gitops-loop.html"):
         edge = next(e for e in layout.connectors if e["source"] == "root.0.2.1.2.3")
-        labels = [e for e in elements[edge["source"]].children if "sd-edge-label" in e.classes]
+        labels = [
+            e for e in elements[edge["source"]].children if "sd-edge-label" in e.classes
+        ]
         assert len(labels) == 2
         edge["label"], edge["origin"] = labels[0].text(), edge["source"]
         layout.texts = [t for t in layout.texts if t["source"] != edge["source"]]
@@ -1925,14 +2034,38 @@ def manual_relation_fixes(layout, figure, include):
         bus = (registry["x"] + registry["width"] + cluster["x"]) / 2
         sy = registry["y"] + registry["height"] / 2
         ty = cluster["y"] + cluster["height"] / 2
-        layout.connectors.append({
-            "source": edge["source"] + ".image-pull", "origin": edge["source"],
-            "label": labels[1].text(), "from": [registry["source"]], "to": [cluster["source"]],
-            "points": [[registry["x"] + registry["width"] + 12, sy], [bus, sy], [bus, ty], [cluster["x"] - 12, ty]],
-            "meaning_bounds": (registry["x"], ty - 80, registry["width"]),
-        })
-        layout.add_text(layout.wrap(labels[0].text(), cluster["width"], layout.detail_size), cluster["x"], cluster["y"] - 72, layout.detail_size, cluster["width"], edge["source"])
-        layout.add_text(layout.wrap(labels[1].text(), registry["width"], layout.detail_size), registry["x"], ty - 80, layout.detail_size, registry["width"], edge["source"])
+        layout.connectors.append(
+            {
+                "source": edge["source"] + ".image-pull",
+                "origin": edge["source"],
+                "label": labels[1].text(),
+                "from": [registry["source"]],
+                "to": [cluster["source"]],
+                "points": [
+                    [registry["x"] + registry["width"] + 12, sy],
+                    [bus, sy],
+                    [bus, ty],
+                    [cluster["x"] - 12, ty],
+                ],
+                "meaning_bounds": (registry["x"], ty - 80, registry["width"]),
+            }
+        )
+        layout.add_text(
+            layout.wrap(labels[0].text(), cluster["width"], layout.detail_size),
+            cluster["x"],
+            cluster["y"] - 72,
+            layout.detail_size,
+            cluster["width"],
+            edge["source"],
+        )
+        layout.add_text(
+            layout.wrap(labels[1].text(), registry["width"], layout.detail_size),
+            registry["x"],
+            ty - 80,
+            layout.detail_size,
+            registry["width"],
+            edge["source"],
+        )
     elif include.endswith("openid-connect-authorization-code-flow-simplied.html"):
         for text in layout.texts:
             if text["source"] == "root.0.1.9":
@@ -1943,11 +2076,19 @@ def manual_relation_fixes(layout, figure, include):
         edge["label"] = elements[box["source"]].children[1].text()
         right = frame["x"] + frame["width"] - 12
         sx = box["x"] + box["width"] + 12
-        sy, ty = box["y"] + box["height"] * .3, box["y"] + box["height"] * .7
+        sy, ty = box["y"] + box["height"] * 0.3, box["y"] + box["height"] * 0.7
         edge["points"] = [[sx, sy], [right, sy], [right, ty], [sx, ty]]
         edge["meaning_at_target"] = True
-        edge["meaning"] = next(e.text() for e in elements[box["source"]].children if "sd-label" in e.classes)
-        layout.texts = [t for t in layout.texts if t["source"] not in {"root.0.2.loop", "root.0.2.loop.meaning"}]
+        edge["meaning"] = next(
+            e.text()
+            for e in elements[box["source"]].children
+            if "sd-label" in e.classes
+        )
+        layout.texts = [
+            t
+            for t in layout.texts
+            if t["source"] not in {"root.0.2.loop", "root.0.2.loop.meaning"}
+        ]
     elif include.endswith("kubernetes-architecture-overview.html"):
         api = boxes["root.0.1.1.0"]
         for index in range(3):
@@ -2191,8 +2332,12 @@ def alarm_layout(font, figure):
             "vertical_flows": ["root.0.1.6.0.1", "root.0.1.6.1.1"],
             "columns": {"root.0.1.6.0.1.2": 2},
             "column_weights": {"root.0.1.6.1.1.2": [220, 220, 296]},
-            **corpus_typography_profile("diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"),
-            **corpus_clearance_profile("diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"),
+            **corpus_typography_profile(
+                "diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"
+            ),
+            **corpus_clearance_profile(
+                "diagrams/static/sap-c02/cloudwatch-alarm-missing-data.html"
+            ),
         },
     )
     layout.draw(elements["root.0.0"], 64, 64, 1792)
@@ -2372,9 +2517,16 @@ def banner_layout(font, figure):
     """Preserve the original banner's four columns and separate SVG text runs."""
     elements = {e.key: e for e in [figure, *figure.descendants()]}
     layout = Layout(
-        font, 38, 30, 32, 28,
-        {"bold_width_budget": 1.25, "regular_width_budget": 1.12,
-         "group_insets": {"root.0.4.4": 32}},
+        font,
+        38,
+        30,
+        32,
+        28,
+        {
+            "bold_width_budget": 1.25,
+            "regular_width_budget": 1.12,
+            "group_insets": {"root.0.4.4": 32},
+        },
     )
     for key, y in [
         ("root.0.0", 64),
@@ -2478,15 +2630,40 @@ def jev_layout(font, figure):
     text(figure.attrs["aria-label"], 64, 48, 40, "jev-title.meaning", True)
     layout.groups.extend(
         [
-            {"source": "root.0.0.0", "classes": [], "x": 64, "y": 128,
-             "width": 932, "height": 608, "fill": "#f7f8ff", "border": "#c7d2fe"},
-            {"source": "root.0.0.2", "classes": [], "x": 1116, "y": 128,
-             "width": 740, "height": 608, "fill": "#f0fdfa", "border": "#99d6cd"},
+            {
+                "source": "root.0.0.0",
+                "classes": [],
+                "x": 64,
+                "y": 128,
+                "width": 932,
+                "height": 608,
+                "fill": "#f7f8ff",
+                "border": "#c7d2fe",
+            },
+            {
+                "source": "root.0.0.2",
+                "classes": [],
+                "x": 1116,
+                "y": 128,
+                "width": 740,
+                "height": 608,
+                "fill": "#f0fdfa",
+                "border": "#99d6cd",
+            },
         ]
     )
-    text(elements["root.0.0.0"].attrs["aria-label"], 96, 152, 28,
-         "root.0.0.0.meaning", True, "#4438a5")
-    text(elements["root.0.0.2.0"].text(), 1148, 152, 28, "root.0.0.2.0", True, "#0f766e")
+    text(
+        elements["root.0.0.0"].attrs["aria-label"],
+        96,
+        152,
+        28,
+        "root.0.0.0.meaning",
+        True,
+        "#4438a5",
+    )
+    text(
+        elements["root.0.0.2.0"].text(), 1148, 152, 28, "root.0.0.2.0", True, "#0f766e"
+    )
 
     spine, top, height = 456, 208, 496
     rows = [340 + 50 * i for i in range(6)]
@@ -2504,15 +2681,18 @@ def jev_layout(font, figure):
     ):
         text(field.text(), 124 + indent, row, 22, "root.0.0.0.0")
 
-    judge = card("root.0.0.0.2", 564, top, 400, height,
-                 border="url(#jev-neon)", border_width=3)
+    judge = card(
+        "root.0.0.0.2", 564, top, 400, height, border="url(#jev-neon)", border_width=3
+    )
     heading("root.0.0.0.2", 564)
     palette = [
         ("#f3f2ff", "#6e77ff", "#4438a5"),
         ("#edfdf8", "#2ed6b8", "#0f766e"),
         ("#f5f0ff", "#9271e3", "#6843a6"),
     ]
-    for i, (signal, (fill, border, ink)) in enumerate(zip(parts("root.0.0.0.2")[2:], palette)):
+    for i, (signal, (fill, border, ink)) in enumerate(
+        zip(parts("root.0.0.0.2")[2:], palette)
+    ):
         y = 336 + 118 * i
         inset("root.0.0.0.2", i, 588, y, 352, 100, fill, border)
         label, value = [c for c in signal.children if c.text()]
@@ -2527,7 +2707,9 @@ def jev_layout(font, figure):
     text(result.text(), 1176, rows[-1] + 10, 24, "root.0.0.2.1", True, "#b45309")
 
     outcomes = []
-    for i, (fill, border) in enumerate([("#f0fdfa", "#0f766e"), ("#fff7ed", "#b45309")]):
+    for i, (fill, border) in enumerate(
+        [("#f0fdfa", "#0f766e"), ("#fff7ed", "#b45309")]
+    ):
         key = "root.0.0.2.3." + str(i)
         y = spine - 70 + (200 * i - 100)
         outcomes.append(card(key, 1600, y, 224, 140, fill=fill, border=border))
@@ -2567,7 +2749,12 @@ def jev_layout(font, figure):
                 "label": ("Shadow 경로" if i == 0 else "Escalate 경로"),
                 "meaning": ("Shadow" if i == 0 else "Escalate"),
                 "meaning_at_target": True,
-                "points": [[a[0] + a[2] + 12, spine], [1572, spine], [1572, ty], [b[0] - 12, ty]],
+                "points": [
+                    [a[0] + a[2] + 12, spine],
+                    [1572, spine],
+                    [1572, ty],
+                    [b[0] - 12, ty],
+                ],
             }
         )
 
@@ -2813,7 +3000,9 @@ def config_layout(font, figure, typography=None):
     profile = {"phase_flows": {"root.0.1.0.0.3": 2}, **(typography or {})}
     profile["group_insets"] = {
         **profile.get("group_insets", {}),
-        **corpus_clearance_profile("diagrams/static/sap-c02/config-evaluation-remediation.html")["group_insets"],
+        **corpus_clearance_profile(
+            "diagrams/static/sap-c02/config-evaluation-remediation.html"
+        )["group_insets"],
     }
     for label, detail, gap, padding in [
         (20, 16, 12, 12),
@@ -3060,291 +3249,545 @@ def pod_identity_layout(font, figure, typography=None):
 
 def arc_layout(font, figure):
     """One fixed horizontal management path plus direct GitHub/runner traffic."""
-    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
-    layout = Layout(font, 32, 26, 24, 28, {
-        'bold_width_budget': 1.12, 'regular_width_budget': 1.08,
-        'no_connector_labels': True,
-    })
-    layout.draw(named['sd-arc-title'], 60, 50, 1800)
-    for key, x, width in [('arc-github', 40, 390), ('arc-kubernetes', 470, 1410)]:
-        layout.groups.append({'source': named[key].key, 'classes': [],
-                              'x': x, 'y': 155, 'width': width, 'height': 775})
-    layout.draw(named['arc-github-title'], 75, 185, 320)
-    layout.draw(named['arc-kubernetes-title'], 510, 185, 1300)
-    layout.draw(named['arc-scale-set'], 510, 260, 1300)
+    named = {
+        e.attrs["id"]: e for e in [figure, *figure.descendants()] if e.attrs.get("id")
+    }
+    layout = Layout(
+        font,
+        32,
+        26,
+        24,
+        28,
+        {
+            "bold_width_budget": 1.12,
+            "regular_width_budget": 1.08,
+            "no_connector_labels": True,
+        },
+    )
+    layout.draw(named["sd-arc-title"], 60, 50, 1800)
+    for key, x, width in [("arc-github", 40, 390), ("arc-kubernetes", 470, 1410)]:
+        layout.groups.append(
+            {
+                "source": named[key].key,
+                "classes": [],
+                "x": x,
+                "y": 155,
+                "width": width,
+                "height": 775,
+            }
+        )
+    layout.draw(named["arc-github-title"], 75, 185, 320)
+    layout.draw(named["arc-kubernetes-title"], 510, 185, 1300)
+    layout.draw(named["arc-scale-set"], 510, 260, 1300)
     nodes = {}
-    for key, x, width in [('arc-service', 75, 320), ('arc-listener', 525, 320),
-                          ('arc-controller', 975, 320), ('arc-runner', 1425, 390)]:
+    for key, x, width in [
+        ("arc-service", 75, 320),
+        ("arc-listener", 525, 320),
+        ("arc-controller", 975, 320),
+        ("arc-runner", 1425, 390),
+    ]:
         nodes[key] = layout.draw(named[key], x, 385, width)
-        layout.boxes[-1]['height'] = 230
-        nodes[key]['bounds'][3] = 230
-    for key, x, y, width in [('arc-management', 525, 655, 780),
-                            ('arc-ephemeral', 1425, 655, 390),
-                            ('arc-direct', 510, 815, 1300),
-                            ('arc-idle', 60, 970, 1800)]:
+        layout.boxes[-1]["height"] = 230
+        nodes[key]["bounds"][3] = 230
+    for key, x, y, width in [
+        ("arc-management", 525, 655, 780),
+        ("arc-ephemeral", 1425, 655, 390),
+        ("arc-direct", 510, 815, 1300),
+        ("arc-idle", 60, 970, 1800),
+    ]:
         layout.draw(named[key], x, y, width)
     routes = {
-        'arc-notify': [[407, 500], [513, 500]],
-        'arc-replicas': [[857, 500], [963, 500]],
-        'arc-create': [[1307, 500], [1413, 500]],
-        'arc-job': [[235, 373], [235, 335], [1620, 335], [1620, 373]],
-        'arc-result': [[1795, 627], [1795, 770], [235, 770], [235, 627]],
+        "arc-notify": [[407, 500], [513, 500]],
+        "arc-replicas": [[857, 500], [963, 500]],
+        "arc-create": [[1307, 500], [1413, 500]],
+        "arc-job": [[235, 373], [235, 335], [1620, 335], [1620, 373]],
+        "arc-result": [[1795, 627], [1795, 770], [235, 770], [235, 627]],
     }
     for key, points in routes.items():
         edge = named[key]
-        layout.connectors.append({'source': edge.key,
-            'from': [named[edge.attrs['data-from']].key],
-            'to': [named[edge.attrs['data-to']].key],
-            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points})
+        layout.connectors.append(
+            {
+                "source": edge.key,
+                "from": [named[edge.attrs["data-from"]].key],
+                "to": [named[edge.attrs["data-to"]].key],
+                "label": "",
+                "meaning": edge.attrs["aria-label"],
+                "points": points,
+            }
+        )
     return layout
 
 
 def authored_layout(font, figure, title, groups, nodes, texts, routes):
     """Explicit coordinates per id: groups/nodes (x, y, w, h), texts (x, y, w)."""
-    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
-    layout = Layout(font, 30, 24, 24, 28, {
-        'bold_width_budget': 1.12, 'regular_width_budget': 1.08,
-        'no_connector_labels': True,
-    })
+    named = {
+        e.attrs["id"]: e for e in [figure, *figure.descendants()] if e.attrs.get("id")
+    }
+    layout = Layout(
+        font,
+        30,
+        24,
+        24,
+        28,
+        {
+            "bold_width_budget": 1.12,
+            "regular_width_budget": 1.08,
+            "no_connector_labels": True,
+        },
+    )
     layout.draw(named[title], 60, 50, 1800)
     for key, (x, y, width, height) in groups.items():
-        layout.groups.append({'source': named[key].key, 'classes': [],
-                              'x': x, 'y': y, 'width': width, 'height': height})
+        layout.groups.append(
+            {
+                "source": named[key].key,
+                "classes": [],
+                "x": x,
+                "y": y,
+                "width": width,
+                "height": height,
+            }
+        )
     for key, (x, y, width, height) in nodes.items():
         layout.draw(named[key], x, y, width)
-        layout.boxes[-1]['height'] = height
+        layout.boxes[-1]["height"] = height
     for key, (x, y, width) in texts.items():
         layout.draw(named[key], x, y, width)
     for key, points in routes.items():
         edge = named[key]
-        layout.connectors.append({'source': edge.key,
-            'from': [named[edge.attrs['data-from']].key],
-            'to': [named[edge.attrs['data-to']].key],
-            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points})
+        layout.connectors.append(
+            {
+                "source": edge.key,
+                "from": [named[edge.attrs["data-from"]].key],
+                "to": [named[edge.attrs["data-to"]].key],
+                "label": "",
+                "meaning": edge.attrs["aria-label"],
+                "points": points,
+            }
+        )
     return layout
 
 
 def zot_mirror_layout(font, figure):
     """Three namespaces left to right, fail-open path below, failure costs last."""
-    lanes = {'zm-runner-ns': 40, 'zm-cache-ns': 700, 'zm-internet': 1360}
-    nodes = {'zm-dockerd': 70, 'zm-zot': 730, 'zm-hub': 1390}
+    lanes = {"zm-runner-ns": 40, "zm-cache-ns": 700, "zm-internet": 1360}
+    nodes = {"zm-dockerd": 70, "zm-zot": 730, "zm-hub": 1390}
     texts = {}
     for lane, x in lanes.items():
-        texts[lane + '-title'] = (x + 30, 165, 420)
-    for key, x in [('zm-runner-policy', 70), ('zm-cache-policy', 730), ('zm-internet-policy', 1390)]:
+        texts[lane + "-title"] = (x + 30, 165, 420)
+    for key, x in [
+        ("zm-runner-policy", 70),
+        ("zm-cache-policy", 730),
+        ("zm-internet-policy", 1390),
+    ]:
         texts[key] = (x, 220, 420)
-    texts.update({
-        'zm-pull-note': (545, 327, 150), 'zm-sync-note': (1205, 327, 150),
-        'zm-fallback-note': (560, 630, 1000), 'zm-failure-title': (60, 720, 1800),
-        'zm-warm': (60, 965, 1800),
-    })
-    return authored_layout(font, figure, 'sd-zot-mirror-title',
+    texts.update(
+        {
+            "zm-pull-note": (545, 327, 150),
+            "zm-sync-note": (1205, 327, 150),
+            "zm-fallback-note": (560, 630, 1000),
+            "zm-failure-title": (60, 720, 1800),
+            "zm-warm": (60, 965, 1800),
+        }
+    )
+    return authored_layout(
+        font,
+        figure,
+        "sd-zot-mirror-title",
         {key: (x, 140, 480, 380) for key, x in lanes.items()},
-        {**{key: (x, 295, 420, 175) for key, x in nodes.items()},
-         'zm-refused': (60, 770, 573, 145), 'zm-dns': (673, 770, 573, 145),
-         'zm-drop': (1286, 770, 573, 145)},
+        {
+            **{key: (x, 295, 420, 175) for key, x in nodes.items()},
+            "zm-refused": (60, 770, 573, 145),
+            "zm-dns": (673, 770, 573, 145),
+            "zm-drop": (1286, 770, 573, 145),
+        },
         texts,
-        {'zm-pull': [[502, 382], [718, 382]], 'zm-sync': [[1162, 382], [1378, 382]],
-         'zm-fallback': [[280, 482], [280, 610], [1600, 610], [1600, 482]]})
+        {
+            "zm-pull": [[502, 382], [718, 382]],
+            "zm-sync": [[1162, 382], [1378, 382]],
+            "zm-fallback": [[280, 482], [280, 610], [1600, 610], [1600, 482]],
+        },
+    )
 
 
 def zot_digest_layout(font, figure):
     """GitHub steps stacked on the left; the zot objects they touch on the right."""
-    left = {'zd-main': 225, 'zd-cache': 475, 'zd-pr': 725}
-    right = {'zd-tag': 225, 'zd-squat': 475, 'zd-digest': 725}
-    return authored_layout(font, figure, 'sd-zot-digest-title',
-        {'zd-github': (40, 140, 680, 790), 'zd-zot': (1200, 140, 680, 790)},
-        {**{key: (75, y, 610, 170) for key, y in left.items()},
-         **{key: (1235, y, 610, 170) for key, y in right.items()}},
-        {'zd-github-title': (75, 165, 610), 'zd-zot-title': (1235, 165, 610),
-         'zd-push-note': (760, 255, 440), 'zd-save-note': (400, 417, 280),
-         'zd-restore-note': (400, 667, 280), 'zd-pull-note': (760, 755, 440),
-         'zd-fallback': (60, 955, 1800), 'zd-result': (60, 1000, 1800)},
-        {'zd-push': [[697, 310], [1223, 310]], 'zd-save': [[380, 407], [380, 463]],
-         'zd-restore': [[380, 657], [380, 713]], 'zd-pull': [[697, 810], [1223, 810]]})
+    left = {"zd-main": 225, "zd-cache": 475, "zd-pr": 725}
+    right = {"zd-tag": 225, "zd-squat": 475, "zd-digest": 725}
+    return authored_layout(
+        font,
+        figure,
+        "sd-zot-digest-title",
+        {"zd-github": (40, 140, 680, 790), "zd-zot": (1200, 140, 680, 790)},
+        {
+            **{key: (75, y, 610, 170) for key, y in left.items()},
+            **{key: (1235, y, 610, 170) for key, y in right.items()},
+        },
+        {
+            "zd-github-title": (75, 165, 610),
+            "zd-zot-title": (1235, 165, 610),
+            "zd-push-note": (760, 255, 440),
+            "zd-save-note": (400, 417, 280),
+            "zd-restore-note": (400, 667, 280),
+            "zd-pull-note": (760, 755, 440),
+            "zd-fallback": (60, 955, 1800),
+            "zd-result": (60, 1000, 1800),
+        },
+        {
+            "zd-push": [[697, 310], [1223, 310]],
+            "zd-save": [[380, 407], [380, 463]],
+            "zd-restore": [[380, 657], [380, 713]],
+            "zd-pull": [[697, 810], [1223, 810]],
+        },
+    )
 
 
 def arc_slots_layout(font, figure):
     """Two equal workers above; the quota rejection loop below."""
-    return authored_layout(font, figure, 'sd-arc-slots-title',
-        {'as-w1': (40, 150, 900, 340), 'as-w2': (980, 150, 900, 340)},
-        {'as-w1-web': (75, 240, 400, 205), 'as-w1-rust': (505, 240, 400, 205),
-         'as-w2-web': (1015, 240, 400, 205), 'as-w2-rust': (1445, 240, 400, 205),
-         'as-controller': (60, 630, 480, 175), 'as-quota': (660, 630, 600, 175),
-         'as-reject': (1380, 630, 480, 175)},
-        {'as-w1-title': (75, 175, 830), 'as-w2-title': (1015, 175, 830),
-         'as-spread': (60, 535, 1800), 'as-retry-note': (330, 920, 1500)},
-        {'as-create': [[552, 718], [648, 718]], 'as-deny': [[1272, 718], [1368, 718]],
-         'as-retry': [[1620, 817], [1620, 900], [300, 900], [300, 817]]})
+    return authored_layout(
+        font,
+        figure,
+        "sd-arc-slots-title",
+        {"as-w1": (40, 150, 900, 340), "as-w2": (980, 150, 900, 340)},
+        {
+            "as-w1-web": (75, 240, 400, 205),
+            "as-w1-rust": (505, 240, 400, 205),
+            "as-w2-web": (1015, 240, 400, 205),
+            "as-w2-rust": (1445, 240, 400, 205),
+            "as-controller": (60, 630, 480, 175),
+            "as-quota": (660, 630, 600, 175),
+            "as-reject": (1380, 630, 480, 175),
+        },
+        {
+            "as-w1-title": (75, 175, 830),
+            "as-w2-title": (1015, 175, 830),
+            "as-spread": (60, 535, 1800),
+            "as-retry-note": (330, 920, 1500),
+        },
+        {
+            "as-create": [[552, 718], [648, 718]],
+            "as-deny": [[1272, 718], [1368, 718]],
+            "as-retry": [[1620, 817], [1620, 900], [300, 900], [300, 817]],
+        },
+    )
 
 
 def arc_gate_layout(font, figure):
     """Three equal comparison lanes; arrows mark the change between stages."""
-    lanes = {'ag-before': 40, 'ag-once': 660, 'ag-fixture': 1280}
-    rows = {'ag-before': ('ag-before-compile', 'ag-before-oracle'),
-            'ag-once': ('ag-once-archive', 'ag-once-serial'),
-            'ag-fixture': ('ag-fixture-archive', 'ag-fixture-compare')}
-    nodes, texts = {}, {'ag-next': (60, 890, 1800)}
+    lanes = {"ag-before": 40, "ag-once": 660, "ag-fixture": 1280}
+    rows = {
+        "ag-before": ("ag-before-compile", "ag-before-oracle"),
+        "ag-once": ("ag-once-archive", "ag-once-serial"),
+        "ag-fixture": ("ag-fixture-archive", "ag-fixture-compare"),
+    }
+    nodes, texts = {}, {"ag-next": (60, 890, 1800)}
     for lane, x in lanes.items():
         nodes[rows[lane][0]] = (x + 35, 245, 490, 175)
         nodes[rows[lane][1]] = (x + 35, 470, 490, 205)
-        texts[lane + '-title'] = (x + 35, 175, 490)
-        texts[lane + '-slot'] = (x + 35, 725, 490)
-        texts[lane + '-path'] = (x + 35, 780, 490)
-    return authored_layout(font, figure, 'sd-arc-gate-title',
-        {key: (x, 150, 560, 690) for key, x in lanes.items()}, nodes, texts,
-        {'ag-merge': [[577, 332], [683, 332]], 'ag-record': [[1197, 572], [1303, 572]]})
+        texts[lane + "-title"] = (x + 35, 175, 490)
+        texts[lane + "-slot"] = (x + 35, 725, 490)
+        texts[lane + "-path"] = (x + 35, 780, 490)
+    return authored_layout(
+        font,
+        figure,
+        "sd-arc-gate-title",
+        {key: (x, 150, 560, 690) for key, x in lanes.items()},
+        nodes,
+        texts,
+        {"ag-merge": [[577, 332], [683, 332]], "ag-record": [[1197, 572], [1303, 572]]},
+    )
 
 
 def databricks_query_layout(font, figure):
     """Numbered steps in the Databricks account; storage in the customer account."""
-    return authored_layout(font, figure, 'sd-dbx-query-title',
-        {'dq-databricks': (40, 140, 1260, 730), 'dq-aws': (1360, 140, 520, 730)},
-        {'dq-control': (75, 300, 350, 175), 'dq-warehouse': (495, 300, 350, 175),
-         'dq-uc': (915, 300, 350, 175), 'dq-credential': (1395, 300, 450, 175),
-         'dq-system': (75, 640, 350, 175), 'dq-s3': (1395, 640, 450, 175)},
-        {'dq-databricks-title': (75, 165, 1190), 'dq-aws-title': (1395, 165, 450),
-         'dq-databricks-note': (75, 220, 1190), 'dq-aws-note': (1395, 220, 450),
-         'dq-read-note': (930, 680, 400), 'dq-classic': (60, 920, 1800)},
-        {'dq-run': [[437, 388], [483, 388]], 'dq-check': [[857, 388], [903, 388]],
-         'dq-assume': [[1277, 388], [1383, 388]],
-         'dq-access': [[1620, 487], [1620, 628]],
-         'dq-read': [[720, 487], [720, 728], [1383, 728]],
-         'dq-record': [[560, 487], [560, 728], [437, 728]]})
+    return authored_layout(
+        font,
+        figure,
+        "sd-dbx-query-title",
+        {"dq-databricks": (40, 140, 1260, 730), "dq-aws": (1360, 140, 520, 730)},
+        {
+            "dq-control": (75, 300, 350, 175),
+            "dq-warehouse": (495, 300, 350, 175),
+            "dq-uc": (915, 300, 350, 175),
+            "dq-credential": (1395, 300, 450, 175),
+            "dq-system": (75, 640, 350, 175),
+            "dq-s3": (1395, 640, 450, 175),
+        },
+        {
+            "dq-databricks-title": (75, 165, 1190),
+            "dq-aws-title": (1395, 165, 450),
+            "dq-databricks-note": (75, 220, 1190),
+            "dq-aws-note": (1395, 220, 450),
+            "dq-read-note": (930, 680, 400),
+            "dq-classic": (60, 920, 1800),
+        },
+        {
+            "dq-run": [[437, 388], [483, 388]],
+            "dq-check": [[857, 388], [903, 388]],
+            "dq-assume": [[1277, 388], [1383, 388]],
+            "dq-access": [[1620, 487], [1620, 628]],
+            "dq-read": [[720, 487], [720, 728], [1383, 728]],
+            "dq-record": [[560, 487], [560, 728], [437, 728]],
+        },
+    )
 
 
 def databricks_grant_layout(font, figure):
     """Workspaces above one metastore; binding ties catalog main to prod only."""
-    return authored_layout(font, figure, 'sd-dbx-grant-title',
-        {'dg-metastore': (40, 430, 1840, 405)},
-        {'dg-dev': (80, 150, 560, 175), 'dg-prod': (1280, 150, 560, 175),
-         'dg-catalog': (75, 600, 520, 175), 'dg-schema': (700, 600, 520, 175),
-         'dg-table': (1325, 600, 520, 175)},
-        {'dg-metastore-title': (75, 455, 700), 'dg-metastore-note': (75, 510, 700),
-         'dg-binding-note': (700, 340, 500), 'dg-default': (60, 885, 1800)},
-        {'dg-dev-link': [[360, 337], [360, 418]], 'dg-prod-link': [[1680, 337], [1680, 418]],
-         'dg-binding': [[560, 588], [560, 380], [1460, 380], [1460, 337]],
-         'dg-contains-schema': [[607, 688], [688, 688]],
-         'dg-contains-table': [[1232, 688], [1313, 688]]})
+    return authored_layout(
+        font,
+        figure,
+        "sd-dbx-grant-title",
+        {"dg-metastore": (40, 430, 1840, 405)},
+        {
+            "dg-dev": (80, 150, 560, 175),
+            "dg-prod": (1280, 150, 560, 175),
+            "dg-catalog": (75, 600, 520, 175),
+            "dg-schema": (700, 600, 520, 175),
+            "dg-table": (1325, 600, 520, 175),
+        },
+        {
+            "dg-metastore-title": (75, 455, 700),
+            "dg-metastore-note": (75, 510, 700),
+            "dg-binding-note": (700, 340, 500),
+            "dg-default": (60, 885, 1800),
+        },
+        {
+            "dg-dev-link": [[360, 337], [360, 418]],
+            "dg-prod-link": [[1680, 337], [1680, 418]],
+            "dg-binding": [[560, 588], [560, 380], [1460, 380], [1460, 337]],
+            "dg-contains-schema": [[607, 688], [688, 688]],
+            "dg-contains-table": [[1232, 688], [1313, 688]],
+        },
+    )
 
 
 def lora_update_layout(font, figure):
     """Shared input and symmetric frozen/trainable rails, at authored coordinates."""
-    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
-    layout = Layout(font, 88, 40, 24, 24, {
-        'bold_width_budget': 1.30, 'regular_width_budget': 1.08,
-        'no_connector_labels': True,
-    })
+    named = {
+        e.attrs["id"]: e for e in [figure, *figure.descendants()] if e.attrs.get("id")
+    }
+    layout = Layout(
+        font,
+        88,
+        40,
+        24,
+        24,
+        {
+            "bold_width_budget": 1.30,
+            "regular_width_budget": 1.08,
+            "no_connector_labels": True,
+        },
+    )
     for key, x, y, width, size, bold in [
-        ('sd-lora-update-path-title', 64, 48, 1792, 72, True),
-        ('lora-equation', 64, 158, 1792, 48, False),
-        ('lora-rank', 750, 706, 132, 40, False),
-        ('lora-scale', 872, 924, 600, 44, False),
-        ('lora-parameters', 64, 928, 790, 40, True),
-        ('lora-scope', 64, 988, 1792, 36, False),
+        ("sd-lora-update-path-title", 64, 48, 1792, 72, True),
+        ("lora-equation", 64, 158, 1792, 48, False),
+        ("lora-rank", 750, 706, 132, 40, False),
+        ("lora-scale", 872, 924, 600, 44, False),
+        ("lora-parameters", 64, 928, 790, 40, True),
+        ("lora-scope", 64, 988, 1792, 36, False),
     ]:
         layout.add_text([named[key].text()], x, y, size, width, named[key].key, bold)
     # The two branches share x=400..1200, with centers 390/780 around 585.
     nodes = {
-        'lora-input': (64, 465, 184, 240),
-        'lora-base': (472, 258, 656, 264),
-        'lora-a': (400, 648, 328, 264),
-        'lora-b': (872, 648, 328, 264),
-        'lora-add': (1368, 465, 184, 240),
-        'lora-output': (1672, 465, 184, 240),
+        "lora-input": (64, 465, 184, 240),
+        "lora-base": (472, 258, 656, 264),
+        "lora-a": (400, 648, 328, 264),
+        "lora-b": (872, 648, 328, 264),
+        "lora-add": (1368, 465, 184, 240),
+        "lora-output": (1672, 465, 184, 240),
     }
     for key, (x, y, width, height) in nodes.items():
         element = named[key]
-        box = {'source': element.key, 'label': element.text(),
-               'classes': sorted(element.classes),
-               'x': x, 'y': y, 'width': width, 'height': height}
-        if key == 'lora-base':
-            box.update(fill='#f1f5f9', border='#64748b')
-        elif key == 'lora-output':
-            box.update(fill='#eff6ff', border='#5176a8')
+        box = {
+            "source": element.key,
+            "label": element.text(),
+            "classes": sorted(element.classes),
+            "x": x,
+            "y": y,
+            "width": width,
+            "height": height,
+        }
+        if key == "lora-base":
+            box.update(fill="#f1f5f9", border="#64748b")
+        elif key == "lora-output":
+            box.update(fill="#eff6ff", border="#5176a8")
         layout.boxes.append(box)
-        label = next(c for c in element.children if 'sd-label' in c.classes)
-        detail = next(c for c in element.children if 'sd-detail' in c.classes)
-        if key == 'lora-base':
+        label = next(c for c in element.children if "sd-label" in c.classes)
+        detail = next(c for c in element.children if "sd-detail" in c.classes)
+        if key == "lora-base":
             layout.add_text([label.text()], x + 32, 282, 88, 330, element.key, True)
-            lines = detail.text().split('\n')
+            lines = detail.text().split("\n")
             layout.add_text([lines[0]], x + 32, 394, 44, 330, element.key)
             layout.add_text([lines[1]], x + 32, 450, 40, 330, element.key)
             layout.add_text([lines[2]], 888, 326, 88, 280, element.key, True)
-        elif key in ('lora-a', 'lora-b'):
-            layout.add_text([label.text()], x + 32, 673, 88, width - 64, element.key, True)
-            lines = detail.text().split('\n')
+        elif key in ("lora-a", "lora-b"):
+            layout.add_text(
+                [label.text()], x + 32, 673, 88, width - 64, element.key, True
+            )
+            lines = detail.text().split("\n")
             layout.add_text([lines[0]], x + 32, 783, 44, width - 64, element.key)
-            if key == 'lora-b':
+            if key == "lora-b":
                 layout.add_text([lines[1]], x + 112, 721, 40, width - 144, element.key)
                 layout.add_text([lines[2]], x + 32, 844, 40, width - 64, element.key)
             else:
                 layout.add_text([lines[1]], x + 32, 844, 40, width - 64, element.key)
         else:
-            layout.add_text([label.text()], x + 24, 495, 88, width - 48, element.key, True)
+            layout.add_text(
+                [label.text()], x + 24, 495, 88, width - 48, element.key, True
+            )
             layout.add_text([detail.text()], x + 24, 607, 40, width - 48, element.key)
     routes = {
-        'lora-input-base': [[260, 585], [324, 585], [324, 390], [460, 390]],
-        'lora-input-a': [[260, 585], [324, 585], [324, 780], [388, 780]],
-        'lora-a-b': [[740, 780], [860, 780]],
-        'lora-base-add': [[1140, 390], [1284, 390], [1284, 545], [1356, 545]],
-        'lora-b-add': [[1212, 780], [1284, 780], [1284, 625], [1356, 625]],
-        'lora-add-output': [[1564, 585], [1660, 585]],
+        "lora-input-base": [[260, 585], [324, 585], [324, 390], [460, 390]],
+        "lora-input-a": [[260, 585], [324, 585], [324, 780], [388, 780]],
+        "lora-a-b": [[740, 780], [860, 780]],
+        "lora-base-add": [[1140, 390], [1284, 390], [1284, 545], [1356, 545]],
+        "lora-b-add": [[1212, 780], [1284, 780], [1284, 625], [1356, 625]],
+        "lora-add-output": [[1564, 585], [1660, 585]],
     }
     for key, points in routes.items():
         edge = named[key]
-        layout.connectors.append({
-            'source': edge.key,
-            'from': [named[edge.attrs['data-from']].key],
-            'to': [named[edge.attrs['data-to']].key],
-            'label': '', 'meaning': edge.attrs['aria-label'], 'points': points,
-        })
+        layout.connectors.append(
+            {
+                "source": edge.key,
+                "from": [named[edge.attrs["data-from"]].key],
+                "to": [named[edge.attrs["data-to"]].key],
+                "label": "",
+                "meaning": edge.attrs["aria-label"],
+                "points": points,
+            }
+        )
     return layout
 
 
 def lora_parameter_budget_layout(font, figure):
     """Exact length comparison, using existing source-backed semantic bands."""
-    named = {e.attrs['id']: e for e in [figure, *figure.descendants()] if e.attrs.get('id')}
-    layout = Layout(font, 72, 44, profile={
-        'bold_width_budget': 1.30, 'regular_width_budget': 1.08,
-        'no_connector_labels': True,
-    })
+    named = {
+        e.attrs["id"]: e for e in [figure, *figure.descendants()] if e.attrs.get("id")
+    }
+    layout = Layout(
+        font,
+        72,
+        44,
+        profile={
+            "bold_width_budget": 1.30,
+            "regular_width_budget": 1.08,
+            "no_connector_labels": True,
+        },
+    )
     for key, x, y, size, bold in [
-        ('sd-lora-parameter-budget-title', 96, 48, 72, True),
-        ('budget-example', 96, 162, 44, False),
-        ('budget-full-name', 96, 244, 56, True),
-        ('budget-full-count', 1370, 228, 72, True),
-        ('budget-lora-name', 96, 456, 56, True),
-        ('budget-lora-count', 312, 440, 72, True),
-        ('budget-zero', 96, 636, 40, False),
-        ('budget-axis', 160, 636, 40, False),
-        ('budget-ratio', 960, 600, 76, True),
-        ('budget-plus', 526, 818, 64, False),
-        ('budget-equals', 1130, 818, 64, False),
-        ('budget-scope', 96, 984, 36, False),
+        ("sd-lora-parameter-budget-title", 96, 48, 72, True),
+        ("budget-example", 96, 162, 44, False),
+        ("budget-full-name", 96, 244, 56, True),
+        ("budget-full-count", 1370, 228, 72, True),
+        ("budget-lora-name", 96, 456, 56, True),
+        ("budget-lora-count", 312, 440, 72, True),
+        ("budget-zero", 96, 636, 40, False),
+        ("budget-axis", 160, 636, 40, False),
+        ("budget-ratio", 960, 600, 76, True),
+        ("budget-plus", 526, 818, 64, False),
+        ("budget-equals", 1130, 818, 64, False),
+        ("budget-scope", 96, 984, 36, False),
     ]:
         layout.add_text([named[key].text()], x, y, size, 1824 - x, named[key].key, bold)
-    for key, x in [('budget-a', 96), ('budget-b', 686), ('budget-sum', 1340)]:
-        lines = named[key].text().split('\n')
+    for key, x in [("budget-a", 96), ("budget-b", 686), ("budget-sum", 1340)]:
+        lines = named[key].text().split("\n")
         layout.add_text([lines[0]], x, 748, 44, 450, named[key].key)
         layout.add_text([lines[1]], x, 826, 56, 450, named[key].key, True)
         for text in layout.texts[-2:]:
-            text['fill'] = '#0f766e'
+            text["fill"] = "#0f766e"
     # Equal bar height and a shared zero. No min-width, magnification, or log axis.
-    full = int(named['budget-full-bar'].attrs['data-value'])
-    for key, y, fill in [('budget-full-bar', 340, '#64748b'),
-                         ('budget-lora-bar', 552, '#0f766e')]:
+    full = int(named["budget-full-bar"].attrs["data-value"])
+    for key, y, fill in [
+        ("budget-full-bar", 340, "#64748b"),
+        ("budget-lora-bar", 552, "#0f766e"),
+    ]:
         element = named[key]
-        value = int(element.attrs['data-value'])
-        layout.groups.append({
-            'source': element.key, 'label': '', 'classes': sorted(element.classes),
-            'x': 96, 'y': y, 'width': 1728 * value / full, 'height': 64,
-            'fill': fill, 'border': fill, 'border_width': 0, 'radius': 0,
-            'data_value': str(value), 'data_encoding': 'bar-length',
-        })
+        value = int(element.attrs["data-value"])
+        layout.groups.append(
+            {
+                "source": element.key,
+                "label": "",
+                "classes": sorted(element.classes),
+                "x": 96,
+                "y": y,
+                "width": 1728 * value / full,
+                "height": 64,
+                "fill": fill,
+                "border": fill,
+                "border_width": 0,
+                "radius": 0,
+                "data_value": str(value),
+                "data_encoding": "bar-length",
+            }
+        )
     return layout
 
+
+def cve_99634_mptcp_tfo_layout(font, figure):
+    """Before/after horizontal lanes for MPTCP MP_JOIN + TFO UAF and fix."""
+    return authored_layout(
+        font,
+        figure,
+        "sd-cve-99634-title",
+        {"c34-vuln-lane": (40, 135, 1840, 395), "c34-fix-lane": (40, 565, 1840, 395)},
+        {
+            "c34-v-syn": (75, 235, 405, 255),
+            "c34-v-recv": (530, 235, 405, 255),
+            "c34-v-tfo": (985, 235, 405, 255),
+            "c34-v-uaf": (1440, 235, 405, 255),
+            "c34-f-syn": (75, 665, 405, 255),
+            "c34-f-guard": (530, 665, 405, 255),
+            "c34-f-fallback": (985, 665, 405, 255),
+            "c34-f-hmac": (1440, 665, 405, 255),
+        },
+        {
+            "c34-vuln-title": (75, 160, 1770),
+            "c34-fix-title": (75, 590, 1770),
+            "c34-note": (60, 990, 1800),
+        },
+        {
+            "c34-v-e1": [[492, 362], [518, 362]],
+            "c34-v-e2": [[947, 362], [973, 362]],
+            "c34-v-e3": [[1402, 362], [1428, 362]],
+            "c34-f-e1": [[492, 792], [518, 792]],
+            "c34-f-e2": [[947, 792], [973, 792]],
+            "c34-f-e3": [[1402, 792], [1428, 792]],
+        },
+    )
+
+
+def cve_99676_refcount_ordering_layout(font, figure):
+    """Before/after horizontal lanes for SLAB_TYPESAFE_BY_RCU refcount ordering."""
+    return authored_layout(
+        font,
+        figure,
+        "sd-cve-99676-title",
+        {"c76-vuln-lane": (40, 135, 1840, 395), "c76-fix-lane": (40, 565, 1840, 395)},
+        {
+            "c76-v-reuse": (75, 235, 540, 255),
+            "c76-v-reorder": (690, 235, 540, 255),
+            "c76-v-impact": (1305, 235, 540, 255),
+            "c76-f-release": (75, 665, 540, 255),
+            "c76-f-acquire": (690, 665, 540, 255),
+            "c76-f-safe": (1305, 665, 540, 255),
+        },
+        {
+            "c76-vuln-title": (75, 160, 1770),
+            "c76-fix-title": (75, 590, 1770),
+            "c76-note": (60, 990, 1800),
+        },
+        {
+            "c76-v-e1": [[627, 362], [678, 362]],
+            "c76-v-e2": [[1242, 362], [1293, 362]],
+            "c76-f-e1": [[627, 792], [678, 792]],
+            "c76-f-e2": [[1242, 792], [1293, 792]],
+        },
+    )
+
+
 AUTHORED_LAYOUTS = {
+    "diagrams/static/linux/cve-2026-99634-mptcp-tfo-uaf.html": cve_99634_mptcp_tfo_layout,
+    "diagrams/static/linux/cve-2026-99676-refcount-ordering.html": cve_99676_refcount_ordering_layout,
     "diagrams/static/ai/lora/lora-update-path.html": lora_update_layout,
     "diagrams/static/ai/lora/lora-parameter-budget.html": lora_parameter_budget_layout,
     "diagrams/static/registry/zot-mirror-path.html": zot_mirror_layout,
@@ -3393,22 +3836,31 @@ def author(root, check=False, report=None):
                     **typography.get(record["include"], {}),
                     "column_weights": (
                         {"root.0.1": [544, 656, 544]}
-                        if record["include"] == "diagrams/static/ai/rag-02-chunking-strategies.html"
-                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("column_weights", {})
+                        if record["include"]
+                        == "diagrams/static/ai/rag-02-chunking-strategies.html"
+                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get(
+                            "column_weights", {}
+                        )
                     ),
                     "edge_label_insets": (
                         {"root.0.1.1.1": 12}
                         if record["include"] == "diagrams/packer-golden-image.html"
-                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("edge_label_insets", {})
+                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get(
+                            "edge_label_insets", {}
+                        )
                     ),
                     "equal_boundary_sets": (
                         [["root.0.1.0", "root.0.1.2"]]
-                        if record["include"] in {
+                        if record["include"]
+                        in {
                             "diagrams/static/ci-cd/ci-cd-study/ci-cd-workflow.html",
                             "diagrams/static/ci-cd/jenkins/jenkins-pipeline-layers.html",
                             "diagrams/static/sap-c02/sts-assume-role-cross-account.html",
                             "diagrams/static/spring/spring-24-authn-authz.html",
-                        } else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get("equal_boundary_sets", [])
+                        }
+                        else FIXED_LAYOUT_PROFILES.get(record["include"], {}).get(
+                            "equal_boundary_sets", []
+                        )
                     ),
                 },
             )
@@ -3417,7 +3869,9 @@ def author(root, check=False, report=None):
                 if isinstance(value, dict):
                     layout.profile[key] = {**layout.profile.get(key, {}), **value}
                 else:
-                    layout.profile[key] = list(dict.fromkeys([*layout.profile.get(key, []), *value]))
+                    layout.profile[key] = list(
+                        dict.fromkeys([*layout.profile.get(key, []), *value])
+                    )
             for key, value in scoped_profile(record["include"]).items():
                 layout.profile[key] = {**layout.profile.get(key, {}), **value}
             clearance = corpus_clearance_profile(record["include"])
@@ -3425,8 +3879,10 @@ def author(root, check=False, report=None):
                 current_insets = layout.profile.get("group_insets", {})
                 layout.profile["group_insets"] = {
                     **current_insets,
-                    **{key: max(value, current_insets.get(key, 0))
-                       for key, value in clearance["group_insets"].items()},
+                    **{
+                        key: max(value, current_insets.get(key, 0))
+                        for key, value in clearance["group_insets"].items()
+                    },
                 }
             try:
                 measured = layout.measure(figure, WIDTH - 128)
@@ -3568,8 +4024,14 @@ def author(root, check=False, report=None):
         results.append(result)
     payload = {
         "canvas": [WIDTH, HEIGHT],
-        "display": "fixed-fhd-scroll" if results and all(r.get("display") == "fixed-fhd-scroll" for r in results) else "responsive-proportional",
-        "display_overrides": {r["include"]: r["display"] for r in results if r.get("display") == "fixed-fhd-scroll"},
+        "display": "fixed-fhd-scroll"
+        if results and all(r.get("display") == "fixed-fhd-scroll" for r in results)
+        else "responsive-proportional",
+        "display_overrides": {
+            r["include"]: r["display"]
+            for r in results
+            if r.get("display") == "fixed-fhd-scroll"
+        },
         "font_sha256": sha(font.raw),
         "counts": {
             status: sum(r["status"] == status for r in results)

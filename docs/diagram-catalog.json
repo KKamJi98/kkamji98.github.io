@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-23",
   "format": "static-html",
   "summary": {
-    "components": 406,
-    "used_components": 397,
-    "post_references": 406,
-    "posts": 209,
+    "components": 408,
+    "used_components": 399,
+    "post_references": 408,
+    "posts": 210,
     "unconverted_diagram_images": 0
   },
   "diagrams": [
@@ -5447,6 +5447,30 @@
       "sha256": "f530e0eb08d134fcd019e984647c6029752c3951ed4193bf2694e25964c596a0",
       "posts": [
         "_posts/2026/11/2026-11-03-lora-overview.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/linux/cve-2026-99634-mptcp-tfo-uaf.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/linux/cve-2026-99634-mptcp-tfo-uaf.svg"
+      ],
+      "sha256": "c5c5733454c41ebfd0ab23d38cd871c0e6340a75999254404b47360816b8b21f",
+      "posts": [
+        "_posts/2026/11/2026-11-23-linux-kernel-tcp-cve-2026-99634-99676.md"
+      ],
+      "reference_count": 1
+    },
+    {
+      "include": "diagrams/static/linux/cve-2026-99676-refcount-ordering.html",
+      "source_kind": "authored-html",
+      "original_sources": [
+        "assets/img/diagrams/fhd-svg/static/linux/cve-2026-99676-refcount-ordering.svg"
+      ],
+      "sha256": "a8daadfded232519971f73c62d4e6b07830747ad67967ae6413914e982ce801d",
+      "posts": [
+        "_posts/2026/11/2026-11-23-linux-kernel-tcp-cve-2026-99634-99676.md"
       ],
       "reference_count": 1
     }
