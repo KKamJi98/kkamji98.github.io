@@ -1,6 +1,6 @@
 ---
 title: Static diagram authoring and verification
-updated: 2026-11-23
+updated: 2026-11-24
 type: rule
 status: current
 ---
@@ -146,3 +146,10 @@ WebP release는 named delta의 새 PNG만 active output으로 연결하고 다�
 - Both diagrams use symmetric before/after horizontal lanes in `fhd_svg.py` (`AUTHORED_LAYOUTS`) with light backgrounds, orthogonal H/V connectors and verified kernel function/flag names (`subflow_syn_recv_sock`, `tcp_fastopen_create_child`, `drop_req`, `refcount_set_release`, `refcount_inc_not_zero_acquire`).
 - The separate cover source is `assets/img/linux/linux-tcp-cve-2026-99634-99676-cover.svg`; it is not a body-diagram occurrence. All three native rasters use the pinned Noto Sans KR font at 1920 x 1080, with lossless WebP delivery.
 - The two body artworks have separate fresh native receipts and actual original-PNG visual/semantic reviews under `docs/diagram-native-additions/20261123/`. Publication requires a current delivery seal and normal hooks.
+
+## Riemann Hypothesis Lean 4 verification sources
+
+- Canonical includes: `_includes/diagrams/static/ai/formal-verification/lean-rh-tcb-verification.html` and `_includes/diagrams/static/ai/formal-verification/closed-loop-vs-devsecops-boundary.html`. Their editable SVGs use the matching names under `assets/img/diagrams/fhd-svg/static/ai/formal-verification/`.
+- The TCB diagram pairs a top sequential isolation pipeline (untrusted 17M-line proof -> sandboxed 61.6 GB inert export -> Challenge.lean / Comparator / axiom audit -> Robin1984 arithmetic cross-check) with a bottom parallel 4-kernel bank (`con-leche`, `con-ron`, `nanoda / lean4lean`, Lean C++ default/paranoid) without fabricated arrows between parallel checkers. The second diagram contrasts closed formal 0/1 oracle loops against open DevSecOps infrastructure boundaries and explicit human approval lines.
+- The separate cover source is `assets/img/ai/formal-verification/riemann-lean-verification-cover.svg`; it is not a body-diagram occurrence. All three native rasters use the pinned Noto Sans KR font at 1920 x 1080, with lossless WebP delivery.
+- The two body artworks have separate fresh native receipts and actual original-PNG visual/semantic reviews under `docs/diagram-native-additions/20261124/`. Publication requires a current delivery seal and normal hooks.

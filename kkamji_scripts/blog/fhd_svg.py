@@ -3785,7 +3785,72 @@ def cve_99676_refcount_ordering_layout(font, figure):
     )
 
 
+def lean_rh_tcb_verification_layout(font, figure):
+    """Top sequential isolation pipeline and bottom parallel multi-kernel TCB checks."""
+    return authored_layout(
+        font,
+        figure,
+        "sd-lean-rh-tcb-title",
+        {"rh-pipe-lane": (40, 135, 1840, 395), "rh-kernel-lane": (40, 565, 1840, 395)},
+        {
+            "rh-p-source": (75, 235, 405, 255),
+            "rh-p-sandbox": (530, 235, 405, 255),
+            "rh-p-compare": (985, 235, 405, 255),
+            "rh-p-arith": (1440, 235, 405, 255),
+            "rh-k-leche": (75, 665, 405, 255),
+            "rh-k-ron": (530, 665, 405, 255),
+            "rh-k-nanoda": (985, 665, 405, 255),
+            "rh-k-cpp": (1440, 665, 405, 255),
+        },
+        {
+            "rh-pipe-title": (75, 160, 1770),
+            "rh-kernel-title": (75, 590, 1770),
+            "rh-note": (60, 990, 1800),
+        },
+        {
+            "rh-p-e1": [[492, 362], [518, 362]],
+            "rh-p-e2": [[947, 362], [973, 362]],
+            "rh-p-e3": [[1402, 362], [1428, 362]],
+        },
+    )
+
+
+def closed_loop_vs_devsecops_layout(font, figure):
+    """Symmetric horizontal lanes comparing closed formal verification vs open DevSecOps."""
+    return authored_layout(
+        font,
+        figure,
+        "sd-closed-loop-devsecops-title",
+        {"cl-formal-lane": (40, 135, 1840, 395), "cl-ops-lane": (40, 565, 1840, 395)},
+        {
+            "cl-f-spec": (75, 235, 405, 255),
+            "cl-f-gen": (530, 235, 405, 255),
+            "cl-f-kernel": (985, 235, 405, 255),
+            "cl-f-cert": (1440, 235, 405, 255),
+            "cl-o-world": (75, 665, 405, 255),
+            "cl-o-gen": (530, 665, 405, 255),
+            "cl-o-gate": (985, 665, 405, 255),
+            "cl-o-agency": (1440, 665, 405, 255),
+        },
+        {
+            "cl-formal-title": (75, 160, 1770),
+            "cl-ops-title": (75, 590, 1770),
+            "cl-note": (60, 990, 1800),
+        },
+        {
+            "cl-f-e1": [[492, 362], [518, 362]],
+            "cl-f-e2": [[947, 362], [973, 362]],
+            "cl-f-e3": [[1402, 362], [1428, 362]],
+            "cl-o-e1": [[492, 792], [518, 792]],
+            "cl-o-e2": [[947, 792], [973, 792]],
+            "cl-o-e3": [[1402, 792], [1428, 792]],
+        },
+    )
+
+
 AUTHORED_LAYOUTS = {
+    "diagrams/static/ai/formal-verification/lean-rh-tcb-verification.html": lean_rh_tcb_verification_layout,
+    "diagrams/static/ai/formal-verification/closed-loop-vs-devsecops-boundary.html": closed_loop_vs_devsecops_layout,
     "diagrams/static/linux/cve-2026-99634-mptcp-tfo-uaf.html": cve_99634_mptcp_tfo_layout,
     "diagrams/static/linux/cve-2026-99676-refcount-ordering.html": cve_99676_refcount_ordering_layout,
     "diagrams/static/ai/lora/lora-update-path.html": lora_update_layout,

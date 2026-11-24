@@ -99,3 +99,36 @@ def test_linux_tcp_cve_native_cover_is_an_exact_preview_opt_in():
             assert webp.format == "WEBP" and png.format == "PNG"
             assert webp.size == png.size == (1920, 1080)
             assert webp.convert("RGBA").tobytes() == png.convert("RGBA").tobytes()
+
+
+def test_riemann_lean_native_cover_is_an_exact_preview_opt_in():
+    post = (
+        ROOT
+        / "_posts/2026/11/2026-11-24-formal-verification-riemann-hypothesis-lean-architecture.md"
+    )
+    text = post.read_text(encoding="utf-8")
+    image = yaml.safe_load(text.split("---", 2)[1])["image"]
+    cover = "/assets/img/ai/formal-verification/riemann-lean-verification-cover.webp"
+    assert image["path"] == cover
+    assert (image["width"], image["height"]) == (1920, 1080)
+    assert (
+        "include diagrams/static/ai/formal-verification/lean-rh-tcb-verification.html"
+        in text
+    )
+    assert (
+        "include diagrams/static/ai/formal-verification/closed-loop-vs-devsecops-boundary.html"
+        in text
+    )
+    template = (ROOT / "_includes/refactor-content.html").read_text()
+    assert "{% elsif _src == '" + cover + "' %}" in template
+    assert "_cover_prefix == '/assets/img/ai/'" not in template
+    from PIL import Image
+
+    with Image.open(ROOT / cover.lstrip("/")) as webp:
+        with Image.open(
+            ROOT
+            / "assets/img/ai/formal-verification/riemann-lean-verification-cover.png"
+        ) as png:
+            assert webp.format == "WEBP" and png.format == "PNG"
+            assert webp.size == png.size == (1920, 1080)
+            assert webp.convert("RGBA").tobytes() == png.convert("RGBA").tobytes()

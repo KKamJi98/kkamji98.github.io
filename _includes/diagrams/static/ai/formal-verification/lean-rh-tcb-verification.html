@@ -1,0 +1,78 @@
+<figure class="sd sd--flow sd--fhd" id="sd-lean-rh-tcb" aria-labelledby="sd-lean-rh-tcb-title" data-canvas-width="1920" data-canvas-height="1080">
+  <figcaption class="sd-title" id="sd-lean-rh-tcb-title">리만 가설 1700만 줄 Lean 4 증명의 격리 파이프라인과 다중 커널 검증</figcaption><div class="sd-semantic-source">
+  <section class="sd-lane" id="rh-pipe-lane">
+    <div class="sd-lane-title" id="rh-pipe-title">비신뢰 증명 격리 파이프라인: 1700만 줄 소스를 불활성 Export로 고정하고 명제와 공리를 감사</div>
+    <div class="sd-node" id="rh-p-source"><strong class="sd-label">1. 비신뢰 AI 증명 원천</strong><span class="sd-detail">약 1700만 줄 / 175,187 모듈<br>Alpoge와 Claude 협업 생성<br>인간 통독 불가 (산문 25만쪽+)</span></div>
+    <div class="sd-node sd-node--accent" id="rh-p-sandbox"><strong class="sd-label">2. 샌드박스 독립 재빌드</strong><span class="sd-detail">네트워크 차단 읽기 전용 빌드<br>Mathlib 캐시 바이트 단위 일치<br>61.6 GB 불활성 export 추출</span></div>
+    <div class="sd-node sd-node--accent" id="rh-p-compare"><strong class="sd-label">3. 명제 격리 및 공리 감사</strong><span class="sd-detail">Challenge.lean Mathlib 단독<br>Comparator로 5개 정리 일치<br>표준 공리 3종 / sorry 0건</span></div>
+    <div class="sd-node sd-node--accent" id="rh-p-arith"><strong class="sd-label">4. 산술 귀결 교차 검증</strong><span class="sd-detail">Robin1984 결합 부등식 도출<br>zeta 정의 결함 가능성 배제<br>직접 상수 27개 / 선언 1801개</span></div>
+  </section>
+  <section class="sd-lane" id="rh-kernel-lane">
+    <div class="sd-lane-title" id="rh-kernel-title">독립 다중 커널 병렬 검증: 동일 61.6 GB 불활성 Export(1,468,418개 선언)를 4계열 커널이 교차 검사</div>
+    <div class="sd-node sd-node--accent" id="rh-k-leche"><strong class="sd-label">con-leche (Lean)</strong><span class="sd-detail">집합론 모델 일관성 증명 보유<br>Lean.Expr C++ 의존성 제거<br>64스레드 3분 15초 통과</span></div>
+    <div class="sd-node sd-node--accent" id="rh-k-ron"><strong class="sd-label">con-ron (Rust)</strong><span class="sd-detail">생성자별 배열 hash-cons DAG<br>Aeneas 경유 Lean 트윈 동치<br>--compare 64스레드 7분 6초</span></div>
+    <div class="sd-node sd-node--accent" id="rh-k-nanoda"><strong class="sd-label">nanoda / lean4lean</strong><span class="sd-detail">독립 Rust 커널 27분 42초<br>lean4lean 175,187 모듈 통과<br>서로 다른 구현 계보 확보</span></div>
+    <div class="sd-node sd-node--accent" id="rh-k-cpp"><strong class="sd-label">Lean C++ 공식 커널</strong><span class="sd-detail">기본 커널 48시간 / 82.6 GiB<br>Paranoid 72시간 / 98.8 GiB<br>Allocator 조정 시 9 - 10시간</span></div>
+  </section>
+  <div class="sd-arrow" id="rh-p-e1" data-from="rh-p-source" data-to="rh-p-sandbox" aria-label="1700만 줄 소스를 네트워크 차단 샌드박스에서 재빌드하여 61.6 GB 불활성 export 생성"></div>
+  <div class="sd-arrow" id="rh-p-e2" data-from="rh-p-sandbox" data-to="rh-p-compare" aria-label="불활성 export를 Mathlib 단독 Challenge 명제 및 표준 공리 3종과 대조"></div>
+  <div class="sd-arrow" id="rh-p-e3" data-from="rh-p-compare" data-to="rh-p-arith" aria-label="검증된 정리를 Robin1984와 결합해 초등 약수 합 부등식으로 교차 확인"></div>
+  <p class="sd-note" id="rh-note">검증 범위: Mathlib RiemannHypothesis와 Dirichlet L-함수 GRH 5개 정리(MIT 2026-11-23). 인간 수학계의 개념 소화와 Clay 공식 심사는 별개 진행 중</p>
+</div>
+<!-- FHD artwork: generated from the preserved semantic source. -->
+<svg class="sd-fhd-artwork" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" data-source-sha256="5f4b38b7ee283f93e1cdea4a86ee76196cf267405e41637ef3fc0af4040f69a1">
+<rect x="0" y="0" width="1920" height="1080" fill="#fff"/>
+<rect data-source="root.0.1" x="40.000" y="135.000" width="1840.000" height="395.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-source="root.0.2" x="40.000" y="565.000" width="1840.000" height="395.000" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<rect data-node="root.0.1.1" x="75.000" y="235.000" width="405.000" height="255.000" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+<rect data-node="root.0.1.2" x="530.000" y="235.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.3" x="985.000" y="235.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.1.4" x="1440.000" y="235.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.1" x="75.000" y="665.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.2" x="530.000" y="665.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.3" x="985.000" y="665.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<rect data-node="root.0.2.4" x="1440.000" y="665.000" width="405.000" height="255.000" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+<path data-edge="root.0.3" data-from="root.0.1.1" data-to="root.0.1.2" d="M 492.000 362.000 L 518.000 362.000" fill="none" stroke="#475569" stroke-width="3"><title>1700만 줄 소스를 네트워크 차단 샌드박스에서 재빌드하여 61.6 GB 불활성 export 생성</title></path>
+<polygon data-arrowhead="root.0.3" points="518.000,362.000 508.000,368.000 508.000,356.000" fill="#475569"/>
+<path data-edge="root.0.4" data-from="root.0.1.2" data-to="root.0.1.3" d="M 947.000 362.000 L 973.000 362.000" fill="none" stroke="#475569" stroke-width="3"><title>불활성 export를 Mathlib 단독 Challenge 명제 및 표준 공리 3종과 대조</title></path>
+<polygon data-arrowhead="root.0.4" points="973.000,362.000 963.000,368.000 963.000,356.000" fill="#475569"/>
+<path data-edge="root.0.5" data-from="root.0.1.3" data-to="root.0.1.4" d="M 1402.000 362.000 L 1428.000 362.000" fill="none" stroke="#475569" stroke-width="3"><title>검증된 정리를 Robin1984와 결합해 초등 약수 합 부등식으로 교차 확인</title></path>
+<polygon data-arrowhead="root.0.5" points="1428.000,362.000 1418.000,368.000 1418.000,356.000" fill="#475569"/>
+<text data-source="root.0.0" x="60.000" y="86.000" font-size="36" font-weight="700" fill="#111827">리만 가설 1700만 줄 Lean 4 증명의 격리 파이프라인과 다중 커널 검증</text>
+<text data-source="root.0.1.1" x="103.000" y="293.000" font-size="30" font-weight="700" fill="#111827">1. 비신뢰 AI 증명 원천</text>
+<text data-source="root.0.1.1" x="103.000" y="338.000" font-size="24" font-weight="400" fill="#111827">약 1700만 줄 / 175,187 모듈</text>
+<text data-source="root.0.1.1" x="103.000" y="370.400" font-size="24" font-weight="400" fill="#111827">Alpoge와 Claude 협업 생성</text>
+<text data-source="root.0.1.1" x="103.000" y="402.800" font-size="24" font-weight="400" fill="#111827">인간 통독 불가 (산문 25만쪽+)</text>
+<text data-source="root.0.1.2" x="558.000" y="293.000" font-size="30" font-weight="700" fill="#111827">2. 샌드박스 독립 재빌드</text>
+<text data-source="root.0.1.2" x="558.000" y="338.000" font-size="24" font-weight="400" fill="#111827">네트워크 차단 읽기 전용 빌드</text>
+<text data-source="root.0.1.2" x="558.000" y="370.400" font-size="24" font-weight="400" fill="#111827">Mathlib 캐시 바이트 단위 일치</text>
+<text data-source="root.0.1.2" x="558.000" y="402.800" font-size="24" font-weight="400" fill="#111827">61.6 GB 불활성 export 추출</text>
+<text data-source="root.0.1.3" x="1013.000" y="293.000" font-size="30" font-weight="700" fill="#111827">3. 명제 격리 및 공리 감사</text>
+<text data-source="root.0.1.3" x="1013.000" y="338.000" font-size="24" font-weight="400" fill="#111827">Challenge.lean Mathlib 단독</text>
+<text data-source="root.0.1.3" x="1013.000" y="370.400" font-size="24" font-weight="400" fill="#111827">Comparator로 5개 정리 일치</text>
+<text data-source="root.0.1.3" x="1013.000" y="402.800" font-size="24" font-weight="400" fill="#111827">표준 공리 3종 / sorry 0건</text>
+<text data-source="root.0.1.4" x="1468.000" y="293.000" font-size="30" font-weight="700" fill="#111827">4. 산술 귀결 교차 검증</text>
+<text data-source="root.0.1.4" x="1468.000" y="338.000" font-size="24" font-weight="400" fill="#111827">Robin1984 결합 부등식 도출</text>
+<text data-source="root.0.1.4" x="1468.000" y="370.400" font-size="24" font-weight="400" fill="#111827">zeta 정의 결함 가능성 배제</text>
+<text data-source="root.0.1.4" x="1468.000" y="402.800" font-size="24" font-weight="400" fill="#111827">직접 상수 27개 / 선언 1801개</text>
+<text data-source="root.0.2.1" x="103.000" y="723.000" font-size="30" font-weight="700" fill="#111827">con-leche (Lean)</text>
+<text data-source="root.0.2.1" x="103.000" y="768.000" font-size="24" font-weight="400" fill="#111827">집합론 모델 일관성 증명 보유</text>
+<text data-source="root.0.2.1" x="103.000" y="800.400" font-size="24" font-weight="400" fill="#111827">Lean.Expr C++ 의존성 제거</text>
+<text data-source="root.0.2.1" x="103.000" y="832.800" font-size="24" font-weight="400" fill="#111827">64스레드 3분 15초 통과</text>
+<text data-source="root.0.2.2" x="558.000" y="723.000" font-size="30" font-weight="700" fill="#111827">con-ron (Rust)</text>
+<text data-source="root.0.2.2" x="558.000" y="768.000" font-size="24" font-weight="400" fill="#111827">생성자별 배열 hash-cons DAG</text>
+<text data-source="root.0.2.2" x="558.000" y="800.400" font-size="24" font-weight="400" fill="#111827">Aeneas 경유 Lean 트윈 동치</text>
+<text data-source="root.0.2.2" x="558.000" y="832.800" font-size="24" font-weight="400" fill="#111827">--compare 64스레드 7분 6초</text>
+<text data-source="root.0.2.3" x="1013.000" y="723.000" font-size="30" font-weight="700" fill="#111827">nanoda / lean4lean</text>
+<text data-source="root.0.2.3" x="1013.000" y="768.000" font-size="24" font-weight="400" fill="#111827">독립 Rust 커널 27분 42초</text>
+<text data-source="root.0.2.3" x="1013.000" y="800.400" font-size="24" font-weight="400" fill="#111827">lean4lean 175,187 모듈 통과</text>
+<text data-source="root.0.2.3" x="1013.000" y="832.800" font-size="24" font-weight="400" fill="#111827">서로 다른 구현 계보 확보</text>
+<text data-source="root.0.2.4" x="1468.000" y="723.000" font-size="30" font-weight="700" fill="#111827">Lean C++ 공식 커널</text>
+<text data-source="root.0.2.4" x="1468.000" y="768.000" font-size="24" font-weight="400" fill="#111827">기본 커널 48시간 / 82.6 GiB</text>
+<text data-source="root.0.2.4" x="1468.000" y="800.400" font-size="24" font-weight="400" fill="#111827">Paranoid 72시간 / 98.8 GiB</text>
+<text data-source="root.0.2.4" x="1468.000" y="832.800" font-size="24" font-weight="400" fill="#111827">Allocator 조정 시 9 - 10시간</text>
+<text data-source="root.0.1.0" x="75.000" y="190.000" font-size="30" font-weight="700" fill="#111827">비신뢰 증명 격리 파이프라인: 1700만 줄 소스를 불활성 Export로 고정하고 명제와 공리를 감사</text>
+<text data-source="root.0.2.0" x="75.000" y="620.000" font-size="30" font-weight="700" fill="#111827">독립 다중 커널 병렬 검증: 동일 61.6 GB 불활성 Export(1,468,418개 선언)를 4계열 커널이 교차 검사</text>
+<text data-source="root.0.6" x="60.000" y="1014.000" font-size="24" font-weight="400" fill="#111827">검증 범위: Mathlib RiemannHypothesis와 Dirichlet L-함수 GRH 5개 정리(MIT 2026-11-23). 인간 수학계의 개념 소화와 Clay 공식 심사는 별개 진행 중</text>
+</svg>
+</figure>
